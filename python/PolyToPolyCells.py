@@ -1,0 +1,266 @@
+######################################################################
+ 
+# The University of Montana owns copyright of the designated documentation contained 
+# within this file as part of the software product designated by Uniform Resource Identifier 
+# UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
+# Open Source License Contract pertaining to this documentation and agrees to abide by all 
+# restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
+# 
+# @author Documentation by Brian Losi
+# <p>Original source code authorship: Kirk A. Moeller
+
+## Purpose:  To Take a Polygon Feature Class and convert it into a uniform polygon
+##           feature class for use in SIMPPLLE.  Value field becomes
+##           DATA in output Feature class.
+####################################################################################
+
+## Need to compute and set acres.
+
+# Import system modules
+import sys, string, os, arcgisscripting, traceback, _winreg
+
+# Create the Geoprocessor object
+gp = arcgisscripting.create()
+
+# Set the necessary product code
+gp.SetProduct("ArcInfo")
+
+def AddMsgAndPrint(msg, severity=0):
+    msg = str(msg)
+    # Adds a Message to the geoprocessor (in case this is run as a tool)
+    # and also prints the message to the screen
+    print msg
+
+    #Split the message on \n first, so that if it's multiple lines, a GPMessage will be added for each line
+    try:
+        for string in msg.split('\n'):
+            #Add a geoprocessing message (in case this is run as a tool)
+            if severity == 0:
+                gp.AddMessage(string)
+            elif severity == 1:
+                gp.AddWarning(string)
+            elif severity == 2:
+                gp.AddError(string)
+        if (severity == 2 or severity == 1):
+            trace = traceback.format_exception(sys.exc_type, sys.exc_value, sys.exc_traceback)
+            for value in trace:
+                print str(value)
+                gp.AddError(str(value))
+    except:
+        pass       
+#end AddMsgAndPrint
+   
+def makepath(dir,file):
+    return dir + os.sep + file
+#end makepath
+
+def getArcGISVersion():
+    hkey = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\ESRI\ArcGIS", 0, _winreg.KEY_READ)
+    val,typ = _winreg.QueryValueEx(hkey, "RealVersion")
+    _winreg.CloseKey(hkey)
+
+    ArcGIS_Version = "9.1"
+    if (string.find(val,"9.1") != -1):
+        return "9.1"
+    elif (string.find(val,"9.2") != -1):
+        return "9.2"
+    elif (string.find(val,"9.3") != -1):
+        return "9.3"
+    else:
+        return "9.1"
+#end getArcGISVersion
+
+#Check to make sure we are running ArcGIS 9.3
+ArcGIS_Version = getArcGISVersion()
+
+if (ArcGIS_Version != "9.3"):
+    AddMsgAndPrint("This script requires ArcGIS 9.3 to run.\n Quiting.",2)
+    sys.exit(2)
+
+
+# Script arguments...
+
+outFolder   = gp.GetParameterAsText(0)
+gdbBaseName = gp.GetParameterAsText(1)
+inputFC     = gp.GetParameterAsText(2)
+outname     = gp.GetParameterAsText(3)
+acresText   = gp.GetParameterAsText(4)
+
+if (gdbBaseName == "#" or gdbBaseName == ""):
+    gdbBaseName = "result"
+
+gdbPath = makepath(outFolder,gdbBaseName) + ".gdb"
+i = 1
+while (os.path.exists(gdbPath)):
+    i += 1
+    gdbPath = makepath(outFolder,gdbBaseName + str(i)) + ".gdb"
+#end while
+
+gdb = gdbPath
+
+#inputRaster = r"C:\MyDocuments\MyProjects\SIMPPLLE-testing\polycells-test\data.gdb\mv"
+#inputRaster = r"C:\MyDocuments\MyProjects\SIMPPLLE-testing\polycells-test\result.gdb\inraster"
+
+
+acres = float(acresText)
+cellsize = math.sqrt(4046.85642 * acres)
+
+     
+def buildTempGDB():
+    global gdbPath
+    global gdb
+    global inputFC
+    global outFolder
+    
+    # Create a temporary geodatabase and copy the feature class and dem into it.
+    # Later on we will add in the land feature and roads feature classes.
+    tmplist = string.split(gdbPath,os.sep)
+    gdbName = tmplist[len(tmplist)-1]
+
+    gp.CreateFileGDB_management(outFolder, gdbName)
+    gdb = gdbPath
+
+    gp.FeatureClassToFeatureClass_conversion(inputFC, gdb, "poly")
+    inputFC = makepath(gdb,"poly")
+    
+#end buildTempGDB
+
+
+# ********************
+# *** Main Routine ***
+# ********************
+def main():
+    global gdb
+    global inputRaster
+    global outname
+    global cellsize
+
+    AddMsgAndPrint("Building Output File GeoDatabase")        
+    buildTempGDB()
+
+    AddMsgAndPrint("Converting Input Feature Class to Raster")
+    inputRaster = makepath(gdb,"inraster")
+    inputFC_OIDFields = gp.ListFields(inputFC,"*","OID")
+    inputFC_OIDField = inputFC_OIDFields.Next()
+    gp.PolygonToRaster_conversion(inputFC, inputFC_OIDField.Name, inputRaster, "", "",  cellsize)
+
+    # Make sure the raster has a table.
+    #gp.BuildRasterAttributeTable_management(inputRaster)
+    
+    resultFC = makepath(gdb,outname)
+
+    AddMsgAndPrint("Making points from raster")
+    # Make raster into points in order to get the ROW/COL information
+    # This also gets us a point for each cell in the raster.
+    rasterpts = makepath(gdb,"rasterpts")
+    gp.RasterToPoint_conversion(inputRaster, rasterpts, "VALUE")
+
+    AddMsgAndPrint("Add X,Y to Points Feature Class")    
+    gp.AddXY_management(rasterpts)
+
+    AddMsgAndPrint("Add Row,Col fields")    
+    gp.AddField_management(rasterpts, "ROW", "LONG")
+    gp.AddField_management(rasterpts, "COL", "LONG")
+    gp.AddField_management(rasterpts, "XCOL", "LONG")
+    gp.AddField_management(rasterpts, "YROW", "LONG")
+
+    # Rationalize x/y coordinates
+    gp.CalculateField_management(rasterpts, "XCOL", "[POINT_X]*100", "VB")
+    gp.CalculateField_management(rasterpts, "YROW", "[POINT_Y] *100", "VB")
+
+    AddMsgAndPrint("Convert Points to Raster on ObjectID, producing unique valued cell for each Point")    
+    # Convert back to a grid based on the OBJECTID, thus getting a grid with every cell having
+    # a unique value.
+    ptsgrid = makepath(gdb,"ptsgrid")
+    gp.PointToRaster_conversion(rasterpts, "OBJECTID", ptsgrid, "MOST_FREQUENT", "NONE", cellsize)
+
+    AddMsgAndPrint("Make Raster into Polygon Feature Class")    
+    # Now convert to a Polygon Feature Class, resulting in a polygon for each cell of the grid
+    gp.RasterToPolygon_conversion(ptsgrid, resultFC, "NO_SIMPLIFY", "Value")
+
+    # GRIDCODE is field in resulting Polygon FC that is same as OBJECTID from rasterpts
+
+    resultFC_view = "resultFC_view"
+    gp.MakeTableView_management(resultFC, resultFC_view)
+
+    rasterpts_view = "rasterpts_view"
+    gp.MakeTableView_management(rasterpts, rasterpts_view)
+
+    AddMsgAndPrint("Perform Frequency Analysis to Convert X,Y into ROW,COL data")    
+    # Convert the X/Y Coordinate information into ROW/COL information.
+    rasterpts_xfreq = makepath(gdb,"rasterpts_xfreq")
+    gp.Frequency_analysis(rasterpts, rasterpts_xfreq, "XCOL", "")
+
+    gp.AddField_management(rasterpts_xfreq, "COL", "LONG")
+
+    gp.CalculateField_management(rasterpts_xfreq, "COL", "[OBJECTID]", "VB")
+
+    gp.AddJoin_management(rasterpts_view, "XCOL", rasterpts_xfreq, "XCOL", "KEEP_ALL")
+
+    rasterpts_yfreq = makepath(gdb,"rasterpts_yfreq")
+    gp.Frequency_analysis(rasterpts, rasterpts_yfreq, "YROW", "")
+
+    gp.AddField_management(rasterpts_yfreq, "ROW", "LONG")
+
+    gp.CalculateField_management(rasterpts_yfreq, "ROW", "[OBJECTID]", "VB")
+
+    gp.AddJoin_management(rasterpts_view, "YROW", rasterpts_yfreq, "YROW", "KEEP_ALL")
+
+    gp.CalculateField_management(rasterpts_view, "ROW", "[rasterpts_yfreq.ROW]", "VB")
+    gp.CalculateField_management(rasterpts_view, "COL", "[rasterpts_xfreq.COL]", "VB")
+
+    AddMsgAndPrint("Copy Field data from Points Feature to Polygon Feature")    
+    # Create a Join and put the data in to the Result Feature Class.
+    OIDFields = gp.ListFields(rasterpts,"*","OID")
+    OIDField  = OIDFields.Next()
+    gp.joinfield_management (resultFC, "GRIDCODE", rasterpts, OIDField.Name, "POINT_X; POINT_Y; ROW; COL; GRID_CODE")
+
+    AddMsgAndPrint("Copy data from Input Feature Class to Output Feature Class Table")        
+    gp.joinfield_management (resultFC, "GRID_CODE", inputFC, inputFC_OIDField.Name)
+    
+    AddMsgAndPrint("Cleanup")    
+    # Cleanup Temp Data
+    gp.DeleteField_management (resultFC, "GRID_CODE")
+    gp.DeleteField_management (resultFC, "GRIDCODE")
+    gp.Delete_management(rasterpts, "")
+    gp.Delete_management(ptsgrid, "")
+    gp.Delete_management(rasterpts_xfreq, "")
+    gp.Delete_management(rasterpts_yfreq, "")
+    gp.Delete_management(inputRaster, "")
+    gp.Delete_management(inputFC, "")
+    AddMsgAndPrint("Finished.")    
+
+#end main()
+
+def doGPErrorMessages():
+    regMsg  = gp.GetMessages(0)
+    warnMsg = gp.GetMessages(1)
+    errMsg  = gp.GetMessages(2)
+    if regMsg != "":
+        AddMsgAndPrint(regMsg,0)
+    if warnMsg != "":
+        AddMsgAndPrint(warnMsg,1)
+    if errMsg != "":
+        AddMsgAndPrint(errMsg,2)
+
+    if (regMsg == "" and warnMsg == "" and errMsg == ""):
+        return 0
+    return 1
+#end doGPErrorMessages
+        
+try:
+    main()
+
+    print "Finished."
+    del gp
+
+except AttributeError, ErrDesc:
+    AddMsgAndPrint(ErrDesc,1)
+    doGPErrorMessages()
+except StandardError, ErrDesc:
+    AddMsgAndPrint(ErrDesc,1)
+    doGPErrorMessages()
+except:
+    if (doGPErrorMessages() == 0):
+        AddMsgAndPrint("An Error Occurred",2)
+    del gp

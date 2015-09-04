@@ -1,0 +1,14 @@
+
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>UNIT_FIRE_TYPE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>TREES_COL</string>
+    <string>SHRUBS_COL</string>
+    <string>GRASS_COL</string>
+    <string>RESULT_COL</string>
+  </list>
+  <int>0</int>
+</object-stream>

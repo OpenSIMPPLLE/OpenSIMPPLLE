@@ -1,0 +1,5182 @@
+<object-stream>
+  <int>2</int>
+  <list>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance>
+          <int>1</int>
+          <string>LOW</string>
+          <int>0</int>
+        </FireResistance>
+        <FireResistance>
+          <int>1</int>
+          <string>MODERATE</string>
+          <int>1</int>
+        </FireResistance>
+      </list>
+      <list/>
+      <string>{[LOW, MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>GH</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>HERB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>DWARF-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LOW-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>TALL-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[GH, HERB, DWARF-SHRUB, LOW-SHRUB, TALL-SHRUB]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density>
+          <int>2</int>
+          <string>C</string>
+          <int>3</int>
+          <boolean>false</boolean>
+        </Density>
+        <Density>
+          <int>2</int>
+          <string>O</string>
+          <int>2</int>
+          <boolean>false</boolean>
+        </Density>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>SUCCESSION</string>
+          <string>Succession</string>
+          <boolean>false</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance>
+          <int>1</int>
+          <string>HIGH</string>
+          <int>2</int>
+        </FireResistance>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>AQU</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[AQU]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+      </list>
+      <string>[C]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>SS</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>SS-SS</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density>
+          <int>2</int>
+          <string>W</string>
+          <int>1</int>
+          <boolean>false</boolean>
+        </Density>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>STAND-REPLACING-FIRE</string>
+          <string>StandReplacingFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE, SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>POLE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>POLE-POLE</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>LARGE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LARGE-LARGE</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>LARGE-POLE</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LARGE-SS</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>POLE-LARGE</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>POLE-SS</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>SS-LARGE</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>SS-POLE</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[LOW, MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[GH, HERB, DWARF-SHRUB, LOW-SHRUB, TALL-SHRUB]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[2]/list[6]/SizeClass"/>
+      </list>
+      <string>{[AQU]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+      </list>
+      <string>[C]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData[3]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE, SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData[3]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE, SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[LOW, MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[GH, HERB, DWARF-SHRUB, LOW-SHRUB, TALL-SHRUB]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[2]/list[6]/SizeClass"/>
+      </list>
+      <string>{[AQU]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+      </list>
+      <string>[C]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>ABOVE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[LOW, MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[GH, HERB, DWARF-SHRUB, LOW-SHRUB, TALL-SHRUB]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[2]/list[6]/SizeClass"/>
+      </list>
+      <string>{[AQU]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+      </list>
+      <string>[C]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>LIGHT-SEVERITY-FIRE</string>
+          <string>LightSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>MIXED-SEVERITY-FIRE</string>
+          <string>MixedSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>NONE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[SS, SS-SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[4]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, POLE-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSpreadLogicData[69]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSpreadLogicData[69]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>1</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[5]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, LARGE-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[W, C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData/list[3]/FireResistance[2]"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData[3]/list[7]/Density"/>
+      </list>
+      <string>[W]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+    <FireSpreadLogicData>
+      <int>1</int>
+      <int>6</int>
+      <int>1</int>
+      <string></string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireSpreadLogicData[2]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSpreadLogicData[17]/list[6]/SizeClass[6]"/>
+      </list>
+      <string>{[LARGE-POLE, LARGE-SS, POLE-LARGE, POLE-SS, SS-LARGE, SS-POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density"/>
+        <Density reference="../../../FireSpreadLogicData/list[7]/Density[2]"/>
+      </list>
+      <string>[C, O]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>2</int>
+      <string>BELOW</string>
+      <string>NEXT_TO</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </FireSpreadLogicData>
+  </list>
+</object-stream>

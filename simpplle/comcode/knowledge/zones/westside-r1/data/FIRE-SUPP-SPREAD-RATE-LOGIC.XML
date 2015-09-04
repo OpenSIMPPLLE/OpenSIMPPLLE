@@ -1,0 +1,1373 @@
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>FIRE_SUPP_SPREAD_RATE_LOGIC</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>SLOPE_COL</string>
+    <string>AVERAGE_RATE_COL</string>
+    <string>EXTREME_RATE_COL</string>
+  </list>
+  <int>1</int>
+  <string>FIRE_SUPP_SPREAD_RATE_LOGIC</string>
+  <list>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>ALPINE-GRASSES</string>
+          <string>Alpine Grasses</string>
+          <Lifeform>
+            <int>1</int>
+            <string>herbacious</string>
+            <int>2</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>LOW</string>
+            <int>0</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ALTERED-GRASSES</string>
+          <string>Altered Grasses</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>FESCUE</string>
+          <string>Fescue</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>UPLAND-GRASSES</string>
+          <string>Upland Grasses</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>RIPARIAN-GRASSES</string>
+          <string>Riparian Grasses</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance>
+            <int>1</int>
+            <string>HIGH</string>
+            <int>2</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>NATIVE-FORBS</string>
+          <string>Native Forbs</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>AGR</string>
+          <string>Agriculture</string>
+          <Lifeform>
+            <int>1</int>
+            <string>agriculture</string>
+            <int>3</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>UNKNOWN/NA</string>
+            <int>-1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[ALPINE-GRASSES, ALTERED-GRASSES, FESCUE, UPLAND-GRASSES, RIPARIAN-GRASSES, NATIVE-FORBS, AGR]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>STAND-REPLACING-FIRE</string>
+          <string>StandReplacingFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>SUCCESSION</string>
+          <string>Succession</string>
+          <boolean>false</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE, SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>9900</int>
+      <int>19800</int>
+    </FireSuppSpreadRateLogicData>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>CW-MC</string>
+          <string>Cottowood - Mixed Conifer</string>
+          <Lifeform>
+            <int>1</int>
+            <string>trees</string>
+            <int>0</int>
+          </Lifeform>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>QA</string>
+          <string>Quaking Aspen</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>QA-MC</string>
+          <string>Quaking Aspen - Mixed Conifer</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>CW</string>
+          <string>Cottonwood</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[CW-MC, QA, QA-MC, CW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>330</int>
+      <int>1320</int>
+    </FireSuppSpreadRateLogicData>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>L-ES</string>
+          <string>Larch - Engleman Spruce</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance>
+            <int>1</int>
+            <string>MODERATE</string>
+            <int>1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WP</string>
+          <string>White Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WH-C-GF</string>
+          <string>Western Hemlock - Cedar - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WH-C</string>
+          <string>Western Hemlock - Cedar</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WH</string>
+          <string>Western Hemlock</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WB-ES-AF</string>
+          <string>Whitebark Pine - Engleman Spruce - Alpine-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WB</string>
+          <string>Whitebark Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PP-DF</string>
+          <string>Poderosa Pine - Douglas-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>RRWP</string>
+          <string>Rust Resistant White Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PP</string>
+          <string>Ponderosa Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PF</string>
+          <string>Limber pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>LP-GF</string>
+          <string>Lodgepole Pine - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>MH</string>
+          <string>Mountain Hemlock</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>LP-AF</string>
+          <string>Lodgepole Pine - Alpine-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>LP</string>
+          <string>Lodgepole Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-RRWP-GF</string>
+          <string>Larch - Rust Resistant White Pine - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-WP-GF</string>
+          <string>Larch - White Pine - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-WP</string>
+          <string>Larch - White Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-RRWP</string>
+          <string>Larch - Rust Resistant White Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-PP-LP</string>
+          <string>Larch - Ponderosa Pine - Lodgepole Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-PP</string>
+          <string>Lodgepole Pine - Ponderosa Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-LP-GF</string>
+          <string>Larch - Lodgepole Pine - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-LP</string>
+          <string>Larch - Lodgepole Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-GF</string>
+          <string>Larch - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-ES-AF</string>
+          <string>Larch - Engleman Spruce - Alpine-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-DF-PP</string>
+          <string>Larch - Douglas-Fir - Ponderosa Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-DF-WP</string>
+          <string>Larch - Douglas-Fir - White Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-DF</string>
+          <string>Larch - Douglas-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-DF-RRWP</string>
+          <string>Larch - Douglas-Fir - Rust Resistant White Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-DF-LP</string>
+          <string>Larch - Douglas-Fir - Lodgepole Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-DF-GF</string>
+          <string>Larch - Douglas-Fir - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-DF-ES</string>
+          <string>Larch - Douglas-Fir - Engleman Spruce</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ES-AF</string>
+          <string>Engleman Spruce - Alpine-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L-DF-AF</string>
+          <string>Larch - Douglas-Fir - Alpine-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-WP</string>
+          <string>Douglas-Fir - White Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>L</string>
+          <string>Larch</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>GF</string>
+          <string>Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ES</string>
+          <string>Engleman Spruce</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-WP-GF</string>
+          <string>Douglas-Fir - White Pine - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-PP-GF</string>
+          <string>Douglas-Fir - Ponderosa Pine - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-RRWP</string>
+          <string>Douglas-Fir - Rust Resistant White Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-RRWP-GF</string>
+          <string>Douglas-Fir - Rust Resistant White Pine - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-PP-LP</string>
+          <string>Douglas-Fir - Ponderosa Pine - Lodgepole Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>AF-ES-MH</string>
+          <string>Alpine-Fir - Engleman Spruce - Mountain Hemlock</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-LP-ES</string>
+          <string>Douglas-Fir - Lodgepole Pine - Engleman Spruce</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-LP-GF</string>
+          <string>Douglas-Fir - Lodgepole Pine - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-LP</string>
+          <string>Douglas-Fir - Lodgepole Pine</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-LP-AF</string>
+          <string>Douglas-Fir - Lodgepole Pine - Alpine-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-AF</string>
+          <string>Douglas-Fir - Alpine-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-ES</string>
+          <string>Douglas-Fir - Engleman Spruce</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF-GF</string>
+          <string>Douglas-Fir - Grand-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF</string>
+          <string>Douglas-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>AF-MH</string>
+          <string>Alpine-Fir - Mountain Hemlock</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>C</string>
+          <string>Cedar</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>AL-WB-AF</string>
+          <string>Alpine-Larch - Whitebark Pine - Alpine-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>AL-AF</string>
+          <string>Alpine-Larch - Alpine-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>AL</string>
+          <string>Alpine-Larch</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>AF</string>
+          <string>Alpine-Fir</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[L-ES, WP, WH-C-GF, WH-C, WH, WB-ES-AF, WB, PP-DF, RRWP, PP, PF, LP-GF, MH, LP-AF, LP, L-RRWP-GF, L-WP-GF, L-WP, L-RRWP, L-PP-LP, L-PP, L-LP-GF, L-LP, L-GF, L-ES-AF, L-DF-PP, L-DF-WP, L-DF, L-DF-RRWP, L-DF-LP, L-DF-GF, L-DF-ES, ES-AF, L-DF-AF, DF-WP, L, GF, ES, DF-WP-GF, DF-PP-GF, DF-RRWP, DF-RRWP-GF, DF-PP-LP, AF-ES-MH, DF-LP-ES, DF-LP-GF, DF-LP, DF-LP-AF, DF-AF, DF-ES, DF-GF, DF, AF-MH, C, AL-WB-AF, AL-AF, AL, AF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>LIGHT-SEVERITY-FIRE</string>
+          <string>LightSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>MIXED-SEVERITY-FIRE</string>
+          <string>MixedSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>132</int>
+      <int>1320</int>
+    </FireSuppSpreadRateLogicData>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[2]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[3]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[4]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[5]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[6]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[7]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[8]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[9]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[10]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[11]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[12]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[13]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[14]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[15]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[16]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[17]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[18]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[19]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[20]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[21]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[22]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[23]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[24]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[25]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[26]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[27]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[28]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[29]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[30]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[31]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[32]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[33]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[34]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[35]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[36]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[37]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[38]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[39]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[40]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[41]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[42]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[43]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[44]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[45]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[46]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[47]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[48]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[49]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[50]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[51]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[52]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[53]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[54]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[55]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[56]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[57]"/>
+        <Species reference="../../../FireSuppSpreadRateLogicData[3]/list[4]/Species[58]"/>
+      </list>
+      <string>{[L-ES, WP, WH-C-GF, WH-C, WH, WB-ES-AF, WB, PP-DF, RRWP, PP, PF, LP-GF, MH, LP-AF, LP, L-RRWP-GF, L-WP-GF, L-WP, L-RRWP, L-PP-LP, L-PP, L-LP-GF, L-LP, L-GF, L-ES-AF, L-DF-PP, L-DF-WP, L-DF, L-DF-RRWP, L-DF-LP, L-DF-GF, L-DF-ES, ES-AF, L-DF-AF, DF-WP, L, GF, ES, DF-WP-GF, DF-PP-GF, DF-RRWP, DF-RRWP-GF, DF-PP-LP, AF-ES-MH, DF-LP-ES, DF-LP-GF, DF-LP, DF-LP-AF, DF-AF, DF-ES, DF-GF, DF, AF-MH, C, AL-WB-AF, AL-AF, AL, AF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType>
+          <int>1</int>
+          <string>ECOSYSTEM-MANAGEMENT-THIN-AND-UNDERBURN</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>ECOSYSTEM-MANAGEMENT-UNDERBURN</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>ECOSYSTEM-MANAGEMENT-BROADCAST-BURN</string>
+        </TreatmentType>
+      </list>
+      <int>1</int>
+      <string>[ECOSYSTEM-MANAGEMENT-THIN-AND-UNDERBURN, ECOSYSTEM-MANAGEMENT-UNDERBURN, ECOSYSTEM-MANAGEMENT-BROADCAST-BURN]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>132</int>
+      <int>1320</int>
+    </FireSuppSpreadRateLogicData>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>RIPARIAN-SHRUBS</string>
+          <string>Riparian Shrubs</string>
+          <Lifeform>
+            <int>1</int>
+            <string>shrubs</string>
+            <int>1</int>
+          </Lifeform>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData[3]/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>MESIC-SHRUBS</string>
+          <string>Mesic Shrubs</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData[3]/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[RIPARIAN-SHRUBS, MESIC-SHRUBS]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppSpreadRateLogicData/list[8]/ProcessType[2]"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>3300</int>
+      <int>9900</int>
+    </FireSuppSpreadRateLogicData>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>XERIC-SHRUBS</string>
+          <string>Xeric Shrubs</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[5]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData/list[4]/Species[5]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>MAHOGANY</string>
+          <string>Mahogany</string>
+          <Lifeform reference="../../../../FireSuppSpreadRateLogicData[2]/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppSpreadRateLogicData[3]/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[XERIC-SHRUBS, MAHOGANY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppSpreadRateLogicData/list[8]/ProcessType[2]"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>132</int>
+      <int>3300</int>
+    </FireSuppSpreadRateLogicData>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType>
+          <int>1</int>
+          <string>FIREWOOD-REMOVAL</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SHELTERWOOD-SEEDCUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SHELTERWOOD-FINAL-PRRWP</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SHELTERWOOD-FINAL-WR-PLANT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SHELTERWOOD-FINAL-WR-PRRWP</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SHELTERWOOD-FINAL-WITH-RESERVES</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SHELTERWOOD-FINAL-CUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SHELTERWOOD-FINAL-PLANT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>GROUP-SELECTION-CUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SEEDTREE-SEEDCUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SEEDTREE-FINAL-WR-PRRWP</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SEEDTREE-FINAL-WR-PLANT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SEEDTREE-FINAL-WITH-RESERVES</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SEEDTREE-FINAL-PLANT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SEEDTREE-FINAL-PRRWP</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SEEDTREE-FINAL-CUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SANITATION-SALVAGE</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>IMPROVEMENT-CUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>PRECOMMERCIAL-THINNING</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>PRECOMMERCIAL-THINNING-DIVERSITY</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>LIBERATION-CUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>INDIVIDUAL-SELECTION-CUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>COMMERCIAL-THINNING</string>
+        </TreatmentType>
+      </list>
+      <int>1</int>
+      <string>[FIREWOOD-REMOVAL, SHELTERWOOD-SEEDCUT, SHELTERWOOD-FINAL-PRRWP, SHELTERWOOD-FINAL-WR-PLANT, SHELTERWOOD-FINAL-WR-PRRWP, SHELTERWOOD-FINAL-WITH-RESERVES, SHELTERWOOD-FINAL-CUT, SHELTERWOOD-FINAL-PLANT, GROUP-SELECTION-CUT, SEEDTREE-SEEDCUT, SEEDTREE-FINAL-WR-PRRWP, SEEDTREE-FINAL-WR-PLANT, SEEDTREE-FINAL-WITH-RESERVES, SEEDTREE-FINAL-PLANT, SEEDTREE-FINAL-PRRWP, SEEDTREE-FINAL-CUT, SANITATION-SALVAGE, IMPROVEMENT-CUT, PRECOMMERCIAL-THINNING, PRECOMMERCIAL-THINNING-DIVERSITY, LIBERATION-CUT, INDIVIDUAL-SELECTION-CUT, COMMERCIAL-THINNING]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>330</int>
+      <int>1320</int>
+    </FireSuppSpreadRateLogicData>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>1320</int>
+      <int>3300</int>
+    </FireSuppSpreadRateLogicData>
+  </list>
+</object-stream>

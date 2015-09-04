@@ -1,0 +1,264 @@
+<object-stream>
+  <int>2</int>
+  <int>3</int>
+  <int>10</int>
+  <string>MEDIUM-WINDTHROW</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>ROOT-DISEASE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>ECO_GROUP_COL</string>
+    <string>SPECIES_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>LIGHT-SB</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>SNOW-AVALANCHE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>HIGH-WINDTHROW</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>WILDLIFE-BROWSING</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>FLOOD</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>MEDIUM-SB</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>HIGH-SB</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>LOW-WINDTHROW</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <int>1</int>
+  <string>ROOT-DISEASE</string>
+  <list>
+    <ProcessProbLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>The spruce beetle probability logic is not accessible through these screens.  Portions of the Spruce
+Beetle Expert System developed by Reyonlds and Holsten was incorporated.
+
+root disease is the only process with knowledge in a screen.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>BS</string>
+          <string>Black Spruce</string>
+          <Lifeform>
+            <int>1</int>
+            <string>trees</string>
+            <int>0</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>MODERATE</string>
+            <int>1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>BS-WS</string>
+          <string>Black Spruce - White Spruce</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WS</string>
+          <string>White Spruce</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WS-BS</string>
+          <string>White Spruce - Black Spruce</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[BS, BS-WS, WS, WS-BS]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType>
+          <int>1</int>
+          <string>COMMERCIAL-THINNING</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>SANITATION-SALVAGE</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>PRECOMMERCIAL-THINNING</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>GROUP-SELECTION-CUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>IMPROVEMENT-CUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>INDIVIDUAL-SELECTION-CUT</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>LIBERATION-CUT</string>
+        </TreatmentType>
+      </list>
+      <int>1</int>
+      <string>[COMMERCIAL-THINNING, SANITATION-SALVAGE, PRECOMMERCIAL-THINNING, GROUP-SELECTION-CUT, IMPROVEMENT-CUT, INDIVIDUAL-SELECTION-CUT, LIBERATION-CUT]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <int>1</int>
+      <string>ROOT-DISEASE</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>50</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>The spruce beetle probability logic is not accessible through these screens.  Portions of the Spruce
+Beetle Expert System developed by Reyonlds and Holsten was incorporated.
+
+root disease is the only process with knowledge in a screen.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[3]"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[4]"/>
+      </list>
+      <string>{[BS, BS-WS, WS, WS-BS]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <int>1</int>
+      <string>ROOT-DISEASE</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+  </list>
+  <int>0</int>
+</object-stream>

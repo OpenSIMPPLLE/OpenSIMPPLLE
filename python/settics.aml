@@ -1,0 +1,52 @@
+&args cover shiftcover xmin xmax ymin ymax sxmin sxmax symin symax
+&severity &error &routine crash
+
+&WORKSPACE [dir %cover%]
+&s cover [entryname %cover%]
+
+TABLES
+SEL %cover%.TIC
+PURGE
+Y
+ADD
+1,%xmin%,%ymin%
+2,%xmin%,%ymax%
+3,%xmax%,%ymax%
+4,%xmax%,%ymin%
+;
+
+&WORKSPACE [dir %shiftcover%]
+&s shiftcover [entryname %shiftcover%]
+
+SEL %shiftcover%.TIC
+PURGE
+Y
+ADD
+1,%sxmin%,%symin%
+2,%sxmin%,%symax%
+3,%sxmax%,%symax%
+4,%sxmax%,%symin%
+;
+QUIT
+
+/* The above code seems to work correctly however, ArcCatalog will
+/* not show anything when looking at the coverage properties.  The
+/* code below seems to get around this problem.
+export cover %cover% %cover%.e00 NONE
+kill %cover% all
+import cover %cover%.e00 %cover%
+
+export cover %shiftcover% %shiftcover%.e00 NONE
+kill %shiftcover% all
+import cover %shiftcover%.e00 %shiftcover%
+
+&return
+
+
+/* *********************
+/* *** Crash Routine ***
+/* *********************
+&routine crash
+&severity &error &ignore
+&sv closeall = [close -all]
+&return &error Error, bailing out!

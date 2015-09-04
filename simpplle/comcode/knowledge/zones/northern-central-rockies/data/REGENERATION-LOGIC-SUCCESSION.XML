@@ -1,0 +1,6392 @@
+
+<object-stream>
+  <int>2</int>
+  <int>1</int>
+  <int>1</int>
+  <string>ANY</string>
+  <int>3</int>
+  <int>1</int>
+  <string>SUCCESSION</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>DENSITY_COL</string>
+    <string>Species</string>
+    <string>Succession Regen Possible</string>
+    <string>Succession Seed species/To State</string>
+  </list>
+  <int>1</int>
+  <string>SUCCESSION</string>
+  <list>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>AF-ES-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>CW</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>CW-MC</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-AF-ES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-ES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-LP-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-LP-ES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-PF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-PP-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-PP-PF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>EARLY-SERAL</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ES-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ES-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>GA</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LATE-SERAL</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LP-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MID-SERAL</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PF-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PP-DF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>QA</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>QA-MC</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIP-DECID</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIP-DECID-MC</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-DF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-ES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-ES-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-ES-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-LP-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ALPINE-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>FS-S-G</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>JUSC</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>JUSC-AGSP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>JUSC-ORMI</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MESIC-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MTN-FS-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MTN-MAHOGANY</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MTN-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIP-S-GRAMS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIP-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>XERIC-FS-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>XERIC-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>AGSP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ALPINE-GRASSES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ALPINE-HERBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ALTERED-GRASSES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ALTERED-NOXIOUS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>FESCUE</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>HERBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>NATIVE-FORBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>NOXIOUS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIP-GRAMS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>UPLAND-GRASSES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>AGR</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>A</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>A-MF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>A-MS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>A-PG</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>A-SF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>AG</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>BRTE</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>CEMA</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>CIAR</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>GW-PG</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LIVU</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MF-A</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MM-OK</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MM-OK-PJU</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MS-PG</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MS-PJU-PG</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ND</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>NF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>NS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>OK</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>OK-PJU</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PG</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PJU</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PJU-MM-OK</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PJU-MS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PJU-OK</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PP-MF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIPARIAN</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>SD-PG</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>SF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>SF-A</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WATER</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WS-PG</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+    <SuccessionRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WS-PJU-PG</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <boolean>false</boolean>
+      <int>0</int>
+    </SuccessionRegenerationData>
+  </list>
+</object-stream>

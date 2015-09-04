@@ -1,0 +1,26 @@
+&severity &error &routine BAILOUT
+&args gridpath fieldname
+
+&WORKSPACE [dir %gridpath%]
+&s grid [entryname %gridpath%]
+
+&if ^ [ exists %grid% -grid ] &then
+ &return Grid: %gridpath% does not exist
+
+&if [iteminfo %grid% -vat %fieldname% -exists] EQ .FALSE. &then
+  &return %fieldname% does not exist.
+
+TABLES
+  dropitem %grid%.vat %fieldname%
+QUIT
+
+&return
+
+/*--------------
+&routine BAILOUT
+/*--------------
+ &severity &error &ignore
+ &if [ show program ] eq GRID &then quit
+ &if [ show program ] eq TABLES &then quit
+&return &error Error, bailing out!
+

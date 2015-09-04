@@ -1,0 +1,3778 @@
+/3.2
+(ODB.1
+	FirstRootClassName:	"Project"
+	Roots:	2
+	Version:	32
+)
+
+(Project.2
+	Name:	"simpplle_arcview-new.apr"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 13:57:58"
+	GUIName:	"Project"
+	Win:	3
+	CSMgr:	4
+	DocExts:	5
+	ObjectTag:	6
+	VisGUIWidth:	70
+	Doc:	7
+	Doc:	11
+	Doc:	15
+	Doc:	19
+	Doc:	23
+	Doc:	27
+	Doc:	31
+	Doc:	35
+	Doc:	39
+	Doc:	43
+	Doc:	47
+	Doc:	51
+	Doc:	55
+	Doc:	59
+	Doc:	63
+	Doc:	67
+	Doc:	71
+	Doc:	75
+	Doc:	79
+	Doc:	83
+	Doc:	87
+	Doc:	91
+	Doc:	95
+	Doc:	99
+	Doc:	103
+	Doc:	107
+	Doc:	111
+	Buttons:	115
+	Buttons:	116
+	Buttons:	117
+	Scripts:	118
+	Prefs:	119
+	GUI:	122
+	GUI:	927
+	WorkDir:	996
+	WinX:	-4
+	WinY:	-3
+	WinW:	1036
+	WinH:	779
+	StartUp:	"simpplle.open"
+	SerialNumber:	"648611112345"
+	SelColor:	997
+	GUINames:	998
+	GUINames:	999
+	GUINames:	1000
+	GUINames:	1001
+	GUINames:	1002
+	GUINames:	1003
+	GUINames:	1004
+	TocWidthScale:	1.00000000000000
+)
+
+(DocWin.3
+	Owner:	2
+	Open:	1
+	X:	8
+	Y:	3
+	W:	586
+	H:	487
+)
+
+(CSMgr.4
+)
+
+(DocAct.5
+	Doc:	2
+)
+
+(Nil.6
+)
+
+(SEd.7
+	Name:	"project.close"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:29:05"
+	GUIName:	"Script"
+	Win:	8
+	CSMgr:	9
+	DocExts:	10
+	Source:	"'  Region 1 - USFS   -   ArcView Script  - PROJECT.CLOSE\n'----------------------------------------------------------------------------\n'  Purpose: A modified version of the ArcView project.close script\n'           The script has been modified to include a disconnection from\n'           ArcInfo if a connection had be set.  Without closing the ArcInfo\n'           connection, a couple processes are left hung.\n'----------------------------------------------------------------------------\n'  Usage:   Replaces the
+ original ArcView \"project.close\"\n'----------------------------------------------------------------------------\n'  Created: Gary Neier   Sept/96\n'----------------------------------------------------------------------------\n\n\ntheProject = av.GetProject\n\nresults = av.Run(\"simpplle.aiclose\",{})\n\nif (nil <> theProject) then\n  if (theProject.IsModified) then\n    res = MsgBox.SaveChanges(\"Do you want to save changes to \" + theProject.GetName + \"?\", \"ArcView\", true)\n    if (nil = res) then exit end\n    if (res) th
+en\n      av.Run(\"Project.Save\", nil)\n      if (theProject.IsModified) then exit end\n    end\n  end\n  av.PurgeObjects\n  theProject.Close\nend"
+	FontSize:	1
+)
+
+(DocWin.8
+	Owner:	7
+	X:	253
+	Y:	20
+	W:	657
+	H:	530
+)
+
+(CSMgr.9
+)
+
+(DocAct.10
+	Doc:	7
+)
+
+(SEd.11
+	Name:	"project.exit"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:28:20"
+	GUIName:	"Script"
+	Win:	12
+	CSMgr:	13
+	DocExts:	14
+	Source:	"'  Region 1 - USFS   -   ArcView Script  - PROJECT.EXIT\n'----------------------------------------------------------------------------\n'  Purpose: A modified version of the ArcView project.exit script\n'           The script has been modified to include a disconnection from\n'           ArcInfo if a connection had be set.  Without closing the ArcInfo\n'           connection, a couple processes are left hung.\n'----------------------------------------------------------------------------\n'  Usage:   Replaces the o
+riginal ArcView \"project.exit\"\n'----------------------------------------------------------------------------\n'  Created: Gary Neier   Sept/96\n'----------------------------------------------------------------------------\n\n\ntheProject = av.GetProject\n\nresults = av.Run(\"simpplle.aiclose\",{})\n\nif (nil <> theProject) then \n  if (theProject.IsModified) then\n    res = MsgBox.SaveChanges(\"You want to save changes to \" + theProject.GetName + \"?\", \"ArcView\", true)\n    if (nil = res) then exit end\n    if (res) then\n  
+    av.Run(\"Project.Save\", nil)\n      if (theProject.IsModified) then exit end\n    end\n  end\ntheProject.Close\nend\n\nav.Quit\n\n\n"
+	FontSize:	1
+)
+
+(DocWin.12
+	Owner:	11
+	X:	200
+	Y:	40
+	W:	663
+	H:	424
+)
+
+(CSMgr.13
+)
+
+(DocAct.14
+	Doc:	11
+)
+
+(SEd.15
+	Name:	"simpplle.aiclose"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:27:39"
+	GUIName:	"Script"
+	Win:	16
+	CSMgr:	17
+	DocExts:	18
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script    -  SIMPPLLE.AICLOSE\n'----------------------------------------------------------------------------\n'  Purpose: Closes the connection to ArcInfo\n'----------------------------------------------------------------------------\n'  Usage:   Attached to a button ( Red Triangle )\n'----------------------------------------------------------------------------\n'  Created: Gary Neier   Sept/96\n'--------
+--------------------------------------------------------------------\n  if ( _isConnected ) then \n    _aClient.Execute(1, \" &ty [iacclose]; quit\", string)\n    _aClient.close \n    system.execute(\"sleep 2\")\n  end\n\n  _isConnected = FALSE\n\n  return \"success\"\n\n"
+	FontSize:	1
+)
+
+(DocWin.16
+	Owner:	15
+	X:	402
+	Y:	30
+	W:	599
+	H:	320
+)
+
+(CSMgr.17
+)
+
+(DocAct.18
+	Doc:	15
+)
+
+(SEd.19
+	Name:	"simpplle.aiclose.update"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:26:46"
+	GUIName:	"Script"
+	Win:	20
+	CSMgr:	21
+	DocExts:	22
+	Source:	"SELF.SetEnabled( _isConnected)"
+	FontSize:	1
+)
+
+(DocWin.20
+	Owner:	19
+	X:	304
+	Y:	158
+	W:	358
+	H:	238
+)
+
+(CSMgr.21
+)
+
+(DocAct.22
+	Doc:	19
+)
+
+(SEd.23
+	Name:	"simpplle.aiconnect"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:26:16"
+	GUIName:	"Script"
+	Win:	24
+	CSMgr:	25
+	DocExts:	26
+	Source:	"'---------------------------------------------------------------------\n' RPC connection example for using ArcInfo commands from within Arcview. \n'\n' This script will start an Arc session, set it into server mode, \n' establish a client in Arcview, issue a request, get the results,\n' close the iac connection, quit arc, and close the client.\n'---------------------------------------------------------------------\n'---------------------------------------------------------------------\n' Coded by: Park Armstrong ( 
+Jason Brewington jbrew@jove.acs.unt.edu )\n' 5-11-95 \n' Modified by: Gary Neier\n'---------------------------------------------------------------------\n\n'Check to see if a connection is already made\nif (_isConnected = TRUE) then\n av.ShowMsg(\"Already Connected to Arc/Info\")\n exit\nend\n\n'---------------------------------------------------------------------\n' Delete The Old Connect File If It Exists\n'---------------------------------------------------------------------\noldconfile = \"$HOME/connect_file\".AsFileName
+\nif (File.Exists(oldconfile)) then\n   File.Delete(oldconfile) \nend\n\n'---------------------------------------------------------------------\n' Launch The ArcInfo Session And Initialize The Server\n'---------------------------------------------------------------------\nSystem.Execute(\"$ARCHOME/programs/arc \"\"&ty [iacopen $HOME/connect_file]\"\" &\")\n\n' Set the title to begin\nav.SetName(\"Waiting for ArcInfo to Intiialize the Server: 0\")\n'---------------------------------------------------------------------\n' loop an
+d wait for the file to appear, then wait for another few seconds to \n' make sure the file is written\n'---------------------------------------------------------------------\n\n' Initialize the test variables\ni = 0\nwhile (File.Exists(oldconfile).Not)\n      av.SetName(\"Waiting for ArcInfo to Initialize the Server: \" + i.AsString) \n   if (i = 2000) then \n     MsgBox.Info(\"Canceling Operation! Server Has a Problem-Check for Arc/rpc processes running and remove them.\",\"\")\n     exit\n   end\n   i = i + 1\nend\n\n' Wait a
+n additional few seconds to make sure the file is written\nav.SetName(\"Pausing for a few seconds while the file is written, Please wait...\")  \nfor each k in 1..250\n   ' do nothing but wait   \nend\n\n' Reset the name\nav.SetName(\"ArcView\")  \n\n'---------------------------------------------------------------------\n' Read The Connection Info From The Connection File \n'---------------------------------------------------------------------     \niacFN = \"$HOME/connect_file\".AsFileName\niacFile = LineFile.Make (iacFN, #F
+ile_Perm_Read)\n\n' test, one more time, for the success of getting this file\nif (iacFile = Nil) then\n    MsgBox.Info(\"Nil File object found.  Can't procede.... Bailing out!\",\"Error Connecting to Arc/Info\") \n    exit\nend\n\niacList = iacFile.ReadElt.AsList\niacFile.Close\n\n' extract the info we read from that file\niacNode    = iacList.Get(0)\niacServer  = iacList.Get(1)\niacVersion = iacList.Get(2)\n\n'---------------------------------------------------------------------\n' Establish Arcview2 As A Client To The Arc/in
+fo Server \n'---------------------------------------------------------------------\n_aClient = RPCClient.Make (iacNode,(\"0x\"+iacServer).AsNumber,iacVersion.AsNumber)\nif (_aClient.HasError) then\n    MsgBox.Info(_aClient.GetErrorMsg, \"RPC Client Error\")\n    exit\nend\n\nif( _aClient.GetTimeout <> 25 ) then\n   _aClient.SetTimeout (25) \nend \nav.ShowMsg(\"Connected to Arc/Info server\"++iacNode++iacServer++iacVersion)\n_isConnected = TRUE\nreturn \"success\""
+	FontSize:	1
+)
+
+(DocWin.24
+	Owner:	23
+	X:	209
+	Y:	75
+	W:	755
+	H:	548
+)
+
+(CSMgr.25
+)
+
+(DocAct.26
+	Doc:	23
+)
+
+(SEd.27
+	Name:	"simpplle.aiconnect.update"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:25:19"
+	GUIName:	"Script"
+	Win:	28
+	CSMgr:	29
+	DocExts:	30
+	Source:	"SELF.SetEnabled(_isConnected.not)"
+	FontSize:	1
+)
+
+(DocWin.28
+	Owner:	27
+	X:	480
+	Y:	315
+	W:	377
+	H:	257
+)
+
+(CSMgr.29
+)
+
+(DocAct.30
+	Doc:	27
+)
+
+(SEd.31
+	Name:	"simpplle.change_probability_choice"
+	Creator:	"kmoeller"
+	CreationDate:	"Thursday, July 23, 1998 12:56:28"
+	GUIName:	"Script"
+	Win:	32
+	CSMgr:	33
+	DocExts:	34
+	Source:	"'---------------------------------------------------------------------\n' Region 1 - USFS  -  ArcView Script  - SIMPPLLE.CHANGE_PROBABILITY_CHOICE \n'---------------------------------------------------------------------\n' Purpose:  Attached to a menu item call simply calls a script.\n'---------------------------------------------------------------------\n' Usage:   Attached to a View Menu item\n'---------------------------------------------------------------------\n' Author:  Kirk Moeller\n'-----------------------
+----------------------------------------------\n' Updated: July 1998\n'---------------------------------------------------------------------\n\nav.Run(\"simpplle.probability_choice\",{\"true\",nil,av.GetActiveDoc})\n\n\n\n"
+	FontSize:	1
+)
+
+(DocWin.32
+	Owner:	31
+	X:	123
+	Y:	4
+	W:	575
+	H:	682
+)
+
+(CSMgr.33
+)
+
+(DocAct.34
+	Doc:	31
+)
+
+(SEd.35
+	Name:	"simpplle.change_spread_choice"
+	Creator:	"kmoeller"
+	CreationDate:	"Wednesday, May 06, 1998 16:21:37"
+	GUIName:	"Script"
+	Win:	36
+	CSMgr:	37
+	DocExts:	38
+	Source:	"'---------------------------------------------------------------------\n' Region 1 - USFS  -  ArcView Script  - SIMPPLLE.CHANGE_SPREAD_CHOICE \n'---------------------------------------------------------------------\n' Purpose:  Attached to a menu item call simply calls a script.\n'---------------------------------------------------------------------\n' Usage:   Attached to a View Menu item\n'---------------------------------------------------------------------\n' Author:  Kirk Moeller\n'----------------------------
+-----------------------------------------\n' Updated: July 1998\n'---------------------------------------------------------------------\n\n\nav.Run(\"simpplle.spread_choice\",{\"true\",nil,av.GetActiveDoc})\n\n"
+	FontSize:	1
+)
+
+(DocWin.36
+	Owner:	35
+	X:	384
+	Y:	21
+	W:	613
+	H:	470
+)
+
+(CSMgr.37
+)
+
+(DocAct.38
+	Doc:	35
+)
+
+(SEd.39
+	Name:	"simpplle.check_view_themes"
+	Creator:	"kmoeller"
+	CreationDate:	"Thursday, July 23, 1998 14:41:30"
+	GUIName:	"Script"
+	Win:	40
+	CSMgr:	41
+	DocExts:	42
+	Source:	"'---------------------------------------------------------------------------\n' Region 1 - USFS  -  ArcView Script  - SIMPPLLE.CHECK-VIEW-THEMES\n'---------------------------------------------------------------------------\n' Purpose: Loop through all of the themes of all view place a list of\n'          valid simpplle themes in the view object tag.\n'          If a simpplle theme is encounter that is not setup correctly\n'          then notify the user.\n'----------------------------------------------------------
+-----------------\n' Usage:   Attached to a View Menu\n'---------------------------------------------------------------------------\n' Author:  Kirk Moeller\n'---------------------------------------------------------------------------\n' Updated: July 1998\n'---------------------------------------------------------------------------\n\n  theViews    = SELF.Get(0)\n  displayType = SELF.Get(1)  'i.e. \"state\",\"probability\", or \"spread\"\n\n  if ((displayType <> \"state\") and\n      (displayType <> \"probability\") and\n      (
+displayType <> \"spread\")) then\n    msgbox.Error(\"Argument 2 for this script must be one of the following:\"\n                 +nl+\"  \"\"state\"\", \"\"probability\"\", or \"\"spread\"\"\")\n    exit\n  end\n\n'-----------------------------------------------------\n' Loop through all of the view, determine which\n' ones are have a list of valid themes.\n' make sure all of the themes we find have their\n' simpplle attribute set.  Store the list of themes\n' in the views object tag.\n'-------------------------------------------------
+----\n  standThemeList = {}\n  for each aView in theViews\n    aView.SetObjectTag(nil)\n\n    '-------------------------------------------------------------\n    ' Determine if the view has a valid \"SLINK\" by\n    ' using the global variable _SLink.\n    ' The actual name for this variable is set in the\n    ' script: simpplle.startup.\n    '-------------------------------------------------------------\n    standThemeList = {}\n    theThemes = aView.GetThemes\n    if ( theThemes.Count = 0 ) then \n      continue\n    end\n
+\n    standThemeList = {}\n    for each aTheme in theThemes\n      if ( (aTheme.GetSrcName.GetSubName <> \"polygon\") And\n           (aTheme.GetSrcName.GetSubName.Contains(\"REGION\") = FALSE)) then\n        continue\n      end\n      if ( aTheme.GetFTab.FindField(_SLink) = nil ) then continue end\n\n      if (( aTheme.GetObjectTag <> nil) and\n          (aTheme.GetObjectTag.Get(0) = nil)) then\n        aTheme.GetObjectTag.Set(0,displayType)\n      end\n\n      if (( aTheme.GetObjectTag <> nil) and\n          (aTheme.GetObje
+ctTag.Get(0) <> displayType)) then\n        continue\n      end\n\n      if ( aTheme.GetObjectTag = nil) then\n        aTheme.SetObjectTag({nil,nil,nil})\n      end\n\n      standThemeList.Add(aTheme)\n    end\n\n    if ( standThemeList.Count = 0 ) then\n      continue\n    end\n    \n    if (displayType <> \"spread\") then\n      invalidString = \"\"\n      for each standTheme in standThemeList\n        if (standTheme.GetObjectTag.Get(1) = nil) then\n          invalidString = invalidString ++nl+ standTheme.GetName\n        end\n  
+    end\n\n      if (invalidString <> \"\") then\n        MsgBox.Report(\"The following themes in view (\" +aView.GetName+\") \"+\n                     \"do not have the Simpplle Attribute set.\"+nl+nl+\n                     invalidString,\"Error: Use the F12 key\")\n        exit\n      end\n    end\n\n    ' if we made it here than all themes are ok,\n    ' store them in the views object tag for later use.\n    aView.SetObjectTag(standThemeList)\n  end\n\n  return \"success\"\n\n"
+	SearchStr:	"projectPathName"
+	FontSize:	1
+)
+
+(DocWin.40
+	Owner:	39
+	X:	315
+	Y:	21
+	W:	684
+	H:	666
+)
+
+(CSMgr.41
+)
+
+(DocAct.42
+	Doc:	39
+)
+
+(SEd.43
+	Name:	"simpplle.clear_project_tag"
+	Creator:	"kmoeller"
+	CreationDate:	"Sunday, July 26, 1998 14:35:41"
+	GUIName:	"Script"
+	Win:	44
+	CSMgr:	45
+	DocExts:	46
+	Source:	"av.GetProject.SetObjectTag(nil)\n\n"
+	FontSize:	1
+)
+
+(DocWin.44
+	Owner:	43
+	X:	296
+	Y:	63
+	W:	596
+	H:	545
+)
+
+(CSMgr.45
+)
+
+(DocAct.46
+	Doc:	43
+)
+
+(SEd.47
+	Name:	"simpplle.export_timestep"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:23:50"
+	GUIName:	"Script"
+	Win:	48
+	CSMgr:	49
+	DocExts:	50
+	Source:	"'-----------------------------------------------------------------------------\n' Region 1 - USFS   -   ArcView 3.0 script   -   SIMPPLLE.EXPORT_TIMESTEP\n'-----------------------------------------------------------------------------\n' Purpose:\n'    To convert the currently displayed time step into a coverage in Arc/Info.\n'    The original coverage is copied and the Simpplle output information is\n'    joined to the PAT.   \n'------------------------------------------------------------------------------\n' Usage
+:  Attach to a View Button.\n'------------------------------------------------------------------------------\n' Created: Jan, 97 - Gary Neier\n'------------------------------------------------------------------------------\n' Modified:  Kirk Moeller\n'------------------------------------------------------------------------------\n' Updated: July 1998\n'------------------------------------------------------------------------------\n\n  '\n  '\n  ' Error Checking...\n  '\n  '   Check to make sure this script is attached t
+o a View Gui\n  '\n  theDoc = av.GetActiveDoc\n  if ( theDoc.Is(View).Not) then\n    msgbox.error(\"Associate this script with a view\",\"\") exit end\n\n  '\n  '   Check for connection to Arc/Info,and connect if needed\n  'if ( _isConnected = FALSE ) then\n  ' results = av.run(\"simpplle.aiconnect\",\"\")\n  ' if ( results = nil ) then \n  '   msgbox.error(\"Error connecting to Arc/Info\",\"\") exit end\n  'end\n\n  ' Make sure we can find Arc/Info\n  arcexeList = {\"/etc/dt/bin/go.arc\".AsFileName,\n                \"$ARCHOME/programs/
+arc\".AsFileName,\n                \"$ARCHOME/bin/arc\".AsFileName,\n                \"C:\\arcgis\\arcexe81\\Bin\\arc.exe\".AsFileName}\n  arcexe = nil\n\n  for each arcexeName in arcexeList\n    if (File.Exists(arcexeName).Not) then\n      continue\n    else\n      arcexe = arcexeName.AsString\n      break\n    end\n  end\n\n  if (arcexe = nil) then\n    msgbox.error(\"Unable to locate Arc/Info software.\",\"\")\n    exit\n  end\n\n  ' \n  '   Check for only one theme active\n  '\n  themeList = theDoc.GetActiveThemes\n  if ( themeList.Count 
+= 0 ) then\n    msgbox.error(\"One theme needs to be active\",\"Error\") exit end\n\n  if ( themeList.Count > 1 ) then\n    msgbox.error(\"Only one theme should be active\",\"Error\") exit end\n\n  theTheme = themeList.Get(0)\n\n  '\n  '   Check if the theme is a polygon\n  '\n  if ( (theTheme.GetSrcName.GetSubName <> \"polygon\") And\n       (theTheme.GetSrcName.GetSubName.Contains(\"REGION\") = FALSE)) then\n    msgbox.error(\"The theme needs to be a polygon or region coverage\",\"Error\")\n    exit\n  end\n\n  ' \n  '   Check for the the
+me for the \"SLink\" item\n  '\n  if ( theTheme.GetFTab.FindField(_SLink) = nil ) then\n    msgbox.error(\"The active theme does not have a\"++_SLink++\"item\",\"Error\")\n    exit end\n\n  '\n  ' Make sure the one of the simpplle setups have been run.\n  '\n  if ((theTheme.GetObjectTag = nil) or\n      (theTheme.GetObjectTag.Get(0) = nil)) then\n    msgbox.error (\"Please run the one of the simpplle setups first\",\"\")\n    exit\n  end\n\n  '\n  ' Find out what type of simpplle display we have.\n  '\n  themeType = theTheme.GetObjectTa
+g.Get(0)\n\n  ' Check the simpplle attribute\n  if (((themeType = \"probability\") or (themeType = \"state\")) and\n      (theTheme.GetObjectTag.Get(1) = nil)) then\n    msgbox.error(\"The simpplle attribute has not been set for the \"+\n                 \"selected theme.\",\"Set the simpplle attribute\")\n    exit\n  end\n    \n  ' \n  '   Check if the theme is at a time step\n  '\n  if (themeType = \"spread\") then\n    timePeriod = av.GetProject.GetObjectTag.Get(_SPRD_CURR_TIME)\n  elseif (themeType = \"state\") then\n    timePeriod 
+= av.GetProject.GetObjectTag.Get(_CS_CURR_TIME)\n  else\n    timePeriod = -99\n  end\n\n  if ((timePeriod = nil) or (timePeriod = -1)) then\n    msgbox.error(\"There have been no time period displayed for the chosen \"+\n                 \"theme.\",\"\")\n    exit\n  end\n\n  '\n  '   Check if the theme is joined to an imported Simpplle time step run\n  '\n  if ( theTheme.GetFTab.IsBase = true ) then \n    msgbox.info(\"The theme's VTAB is not joined to a Simpplle time step run\",\n                \"Please run a simpplle setup\")\n  
+  exit end\n\n  '\n  ' End of Error Checking!\n  '\n  '\n  ' Copy the theme to a new coverage name defined by the user\n  ' \n  ' Request an output coverage name from the user.\n  '   The length of the output coverage name is checked.\n  '   Check for a non-number as the first character\n  '   The directory is checked: if the user accidently navigated\n  '   into a coverage or INFO directory\n  '\n\n  themeFileName = theTheme.GetSrcName.GetFileName\n  defaultString = themeFileName.GetBaseName.Left(2)+\"_time\"+timeperiod.AsS
+tring\n  defaultFileName = FileName.Merge(themeFileName.ReturnDir.AsString,\n                                   defaultString)\n\n  while (true)\n    copyFileName = FileDialog.Put(defaultFileName,\"\",\n                                  \"Enter an output coverage name\")\n\n    if ( copyFileName = nil ) then exit end\n    if ( copyFileName.GetBaseName.Count > 13 ) then\n      msgbox.error(\"Specify a name less than 14 characters\",\"\") continue\n    end\n\n    if ( copyFileName.GetBaseName.Left(1).IsNumber) then\n      msgbox.e
+rror(\"The name should not start with a number\",\"\") continue end\n\n    if ( File.Exists(FileName.Merge(copyFileName.ReturnDir.AsString,\n                                    \"bnd.adf\")) ) then\n      if (msgbox.YesNo(\"It appears you want to create a coverage within \"+\n                       \"another coverage's directory.\",\n                       \"Are you sure?\",false)) then \n        break \n      else continue \n      end\n    end\n\n    if ( File.Exists(FileName.Merge(copyFileName.ReturnDir.AsString,\n               
+                     \"arc.dir\")) ) then\n      if (msgbox.YesNo(\"It appears you want to create a coverage within \"+\n                       \"the INFO directory\",\"Are you sure?\",false)) then\n        break\n      else continue \n      end \n    end\n\n    if ( SrcName.Make(copyFileName.AsString++\"arc\") <> nil ) then\n      msgbox.error(\"That coverage already exists\",\"\") continue end\n    if ((Coverage.Exists(copyFileName.AsString).NOT ) and\n        (copyFileName.IsDir.Not) and\n        (copyFileName.IsFile.Not) ) then\n
+      break\n    end\n  end\n\n  '\n  ' Locate the table loaded from Simpplle for the current time period\n  ' Delete the \"simp_temp\" temporary INFO file if it exists\n  ' Export the table to the temporary INFO file to be used in joining\n  ' with the copied coverage\n  '\n  if (themeType = \"spread\") then\n    timeStepDoc = av.GetProject.FindDoc(_avp+timePeriod.AsString+\"-spread\")\n  elseif (themeType = \"state\") then\n    timeStepDoc = av.GetProject.FindDoc(_avp+timePeriod.AsString+\"-update\")\n  elseif (themeType = \"prob
+ability\") then\n    timeStepDoc = av.GetProject.FindDoc(_avp+theTheme.GetObjectTag.Get(1))\n  else\n    timeStepDoc = nil\n  end\n\n  if ( timeStepDoc = nil ) then\n    msgbox.error(\"Unable to find the Simpplle time step table: \"\n                 +_avp+timePeriod.AsString,\"\") \n    exit end\n\n  timeStepVTab = timeStepDoc.GetVtab\n  tempINFOfile1 = FileName.Merge(copyFileName.ReturnDir.AsString,\"simp_temp\")\n  \n  System.ExecuteSynchronous(arcexe++\"&type [ delete \"\n                 ++tempINFOfile1.AsString++\" -info]\")\n\n
+  tempINFOfile2 = FileName.Merge(copyFileName.ReturnDir.AsString, \"info/simp_temp\")\n\n  '\n  ' Determine the last item in the coverage.\n  ' Having this item name will allow the Simpplle\n  ' table to be joined at the end of the coverage's PAT\n  '\n\n  timeStepItemCount = timeStepVTab.GetFields.Count\n  theThemeCount = theTheme.GetFTab.GetFields.Count\n  theLastThemeItem = theTheme.GetFTab.GetFields.Get(theThemeCount-timeStepItemCount-1)\n\n  '\n  ' Copy the original stand coverage to the users given output coverage n
+ame.\n  ' Check to see if the coverage was copied successfully.\n  ' Join the copied coverage with the temporary INFO file.\n  '\n  System.ExecuteSynchronous(arcexe++\"copy \"\n                 ++themeFileName.AsString++copyFileName.AsString )\n\n  if ( Coverage.Exists(copyFileName.AsString).Not ) then \n    msgbox.error(\"Unable to export the time step with the given name\",\"\")\n    msgbox.error(copyFileName.AsString,\"\")\n    exit end\n\n  ' Do this here in case the 'info' directory does not exist.\n  '\n  timeStepVTab.Expo
+rt(tempINFOfile2,INFO,false)\n\n  System.ExecuteSynchronous(arcexe++\"joinitem\"++copyFileName.AsString+\n                 \".pat\"++tempINFOfile1.AsString++copyFileName.AsString+\n                 \".pat\"++_SLink++theLastThemeItem.AsString)\n\n  System.ExecuteSynchronous(arcexe++\"&type [ delete \"\n                 ++tempINFOfile1.AsString++\" -info]\")\n\n\n\n\n\n"
+	SearchStr:	"Execute"
+	FontSize:	1
+)
+
+(DocWin.48
+	Owner:	47
+	X:	240
+	Y:	10
+	W:	725
+	H:	616
+)
+
+(CSMgr.49
+)
+
+(DocAct.50
+	Doc:	47
+)
+
+(SEd.51
+	Name:	"simpplle.load_legend"
+	Creator:	"kmoeller"
+	CreationDate:	"Monday, July 27, 1998 15:56:31"
+	GUIName:	"Script"
+	Win:	52
+	CSMgr:	53
+	DocExts:	54
+	Source:	"'---------------------------------------------------------------------\n' Region 1 - USFS  -  ArcView Script  - SIMPPLLE.CHANGE_SPREAD_CHOICE \n'---------------------------------------------------------------------\n' Purpose:  Load a legend and set the appropriate field.\n'---------------------------------------------------------------------\n' Usage:   Called by other scripts that need to load a legend.\n'---------------------------------------------------------------------\n' Author:  Kirk Moeller\n'------------
+---------------------------------------------------------\n' Updated: July 1998\n'---------------------------------------------------------------------\n\n  standTheme   = SELF.Get(0)\n  standFtab    = SELF.Get(1)\n  standField   = SELF.Get(2)\n  theView      = SELF.Get(3)\n  SimpplleType = SELF.Get(4)\n\n  projectPathName    = av.GetProject.GetObjectTag.Get(_PROJ_PATH_INDEX)\n\n  if (SimpplleType = nil) then\n    if (standField.AsString.Contains(\"sim_\")) then\n      tmpStr = standField.AsString.Right((standField.AsStrin
+g.Count - 4))\n      theLegendPrefix = projectPathName+tmpStr\n    else\n      theLegendPrefix = projectPathName+standField\n    end\n  else\n    theLegendPrefix = projectPathName+SimpplleType\n  end\n\n'------------------------------------------------------------\n' Load the new legend.\n'------------------------------------------------------------\n  fieldNames = List.Make\n  theLegend = standTheme.GetLegend\n  theField = standFtab.FindField(standField.AsString)\n  fieldNames.Add(theField.AsString)\n  theLegendFile = the
+LegendPrefix+\"_legend.avl\"\n  theLegendFile = theLegendFile.AsFileName\n  if ( File.Exists(theLegendFile).Not ) then\n    msgbox.error(\"Could not locate legend file: \"+theLegendFile.AsString,\"\")\n    exit\n  end\n\n  theLegend.Load(theLegendFile,#LEGEND_LOADTYPE_ALL)\n  theLegend.SetFieldNames(fieldNames)\n\n  ' ---------------------------------------------------\n  ' Make sure field is displayed as part of field name.\n  ' ---------------------------------------------------\n  standTheme.SetSuffixUsed(true)\n\n  '-------
+---------------------------------------------------------\n  ' Update Display\n  '----------------------------------------------------------------\n  standTheme.UpdateLegend\n  standTheme.Invalidate(false)\n  theView.GetDisplay.InValidate(true)\n  theView.GetDisplay.Flush\n\n "
+	SearchStr:	"dataPathName"
+	FontSize:	1
+)
+
+(DocWin.52
+	Owner:	51
+	X:	227
+	Y:	40
+	W:	769
+	H:	696
+)
+
+(CSMgr.53
+)
+
+(DocAct.54
+	Doc:	51
+)
+
+(SEd.55
+	Name:	"simpplle.open"
+	Creator:	"kmoeller"
+	CreationDate:	"Friday, July 24, 1998 13:17:04"
+	GUIName:	"Script"
+	Win:	56
+	CSMgr:	57
+	DocExts:	58
+	Source:	"'--------------------------------------------------------------------\n' Region 1 - USFS  -  ArcView Script  - SIMPPLLE.OPEN \n'--------------------------------------------------------------------\n' Purpose: Calles SIMPPLLE.STARUP\n'--------------------------------------------------------------------\n' Usage:   Attached to the project as the project starup script.\n'          Calles SIMPPLLE.STARUP\n'--------------------------------------------------------------------\n' Author:  Kirk Moeller\n'-------------------
+-------------------------------------------------\n' Updated: July 1998\n'--------------------------------------------------------------------\n\n\n' ----------------------------------------------------\n' --- Call SIMPPLLE.STARTUP to initilize variables ---\n' ----------------------------------------------------\n\nav.Run(\"simpplle.startup\",nil)\n\n"
+)
+
+(DocWin.56
+	Owner:	55
+	X:	5
+	Y:	19
+	W:	735
+	H:	405
+)
+
+(CSMgr.57
+)
+
+(DocAct.58
+	Doc:	55
+)
+
+(SEd.59
+	Name:	"simpplle.probability"
+	Creator:	"kmoeller"
+	CreationDate:	"Tuesday, March 10, 1998 17:14:30"
+	GUIName:	"Script"
+	Win:	60
+	CSMgr:	61
+	DocExts:	62
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script    -  SIMPPLLE.PROBABILITY\n'----------------------------------------------------------------------------\n'  Purpose: To display a dialog asking for file prefix and location of\n'           file with probability information.\n'           At this point the user should have already specified which file\n'           to use: (i.e species, process, size-class, canonpy-coverage.\n'---------------------
+-------------------------------------------------------\n'  Usage:   Attach to a View Button\n'----------------------------------------------------------------------------\n'  Author:  Kirk Moeller\n'----------------------------------------------------------------------------\n'  Updated: July 1998\n'----------------------------------------------------------------------------\n\n' *********************************************************\n' Use of a Theme's Object Tag will be a list as follows:\n'    index 0:   \"prob
+ability\"\n'    index 1:   Simpplle Attribute\n'    index 2:   Probability Field Choice or \"\"\n' *********************************************************\n\nprojectPathName = av.GetProject.GetObjectTag.Get(_PROJ_PATH_INDEX)\ndataPathName    = av.GetProject.GetObjectTag.Get(_DATA_PATH_INDEX)\n\n'-------------------------------------------------------------\n' Check to make sure this script is associated with a View Gui\n'-------------------------------------------------------------\n  activeView = av.GetActiveDoc\n  if 
+( activeView.Is(View).not ) then\n    msgbox.info(\"This script needs to be associated with a View Button\",\n                 \"Error\")\n    exit\n  end\n\n'---------------------------------------------------------\n' Check the global variables for existence and correctness\n'---------------------------------------------------------\n  if ( projectPathName.AsFilename.IsDir.Not ) then\n    msgbox.error(\"The Project pathname is not valid.  Please make the \"+\n                 \"project window active and click on the \"\"i\"\" 
+button \"+\n                 \"to change the pathname\",\"Project Pathname error\")\n    exit\n  end\n\n  if (( projectPathName.Right(1) <> \"/\" ) and\n      ( projectPathName <> \"$HOME/\" )) then\n    msgbox.error(\"The Project pathname needs a / at the end of the pathname.\"+\n                 \"  Please make the project window active and click \"+\n                 \"on the \"\"i\"\" button to change the pathname\",\n                 \"Project Pathname error\")\n    exit\n  end\n\n  if ( dataPathName.AsFileName.IsDir.Not ) then\n    msgb
+ox.error(\"The data pathname is not valid.  Please make the \"+\n                 \"project window active and click on the \"\"i\"\" button \"+\n                 \"to change the pathname\",\"Data Pathname error\")\n    exit\n  end\n\n  if ( dataPathName.Right(1) <> \"/\" ) then\n    msgbox.error(\"The Data pathname needs a / at the end of the pathname.\"+\n                 \"  Please make the project window active and click \"+\n                 \"on the \"\"i\"\" button to change the pathname\",\n                 \"Project Pathname error\")\n
+    exit\n  end\n  if ( _ProbabilityList.Is(List).Not ) then\n    msgbox.error(\"The global variable '_ProbabilityList' ( in the \"+\n                 \"simpplle.startup script ) needs to be formatted as a \"+\n                 \"LIST.\",\"Global Variable Error\")\n    exit\n  end\n\n\n'--------------------------------------------------------------\n'  Make a list of all open views.\n'  Views which are not simpplle views will be skipped later on.\n'--------------------------------------------------------------\n  theViews = {}\n 
+ theViews.Add(activeView)\n\n  for each aDoc in av.GetProject.GetDocs\n    if ((aDoc.Is(View)) and (aDoc.GetWin.IsOpen) and (aDoc <> activeView)) then\n      theViews.Add(aDoc)\n    end\n  end\n\n\n'-----------------------------------------------------\n' Call the Script \"simpplle.check-view-themes\" which\n' will loop through all of the view and place a list\n' of valid simpplle themes into the views object tag.\n'-----------------------------------------------------\n  if (av.Run(\"simpplle.check_view_themes\",{theViews,\"
+probability\"}) <> \"success\")\n    then exit\n  end\n\n\n'----------------------------------------------------------------------\n' Query the user for various options before running the display program\n' if the user clicked the Probability icon.\n'----------------------------------------------------------------------\n \n  while ( true )\n    labelsList = {\"Simpplle Run Name\",\"TXT files\"}\n    defaultsList = {_avp,dataPathName.AsString}\n    choiceList = MsgBox.MultiInput(\"Simpplle Probability\",\"Display Setup\",\n        
+                           labelsList,defaultsList)\n    if ( choiceList.count = 0 ) then exit end\n  \n    _avp = choiceList.Get(0).AsString  \n    dataPathName = choiceList.Get(1).AsString\n  \n    ' Error Checking\n    if ( dataPathName.AsFilename.IsDir.Not ) then\n      msgbox.error(\"The path name does not exist: \"+dataPathName,\"\") \n      continue\n    end\n   \n    ' Set the projects obj tag to the user's simpplle run name..\n    ' so that next time the running man icon is hit, this value\n    ' will be the new def
+ault\n    '\n    if (( dataPathName.Right(1) <> \"/\" ) and\n        ( dataPathName <> \"$HOME/\" )) then\n      dataPathName = dataPathName+\"/\"\n    end\n\n    av.GetProject.GetObjectTag.Set(_AVP_INDEX,_avp)\n    av.GetProject.GetObjectTag.Set(_DATA_PATH_INDEX,dataPathName)\n\n    ' Set the projects working directory to the \"dataPathName\" variable.\n    ' It is assumed that the SIMPPLE output TXT files will be\n    ' in this directory.\n    av.GetProject.SetWorkDir(dataPathName.AsFilename)\n    break\n  end\n\n\n'--------------
+------------------------------------------------------------\n' Go thru the view and themes within each view and do the probability\n' display as necessary.\n' -------------------------------------------------------------------------\n\n  viewCount = 1\n  for each aView in theViews\n    if (aView.GetObjectTag = nil) then continue end\n    aView.GetWin.Activate\n\n    themeCount = 1\n    for each standTheme in aView.GetObjectTag\n      standTheme.SetName(standTheme.GetSrcName.GetName+\"-\"+\n                         themeC
+ount.AsString+\"-\"+\n                         standTheme.GetObjectTag.Get(1).AsString)\n\n      results = av.Run(\"simpplle.probability_display\",{aView,standTheme})\n      if (( results = nil ) or ( results = \"\" )) then\n        msgbox.error(\"Stopping Probability Display\",\"\")\n        exit\n      end\n      themeCount = themeCount + 1\n    end 'themes loop\n\n    aView.SetName(\"Probability\"++viewCount.AsString)\n    viewCount = viewCount + 1\n  end 'views loop\n\n  if ( activeView <> nil ) then\n    activeView.GetWin.Activat
+e\n  end\n  \n\n"
+	SearchStr:	"projectPathName"
+	FontSize:	1
+)
+
+(DocWin.60
+	Owner:	59
+	X:	217
+	Y:	-3
+	W:	750
+	H:	701
+)
+
+(CSMgr.61
+)
+
+(DocAct.62
+	Doc:	59
+)
+
+(SEd.63
+	Name:	"simpplle.probability_choice"
+	Creator:	"kmoeller"
+	CreationDate:	"Tuesday, March 10, 1998 18:06:04"
+	GUIName:	"Script"
+	Win:	64
+	CSMgr:	65
+	DocExts:	66
+	Source:	"'---------------------------------------------------------------------------\n' Region 1 - USFS  -  ArcView Script  - SIMPPLLE.PROBABILITY_CHOICE\n'---------------------------------------------------------------------------\n' Purpose: Get the probability choice from the user\n'          (i.e which species, which size class, etc.\n'---------------------------------------------------------------------------\n' Usage:   Attached to a View Menu\n'-----------------------------------------------------------------------
+----\n' Author:  Kirk Moeller\n'---------------------------------------------------------------------------\n' Updated: July 1998\n'---------------------------------------------------------------------------\n\n  changeField = SELF.Get(0)\n  standTheme  = SELF.Get(1)\n  theView     = SELF.Get(2)\n\n  dataPathName = av.GetProject.GetObjectTag.Get(_DATA_PATH_INDEX)\n\n  if ( theView.Is(View).Not) then\n    msgbox.error(\"Associate this script with a view\",\"\")\n    exit\n  end\n\n  if (standTheme = nil) then\n    tList = theView
+.GetActiveThemes\n    if (tList.Count = 0) then\n      msgbox.Error(\"No themes selected\",\"\")\n      exit\n    end\n \n    if (tList.Count > 1) then\n      msgbox.Error(\"Please select only one theme.\",\"\")\n      exit\n    end\n\n    standTheme = tList.Get(0)\n  end\n\n  if (standTheme.Is(FTheme)) then\n    standFTab = standTheme.GetFTab\n  else\n    MsgBox.Error(\"There is no Table associated with this Theme:\"++\n                 standTheme.GetName,\"\")\n    exit\n  end\n\n  ' ---------------------------------------------\n  ' ** Ma
+ke sure the user has run the setup first\n  ' ---------------------------------------------\n  if (standTheme.GetObjectTag = nil) then\n    MsgBox.Error(\"Please Run the Probability Setup First.\",\"\")\n    exit\n  end\n\n  if (standTheme.GetObjectTag.Get(0) = nil) then\n    msgbox.Error(\"Please run one of the probability setups first\")\n    exit\n  end\n\n  if (standTheme.GetObjectTag.Get(0) <> \"probability\") then\n    msgbox.Error(\"The selected theme does not have probability displayed.\",\n                 \"Not a probabil
+ity theme\")\n    exit\n  end\n\n  ' ---------------------------------------------------------\n  ' ** Make sure the user has chosen the simpplle attribute\n  ' ---------------------------------------------------------\n  ' It should not be necessary to check this but do it anyway\n  ' just in case.\n\n  attributeChoice = nil\n  if (standTheme.GetObjectTag <> nil) then\n    attributeChoice = standTheme.GetObjectTag.Get(1).AsString\n  end\n \n  if ( attributeChoice.UCase = \"TREATMENT\" ) then\n    MsgBox.Error(\n           \"Th
+eir is no probability information available for treatments.\"+\n           \"  Please select a different Simpplle Attribute (use F12 key).\",\"\")\n    exit\n  end\n\n  if ( _probabilityList.FindByValue(attributeChoice) = -1 ) then\n    MsgBox.Error(\n         \"The Simpplle Attribute has not been set for the selected Theme.\",\"\")\n    exit\n  end\n\n\n  ' ---------------------------------------------\n  ' ** Prepare the list of fields from which the\n  ' ** user will choose.\n  ' ---------------------------------------------\n\n 
+ fields = standTheme.GetObjectTag.Clone\n  ' this will remove the first three elements.\n  fields.Remove(0)  ' \"probability\"\n  fields.Remove(0)  ' attribute choice\n  fields.Remove(0)  ' probability field choice\n \n  probField = msgbox.ListAsString(fields,\"Theme \"\"\"+standTheme.GetName+\"\"\"\"+\n                                        nl+\"View \"\"\"+theView.GetName+\"\"\"\",\n                                  \"Please Choose a \"+attributeChoice)\n \n  if (changeField <> \"false\") then\n    if ( probField = nil) then return nil 
+end\n    standTheme.GetObjectTag.Set(2,probField)\n \n    '------------------------------------------------------------\n    ' Load the new legend.\n    '------------------------------------------------------------\n      argList = {standTheme,standFtab,probField,theView,\"probability\"}\n      av.Run(\"simpplle.load_legend\",argList)\n  end\n\n  return probField\n\n\n\n"
+	SearchStr:	"projectPathName"
+	FontSize:	1
+)
+
+(DocWin.64
+	Owner:	63
+	X:	204
+	Y:	-5
+	W:	649
+	H:	646
+)
+
+(CSMgr.65
+)
+
+(DocAct.66
+	Doc:	63
+)
+
+(SEd.67
+	Name:	"simpplle.probability_display"
+	Creator:	"kmoeller"
+	CreationDate:	"Monday, July 27, 1998 15:44:47"
+	GUIName:	"Script"
+	Win:	68
+	CSMgr:	69
+	DocExts:	70
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script    -  SIMPPLLE.PROBABILITY_DISPLAY\n'----------------------------------------------------------------------------\n'  Purpose: To display data from the SIMPPLLE model.\n'----------------------------------------------------------------------------\n'  Usage:   Called by the SIMPPLLE.PROBABILITY script\n'----------------------------------------------------------------------------\n'  Created: Kirk M
+oeller\n'----------------------------------------------------------------------------\n'  Updated: July 1998\n'---------------------------------------------------------------------\n\n  projectPathName = av.GetProject.GetObjectTag.Get(_PROJ_PATH_INDEX)\n  dataPathName    = av.GetProject.GetObjectTag.Get(_DATA_PATH_INDEX)\n\n'-------------------------------------------------------------\n' Restore data from the argument pass from the calling script\n'-------------------------------------------------------------\n  theV
+iew    = SELF.Get(0)\n  standTheme = SELF.Get(1)\n\n'------------------------------------------------------------\n' Extract name of desired SIMPPLLE column from the object tag\n' If the name does not match any of the attributes in the \n' global variable list, then exit.\n'------------------------------------------------------------\n  attributeChoice = standTheme.GetObjectTag.Get(1).AsString\n  \n' Remove Sim_ from front of attribute information.\n'\n  if (attributeChoice.UCase.Contains(\"SIM_\")) then\n    attributeCho
+ice = attributeChoice.Right(AttributeChoice.Count - 4)\n  end\n  \n  if ( attributeChoice.UCase = \"TREATMENT\" ) then\n    MsgBox.Error(\n             \"Their is no probability information available for treatments.\"+\n             \"Please press F12 and select a different attribute after pressing Ok\",\n             \"Treatment attribute not valid for probability.\")\n    exit\n  end\n\n\n'------------------------------------------------------------\n' Search for SIMPPLLE text input file ( avp?.txt )\n' If it is not already lo
+aded into ArcView.. then execute the\n' aml ( import_txt.aml ) that will convert it into an ArcView \n' readable file.\n'------------------------------------------------------------\n  if ( av.GetProject.FindDoc(_avp+attributeChoice) = nil ) then \n    aString = dataPathName.AsString+_avp+attributeChoice+\".txt\"\n    aFileName = aString.AsFileName\n    aVtab = VTab.Make(aFileName,FALSE,FALSE)\n\n    aTable = Table.Make(aVtab)\n    aTable.SetName(_avp+attributeChoice)\n    aVtab = av.GetProject.FindDoc(_avp+attributeCho
+ice).GetVtab\n  else\n    aVtab = av.GetProject.FindDoc(_avp+attributeChoice).GetVtab\n  end\n\n  theFields = {\"probability\",attributeChoice,nil}\n  for each f in aVtab.GetFields\n    if (f.AsString <> _SLink) then theFields.Add(f) end\n  end\n \n  if (theFields.Count = 3) then\n    MsgBox.Error(\"Invalid TXT file, no fields found\",\"\")\n    exit\n  end\n\n  ' ** If user has already chosen a field and that field is\n  ' ** still valid then use it.\n  '\n  if (theFields.FindByValue(standTheme.GetObjectTag.Get(2)) <> -1) then\n  
+  theFields.Set(2,standTheme.GetObjectTag.Get(2))\n  end\n\n  standTheme.SetObjectTag(theFields)\n \n  '------------------------------------------------------------\n  ' Join the new table to the stand table (FTAB)\n  '------------------------------------------------------------\n  standThemeName = standTheme.GetName\n  standFTab = standTheme.GetFTab\n  standField = standFTab.FindField(_SLink)\n  if ( standField.AsString.IsNull ) then\n    msgbox.info(\"Stand coverage does not have item: \"+_SLink+\n                \" in v
+iew\"++theView.GetName,\"Error\")\n    standTheme.SetObjectTag({nil,attributeChoice,nil})\n    exit\n  end\n\n  newField = aVTab.FindField(_SLink)\n  if ( newField = nil ) then\n    msgbox.error(\"Error finding \"+_SLink+\" in the \"+_avp+attributeChoice++\n                 \"file\",\"\")\n    standTheme.SetObjectTag({nil,attributeChoice,nil})\n    exit\n  end\n  if ( standField = nil ) then\n    msgbox.error(\"Error finding \"+_SLink+\" in theme\"++standTheme.GetName,\"\")\n    standTheme.SetObjectTag({nil,attributeChoice,nil})\n    exit
+\n  end\n\n  standFTab.UnjoinAll\n  standFtab.Join(standField,aVtab,newField)\n\n  '------------------------------------------------------------\n  '  Get which field the user wants to view.\n  '  and setup the legend.\n  '------------------------------------------------------------\n  probField = standTheme.GetObjectTag.Get(2)\n\n  if (probField = nil) then\n    probField = av.Run(\"simpplle.probability_choice\",\n                       {\"false\",standTheme,theView})\n    if (probField = nil) then\n      Msgbox.info(\"A field
+ must be chosen to continue!\",\"\")\n      standTheme.SetObjectTag({nil,attributeChoice,nil})\n      exit\n    end\n  end\n  standTheme.GetObjectTag.Set(2,probField)\n\n\n'------------------------------------------------------------\n' Load the new legend.\n'------------------------------------------------------------\n  argList = {standTheme,standFtab,probField,theView,\"probability\"}\n  av.Run(\"simpplle.load_legend\",argList)\n\n\n  return \"Success\"\n"
+	SearchStr:	"projectPathName"
+	FontSize:	1
+)
+
+(DocWin.68
+	Owner:	67
+	X:	285
+	Y:	5
+	W:	663
+	H:	622
+)
+
+(CSMgr.69
+)
+
+(DocAct.70
+	Doc:	67
+)
+
+(SEd.71
+	Name:	"simpplle.set_pathnames"
+	Creator:	"kmoeller"
+	CreationDate:	"Friday, July 24, 1998 16:48:10"
+	GUIName:	"Script"
+	Win:	72
+	CSMgr:	73
+	DocExts:	74
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script    -  SIMPPLLE.SET_PATHNAMES\n'----------------------------------------------------------------------------\n'  Purpose: To provide a dialog for the user to set the\n'           project Pathname and data Pathname\n'----------------------------------------------------------------------------\n'  Usage:   Attach to the Project\n'-----------------------------------------------------------------------
+-----\n'  Created: Kirk Moeller July 1998\n'----------------------------------------------------------------------------\n'  Updated: 08/2002\n'----------------------------------------------------------------------------\n\n\n\n'---------------------------------------------------------------\n' Ask user for data Pathname and project Pathname.\n'---------------------------------------------------------------\n  theTag = av.GetProject.GetObjectTag\n\n  projectPathName = theTag.Get(_PROJ_PATH_INDEX)\n  dataPathName    = the
+Tag.Get(_DATA_PATH_INDEX)\n\n  if (projectPathName = nil) then\n    projectPathName = av.GetProject.GetWorkDir\n  end\n\n  if (dataPathName = nil) then\n    dataPathName = projectPathName\n  end\n\n  labelsList = {\"Data    Pathname\",\n                \"Project Pathname\"}\n  defaultsList = {dataPathName,projectPathName}\n\n  choiceList = {}\n  while (choiceList.Count = 0)\n    choiceList = MsgBox.MultiInput(\"Project = (project, legends)   \"+\n                                   \"Data = (TXT files)\",\n                           
+        \"Simpplle Pathnames\",\n                                   labelsList,defaultsList)\n\n    if ((choiceList.Count = 0) and (SELF <> nil)) then\n      exit\n    end\n\n    '---------------------------------------------------------\n    ' Check the pathnames for correctness.\n    '---------------------------------------------------------\n    if (choiceList.Count <> 0) then\n      dataPathName    = choiceList.Get(0)\n      projectPathName = choiceList.Get(1)\n      defaultsList = {dataPathName,projectPathName}\n\n    
+  if ( projectPathName.AsFilename.IsDir.Not ) then\n        msgbox.error(\"The Project pathname is not valid.  Please try again.\",\n                     \"Project Pathname error\")\n        choiceList = {}\n        continue\n      end\n\n      if (( projectPathName.Right(1) <> \"/\" ) and\n          ( projectPathName <> \"$HOME/\" )) then\n        if ( projectPathName.Right(1) = \"\\\" ) then\n           projectPathName = projectPathName.Left(projectPathName.Count-1)+\"/\"\n         else\n           projectPathName = projectPathNa
+me + \"/\"\n        end\n      end\n\n      if ( dataPathName.AsFileName.IsDir.Not ) then\n        msgbox.error(\"The data pathname is not valid.  Please try again.\",\n                     \"Data Pathname error\")\n        choiceList = {}\n        continue\n      end\n\n      if (dataPathName.Right(1) <> \"/\" ) then\n        if (dataPathName.Right(1) = \"\\\" ) then\n          dataPathName = dataPathName.Left(dataPathName.Count-1)+\"/\"\n        else\n          dataPathName = dataPathName+\"/\"\n        end\n      end\n    end\n\n\n\n    '--
+-------------------------------------------------------\n\n    if ( choiceList.count = 0 ) then\n      msgbox.error(\"This information must be provided, canceling is \"+\n                   \"not an option!\",\"\")\n    end\n  end\n\n  theTag.Set(_PROJ_PATH_INDEX,projectPathName.AsString)\n  theTag.Set(_DATA_PATH_INDEX,dataPathName.AsString)\n\n\n\n"
+	FontSize:	1
+)
+
+(DocWin.72
+	Owner:	71
+	X:	203
+	Y:	-1
+	W:	792
+	H:	630
+)
+
+(CSMgr.73
+)
+
+(DocAct.74
+	Doc:	71
+)
+
+(SEd.75
+	Name:	"simpplle.set_view_attribute"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:21:18"
+	GUIName:	"Script"
+	Win:	76
+	CSMgr:	77
+	DocExts:	78
+	Source:	"'--------------------------------------------------------------------\n' Region 1 - USFS  -  ArcView Script  - SIMPPLLE.SET_VIEW_ATTRIBUTE \n'--------------------------------------------------------------------\n' Purpose: Sets the name and obj tag of a view to one of the Simpplle\n'          attributes.  This attribute name is pulled by other scripts\n'          for displaying Simpplle data.\n'--------------------------------------------------------------------\n' Usage:   Attached to a View Menu\n'---------------
+-----------------------------------------------------\n' Created:  Gary Neier   Dec/96\n'--------------------------------------------------------------------\n' Modified: Kirk Moeller\n'---------------------------------------------------------------------------\n' Updated:  July 1998\n'---------------------------------------------------------------------------\n\n  theView = av.GetActiveDoc\n\n  if ( theView.Is(View).Not) then\n    msgbox.error(\"Associate this script with a view\",\"\")\n    exit\n  end\n\n  tList = theView.
+GetActiveThemes\n  if (tList.Count = 0) then\n    msgbox.Error(\"No themes selected\",\"\")\n    exit\n  end\n \n  if (tList.Count > 1) then\n    msgbox.Error(\"Please select only one theme\",\"\")\n    exit\n  end\n\n  standTheme = tList.Get(0)\n \n  ' Make sure the chosen theme is a valid one for simpplle.\n  '\n  if ( (  (standTheme.GetSrcName.GetSubName <> \"polygon\") and\n          (standTheme.GetSrcName.GetSubName.Contains(\"REGION\") = FALSE)) or\n       (standTheme.GetFTab.FindField(_SLink) = nil)) then\n    MsgBox.Error(\"The C
+hosen Theme: \"+standTheme.GetName+\" is not a valid\"\n                 +\" SIMPPLLE Theme.\"+nl+nl+\n                 \"To be valid a theme must:\"+nl+\n                 \"  - Be a POLYGON or REGION coverage, and\"+nl+\n                 \"  - have a the field: \"+_Slink,\"Not a SIMPPLLE Theme\")\n    exit\n  end\n\n  '\n  ' Check the _attributeList global variable \n  '\n  if ( _attributeList.Is(List).Not ) then\n    msgbox.error(\"The global variable '_attributeList' ( in the \"+\n                 \"simpplle.startup script ) needs t
+o be formatted \"+\n                 \"as a LIST.\",\"Global Variable Error\")\n    exit\n  end\n \n  attrib_choice = msgbox.ListAsString(_attributeList,\n                        \"Choose a Simpplle attribute for the theme (\"+\n                        standTheme.GetName+\")\",\n                        \"The List of Simpplle Attributes\")\n\n  if ( attrib_choice = nil ) then\n    exit\n  end\n\n  standFTab = standTheme.GetFTab\n  if ((standFTab <> nil) and (standFTab.FindField(_Slink) <> nil)) then\n    standFTab.UnjoinAll\n  end\n\n  s
+tandTheme.SetObjectTag({nil,attrib_choice,nil})\n  standTheme.SetName(standTheme.GetSrcName.GetName+\"-\"+attrib_choice)\n\n\n"
+	SearchStr:	"projectPathName"
+	FontSize:	1
+)
+
+(DocWin.76
+	Owner:	75
+	X:	39
+	Y:	4
+	W:	921
+	H:	527
+)
+
+(CSMgr.77
+)
+
+(DocAct.78
+	Doc:	75
+)
+
+(SEd.79
+	Name:	"simpplle.simpplle_display"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:20:30"
+	GUIName:	"Script"
+	Win:	80
+	CSMgr:	81
+	DocExts:	82
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script    -  SIMPPLLE.SIMPPLLE_DISPLAY\n'----------------------------------------------------------------------------\n'  Purpose: To display data from the SIMPPLLE model.\n'----------------------------------------------------------------------------\n'  Usage:   Called by the SIMPPLLE.SIMPPLLE_RUN script\n'----------------------------------------------------------------------------\n'  Created: Gary Nei
+er   Sept/96\n'----------------------------------------------------------------------------\n'  Modified:  Kirk Moeller\n'---------------------------------------------------------------------\n'  Updated: 08/2002\n'---------------------------------------------------------------------\n\nprojectPathName = av.GetProject.GetObjectTag.Get(_PROJ_PATH_INDEX)\ndataPathName    = av.GetProject.GetObjectTag.Get(_DATA_PATH_INDEX)\n\n'-------------------------------------------------------------\n' Restore data from the arguement
+ pass from the calling script\n'-------------------------------------------------------------\n  graphYesNo = SELF.Get(0).AsString\n  timePeriod = SELF.Get(1)\n  theView = SELF.Get(2)\n  standTheme = SELF.Get(3)\n\n'------------------------------------------------------------\n' Extract name of desired SIMPPLLE column from the object tag\n'------------------------------------------------------------\n  aColumn = standTheme.GetObjectTag.Get(1)\n\n'------------------------------------------------------------\n' Search for
+ SIMPPLLE text input file ( avp?.txt )\n' If it is not already loaded into ArcView.. then execute the\n' aml ( import_txt.aml ) that will convert it into an ArcView \n' readable file.\n'------------------------------------------------------------\n  if ( av.GetProject.FindDoc(_avp+timePeriod.AsString+\"-update\") = nil ) then \n    aString = dataPathName.AsString+_avp+timePeriod.AsString+\"-update.txt\"\n    aFileName = aString.AsFileName\n    aVtab = VTab.Make(aFileName,FALSE,FALSE)\n    count = 0\n    av.ClearStatus\n\n 
+   '------------------------------------------------------------\n    ' If the text file does not exist yet.. then wait for it.\n    ' After ?? seconds.. inform the user that SIMPPLLE has not\n    ' created a output ascii file for ArcView to display.\n    '------------------------------------------------------------\n    count = 1\n    ' Check the users value for the number of seconds to wait.\n    ' This value is set in the \"simpplle.startup\" script.\n    if ( _waitSeconds.AsString.IsNumber.Not ) then \n      _wait
+Seconds = 20 end\n    if ( _waitSeconds < 0 ) then\n      _waitSeconds = 0 end\n    if ( _waitSeconds > 1000 ) then\n     _waitSeconds = 1000 end\n\n    sleepSeconds = (_waitSeconds / 10 ).round\n    if ( _waitSeconds < 10 ) then\n      count = 9\n      sleepSeconds = ( _waitSeconds / 2 ).round end \n\n    While (aVtab.HasError)\n      av.SetStatus( ( count * 10 ) )\n      count = count + 1\n      system.execute(\"sleep \"+sleepSeconds.AsString)\n\n      if ( count > 10 ) then\n        if ( msgbox.yesno(\"Check again?\",\"Time P
+eriod\"++_avp+\n                         timePeriod.AsString+\"-update.txt not complete\",FALSE).Not)\n          then\n            av.ClearStatus\n            exit\n          else count = 0\n        end\n      end\n      aVtab = VTab.Make(aFileName,FALSE,FALSE)\n    end\n\n    aTable = Table.Make(aVtab)\n    aTable.SetName(_avp+timePeriod.AsString+\"-update\")\n    aTable.SetObjectTag(timePeriod)\n    aVtab = av.GetProject.FindDoc(_avp+timePeriod.AsString+\"-update\").GetVtab\n  end\n\n'--------------------------------------------
+----------------\n' Check to see if the loaded text file has the desired column\n'------------------------------------------------------------\n  aVtab = av.GetProject.FindDoc(_avp+timePeriod.AsString+\"-update\").GetVtab\n  if ( aVtab = nil ) then \n    msgbox.info(\"An error occured loading the TXT file\",\"Error\")\n    exit end\n\n  if ( aVtab.FindField(aColumn) = nil) then\n    msgbox.info(\"The Simpplle attribute: \"+aColumn+\" does not exists in: \"+\n                aVtab.GetName,\"Error\")\n    exit end\n\n'---------------
+---------------------------------------------\n' Join the new table to the stand table (FTAB)\n'------------------------------------------------------------\n  standThemeName = standTheme.GetName\n  standFTab = standTheme.GetFTab\n  standField = standFTab.FindField(_SLink)\n  if ( standField.AsString.IsNull ) then\n    msgbox.info(\"Stand coverage does not have item: \"+_SLink+\" in view\"\n                ++theView.GetName,\"Error\")\n    exit\n  end\n  newField = aVTab.FindField(_SLink)\n  if ( newField = nil ) then\n    ms
+gbox.error(\"Error finding \"+_SLink+\" in the \"+_avp+timePeriod.AsString\n                 +\"-update.txt\"++\"file\",\"\")\n    exit\n  end\n  if ( standField = nil ) then\n    msgbox.error(\"Error finding \"+_SLink+\" in theme\"++standTheme.GetName,\"\")\n    exit\n  end\n\n  standFTab.UnjoinAll\n  standFtab.Join(standField,aVtab,newField)\n\n'------------------------------------------------------------\n' Create Chart if it doesn't already exist and if the user\n' wants one.\n'--------------------------------------------------------
+----\n  if ( graphYesNo = \"y\" ) then\n    if ( av.GetProject.FindDoc(aColumn+\": Time Period\"\n                               ++timePeriod.AsString) = nil ) then\n      columnField = standFTab.FindField(aColumn)\n      if ( columnField = nil ) then\n        msgbox.error(\"Error finding\"++columnField,\"\")\n        exit\n      end\n\n      areaField = standFTab.FindField(\"area\")\n      aString = aColumn+\"temp\"+timePeriod.AsString\n      aFileName = aString.AsFileName\n      standFTab.GetSelection.ClearAll\n      statisticsVTa
+b = standFTab.Summarize(aFileName,dBase,columnField,\n                                          {areaField},{#VTAB_SUMMARY_SUM})\n      columnField = statisticsVTab.FindField(aColumn)\n      if ( columnField = nil ) then\n        msgbox.error(\"Error finding\"++columnField,\"\")\n        exit\n      end\n\n      sum_areaFieldList = {statisticsVTab.FindField(\"Sum_area\")}    \n      theChart = Chart.Make(statisticsVTab,sum_areaFieldList)\n      theChart.SetRecordLabelField(columnField)\n      theChart.SetName(aColumn+\": Tim
+e Period\"++timePeriod.AsString)\n      chartWin = theChart.GetWin\n      chartWin.Open\n      x = timePeriod * 20\n      y = timePeriod * 25 + 350\n      chartWin.MoveTo(x,y)\n    else\n      chartWin = av.GetProject.FindDoc(aColumn+\": Time Period\"\n                                       ++timePeriod.AsString).GetWin\n      if ( chartWin <> nil ) then \n        chartWin.Activate\n      end\n    end \n  end  \n\n'------------------------------------------------------------\n' Load the new legend.\n'--------------------------
+----------------------------------\n  argList = {standTheme,standFtab,aColumn,theView,nil}\n  av.Run(\"simpplle.load_legend\",argList)\n\n  return \"Success\"\n\n\n\n\n"
+	SearchStr:	"dataPathName"
+	FontSize:	1
+)
+
+(DocWin.80
+	Owner:	79
+	X:	145
+	Y:	22
+	W:	818
+	H:	553
+)
+
+(CSMgr.81
+)
+
+(DocAct.82
+	Doc:	79
+)
+
+(SEd.83
+	Name:	"simpplle.simpplle_run"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:11:29"
+	GUIName:	"Script"
+	Win:	84
+	CSMgr:	85
+	DocExts:	86
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script    -  SIMPPLLE.SIMPPLLE_RUN\n'----------------------------------------------------------------------------\n'  Purpose: To display data from the SIMPPLLE model.\n'----------------------------------------------------------------------------\n'  Usage:   Attach to a View Button\n'----------------------------------------------------------------------------\n'  Created: Gary Neier   Sept/96\n'---------
+-------------------------------------------------------------------\n'  Modified:  Kirk Moeller\n'----------------------------------------------------------------------------\n'  Updated: July 1998\n'----------------------------------------------------------------------------\n\nprojectPathName = av.GetProject.GetObjectTag.Get(_PROJ_PATH_INDEX)\ndataPathName    = av.GetProject.GetObjectTag.Get(_DATA_PATH_INDEX)\n\n'------------------------------------------------------------\n' Check for existance of a script called 
+later in this script\n'------------------------------------------------------------\n  if ( av.FindScript(\"simpplle.simpplle_display\") = nil ) then\n    msgbox.info(\"Unable to find script: Simpplle.Simpplle_display\",\"Error\")\n  end\n\n'-------------------------------------------------------------\n' Check to make sure this script is associated with a View Gui\n'-------------------------------------------------------------\n  activeView = av.GetActiveDoc\n  if ( activeView.Is(View).not ) then\n    msgbox.error(\"This sc
+ript needs to be associated with a View Button\",\"\")\n    exit\n  end\n\n'---------------------------------------------------------\n' Check the global variables for existence and correctness\n'---------------------------------------------------------\n  if ( projectPathName.AsFilename.IsDir.Not ) then\n    msgbox.error(\"The Project pathname is not valid.  Please make the \"+\n                 \"project window active and click on the \"\"i\"\" button \"+\n                 \"to change the pathname\",\"Project Pathname error\")\n  
+  exit\n  end\n\n  if (( projectPathName.Right(1) <> \"/\" ) and\n      ( projectPathName <> \"$HOME/\" )) then\n    msgbox.error(\"The Project pathname needs a / at the end of the pathname.\"+\n                 \"  Please make the project window active and click \"+\n                 \"on the \"\"i\"\" button to change the pathname\",\n                 \"Project Pathname error\")\n    exit\n  end\n\n  if ( dataPathName.AsFileName.IsDir.Not ) then\n    msgbox.error(\"The data pathname is not valid.  Please make the \"+\n                 \"
+project window active and click on the \"\"i\"\" button \"+\n                 \"to change the pathname\",\"Data Pathname error\")\n    exit\n  end\n\n  if ( dataPathName.Right(1) <> \"/\" ) then\n    msgbox.error(\"The Data pathname needs a / at the end of the pathname.\"+\n                 \"  Please make the project window active and click \"+\n                 \"on the \"\"i\"\" button to change the pathname\",\n                 \"Project Pathname error\")\n    exit\n  end\n\n  if ( _attributeList.Is(List).Not ) then\n    msgbox.error(\"The 
+global variable '_attributeList' ( in the \"+\n                 \"simpplle.startup script ) needs to be formatted as a LIST.\",\n                 \"Global Variable Error\")\n    exit\n  end\n\n'--------------------------------------------------------------\n' Determine which button was pushed: the rewind button, the \n' backwards button, the running man button or the forwards button.  \n' All four buttons use this script.  The forwards and backwards \n' buttons will increment each view up or back a timeperiod. The\n' rewin
+d button will set each view to the first time step loaded.\n' The running-man button will make all active views display one \n' period at a time over a range of time periods.  The tags for \n' each of the four controls let this script know which direction \n' to take: \"rewind\",\"backward\",\"normal\", or \"forward\".\n'--------------------------------------------------------------\n  if ( SELF.GetTag = nil ) then\n    msgbox.error(\"Script: simpplle.simpplle_run is associated with the \"+\n                 \"wrong button\",\"
+\")\n    exit\n  end \n  _direction = SELF.GetTag\n\n'--------------------------------------------------------------\n'  Make a list of all open views.\n'  Views which are not simpplle views will be skipped later on.\n'--------------------------------------------------------------\n  theViews = {}\n  theViews.Add(activeView)\n\n  for each aDoc in av.GetProject.GetDocs\n    if ((aDoc.Is(View)) and (aDoc.GetWin.IsOpen) and (aDoc <> activeView)) then\n      theViews.Add(aDoc)\n    end\n  end\n\n'---------------------------------
+-------------------------------------\n' Query the user for various options before running the display program\n' if the user clicked the running-man icon.\n'----------------------------------------------------------------------\n  if ( _direction = \"normal\" ) then\n    while ( true )\n      labelsList = {\"Simpplle Run Name\",\"TXT files\",\"Starting Time Period\",\n                    \"Ending Time Period\",\"Produce a graph?(y/n)\",\n                    \"Continuous Display?\"}\n      defaultsList = {_avp,dataPathName.AsStri
+ng,\"0\",\"5\",\"n\",\"n\"}\n\n      choiceList = MsgBox.MultiInput(\"Simpplle Time Periods\",\"Display Setup\",\n                                     labelsList,defaultsList)\n      if ( choiceList.count = 0 ) then exit end\n\n      _avp             = choiceList.Get(0).AsString\n      dataPathName  = choiceList.Get(1).AsString\n      startPeriod      = choiceList.Get(2).AsNumber\n      endPeriod        = choiceList.Get(3).AsNumber\n      graphYesNo       = choiceList.Get(4).AsString\n      continousYesNo   = choiceList.Get(5).As
+String\n\n      timePeriod = startPeriod\n  \n     ' Error Checking\n     if ( dataPathName.AsFilename.IsDir.Not ) then\n       msgbox.error(\"The path name does not exist: \"+dataPathName,\"\") \n       continue end\n\n     if (_avp.Right(1).IsNumber) then\n       msgbox.error(\"Your run name has a number at the end. If the \"+\n                    \"Simpplle output is avp1.txt avp2.txt etc. you only \"+\n                    \"need to put: avp.\",\"Error\")\n       continue end\n   \n     ' Set the projects obj tag to the user's sim
+pplle run name..\n     ' so that next time the running man icon is hit, this value \n     ' will be the new default\n     if (( dataPathName.Right(1) <> \"/\" ) and\n         ( dataPathName <> \"$HOME/\" )) then\n       dataPathName = dataPathName+\"/\"\n     end\n\n     av.GetProject.GetObjectTag.Set(_AVP_INDEX,_avp)\n     av.GetProject.GetObjectTag.Set(_CS_START_TIME,startPeriod)\n     av.GetProject.GetObjectTag.Set(_DATA_PATH_INDEX,dataPathName)\n\n     ' Set the projects working directory to the dataPathName variable.\n  
+   ' It is assumed that the SIMPPLE output TXT files will be\n     ' in this directory.\n     av.GetProject.SetWorkDir(dataPathName.AsFilename)\n\n     break\n   end\n end\n\n\n'--------------------------------------------------------------------\n' If the forwards or backwards buttons were used then set the various\n' variables so that each view is incremented up or down a time period\n' The values in startPeriod and endPeriod are mostly meaningless \n' since each view will be increments to a different time period.\n'--
+------------------------------------------------------------------\n  if (( _direction = \"forward\" ) or ( _direction = \"backward\" )) then\n    graphYesNo = false\n    startPeriod = -999\n    endPeriod = 999\n    continousYesNo = false\n    timePeriod = startPeriod\n  end\n'--------------------------------------------------------------------\n' If the rewind ( reset ) button was used then set the various \n' variables so that every view is reset to the first loaded time step.\n'-----------------------------------------
+---------------------------\n  if ( _direction = \"rewind\" ) then\n    ' \n    ' Determine the first loaded time step.  If none then inform the user.\n    '\n    startPeriod = av.GetProject.GetObjectTag.Get(_CS_START_TIME)\n    tmpTime = nil\n\n    for each aDoc in av.GetProject.GetDocs\n      if ((aDoc.Is(Table)) and (aDoc.GetObjectTag <> nil) and\n          (aDoc.GetName.UCASE.Contains(\"Spread\").Not)) then\n        tmpTime = aDoc.GetObjectTag\n        if (tmpTime.Is(Number).Not) then continue end\n\n        if (tmpTime 
+< startPeriod) then\n          startPeriod = tmpTime\n          av.GetProject.GetObjectTag.Set(_CS_START_TIME,startPeriod)\n        end\n      end\n    end\n\n    if (av.GetProject.GetObjectTag.Get(_CS_START_TIME) = -1) then\n      MsgBox.Error(\"You have not displayed and runs\",\n                   \"Use the running man icon\")\n      exit\n    end\n\n    graphYesNo = false\n    startPeriod = av.GetProject.GetObjectTag.Get(_CS_START_TIME)\n    endPeriod = startPeriod\n    continousYesNo = false\n    timePeriod = startPeriod\n 
+ end\n\n'-----------------------------------------------------------------\n' If the forward or backward button was used we need to get the\n' current time period.  This information is stored in the projects\n' object tag.\n'-----------------------------------------------------------------\n  if (( _direction = \"forward\" ) or ( _direction = \"backward\")) then\n    timePeriod = av.GetProject.GetObjectTag.Get(_CS_CURR_TIME)\n    if (timePeriod = -1) then\n      MsgBox.Error(\"Please run the simpplle setup first\",\n       
+            \"Use the Running Man Icon\")\n      exit\n    end\n\n    if ( _direction = \"forward\") then\n      timePeriod = timePeriod + 1\n    else\n      timePeriod = timePeriod - 1\n    end\n\n    if (timePeriod < 0) then exit end\n\n    endPeriod = timePeriod\n  end\n\n\n'-----------------------------------------------------\n' Call the Script \"simpplle.check-view-themes\" which\n' will loop through all of the view and place a list\n' of valid simpplle themes into the views object tag.\n'--------------------------------------
+---------------\n  if (av.Run(\"simpplle.check_view_themes\",{theViews,\"state\"}) <> \"success\")\n    then exit\n  end\n\n\n'-------------------------------------------------------------\n' For the \"Running Man\" icon:\n'  The user selected one to many time periods to display.\n'  For each time period, display SIMPPLLE data in each of the\n'  views that contain a valid coverage.  A valid\n'  coverage is defined by having a \"SLINK\" ( _Xref global variable)\n'  column used to relate to the SIMPPLLE output ascii files.\n' For t
+he \"forwards\" and \"backwards\" icons:\n'  Manipulate the variable \"timePeriod\" for each view.  Each\n'  view may have a different starting time period.. and \n'  therefore a different ending period.\n'-------------------------------------------------------------\n  while ( timePeriod <= endPeriod )\n    viewCount = 1\n    for each aView in theViews\n      if (aView.GetObjectTag = nil) then continue end\n    \n      aView.GetWin.Activate\n      themeCount = 1\n      for each standTheme in aView.GetObjectTag\n        stand
+Theme.SetName(standTheme.GetSrcName.GetName+\"-\"\n                           +themeCount.AsString)\n        '-------------------------------------------------------------\n        ' Run script: SIMPPLLE.SIMPPLLE_DISPLAY for a single time period \n        '             and a single view.\n        ' Pass arguments with the \"dataList\" variable\n        '-------------------------------------------------------------\n        if ( timePeriod >= 0 ) then\n          dataList = {graphYesNo,timePeriod,aView,standTheme}\n      
+    results = av.Run(\"simpplle.Simpplle_display\",dataList)\n          if (( results = nil ) or ( results = \"\" ))then\n            msgbox.info(\"Stopping Simpplle Display\",\"Error\")\n            exit end\n        end\n        themeCount = themeCount + 1\n      end ' themes for loop\n\n      aView.SetName(\"Simpplle \"+viewCount.AsString+\" - Time Period\"\n                    ++timePeriod.AsString)\n      viewCount = viewCount + 1\n    end ' views for loop\n    ' \n    ' After a Time Period has run, reactivate the View that wa
+s active before\n    ' the script was executed.\n    '\n    if ( activeView <> nil ) then\n      activeView.GetWin.Activate\n    end\n    '\n    '\n    if ( timePeriod <> endPeriod) then\n      if ( continousYesNo = \"n\" ) then\n        if (msgbox.yesno(\"Continue to next time step?\",\"\",TRUE).Not) then\n          timePeriod = timePeriod + 1\n          break\n        end\n      end\n    end\n    timePeriod = timePeriod + 1\n  end 'while\n\n  ' update the current timeperiod.\n  timePeriod = timePeriod - 1\n  av.GetProject.GetObject
+Tag.Set(_CS_CURR_TIME,timePeriod)\n\n\n\n\n"
+	SearchStr:	"dataPathName"
+	FontSize:	1
+)
+
+(DocWin.84
+	Owner:	83
+	X:	105
+	Y:	1
+	W:	846
+	H:	625
+)
+
+(CSMgr.85
+)
+
+(DocAct.86
+	Doc:	83
+)
+
+(SEd.87
+	Name:	"simpplle.simpplle_theme_reset"
+	Creator:	"kmoeller"
+	CreationDate:	"Wednesday, July 22, 1998 16:24:01"
+	GUIName:	"Script"
+	Win:	88
+	CSMgr:	89
+	DocExts:	90
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script  - SIMPPLLE.STARTUP\n'----------------------------------------------------------------------------\n'  Purpose: Reset the themes ObjectTag to nil and removes all joins.\n'----------------------------------------------------------------------------\n'  Usage:   Called by SIMPPLLE.OPEN\n'----------------------------------------------------------------------------\n'  Created: Kirk Moeller      July 
+22, 1998\n'----------------------------------------------------------------------------\n\n  theView = av.GetActiveDoc\n  if ( theView.Is(View).Not) then\n    msgbox.error(\"Associate this script with a view\",\"\")\n    exit\n  end\n\n  theThemes = theView.GetActiveThemes\n  if (theThemes.Count = 0) then\n    msgbox.Warning(\"No active themes for view (\"+theView.GetName+\")\",\"\")\n    exit\n  end\n \n  message = \"\"\n  for each aTheme in theThemes\n    message = message++aTheme.GetName+\",\"\n  end\n  message = message.BasicTrim(\"\",\",
+\")\n\n  response = msgbox.LongYesNo(\"Reset the theme(s):\"++message,\n                             \"Theme(s) to reset in View (\"+theView.GetName+\")\",\n                             TRUE)\n\n\n  if (response = TRUE) then\n    for each standTheme in theThemes\n      standTheme.SetObjectTag(nil)\n      standFTab = standTheme.GetFTab\n      if (standFTab = nil) then exit end\n\n      standField = standFTab.FindField(_SLink)\n      if (standField = nil) then exit end\n\n      standFTab.UnjoinAll\n\n      standTheme.SetName(standThe
+me.GetSrcName.GetName)\n    end\n  end\n\n\n\n\n"
+	SearchStr:	"projectPathName"
+	FontSize:	1
+)
+
+(DocWin.88
+	Owner:	87
+	X:	162
+	Y:	19
+	W:	686
+	H:	540
+)
+
+(CSMgr.89
+)
+
+(DocAct.90
+	Doc:	87
+)
+
+(SEd.91
+	Name:	"simpplle.spread_choice"
+	Creator:	"kmoeller"
+	CreationDate:	"Wednesday, May 06, 1998 12:50:10"
+	GUIName:	"Script"
+	Win:	92
+	CSMgr:	93
+	DocExts:	94
+	Source:	"'-----------------------------------------------------------------------------\n' Region 1 - USFS  -  ArcView Script  - SIMPPLLE.SPREAD_CHOICE\n'-----------------------------------------------------------------------------\n' Purpose: Get the process choice from the user.\n'-----------------------------------------------------------------------------\n' Usage:   CALLED BY: SIMPPLLE.SPREAD_DISPLAY & SIMPPLLE.CHANGE_SPREAD_CHOICE\n'-----------------------------------------------------------------------------\n' Crea
+ted:  Kirk Moeller   May 1998\n'-----------------------------------------------------------------------------\n\n  changeField = SELF.Get(0)\n  standTheme  = SELF.Get(1)\n  theView     = SELF.Get(2)\n\n  dataPathName = av.GetProject.GetObjectTag.Get(_DATA_PATH_INDEX)\n\n  if ( theView.Is(View).Not) then\n    msgbox.error(\"Associate this script with a view\",\"\")\n    exit\n  end\n\n  if (standTheme = nil) then\n    tList = theView.GetActiveThemes\n    if (tList.Count = 0) then\n      msgbox.Error(\"No themes selected\",\"\")\n    
+  exit\n    end\n \n    if (tList.Count > 1) then\n      msgbox.Error(\"Please select only one theme.\",\"\")\n      exit\n    end\n\n    standTheme = tList.Get(0)\n  end\n\n  if (standTheme.Is(FTheme)) then\n    standFTab = standTheme.GetFTab\n  else\n    MsgBox.Error(\"There is no Table associated with this Theme:\"++\n                 standTheme.GetName,\"\")\n    exit\n  end\n \n  ' ---------------------------------------------\n  ' ** Make sure the user has run the setup first\n  ' ---------------------------------------------\n  i
+f (standTheme.GetObjectTag = nil) then\n    MsgBox.Error(\"Please Run the Process Spread Setup First.\",\"\")\n    exit\n  end\n\n  if (standTheme.GetObjectTag.Get(0) = nil) then\n    msgbox.Error(\"Please run one of the process spread setups first\")\n    exit\n  end\n\n  if (standTheme.GetObjectTag.Get(0) <> \"spread\") then\n    msgbox.Error(\"The selected theme does not have spread displayed.\",\n                 \"Not a spread theme\")\n    exit\n  end\n\n  fields = standTheme.GetObjectTag.Clone\n  ' this will remove the first thr
+ee elements.\n  fields.Remove(0)\n  fields.Remove(0)\n  fields.Remove(0)\n \n  spreadField = msgbox.ListAsString(fields,\"Theme \"\"\"+standTheme.GetName+\"\"\"\"+\n                                        nl+\"View \"\"\"+theView.GetName+\"\"\"\",\n                                    \"Please choose a Process\")\n\n  if (changeField <> \"false\") then\n    if (spreadField = nil) then return nil end\n    standTheme.GetObjectTag.Set(2,spreadField)\n\n    '------------------------------------------------------------\n    ' Load the new legend.
+\n    '------------------------------------------------------------\n      argList = {standTheme,standFtab,spreadField,theView,\"spread\"}\n      av.Run(\"simpplle.load_legend\",argList)\n  end\n\n return spreadField\n"
+	SearchStr:	"projectPathName"
+	FontSize:	1
+)
+
+(DocWin.92
+	Owner:	91
+	X:	162
+	Y:	42
+	W:	703
+	H:	702
+)
+
+(CSMgr.93
+)
+
+(DocAct.94
+	Doc:	91
+)
+
+(SEd.95
+	Name:	"simpplle.spread_display"
+	Creator:	"kmoeller"
+	CreationDate:	"Wednesday, May 06, 1998 14:26:05"
+	GUIName:	"Script"
+	Win:	96
+	CSMgr:	97
+	DocExts:	98
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script    -  SIMPPLLE.SPREAD_DISPLAY\n'----------------------------------------------------------------------------\n'  Purpose: To display data from the SIMPPLLE model.\n'----------------------------------------------------------------------------\n'  Usage:   Called by the SIMPPLLE.SPREAD_RUN script\n'----------------------------------------------------------------------------\n'  Created: Kirk Moeller
+    May 1998\n'----------------------------------------------------------------------------\n\nprojectPathName = av.GetProject.GetObjectTag.Get(_PROJ_PATH_INDEX)\ndataPathName    = av.GetProject.GetObjectTag.Get(_DATA_PATH_INDEX)\n\n'-------------------------------------------------------------\n' Restore data from the arguement pass from the calling script\n'-------------------------------------------------------------\n  timePeriod = SELF.Get(0)\n  theView = SELF.Get(1)\n  standTheme = SELF.Get(2)\n\n'----------------
+--------------------------------------------\n' Search for SIMPPLLE text input file ( avp?.txt )\n' If it is not already loaded into ArcView.. then execute the\n' aml ( import_txt.aml ) that will convert it into an ArcView \n' readable file.\n'------------------------------------------------------------\n  if ( av.GetProject.FindDoc(_avp+timePeriod.AsString+\"-spread\") = nil ) then \n    aString = dataPathName.AsString+_avp+timePeriod.AsString+\"-spread\"+\".txt\"\n    aFileName = aString.AsFileName\n    aVtab = VTab.Mak
+e(aFileName,FALSE,FALSE)\n    count = 0\n    av.ClearStatus\n\n    '------------------------------------------------------------\n    ' If the text file does not exist yet.. then wait for it.\n    ' After ?? seconds.. inform the user that SIMPPLLE has not\n    ' created a output ascii file for ArcView to display.\n    '------------------------------------------------------------\n    count = 1\n\n    ' Check the users value for the number of seconds to wait.\n    ' This value is set in the \"simpplle.startup\" script.\n  
+  if ( _waitSeconds.AsString.IsNumber.Not ) then \n      _waitSeconds = 20 end\n    if ( _waitSeconds < 0 ) then\n      _waitSeconds = 0 end\n    if ( _waitSeconds > 1000 ) then\n      _waitSeconds = 1000 end\n    sleepSeconds = (_waitSeconds / 10 ).round\n    if ( _waitSeconds < 10 ) then\n      count = 9\n      sleepSeconds = ( _waitSeconds / 2 ).round end \n\n    While (aVtab.HasError)\n      av.SetStatus( ( count * 10 ) )\n      count = count + 1\n      system.execute(\"sleep \"+sleepSeconds.AsString)\n      if ( count 
+> 10 ) then\n        if ( msgbox.yesno(\"Check again?\",\"Time Period\"++_avp+\n                          timePeriod.AsString+\"-spread\"+\".txt not complete\",\n                          FALSE).Not) then\n          av.ClearStatus\n          exit\n        else count = 0\n        end\n      end\n\n      aVtab = VTab.Make(aFileName,FALSE,FALSE)\n    end 'while\n\n    aTable = Table.Make(aVtab)\n    aTable.SetName(_avp+timePeriod.AsString+\"-spread\")\n    aTable.SetObjectTag(timePeriod)\n    aVtab = av.GetProject.FindDoc(_avp+timePeri
+od.AsString+\"-spread\").GetVtab\n  end\n \n  aVtab = av.GetProject.FindDoc(_avp+timePeriod.AsString+\"-spread\").GetVtab\n\n  theFields = {\"spread\",nil,nil}\n  for each f in aVtab.GetFields\n    if (f.AsString <> _SLink) then theFields.Add(f.AsString) end\n  end\n \n  if (theFields.Count = 3) then\n    MsgBox.Error(\"Invalid TXT file, no fields found\",\"\")\n    exit\n  end\n\n  ' ** If user has already chosen a field and that field is\n  ' ** still valid then use it.\n  '\n  if (theFields.FindByValue(standTheme.GetObjectTag.Get(2
+)) <> -1) then\n    theFields.Set(2,standTheme.GetObjectTag.Get(2))\n  end\n\n  standTheme.SetObjectTag(theFields)\n  \n  if ( aVtab = nil ) then \n    msgbox.info(\"An error occured loading the TXT file\",\"Error\")\n    exit\n  end\n\n'------------------------------------------------------------\n' Join the new table to the stand table (FTAB)\n'------------------------------------------------------------\n  standThemeName = standTheme.GetName\n  standFTab = standTheme.GetFTab\n  standField = standFTab.FindField(_SLink)\n  if 
+( standField.AsString.IsNull ) then\n    msgbox.info(\"Stand coverage does not have item: \"+_SLink+\" in Theme\"++\n                standTheme.GetName,\"Error\")\n    exit\n  end\n\n  newField = aVTab.FindField(_SLink)\n  if ( newField = nil ) then\n    msgbox.error(\"Error finding \"+_SLink+\" in the \"+_avp+timePeriod.AsString+\n                 \"-spread.txt\"++\"file\",\"\")\n    exit\n  end\n  if ( standField = nil ) then\n    msgbox.error(\"Error finding \"+_SLink+\" in theme\"++standTheme.GetName,\"\")\n    exit\n  end\n\n  standFTab.Unj
+oinAll\n  standFtab.Join(standField,aVtab,newField)\n \n  spreadField = standTheme.GetObjectTag.Get(2)\n  if (spreadField = nil) then\n    spreadField = av.Run(\"simpplle.spread_choice\",{\"false\",standTheme,theView})\n    if (spreadField = nil) then\n      msgbox.info(\"A process field must be chosen to continue!\",\"Error\")\n      exit\n    end\n    standTheme.GetObjectTag.Set(2,spreadField)\n  end\n\n'------------------------------------------------------------\n' Load the new legend.\n'--------------------------------------
+----------------------\n  argList = {standTheme,standFtab,spreadField,theView,\"spread\"}\n  av.Run(\"simpplle.load_legend\",argList)\n\n\n  return \"Success\"\n"
+	SearchStr:	"projectPathName"
+	FontSize:	1
+)
+
+(DocWin.96
+	Owner:	95
+	X:	147
+	Y:	-2
+	W:	710
+	H:	570
+)
+
+(CSMgr.97
+)
+
+(DocAct.98
+	Doc:	95
+)
+
+(SEd.99
+	Name:	"simpplle.spread_run"
+	Creator:	"kmoeller"
+	CreationDate:	"Wednesday, May 06, 1998 14:06:15"
+	GUIName:	"Script"
+	Win:	100
+	CSMgr:	101
+	DocExts:	102
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script    -  SIMPPLLE.SPREAD_RUN\n'----------------------------------------------------------------------------\n'  Purpose: To display data from the SIMPPLLE model.\n'----------------------------------------------------------------------------\n'  Usage:   Attach to a View Button\n'----------------------------------------------------------------------------\n'  Created: Kirk Moeller    May 1998\n'-------
+---------------------------------------------------------------------\n\n' **************************************\n' Use of theme's object Tag for SPREAD\n'   It will be a list as follows:\n'     index 0:  \"spread\"\n'     index 1:  user chosen field or nil\n' **************************************\n\nprojectPathName = av.GetProject.GetObjectTag.Get(_PROJ_PATH_INDEX)\ndataPathName    = av.GetProject.GetObjectTag.Get(_DATA_PATH_INDEX)\n\n'------------------------------------------------------------\n' Check for existance 
+of a script called later in this script\n'------------------------------------------------------------\n  if ( av.FindScript(\"simpplle.spread_display\") = nil ) then\n    msgbox.info(\"Unable to find script: simpplle.spread_display\",\"Error\")\n  end\n\n'-------------------------------------------------------------\n' Check to make sure this script is associated with a View Gui\n'-------------------------------------------------------------\n  activeView = av.GetActiveDoc\n  if ( activeView.Is(View).not ) then\n    msgbox
+.info(\"This script needs to be associated with a View Button\",\"Error\")\n   exit\n  end\n\n'---------------------------------------------------------\n' Check the global variables for existence and correctness\n'---------------------------------------------------------\n  if ( projectPathName.AsFilename.IsDir.Not ) then\n    msgbox.error(\"The Project pathname is not valid.  Please make the \"+\n                 \"project window active and click on the \"\"i\"\" button \"+\n                 \"to change the pathname\",\"Project P
+athname error\")\n    exit\n  end\n\n  if (( projectPathName.Right(1) <> \"/\" ) and\n      ( projectPathName <> \"$HOME/\" )) then\n    msgbox.error(\"The Project pathname needs a / at the end of the pathname.\"+\n                 \"  Please make the project window active and click \"+\n                 \"on the \"\"i\"\" button to change the pathname\",\n                 \"Project Pathname error\")\n    exit\n  end\n\n  if ( dataPathName.AsFileName.IsDir.Not ) then\n    msgbox.error(\"The data pathname is not valid.  Please make the \"+\n
+                 \"project window active and click on the \"\"i\"\" button \"+\n                 \"to change the pathname\",\"Data Pathname error\")\n    exit\n  end\n\n  if ( dataPathName.Right(1) <> \"/\" ) then\n    msgbox.error(\"The Data pathname needs a / at the end of the pathname.\"+\n                 \"  Please make the project window active and click \"+\n                 \"on the \"\"i\"\" button to change the pathname\",\n                 \"Project Pathname error\")\n    exit\n  end\n\n'---------------------------------------------
+-----------------\n' Determine which button was pushed: the rewind button, the \n' backwards button, the running man button or the forwards button.  \n' All four buttons use this script.  The forwards and backwards \n' buttons will increment each view up or back a timeperiod. The\n' rewind button will set each view to the first time step loaded.\n' The running-man button will make all active views display one \n' period at a time over a range of time periods.  The tags for \n' each of the four controls let this scr
+ipt know which direction \n' to take: \"rewind\",\"backward\",\"normal\", or \"forward\".\n'--------------------------------------------------------------\n  if ( SELF.GetTag = nil ) then\n    msgbox.error(\"Script: simpplle.spread_run is associated with \"+\n                 \"the wrong button\",\"\")\n    exit\n  end \n\n  _direction = SELF.GetTag\n\n\n'--------------------------------------------------------------\n'  Make a list of all open views.\n'  Views which are not simpplle views will be skipped later on.\n'------------------
+--------------------------------------------\n  theViews = {}\n  theViews.Add(activeView)\n\n  for each aDoc in av.GetProject.GetDocs\n    if ((aDoc.Is(View)) and (aDoc.GetWin.IsOpen) and (aDoc <> activeView)) then\n      theViews.Add(aDoc)\n    end\n  end\n\n \n'----------------------------------------------------------------------\n' Query the user for various options before running the display program\n' if the user clicked the running-man icon.\n'----------------------------------------------------------------------\n
+  if ( _direction = \"normal\" ) then\n    while ( true )\n      labelsList = {\"Simpplle Run Name\",\"TXT files\",\"Starting Time Period\",\n                    \"Ending Time Period\",\"Continuous Display?\"}\n      defaultsList = {_avp,dataPathName.AsString,\"1\",\"5\",\"n\"}\n      choiceList = MsgBox.MultiInput(\"Simpplle Time Periods\",\"Display Setup\",\n                                     labelsList,defaultsList)\n      if ( choiceList.count = 0 ) then exit end\n\n      _avp = choiceList.Get(0).AsString\n      dataPathName = choic
+eList.Get(1).AsString\n\n      startPeriod = choiceList.Get(2).AsNumber\n      endPeriod = choiceList.Get(3).AsNumber\n      continousYesNo = choiceList.Get(4).AsString\n      timePeriod = startPeriod\n  \n      ' Error Checking\n      if ( dataPathName.AsFilename.IsDir.Not ) then\n        msgbox.error(\"The path name does not exist: \"+dataPathName,\"\") \n        continue\n      end\n\n      if (_avp.Right(1).IsNumber) then\n        msgbox.error(\"Your run name has a number at the end. \"+\n                     \"If the Simppl
+le output is avp1.txt avp2.txt etc. \"+\n                     \"You only need to put: avp.\",\"Error\")\n        continue\n      end\n   \n      ' Set the projects obj tag to the user's simpplle run name..\n      ' so that next time the running man icon is hit, this value\n      ' will be the new default\n      '\n      if (( dataPathName.Right(1) <> \"/\" ) and\n          ( dataPathName <> \"$HOME/\" )) then\n        dataPathName = dataPathName+\"/\"\n      end\n\n      av.GetProject.GetObjectTag.Set(_AVP_INDEX,_avp)\n      av.GetP
+roject.GetObjectTag.Set(_SPRD_START_TIME,startPeriod)\n      av.GetProject.GetObjectTag.Set(_DATA_PATH_INDEX,dataPathName)\n\n      ' Set the projects working directory to the dataPathName variable.\n      ' It is assumed that the SIMPPLE output TXT files will be in this\n      ' directory.\n      '\n      av.GetProject.SetWorkDir(dataPathName.AsFilename)\n      break\n    end ' while\n  end\n\n\n'--------------------------------------------------------------------\n' If the forwards or backwards buttons were used then s
+et the various\n' variables so that each view is incremented up or down a time period\n' The values in startPeriod and endPeriod are mostly meaningless \n' since each view will be increments to a different time period.\n'--------------------------------------------------------------------\n  if (( _direction = \"forward\" ) or ( _direction = \"backward\" )) then\n    startPeriod = -999\n    endPeriod = 999\n    timePeriod = startPeriod\n  end\n\n\n'--------------------------------------------------------------------\n' If t
+he rewind ( reset ) button was used then set the various \n' variables so that every view is reset to the first loaded time step.\n'--------------------------------------------------------------------\n  if ( _direction = \"rewind\" ) then\n    ' \n    ' Determine the first loaded time step.  If none then inform the user.\n    '\n    startPeriod = av.GetProject.GetObjectTag.Get(_SPRD_START_TIME)\n    tmpTime = nil\n\n    for each aDoc in av.GetProject.GetDocs\n      if ((aDoc.Is(Table)) and (aDoc.GetObjectTag <> nil) an
+d\n          (aDoc.GetName.UCASE.Contains(\"spread\"))) then\n        tmpTime = aDoc.GetObjectTag\n        if (tmpTime.Is(Number).Not) then continue end\n\n        if (tmpTime < startPeriod) then\n          startPeriod = tmpTime\n          av.GetProject.GetObjectTag.Set(_SPRD_START_TIME,startPeriod)\n        end\n      end\n    end\n\n    if (av.GetProject.GetObjectTag.Get(_SPRD_START_TIME) = -1) then\n      MsgBox.Error(\"You have not displayed and runs for spread\",\n                   \"Use the spread icon\")\n      exit\n   
+ end\n\n    startPeriod = av.GetProject.GetObjectTag.Get(_SPRD_START_TIME)\n    endPeriod = startPeriod\n    continousYesNo = false\n    timePeriod = startPeriod\n  end\n\n'-----------------------------------------------------------------\n' If the forward or backward button was used we need to get the\n' current time period.  This information is stored in the projects\n' object tag.\n'-----------------------------------------------------------------\n  if (( _direction = \"forward\" ) or ( _direction = \"backward\")) then\n
+    timePeriod = av.GetProject.GetObjectTag.Get(_SPRD_CURR_TIME)\n    if (timePeriod = -1) then\n      MsgBox.Error(\"Please run the process spread setup first\",\n                   \"Use the spread icon\")\n      exit\n    end\n\n    if ( _direction = \"forward\") then\n      timePeriod = timePeriod + 1\n    else\n      timePeriod = timePeriod - 1\n    end\n\n    if (timePeriod < 0) then exit end\n\n    endPeriod = timePeriod\n  end\n\n'-----------------------------------------------------\n' Call the Script \"simpplle.check-view-
+themes\" which\n' will loop through all of the view and place a list\n' of valid simpplle themes into the views object tag.\n'-----------------------------------------------------\n  if (av.Run(\"simpplle.check_view_themes\",{theViews,\"spread\"}) <> \"success\")\n    then exit\n  end\n\n'-------------------------------------------------------------\n' For the \"Spread\" icon:\n'  The user selected one to many time periods to display.\n'  For each time period, display SIMPPLLE data in each of the\n'  views that contain a valid 
+coverage.  A valid\n'  coverage is defined by having a \"SLINK\" ( _Xref global variable)\n'  column used to relate to the SIMPPLLE output ascii files.\n' For the \"forwards\" and \"backwards\" icons:\n'  Manipulate the variable \"timePeriod\" for each view.  Each\n'  view may have a different starting time period.. and \n'  therefore a different ending period.\n'-------------------------------------------------------------\n  while ( timePeriod <= endPeriod )\n  viewCount = 1\n    for each aView in theViews\n      if (aView.
+GetObjectTag = nil) then continue end\n\n      aView.GetWin.Activate\n      themeCount = 1\n      for each standTheme in aView.GetObjectTag\n        standTheme.SetName(standTheme.GetSrcName.GetName+\"-\"\n                           +themeCount.AsString)\n        '-------------------------------------------------------------\n        ' Run script: SIMPPLLE.SIMPPLLE_DISPLAY for a single time period \n        '             and a single view.\n        ' Pass arguments with the \"dataList\" variable\n        '-----------------
+--------------------------------------------\n        if ( timePeriod >= 0 ) then\n          dataList = {timePeriod,aView,standTheme}\n          results = av.Run(\"simpplle.spread_display\",dataList)\n          if (( results = nil ) or ( results = \"\" )) then\n            msgbox.info(\"Stopping Spread Display\",\"Error\")\n            exit\n          end\n        end\n        themeCount = themeCount + 1\n      end ' themes for loop\n\n      aView.SetName(\"Spread \"+viewCount.AsString+\" - Time Period\"\n                    ++time
+Period.AsString)\n      viewCount = viewCount + 1\n    end ' views for loop\n    ' \n    ' After a Time Period has run, reactivate the View that was active before\n    ' the script was executed.\n    '\n    if ( activeView <> nil ) then\n      activeView.GetWin.Activate\n    end\n    '\n    '\n    if ( timePeriod <> endPeriod) then\n      if ( continousYesNo = \"n\" ) then\n        if (msgbox.yesno(\"Continue to next time step?\",\"\",TRUE).Not) then\n          timePeriod = timePeriod + 1\n          break\n        end\n      end\n 
+   end\n    timePeriod = timePeriod + 1\n  end 'while\n\n  ' update the current timeperiod.\n  timePeriod = timePeriod - 1\n  av.GetProject.GetObjectTag.Set(_SPRD_CURR_TIME,timePeriod)\n\n\n"
+	SearchStr:	"projectPathName"
+	FontSize:	1
+)
+
+(DocWin.100
+	Owner:	99
+	X:	118
+	Y:	15
+	W:	818
+	H:	619
+)
+
+(CSMgr.101
+)
+
+(DocAct.102
+	Doc:	99
+)
+
+(SEd.103
+	Name:	"simpplle.startup"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:05:24"
+	GUIName:	"Script"
+	Win:	104
+	CSMgr:	105
+	DocExts:	106
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script  - SIMPPLLE.STARTUP\n'----------------------------------------------------------------------------\n'  Purpose: Sets variables on startup\n'----------------------------------------------------------------------------\n'  Usage:   Called by SIMPPLLE.OPEN\n'----------------------------------------------------------------------------\n'  Created: Gary Neier   Sept/96,  Modified May 1998 Kirk Moeller\n
+'----------------------------------------------------------------------------\n\n' This variable is used as a flag for connecting to ArcInfo.  Currently there\n' is no need to connect to ArcInfo which is why the green and red diamond \n' view buttons are invisible and disabled.\n  _isConnected = FALSE\n\n'----------------------------------------------------------------\n' The \"dataPathName\" contains the output from Simpplle..\n'  avp1.txt, avp2.txt etc..\n'\n' The \"projectPathName\" contains the legend files ( *.avl)\n'
+ and the default blank project\n'\n' The values are stored in a list in the projects object tag.\n' The user will be prompted for these values if these variables\n' below are \"\".\n'----------------------------------------------------------------\n  projectPathName = \"\"\n  dataPathName = \"\"\n\n\n'----------------------------------------------------------------\n  _SLink = \"SLink\"\n\n'-----------------------------------------------------------------------------\n' This variable contains the list of attributes within the Si
+mpplle output.\n' The order of the listing does not matter.\n' Example: _attributeList = {\"Process\",\"Species\",\"Size\",\"Canopy\",\"Treatment\"}\n'-----------------------------------------------------------------------------\n  _attributeList = {\"sim_Process\",\"sim_Species\",\"sim_Size\",\"sim_Canopy\",\"sim_Treatment\"}\n\n'-----------------------------------------------------------------------------\n' For use in asking user which probability file to use.\n' Kirk M. March 1998.\n'------------------------------------------------
+----------------------------- \n  _probabilityList = {\"process\",\"species\",\"size\",\"canopy\"}\n \n'-----------------------------------------------------------------------------\n' The number of seconds the computer waits for a Simpplle time step to complete\n' Use a number from 0 to 1000.  \n'-----------------------------------------------------------------------------\n  _waitSeconds = 20\n\n\n'-----------------------------------------------------------------------------\n' This variable contains the name of the Simppll
+e run.\n' For Example if _avp = \"avp_test\" then the output from Simpplle would\n' need to be: avp_test1.txt, avp_test2.txt, etc..\n'-----------------------------------------------------------------------------\n\n  ' Global variables which index the list of data stored in the\n  ' Project's object tag.\n  '\n  _AVP_INDEX       = 0\n  _CS_START_TIME   = 1\n  _CS_CURR_TIME    = 2\n  _SPRD_START_TIME = 3\n  _SPRD_CURR_TIME  = 4\n  _PROJ_PATH_INDEX = 5\n  _DATA_PATH_INDEX = 6\n\n\n  _avp = \"avp\"\n\n\n  projectObj = av.GetProject.G
+etObjectTag\n  if ( projectObj <> nil ) then\n    _avp = projectObj.Get(_AVP_INDEX)\n  end\n\n\n  aList = {}\n  if (projectObj = nil) then\n    aList.Add(_avp) 'simpplle run name\n    aList.Add(-1)   'current state display start time period\n    aList.Add(-1)   'current state display current time period\n    aList.Add(-1)   'spread displays start time period\n    aList.Add(-1)   'spread displays current time period\n    aList.Add(projectPathName)\n    aList.Add(dataPathName)\n\n    av.GetProject.SetObjectTag(aList)\n  end\n\n
+'---------------------------------------------------------------\n' Ask user for data Pathname and project Pathname.\n'---------------------------------------------------------------\n  if ((av.GetProject.GetObjectTag.Get(_PROJ_PATH_INDEX).AsString = \"\") or\n      (av.GetProject.GetObjectTag.Get(_DATA_PATH_INDEX).AsString = \"\")) then\n    av.Run(\"simpplle.set_pathnames\",nil)\n  end\n\n\n\n\n"
+	SearchStr:	"projectPathName"
+	FontSize:	1
+)
+
+(DocWin.104
+	Owner:	103
+	X:	173
+	W:	796
+	H:	633
+)
+
+(CSMgr.105
+)
+
+(DocAct.106
+	Doc:	103
+)
+
+(SEd.107
+	Name:	"simpplle.toggle_outlines"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 14:01:48"
+	GUIName:	"Script"
+	Win:	108
+	CSMgr:	109
+	DocExts:	110
+	Source:	"'--------------------------------------------------------------------\n' Region 1 - USFS  -  ArcView Script  -  SIMPPLLE.TOGGLE_OUTLINES\n'--------------------------------------------------------------------\n' Purpose: To toggle the outline of a FILL symbol in a theme from\n'          transparent to black, or black to transparent.\n'--------------------------------------------------------------------\n' Usage:   Attach to a View Button or to a View Menu Choice.\n'          It may be convenient to use a \"Hot-Key\",
+ like F6.\n'--------------------------------------------------------------------\n' Notes:   Works in Arcview 2 and Arcview 3\n'--------------------------------------------------------------------\n' Created: Gary Neier   Dec/96\n'--------------------------------------------------------------------\ntheDoc = av.GetActiveDoc\nif ( theDoc.Is(View).Not) then\n msgbox.error(\"Associate this script with a view\",\"\") exit end\ntheThemes = av.GetActiveDoc.GetActiveThemes\n\nfor each aTheme in theThemes\n if ( aTheme.Is(ITheme))
+ then continue end\n theLegend = aTheme.GetLegend\n theSymbols = theLegend.GetSymbols\n for each aSymbol in theSymbols \n  if ( aSymbol.GetType.AsString = \"SYMBOL_FILL\" ) then   \n   newColor = Color.Make\n   newColor.SetTransparent(true)\n   if ( aSymbol.GetOLColor.AsString = \"Transparent\" ) then \n    newColor.SetTransparent(false) end\n   aSymbol.SetOLColor(newColor)\n  end\n end\n aTheme.UpdateLegend\nend\n\n"
+	FontSize:	1
+)
+
+(DocWin.108
+	Owner:	107
+	X:	215
+	Y:	35
+	W:	584
+	H:	593
+)
+
+(CSMgr.109
+)
+
+(DocAct.110
+	Doc:	107
+)
+
+(SEd.111
+	Name:	"simpplle.zoomall"
+	Creator:	"gneier"
+	CreationDate:	"Wednesday, July 02, 1997 13:58:17"
+	GUIName:	"Script"
+	Win:	112
+	CSMgr:	113
+	DocExts:	114
+	Source:	"'----------------------------------------------------------------------------\n'  Region 1 - USFS   -   ArcView Script  - SIMPPLLE.ZOOMALL\n'----------------------------------------------------------------------------\n'  Purpose: Zooms all non-active open Views to the extent of the active view\n'----------------------------------------------------------------------------\n'  Usage:   Attached to a View Button ( four squares icon )\n'----------------------------------------------------------------------------\n'  
+Notes:   Works in Arcview 2 and ArcView 3\n'----------------------------------------------------------------------------\n'  Created: Gary Neier   Sept/96\n'----------------------------------------------------------------------------\nav.GetProject.SetModified(true)\ndocList = av.GetProject.GetDocs\ntheView = av.GetActiveDoc\ntheDisplay = theView.GetDisplay\ntheVisExtent = theDisplay.ReturnVisExtent\n\nfor each aDoc in docList\n if ( aDoc.Is(View).not) then continue end\n if ( aDoc = theView ) then continue end\n aDispl
+ay = aDoc.GetDisplay\n aWin = aDoc.GetWin\n if ( aWin.IsOpen ) then\n  aDisplay.ZoomToRect(theVisExtent)\n end\nend"
+	FontSize:	1
+)
+
+(DocWin.112
+	Owner:	111
+	Y:	36
+	W:	635
+	H:	440
+)
+
+(CSMgr.113
+)
+
+(DocAct.114
+	Doc:	111
+)
+
+(LButn.115
+	HelpTopic:	"New_button"
+	Update:	"Doc.NewUpdate"
+	Label:	"&New"
+	Click:	"Script.New"
+)
+
+(LButn.116
+	HelpTopic:	"Open_button"
+	Update:	"Doc.OpenUpdate"
+	Label:	"&Open"
+	Click:	"Doc.Open"
+)
+
+(LButn.117
+	HelpTopic:	"Run_button"
+	Update:	"Script.ActionUpdate"
+	Label:	"&Run"
+	Click:	"Script.Action"
+)
+
+(NameDict.118
+)
+
+(NameDict.119
+	Obj:	120
+	Obj:	121
+)
+
+(AVDict.120
+	InternalName:	"Table of Contents Defaults Dialog"
+)
+
+(AVDict.121
+	InternalName:	"_Thor_"
+)
+
+(DocGUI.122
+	Name:	"View"
+	Type:	"View"
+	Modified:	1
+	Visible:	1
+	MenuBar:	123
+	ButnBar:	248
+	Popups:	324
+	ToolBar:	344
+	NewScript:	"View.New"
+	OpenScript:	"Doc.Open"
+	ActionScript:	"Doc.Action"
+	NewUpdateScript:	"Doc.NewUpdate"
+	OpenUpdateScript:	"Doc.OpenUpdate"
+	ActionUpdateScript:	"Doc.ActionUpdate"
+	Title:	"Views"
+	Icon:	421
+)
+
+(MenuBar.123
+	Child:	124
+	Child:	141
+	Child:	161
+	Child:	186
+	Child:	214
+	Child:	231
+	Child:	243
+)
+
+(PMenu.124
+	InternalName:	"File"
+	Child:	125
+	Child:	126
+	Child:	127
+	Child:	128
+	Child:	129
+	Child:	130
+	Child:	131
+	Child:	132
+	Child:	133
+	Child:	134
+	Child:	135
+	Child:	136
+	Child:	137
+	Child:	138
+	Child:	139
+	Child:	140
+	Label:	"&File"
+)
+
+(Choice.125
+	Help:	"Closes the active component"
+	HelpTopic:	"Close"
+	Label:	"&Close"
+	Click:	"Project.CloseDoc"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.126
+	Help:	"Closes all components"
+	HelpTopic:	"Close_All"
+	Label:	"Close &All"
+	Click:	"Project.CloseAll"
+	Shortcut:	"Keys.None"
+)
+
+(Space.127
+)
+
+(Choice.128
+	Help:	"Allows you to specify the current working directory"
+	HelpTopic:	"Set_Working_Directory"
+	Label:	"Set &Working Directory..."
+	Click:	"Project.SetProjectWorkDir"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.129
+	Help:	"Saves the current project"
+	HelpTopic:	"Save_Project"
+	Label:	"&Save Project"
+	Click:	"Project.Save"
+	Shortcut:	"Keys.Ctrl+S"
+)
+
+(Choice.130
+	Help:	"Saves the current project with a new name"
+	HelpTopic:	"Save_Project_As"
+	Label:	"Save Project As..."
+	Click:	"Project.SaveAs"
+	Shortcut:	"Keys.None"
+)
+
+(Space.131
+)
+
+(Choice.132
+	Help:	"Displays the Extensions Dialog"
+	HelpTopic:	"Extensions"
+	Label:	"Extensions..."
+	Click:	"Appl.GetExtensionWin"
+	Shortcut:	"Keys.None"
+)
+
+(Space.133
+)
+
+(Choice.134
+	Help:	"Prints the view"
+	HelpTopic:	"Print"
+	Label:	"&Print..."
+	Click:	"View.Print"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.135
+	Help:	"Edits the printer and the printing options"
+	HelpTopic:	"Print_Setup"
+	Label:	"P&rint Setup..."
+	Click:	"Project.PrintSetup"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.136
+	Help:	"Exports the view"
+	HelpTopic:	"Export"
+	Update:	"View.HasThemesUpdate"
+	Label:	"&Export..."
+	Click:	"View.ExportDisp"
+	Shortcut:	"Keys.None"
+)
+
+(Space.137
+)
+
+(Choice.138
+	Help:	"Displays the dialog box to delete, edit, and copy data sources"
+	HelpTopic:	"Manage_Sources"
+	Label:	"&Manage Data Sources..."
+	Click:	"View.ManageSources"
+	Shortcut:	"Keys.None"
+)
+
+(Space.139
+)
+
+(Choice.140
+	Help:	"Exits ArcView"
+	HelpTopic:	"Exit"
+	Label:	"E&xit"
+	Click:	"Project.Exit"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.141
+	InternalName:	"Edit"
+	Child:	142
+	Child:	143
+	Child:	144
+	Child:	145
+	Child:	146
+	Child:	147
+	Child:	148
+	Child:	149
+	Child:	150
+	Child:	151
+	Child:	152
+	Child:	153
+	Child:	154
+	Child:	155
+	Child:	156
+	Child:	157
+	Child:	158
+	Child:	159
+	Child:	160
+	Label:	"&Edit"
+)
+
+(Choice.142
+	Help:	"Cuts the active themes to the clipboard"
+	HelpTopic:	"Cut_Themes"
+	Update:	"View.ActiveDeletableThemesUpdate"
+	Label:	"Cut T&hemes"
+	Click:	"View.CutThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.143
+	Help:	"Copies the active themes to the clipboard"
+	HelpTopic:	"Copy_Themes"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"Cop&y Themes"
+	Click:	"View.CopyThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.144
+	Help:	"Removes the active themes from the view"
+	HelpTopic:	"Delete_Themes"
+	Update:	"View.ActiveDeletableThemesUpdate"
+	Label:	"De&lete Themes"
+	Click:	"View.DeleteThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Space.145
+)
+
+(Choice.146
+	Disabled:	1
+	Help:	"Undo the last edit to graphics on a view"
+	HelpTopic:	"Undo_Graphic_Edit_on_a_view"
+	Update:	"View.UndoEditUpdate"
+	Label:	"&Undo Graphic Edit"
+	Click:	"View.UndoEdit"
+	Shortcut:	"Keys.Ctrl+Z"
+)
+
+(Choice.147
+	Disabled:	1
+	Invisible:	1
+	Help:	"Redo the last edit operation on a theme that was undone"
+	HelpTopic:	"Redo_Edit_on_a_view"
+	Update:	"View.RedoEditUpdate"
+	Label:	"&Redo Feature Edit"
+	Click:	"View.RedoEdit"
+	Shortcut:	"Keys.Ctrl+Y"
+)
+
+(Space.148
+)
+
+(Choice.149
+	Disabled:	1
+	Help:	"Cuts the selected graphics to the clipboard"
+	HelpTopic:	"Cut_Graphics"
+	Update:	"View.CutUpdate"
+	Label:	"Cu&t Graphics"
+	Click:	"View.CutGraphics"
+	Shortcut:	"Keys.Ctrl+X"
+)
+
+(Choice.150
+	Disabled:	1
+	Help:	"Copies the selected graphics to the clipboard"
+	HelpTopic:	"Copy_Graphics"
+	Update:	"View.CopyUpdate"
+	Label:	"&Copy Graphics"
+	Click:	"View.CopyGraphics"
+	Shortcut:	"Keys.Ctrl+C"
+)
+
+(Choice.151
+	Disabled:	1
+	Help:	"Removes the selected graphics from the view"
+	HelpTopic:	"Delete_Graphics"
+	Update:	"View.DeleteUpdate"
+	Label:	"&Delete Graphics"
+	Click:	"View.DeleteGraphics"
+	Shortcut:	"Keys.Del"
+)
+
+(Space.152
+)
+
+(Choice.153
+	Disabled:	1
+	Help:	"Combines the selected polygons"
+	HelpTopic:	"Combine_Graphics"
+	Update:	"View.CombineUpdate"
+	Label:	"Com&bine Graphics"
+	Click:	"View.CombineGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.154
+	Disabled:	1
+	Help:	"Unions the selected graphics to create a new graphic"
+	HelpTopic:	"Union_Graphics"
+	Update:	"View.UnionUpdate"
+	Label:	"U&nion Graphics"
+	Click:	"View.UnionGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.155
+	Disabled:	1
+	Help:	"Subtracts one selected polygon from the other selected polygon"
+	HelpTopic:	"Subtract_Graphics"
+	Update:	"View.SubtractUpdate"
+	Label:	"&Subtract Graphics"
+	Click:	"View.SubtractGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.156
+	Disabled:	1
+	Help:	"Creates a new polygon from the area  of overlap between the selected polygons"
+	HelpTopic:	"Intersect_Graphics"
+	Update:	"View.IntersectUpdate"
+	Label:	"&Intersect Graphics"
+	Click:	"View.IntersectGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Space.157
+)
+
+(Choice.158
+	Disabled:	1
+	Help:	"Inserts the contents of the clipboard"
+	HelpTopic:	"Paste"
+	Update:	"View.PasteUpdate"
+	Label:	"&Paste"
+	Click:	"View.Paste"
+	Shortcut:	"Keys.Ctrl+V"
+)
+
+(Space.159
+)
+
+(Choice.160
+	Disabled:	1
+	Help:	"Selects all graphics in the view"
+	HelpTopic:	"Select_All_Graphics"
+	Update:	"View.HasGraphicsUpdate"
+	Label:	"Select &All Graphics"
+	Click:	"Graphic.SelectAll"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.161
+	InternalName:	"View"
+	Child:	162
+	Child:	163
+	Child:	164
+	Child:	165
+	Child:	166
+	Child:	167
+	Child:	168
+	Child:	169
+	Child:	170
+	Child:	171
+	Child:	172
+	Child:	173
+	Child:	174
+	Child:	175
+	Child:	176
+	Child:	177
+	Child:	178
+	Child:	179
+	Child:	180
+	Child:	181
+	Child:	182
+	Child:	183
+	Child:	184
+	Child:	185
+	Label:	"&View"
+)
+
+(Choice.162
+	Help:	"Displays the dialog box to edit properties of the view"
+	HelpTopic:	"View_Properties"
+	Label:	"&Properties..."
+	Click:	"View.Properties"
+	Shortcut:	"Keys.None"
+)
+
+(Space.163
+)
+
+(Choice.164
+	Help:	"Inserts themes into the view"
+	HelpTopic:	"Add_Theme"
+	Label:	"&Add Theme..."
+	Click:	"View.Add"
+	Shortcut:	"Keys.Ctrl+T"
+)
+
+(Choice.165
+	Disabled:	1
+	Help:	"Displays a dialog box to create a geocoded theme"
+	HelpTopic:	"Geocode_Addresses"
+	Update:	"View.GeocodeUpdate"
+	Label:	"&Geocode Addresses..."
+	Click:	"View.Geocode"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.166
+	Help:	"Displays a dialog box to create an XY or dynamic segmentation event-based theme "
+	HelpTopic:	"Add_Event_Theme"
+	Update:	"View.AddEventUpdate"
+	Label:	"Add &Event Theme..."
+	Click:	"View.AddEvent"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.167
+	Help:	"Creates a new theme"
+	HelpTopic:	"New_Theme"
+	Label:	"&New Theme..."
+	Click:	"View.NewTheme"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.168
+	Help:	"Makes all themes visible"
+	HelpTopic:	"Themes_On_Themes_Off"
+	Update:	"View.HasThemesUpdate"
+	Label:	"&Themes On"
+	Click:	"View.ThemesOn"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.169
+	Help:	"Makes all themes invisible"
+	HelpTopic:	"Themes_On_Themes_Off"
+	Update:	"View.HasThemesUpdate"
+	Label:	"T&hemes Off"
+	Click:	"View.ThemesOff"
+	Shortcut:	"Keys.None"
+)
+
+(Space.170
+)
+
+(Choice.171
+	Help:	"Create a Layout from the View"
+	HelpTopic:	"Layout_menu_choice"
+	Update:	"View.HasThemesUpdate"
+	Label:	"La&yout..."
+	Click:	"View.Layout"
+	Shortcut:	"Keys.None"
+)
+
+(Space.172
+)
+
+(Choice.173
+	Help:	"Shows a dialog where you can change the style of the TOC"
+	HelpTopic:	"TOC_Defaults"
+	Update:	"TocDefs.ShowUpdate"
+	Label:	"TOC Style..."
+	Click:	"TocDefs.Show"
+	Shortcut:	"Keys.None"
+)
+
+(Space.174
+)
+
+(Space.175
+)
+
+(Choice.176
+	Help:	"Zooms to the extent of all themes"
+	HelpTopic:	"Zoom_to_Full_Extent"
+	Update:	"View.HasDataUpdate"
+	Label:	"Full E&xtent"
+	Click:	"View.ZoomFullExtent"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.177
+	Help:	"Zooms in on the center of the display"
+	HelpTopic:	"Zoom_In"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom &In"
+	Click:	"View.ZoomIn"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.178
+	Help:	"Zooms out from the center of the display"
+	HelpTopic:	"Zoom_Out"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom &Out"
+	Click:	"View.ZoomOut"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.179
+	Help:	"Zooms to the extent of active themes"
+	HelpTopic:	"Zoom_to_Active_Theme"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"&Zoom To Themes"
+	Click:	"View.ZoomToThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.180
+	Help:	"Zooms to the extent of the selected features"
+	HelpTopic:	"Zoom_to_Selected"
+	Update:	"View.SelectableThemesUpdate"
+	Label:	"Zoom To &Selected"
+	Click:	"View.ZoomToSelected"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.181
+	Help:	"Goes back to the previous extent you were viewing"
+	HelpTopic:	"Zoom_Previous"
+	Update:	"View.UndoZoomUpdate"
+	Label:	"Zoom Pre&vious"
+	Click:	"View.UndoZoom"
+	Shortcut:	"Keys.None"
+)
+
+(Space.182
+)
+
+(Choice.183
+	Help:	"Finds features in the active themes using the text you enter"
+	HelpTopic:	"Find"
+	Update:	"View.TabularThemesUpdate"
+	Label:	"&Find..."
+	Click:	"View.Find"
+	Shortcut:	"Keys.Ctrl+F"
+)
+
+(Choice.184
+	Disabled:	1
+	Help:	"Locates an address in the active, matchable theme"
+	HelpTopic:	"Locate_Address"
+	Update:	"View.LocateUpdate"
+	Label:	"&Locate Address..."
+	Click:	"View.Locate"
+	Shortcut:	"Keys.None"
+)
+
+(Space.185
+)
+
+(PMenu.186
+	InternalName:	"Theme"
+	Child:	187
+	Child:	188
+	Child:	189
+	Child:	190
+	Child:	191
+	Child:	192
+	Child:	193
+	Child:	194
+	Child:	195
+	Child:	196
+	Child:	197
+	Child:	198
+	Child:	199
+	Child:	200
+	Child:	201
+	Child:	202
+	Child:	203
+	Child:	204
+	Child:	205
+	Child:	206
+	Child:	207
+	Child:	208
+	Child:	209
+	Child:	210
+	Child:	211
+	Child:	212
+	Child:	213
+	Label:	"&Theme"
+)
+
+(Choice.187
+	Help:	"Displays the dialog box to edit properties of the active theme"
+	HelpTopic:	"Theme_Properties"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"&Properties..."
+	Click:	"View.ThemeProperties"
+	Shortcut:	"Keys.None"
+)
+
+(Space.188
+)
+
+(Choice.189
+	Disabled:	1
+	Help:	"Starts or stops editing of shapefile"
+	HelpTopic:	"Start_Stop_Editing_in_a_view"
+	Update:	"View.ToggleEditingUpdate"
+	Label:	"Start &Editing"
+	Click:	"View.ToggleEditing"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.190
+	Disabled:	1
+	Help:	"Save edits to the source shapefile"
+	HelpTopic:	"Save_edits_theme"
+	Update:	"View.SaveEditsUpdate"
+	Label:	"Save Ed&its"
+	Click:	"View.SaveEdits"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.191
+	Disabled:	1
+	Help:	"Saves edits to a new shapefile"
+	HelpTopic:	"Save_edits_as_theme"
+	Update:	"View.SaveEditsUpdate"
+	Label:	"Save E&dits As..."
+	Click:	"View.SaveEditsAs"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.192
+	Help:	"Converts a theme to a shapefile"
+	HelpTopic:	"Convert_to_Shapefile"
+	Update:	"View.ExportUpdate"
+	Label:	"Convert to &Shapefile..."
+	Click:	"View.Export"
+	Shortcut:	"Keys.None"
+)
+
+(Space.193
+)
+
+(Choice.194
+	Help:	"Displays the legends of the active themes"
+	HelpTopic:	"Edit_Legend"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"Edit &Legend..."
+	Click:	"View.EditLegendClick"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.195
+	Help:	"Shows or hides the active themes' legends"
+	HelpTopic:	"Hide_show_Legend"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"&Hide/Show Legend"
+	Click:	"View.ToggleLegend"
+	Shortcut:	"Keys.None"
+)
+
+(Space.196
+)
+
+(Choice.197
+	Disabled:	1
+	Help:	"Displays the Re-match dialog for re-matching addresses"
+	HelpTopic:	"Re_match_Addresses"
+	Update:	"View.EditMatchUpdate"
+	Label:	"&Re-match Addresses..."
+	Click:	"View.EditMatch"
+	Shortcut:	"Keys.None"
+)
+
+(Space.198
+)
+
+(Choice.199
+	Help:	"Labels features in active, visible themes"
+	HelpTopic:	"Auto_label"
+	Update:	"View.LabelThemesUpdate"
+	Label:	"&Auto-label..."
+	Click:	"View.LabelThemes"
+	Shortcut:	"Keys.Ctrl+L"
+)
+
+(Choice.200
+	Disabled:	1
+	Help:	"Removes any labels from active themes"
+	HelpTopic:	"Remove_Labels"
+	Update:	"View.RemoveThemeLabelsUpdate"
+	Label:	"Rem&ove Labels"
+	Click:	"View.RemoveThemeLabels"
+	Shortcut:	"Keys.Ctrl+R"
+)
+
+(Choice.201
+	Disabled:	1
+	Help:	"Removes the overlapping labels from active themes, if they are still green."
+	HelpTopic:	"Remove_Overlapping_Labels"
+	Update:	"View.RemoveOverlapThemeLabelsUpdate"
+	Label:	"Remove Overlappi&ng Labels"
+	Click:	"View.RemoveOverlapThemeLabels"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.202
+	Disabled:	1
+	Help:	"Converts selected overlapping labels to symbol of selected good label"
+	HelpTopic:	"Convert_Overlapping_Labels"
+	Update:	"View.ConvertOverlapLabelsUpdate"
+	Label:	"&Convert Overlapping Labels"
+	Click:	"View.ConvertOverlapLabels"
+	Shortcut:	"Keys.Ctrl+O"
+)
+
+(Space.203
+)
+
+(Choice.204
+	Help:	"Opens the tables of the active themes"
+	HelpTopic:	"Open_Theme_Table"
+	Update:	"View.TabularThemesUpdate"
+	Label:	"&Table..."
+	Click:	"View.ShowTable"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.205
+	Help:	"Displays the Query Builder to select features with a logical expression"
+	HelpTopic:	"Query_Builder"
+	Update:	"View.AttributeThemesUpdate"
+	Label:	"&Query..."
+	Click:	"View.Query"
+	Shortcut:	"Keys.Ctrl+Q"
+)
+
+(Choice.206
+	Help:	"Selects features in the active themes using another theme's features"
+	HelpTopic:	"Select_By_Theme"
+	Update:	"View.SelectableThemesUpdate"
+	Label:	"Select &By Theme..."
+	Click:	"View.SelectByTheme"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.207
+	Disabled:	1
+	Help:	"Creates buffers around features"
+	HelpTopic:	"Create_Buffer_Choice"
+	Update:	"WizardBuffer.OpenDialogUpdate"
+	Label:	"Create Buffers..."
+	Click:	"WizardBuffer.OpenDialog"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.208
+	Help:	"Unselects the selected features of all active themes"
+	HelpTopic:	"Clear_Selected_Features"
+	Update:	"View.AttributeThemesUpdate"
+	Label:	"Clear Selected &Features"
+	Click:	"View.ClearSelect"
+	Shortcut:	"Keys.None"
+)
+
+(Space.209
+)
+
+(Choice.210
+	Label:	"Toggle Outlines"
+	Click:	"simpplle.toggle_outlines"
+	Shortcut:	"Keys.F6"
+)
+
+(Choice.211
+	Help:	"Set the data you want to view in the theme (i.e. processes, species, etc)"
+	Label:	"Set Simpplle Attribute"
+	Click:	"simpplle.set_view_attribute"
+	Shortcut:	"Keys.F12"
+)
+
+(Choice.212
+	Help:	"Change the field to use in viewing probability."
+	Label:	"Set Probability Field"
+	Click:	"simpplle.change_probability_choice"
+	Shortcut:	"Keys.F11"
+)
+
+(Choice.213
+	Help:	"Change the Process to use in viewing Spread."
+	Label:	"Set Spread Field"
+	Click:	"simpplle.change_spread_choice"
+	Shortcut:	"Keys.F9"
+)
+
+(PMenu.214
+	InternalName:	"Graphics"
+	Child:	215
+	Child:	216
+	Child:	217
+	Child:	218
+	Child:	219
+	Child:	220
+	Child:	221
+	Child:	222
+	Child:	223
+	Child:	224
+	Child:	225
+	Child:	226
+	Child:	227
+	Child:	228
+	Child:	229
+	Child:	230
+	Label:	"&Graphics"
+)
+
+(Choice.215
+	Disabled:	1
+	Help:	"Displays the property editor for the selected graphic"
+	HelpTopic:	"Graphic_Properties"
+	Update:	"Graphic.HasSelectionUpdate"
+	Label:	"&Properties..."
+	Click:	"Graphic.Edit"
+	Shortcut:	"Keys.None"
+)
+
+(Space.216
+)
+
+(Space.217
+)
+
+(Choice.218
+	Help:	"Shows a dialog where you can set the default values for the label and text tools"
+	HelpTopic:	"Default_settings_for_text_and_label_tools"
+	Label:	"&Text and Label Defaults..."
+	Click:	"Graphic.Label Defaults Show"
+	Shortcut:	"Keys.None"
+)
+
+(Space.219
+)
+
+(Choice.220
+	Disabled:	1
+	Help:	"Displays a dialog box to adjust size and position of selected graphic"
+	HelpTopic:	"Size_and_Position"
+	Update:	"Graphic.SingleSelectionUpdate"
+	Label:	"&Size and Position..."
+	Click:	"Graphic.SizePos"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.221
+	Disabled:	1
+	Help:	"Aligns the selected graphics"
+	HelpTopic:	"Align"
+	Update:	"Graphic.HasSelectionUpdate"
+	Label:	"&Align..."
+	Click:	"Graphic.Align"
+	Shortcut:	"Keys.Ctrl+A"
+)
+
+(Space.222
+)
+
+(Choice.223
+	Disabled:	1
+	Help:	"Moves selected graphics in front of other graphics"
+	HelpTopic:	"Bring_to_Front_on_a_view"
+	Update:	"Graphic.HasSelectionUpdate"
+	Label:	"Bring to &Front"
+	Click:	"Graphic.ToFront"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.224
+	Disabled:	1
+	Help:	"Moves selected graphics behind other graphics"
+	HelpTopic:	"Send_to_Back_on_a_view"
+	Update:	"Graphic.HasSelectionUpdate"
+	Label:	"Send to &Back "
+	Click:	"Graphic.ToBack"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.225
+	Disabled:	1
+	Help:	"Groups selected graphics"
+	HelpTopic:	"Group_on_a_view"
+	Update:	"Graphic.GroupUpdate"
+	Label:	"&Group"
+	Click:	"Graphic.Group"
+	Shortcut:	"Keys.Ctrl+G"
+)
+
+(Choice.226
+	Disabled:	1
+	Help:	"Ungroups selected graphics"
+	HelpTopic:	"Ungroup_on_a_view"
+	Update:	"Graphic.UngroupUpdate"
+	Label:	"&Ungroup"
+	Click:	"Graphic.Ungroup"
+	Shortcut:	"Keys.Ctrl+U"
+)
+
+(Space.227
+)
+
+(Choice.228
+	Disabled:	1
+	Help:	"Associates selected graphics with active themes"
+	HelpTopic:	"Attach_Graphics"
+	Update:	"View.AddGraphicsUpdate"
+	Label:	"A&ttach Graphics"
+	Click:	"View.AddGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.229
+	Disabled:	1
+	Help:	"Removes association between graphics and active themes"
+	HelpTopic:	"Detach_Graphics"
+	Update:	"View.ClearGraphicsUpdate"
+	Label:	"&Detach Graphics"
+	Click:	"View.ClearGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Space.230
+)
+
+(PMenu.231
+	InternalName:	"Window"
+	Child:	232
+	Child:	233
+	Child:	234
+	Child:	235
+	Child:	236
+	Child:	237
+	Child:	239
+	Child:	240
+	Child:	241
+	Child:	242
+	Label:	"&Window"
+)
+
+(Choice.232
+	Help:	"Arranges windows as non-overlapping tiles"
+	HelpTopic:	"Tile"
+	Label:	"&Tile"
+	Click:	"Project.Tile"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.233
+	Help:	"Arranges windows"
+	HelpTopic:	"Cascade"
+	Label:	"&Cascade"
+	Click:	"Project.Cascade"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.234
+	Help:	"Arranges iconified windows"
+	HelpTopic:	"Arrange_Icons"
+	Label:	"&Arrange Icons"
+	Click:	"Project.ArrangeIcons"
+	Shortcut:	"Keys.None"
+)
+
+(Space.235
+)
+
+(Choice.236
+	Help:	"Shows the symbol window"
+	HelpTopic:	"Show_Symbol_Window"
+	Label:	"Show Symbol Window..."
+	Click:	"Project.ShowHideSymWin"
+	Shortcut:	"Keys.Ctrl+P"
+)
+
+(Space.237
+	ObjectTag:	238
+	Update:	"WindowMenuUpdate"
+)
+
+(AVStr.238
+	S:	"simpplle_arcview-new.apr Simpplle 1 - Time Period 2 View2 View3"
+)
+
+(Choice.239
+	Help:	"Activates simpplle_arcview-new.apr"
+	Label:	"&1 simpplle_arcview-new.apr"
+	Click:	"WindowActivate"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.240
+	Help:	"Activates Simpplle 1 - Time Period 2"
+	Label:	"&2 Simpplle 1 - Time Period 2"
+	Click:	"WindowActivate"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.241
+	Help:	"Activates View2"
+	Label:	"&3 View2"
+	Click:	"WindowActivate"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.242
+	Help:	"Activates View3"
+	Label:	"&4 View3"
+	Click:	"WindowActivate"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.243
+	InternalName:	"Help"
+	Child:	244
+	Child:	245
+	Child:	246
+	Child:	247
+	Label:	"&Help"
+)
+
+(Choice.244
+	Help:	"Displays the dialog for browsing and searching ArcView's help system"
+	HelpTopic:	"Help_on_Help_Topics"
+	Label:	"Help &Topics..."
+	Click:	"Project.HelpTopics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.245
+	Help:	"Provides instructions for how to obtain help from ArcView"
+	HelpTopic:	"Help_on_How_to_Get_Help"
+	Label:	"&How to Get Help..."
+	Click:	"Project.HelpHelp"
+	Shortcut:	"Keys.None"
+)
+
+(Space.246
+)
+
+(Choice.247
+	Help:	"Provides information about ArcView"
+	HelpTopic:	"About"
+	Label:	"&About ArcView..."
+	Click:	"Project.About"
+	Shortcut:	"Keys.None"
+)
+
+(ButnBar.248
+	Child:	249
+	Child:	251
+	Child:	252
+	Child:	254
+	Child:	255
+	Child:	257
+	Child:	259
+	Child:	261
+	Child:	262
+	Child:	264
+	Child:	266
+	Child:	267
+	Child:	269
+	Child:	271
+	Child:	273
+	Child:	275
+	Child:	277
+	Child:	279
+	Child:	281
+	Child:	283
+	Child:	285
+	Child:	287
+	Child:	289
+	Child:	291
+	Child:	292
+	Child:	294
+	Child:	296
+	Child:	297
+	Child:	298
+	Child:	300
+	Child:	302
+	Child:	304
+	Child:	306
+	Child:	307
+	Child:	308
+	Child:	310
+	Child:	312
+	Child:	314
+	Child:	316
+	Child:	317
+	Child:	319
+	Child:	321
+	Child:	322
+)
+
+(Butn.249
+	Help:	"Save Project//Saves the current project"
+	HelpTopic:	"Save_Project"
+	Icon:	250
+	Click:	"Project.Save"
+)
+
+(AVIcon.250
+	Name:	"Save"
+	Res:	"Icons.Save"
+
+)
+
+(Space.251
+)
+
+(Butn.252
+	Help:	"Add Theme//Inserts themes into the view"
+	HelpTopic:	"Add_Theme"
+	Icon:	253
+	Click:	"View.Add"
+)
+
+(AVIcon.253
+	Name:	"AddTheme"
+	Res:	"Icons.AddTheme"
+
+)
+
+(Space.254
+)
+
+(Butn.255
+	Help:	"Theme Properties//Displays the dialog box to edit properties of the active theme"
+	HelpTopic:	"Theme_Properties"
+	Update:	"View.ActiveThemesUpdate"
+	Icon:	256
+	Click:	"View.ThemeProperties"
+)
+
+(AVIcon.256
+	Name:	"Props"
+	Res:	"Icons.Props"
+
+)
+
+(Butn.257
+	Help:	"Edit Legend//Displays the legends of the active themes"
+	HelpTopic:	"Edit_Legend"
+	Update:	"View.ActiveThemesUpdate"
+	Icon:	258
+	Click:	"View.EditLegendClick"
+)
+
+(AVIcon.258
+	Name:	"Legend"
+	Res:	"Icons.Legend"
+
+)
+
+(Butn.259
+	Help:	"Open Theme Table//Opens the tables of the active themes"
+	HelpTopic:	"Open_Theme_Table"
+	Update:	"View.TabularThemesUpdate"
+	Icon:	260
+	Click:	"View.ShowTable"
+)
+
+(AVIcon.260
+	Name:	"Table"
+	Res:	"Icons.Table"
+
+)
+
+(Space.261
+)
+
+(Butn.262
+	Help:	"Find//Finds features in the active themes using the text you enter"
+	HelpTopic:	"Find"
+	Update:	"View.TabularThemesUpdate"
+	Icon:	263
+	Click:	"View.Find"
+)
+
+(AVIcon.263
+	Name:	"Find"
+	Res:	"Icons.Find"
+
+)
+
+(Butn.264
+	Help:	"Query Builder//Displays the Query Builder to select features with a logical expression"
+	HelpTopic:	"Query_Builder"
+	Update:	"View.AttributeThemesUpdate"
+	Icon:	265
+	Click:	"View.Query"
+)
+
+(AVIcon.265
+	Name:	"QueryBuilder"
+	Res:	"Icons.QueryBuilder"
+
+)
+
+(Space.266
+)
+
+(Butn.267
+	Help:	"Zoom to Full Extent//Zooms to the extent of all themes"
+	HelpTopic:	"Zoom_to_Full_Extent"
+	Update:	"View.HasDataUpdate"
+	Icon:	268
+	Click:	"View.ZoomFullExtent"
+)
+
+(AVIcon.268
+	Name:	"ZoomView"
+	Res:	"Icons.ZoomView"
+
+)
+
+(Butn.269
+	Help:	"Zoom to Active Theme(s)//Zooms to the extent of active themes"
+	HelpTopic:	"Zoom_to_Active_Theme"
+	Update:	"View.ActiveThemesUpdate"
+	Icon:	270
+	Click:	"View.ZoomToThemes"
+)
+
+(AVIcon.270
+	Name:	"ZoomTheme"
+	Res:	"Icons.ZoomTheme"
+
+)
+
+(Butn.271
+	Help:	"Zoom to Selected//Zooms to the extent of the selected features"
+	HelpTopic:	"Zoom_to_Selected"
+	Update:	"View.SelectableThemesUpdate"
+	Icon:	272
+	Click:	"View.ZoomToSelected"
+)
+
+(AVIcon.272
+	Name:	"ZoomToSelected"
+	Res:	"Icons.ZoomToSelected"
+
+)
+
+(Butn.273
+	Help:	"Zoom In//Zooms in on the center of the display"
+	HelpTopic:	"Zoom_In"
+	Update:	"View.HasDataUpdate"
+	Icon:	274
+	Click:	"View.ZoomIn"
+)
+
+(AVIcon.274
+	Name:	"ZoomIn"
+	Res:	"Icons.ZoomIn"
+
+)
+
+(Butn.275
+	Help:	"Zoom Out//Zooms out from the center of the display"
+	HelpTopic:	"Zoom_Out"
+	Update:	"View.HasDataUpdate"
+	Icon:	276
+	Click:	"View.ZoomOut"
+)
+
+(AVIcon.276
+	Name:	"ZoomOut"
+	Res:	"Icons.ZoomOut"
+
+)
+
+(Butn.277
+	Help:	"Zoom to Previous Extent//Goes back to the previous extent you were viewing"
+	HelpTopic:	"Zoom_Previous"
+	Update:	"View.UndoZoomUpdate"
+	Icon:	278
+	Click:	"View.UndoZoom"
+)
+
+(AVIcon.278
+	Name:	"ZoomPrevious"
+	Res:	"Icons.ZoomPrevious"
+
+)
+
+(Butn.279
+	Disabled:	1
+	Help:	"Select Features Using Graphic//Selects features in active themes using selected graphics"
+	HelpTopic:	"Select_Features_Using_Graphic"
+	Update:	"View.SpatialSelectUpdate"
+	Icon:	280
+	Click:	"View.SpatialSelect"
+)
+
+(AVIcon.280
+	Name:	"SpatialSelect"
+	Res:	"Icons.SpatialSelect"
+
+)
+
+(Butn.281
+	Help:	"Clear Selected Features//Unselects the selected features of all active themes"
+	HelpTopic:	"Clear_Selected_Features"
+	Update:	"View.AttributeThemesUpdate"
+	Icon:	282
+	Click:	"View.ClearSelect"
+)
+
+(AVIcon.282
+	Name:	"SelectNone"
+	Res:	"Icons.SelectNone"
+
+)
+
+(Butn.283
+	Help:	"Help//Gets help about the next button, tool, or menu choice you click"
+	HelpTopic:	"Help_button"
+	Icon:	284
+	Click:	"Help.Tool"
+)
+
+(AVIcon.284
+	Name:	"HelpTool"
+	Res:	"Icons.HelpTool"
+
+)
+
+(Butn.285
+	Invisible:	1
+	Icon:	286
+)
+
+(AVIcon.286
+	Name:	"Empty"
+	Res:	"AVIcon.Empty"
+
+)
+
+(Butn.287
+	Invisible:	1
+	Icon:	288
+)
+
+(AVIcon.288
+	Name:	"Empty"
+	Res:	"AVIcon.Empty"
+
+)
+
+(Butn.289
+	Help:	"Sets the extent of all non-active Views to the extent of the active view."
+	Icon:	290
+	Click:	"simpplle.zoomall"
+)
+
+(AVIcon.290
+	Name:	"RandomColor"
+	Res:	"Icons.RandomColor"
+
+)
+
+(Space.291
+)
+
+(Butn.292
+	Invisible:	1
+	Help:	"Connects to Arc/Info"
+	Update:	"simpplle.aiconnect.update"
+	Icon:	293
+	Click:	"simpplle.aiconnect"
+)
+
+(AVIcon.293
+	Name:	"DiamondGreen"
+	Res:	"Icons.DiamondGreen"
+
+)
+
+(Butn.294
+	Disabled:	1
+	Invisible:	1
+	Help:	"Disconnects from Arc/Info"
+	Update:	"simpplle.aiclose.update"
+	Icon:	295
+	Click:	"simpplle.aiclose"
+)
+
+(AVIcon.295
+	Name:	"DiamondRed"
+	Res:	"Icons.DiamondRed"
+
+)
+
+(Space.296
+)
+
+(Space.297
+)
+
+(Butn.298
+	Help:	"Reset the display to the first time step"
+	Tag:	"rewind"
+	Icon:	299
+	Click:	"simpplle.simpplle_run"
+)
+
+(AVIcon.299
+	Name:	"AlignLeft"
+	Res:	"Icons.AlignLeft"
+
+)
+
+(Butn.300
+	Help:	"Steps back one time period"
+	Tag:	"backward"
+	Icon:	301
+	Click:	"simpplle.simpplle_run"
+)
+
+(AVIcon.301
+	Name:	"ShiftLeft"
+	Res:	"Icons.ShiftLeft"
+
+)
+
+(Butn.302
+	Help:	"Runs the Simpplle Display Tool"
+	Tag:	"normal"
+	Icon:	303
+	Click:	"simpplle.simpplle_run"
+)
+
+(AVIcon.303
+	Name:	"Execute"
+	Res:	"Icons.Execute"
+
+)
+
+(Butn.304
+	Help:	"Steps forward one time period"
+	Tag:	"forward"
+	Icon:	305
+	Click:	"simpplle.simpplle_run"
+)
+
+(AVIcon.305
+	Name:	"ShiftRight"
+	Res:	"Icons.ShiftRight"
+
+)
+
+(Space.306
+)
+
+(Space.307
+)
+
+(Butn.308
+	Help:	"Rewind to the first time step"
+	Tag:	"rewind"
+	Icon:	309
+	Click:	"simpplle.spread_run"
+)
+
+(AVIcon.309
+	Name:	"AlignLeft"
+	Res:	"Icons.AlignLeft"
+
+)
+
+(Butn.310
+	Help:	"Steps backward one time step"
+	Tag:	"backward"
+	Icon:	311
+	Click:	"simpplle.spread_run"
+)
+
+(AVIcon.311
+	Name:	"ShiftLeft"
+	Res:	"Icons.ShiftLeft"
+
+)
+
+(Butn.312
+	Help:	"Runs the Simpplle Process Spread Display Tool"
+	Tag:	"normal"
+	Icon:	313
+	Click:	"simpplle.spread_run"
+)
+
+(AVIcon.313
+	Name:	"SortAscending3"
+	Res:	"Icons.SortAscending3"
+
+)
+
+(Butn.314
+	Help:	"Steps forward one time step"
+	Tag:	"forward"
+	Icon:	315
+	Click:	"simpplle.spread_run"
+)
+
+(AVIcon.315
+	Name:	"ShiftRight"
+	Res:	"Icons.ShiftRight"
+
+)
+
+(Space.316
+)
+
+(Butn.317
+	Help:	"Display's probability Map"
+	Icon:	318
+	Click:	"simpplle.probability"
+)
+
+(AVIcon.318
+	Name:	"P"
+	Res:	"Icons.P"
+
+)
+
+(Butn.319
+	Help:	"Exports a Time Step to a output coverage"
+	Icon:	320
+	Click:	"simpplle.export_timestep"
+)
+
+(AVIcon.320
+	Name:	"E"
+	Res:	"Icons.E"
+
+)
+
+(Space.321
+)
+
+(Butn.322
+	Help:	"Resets theme(s) back to original state before simpplle actions were taken."
+	Icon:	323
+	Click:	"simpplle.simpplle_theme_reset"
+)
+
+(AVIcon.323
+	Name:	"Erase"
+	Res:	"Icons.Erase"
+
+)
+
+(PopupSet.324
+	Child:	325
+)
+
+(Popup.325
+	Child:	326
+	Child:	327
+	Child:	328
+	Child:	329
+	Child:	330
+	Child:	331
+	Child:	332
+	Child:	333
+	Child:	334
+	Child:	335
+	Child:	336
+	Child:	337
+	Child:	338
+	Child:	339
+	Child:	340
+	Child:	341
+	Child:	342
+	Child:	343
+	Label:	"Menu"
+)
+
+(Choice.326
+	Disabled:	1
+	Invisible:	1
+	Help:	"Deletes the last entered point on the line or polygon being drawn"
+	Update:	"View.DelLastPointUpdate"
+	Label:	"Delete Last Point"
+	Click:	"View.DeleteLastPoint"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.327
+	Disabled:	1
+	Help:	"Undo the last edit to graphics on a view"
+	HelpTopic:	"Undo_Graphic_Edit_on_a_view"
+	Update:	"View.UndoEditUpdate"
+	Label:	"Undo Graphic Edit"
+	Click:	"View.UndoEdit"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.328
+	Disabled:	1
+	Invisible:	1
+	Help:	"Redo the last edit operation on a theme that was undone"
+	Update:	"View.RedoEditUpdate"
+	Label:	"Redo Feature Edit"
+	Click:	"View.RedoEdit"
+	Shortcut:	"Keys.None"
+)
+
+(Space.329
+)
+
+(Choice.330
+	Disabled:	1
+	Invisible:	1
+	Help:	"Turns general snapping on"
+	Update:	"View.ToggleGeneralSnapUpdate"
+	Label:	"Enable General Snapping"
+	Click:	"View.ToggleGeneralSnap"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.331
+	Disabled:	1
+	Invisible:	1
+	Help:	"Turns interactive snapping on"
+	Update:	"View.ToggleInteractiveSnapUpdate"
+	Label:	"Enable Interactive Snapping"
+	Click:	"View.ToggleInteractiveSnap"
+	Shortcut:	"Keys.None"
+)
+
+(Space.332
+)
+
+(Choice.333
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest vertex within the user tolerance"
+	Update:	"View.InteractiveSnapUpdate"
+	Label:	"Snap to Vertex"
+	Click:	"View.SnapToVertex"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.334
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest line segment"
+	Update:	"View.InteractiveSnapUpdate"
+	Label:	"Snap to Boundary"
+	Click:	"View.SnapToBoundary"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.335
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest node common to two or more features"
+	Update:	"View.InteractiveSnapUpdate"
+	Label:	"Snap to Intersection"
+	Click:	"View.SnapToIntersection"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.336
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest endpoint of an existing line"
+	Update:	"View.SnapToEndPointUpdate"
+	Label:	"Snap to Endpoint"
+	Click:	"View.SnapToEndPoint"
+	Shortcut:	"Keys.None"
+)
+
+(Space.337
+)
+
+(Choice.338
+	Help:	"Unselects the selected features in all active themes"
+	Update:	"View.AttributeThemesUpdate"
+	Label:	"Clear Selection"
+	Click:	"View.ClearSelect"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.339
+	Help:	"Zooms in at point where you click to bring up popup menu"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom In"
+	Click:	"View.PopupZoomIn"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.340
+	Help:	"Zooms out from point where you click to bring up popup menu"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom Out"
+	Click:	"View.PopupZoomOut"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.341
+	Help:	"Zooms to the extent of the selected features"
+	Update:	"View.SelectableThemesUpdate"
+	Label:	"Zoom to Selected"
+	Click:	"View.ZoomToSelected"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.342
+	Help:	"Centers display on point where you click to bring up popup"
+	Update:	"View.HasDataUpdate"
+	Label:	"Pan"
+	Click:	"View.PopupPan"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.343
+	Disabled:	1
+	Help:	"Opens the shape properties window for editing vertex locations"
+	Update:	"ShapeWin.PopUp Update"
+	Label:	"Shape Properties"
+	Click:	"ShapeWin.PopUp Open"
+	Shortcut:	"Keys.None"
+)
+
+(ToolBar.344
+	Child:	345
+	Child:	347
+	Child:	349
+	Child:	351
+	Child:	353
+	Child:	355
+	Child:	357
+	Child:	359
+	Child:	361
+	Child:	363
+	Child:	365
+	Child:	384
+	Child:	397
+	Child:	416
+)
+
+(Tool.345
+	Help:	"Identify//Provides information about a feature"
+	HelpTopic:	"Identify_tool"
+	Update:	"View.IdentifyUpdate"
+	Icon:	346
+	Cursor:	"Cursors.ID"
+	Apply:	"View.Identify"
+)
+
+(AVIcon.346
+	Name:	"ID"
+	Res:	"Icons.ID"
+
+)
+
+(Tool.347
+	Help:	"Pointer//Selects, moves, and resizes graphics"
+	HelpTopic:	"Pointer_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	348
+	Cursor:	"Cursors.Select"
+	Apply:	"View.Select"
+	Click:	"View.SelectTool"
+)
+
+(AVIcon.348
+	Name:	"Select"
+	Res:	"Icons.Select"
+
+)
+
+(Tool.349
+	Disabled:	1
+	Help:	"Vertex Edit//Adds, moves, and deletes vertices of features and graphics"
+	HelpTopic:	"Vertex_Edit_tool"
+	Update:	"View.SelectToEditUpdate"
+	Icon:	350
+	Cursor:	"Cursors.SelectEdit"
+	Apply:	"View.SelectToEdit"
+	Click:	"View.SelectToEditTool"
+)
+
+(AVIcon.350
+	Name:	"SelectEdit"
+	Res:	"Icons.SelectEdit"
+
+)
+
+(Tool.351
+	Help:	"Select Feature//Selects features in the active themes by pointing or dragging"
+	HelpTopic:	"Select_Feature_tool"
+	Update:	"View.SelectableThemesUpdate"
+	Icon:	352
+	Cursor:	"Cursors.Default"
+	Apply:	"View.SelectPoint"
+)
+
+(AVIcon.352
+	Name:	"FeatureSelect"
+	Res:	"Icons.FeatureSelect"
+
+)
+
+(Tool.353
+	Help:	"Zoom In//Zooms in at a point you click or zooms in on a rectangle you drag"
+	HelpTopic:	"Zoom_In_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	354
+	Cursor:	"Cursors.ZoomIn"
+	Apply:	"View.ZoomInTool"
+)
+
+(AVIcon.354
+	Name:	"ZoomInTool"
+	Res:	"Icons.ZoomInTool"
+
+)
+
+(Tool.355
+	Help:	"Zoom Out//Zooms out from a point you click or zooms out to include a rectangle you drag"
+	HelpTopic:	"Zoom_Out_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	356
+	Cursor:	"Cursors.ZoomOut"
+	Apply:	"View.ZoomOutTool"
+)
+
+(AVIcon.356
+	Name:	"ZoomOutTool"
+	Res:	"Icons.ZoomOutTool"
+
+)
+
+(Tool.357
+	Help:	"Pan//Drags the display in the direction you move the cursor"
+	HelpTopic:	"Pan_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	358
+	Cursor:	"Cursors.Pan"
+	Apply:	"View.Pan"
+)
+
+(AVIcon.358
+	Name:	"Pan"
+	Res:	"Icons.Pan"
+
+)
+
+(Tool.359
+	Help:	"Measure//Measures distance"
+	HelpTopic:	"Measure_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	360
+	Cursor:	"Cursors.Measure"
+	Apply:	"View.Measure"
+)
+
+(AVIcon.360
+	Name:	"Measure"
+	Res:	"Icons.Measure"
+
+)
+
+(Tool.361
+	Disabled:	1
+	Help:	"Hot Link//Follows a hot link in the active themes"
+	HelpTopic:	"Hot_Link_tool"
+	Update:	"View.HotLinkUpdate"
+	Icon:	362
+	Cursor:	"Cursors.Media"
+	Apply:	"View.HotLink"
+)
+
+(AVIcon.362
+	Name:	"Media"
+	Res:	"Icons.Media"
+
+)
+
+(Tool.363
+	Disabled:	1
+	Help:	"Area of Interest//Sets the view's Area Of Interest for library-based themes"
+	HelpTopic:	"Area_Of_Interest_tool"
+	Update:	"View.AOIToolUpdate"
+	Icon:	364
+	Cursor:	"Cursors.Default"
+	Apply:	"View.AOITool"
+)
+
+(AVIcon.364
+	Name:	"AOI"
+	Res:	"Icons.AOI"
+
+)
+
+(ToolMenu.365
+	Help:	"Label//Labels a feature in the active theme with data from its table"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.LabelToolUpdate"
+	Icon:	366
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.LabelTool"
+	Child:	367
+	Child:	368
+	Child:	370
+	Child:	372
+	Child:	374
+	Child:	376
+	Child:	378
+	Child:	380
+	Child:	382
+)
+
+(AVIcon.366
+	Name:	"Tag"
+	Res:	"Icons.Tag"
+
+)
+
+(Tool.367
+	Help:	"Label//Labels a feature in the active theme with data from its table"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.LabelToolUpdate"
+	Icon:	366
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.LabelTool"
+)
+
+(Tool.368
+	Help:	"Callout Label//Click on a feature and drag in the direction you want the label to appear"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	369
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.CalloutLabelTool"
+)
+
+(AVIcon.369
+	Name:	"CallOutLabel1"
+	Res:	"Icons.CallOutLabel1"
+
+)
+
+(Tool.370
+	Help:	"Bullet Leader Label//Click on a feature and drag in the direction you want the label to appear"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	371
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.BulletLeaderLabelTool"
+)
+
+(AVIcon.371
+	Name:	"CallOutLabel2"
+	Res:	"Icons.CallOutLabel2"
+
+)
+
+(Tool.372
+	Help:	"Banner Label//Click on a feature you want to label"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	373
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.ShadowBoxLabelTool"
+)
+
+(AVIcon.373
+	Name:	"CallOutLabel3"
+	Res:	"Icons.CallOutLabel3"
+
+)
+
+(Tool.374
+	Help:	"U.S. Interstate//Click where you want to place a highway shield"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	375
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.Highway1 Apply"
+)
+
+(AVIcon.375
+	Name:	"BW US Interstate"
+	Res:	"Icons.BW US Interstate"
+
+)
+
+(Tool.376
+	Help:	"U.S. Route//Click where you want to place a highway shield"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	377
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.Highway2 Apply"
+)
+
+(AVIcon.377
+	Name:	"USRoute"
+	Res:	"Icons.USRoute"
+
+)
+
+(Tool.378
+	Help:	"Generic State Hwy//Click where you want to place a highway shield"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	379
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.Highway3 Apply"
+)
+
+(AVIcon.379
+	Name:	"GenericStateHighway"
+	Res:	"Icons.GenericStateHighway"
+
+)
+
+(Tool.380
+	Help:	"Generic Square Hwy//Click where you want to place a highway shield"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	381
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.Highway4 Apply"
+)
+
+(AVIcon.381
+	Name:	"GenericHighway1"
+	Res:	"Icons.GenericHighway1"
+
+)
+
+(Tool.382
+	Help:	"Generic Oval Hwy//Click where you want to place a highway shield"
+	Update:	"View.CalloutUpdate"
+	Icon:	383
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.Highway5 Apply"
+)
+
+(AVIcon.383
+	Name:	"GenericHighway2"
+	Res:	"Icons.GenericHighway2"
+
+)
+
+(ToolMenu.384
+	Help:	"Text//Creates text on the display"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	385
+	Cursor:	"Cursors.Text"
+	Apply:	"View.TextTool"
+	Click:	"SymWin.DisplayFontPanel"
+	Child:	386
+	Child:	387
+	Child:	389
+	Child:	391
+	Child:	393
+	Child:	395
+)
+
+(AVIcon.385
+	Name:	"Text"
+	Res:	"Icons.Text"
+
+)
+
+(Tool.386
+	Help:	"Text//Creates text on the display"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	385
+	Cursor:	"Cursors.Text"
+	Apply:	"View.TextTool"
+	Click:	"SymWin.DisplayFontPanel"
+)
+
+(Tool.387
+	Help:	"Callout Text//Click and drag to where you want your text to appear, then enter the text"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	388
+	Cursor:	"Cursors.Bullseye"
+	Apply:	"View.CalloutTextTool"
+)
+
+(AVIcon.388
+	Name:	"CallOutText1"
+	Res:	"Icons.CallOutText1"
+
+)
+
+(Tool.389
+	Help:	"Bullet Leader Text//Click and drag to where you want your text to appear, then enter the text"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	390
+	Cursor:	"Cursors.Bullseye"
+	Apply:	"View.BulletLeaderTextTool"
+)
+
+(AVIcon.390
+	Name:	"CallOutText2"
+	Res:	"Icons.CallOutText2"
+
+)
+
+(Tool.391
+	Help:	"Banner Text//Click where you want your label to appear and enter your text"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	392
+	Cursor:	"Cursors.Bullseye"
+	Apply:	"View.ShadowBoxTextTool"
+)
+
+(AVIcon.392
+	Name:	"CallOutText3"
+	Res:	"Icons.CallOutText3"
+
+)
+
+(Tool.393
+	Help:	"Drop-Shadow Text//Click where you want your text to appear and enter your text"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	394
+	Cursor:	"Cursors.Target"
+	Apply:	"View.CreateDropShadowText"
+)
+
+(AVIcon.394
+	Name:	"DropShadowText"
+	Res:	"Icons.DropShadowText"
+
+)
+
+(Tool.395
+	Help:	"Spline Text//Adds text that is aligned to a splined baseline"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	396
+	Cursor:	"Cursors.Bullseye"
+	Apply:	"View.SplineText"
+)
+
+(AVIcon.396
+	Name:	"TextAligned"
+	Res:	"Icons.TextAligned"
+
+)
+
+(ToolMenu.397
+	Help:	"Draw Point//Creates a point on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PointToolUpdate"
+	Icon:	398
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.PointTool"
+	Click:	"SymWin.DisplayMarkerPanel"
+	Child:	399
+	Child:	400
+	Child:	402
+	Child:	404
+	Child:	406
+	Child:	408
+	Child:	410
+	Child:	412
+	Child:	414
+)
+
+(AVIcon.398
+	Name:	"Point"
+	Res:	"Icons.Point"
+
+)
+
+(Tool.399
+	Help:	"Draw Point//Creates a point on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PointToolUpdate"
+	Icon:	398
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.PointTool"
+	Click:	"SymWin.DisplayMarkerPanel"
+)
+
+(Tool.400
+	Help:	"Draw Straight Line//Creates a line on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.GraphicToolUpdate"
+	Icon:	401
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.LineTool"
+	Click:	"SymWin.DisplayPenPanel"
+)
+
+(AVIcon.401
+	Name:	"SelectLine"
+	Res:	"Icons.SelectLine"
+
+)
+
+(Tool.402
+	Help:	"Draw Line//Creates a line with two or more points on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PolyLineToolUpdate"
+	Icon:	403
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.PolyLineTool"
+	Click:	"SymWin.DisplayPenPanel"
+)
+
+(AVIcon.403
+	Name:	"Lines"
+	Res:	"Icons.Lines"
+
+)
+
+(Tool.404
+	Help:	"Draw Rectangle//Creates a rectangle on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PolyToolUpdate"
+	Icon:	405
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.RectTool"
+	Click:	"SymWin.DisplayFillPanel"
+)
+
+(AVIcon.405
+	Name:	"Rect"
+	Res:	"Icons.Rect"
+
+)
+
+(Tool.406
+	Help:	"Draw Circle//Creates a circle on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PolyToolUpdate"
+	Icon:	407
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.CircleTool"
+	Click:	"SymWin.DisplayFillPanel"
+)
+
+(AVIcon.407
+	Name:	"Disk"
+	Res:	"Icons.Disk"
+
+)
+
+(Tool.408
+	Help:	"Draw Polygon//Creates a polygon on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PolyToolUpdate"
+	Icon:	409
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.PolyTool"
+	Click:	"SymWin.DisplayFillPanel"
+)
+
+(AVIcon.409
+	Name:	"Poly"
+	Res:	"Icons.Poly"
+
+)
+
+(Tool.410
+	Disabled:	1
+	Help:	"Draw Line to Split Feature//Creates a line to split line features"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.SplitLineToolUpdate"
+	Icon:	411
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.SplitTool"
+)
+
+(AVIcon.411
+	Name:	"SplitLine"
+	Res:	"Icons.SplitLine"
+
+)
+
+(Tool.412
+	Disabled:	1
+	Help:	"Draw Line to Split Polygon//Creates a line to split polygon features"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.SplitPolyToolUpdate"
+	Icon:	413
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.SplitTool"
+)
+
+(AVIcon.413
+	Name:	"SplitPoly"
+	Res:	"Icons.SplitPoly"
+
+)
+
+(Tool.414
+	Disabled:	1
+	Help:	"Draw Line to Append Polygon//Appends a new polygon adjacent to other polygons"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.AutoCompleteUpdate"
+	Icon:	415
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.AutoCompleteTool"
+)
+
+(AVIcon.415
+	Name:	"AutoComplete"
+	Res:	"Icons.AutoComplete"
+
+)
+
+(ToolMenu.416
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snap//Sets the general snapping tolerance for the editable theme"
+	HelpTopic:	"Snap_tools"
+	Update:	"View.SnapToolUpdate"
+	Icon:	417
+	Cursor:	"Cursors.Default"
+	Apply:	"View.SnapTool"
+	Child:	418
+	Child:	419
+)
+
+(AVIcon.417
+	Name:	"SnapTool"
+	Res:	"Icons.SnapTool"
+
+)
+
+(Tool.418
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snap//Sets the general snapping tolerance for the editable theme"
+	HelpTopic:	"Snap_tools"
+	Update:	"View.SnapToolUpdate"
+	Icon:	417
+	Cursor:	"Cursors.Default"
+	Apply:	"View.SnapTool"
+)
+
+(Tool.419
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snap//Sets the interactive snapping tolerance for the editable theme"
+	HelpTopic:	"Snap_tools"
+	Update:	"View.InteractiveSnapToolUpdate"
+	Icon:	420
+	Cursor:	"Cursors.Default"
+	Apply:	"View.InteractiveSnapTool"
+)
+
+(AVIcon.420
+	Name:	"SnapFeatureTool"
+	Res:	"Icons.SnapFeatureTool"
+
+)
+
+(AVIcon.421
+	Name:	"Icon"
+	Res:	"View.Icon"
+
+)
+
+(DocGUI.927
+	Name:	"Project"
+	Type:	"Project"
+	Modified:	1
+	MenuBar:	928
+	ButnBar:	964
+	Popups:	975
+	ToolBar:	976
+	Icon:	977
+)
+
+(MenuBar.928
+	Child:	929
+	Child:	940
+	Child:	950
+	Child:	959
+)
+
+(PMenu.929
+	InternalName:	"File"
+	Child:	930
+	Child:	931
+	Child:	932
+	Child:	933
+	Child:	934
+	Child:	935
+	Child:	936
+	Child:	937
+	Child:	938
+	Child:	939
+	Label:	"&File"
+)
+
+(Choice.930
+	Help:	"Creates a new project"
+	HelpTopic:	"New_Project"
+	Label:	"&New Project"
+	Click:	"Project.New"
+	Shortcut:	"Keys.Ctrl+N"
+)
+
+(Choice.931
+	Help:	"Opens an existing project"
+	HelpTopic:	"Open_Project"
+	Label:	"&Open Project..."
+	Click:	"Project.Open"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.932
+	Help:	"Closes the project window"
+	HelpTopic:	"Close_Project"
+	Label:	"&Close Project"
+	Click:	"Project.Close"
+	Shortcut:	"Keys.None"
+)
+
+(Space.933
+)
+
+(Choice.934
+	Help:	"Saves the current project"
+	HelpTopic:	"Save_Project"
+	Label:	"&Save Project"
+	Click:	"Project.Save"
+	Shortcut:	"Keys.Ctrl+S"
+)
+
+(Choice.935
+	Help:	"Saves the current project with a new name"
+	HelpTopic:	"Save_Project_As"
+	Label:	"Save Project &As..."
+	Click:	"Project.SaveAs"
+	Shortcut:	"Keys.None"
+)
+
+(Space.936
+)
+
+(Choice.937
+	Help:	"Displays the Extensions dialog"
+	HelpTopic:	"Extensions"
+	Label:	"&Extensions..."
+	Click:	"Appl.GetExtensionWin"
+	Shortcut:	"Keys.None"
+)
+
+(Space.938
+)
+
+(Choice.939
+	Help:	"Exits ArcView"
+	HelpTopic:	"Exit"
+	Label:	"E&xit"
+	Click:	"Project.Exit"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.940
+	InternalName:	"Project"
+	Child:	941
+	Child:	942
+	Child:	943
+	Child:	944
+	Child:	945
+	Child:	946
+	Child:	947
+	Child:	948
+	Child:	949
+	Label:	"&Project"
+)
+
+(Choice.941
+	Help:	"Displays the dialog box to edit properties of the project"
+	HelpTopic:	"Project_Properties"
+	Label:	"&Properties..."
+	Click:	"Project.Properties"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.942
+	Help:	"Customizes the active project"
+	HelpTopic:	"Customize"
+	Update:	"Project.CustomizeUpdate"
+	Label:	"&Customize..."
+	Click:	"Project.Customize"
+	Shortcut:	"Keys.None"
+)
+
+(Space.943
+)
+
+(Choice.944
+	Help:	"Renames the selected project component"
+	HelpTopic:	"Rename"
+	Update:	"Project.RenameUpdate"
+	Label:	"&Rename 'simpplle.clear_project_tag'..."
+	Click:	"Project.Rename"
+	Shortcut:	"Keys.Ctrl+R"
+)
+
+(Choice.945
+	Help:	"Deletes the selected component from the project"
+	HelpTopic:	"Delete_Component"
+	Update:	"Project.DeleteUpdate"
+	Label:	"&Delete 'simpplle.clear_project_tag'..."
+	Click:	"Project.Delete"
+	Shortcut:	"Keys.Del"
+)
+
+(Space.946
+)
+
+(Choice.947
+	Help:	"Adds a table to the project"
+	HelpTopic:	"Add_Table"
+	Label:	"&Add Table..."
+	Click:	"Project.AddTable"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.948
+	Help:	"Creates a new project component from an external source"
+	HelpTopic:	"Import"
+	Label:	"&Import..."
+	Click:	"Project.Import"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.949
+	Help:	"Opens the SQL Connection manager"
+	HelpTopic:	"SQL_Connect"
+	Update:	"Project.HasSQL"
+	Label:	"&SQL Connect..."
+	Click:	"Project.SQLConnect"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.950
+	InternalName:	"Window"
+	Child:	951
+	Child:	952
+	Child:	953
+	Child:	954
+	Child:	955
+	Child:	956
+	Child:	958
+	Label:	"&Window"
+)
+
+(Choice.951
+	Help:	"Arranges windows as non-overlapping tiles"
+	HelpTopic:	"Tile"
+	Label:	"&Tile"
+	Click:	"Project.Tile"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.952
+	Help:	"Arranges windows"
+	HelpTopic:	"Cascade"
+	Label:	"&Cascade"
+	Click:	"Project.Cascade"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.953
+	Help:	"Arranges iconified windows"
+	HelpTopic:	"Arrange_Icons"
+	Label:	"&Arrange Icons"
+	Click:	"Project.ArrangeIcons"
+	Shortcut:	"Keys.None"
+)
+
+(Space.954
+)
+
+(Choice.955
+	Help:	"Shows the symbol window"
+	HelpTopic:	"Show_Symbol_Window"
+	Label:	"Show Symbol Window..."
+	Click:	"Project.ShowHideSymWin"
+	Shortcut:	"Keys.Ctrl+P"
+)
+
+(Space.956
+	ObjectTag:	957
+	Update:	"WindowMenuUpdate"
+)
+
+(AVStr.957
+	S:	"simpplle_arcview-new.apr"
+)
+
+(Choice.958
+	Help:	"Activates simpplle_arcview-new.apr"
+	Label:	"&1 simpplle_arcview-new.apr"
+	Click:	"WindowActivate"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.959
+	InternalName:	"Help"
+	Child:	960
+	Child:	961
+	Child:	962
+	Child:	963
+	Label:	"&Help"
+)
+
+(Choice.960
+	Help:	"Displays the dialog for browsing and searching ArcView's help system"
+	HelpTopic:	"Help_on_Help_Topics"
+	Label:	"Help &Topics..."
+	Click:	"Project.HelpTopics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.961
+	Help:	"Provides instructions for how to obtain help from ArcView"
+	HelpTopic:	"Help_on_How_to_Get_Help"
+	Label:	"&How to Get Help..."
+	Click:	"Project.HelpHelp"
+	Shortcut:	"Keys.None"
+)
+
+(Space.962
+)
+
+(Choice.963
+	Help:	"Provides information about ArcView"
+	HelpTopic:	"About"
+	Label:	"&About ArcView..."
+	Click:	"Project.About"
+	Shortcut:	"Keys.None"
+)
+
+(ButnBar.964
+	Update:	"Project.UpdateButtons"
+	Child:	965
+	Child:	967
+	Child:	968
+	Child:	970
+	Child:	971
+	Child:	972
+	Child:	973
+)
+
+(Butn.965
+	Help:	"Save Project//Saves the current project"
+	HelpTopic:	"Save_Project"
+	Icon:	966
+	Click:	"Project.Save"
+)
+
+(AVIcon.966
+	Name:	"Save"
+	Res:	"Icons.Save"
+
+)
+
+(Space.967
+)
+
+(Butn.968
+	Help:	"Help//Gets help about the next button, tool, or menu choice you click"
+	HelpTopic:	"Help_button"
+	Icon:	969
+	Click:	"Help.Tool"
+)
+
+(AVIcon.969
+	Name:	"HelpTool"
+	Res:	"Icons.HelpTool"
+
+)
+
+(Space.970
+)
+
+(Space.971
+)
+
+(Space.972
+)
+
+(Butn.973
+	Help:	"Set the pathnames for Simpplle Legends and TXT files."
+	Tag:	"true"
+	Icon:	974
+	Click:	"simpplle.set_pathnames"
+)
+
+(AVIcon.974
+	Name:	"ID"
+	Res:	"Icons.ID"
+
+)
+
+(PopupSet.975
+)
+
+(ToolBar.976
+)
+
+(AVIcon.977
+	Name:	"Icon"
+	Res:	"Project.Icon"
+
+)
+
+(FN.996
+	Path:	"C:/MyDocuments/MyProjects/testing/steviwc/"
+)
+
+(TClr.997
+	Red:	0xffff
+	Green:	0xffff
+)
+
+(AVStr.998
+	S:	"View"
+)
+
+(AVStr.999
+	S:	"Table"
+)
+
+(AVStr.1000
+	S:	"Chart"
+)
+
+(AVStr.1001
+	S:	"Layout"
+)
+
+(AVStr.1002
+	S:	"Script"
+)
+
+(AVStr.1003
+	S:	"Project"
+)
+
+(AVStr.1004
+	S:	"Appl"
+)
+

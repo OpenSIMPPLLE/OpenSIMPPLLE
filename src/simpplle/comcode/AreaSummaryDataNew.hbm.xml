@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="simpplle.comcode">
+  <class name="AreaSummaryDataNew" table="AREA_SUMMARY_DATA">
+    <id name="id" column="ID" type="long">
+      <generator class="native"/>
+    </id>
+
+    <property name="originUnitId" type="int"/>
+    <property name="unitId"       type="int"/>
+    <property name="toUnitId"     type="int"/>
+
+    <many-to-one name="process" column="process_id"/>
+
+    <property name="rationalProb"  type="short"/>
+    <property name="rationalAcres" type="int"/>
+    <property name="seasonOrd"     type="short" column="SEASON_ID"/>
+    <property name="timeStep"      type="short"/>
+    <property name="run" type="short"/>
+
+    <many-to-one name="group" column="group_id"/>
+    <many-to-one name="ownership" column="ownership_id"/>
+    <many-to-one name="specialArea" column="special_area_id"/>
+    <many-to-one name="fmz" column="fmz_id"/>
+
+
+  </class>
+
+  <class name="HabitatTypeGroupType" table="ECOLOGICAL_GROUPING">
+    <id name="simId" column="ID" type="short"/>
+    <property name="name" type="string"/>
+  </class>
+
+  <class name="Ownership" table="OWNERSHIP">
+    <id name="simId" column="ID" type="short"/>
+    <property name="name" type="string"/>
+  </class>
+
+  <class name="SpecialArea" table="SPECIAL_AREA">
+    <id name="simId" column="ID" type="short"/>
+    <property name="name" type="string"/>
+  </class>
+
+  <class name="Fmz" table="FMZ">
+    <id name="simId" column="ID" type="short"/>
+    <property name="name" type="string"/>
+  </class>
+
+</hibernate-mapping>
+

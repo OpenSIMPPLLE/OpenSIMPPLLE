@@ -1,0 +1,6 @@
+Projection    UTM
+Zone          11
+Spheroid      CLARKE1866
+Units         METERS
+Zunits        NO
+Parameters    

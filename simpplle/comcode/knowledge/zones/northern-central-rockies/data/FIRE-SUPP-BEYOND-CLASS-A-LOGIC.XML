@@ -1,0 +1,474 @@
+
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>FIRE_SUPP_BEYOND_CLASS_A</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>OWNERSHIP_COL</string>
+    <string>FIRE_TYPE_COL</string>
+    <string>SPREAD_KIND_COL</string>
+    <string>ROAD_STATUS_COL</string>
+    <string>SUPPRESS_COL</string>
+  </list>
+  <int>1</int>
+  <string>FIRE_SUPP_BEYOND_CLASS_A</string>
+  <list>
+    <FireSuppBeyondClassALogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+Default logic and probability values developed through a series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis of the Management Situation -- Eastside Planning Zone&quot;  Oct 1999 through March 2000.  Logic and values were tested on a sample landscape for each Forest in the Planning Zone.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>SS</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>UNIFORM</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>SCATTERED</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>OPEN-HERB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>OPEN-LOW-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>OPEN-MID-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>OPEN-TALL-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>CLOSED-HERB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>CLOSED-LOW-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[SS, UNIFORM, SCATTERED, OPEN-HERB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLOSED-HERB, CLOSED-LOW-SHRUB]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <FireType>SRF</FireType>
+      <SpreadKind>AVERAGE</SpreadKind>
+      <boolean>true</boolean>
+      <list/>
+    </FireSuppBeyondClassALogicData>
+    <FireSuppBeyondClassALogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+Default logic and probability values developed through a series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis of the Management Situation -- Eastside Planning Zone&quot;  Oct 1999 through March 2000.  Logic and values were tested on a sample landscape for each Forest in the Planning Zone.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppBeyondClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppBeyondClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppBeyondClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppBeyondClassALogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppBeyondClassALogicData/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppBeyondClassALogicData/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppBeyondClassALogicData/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppBeyondClassALogicData/list[6]/SizeClass[8]"/>
+        <SizeClass reference="../../../FireSuppBeyondClassALogicData/list[6]/SizeClass[9]"/>
+      </list>
+      <string>{[SS, UNIFORM, SCATTERED, OPEN-HERB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLOSED-HERB, CLOSED-LOW-SHRUB]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <FireType reference="../../FireSuppBeyondClassALogicData/FireType"/>
+      <SpreadKind>EXTREME</SpreadKind>
+      <boolean>false</boolean>
+      <list/>
+    </FireSuppBeyondClassALogicData>
+    <FireSuppBeyondClassALogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+Default logic and probability values developed through a series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis of the Management Situation -- Eastside Planning Zone&quot;  Oct 1999 through March 2000.  Logic and values were tested on a sample landscape for each Forest in the Planning Zone.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <FireType reference="../../FireSuppBeyondClassALogicData/FireType"/>
+      <SpreadKind reference="../../FireSuppBeyondClassALogicData[2]/SpreadKind"/>
+      <boolean>false</boolean>
+      <list/>
+    </FireSuppBeyondClassALogicData>
+    <FireSuppBeyondClassALogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+Default logic and probability values developed through a series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis of the Management Situation -- Eastside Planning Zone&quot;  Oct 1999 through March 2000.  Logic and values were tested on a sample landscape for each Forest in the Planning Zone.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <FireType>LSF</FireType>
+      <SpreadKind reference="../../FireSuppBeyondClassALogicData/SpreadKind"/>
+      <boolean>true</boolean>
+      <list/>
+    </FireSuppBeyondClassALogicData>
+    <FireSuppBeyondClassALogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+Default logic and probability values developed through a series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis of the Management Situation -- Eastside Planning Zone&quot;  Oct 1999 through March 2000.  Logic and values were tested on a sample landscape for each Forest in the Planning Zone.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <FireType reference="../../FireSuppBeyondClassALogicData[4]/FireType"/>
+      <SpreadKind reference="../../FireSuppBeyondClassALogicData[2]/SpreadKind"/>
+      <boolean>true</boolean>
+      <list/>
+    </FireSuppBeyondClassALogicData>
+    <FireSuppBeyondClassALogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+Default logic and probability values developed through a series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis of the Management Situation -- Eastside Planning Zone&quot;  Oct 1999 through March 2000.  Logic and values were tested on a sample landscape for each Forest in the Planning Zone.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <FireType>MSF</FireType>
+      <SpreadKind reference="../../FireSuppBeyondClassALogicData/SpreadKind"/>
+      <boolean>true</boolean>
+      <list/>
+    </FireSuppBeyondClassALogicData>
+    <FireSuppBeyondClassALogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+Default logic and probability values developed through a series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis of the Management Situation -- Eastside Planning Zone&quot;  Oct 1999 through March 2000.  Logic and values were tested on a sample landscape for each Forest in the Planning Zone.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <FireType reference="../../FireSuppBeyondClassALogicData[6]/FireType"/>
+      <SpreadKind reference="../../FireSuppBeyondClassALogicData[2]/SpreadKind"/>
+      <boolean>true</boolean>
+      <list/>
+    </FireSuppBeyondClassALogicData>
+  </list>
+</object-stream>

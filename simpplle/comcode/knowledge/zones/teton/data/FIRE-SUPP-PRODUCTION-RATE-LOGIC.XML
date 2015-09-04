@@ -1,0 +1,753 @@
+
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>FIRE_SUPP_PRODUCTION_RATE_LOGIC</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>SLOPE_COL</string>
+    <string>RATE_COL</string>
+  </list>
+  <int>1</int>
+  <string>FIRE_SUPP_PRODUCTION_RATE_LOGIC</string>
+  <list>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Tetons Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>MF</string>
+          <string>MF</string>
+          <Lifeform>
+            <int>1</int>
+            <string>no classification</string>
+            <int>4</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>UNKNOWN/NA</string>
+            <int>-1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>MF-A</string>
+          <string>MF-A</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PP</string>
+          <string>Ponderosa Pine</string>
+          <Lifeform>
+            <int>1</int>
+            <string>trees</string>
+            <int>0</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>HIGH</string>
+            <int>2</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PP-MF</string>
+          <string>PP-MF</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>A</string>
+          <string>A</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>A-PG</string>
+          <string>A-PG</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>A-MF</string>
+          <string>A-MF</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>A-MS</string>
+          <string>A-MS</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>A-SF</string>
+          <string>A-SF</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SF</string>
+          <string>SF</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SF-A</string>
+          <string>SF-A</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[MF, MF-A, PP, PP-MF, A, A-PG, A-MF, A-MS, A-SF, SF, SF-A]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>PP-MPB</string>
+          <string>PpMpb</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>990</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Tetons Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[2]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[3]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[4]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[5]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[6]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[7]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[8]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[9]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[10]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[11]"/>
+      </list>
+      <string>{[MF, MF-A, PP, PP-MF, A, A-PG, A-MF, A-MS, A-SF, SF, SF-A]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType>
+          <int>1</int>
+          <string>ECOSYSTEM-MANAGEMENT-BROADCAST-BURN</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>ECOSYSTEM-MANAGEMENT-THIN-AND-UNDERBURN</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>ECOSYSTEM-MANAGEMENT-UNDERBURN</string>
+        </TreatmentType>
+      </list>
+      <int>1</int>
+      <string>[ECOSYSTEM-MANAGEMENT-BROADCAST-BURN, ECOSYSTEM-MANAGEMENT-THIN-AND-UNDERBURN, ECOSYSTEM-MANAGEMENT-UNDERBURN]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>990</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Tetons Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[2]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[3]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[4]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[5]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[6]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[7]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[8]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[9]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[10]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[11]"/>
+      </list>
+      <string>{[MF, MF-A, PP, PP-MF, A, A-PG, A-MF, A-MS, A-SF, SF, SF-A]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>330</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Tetons Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[2]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[3]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[4]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[5]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[6]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[7]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[8]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[9]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[10]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[11]"/>
+      </list>
+      <string>{[MF, MF-A, PP, PP-MF, A, A-PG, A-MF, A-MS, A-SF, SF, SF-A]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppProductionRateLogicData[2]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppProductionRateLogicData[2]/list[9]/TreatmentType[2]"/>
+        <TreatmentType reference="../../../FireSuppProductionRateLogicData[2]/list[9]/TreatmentType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[ECOSYSTEM-MANAGEMENT-BROADCAST-BURN, ECOSYSTEM-MANAGEMENT-THIN-AND-UNDERBURN, ECOSYSTEM-MANAGEMENT-UNDERBURN]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>330</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Tetons Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>AGR</string>
+          <string>Agriculture</string>
+          <Lifeform>
+            <int>1</int>
+            <string>agriculture</string>
+            <int>3</int>
+          </Lifeform>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>AG</string>
+          <string>AG</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>GW-PG</string>
+          <string>GW-PG</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>MM-OK</string>
+          <string>MM-OK</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>MM-OK-PJU</string>
+          <string>MM-OK-PJU</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>MS-PG</string>
+          <string>MS-PG</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>MS-PJU-PG</string>
+          <string>MS-PJU-PG</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>OK</string>
+          <string>OK</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>OK-PJU</string>
+          <string>OK-PJU</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PG</string>
+          <string>PG</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PJU</string>
+          <string>PJU</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PJU-MM-OK</string>
+          <string>PJU-MM-OK</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PJU-MS</string>
+          <string>PJU-MS</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PJU-OK</string>
+          <string>PJU-OK</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>RIPARIAN</string>
+          <string>RIPARIAN</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SD-PG</string>
+          <string>SD-PG</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WS-PG</string>
+          <string>WS-PG</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WS-PJU-PG</string>
+          <string>WS-PJU-PG</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[AGR, AG, GW-PG, MM-OK, MM-OK-PJU, MS-PG, MS-PJU-PG, OK, OK-PJU, PG, PJU, PJU-MM-OK, PJU-MS, PJU-OK, RIPARIAN, SD-PG, WS-PG, WS-PJU-PG]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>231</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Tetons Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+  </list>
+</object-stream>

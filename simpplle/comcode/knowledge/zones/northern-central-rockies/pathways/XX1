@@ -1,0 +1,23 @@
+CLASS HABITAT-TYPE-GROUP
+NAME XX1
+HABITAT-TYPES 101
+CLIMAX-SPECIES AGR
+SERAL-SPECIES AGR
+KNOWLEDGE-SOURCE dummy
+This system knowledge is intented to be modified for the Northern Central Rockies Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the "Analysis 
+of the Management Situation - Eastside Planning Zone", 
+October 1999 through March 2000.
+END-KNOWLEDGE-SOURCE
+END
+
+CLASS ALL-VEG-TYPES
+1
+AGR,AGR,1,1,STAND-REPLACING-FIRE:AGR/AGR/1:0:MIXED-SEVERITY-FIRE:AGR/AGR/1:0:SUCCESSION:AGR/AGR/1:100:LIGHT-SEVERITY-FIRE:AGR/AGR/1:0,AGR:178:32:NS:37:219,?,?

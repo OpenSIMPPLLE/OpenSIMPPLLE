@@ -1,0 +1,267 @@
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>FIRE_SUPP_PRODUCTION_RATE_LOGIC</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>SLOPE_COL</string>
+    <string>RATE_COL</string>
+  </list>
+  <int>1</int>
+  <string>FIRE_SUPP_PRODUCTION_RATE_LOGIC</string>
+  <list>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>BOGR2-BUDA-OPPO-ARTR2</string>
+          <string>blue grama - buffalograss - plains prickley pear - big sagebrush</string>
+          <Lifeform>
+            <int>1</int>
+            <string>shrubs</string>
+            <int>1</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>MODERATE</string>
+            <int>1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SCSC-PASM-AMCA6-JUCO6</string>
+          <string>little bluestem - Western wheatgrass - leadplant - juniper</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SYOC-ARTR2-PASM</string>
+          <string>Western snowberry - big sagebrush - Western wheatgrass</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance>
+            <int>1</int>
+            <string>HIGH</string>
+            <int>2</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SCSC-CALO-JUCO6-AMCA6</string>
+          <string>little bluestem - pairie sandreed - juniper - leadplant</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PASM-DISP-ATGA-SAVE4</string>
+          <string>Western wheatgrass - inland saltgrass - Gardner&apos;s saltbush - greasewood</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PASM-SCSC-DISP-ARTR2</string>
+          <string>Western wheatgrass - little bluestem - inland saltgrass - big sagebrush</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PASM-NAVI4-BOGR2-SYOC</string>
+          <string>Western wheatgrass - green needlegrass - blue grama - Western snowberry</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DISP-PASM-ARTR2</string>
+          <string>inland saltgrass - Western wheatgrass - big sagebrush</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PASM-ARCA13-ARTR2</string>
+          <string>Western wheatgrass - silver sagebrush - big sagebrush</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>BOGR2-PASM-ARTR2</string>
+          <string>blue grama - Western wheatgrass - big sagebrush</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DISP-CAFI-KOMA-SAVE4</string>
+          <string>inland saltgrass - threadleaf sedge - prairie junegrass - greasewood</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>CALO-SCSC-PASM-ARTR2</string>
+          <string>prairie sandreed - little bluestem - Western wheatgrass - big sagebrush</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>BOGR2-PASM-POSE-SYOC</string>
+          <string>blue grama - Western wheatgrass - Sandberg bluegrass -Western snowberry</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>BOGR2-BUDA-CAFI-ARTR2</string>
+          <string>blue grama - buffalograss - threadleaf sedge - big sagebrush</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[BOGR2-BUDA-OPPO-ARTR2, SCSC-PASM-AMCA6-JUCO6, SYOC-ARTR2-PASM, SCSC-CALO-JUCO6-AMCA6, PASM-DISP-ATGA-SAVE4, PASM-SCSC-DISP-ARTR2, PASM-NAVI4-BOGR2-SYOC, DISP-PASM-ARTR2, PASM-ARCA13-ARTR2, BOGR2-PASM-ARTR2, DISP-CAFI-KOMA-SAVE4, CALO-SCSC-PASM-ARTR2, BOGR2-PASM-POSE-SYOC, BOGR2-BUDA-CAFI-ARTR2]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>660</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>2640</int>
+    </FireSuppProductionRateLogicData>
+  </list>
+</object-stream>

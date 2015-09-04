@@ -1,0 +1,184 @@
+/3.2
+(ODB.1
+	FirstRootClassName:	"Legend"
+	Roots:	2
+	Version:	32
+)
+
+(Legend.2
+	SymType:	0x02
+	LegType:	0x08
+	ClassType:	0x03
+	FieldNames:	3
+	Symbols:	4
+	Class:	25
+	Class:	26
+	Class:	27
+	Class:	28
+	Class:	29
+	StdDevs:	1.00000000000000
+	NullSym:	21
+	NullValues:	30
+	StatValues:	31
+	Precision:	-3
+)
+
+(AVStr.3
+	S:	"Sim_densit"
+)
+
+(SymList.4
+	Child:	5
+	Child:	9
+	Child:	13
+	Child:	17
+	Child:	21
+)
+
+(BShSym.5
+	Color:	6
+	Outline:	1
+	OutlineColor:	7
+	OutlineWidth:	1.00000000000000
+	BgColor:	8
+)
+
+(TClr.6
+	Red:	0xf3ff
+	Green:	0x893f
+	Blue:	0x8bcc
+)
+
+(TClr.7
+)
+
+(TClr.8
+	Name:	"Transparent"
+)
+
+(BShSym.9
+	Color:	10
+	Outline:	1
+	OutlineColor:	11
+	OutlineWidth:	1.00000000000000
+	BgColor:	12
+)
+
+(TClr.10
+	Red:	0x7b83
+	Green:	0xfeff
+	Blue:	0xcdaa
+)
+
+(TClr.11
+)
+
+(TClr.12
+	Name:	"Transparent"
+)
+
+(BShSym.13
+	Color:	14
+	Outline:	1
+	OutlineColor:	15
+	OutlineWidth:	1.00000000000000
+	BgColor:	16
+)
+
+(TClr.14
+	Red:	0xb3ff
+	Green:	0xb06f
+	Blue:	0x7b0b
+)
+
+(TClr.15
+)
+
+(TClr.16
+	Name:	"Transparent"
+)
+
+(BShSym.17
+	Color:	18
+	Outline:	1
+	OutlineColor:	19
+	OutlineWidth:	1.00000000000000
+	BgColor:	20
+)
+
+(TClr.18
+	Red:	0x9c67
+	Green:	0x9d6b
+	Blue:	0xdc00
+)
+
+(TClr.19
+)
+
+(TClr.20
+	Name:	"Transparent"
+)
+
+(BShSym.21
+	Color:	22
+	Outline:	1
+	OutlineColor:	23
+	OutlineWidth:	0.10000000000000
+	BgColor:	24
+)
+
+(TClr.22
+	Name:	"Transparent"
+)
+
+(TClr.23
+	Name:	"Transparent"
+)
+
+(TClr.24
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(LClass.25
+	Label:	"1"
+	MinNum:	1.00000000000000
+	MaxNum:	1.00000000000000
+	Precision:	-3
+)
+
+(LClass.26
+	Label:	"2"
+	MinNum:	2.00000000000000
+	MaxNum:	2.00000000000000
+	Precision:	-3
+)
+
+(LClass.27
+	Label:	"3"
+	MinNum:	3.00000000000000
+	MaxNum:	3.00000000000000
+	Precision:	-3
+)
+
+(LClass.28
+	Label:	"4"
+	MinNum:	4.00000000000000
+	MaxNum:	4.00000000000000
+	Precision:	-3
+)
+
+(LClass.29
+	IsNoData:	1
+	Label:	"No Data"
+	MaxNum:	-1.00000000000000
+	Precision:	-3
+)
+
+(NameDict.30
+)
+
+(NameDict.31
+)
+

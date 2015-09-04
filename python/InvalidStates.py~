@@ -1,0 +1,957 @@
+# "HT_GRP" = 'NF1B' AND "SPECIES" = 'PP' AND "SIZE_CLASS" = 'MMU' AND "DENSITY" = 2 AND "AGE" = 1
+# SelectLayerByAttribute_management (in_layer_or_view, selection_type, where_clause)
+# GetCount_management (in_rows) 
+
+import sys, string, os, tempfile, traceback, _winreg
+
+def getArcGISVersion():
+    hkey = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\ESRI\ArcGIS", 0, _winreg.KEY_READ)
+    val,typ = _winreg.QueryValueEx(hkey, "RealVersion")
+    _winreg.CloseKey(hkey)
+
+    ArcGIS_Version = "9.1"
+    if (string.find(val,"9.1") != -1):
+        return "9.1"
+    elif (string.find(val,"9.2") != -1):
+        return "9.2"
+    elif (string.find(val,"9.3") != -1):
+        return "9.3"
+    else:
+        return "9.1"
+#end getArcGISVersion
+
+#Get ArcGIS Version
+ArcGIS_Version = getArcGISVersion()
+
+def AddMsgAndPrint(msg, severity=0):
+    msg = str(msg)
+    # Adds a Message to the geoprocessor (in case this is run as a tool)
+    # and also prints the message to the screen
+    print msg
+
+    #Split the message on \n first, so that if it's multiple lines, a GPMessage will be added for each line
+    try:
+        for string in msg.split('\n'):
+            #Add a geoprocessing message (in case this is run as a tool)
+            if severity == 0:
+                gp.AddMessage(string)
+            elif severity == 1:
+                gp.AddWarning(string)
+            elif severity == 2:
+                gp.AddError(string)
+        if (severity == 2 or severity == 1):
+            trace = traceback.format_exception(sys.exc_type, sys.exc_value, sys.exc_traceback)
+            for value in trace:
+                print str(value)
+                gp.AddError(str(value))
+    except:
+        pass       
+#end AddMsgAndPrint
+
+if (ArcGIS_Version == "9.0" or ArcGIS_Version == "9.1" or ArcGIS_Version == "9.2"):
+    AddMsgAndPrint("ArcGIS 9.3 or higher required.  Quiting.",2)
+    sys.exit(2)
+else:
+    import arcgisscripting
+    gp = arcgisscripting.create(9.3)
+
+gp.SetProduct("ArcInfo")
+gp.overwriteoutput = 1
+   
+def makepath(dir,file):
+    return dir + os.sep + file
+#end makepath
+
+
+workDir  = gp.getParameterAsText(0)
+inGDB    = gp.getParameterAsText(1)
+inFC         = gp.getParameterAsText(2)
+pathwayTable = gp.getParameterAsText(3)
+fixIncorrect = gp.getparameter(4)
+
+desc = gp.Describe(inGDB)
+if (desc.WorkspaceType <> 'LocalDatabase'):
+    AddMsgAndPrint("Input Workspace should be Geodatabase.  Quiting.",2)
+    sys.exit(2)
+    
+gp.Workspace = inGDB
+
+def doGPErrorMessages():
+    regMsg  = gp.GetMessages(0)
+    warnMsg = gp.GetMessages(1)
+    errMsg  = gp.GetMessages(2)
+    if regMsg != "":
+        AddMsgAndPrint(regMsg,0)
+    if warnMsg != "":
+        AddMsgAndPrint(warnMsg,1)
+    if errMsg != "":
+        AddMsgAndPrint(errMsg,2)
+
+    if (regMsg == "" and warnMsg == "" and errMsg == ""):
+        return 0
+    return 1
+#end doGPErrorMessages
+
+def isMultipleLifeforms(fc):
+    fields = gp.ListFields(fc)
+
+    speciesL = ["SPECIES_TR", "SPECIES_S", "SPECIES_H", "SPECIES_A", "SPECIES_N"]
+    count = 0
+    
+    for field in fields:
+        for l in range(0,len(speciesL)):
+            if (field.Name == speciesL[l]):
+                count += 1
+
+    return (count > 0)
+#end isMultipleLifeforms
+    
+def checkFields(fc,multiLife):
+    global gp
+
+    hasSpecies = 0
+    hasSizeClass = 0
+    hasDensity   = 0
+    hasGroup     = 0
+    
+    species   = "SPECIES"
+    size      = "SIZE_CLASS"
+    density   = "DENSITY"
+    group     = "HT_GRP"
+
+    speciesL = {'TREE':'SPECIES_TR', 'SHRUBS':'SPECIES_S', 'HERBACIOUS':'SPECIES_H', 'AGRICULTURE':'SPECIES_A', 'NA':'SPECIES_N'}
+    sizeL = {'TREE':'SIZE_TR', 'SHRUBS':'SIZE_S', 'HERBACIOUS':'SIZE_H', 'AGRICULTURE':'SIZE_A', 'NA':'SIZE_N'}
+    densityL = {'TREE':'DENSITY_TR', 'SHRUBS':'DENSITY_S', 'HERBACIOUS':'DENSITY_H', 'AGRICULTURE':'DENSITY_A', 'NA':'DENSITY_N'}
+
+    hasSpeciesL = {'TREE':0, 'SHRUBS':0, 'HERBACIOUS':0, 'AGRICULTURE':0, 'NA':0}
+    hasSizeL = {'TREE':0, 'SHRUBS':0, 'HERBACIOUS':0, 'AGRICULTURE':0, 'NA':0}
+    hasDensityL = {'TREE':0, 'SHRUBS':0, 'HERBACIOUS':0, 'AGRICULTURE':0, 'NA':0}
+
+    lives = ['TREE', 'SHRUBS', 'HERBACIOUS', 'AGRICULTURE','NA']
+    
+    fields = gp.ListFields(fc)
+    for field in fields:
+        if (field.Name == species):
+            hasSpecies = 1
+        if (field.Name == size):
+            hasSizeClass = 1
+        if (field.Name == density):
+            hasDensity = 1
+        if (field.Name == group):
+            hasGroup = 1
+
+        for life in lives:
+            if (field.Name == speciesL[life]):
+                hasSpeciesL[life] = 1
+            if (field.Name == sizeL[life]):
+                hasSizeL[life] = 1
+            if (field.Name == densityL[life]):
+                hasDensityL[life] = 1
+
+    if (hasGroup == 0):
+        AddMsgAndPrint("No HT_GRP field found",2)
+        sys.exit(2)
+    if (multiLife):
+        count = 0
+        for life in lives:
+            if (hasSpeciesL[life] and hasSizeL[life] and hasDensityL[life]):
+                count += 1
+        if (count == 0):
+            AddMsgAndPrint("Error in Species/Size Class/Density Fields",2)
+            sys.exit(2)
+    else:
+        if (hasSpecies == 0):
+            AddMsgAndPrint("No SPECIES field found",2)
+        if (hasSizeClass == 0):
+            AddMsgAndPrint("No SIZE_CLASS field found",2)
+        if (hasDensity == 0):
+            AddMsgAndPrint("No DENSITY field found",2)
+        if (hasSpecies == 0 or hasSizeClass == 0 or hasDensity == 0):
+            sys.exit(2)
+
+    return [hasSpeciesL, hasSizeL, hasDensityL]    
+#end checkFields
+
+pathwayMap = {}
+groupList   = []
+speciesList = []
+groupSpeciesMap = {}
+speciesMap  = {}
+sizeClassMap = {}
+densityMap   = {}
+speciesLifeMap = {}
+
+def buildPathwayMaps():
+    global gp
+    global pathwayTable
+    global pathwayMap
+    global groupList
+    global speciesList
+    global groupSpeciesMap
+    global speciesMap
+    global sizeClassMap
+    global densityMap
+    global speciesLifeMap
+
+    map = {}
+
+    rows = gp.SearchCursor(pathwayTable)
+    row = rows.Next()
+    while row:
+        age        = row.getValue("AGE")
+        if (age > 1):
+            row = rows.Next()
+            continue;
+        
+        species    = row.getValue("SPECIES")
+        size_class = row.getValue("SIZE_CLASS")
+        density    = row.getValue("DENSITY")
+        group      = row.getValue("HT_GRP")
+        life       = row.getValue("LIFEFORM")
+
+        groupList.append(group)
+        speciesList.append(species)
+        if (groupSpeciesMap.has_key(group) == False):
+            groupSpeciesMap[group] = []
+        groupSpeciesMap[group].append(species)
+
+        key = group + "-" + species + "/" + size_class + "/" + str(density)
+        value = [group, species, size_class, density]
+        pathwayMap[key] = value
+
+        speciesMap[group]   = species
+        sizeClassMap[group] = size_class
+        densityMap[group]   = density
+        speciesLifeMap[species] = life
+
+        
+        row = rows.Next()
+
+    return map
+    
+#end buildPathwayMaps
+
+def fixIncorrectState(group,species,sizeClass,density):
+    global groupList
+    global speciesList
+
+    if (groupList.count(group) == 0):
+        return []
+
+    if (species == "NS" or species == "NF" or sizeClass == "NS" or sizeClass == "NF" or group == "XX1" or group == "XX4" or group == "XX5"):
+        newState = fixInvalidCaseOne(group,species,sizeClass,density)
+        if (len(newState) > 0):
+            return newState
+
+    # make sure valid species, group and species is valid within the group
+    if (speciesList.count(species) > 0 and groupList.count(group) > 0 and groupSpeciesMap[group].count(species) > 0):
+        return fixInvalidCaseTwo(group,species,sizeClass,density)
+
+    if (groupList.count(group) > 0 and groupSpeciesMap[group].count(species) == 0):
+        return fixInvalidCaseThree(group,species,sizeClass,density)
+
+    return []
+#end fixIncorrectState
+
+def fixInvalidCaseOne(group,species,sizeClass,density):
+    newState = []
+    if (group == "XX1"):
+        newState = ["AGR","AGR",1]
+    elif (group == "XX4"):
+        newState = ["NF","NF",1]
+    elif (group == "XX5"):
+        newState = ["WATER","WATER",1]
+    elif (group == "NF1A"):
+        newState = ["MID-SERAL","UNIFORM",2]
+    elif (group == "NF1B"):
+        newState = ["MID-SERAL","UNIFORM",2]
+    elif (group == "NF1C"):
+        newState = ["MID-SERAL","UNIFORM",2]
+    elif (group == "NF2A"):
+        newState = ["MESIC-SHRUBS","CLUMPED",2]
+    elif (group == "NF2B"):
+        newState = ["FESCUE","UNIFORM",3]
+    elif (group == "NF2C"):
+        newState = ["AGSP","UNIFORM",3]
+    elif (group == "NF2D"):
+        newState = ["AGSP","UNIFORM",2]
+    elif (group == "NF3A"):
+        newState = ["FESCUE","UNIFORM",2]
+    elif (group == "NF3B"):
+        newState = ["HERBS","SCATTERED",2]
+    elif (group == "NF3C"):
+        newState = ["AGSP","UNIFORM",3]
+    elif (group == "NF3D"):
+        newState = ["QA","SS",2]
+    elif (group == "NF4A"):
+        newState = ["RIP-SHRUBS","UNIFORM",4]
+    elif (group == "NF4B"):
+        newState = ["RIP-SHRUBS","CLUMPED",4]
+    elif (group == "NF4C"):
+        newState = ["RIP-SHRUBS","CLUMPED",2]
+    elif (group == "NF4D"):
+        newState = ["RIP-GRAMS","UNIFORM",4]
+    elif (group == "NF4E"):
+        newState = ["RIP-DECID","SS",2]
+    elif (group == "NF5A"):
+        newState = ["ALPINE-HERBS","UNIFORM",3]
+    elif (group == "NF5B"):
+        newState = ["ALPINE-SHRUBS","CLUMPED",2]
+
+    elif (group == "A1"):
+        newState = ["UPLAND-GRASSES","CLOSED-HERB",1]
+    elif (group == "A2"):
+        newState = ["UPLAND-GRASSES","CLOSED-HERB",1]
+    elif (group == "B1"):
+        newState = ["UPLAND-GRASSES","CLOSED-HERB",1]
+    elif (group == "B2"):
+        newState = ["UPLAND-GRASSES","CLOSED-HERB",1]
+    elif (group == "B3"):
+        newState = ["UPLAND-GRASSES","CLOSED-HERB",1]
+    elif (group == "C1"):
+        newState = ["UPLAND-GRASSES","CLOSED-HERB",1]
+    elif (group == "C2"):
+        newState = ["MESIC-SHRUBS","OPEN-TALL-SHRUB",1]
+    elif (group == "D1"):
+        newState = ["MESIC-SHRUBS","OPEN-TALL-SHRUB",1]
+    elif (group == "D2"):
+        newState = ["ALPINE-GRASSES","CLOSED-HERB",1]
+    elif (group == "D3"):
+        newState = ["ALPINE-GRASSES","CLOSED-HERB",1]
+    elif (group == "E1"):
+        newState = ["ALPINE-GRASSES","CLOSED-HERB",1]
+    elif (group == "E2"):
+        newState = ["ALPINE-GRASSES","CLOSED-HERB",1]
+    elif (group == "F1"):
+        newState = ["ALPINE-GRASSES","CLOSED-HERB",1]
+    elif (group == "F2"):
+        newState = ["ALPINE-GRASSES","CLOSED-HERB",1]
+    elif (group == "G1"):
+        newState = ["ALPINE-GRASSES","CLOSED-HERB",1]
+    elif (group == "G2"):
+        newState = ["ALPINE-GRASSES","CLOSED-HERB",1]
+
+    if (len(newState) > 0 and isValidState(group,newState[0],newState[1],newState[2])):
+        return newState
+    
+    return []
+#end fixInvalidCaseOne
+
+def isNonForestedSizeClass(sizeClass):
+    return (sizeClass == "UNIFORM"          or sizeClass == "CLUMPED" \
+        or sizeClass == "SCATTERED"         or sizeClass == "OPEN_HERB" \
+        or sizeClass == "CLOSED_HERB"       or sizeClass == "OPEN_LOW_SHRUB" \
+        or sizeClass == "CLOSED_LOW_SHRUB"  or sizeClass == "OPEN_MID_SHRUB" \
+        or sizeClass == "CLOSED_MID_SHRUB"  or sizeClass == "OPEN_TALL_SHRUB" \
+        or sizeClass == "CLOSED_TALL_SHRUB" or sizeClass == "GRASS" \
+        or sizeClass == "BURNED_URBAN"      or sizeClass == "URBAN" \
+        or sizeClass == "WATER"             or sizeClass == "AGR")
+
+#end isNonForestedSizeClass
+
+def isTreeSpecies(species):
+    life = string.upper(speciesLifeMap[species])
+
+    return (life == "TREES")    
+#end isTreeSpecies
+    
+def fixInvalidCaseTwo(group,species,sizeClass,density):
+    global speciesLifeMap
+    
+    newState = []
+
+    newSpecies = species
+    newDensity = density
+    newSizeClass = sizeClass
+
+    if (isTreeSpecies(species) and isNonForestedSizeClass(sizeClass) == False):
+        if (density == 1):
+            newDensity = 2
+            if (isValidState(group,species,sizeClass,newDensity)):
+                newState = [species,sizeClass,newDensity]
+                return newState
+        if (len(newState) == 0):
+            newSizeClass = ""
+            if (sizeClass == "VERY-LARGE"):  newSizeClass = "LARGE"
+            elif (sizeClass == "LARGE"):     newSizeClass = "MEDIUM"
+            elif (sizeClass == "MEDIUM"):    newSizeClass = "POLE"
+            elif (sizeClass == "MMU"):       newSizeClass = "MTS"
+            elif (sizeClass == "PMU"):       newSizeClass = "PTS"
+            elif (sizeClass == "LMU"):       newSizeClass = "LTS"
+            elif (sizeClass == "VLMU"):      newSizeClass = "VLTS"
+
+            # These appear to do the same thing.  Perhaps the original code was incorrect
+            # and newDensity should be 2 if original was 1, regardless of whether a valid state or not?
+            if (newSizeClass <> "" and isValidState(group,species,newSizeClass,newDensity)):
+                newState = [species,newSizeClass,newDensity]
+                return newState
+            if (newSizeClass <> "" and isValidState(group,species,newSizeClass,density)):
+                newState = [species,newSizeClass,density]
+                return newState
+
+    if (isTreeSpecies(species) and isNonForestedSizeClass(sizeClass)):
+        if (isValidState(group,species,"SS",2)):
+            newState = [species,"SS",2]
+            return newState
+
+    if (species == "MESIC-SHRUBS" or species == "XERIC-SHRUBS"):
+        if (isValidState(group,species,"CLOSED-LOW-SHRUB",density)):
+            newState = [species,"CLOSED-LOW-SHRUB",density]
+            return newState
+
+
+    if (isTreeSpecies(species) == False):
+        newDensity = 0
+        if (density == 1): newDensity = 2
+        elif (density == 2): newDensity = 3
+        elif (density == 3): newDensity = 4
+
+        if (newDensity <> 0 and isValidState(species,sizeClass,newDensity)):
+            newState = [species,sizeClass,newDensity]
+            return newState
+        
+        newSizeClass = ""   
+        if (sizeClass == "UNIFORM"):             newSizeClass = "OPEN-HERB"
+        elif (sizeClass == "OPEN-HERB"):         newSizeClass = "CLOSED-HERB"
+        elif (sizeClass == "CLOSED-HERB"):       newSizeClass = "SCATTERED"
+        elif (sizeClass == "SCATTERED"):         newSizeClass = "CLUMPED"
+        elif (sizeClass == "CLUMPED"):           newSizeClass = "OPEN-LOW-SHRUB"
+        elif (sizeClass == "OPEN-TALL-SHRUB"):   newSizeClass = "OPEN-MID-SHRUB"
+        elif (sizeClass == "OPEN-MID-SHRUB"):    newSizeClass = "OPEN-LOW-SHRUB"
+        elif (sizeClass == "OPEN-LOW-SHRUB"):    newSizeClass = "CLOSED-TALL-SHRUB"
+        elif (sizeClass == "CLOSED-TALL-SHRUB"): newSizeClass = "CLOSED-MID-SHRUB"
+        elif (sizeClass == "CLOSED-MID-SHRUB"):  newSizeClass = "CLOSED-LOW-SHRUB"
+
+        if (newSizeClass <> "" and isValidState(group,species,newSizeClass,density)):
+            newState = [species,newSizeClass,density]
+            return newState
+
+    return newState
+#end fixInvalidCaseTwo
+
+def isForestedGroup(group):
+    return (group == "A1" or group == "A2" or group == "B1" or group == "B2"
+            or group == "B3" or group == "C1" or group == "C2" or group == "D1"
+            or group == "D2" or group == "D3" or group == "E1" or group == "E2"
+            or group == "F1" or group == "F2" or group == "G1" or group == "G2")
+#end isForestedGroup
+
+def fixSpeciesOrder(species):
+    newSpecies = ""
+
+    if (species == "DF-PP"):       newSpecies = "PP-DF"
+    elif (species == "AF-DF"):     newSpecies = "DF-AF"
+    elif (species == "LP-DF"):     newSpecies = "DF-LP"
+    elif (species == "ES-DF"):     newSpecies = "DF-ES"
+    elif (species == "LP-ES"):     newSpecies = "ES-LP"
+    elif (species == "AF-ES"):     newSpecies = "ES-AF"
+    elif (species == "AF-LP"):     newSpecies = "LP-AF"
+    elif (species == "DF-WB"):     newSpecies = "WB-DF"
+    elif (species == "ES-WB"):     newSpecies = "WB-ES"
+
+    elif (species == "LP-PP-DF"):  newSpecies = "DF-PP-LP"
+    elif (species == "PP-LP-DF"):  newSpecies = "DF-PP-LP"
+    elif (species == "PP-DF-LP"):  newSpecies = "DF-PP-LP"
+    elif (species == "LP-DF-PP"):  newSpecies = "DF-PP-LP"
+    elif (species == "DF-LP-PP"):  newSpecies = "DF-PP-LP"
+
+    elif (species == "PP-PF-DF"):  newSpecies = "DF-PP-PF"
+    elif (species == "PF-PP-DF"):  newSpecies = "DF-PP-PF"
+    elif (species == "DF-PF-PP"):  newSpecies = "DF-PP-PF"
+    elif (species == "PF-DF-PP"):  newSpecies = "DF-PP-PF"
+    elif (species == "PP-DF-PF"):  newSpecies = "DF-PP-PF"
+
+    elif (species == "DF-ES-LP"):  newSpecies = "DF-LP-ES"
+    elif (species == "ES-DF-LP"):  newSpecies = "DF-LP-ES"
+    elif (species == "LP-ES-DF"):  newSpecies = "DF-LP-ES"
+    elif (species == "ES-LP-DF"):  newSpecies = "DF-LP-ES"
+    elif (species == "LP-DF-ES"):  newSpecies = "DF-LP-ES"
+
+    elif (species == "DF-AF-LP"):  newSpecies = "DF-LP-AF"
+    elif (species == "AF-DF-LP"):  newSpecies = "DF-LP-AF"
+    elif (species == "LP-AF-DF"):  newSpecies = "DF-LP-AF"
+    elif (species == "AF-LP-DF"):  newSpecies = "DF-LP-AF"
+    elif (species == "LP-DF-AF"):  newSpecies = "DF-LP-AF"
+
+    elif (species == "WB-LP-ES"):  newSpecies = "WB-ES-LP"
+    elif (species == "LP-WB-ES"):  newSpecies = "WB-ES-LP"
+    elif (species == "ES-LP-WB"):  newSpecies = "WB-ES-LP"
+    elif (species == "LP-ES-WB"):  newSpecies = "WB-ES-LP"
+    elif (species == "ES-WB-LP"):  newSpecies = "WB-ES-LP"
+
+    elif (species == "WB-AF-ES"):  newSpecies = "WB-ES-AF"
+    elif (species == "AF-WB-ES"):  newSpecies = "WB-ES-AF"
+    elif (species == "ES-AF-WB"):  newSpecies = "WB-ES-AF"
+    elif (species == "AF-ES-WB"):  newSpecies = "WB-ES-AF"
+    elif (species == "ES-WB-AF"):  newSpecies = "WB-ES-AF"
+
+    elif (species == "AF-LP-ES"):  newSpecies = "AF-ES-LP"
+    elif (species == "LP-AF-ES"):  newSpecies = "AF-ES-LP"
+    elif (species == "ES-LP-AF"):  newSpecies = "AF-ES-LP"
+    elif (species == "LP-ES-AF"):  newSpecies = "AF-ES-LP"
+    elif (species == "ES-AF-LP"):  newSpecies = "AF-ES-LP"
+
+    return newSpecies    
+#end fixSpeciesOrder
+    
+def fixInvalidCaseThree(group,species,sizeClass,density):
+    global speciesLifeMap
+    
+    newState = []
+
+    newSpecies = ""
+    newDensity = density
+    newSizeClass = sizeClass
+
+    if (isTreeSpecies(species) and isForestedGroup(group)):
+        newSpecies = fixSpeciesOrder(species)
+        if (newSpecies == ""):
+            if (species == "ES-AF"):  newSpecies = "ES"
+            elif (species == "PP-DF"): newSpecies = "DF"
+            elif (species == "DF-AF"): newSpecies = "DF"
+            elif (species == "WB-AF"): newSpecies = "AF"
+
+            # Case of LP-->WB handled below, want to try LP-->PF first
+            elif (species == "WB"): newSpecies = "LP"
+            elif (species == "DF"): newSpecies = "AF"
+            elif (species == "LP"): newSpecies = "PF"
+            elif (species == "PF"): newSpecies = "LP"
+
+        if (newSpecies <> "" and isValidState(group,newSpecies,sizeClass,density)):
+            newState = [newSpecies,sizeClass,density]
+            return newState
+
+        if (species == "LP"):
+            newSpecies = "WB"
+            if (isValidState(group,newSpecies,sizeClass,density)):
+                newState = [newSpecies,sizeClass,density]
+                return newState
+
+    if (isTreeSpecies(species) and isForestedGroup(group) == False):
+        if (species == "LP" or species == "WB"):
+            if (isValidState(group,"PF",sizeClass,density)):
+                newState = ["PF",sizeClass,density]
+                return newState
+
+        if (group == "XX1"):     newState = ["AGR","AGR",1]
+        elif (group == "XX4"):   newState = ["NF","NF",1]
+        elif (group == "XX5"):   newState = ["WATER","WATER",1]
+        elif (group == "NF1A"):  newState = ["MID-SERAL","UNIFORM",2]
+        elif (group == "NF1B"):  newState = ["MID-SERAL","UNIFORM",2]
+        elif (group == "NF1C"):  newState = ["MID-SERAL","UNIFORM",2]
+        elif (group == "NF2A"):  newState = ["MESIC-SHRUBS","CLUMPED",2]
+        elif (group == "NF2B"):  newState = ["FESCUE","UNIFORM",3]
+        elif (group == "NF2C"):  newState = ["AGSP","UNIFORM",3]
+        elif (group == "NF2D"):  newState = ["AGSP","UNIFORM",2]
+        elif (group == "NF3A"):  newState = ["FESCUE","UNIFORM",2]
+        elif (group == "NF3B"):  newState = ["HERBS","SCATTERED",2]
+        elif (group == "NF3C"):  newState = ["AGSP","UNIFORM",3]
+        elif (group == "NF3D"):  newState = ["QA","SS",2]
+        elif (group == "NF4A"):  newState = ["RIP-SHRUBS","UNIFORM",4]
+        elif (group == "NF4B"):  newState = ["RIP-SHRUBS","CLUMPED",4]
+        elif (group == "NF4C"):  newState = ["RIP-SHRUBS","CLUMPED",2]
+        elif (group == "NF4D"):  newState = ["RIP-GRAMS","UNIFORM",4]
+        elif (group == "NF4E"):  newState = ["RIP-DECID","SS",2]
+        elif (group == "NF5A"):  newState = ["ALPINE-HERBS","UNIFORM",3]
+        elif (group == "NF5B"):  newState = ["ALPINE-SHRUBS","CLUMPED",2]
+
+        if (isValidState(group,newState[0],newState[1],newState[2])):
+            return newState
+
+    if (isTreeSpecies(species) == False):
+        newSpecies = ""
+
+        if (species == "XERIC-SHRUBS"):
+            newSpecies = "MESIC-SHRUBS"
+        elif (species == "MESIC-SHRUBS"):
+            newSpecies = "ALPINE-SHRUBS"
+            if (isValidState(group,newSpecies,sizeClass,density)):
+                newState = [newSpecies,sizeClass,density]
+                return newState
+            newSpecies == "XERIC-SHRUBS"
+            
+        if (isValidState(group,newSpecies,sizeClass,density)):
+            newState = [newSpecies,sizeClass,density]
+            return newState
+        
+        return fixInvalidCaseOne(group,species,sizeClass,density)
+
+    if (species == "EARLY-SERAL" and isForestedGroup(group)):
+        newSpecies = ""
+        if (group == "A1" or group == "A2" or group == "B1" or group == "B2" \
+            or group == "B3" or group == "C1" or group == "C2"):
+            
+            newSpecies = "PP-DF"
+
+        elif (group == "D1" or group == "D2" or group == "D3" or group == "E1" \
+                 or group == "E2" or group == "F1" or group == "F2"):
+            newSpecies = "DF-LP"
+
+        elif (group == "G1"):
+            newSpecies = "ES-LP"
+
+        elif (group == "G2"):
+            newSpecies = "ES-AF"
+
+        if (isValidState(group,newSpecies,sizeClass,density)):
+            newState = [newSpecies,sizeClass,density]
+            return newState
+
+    if (species == "LATE-SERAL" and isForestedGroup(group)):
+        groups = ["A1","A2","B1","B2","B3","C1","C2","D1"]
+        if (groups.count(group) > 0):
+            newSpecies = "DF"
+        groups = ["D2","D3","E1","E2","F1","F2","G1","G2"]
+        if (groups.count(group) > 0):
+            newSpecies = "AF"
+
+        if (isValidState(group,newSpecies,sizeClass,density)):
+            newState = [newSpecies,sizeClass,density]
+            return newState
+
+    if ((species == "EARLY-SERAL" or species == "LATE-SERAL") and isForestedGroup(group) == False): 
+        return fixInvalidCaseOne(group,species,sizeClass,density)
+
+    if (newSpecies <> ""):
+        return fixInvalidCaseFour(group,newSpecies,sizeClass,density)
+
+    return []
+#end fixInvalidCaseThree
+
+def fixInvalidCaseFour(group,newSpecies,sizeClass,density):
+    global speciesLifeMap
+    
+    newState = []
+
+    newSpecies = ""
+    newDensity = density
+    newSizeClass = sizeClass
+
+    if (isTreeSpecies(species)):
+        if (density == 4):   newDensity = 3
+        elif (density == 3): newDensity = 2
+        elif (density == 2): newDensity = 1
+        else:
+            newDensity = 0
+    else:
+        if (density == 1):   newDensity = 2
+        elif (density == 2): newDensity = 3
+        elif (density == 3): newDensity = 4
+        else:
+            newDensity = 0
+
+    if (newDensity <> 0  and  isValidState(group,newSpecies,sizeClass,newDensity)):
+        newState = [newSpecies,sizeClass,newDensity]
+        return newState
+
+    newSizeClass = null;
+
+    if (isTreeSpecies(newSpecies) == False):
+        if (sizeClass == "UNIFORM"):             newSizeClass = "OPEN-HERB"
+        elif (sizeClass == "OPEN-HERB"):         newSizeClass = "CLOSED-HERB"
+        elif (sizeClass == "CLOSED-HERB"):       newSizeClass = "SCATTERED"
+        elif (sizeClass == "SCATTERED"):         newSizeClass = "CLUMPED"
+        elif (sizeClass == "CLUMPED"):           newSizeClass = "OPEN-LOW-SHRUB"
+        elif (sizeClass == "OPEN-TALL-SHRUB"):   newSizeClass = "OPEN-MID-SHRUB"
+        elif (sizeClass == "OPEN-MID-SHRUB"):    newSizeClass = "OPEN-LOW-SHRUB"
+        elif (sizeClass == "OPEN-LOW-SHRUB"):    newSizeClass = "CLOSED-TALL-SHRUB"
+        elif (sizeClass == "CLOSED-TALL-SHRUB"): newSizeClass = "CLOSED-MID-SHRUB"
+        elif (sizeClass == "CLOSED-MID-SHRUB"):  newSizeClass = "CLOSED-LOW-SHRUB"
+        else:
+          newSizeClass = ""
+    else:
+        if (sizeClass == "VERY-LARGE"): newSizeClass = "LARGE"
+        elif (sizeClass == "LARGE"):    newSizeClass = "MEDIUM"
+        elif (sizeClass == "MEDIUM"):   newSizeClass = "POLE"
+        else:
+            newSizeClass = ""
+
+    if (newSizeClass <> "" and isValidState(group,newSpecies,newSizeClass,density)):
+        newState = [newSpecies,newSizeClass,density]
+        return newState
+
+#end fixInvalidCaseFour
+    
+def isValidState(group,species,sizeClass,density):
+    global pathwayMap
+    
+    key = group + "-" + species + "/" + sizeClass + "/" + str(density)
+    if (pathwayMap.has_key(key)):
+        return True
+    return False
+#end isValidState
+
+def copyInputFC():
+    global inFC
+    global inGDB
+
+    pathsplit = os.path.split(inFC)
+    inFCName = pathsplit[1]
+
+    copyName = inFCName + "_fixed"
+    fc = os.path.join(inGDB,copyName)
+    i = 1
+    while (gp.exists(fc)):
+        copyName = inFCName + "_fixed" + str(i)
+        fc = os.path.join(inGDB,copyName)
+        i = i + 1
+    gp.FeatureClassToFeatureClass(inFC,inGDB,copyName)
+
+    return fc    
+#end copyInputFC
+    
+def main():
+    global inFC
+    global inGDB
+    global pathwayTable
+    global workDir
+    global groupList
+    global pathwayMap
+
+    fc = inFC
+    if (fixIncorrect):
+        fc = copyInputFC()
+        
+    multiLife = isMultipleLifeforms(fc)
+
+    result = checkFields(fc,multiLife)
+    hasSpeciesL  = result[0]
+    hasSizeL     = result[1]
+    hasDensityL  = result[2]
+
+    lives = ['TREE', 'SHRUBS', 'HERBACIOUS', 'AGRICULTURE', 'NA']
+    speciesL = {'TREE':'SPECIES_TR', 'SHRUBS':'SPECIES_S', 'HERBACIOUS':'SPECIES_H', 'AGRICULTURE':'SPECIES_A', 'NA':'SPECIES_N'}
+    sizeL = {'TREE':'SIZE_TR', 'SHRUBS':'SIZE_S', 'HERBACIOUS':'SIZE_H', 'AGRICULTURE':'SIZE_A', 'NA':'SIZE_N'}
+    densityL = {'TREE':'DENSITY_TR', 'SHRUBS':'DENSITY_S', 'HERBACIOUS':'DENSITY_H', 'AGRICULTURE':'DENSITY_A', 'NA':'DENSITY_N'}
+
+    outfile = makepath(workDir,"InvalidStates.txt")
+    fout = open(outfile,"a")
+
+    buildPathwayMaps()
+    
+##    pathwayTableView = "pathwayView"
+##    gp.MakeTableView_management (pathwayTable, pathwayTableView)
+
+    invalidTable = makepath(inGDB,"InvalidStates")
+    gp.CreateTable(inGDB, "InvalidStates")
+
+    invalidTableUnique = makepath(inGDB,"InvalidStatesUnique")
+    gp.CreateTable(inGDB, "InvalidStatesUnique")
+
+    gp.addfield_management(invalidTable,"FC_ID","LONG")
+    gp.addfield_management(invalidTable,"HT_GRP","TEXT")
+    gp.addfield_management(invalidTable,"SPECIES","TEXT")
+    gp.addfield_management(invalidTable,"SIZE_CLASS","TEXT")
+    gp.addfield_management(invalidTable,"AGE","LONG")
+    gp.addfield_management(invalidTable,"DENSITY","LONG")
+
+    gp.addfield_management(invalidTableUnique,"HT_GRP","TEXT")
+    gp.addfield_management(invalidTableUnique,"SPECIES","TEXT")
+    gp.addfield_management(invalidTableUnique,"SIZE_CLASS","TEXT")
+    gp.addfield_management(invalidTableUnique,"AGE","LONG")
+    gp.addfield_management(invalidTableUnique,"DENSITY","LONG")
+
+    fout.write("FC_ID,HT_GRP,SPECIES,SIZE_CLASS,AGE,DENSITY\n")
+
+##    if (isMultlife):
+##        fout.write("FC_ID,HT_GRP")
+##        
+##        for life in lives:
+##            str = "," + speciesL[life] + "," + sizeL[life] + "," + densityL[life]
+##            fout.write(str)
+##            gp.addfield_management(invalidTable,speciesL[life],"TEXT")
+##            gp.addfield_management(invalidTable,sizeL[life],"TEXT")
+##            gp.addfield_management(invalidTable,densityL[life],"TEXT")
+##        fout.write("\n")
+    
+    invalidUnique = {}    
+    invalidRows = gp.InsertCursor(invalidTable)
+
+    inFCLayer = "inFCLayer"
+    gp.MakeFeatureLayer(fc,inFCLayer)
+
+    if (fixIncorrect):
+        rows = gp.UpdateCursor(inFCLayer)
+    else:
+        rows = gp.SearchCursor(inFCLayer)
+        
+    result = gp.GetCount_management(fc)
+    count = int(result.GetOutput(0))
+    
+    gp.SetProgressor("step", "Finding Invalid States...", 0, count, 1)
+    row = rows.Next()
+    while row:
+        if (multiLife):
+            species = {}
+            sizeClass = {}
+            density = {}
+
+            OIDFields = gp.ListFields(fc,"*","OID")
+            fc_id      = row.getValue(OIDFields[0].Name)
+            group = row.getValue("HT_GRP")
+            age   = 1 
+            for life in lives:
+                if (hasSpeciesL[life] and hasSizeL[life] and hasDensityL[life]):
+                    species[life]   = str(row.getValue(speciesL[life]))
+                    sizeClass[life] = str(row.getValue(sizeL[life]))
+                    densityStr      = str(row.getValue(densityL[life]))
+
+                    species[life]   = species[life].strip()                    
+                    sizeClass[life] = sizeClass[life].strip()                    
+                    densityStr      = densityStr.strip()                    
+
+                    if (len(species[life]) == 0 and len(sizeClass[life]) == 0 and len(densityStr) == 0):
+                        continue
+
+                    try:                        
+                        density[life]   = int(densityStr)
+                    except ValueError:
+                        density[life] = 0
+
+                    key = group + "-" + species[life] + "/" + sizeClass[life] + "/" + str(density[life])
+                    if (pathwayMap.has_key(key)):
+                        continue
+                    
+                    # Must have an invalid state.
+                    invalidUnique[key] = [group,species[life],sizeClass[life],1,density[life]]
+                    
+                    fout.write(str(fc_id))
+                    fout.write(",")
+                    fout.write(str(group))
+                    fout.write(",")
+                    fout.write(str(species[life]))
+                    fout.write(",")
+                    fout.write(str(sizeClass[life]))
+                    fout.write(",")
+                    fout.write(str(1))
+                    fout.write(",")
+                    fout.write(str(density[life]))
+                    fout.write("\n")
+
+                    invalidRow = invalidRows.NewRow()
+                    invalidRow.FC_ID      = fc_id
+                    invalidRow.HT_GRP     = group
+                    invalidRow.SPECIES    = species[life]
+                    invalidRow.SIZE_CLASS = sizeClass[life]
+                    invalidRow.AGE        = 1
+                    invalidRow.DENSITY    = density[life]
+                    invalidRows.InsertRow(invalidRow)
+                    
+        else:
+
+            OIDFields = gp.ListFields(fc,"*","OID")
+            fc_id      = row.getValue(OIDFields[0].Name)
+            species    = row.getValue("SPECIES")
+            size_class = row.getValue("SIZE_CLASS")
+            age        = 1
+            density    = row.getValue("DENSITY")
+            group      = row.getValue("HT_GRP")
+
+            key = group + "-" + species + "/" + size_class + "/" + str(density)
+            if (pathwayMap.has_key(key)):
+                gp.SetProgressorPosition()
+                row = rows.Next()
+                continue
+            
+##            speciesSQL   = gp.addfielddelimiters(pathwayTable,"SPECIES")
+##            sizeClassSQL = gp.addfielddelimiters(pathwayTable,"SIZE_CLASS")
+##            ageSQL       = gp.addfielddelimiters(pathwayTable,"AGE")
+##            densitySQL   = gp.addfielddelimiters(pathwayTable,"DENSITY")
+##            groupSQL     = gp.addfielddelimiters(pathwayTable,"HT_GRP")
+##
+##            query = groupSQL + " = '" + group + "'"
+##            query = query + " AND " + speciesSQL + " = '" + species + "'"
+##            query = query + " AND " + sizeClassSQL + " = '" + size_class + "'"
+##            query = query + " AND " + ageSQL + " = " + str(age)
+##            query = query + " AND " + densitySQL + " = " + str(density)
+##
+##            gp.SelectLayerByAttribute_management(pathwayTableView, "NEW_SELECTION", query)
+##
+##            selCount = gp.getCount_management(pathwayTableView)
+##            if (selCount > 0):
+##                del row
+##                row = rows.Next()
+##                continue
+
+            if (fixIncorrect):
+                newState = fixIncorrectState(group,species,size_class,density)
+                if (len(newState) > 0):
+                    row.setValue("SPECIES",newState[0])
+                    row.setValue("SIZE_CLASS",newState[1])
+                    row.setValue("DENSITY",newState[2])
+
+                    gp.SetProgressorPosition()
+                    row = rows.Next()
+                    continue
+               
+            # Must have an invalid state.
+            invalidUnique[key] = [group,species,size_class,1,density]
+
+            fout.write(str(fc_id))
+            fout.write(",")
+            fout.write(str(group))
+            fout.write(",")
+            fout.write(str(species))
+            fout.write(",")
+            fout.write(str(size_class))
+            fout.write(",")
+            fout.write(str(1))
+            fout.write(",")
+            fout.write(str(density))
+            fout.write("\n")
+            
+            invalidRow = invalidRows.NewRow()
+            invalidRow.FC_ID      = fc_id
+            invalidRow.SPECIES    = species
+            invalidRow.SIZE_CLASS = size_class
+            invalidRow.AGE        = 1
+            invalidRow.DENSITY    = density
+            invalidRow.HT_GRP     = group
+            invalidRows.InsertRow(invalidRow)
+
+        #end else
+        gp.SetProgressorPosition()    
+        row = rows.Next()
+    #end while
+    del row, rows
+    del invalidRows
+
+    gp.ResetProgressor()
+    gp.SetProgressor("step", "Writing Unique Invalid States to table InvalidStatesUnique...", 0, len(invalidUnique), 1)
+
+    invalidUniqueRows = gp.InsertCursor(invalidTableUnique)
+    for key,value in invalidUnique.iteritems():
+        invalidUniqueRow = invalidUniqueRows.NewRow()
+        invalidUniqueRow.HT_GRP     = value[0]
+        invalidUniqueRow.SPECIES    = value[1]
+        invalidUniqueRow.SIZE_CLASS = value[2]
+        invalidUniqueRow.AGE        = value[3]
+        invalidUniqueRow.DENSITY    = value[4]
+        invalidUniqueRows.InsertRow(invalidUniqueRow)
+        gp.SetProgressorPosition()
+
+    del invalidUniqueRows
+    del invalidUniqueRow
+    gp.ResetProgressor()
+    fout.close()  
+
+#end main
+    
+try:
+    main()
+
+    print "Finished."
+    del gp
+
+except AttributeError, ErrDesc:
+    AddMsgAndPrint(ErrDesc,1)
+    doGPErrorMessages()
+except StandardError, ErrDesc:
+    AddMsgAndPrint(ErrDesc,1)
+    doGPErrorMessages()
+except:
+    if (doGPErrorMessages() == 0):
+        AddMsgAndPrint("An Error Occurred",2)
+    del gp
+
+

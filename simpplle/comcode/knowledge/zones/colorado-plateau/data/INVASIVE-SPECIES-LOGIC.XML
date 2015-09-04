@@ -1,0 +1,2688 @@
+<object-stream>
+  <int>3</int>
+  <int>2</int>
+  <string>PROBABILITY</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>ECO_GROUP_COL</string>
+    <string>SPECIES_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>MOISTURE_COL</string>
+    <string>INVASIVE_SPECIES_COL</string>
+    <string>SOIL_TYPE_COL</string>
+    <string>VEG_FUNC_GROUP_COL</string>
+    <string>DIST_TO_SEED_COL</string>
+    <string>START_VALUE_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>CHANGE_RATE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>INVASIVE_SPECIES_COL</string>
+    <string>CHANGE_RATE_COL</string>
+    <string>STATE_CHANGE_THRESHOLD_COL</string>
+  </list>
+  <int>2</int>
+  <string>PROBABILITY</string>
+  <list>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>ARTR2</string>
+          <string>big sagebrush</string>
+          <Lifeform>
+            <int>1</int>
+            <string>shrubs</string>
+            <int>1</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>MODERATE</string>
+            <int>1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[ARTR2]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture>DRIER</Moisture>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>BRTE</string>
+          <string>cheat grass</string>
+          <Lifeform>
+            <int>1</int>
+            <string>herbacious</string>
+            <int>2</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>LOW</string>
+            <int>0</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>true</boolean>
+        </Species>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../list[13]/Species"/>
+      <list>
+        <SoilType>
+          <int>1</int>
+          <string>Yarts-fine-sandy-loam</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Tragmon-Sheek</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Hesperus-sandy-loam</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Tragmon-Sheek complex</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Fluvents-Fluvaquents complex</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Typic Argiaquolls</string>
+        </SoilType>
+      </list>
+      <string>[Yarts-fine-sandy-loam, Tragmon-Sheek, Hesperus-sandy-loam, Tragmon-Sheek complex, Fluvents-Fluvaquents complex, Typic Argiaquolls]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup>NON_RESPROUTING</VegFunctionalGroup>
+      <long>0</long>
+      <int>25</int>
+      <int>75</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[4]/Species"/>
+      </list>
+      <string>{[ARTR2]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture>WETTER</Moisture>
+        <Moisture>NORMAL</Moisture>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[6]"/>
+      </list>
+      <string>[Hesperus-sandy-loam, Tragmon-Sheek, Yarts-fine-sandy-loam, Tragmon-Sheek complex, Fluvents-Fluvaquents complex, Typic Argiaquolls]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>50</int>
+      <int>75</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>PIED-BB</string>
+          <string>PiedBB</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>DROUGHT</string>
+          <string>Drought</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>BLACK-STAIN-RD</string>
+          <string>BlackStainRD</string>
+          <boolean>false</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[PIED-BB, DROUGHT, BLACK-STAIN-RD]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list>
+        <SoilType>
+          <int>1</int>
+          <string>Arabrab-loamy-sand</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Arabrab-Longburn</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Beje-Tragmon</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Falconry-gravelly-fine-sandy-loam</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Fughes-Herm</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Hesperus-loam</string>
+        </SoilType>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType>
+          <int>1</int>
+          <string>Ilex-loam</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Longburn-Rock-outcrop</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Mikim-loam</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Northrim-cobbly-loam</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Pramiss-very-cobbly-loam</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Prater-loam</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Prater-Dolcan</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Roubideau-loam</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Sheek-Archuleta</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Sheek-Archuleta-Rock-outcrop</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Stephouse-Rock-outcrop</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Torriorthents-Badland</string>
+        </SoilType>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[2]"/>
+        <SoilType>
+          <int>1</int>
+          <string>Ustic-Torriorthents-Gullied-land</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Wauquie-very-stony-loam</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Wauquie-Dolcan</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Wauquie-Dolcan-Rock-outcrop</string>
+        </SoilType>
+        <SoilType>
+          <int>1</int>
+          <string>Zigzag-Sideshow</string>
+        </SoilType>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Tragmon-Sheek, Ustic-Torriorthents-Gullied-land, Wauquie-very-stony-loam, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Zigzag-Sideshow, Yarts-fine-sandy-loam]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup>RESPROUTING</VegFunctionalGroup>
+      <long>0</long>
+      <int>2</int>
+      <int>3</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[PIED-BB, DROUGHT, BLACK-STAIN-RD]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>1</int>
+      <int>1</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[PIED-BB, DROUGHT, BLACK-STAIN-RD]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[23]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Tragmon-Sheek, Ustic-Torriorthents-Gullied-land, Wauquie-very-stony-loam, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Zigzag-Sideshow, Yarts-fine-sandy-loam]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>10</int>
+      <int>40</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[PIED-BB, DROUGHT, BLACK-STAIN-RD]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>10</int>
+      <int>25</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[PIED-BB, DROUGHT, BLACK-STAIN-RD]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[23]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Tragmon-Sheek, Ustic-Torriorthents-Gullied-land, Wauquie-very-stony-loam, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Zigzag-Sideshow, Yarts-fine-sandy-loam]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>8</int>
+      <int>5</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[PIED-BB, DROUGHT, BLACK-STAIN-RD]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>5</int>
+      <int>1</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[PIED-BB, DROUGHT, BLACK-STAIN-RD]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[23]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Ustic-Torriorthents-Gullied-land, Tragmon-Sheek, Wauquie-very-stony-loam, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Zigzag-Sideshow, Yarts-fine-sandy-loam]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>25</int>
+      <int>40</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[3]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[PIED-BB, DROUGHT, BLACK-STAIN-RD]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>25</int>
+      <int>25</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>STAND-REPLACING-FIRE</string>
+          <string>StandReplacingFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[23]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Tragmon-Sheek, Ustic-Torriorthents-Gullied-land, Wauquie-very-stony-loam, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Zigzag-Sideshow, Yarts-fine-sandy-loam]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>2</int>
+      <int>3</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>1</int>
+      <int>1</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Tragmon-Sheek, Ustic-Torriorthents-Gullied-land, Wauquie-very-stony-loam, Wauquie-Dolcan-Rock-outcrop, Yarts-fine-sandy-loam, Zigzag-Sideshow]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>8</int>
+      <int>5</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>5</int>
+      <int>1</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[23]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Mikim-loam, Longburn-Rock-outcrop, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Ustic-Torriorthents-Gullied-land, Wauquie-very-stony-loam, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Yarts-fine-sandy-loam, Zigzag-Sideshow]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>25</int>
+      <int>75</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>10</int>
+      <int>40</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[23]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Ustic-Torriorthents-Gullied-land, Wauquie-very-stony-loam, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Yarts-fine-sandy-loam, Zigzag-Sideshow]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>50</int>
+      <int>75</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>25</int>
+      <int>40</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>CANU4</string>
+          <string>CANU4</string>
+          <Lifeform reference="../../../../InvasiveSpeciesLogicData/list[13]/Species/Lifeform"/>
+          <FireResistance reference="../../../../InvasiveSpeciesLogicData/list[13]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>true</boolean>
+        </Species>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <Species reference="../list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[23]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Ustic-Torriorthents-Gullied-land, Wauquie-very-stony-loam, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Yarts-fine-sandy-loam, Zigzag-Sideshow]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>2</int>
+      <int>2</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>1</int>
+      <int>1</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[23]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Ustic-Torriorthents-Gullied-land, Wauquie-very-stony-loam, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Yarts-fine-sandy-loam, Zigzag-Sideshow]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>5</int>
+      <int>5</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData[3]/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>0</int>
+      <int>0</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[23]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Pramiss-very-cobbly-loam, Prater-loam, Prater-Dolcan, Roubideau-loam, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Stephouse-Rock-outcrop, Torriorthents-Badland, Ustic-Torriorthents-Gullied-land, Wauquie-very-stony-loam, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Yarts-fine-sandy-loam, Zigzag-Sideshow]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>25</int>
+      <int>50</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>10</int>
+      <int>5</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      <list>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[2]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[4]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[5]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[6]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType[3]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[8]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[9]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[10]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[11]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[14]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[13]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[12]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[15]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[18]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[16]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[17]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[19]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[21]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[23]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[24]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[22]"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData/list[14]/SoilType"/>
+        <SoilType reference="../../../InvasiveSpeciesLogicData[3]/list[14]/SoilType[25]"/>
+      </list>
+      <string>[Arabrab-loamy-sand, Arabrab-Longburn, Beje-Tragmon, Falconry-gravelly-fine-sandy-loam, Fughes-Herm, Hesperus-loam, Hesperus-sandy-loam, Ilex-loam, Longburn-Rock-outcrop, Mikim-loam, Northrim-cobbly-loam, Prater-Dolcan, Prater-loam, Pramiss-very-cobbly-loam, Roubideau-loam, Stephouse-Rock-outcrop, Sheek-Archuleta, Sheek-Archuleta-Rock-outcrop, Torriorthents-Badland, Ustic-Torriorthents-Gullied-land, Wauquie-Dolcan, Wauquie-Dolcan-Rock-outcrop, Wauquie-very-stony-loam, Yarts-fine-sandy-loam, Zigzag-Sideshow]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>25</int>
+      <int>75</int>
+    </InvasiveSpeciesLogicData>
+    <InvasiveSpeciesLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesLogicData[11]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture"/>
+        <Moisture reference="../../../InvasiveSpeciesLogicData[2]/list[10]/Moisture[2]"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <Species reference="../../InvasiveSpeciesLogicData[19]/list[13]/Species"/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <VegFunctionalGroup reference="../../InvasiveSpeciesLogicData/VegFunctionalGroup"/>
+      <long>0</long>
+      <int>10</int>
+      <int>25</int>
+    </InvasiveSpeciesLogicData>
+  </list>
+  <string>CHANGE_RATE</string>
+  <list>
+    <InvasiveSpeciesChangeLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType>
+          <int>1</int>
+          <string>HERBICIDE-APPLICATION</string>
+        </TreatmentType>
+      </list>
+      <int>1</int>
+      <string>[HERBICIDE-APPLICATION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>BRTE</string>
+          <string>cheat grass</string>
+          <Lifeform>
+            <int>1</int>
+            <string>herbacious</string>
+            <int>2</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>LOW</string>
+            <int>0</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>true</boolean>
+        </Species>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <int>-75</int>
+      <int>0</int>
+    </InvasiveSpeciesChangeLogicData>
+    <InvasiveSpeciesChangeLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../InvasiveSpeciesChangeLogicData/list[9]/TreatmentType"/>
+      </list>
+      <int>1</int>
+      <string>[HERBICIDE-APPLICATION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>CANU4</string>
+          <string>CANU4</string>
+          <Lifeform reference="../../../../InvasiveSpeciesChangeLogicData/list[13]/Species/Lifeform"/>
+          <FireResistance reference="../../../../InvasiveSpeciesChangeLogicData/list[13]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>true</boolean>
+        </Species>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <int>-100</int>
+      <int>0</int>
+    </InvasiveSpeciesChangeLogicData>
+    <InvasiveSpeciesChangeLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>WET-SUCCESSION</string>
+          <string>WetSuccession</string>
+          <boolean>false</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[WET-SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesChangeLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <int>25</int>
+      <int>45</int>
+    </InvasiveSpeciesChangeLogicData>
+    <InvasiveSpeciesChangeLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>DRY-SUCCESSION</string>
+          <string>DrySuccession</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>SUCCESSION</string>
+          <string>Succession</string>
+          <boolean>false</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[DRY-SUCCESSION, SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesChangeLogicData/list[13]/Species"/>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <int>5</int>
+      <int>45</int>
+    </InvasiveSpeciesChangeLogicData>
+    <InvasiveSpeciesChangeLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesChangeLogicData[3]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[WET-SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesChangeLogicData[2]/list[13]/Species"/>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <int>10</int>
+      <int>45</int>
+    </InvasiveSpeciesChangeLogicData>
+    <InvasiveSpeciesChangeLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>logic based on research from:
+
+Floyd-Hanna, L., D. Hanna, W.H. Romme, and T. Crews. 2004. Non-native invasions
+following fire in southwestern Colorado: long term effectiveness of mitigation treatments and
+future predictions.  Joint Fire Sciences Project Number 1496-BLM2-454</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../InvasiveSpeciesChangeLogicData[4]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../InvasiveSpeciesChangeLogicData[4]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>1</int>
+      <string>[DRY-SUCCESSION, SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species reference="../../../InvasiveSpeciesChangeLogicData[2]/list[13]/Species"/>
+      </list>
+      <string>[CANU4]</string>
+      <boolean>true</boolean>
+      <int>5</int>
+      <int>45</int>
+    </InvasiveSpeciesChangeLogicData>
+  </list>
+</object-stream>

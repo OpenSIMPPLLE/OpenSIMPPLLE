@@ -1,0 +1,37 @@
+
+<object-stream>
+  <int>3</int>
+  <int>2</int>
+  <string>PROBABILITY</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>INVASIVE_SPECIES_COL</string>
+    <string>INTERCEPT_COL</string>
+    <string>ELEV_COL</string>
+    <string>SLOPE_COL</string>
+    <string>C0SASP_COL</string>
+    <string>SINASP_COL</string>
+    <string>ANNRAD_COL</string>
+    <string>DISTROAD_COL</string>
+    <string>DISTTRAIL_COL</string>
+    <string>PROCESS_COEFF_COL</string>
+    <string>TREATMENT_COEFF_COL</string>
+    <string>SHRUB_COL</string>
+    <string>GRASS_COL</string>
+    <string>TREE_COL</string>
+    <string>START_VALUE_COL</string>
+  </list>
+  <string>CHANGE_RATE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>INVASIVE_SPECIES_COL</string>
+    <string>CHANGE_RATE_COL</string>
+    <string>CHANGE_AS_PERCENT_COL</string>
+    <string>STATE_CHANGE_THRESHOLD_COL</string>
+  </list>
+  <int>0</int>
+</object-stream>

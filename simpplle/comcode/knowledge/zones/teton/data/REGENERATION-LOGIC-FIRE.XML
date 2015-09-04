@@ -1,0 +1,4894 @@
+
+<object-stream>
+  <int>2</int>
+  <int>0</int>
+  <int>1</int>
+  <int>1</int>
+  <string>ANY</string>
+  <int>3</int>
+  <int>1</int>
+  <string>FIRE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>DENSITY_COL</string>
+    <string>Species</string>
+    <string>Resprouting State</string>
+    <string>Adjacent Resprouting</string>
+    <string>In-place Seed</string>
+    <string>In Landscape</string>
+    <string>Adjacent</string>
+  </list>
+  <int>1</int>
+  <string>FIRE</string>
+  <list>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>AF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>AF-ES-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>LP/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>AF-ES-LP/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>CW</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>CW/SS/4</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>CW/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>CW-MC</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[3]/VegetativeType"/>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>CW-MC/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>DF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>DF-AF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-AF-ES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>F1</string>
+        <string>DF-AF-ES/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-ES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>DF-ES/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[2]/VegetativeType"/>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>DF-LP/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-LP-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[2]/VegetativeType"/>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>DF-LP-AF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-LP-ES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[2]/VegetativeType"/>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>DF-LP-ES/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-PP-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>B1</string>
+        <string>DF-PP-LP/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../VegetativeType"/>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-PP-PF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>A1</string>
+        <string>DF-PP-PF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../VegetativeType"/>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>EARLY-SERAL</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>ES/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ES-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>ES-AF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ES-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[2]/VegetativeType"/>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>ES-LP/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>GA</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>NF3B</string>
+        <string>GA/SS/2</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../VegetativeType"/>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LATE-SERAL</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[2]/VegetativeType"/>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[2]/VegetativeType"/>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LP-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[2]/VegetativeType"/>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>LP-AF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MID-SERAL</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>A2</string>
+        <string>PF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>NF2D</string>
+        <string>PF/SS/2</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PF-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>A2</string>
+        <string>PF-LP/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>NF2D</string>
+        <string>PP/SS/2</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../VegetativeType"/>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>PP-DF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>B1</string>
+        <string>PP-DF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../VegetativeType"/>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>QA</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>QA/SS/4</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>QA/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>QA-MC</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[27]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[27]/VegetativeType[2]"/>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIP-DECID</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>NF4E</string>
+        <string>RIP-DECID/SS/4</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIP-DECID-MC</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[29]/VegetativeType"/>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>WB/SS/2</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>1</int>
+      <VegetativeType reference="../VegetativeType"/>
+      <int>1</int>
+      <VegetativeType reference="../VegetativeType"/>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>WB-AF/SS/2</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-DF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>F1</string>
+        <string>WB-DF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType reference="../VegetativeType"/>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-ES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>G2</string>
+        <string>WB-ES/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-ES-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>WB-ES-AF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-ES-LP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>D3</string>
+        <string>WB-ES-LP/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WB-LP-AF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[31]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>F1</string>
+        <string>WB-LP-AF/SS/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ALPINE-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>FS-S-G</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>NF2D</string>
+        <string>FS-S-G/SCATTERED/1</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>JUSC</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>JUSC-AGSP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>NF3C</string>
+        <string>JUSC-AGSP/SCATTERED/2</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>JUSC-ORMI</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>NF3B</string>
+        <string>JUSC-ORMI/UNIFORM/3</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MESIC-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MTN-FS-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>NF2B</string>
+        <string>MTN-FS-SHRUBS/CLUMPED/2</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MTN-MAHOGANY</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MTN-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIP-S-GRAMS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIP-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>XERIC-FS-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>1</int>
+      <VegetativeType>
+        <int>2</int>
+        <int>1</int>
+        <string>NF2C</string>
+        <string>XERIC-FS-SHRUBS/CLUMPED/2</string>
+        <boolean>true</boolean>
+      </VegetativeType>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>XERIC-SHRUBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>AGSP</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ALPINE-GRASSES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ALPINE-HERBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ALTERED-GRASSES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ALTERED-NOXIOUS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>FESCUE</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>HERBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>NATIVE-FORBS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>NOXIOUS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>RIP-GRAMS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>UPLAND-GRASSES</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>AGR</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>DF-PF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[23]/VegetativeType"/>
+      <int>1</int>
+      <VegetativeType reference="../../FireRegenerationData[23]/VegetativeType"/>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>ND</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>NF</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>NS</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+    <FireRegenerationData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the &quot;Analysis 
+of the Management Situation - Eastside Planning Zone&quot;, 
+October 1999 through March 2000.
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>WATER</string>
+      <int>1</int>
+      <string>ANY</string>
+      <int>2</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+    </FireRegenerationData>
+  </list>
+</object-stream>

@@ -1,0 +1,1155 @@
+<object-stream>
+  <int>2</int>
+  <int>3</int>
+  <int>10</int>
+  <string>ROOT-DISEASE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>ECO_GROUP_COL</string>
+    <string>SPECIES_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>SEVERE-LP-MPB</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROCESS_COL</string>
+    <string>ADJ_PROCESS_COL</string>
+    <string>MPB_HAZARD_COL</string>
+    <string>ADJ_MOD_HAZARD_COL</string>
+    <string>ADJ_HIGH_HAZARD_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>SPRUCE-BEETLE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>PROCESS_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>DF-BEETLE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>DENSITY_COL</string>
+    <string>PROCESS_COL</string>
+    <string>MOISTURE_COL</string>
+    <string>TEMP_COL</string>
+    <string>ADJ_PROCESS_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>SUCCESSION</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>WBP-MPB</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>DENSITY_COL</string>
+    <string>PROCESS_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>ELK-HERBIVORY</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>PP-MPB</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>DENSITY_COL</string>
+    <string>PROCESS_COL</string>
+    <string>ADJ_MOD_HAZARD_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>WP-MPB</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>DENSITY_COL</string>
+    <string>PROCESS_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>LIGHT-LP-MPB</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>PROCESS_COL</string>
+    <string>ADJ_PROCESS_COL</string>
+    <string>MPB_HAZARD_COL</string>
+    <string>ADJ_MOD_HAZARD_COL</string>
+    <string>ADJ_HIGH_HAZARD_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <int>1</int>
+  <string>PP-MPB</string>
+  <list>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>TPP</string>
+          <string>Tree Ponderosa Pine (Dry or Wet)</string>
+          <Lifeform>
+            <int>1</int>
+            <string>trees</string>
+            <int>0</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>HIGH</string>
+            <int>2</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>TPPO</string>
+          <string>Tree Ponderosa Pine / Oak</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>TOPP</string>
+          <string>Tree Oak / Ponderosa Pine</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[TPP, TPPO, TOPP]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>SS</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density>
+          <int>2</int>
+          <string>2</string>
+          <int>2</int>
+          <boolean>false</boolean>
+        </Density>
+      </list>
+      <string>[2]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>5</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>TPP-TDF</string>
+          <string>Tree Ponderosa Pine / Douglas-Fir</string>
+          <Lifeform reference="../../../../ProcessProbLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance>
+            <int>1</int>
+            <string>MODERATE</string>
+            <int>1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>TDF-TPP</string>
+          <string>Tree Douglas-Fir / Ponderosa Pine</string>
+          <Lifeform reference="../../../../ProcessProbLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[TPP-TDF, TDF-TPP]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData/list[6]/SizeClass"/>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density>
+          <int>2</int>
+          <string>3</string>
+          <int>3</int>
+          <boolean>false</boolean>
+        </Density>
+        <Density>
+          <int>2</int>
+          <string>4</string>
+          <int>4</int>
+          <boolean>false</boolean>
+        </Density>
+      </list>
+      <string>[3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[3]"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[2]"/>
+      </list>
+      <string>{[TPP, TOPP, TPPO]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>POLE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MEDIUM</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[POLE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[3]"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[2]"/>
+      </list>
+      <string>{[TPP, TOPP, TPPO]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../ProcessProbLogicData/list[7]/Density"/>
+      </list>
+      <string>[2]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>PP-MPB</string>
+          <string>PpMpb</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[3]"/>
+      </list>
+      <string>{[TPP, TPPO, TOPP]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass[2]"/>
+        <SizeClass>
+          <int>1</int>
+          <string>LARGE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[POLE, MEDIUM, LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../ProcessProbLogicData[2]/list[7]/Density"/>
+        <Density reference="../../../ProcessProbLogicData[2]/list[7]/Density[2]"/>
+      </list>
+      <string>[3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../ProcessProbLogicData[4]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>50</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[3]"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[2]"/>
+      </list>
+      <string>{[TPP, TOPP, TPPO]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[5]/list[6]/SizeClass[3]"/>
+        <SizeClass>
+          <int>1</int>
+          <string>VERY-LARGE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[3]"/>
+        <Species reference="../../../ProcessProbLogicData/list[4]/Species[2]"/>
+      </list>
+      <string>{[TPP, TOPP, TPPO]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[5]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../ProcessProbLogicData[6]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../ProcessProbLogicData[4]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>50</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species"/>
+      </list>
+      <string>{[TDF-TPP, TPP-TDF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData/list[6]/SizeClass"/>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../ProcessProbLogicData/list[7]/Density"/>
+        <Density reference="../../../ProcessProbLogicData[2]/list[7]/Density"/>
+      </list>
+      <string>[2, 3]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>5</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species"/>
+      </list>
+      <string>{[TDF-TPP, TPP-TDF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData/list[6]/SizeClass"/>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../ProcessProbLogicData[2]/list[7]/Density[2]"/>
+      </list>
+      <string>[4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species"/>
+      </list>
+      <string>{[TDF-TPP, TPP-TDF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../ProcessProbLogicData[5]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../ProcessProbLogicData/list[6]/SizeClass"/>
+      </list>
+      <string>{[POLE, MEDIUM, LARGE, SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../ProcessProbLogicData/list[7]/Density"/>
+      </list>
+      <string>[2]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>5</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species"/>
+      </list>
+      <string>{[TDF-TPP, TPP-TDF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../ProcessProbLogicData[5]/list[6]/SizeClass[3]"/>
+      </list>
+      <string>{[POLE, MEDIUM, LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../ProcessProbLogicData[2]/list[7]/Density"/>
+        <Density reference="../../../ProcessProbLogicData[2]/list[7]/Density[2]"/>
+      </list>
+      <string>[3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species"/>
+      </list>
+      <string>{[TDF-TPP, TPP-TDF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../ProcessProbLogicData/list[7]/Density"/>
+        <Density reference="../../../ProcessProbLogicData[2]/list[7]/Density[2]"/>
+      </list>
+      <string>[2, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../ProcessProbLogicData[4]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species"/>
+      </list>
+      <string>{[TDF-TPP, TPP-TDF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../ProcessProbLogicData[3]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[POLE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../ProcessProbLogicData[2]/list[7]/Density[2]"/>
+      </list>
+      <string>[4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../ProcessProbLogicData[4]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>50</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species"/>
+      </list>
+      <string>{[TDF-TPP, TPP-TDF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[5]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../ProcessProbLogicData[6]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species"/>
+      </list>
+      <string>{[TDF-TPP, TPP-TDF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[5]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../ProcessProbLogicData[6]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../ProcessProbLogicData/list[7]/Density"/>
+      </list>
+      <string>[2]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../ProcessProbLogicData[4]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+    <ProcessProbLogicData>
+      <int>6</int>
+      <int>1</int>
+      <string>Ponderosa Pine  Mountain Pine Beetle taken from a modification of :
+
+Munson and Anhold, 1995.  Site Risk Rating for Mountian Pine Beetle in ponderosa pine.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species[2]"/>
+        <Species reference="../../../ProcessProbLogicData[2]/list[4]/Species"/>
+      </list>
+      <string>{[TDF-TPP, TPP-TDF]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProcessProbLogicData[5]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../ProcessProbLogicData[6]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../ProcessProbLogicData[2]/list[7]/Density"/>
+        <Density reference="../../../ProcessProbLogicData[2]/list[7]/Density[2]"/>
+      </list>
+      <string>[3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../ProcessProbLogicData[4]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <int>1</int>
+      <int>1</int>
+      <string>PP-MPB</string>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <int>25</int>
+    </ProcessProbLogicData>
+  </list>
+  <int>0</int>
+</object-stream>

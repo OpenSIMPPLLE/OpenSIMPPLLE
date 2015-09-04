@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inheritJdk="true">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<levels>
+		<level name="commons-collections-3.1" value="project"/>
+		<level name="hibernate" value="project"/>
+		<level name="XStream" value="project"/>
+		<level name="SIMPPLLE Extra" value="project"/>
+		<level name="jbcl" value="project"/>
+	</levels>
+</component>

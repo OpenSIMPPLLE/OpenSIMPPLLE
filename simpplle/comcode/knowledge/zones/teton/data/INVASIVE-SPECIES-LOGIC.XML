@@ -1,0 +1,28 @@
+
+<object-stream>
+  <int>3</int>
+  <int>2</int>
+  <string>PROBABILITY</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>INVASIVE_SPECIES_COL</string>
+    <string>SOIL_TYPE_COL</string>
+    <string>VEG_FUNC_GROUP_COL</string>
+    <string>DIST_TO_SEED_COL</string>
+    <string>START_VALUE_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <string>CHANGE_RATE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>INVASIVE_SPECIES_COL</string>
+    <string>CHANGE_RATE_COL</string>
+    <string>CHANGE_AS_PERCENT_COL</string>
+    <string>STATE_CHANGE_THRESHOLD_COL</string>
+  </list>
+  <int>0</int>
+</object-stream>

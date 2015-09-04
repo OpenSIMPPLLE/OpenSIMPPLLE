@@ -1,0 +1,395 @@
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>FIRE_SUPP_SPREAD_RATE_LOGIC</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>SLOPE_COL</string>
+    <string>AVERAGE_RATE_COL</string>
+    <string>EXTREME_RATE_COL</string>
+  </list>
+  <int>1</int>
+  <string>FIRE_SUPP_SPREAD_RATE_LOGIC</string>
+  <list>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>HEAVY-BISON-GRAZING</string>
+          <string>HeavyBisonGrazing</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>PRAIRIE-DOG-ACTIVE</string>
+          <string>PrairieDog</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>MODERATE-BISON-GRAZING</string>
+          <string>ModerateBisonGrazing</string>
+          <boolean>false</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[HEAVY-BISON-GRAZING, PRAIRIE-DOG-ACTIVE, MODERATE-BISON-GRAZING]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>1330</int>
+      <int>9900</int>
+    </FireSuppSpreadRateLogicData>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppSpreadRateLogicData/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppSpreadRateLogicData/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppSpreadRateLogicData/list[8]/ProcessType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[HEAVY-BISON-GRAZING, PRAIRIE-DOG-ACTIVE, MODERATE-BISON-GRAZING]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>9900</int>
+      <int>19800</int>
+    </FireSuppSpreadRateLogicData>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>ANHA-CALO-ANGE-SYOC</string>
+          <string>sand bluestem - prairie sandreed - big bluestem - Western snowberry</string>
+          <Lifeform>
+            <int>1</int>
+            <string>shrubs</string>
+            <int>1</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>MODERATE</string>
+            <int>1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PASM-NAVI4-SYOC</string>
+          <string>Western wheatgrass - green needlegrass - Western snowberry</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PASM-NAVI4-CAREX-SYOC</string>
+          <string>Western wheatgrass - green needlegrass - sedges - Western snowberry</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>NAVI4-SCSC-MUCU3-SYOC</string>
+          <string>green needlegrass - little bluestem - plains muhly - Western snowberry</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PASM-HECO26-BOCU-SYOC</string>
+          <string>Western wheatgrass - needleandthread- sideoats grama - Western snowberry</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PASM-BOCU-ANGE-QUMA2</string>
+          <string>Western wheatgrass - sideoats grama - big bluestem - bur oak</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>BOGR2-CAFI-SYOC</string>
+          <string>blue grama - threadleaf sedge - Western snowberry</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>NAVI4-PASM-SYOC</string>
+          <string>green needlegrass - Western wheatgrass - Western snowberry</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>NAVI4-PASM-ANGE-QUMA2</string>
+          <string>green needlegrass - Western wheatgrass - big bluestem - bur oak</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>CAREX-PASM-SYOC</string>
+          <string>sedges -Western wheatgrass - Western snowberry</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>BOGR2-POSE-BUDA-GUSA2</string>
+          <string>blue grama - Sandberg bluegrass - buffalograss - broom snakeweed</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>BOGR2-CAREX-SYOC</string>
+          <string>blue grama - sedges -Western snowberry</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>BOGR2-CAREX-QUMA2</string>
+          <string>blue grama - sedges - bur oak</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ANHA-CALO-ANGE</string>
+          <string>sand bluestem - prairie sandreed - big bluestem</string>
+          <Lifeform>
+            <int>1</int>
+            <string>herbacious</string>
+            <int>2</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>HIGH</string>
+            <int>2</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[ANHA-CALO-ANGE-SYOC, PASM-NAVI4-SYOC, PASM-NAVI4-CAREX-SYOC, NAVI4-SCSC-MUCU3-SYOC, PASM-HECO26-BOCU-SYOC, PASM-BOCU-ANGE-QUMA2, BOGR2-CAFI-SYOC, NAVI4-PASM-SYOC, NAVI4-PASM-ANGE-QUMA2, CAREX-PASM-SYOC, BOGR2-POSE-BUDA-GUSA2, BOGR2-CAREX-SYOC, BOGR2-CAREX-QUMA2, ANHA-CALO-ANGE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>132</int>
+      <int>3300</int>
+    </FireSuppSpreadRateLogicData>
+    <FireSuppSpreadRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>9900</int>
+      <int>19800</int>
+    </FireSuppSpreadRateLogicData>
+  </list>
+</object-stream>

@@ -1,0 +1,115 @@
+
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>REGEN_DELAY</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>ECO_GROUP_COL</string>
+    <string>SPECIES_COL</string>
+    <string>DELAY_COL</string>
+  </list>
+  <int>1</int>
+  <string>REGEN_DELAY</string>
+  <list>
+    <RegenerationDelayLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>PIED</string>
+          <string>PIED</string>
+          <Lifeform>
+            <int>1</int>
+            <string>trees</string>
+            <int>0</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>LOW</string>
+            <int>0</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PIED-JUMO</string>
+          <string>PIED-JUMO</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PIED-JUOS</string>
+          <string>PIED-JUOS</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PIED-JUSC2</string>
+          <string>PIED-JUSC2</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[PIED, PIED-JUMO, PIED-JUOS, PIED-JUSC2]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+    </RegenerationDelayLogicData>
+  </list>
+</object-stream>

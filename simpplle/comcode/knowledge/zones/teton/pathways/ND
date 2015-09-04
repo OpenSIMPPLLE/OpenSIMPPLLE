@@ -1,0 +1,25 @@
+CLASS HABITAT-TYPE-GROUP
+NAME ND
+HABITAT-TYPES 100
+CLIMAX-SPECIES ND
+SERAL-SPECIES ND
+KNOWLEDGE-SOURCE dummy
+This system knowledge is intented to be modified for the Teton Geographic Area in Wyoming.  
+This is only a starting point for development of this geographic area.
+
+This initial default knowldge is from modification of the Eastside of Region One Geographic Area by
+Ecosystem Research Group of Missoula for work on the Shoshone National Forest
+
+
+The original default logic was developed for the Eastside of Region One  through a 
+series of workshops with silviculturists, ecologists, planners, and resource specialists for the "Analysis 
+of the Management Situation - Eastside Planning Zone", 
+October 1999 through March 2000.
+
+
+END-KNOWLEDGE-SOURCE
+END
+
+CLASS ALL-VEG-TYPES
+1
+ND,ND,1,1,SUCCESSION:ND/ND/1:0,ND:49:64,?,?

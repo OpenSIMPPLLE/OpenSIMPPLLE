@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="BuildSimpplleJar" basedir="." default="simpplle">
+	<target name="simpplle" description="Create the JAR file for SIMPPLLE classes and resources">
+
+    <jar destfile="lib/SIMPPLLE.jar"
+      update="false"
+      compress="false">
+      <fileset
+        dir="classes"
+        includes="**/*.class, **/*.xml, **/*.gif, **/*.jpg">
+      </fileset> 
+      <fileset
+        dir="lib"
+        includes="**/*.class, log4j.properties">
+       </fileset> 
+    </jar>
+    
+  </target>
+
+</project>
+

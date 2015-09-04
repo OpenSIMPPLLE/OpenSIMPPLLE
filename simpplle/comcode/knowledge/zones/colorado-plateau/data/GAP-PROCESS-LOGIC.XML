@@ -1,0 +1,23 @@
+
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>GAP_PROCESSES</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>ECO_GROUP_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>DENSITY_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>SEASON_COL</string>
+    <string>MOISTURE_COL</string>
+    <string>TEMP_COL</string>
+    <string>TRACKING_SPECIES_COL</string>
+    <string>OWNERSHIP_COL</string>
+    <string>GAP_PROCESS_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <int>0</int>
+</object-stream>

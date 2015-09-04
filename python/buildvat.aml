@@ -1,0 +1,22 @@
+&severity &error &routine BAILOUT
+&args gridpath
+
+&WORKSPACE [dir %gridpath%]
+&s grid [entryname %gridpath%]
+
+&if ^ [ exists %grid% -grid ] &then
+ &return Grid: %gridpath% does not exist
+
+GRID
+ buildvat %grid%
+QUIT
+
+&return
+
+/*--------------
+&routine BAILOUT
+/*--------------
+&severity &error &ignore
+  &if [ show program ] eq GRID &then quit
+&return &error Error, bailing out!
+

@@ -1,0 +1,30 @@
+&severity &error &routine BAILOUT
+&args gridpath fieldname width outwidth itemtype decimalplace
+
+&WORKSPACE [dir %gridpath%]
+&s grid [entryname %gridpath%]
+
+&if ^ [ exists %grid% -grid ] &then
+ &return Grid: %gridpath% does not exist
+
+&if ^ [exists %grid%.vat -info] &then
+  &DO
+    GRID
+      buildvat %grid%
+    QUIT
+  &end
+
+TABLES
+  additem %grid%.vat %fieldname% %width% %outwidth% %itemtype% %decimalplace%
+QUIT
+
+&return
+
+/*--------------
+&routine BAILOUT
+/*--------------
+ &severity &error &ignore
+ &if [ show program ] eq GRID &then quit
+ &if [ show program ] eq TABLES &then quit
+&return &error Error, bailing out!
+

@@ -1,0 +1,17 @@
+200302261556   1    32     0rsilvers       regionclean xx155513 xx155513
+200302261557   0     0     0rsilvers     dropfeatures xx155513 region.*
+200302261557   0    10     0rsilvers     reselect xx155513 utah_5ac
+200302261557   0     4     0rsilvers     labelerrors utah_5ac unlabeled
+200302261558   1     3     0rsilvers           createlabels utah_5ac
+200302261558   0    11     0rsilvers           build utah_5ac
+200302261616   0     1     0rsilvers copy utah_5ac ut_5_bu
+200302271113   0    23     0rsilvers import cover ut_5_bu.e00 ut_5_bu
+200302271114   0     1     0rsilvers copy ut_5_bu utah_5ac
+200302271146   0     0     0rsilvers ARCEDIT C:\MAGISDATA\UTAH\UTAH_COVS\UTAH_5AC
+200302271146   0    12     0rsilvers build utah_5ac
+200302271229   0     0     0rsilvers ARCEDIT C:\MAGISDATA\UTAH\UTAH_COVS\UTAH_5AC
+200302271230   0    12     0rsilvers build utah_5ac
+200303041607   2    48     0jchew import cover utah_5ac.e00 utah-5ac
+20030728 819   7    14     0rmcfarla copy utah-5ac utah-5b
+20030728 852   6    29     0rmcfarla build utah-5b
+200307291029   1    22     0kmoeller import cover utah-5b utah

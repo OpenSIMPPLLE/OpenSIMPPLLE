@@ -1,0 +1,3000 @@
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>FIRE_SUPP_CLASS_A</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>DENSITY_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>MOISTURE_COL</string>
+    <string>OWNERSHIP_COL</string>
+    <string>ROAD_STATUS_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <int>1</int>
+  <string>FIRE_SUPP_CLASS_A</string>
+  <list>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>CLOSED-LOW-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>UNIFORM</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>CLOSED-MID-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>CLOSED-TALL-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[CLOSED-LOW-SHRUB, UNIFORM, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density>
+          <int>2</int>
+          <string>1</string>
+          <int>1</int>
+          <boolean>true</boolean>
+          <int>0</int>
+          <int>10</int>
+        </Density>
+        <Density>
+          <int>2</int>
+          <string>2</string>
+          <int>2</int>
+          <boolean>true</boolean>
+          <int>11</int>
+          <int>49</int>
+        </Density>
+        <Density>
+          <int>2</int>
+          <string>3</string>
+          <int>3</int>
+          <boolean>true</boolean>
+          <int>50</int>
+          <int>69</int>
+        </Density>
+        <Density>
+          <int>2</int>
+          <string>4</string>
+          <int>4</int>
+          <boolean>true</boolean>
+          <int>70</int>
+          <int>100</int>
+        </Density>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture>WETTER</Moisture>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership>
+          <int>1</int>
+          <string>NF-WILDERNESS</string>
+        </Ownership>
+      </list>
+      <string>[NF-WILDERNESS]</string>
+      <boolean>true</boolean>
+      <int>30</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[CLOSED-LOW-SHRUB, UNIFORM, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture>NORMAL</Moisture>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData/list[12]/Ownership"/>
+      </list>
+      <string>[NF-WILDERNESS]</string>
+      <boolean>true</boolean>
+      <int>10</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[CLOSED-LOW-SHRUB, UNIFORM, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture>DRIER</Moisture>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData/list[12]/Ownership"/>
+      </list>
+      <string>[NF-WILDERNESS]</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>OPEN-LOW-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>OPEN-MID-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>OPEN-TALL-SHRUB</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>CLUMPED</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData/list[12]/Ownership"/>
+      </list>
+      <string>[NF-WILDERNESS]</string>
+      <boolean>true</boolean>
+      <int>30</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData/list[12]/Ownership"/>
+      </list>
+      <string>[NF-WILDERNESS]</string>
+      <boolean>true</boolean>
+      <int>10</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData/list[12]/Ownership"/>
+      </list>
+      <string>[NF-WILDERNESS]</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[UNIFORM, CLOSED-LOW-SHRUB, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership>
+          <int>1</int>
+          <string>NF-OTHER</string>
+        </Ownership>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list>
+        <RoadsStatus>OPEN</RoadsStatus>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[UNIFORM, CLOSED-LOW-SHRUB, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData[7]/list[12]/Ownership"/>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>68</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[UNIFORM, CLOSED-LOW-SHRUB, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData[7]/list[12]/Ownership"/>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>30</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[UNIFORM, CLOSED-LOW-SHRUB, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData[7]/list[12]/Ownership"/>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list>
+        <RoadsStatus>NONE</RoadsStatus>
+        <RoadsStatus>CLOSED</RoadsStatus>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[UNIFORM, CLOSED-LOW-SHRUB, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData[7]/list[12]/Ownership"/>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[10]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[10]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[UNIFORM, CLOSED-LOW-SHRUB, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData[7]/list[12]/Ownership"/>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>20</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[10]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[10]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[UNIFORM, CLOSED-LOW-SHRUB, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[UNIFORM, CLOSED-LOW-SHRUB, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[4]/list[6]/SizeClass[4]"/>
+      </list>
+      <string>{[UNIFORM, CLOSED-LOW-SHRUB, CLOSED-MID-SHRUB, CLOSED-TALL-SHRUB, OPEN-LOW-SHRUB, OPEN-MID-SHRUB, OPEN-TALL-SHRUB, CLUMPED]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[1, 2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>SS</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>POLE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MEDIUM</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LARGE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>VERY-LARGE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType>
+          <int>1</int>
+          <string>ECOSYSTEM-MANAGEMENT-BROADCAST-BURN</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>ECOSYSTEM-MANAGEMENT-UNDERBURN</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>PRECOMMERCIAL-THINNING</string>
+        </TreatmentType>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-BROADCAST-BURN, ECOSYSTEM-MANAGEMENT-UNDERBURN, PRECOMMERCIAL-THINNING]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[3]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-BROADCAST-BURN, ECOSYSTEM-MANAGEMENT-UNDERBURN, PRECOMMERCIAL-THINNING]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[3]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-BROADCAST-BURN, ECOSYSTEM-MANAGEMENT-UNDERBURN, PRECOMMERCIAL-THINNING]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[3]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-BROADCAST-BURN, ECOSYSTEM-MANAGEMENT-UNDERBURN, PRECOMMERCIAL-THINNING]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[3]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-BROADCAST-BURN, ECOSYSTEM-MANAGEMENT-UNDERBURN, PRECOMMERCIAL-THINNING]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[3]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-BROADCAST-BURN, ECOSYSTEM-MANAGEMENT-UNDERBURN, PRECOMMERCIAL-THINNING]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>LIGHT-SEVERITY-FIRE</string>
+          <string>LightSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>MIXED-SEVERITY-FIRE</string>
+          <string>MixedSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[22]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[22]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[22]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[22]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>ROOT-DISEASE</string>
+          <string>RootDisease</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>PP-MPB</string>
+          <string>PpMpb</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>SEVERE-BARK-BEETLES</string>
+          <string>SevereBarkBeetles</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>10</int>
+      <string>[ROOT-DISEASE, PP-MPB, SEVERE-BARK-BEETLES]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>10</int>
+      <string>[ROOT-DISEASE, PP-MPB, SEVERE-BARK-BEETLES]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[3]"/>
+        <Density reference="../../../FireSuppClassALogicData/list[7]/Density[4]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>10</int>
+      <string>[ROOT-DISEASE, PP-MPB, SEVERE-BARK-BEETLES]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[16]/list[6]/SizeClass[5]"/>
+      </list>
+      <string>{[SS, POLE, MEDIUM, LARGE, VERY-LARGE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>30</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>PTS</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LTS</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MTS</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>VLTS</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>PMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>VLMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-UNDERBURN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-UNDERBURN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-UNDERBURN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-UNDERBURN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-UNDERBURN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[16]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[ECOSYSTEM-MANAGEMENT-UNDERBURN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[22]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[22]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[22]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[22]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[22]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[22]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>10</int>
+      <string>[ROOT-DISEASE, PP-MPB, SEVERE-BARK-BEETLES]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>10</int>
+      <string>[ROOT-DISEASE, PP-MPB, SEVERE-BARK-BEETLES]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[3]"/>
+      </list>
+      <int>10</int>
+      <string>[ROOT-DISEASE, PP-MPB, SEVERE-BARK-BEETLES]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[31]/list[6]/SizeClass[8]"/>
+      </list>
+      <string>{[PTS, LTS, MTS, VLTS, PMU, LMU, MMU, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>30</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>8</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+  </list>
+</object-stream>

@@ -1,0 +1,858 @@
+
+<object-stream>
+  <int>3</int>
+  <int>2</int>
+  <string>PROBABILITY</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>INVASIVE_SPECIES_COL</string>
+    <string>INTERCEPT_COL</string>
+    <string>ELEV_COL</string>
+    <string>SLOPE_COL</string>
+    <string>C0SASP_COL</string>
+    <string>SINASP_COL</string>
+    <string>ANNRAD_COL</string>
+    <string>DISTROAD_COL</string>
+    <string>DISTTRAIL_COL</string>
+    <string>PROCESS_COEFF_COL</string>
+    <string>TREATMENT_COEFF_COL</string>
+    <string>SHRUB_COL</string>
+    <string>GRASS_COL</string>
+    <string>TREE_COL</string>
+    <string>START_VALUE_COL</string>
+  </list>
+  <string>CHANGE_RATE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>INVASIVE_SPECIES_COL</string>
+    <string>CHANGE_RATE_COL</string>
+    <string>CHANGE_AS_PERCENT_COL</string>
+    <string>STATE_CHANGE_THRESHOLD_COL</string>
+  </list>
+  <int>2</int>
+  <string>PROBABILITY</string>
+  <list>
+    <InvasiveSpeciesLogicDataMSU>
+      <int>9</int>
+      <int>1</int>
+      <string>This knowledge based on research in a very limited area in Montana.  Before using in any other area the researchers at MSU need to be contacted.
+
+
+Based on research by:
+
+Lisa J. Rew, Bruce Maxwell, and Richard Aspinall
+Land Resources and Environmental Science Department
+Montana State University
+
+Predicting the Occurrence of Non-Indigenous Species Using Environmental and
+Remotely Sensed Data.
+
+Published –
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>LIVU</string>
+          <string>LIVU</string>
+          <Lifeform>
+            <int>1</int>
+            <string>no classification</string>
+            <int>4</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>UNKNOWN/NA</string>
+            <int>-1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>[LIVU]</string>
+      <boolean>true</boolean>
+      <Species reference="../list[13]/Species"/>
+      <int>10</int>
+      <double>1.640516</double>
+      <double>5.53E-4</double>
+      <double>-0.00964</double>
+      <double>-0.14292</double>
+      <double>-0.81591</double>
+      <double>-1.3378</double>
+      <double>-0.00145</double>
+      <double>-3.0E-4</double>
+      <double>1.484524</double>
+      <double>0.320522</double>
+      <double>0.224131</double>
+      <list>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>STAND-REPLACING-FIRE</string>
+          <int>1</int>
+          <double>9.300905</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>MIXED-SEVERITY-FIRE</string>
+          <int>1</int>
+          <double>9.300905</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>LIGHT-SEVERITY-FIRE</string>
+          <int>1</int>
+          <double>9.300905</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+      </list>
+      <string>[{STAND-REPLACING-FIRE 9.300905 1}, {MIXED-SEVERITY-FIRE 9.300905 1}, {LIGHT-SEVERITY-FIRE 9.300905 1}]</string>
+      <boolean>true</boolean>
+      <list>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>TreatmentType</string>
+          <int>1</int>
+          <string>CLEARCUT-WITH-RESERVES</string>
+          <int>1</int>
+          <double>7.88673</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>TreatmentType</string>
+          <int>1</int>
+          <string>CLEARCUT-WITH-RESERVES-PLANT</string>
+          <int>1</int>
+          <double>7.88673</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>TreatmentType</string>
+          <int>1</int>
+          <string>LOW-INTENSITY-GRAZING</string>
+          <int>1</int>
+          <double>0.71624</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>TreatmentType</string>
+          <int>1</int>
+          <string>PRECOMMERCIAL-THINNING</string>
+          <int>1</int>
+          <double>8.332006</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>TreatmentType</string>
+          <int>1</int>
+          <string>COMMERCIAL-THINNING</string>
+          <int>1</int>
+          <double>8.332006</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+      </list>
+      <string>[{CLEARCUT-WITH-RESERVES 7.88673 1}, {CLEARCUT-WITH-RESERVES-PLANT 7.88673 1}, {LOW-INTENSITY-GRAZING 0.71624 1}, {PRECOMMERCIAL-THINNING 8.332006 1}, {COMMERCIAL-THINNING 8.332006 1}]</string>
+      <boolean>true</boolean>
+    </InvasiveSpeciesLogicDataMSU>
+    <InvasiveSpeciesLogicDataMSU>
+      <int>9</int>
+      <int>1</int>
+      <string>This knowledge based on research in a very limited area in Montana.  Before using in any other area the researchers at MSU need to be contacted.
+
+
+Based on research by:
+
+Lisa J. Rew, Bruce Maxwell, and Richard Aspinall
+Land Resources and Environmental Science Department
+Montana State University
+
+Predicting the Occurrence of Non-Indigenous Species Using Environmental and
+Remotely Sensed Data.
+
+Published –
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>CIAR</string>
+          <string>CIAR</string>
+          <Lifeform reference="../../../../InvasiveSpeciesLogicDataMSU/list[13]/Species/Lifeform"/>
+          <FireResistance reference="../../../../InvasiveSpeciesLogicDataMSU/list[13]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>[CIAR]</string>
+      <boolean>true</boolean>
+      <Species reference="../list[13]/Species"/>
+      <int>10</int>
+      <double>2.925917</double>
+      <double>-0.00179</double>
+      <double>-0.00931</double>
+      <double>-0.18878</double>
+      <double>-0.12076</double>
+      <double>0.0</double>
+      <double>-0.00191</double>
+      <double>-2.1E-4</double>
+      <double>-0.39349</double>
+      <double>-0.18093</double>
+      <double>-0.21602</double>
+      <list>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>STAND-REPLACING-FIRE</string>
+          <int>1</int>
+          <double>2.776938</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>MIXED-SEVERITY-FIRE</string>
+          <int>1</int>
+          <double>2.776938</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>LIGHT-SEVERITY-FIRE</string>
+          <int>1</int>
+          <double>0.0</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+      </list>
+      <string>[{STAND-REPLACING-FIRE 2.776938 1}, {MIXED-SEVERITY-FIRE 2.776938 1}, {LIGHT-SEVERITY-FIRE 0.0 1}]</string>
+      <boolean>true</boolean>
+      <list>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>TreatmentType</string>
+          <int>1</int>
+          <string>LOW-INTENSITY-GRAZING</string>
+          <int>1</int>
+          <double>0.965642</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>TreatmentType</string>
+          <int>1</int>
+          <string>PRECOMMERCIAL-THINNING</string>
+          <int>1</int>
+          <double>0.461786</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+      </list>
+      <string>[{LOW-INTENSITY-GRAZING 0.965642 1}, {PRECOMMERCIAL-THINNING 0.461786 1}]</string>
+      <boolean>true</boolean>
+    </InvasiveSpeciesLogicDataMSU>
+    <InvasiveSpeciesLogicDataMSU>
+      <int>9</int>
+      <int>1</int>
+      <string>This knowledge based on research in a very limited area in Montana.  Before using in any other area the researchers at MSU need to be contacted.
+
+
+Based on research by:
+
+Lisa J. Rew, Bruce Maxwell, and Richard Aspinall
+Land Resources and Environmental Science Department
+Montana State University
+
+Predicting the Occurrence of Non-Indigenous Species Using Environmental and
+Remotely Sensed Data.
+
+Published –
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>CEMA</string>
+          <string>CEMA</string>
+          <Lifeform reference="../../../../InvasiveSpeciesLogicDataMSU/list[13]/Species/Lifeform"/>
+          <FireResistance reference="../../../../InvasiveSpeciesLogicDataMSU/list[13]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>[CEMA]</string>
+      <boolean>true</boolean>
+      <Species reference="../list[13]/Species"/>
+      <int>10</int>
+      <double>1.139765</double>
+      <double>-0.00131</double>
+      <double>0.044605</double>
+      <double>0.0</double>
+      <double>-0.27413</double>
+      <double>0.0</double>
+      <double>-0.00342</double>
+      <double>8.62E-5</double>
+      <double>0.0</double>
+      <double>-1.0129</double>
+      <double>-0.82983</double>
+      <list>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>STAND-REPLACING-FIRE</string>
+          <int>1</int>
+          <double>-2.25928</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>MIXED-SEVERITY-FIRE</string>
+          <int>1</int>
+          <double>-2.25928</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>LIGHT-SEVERITY-FIRE</string>
+          <int>1</int>
+          <double>-2.25928</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+      </list>
+      <string>[{STAND-REPLACING-FIRE -2.25928 1}, {MIXED-SEVERITY-FIRE -2.25928 1}, {LIGHT-SEVERITY-FIRE -2.25928 1}]</string>
+      <boolean>true</boolean>
+      <list>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>TreatmentType</string>
+          <int>1</int>
+          <string>LOW-INTENSITY-GRAZING</string>
+          <int>1</int>
+          <double>-0.65549</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>TreatmentType</string>
+          <int>1</int>
+          <string>CLEARCUT-WITH-RESERVES</string>
+          <int>1</int>
+          <double>0.245819</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+      </list>
+      <string>[{LOW-INTENSITY-GRAZING -0.65549 1}, {CLEARCUT-WITH-RESERVES 0.245819 1}]</string>
+      <boolean>true</boolean>
+    </InvasiveSpeciesLogicDataMSU>
+    <InvasiveSpeciesLogicDataMSU>
+      <int>9</int>
+      <int>1</int>
+      <string>This knowledge based on research in a very limited area in Montana.  Before using in any other area the researchers at MSU need to be contacted.
+
+
+Based on research by:
+
+Lisa J. Rew, Bruce Maxwell, and Richard Aspinall
+Land Resources and Environmental Science Department
+Montana State University
+
+Predicting the Occurrence of Non-Indigenous Species Using Environmental and
+Remotely Sensed Data.
+
+Published –
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>BRTE</string>
+          <string>BRTE</string>
+          <Lifeform reference="../../../../InvasiveSpeciesLogicDataMSU/list[13]/Species/Lifeform"/>
+          <FireResistance reference="../../../../InvasiveSpeciesLogicDataMSU/list[13]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <Species reference="../list[13]/Species"/>
+      <int>10</int>
+      <double>-4.56215</double>
+      <double>1.84E-4</double>
+      <double>0.011733</double>
+      <double>0.193674</double>
+      <double>-0.74734</double>
+      <double>0.822304</double>
+      <double>0.0</double>
+      <double>-1.7E-4</double>
+      <double>1.47129</double>
+      <double>0.994888</double>
+      <double>1.049733</double>
+      <list>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>STAND-REPLACING-FIRE</string>
+          <int>1</int>
+          <double>0.733429</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>MIXED-SEVERITY-FIRE</string>
+          <int>1</int>
+          <double>0.733429</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+        <simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+          <int>1</int>
+          <string>ProcessType</string>
+          <int>1</int>
+          <string>LIGHT-SEVERITY-FIRE</string>
+          <int>1</int>
+          <double>0.733429</double>
+        </simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData>
+      </list>
+      <string>[{STAND-REPLACING-FIRE 0.733429 1}, {MIXED-SEVERITY-FIRE 0.733429 1}, {LIGHT-SEVERITY-FIRE 0.733429 1}]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+    </InvasiveSpeciesLogicDataMSU>
+  </list>
+  <string>CHANGE_RATE</string>
+  <list>
+    <InvasiveSpeciesChangeLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>This screen was developed to caputure research done specifically for Mesa Verde National Park in
+the Colorado Plateau Geographic Area.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>2</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>LIVU</string>
+          <string>LIVU</string>
+          <Lifeform>
+            <int>1</int>
+            <string>no classification</string>
+            <int>4</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>UNKNOWN/NA</string>
+            <int>-1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>[LIVU]</string>
+      <boolean>true</boolean>
+      <int>5</int>
+      <boolean>false</boolean>
+      <int>50</int>
+    </InvasiveSpeciesChangeLogicData>
+    <InvasiveSpeciesChangeLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>This screen was developed to caputure research done specifically for Mesa Verde National Park in
+the Colorado Plateau Geographic Area.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>2</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>CIAR</string>
+          <string>CIAR</string>
+          <Lifeform reference="../../../../InvasiveSpeciesChangeLogicData/list[13]/Species/Lifeform"/>
+          <FireResistance reference="../../../../InvasiveSpeciesChangeLogicData/list[13]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>[CIAR]</string>
+      <boolean>true</boolean>
+      <int>5</int>
+      <boolean>false</boolean>
+      <int>50</int>
+    </InvasiveSpeciesChangeLogicData>
+    <InvasiveSpeciesChangeLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>This screen was developed to caputure research done specifically for Mesa Verde National Park in
+the Colorado Plateau Geographic Area.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>2</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>CEMA</string>
+          <string>CEMA</string>
+          <Lifeform reference="../../../../InvasiveSpeciesChangeLogicData/list[13]/Species/Lifeform"/>
+          <FireResistance reference="../../../../InvasiveSpeciesChangeLogicData/list[13]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>[CEMA]</string>
+      <boolean>true</boolean>
+      <int>5</int>
+      <boolean>false</boolean>
+      <int>50</int>
+    </InvasiveSpeciesChangeLogicData>
+    <InvasiveSpeciesChangeLogicData>
+      <int>9</int>
+      <int>1</int>
+      <string>This screen was developed to caputure research done specifically for Mesa Verde National Park in
+the Colorado Plateau Geographic Area.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>2</int>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>BRTE</string>
+          <string>BRTE</string>
+          <Lifeform reference="../../../../InvasiveSpeciesChangeLogicData/list[13]/Species/Lifeform"/>
+          <FireResistance reference="../../../../InvasiveSpeciesChangeLogicData/list[13]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>[BRTE]</string>
+      <boolean>true</boolean>
+      <int>5</int>
+      <boolean>false</boolean>
+      <int>50</int>
+    </InvasiveSpeciesChangeLogicData>
+  </list>
+</object-stream>

@@ -1,0 +1,512 @@
+
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>COMPETITION</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>SELECTED_COL</string>
+    <string>LIFEFORM_COL</string>
+    <string>MIN_CANOPY_COL</string>
+    <string>MAX_CANOPY_COL</string>
+    <string>DENSITY_CHANGE_COL</string>
+    <string>CHANGE_LIFEFORMS_COL</string>
+    <string>ACTION_COL</string>
+  </list>
+  <int>1</int>
+  <string>COMPETITION</string>
+  <list>
+    <DoCompetitionData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>BA</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>CLUMPED</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LARGE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LARGE-SH</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MEDIUM</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MEDIUM-SH</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>ND</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>NF</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>NS</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>SMALL-SH</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>UNIFORM</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>URBAN</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>VERY-LARGE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>VLMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>WATER</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>NOT (ES or SS)</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <Lifeform>
+        <int>1</int>
+        <string>trees</string>
+        <int>0</int>
+      </Lifeform>
+      <boolean>true</boolean>
+      <int>11</int>
+      <int>70</int>
+      <DoCompetitionDataDensityChange>DECREASED</DoCompetitionDataDensityChange>
+      <list>
+        <Lifeform>
+          <int>1</int>
+          <string>shrubs</string>
+          <int>1</int>
+        </Lifeform>
+        <Lifeform>
+          <int>1</int>
+          <string>herbacious</string>
+          <int>2</int>
+        </Lifeform>
+      </list>
+      <DoCompetitionDataActions>DENSITY_UP_ONE</DoCompetitionDataActions>
+    </DoCompetitionData>
+    <DoCompetitionData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[8]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[9]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[10]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[11]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[12]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[13]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[14]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[15]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[16]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[17]"/>
+      </list>
+      <string>NOT (ES or SS)</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <Lifeform reference="../../DoCompetitionData/Lifeform"/>
+      <boolean>true</boolean>
+      <int>11</int>
+      <int>70</int>
+      <DoCompetitionDataDensityChange>INCREASED</DoCompetitionDataDensityChange>
+      <list>
+        <Lifeform reference="../../../DoCompetitionData/list[13]/Lifeform"/>
+        <Lifeform reference="../../../DoCompetitionData/list[13]/Lifeform[2]"/>
+      </list>
+      <DoCompetitionDataActions>DENSITY_DOWN_ONE</DoCompetitionDataActions>
+    </DoCompetitionData>
+    <DoCompetitionData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[3]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[4]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[5]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[6]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[7]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[8]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[9]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[10]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[11]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[12]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[13]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[14]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[15]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[16]"/>
+        <SizeClass reference="../../../DoCompetitionData/list[6]/SizeClass[17]"/>
+      </list>
+      <string>NOT (ES or SS)</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <Lifeform reference="../../DoCompetitionData/Lifeform"/>
+      <boolean>true</boolean>
+      <int>71</int>
+      <int>100</int>
+      <DoCompetitionDataDensityChange>ANY</DoCompetitionDataDensityChange>
+      <list>
+        <Lifeform reference="../../../DoCompetitionData/list[13]/Lifeform"/>
+        <Lifeform reference="../../../DoCompetitionData/list[13]/Lifeform[2]"/>
+      </list>
+      <DoCompetitionDataActions>LOWEST_DENSITY</DoCompetitionDataActions>
+    </DoCompetitionData>
+    <DoCompetitionData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure>NON_FOREST</SizeClassStructure>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <Lifeform reference="../../DoCompetitionData/list[13]/Lifeform"/>
+      <boolean>true</boolean>
+      <int>11</int>
+      <int>41</int>
+      <DoCompetitionDataDensityChange reference="../../DoCompetitionData/DoCompetitionDataDensityChange"/>
+      <list>
+        <Lifeform reference="../../../DoCompetitionData/list[13]/Lifeform[2]"/>
+      </list>
+      <DoCompetitionDataActions reference="../../DoCompetitionData/DoCompetitionDataActions"/>
+    </DoCompetitionData>
+    <DoCompetitionData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../DoCompetitionData[4]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <Lifeform reference="../../DoCompetitionData/list[13]/Lifeform"/>
+      <boolean>true</boolean>
+      <int>41</int>
+      <int>71</int>
+      <DoCompetitionDataDensityChange reference="../../DoCompetitionData[2]/DoCompetitionDataDensityChange"/>
+      <list>
+        <Lifeform reference="../../../DoCompetitionData/list[13]/Lifeform[2]"/>
+      </list>
+      <DoCompetitionDataActions reference="../../DoCompetitionData[2]/DoCompetitionDataActions"/>
+    </DoCompetitionData>
+    <DoCompetitionData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../DoCompetitionData[4]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <Lifeform reference="../../DoCompetitionData/list[13]/Lifeform"/>
+      <boolean>true</boolean>
+      <int>71</int>
+      <int>100</int>
+      <DoCompetitionDataDensityChange reference="../../DoCompetitionData[3]/DoCompetitionDataDensityChange"/>
+      <list>
+        <Lifeform reference="../../../DoCompetitionData/list[13]/Lifeform[2]"/>
+      </list>
+      <DoCompetitionDataActions reference="../../DoCompetitionData[3]/DoCompetitionDataActions"/>
+    </DoCompetitionData>
+  </list>
+</object-stream>

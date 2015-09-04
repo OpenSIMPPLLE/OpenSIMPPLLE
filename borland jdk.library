@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <!--JBuilder JDK Definition File-->
+  <fullname>borland jdk</fullname>
+  <homepath>../../MySoftware/Borland/JBuilder2005/jdk1.4</homepath>
+  <debug/>
+  <class>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/javaws/javaws.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/charsets.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/ext/dnsns.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/ext/ldapsec.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/ext/localedata.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/ext/sunjce_provider.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/im/indicim.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/im/thaiim.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/jce.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/jsse.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/plugin.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/rt.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/jre/lib/sunrsasign.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/lib/dt.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/lib/htmlconverter.jar]</path>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/lib/tools.jar]</path>
+  </class>
+  <source>
+    <path>[../../MySoftware/Borland/JBuilder2005/jdk1.4/src.zip]</path>
+  </source>
+  <documentation>
+    <path>[../../MySoftware/Borland/JBuilder2005/doc/jdk_docs.jar]/java/api</path>
+  </documentation>
+  <lastmodsaved>1138137942640</lastmodsaved>
+</library>

@@ -1,0 +1,18 @@
+"Bald Eagle",,,"Select major rivers and lakes >= 16 ha & buffer by 1 mile"
+"Bighorn Sheep","70 - 300 degree",">=60%","Select cover types within 450 m buffer around slopes >=60% having aspects 70-300 degrees"
+"Black-backed Woodpecker",,,"Select 5 km buffer around burned areas"
+"Black-footed Ferret",,"<= 10%",
+"Black-tailed Prairie Dog",,"<= 10%",
+"Coeur D'Alene Salamander",,,"Select all hydrography & buffer by 0"
+"Common Loon",,,"Select perennial lakes >= 10 ha & buffer by 90 m"
+"Harlequin Duck",,,"Select perennial streams & buffer by 90 m"
+"Interior Least Tern",,,"Select perennial lakes with islands >= 1000 ha and major river areas with islands & buffer by 90 m"
+"Mountain Plover",,"<= 10%",
+"Northern Bog Lemming",,,"Select grass and shrub riparian within 90 m buffer around lodgepole and mixed subalpine cover types"
+"Northern Goshawk",,"<40%",
+"Northern Leopard Frog",,,"Select all hydrography & buffer by 90 m"
+"Pallid Bat",,,"Select all hydrography & buffer by 500 m"
+"Peregrine Falcon",,"> 40%","Select cover types within 10 mile buffer around exposed rock (nesting sites) with slopes >40%"
+"Piping Plover",,,"Select major river areas with islands and all lakes >= 10 ha & buffer by 90 m;  apply 90m buffer into selected water bodies to reduce unsuitable habitat (open water)"
+"Trumpeter Swan",,,"Select marshes/swamps and perrenial lakes & buffer by 500 m"
+"Whooping Crane",,,"Select swamps/marshes and intermittent lakes & buffer by 1 km; apply 90m buffer into selected water bodies to reduce unsuitable habitat (open water)"

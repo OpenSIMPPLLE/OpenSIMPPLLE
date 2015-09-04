@@ -1,0 +1,13 @@
+200304081040   0    31     0rsilvers       regionclean xx103933 xx103933
+200304081041   0     0     0rsilvers     dropfeatures xx103933 region.*
+200304081042   1    12     0rsilvers     reselect xx103933 kenaisouth
+200304081043   0     4     0rsilvers     labelerrors kenaisouth unlabeled
+200304081043   0     3     0rsilvers           createlabels kenaisouth
+200304081043   0    11     0rsilvers           build kenaisouth
+200304081400   3    41     0cstallin import cover kenaisouth southkenai
+200304081417   0     1     0cstallin build southkenai line
+200304081421   4    31     0cstallin build southkenai
+20030508 927   5    48     0kmoeller export cover southkenai temp NONE
+200307281058   1     4     0rmcfarla copy southkenai southkenaib
+200307281112   1    16     0rmcfarla build southkenaib
+200307291031   1    22     0kmoeller import cover southkenaib southkenai

@@ -1,0 +1,36 @@
+&severity &error &routine bailout
+&args gridpath fieldname selectStatement assignStatement
+
+&WORKSPACE [dir %gridpath%]
+&s grid [entryname %gridpath%]
+
+&if ^ [ exists %grid% -grid ] &then
+ &return Grid: %gridpath% does not exist
+
+&if ^ [exists %grid%.vat -info] &then
+  &DO
+    GRID
+      buildvat %grid%
+    QUIT
+  &end
+
+TABLES
+  &TYPE rselect [VALUE selectStatement]
+  &TYPE calculate %fieldname% = %assignStatement%
+  select %grid%.vat
+  &if [length %selectStatement%] > 0 &then
+    &if [keyword %selectStatement% #] = 0 &then
+      reselect  [unquote %selectStatement%]
+  calculate %fieldname% = %assignStatement%
+QUIT
+
+&return
+
+/*--------------
+&routine BAILOUT
+/*--------------
+ &severity &error &ignore
+ &if [ show program ] eq GRID &then quit
+ &if [ show program ] eq TABLES &then quit
+&return &error Error, bailing out!
+

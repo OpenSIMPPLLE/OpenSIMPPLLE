@@ -1,0 +1,17 @@
+200304281722   1    21     0rsilvers       regionclean xx172133 xx172133
+200304281723   0     0     0rsilvers     dropfeatures xx172133 region.*
+200304281723   0     7     0rsilvers     reselect xx172133 resclpcov
+200304281724   0     1     0rsilvers     labelerrors resclpcov unlabeled
+200304281724   0     2     0rsilvers           createlabels resclpcov
+200304281724   0    12     0rsilvers           build resclpcov
+200304291012   2     5     0rsilvers eliminate resclpcov resclpcov_elm nokeepedge poly
+200304291122   0    20     0rsilvers export cover resclpcov_elm resclpcov_elm.e00
+200304291141   0     1     0rsilvers copy resclpcov_elm gila2
+20030430 921   1    20     0rsilvers export cover gila2 gila2_bu.e00
+200304301100   1    19     0rsilvers EXPORT COVER GILA2 GILA2.E00
+20030507 924   0    19     0rsilvers EXPORT COVER GILA2 GILA2.E00
+200305121406   0     1     0rsilvers copy gila2 gila3
+200305121455   4    20     0rsilvers import cover gila3.e00 gila3
+200307251322   4     8     0rmcfarla copy gila3 gila3b
+200307251336   4    25     0rmcfarla build gila3b
+200307291029   0     9     0kmoeller import cover gila3b gila

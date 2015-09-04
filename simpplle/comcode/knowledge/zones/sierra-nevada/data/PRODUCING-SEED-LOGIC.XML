@@ -1,0 +1,320 @@
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>PRODUCING_SEED</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>PROCESS_COL</string>
+    <string>REGEN_TYPE_COL</string>
+    <string>PRODUCING_SEED_COL</string>
+  </list>
+  <int>1</int>
+  <string>PRODUCING_SEED</string>
+  <list>
+    <ProducingSeedLogicData>
+      <int>2</int>
+      <list>
+        <EvuRegenTypes>IN_LANDSCAPE_SEED</EvuRegenTypes>
+      </list>
+      <int>100</int>
+      <int>6</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>WB</string>
+          <string>Whitebark Pine</string>
+          <Lifeform>
+            <int>1</int>
+            <string>trees</string>
+            <int>0</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>MODERATE</string>
+            <int>1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[WB]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>MEDIUM</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MTS</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LARGE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>LTS</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>VERY-LARGE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>VLMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>VLTS</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[MEDIUM, MMU, MTS, LARGE, LMU, LTS, VERY-LARGE, VLMU, VLTS]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+    </ProducingSeedLogicData>
+    <ProducingSeedLogicData>
+      <int>2</int>
+      <list>
+        <EvuRegenTypes>IN_PLACE_SEED</EvuRegenTypes>
+      </list>
+      <int>100</int>
+      <int>6</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>LP</string>
+          <string>Lodgepole Pine</string>
+          <Lifeform reference="../../../../ProducingSeedLogicData/list[5]/Species/Lifeform"/>
+          <FireResistance reference="../../../../ProducingSeedLogicData/list[5]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>JP</string>
+          <string>Jeffery Pine</string>
+          <Lifeform reference="../../../../ProducingSeedLogicData/list[5]/Species/Lifeform"/>
+          <FireResistance>
+            <int>1</int>
+            <string>HIGH</string>
+            <int>2</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PC</string>
+          <string>Coulter Pine</string>
+          <Lifeform reference="../../../../ProducingSeedLogicData/list[5]/Species/Lifeform"/>
+          <FireResistance reference="../../../../ProducingSeedLogicData/list[5]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PJ</string>
+          <string>Pinyon Pine</string>
+          <Lifeform reference="../../../../ProducingSeedLogicData/list[5]/Species/Lifeform"/>
+          <FireResistance reference="../../../../ProducingSeedLogicData/list[5]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PP</string>
+          <string>Ponderosa Pine</string>
+          <Lifeform reference="../../../../ProducingSeedLogicData/list[5]/Species/Lifeform"/>
+          <FireResistance reference="../../Species[2]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>DF</string>
+          <string>Douglas-Fir</string>
+          <Lifeform reference="../../../../ProducingSeedLogicData/list[5]/Species/Lifeform"/>
+          <FireResistance>
+            <int>1</int>
+            <string>UNKNOWN/NA</string>
+            <int>-1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>RF</string>
+          <string>Red Fir</string>
+          <Lifeform reference="../../../../ProducingSeedLogicData/list[5]/Species/Lifeform"/>
+          <FireResistance reference="../../Species[6]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>WP</string>
+          <string>White Pine</string>
+          <Lifeform reference="../../../../ProducingSeedLogicData/list[5]/Species/Lifeform"/>
+          <FireResistance>
+            <int>1</int>
+            <string>LOW</string>
+            <int>0</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[LP, JP, PC, PJ, PP, DF, RF, WP]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[7]"/>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[9]"/>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[8]"/>
+      </list>
+      <string>{[VERY-LARGE, VLTS, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+    </ProducingSeedLogicData>
+    <ProducingSeedLogicData>
+      <int>2</int>
+      <list>
+        <EvuRegenTypes>ADJACENT_SEED</EvuRegenTypes>
+      </list>
+      <int>100</int>
+      <int>6</int>
+      <int>1</int>
+      <null/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <Lifeform reference="../../../ProducingSeedLogicData/list[5]/Species/Lifeform"/>
+      </list>
+      <list/>
+      <list/>
+      <string>{[trees]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass"/>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[3]"/>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[2]"/>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[4]"/>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[6]"/>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[5]"/>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[7]"/>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[9]"/>
+        <SizeClass reference="../../../ProducingSeedLogicData/list[7]/SizeClass[8]"/>
+      </list>
+      <string>{[MEDIUM, MTS, MMU, LARGE, LTS, LMU, VERY-LARGE, VLTS, VLMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+    </ProducingSeedLogicData>
+  </list>
+</object-stream>

@@ -1,0 +1,1858 @@
+
+<object-stream>
+  <int>2</int>
+  <list>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance>
+          <int>1</int>
+          <string>LOW</string>
+          <int>0</int>
+        </FireResistance>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>GF</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[GF]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density>
+          <int>2</int>
+          <string>1</string>
+          <int>1</int>
+          <boolean>true</boolean>
+          <int>0</int>
+          <int>10</int>
+        </Density>
+      </list>
+      <string>[1]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>LS</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MS</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[LS, MS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+        <Density>
+          <int>2</int>
+          <string>2</string>
+          <int>2</int>
+          <boolean>false</boolean>
+        </Density>
+        <Density>
+          <int>2</int>
+          <string>3</string>
+          <int>3</int>
+          <boolean>false</boolean>
+        </Density>
+      </list>
+      <string>[1, 2, 3]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>TS</string>
+          <string>NON-FOREST</string>
+        </SizeClass>
+      </list>
+      <string>{[TS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[1, 2, 3]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance>
+          <int>1</int>
+          <string>MODERATE</string>
+          <int>1</int>
+        </FireResistance>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[2]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireTypeLogicData[2]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireTypeLogicData[3]/list[6]/SizeClass"/>
+      </list>
+      <string>{[LS, MS, TS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+      </list>
+      <string>[1]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[4]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[2]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireTypeLogicData[2]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireTypeLogicData[3]/list[6]/SizeClass"/>
+      </list>
+      <string>{[LS, MS, TS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance>
+          <int>1</int>
+          <string>HIGH</string>
+          <int>2</int>
+        </FireResistance>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData/list[6]/SizeClass"/>
+      </list>
+      <string>{[GF]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+      </list>
+      <string>[1]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>LARGE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>MEDIUM</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[LARGE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+      </list>
+      <string>[1]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>LIGHT-SEVERITY-FIRE</string>
+          <string>LightSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>MIXED-SEVERITY-FIRE</string>
+          <string>MixedSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[1, 2, 3]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>PP-MPB</string>
+          <string>PpMpb</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[1, 2, 3]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>POLE</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[1, 2, 3]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>SUCCESSION</string>
+          <string>Succession</string>
+          <boolean>false</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[LOW]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>SS</string>
+          <string>SINGLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[1, 2, 3]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireTypeLogicData[10]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[4]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+      </list>
+      <string>[1]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireTypeLogicData[7]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireTypeLogicData[7]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>1</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[4]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[1, 2, 3]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireTypeLogicData[8]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[4]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[1, 2, 3]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[4]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[10]/list[6]/SizeClass"/>
+      </list>
+      <string>{[POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+      </list>
+      <string>[1]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireTypeLogicData[10]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[4]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[10]/list[6]/SizeClass"/>
+      </list>
+      <string>{[POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+      </list>
+      <string>[2]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireTypeLogicData[10]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[4]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[10]/list[6]/SizeClass"/>
+      </list>
+      <string>{[POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[3]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireTypeLogicData[10]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[4]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[11]/list[6]/SizeClass"/>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+      </list>
+      <string>[1]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[4]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[11]/list[6]/SizeClass"/>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+      </list>
+      <string>[2]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[4]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[MODERATE]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[11]/list[6]/SizeClass"/>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[3]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[6]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[10]/list[6]/SizeClass"/>
+      </list>
+      <string>{[POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+      </list>
+      <string>[1]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[6]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[10]/list[6]/SizeClass"/>
+      </list>
+      <string>{[POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+      </list>
+      <string>[2]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[6]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[10]/list[6]/SizeClass"/>
+      </list>
+      <string>{[POLE]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[3]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[6]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[11]/list[6]/SizeClass"/>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+      </list>
+      <string>[1]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[6]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[11]/list[6]/SizeClass"/>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+      </list>
+      <string>[2]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[6]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[11]/list[6]/SizeClass"/>
+      </list>
+      <string>{[SS]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[3]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[6]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+      </list>
+      <string>[1]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireTypeLogicData[7]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireTypeLogicData[7]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>1</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[6]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[1, 2, 3]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireTypeLogicData[8]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[PP-MPB]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+    <FireTypeLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>system knowledge developed from a workshop in Cedar City, Utah and followup correspondence
+with Forest Service and BLM individuals.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <FireResistance reference="../../../FireTypeLogicData[6]/list[3]/FireResistance"/>
+      </list>
+      <list/>
+      <string>{[HIGH]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass"/>
+        <SizeClass reference="../../../FireTypeLogicData[7]/list[6]/SizeClass[2]"/>
+      </list>
+      <string>{[LARGE, MEDIUM]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireTypeLogicData/list[7]/Density"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[2]"/>
+        <Density reference="../../../FireTypeLogicData[2]/list[7]/Density[3]"/>
+      </list>
+      <string>[1, 2, 3]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </FireTypeLogicData>
+  </list>
+</object-stream>

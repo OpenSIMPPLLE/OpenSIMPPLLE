@@ -1,0 +1,14 @@
+
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>FIRE_SUPP_WEATHER_CLASS_A_LOGIC</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>ECO_GROUP_COL</string>
+    <string>SPECIES_COL</string>
+    <string>MOISTURE_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <int>0</int>
+</object-stream>

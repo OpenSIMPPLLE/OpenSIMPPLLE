@@ -1,0 +1,339 @@
+
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>UNIT_FIRE_TYPE</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>TREES_COL</string>
+    <string>SHRUBS_COL</string>
+    <string>GRASS_COL</string>
+    <string>RESULT_COL</string>
+  </list>
+  <int>1</int>
+  <string>UNIT_FIRE_TYPE</string>
+  <list>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>2</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>3</int>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>NONE</string>
+      <int>2</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>2</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>3</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>3</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+      <int>1</int>
+      <string>STAND-REPLACING-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>MIXED-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+    <VegUnitFireTypeLogicData>
+      <int>1</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2000</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>NONE</string>
+      <int>1</int>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+      <int>1</int>
+      <string>LIGHT-SEVERITY-FIRE</string>
+    </VegUnitFireTypeLogicData>
+  </list>
+</object-stream>

@@ -1,0 +1,310 @@
+/3.2
+(ODB.1
+	FirstRootClassName:	"Legend"
+	Roots:	2
+	Version:	32
+)
+
+(Legend.2
+	SymType:	0x02
+	LegType:	0x08
+	ClassType:	0x03
+	FieldNames:	3
+	Symbols:	4
+	Class:	38
+	Class:	39
+	Class:	40
+	Class:	41
+	Class:	42
+	Class:	43
+	Class:	44
+	StdDevs:	1.00000000000000
+	NullSym:	45
+	NullValues:	49
+	StatValues:	50
+	Precision:	-3
+)
+
+(AVStr.3
+	S:	"Sim_process"
+)
+
+(SymList.4
+	Child:	5
+	Child:	10
+	Child:	15
+	Child:	20
+	Child:	25
+	Child:	30
+	Child:	34
+)
+
+(BShSym.5
+	Color:	6
+	Outline:	1
+	OutlineColor:	7
+	OutlineWidth:	1.00000000000000
+	BgColor:	8
+	Stipple:	9
+)
+
+(TClr.6
+	Red:	0x7b61
+	Green:	0x584e
+	Blue:	0xbb0d
+)
+
+(TClr.7
+	Name:	"Transparent"
+)
+
+(TClr.8
+	Name:	"Transparent"
+)
+
+(Stipple.9
+	Columns:	8
+	Rows:	8
+	Bits:	00000000 00000000 
+)
+
+(BShSym.10
+	Color:	11
+	Outline:	1
+	OutlineColor:	12
+	OutlineWidth:	1.00000000000000
+	BgColor:	13
+	Stipple:	14
+)
+
+(TClr.11
+	Red:	0x9c4b
+	Green:	0x188e
+	Blue:	0x6d85
+)
+
+(TClr.12
+	Name:	"Transparent"
+)
+
+(TClr.13
+	Name:	"Transparent"
+)
+
+(Stipple.14
+	Columns:	8
+	Rows:	8
+	Bits:	00000000 00000000 
+)
+
+(BShSym.15
+	Color:	16
+	Outline:	1
+	OutlineColor:	17
+	OutlineWidth:	1.00000000000000
+	BgColor:	18
+	Stipple:	19
+)
+
+(TClr.16
+	Red:	0x8add
+	Green:	0x5465
+	Blue:	0x365e
+)
+
+(TClr.17
+	Name:	"Transparent"
+)
+
+(TClr.18
+	Name:	"Transparent"
+)
+
+(Stipple.19
+	Columns:	8
+	Rows:	8
+	Bits:	00000000 00000000 
+)
+
+(BShSym.20
+	Color:	21
+	Outline:	1
+	OutlineColor:	22
+	OutlineWidth:	1.00000000000000
+	BgColor:	23
+	Stipple:	24
+)
+
+(TClr.21
+	Red:	0x27f2
+	Green:	0xb028
+	Blue:	0xfb3c
+)
+
+(TClr.22
+	Name:	"Transparent"
+)
+
+(TClr.23
+	Name:	"Transparent"
+)
+
+(Stipple.24
+	Columns:	8
+	Rows:	8
+	Bits:	00000000 00000000 
+)
+
+(BShSym.25
+	Color:	26
+	Outline:	1
+	OutlineColor:	27
+	OutlineWidth:	1.00000000000000
+	BgColor:	28
+	Stipple:	29
+)
+
+(TClr.26
+	Red:	0x2fce
+	Green:	0xdd24
+	Blue:	0x6d6c
+)
+
+(TClr.27
+	Name:	"Transparent"
+)
+
+(TClr.28
+	Name:	"Transparent"
+)
+
+(Stipple.29
+	Columns:	8
+	Rows:	8
+	Bits:	00000000 00000000 
+)
+
+(BShSym.30
+	Color:	31
+	Outline:	1
+	OutlineColor:	32
+	OutlineWidth:	0.10000000000000
+	BgColor:	33
+)
+
+(TClr.31
+	Red:	0xa264
+	Green:	0xdb2c
+	Blue:	0x3b80
+)
+
+(TClr.32
+	Name:	"Transparent"
+)
+
+(TClr.33
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.34
+	Color:	35
+	Outline:	1
+	OutlineColor:	36
+	OutlineWidth:	0.10000000000000
+	BgColor:	37
+)
+
+(TClr.35
+	Name:	"Transparent"
+)
+
+(TClr.36
+	Name:	"Transparent"
+)
+
+(TClr.37
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(LClass.38
+	IsText:	1
+	Label:	"STAND-DEVELOPMENT"
+	MinStr:	"SUCCESSION"
+	MaxStr:	"SUCCESSION"
+)
+
+(LClass.39
+	IsText:	1
+	Label:	"LIGHT-SEVERITY-FIRE"
+	MinStr:	"LIGHT-SEVERITY-FIRE"
+	MaxStr:	"LIGHT-SEVERITY-FIRE"
+)
+
+(LClass.40
+	IsText:	1
+	Label:	"MIXED-SEVERITY-FIRE"
+	MinStr:	"MIXED-SEVERITY-FIRE"
+	MaxStr:	"MIXED-SEVERITY-FIRE"
+)
+
+(LClass.41
+	IsText:	1
+	Label:	"STAND-REPLACING-FIRE"
+	MinStr:	"STAND-REPLACING-FIRE"
+	MaxStr:	"STAND-REPLACING-FIRE"
+)
+
+(LClass.42
+	IsText:	1
+	Label:	"PP-MPB"
+	MinStr:	"PP-MPB"
+	MaxStr:	"PP-MPB"
+)
+
+(LClass.43
+	IsText:	1
+	Label:	"NIL"
+	MinStr:	"NIL"
+	MaxStr:	"NIL"
+	Precision:	-3
+)
+
+(LClass.44
+	IsNoData:	1
+	Label:	"No Data"
+	MaxNum:	-1.00000000000000
+	Precision:	-3
+)
+
+(BShSym.45
+	Color:	46
+	Outline:	1
+	OutlineColor:	47
+	OutlineWidth:	0.10000000000000
+	BgColor:	48
+)
+
+(TClr.46
+	Name:	"Transparent"
+)
+
+(TClr.47
+	Name:	"Transparent"
+)
+
+(TClr.48
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(NameDict.49
+)
+
+(NameDict.50
+)
+

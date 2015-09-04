@@ -1,0 +1,1478 @@
+
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>FIRE_SUPP_PRODUCTION_RATE_LOGIC</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SPECIES_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>SLOPE_COL</string>
+    <string>RATE_COL</string>
+  </list>
+  <int>1</int>
+  <string>FIRE_SUPP_PRODUCTION_RATE_LOGIC</string>
+  <list>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>JUSC2</string>
+          <string>Rocky Mountain juniper</string>
+          <Lifeform>
+            <int>1</int>
+            <string>trees</string>
+            <int>0</int>
+          </Lifeform>
+          <FireResistance>
+            <int>1</int>
+            <string>LOW</string>
+            <int>0</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>HECO26</string>
+          <string>HECO26</string>
+          <Lifeform>
+            <int>1</int>
+            <string>herbacious</string>
+            <int>2</int>
+          </Lifeform>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ORSE</string>
+          <string>ORSE</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>LOIN5</string>
+          <string>LOIN5</string>
+          <Lifeform>
+            <int>1</int>
+            <string>shrubs</string>
+            <int>1</int>
+          </Lifeform>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>GERI</string>
+          <string>GERI</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>HECO26-PLJA</string>
+          <string>HECO26-PLJA</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>CANU4</string>
+          <string>CANU4</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>true</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>FEAR2</string>
+          <string>FEAR2</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>BRTE</string>
+          <string>cheat grass</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>true</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>CAGE2</string>
+          <string>CAGE2</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ARNO4-PUTR2</string>
+          <string>ARNO4-PUTR2</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ATCO-ARBI3</string>
+          <string>ATCO-ARBI3</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ACHY</string>
+          <string>indian rice grass</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance>
+            <int>1</int>
+            <string>HIGH</string>
+            <int>2</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ARBI3</string>
+          <string>ARBI3</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PIED-JUOS</string>
+          <string>PIED-JUOS</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>JUSC2-PIED</string>
+          <string>Rocky Mountain juniper - pinyon pine</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PUTR2</string>
+          <string>antelope bitterbrush</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance>
+            <int>1</int>
+            <string>MODERATE</string>
+            <int>1</int>
+          </FireResistance>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>VAMY2-RIM02</string>
+          <string>VAMY2-RIM02</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ARTR2-PUTR2</string>
+          <string>big sagebrush - bitterbush</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SYORO</string>
+          <string>SYORO</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>THFE</string>
+          <string>THFE</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SPAI</string>
+          <string>SPAI</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SAVE4</string>
+          <string>SAVE4</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>QUGA-AMAL2</string>
+          <string>QUGA-AMAL2</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>QUGA-AMUT</string>
+          <string>QUGA-AMUT</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>POSE-PASM</string>
+          <string>POSE-PASM</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>QUGA</string>
+          <string>Gambel oak</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>POPR-VIAM</string>
+          <string>POPR-VIAM</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>QUGA-CEMO2</string>
+          <string>Gambel oak - alderleaf mountain mahogany</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>POFE</string>
+          <string>POFE</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PIED</string>
+          <string>PIED</string>
+          <Lifeform reference="../../Species/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PG-FORBS</string>
+          <string>Perennial Grass-Forbs</string>
+          <Lifeform reference="../../Species[2]/Lifeform"/>
+          <FireResistance reference="../../Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>CEMO2</string>
+          <string>alder leaf mountain mahogany</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>MESIC-SHRUB</string>
+          <string>Mesic Shrubs</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ARTR2</string>
+          <string>big sagebrush</string>
+          <Lifeform reference="../../Species[4]/Lifeform"/>
+          <FireResistance reference="../../Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[JUSC2, HECO26, ORSE, LOIN5, GERI, HECO26-PLJA, CANU4, FEAR2, BRTE, CAGE2, ARNO4-PUTR2, ATCO-ARBI3, ACHY, ARBI3, PIED-JUOS, JUSC2-PIED, PUTR2, VAMY2-RIM02, ARTR2-PUTR2, SYORO, THFE, SPAI, SAVE4, QUGA-AMAL2, QUGA-AMUT, POSE-PASM, QUGA, POPR-VIAM, QUGA-CEMO2, POFE, PIED, PG-FORBS, CEMO2, MESIC-SHRUB, ARTR2]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>DRY-SUCCESSION</string>
+          <string>DrySuccession</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>WET-SUCCESSION</string>
+          <string>WetSuccession</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>SUCCESSION</string>
+          <string>Succession</string>
+          <boolean>false</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[DRY-SUCCESSION, WET-SUCCESSION, SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[33]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[18]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[20]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[23]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[25]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[24]"/>
+        <Species>
+          <int>5</int>
+          <string>PIED-JUMO</string>
+          <string>PIED-JUMO</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[15]"/>
+        <Species>
+          <int>5</int>
+          <string>JUMO</string>
+          <string>JUMO</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[4]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[14]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[12]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[19]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[11]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[27]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[29]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[17]"/>
+        <Species>
+          <int>5</int>
+          <string>PIED-JUSC2</string>
+          <string>PIED-JUSC2</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[31]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[34]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[16]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[35]"/>
+      </list>
+      <string>{[CEMO2, VAMY2-RIM02, SYORO, SAVE4, QUGA-AMUT, QUGA-AMAL2, PIED-JUMO, PIED-JUOS, JUMO, LOIN5, ARBI3, ATCO-ARBI3, ARTR2-PUTR2, ARNO4-PUTR2, QUGA, QUGA-CEMO2, PUTR2, PIED-JUSC2, JUSC2, PIED, MESIC-SHRUB, JUSC2-PIED, ARTR2]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>STAND-REPLACING-FIRE</string>
+          <string>StandReplacingFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[33]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[27]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[29]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[2]/list[4]/Species[18]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[17]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[31]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[32]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[34]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[15]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[16]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[35]"/>
+      </list>
+      <string>{[CEMO2, QUGA, QUGA-CEMO2, PIED-JUSC2, PUTR2, PIED, JUSC2, PG-FORBS, MESIC-SHRUB, PIED-JUOS, JUSC2-PIED, ARTR2]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>LIGHT-LP-MPB</string>
+          <string>LightLpMpb</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>SEVERE-LP-MPB</string>
+          <string>SevereLpMpb</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>DF-BEETLE</string>
+          <string>DfBeetle</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>TUSSOCK-MOTH</string>
+          <string>TussockMoth</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>ROOT-DISEASE</string>
+          <string>RootDisease</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>SPRUCE-BEETLE</string>
+          <string>SpruceBeetle</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>PIED-BB</string>
+          <string>PiedBB</string>
+          <boolean>false</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>LIGHT-WSBW</string>
+          <string>LightWsbw</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>SEVERE-WSBW</string>
+          <string>SevereWsbw</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>PP-MPB</string>
+          <string>PpMpb</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[LIGHT-LP-MPB, SEVERE-LP-MPB, DF-BEETLE, TUSSOCK-MOTH, ROOT-DISEASE, SPRUCE-BEETLE, PIED-BB, LIGHT-WSBW, SEVERE-WSBW, PP-MPB]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>50</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>SAGE2</string>
+          <string>SAGE2</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[4]/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SAEX</string>
+          <string>SAEX</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[4]/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[13]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>POTR5</string>
+          <string>quaking aspen</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>SALIX</string>
+          <string>willow</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[4]/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[13]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>ALINT</string>
+          <string>ALINT</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[4]/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[13]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>POAN3</string>
+          <string>narrowleaf cottonwood</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[SAGE2, SAEX, POTR5, SALIX, ALINT, POAN3]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData/list[8]/ProcessType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[3]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[2]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[4]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[5]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[6]"/>
+      </list>
+      <string>{[POTR5, SAGE2, SAEX, SALIX, ALINT, POAN3]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData/list[8]/ProcessType[2]"/>
+      </list>
+      <int>1</int>
+      <string>[WET-SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[3]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[2]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[4]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[5]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[6]"/>
+      </list>
+      <string>{[POTR5, SAGE2, SAEX, SALIX, ALINT, POAN3]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[DRY-SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[3]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[4]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[6]"/>
+      </list>
+      <string>{[POTR5, SALIX, POAN3]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>MIXED-SEVERITY-FIRE</string>
+          <string>MixedSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>LIGHT-SEVERITY-FIRE</string>
+          <string>LightSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>1</int>
+      <string>[MIXED-SEVERITY-FIRE, LIGHT-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[3]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[4]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[4]/list[4]/Species[6]"/>
+      </list>
+      <string>{[POTR5, SALIX, POAN3]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData[2]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species>
+          <int>5</int>
+          <string>PIPO-PSME</string>
+          <string>PIPO-PSME</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[13]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>POTR5-PSME-PIEN-ABLA</string>
+          <string>POTR5-PSME-PIEN-ABLA</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PIPO-PSME-POTR5</string>
+          <string>PIPO-PSME-POTR5</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>POTR5-PIEN-ABLA</string>
+          <string>POTR5-PIEN-ABLA</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PIPO-POTR5</string>
+          <string>PIPO-POTR5</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[13]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PSME</string>
+          <string>douglas-fir</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PSME-PIEN-ABLA-POTR5</string>
+          <string>PSME-PIEN-ABLA-POTR5</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PSME-PIEN-ABLA</string>
+          <string>PSME-PIEN-ABLA</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PSME-PIEN</string>
+          <string>PSME-PIEN</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PSME-PIPO</string>
+          <string>Douglas-fir - ponderosa pine</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[17]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+        <Species>
+          <int>5</int>
+          <string>PIPO</string>
+          <string>PIPO</string>
+          <Lifeform reference="../../../../FireSuppProductionRateLogicData/list[4]/Species/Lifeform"/>
+          <FireResistance reference="../../../../FireSuppProductionRateLogicData/list[4]/Species[13]/FireResistance"/>
+          <boolean>true</boolean>
+          <null/>
+          <boolean>false</boolean>
+        </Species>
+      </list>
+      <string>{[PIPO-PSME, POTR5-PSME-PIEN-ABLA, PIPO-PSME-POTR5, POTR5-PIEN-ABLA, PIPO-POTR5, PSME, PSME-PIEN-ABLA-POTR5, PSME-PIEN-ABLA, PSME-PIEN, PSME-PIPO, PIPO]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData/list[8]/ProcessType[3]"/>
+      </list>
+      <int>1</int>
+      <string>[DRY-SUCCESSION, WET-SUCCESSION, SUCCESSION]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData[9]/list[4]/Species"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[9]/list[4]/Species[6]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[9]/list[4]/Species[10]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[9]/list[4]/Species[11]"/>
+      </list>
+      <string>{[PIPO-PSME, PSME, PSME-PIPO, PIPO]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData[2]/list[8]/ProcessType"/>
+      </list>
+      <int>1</int>
+      <string>[STAND-REPLACING-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData[9]/list[4]/Species"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[9]/list[4]/Species[6]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[9]/list[4]/Species[10]"/>
+        <Species reference="../../../FireSuppProductionRateLogicData[9]/list[4]/Species[11]"/>
+      </list>
+      <string>{[PIPO-PSME, PSME, PSME-PIPO, PIPO]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData[3]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData[3]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData[3]/list[8]/ProcessType[3]"/>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData[3]/list[8]/ProcessType[5]"/>
+        <ProcessType reference="../../../FireSuppProductionRateLogicData[3]/list[8]/ProcessType[10]"/>
+      </list>
+      <int>1</int>
+      <string>[LIGHT-LP-MPB, SEVERE-LP-MPB, DF-BEETLE, ROOT-DISEASE, PP-MPB]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>50</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list>
+        <Species reference="../../../FireSuppProductionRateLogicData/list[4]/Species[15]"/>
+      </list>
+      <string>{[PIED-JUOS]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType>
+          <int>1</int>
+          <string>AGRICULTURE</string>
+        </TreatmentType>
+      </list>
+      <int>1</int>
+      <string>[AGRICULTURE]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>300</int>
+    </FireSuppProductionRateLogicData>
+    <FireSuppProductionRateLogicData>
+      <int>1</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+Rates were derived by creating a cross walk to fuel models and using the data tied to the models.</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <float>0.0</float>
+      <int>100</int>
+    </FireSuppProductionRateLogicData>
+  </list>
+</object-stream>

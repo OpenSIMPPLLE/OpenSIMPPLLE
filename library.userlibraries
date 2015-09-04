@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries version="2">
+<library name="XStream" systemlibrary="false">
+<archive path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/XStream/xstream-1.1.3.jar" source="C:/MyDocuments/MyProjects/MySoftware/xstream-1.1.3/src/java"/>
+<archive path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/XStream/xpp3-1.1.3.4d_b4_min.jar" source="C:/MyDocuments/MyProjects/MySoftware/xstream-1.1.3/src/java"/>
+</library>
+<library name="Hibernate" systemlibrary="false">
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/xerces-2.6.2.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/swarmcache-1.0rc2.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/log4j-1.2.11.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/jta.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/jboss-system.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/jgroups-2.2.8.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/proxool-0.8.3.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/hibernate3.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/asm.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/jboss-common.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/dom4j-1.6.1.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/oscache-2.1.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/jboss-cache.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/jboss-jmx.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/jaxen-1.1-beta-7.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/cglib-2.1.3.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/jacc-1_0-fr.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/ehcache-1.1.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/asm-attrs.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/antlr-2.7.6rc1.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/connector.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/concurrent-1.3.2.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/jdbc2_0-stdext.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/c3p0-0.9.0.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/jaas.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/xml-apis.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/doc/api/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hibernate/commons-logging-1.0.4.jar" source="C:/MyDocuments/MyProjects/MySoftware/hibernate-3.1/src"/>
+</library>
+<library name="Apache Commons" systemlibrary="false">
+<archive javadoc="file:/C:/MyDocuments/MyProjects/MySoftware/commons-collections-3.1/docs/apidocs/" path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/apache/commons-collections-3.1.jar" source="C:/MyDocuments/MySoftware/commons-collections-3.1/commons-collections-3.1-src.zip"/>
+</library>
+<library name="SIMPPLLE Extra" systemlibrary="false">
+<archive path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/docs.jar"/>
+<archive path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/jh.jar"/>
+<archive path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/ode.jar"/>
+<archive path="C:/MyDocuments/MyProjects/SIMPPLLE-PRJ/v2_5/lib/hsqldb.jar"/>
+</library>
+</eclipse-userlibraries>

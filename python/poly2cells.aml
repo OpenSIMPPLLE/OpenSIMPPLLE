@@ -1,0 +1,197 @@
+/* ****************************************************************************
+/*   POLY2CELLS.AML
+/* ****************************************************************************
+/*   Purpose:
+/*     Converts a polygon cover into a poly coverage of small square cells,
+/*     each with a unique ID, and an item to link to the original attributes.
+/*
+/*
+/* ****************************************************************************
+/*   Usage: POLY2CELLS <in_cover> {out_cov} {cell_size (default = 100)}
+/* 
+/*   Input:
+/*      A polygon coverage.
+/*
+/*   Output:
+/*      A coverage of uniform square polygons.
+/*
+/* ****************************************************************************
+/*   Notes:
+/*      Must be run from ARC.
+/*
+/* ****************************************************************************
+/* ****************************************************************************
+/*   History:
+/*            Joe Grigsby    - 09/30/99 - First version.
+/*
+/* ****************************************************************************
+/* ****************************************************************************
+&severity &error &routine crash
+&args incov outcov cellsize
+
+/* ***** ***** ***** ***** ***** ***** ***** ***** ***** *****
+/* Just a little error checking
+/*
+&if [show program] ne ARC &then
+   &return &inform POLY2CELLS aml must be run from Arc prompt.
+
+&if not [exist %incov% -cover] &then
+   &return &inform Usage:  POLY2CELLS <in_cover> {out_cov} {cell_size (default = 100)}
+
+&WORKSPACE [dir %incov%]
+&s incov [entryname %incov%]
+
+&sv wpath = [show workspace]
+
+&if [null %outcov%] or [quote [unquote %outcov%]] = '#' &then
+ &do
+   &sv outcov = %incov%XXX
+   &type Output coverage is %outcov%.
+ &end
+
+&if [null %cellsize%] or [type %cellsize%] >= 0 &then
+&do
+   &sv cellsize = 100
+   &type Cell size defaulting to 100.
+&end
+
+&if [exist %outcov% -cover] &then
+&do
+   &if [query 'Output coverage already exist, delete it' .FALSE.] &then
+      KILL %outcov% ALL
+   &else
+      &return &inform Output coverage [upcase %outcov%] already exist, choose ~
+another name/&for the output cover or move the existing one.
+&end
+
+/* ********************
+/* Convert poly cov to grid.  Use the INCOV-ID as the value item in the grid.
+/*
+GRID
+   &if [exist tmp$1grid -grid] &then
+      KILL tmp$1grid ALL
+   tmp$1grid = POLYGRID (%incov%, %incov%-id, #, #, %cellsize%)
+
+/* Convert grid to point coverage to assign unique ID to each cell.
+   &if [exist tmp$point -cover] &then
+      KILL tmp$point ALL
+   tmp$point = GRIDPOINT (tmp$1grid, %incov%-id)
+
+/* Convert point cover back to grid
+   &if [exist tmp$2grid -grid] &then
+      KILL tmp$2grid ALL
+   tmp$2grid = POINTGRID (tmp$point, #, #, #, %cellsize%, #)
+
+/* Convert grid to polygon cover.
+   &if [exist %outcov% -cover] &then
+      KILL %outcov% ALL
+   %outcov% = GRIDPOLY (tmp$2grid, 0.01)
+QUIT /* quit out of Grid
+
+/* ********************
+/* Add row and column numbers to point cover.
+/*
+ADDXY tmp$point POINT
+
+TABLES
+   ADDITEM tmp$point.pat xcol 8 8 i # x-coord
+   ADDITEM tmp$point.pat yrow 8 8 i # y-coord
+   SELECT tmp$point.pat
+   CALCULATE xcol = x-coord
+   CALCULATE yrow = y-coord
+QUIT
+
+FREQUENCY tmp$point.pat tmp$point.xfrq
+   xcol
+   END
+   END
+
+FREQUENCY tmp$point.pat tmp$point.yfrq
+   yrow
+   END
+   END
+
+TABLES
+   DROPITEM tmp$point.xfrq frequency
+   DROPITEM tmp$point.yfrq frequency
+   SELECT tmp$point.xfrq
+   ALTER case# col,,,,
+   SELECT tmp$point.yfrq
+   ALTER case# row,,,,
+QUIT
+
+JOINITEM tmp$point.pat tmp$point.xfrq tmp$point.pat xcol tmp$point-id ORDERED
+JOINITEM tmp$point.pat tmp$point.yfrq tmp$point.pat yrow tmp$point-id ORDERED
+
+/* ********************
+/* Join OUTCOV.pat to POINTCOV.pat to pick up link to original database and row/col #'s.
+/*
+JOINITEM %outcov%.pat tmp$point.pat %outcov%.pat grid-code grid-code LINK
+
+INDEXITEM %outcov%.pat %incov%-id
+INDEXITEM %incov%.pat %incov%-id
+
+/* add the attributes of the original coverage into the new one.
+JOINITEM %outcov%.pat %incov%.pat %outcov%.pat %incov%-id col LINEAR
+
+TABLES
+/* Drop extra items from final cover.
+   DROPITEM %outcov%.pat grid-code, tmp$point#, tmp$point-id, x-coord, xcol, y-coord, yrow
+
+/* Delete ACRES and create a new one from AREA
+   &if [iteminfo %outcov% -polygon ACRES -exists] &then
+      DROPITEM %outcov%.pat ACRES
+   ADDITEM %outcov%.pat ACRES 8 12 F 2
+   SELECT %outcov%.pat
+   CALCULATE ACRES = AREA / 4046.86       /* approx. 4046.86 sq. meters per acre
+/*
+/* Create the SLINK field
+/* Set the SLINK of any NODATA polygons to -9999
+/* 
+   &if [iteminfo %outcov% -polygon SLINK -exists] &then
+     ALTER SLINK, SLINK-ORIG,,,,,,,,
+   ADDITEM %outcov%.pat SLINK 4 6 B
+   CALCULATE SLINK = %outcov%#
+   RESELECT %incov%# = 0
+   ASELECT  %incov%# = 1
+   CALCULATE SLINK = -9999
+QUIT
+
+/* We need the AAT to determine neighbors
+/* Create it if necessary.
+/*
+&if ^ [ exists %outcov% -arc ] &then
+  BUILD %outcov% LINE
+
+/* ********************
+/* Clean up
+/*
+&call cleanup
+&return
+
+/* ****************************************************************************
+/* ****************************************************************************
+/* Routines
+/* ****************************************************************************
+/* ****************************************************************************
+/* CLEANUP
+&routine cleanup
+&if [show program] ne ARC &then
+   QUIT
+&do killcov &list [listfile tmp$* -cover]
+   &if not [null %killcov%] &then
+      KILL %killcov% ALL
+&end
+&do killgrid &list [listfile tmp$* -grid]
+   &if not [null %killgrid%] &then
+      KILL %killgrid% ALL
+&end
+&return
+
+/* ****************************************************************************
+/* CRASH
+&routine crash
+&severity &error &ignore
+&call cleanup
+&pause
+&return &error Error, bailing out!

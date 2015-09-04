@@ -1,0 +1,20 @@
+19960216 754   0    23     0gneier build temp
+19960216 758   0     2     0gneier createlabels temp
+19960216 759   0     0     0gneier rename temp f3_std
+19960216 838   1     8     0gneier project cover f3_std f3_std2
+19960216 839   0     1     0gneier copy f3_std2 bitter2/f3_std2
+199605071335   0     1     0gneier copy ../bitter2/f3_std2 f3_std
+199605071342   1    27     0gneier build f3_Std
+199605201454   0     0     0gneier copy ../magis/f3_std
+19960716 938   0     1     0gneier copy /fsfiles/unit/plng/gis/bitter/simpplle/f3_std f3_std
+199609121516   0     0     0gneier rename f3_std f3_std2
+199609121517   0     0     0gneier rename f3_std2 f3_std
+199610281538   0     1     0gneier build f3_std lines
+199701131331   0     0     0gneier copy f3_std f3_test_std
+199701161038   0     1     0gneier copy f3_test_std swestc_std
+199701161455   0     1     0gneier rename swestc_std swc_std
+19970210 905   0     1     0gneier copy swc_std demo/swc_std
+199704181458   1    19     0jchew export cover swc_std steviwc
+199812091600   0    11     0jchew export cover swc_std westside-sample.e00
+200001191234   1     9     0kmoeller export cover swc_std kirk none
+200101121030   0     6     0kmoeller import cover kirk-steviwc steviwc

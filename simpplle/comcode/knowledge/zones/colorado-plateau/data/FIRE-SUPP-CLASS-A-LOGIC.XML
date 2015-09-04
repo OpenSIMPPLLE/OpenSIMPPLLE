@@ -1,0 +1,3719 @@
+
+<object-stream>
+  <int>3</int>
+  <int>1</int>
+  <string>FIRE_SUPP_CLASS_A</string>
+  <list>
+    <string>ROW_COL</string>
+    <string>SIZE_CLASS_COL</string>
+    <string>DENSITY_COL</string>
+    <string>PROCESS_COL</string>
+    <string>TREATMENT_COL</string>
+    <string>MOISTURE_COL</string>
+    <string>OWNERSHIP_COL</string>
+    <string>ROAD_STATUS_COL</string>
+    <string>PROB_COL</string>
+  </list>
+  <int>1</int>
+  <string>FIRE_SUPP_CLASS_A</string>
+  <list>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure>NON_FOREST</SizeClassStructure>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture>WETTER</Moisture>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership>
+          <int>1</int>
+          <string>NF-WILDERNESS</string>
+        </Ownership>
+      </list>
+      <string>[NF-WILDERNESS]</string>
+      <boolean>true</boolean>
+      <int>30</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture>NORMAL</Moisture>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData/list[12]/Ownership"/>
+      </list>
+      <string>[NF-WILDERNESS]</string>
+      <boolean>true</boolean>
+      <int>10</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture>DRIER</Moisture>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData/list[12]/Ownership"/>
+      </list>
+      <string>[NF-WILDERNESS]</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership>
+          <int>1</int>
+          <string>NF-OTHER</string>
+        </Ownership>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list>
+        <RoadsStatus>OPEN</RoadsStatus>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData[4]/list[12]/Ownership"/>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>68</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData[4]/list[12]/Ownership"/>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>30</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData[4]/list[12]/Ownership"/>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list>
+        <RoadsStatus>NONE</RoadsStatus>
+        <RoadsStatus>CLOSED</RoadsStatus>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData[4]/list[12]/Ownership"/>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list>
+        <Ownership reference="../../../FireSuppClassALogicData[4]/list[12]/Ownership"/>
+      </list>
+      <string>[NF-OTHER]</string>
+      <boolean>true</boolean>
+      <int>20</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[NON_FOREST]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure>SINGLE_STORY</SizeClassStructure>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density>
+          <int>2</int>
+          <string>2</string>
+          <int>2</int>
+          <boolean>true</boolean>
+          <int>11</int>
+          <int>40</int>
+        </Density>
+        <Density>
+          <int>2</int>
+          <string>3</string>
+          <int>3</int>
+          <boolean>true</boolean>
+          <int>41</int>
+          <int>70</int>
+        </Density>
+        <Density>
+          <int>2</int>
+          <string>4</string>
+          <int>4</int>
+          <boolean>true</boolean>
+          <int>71</int>
+          <int>100</int>
+        </Density>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType>
+          <int>1</int>
+          <string>PRESCRIBE-FIRE</string>
+        </TreatmentType>
+        <TreatmentType>
+          <int>1</int>
+          <string>MECHANICAL-THIN</string>
+        </TreatmentType>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE, MECHANICAL-THIN]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>LIGHT-SEVERITY-FIRE</string>
+          <string>LightSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>MIXED-SEVERITY-FIRE</string>
+          <string>MixedSeverityFire</string>
+          <boolean>true</boolean>
+        </ProcessType>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType>
+          <int>1</int>
+          <string>PP-MPB</string>
+          <string>PpMpb</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>SEVERE-WSBW</string>
+          <string>SevereWsbw</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>SEVERE-LP-MPB</string>
+          <string>SevereLpMpb</string>
+          <boolean>true</boolean>
+        </ProcessType>
+        <ProcessType>
+          <int>1</int>
+          <string>ROOT-DISEASE</string>
+          <string>RootDisease</string>
+          <boolean>false</boolean>
+        </ProcessType>
+      </list>
+      <int>10</int>
+      <string>[PP-MPB, SEVERE-WSBW, SEVERE-LP-MPB, ROOT-DISEASE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[3]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[4]"/>
+      </list>
+      <int>10</int>
+      <string>[PP-MPB, SEVERE-WSBW, SEVERE-LP-MPB, ROOT-DISEASE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[3]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[4]"/>
+      </list>
+      <int>10</int>
+      <string>[PP-MPB, SEVERE-WSBW, SEVERE-LP-MPB, ROOT-DISEASE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[3]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[4]"/>
+      </list>
+      <int>10</int>
+      <string>[PP-MPB, SEVERE-WSBW, SEVERE-LP-MPB, ROOT-DISEASE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[3]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[4]"/>
+      </list>
+      <int>10</int>
+      <string>[PP-MPB, SEVERE-WSBW, SEVERE-LP-MPB, ROOT-DISEASE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[2]"/>
+        <Density reference="../../../FireSuppClassALogicData[13]/list[7]/Density[3]"/>
+      </list>
+      <string>[2, 3, 4]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[3]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[4]"/>
+      </list>
+      <int>10</int>
+      <string>[PP-MPB, SEVERE-WSBW, SEVERE-LP-MPB, ROOT-DISEASE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>30</int>
+      <list>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[4]/list[13]/RoadsStatus"/>
+        <RoadsStatus reference="../../../FireSuppClassALogicData[7]/list[13]/RoadsStatus[2]"/>
+      </list>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[13]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[SINGLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>30</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure>MULTIPLE_STORY</SizeClassStructure>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>PMU</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+      </list>
+      <string>{[MULTIPLE_STORY][PMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list>
+        <TreatmentType reference="../../../FireSuppClassALogicData[13]/list[9]/TreatmentType"/>
+      </list>
+      <int>10</int>
+      <string>[PRESCRIBE-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list>
+        <SizeClass>
+          <int>1</int>
+          <string>MTS</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass>
+          <int>1</int>
+          <string>VLTS</string>
+          <string>MULTIPLE-STORY</string>
+        </SizeClass>
+        <SizeClass reference="../../../FireSuppClassALogicData[48]/list[6]/SizeClass"/>
+      </list>
+      <string>{[MULTIPLE_STORY][MTS, VLTS, PMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[25]/list[8]/ProcessType[2]"/>
+      </list>
+      <int>10</int>
+      <string>[LIGHT-SEVERITY-FIRE, MIXED-SEVERITY-FIRE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>50</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[3]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[4]"/>
+      </list>
+      <int>10</int>
+      <string>[PP-MPB, SEVERE-WSBW, SEVERE-LP-MPB, ROOT-DISEASE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>70</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[3]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[4]"/>
+      </list>
+      <int>10</int>
+      <string>[PP-MPB, SEVERE-WSBW, SEVERE-LP-MPB, ROOT-DISEASE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[2]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[3]"/>
+        <ProcessType reference="../../../FireSuppClassALogicData[28]/list[8]/ProcessType[4]"/>
+      </list>
+      <int>10</int>
+      <string>[PP-MPB, SEVERE-WSBW, SEVERE-LP-MPB, ROOT-DISEASE]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list/>
+      <string>{[MULTIPLE_STORY]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>60</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[50]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[48]/list[6]/SizeClass"/>
+      </list>
+      <string>{[MULTIPLE_STORY][VLTS, PMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[2]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>40</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list>
+        <SizeClassStructure reference="../../../FireSuppClassALogicData[43]/list[5]/SizeClassStructure"/>
+      </list>
+      <list>
+        <SizeClass reference="../../../FireSuppClassALogicData[50]/list[6]/SizeClass[2]"/>
+        <SizeClass reference="../../../FireSuppClassALogicData[48]/list[6]/SizeClass"/>
+      </list>
+      <string>{[MULTIPLE_STORY][VLTS, PMU]}</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>10</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list>
+        <Moisture reference="../../../FireSuppClassALogicData[3]/list[10]/Moisture"/>
+      </list>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>30</int>
+      <list/>
+    </FireSuppClassALogicData>
+    <FireSuppClassALogicData>
+      <int>2</int>
+      <int>9</int>
+      <int>1</int>
+      <string>System knowledge for this geographic area was developed in connection with USGS&apos;s 
+FRAME project for Mesa Verde National Park.  This effort involves scientists and managers
+from USGS, BLM, Mesa Verde National Park, Colorado State University, Northern Arizona
+University, and Prescott College in workshops from June 2004 through November 2006
+
+</string>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <list/>
+      <int>1</int>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <string>YEAR</string>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <list/>
+      <int>1</int>
+      <int>1</int>
+      <string>{}</string>
+      <boolean>true</boolean>
+      <int>0</int>
+      <list/>
+      <string>[]</string>
+      <boolean>true</boolean>
+      <int>80</int>
+      <list/>
+    </FireSuppClassALogicData>
+  </list>
+</object-stream>

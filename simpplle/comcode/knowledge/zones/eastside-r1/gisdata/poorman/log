@@ -1,0 +1,10 @@
+199608081630   1    24     0asulliva clean prstd
+199608081631   1     9     0asulliva build prstd
+19970130 925   0     8     0dheffner build prstd
+19970130 938   0     1     0dheffner build prstd lines
+199702071348   0     8     0jchew import cover poorstd.e00 poorstd
+199702131306   0     1     0jchew copy poorstd poorstd3
+199803021706   0     4     0jchew export cover poorstd3 poorstd3.e00
+200012141135   0     3     0jchew import cover poorman.e00 poorman
+200012141136   0     0     0jchew projectcopy grid poorman-dem cover poorman
+200101121029   0     3     0kmoeller import cover kirk-poorman poorman
