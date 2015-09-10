@@ -1,0 +1,50 @@
+<component name="libraryTable">
+  <library name="zones">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/data/zones/colorado-front-range.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/great-plains-steppe-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/sierra-nevada.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/teton-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/northern-central-rockies-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/great-plains-steppe.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/colorado-plateau-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/south-central-alaska-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/mixed-grass-prairie-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/south-central-alaska.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/colorado-plateau-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/mixed-grass-prairie.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/southern-california-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/southern-california-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/southern-california.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/sierra-nevada-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/western-great-plains-steppe-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/gila-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/southwest-utah.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/northern-central-rockies-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/colorado-front-range-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/northern-central-rockies.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/westside-r1-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/eastside-r1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/great-plains-steppe-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/south-central-alaska-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/western-great-plains-steppe.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/colorado-plateau.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/eastside-r1-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/gila.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/western-great-plains-steppe-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/teton.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/eastside-r1-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/mixed-grass-prairie-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/sierra-nevada-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/teton-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/southwest-utah-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/westside-r1-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/gila-pathways.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/southwest-utah-defn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/westside-r1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/zones/colorado-front-range-pathways.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

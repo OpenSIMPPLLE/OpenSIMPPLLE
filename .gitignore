@@ -1,12 +1,3 @@
-# Eclipse
-.classpath
-.project
-.settings/
-
-# IntelliJ
-.idea/
-*.iml
-*.iws
 
 # Maven
 log/

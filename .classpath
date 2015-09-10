@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/XStream"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Apache Commons"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SIMPPLLE Extra"/>
+	<classpathentry kind="lib" path="lib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>
