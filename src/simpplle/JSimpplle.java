@@ -245,7 +245,7 @@ public final class JSimpplle {
     else {
       homeDirectory = (new File(homeClass)).getParentFile();
       if (developer == null || developer.equals("true") == false) {
-        homeDirectory = homeDirectory.getParentFile();
+        homeDirectory = homeDirectory;
       }
     }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="ZoneDataFiles" basedir="." default="zonedata">
-	<property name="destdir" value="data/zones"/>
+	<property name="destdir" value="lib/data/zones"/>
 	<property name="zonedir" value="simpplle/comcode/knowledge/zones"/>
 
 	<target name="zonedata" description="Create the JAR data files for the zones">

@@ -3,16 +3,20 @@
 	<target name="simpplle" description="Create the JAR file for SIMPPLLE classes and resources">
 
     <jar destfile="lib/SIMPPLLE.jar"
-      update="false"
+   	  update="false"
       compress="false">
-      <fileset
+       <fileset
         dir="classes"
         includes="**/*.class, **/*.xml, **/*.gif, **/*.jpg">
-      </fileset> 
+      </fileset>
+      <zipgroupfileset dir="lib" includes="hibernate/*.jar, apache/*.jar, XStream/*.jar"/>
       <fileset
         dir="lib"
         includes="**/*.class, log4j.properties">
        </fileset> 
+       <manifest>
+       		<attribute name="Main-Class" value="simpplle/JSimpplle" />
+       </manifest>
     </jar>
     
   </target>
