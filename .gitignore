@@ -5,3 +5,6 @@ target/
 
 # MacOSX
 .DS_Store
+
+# Stuff
+classes/
