@@ -1,10 +1,48 @@
 
-# Maven
-log/
-target/
+#--------------------------
+# IntelliJ
+#--------------------------
 
-# MacOSX
+# User Settings
+
+.idea/tasks.xml
+.idea/workspace.xml
+
+# Build Directory
+
+/out/
+
+#--------------------------
+# Eclipse
+#--------------------------
+
+# User Settings
+
+.classpath
+.project
+.settings
+
+# Build Directory
+
+/classes/
+
+#--------------------------
+# Python
+#--------------------------
+
+*.pyc
+*.pyd
+*.pyo
+
+#--------------------------
+# Windows
+#--------------------------
+
+Thumbs.db
+Desktop.ini
+
+#--------------------------
+# Mac OSX
+#--------------------------
+
 .DS_Store
-
-# Stuff
-classes/

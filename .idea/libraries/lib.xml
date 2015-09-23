@@ -1,13 +1,12 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/hsqldb.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jbcl.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/simpplle.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/jh.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/ode.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/hsqldb.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/docs.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javahelp-2.0.05.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ode.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jbcl.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
