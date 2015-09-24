@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/OpenSIMPPLLE.iml" filepath="$PROJECT_DIR$/OpenSIMPPLLE.iml" />
       <module fileurl="file://$PROJECT_DIR$/python/SIMPPLLERegistrySettings/SIMPPLLERegistrySettings.iml" filepath="$PROJECT_DIR$/python/SIMPPLLERegistrySettings/SIMPPLLERegistrySettings.iml" />
-      <module fileurl="file://$PROJECT_DIR$/opensimpplle.iml" filepath="$PROJECT_DIR$/opensimpplle.iml" />
     </modules>
   </component>
 </project>
