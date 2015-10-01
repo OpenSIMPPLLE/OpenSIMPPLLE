@@ -9,8 +9,8 @@ import java.io.PrintWriter;
 import java.net.URL;
 
 //import javax.help.CSH;
-import javax.help.HelpBroker;
-import javax.help.HelpSet;
+//import javax.help.HelpBroker;
+//import javax.help.HelpSet;
 import javax.swing.*;
 import javax.swing.JMenuItem;
 import javax.swing.border.TitledBorder;
@@ -51,7 +51,7 @@ public class SimpplleMain extends JFrame {
   public static Color ROW_HIGHLIGHT_COLOR = new Color(162,200,157);
 
   @SuppressWarnings("unused")
-  private HelpBroker helpBroker;
+  //private HelpBroker helpBroker;
   private simpplle.comcode.Simpplle comcode;
   private static final int MIN_WIDTH  = 718;
   private static final int MIN_HEIGHT = 300;
@@ -237,11 +237,11 @@ public class SimpplleMain extends JFrame {
         simpplle.gui.SimpplleMain.class.getResource("images/simpplle16.gif"));
     setIconImage(tmpImage.getImage());
 
-    HelpSet hs = null;
+    //HelpSet hs = null;
     comcode = JSimpplle.getComcode();
 
     // Prepare help system
-    try {
+   /* try {
       URL hsURL = HelpSet.findHelpSet(null, "simpplle/docs/simpplle.hs");
       hs = new HelpSet(null, hsURL);
     }
@@ -249,7 +249,7 @@ public class SimpplleMain extends JFrame {
       System.out.println("HelpSet not found");
       return;
     }
-    if (hs == null) { return; }
+    if (hs == null) { return; }*/
 
 //    helpBroker = hs.createHelpBroker();
 //    if (helpBroker != null) {
