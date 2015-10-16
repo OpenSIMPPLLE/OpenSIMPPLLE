@@ -4014,6 +4014,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 //    updateCurrentState(getVegetativeType());
 
     FireSuppEventLogic.getInstance().clearSuppressed();
+
+    this.cycleSizeClass = null;
+    this.cycleSizeClassCount = 0;
   }
 
   /**

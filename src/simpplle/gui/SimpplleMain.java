@@ -1809,6 +1809,8 @@ public class SimpplleMain extends JFrame {
         }
       }
       TrackingSpeciesReportData.getInstance().initialize();
+
+      FireSuppWeatherData.setMaxToAreaAcres();
     }
     else {
       disableAreaControls();
@@ -2291,7 +2293,7 @@ public class SimpplleMain extends JFrame {
 
   void menuWeatherEventClassA_actionPerformed(ActionEvent e) {
     String title = "Weather Ending Events -- Fires < 0.25 acres";
-    FireSuppWeatherClassALogicDlg dlg = new FireSuppWeatherClassALogicDlg(this,title,true);
+    FireSuppWeatherClassALogicDlg dlg = new FireSuppWeatherClassALogicDlg(this,title,false);
     setDialogLocation(dlg);
     dlg.setVisible(true);
     refresh();

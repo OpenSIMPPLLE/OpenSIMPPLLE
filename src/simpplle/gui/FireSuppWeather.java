@@ -49,6 +49,11 @@ public class FireSuppWeather extends JDialog {
   JTable table = new JTable();
   BorderLayout borderLayout3 = new BorderLayout();
 
+  JMenu menuOptions = new JMenu();
+  JMenuItem menuOptionsSplitRange = new JMenuItem();
+  JMenuItem menuOptionsMergeUp = new JMenuItem();
+  JMenuItem menuOptionsMergeDown = new JMenuItem();
+
   public FireSuppWeather(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
@@ -106,7 +111,6 @@ public class FireSuppWeather extends JDialog {
         menuFileLoadDefaults_actionPerformed(e);
       }
     });
-    this.setModal(true);
     this.getContentPane().setLayout(borderLayout2);
     menuKnowledgeSource.setText("Knowledge Source");
     menuKnowledgeSourceDisplay.setText("Display");
@@ -121,6 +125,27 @@ public class FireSuppWeather extends JDialog {
         menuFileOldFormat_actionPerformed(e);
       }
     });
+
+    menuOptions.setText("Options");
+    menuOptionsSplitRange.setText("Split Selected Range...");
+    menuOptionsSplitRange.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        menuOptionsSplitRange_actionPerformed(e);
+      }
+    });
+    menuOptionsMergeUp.setText("Merge Selected with Previous");
+    menuOptionsMergeUp.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        menuOptionsMergeUp_actionPerformed(e);
+      }
+    });
+    menuOptionsMergeDown.setText("Merge Selected with Next");
+    menuOptionsMergeDown.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        menuOptionsMergeDown_actionPerformed(e);
+      }
+    });
+
     getContentPane().add(mainPanel, BorderLayout.CENTER);
     mainPanel.add(northPanel, BorderLayout.NORTH);
     northPanel.add(probPanel, null);
@@ -136,7 +161,12 @@ public class FireSuppWeather extends JDialog {
     menuFile.add(menuFileSaveAs);
     menuFile.addSeparator();
     menuFile.add(menuFileQuit);
+    menuOptions.add(menuOptionsSplitRange);
+    menuOptions.addSeparator();
+    menuOptions.add(menuOptionsMergeUp);
+    menuOptions.add(menuOptionsMergeDown);
     menuBar.add(menuFile);
+    menuBar.add(menuOptions);
     menuBar.add(menuKnowledgeSource);
     menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
     probPanel.add(scrollPane, java.awt.BorderLayout.CENTER);
@@ -150,6 +180,7 @@ public class FireSuppWeather extends JDialog {
          Simpplle.getCurrentZone().getId() == ValidZones.COLORADO_PLATEAU ||
          RegionalZone.isWyoming());
 
+    table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     updateDialog();
   }
 
@@ -272,6 +303,86 @@ public class FireSuppWeather extends JDialog {
     quit();
   }
 
+  void menuOptionsSplitRange_actionPerformed(ActionEvent e) {
+    int row = table.getSelectedRow();
+    if (row == -1) {
+      JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
+              "Please Select a row in the table.","Nothing Selected",JOptionPane.WARNING_MESSAGE);
+      return;
+    }
+
+    Point dlgLocation = this.getLocation();
+    int minLower = FireSuppWeatherData.getMinSplitAcres(row);
+    String msg = "Acres at which to split the range " + FireSuppWeatherData.getValidSplitAcresDescription(row);
+    int splitAcres= AskNumber.getInput("Split Range",msg,minLower,dlgLocation);
+
+    if (splitAcres == -1) {
+      return;
+    }
+
+    if (!FireSuppWeatherData.isValidSplitAcres(row,splitAcres)) {
+      JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
+              "Invalid Acres","Acres not within selected Range",JOptionPane.WARNING_MESSAGE);
+      return;
+    }
+
+    FireSuppWeatherData.splitRow(row,splitAcres);
+    dataModel.fireTableDataChanged();
+  }
+
+  void menuOptionsMergeUp_actionPerformed(ActionEvent e) {
+    int row = table.getSelectedRow();
+    if (row == -1) {
+      JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
+              "Please Select a row in the table.","Nothing Selected",JOptionPane.WARNING_MESSAGE);
+      return;
+    }
+    if (row == 0) {
+      JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
+              "No Previous Row to Merge with","No Previous Row",JOptionPane.WARNING_MESSAGE);
+      return;
+    }
+
+    String msg =  "Merge Selected Row with Row Above\n" +
+            "Probabilities of the two rows will be averaged.\n\n" +
+            "Do you wish to continue?";
+    int choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+    if (choice == JOptionPane.NO_OPTION) {
+      update(getGraphics());
+      return;
+    }
+    FireSuppWeatherData.mergeRowUp(row);
+    dataModel.fireTableDataChanged();
+  }
+  void menuOptionsMergeDown_actionPerformed(ActionEvent e) {
+    int row = table.getSelectedRow();
+    if (row == -1) {
+      JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
+              "Please Select a row in the table.","Nothing Selected",JOptionPane.WARNING_MESSAGE);
+      return;
+    }
+    int rowCount = table.getRowCount();
+    if (row == rowCount-1) {
+      JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
+              "No Next Row to Merge with","No Next Row",JOptionPane.WARNING_MESSAGE);
+      return;
+    }
+
+    String msg =  "Merge Selected Row with Row Below\n" +
+            "Probabilities of the two rows will be averaged.\n\n" +
+            "Do you wish to continue?";
+    int choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+    if (choice == JOptionPane.NO_OPTION) {
+      update(getGraphics());
+      return;
+    }
+    FireSuppWeatherData.mergeRowDown(row);
+    dataModel.fireTableDataChanged();
+  }
   // *** Probability Values ***
   // **************************
 

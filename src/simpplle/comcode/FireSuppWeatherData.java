@@ -1,9 +1,12 @@
 package simpplle.comcode;
 
 import java.io.*;
+import java.util.Formatter;
+import java.util.Locale;
 import java.util.zip.*;
 import java.util.ArrayList;
 import com.thoughtworks.xstream.XStream;
+import simpplle.gui.FireSuppWeather;
 
 /**
  * 
@@ -80,7 +83,7 @@ public class FireSuppWeatherData {
         }
         instances.add(inst);
       }
-
+      setMaxToAreaAcres();
     }
     catch (Exception ex) {
       throw new SimpplleError("Problems writing file.",ex);
@@ -186,7 +189,8 @@ public class FireSuppWeatherData {
     try {
       int[] data = readDataRow(fin);
       convert(data);
-      SystemKnowledge.setHasChanged(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A,false);
+      SystemKnowledge.setHasChanged(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A, false);
+      setMaxToAreaAcres();
     }
     catch (NumberFormatException nfe) {
       String msg = "Invalid value found in fire suppression weather data file.";
@@ -301,6 +305,128 @@ public class FireSuppWeatherData {
       default: return "";
     }
   }
+
+  public static void splitRow(int row, int splitInegerAcres){
+    int splitValue = Area.getRationalAcres(splitInegerAcres);
+
+    FireSuppWeatherData instance = instances.get(row);
+
+    FireSuppWeatherData newInst = new FireSuppWeatherData();
+
+    int origLower = instance.acresRange.getLower();
+
+    newInst.acresRange = new Range(origLower,splitValue);
+
+    for(int i=0; i<newInst.probability.length; i++){
+      newInst.probability[i] = instance.probability[i];
+    }
+
+    int oneAcre = Area.getRationalAcres(1);
+    instance.acresRange.setLower(splitValue + oneAcre);
+
+    instances.add(row,newInst);
+
+    markDataChanged();
+  }
+  public static void mergeRowUp(int row) {
+    FireSuppWeatherData rowData = instances.get(row);
+    FireSuppWeatherData prevRowData = instances.get(row-1);
+
+    int lower = prevRowData.acresRange.getLower();
+    int upper = rowData.acresRange.getLower();
+
+    rowData.acresRange.setLower(lower);
+    rowData.acresRange.setUpper(upper);
+
+    for (int i=0; i<rowData.probability.length; i++){
+      rowData.probability[i] = Math.round((float)((rowData.probability[i] + prevRowData.probability[i]) /2));
+    }
+  }
+  public static void mergeRowDown(int row) {
+    FireSuppWeatherData rowData = instances.get(row);
+    FireSuppWeatherData nextRowData = instances.get(row+1);
+
+    int lower = rowData.acresRange.getLower();
+    int upper = nextRowData.acresRange.getUpper();
+
+    rowData.acresRange.setLower(lower);
+    rowData.acresRange.setUpper(upper);
+
+    for(int i=0; i<rowData.probability.length; i++){
+      rowData.probability[i] = Math.round((float)((rowData.probability[i] + nextRowData.probability[i])/2));
+    }
+    instances.remove(row+1);
+  }
+  public static boolean isValidSplitAcres(int row, int splitIntegerAcres) {
+    int splitValue = Area.getRationalAcres(splitIntegerAcres);
+
+    FireSuppWeatherData instance = instances.get(row);
+
+    int oneAcre = Area.getRationalAcres(1);
+    int twoAcres = Area.getRationalAcres(2);
+    int lower = instance.acresRange.getLower();
+    int upper = instance.acresRange.getUpper() - twoAcres;
+    float fLower = Utility.getFloatAcres(lower, Area.getAcresPrecision());
+    if(fLower < 1.0){
+      lower =1;
+    }
+    else {
+      lower += oneAcre;
+    }
+
+    return (splitValue >= lower) && (splitValue <= upper);
+  }
+
+  public static String getValidSplitAcresDescription(int row) {
+    FireSuppWeatherData instance = instances.get(row);
+
+    int oneAcre = Area.getRationalAcres(1);
+    int twoAcres = Area.getRationalAcres(2);
+    int upperRat = instance.acresRange.getUpper() - twoAcres;
+
+    float lower = Utility.getFloatAcres(instance.acresRange.getLower() + oneAcre, Area.getAcresPrecision());
+    float upper = Utility.getFloatAcres(upperRat, Area.getAcresPrecision());
+
+    StringBuilder sb = new StringBuilder();
+    Formatter formatter = new Formatter(sb, Locale.US);
+
+    if (lower < 1) {
+      lower = 1.0f;
+    }
+
+    formatter.format("(%.0f-%.0f)", lower, upper);
+
+    return sb.toString();
+  }
+
+  public static int getMinSplitAcres(int row){
+    FireSuppWeatherData instance = instances.get(row);
+
+    int oneAcre = Area.getRationalAcres(1);
+    int lower = instance.acresRange.getLower()+oneAcre;
+
+    float fLower = Utility.getFloatAcres(lower, Area.getAcresPrecision());
+
+    return Math.round(fLower);
+  }
+
+  public static void setMaxToAreaAcres() {
+    FireSuppWeatherData instance = instances.get(instances.size()-1);
+    Area currentArea = Simpplle.getCurrentArea();
+    if (currentArea == null) {
+      setMaxToDefaultAcres();
+      return;
+    }
+
+    int areaAcres = currentArea.getAcres();
+    instance.acresRange.setUpper(areaAcres);
+  }
+
+  public static void setMaxToDefaultAcres(){
+    FireSuppWeatherData instance = instances.get(instances.size()-1);
+    instance.acresRange.setUpper(Integer.MAX_VALUE);
+  }
+
 
 
 }

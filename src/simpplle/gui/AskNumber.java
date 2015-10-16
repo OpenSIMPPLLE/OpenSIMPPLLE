@@ -127,7 +127,13 @@ public class AskNumber extends JDialog {
  * @return
  */
   public static int getInput(String title, String msg, int value) {
+    return getInput(title, msg, value, null);
+  }
+  public static int getInput(String title, String msg, int value, Point location){
     AskNumber dlg = new AskNumber(JSimpplle.getSimpplleMain(),title,true,msg,value);
+    if (location != null){
+      dlg.setLocation(location);
+    }
     dlg.setVisible(true);
     return dlg.value;
   }

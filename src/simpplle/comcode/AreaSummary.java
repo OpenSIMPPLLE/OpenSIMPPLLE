@@ -2720,32 +2720,44 @@ public final class AreaSummary implements Externalizable {
     int cStep = Simulation.getCurrentTimeStep();
 
     for (Climate.Season s : Climate.allSeasons) {
+      // Time Step is always YEAR, so skip others.
+      if ((cStep == 0) && s != Climate.Season.YEAR) {
+        continue;
+      }
       VegSimStateData trees = evu.getState(cStep, Lifeform.TREES, s);
       VegSimStateData shrubs = evu.getState(cStep, Lifeform.SHRUBS, s);
       VegSimStateData grass = evu.getState(cStep, Lifeform.HERBACIOUS, s);
       VegSimStateData agr = evu.getState(cStep, Lifeform.AGRICULTURE, s);
       VegSimStateData na = evu.getState(cStep, Lifeform.NA, s);
 
-      ProcessType treeProcess  = (trees != null)  ? trees.getProcess()  : ProcessType.NONE;
+      ProcessType treeProcess = (trees != null) ? trees.getProcess() : ProcessType.NONE;
       ProcessType shrubProcess = (shrubs != null) ? shrubs.getProcess() : ProcessType.NONE;
-      ProcessType grassProcess = (grass != null)  ? grass.getProcess()  : ProcessType.NONE;
-      ProcessType agrProcess   = (agr != null)    ? agr.getProcess()    : ProcessType.NONE;
-      ProcessType naProcess    = (na != null)     ? na.getProcess()     : ProcessType.NONE;
+      ProcessType grassProcess = (grass != null) ? grass.getProcess() : ProcessType.NONE;
+      ProcessType agrProcess = (agr != null) ? agr.getProcess() : ProcessType.NONE;
+      ProcessType naProcess = (na != null) ? na.getProcess() : ProcessType.NONE;
 
       int fireCount = 0;
-      if (treeProcess.isFireProcess()) { fireCount++; }
-      if (shrubProcess.isFireProcess()) { fireCount++; }
-      if (grassProcess.isFireProcess()) { fireCount++; }
+      if (treeProcess.isFireProcess()) {
+        fireCount++;
+      }
+      if (shrubProcess.isFireProcess()) {
+        fireCount++;
+      }
+      if (grassProcess.isFireProcess()) {
+        fireCount++;
+      }
 
       if (Simpplle.getCurrentArea().multipleLifeformsEnabled() == false) {
-        if (naProcess.isFireProcess()) { fireCount++; }
+        if (naProcess.isFireProcess()) {
+          fireCount++;
+        }
       }
 
       doneSummaryProcesses.clear();
       if (fireCount > 1) {
         ProcessType unitProcess =
-          Process.determineUnitFireProcess(treeProcess, shrubProcess,
-                                           grassProcess);
+                Process.determineUnitFireProcess(treeProcess, shrubProcess,
+                        grassProcess);
 
         if (unitProcess != null) {
           updateSummaryHm(processSummary, null, unitProcess, cStep, evu.getAcres());
@@ -2754,17 +2766,23 @@ public final class AreaSummary implements Externalizable {
       }
 
       Lifeform[] lives = Lifeform.getAllValues();
-      for(int i=0; i<lives.length; i++) {
+      for (int i = 0; i < lives.length; i++) {
         ProcessType process = ProcessType.NONE;
-        if (lives[i] == Lifeform.TREES) { process = treeProcess; }
-        else if (lives[i] == Lifeform.SHRUBS) { process = shrubProcess; }
-        else if (lives[i] == Lifeform.HERBACIOUS) { process = grassProcess; }
-        else if (lives[i] == Lifeform.AGRICULTURE) { process = agrProcess; }
-        else if (lives[i] == Lifeform.NA) { process = naProcess; }
+        if (lives[i] == Lifeform.TREES) {
+          process = treeProcess;
+        } else if (lives[i] == Lifeform.SHRUBS) {
+          process = shrubProcess;
+        } else if (lives[i] == Lifeform.HERBACIOUS) {
+          process = grassProcess;
+        } else if (lives[i] == Lifeform.AGRICULTURE) {
+          process = agrProcess;
+        } else if (lives[i] == Lifeform.NA) {
+          process = naProcess;
+        }
 
         if ((process.isFireProcess() == false || fireCount == 1) &&
-            process != ProcessType.SUCCESSION &&
-            process != ProcessType.NONE) {
+                process != ProcessType.SUCCESSION &&
+                process != ProcessType.NONE) {
           if (doneSummaryProcesses.contains(process) == false) {
             updateSummaryHm(processSummary, null, process, cStep, evu.getAcres());
             doneSummaryProcesses.add(process);
