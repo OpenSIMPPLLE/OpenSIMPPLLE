@@ -2720,7 +2720,7 @@ public final class AreaSummary implements Externalizable {
     int cStep = Simulation.getCurrentTimeStep();
 
     for (Climate.Season s : Climate.allSeasons) {
-      // Time Step is always YEAR, so skip others.
+      // Time Step 0 is always YEAR, so skip others.
       if ((cStep == 0) && s != Climate.Season.YEAR) {
         continue;
       }
