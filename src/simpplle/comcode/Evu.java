@@ -960,7 +960,7 @@ public final class Evu extends NaturalElement implements Externalizable {
  * @return the result of passing to getState(ts, lifeform)
  */
   public VegSimStateData getState (int tStep) {
-    return getState(tStep,dominantLifeform);
+    return getState(tStep, dominantLifeform);
   }
   public VegSimStateData getStateLastSeason(int tStep) {
     return getStateLastSeason(tStep,dominantLifeform);
@@ -1122,7 +1122,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       lifeform = dominantLifeform;
     }
 
-    MultiKey key = LifeformSeasonKeys.getKey(lifeform,season);
+    MultiKey key = LifeformSeasonKeys.getKey(lifeform, season);
     if (initialState == null) {
       initialState = new Flat3Map();
     }
@@ -2310,7 +2310,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param season season in which the new process is occurring
    */
   public void updateCurrentProcess(ProcessType p, Climate.Season season) {
-    updateCurrentProcess(null,p,season);
+    updateCurrentProcess(null, p, season);
   }
   /**
    * Overloaded updateCurrenProcess method.  Uses life form to get current vegetative sim state.  Then sets teh process for the
@@ -2432,7 +2432,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public void updateCurrentProb(Lifeform lifeform, int prob) {
     VegSimStateData state = getState(lifeform);
-    state.setProb((short)prob);
+    state.setProb((short) prob);
   }
   /**
    * Overloaded updateCurrentProb method.  Uses the areas current life form to get the current state and updates the current processes probability
@@ -2869,11 +2869,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     Set<Lifeform> lives=null;
 
     if (season == Season.YEAR) {
-      return getLifeforms(ts-1,Season.YEAR);
+      return getLifeforms(ts - 1, Season.YEAR);
     }
 
     if (ts == 1 && season == Season.SPRING) {
-      return getLifeforms(0,Season.YEAR);
+      return getLifeforms(0, Season.YEAR);
     }
 
     int count=0;
@@ -2882,10 +2882,10 @@ public final class Evu extends NaturalElement implements Externalizable {
         ts--;
         count = 0;
       }
-      if (ts == 0) { return getLifeforms(0,Season.YEAR); }
+      if (ts == 0) { return getLifeforms(0, Season.YEAR); }
 
       Season priorSeason = Season.getPriorSeason(season);
-      lives = getLifeforms(ts,priorSeason);
+      lives = getLifeforms(ts, priorSeason);
       if (lives.size() == 0) { lives = null; }
       season = priorSeason;
       count++;
@@ -2964,7 +2964,7 @@ public final class Evu extends NaturalElement implements Externalizable {
                         VegetativeType vegType, ProcessType process, short prob,
                         Season season) {
     VegSimStateData state = new VegSimStateData(getId(),tStep,run,vegType,process,prob);
-    newState(tStep,state,season);
+    newState(tStep, state, season);
     return state;
   }
 /**
@@ -4256,7 +4256,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     Process process = Process.findInstance(processType);
     Simulation simulation = Simpplle.getCurrentSimulation();
 
-    int prob = process.doProbability(zone,this);
+    int prob = process.doProbability(zone, this);
 
     if (simulation.isYearlyTimeSteps()) {
       prob = Math.round((float)prob / 10.0f);
@@ -4499,9 +4499,15 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (((processType.equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
          (processType.equals(ProcessType.MIXED_SEVERITY_FIRE) == false)  &&
          (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false)  &&
-         (processType.equals(ProcessType.ROOT_DISEASE) == false)) &&
-        (prevProcess.equals(ProcessType.ROOT_DISEASE))) {
-      selected    = ProcessType.ROOT_DISEASE;
+         (!processType.isRootDisease())) &&
+         (prevProcess.isRootDisease()))
+    {
+      if (Simpplle.getCurrentZone() instanceof WestsideRegionOne) {
+        selected = getHighestRootDisease(prevProcess);
+      }
+      else {
+        selected = prevProcess;
+      }
       processType = selected;
       updateCurrentProcess(selected);
       if (prob != Evu.SUPP) {
@@ -4696,9 +4702,14 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (((processType.equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
          (processType.equals(ProcessType.MIXED_SEVERITY_FIRE) == false)  &&
          (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false)  &&
-         (processType.equals(ProcessType.ROOT_DISEASE) == false)) &&
-        (pastProcess.equals(ProcessType.ROOT_DISEASE))) {
-      selected    = ProcessType.ROOT_DISEASE;
+         (!processType.isRootDisease())) &&
+         (pastProcess.isRootDisease())) {
+      if (Simpplle.getCurrentZone() instanceof WestsideRegionOne) {
+        selected = getHighestRootDisease(pastProcess);
+      }
+      else {
+        selected = pastProcess;
+      }
       processType = selected;
       processData.processType = selected;
       updateCurrentProcess(Lifeform.TREES,selected);
@@ -4829,6 +4840,30 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
 
+    return selectedType;
+  }
+
+  private ProcessType getHighestRootDisease(ProcessType pastProcess) {
+    ProcessType selectedType;
+
+    int lsProb = getProcessProb(ProcessType.LS_ROOT_DISEASE);
+    int msProb = getProcessProb(ProcessType.MS_ROOT_DISEASE);
+    int hsProb = getProcessProb(ProcessType.HS_ROOT_DISEASE);
+
+    int prob = lsProb;
+    selectedType = ProcessType.LS_ROOT_DISEASE;
+    if (msProb > prob) {
+      prob = msProb;
+      selectedType = ProcessType.MS_ROOT_DISEASE;
+    }
+    if (hsProb > prob) {
+      prob = hsProb;
+      selectedType = ProcessType.HS_ROOT_DISEASE;
+    }
+
+    if (prob == 0) {
+      return pastProcess;
+    }
     return selectedType;
   }
 

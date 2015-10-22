@@ -1405,6 +1405,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
         doTrackingSpeciesReport = in.readBoolean();
       }
     }
+
+    currentTimeStep = numTimeSteps;
   }
   /**
    * Writes simulation data.  This includes number of simulations, current run, num time steps, fire suppression discounted cost, booleans for

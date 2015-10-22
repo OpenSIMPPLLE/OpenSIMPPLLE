@@ -575,11 +575,12 @@ public abstract class RegenerationLogic {
       logic.clearData(kind.toString());
     }
     switch(kind) {
-      case FIRE: fireData.clear(); break;
+      case FIRE:
+        fireData.clear();
+        adjPrefSpecies = new ArrayList<Species>();
+        break;
       case SUCCESSION: succData.clear(); break;
     }
-
-    adjPrefSpecies = new ArrayList<Species>();
 
     logic = getData(kind,HabitatTypeGroupType.ANY,true);
 

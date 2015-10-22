@@ -102,6 +102,8 @@ public class ProcessProbabilityLogicDialog extends VegLogicDialog {
 
     tabbedPane.setSelectedIndex(0);
     tabbedPane_stateChanged(null);
+
+//  ProcessProbLogic.fillNewRoots();
     updateDialog();
   }
 

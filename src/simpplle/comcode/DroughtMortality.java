@@ -51,7 +51,7 @@ public class DroughtMortality extends Process {
     if (species != Species.JP) { return 0; }
 
     if (Simpplle.getClimate().isDrought()) {
-      if (processType.equals(ProcessType.ROOT_DISEASE) ||
+      if (processType.isRootDisease() ||
           processType.equals(ProcessType.LIGHT_BARK_BEETLES) ||
           processType.equals(ProcessType.SEVERE_BARK_BEETLES)) {
         return 100;

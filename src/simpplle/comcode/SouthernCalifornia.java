@@ -48,7 +48,7 @@ public class SouthernCalifornia extends RegionalZone {
     probDataProcesses = new ProcessType[] {
       ProcessType.LIGHT_BARK_BEETLES,
       ProcessType.BB_RD_DM_COMPLEX,
-      ProcessType.ROOT_DISEASE,
+      ProcessType.ROOT_DISEASE
     };
 
     createSampleAreas();

@@ -3110,6 +3110,8 @@ public class SimpplleMain extends JFrame {
     return true;
   }
   void menuSysKnowRegen_actionPerformed(ActionEvent e) {
+    RegenerationLogic.setDefaultEcoGroup(RegenerationLogic.FIRE);
+    RegenerationLogic.setDefaultEcoGroup(RegenerationLogic.SUCCESSION);
     if (arePathwaysLoaded() == false) { return; }
     if (RegenerationLogic.isDataPresent(RegenerationLogic.FIRE) == false) {
       RegenerationLogic.makeBlankLogic(RegenerationLogic.FIRE);

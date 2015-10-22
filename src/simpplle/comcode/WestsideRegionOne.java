@@ -45,6 +45,9 @@ public final class WestsideRegionOne extends RegionalZone {
       ProcessType.LIGHT_LP_MPB,
       ProcessType.DF_BEETLE,
       ProcessType.ROOT_DISEASE,
+      ProcessType.LS_ROOT_DISEASE,
+      ProcessType.MS_ROOT_DISEASE,
+      ProcessType.HS_ROOT_DISEASE,
       ProcessType.SPRUCE_BEETLE,
       ProcessType.WBP_MPB,
       ProcessType.WP_MPB

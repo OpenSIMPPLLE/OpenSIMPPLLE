@@ -321,12 +321,12 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
     checkBoxes.get(SystemKnowledge.AQUATIC_PATHWAYS).setEnabled(LtaValleySegmentGroup.loaded());
 
-    checkBoxes.get(SystemKnowledge.FIRE_SEASON).setEnabled(
-       (Simpplle.getCurrentZone().getId() == ValidZones.SOUTH_CENTRAL_ALASKA));
-
-    checkBoxes.get(SystemKnowledge.PROCESS_PROB_LOGIC).setEnabled(
-       (Simpplle.getCurrentZone().getId() == ValidZones.COLORADO_FRONT_RANGE) ||
-       (Simpplle.getCurrentZone().getId() == ValidZones.COLORADO_PLATEAU));
+//    checkBoxes.get(SystemKnowledge.FIRE_SEASON).setEnabled(
+//       (Simpplle.getCurrentZone().getId() == ValidZones.SOUTH_CENTRAL_ALASKA));
+//
+//    checkBoxes.get(SystemKnowledge.PROCESS_PROB_LOGIC).setEnabled(
+//       (Simpplle.getCurrentZone().getId() == ValidZones.COLORADO_FRONT_RANGE) ||
+//       (Simpplle.getCurrentZone().getId() == ValidZones.COLORADO_PLATEAU));
 
     setSize(getPreferredSize());
     update(getGraphics());

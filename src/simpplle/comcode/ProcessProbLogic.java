@@ -79,7 +79,7 @@ public class ProcessProbLogic extends BaseLogic {
     addColumn(processName,"ADJ_PROCESS_COL");
     addColumn(processName,"MPB_HAZARD_COL");
     addColumn(processName,"ADJ_MOD_HAZARD_COL");
-    addColumn(processName,"ADJ_HIGH_HAZARD_COL");
+    addColumn(processName, "ADJ_HIGH_HAZARD_COL");
     addColumn(processName,"PROB_COL");
   }
 /**
@@ -102,6 +102,41 @@ public class ProcessProbLogic extends BaseLogic {
     AbstractLogicData newLogicData = logicData.duplicate();
     super.addRow(insertPos,processName,newLogicData);
   }
+/**
+ * This was added to enable easily copying existing data from the process
+ * Root Disease to the three new Root Disease process (Low, Moderate, and High Severity).
+ * Added only for the developers use, later disabled.  Left here for possible future use.
+ */
+//  public static void fillNewRoots() {
+//    ProcessProbLogic logicInst = ProcessProbLogic.getInstance();
+//
+//    ProcessType process = ProcessType.ROOT_DISEASE;
+//
+//    ProcessProbLogicData logicData, newLogicData;
+//    Integer prob=null;
+//    for (int i=0; i<logicInst.getData(process.toString()).size(); i++) {
+//      logicData = (ProcessProbLogicData)logicInst.getData(process.toString()).get(i);
+//
+//      // Light Severity Root Disease
+//      newLogicData = (ProcessProbLogicData) logicData.duplicate();
+//      newLogicData.process = ProcessType.LS_ROOT_DISEASE;
+//
+//      logicInst.addRow(ProcessType.LS_ROOT_DISEASE.toString(), newLogicData);
+//
+//      // Moderate Severity Root Disease
+//      newLogicData = (ProcessProbLogicData) logicData.duplicate();
+//      newLogicData.process = ProcessType.MS_ROOT_DISEASE;
+//
+//      logicInst.addRow(ProcessType.MS_ROOT_DISEASE.toString(), newLogicData);
+//
+//      // High Severity Root Disease
+//      newLogicData = (ProcessProbLogicData) logicData.duplicate();
+//      newLogicData.process = ProcessType.HS_ROOT_DISEASE;
+//
+//      logicInst.addRow(ProcessType.HS_ROOT_DISEASE.toString(), newLogicData);
+//
+//    }
+//  }
 /**
  * takes in a column name and returns the column Id.  These column Id's are taken by adding a constant to the BaseLogic columns (which total 15).  The resulting 
  * column Id's are ADJ_PROCESS_COL = 16, MPB_HAZARD_COL =17, ADJ_MOD_HAZARD_COL = 18, ADJ_HIGH_HAZARD_COL = 19, PROB_COL = 20

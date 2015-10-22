@@ -100,6 +100,9 @@ public class ProcessType extends SimpplleType implements Externalizable {
   public static final ProcessType LSF                  = LIGHT_SEVERITY_FIRE;
   public static final ProcessType SPOT_LSF             = new ProcessType("LSF*","LightSeverityFire",true);
   public static final ProcessType ROOT_DISEASE         = new ProcessType("ROOT-DISEASE","RootDisease",false);
+  public static final ProcessType HS_ROOT_DISEASE      = new ProcessType("HIGH-SEVERITY-ROOT-DISEASE","HighSeverityRootDisease",false);
+  public static final ProcessType MS_ROOT_DISEASE      = new ProcessType("MODERATE-SEVERITY-ROOT-DISEASE","ModerateSeverityRootDisease",false);
+  public static final ProcessType LS_ROOT_DISEASE      = new ProcessType("LIGHT-SEVERITY-ROOT-DISEASE","LightSeverityRootDisease",false);
 
   public static final ProcessType SRF_SPRING = new ProcessType("SRF-SPRING","StandReplacingFire",true);
   public static final ProcessType SRF_SUMMER = new ProcessType("SRF-SUMMER","StandReplacingFire",true);
@@ -378,6 +381,20 @@ public class ProcessType extends SimpplleType implements Externalizable {
     if (equals(ProcessType.STAND_REPLACING_FIRE) ||
         equals(ProcessType.MIXED_SEVERITY_FIRE) ||
         equals(ProcessType.LIGHT_SEVERITY_FIRE)) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   *
+   * @return
+   */
+  public boolean isRootDisease() {
+    if (equals(ROOT_DISEASE) ||
+        equals(HS_ROOT_DISEASE) ||
+        equals(MS_ROOT_DISEASE) ||
+        equals(LS_ROOT_DISEASE)) {
       return true;
     }
     return false;
