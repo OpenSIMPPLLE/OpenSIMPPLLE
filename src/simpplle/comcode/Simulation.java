@@ -37,8 +37,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private Random      random;
   private File        outputFile;
   private float       discount;
-  private int[]       randomNumbers;
-  private int         randomPosition;
+  private long        randomSeed;
   private boolean     fixedRandom;
   private boolean     trackSpecialArea;
   private boolean     trackOwnership;
@@ -122,14 +121,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
     inSimulation     = false;
     invasiveSpeciesKind = InvasiveKind.NONE;
 
-//    writeRandomFile();
-
     String prop = System.getProperty("simpplle.fixedRandom");
     if (prop != null && prop.equalsIgnoreCase("enabled")) {
       fixedRandom = true;
-      readRandomFile();
-    }
-    else {
+      randomSeed = 42;
+    } else {
       fixedRandom = false;
     }
   }
@@ -527,7 +523,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
         invasiveSpeciesMSUProbOut.println("Species,Evu ID,Time Step,Intercept,Aspect,elev,elevResult,slope,slopeResult,cosasp,cosaspResult,sinasp,sinaspResult,annrad,andradResult,distroad,distroadResult,disttrail,disttrailResult,process value,treatment value,shrub,shrubResult,grass,grassResult,tree,treeResult, prob");
       }
 
-      randomPosition = -1;
       if (numSimulations > 1) {
 //        copyHsqldb();
         doMultipleRun();
@@ -900,56 +895,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
    * @return the random number
    */
   public int random() {
-    if (fixedRandom) {
-      randomPosition++;
-      if (randomPosition == randomNumbers.length) { randomPosition = 0; }
-      return randomNumbers[randomPosition];
-    }
-    else {
-//      return Math.round(random.nextFloat() * 9999.0f);
-      return random.nextInt(maxProbability);
-    }
-  }
-/**
- * method to wirte random numbers between 1-1000000 to file with random.gz as suffix
- */
-  public void writeRandomFile() {
-    try {
-      File file = new File (simpplle.JSimpplle.getWorkingDir(),"random.gz");
-
-      PrintWriter out = new PrintWriter(new GZIPOutputStream(new FileOutputStream(file)));
-
-      if (random == null) { random = new Random(); }
-      out.printf("%d",random());
-      for (int i=1; i<1000000; i++) {
-        out.printf(",%d",random());
-      }
-      out.flush();
-      out.close();
-    }
-    catch (IOException ex) {
-    }
-  }
-  /**
-   * method to read in random numbers from a file.
-   */
-  private void readRandomFile() {
-    try {
-      File file = new File(simpplle.JSimpplle.getWorkingDir(),"random.gz");
-
-      int i=0;
-      randomNumbers = new int[1000000];
-      Scanner scanner = new Scanner(new GZIPInputStream(new FileInputStream(file)));
-      scanner.useDelimiter(Pattern.compile(","));
-      while (scanner.hasNext() && i != randomNumbers.length) {
-        randomNumbers[i] = scanner.nextInt();
-        i++;
-      }
-      scanner.close();
-    }
-    catch (IOException ioe) {
-      System.out.println("Problem reading random.txt file.");
-    }
+    return random.nextInt(maxProbability);
   }
 /**
  * Since wyoming uses yearly time steps, seasonal variation are important.  If it is succession probability, spring is the last season, otherwise winter is used.
@@ -1001,13 +947,19 @@ public final class Simulation implements SimulationTypes, Externalizable {
    * the current area into the future.
    */
   private void doFuture() throws SimpplleError {
+
+    if (fixedRandom) {
+      random = new Random(randomSeed);
+    } else {
+      random = new Random();
+    }
+
     Area currentArea = Simpplle.currentArea;
     // 1. Create a landscape.
     // 2. Initialize spread to slots.
 
     currentTimeStep = 0;
     currentArea.initSimulation();
-    random          = new Random();
     areaSummary     = new AreaSummary();
 
     if ((currentArea.hasRoads() || currentArea.hasTrails()) && needNearestRoadTrailInfo()) {
@@ -1189,7 +1141,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
       msg = Simpplle.endl + "Performing Simulation #" + (i+1) +
             Simpplle.endl + Simpplle.endl;
       Simpplle.setStatusMessage(msg);
-      randomPosition = -1;
       doFuture();  // Run a simulation.
 
       // Update Area Summary data.
