@@ -32,9 +32,9 @@ public abstract class FireTypeDataNewerLegacy {
   public static final Integer MS_OBJ = new Integer(MULTIPLE_STORY.ordinal());
 
 
-  public static final int LOW      = FireEvent.LOW;
-  public static final int MODERATE = FireEvent.MODERATE;
-  public static final int HIGH     = FireEvent.HIGH;
+  public static final int LOW      = simpplle.comcode.process.FireEvent.LOW;
+  public static final int MODERATE = simpplle.comcode.process.FireEvent.MODERATE;
+  public static final int HIGH     = simpplle.comcode.process.FireEvent.HIGH;
 
   private static final int NUM_STRUCTURE      = 3;
   private static final int NUM_RESISTANCE     = 3;

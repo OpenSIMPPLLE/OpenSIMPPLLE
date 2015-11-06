@@ -1,7 +1,7 @@
 package simpplle.gui;
 
 import javax.swing.table.AbstractTableModel;
-import simpplle.comcode.BisonGrazing;
+import simpplle.comcode.process.BisonGrazing;
 import simpplle.comcode.Species;
 
 /** 

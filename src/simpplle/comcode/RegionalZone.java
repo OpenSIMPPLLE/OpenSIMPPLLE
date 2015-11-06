@@ -7,9 +7,13 @@ import java.util.Vector;
 import java.util.zip.GZIPInputStream;
 
 import simpplle.JSimpplle;
+import simpplle.comcode.zone.EastsideRegionOne;
+import simpplle.comcode.zone.GreatPlainsSteppe;
+import simpplle.comcode.zone.MixedGrassPrairie;
+import simpplle.comcode.zone.WesternGreatPlainsSteppe;
 
 
- /** 
+/**
   * 
   * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
@@ -121,8 +125,8 @@ public abstract class RegionalZone {
 
   /**
    * 
-   * @see simpplle.comcode.WestsideRegionOne
-   * @see simpplle.comcode.EastsideRegionOne
+   * @see simpplle.comcode.zone.WestsideRegionOne
+   * @see simpplle.comcode.zone.EastsideRegionOne
    * @return true = the zone is available
    */
   public boolean isAvailable () {
@@ -234,7 +238,7 @@ public abstract class RegionalZone {
 
   /**
    * Gets the id of the zone, implemented in subclasses.
-   * @see WestsideRegionOne
+   * @see simpplle.comcode.zone.WestsideRegionOne
    * @see EastsideRegionOne
    * @return the zone id.
    */
@@ -621,7 +625,7 @@ public abstract class RegionalZone {
     System.gc();
     Simpplle.clearStatusMessage();
 
-    FireEvent.setExtremeDataChanged(false);
+    simpplle.comcode.process.FireEvent.setExtremeDataChanged(false);
   }
 
   public BufferedReader getTreatmentLogicFileStream() throws SimpplleError {

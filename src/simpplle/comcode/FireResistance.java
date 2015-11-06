@@ -29,9 +29,9 @@ public class FireResistance implements Externalizable, Comparable {
 
   private static transient HashMap allResistance = new HashMap(3);
 
-  public static final FireResistance LOW      = new FireResistance("LOW",FireEvent.LOW);
-  public static final FireResistance MODERATE = new FireResistance("MODERATE",FireEvent.MODERATE);
-  public static final FireResistance HIGH     = new FireResistance("HIGH",FireEvent.HIGH);
+  public static final FireResistance LOW      = new FireResistance("LOW", simpplle.comcode.process.FireEvent.LOW);
+  public static final FireResistance MODERATE = new FireResistance("MODERATE", simpplle.comcode.process.FireEvent.MODERATE);
+  public static final FireResistance HIGH     = new FireResistance("HIGH", simpplle.comcode.process.FireEvent.HIGH);
   public static final FireResistance UNKNOWN  = new FireResistance("UNKNOWN/NA",-1);
   public static final FireResistance CONDITIONAL = new FireResistance("CONDITIONAL",-2);
 
@@ -89,9 +89,9 @@ public class FireResistance implements Externalizable, Comparable {
  */
   public static FireResistance get(int id) {
     switch (id) {
-      case FireEvent.LOW:      return LOW;
-      case FireEvent.MODERATE: return MODERATE;
-      case FireEvent.HIGH:     return HIGH;
+      case simpplle.comcode.process.FireEvent.LOW:      return LOW;
+      case simpplle.comcode.process.FireEvent.MODERATE: return MODERATE;
+      case simpplle.comcode.process.FireEvent.HIGH:     return HIGH;
       case -2:                 return CONDITIONAL;
       default:                 return UNKNOWN;
     }

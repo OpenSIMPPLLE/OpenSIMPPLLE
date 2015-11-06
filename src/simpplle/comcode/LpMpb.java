@@ -1,7 +1,12 @@
 package simpplle.comcode;
 
 
- /**
+import simpplle.comcode.process.SevereLpMpb;
+import simpplle.comcode.zone.EastsideRegionOne;
+import simpplle.comcode.zone.Teton;
+import simpplle.comcode.zone.WestsideRegionOne;
+
+/**
  * 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
@@ -14,8 +19,8 @@ package simpplle.comcode;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  * 
- * @see simpplle.comcode.LightLpMpb
- * @see simpplle.comcode.SevereLpMpb
+ * @see simpplle.comcode.process.LightLpMpb
+ * @see SevereLpMpb
  *
 */
 
@@ -474,7 +479,7 @@ public abstract class LpMpb implements HazardValues {
   public static void adjust(Teton zone, Evu evu) {
     adjust((RegionalZone)zone,evu);
   }
-  public static void adjust(NorthernCentralRockies zone, Evu evu) {
+  public static void adjust(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
     adjust((RegionalZone)zone,evu);
   }
 

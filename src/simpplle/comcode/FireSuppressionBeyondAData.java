@@ -3,7 +3,6 @@ package simpplle.comcode;
 import java.util.Hashtable;
 import java.io.*;
 import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
 
 /**
  * 
@@ -22,9 +21,9 @@ import java.util.zip.GZIPOutputStream;
  */
 
 public class FireSuppressionBeyondAData {
-  private static final int NF_WILDERNESS = FireEvent.NF_WILDERNESS;
-  private static final int NF_OTHER      = FireEvent.NF_OTHER;
-  private static final int OTHER         = FireEvent.OTHER;
+  private static final int NF_WILDERNESS = simpplle.comcode.process.FireEvent.NF_WILDERNESS;
+  private static final int NF_OTHER      = simpplle.comcode.process.FireEvent.NF_OTHER;
+  private static final int OTHER         = simpplle.comcode.process.FireEvent.OTHER;
 
   private static final int UNKNOWN       = Roads.Status.UNKNOWN.getValue();
   private static final int NONE          = Roads.Status.NONE.getValue();
@@ -172,7 +171,7 @@ public class FireSuppressionBeyondAData {
     boolean[]           suppressBool;
     boolean[][]         suppressRoadsBool;
     final int           NUM_KEYS  = 3;
-    final int           NUM_OWNER = FireEvent.getNumOwnership();
+    final int           NUM_OWNER = simpplle.comcode.process.FireEvent.getNumOwnership();
     final int           NUM_ROAD  = 4;
 
     suppress.clear();
@@ -193,7 +192,7 @@ public class FireSuppressionBeyondAData {
           if (process == null) { throw new ParseError("Invalid process found:" + str); }
 
           str   = strTok.getStringToken();
-          owner = FireEvent.findOwnership(str);
+          owner = simpplle.comcode.process.FireEvent.findOwnership(str);
 
           suppressBool = (boolean[])suppress.get(process);
           if (suppressBool == null) {
@@ -214,7 +213,7 @@ public class FireSuppressionBeyondAData {
             if (process == null) { throw new ParseError("Invalid process found:" + str); }
 
             str   = strTok.getStringToken();
-            owner = FireEvent.findOwnership(str);
+            owner = simpplle.comcode.process.FireEvent.findOwnership(str);
 
             str        = strTok.getStringToken();
             roadStatus = Roads.Status.lookup(str).getValue();

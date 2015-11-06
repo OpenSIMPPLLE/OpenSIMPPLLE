@@ -129,7 +129,7 @@ public class FireSuppEventLogicData extends LogicData implements Externalizable 
       return true;
     }
 
-    ProcessOccurrenceSpreadingFire event = FireEvent.currentEvent;
+    ProcessOccurrenceSpreadingFire event = simpplle.comcode.process.FireEvent.currentEvent;
     if (event == null) {
       return true;
     }

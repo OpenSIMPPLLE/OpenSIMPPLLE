@@ -134,7 +134,7 @@ public class FireSuppBeyondClassALogic extends BaseLogic {
                               int tStep, Lifeform lifeform)
   {
     
-    if (!FireEvent.currentEvent.isSuppressed()) {
+    if (!simpplle.comcode.process.FireEvent.currentEvent.isSuppressed()) {
       return false;
     }
     

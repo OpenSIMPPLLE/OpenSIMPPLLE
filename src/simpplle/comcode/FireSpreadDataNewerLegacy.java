@@ -16,24 +16,24 @@ import java.util.*;
  */
 
 public class FireSpreadDataNewerLegacy {
-  public static final SizeClass.Structure NON_FOREST     = FireEvent.NON_FOREST;
-  public static final SizeClass.Structure SINGLE_STORY   = FireEvent.SINGLE_STORY;
-  public static final SizeClass.Structure MULTIPLE_STORY = FireEvent.MULTIPLE_STORY;
+  public static final SizeClass.Structure NON_FOREST     = simpplle.comcode.process.FireEvent.NON_FOREST;
+  public static final SizeClass.Structure SINGLE_STORY   = simpplle.comcode.process.FireEvent.SINGLE_STORY;
+  public static final SizeClass.Structure MULTIPLE_STORY = simpplle.comcode.process.FireEvent.MULTIPLE_STORY;
 
   public static final Integer NF_OBJ = new Integer(NON_FOREST.ordinal());
   public static final Integer SS_OBJ = new Integer(SINGLE_STORY.ordinal());
   public static final Integer MS_OBJ = new Integer(MULTIPLE_STORY.ordinal());
 
-  public static final int LOW      = FireEvent.LOW;
-  public static final int MODERATE = FireEvent.MODERATE;
-  public static final int HIGH     = FireEvent.HIGH;
+  public static final int LOW      = simpplle.comcode.process.FireEvent.LOW;
+  public static final int MODERATE = simpplle.comcode.process.FireEvent.MODERATE;
+  public static final int HIGH     = simpplle.comcode.process.FireEvent.HIGH;
 
-  public static final int LMSF_CLASS = FireEvent.LMSF_CLASS;
-  public static final int SRF_CLASS  = FireEvent.SRF_CLASS;
+  public static final int LMSF_CLASS = simpplle.comcode.process.FireEvent.LMSF_CLASS;
+  public static final int SRF_CLASS  = simpplle.comcode.process.FireEvent.SRF_CLASS;
 
   // Relative Position
-  public static final int A  = FireEvent.A;
-  public static final int BN = FireEvent.BN;
+  public static final int A  = simpplle.comcode.process.FireEvent.A;
+  public static final int BN = simpplle.comcode.process.FireEvent.BN;
 
   private static final int NUM_STRUCTURE      = 3;
   private static final int NUM_RESISTANCE     = 3;
@@ -843,16 +843,16 @@ public class FireSpreadDataNewerLegacy {
               }
               FireSpreadDataEntry.DensityRule rule;
 
-              ArrayList<FireEvent.Position> positions;
+              ArrayList<simpplle.comcode.process.FireEvent.Position> positions;
               for (int j = 0; j < entry.densityRules.size(); j++) {
-                positions = new ArrayList<FireEvent.Position>(3);
+                positions = new ArrayList<simpplle.comcode.process.FireEvent.Position>(3);
                 rule = (FireSpreadDataEntry.DensityRule) entry.densityRules.get(j);
-                if (pos == FireEvent.A) {
-                  positions.add(FireEvent.ABOVE);
+                if (pos == simpplle.comcode.process.FireEvent.A) {
+                  positions.add(simpplle.comcode.process.FireEvent.ABOVE);
                  }
                 else {
-                  positions.add(FireEvent.BELOW);
-                  positions.add(FireEvent.NEXT_TO);
+                  positions.add(simpplle.comcode.process.FireEvent.BELOW);
+                  positions.add(simpplle.comcode.process.FireEvent.NEXT_TO);
                 }
 
                 FireEventLogic.getInstance().addLegacyData(fireResist,

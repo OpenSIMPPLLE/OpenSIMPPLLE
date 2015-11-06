@@ -1,7 +1,6 @@
 package simpplle.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Frame;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -10,7 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
 import simpplle.comcode.FireSpreadLogicData;
-import simpplle.comcode.FireEvent;
+import simpplle.comcode.process.FireEvent;
 
 /**
  * 

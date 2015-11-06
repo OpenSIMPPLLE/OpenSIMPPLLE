@@ -31,7 +31,7 @@ public class AdjacentData implements Externalizable {
    *   E = Use Elevation
    */
 
-  Evu  evu;
+  public Evu evu;
   char position;
   char wind;
 

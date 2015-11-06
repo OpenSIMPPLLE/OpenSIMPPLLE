@@ -18,19 +18,19 @@ package simpplle.comcode;
  */
 public abstract class FireLogicDefines {
   // Structure
-  public static final int NON_FOREST     = FireEvent.NON_FOREST.ordinal();
-  public static final int SINGLE_STORY   = FireEvent.SINGLE_STORY.ordinal();
-  public static final int MULTIPLE_STORY = FireEvent.MULTIPLE_STORY.ordinal();
+  public static final int NON_FOREST     = simpplle.comcode.process.FireEvent.NON_FOREST.ordinal();
+  public static final int SINGLE_STORY   = simpplle.comcode.process.FireEvent.SINGLE_STORY.ordinal();
+  public static final int MULTIPLE_STORY = simpplle.comcode.process.FireEvent.MULTIPLE_STORY.ordinal();
 
   // Resistance to Fire
-  public static final int LOW      = FireEvent.LOW;
-  public static final int MODERATE = FireEvent.MODERATE;
-  public static final int HIGH     = FireEvent.HIGH;
+  public static final int LOW      = simpplle.comcode.process.FireEvent.LOW;
+  public static final int MODERATE = simpplle.comcode.process.FireEvent.MODERATE;
+  public static final int HIGH     = simpplle.comcode.process.FireEvent.HIGH;
 
   // Ownership
-  public static final int NF_WILDERNESS = FireEvent.NF_WILDERNESS;
-  public static final int NF_OTHER      = FireEvent.NF_OTHER;
-  public static final int OTHER         = FireEvent.OTHER;
+  public static final int NF_WILDERNESS = simpplle.comcode.process.FireEvent.NF_WILDERNESS;
+  public static final int NF_OTHER      = simpplle.comcode.process.FireEvent.NF_OTHER;
+  public static final int OTHER         = simpplle.comcode.process.FireEvent.OTHER;
 
 
 

@@ -111,7 +111,7 @@ public class FireSuppProductionRateLogicData extends LogicData {
                          VegetativeType vegType, int eventAcres)
   {
     FireResistance resistance =
-      FireEvent.getSpeciesResistance(Simpplle.getCurrentZone(),evu,lifeform);
+      simpplle.comcode.process.FireEvent.getSpeciesResistance(Simpplle.getCurrentZone(),evu,lifeform);
 
     if (super.isMatch(resistance,evu,tStep,lifeform,vegType) == false) {
       return false;

@@ -5,12 +5,9 @@ import java.util.jar.*;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
-import com.thoughtworks.xstream.io.HierarchicalStreamDriver;
-import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 
 
-
-/** 
+/**
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
@@ -1034,7 +1031,7 @@ public class SystemKnowledge {
       for (int i=0; i<loadSaveMe.length; i++) {
         loadSaveMe[i] = true;
       }
-      FireEvent.resetExtremeData();
+      simpplle.comcode.process.FireEvent.resetExtremeData();
     }
 
     try {
@@ -1103,7 +1100,7 @@ public class SystemKnowledge {
 
 
         if (entryId == EXTREME_FIRE_DATA && loadSaveMe[EXTREME_FIRE_DATA.ordinal()]) {
-          FireEvent.readExtremeData(fin);
+          simpplle.comcode.process.FireEvent.readExtremeData(fin);
         }
         if (entryId == CLIMATE && loadSaveMe[CLIMATE.ordinal()]) {
           Climate climate = Simpplle.getClimate();
@@ -1111,7 +1108,7 @@ public class SystemKnowledge {
           if (!isIndividualFile) { climate.clearFilename(); }
         }
         if (entryId == FIRE_SEASON && loadSaveMe[FIRE_SEASON.ordinal()]) {
-          FireEvent.readFireSeasonData(fin);
+          simpplle.comcode.process.FireEvent.readFireSeasonData(fin);
           if (!isIndividualFile) { clearFile(FIRE_SEASON); }
         }
         if (entryId == SPECIES && loadSaveMe[SPECIES.ordinal()]) {
@@ -1559,7 +1556,7 @@ public class SystemKnowledge {
       if (loadSaveMe[EXTREME_FIRE_DATA.ordinal()]) {
         jarEntry = new JarEntry(EXTREME_FIRE_DATA_ENTRY);
         jarOut.putNextEntry(jarEntry);
-        FireEvent.saveExtremeData(pout);
+        simpplle.comcode.process.FireEvent.saveExtremeData(pout);
         pout.flush();
       }
 
@@ -1576,7 +1573,7 @@ public class SystemKnowledge {
       if (loadSaveMe[FIRE_SEASON.ordinal()]) {
         jarEntry = new JarEntry(FIRE_SEASON_ENTRY);
         jarOut.putNextEntry(jarEntry);
-        FireEvent.saveFireSeasonData(pout);
+        simpplle.comcode.process.FireEvent.saveFireSeasonData(pout);
         pout.flush();
       }
 
@@ -1849,7 +1846,7 @@ public class SystemKnowledge {
     RegionalZone zone = Simpplle.getCurrentZone();
 
     zone.readZoneSystemKnowledgeFile();
-    FireEvent.resetExtremeData();
+    simpplle.comcode.process.FireEvent.resetExtremeData();
   }
 /**
  * Gets the system knowledge file extension based on system knowledge kind.  

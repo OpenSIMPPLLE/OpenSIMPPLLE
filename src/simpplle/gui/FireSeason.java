@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.event.*;
 
-import simpplle.comcode.FireEvent;
+import simpplle.comcode.process.FireEvent;
 import simpplle.comcode.Climate;
 
 /** 

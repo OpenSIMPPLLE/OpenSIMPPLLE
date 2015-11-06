@@ -1,5 +1,19 @@
 package simpplle.comcode;
 
+import simpplle.comcode.zone.ColoradoPlateau;
+import simpplle.comcode.zone.EastsideRegionOne;
+import simpplle.comcode.zone.Gila;
+import simpplle.comcode.zone.GreatPlainsSteppe;
+import simpplle.comcode.zone.MixedGrassPrairie;
+import simpplle.comcode.zone.NorthernCentralRockies;
+import simpplle.comcode.zone.SierraNevada;
+import simpplle.comcode.zone.SouthCentralAlaska;
+import simpplle.comcode.zone.SouthernCalifornia;
+import simpplle.comcode.zone.SouthwestUtah;
+import simpplle.comcode.zone.Teton;
+import simpplle.comcode.zone.WesternGreatPlainsSteppe;
+import simpplle.comcode.zone.WestsideRegionOne;
+
 import java.io.*;
 import java.util.jar.JarInputStream;
 import java.util.jar.JarOutputStream;
@@ -185,10 +199,10 @@ public abstract class Process
 
     switch (zoneId) {
       case ValidZones.WESTSIDE_REGION_ONE:
-        result = doProbability((WestsideRegionOne) zone, evu);
+        result = doProbability((simpplle.comcode.zone.WestsideRegionOne) zone, evu);
         break;
       case ValidZones.EASTSIDE_REGION_ONE:
-        result = doProbability((EastsideRegionOne) zone, evu);
+        result = doProbability((simpplle.comcode.zone.EastsideRegionOne) zone, evu);
         break;
       case ValidZones.TETON:
         result = doProbability((Teton) zone, evu);
@@ -200,7 +214,7 @@ public abstract class Process
         result = doProbability((SierraNevada) zone, evu);
         break;
       case ValidZones.SOUTHERN_CALIFORNIA:
-        result = doProbability((SouthernCalifornia) zone, evu);
+        result = doProbability((simpplle.comcode.zone.SouthernCalifornia) zone, evu);
         break;
       case ValidZones.GILA:
         result = doProbability((Gila)zone,evu);
@@ -209,22 +223,22 @@ public abstract class Process
         result = doProbability((SouthCentralAlaska) zone, evu);
         break;
       case ValidZones.SOUTHWEST_UTAH:
-        result = doProbability((SouthwestUtah)zone,evu);
+        result = doProbability((simpplle.comcode.zone.SouthwestUtah)zone,evu);
         break;
       case ValidZones.COLORADO_FRONT_RANGE:
-        result = doProbability((ColoradoFrontRange)zone,evu);
+        result = doProbability((simpplle.comcode.zone.ColoradoFrontRange)zone,evu);
         break;
       case ValidZones.COLORADO_PLATEAU:
-        result = doProbability((ColoradoPlateau)zone,evu);
+        result = doProbability((simpplle.comcode.zone.ColoradoPlateau)zone,evu);
         break;
       case ValidZones.WESTERN_GREAT_PLAINS_STEPPE:
-        result = doProbability((WesternGreatPlainsSteppe)zone,evu);
+        result = doProbability((simpplle.comcode.zone.WesternGreatPlainsSteppe)zone,evu);
         break;
       case ValidZones.GREAT_PLAINS_STEPPE:
-        result = doProbability((GreatPlainsSteppe)zone,evu);
+        result = doProbability((simpplle.comcode.zone.GreatPlainsSteppe)zone,evu);
         break;
       case ValidZones.MIXED_GRASS_PRAIRIE:
-        result = doProbability((MixedGrassPrairie)zone,evu);
+        result = doProbability((simpplle.comcode.zone.MixedGrassPrairie)zone,evu);
         break;
       default:
         result = 0;
@@ -242,20 +256,20 @@ public abstract class Process
    * @param evu .
    * @return the probability.
    */
-  protected int doProbability (WestsideRegionOne        zone, Evu evu) { return 0; }
-  protected int doProbability (EastsideRegionOne        zone, Evu evu) { return 0; }
-  protected int doProbability (Teton                    zone, Evu evu) { return 0; }
-  protected int doProbability (NorthernCentralRockies   zone, Evu evu) { return 0; }
-  protected int doProbability (SierraNevada             zone, Evu evu) { return 0; }
-  protected int doProbability (SouthernCalifornia       zone, Evu evu) { return 0; }
-  protected int doProbability (Gila                     zone, Evu evu) { return 0; }
-  protected int doProbability (SouthCentralAlaska       zone, Evu evu) { return 0; }
-  protected int doProbability (SouthwestUtah            zone, Evu evu) { return 0; }
-  protected int doProbability (ColoradoFrontRange       zone, Evu evu) { return 0; }
-  protected int doProbability (ColoradoPlateau          zone, Evu evu) { return 0; }
-  protected int doProbability (WesternGreatPlainsSteppe zone, Evu evu) { return 0; }
-  protected int doProbability (GreatPlainsSteppe        zone, Evu evu) { return 0; }
-  protected int doProbability (MixedGrassPrairie        zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) { return 0; }
+  protected int doProbability (SouthernCalifornia zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.SouthwestUtah zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.GreatPlainsSteppe zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.MixedGrassPrairie zone, Evu evu) { return 0; }
 
   /**
    * Gets a probability value from the data structure that
@@ -579,34 +593,34 @@ public abstract class Process
 
     switch (zoneId) {
       case ValidZones.WESTSIDE_REGION_ONE:
-        result = doSpread((WestsideRegionOne)zone, fromEvu, evu);
+        result = doSpread((simpplle.comcode.zone.WestsideRegionOne)zone, fromEvu, evu);
         break;
       case ValidZones.EASTSIDE_REGION_ONE:
-        result = doSpread((EastsideRegionOne)zone, fromEvu, evu);
+        result = doSpread((simpplle.comcode.zone.EastsideRegionOne)zone, fromEvu, evu);
         break;
       case ValidZones.TETON:
-        result = doSpread((Teton)zone, fromEvu, evu);
+        result = doSpread((simpplle.comcode.zone.Teton)zone, fromEvu, evu);
         break;
       case ValidZones.NORTHERN_CENTRAL_ROCKIES:
-        result = doSpread((NorthernCentralRockies)zone, fromEvu, evu);
+        result = doSpread((simpplle.comcode.zone.NorthernCentralRockies)zone, fromEvu, evu);
         break;
       case ValidZones.SIERRA_NEVADA:
-        result = doSpread((SierraNevada)zone, fromEvu, evu);
+        result = doSpread((simpplle.comcode.zone.SierraNevada)zone, fromEvu, evu);
         break;
       case ValidZones.SOUTHERN_CALIFORNIA:
-        result = doSpread((SouthernCalifornia)zone, fromEvu, evu);
+        result = doSpread((simpplle.comcode.zone.SouthernCalifornia)zone, fromEvu, evu);
         break;
       case ValidZones.GILA:
-        result = doSpread((Gila)zone,fromEvu,evu);
+        result = doSpread((simpplle.comcode.zone.Gila)zone,fromEvu,evu);
         break;
       case ValidZones.SOUTH_CENTRAL_ALASKA:
-        result = doSpread((SouthCentralAlaska)zone, fromEvu, evu);
+        result = doSpread((simpplle.comcode.zone.SouthCentralAlaska)zone, fromEvu, evu);
         break;
       case ValidZones.SOUTHWEST_UTAH:
-        result = doSpread((SouthwestUtah)zone,fromEvu,evu);
+        result = doSpread((simpplle.comcode.zone.SouthwestUtah)zone,fromEvu,evu);
         break;
       case ValidZones.COLORADO_FRONT_RANGE:
-        result = doSpread((ColoradoFrontRange)zone,fromEvu,evu);
+        result = doSpread((simpplle.comcode.zone.ColoradoFrontRange)zone,fromEvu,evu);
         break;
       case ValidZones.COLORADO_PLATEAU:
         result = doSpread((ColoradoPlateau)zone,fromEvu,evu);
@@ -615,7 +629,7 @@ public abstract class Process
         result = doSpread((WesternGreatPlainsSteppe)zone,fromEvu,evu);
         break;
       case ValidZones.GREAT_PLAINS_STEPPE:
-        result = doSpread((GreatPlainsSteppe)zone,fromEvu,evu);
+        result = doSpread((simpplle.comcode.zone.GreatPlainsSteppe)zone,fromEvu,evu);
         break;
       case ValidZones.MIXED_GRASS_PRAIRIE:
         result = doSpread((MixedGrassPrairie)zone,fromEvu,evu);
@@ -634,20 +648,20 @@ public abstract class Process
    * @param evu is an Evu.
    * @return a boolean, true = Process does spread.
    */
-  protected boolean doSpread (WestsideRegionOne        zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (EastsideRegionOne        zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (Teton                    zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (NorthernCentralRockies   zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (SierraNevada             zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (SouthernCalifornia       zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (Gila                     zone, Evu fromEvu, Evu evu)  { return false; }
-  protected boolean doSpread (SouthCentralAlaska       zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (SouthwestUtah            zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (ColoradoFrontRange       zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (ColoradoPlateau          zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (WesternGreatPlainsSteppe zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (GreatPlainsSteppe        zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (MixedGrassPrairie        zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (WestsideRegionOne zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (EastsideRegionOne zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.Teton zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu)  { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (SouthwestUtah zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.ColoradoFrontRange zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.ColoradoPlateau zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (GreatPlainsSteppe zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.MixedGrassPrairie zone, Evu fromEvu, Evu evu) { return false; }
 
   public String toString() { return getType().toString(); }
 

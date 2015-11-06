@@ -2,7 +2,6 @@ package simpplle.comcode;
 
 import java.io.*;
 import java.util.*;
-import java.util.regex.*;
 import java.util.zip.*;
 
 /**
@@ -1001,7 +1000,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
         String msg = "Project Area for Time Step: " + (i+1)
                                   + " Run #" + (currentRun + 1) + " Mem: " + getMemoryString();
         Simpplle.setStatusMessage(msg);
-        if (FireEvent.useRegenPulse()) { FireEvent.setRegenPulse(); }
+        if (simpplle.comcode.process.FireEvent.useRegenPulse()) { simpplle.comcode.process.FireEvent.setRegenPulse(); }
 
         if (RegionalZone.isWyoming()) {
           Climate.Season lastSeason = isStandDevelopment() ?

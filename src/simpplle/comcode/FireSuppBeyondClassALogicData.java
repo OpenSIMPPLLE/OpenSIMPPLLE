@@ -148,7 +148,7 @@ public class FireSuppBeyondClassALogicData extends LogicData {
                          VegetativeType vegType)
   {
     FireResistance resistance =
-      FireEvent.getSpeciesResistance(Simpplle.getCurrentZone(),evu,lifeform);
+      simpplle.comcode.process.FireEvent.getSpeciesResistance(Simpplle.getCurrentZone(),evu,lifeform);
 
     if (super.isMatch(resistance,evu,tStep,lifeform,vegType) == false) {
       return false;

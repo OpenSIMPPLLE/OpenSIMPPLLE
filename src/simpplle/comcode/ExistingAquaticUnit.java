@@ -432,7 +432,7 @@ public final class ExistingAquaticUnit extends NaturalElement implements Externa
     ProcessType pt = ProcessType.get(processName);
     if (pt == null) {
       pt = ProcessType.makeInvalidInstance(processName);
-      Process p = new InvalidProcess(pt,processName);
+      Process p = new simpplle.comcode.process.InvalidProcess(pt,processName);
       setInitialProcess(p);
       return;
     }
@@ -452,7 +452,7 @@ public final class ExistingAquaticUnit extends NaturalElement implements Externa
   }
 
   public boolean isInitialProcessValid() {
-    return ((getInitialProcess() instanceof InvalidProcess) == false);
+    return ((getInitialProcess() instanceof simpplle.comcode.process.InvalidProcess) == false);
   }
 
   /**

@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.net.URL;
 
 //import javax.help.CSH;
 //import javax.help.HelpBroker;
@@ -1569,7 +1568,7 @@ public class SimpplleMain extends JFrame {
     buildSimpplleTypeFiles.setVisible(JSimpplle.developerMode());
     buildSimpplleTypesSource.setVisible(JSimpplle.developerMode());
 
-    boolean isColorado =  (Simpplle.getCurrentZone() instanceof ColoradoFrontRange);
+    boolean isColorado =  (Simpplle.getCurrentZone() instanceof simpplle.comcode.zone.ColoradoFrontRange);
     menuSysKnowWindthrow.setVisible(isColorado);
     menuSysKnowWindthrow.setEnabled(isColorado);
     menuSysKnowWildlifeBrowsing.setVisible(isColorado);
@@ -1579,7 +1578,7 @@ public class SimpplleMain extends JFrame {
 
 
 
-    boolean isColoradoPlateau =  (Simpplle.getCurrentZone() instanceof ColoradoPlateau);
+    boolean isColoradoPlateau =  (Simpplle.getCurrentZone() instanceof simpplle.comcode.zone.ColoradoPlateau);
     menuSysKnowWindthrow.setVisible(isColoradoPlateau);
     menuSysKnowWindthrow.setEnabled(isColoradoPlateau);
     menuSysKnowWildlifeBrowsing.setVisible(isColoradoPlateau);
@@ -1781,8 +1780,8 @@ public class SimpplleMain extends JFrame {
       if ((choice == NewArea.SAMPLE) || (choice == NewArea.USER_DEFINED)) {
         doInvalidAreaCheck();
       }
-      FireEvent.setUseRegenPulse(area.getName().equalsIgnoreCase("cheesman"));
-      menuSysKnowUseRegenPulse.setSelected(FireEvent.useRegenPulse());
+      simpplle.comcode.process.FireEvent.setUseRegenPulse(area.getName().equalsIgnoreCase("cheesman"));
+      menuSysKnowUseRegenPulse.setSelected(simpplle.comcode.process.FireEvent.useRegenPulse());
       enableAreaControls();
       if (Simpplle.getCurrentSimulation() != null) {
         disableSimulationControls();
@@ -2961,7 +2960,7 @@ public class SimpplleMain extends JFrame {
 
 
   void menuSysKnowUseRegenPulse_actionPerformed(ActionEvent e) {
-    FireEvent.setUseRegenPulse(menuSysKnowUseRegenPulse.isSelected());
+    simpplle.comcode.process.FireEvent.setUseRegenPulse(menuSysKnowUseRegenPulse.isSelected());
   }
 
   void menuSysKnowConiferEncroach_actionPerformed(ActionEvent e) {
@@ -3062,8 +3061,8 @@ public class SimpplleMain extends JFrame {
   }
 
   void menuSysKnowWSBWLogic_actionPerformed(ActionEvent e) {
-    if (Simpplle.getCurrentZone() instanceof ColoradoFrontRange ||
-        Simpplle.getCurrentZone() instanceof ColoradoPlateau) {
+    if (Simpplle.getCurrentZone() instanceof simpplle.comcode.zone.ColoradoFrontRange ||
+        Simpplle.getCurrentZone() instanceof simpplle.comcode.zone.ColoradoPlateau) {
       String title = "Western Spruce Budworm";
       String text =
           "Needs to be Locked in through the 'Lock in Processes' Screen";

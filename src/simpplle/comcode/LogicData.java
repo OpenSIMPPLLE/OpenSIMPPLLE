@@ -7,8 +7,9 @@ import java.io.ObjectOutput;
 import java.util.Collections;
 import java.io.Externalizable;
 import java.util.HashMap;
-import java.util.*;
+
 import simpplle.comcode.Climate.*;
+import simpplle.comcode.zone.ColoradoPlateau;
 
 /**
  * 
@@ -1424,7 +1425,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
    */
   public boolean isMatch(Evu evu) {
     FireResistance resistance =
-        FireEvent.getSpeciesResistance(Simpplle.getCurrentZone(),evu);
+        simpplle.comcode.process.FireEvent.getSpeciesResistance(Simpplle.getCurrentZone(),evu);
     return isMatch(resistance,evu,null,null);
   }
 
@@ -1434,7 +1435,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
   }
   public boolean isMatch(Evu evu,Integer tStep, Lifeform lifeform) {
     FireResistance resistance =
-        FireEvent.getSpeciesResistance(Simpplle.getCurrentZone(),evu,lifeform);
+        simpplle.comcode.process.FireEvent.getSpeciesResistance(Simpplle.getCurrentZone(),evu,lifeform);
     return isMatch(resistance,evu,tStep,lifeform);
   }
   public boolean isMatch(FireResistance resistance, Evu evu) {
@@ -1472,7 +1473,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
                          VegSimStateData state, int tStep, Lifeform lifeform) {
 
     FireResistance resistance =
-        FireEvent.getSpeciesResistance(Simpplle.getCurrentZone(),evu,lifeform);
+        simpplle.comcode.process.FireEvent.getSpeciesResistance(Simpplle.getCurrentZone(),evu,lifeform);
 
     boolean isMatch=false;
     int procTS = processTSteps;
@@ -1584,7 +1585,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
 
     if (process == ProcessType.SUCCESSION &&
         (Simpplle.getCurrentZone().isWyoming() ||
-         Simpplle.getCurrentZone() instanceof ColoradoFrontRange ||
+         Simpplle.getCurrentZone() instanceof simpplle.comcode.zone.ColoradoFrontRange ||
          Simpplle.getCurrentZone() instanceof ColoradoPlateau)) {
       if (Simpplle.getClimate().isWetSuccession()) {
         process = ProcessType.WET_SUCCESSION;
