@@ -1,17 +1,15 @@
 package simpplle.comcode;
 
 import java.io.*;
-import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.*;
 
 import org.apache.commons.collections.map.MultiKeyMap;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.collections.keyvalue.*;
 
- 
+
 /** 
  * 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -254,7 +252,7 @@ public final class AreaSummary implements Externalizable {
     processEvents[index][evuId] = events;
   }
 
-  public void updateSuppressedFires(Evu evu) {
+  public void updateSuppressedFires(simpplle.comcode.element.Evu evu) {
     int cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep() - 1;
 
     suppressedFires[cStep].addElement(evu);
@@ -375,7 +373,7 @@ public final class AreaSummary implements Externalizable {
     long   cost;
     long[] costBySA;
     int    numSteps = Simulation.getInstance().getNumTimeSteps();
-    Evu    unit;
+    simpplle.comcode.element.Evu unit;
 
     ProcessOccurrenceSpreadingFire fireEvent=null;
     ProcessOccurrence[]            fireEventOccurrences;
@@ -410,7 +408,7 @@ public final class AreaSummary implements Externalizable {
     }
 
     for (int j = 0; j < suppressedFires[ts - 1].size(); j++) {
-      unit = (Evu) suppressedFires[ts - 1].elementAt(j);
+      unit = (simpplle.comcode.element.Evu) suppressedFires[ts - 1].elementAt(j);
       fmz = unit.getFmz();
       sa = unit.getSpecialArea();
       // Fires suppressed at class A are always set to 0.1 acres.
@@ -455,7 +453,7 @@ public final class AreaSummary implements Externalizable {
   }
 
   private void doSuppressionCostsFMZ(int ts) {
-    Evu    unit;
+    simpplle.comcode.element.Evu unit;
     int    eventAcres;
     Fmz    fmz;
     long   cost;
@@ -488,7 +486,7 @@ public final class AreaSummary implements Externalizable {
     }
 
     for (int j = 0; j < suppressedFires[ts - 1].size(); j++) {
-      unit = (Evu) suppressedFires[ts - 1].elementAt(j);
+      unit = (simpplle.comcode.element.Evu) suppressedFires[ts - 1].elementAt(j);
       fmz = unit.getFmz();
       // Fires suppressed at class A are always set to 0.1 acres.
       cost = (long) Area.getRationalAcres(0.1f) *
@@ -622,12 +620,12 @@ public final class AreaSummary implements Externalizable {
     return DProcesses;
   }
 
-  public void updateEmissions(Evu evu) {
+  public void updateEmissions(simpplle.comcode.element.Evu evu) {
     int cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     updateEmissions(evu, cStep);
   }
 
-  public void updateEmissions(Evu evu, int tStep) {
+  public void updateEmissions(simpplle.comcode.element.Evu evu, int tStep) {
     fireEmissions[tStep-1]      += Emissions.getProcessPM10(evu,tStep);
     treatmentEmissions[tStep-1] += Emissions.getTreatmentPM10(evu,tStep);
   }
@@ -669,7 +667,7 @@ public final class AreaSummary implements Externalizable {
    * @param process is the processType we are searching for.
    * @return an ArrayList of the ProcessOccurrence's (if any)
    */
-  public ProcessOccurrenceSpreading findSpreadingProcessEvent(Evu unit, ProcessType process) {
+  public ProcessOccurrenceSpreading findSpreadingProcessEvent(simpplle.comcode.element.Evu unit, ProcessType process) {
     int         tStep   = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     if (process.isFireProcess()) {
       return isFireEvent(getProcessEvents(tStep,unit.getId()),false);
@@ -678,7 +676,7 @@ public final class AreaSummary implements Externalizable {
     return isSpreadEvent(getProcessEvents(tStep,unit.getId()),false);
   }
 
-  public ProcessOccurrence findSpreadingProcessEvent(Evu unit) {
+  public ProcessOccurrence findSpreadingProcessEvent(simpplle.comcode.element.Evu unit) {
     ProcessType process = (ProcessType)unit.getState(SimpplleType.PROCESS);
     if (process == null) { return null; }
     return findSpreadingProcessEvent(unit,process);
@@ -687,14 +685,14 @@ public final class AreaSummary implements Externalizable {
   // Note that any unit that has more than once process event could not be
   // an origin unit, simply because that can only happen if something spreads
   // into a unit with another process.
-  private boolean isUnitProcessEventOrigin(Evu unit, int tStep, ProcessType process) {
+  private boolean isUnitProcessEventOrigin(simpplle.comcode.element.Evu unit, int tStep, ProcessType process) {
     ProcessOccurrence event = getProcessEvent(unit,tStep,process);
     if (event == null) { return false; }
     if (event.isOriginUnit(unit) == false) { return false; }
     return (event.getProcess().equals(process));
   }
 
-  public ProcessOccurrence getProcessEvent(Evu originUnit, int tStep, ProcessType process) {
+  public ProcessOccurrence getProcessEvent(simpplle.comcode.element.Evu originUnit, int tStep, ProcessType process) {
     if (getProcessEvents(tStep,originUnit.getId()) instanceof ProcessOccurrence) {
       return (ProcessOccurrence)getProcessEvents(tStep,originUnit.getId());
     }
@@ -711,7 +709,7 @@ public final class AreaSummary implements Externalizable {
     return null;
   }
 
-  public ProcessOccurrence getProcessEventSpreading(Evu originUnit, int tStep) {
+  public ProcessOccurrence getProcessEventSpreading(simpplle.comcode.element.Evu originUnit, int tStep) {
     ProcessOccurrence processEvent = getProcessEvent(originUnit,tStep,null);
 
     if (processEvent instanceof ProcessOccurrenceSpreading) {
@@ -720,7 +718,7 @@ public final class AreaSummary implements Externalizable {
     return null;
  }
 
-  public ProcessOccurrence getProcessEventSpreadingFire(Evu originUnit, int tStep) {
+  public ProcessOccurrence getProcessEventSpreadingFire(simpplle.comcode.element.Evu originUnit, int tStep) {
     ProcessOccurrence processEvent = getProcessEventSpreading(originUnit,tStep);
 
     if (processEvent instanceof ProcessOccurrenceSpreadingFire) {
@@ -730,11 +728,11 @@ public final class AreaSummary implements Externalizable {
   }
 
 
-  public int getOriginFireSpreadType(Evu originEvu, int tStep) {
+  public int getOriginFireSpreadType(simpplle.comcode.element.Evu originEvu, int tStep) {
     ProcessOccurrenceSpreadingFire fireEvent =
         (ProcessOccurrenceSpreadingFire)getProcessEventSpreadingFire(originEvu,tStep);
 
-    return ( (fireEvent != null) ? fireEvent.getProcessProbability() : Evu.S);
+    return ( (fireEvent != null) ? fireEvent.getProcessProbability() : simpplle.comcode.element.Evu.S);
   }
 
   public void addProcessEvent(int tStep, int evuId, ProcessOccurrence event) {
@@ -758,7 +756,7 @@ public final class AreaSummary implements Externalizable {
       setProcessEvents(tStep,evuId,event);
     }
   }
-  public void updateProcessOriginatedIn(Evu evu, Lifeform lifeform,
+  public void updateProcessOriginatedIn(simpplle.comcode.element.Evu evu, Lifeform lifeform,
                                         ProcessProbability processData, int timeStep) {
     ProcessOccurrence event;
 
@@ -784,7 +782,7 @@ public final class AreaSummary implements Externalizable {
     ArrayList events;
     ProcessOccurrenceSpreading event;
     HashMap                    ht;
-    Evu                        unit;
+    simpplle.comcode.element.Evu unit;
     Area                       area = Simpplle.getCurrentArea();
 
     int size = getDataCount(tStep);
@@ -821,7 +819,7 @@ public final class AreaSummary implements Externalizable {
   }
   public void clearGisSpreadData() { spreadFromHt = null; }
 
-  public String getGisSpreadData(Evu evu, ProcessType process, int tStep) {
+  public String getGisSpreadData(simpplle.comcode.element.Evu evu, ProcessType process, int tStep) {
     if (isUnitProcessEventOrigin(evu, tStep, process)) {
       return ORIGINATED_IN_STR;
     }
@@ -903,40 +901,40 @@ public final class AreaSummary implements Externalizable {
         lastTime = i + 5;
       }
 
-      fout.println(Formatting.padLeft("time",54));
+      fout.println(simpplle.comcode.utility.Formatting.padLeft("time",54));
 
-      fout.print(Formatting.padLeft("",25));
+      fout.print(simpplle.comcode.utility.Formatting.padLeft("",25));
       for(j=i+1;j<(lastTime+1);j++) {
-        fout.print(Formatting.fixedField(j,11));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(j,11));
       }
       fout.println();
       fout.println();
 
       fout.println("Fire Emissions (Tons)");
-      fout.print(Formatting.fixedField("  PM 10",26,true));
+      fout.print(simpplle.comcode.utility.Formatting.fixedField("  PM 10",26,true));
       for(k=i;k<lastTime;k++) {
-        fout.print(Formatting.fixedField(nf.format(fireEmissions[k]),11));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(fireEmissions[k]),11));
       }
       fout.println();
 
-      fout.print(Formatting.fixedField("  PM 2.5",26,true));
+      fout.print(simpplle.comcode.utility.Formatting.fixedField("  PM 2.5",26,true));
       for(k=i;k<lastTime;k++) {
         pm2_5 = Emissions.getPM2_5(fireEmissions[k]);
-        fout.print(Formatting.fixedField(nf.format(pm2_5),11));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(pm2_5),11));
       }
       fout.println();
 
       fout.println("Treatment Emissions (Tons)");
-      fout.print(Formatting.fixedField("  PM 10",26,true));
+      fout.print(simpplle.comcode.utility.Formatting.fixedField("  PM 10",26,true));
       for(k=i;k<lastTime;k++) {
-        fout.print(Formatting.fixedField(nf.format(treatmentEmissions[k]),11));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(treatmentEmissions[k]),11));
       }
       fout.println();
 
-      fout.print(Formatting.fixedField("  PM 2.5",26,true));
+      fout.print(simpplle.comcode.utility.Formatting.fixedField("  PM 2.5",26,true));
       for(k=i;k<lastTime;k++) {
         pm2_5 = Emissions.getPM2_5(treatmentEmissions[k]);
-        fout.print(Formatting.fixedField(nf.format(pm2_5),11));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(pm2_5),11));
       }
       fout.println();
       fout.println();
@@ -1021,12 +1019,12 @@ public final class AreaSummary implements Externalizable {
         lastTime = i + 5;
       }
 
-      fout.print(Formatting.padLeft("SPECIAL-AREA",2));
-      fout.println(Formatting.padLeft("time",16));
+      fout.print(simpplle.comcode.utility.Formatting.padLeft("SPECIAL-AREA",2));
+      fout.println(simpplle.comcode.utility.Formatting.padLeft("time",16));
 
-      fout.print(Formatting.padLeft("",7));
+      fout.print(simpplle.comcode.utility.Formatting.padLeft("",7));
       for(j=i+1;j<(lastTime+1);j++) {
-        fout.print(Formatting.fixedField(j,11));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(j,11));
       }
       fout.println();
       fout.println();
@@ -1035,17 +1033,17 @@ public final class AreaSummary implements Externalizable {
         sa       = (String)elem;
         costBySA = (double[]) costHt.get(sa);
 
-        fout.print(Formatting.fixedField(sa,12,true));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(sa,12,true));
 
         for(k=i;k<lastTime;k++) {
           totalCosts[k] += costBySA[k];
-          fout.print(Formatting.fixedField(nf.format(costBySA[k]),11));
+          fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(costBySA[k]),11));
         }
         fout.println();
       }
-      fout.print(Formatting.fixedField("TOTAL",12,true));
+      fout.print(simpplle.comcode.utility.Formatting.fixedField("TOTAL",12,true));
       for(k=i;k<lastTime;k++) {
-        fout.print(Formatting.fixedField(nf.format(totalCosts[k]),11));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(totalCosts[k]),11));
       }
       fout.println();
       fout.println();
@@ -1081,12 +1079,12 @@ public final class AreaSummary implements Externalizable {
         lastTime = i + 5;
       }
 
-      fout.print(Formatting.padLeft("FMZ",2));
-      fout.println(Formatting.padLeft("time",16));
+      fout.print(simpplle.comcode.utility.Formatting.padLeft("FMZ",2));
+      fout.println(simpplle.comcode.utility.Formatting.padLeft("time",16));
 
-      fout.print(Formatting.padLeft("",7));
+      fout.print(simpplle.comcode.utility.Formatting.padLeft("",7));
       for(j=i+1;j<(lastTime+1);j++) {
-        fout.print(Formatting.fixedField(j,11));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(j,11));
       }
       fout.println();
       fout.println();
@@ -1095,17 +1093,17 @@ public final class AreaSummary implements Externalizable {
         str = (String) fmzNames.elementAt(j);
         fsc = (double[]) fmzHt.get(str);
 
-        fout.print(Formatting.fixedField(str,12,true));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(str,12,true));
 
         for(k=i;k<lastTime;k++) {
           totalCosts[k] += fsc[k];
-          fout.print(Formatting.fixedField(nf.format(fsc[k]),11));
+          fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(fsc[k]),11));
         }
         fout.println();
       }
-      fout.print(Formatting.fixedField("TOTAL",12,true));
+      fout.print(simpplle.comcode.utility.Formatting.fixedField("TOTAL",12,true));
       for(k=i;k<lastTime;k++) {
-        fout.print(Formatting.fixedField(nf.format(totalCosts[k]),11));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(totalCosts[k]),11));
       }
       fout.println();
       fout.println();
@@ -1150,7 +1148,7 @@ public final class AreaSummary implements Externalizable {
       fout.printf("%4s  %9s  %7s  %11s%n%n", "Time", "Origin ID", "Process", "Total Acres");
 
       for (int j = 0; j < suppressedFires[ts - 1].size(); j++) {
-        Evu evu = (Evu) suppressedFires[ts - 1].elementAt(j);
+        simpplle.comcode.element.Evu evu = (simpplle.comcode.element.Evu) suppressedFires[ts - 1].elementAt(j);
         fout.printf("%4d  %9d  %7s  %11.0f%n", ts, evu.getId(),"CLASS-A",0.0);       
       }
       printFireEvent(fout, ProcessType.SRF, ts);
@@ -1203,7 +1201,7 @@ public final class AreaSummary implements Externalizable {
 
   private void fireSpreadReport(PrintWriter fout) {
     int        tSteps, j;
-    Evu        evu;
+    simpplle.comcode.element.Evu evu;
     Simulation currentSimulation = Simpplle.getCurrentSimulation();
 
     tSteps = currentSimulation.getNumTimeSteps();
@@ -1231,7 +1229,7 @@ public final class AreaSummary implements Externalizable {
 
     for (int i = 1; i <= tSteps; i++) {
       for (j = 0; j < suppressedFires[i - 1].size(); j++) {
-        evu = (Evu) suppressedFires[i - 1].elementAt(j);
+        evu = (simpplle.comcode.element.Evu) suppressedFires[i - 1].elementAt(j);
         fout.printf("%4d  %9d  %7s  %11.0f%n", i, evu.getId(),"CLASS-A",0.0);       
       }
       printFireEvent(fout,ProcessType.SRF,i);
@@ -1243,7 +1241,7 @@ public final class AreaSummary implements Externalizable {
 
   private void printFireEvent(PrintWriter fout, ProcessType process, int tStep) {
 
-    Evu    unit;
+    simpplle.comcode.element.Evu unit;
 
     NumberFormat nf = NumberFormat.getInstance();
     //nf.setMaximumFractionDigits(Area.getAcresPrecision());
@@ -1269,7 +1267,7 @@ public final class AreaSummary implements Externalizable {
       unit = fireEvent.getUnit();
 
       String procStr = fireEvent.getProcess().getShortName();
-      if (fireEvent.getProcessProbability() == Evu.SFS) {
+      if (fireEvent.getProcessProbability() == simpplle.comcode.element.Evu.SFS) {
         procStr = procStr + "*";
       }
            
@@ -1317,7 +1315,7 @@ public final class AreaSummary implements Externalizable {
         unit = fireOccurrences[j].getUnit();
         
         procStr = fireOccurrences[j].getProcess().getShortName();
-        if (fireOccurrences[j].getProcessProbability() == Evu.SFS) {
+        if (fireOccurrences[j].getProcessProbability() == simpplle.comcode.element.Evu.SFS) {
           procStr = procStr + "*";
         }      
         
@@ -1418,36 +1416,36 @@ public final class AreaSummary implements Externalizable {
     fout.println("Fire Event Summary");
     fout.println("------------------");
     fout.println();
-    fout.print(Formatting.fixedField(" ", 13));
-    fout.print(Formatting.fixedField(A,8) + " ");
-    fout.print(Formatting.fixedField(B,8) + " ");
-    fout.print(Formatting.fixedField(C,8) + " ");
-    fout.print(Formatting.fixedField(D,8) + " ");
-    fout.print(Formatting.fixedField(E,8) + " ");
-    fout.print(Formatting.fixedField(F,8) + " ");
-    fout.print(Formatting.fixedField(TOTAL,8));
-    fout.println(Formatting.fixedField(PCTBURN,19));
+    fout.print(simpplle.comcode.utility.Formatting.fixedField(" ", 13));
+    fout.print(simpplle.comcode.utility.Formatting.fixedField(A,8) + " ");
+    fout.print(simpplle.comcode.utility.Formatting.fixedField(B,8) + " ");
+    fout.print(simpplle.comcode.utility.Formatting.fixedField(C,8) + " ");
+    fout.print(simpplle.comcode.utility.Formatting.fixedField(D,8) + " ");
+    fout.print(simpplle.comcode.utility.Formatting.fixedField(E,8) + " ");
+    fout.print(simpplle.comcode.utility.Formatting.fixedField(F,8) + " ");
+    fout.print(simpplle.comcode.utility.Formatting.fixedField(TOTAL,8));
+    fout.println(simpplle.comcode.utility.Formatting.fixedField(PCTBURN,19));
 
     for(int i=1;i<=nSteps;i++) {
       fout.println(i);
-      fout.print(Formatting.fixedField("Acres",13));
+      fout.print(simpplle.comcode.utility.Formatting.fixedField("Acres",13));
       totalAcres  = 0;
       totalEvents = 0;
       for(j=0;j<Fmz.getNumClasses();j++) {
         totalAcres += fireEventSummaryData[i][j][0];
         acres = Area.getFloatAcres(fireEventSummaryData[i][j][0]);
-        fout.print(Formatting.fixedField(nf.format(acres),8) + " ");
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(acres),8) + " ");
       }
       acres = Area.getFloatAcres(totalAcres);
-      fout.print(Formatting.fixedField(nf.format(acres),8));
-      fout.println(Formatting.fixedField(getPercentLandscapeBurned(i),19));
+      fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(acres),8));
+      fout.println(simpplle.comcode.utility.Formatting.fixedField(getPercentLandscapeBurned(i),19));
 
-      fout.print(Formatting.fixedField("# Events",13));
+      fout.print(simpplle.comcode.utility.Formatting.fixedField("# Events",13));
       for(j=0;j<Fmz.getNumClasses();j++) {
         totalEvents += fireEventSummaryData[i][j][1];
-        fout.print(Formatting.fixedField(fireEventSummaryData[i][j][1],8) + " ");
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(fireEventSummaryData[i][j][1],8) + " ");
       }
-      fout.println(Formatting.fixedField(totalEvents,8));
+      fout.println(simpplle.comcode.utility.Formatting.fixedField(totalEvents,8));
 
     }
   }
@@ -1528,9 +1526,9 @@ public final class AreaSummary implements Externalizable {
     ProcessType[]       processes   = Process.getSummaryProcesses();
     int                 ts, i, j, k, l;
     int[]               acres;
-    Evu                 evu, fromEvu, toEvu;
+    simpplle.comcode.element.Evu evu, fromEvu, toEvu;
     String              line=null, str;
-    StringTokenizerPlus strTok, strSubTok, spreadTok, eventTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok, strSubTok, spreadTok, eventTok;
     int                 time, count, subCount, eventCount, spreadCount;
     int                 eventAcres;
     ProcessType         process, spreadProcess;
@@ -1563,7 +1561,7 @@ public final class AreaSummary implements Externalizable {
         if (line == null) {
           throw new ParseError("Invalid Area Summary data in file");
         }
-        strTok = new StringTokenizerPlus(line, ",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line, ",");
 
         process = ProcessType.get(strTok.getToken());
         count = strTok.countTokens();
@@ -1576,7 +1574,7 @@ public final class AreaSummary implements Externalizable {
           if (str == null) {
             continue;
           }
-          strSubTok = new StringTokenizerPlus(str, ":");
+          strSubTok = new simpplle.comcode.utility.StringTokenizerPlus(str, ":");
           count = strSubTok.countTokens();
           for (j = 0; j < count; j++) {
             evu = currentArea.getEvu(strSubTok.getIntToken());
@@ -1638,7 +1636,7 @@ public final class AreaSummary implements Externalizable {
         if (line == null) {
           throw new ParseError("Invalid Area Summary data in file");
         }
-        strTok = new StringTokenizerPlus(line, ";");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line, ";");
         str = strTok.getToken();
         if (str.equals("NIL")) {
           continue;
@@ -1648,7 +1646,7 @@ public final class AreaSummary implements Externalizable {
         count = strTok.countTokens();
         for (j = 0; j < count; j++) {
           str = strTok.getToken();
-          spreadTok = new StringTokenizerPlus(str, ",");
+          spreadTok = new simpplle.comcode.utility.StringTokenizerPlus(str, ",");
           spreadCount = spreadTok.countTokens() - 1;
           time = spreadTok.getIntToken();
           for (k = 0; k < spreadCount; k += 2) {
@@ -1665,7 +1663,7 @@ public final class AreaSummary implements Externalizable {
             str = spreadTok.getToken();
             if (str == null) { continue; }
 
-            eventTok = new StringTokenizerPlus(str, ":");
+            eventTok = new simpplle.comcode.utility.StringTokenizerPlus(str, ":");
             eventCount = eventTok.countTokens();
             for (l = 0; l < eventCount; l += 3) {
               fromEvu = currentArea.getEvu(eventTok.getIntToken());
@@ -1673,7 +1671,7 @@ public final class AreaSummary implements Externalizable {
               str = eventTok.getToken();
               if (str.equals("SRF*") || str.equals("MSF*") || str.equals("LSF*")) {
                 spreadProcess = ProcessType.get(str.substring(0,3));
-                processEvent.addLegacySpreadEvent(fromEvu, toEvu, spreadProcess,Evu.SFS, time);
+                processEvent.addLegacySpreadEvent(fromEvu, toEvu, spreadProcess, simpplle.comcode.element.Evu.SFS, time);
               }
               else {
                 spreadProcess = ProcessType.get(str);
@@ -1700,7 +1698,7 @@ public final class AreaSummary implements Externalizable {
       throw new ParseError("Invalid Area Summary data in file");
     }
     if (line.equals("NIL") == false) {
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       count = strTok.countTokens();
 
       for(j=0;j<count;j++) {
@@ -1720,7 +1718,7 @@ public final class AreaSummary implements Externalizable {
       return;
     }
 
-    strTok = new StringTokenizerPlus(line,",");
+    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
     count  = strTok.countTokens();
 
     for(j=0; j<count; j++) {
@@ -1733,7 +1731,7 @@ public final class AreaSummary implements Externalizable {
       throw new ParseError("Invalid Area Summary data in file");
     }
 
-    strTok = new StringTokenizerPlus(line,",");
+    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
     count  = strTok.countTokens();
 
     for(j=0; j<count; j++) {
@@ -1780,8 +1778,8 @@ public final class AreaSummary implements Externalizable {
 
     int                        i, count, tStep, eventAcres;
     Area                       currentArea = Simpplle.getCurrentArea();
-    Evu                        fromEvu, toEvu, originEvu;
-    StringTokenizerPlus        strTok, strSubTok, eventTok;
+    simpplle.comcode.element.Evu fromEvu, toEvu, originEvu;
+    simpplle.comcode.utility.StringTokenizerPlus strTok, strSubTok, eventTok;
     ProcessType                process;
     ProcessOccurrence          processOccurrence;
     ProcessOccurrenceSpreading spreadEvent;
@@ -1795,7 +1793,7 @@ public final class AreaSummary implements Externalizable {
     // where <event-data> is process:<from evu id>:<to evu id>
     // note: event acres and event-data only appears if the process spread.
     while (line.trim().length() > 0) {
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       originEvu = currentArea.getEvu(strTok.getIntToken());
       tStep     = strTok.getIntToken();
@@ -1810,17 +1808,17 @@ public final class AreaSummary implements Externalizable {
         spreadEvent = (ProcessOccurrenceSpreading)getProcessEventSpreading(originEvu,tStep);
 
         if (count > 1) {
-          strSubTok = new StringTokenizerPlus(strTok.getToken(),";");
+          strSubTok = new simpplle.comcode.utility.StringTokenizerPlus(strTok.getToken(),";");
           count = strSubTok.countTokens();
           for(i=0; i<count; i++) {
-            eventTok = new StringTokenizerPlus(strSubTok.getToken(),":");
+            eventTok = new simpplle.comcode.utility.StringTokenizerPlus(strSubTok.getToken(),":");
             str      = eventTok.getToken();
             fromEvu  = currentArea.getEvu(eventTok.getIntToken());
             toEvu    = currentArea.getEvu(eventTok.getIntToken());
 
             if (str.equals("SRF*") || str.equals("MSF*") || str.equals("LSF*")) {
               process = ProcessType.get(str.substring(0,3));
-              spreadEvent.addLegacySpreadEvent(fromEvu,toEvu,process,Evu.SFS,tStep);
+              spreadEvent.addLegacySpreadEvent(fromEvu,toEvu,process, simpplle.comcode.element.Evu.SFS,tStep);
             }
             else {
               process = ProcessType.get(str);
@@ -1846,7 +1844,7 @@ public final class AreaSummary implements Externalizable {
       throw new ParseError("Invalid Area Summary data in file");
     }
     if (line.equals("NIL") == false) {
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       count = strTok.countTokens();
 
       for(j=0;j<count;j++) {
@@ -1866,7 +1864,7 @@ public final class AreaSummary implements Externalizable {
       return;
     }
 
-    strTok = new StringTokenizerPlus(line,",");
+    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
     count  = strTok.countTokens();
 
     for(j=0; j<count; j++) {
@@ -1879,7 +1877,7 @@ public final class AreaSummary implements Externalizable {
       throw new ParseError("Invalid Area Summary data in file");
     }
 
-    strTok = new StringTokenizerPlus(line,",");
+    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
     count  = strTok.countTokens();
 
     for(j=0; j<count; j++) {
@@ -1892,8 +1890,8 @@ public final class AreaSummary implements Externalizable {
   {
     int                        i, count, tStep;
     Area                       currentArea = Simpplle.getCurrentArea();
-    Evu                        fromEvu, toEvu, originEvu;
-    StringTokenizerPlus        strTok;
+    simpplle.comcode.element.Evu fromEvu, toEvu, originEvu;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     ProcessType                process;
     int                        processProb;
     ProcessOccurrenceSpreading spreadEvent=null;
@@ -1907,7 +1905,7 @@ public final class AreaSummary implements Externalizable {
     // Evu id,timestep,process,<event-data>,<event-data>
     // where <event-data> is <from evu id>,<to evu id>,process,process probability
     while (line.trim().length() > 0) {
-      strTok = new StringTokenizerPlus(line, ",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line, ",");
 
       originEvu = currentArea.getEvu(strTok.getIntToken());
       tStep = strTok.getIntToken();
@@ -1950,7 +1948,7 @@ public final class AreaSummary implements Externalizable {
       throw new ParseError("Invalid Area Summary data in file");
     }
     if (line.equals("NIL") == false) {
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       count = strTok.countTokens();
 
       for(j=0;j<count;j++) {
@@ -1970,7 +1968,7 @@ public final class AreaSummary implements Externalizable {
       return;
     }
 
-    strTok = new StringTokenizerPlus(line,",");
+    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
     count  = strTok.countTokens();
 
     for(j=0; j<count; j++) {
@@ -1983,7 +1981,7 @@ public final class AreaSummary implements Externalizable {
       throw new ParseError("Invalid Area Summary data in file");
     }
 
-    strTok = new StringTokenizerPlus(line,",");
+    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
     count  = strTok.countTokens();
 
     for(j=0; j<count; j++) {
@@ -2060,7 +2058,7 @@ public final class AreaSummary implements Externalizable {
     fout.println();
   }
 */
-  public Climate.Season getFireOccurrenceSeason(Evu unit) {
+  public Climate.Season getFireOccurrenceSeason(simpplle.comcode.element.Evu unit) {
     ProcessOccurrenceSpreadingFire event;
 
     event = (ProcessOccurrenceSpreadingFire)findSpreadingProcessEvent(unit);
@@ -2195,7 +2193,7 @@ public final class AreaSummary implements Externalizable {
         gappedProcesses.clear();
         int size = in.readInt();
         for (int i=0; i<size; i++) {
-          Evu         evu      = area.getEvu(in.readInt());
+          simpplle.comcode.element.Evu evu      = area.getEvu(in.readInt());
           Lifeform    lifeform = (Lifeform)in.readObject();
           int         run      = in.readInt();
           int         ts       = in.readInt();
@@ -2209,7 +2207,7 @@ public final class AreaSummary implements Externalizable {
         DProcesses.clear();
         int size = in.readInt();
         for (int i=0; i<size; i++) {
-          Evu         evu      = area.getEvu(in.readInt());
+          simpplle.comcode.element.Evu evu      = area.getEvu(in.readInt());
           Lifeform    lifeform = (Lifeform)in.readObject();
           int         run      = in.readInt();
           int         ts       = in.readInt();
@@ -2321,7 +2319,7 @@ public final class AreaSummary implements Externalizable {
       for (Object elem : gappedProcesses.keySet()) {
         MultiKey mkey = (MultiKey) elem;
 
-        Evu evu = (Evu) mkey.getKey(0);
+        simpplle.comcode.element.Evu evu = (simpplle.comcode.element.Evu) mkey.getKey(0);
         Lifeform lifeform = (Lifeform) mkey.getKey(1);
         int run = (Integer) mkey.getKey(2);
         int ts = (Integer) mkey.getKey(3);
@@ -2341,7 +2339,7 @@ public final class AreaSummary implements Externalizable {
       for (Object elem : DProcesses.keySet()) {
         MultiKey mkey = (MultiKey) elem;
 
-        Evu evu = (Evu) mkey.getKey(0);
+        simpplle.comcode.element.Evu evu = (simpplle.comcode.element.Evu) mkey.getKey(0);
         Lifeform lifeform = (Lifeform) mkey.getKey(1);
         int run = (Integer) mkey.getKey(2);
         int ts = (Integer) mkey.getKey(3);
@@ -2495,7 +2493,7 @@ public final class AreaSummary implements Externalizable {
   public void writeDatabase()
     throws SimpplleError
   {
-    Session session = DatabaseCreator.getSessionFactory().openSession();
+    Session session = simpplle.comcode.utility.DatabaseCreator.getSessionFactory().openSession();
     Transaction tx = session.beginTransaction();
 
     int cRun  = Simpplle.getCurrentSimulation().getCurrentRun();
@@ -2695,28 +2693,28 @@ public final class AreaSummary implements Externalizable {
   private static ArrayList<ProcessType> doneSummaryProcesses = new ArrayList<ProcessType>();
 
   public void updateEvuSummaryData() {
-   Evu[] units = Simpplle.getCurrentArea().getAllEvu();
+   simpplle.comcode.element.Evu[] units = Simpplle.getCurrentArea().getAllEvu();
    for (int i=0; i<units.length; i++) {
      if (units[i] != null) {
        updateEvuProcessSummary(units[i]);
-       updateEvuProcessSummarySpecial(units[i],Reports.OWNERSHIP);
-       updateEvuProcessSummarySpecial(units[i],Reports.SPECIAL_AREA);
-       updateEvuProcessSummarySpecial(units[i],Reports.OWNER_SPECIAL);
+       updateEvuProcessSummarySpecial(units[i], simpplle.comcode.reports.Reports.OWNERSHIP);
+       updateEvuProcessSummarySpecial(units[i], simpplle.comcode.reports.Reports.SPECIAL_AREA);
+       updateEvuProcessSummarySpecial(units[i], simpplle.comcode.reports.Reports.OWNER_SPECIAL);
 
-       updateEvuStateSummary(units[i],Reports.NORMAL);
-       updateEvuStateSummaryCombineLives(units[i],Reports.NORMAL);
+       updateEvuStateSummary(units[i], simpplle.comcode.reports.Reports.NORMAL);
+       updateEvuStateSummaryCombineLives(units[i], simpplle.comcode.reports.Reports.NORMAL);
 
-       updateEvuStateSummary(units[i],Reports.OWNERSHIP);
-       updateEvuStateSummary(units[i],Reports.SPECIAL_AREA);
-       updateEvuStateSummary(units[i],Reports.OWNER_SPECIAL);
+       updateEvuStateSummary(units[i], simpplle.comcode.reports.Reports.OWNERSHIP);
+       updateEvuStateSummary(units[i], simpplle.comcode.reports.Reports.SPECIAL_AREA);
+       updateEvuStateSummary(units[i], simpplle.comcode.reports.Reports.OWNER_SPECIAL);
 
-       updateEvuStateSummaryCombineLives(units[i],Reports.OWNERSHIP);
-       updateEvuStateSummaryCombineLives(units[i],Reports.SPECIAL_AREA);
-       updateEvuStateSummaryCombineLives(units[i],Reports.OWNER_SPECIAL);
+       updateEvuStateSummaryCombineLives(units[i], simpplle.comcode.reports.Reports.OWNERSHIP);
+       updateEvuStateSummaryCombineLives(units[i], simpplle.comcode.reports.Reports.SPECIAL_AREA);
+       updateEvuStateSummaryCombineLives(units[i], simpplle.comcode.reports.Reports.OWNER_SPECIAL);
      }
    }
   }
-  private void updateEvuProcessSummary(Evu evu) {
+  private void updateEvuProcessSummary(simpplle.comcode.element.Evu evu) {
     int cStep = Simulation.getCurrentTimeStep();
 
     for (Climate.Season s : Climate.allSeasons) {
@@ -2828,13 +2826,13 @@ public final class AreaSummary implements Externalizable {
 
   public HashMap getProcessSummaryHm(int reportOption) {
     switch (reportOption) {
-      case Reports.OWNERSHIP:
+      case simpplle.comcode.reports.Reports.OWNERSHIP:
         return processSummaryOwnership;
-      case Reports.SPECIAL_AREA:
+      case simpplle.comcode.reports.Reports.SPECIAL_AREA:
         return processSummarySpecialArea;
-      case Reports.OWNER_SPECIAL:
+      case simpplle.comcode.reports.Reports.OWNER_SPECIAL:
         return processSummarySpecialOwner;
-      case Reports.NORMAL:
+      case simpplle.comcode.reports.Reports.NORMAL:
         return processSummary;
     }
     return null;
@@ -2842,7 +2840,7 @@ public final class AreaSummary implements Externalizable {
 
   public HashMap getStateSummaryHm(int reportOption, SimpplleType.Types stateOption, boolean combineLives) {
     switch (reportOption) {
-      case Reports.OWNERSHIP:
+      case simpplle.comcode.reports.Reports.OWNERSHIP:
         switch (stateOption) {
           case SPECIES:
             return (combineLives ? speciesSummaryOwnershipCL : speciesSummaryOwnership);
@@ -2852,7 +2850,7 @@ public final class AreaSummary implements Externalizable {
             return (combineLives ? densitySummaryOwnershipCL : densitySummaryOwnership);
         }
         break;
-      case Reports.SPECIAL_AREA:
+      case simpplle.comcode.reports.Reports.SPECIAL_AREA:
         switch (stateOption) {
           case SPECIES:
             return (combineLives ? speciesSummarySpecialAreaCL : speciesSummarySpecialArea);
@@ -2862,7 +2860,7 @@ public final class AreaSummary implements Externalizable {
             return (combineLives ? densitySummarySpecialAreaCL : densitySummarySpecialArea);
         }
         break;
-      case Reports.OWNER_SPECIAL:
+      case simpplle.comcode.reports.Reports.OWNER_SPECIAL:
         switch (stateOption) {
           case SPECIES:
             return (combineLives ? speciesSummarySpecialOwnerCL : speciesSummarySpecialOwner);
@@ -2872,7 +2870,7 @@ public final class AreaSummary implements Externalizable {
             return (combineLives ? densitySummarySpecialOwnerCL : densitySummarySpecialOwner);
         }
         break;
-      case Reports.NORMAL:
+      case simpplle.comcode.reports.Reports.NORMAL:
         switch (stateOption) {
           case SPECIES:
             return (combineLives ? speciesSummaryCL : speciesSummary);
@@ -2885,18 +2883,18 @@ public final class AreaSummary implements Externalizable {
     }
     return null;
   }
-  private String determineOwnerSpecialKey(Evu evu, int option) {
+  private String determineOwnerSpecialKey(simpplle.comcode.element.Evu evu, int option) {
     switch (option) {
-      case Reports.OWNERSHIP:    return evu.getOwnership();
-      case Reports.SPECIAL_AREA: return evu.getSpecialArea();
-      case Reports.OWNER_SPECIAL:
+      case simpplle.comcode.reports.Reports.OWNERSHIP:    return evu.getOwnership();
+      case simpplle.comcode.reports.Reports.SPECIAL_AREA: return evu.getSpecialArea();
+      case simpplle.comcode.reports.Reports.OWNER_SPECIAL:
         return evu.getOwnership() + "/" + evu.getSpecialArea();
       default:
         return null;
     }
   }
 
-  public void updateEvuProcessSummarySpecial(Evu evu, int specialOption) {
+  public void updateEvuProcessSummarySpecial(simpplle.comcode.element.Evu evu, int specialOption) {
     int cStep = Simulation.getCurrentTimeStep();
 
     HashMap dataHm;
@@ -2904,13 +2902,13 @@ public final class AreaSummary implements Externalizable {
     if (specialKey == null) { return; }
 
     switch (specialOption) {
-      case Reports.OWNERSHIP:
+      case simpplle.comcode.reports.Reports.OWNERSHIP:
         dataHm = processSummaryOwnership;
         break;
-      case Reports.SPECIAL_AREA:
+      case simpplle.comcode.reports.Reports.SPECIAL_AREA:
         dataHm = processSummarySpecialArea;
         break;
-      case Reports.OWNER_SPECIAL:
+      case simpplle.comcode.reports.Reports.OWNER_SPECIAL:
         dataHm = processSummarySpecialOwner;
         break;
       default:
@@ -3025,7 +3023,7 @@ public final class AreaSummary implements Externalizable {
 //    updateSummaryHm(densitySummaryCL,densityBuf.toString(),cStep,evu.getAcres());
 //  }
 
-  private void updateEvuStateSummary(Evu evu, int reportOption)
+  private void updateEvuStateSummary(simpplle.comcode.element.Evu evu, int reportOption)
   {
     Lifeform[] lives = Lifeform.getAllValues();
     int cStep = Simulation.getCurrentTimeStep();
@@ -3037,7 +3035,7 @@ public final class AreaSummary implements Externalizable {
       if (state == null) { continue; }
 
       String key=null;
-      if (reportOption != Reports.NORMAL) {
+      if (reportOption != simpplle.comcode.reports.Reports.NORMAL) {
         key = determineOwnerSpecialKey(evu, reportOption);
       }
 
@@ -3055,7 +3053,7 @@ public final class AreaSummary implements Externalizable {
       }
     }
   }
-  private void updateEvuStateSummaryCombineLives(Evu evu, int reportOption)
+  private void updateEvuStateSummaryCombineLives(simpplle.comcode.element.Evu evu, int reportOption)
   {
     Lifeform[] lives = Lifeform.getAllValues();
     int cStep = Simulation.getCurrentTimeStep();
@@ -3081,7 +3079,7 @@ public final class AreaSummary implements Externalizable {
     }
 
     String key=null;
-    if (reportOption != Reports.NORMAL) {
+    if (reportOption != simpplle.comcode.reports.Reports.NORMAL) {
       key = determineOwnerSpecialKey(evu, reportOption);
     }
 
@@ -3124,7 +3122,7 @@ public final class AreaSummary implements Externalizable {
       AllStatesReportData data = allStatesReportData.get(j);
       if (data.isSummaryFinished()) { continue; }
 
-      Evu[] units = Simpplle.getCurrentArea().getAllEvu();
+      simpplle.comcode.element.Evu[] units = Simpplle.getCurrentArea().getAllEvu();
       for (int i=0; i<units.length; i++) {
         if (units[i] != null) {
           data.updateSummary(units[i], timeStep);
@@ -3164,7 +3162,7 @@ public final class AreaSummary implements Externalizable {
   public static void updateTrackingSpeciesReportSummary(int timeStep) {
     TrackingSpeciesReportData data = TrackingSpeciesReportData.getInstance();
 
-    Evu[] units = Simpplle.getCurrentArea().getAllEvu();
+    simpplle.comcode.element.Evu[] units = Simpplle.getCurrentArea().getAllEvu();
     for (int i=0; i<units.length; i++) {
       if (units[i] != null) {
         data.updateSummary(units[i], timeStep);

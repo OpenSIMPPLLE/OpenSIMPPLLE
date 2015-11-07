@@ -210,7 +210,7 @@ public final class JSimpplle {
  */
   
   public static boolean invasiveSpeciesMSUProbFile() {
-    String msuProbFile = System.getProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile");
+    String msuProbFile = System.getProperty("simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU.probFile");
     return (msuProbFile != null && msuProbFile.equals("true"));
   }
 
@@ -379,7 +379,7 @@ public final class JSimpplle {
           }
           else if (property.equalsIgnoreCase("InvasiveSpeciesLogicDataMSU_probFile")) {
             String value = strTok.nextToken();
-            System.setProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile", value);
+            System.setProperty("simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU.probFile", value);
           }
           
           
@@ -432,7 +432,7 @@ public final class JSimpplle {
         fout.println("SIMULATION_LOGGING," + value);
       }
       {
-        String value = System.getProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile");
+        String value = System.getProperty("simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU.probFile");
         if (value == null) { value = "false"; }
         fout.println("InvasiveSpeciesLogicDataMSU_probFile," + value);
       }

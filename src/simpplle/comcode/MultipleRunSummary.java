@@ -1,11 +1,10 @@
 package simpplle.comcode;
 
+import simpplle.comcode.utility.IntToString;
+
 import java.io.*;
 import java.util.*;
 import java.text.NumberFormat;
-import org.hibernate.Query;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 
 
 /**
@@ -432,7 +431,7 @@ public final class MultipleRunSummary implements Externalizable {
     out.writeInt(size);
     if (size == 0) { return; }
 
-    for (Evu evu : frequencyTotCount.keySet()) {
+    for (simpplle.comcode.element.Evu evu : frequencyTotCount.keySet()) {
       out.writeInt(evu.getId());
 
       int[] counts = frequencyTotCount.get(evu);
@@ -449,9 +448,9 @@ public final class MultipleRunSummary implements Externalizable {
     Area area = Simpplle.getCurrentArea();
     int size = in.readInt();
 
-    frequencyTotCount = new HashMap<Evu,int[]>(size);
+    frequencyTotCount = new HashMap<simpplle.comcode.element.Evu,int[]>(size);
     for (int i=0; i<size; i++) {
-      Evu evu = area.getEvu(in.readInt());
+      simpplle.comcode.element.Evu evu = area.getEvu(in.readInt());
 
       int[] counts = new int[in.readInt()];
       for (int j=0; j<counts.length; j++) {
@@ -464,13 +463,13 @@ public final class MultipleRunSummary implements Externalizable {
   //  private HashMap<Evu,HashMap<SimpplleType,int[]>> freqCountSpecies;
 
   private void writeExternalFrequencyCount(ObjectOutput out,
-                                           HashMap<Evu,HashMap<SimpplleType,int[]>> dataHm)
+                                           HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>> dataHm)
     throws IOException
   {
     int size = (dataHm != null) ? dataHm.size() : 0;
     out.writeInt(size);
     if (size == 0) { return; }
-    for (Evu evu : dataHm.keySet()) {
+    for (simpplle.comcode.element.Evu evu : dataHm.keySet()) {
       out.writeInt(evu.getId());
 
       HashMap<SimpplleType,int[]> hm = dataHm.get(evu);
@@ -491,16 +490,16 @@ public final class MultipleRunSummary implements Externalizable {
       }
     }
   }
-  private HashMap<Evu,HashMap<SimpplleType,int[]>> readExternalFrequencyCount(ObjectInput in, SimpplleType.Types kind)
+  private HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>> readExternalFrequencyCount(ObjectInput in, SimpplleType.Types kind)
       throws IOException, ClassNotFoundException
   {
     Area area = Simpplle.getCurrentArea();
     int size = in.readInt();
-    HashMap<Evu,HashMap<SimpplleType,int[]>> hmData =
-        new HashMap<Evu,HashMap<SimpplleType,int[]>>(size);
+    HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>> hmData =
+        new HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>>(size);
 
     for (int i=0; i<size; i++) {
-      Evu evu = area.getEvu(in.readInt());
+      simpplle.comcode.element.Evu evu = area.getEvu(in.readInt());
 
       int hmSize = in.readInt();
       HashMap<SimpplleType,int[]> hm = new HashMap<SimpplleType,int[]>(hmSize);
@@ -525,12 +524,12 @@ public final class MultipleRunSummary implements Externalizable {
   private HashMap[] stats;
 
   // HashMap<SimpplleType,MyInteger>[time step][SimpplleType kind]
-  private HashMap<Evu,HashMap<SimpplleType,int[]>> freqCountSpecies;
-  private HashMap<Evu,HashMap<SimpplleType,int[]>> freqCountSizeClass;
-  private HashMap<Evu,HashMap<SimpplleType,int[]>> freqCountDensity;
-  private HashMap<Evu,HashMap<SimpplleType,int[]>> freqCountProcess;
+  private HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>> freqCountSpecies;
+  private HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>> freqCountSizeClass;
+  private HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>> freqCountDensity;
+  private HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>> freqCountProcess;
 
-  private HashMap<Evu,int[]>       frequencyTotCount;
+  private HashMap<simpplle.comcode.element.Evu,int[]>       frequencyTotCount;
 
   // Process, Species, Size Class, Density and Treatment Data;
   // by special Area and Ownership.
@@ -616,12 +615,12 @@ public final class MultipleRunSummary implements Externalizable {
 
     int numEvu = Simpplle.getCurrentArea().getMaxEvuId();
 
-    freqCountSpecies   = new HashMap<Evu,HashMap<SimpplleType,int[]>>(numEvu);
-    freqCountSizeClass = new HashMap<Evu,HashMap<SimpplleType,int[]>>(numEvu);
-    freqCountDensity   = new HashMap<Evu,HashMap<SimpplleType,int[]>>(numEvu);
-    freqCountProcess   = new HashMap<Evu,HashMap<SimpplleType,int[]>>(numEvu);
+    freqCountSpecies   = new HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>>(numEvu);
+    freqCountSizeClass = new HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>>(numEvu);
+    freqCountDensity   = new HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>>(numEvu);
+    freqCountProcess   = new HashMap<simpplle.comcode.element.Evu,HashMap<SimpplleType,int[]>>(numEvu);
 
-    frequencyTotCount = new HashMap<Evu,int[]>(numEvu);
+    frequencyTotCount = new HashMap<simpplle.comcode.element.Evu,int[]>(numEvu);
 
     fscSummary = new HashMap[numRuns];
     fscSummarySA = new HashMap[numRuns];
@@ -747,7 +746,7 @@ public final class MultipleRunSummary implements Externalizable {
   }
 
 
-  private void incFrequencyCount(Evu evu, int cStep, SimpplleType.Types kind, SimpplleType sType) {
+  private void incFrequencyCount(simpplle.comcode.element.Evu evu, int cStep, SimpplleType.Types kind, SimpplleType sType) {
     HashMap<SimpplleType,int[]> hm = getFreqCountData(evu,kind);
     int[] counts = hm.get(sType);
     if (counts == null) {
@@ -759,7 +758,7 @@ public final class MultipleRunSummary implements Externalizable {
     }
     counts[cStep]++;
   }
-  private HashMap<SimpplleType,int[]> getFreqCountData(Evu evu, SimpplleType.Types kind) {
+  private HashMap<SimpplleType,int[]> getFreqCountData(simpplle.comcode.element.Evu evu, SimpplleType.Types kind) {
     switch (kind) {
       case SPECIES:    return freqCountSpecies.get(evu);
       case SIZE_CLASS: return freqCountSizeClass.get(evu);
@@ -775,7 +774,7 @@ public final class MultipleRunSummary implements Externalizable {
 
   //  private HashMap<Evu,HashMap<SimpplleType,int[]>> freqCountSpecies;
 
-  public void initFrequencyCount(Evu evu) {
+  public void initFrequencyCount(simpplle.comcode.element.Evu evu) {
     int nSteps = Simpplle.getCurrentSimulation().getNumTimeSteps();
 
     int[] totCount = new int[nSteps+1];
@@ -790,7 +789,7 @@ public final class MultipleRunSummary implements Externalizable {
     freqCountDensity.put(evu,new HashMap<SimpplleType,int[]>());
     freqCountProcess.put(evu,new HashMap<SimpplleType,int[]>());
   }
-  public void updateSummaries(Evu evu) {
+  public void updateSummaries(simpplle.comcode.element.Evu evu) {
     Simulation     simulation = Simpplle.getCurrentSimulation();
     int            cStep, acres;
     ProcessType    processType;
@@ -806,7 +805,7 @@ public final class MultipleRunSummary implements Externalizable {
     int[] totCount = frequencyTotCount.get(evu);
     totCount[cStep]++;
 
-    MyInteger count;
+    simpplle.comcode.utility.MyInteger count;
       // Process
     ArrayList<ProcessType> summaryProcesses = evu.getSummaryProcesses(cStep);
     for (int i=0; i<summaryProcesses.size(); i++) {
@@ -867,7 +866,7 @@ public final class MultipleRunSummary implements Externalizable {
 
       // Age
       int age = state.getAge();
-      if (allAgeHm.containsKey(IntToString.get(age)) == false) {
+      if (allAgeHm.containsKey(simpplle.comcode.utility.IntToString.get(age)) == false) {
         allAgeHm.put(IntToString.get(age), age);
       }
     }
@@ -889,15 +888,15 @@ public final class MultipleRunSummary implements Externalizable {
 
   }
 
-  public void updateSpecialAreaSummaries(Evu evu) {
+  public void updateSpecialAreaSummaries(simpplle.comcode.element.Evu evu) {
     updateSpecialSummaries(evu,SPECIAL_AREA);
   }
 
-  public void updateOwnershipSummaries(Evu evu) {
+  public void updateOwnershipSummaries(simpplle.comcode.element.Evu evu) {
     updateSpecialSummaries(evu,OWNERSHIP);
   }
 
-  private void updateSpecialSummaries(Evu evu, int kind) {
+  private void updateSpecialSummaries(simpplle.comcode.element.Evu evu, int kind) {
     Simulation     simulation = Simpplle.getCurrentSimulation();
     int            numSteps;
     int            cStep, acres;
@@ -1166,7 +1165,7 @@ public final class MultipleRunSummary implements Externalizable {
 
     if (kind == PROCESS) {  startPos = 30;  }
 
-    fout.print(Formatting.padLeft(" ",20));
+    fout.print(simpplle.comcode.utility.Formatting.padLeft(" ",20));
     switch (kind) {
       case PROCESS:    fout.print("PROCESS    "); break;
       case SPECIES:    fout.print("SPECIES    "); break;
@@ -1177,7 +1176,7 @@ public final class MultipleRunSummary implements Externalizable {
 
     fout.println("MEANS AND MIN-MAX VALUES");
     fout.println();
-    fout.println(Formatting.padLeft("-Time-",40));
+    fout.println(simpplle.comcode.utility.Formatting.padLeft("-Time-",40));
     fout.println();
 
     for(i=0;i<=numSteps;i += numCol) {
@@ -1188,7 +1187,7 @@ public final class MultipleRunSummary implements Externalizable {
         lastTime = i + numCol - 1;
       }
 
-      fout.print(Formatting.padLeft(" ",startPos));
+      fout.print(simpplle.comcode.utility.Formatting.padLeft(" ",startPos));
       for(j=i;j<=lastTime;j++) {
         fout.print("MEAN -" + j +     "-  MIN-MAX        ");
       }
@@ -1222,19 +1221,19 @@ public final class MultipleRunSummary implements Externalizable {
       key  = (SimpplleType) keys.next();
       data = (int[][]) ht.get(key);
 
-      fout.print(Formatting.fixedField(key.toString(),25,true));
+      fout.print(simpplle.comcode.utility.Formatting.fixedField(key.toString(),25,true));
 
       for(i=tStep;i<=lastTime;i++) {
         acres = Area.getFloatAcres(data[i][MEAN]);
-        fout.print(Formatting.fixedField(nf.format(acres),7) + " ");
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(nf.format(acres),7) + " ");
 
         acres = Area.getFloatAcres(data[i][MIN]);
         str = "\"" + nf.format(acres);
-        fout.print(Formatting.fixedField(str,8));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(str,8));
 
         acres = Area.getFloatAcres(data[i][MAX]);
         str = "-" + nf.format(acres) + "\"";
-        fout.print(Formatting.fixedField(str,10,true));
+        fout.print(simpplle.comcode.utility.Formatting.fixedField(str,10,true));
       }
       fout.println();
     }
@@ -1294,7 +1293,7 @@ public final class MultipleRunSummary implements Externalizable {
 
     if (kind == PROCESS) { startPos = 30; }
 
-    fout.print(Formatting.padLeft(" ",20));
+    fout.print(simpplle.comcode.utility.Formatting.padLeft(" ",20));
     switch (kind) {
       case PROCESS:    fout.print("PROCESS    "); break;
       case SPECIES:    fout.print("SPECIES    "); break;
@@ -1305,7 +1304,7 @@ public final class MultipleRunSummary implements Externalizable {
 
     fout.println("MEANS AND MIN-MAX VALUES BY " + divisionName);
     fout.println();
-    fout.println(Formatting.padLeft("-Time-",40));
+    fout.println(simpplle.comcode.utility.Formatting.padLeft("-Time-",40));
     fout.println();
 
     while (keys.hasNext()) {
@@ -1319,7 +1318,7 @@ public final class MultipleRunSummary implements Externalizable {
           lastTime = i + numCol - 1;
         }
 
-        fout.print(Formatting.padLeft(" ",startPos));
+        fout.print(simpplle.comcode.utility.Formatting.padLeft(" ",startPos));
         for(j=i;j<=lastTime;j++) {
           fout.print("MEAN -" + j +     "-  MIN-MAX        ");
         }
@@ -1343,7 +1342,7 @@ public final class MultipleRunSummary implements Externalizable {
     File        newFile;
 
     try {
-      newFile = Utility.makeSuffixedPathname(outputFile,"-ls","txt");
+      newFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(outputFile,"-ls","txt");
       fout = new PrintWriter(new FileOutputStream(newFile));
 
       Simpplle.setStatusMessage("Generating Area Summary data file ...");
@@ -1559,7 +1558,7 @@ public final class MultipleRunSummary implements Externalizable {
     }
 
     try {
-      newFile = Utility.makeSuffixedPathname(outputFile,suffix,"txt");
+      newFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(outputFile,suffix,"txt");
       fout = new PrintWriter(new FileOutputStream(newFile));
 
       msg = Simpplle.endl + "Generating Area Summary data file " + msg;
@@ -1636,10 +1635,10 @@ public final class MultipleRunSummary implements Externalizable {
     }
   }
 
-  public HashMap<SimpplleType,MyInteger> getFrequency(Evu evu, SimpplleType.Types kind, int tStep) throws SimpplleError {
+  public HashMap<SimpplleType, simpplle.comcode.utility.MyInteger> getFrequency(simpplle.comcode.element.Evu evu, SimpplleType.Types kind, int tStep) throws SimpplleError {
     HashMap<SimpplleType,int[]> hm = getFreqCountData(evu,kind);
-    HashMap<SimpplleType,MyInteger> freqHm = new HashMap<SimpplleType,MyInteger>();
-    MyInteger count;
+    HashMap<SimpplleType, simpplle.comcode.utility.MyInteger> freqHm = new HashMap<SimpplleType, simpplle.comcode.utility.MyInteger>();
+    simpplle.comcode.utility.MyInteger count;
     int[]     counts;
 
     int       totalCount=0;
@@ -1647,7 +1646,7 @@ public final class MultipleRunSummary implements Externalizable {
     for (SimpplleType key : hm.keySet()) {
       count = freqHm.get(key);
       if (count == null) {
-        count = new MyInteger(0);
+        count = new simpplle.comcode.utility.MyInteger(0);
         freqHm.put(key, count);
       }
       counts = hm.get(key);
@@ -1668,16 +1667,16 @@ public final class MultipleRunSummary implements Externalizable {
   }
 
 
-  public HashMap<SimpplleType,MyInteger> getFrequency(Evu evu, SimpplleType.Types kind) throws SimpplleError {
+  public HashMap<SimpplleType, simpplle.comcode.utility.MyInteger> getFrequency(simpplle.comcode.element.Evu evu, SimpplleType.Types kind) throws SimpplleError {
     HashMap<SimpplleType,int[]> hm = getFreqCountData(evu,kind);
-    HashMap<SimpplleType,MyInteger> freqHm = new HashMap<SimpplleType,MyInteger>();
-    MyInteger count;
+    HashMap<SimpplleType, simpplle.comcode.utility.MyInteger> freqHm = new HashMap<SimpplleType, simpplle.comcode.utility.MyInteger>();
+    simpplle.comcode.utility.MyInteger count;
     int[]     counts;
 
     for (SimpplleType key : hm.keySet()) {
       count = freqHm.get(key);
       if (count == null) {
-        count = new MyInteger(0);
+        count = new simpplle.comcode.utility.MyInteger(0);
         freqHm.put(key, count);
       }
 

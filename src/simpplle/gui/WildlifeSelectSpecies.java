@@ -15,7 +15,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import simpplle.JSimpplle;
-import simpplle.comcode.Formatting;
+import simpplle.comcode.utility.Formatting;
 import simpplle.comcode.WildlifeHabitat;
 import simpplle.comcode.WildlifeHabitatData;
 

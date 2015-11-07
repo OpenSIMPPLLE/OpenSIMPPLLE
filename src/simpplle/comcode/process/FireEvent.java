@@ -6,7 +6,6 @@ import simpplle.comcode.Process;
 
 import java.io.*;
 import java.util.*;
-import java.util.zip.*;
 
 /**
  * 
@@ -160,7 +159,7 @@ public class FireEvent extends Process {
  */
   public static void readFireSeasonData(BufferedReader fin) throws SimpplleError {
     String              line;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
 
     try {
       line   = fin.readLine();
@@ -169,7 +168,7 @@ public class FireEvent extends Process {
       }
       fireSeasonData = new int[4];
 
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       int count = strTok.countTokens();
       if (count != 3 && count != 4) {
         throw new ParseError("Invalid file! Incorrect number of items");
@@ -222,7 +221,7 @@ public class FireEvent extends Process {
  * @param evu evaluated vegetative unit to have probability of fire calculated
  * @return rational probability 
  */
-  private int doProbabilityCommon (RegionalZone zone, Evu evu) {
+  private int doProbabilityCommon (RegionalZone zone, simpplle.comcode.element.Evu evu) {
     double prob;
     Fmz   fmz;
 
@@ -243,7 +242,7 @@ public class FireEvent extends Process {
 
     return rationalProb;
   }
-  public int doProbability (RegionalZone zone, Evu evu) {
+  public int doProbability (RegionalZone zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
@@ -312,12 +311,12 @@ public class FireEvent extends Process {
  * @return true if fireType is not null 
  */
   public static boolean doFireSpread(RegionalZone zone, Process p,
-                                     Evu fromEvu, Evu evu) {
+                                     simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
 
     Lifeform toLifeform = Area.currentLifeform;
     FireResistance resistance = getSpeciesResistance(zone, evu, toLifeform);
     ProcessType fireType =
-      FireEventLogic.getInstance().getSpreadingTypeOfFire(p.getType(),resistance,fromEvu,evu,toLifeform);
+      simpplle.comcode.logic.FireEventLogic.getInstance().getSpreadingTypeOfFire(p.getType(),resistance,fromEvu,evu,toLifeform);
 
     return (fireType != null);
   }
@@ -329,10 +328,10 @@ public class FireEvent extends Process {
  * @param lifeform
  * @return
  */
-  public static ProcessType getTypeOfFire(RegionalZone zone, Evu evu, Lifeform lifeform) {
+  public static ProcessType getTypeOfFire(RegionalZone zone, simpplle.comcode.element.Evu evu, Lifeform lifeform) {
     FireResistance resistance = getSpeciesResistance(zone,evu,lifeform);
 
-    ProcessType fireType = FireEventLogic.getInstance().getTypeOfFire(resistance,evu,lifeform);
+    ProcessType fireType = simpplle.comcode.logic.FireEventLogic.getInstance().getTypeOfFire(resistance,evu,lifeform);
 
     boolean isWyoming = RegionalZone.isWyoming();
 
@@ -349,7 +348,7 @@ public class FireEvent extends Process {
  * @param evu ecological vegetative unit being evaluated 
  * @return true if do suppression
  */
-  public static boolean doSuppression(RegionalZone zone, Evu evu) {
+  public static boolean doSuppression(RegionalZone zone, simpplle.comcode.element.Evu evu) {
 //    int prob    = FireSuppressionData.getProbability(zone,evu);
 //    int randNum = Simulation.getInstance().random();
 //
@@ -367,7 +366,7 @@ public class FireEvent extends Process {
     Lifeform        lifeform = state.getLifeform();
     int tStep = Simulation.getCurrentTimeStep();
 
-    boolean suppress = FireSuppClassALogic.getInstance().isSuppressed(vegType,evu,tStep,lifeform);
+    boolean suppress = simpplle.comcode.logic.FireSuppClassALogic.getInstance().isSuppressed(vegType,evu,tStep,lifeform);
     if (suppress) {
       evu.suppressFire();
     }
@@ -379,13 +378,13 @@ public class FireEvent extends Process {
  * @param evu
  * @return true if random variable is not greater than probability of suppression
  */
-  public static boolean doWeatherEvent(RegionalZone zone, Evu evu) {
+  public static boolean doWeatherEvent(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     VegSimStateData state    = evu.getState();
     VegetativeType  vegType  = state.getVeg();
     Lifeform        lifeform = state.getLifeform();
 
     int ts = Simulation.getCurrentTimeStep();
-    int prob = FireSuppWeatherClassALogic.getInstance().getProbability(vegType,evu,ts,lifeform);
+    int prob = simpplle.comcode.logic.FireSuppWeatherClassALogic.getInstance().getProbability(vegType,evu,ts,lifeform);
 
     int randNum = Simulation.getInstance().random();
     int ratProb = Simulation.getInstance().getRationalProbability(prob);
@@ -425,10 +424,10 @@ public class FireEvent extends Process {
  * @param evu ecological vegetative unit to be evaluated
  * @return true if RegenerationLogic has data, a boolean value returned from other isRegenState methods (not overloaded) 
  */
-  public static boolean isRegenState(RegionalZone zone, Evu evu) {
+  public static boolean isRegenState(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     int zoneId = zone.getId();
 
-    if (RegenerationLogic.isDataPresent()) {
+    if (simpplle.comcode.logic.RegenerationLogic.isDataPresent()) {
 //      if ((zoneId == ValidZones.EASTSIDE_REGION_ONE) ||
 //          (zoneId == ValidZones.TETON) ||
 //          (zoneId == ValidZones.NORTHERN_CENTRAL_ROCKIES)) {
@@ -453,7 +452,7 @@ public class FireEvent extends Process {
    * @param evu
    * @return true if evu has regenerationLogic data
    */
-  public static boolean isRegenStateNew(Evu evu) {
+  public static boolean isRegenStateNew(simpplle.comcode.element.Evu evu) {
     return true;
   }
   /**
@@ -461,7 +460,7 @@ public class FireEvent extends Process {
    * @param evu
    * @return true if habitat groug type != A1, A2, B2, D3, AND E2
    */
-  public static boolean isRegenStateEastsideNew(Evu evu) {
+  public static boolean isRegenStateEastsideNew(simpplle.comcode.element.Evu evu) {
     HabitatTypeGroupType groupType = evu.getHabitatTypeGroup().getType();
 
     return (groupType.equals(HabitatTypeGroupType.A1) == false &&
@@ -477,7 +476,7 @@ public class FireEvent extends Process {
    * @param evu
    * @return true if habitat type is A1, A2, B1, B2, B3, C1, C2, D1, D2, D3, E1, E2, F1, F2, G1, OR G2 
    */
-  public static boolean isRegenStateWest(RegionalZone zone, Evu evu) {
+  public static boolean isRegenStateWest(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     HabitatTypeGroupType groupType = evu.getHabitatTypeGroup().getType();
 
     if (groupType.equals(HabitatTypeGroupType.A1) ||
@@ -508,7 +507,7 @@ public class FireEvent extends Process {
  * @param evu
  * @return true if habitat group is B1, B3, C1, C2, D1, D2, E1, F1, F2, G1, OR G2
  */
-  public static boolean isRegenStateEast(RegionalZone zone, Evu evu) {
+  public static boolean isRegenStateEast(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     HabitatTypeGroupType groupType = evu.getHabitatTypeGroup().getType();
 
     if (groupType.equals(HabitatTypeGroupType.B1) ||
@@ -529,8 +528,8 @@ public class FireEvent extends Process {
     }
   }
 
-  public static VegetativeType regen(Lifeform lifeform, Evu evu) {
-    if (RegenerationLogic.isDataPresent()) {
+  public static VegetativeType regen(Lifeform lifeform, simpplle.comcode.element.Evu evu) {
+    if (simpplle.comcode.logic.RegenerationLogic.isDataPresent()) {
       return regenNew(lifeform,evu);
     }
     else {
@@ -544,7 +543,7 @@ public class FireEvent extends Process {
    * @param evu
    * @return
    */
-  private static VegetativeType regenNew(Lifeform lifeform, Evu evu) {
+  private static VegetativeType regenNew(Lifeform lifeform, simpplle.comcode.element.Evu evu) {
     AdjacentData[]   adjacentData;
     int              acres;
     Integer          keyValueIndex;
@@ -565,7 +564,7 @@ public class FireEvent extends Process {
     // *** Resprouting ***
     // *******************
     {
-      VegetativeType tmpState = RegenerationLogic.getResproutingState(ecoGroup, evu,lifeform);
+      VegetativeType tmpState = simpplle.comcode.logic.RegenerationLogic.getResproutingState(ecoGroup, evu,lifeform);
       if (tmpState != null) {
         newState = htGrp.getVegetativeType(tmpState.getSpecies(),
                                            tmpState.getSizeClass(),
@@ -589,13 +588,13 @@ public class FireEvent extends Process {
        don't allow multiple values right now.
     */
     for (i=0; i<adjacentData.length; i++) {
-      Evu adj = adjacentData[i].evu;
+      simpplle.comcode.element.Evu adj = adjacentData[i].evu;
 
       // Do not want current because doNextState may have already happened
       // for this adj unit, in which case we would be getting the wrong Species.
       if (adj.getState(cStep-1,lifeform) == null) { continue; }
 
-      VegetativeType tmpState = RegenerationLogic.getAdjResproutingState(ecoGroup,adj,cStep-1,lifeform);
+      VegetativeType tmpState = simpplle.comcode.logic.RegenerationLogic.getAdjResproutingState(ecoGroup,adj,cStep-1,lifeform);
       if (tmpState != null) {
         newState = htGrp.getVegetativeType(tmpState.getSpecies(),
                                            tmpState.getSizeClass(),
@@ -607,8 +606,8 @@ public class FireEvent extends Process {
 
     // *** In Place Seed ***
     // *********************
-    if (evu.producingSeed(lifeform,Evu.IN_PLACE_SEED)) {
-      VegetativeType tmpState = RegenerationLogic.getInPlaceSeedState(ecoGroup, evu,lifeform);
+    if (evu.producingSeed(lifeform, simpplle.comcode.element.Evu.IN_PLACE_SEED)) {
+      VegetativeType tmpState = simpplle.comcode.logic.RegenerationLogic.getInPlaceSeedState(ecoGroup, evu,lifeform);
       if (tmpState != null) {
         newState = htGrp.getVegetativeType(tmpState.getSpecies(),
                                            tmpState.getSizeClass(),
@@ -621,8 +620,8 @@ public class FireEvent extends Process {
     }
     // *** In Landscape Seed ***
     // *************************
-    if (evu.producingSeed(lifeform,Evu.IN_LANDSCAPE_SEED)) {
-      VegetativeType tmpState = RegenerationLogic.getInLandscapeSeedState(ecoGroup,evu,cStep,lifeform);
+    if (evu.producingSeed(lifeform, simpplle.comcode.element.Evu.IN_LANDSCAPE_SEED)) {
+      VegetativeType tmpState = simpplle.comcode.logic.RegenerationLogic.getInLandscapeSeedState(ecoGroup,evu,cStep,lifeform);
       if (tmpState != null) {
         newState = htGrp.getVegetativeType(tmpState.getSpecies(),
                                            tmpState.getSizeClass(),
@@ -635,12 +634,12 @@ public class FireEvent extends Process {
     }
     // *** Adjacent Producing Seed ***
     // *******************************
-    HashMap<Evu,Integer> seedSource = null;
-    Evu[] key = null;
+    HashMap<simpplle.comcode.element.Evu,Integer> seedSource = null;
+    simpplle.comcode.element.Evu[] key = null;
     int[]     value = null;
     if (numAdj > 0) {
-      seedSource = new HashMap<Evu,Integer>(numAdj);
-      key        = new Evu[numAdj];
+      seedSource = new HashMap<simpplle.comcode.element.Evu,Integer>(numAdj);
+      key        = new simpplle.comcode.element.Evu[numAdj];
       value      = new int[numAdj];
       index      = 0;
 
@@ -650,8 +649,8 @@ public class FireEvent extends Process {
       }
     }
     else {
-      seedSource = new HashMap<Evu,Integer>(1);
-      key        = new Evu[1];
+      seedSource = new HashMap<simpplle.comcode.element.Evu,Integer>(1);
+      key        = new simpplle.comcode.element.Evu[1];
       value      = new int[1];
       index      = 0;
 
@@ -660,9 +659,9 @@ public class FireEvent extends Process {
     }
 
     for(i=0;i<numAdj;i++) {
-      Evu adj = adjacentData[i].evu;
+      simpplle.comcode.element.Evu adj = adjacentData[i].evu;
 
-      if (adj.producingSeed(lifeform,Evu.ADJACENT_SEED)) {
+      if (adj.producingSeed(lifeform, simpplle.comcode.element.Evu.ADJACENT_SEED)) {
         // Do not want current because doNextState may have already happened
         // for this adj unit, in which case we would be getting the wrong Species.
         if (adj.getState(cStep-1,lifeform) == null) { continue; }
@@ -682,14 +681,14 @@ public class FireEvent extends Process {
       }
     }
 
-    ArrayList<Species>  prefSpecies = RegenerationLogic.getAdjacentPreferredSpecies();
+    ArrayList<Species>  prefSpecies = simpplle.comcode.logic.RegenerationLogic.getAdjacentPreferredSpecies();
     ArrayList<VegetativeType>  v;
     if (prefSpecies != null && prefSpecies.size() > 0) {
       for (i=0; i<prefSpecies.size(); i++) {
         Species tmpSpecies = prefSpecies.get(i);
-        Evu adj=null;
+        simpplle.comcode.element.Evu adj=null;
         for (Iterator it=seedSource.keySet().iterator(); it.hasNext(); ) {
-          adj = (Evu)it.next();
+          adj = (simpplle.comcode.element.Evu)it.next();
           if (adj.getState(cStep-1,lifeform).getVegType().getSpecies() == tmpSpecies) {
             break;
           }
@@ -697,7 +696,7 @@ public class FireEvent extends Process {
         }
         if (adj == null) { continue; }
 
-        v = RegenerationLogic.getAdjacentStates(ecoGroup,adj,cStep-1,lifeform);
+        v = simpplle.comcode.logic.RegenerationLogic.getAdjacentStates(ecoGroup,adj,cStep-1,lifeform);
         if (v == null || v.size() == 0) { continue; }
 
         for (j=0; j<v.size(); j++) {
@@ -711,12 +710,12 @@ public class FireEvent extends Process {
       }
     }
 
-    Utility.sort(key,value);
-    Evu[] sortedKeys = key;
+    simpplle.comcode.utility.Utility.sort(key,value);
+    simpplle.comcode.element.Evu[] sortedKeys = key;
 
     for (i=0; i<sortedKeys.length; i++) {
       if (sortedKeys[i] == null) { continue; }
-      v = RegenerationLogic.getAdjacentStates(ecoGroup,sortedKeys[i],cStep-1,lifeform);
+      v = simpplle.comcode.logic.RegenerationLogic.getAdjacentStates(ecoGroup,sortedKeys[i],cStep-1,lifeform);
       if (v == null || v.size() == 0) { continue; }
       for (j=0; j<v.size(); j++) {
         VegetativeType tmpState = (VegetativeType)v.get(j);
@@ -737,7 +736,7 @@ public class FireEvent extends Process {
    * @param evu
    * @return the vegetative type commonly regenerated
    */
-  private static VegetativeType regenCommon(Evu evu) {
+  private static VegetativeType regenCommon(simpplle.comcode.element.Evu evu) {
     AdjacentData[]   adjacentData;
     Hashtable        seedSource = null;
     Species          species, adjSpecies;
@@ -751,7 +750,7 @@ public class FireEvent extends Process {
     VegetativeType   newState = null, tmpState;
     HabitatTypeGroup htGrp;
     Area             area = Simpplle.currentArea;
-    Evu              adj;
+    simpplle.comcode.element.Evu adj;
     Enumeration      e;
     int              i,j;
     int              numAdj;
@@ -942,7 +941,7 @@ public class FireEvent extends Process {
 
       // Find species with most acres since we didn't find
       // any of the species in the above searches.
-      Utility.sort(key,value);
+      simpplle.comcode.utility.Utility.sort(key,value);
       sortedKeys = key;
 
       for(i=0;i<sortedKeys.length;i++) {
@@ -963,7 +962,7 @@ public class FireEvent extends Process {
    * @param evu
    * @return
    */
-  public static VegetativeType caRegen(RegionalZone zone, Evu evu) {
+  public static VegetativeType caRegen(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return null; }
 
@@ -1044,10 +1043,10 @@ public class FireEvent extends Process {
  * @param evu ecological vegetative unit being evaluated
  * @return result returned from overloaded getSpeciesResistence chooses are low, moderate, high, or conditional 
  */
-  public static FireResistance getSpeciesResistance(RegionalZone zone, Evu evu) {
+  public static FireResistance getSpeciesResistance(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     return getSpeciesResistance(zone,evu,Area.getCurrentLifeform(evu));
   }
-  public static FireResistance getSpeciesResistance(RegionalZone zone, Evu evu, Lifeform lifeform) {
+  public static FireResistance getSpeciesResistance(RegionalZone zone, simpplle.comcode.element.Evu evu, Lifeform lifeform) {
     VegSimStateData state = evu.getState(lifeform);
     if (state == null) { return FireResistance.LOW; }
 
@@ -1109,7 +1108,7 @@ public class FireEvent extends Process {
  * @param evu
  * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
  */
-  private static int getSpeciesResistanceCommon(RegionalZone zone, Evu evu) {
+  private static int getSpeciesResistanceCommon(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Species              species   = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
 
@@ -1217,7 +1216,7 @@ public class FireEvent extends Process {
  * @param evu
  * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
  */
-  private static int getSpeciesResistanceSierraNevada(RegionalZone zone, Evu evu) {
+  private static int getSpeciesResistanceSierraNevada(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
 
@@ -1258,7 +1257,7 @@ public class FireEvent extends Process {
  * @param evu
  * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
  */
-  private static int getSpeciesResistanceSouthernCalifornia(RegionalZone zone, Evu evu) {
+  private static int getSpeciesResistanceSouthernCalifornia(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
 
@@ -1297,7 +1296,7 @@ public class FireEvent extends Process {
  * @param evu
  * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
  */
-  private static int getSpeciesResistanceGila(RegionalZone zone, Evu evu) {
+  private static int getSpeciesResistanceGila(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Species species   = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
 
@@ -1363,7 +1362,7 @@ public class FireEvent extends Process {
    * @param evu
    * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
    */
-  private static int getSpeciesResistanceUtah(RegionalZone zone, Evu evu) {
+  private static int getSpeciesResistanceUtah(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
 
@@ -1399,7 +1398,7 @@ public class FireEvent extends Process {
  * @param evu
  * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
  */
-  private static int getSpeciesResistanceAlaska(RegionalZone zone, Evu evu) {
+  private static int getSpeciesResistanceAlaska(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
 
@@ -1452,7 +1451,7 @@ public class FireEvent extends Process {
    * @param evu
    * @return
    */
-  public static VegetativeType regenPulse(Evu evu) {
+  public static VegetativeType regenPulse(simpplle.comcode.element.Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return null; }
 
@@ -1509,7 +1508,7 @@ public class FireEvent extends Process {
    */
   public static void readExtremeData(BufferedReader fin) throws ParseError {
     String              line=null;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     int                 value;
 
     try {
@@ -1517,7 +1516,7 @@ public class FireEvent extends Process {
       if (line == null) {
         throw new ParseError("No data found");
       }
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       if (strTok.countTokens() != 2) {
         throw new ParseError("Incorrect Number of fields");
       }

@@ -22,7 +22,7 @@ import simpplle.comcode.zone.ColoradoPlateau;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  *
- * @see simpplle.comcode.BaseLogic
+ * @see simpplle.comcode.logic.BaseLogic
  * 
  */
 public class FireSuppWeatherData {
@@ -185,7 +185,7 @@ public class FireSuppWeatherData {
    */
   public static void readData(BufferedReader fin) throws SimpplleError {
     String              line;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
 
     try {
       int[] data = readDataRow(fin);
@@ -218,13 +218,13 @@ public class FireSuppWeatherData {
   private static int[] readDataRow(BufferedReader fin)
     throws ParseError, IOException
   {
-    StringTokenizerPlus strTok, values;
+    simpplle.comcode.utility.StringTokenizerPlus strTok, values;
     String              line;
     int                 numRows;
     int[]             result;
 
     line    = fin.readLine();
-    strTok  = new StringTokenizerPlus(line,",");
+    strTok  = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
     numRows = strTok.countTokens();
     result  = new int[numRows];
 
@@ -275,8 +275,8 @@ public class FireSuppWeatherData {
 
   public Object getValue(int col) {
     switch (col) {
-      case MIN_ACRES_COL: return Utility.getFloatAcres(acresRange.lower,Area.getAcresPrecision());
-      case MAX_ACRES_COL: return Utility.getFloatAcres(acresRange.upper,Area.getAcresPrecision());
+      case MIN_ACRES_COL: return simpplle.comcode.utility.Utility.getFloatAcres(acresRange.lower,Area.getAcresPrecision());
+      case MAX_ACRES_COL: return simpplle.comcode.utility.Utility.getFloatAcres(acresRange.upper,Area.getAcresPrecision());
       case SPRING_COL: return probability[Climate.Season.SPRING.ordinal()];
       case FALL_COL:   return probability[Climate.Season.FALL.ordinal()];
       case SUMMER_COL: return probability[Climate.Season.SUMMER.ordinal()];
@@ -367,7 +367,7 @@ public class FireSuppWeatherData {
     int twoAcres = Area.getRationalAcres(2);
     int lower = instance.acresRange.getLower();
     int upper = instance.acresRange.getUpper() - twoAcres;
-    float fLower = Utility.getFloatAcres(lower, Area.getAcresPrecision());
+    float fLower = simpplle.comcode.utility.Utility.getFloatAcres(lower, Area.getAcresPrecision());
     if(fLower < 1.0){
       lower =1;
     }
@@ -385,8 +385,8 @@ public class FireSuppWeatherData {
     int twoAcres = Area.getRationalAcres(2);
     int upperRat = instance.acresRange.getUpper() - twoAcres;
 
-    float lower = Utility.getFloatAcres(instance.acresRange.getLower() + oneAcre, Area.getAcresPrecision());
-    float upper = Utility.getFloatAcres(upperRat, Area.getAcresPrecision());
+    float lower = simpplle.comcode.utility.Utility.getFloatAcres(instance.acresRange.getLower() + oneAcre, Area.getAcresPrecision());
+    float upper = simpplle.comcode.utility.Utility.getFloatAcres(upperRat, Area.getAcresPrecision());
 
     StringBuilder sb = new StringBuilder();
     Formatter formatter = new Formatter(sb, Locale.US);
@@ -406,7 +406,7 @@ public class FireSuppWeatherData {
     int oneAcre = Area.getRationalAcres(1);
     int lower = instance.acresRange.getLower()+oneAcre;
 
-    float fLower = Utility.getFloatAcres(lower, Area.getAcresPrecision());
+    float fLower = simpplle.comcode.utility.Utility.getFloatAcres(lower, Area.getAcresPrecision());
 
     return Math.round(fLower);
   }

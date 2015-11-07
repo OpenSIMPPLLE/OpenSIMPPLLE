@@ -86,13 +86,13 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../simpplle/comcode/AbstractBaseLogic.html" title="class in simpplle.comcode">simpplle.comcode.AbstractBaseLogic</a></li>
+<li><a href="../../simpplle/comcode/AbstractBaseLogic.html" title="class in simpplle.comcode">simpplle.comcode.logic.AbstractBaseLogic</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle.comcode">simpplle.comcode.BaseLogic</a></li>
+<li><a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle.comcode">simpplle.comcode.logic.BaseLogic</a></li>
 <li>
 <ul class="inheritance">
-<li>simpplle.comcode.FireSuppSpreadRateLogic</li>
+<li>simpplle.comcode.logic.FireSuppSpreadRateLogic</li>
 </ul>
 </li>
 </ul>
@@ -139,7 +139,7 @@ extends <a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="nested_classes_inherited_from_class_simpplle.comcode.BaseLogic">
+<li class="blockList"><a name="nested_classes_inherited_from_class_simpplle.comcode.logic.BaseLogic">
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from class&nbsp;simpplle.comcode.<a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle.comcode">BaseLogic</a></h3>
@@ -185,14 +185,14 @@ extends <a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_simpplle.comcode.BaseLogic">
+<li class="blockList"><a name="fields_inherited_from_class_simpplle.comcode.logic.BaseLogic">
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;simpplle.comcode.<a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle.comcode">BaseLogic</a></h3>
 <code><a href="../../simpplle/comcode/BaseLogic.html#DENSITY_COL">DENSITY_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#ECO_GROUP_COL">ECO_GROUP_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#LANDTYPE_COL">LANDTYPE_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#LAST_COL">LAST_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#MOISTURE_COL">MOISTURE_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#OWNERSHIP_COL">OWNERSHIP_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#PROCESS_COL">PROCESS_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#ROAD_STATUS_COL">ROAD_STATUS_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#SEASON_COL">SEASON_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#SIZE_CLASS_COL">SIZE_CLASS_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#SPECIAL_AREA_COL">SPECIAL_AREA_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#SPECIES_COL">SPECIES_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#TEMP_COL">TEMP_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#TRACKING_SPECIES_COL">TRACKING_SPECIES_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#TRAIL_STATUS_COL">TRAIL_STATUS_COL</a>, <a href="../../simpplle/comcode/BaseLogic.html#TREATMENT_COL">TREATMENT_COL</a></code></li>
 </ul>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_simpplle.comcode.AbstractBaseLogic">
+<li class="blockList"><a name="fields_inherited_from_class_simpplle.comcode.logic.AbstractBaseLogic">
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;simpplle.comcode.<a href="../../simpplle/comcode/AbstractBaseLogic.html" title="class in simpplle.comcode">AbstractBaseLogic</a></h3>
@@ -286,7 +286,7 @@ extends <a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/FireSuppSpreadRateLogic.html#getRate(simpplle.comcode.VegetativeType, boolean, simpplle.comcode.Evu, int, simpplle.comcode.Lifeform)">getRate</a></strong>(<a href="../../simpplle/comcode/VegetativeType.html" title="class in simpplle.comcode">VegetativeType</a>&nbsp;vegType,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/FireSuppSpreadRateLogic.html#getRate(simpplle.comcode.VegetativeType, boolean, simpplle.comcode.element.Evu, int, simpplle.comcode.Lifeform)">getRate</a></strong>(<a href="../../simpplle/comcode/VegetativeType.html" title="class in simpplle.comcode">VegetativeType</a>&nbsp;vegType,
        boolean&nbsp;isExtreme,
        <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;fromEvu,
        int&nbsp;tStep,
@@ -300,25 +300,25 @@ extends <a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private double</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/FireSuppSpreadRateLogic.html#spreadTime(simpplle.comcode.Evu, int)">spreadTime</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;unit,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/FireSuppSpreadRateLogic.html#spreadTime(simpplle.comcode.element.Evu, int)">spreadTime</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;unit,
           int&nbsp;rate)</code>
 <div class="block">Warning this is only valid if Evu is a polygon.</div>
 </td>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_simpplle.comcode.BaseLogic">
+<li class="blockList"><a name="methods_inherited_from_class_simpplle.comcode.logic.BaseLogic">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;simpplle.comcode.<a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle.comcode">BaseLogic</a></h3>
 <code><a href="../../simpplle/comcode/BaseLogic.html#getColumnName(int)">getColumnName</a></code></li>
 </ul>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_simpplle.comcode.AbstractBaseLogic">
+<li class="blockList"><a name="methods_inherited_from_class_simpplle.comcode.logic.AbstractBaseLogic">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;simpplle.comcode.<a href="../../simpplle/comcode/AbstractBaseLogic.html" title="class in simpplle.comcode">AbstractBaseLogic</a></h3>
-<code><a href="../../simpplle/comcode/AbstractBaseLogic.html#addColumn(java.lang.String, java.lang.String)">addColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addRow(int, java.lang.String, simpplle.comcode.AbstractLogicData)">addRow</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addRow(java.lang.String, simpplle.comcode.AbstractLogicData)">addRow</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addVisibleColumn(java.lang.String, int)">addVisibleColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addVisibleColumn(java.lang.String, int, java.lang.String)">addVisibleColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addVisibleColumn(java.lang.String, java.lang.String)">addVisibleColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addVisibleColumnAll(java.lang.String)">addVisibleColumnAll</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#clearData(java.lang.String)">clearData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#deleteDataRow(int, java.lang.String)">deleteDataRow</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#findVisibleColumnInsertPosition(java.lang.String, int, java.util.ArrayList)">findVisibleColumnInsertPosition</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getColumnCount(java.lang.String)">getColumnCount</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getColumnIdName(java.lang.String, int)">getColumnIdName</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getColumnPosition(java.lang.String, java.lang.String)">getColumnPosition</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getData(java.lang.String)">getData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getData(java.lang.String, boolean)">getData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getLastRowIndex(java.lang.String)">getLastRowIndex</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getRowCount(java.lang.String)">getRowCount</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getValueAt(int, int, java.lang.String)">getValueAt</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getValueAt(int, java.lang.String)">getValueAt</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getVisibleColumns(java.lang.String)">getVisibleColumns</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getVisibleColumnsHm()">getVisibleColumnsHm</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#hasChanged()">hasChanged</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#isDataPresent(java.lang.String)">isDataPresent</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#isNoChangeRead()">isNoChangeRead</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#isVisibleColumn(java.lang.String, int)">isVisibleColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#markChanged()">markChanged</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#moveRowDown(int, java.lang.String)">moveRowDown</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#moveRowUp(int, java.lang.String)">moveRowUp</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#read(java.io.ObjectInputStream)">read</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#read(java.io.ObjectInputStream, int)">read</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#readData(java.lang.String, java.io.ObjectInputStream, int)">readData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#readData(java.lang.String, java.io.ObjectInputStream, int, boolean)">readData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#removeRow(int, java.lang.String)">removeRow</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#removeVisibleColumn(java.lang.String, int)">removeVisibleColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#save(java.io.ObjectOutputStream)">save</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#saveData(java.lang.String, java.io.ObjectOutputStream)">saveData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#saveData(java.lang.String, java.io.ObjectOutputStream, boolean)">saveData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#setData(java.lang.Object, int, int, java.lang.String)">setData</a></code></li>
+<code><a href="../../simpplle/comcode/AbstractBaseLogic.html#addColumn(java.lang.String, java.lang.String)">addColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addRow(int, java.lang.String, simpplle.comcode.logic.AbstractLogicData)">addRow</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addRow(java.lang.String, simpplle.comcode.logic.AbstractLogicData)">addRow</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addVisibleColumn(java.lang.String, int)">addVisibleColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addVisibleColumn(java.lang.String, int, java.lang.String)">addVisibleColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addVisibleColumn(java.lang.String, java.lang.String)">addVisibleColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#addVisibleColumnAll(java.lang.String)">addVisibleColumnAll</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#clearData(java.lang.String)">clearData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#deleteDataRow(int, java.lang.String)">deleteDataRow</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#findVisibleColumnInsertPosition(java.lang.String, int, java.util.ArrayList)">findVisibleColumnInsertPosition</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getColumnCount(java.lang.String)">getColumnCount</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getColumnIdName(java.lang.String, int)">getColumnIdName</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getColumnPosition(java.lang.String, java.lang.String)">getColumnPosition</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getData(java.lang.String)">getData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getData(java.lang.String, boolean)">getData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getLastRowIndex(java.lang.String)">getLastRowIndex</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getRowCount(java.lang.String)">getRowCount</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getValueAt(int, int, java.lang.String)">getValueAt</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getValueAt(int, java.lang.String)">getValueAt</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getVisibleColumns(java.lang.String)">getVisibleColumns</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#getVisibleColumnsHm()">getVisibleColumnsHm</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#hasChanged()">hasChanged</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#isDataPresent(java.lang.String)">isDataPresent</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#isNoChangeRead()">isNoChangeRead</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#isVisibleColumn(java.lang.String, int)">isVisibleColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#markChanged()">markChanged</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#moveRowDown(int, java.lang.String)">moveRowDown</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#moveRowUp(int, java.lang.String)">moveRowUp</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#read(java.io.ObjectInputStream)">read</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#read(java.io.ObjectInputStream, int)">read</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#readData(java.lang.String, java.io.ObjectInputStream, int)">readData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#readData(java.lang.String, java.io.ObjectInputStream, int, boolean)">readData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#removeRow(int, java.lang.String)">removeRow</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#removeVisibleColumn(java.lang.String, int)">removeVisibleColumn</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#save(java.io.ObjectOutputStream)">save</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#saveData(java.lang.String, java.io.ObjectOutputStream)">saveData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#saveData(java.lang.String, java.io.ObjectOutputStream, boolean)">saveData</a>, <a href="../../simpplle/comcode/AbstractBaseLogic.html#setData(java.lang.Object, int, int, java.lang.String)">setData</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -348,7 +348,7 @@ extends <a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle
 <li class="blockList">
 <h4>version</h4>
 <pre>static final&nbsp;int version</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.FireSuppSpreadRateLogic.version">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.logic.FireSuppSpreadRateLogic.version">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="FIRE_SUPP_SPREAD_RATE_LOGIC">
@@ -367,7 +367,7 @@ extends <a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle
 <li class="blockList">
 <h4>SLOPE_COL</h4>
 <pre>public static final&nbsp;int SLOPE_COL</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.FireSuppSpreadRateLogic.SLOPE_COL">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.logic.FireSuppSpreadRateLogic.SLOPE_COL">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="AVERAGE_RATE_COL">
@@ -377,7 +377,7 @@ extends <a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle
 <li class="blockList">
 <h4>AVERAGE_RATE_COL</h4>
 <pre>public static final&nbsp;int AVERAGE_RATE_COL</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.FireSuppSpreadRateLogic.AVERAGE_RATE_COL">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.logic.FireSuppSpreadRateLogic.AVERAGE_RATE_COL">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="EXTREME_RATE_COL">
@@ -387,7 +387,7 @@ extends <a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle
 <li class="blockList">
 <h4>EXTREME_RATE_COL</h4>
 <pre>public static final&nbsp;int EXTREME_RATE_COL</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.FireSuppSpreadRateLogic.EXTREME_RATE_COL">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.logic.FireSuppSpreadRateLogic.EXTREME_RATE_COL">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="instance">
@@ -545,7 +545,7 @@ extends <a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle
 <dt><span class="strong">Returns:</span></dt><dd></dd></dl>
 </li>
 </ul>
-<a name="spreadTime(simpplle.comcode.Evu, int)">
+<a name="spreadTime(simpplle.comcode.element.Evu, int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -559,7 +559,7 @@ extends <a href="../../simpplle/comcode/BaseLogic.html" title="class in simpplle
 <dt><span class="strong">Returns:</span></dt><dd></dd></dl>
 </li>
 </ul>
-<a name="getRate(simpplle.comcode.VegetativeType, boolean, simpplle.comcode.Evu, int, simpplle.comcode.Lifeform)">
+<a name="getRate(simpplle.comcode.VegetativeType, boolean, simpplle.comcode.element.Evu, int, simpplle.comcode.Lifeform)">
 <!--   -->
 </a>
 <ul class="blockListLast">

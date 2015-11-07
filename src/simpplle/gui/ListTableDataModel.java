@@ -1,7 +1,7 @@
 package simpplle.gui;
 
 import javax.swing.table.*;
-import simpplle.comcode.*;
+
 import java.util.*;
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -20,7 +20,7 @@ import java.util.*;
   public static final int SELECTED_COL = 0;
   public static final int DATA_COL     = 1;
 
-  protected AbstractLogicData logicData;
+  protected simpplle.comcode.logic.AbstractLogicData logicData;
   protected ArrayList list;
   protected int userClassDataCol;
 
@@ -28,7 +28,7 @@ import java.util.*;
     super();
   }
 
-  public void initData(AbstractLogicData logicData, ArrayList list, int userClassDataCol) {
+  public void initData(simpplle.comcode.logic.AbstractLogicData logicData, ArrayList list, int userClassDataCol) {
     this.logicData  = logicData;
     this.list       = list;
     this.userClassDataCol = userClassDataCol;
@@ -75,7 +75,7 @@ import java.util.*;
   public String getColumnName(int column) {
     switch (column) {
       case SELECTED_COL: return "Chosen";
-      case DATA_COL:     return BaseLogic.getColumnName(userClassDataCol);
+      case DATA_COL:     return simpplle.comcode.logic.BaseLogic.getColumnName(userClassDataCol);
       default: return "";
     }
   }

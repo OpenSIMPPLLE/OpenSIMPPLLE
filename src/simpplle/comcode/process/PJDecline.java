@@ -1,9 +1,9 @@
 package simpplle.comcode.process;
 
 
-import simpplle.comcode.BaseLogic;
+import simpplle.comcode.logic.BaseLogic;
 import simpplle.comcode.Process;
-import simpplle.comcode.ProcessProbLogic;
+import simpplle.comcode.logic.ProcessProbLogic;
 
 /**
  * 

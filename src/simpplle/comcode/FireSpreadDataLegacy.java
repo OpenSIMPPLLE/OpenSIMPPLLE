@@ -175,7 +175,7 @@ public abstract class FireSpreadDataLegacy {
   // The two values are average and extreme fire types.
   public static void readData(BufferedReader fin) throws SimpplleError {
     String              line, str;
-    StringTokenizerPlus strTok, pageTok, rowTok, valueTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok, pageTok, rowTok, valueTok;
     int                 numPages, numRows, numCols;
     int                 resist, structure, page, row, col;
     int                 fireType, position, density;
@@ -197,18 +197,18 @@ public abstract class FireSpreadDataLegacy {
             for(position=0; position<NUM_SPREAD_POSITION; position++) {
               for(density=0; density<NUM_SPREAD_DENSITY; density++) {
                 line     = fin.readLine();
-                pageTok   = new StringTokenizerPlus(line,";");
+                pageTok   = new simpplle.comcode.utility.StringTokenizerPlus(line,";");
                 numPages = pageTok.countTokens();
                 spreadData[fireType][position][density][resist][structure] =
                   new ProcessType[numPages][][];
 
                 for(page=0;page<numPages;page++) {
-                  rowTok  = new StringTokenizerPlus(pageTok.nextToken(),",");
+                  rowTok  = new simpplle.comcode.utility.StringTokenizerPlus(pageTok.nextToken(),",");
                   numRows = rowTok.countTokens();
                   spreadData[fireType][position][density][resist][structure][page] = new ProcessType[numRows][];
 
                   for(row=0;row<numRows;row++) {
-                    valueTok = new StringTokenizerPlus(rowTok.getToken(),":");
+                    valueTok = new simpplle.comcode.utility.StringTokenizerPlus(rowTok.getToken(),":");
                     numCols = valueTok.countTokens();
                     spreadData[fireType][position][density][resist][structure][page][row] = new ProcessType[numCols];
                     for(col=0;col<numCols;col++) {

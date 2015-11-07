@@ -39,7 +39,7 @@ public abstract class FireLogicDefines {
    * @param evu existing vegetative unit
    * @return the owner choices are NF_OTHER, NF_WILDERNESS, OTHER.  by default returns OTHER
    */
-  protected static int determineOwnership(Evu evu) {
+  protected static int determineOwnership(simpplle.comcode.element.Evu evu) {
     String ownershipStr = evu.getOwnership();
     if (ownershipStr.equalsIgnoreCase("NF-OTHER"))           { return NF_OTHER; }
     else if (ownershipStr.equalsIgnoreCase("NF-WILDERNESS")) { return NF_WILDERNESS; }

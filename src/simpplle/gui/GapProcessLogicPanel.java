@@ -1,9 +1,8 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-import simpplle.comcode.BaseLogic;
+import simpplle.comcode.logic.BaseLogic;
 import simpplle.comcode.SystemKnowledge.Kinds;
-import simpplle.comcode.*;
 
 /** The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
@@ -51,13 +50,13 @@ public class GapProcessLogicPanel extends VegLogicPanel {
  * If it is PROB_COL then it sets the colunn identifier to PROB_COL (17)
  */
   protected void initColumns(TableColumn column, int col) {
-    if (col == GapProcessLogic.GAP_PROCESS_COL) {
-      column.setIdentifier(GapProcessLogic.GAP_PROCESS_COL);
+    if (col == simpplle.comcode.logic.GapProcessLogic.GAP_PROCESS_COL) {
+      column.setIdentifier(simpplle.comcode.logic.GapProcessLogic.GAP_PROCESS_COL);
       column.setCellRenderer(new MyJComboBoxRenderer(simpplle.comcode.Process.getSummaryProcesses()));
       column.setCellEditor(new MyJComboBoxEditor(simpplle.comcode.Process.getSummaryProcesses()));
     }
-    else if (col == GapProcessLogic.PROB_COL) {
-      column.setIdentifier(GapProcessLogic.PROB_COL);
+    else if (col == simpplle.comcode.logic.GapProcessLogic.PROB_COL) {
+      column.setIdentifier(simpplle.comcode.logic.GapProcessLogic.PROB_COL);
       Utility.setColumnCellColor(column);
     }
     else {

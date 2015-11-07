@@ -3,13 +3,13 @@
 
 <refactor>
   <rename-method id="F9P0JB70EKNE2H0O42DWUYO0" creation-time="Thu Jun 01 09:32:19.265 EDT 2006">
-    <declaring-class-name>simpplle.comcode.Evu</declaring-class-name>
+    <declaring-class-name>simpplle.comcode.element.Evu</declaring-class-name>
     <declared-method-signature>(Lsimpplle/comcode/Lifeform;)I</declared-method-signature>
     <old-method-name>findLastLifeformState</old-method-name>
     <new-method-name>findLastLifeformStateTimeStep</new-method-name>
   </rename-method>
   <rename-method id="E9P0JB70EKNE2H0O42DWUYO0" creation-time="Thu Jun 01 11:51:28.140 EDT 2006">
-    <declaring-class-name>simpplle.comcode.Evu</declaring-class-name>
+    <declaring-class-name>simpplle.comcode.element.Evu</declaring-class-name>
     <declared-method-signature>(Lsimpplle/comcode/Lifeform;)Lsimpplle/comcode/VegSimStateData;</declared-method-signature>
     <old-method-name>findLastLifeformStateTimeStep</old-method-name>
     <new-method-name>findLastLifeformState</new-method-name>
@@ -33,26 +33,26 @@
     <new-method-name>setNonBaseCol</new-method-name>
   </rename-method>
   <rename-field id="7AP071IDKMQEHY0G2ZDWUYO0" creation-time="Tue Aug 08 13:45:16.171 EDT 2006">
-    <declaring-class-name>simpplle.comcode.NaturalElement</declaring-class-name>
+    <declaring-class-name>simpplle.comcode.element.NaturalElement</declaring-class-name>
     <old-field-name>aspect</old-field-name>
     <declared-field-type>Ljava/lang/String;</declared-field-type>
     <new-field-name>aspectName</new-field-name>
   </rename-field>
   <rename-method id="6AP071IDKMQEHY0G2ZDWUYO0" creation-time="Tue Aug 08 13:47:35.437 EDT 2006">
-    <declaring-class-name>simpplle.comcode.NaturalElement</declaring-class-name>
+    <declaring-class-name>simpplle.comcode.element.NaturalElement</declaring-class-name>
     <declared-method-signature>()Ljava/lang/String;</declared-method-signature>
     <old-method-name>getAspect</old-method-name>
     <new-method-name>getAspectName</new-method-name>
   </rename-method>
   <rename-method id="5AP071IDKMQEHY0G2ZDWUYO0" creation-time="Tue Aug 08 13:47:58.796 EDT 2006">
-    <declaring-class-name>simpplle.comcode.NaturalElement</declaring-class-name>
+    <declaring-class-name>simpplle.comcode.element.NaturalElement</declaring-class-name>
     <declared-method-signature>(Ljava/lang/String;)V</declared-method-signature>
     <old-method-name>setAspect</old-method-name>
     <new-method-name>setAspectName</new-method-name>
   </rename-method>
   <rename-class id="7AP0W536CFVEATI37UFWUYO0" creation-time="Thu Dec 07 10:39:41.828 EST 2006">
     <old-class-name>simpplle.comcode.FireSuppProductionRateData</old-class-name>
-    <new-class-name>simpplle.comcode.FireSuppProductionRateLogicData</new-class-name>
+    <new-class-name>simpplle.comcode.logic.FireSuppProductionRateLogicData</new-class-name>
   </rename-class>
 </refactor>
 

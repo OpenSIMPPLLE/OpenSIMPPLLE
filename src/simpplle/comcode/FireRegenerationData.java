@@ -1,6 +1,5 @@
 package simpplle.comcode;
 
-import java.io.PrintWriter;
 import java.util.Vector;
 import java.io.Externalizable;
 import java.io.ObjectOutput;
@@ -31,10 +30,10 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  *
- * @see simpplle.comcode.RegenerationData
+ * @see simpplle.comcode.logic.RegenerationData
  */
 public class FireRegenerationData
-  extends RegenerationData implements Externalizable
+  extends simpplle.comcode.logic.RegenerationData implements Externalizable
 {
   static final long serialVersionUID = 7114703750696960417L;
   static final int  version          = 2;
@@ -82,7 +81,7 @@ public class FireRegenerationData
    * initializes new vegetative type arraylists with duplicate data
    * returns a duplicate of resprouting, adjacent resprouting, in place seed, in landscape, and adjacent vegetative type.  
    */
-  public AbstractLogicData duplicate() {
+  public simpplle.comcode.logic.AbstractLogicData duplicate() {
     FireRegenerationData logicData = new FireRegenerationData();
     super.duplicate(logicData);
 
@@ -218,11 +217,11 @@ public class FireRegenerationData
       case IN_PLACE_SEED_COL:      return "In-place Seed";
       case IN_LANDSCAPE_COL:       return "In Landscape";
       case ADJACENT_COL:           return "Adjacent";
-      default:                     return RegenerationData.getColumnName(column);
+      default:                     return simpplle.comcode.logic.RegenerationData.getColumnName(column);
     }
   }
 
-  public static int getColumnNumFromName(BaseLogic logic,String name) {
+  public static int getColumnNumFromName(simpplle.comcode.logic.BaseLogic logic, String name) {
     if (name.equalsIgnoreCase("Resprouting State")) {
       return RESPROUTING_COL;
     }
@@ -239,7 +238,7 @@ public class FireRegenerationData
       return ADJACENT_COL;
     }
     else {
-      return RegenerationData.getColumnNumFromName(logic,name);
+      return simpplle.comcode.logic.RegenerationData.getColumnNumFromName(logic,name);
     }
   }
 

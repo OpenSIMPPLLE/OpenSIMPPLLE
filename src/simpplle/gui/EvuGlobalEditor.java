@@ -71,7 +71,7 @@ public class EvuGlobalEditor extends JDialog {
  * @param lifeform
  */
   public EvuGlobalEditor(Frame frame, String title, boolean modal,
-                         Evu evu, Lifeform lifeform) {
+                         simpplle.comcode.element.Evu evu, Lifeform lifeform) {
     super(frame, title, modal);
     try {
       jbInit();
@@ -190,7 +190,7 @@ public class EvuGlobalEditor extends JDialog {
  * Initializes the Evu Global Editor using passed Evu.  Uses temporary variables to hold the current habitat and vegetative state gotten from the Evu.  
  * @param evu
  */
-  private void initialize(Evu evu) {
+  private void initialize(simpplle.comcode.element.Evu evu) {
     RegionalZone zone = Simpplle.getCurrentZone();
     HabitatTypeGroup htGrp = evu.getHabitatTypeGroup();
 

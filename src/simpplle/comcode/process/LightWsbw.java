@@ -42,7 +42,7 @@ public class LightWsbw extends Process {
     return prob;
   }
 
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     if (Wsbw.isEnabled()==false) { return 0; }
 
     int sIndex;
@@ -57,7 +57,7 @@ public class LightWsbw extends Process {
  * Probability of Light Western Spruce Budworm for Teton zone.  if no species return 0, else calculates light and sever probability based on presence of host vegetative species.  
  * 
  */
-  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
     if (Wsbw.isEnabled()==false) { return 0; }
 
     int     sIndex;
@@ -88,7 +88,7 @@ public class LightWsbw extends Process {
    * Probability of Light Western Spruce Budworm for Northern Central Rockies.  If none present returns 0, else 
    * returns light and sever probability based on presence of host vegetative species.  
    */
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
     if (Wsbw.isEnabled()==false) { return 0; }
 
     int     sIndex;
@@ -119,7 +119,7 @@ public class LightWsbw extends Process {
    * Probability of Light Western Spruce Budworm for Eastside Region 1.  If no Wsbw present returns 0, else 
    * returns light and sever probability based on presence of host vegetative species.  
    */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     if (Wsbw.isEnabled()==false) { return 0; }
 
     int     sIndex;
@@ -147,46 +147,46 @@ public class LightWsbw extends Process {
     return doProbabilityCommon();
   }
 
-  private boolean doSpreadCommon (RegionalZone zone, Evu evu) {
+  private boolean doSpreadCommon (RegionalZone zone, simpplle.comcode.element.Evu evu) {
     return Wsbw.doSpread(zone,this,evu);
   }
 
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(zone, evu);
   }
 
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(zone,evu);
   }
-  public boolean doSpread (simpplle.comcode.zone.Teton zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(zone,evu);
   }
-  public boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(zone,evu);
   }
 
   /**
    * Sierra Nevada does not have this process so returns false by default.
    */
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
   /**
    * Southern California does not have this process so returns false by default.
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
  /**
   * Gila does not have this process so returns false by default.
   */
-  public boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
   /**
    * South Central Alaska does not have this process so returns false by default.
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
 
   public String toString () {
     return printName;

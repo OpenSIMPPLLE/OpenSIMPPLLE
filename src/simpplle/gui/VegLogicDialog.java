@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.Frame;
-import simpplle.comcode.*;
-/** 
+
+/**
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
@@ -140,22 +140,22 @@ public class VegLogicDialog extends AbstractLogicDialog {
     super.initialize(kinds);
 
     colMenuItems.clear();
-    colMenuItems.add(BaseLogic.ROW_COL,null);
-    colMenuItems.add(BaseLogic.ECO_GROUP_COL,menuEcoGroup);
-    colMenuItems.add(BaseLogic.SPECIES_COL,menuSpecies);
-    colMenuItems.add(BaseLogic.SIZE_CLASS_COL,menuSizeClass);
-    colMenuItems.add(BaseLogic.DENSITY_COL,menuDensity);
-    colMenuItems.add(BaseLogic.PROCESS_COL,menuProcess);
-    colMenuItems.add(BaseLogic.TREATMENT_COL,menuTreatment);
-    colMenuItems.add(BaseLogic.SEASON_COL,menuSeason);
-    colMenuItems.add(BaseLogic.MOISTURE_COL,menuMoisture);
-    colMenuItems.add(BaseLogic.TEMP_COL,menuTemp);
-    colMenuItems.add(BaseLogic.TRACKING_SPECIES_COL,menuTrackingSpecies);
-    colMenuItems.add(BaseLogic.OWNERSHIP_COL,menuOwnership);
-    colMenuItems.add(BaseLogic.SPECIAL_AREA_COL,menuSpecialArea);
-    colMenuItems.add(BaseLogic.ROAD_STATUS_COL,menuRoadStatus);
-    colMenuItems.add(BaseLogic.TRAIL_STATUS_COL,menuTrailStatus);
-    colMenuItems.add(BaseLogic.LANDTYPE_COL,menuLandtype);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.ROW_COL,null);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.ECO_GROUP_COL,menuEcoGroup);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.SPECIES_COL,menuSpecies);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.SIZE_CLASS_COL,menuSizeClass);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.DENSITY_COL,menuDensity);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.PROCESS_COL,menuProcess);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.TREATMENT_COL,menuTreatment);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.SEASON_COL,menuSeason);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.MOISTURE_COL,menuMoisture);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.TEMP_COL,menuTemp);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.TRACKING_SPECIES_COL,menuTrackingSpecies);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.OWNERSHIP_COL,menuOwnership);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.SPECIAL_AREA_COL,menuSpecialArea);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.ROAD_STATUS_COL,menuRoadStatus);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.TRAIL_STATUS_COL,menuTrailStatus);
+    colMenuItems.add(simpplle.comcode.logic.BaseLogic.LANDTYPE_COL,menuLandtype);
   }
   /**
    * Creates an arraylist of selected columns menu items..  
@@ -188,91 +188,91 @@ public class VegLogicDialog extends AbstractLogicDialog {
    * If Eco Group menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuEcoGroup_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.ECO_GROUP_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.ECO_GROUP_COL);
   }
   /**
    * If species menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuSpecies_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.SPECIES_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.SPECIES_COL);
   }
   /**
    * If Size Class menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuSizeClass_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.SIZE_CLASS_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.SIZE_CLASS_COL);
   }
   /**
    * If Density menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuDensity_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.DENSITY_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.DENSITY_COL);
   }
   /**
    * If Process menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuProcess_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.PROCESS_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.PROCESS_COL);
   }
   /**
    * If Treatment menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuTreatment_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.TREATMENT_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.TREATMENT_COL);
   }
   /**
    * If Season menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuSeason_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.SEASON_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.SEASON_COL);
   }
   /**
    * If Moisture menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuMoisture_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.MOISTURE_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.MOISTURE_COL);
   }
   /**
    * If Temperature menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuTemp_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.TEMP_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.TEMP_COL);
   }
   /**
    * If Tracking Species menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuTrackingSpecies_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.TRACKING_SPECIES_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.TRACKING_SPECIES_COL);
   }
   /**
    * If Ownership menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuOwnership_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.OWNERSHIP_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.OWNERSHIP_COL);
   }
   /**
    * If Special Area menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuSpecialArea_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.SPECIAL_AREA_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.SPECIAL_AREA_COL);
   }
   /**
    * If Road Status menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuRoadStatus_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.ROAD_STATUS_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.ROAD_STATUS_COL);
   }
   /**
    * If Trail Status menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuTrailStatus_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.TRAIL_STATUS_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.TRAIL_STATUS_COL);
   }
   /**
    * If Landtype menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
   public void menuLandtype_actionPerformed(ActionEvent e) {
-    columnMenuClicked(BaseLogic.LANDTYPE_COL);
+    columnMenuClicked(simpplle.comcode.logic.BaseLogic.LANDTYPE_COL);
   }
 /**
  * Updates the menu items.  Gets the selected menu items, calls to the super update menu items class and sets the current panels visible columns.  

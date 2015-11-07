@@ -280,7 +280,7 @@ public class LandscapeSummaryFileCombiner {
            continue;
          }
 
-         StringTokenizerPlus strTok = new StringTokenizerPlus(line);
+         simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(line);
 
          int ts = strTok.getIntToken();
 
@@ -319,7 +319,7 @@ public class LandscapeSummaryFileCombiner {
        throw new SimpplleError(ex.msg,ex);
      }
      finally {
-       Utility.close(fin);
+       simpplle.comcode.utility.Utility.close(fin);
      }
    }
 

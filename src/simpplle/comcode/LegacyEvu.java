@@ -2,7 +2,7 @@ package simpplle.comcode;
 
 import java.io.IOException;
 import java.util.Vector;
-import static simpplle.comcode.Evu.*;
+import static simpplle.comcode.element.Evu.*;
 
 /**
  * 
@@ -19,7 +19,7 @@ import static simpplle.comcode.Evu.*;
  * 
  */
 public class LegacyEvu {
-  private Evu              evu;
+  private simpplle.comcode.element.Evu evu;
 
   private HabitatTypeGroup htGrp;
   private VegStateArray2D simulatedStates;
@@ -57,7 +57,7 @@ public class LegacyEvu {
   private static final String LISTDELIM = ":";
   private static final String NODATA    = "?";
 
-  public LegacyEvu(Evu evu) {
+  public LegacyEvu(simpplle.comcode.element.Evu evu) {
     this.evu = evu;
   }
 
@@ -65,7 +65,7 @@ public class LegacyEvu {
     return key.equalsIgnoreCase(KEYWORD[keyid]);
   }
 
-  public void readAdjacentData (MyStringTokenizer strTok) throws ParseError, IOException {
+  public void readAdjacentData (simpplle.comcode.utility.MyStringTokenizer strTok) throws ParseError, IOException {
     Vector       theList;
     int          id;
     char         position, wind;
@@ -141,7 +141,7 @@ public class LegacyEvu {
     return pt;
   }
 
-  private void readCurrentState(MyStringTokenizer strTok) throws ParseError, IOException {
+  private void readCurrentState(simpplle.comcode.utility.MyStringTokenizer strTok) throws ParseError, IOException {
     Vector         v;
     VegetativeType veg;
     int            numStates = 0;
@@ -166,7 +166,7 @@ public class LegacyEvu {
     }
   }
 
-  private void readAccumState(MyStringTokenizer strTok) throws ParseError, IOException {
+  private void readAccumState(simpplle.comcode.utility.MyStringTokenizer strTok) throws ParseError, IOException {
     Vector         v;
     int            numRuns, numSteps, j;
 
@@ -198,7 +198,7 @@ public class LegacyEvu {
     v = null;
   }
 
-  private void readAccumProcess(MyStringTokenizer strTok) throws ParseError, IOException {
+  private void readAccumProcess(simpplle.comcode.utility.MyStringTokenizer strTok) throws ParseError, IOException {
     Vector       v;
     int          numRuns, numSteps, j;
     RegionalZone zone = Simpplle.getCurrentZone();
@@ -237,7 +237,7 @@ public class LegacyEvu {
     v.removeAllElements();
     v = null;
   }
-  private void readProbList(MyStringTokenizer strTok) throws ParseError, IOException {
+  private void readProbList(simpplle.comcode.utility.MyStringTokenizer strTok) throws ParseError, IOException {
     String str;
 
     Vector v = strTok.getListValue();
@@ -249,26 +249,26 @@ public class LegacyEvu {
     for(int i=0;i<size;i++) {
       str = (String) v.elementAt(i);
       if (str.equals("D")) {
-        prob = Evu.D;
+        prob = simpplle.comcode.element.Evu.D;
       }
       else if (str.equals("L")) {
-        prob = Evu.L;
+        prob = simpplle.comcode.element.Evu.L;
       }
       else if (str.equals("S")) {
-        prob = Evu.S;
+        prob = simpplle.comcode.element.Evu.S;
       }
       else if (str.equals("SUPP")) {
-        prob = Evu.SUPP;
+        prob = simpplle.comcode.element.Evu.SUPP;
       }
       else if (str.equals("SE")) {
-        prob = Evu.SE;
+        prob = simpplle.comcode.element.Evu.SE;
       }
       else {
         try {
           prob = Integer.parseInt(str);
         }
         catch (NumberFormatException e) {
-          prob = Evu.NOPROB;
+          prob = simpplle.comcode.element.Evu.NOPROB;
         }
       }
       simulatedStates.setProbability(i+1,(short)prob);
@@ -276,7 +276,7 @@ public class LegacyEvu {
     }
   }
 
-  private void readProcessList(MyStringTokenizer strTok) throws ParseError, IOException {
+  private void readProcessList(simpplle.comcode.utility.MyStringTokenizer strTok) throws ParseError, IOException {
     Vector       v;
     String       val;
     int          size;
@@ -290,7 +290,7 @@ public class LegacyEvu {
     size     = v.size();
     if (area.getFileVersion() == 1) {
       size++;
-      v.insertElementAt(Evu.getDefaultInitialProcess(),0);
+      v.insertElementAt(simpplle.comcode.element.Evu.getDefaultInitialProcess(),0);
     }
 
     for(int i=0;i<size;i++) {
@@ -304,20 +304,20 @@ public class LegacyEvu {
     }
   }
 
-  private void readRoadStatus(MyStringTokenizer strTok) throws ParseError, IOException {
+  private void readRoadStatus(simpplle.comcode.utility.MyStringTokenizer strTok) throws ParseError, IOException {
     String val;
 
     val = strTok.getToken();
     if (val == null) {
-      roadStatus = Roads.Status.UNKNOWN.getValue();
+      roadStatus = simpplle.comcode.element.Roads.Status.UNKNOWN.getValue();
       return;
     }
     val = val.toUpperCase();
 
-    roadStatus = Roads.Status.lookup(val).getValue();
+    roadStatus = simpplle.comcode.element.Roads.Status.lookup(val).getValue();
   }
 
-  private void readLocation(MyStringTokenizer strTok) throws ParseError, IOException {
+  private void readLocation(simpplle.comcode.utility.MyStringTokenizer strTok) throws ParseError, IOException {
     Vector  v;
     Integer x, y;
 
@@ -345,7 +345,7 @@ public class LegacyEvu {
    */
   public boolean readDelimitedData(StringBuffer strBuf) throws ParseError {
     String              value;
-    MyStringTokenizer   strTok;
+    simpplle.comcode.utility.MyStringTokenizer strTok;
     RegionalZone        zone;
 
     zone = Simpplle.currentZone;
@@ -354,7 +354,7 @@ public class LegacyEvu {
     }
 
     try {
-      strTok = new MyStringTokenizer(strBuf,DELIM);
+      strTok = new simpplle.comcode.utility.MyStringTokenizer(strBuf,DELIM);
 
       value = strTok.nextToken();
       if (value == null) {
@@ -427,7 +427,7 @@ public class LegacyEvu {
       }
 
       readRoadStatus(strTok);
-      evu.setRoadStatus(Roads.Status.lookup(roadStatus));
+      evu.setRoadStatus(simpplle.comcode.element.Roads.Status.lookup(roadStatus));
       ignitionProb = strTok.getIntToken();
       evu.setIgnitionProb(ignitionProb);
 
@@ -475,7 +475,7 @@ public class LegacyEvu {
     return false;
   }
 
-  private void readTreatment(MyStringTokenizer strTok)
+  private void readTreatment(simpplle.comcode.utility.MyStringTokenizer strTok)
     throws ParseError, IOException
   {
     Vector v = strTok.getListValue();

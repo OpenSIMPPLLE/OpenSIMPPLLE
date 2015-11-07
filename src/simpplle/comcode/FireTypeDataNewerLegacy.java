@@ -18,7 +18,7 @@ import java.util.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  *
- * @see simpplle.comcode.BaseLogic
+ * @see simpplle.comcode.logic.BaseLogic
  * 
  */
 
@@ -445,7 +445,7 @@ public abstract class FireTypeDataNewerLegacy {
 //      }
 //    }
 
-    FireEventLogic.getInstance().clearData(FireEventLogic.TYPE_STR);
+    simpplle.comcode.logic.FireEventLogic.getInstance().clearData(simpplle.comcode.logic.FireEventLogic.TYPE_STR);
     FireTypeDataEntry entry;
     for (int s=0; s<NUM_STRUCTURE; s++) {
       SizeClass.Structure structure = SizeClass.Structure.lookupOrdinal(s);
@@ -476,7 +476,7 @@ public abstract class FireTypeDataNewerLegacy {
           for (int j=0; j<entry.sizeClassRules.size(); j++) {
             rule = (FireTypeDataEntry.SizeClassRule)entry.sizeClassRules.get(j);
 
-            FireEventLogic.getInstance().addLegacyDataTypeOfFire(fireResist,
+            simpplle.comcode.logic.FireEventLogic.getInstance().addLegacyDataTypeOfFire(fireResist,
                                         sizeClasses,
                                         rule.densities,
                                         rule.processes,
@@ -508,7 +508,7 @@ public abstract class FireTypeDataNewerLegacy {
     }
     return null;
   }
-  public static ProcessType getTypeOfFire(int resistance, Evu evu, Climate.Season season) {
+  public static ProcessType getTypeOfFire(int resistance, simpplle.comcode.element.Evu evu, Climate.Season season) {
     VegSimStateData state = evu.getState();
     if (state == null) { return null; }
 
@@ -603,7 +603,7 @@ public abstract class FireTypeDataNewerLegacy {
   }
   public static void readData(BufferedReader fin) {
     String              line, str;
-    StringTokenizerPlus strTok, strListTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok, strListTok;
     int                 resistance=0, numEntries=0, numRules=0;
     ProcessType         fireType;
     SizeClass.Structure structure;
@@ -621,7 +621,7 @@ public abstract class FireTypeDataNewerLegacy {
 
       while (line != null) {
 
-        strTok = new StringTokenizerPlus(line, ",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line, ",");
         str = strTok.getToken();
         if (str.equals("NF")) {
           structure = NON_FOREST;
@@ -654,11 +654,11 @@ public abstract class FireTypeDataNewerLegacy {
 
         for (i = 0; i < numEntries; i++) {
           line = fin.readLine();
-          strTok = new StringTokenizerPlus(line, ",");
+          strTok = new simpplle.comcode.utility.StringTokenizerPlus(line, ",");
 
           numRules = strTok.getIntToken();
 
-          strListTok = new StringTokenizerPlus(strTok.getToken(), ":");
+          strListTok = new simpplle.comcode.utility.StringTokenizerPlus(strTok.getToken(), ":");
           count = strListTok.countTokens();
           entry = new FireTypeDataEntry(count, numRules,structure);
 
@@ -672,10 +672,10 @@ public abstract class FireTypeDataNewerLegacy {
             entryRule = entry.makeNewRule();
 
             line = fin.readLine();
-            strTok = new StringTokenizerPlus(line, ",");
+            strTok = new simpplle.comcode.utility.StringTokenizerPlus(line, ",");
 
             // Read the density list
-            strListTok = new StringTokenizerPlus(strTok.getToken(), ":");
+            strListTok = new simpplle.comcode.utility.StringTokenizerPlus(strTok.getToken(), ":");
             count = strListTok.countTokens();
             entryRule.densities = new Density[count];
             for (k = 0; k < count; k++) {
@@ -688,7 +688,7 @@ public abstract class FireTypeDataNewerLegacy {
             // Read the Treatment List (if any)
             str = strTok.getToken();
             if (str != null) {
-              strListTok = new StringTokenizerPlus(str, ":");
+              strListTok = new simpplle.comcode.utility.StringTokenizerPlus(str, ":");
               count = strListTok.countTokens();
               entryRule.treatments = new TreatmentType[count];
               for (k = 0; k < count; k++) {
@@ -699,7 +699,7 @@ public abstract class FireTypeDataNewerLegacy {
             // Read the Process List (if any)
             str = strTok.getToken();
             if (str != null) {
-              strListTok = new StringTokenizerPlus(str, ":");
+              strListTok = new simpplle.comcode.utility.StringTokenizerPlus(str, ":");
               count = strListTok.countTokens();
               entryRule.processes = new ProcessType[count];
               for (k = 0; k < count; k++) {

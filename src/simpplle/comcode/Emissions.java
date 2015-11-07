@@ -1,7 +1,5 @@
 package simpplle.comcode;
 
-import simpplle.comcode.Species;
-
 import java.io.*;
 import java.util.*;
 
@@ -58,7 +56,7 @@ public final class Emissions {
     String              moisture, line, value;
     double              pm10;
     EmissionData        emit;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     boolean             eof = false;
 
     data = new Hashtable();
@@ -68,7 +66,7 @@ public final class Emissions {
         line = fin.readLine();
         if (line == null) { eof = true; continue; }
 
-        strTok   = new StringTokenizerPlus(line,",");
+        strTok   = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
         crbId    = strTok.getIntToken();
         strStg   = strTok.getIntToken();
         value    = strTok.getToken();
@@ -98,7 +96,7 @@ public final class Emissions {
     throws SimpplleError
   {
     int                 fccNo; // currently not used.
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     Vector              speciesVect, sizeClassVect, densityVect;
     Species             species;
     SizeClass           sizeClass;
@@ -114,7 +112,7 @@ public final class Emissions {
         line = fin.readLine();
         if (line == null) { continue; }
 
-        strTok = new StringTokenizerPlus(line,",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
         fccNo         = strTok.getIntToken();
         speciesVect   = strTok.getListValue();
         sizeClassVect = strTok.getListValue();
@@ -163,7 +161,7 @@ public final class Emissions {
     return (pm10 * 0.8);
   }
 
-  public static double getProcessPM10(Evu evu, int timeStep) {
+  public static double getProcessPM10(simpplle.comcode.element.Evu evu, int timeStep) {
     int zoneId = Simpplle.getCurrentZone().getId();
 
     if (zoneId == ValidZones.SOUTHERN_CALIFORNIA ||
@@ -180,7 +178,7 @@ public final class Emissions {
  * @param timeStep
  * @return 
  */
-  public static double getTreatmentPM10(Evu evu, int timeStep) {
+  public static double getTreatmentPM10(simpplle.comcode.element.Evu evu, int timeStep) {
     int zoneId = Simpplle.getCurrentZone().getId();
 
     if (zoneId == ValidZones.SOUTHERN_CALIFORNIA ||
@@ -198,7 +196,7 @@ public final class Emissions {
  * @param kind choices for this are treatment or process
  * @return
  */
-  private static double getCaliforniaPM10(Evu evu, int timeStep, int kind) {
+  private static double getCaliforniaPM10(simpplle.comcode.element.Evu evu, int timeStep, int kind) {
     VegSimStateData priorState = evu.getState(timeStep);
     if (priorState == null) { return 0.0; }
 
@@ -251,7 +249,7 @@ public final class Emissions {
         return 0.0;
       }
       processProb = evu.getFireSpreadType(timeStep);
-      extremeFire = (processProb == Evu.SE || processProb == Evu.SFS);
+      extremeFire = (processProb == simpplle.comcode.element.Evu.SE || processProb == simpplle.comcode.element.Evu.SFS);
 
       Climate.Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
       drought = Simpplle.getClimate().isUserClimate(timeStep,season);
@@ -282,7 +280,7 @@ public final class Emissions {
    * @param kind
    * @return
    */
-  private static double getPM10(Evu evu, int timeStep, int kind) {
+  private static double getPM10(simpplle.comcode.element.Evu evu, int timeStep, int kind) {
     VegetativeType       state;
     Species              species;
     SizeClass            sizeClass;
@@ -359,7 +357,7 @@ public final class Emissions {
  * @return VegetativeType state 
  */
 
-  private static VegetativeType getState(Evu evu, int timeStep, int kind) {
+  private static VegetativeType getState(simpplle.comcode.element.Evu evu, int timeStep, int kind) {
     Treatment treat;
 
     if (kind == PROCESS) {

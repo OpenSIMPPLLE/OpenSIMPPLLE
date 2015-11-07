@@ -153,7 +153,7 @@ public abstract class Process
    * @return an int, the process probability
    *
    */
-  protected int doProbability (Evu evu) {
+  protected int doProbability (simpplle.comcode.element.Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return 0; }
 
@@ -169,7 +169,7 @@ public abstract class Process
    * @param zone is a RegionalZone.
    * @param evu is an Evu.
    */
-  protected int doProbability (RegionalZone zone, Evu evu) {
+  protected int doProbability (RegionalZone zone, simpplle.comcode.element.Evu evu) {
     int zoneId = zone.getId();
     int result;
 
@@ -192,9 +192,9 @@ public abstract class Process
 //      Area.currentLifeform = null;
 //    }
 
-    if (ProcessProbLogic.hasLogic(this.getType()) &&
+    if (simpplle.comcode.logic.ProcessProbLogic.hasLogic(this.getType()) &&
         isUniqueUI() == false) {
-      return ProcessProbLogic.getInstance().getProbability(this.getType(),evu);
+      return simpplle.comcode.logic.ProcessProbLogic.getInstance().getProbability(this.getType(),evu);
     }
 
     switch (zoneId) {
@@ -256,20 +256,20 @@ public abstract class Process
    * @param evu .
    * @return the probability.
    */
-  protected int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) { return 0; }
-  protected int doProbability (SouthernCalifornia zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.SouthwestUtah zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.GreatPlainsSteppe zone, Evu evu) { return 0; }
-  protected int doProbability (simpplle.comcode.zone.MixedGrassPrairie zone, Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (SouthernCalifornia zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.SouthwestUtah zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.GreatPlainsSteppe zone, simpplle.comcode.element.Evu evu) { return 0; }
+  protected int doProbability (simpplle.comcode.zone.MixedGrassPrairie zone, simpplle.comcode.element.Evu evu) { return 0; }
 
   /**
    * Gets a probability value from the data structure that
@@ -395,7 +395,7 @@ public abstract class Process
    */
   private void readData(BufferedReader fin) throws SimpplleError {
     String              line;
-    StringTokenizerPlus strTok, values;
+    simpplle.comcode.utility.StringTokenizerPlus strTok, values;
     int                 numGroups, numRows, numCols;
     int                 grouping, row, col;
 
@@ -410,12 +410,12 @@ public abstract class Process
 
       for(grouping=0;grouping<numGroups;grouping++) {
         line    = fin.readLine();
-        strTok  = new StringTokenizerPlus(line,",");
+        strTok  = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
         numRows = strTok.countTokens();
         probData[grouping] = new int[numRows][];
 
         for(row=0;row<numRows;row++) {
-          values = new StringTokenizerPlus(strTok.getToken(),":");
+          values = new simpplle.comcode.utility.StringTokenizerPlus(strTok.getToken(),":");
           numCols = values.countTokens();
           probData[grouping][row] = new int[numCols];
           for(col=0;col<numCols;col++) {
@@ -497,7 +497,7 @@ public abstract class Process
   protected void clearSpreadFilename() { spreadFile = null; }
 
   public static void saveAs(File outfile) {
-    setFilename(Utility.makeSuffixedPathname(outfile,"","probability"));
+    setFilename(simpplle.comcode.utility.Utility.makeSuffixedPathname(outfile,"","probability"));
     save();
   }
 /**
@@ -587,7 +587,7 @@ public abstract class Process
    * @param fromEvu is an Evu.
    * @param evu is an Evu.
    */
-  protected boolean doSpread (RegionalZone zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (RegionalZone zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     int zoneId = zone.getId();
     boolean result;
 
@@ -648,20 +648,20 @@ public abstract class Process
    * @param evu is an Evu.
    * @return a boolean, true = Process does spread.
    */
-  protected boolean doSpread (WestsideRegionOne zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (EastsideRegionOne zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (simpplle.comcode.zone.Teton zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu)  { return false; }
-  protected boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (SouthwestUtah zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (simpplle.comcode.zone.ColoradoFrontRange zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (simpplle.comcode.zone.ColoradoPlateau zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (GreatPlainsSteppe zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (simpplle.comcode.zone.MixedGrassPrairie zone, Evu fromEvu, Evu evu) { return false; }
+  protected boolean doSpread (WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu)  { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (SouthwestUtah zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.ColoradoPlateau zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (GreatPlainsSteppe zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  protected boolean doSpread (simpplle.comcode.zone.MixedGrassPrairie zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
 
   public String toString() { return getType().toString(); }
 
@@ -826,7 +826,7 @@ public abstract class Process
    */
   
   public static void readLegalFile(BufferedReader fin) throws SimpplleError {
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     String              line, str;
     ProcessType         processType;
     Process             process;
@@ -840,7 +840,7 @@ public abstract class Process
       line = fin.readLine();
       if (line == null) { throw new SimpplleError("Invalid zone Definition File."); }
 
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
       legalProcesses = new ArrayList(strTok.countTokens());
@@ -871,7 +871,7 @@ public abstract class Process
       line = fin.readLine();
       if (line == null) { throw new SimpplleError("Invalid zone Definition File."); }
 
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
       simulationProcesses = new ArrayList(strTok.countTokens());
@@ -888,7 +888,7 @@ public abstract class Process
       line = fin.readLine();
       if (line == null) { throw new SimpplleError("Invalid zone Definition File."); }
 
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
       summaryProcesses = new ArrayList(strTok.countTokens());
@@ -906,7 +906,7 @@ public abstract class Process
       line = fin.readLine();
       if (line == null) { throw new SimpplleError("Invalid zone Definition File."); }
 
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
       probLogicProcesses = new ArrayList<ProcessType>(strTok.countTokens());
@@ -933,7 +933,7 @@ public abstract class Process
         if (lifeformSimProcesses == null) {
           lifeformSimProcesses = new HashMap<Lifeform,ArrayList<ProcessType>>(5);
         }
-        strTok = new StringTokenizerPlus(line,",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
         if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
         Lifeform life = Lifeform.get(strTok.getToken());
@@ -969,7 +969,7 @@ public abstract class Process
       line = fin.readLine();
       if (line == null) { throw new SimpplleError("Invalid zone Definition File."); }
 
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
       int i=0;
@@ -989,7 +989,7 @@ public abstract class Process
       line = fin.readLine();
       if (line == null) { throw new SimpplleError("Invalid zone Definition File."); }
 
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
       i=0;
@@ -1008,7 +1008,7 @@ public abstract class Process
       line = fin.readLine();
       if (line == null) { throw new SimpplleError("Invalid zone Definition File."); }
 
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
       i=0;
@@ -1042,7 +1042,7 @@ public abstract class Process
    * @throws SimpplleError
    */
   public static void importLegalFile(File filename) throws SimpplleError {
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     String              line, processStr, spreadingStr;
     ProcessType         processType;
     boolean             spreading;
@@ -1210,7 +1210,7 @@ public abstract class Process
                                                      ProcessType shrub,
                                                      ProcessType grass)
   {
-    return VegUnitFireTypeLogic.getInstance().getUnitProcess(tree,shrub,grass);
+    return simpplle.comcode.logic.VegUnitFireTypeLogic.getInstance().getUnitProcess(tree,shrub,grass);
 
 //    if (tree.isFireProcess() == false &&
 //             shrub == ProcessType.SRF &&

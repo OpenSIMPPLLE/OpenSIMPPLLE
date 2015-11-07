@@ -5,9 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.io.*;
-import java.util.List;
+
 import org.hibernate.*;
-import java.sql.SQLException;
 
 /**
  * 
@@ -71,7 +70,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 
       int version = in.readInt();
 
-      Evu fromUnit = area.getEvu(in.readInt());
+      simpplle.comcode.element.Evu fromUnit = area.getEvu(in.readInt());
       data = (ProcessOccurrence)in.readObject();
 
       // There were cases in old format files where there were not only
@@ -108,7 +107,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       thisNode.relElevation = in.readInt();
 
       Node node;
-      Evu  tmpUnit;
+      simpplle.comcode.element.Evu tmpUnit;
       int size = in.readInt();
       if (size == 0) { return; }
 
@@ -123,7 +122,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 
       thisNode.setToNodes(new Node[tmpToUnits.size()]);
       for (int i=0; i<tmpToUnits.size(); i++) {
-        tmpUnit = (Evu)tmpToUnits.get(i);
+        tmpUnit = (simpplle.comcode.element.Evu)tmpToUnits.get(i);
         node = (Node)tmpNodeLookup.get(tmpUnit);
         if (node == null) {
           node = new Node();
@@ -219,7 +218,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
    * @param processData
    * @param timeStep
    */
-  public ProcessOccurrenceSpreading(Evu evu, Lifeform lifeform,
+  public ProcessOccurrenceSpreading(simpplle.comcode.element.Evu evu, Lifeform lifeform,
                                     ProcessProbability processData, int timeStep) {
     super(evu,lifeform,processData,timeStep);
     init();
@@ -252,16 +251,16 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
  * @param toUnit evu where the process is spreading to
  * @return either 1 for above, 0 for next to, or -1 for below, by default returns 0
  */
-  protected int determineElevation(Evu fromUnit, Evu toUnit) {
+  protected int determineElevation(simpplle.comcode.element.Evu fromUnit, simpplle.comcode.element.Evu toUnit) {
     char position = fromUnit.getAdjPosition(toUnit);
 
-    if (position == Evu.ABOVE) {
+    if (position == simpplle.comcode.element.Evu.ABOVE) {
       return 1;
     }
-    else if (position == Evu.NEXT_TO) {
+    else if (position == simpplle.comcode.element.Evu.NEXT_TO) {
       return 0;
     }
-    else if (position == Evu.BELOW) {
+    else if (position == simpplle.comcode.element.Evu.BELOW) {
       return -1;
     }
     return 0;
@@ -312,7 +311,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 //  public void addSpreadEvent(Evu fromUnit, Evu toUnit, int timeStep) {
 //    addSpreadEvent(fromUnit,toUnit,toUnit.getProcessType(timeStep),toUnit.getProb(timeStep),timeStep);
 //  }
-  public void addLegacySpreadEvent(Evu fromUnit, Evu toUnit, ProcessType process, int timeStep) {
+  public void addLegacySpreadEvent(simpplle.comcode.element.Evu fromUnit, simpplle.comcode.element.Evu toUnit, ProcessType process, int timeStep) {
     addLegacySpreadEvent(fromUnit,toUnit,process,toUnit.getState(timeStep).getProb(),timeStep);
   }
   /**
@@ -324,8 +323,8 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
    * @param processProb int
    * @param timeStep int
    */
-  public void addLegacySpreadEvent(Evu fromUnit, Evu toUnit, ProcessType process,
-                             int processProb, int timeStep) {
+  public void addLegacySpreadEvent(simpplle.comcode.element.Evu fromUnit, simpplle.comcode.element.Evu toUnit, ProcessType process,
+                                   int processProb, int timeStep) {
     if (tmpNodeLookup == null) { tmpNodeLookup = new HashMap(); }
     if (tmpToNodesHm == null) { tmpToNodesHm = new HashMap(); }
 
@@ -384,10 +383,10 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
     Node[] toNodes = new Node[toUnits.size()];
 
     AreaSummary areaSummary = Simpplle.getAreaSummary();
-    Evu unit;
+    simpplle.comcode.element.Evu unit;
     int tStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     for (int i=0; i<toNodes.length; i++) {
-      unit = (Evu)toUnits.get(i);
+      unit = (simpplle.comcode.element.Evu)toUnits.get(i);
       toNodes[i] = new Node();
       toNodes[i].fromNode = fromNode;
       if (process.isFireProcess()) {
@@ -417,7 +416,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
   public void doSpread() {
     Node           spreadingNode;
     AdjacentData[] adjData;
-    Evu            fromUnit, toUnit;
+    simpplle.comcode.element.Evu fromUnit, toUnit;
 
 //    while (spreadQueue.size() > 0) {
     if (spreadQueue.size() == 0) {
@@ -442,7 +441,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       for (int i = 0; i < adjData.length; i++) {
         toUnit = adjData[i].evu;
         if (toUnit.hasLifeform(lifeform) == false) { continue; }
-        if (Evu.doSpread(fromUnit, toUnit, lifeform)) {
+        if (simpplle.comcode.element.Evu.doSpread(fromUnit, toUnit, lifeform)) {
 
 //          addSpreadEvent(fromUnit, toUnit);
 //          spreadQueue.add( (Node) nodeLookup.get(toUnit));
@@ -517,7 +516,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       visited.add(node);
 
       
-      Evu evu = node.data.getUnit();
+      simpplle.comcode.element.Evu evu = node.data.getUnit();
 
       sim.addAccessProcess(node.data.getProcess());
       sim.addAccessEcoGroup(evu.getHabitatTypeGroup().getType());
@@ -534,7 +533,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       int fmzId     = evu.getFmz().getSimId();
       float acres   = evu.getFloatAcres();
 
-      float fProb    = (prob < 0) ? prob : ( (float)prob / (float)Utility.pow(10,Area.getAcresPrecision()) );
+      float fProb    = (prob < 0) ? prob : ( (float)prob / (float) simpplle.comcode.utility.Utility.pow(10,Area.getAcresPrecision()) );
 
       // ** Work Section **
       if (node.toNodes == null || node.toNodes.length == 0) {
@@ -581,7 +580,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       data.setRationalProb((short)prob);
       data.setSeason(node.data.getSeason());
 
-      Evu evu = node.data.getUnit();
+      simpplle.comcode.element.Evu evu = node.data.getUnit();
       data.setFmz(evu.getFmz());
       data.setSpecialArea(SpecialArea.get(evu.getSpecialArea(),true));
       data.setOwnership(Ownership.get(evu.getOwnership(),true));

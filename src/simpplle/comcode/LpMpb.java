@@ -53,7 +53,7 @@ public abstract class LpMpb implements HazardValues {
     return p.getProbData(page,row,col);
   }
 
-  public static void computeHazard(RegionalZone zone, Evu evu) {
+  public static void computeHazard(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     switch (zone.getId()) {
       case ValidZones.COLORADO_FRONT_RANGE:
       case ValidZones.COLORADO_PLATEAU:
@@ -72,7 +72,7 @@ public abstract class LpMpb implements HazardValues {
    * @param zone is a RegionalZone.
    * @param evu is an Evu, the Evu to calculate the hazard for.
    */
-  public static void computeHazardCommon(RegionalZone zone, Evu evu) {
+  public static void computeHazardCommon(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Species              species;
     SizeClass            sizeClass;
     Density              density;
@@ -192,7 +192,7 @@ public abstract class LpMpb implements HazardValues {
  * @param zone
  * @param evu
  */
-  public static void computeHazardColorado(RegionalZone zone, Evu evu) {
+  public static void computeHazardColorado(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     MtnPineBeetleHazard.Hazard hazard = null;
 
     int tStep = Simulation.getCurrentTimeStep();
@@ -257,10 +257,10 @@ public abstract class LpMpb implements HazardValues {
    * @param zone is a RegionalZone.
    * @param evu is an Evu, the Evu to calculate probabilities for.
    */
-  public static void adjust(RegionalZone zone, Evu evu) {
+  public static void adjust(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Area           area = Simpplle.currentArea;
     AdjacentData[] adjacentData;
-    Evu            adj;
+    simpplle.comcode.element.Evu adj;
     boolean        lowHazard, modHazard, highHazard;
     MtnPineBeetleHazard.Hazard unitHazard, adjHazard;
     int            adjLowCount = 0, adjModerateCount = 0, adjHighCount = 0;
@@ -464,7 +464,7 @@ public abstract class LpMpb implements HazardValues {
    * @param zone is a WestsideRegionOne.
    * @param Evu is an evu, the Evu to calculate probabilities for.
    */
-  public static void adjust(WestsideRegionOne zone, Evu evu) {
+  public static void adjust(WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     adjust((RegionalZone)zone,evu);
   }
 
@@ -473,13 +473,13 @@ public abstract class LpMpb implements HazardValues {
    * @param zone is a EastsideRegionOne.
    * @param Evu is an evu, the Evu to calculate probabilities for.
    */
-  public static void adjust(EastsideRegionOne zone, Evu evu) {
+  public static void adjust(EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     adjust((RegionalZone)zone,evu);
   }
-  public static void adjust(Teton zone, Evu evu) {
+  public static void adjust(Teton zone, simpplle.comcode.element.Evu evu) {
     adjust((RegionalZone)zone,evu);
   }
-  public static void adjust(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  public static void adjust(simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
     adjust((RegionalZone)zone,evu);
   }
 
@@ -488,7 +488,7 @@ public abstract class LpMpb implements HazardValues {
    * @param zone is a RegionalZone.
    * @param evu is an Evu, the unit to spread a process to.
    */
-  public static boolean doSpread(RegionalZone zone, Evu evu) {
+  public static boolean doSpread(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     switch (zone.getId()) {
       default:
         return doSpreadCommon(zone,evu);
@@ -500,7 +500,7 @@ public abstract class LpMpb implements HazardValues {
  * @param evu
  * @return
  */
-  public static boolean doSpreadCommon(RegionalZone zone, Evu evu) {
+  public static boolean doSpreadCommon(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return false; }
 
@@ -509,7 +509,7 @@ public abstract class LpMpb implements HazardValues {
     Species     species   = state.getVeg().getSpecies();
     SizeClass   sizeClass = state.getVeg().getSizeClass();
 
-    if (prob != Evu.L &&
+    if (prob != simpplle.comcode.element.Evu.L &&
         processType.equals(ProcessType.SUCCESSION) &&
         (species == Species.LP       || species == Species.DF_LP    ||
          species == Species.ES_LP    || species == Species.LP_AF    ||

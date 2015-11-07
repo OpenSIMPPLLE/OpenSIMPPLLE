@@ -3,7 +3,7 @@ package simpplle.gui;
 import java.awt.BorderLayout;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import simpplle.comcode.LogicData;
+import simpplle.comcode.logic.LogicData;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
@@ -16,17 +16,13 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
-import simpplle.comcode.SimpplleType;
-import simpplle.comcode.InvasiveSpeciesLogicData;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+
+import simpplle.comcode.logic.InvasiveSpeciesLogicData;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
-import simpplle.comcode.SoilType;
-import java.io.File;
-import simpplle.comcode.InvasiveSpeciesChangeLogicData;
+
+import simpplle.comcode.logic.InvasiveSpeciesChangeLogicData;
 import javax.swing.JComboBox;
 import simpplle.comcode.Species;
 import java.util.ArrayList;

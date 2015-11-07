@@ -1,12 +1,10 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-import simpplle.comcode.BaseLogic;
-import simpplle.comcode.SystemKnowledge;
+import simpplle.comcode.logic.BaseLogic;
 import simpplle.comcode.SystemKnowledge.Kinds;
-import simpplle.comcode.*;
-import javax.swing.table.*;
-/** 
+
+/**
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
@@ -35,20 +33,20 @@ public class FireSuppProductionRateLogicPanel extends VegLogicPanel {
 
 
   protected void initColumns(TableColumn column, int col) {
-    if (col == FireSuppProductionRateLogic.MIN_EVENT_ACRES_COL) {
-      column.setIdentifier(FireSuppProductionRateLogic.MIN_EVENT_ACRES_COL);
+    if (col == simpplle.comcode.logic.FireSuppProductionRateLogic.MIN_EVENT_ACRES_COL) {
+      column.setIdentifier(simpplle.comcode.logic.FireSuppProductionRateLogic.MIN_EVENT_ACRES_COL);
       Utility.setColumnCellColor(column);
     }
-    else if (col == FireSuppProductionRateLogic.MAX_EVENT_ACRES_COL) {
-      column.setIdentifier(FireSuppProductionRateLogic.MAX_EVENT_ACRES_COL);
+    else if (col == simpplle.comcode.logic.FireSuppProductionRateLogic.MAX_EVENT_ACRES_COL) {
+      column.setIdentifier(simpplle.comcode.logic.FireSuppProductionRateLogic.MAX_EVENT_ACRES_COL);
       Utility.setColumnCellColor(column);
     }
-    else if (col == FireSuppProductionRateLogic.SLOPE_COL) {
-      column.setIdentifier(FireSuppProductionRateLogic.SLOPE_COL);
+    else if (col == simpplle.comcode.logic.FireSuppProductionRateLogic.SLOPE_COL) {
+      column.setIdentifier(simpplle.comcode.logic.FireSuppProductionRateLogic.SLOPE_COL);
       Utility.setColumnCellColor(column);
     }
-    else if (col == FireSuppProductionRateLogic.RATE_COL) {
-      column.setIdentifier(FireSuppProductionRateLogic.RATE_COL);
+    else if (col == simpplle.comcode.logic.FireSuppProductionRateLogic.RATE_COL) {
+      column.setIdentifier(simpplle.comcode.logic.FireSuppProductionRateLogic.RATE_COL);
       Utility.setColumnCellColor(column);
     }
     else {

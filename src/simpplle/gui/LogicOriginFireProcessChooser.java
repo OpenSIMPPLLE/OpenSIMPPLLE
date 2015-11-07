@@ -1,7 +1,6 @@
 package simpplle.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Frame;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -9,7 +8,7 @@ import javax.swing.JCheckBox;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
-import simpplle.comcode.FireSpreadLogicData;
+import simpplle.comcode.logic.FireSpreadLogicData;
 import simpplle.comcode.ProcessType;
 import simpplle.comcode.Process;
 import java.util.ArrayList;

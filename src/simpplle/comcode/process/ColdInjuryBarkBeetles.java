@@ -1,7 +1,6 @@
 
 package simpplle.comcode.process;
 
-import simpplle.comcode.*;
 import simpplle.comcode.Process;
 
 
@@ -31,87 +30,87 @@ public class ColdInjuryBarkBeetles extends Process {
     spreading   = false;
     description = "Cold Injury Bark Beetles";
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbability(evu);
   }
 
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbability(evu);
   }
-  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
     return doProbability(evu);
   }
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
     return doProbability(evu);
   }
 
   /**
    * Cold Injury Bark Beetles does not occur in Sierra Nevada, so returns 0.
    */
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {
     return 0;
   }
 
   /**
    * Cold Injury Bark Beetles does not occur in Southern California, so returns 0.
    */
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {
     return 0;
   }
 
   /**
    * Cold Injury Bark Beetles does not occur in Gila, so returns 0.
    */
-  public int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu) { return 0; }
   /**
    * Cold Injury Bark Beetles does not occur in South Central Alaska, so returns 0.
    */
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) { return 0; }
 
   private boolean doSpreadCommon () {
     return false;
   }
 
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
 
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
-  public boolean doSpread (simpplle.comcode.zone.Teton zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
-  public boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
 
   /**
    * Cold Injury Bark Beetles does not occur in Sierra Nevada, so returns false meaning no spread calculation.
    */
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
   /**
    * Cold Injury Bark Beetles does not occur in Southern California, so returns false meaning no spread calculation.
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
   /**
    * Cold Injury Bark Beetles does not occur in Gila, so returns false meaning no spread calculation.
    */
-  public boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
   /**
    * Cold Injury Bark Beetles does not occur in South Central Alaska, so returns false meaning no spread calculation.
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
 
   /**
    * outputs "COLD-INJURY-BARK-BEETLES"

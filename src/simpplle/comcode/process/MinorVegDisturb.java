@@ -1,6 +1,5 @@
 package simpplle.comcode.process;
 
-import simpplle.comcode.*;
 import simpplle.comcode.Process;
 
 /**
@@ -32,8 +31,8 @@ public class MinorVegDisturb extends Process {
     spreading   = false;
     description = "MINOR VEG DISTURB";
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 /**
  * Returns "MINOR VEG DISTURB"
@@ -45,32 +44,32 @@ public class MinorVegDisturb extends Process {
  * @param evu the Existing vegetative unit with the minor vegetative disturbance 
  * @return
  */
-  private int doProbabilityCommon(Evu evu) {
+  private int doProbabilityCommon(simpplle.comcode.element.Evu evu) {
     return 0;
   }
 
-  protected int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
-  protected int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
-  protected int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
-  protected int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
-  protected int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
-  protected int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
-  protected int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
-  protected int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
 /**
@@ -79,32 +78,32 @@ public class MinorVegDisturb extends Process {
  * @param evu where the Minor Vegetative Disturbance would spread to
  * @return false, because the minor vegetative disturbance does not spread for any zone. 
  */
-  private boolean doSpreadCommon(Evu fromEvu, Evu evu) {
+  private boolean doSpreadCommon(simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
-  protected boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
-  protected boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
-  protected boolean doSpread (simpplle.comcode.zone.Teton zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
-  protected boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
-  protected boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
-  protected boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
-  protected boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
-  protected boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
 

@@ -2,16 +2,13 @@ package simpplle.gui;
 
 import java.awt.Frame;
 
-import javax.swing.JDialog;
-import javax.swing.JTabbedPane;
 import simpplle.comcode.ProcessType;
-import simpplle.comcode.Simpplle;
-import javax.swing.JMenu;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import simpplle.comcode.SystemKnowledge;
 import javax.swing.JCheckBoxMenuItem;
-import simpplle.comcode.ProcessProbLogic;
+import simpplle.comcode.logic.ProcessProbLogic;
 import java.util.ArrayList;
 /** 
  * The University of Montana owns copyright of the designated documentation contained 

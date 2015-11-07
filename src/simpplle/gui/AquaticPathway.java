@@ -2,7 +2,6 @@
 package simpplle.gui;
 
 import simpplle.JSimpplle;
-import simpplle.comcode.Evu;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.LtaValleySegmentGroup;
 import simpplle.comcode.Simpplle;

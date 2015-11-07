@@ -2,6 +2,7 @@ package simpplle.gui;
 
 import java.awt.Frame;
 import simpplle.comcode.*;
+
 import javax.swing.JMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +48,7 @@ public class FireSuppProductionRateLogicDlg extends VegLogicDialog {
 
   private void initialize() {
     sysKnowKind = SystemKnowledge.FIRE_SUPP_PRODUCTION_RATE_LOGIC;
-    String[] kinds = new String[] {FireSuppProductionRateLogic.FIRE_SUPP_PRODUCTION_RATE_LOGIC.toString()};
+    String[] kinds = new String[] {simpplle.comcode.logic.FireSuppProductionRateLogic.FIRE_SUPP_PRODUCTION_RATE_LOGIC.toString()};
     super.initialize(kinds);
 
     tabPanels = new FireSuppProductionRateLogicPanel[panelKinds.length];
@@ -55,7 +56,7 @@ public class FireSuppProductionRateLogicDlg extends VegLogicDialog {
       String kind = panelKinds[i];
       tabPanels[i] =
           new FireSuppProductionRateLogicPanel(this, kind,
-                                       FireSuppProductionRateLogic.getInstance(),
+                                       simpplle.comcode.logic.FireSuppProductionRateLogic.getInstance(),
                                        sysKnowKind);
       tabbedPane.add(tabPanels[i], kind);
     }

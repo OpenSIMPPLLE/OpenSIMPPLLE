@@ -1,5 +1,10 @@
 package simpplle.comcode;
 
+import simpplle.comcode.logic.FireEventLogic;
+import simpplle.comcode.logic.FireSuppBeyondClassALogic;
+import simpplle.comcode.logic.FireSuppEventLogic;
+import simpplle.comcode.logic.FireSuppProductionRateLogic;
+
 import java.util.*;
 import java.io.*;
 
@@ -62,7 +67,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   public ProcessOccurrenceSpreadingFire() {
     super();
   }
-  public ProcessOccurrenceSpreadingFire(Evu evu, Lifeform lifeform,
+  public ProcessOccurrenceSpreadingFire(simpplle.comcode.element.Evu evu, Lifeform lifeform,
                                         ProcessProbability processData, int timeStep) {
     super(evu,lifeform,processData,timeStep);
   }
@@ -129,7 +134,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @param unit
    * @return
    */
-  private boolean hasNonBurningNeighbors(Evu unit) {
+  private boolean hasNonBurningNeighbors(simpplle.comcode.element.Evu unit) {
     AdjacentData[] adjData;
     
     adjData = unit.getAdjacentData();
@@ -144,10 +149,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     return false;
   }
   
-  private Evu getNonBurningLowestNeighbor(Evu unit) {
+  private simpplle.comcode.element.Evu getNonBurningLowestNeighbor(simpplle.comcode.element.Evu unit) {
     int lowestElevation = 1000000;
     int unitElevation = 0;
-    Evu lowestUnit = null;
+    simpplle.comcode.element.Evu lowestUnit = null;
     AdjacentData[] adjData;
     
     adjData = unit.getAdjacentData();
@@ -175,7 +180,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   protected Node findLowestElevationNonSrfNonSuppNode() {
-    FireSuppBeyondClassALogic logicInst = FireSuppBeyondClassALogic.getInstance();
+    FireSuppBeyondClassALogic logicInst = simpplle.comcode.logic.FireSuppBeyondClassALogic.getInstance();
     int ts = Simulation.getCurrentTimeStep();
 
     if (root == null) { return null;  }
@@ -233,7 +238,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   public void doSpread() {
     Node           spreadingNode;
     AdjacentData[] adjData;
-    Evu            fromUnit, toUnit;
+    simpplle.comcode.element.Evu fromUnit, toUnit;
     RegionalZone   zone = Simpplle.getCurrentZone();
     int            newLine, sideLength;
     int            prodRate;
@@ -265,8 +270,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
 
     if (!fireSuppressedSet) {
-      Evu originEvu = root.data.getUnit();
-      fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(originEvu,eventFireSuppRandomNumber);
+      simpplle.comcode.element.Evu originEvu = root.data.getUnit();
+      fireSuppressed = simpplle.comcode.logic.FireSuppEventLogic.getInstance().isSuppressed(originEvu,eventFireSuppRandomNumber);
     }
     
 //    if (!fireSuppressed) {
@@ -349,7 +354,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         VegetativeType  vegType  = state.getVeg();
         Lifeform        lifeform = state.getLifeform();
 
-        spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,fromUnit,ts,lifeform);
+        spreadTime = simpplle.comcode.logic.FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,fromUnit,ts,lifeform);
         hoursBurning += spreadTime;
 
         if (hoursBurning > responseTime) {
@@ -358,7 +363,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
           
           do {
             lineProductionNode = findLowestElevationNonSrfNonSuppNode();
-            Evu theUnit = lineProductionNode.data.getUnit();
+            simpplle.comcode.element.Evu theUnit = lineProductionNode.data.getUnit();
             if (theUnit.isSuppressed()) {
               break;
             }
@@ -368,7 +373,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
             vegType  = state.getVeg();
             lifeform = state.getLifeform();
 
-            spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,theUnit,ts,lifeform);
+            spreadTime = simpplle.comcode.logic.FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,theUnit,ts,lifeform);
             suppTime += spreadTime;
 
             prodRate = FireSuppProductionRateLogic.getInstance().getRate(eventAcres,vegType,theUnit,ts,lifeform);
@@ -410,7 +415,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
               suppTime = -(extraLine / fProdRate);
             }
             else if (pctLine > 0.5) {
-              Evu lowAdj = getNonBurningLowestNeighbor(fromUnit);
+              simpplle.comcode.element.Evu lowAdj = getNonBurningLowestNeighbor(fromUnit);
               if (lowAdj != null && !lineSuppUnits.contains(lowAdj.getId())) {
                 lineSuppUnits.add(lowAdj.getId());
 
@@ -440,7 +445,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
               continue;
             }
             
-            if (Evu.doSpread(fromUnit, toUnit,fromUnit.getDominantLifeformFire())) {
+            if (simpplle.comcode.element.Evu.doSpread(fromUnit, toUnit,fromUnit.getDominantLifeformFire())) {
               tmpToUnits.add(toUnit);
 //              addSpreadEvent(fromUnit, toUnit);
 //              spreadQueue.add( (Node) nodeLookup.get(toUnit));
@@ -472,22 +477,22 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @return true if fire spotting has occurred. (is this still used??)
    */
   @SuppressWarnings("unchecked")
-  public void doFireSpotting(Evu fromEvu) {
+  public void doFireSpotting(simpplle.comcode.element.Evu fromEvu) {
     AdjacentData[] adjacentData;
-    Evu            adj, fromAdj;
-    ArrayList<Evu> spotFrom, newSpotFrom, tmpList, unitsTried;
+    simpplle.comcode.element.Evu adj, fromAdj;
+    ArrayList<simpplle.comcode.element.Evu> spotFrom, newSpotFrom, tmpList, unitsTried;
     int            i, j, k;
 
     VegSimStateData state = fromEvu.getState();
-    if (state == null || Utility.getFireSpotting() == false) {
+    if (state == null || simpplle.comcode.utility.Utility.getFireSpotting() == false) {
       return;
     }
 
     adjacentData = fromEvu.getAdjacentData();
     if (adjacentData == null) { return; }
-    spotFrom    = new ArrayList<Evu>();
-    newSpotFrom = new ArrayList<Evu>();
-    unitsTried    = new ArrayList<Evu>();
+    spotFrom    = new ArrayList<simpplle.comcode.element.Evu>();
+    newSpotFrom = new ArrayList<simpplle.comcode.element.Evu>();
+    unitsTried    = new ArrayList<simpplle.comcode.element.Evu>();
 
     unitsTried.add(fromEvu);
     for(i=0;i<adjacentData.length;i++) {
@@ -506,7 +511,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       levelsOut++;
       
       for(j=0;j<spotFrom.size();j++) {
-        fromAdj = (Evu) spotFrom.get(j);
+        fromAdj = (simpplle.comcode.element.Evu) spotFrom.get(j);
         adjacentData = fromAdj.getAdjacentData();
 
         for(k=0;k<adjacentData.length;k++) {
@@ -519,7 +524,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
           if (!uniformPoly && levelsOut > 3) {
             continue;
           }
-          else if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromEvu, adj)) {
+          else if (!simpplle.comcode.logic.FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromEvu, adj)) {
             continue;
           }
           
@@ -541,7 +546,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     return;
   }
 
-  private boolean determineSpotFire(Evu fromEvu, Evu toEvu) {
+  private boolean determineSpotFire(simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu toEvu) {
     Lifeform fromLifeform = fromEvu.getDominantLifeform();
 
     VegSimStateData state = fromEvu.getState(fromLifeform);
@@ -573,11 +578,11 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       if (fireType == ProcessType.NONE) { return false; }
 
       if (Area.multipleLifeformsEnabled()) {
-        toEvu.updateCurrentStateAllLifeforms(fireType,(short)Evu.SFS,season);
+        toEvu.updateCurrentStateAllLifeforms(fireType,(short) simpplle.comcode.element.Evu.SFS,season);
       }
       else {
         toEvu.updateCurrentProcess(toLifeform,fireType);
-        toEvu.updateCurrentProb(toLifeform,Evu.SFS);
+        toEvu.updateCurrentProb(toLifeform, simpplle.comcode.element.Evu.SFS);
       }
       return true;
     }

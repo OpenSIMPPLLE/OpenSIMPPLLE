@@ -35,13 +35,13 @@ public class LightLpMpb extends Process {
     spreading   = true;
     description = "Light LodgePole Pine Mountain Pine Beetle";
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.PROCESS_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.ADJ_PROCESS_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.MPB_HAZARD_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.ADJ_HIGH_HAZARD_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.ADJ_MOD_HAZARD_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.PROCESS_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.ADJ_PROCESS_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.MPB_HAZARD_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.ADJ_HIGH_HAZARD_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.ADJ_MOD_HAZARD_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
   private int doProbabilityCommon () {
@@ -51,26 +51,26 @@ public class LightLpMpb extends Process {
     return prob;
   }
 
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     if (LpMpb.lightProb == -1) {
       LpMpb.adjust(zone,evu);
     }
     return doProbabilityCommon();
   }
-  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu evu) {
     if (LpMpb.lightProb == -1) {
       LpMpb.adjust(zone,evu);
     }
     return doProbabilityCommon();
   }
 
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityEastAndSimilar(zone, evu);
   }
-  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityEastAndSimilar(zone, evu);
   }
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityEastAndSimilar(zone, evu);
   }
   /**
@@ -80,7 +80,7 @@ public class LightLpMpb extends Process {
    * @param evu
    * @return
    */
-  private int doProbabilityEastAndSimilar(RegionalZone zone, Evu evu) {
+  private int doProbabilityEastAndSimilar(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     int     cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     boolean isRecentSevereLpMpb = false;  // recent being the last 6 time steps.
 
@@ -125,26 +125,26 @@ public class LightLpMpb extends Process {
  * @param evu existing vegetative unit being evaluated
  * @return
  */
-  private boolean doSpreadCommon (RegionalZone zone, Evu evu) {
+  private boolean doSpreadCommon (RegionalZone zone, simpplle.comcode.element.Evu evu) {
     if (LpMpb.doSpread((RegionalZone)zone,evu)) {
       evu.updateCurrentProcess(this.getType());
-      evu.updateCurrentProb(Evu.S);
+      evu.updateCurrentProb(simpplle.comcode.element.Evu.S);
       return true;
     }
     else { return false; }
   }
 
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(zone,evu);
   }
 /**
  * overloaded doSpread method for the Colorado Front Range based on severity of Light LodgePole Pine Mountain Pine Beetle - light or severe
  */
-  public boolean doSpread (simpplle.comcode.zone.ColoradoFrontRange zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return false; }
 
-    if (state.getProb() == Evu.L ||
+    if (state.getProb() == simpplle.comcode.element.Evu.L ||
         (state.getProcess().equals(ProcessType.SUCCESSION) == false)) {
       return false;
     }
@@ -152,7 +152,7 @@ public class LightLpMpb extends Process {
     if (evu.getProcessProb(ProcessType.LIGHT_LP_MPB) >= 5000 ||
         evu.getProcessProb(ProcessType.SEVERE_LP_MPB) >= 5000) {
       evu.updateCurrentProcess(ProcessType.LIGHT_LP_MPB);
-      evu.updateCurrentProb(Evu.S);
+      evu.updateCurrentProb(simpplle.comcode.element.Evu.S);
       return true;
     }
 

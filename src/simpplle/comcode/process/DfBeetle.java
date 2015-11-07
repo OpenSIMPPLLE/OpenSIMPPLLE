@@ -34,21 +34,21 @@ public final class DfBeetle extends Process {
     spreading   = false;
     description = "Douglas-Fir Beetle";
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.SPECIES_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.SIZE_CLASS_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.DENSITY_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.PROCESS_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.TEMP_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.MOISTURE_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.ADJ_PROCESS_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SPECIES_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SIZE_CLASS_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.DENSITY_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.PROCESS_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.TEMP_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.MOISTURE_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.ADJ_PROCESS_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
   /**
    * @return 0 as default 
    */
-  protected int doProbability (Evu evu) {
+  protected int doProbability (simpplle.comcode.element.Evu evu) {
     return 0;
   }
 /**
@@ -57,7 +57,7 @@ public final class DfBeetle extends Process {
  * @param evu Evaluated Vegetative Unit.  
  * @return probability data 
  */
-  private int doProbabilityCommon (RegionalZone zone, Evu evu) {
+  private int doProbabilityCommon (RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Species     species;
     SizeClass   sizeClass;
     Density     density;
@@ -128,7 +128,7 @@ public final class DfBeetle extends Process {
  * Probability of DF Beetle in Westside Region 1
  * 
  */
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
@@ -136,7 +136,7 @@ public final class DfBeetle extends Process {
    * Probablity of DF Beetle in Eastside Region 1. 
    * If species is not DF Beetle and not Powderpost beetles or no df beetle  
    */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return 0; }
 
@@ -148,7 +148,7 @@ public final class DfBeetle extends Process {
       return doProbabilityCommon(zone,evu);
     }
   }
-  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return 0; }
 
@@ -160,7 +160,7 @@ public final class DfBeetle extends Process {
       return doProbabilityCommon(zone,evu);
     }
   }
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return 0; }
 
@@ -173,7 +173,7 @@ public final class DfBeetle extends Process {
     }
   }
 
-  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return 0; }
 
@@ -256,7 +256,7 @@ public final class DfBeetle extends Process {
     return prob;
   }
 
-  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, simpplle.comcode.element.Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return 0; }
 

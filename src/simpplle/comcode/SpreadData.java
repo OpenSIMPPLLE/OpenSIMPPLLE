@@ -18,12 +18,12 @@ package simpplle.comcode;
  */
 
 public class SpreadData {
-  public Evu     evu;
+  public simpplle.comcode.element.Evu evu;
   public int     originId;
   public Process originProcess;
 
   public SpreadData() {}
-  public SpreadData(Evu evu, int originId, Process originProcess) {
+  public SpreadData(simpplle.comcode.element.Evu evu, int originId, Process originProcess) {
     this.evu           = evu;
     this.originId      = originId;
     this.originProcess = originProcess;

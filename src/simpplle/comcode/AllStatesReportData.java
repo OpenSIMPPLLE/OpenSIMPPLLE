@@ -6,7 +6,6 @@ import java.util.*;
 import org.apache.commons.collections.*;
 import org.apache.commons.collections.keyvalue.*;
 import org.apache.commons.collections.map.*;
-import simpplle.comcode.Climate.*;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -351,10 +350,10 @@ public class AllStatesReportData implements Externalizable {
     allOwnership.clear();
     summaryFinished = false;
   }
-  public void updateSummary(Evu unit) {
+  public void updateSummary(simpplle.comcode.element.Evu unit) {
     updateSummary(unit,Simulation.getCurrentTimeStep());
   }
-  public void updateSummary(Evu unit, int timeStep) {
+  public void updateSummary(simpplle.comcode.element.Evu unit, int timeStep) {
     String groupStr       = lookupGroup(unit.getHabitatTypeGroup().getType());
     String specialAreaStr = lookupSpecialArea(unit.getSpecialArea());
     String ownershipStr   = lookupOwnership(unit.getOwnership());
@@ -529,7 +528,7 @@ public class AllStatesReportData implements Externalizable {
    * @throws ParseError
    */
   private void readEntryList(String line, String keyword, String desc)  throws SimpplleError, ParseError {
-    StringTokenizerPlus strTok = new StringTokenizerPlus(line.trim(),",");
+    simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(line.trim(),",");
 
     HabitatTypeGroupType group;
     Species              species;

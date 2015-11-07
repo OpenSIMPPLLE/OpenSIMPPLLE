@@ -1,12 +1,11 @@
 package simpplle.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Frame;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import simpplle.comcode.AbstractLogicData;
+import simpplle.comcode.logic.AbstractLogicData;
 import javax.swing.JScrollPane;
 
 /**

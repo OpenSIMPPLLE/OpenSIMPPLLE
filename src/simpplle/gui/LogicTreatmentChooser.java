@@ -3,7 +3,7 @@ package simpplle.gui;
 import java.awt.BorderLayout;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import simpplle.comcode.LogicData;
+import simpplle.comcode.logic.LogicData;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;

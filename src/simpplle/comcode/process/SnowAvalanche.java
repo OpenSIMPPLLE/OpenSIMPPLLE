@@ -1,6 +1,5 @@
 package simpplle.comcode.process;
 
-import simpplle.comcode.*;
 import simpplle.comcode.Process;
 
 /**
@@ -33,57 +32,57 @@ public class SnowAvalanche extends Process {
     spreading   = false;
     description = "Snow Avalanche";
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
  /**
   * Snow Avalanche is not tracked in Westside Region 1 therefore returns probability of 0.
   */
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu)  { return 0; }
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu)  { return 0; }
   /**
    * Snow Avalanche is not tracked in Eastside Region 1 therefore returns probability of 0.
    */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu)  { return 0; }
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu)  { return 0; }
   /**
    * Snow Avalanche is not tracked in Sierra Nevada therefore returns probability of 0.
    */
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu)       { return 0; }
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu)       { return 0; }
   /**
    * Snow Avalanche is not tracked in Southern California therefore returns probability of 0.
    */
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) { return 0; }
   /**
    * Snow Avalanche is not tracked in Gila therefore returns probability of 0.
    */
-  public int doProbability (simpplle.comcode.zone.Gila zone, Evu evu)               { return 0; }
+  public int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu)               { return 0; }
 
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) {
     return doProbability(evu);
   }
 
   /**
    * Snow Avalanche is not tracked in Westside Region 1 therefore returns spread of false.   
    */
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu)  { return false; }
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu)  { return false; }
   /**
    *  Snow Avalanche is not tracked in Eastside Region 1 therefore returns spread of false. 
    */
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu)  { return false; }
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu)  { return false; }
   /**
    *  Snow Avalanche is not tracked in Sierra Nevada therefore returns spread of false. 
    */
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu)       { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu)       { return false; }
   /**
    *  Snow Avalanche is not tracked in Southern California therefore returns spread of false. 
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
   /**
    *  Snow Avalanche is not tracked in Gila therefore returns spread of false. 
    */
-  public boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu)               { return false; }
+  public boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu)               { return false; }
 
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 /**

@@ -1,6 +1,5 @@
 package simpplle.comcode.process;
 
-import simpplle.comcode.*;
 import simpplle.comcode.Process;
 
 /**
@@ -36,7 +35,7 @@ public class HeavyBisonGrazing extends Process {
  * @param evu ecological vegetative unit 
  * @return the probability of heavy bison grazing on a specified EVU in wyoming
  */
-  public int doProbabilityWyoming (Evu evu) {
+  public int doProbabilityWyoming (simpplle.comcode.element.Evu evu) {
     int prob = simpplle.comcode.BisonGrazing.getHeavy();
 
     if (prob == -1) {
@@ -49,19 +48,19 @@ public class HeavyBisonGrazing extends Process {
   /**
    *  WesternGreatPlainsSteppe is a wyoming zone so sends to doProbabilityWyoming
    */
-  public int doProbability (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityWyoming(evu);
   }
   /**
    *  GreatPlainsSteppe is a wyoming zone so sends to doProbabilityWyoming
    */
-  public int doProbability (simpplle.comcode.zone.GreatPlainsSteppe zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.GreatPlainsSteppe zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityWyoming(evu);
   }
   /**
    *  MixedGrassPrairie is a wyoming zone so sends to doProbabilityWyoming
    */
-  public int doProbability (simpplle.comcode.zone.MixedGrassPrairie zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.MixedGrassPrairie zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityWyoming(evu);
   }
 }

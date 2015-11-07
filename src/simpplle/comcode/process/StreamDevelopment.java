@@ -1,6 +1,5 @@
 package simpplle.comcode.process;
 
-import simpplle.comcode.*;
 import simpplle.comcode.Process;
 
 /**
@@ -31,60 +30,60 @@ public class StreamDevelopment extends Process {
     spreading   = false;
     description = "STREAM DEVELOPMENT";
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
   public String toString() { return printName; }
 
-  private int doProbabilityCommon(Evu evu) {
+  private int doProbabilityCommon(simpplle.comcode.element.Evu evu) {
     return 0;
   }
 /**
  * Westside Region 1 probability
  * Returns the result of call to doProbablityCommon (Evu evu).  This inherits from the doProbablity class.  
  */
-  protected int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
   /**
    * Eastside Region 1 probability
    * Returns the result of call to doProbablityCommon (Evu evu).  This inherits from the doProbablity class.  
    */
-  protected int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
   /**
    * Sierra Nevada probability
    * Returns the result of call to doProbablityCommon (Evu evu).  This inherits from the doProbablity class.  
    */
-  protected int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
   /**
    * Southern California  probability
    * Returns the result of call to doProbablityCommon (Evu evu).  This inherits from the doProbablity class.  
    */
-  protected int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
   /**
    * Gila probability
    * Returns the result of call to doProbablityCommon (Evu evu).  This inherits from the doProbablity class.  
    */
-  protected int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
   /**
    * South Central Alaska probability
    * Returns the result of call to doProbablityCommon (Evu evu).  This inherits from the doProbablity class.  
    */
-  protected int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) {
+  protected int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(evu);
   }
 
   
-  private boolean doSpreadCommon(Evu fromEvu, Evu evu) {
+  private boolean doSpreadCommon(simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
@@ -93,42 +92,42 @@ public class StreamDevelopment extends Process {
    * Returns boolean the result of call to doProbablityCommon (Evu evu).  This inherits from the doProbablity class.  
    */
   
-  protected boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
   /**
    * Eastside Region 1 spread
    * Returns boolean of call to doSpreadCommon (Evu evu).  This inherits from the doSpreadCommon class.  
    */
-  protected boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
   /**
    * Sierra Nevada spread
    * Returns boolean of call to doSpreadCommon (Evu evu).  This inherits from the doSpreadCommon class.  
    */
-  protected boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
   /**
    * Southern California spread
    * Returns boolean of call to doSpreadCommon (Evu evu).  This inherits from the doSpreadCommon class.  
    */
-  protected boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
   /**
    * Gila spread
    * Returns boolean of call to doSpreadCommon (Evu evu).  This inherits from the doSpreadCommon class.  
    */
-  protected boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
   /**
    * South Central Alaska spread
    * Returns boolean of call to doSpreadCommon (Evu evu).  This inherits from the doSpreadCommon class.  
    */
-  protected boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(fromEvu,evu);
   }
 

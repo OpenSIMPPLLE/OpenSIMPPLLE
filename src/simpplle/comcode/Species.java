@@ -463,7 +463,7 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
   {
     Species speciesObj = Species.get(species,true);
 
-    if (!AbstractBaseLogic.isNoChangeRead()) {
+    if (!simpplle.comcode.logic.AbstractBaseLogic.isNoChangeRead()) {
       speciesObj.description = this.description;
       speciesObj.lifeform = this.lifeform;
       speciesObj.fireResistance = this.fireResistance;
@@ -596,7 +596,7 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
    * @throws SimpplleError
    */
   public static void Import(File filename) throws SimpplleError {
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     String              line, str;
     Species             species;
     Lifeform            lf;
@@ -611,7 +611,7 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
 
       while (line != null) {
 
-        strTok = new StringTokenizerPlus(line, ",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line, ",");
         if (strTok.countTokens() < 3) {
           throw new SimpplleError(
               "Invalid line in file (should be species,despcription,lifeform,fire resistance(optional)): \n" +

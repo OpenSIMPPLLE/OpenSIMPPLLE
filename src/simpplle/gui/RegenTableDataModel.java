@@ -1,15 +1,6 @@
 package simpplle.gui;
 
-import javax.swing.table.*;
-import simpplle.comcode.RegenerationLogic;
-import simpplle.comcode.FireRegenerationData;
-import simpplle.comcode.Species;
-
-import java.util.Vector;
-import simpplle.comcode.HabitatTypeGroupType;
-import simpplle.comcode.RegenerationData;
-
-/** 
+/**
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 

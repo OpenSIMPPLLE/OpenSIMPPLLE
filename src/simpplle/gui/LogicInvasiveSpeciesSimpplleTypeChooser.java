@@ -8,9 +8,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import simpplle.comcode.LogicData;
 import simpplle.comcode.SimpplleType;
-import simpplle.comcode.InvasiveSpeciesLogicDataMSU;
+import simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU;
 import javax.swing.table.*;
 /**
  * 

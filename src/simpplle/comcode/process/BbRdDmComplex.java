@@ -37,8 +37,8 @@ public class BbRdDmComplex extends Process {
     spreading   = false;
     description = "Bark Beetle Root Disease Dwarf Mistletoe Complex";
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 /**
  * Does the probability for Bark Beetle Root disease Dwarf Mistletoe complex.  
@@ -50,7 +50,7 @@ public class BbRdDmComplex extends Process {
  * @param evu existing vegetation unit
  * @return probability data from via probability formula common to both Southern California and Sierra Nevada zones.
  */
-  public int doProbabilityCommon(RegionalZone zone, Evu evu) {
+  public int doProbabilityCommon(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return 0; }
 
@@ -87,37 +87,37 @@ public class BbRdDmComplex extends Process {
  /**
   *"Bark Beetle Root Disease Dwarf Mistletoe Complex is not done in Westside Region 1, so returns 0 
   */
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return 0;
   }
   /**
    *"Bark Beetle Root Disease Dwarf Mistletoe Complex is not done in Eastside Region 1, so returns 0 
    */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return 0;
   }
 /**
  * Calculates the probability for Sierra Nevada zone by calling doProbabilityCommon
  */
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
   /**
    * Calculates the probability for Southern California zone by calling doProbabilityCommon
    */
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
   /**
    *"Bark Beetle Root Disease Dwarf Mistletoe Complex does not occur in Gila, so returns 0 
    */
-  public int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu) { return 0; }
   
   /**
    *"Bark Beetle Root Disease Dwarf Mistletoe Complex is not calculated in South Central Alaska, so returns 0 
    */
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) { return 0; }
 /**
  * Invoked by both Southern California and Sierra Nevada zones.
  * @return false - meaning no spread
@@ -129,37 +129,37 @@ public class BbRdDmComplex extends Process {
   /**
    *Returns false 
    */
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
   /**
    *Returns false
    */
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 /**
  * Returns false.  
  */
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
   /**
    * Returns false.  
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
 
   /**
    *Returns false
    */
-  public boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
   /**
    *Returns false
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
 
   
   /**

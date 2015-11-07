@@ -28,15 +28,15 @@ public class WbpMpb extends Process {
     spreading   = false;
     description = "WhiteBark Pine Mountain Pine Beetle";
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.SPECIES_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.SIZE_CLASS_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.DENSITY_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.PROCESS_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SPECIES_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SIZE_CLASS_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.DENSITY_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.PROCESS_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
-  private int doProbabilityCommon (RegionalZone zone, Evu evu) {
+  private int doProbabilityCommon (RegionalZone zone, simpplle.comcode.element.Evu evu) {
     int         page = -1, row = -1, col = 0;
     int         cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
@@ -98,57 +98,57 @@ public class WbpMpb extends Process {
     }
   }
 
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
-  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
   // Does not occur
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {
     return 0;
   }
 
   // Does not occur
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {
     return 0;
   }
 
   // These zones don't have this process
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) { return 0; }
 
   private boolean doSpreadCommon () {
     return false;
   }
 
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
 
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
 
   // Does not occur in Sierra Nevada
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
   // Does not occur in Southern California
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
   // This Process does not occur in these zones.
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
 
   public String toString () {
     return printName;

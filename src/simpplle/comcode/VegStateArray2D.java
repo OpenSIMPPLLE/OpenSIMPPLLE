@@ -1,6 +1,5 @@
 package simpplle.comcode;
 
-import java.util.*;
 import java.io.PrintWriter;
 import java.io.*;
 /**
@@ -94,7 +93,7 @@ public class VegStateArray2D implements Externalizable {
         return tmpData[index].shortValue();
       }
     }
-    return (short)Evu.NOPROB;
+    return (short) simpplle.comcode.element.Evu.NOPROB;
   }
   /**
    *
@@ -186,7 +185,7 @@ public class VegStateArray2D implements Externalizable {
       return tmpData[index].shortValue();
     }
     else {
-      return (short)Evu.NOPROB;
+      return (short) simpplle.comcode.element.Evu.NOPROB;
     }
   }
   public short getProbability(int run, int tStep, Lifeform kind) {
@@ -202,7 +201,7 @@ public class VegStateArray2D implements Externalizable {
       return tmpData[index].shortValue();
     }
     else {
-      return (short)Evu.NOPROB;
+      return (short) simpplle.comcode.element.Evu.NOPROB;
     }
   }
 
@@ -368,13 +367,13 @@ public class VegStateArray2D implements Externalizable {
 
       String str;
       if (probData[i] instanceof Short) {
-        str = Evu.getProbabilityPrintString(((Short) probData[i]).shortValue());
+        str = simpplle.comcode.element.Evu.getProbabilityPrintString(((Short) probData[i]).shortValue());
         pout.print(str);
       }
       else if (probData[i] instanceof Short[]) {
         Short[] values = (Short[]) probData[i];
         for (int j = 0; j < values.length; j++) {
-          str = Evu.getProbabilityPrintString(values[j].shortValue());
+          str = simpplle.comcode.element.Evu.getProbabilityPrintString(values[j].shortValue());
           pout.print(str);
         }
       }
@@ -514,12 +513,12 @@ public class VegStateArray2D implements Externalizable {
       for (int i = 0; i < probData.length; i++) {
         int count = in.readInt();
         if (count == 1) {
-          probData[i] = new Short((short)Evu.parseProbabilityString((String)in.readObject()));
+          probData[i] = new Short((short) simpplle.comcode.element.Evu.parseProbabilityString((String)in.readObject()));
         }
         else if (count > 1) {
           values = new Short[count];
           for (int j = 0; j < count; j++) {
-            values[j] = new Short((short)Evu.parseProbabilityString((String)in.readObject()));
+            values[j] = new Short((short) simpplle.comcode.element.Evu.parseProbabilityString((String)in.readObject()));
           }
           probData[i] = values;
         }
@@ -612,13 +611,13 @@ public class VegStateArray2D implements Externalizable {
       for (int i = 0; i < count; i++) {
         if (probData[i] instanceof Short) {
           out.writeInt(1);
-          out.writeObject(Evu.getProbabilitySaveString(((Short)probData[i]).shortValue()));
+          out.writeObject(simpplle.comcode.element.Evu.getProbabilitySaveString(((Short)probData[i]).shortValue()));
         }
         else if (probData[i] instanceof Short[]) {
           values = (Short[]) probData[i];
           out.writeInt(values.length);
           for (int j = 0; j < values.length; j++) {
-            out.writeObject(Evu.getProbabilitySaveString(values[j].shortValue()));
+            out.writeObject(simpplle.comcode.element.Evu.getProbabilitySaveString(values[j].shortValue()));
           }
         }
         else {

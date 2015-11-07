@@ -100,7 +100,7 @@ public class TreatmentSchedule {
 
   private void readProbData(BufferedReader fin) throws IOException, ParseError {
     RegionalZone        zone = Simpplle.getCurrentZone();
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     String              line, str;
     int                 i, count, id;
     ProcessType[]       processTypes;
@@ -112,7 +112,7 @@ public class TreatmentSchedule {
       throw new ParseError("Input file is empty");
     }
 
-    strTok = new StringTokenizerPlus(line,",");
+    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
     count  = strTok.countTokens();
     str    = strTok.getToken();  // Don't need this, discard.
     if (str.equalsIgnoreCase("SLINK") == false) {
@@ -123,7 +123,7 @@ public class TreatmentSchedule {
     processTypes = new ProcessType[count-1];
     for(i=0; i<processTypes.length; i++) {
       str = strTok.getToken();
-      str = Utility.underscoresToDashes(str);
+      str = simpplle.comcode.utility.Utility.underscoresToDashes(str);
       processTypes[i] = ProcessType.get(str);
       if (processTypes[i] == null) {
         System.out.println(str);
@@ -134,7 +134,7 @@ public class TreatmentSchedule {
     // Now get the probability values for each unit
     line = fin.readLine();
     while (line != null) {
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       id = strTok.getIntToken();
       if (id > probData.length) {
@@ -171,7 +171,7 @@ public class TreatmentSchedule {
     int                  tStep, unitId;
     int                  count = 0;
     String               treatName;
-    StringTokenizerPlus  strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     boolean              newTreatmentApp = true;
 
     try {
@@ -182,7 +182,7 @@ public class TreatmentSchedule {
       line = line.trim();
 
       do {
-        strTok = new StringTokenizerPlus(line,",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
         if (strTok.countTokens() != 2) {
           throw new SimpplleError("Invalid line in input file: " + line);
         }
@@ -223,7 +223,7 @@ public class TreatmentSchedule {
             continue;
           }
 
-          strTok = new StringTokenizerPlus(line,",");
+          strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
           count  = strTok.countTokens();
           if (count != 1 && count != 2) {
             throw new SimpplleError("Invalid line in file: " + line);
@@ -332,7 +332,7 @@ public class TreatmentSchedule {
   }
 
   public void save(File filename) {
-    File             outfile = Utility.makeSuffixedPathname(filename,"","treatment");
+    File             outfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(filename,"","treatment");
     GZIPOutputStream out;
     PrintWriter      fout;
     try {
@@ -390,10 +390,10 @@ public class TreatmentSchedule {
   }
 
   public void addApplication(TreatmentApplication app) {
-    MyInteger timeStep;
+    simpplle.comcode.utility.MyInteger timeStep;
     Vector    apps;
 
-    timeStep = new MyInteger(app.getTimeStep());
+    timeStep = new simpplle.comcode.utility.MyInteger(app.getTimeStep());
     apps     = (Vector)applications.get(timeStep);
     if (apps == null) {
       apps = new Vector();
@@ -406,7 +406,7 @@ public class TreatmentSchedule {
   public TreatmentApplication findApplication(TreatmentType treatType, int tStep) {
     TreatmentApplication app;
     Vector               apps;
-    MyInteger            timeStep = new MyInteger(tStep);
+    simpplle.comcode.utility.MyInteger timeStep = new simpplle.comcode.utility.MyInteger(tStep);
 
     if (applications == null) { return null; }
     apps = (Vector)applications.get(timeStep);
@@ -420,20 +420,20 @@ public class TreatmentSchedule {
   }
 
   public Vector getApplications(int tStep) {
-    return getApplications(new MyInteger(tStep));
+    return getApplications(new simpplle.comcode.utility.MyInteger(tStep));
   }
-  public Vector getApplications(MyInteger tStep) {
+  public Vector getApplications(simpplle.comcode.utility.MyInteger tStep) {
     return (Vector)applications.get(tStep);
   }
 
-  public MyInteger[] getAllTimeSteps() {
+  public simpplle.comcode.utility.MyInteger[] getAllTimeSteps() {
     if (applications.size() == 0) { return null; }
     Enumeration keys = applications.keys();
-    MyInteger[]  ts = new MyInteger[applications.size()];
+    simpplle.comcode.utility.MyInteger[]  ts = new simpplle.comcode.utility.MyInteger[applications.size()];
     int         i=0;
 
     while (keys.hasMoreElements()) {
-      ts[i] = (MyInteger)keys.nextElement();
+      ts[i] = (simpplle.comcode.utility.MyInteger)keys.nextElement();
       i++;
     }
     Arrays.sort(ts);
@@ -455,7 +455,7 @@ public class TreatmentSchedule {
     if (apps.removeElement(app)) {
       numApps--;
       if (apps.size() == 0) {
-        applications.remove(new MyInteger(app.getTimeStep()));
+        applications.remove(new simpplle.comcode.utility.MyInteger(app.getTimeStep()));
         apps = null;
       }
     }

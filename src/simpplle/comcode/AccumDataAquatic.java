@@ -1,13 +1,9 @@
 package simpplle.comcode;
 
-import org.hibernate.Transaction;
-import java.util.ArrayList;
 import java.sql.SQLException;
-import java.util.HashMap;
-import org.hibernate.HibernateException;
-import org.hibernate.SessionFactory;
-import org.hibernate.Session;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 
 /**
@@ -206,7 +202,7 @@ public class AccumDataAquatic {
    * @throws HibernateException
    * @throws SQLException
    */
-  public static void writeDatabase(Session session, ExistingAquaticUnit eau, int run, int nSteps)
+  public static void writeDatabase(Session session, simpplle.comcode.element.ExistingAquaticUnit eau, int run, int nSteps)
       throws HibernateException, SQLException
   {
     for (int ts=0; ts<=nSteps; ts++) {

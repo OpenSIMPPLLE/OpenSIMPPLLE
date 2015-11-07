@@ -1,7 +1,7 @@
 package simpplle.gui;
 
 import simpplle.comcode.Area;
-import simpplle.comcode.Evu;
+import simpplle.comcode.element.Evu;
 import simpplle.comcode.MultipleRunSummary;
 import simpplle.comcode.Simpplle;
 import simpplle.comcode.SimpplleType;

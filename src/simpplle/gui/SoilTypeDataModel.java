@@ -1,6 +1,6 @@
 package simpplle.gui;
 
-import simpplle.comcode.InvasiveSpeciesLogicData;
+import simpplle.comcode.logic.InvasiveSpeciesLogicData;
 import javax.swing.table.AbstractTableModel;
 import simpplle.comcode.SoilType;
 import java.io.File;

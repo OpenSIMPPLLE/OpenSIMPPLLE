@@ -1,14 +1,14 @@
 package simpplle.gui;
 
-import simpplle.comcode.BaseLogic;
+import simpplle.comcode.logic.BaseLogic;
 import javax.swing.table.TableColumn;
-import javax.swing.JTable;
-import simpplle.comcode.FireEventLogic;
-import simpplle.comcode.FireSpottingLogicData;
+
+import simpplle.comcode.logic.FireEventLogic;
+import simpplle.comcode.logic.FireSpottingLogicData;
 import simpplle.comcode.Process;
 import java.util.ArrayList;
 
-import simpplle.comcode.FireSpottingLogicData.SpreadType;
+import simpplle.comcode.logic.FireSpottingLogicData.SpreadType;
 import simpplle.comcode.SystemKnowledge.Kinds;
 /** 
  * The University of Montana owns copyright of the designated documentation contained 

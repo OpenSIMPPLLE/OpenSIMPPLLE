@@ -1,7 +1,6 @@
 
 package simpplle.comcode.process;
 
-import simpplle.comcode.*;
 import simpplle.comcode.Process;
 
 /**
@@ -27,54 +26,54 @@ public class BarkBeetles extends Process {
     spreading   = false;
     description = "Bark Beetles";
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 /**
  * Passes to the doProbability method of simpplle.comcode.Process.doProbability(Evu evu) where it will do the Bark Beetle probability 
  * for a specified Evu.
  */
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbability(evu);
   }
   /**
    * Passes to the doProbability method of simpplle.comcode.Process.doProbability(Evu evu) where it will do the Bark Beetle probability 
    * for a specified Evu.
    */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbability(evu);
   }
   /**
    * Passes to the doProbability method of simpplle.comcode.Process.doProbability(Evu evu) where it will do the Bark Beetle probability 
    * for a specified Evu.
    */
-  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
     return doProbability(evu);
   }
   /**
    * Passes to the doProbability method of simpplle.comcode.Process.doProbability(Evu evu) where it will do the Bark Beetle probability 
    * for a specified Evu.
    */
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
     return doProbability(evu);
   }
 
   /**
    * does not occur in Sierra Nevada zone - returns 0 
    */
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) { return 0; }
   /**
    * does not occur in Southern California zone - returns 0 
    */
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) { return 0; }
   /**
    * does not occur in Gila zone - returns 0 
    */
-  public int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu) { return 0; }
   /**
    * does not occur in South Central Alaska zone - returns 0 
    */
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) { return 0; }
 
   private boolean doSpreadCommon () {
     return false;
@@ -82,25 +81,25 @@ public class BarkBeetles extends Process {
 /**
  * Returns false.
  */
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
   /**
    * Returns false.
    */
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
   /**
    * Returns false.
    */
-  public boolean doSpread (simpplle.comcode.zone.Teton zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
   /**
    * Returns false.
    */
-  public boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon();
   }
 
@@ -108,19 +107,19 @@ public class BarkBeetles extends Process {
   /**
    * bark beetles do not occur in SierraNevada zone so no spread- returns false
    */
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
   /**
    * bark beetles do not occur in Southern California zone so no spread- returns false 
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
   /**
    * bark beetles do not occur in Gila zone so no spread- returns false
    */
-  public boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
   /**
    * bark beetles do not occur in South Central Alaska zone so no spread- returns false
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
 
   /**
    * to string returns "BARK-BEETLES"

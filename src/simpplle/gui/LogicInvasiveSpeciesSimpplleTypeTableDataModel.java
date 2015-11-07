@@ -2,7 +2,7 @@ package simpplle.gui;
 
 import simpplle.comcode.ProcessType;
 import simpplle.comcode.SimpplleType;
-import simpplle.comcode.InvasiveSpeciesLogicDataMSU;
+import simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU;
 import simpplle.comcode.*;
 
 /**

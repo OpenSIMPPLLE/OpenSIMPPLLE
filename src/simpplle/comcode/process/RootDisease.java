@@ -28,14 +28,14 @@ public class RootDisease extends Process {
     spreading   = false;
     description = "Root Disease";
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.ECO_GROUP_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.SPECIES_COL.toString());
-    defaultVisibleColumns.add(BaseLogic.Columns.TREATMENT_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ECO_GROUP_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SPECIES_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.TREATMENT_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
-  protected int doProbability (Evu evu) {
+  protected int doProbability (simpplle.comcode.element.Evu evu) {
     return 0;
   }
 
@@ -48,7 +48,7 @@ public class RootDisease extends Process {
    * @param evu the unit we are considering for this process
    * @return the probability of this process - will be zero unless Colorado decides to change;
    */
-  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu evu) {
     return 0;
   }
   /**
@@ -60,14 +60,14 @@ public class RootDisease extends Process {
   * @param evu the unit we are considering for this process
   * @return the probability of this process - will be 0 since no RD;
   */
-  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, simpplle.comcode.element.Evu evu) {
     return 0;
   }
   /**
    * Method to calculate probability for Root Disease in westside region one, based on species, associated land type, and habitat type group
    * and treatment type.
    */
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     int                  page = 0, row = -1, col = 0;
     int                  probability = 0;
     HabitatTypeGroupType groupType;
@@ -165,21 +165,21 @@ public class RootDisease extends Process {
     return probability;
   }
 /**
- * @see RootDisease.doProbabilityEastAndSimilar(Evu evu)
+ * @see RootDisease.doProbabilityEastAndSimilar( simpplle.comcode.element.Evu evu)
  */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityEastAndSimilar(evu);
   }
   /**
-   * @see RootDisease.doProbabilityEastAndSimilar(Evu evu)
+   * @see RootDisease.doProbabilityEastAndSimilar( simpplle.comcode.element.Evu evu)
    */
-  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityEastAndSimilar(evu);
   }
   /**
-   * @see RootDisease.doProbabilityEastAndSimilar(Evu evu)
+   * @see RootDisease.doProbabilityEastAndSimilar( simpplle.comcode.element.Evu evu)
    */
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
     return doProbabilityEastAndSimilar(evu);
   }
   /**
@@ -188,7 +188,7 @@ public class RootDisease extends Process {
    * @param evu existing vegetative unit being evaluated
    * @return probability of Root Disease 
    */
-  private int doProbabilityEastAndSimilar (Evu evu) {
+  private int doProbabilityEastAndSimilar (simpplle.comcode.element.Evu evu) {
     int     page = 0, row = -1, col = 0;
     int     probability = 0;
     int     cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
@@ -273,7 +273,7 @@ public class RootDisease extends Process {
 /**
  * Method to calculate Root Disease probability of Sierra Nevada.  This is based on vegetative state, species, treatment type, and habitat type group.  
  */
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {
     int       page = 0, row = -1, col = 0;
     int       probability = 0;
     int       cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
@@ -439,7 +439,7 @@ public class RootDisease extends Process {
 /**
  * Method to calculate Root Disease probability.  This is based on species, size class, density, habitat type group, and treatment type.  
  */
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {
     int       page = 0, row = -1, col = 0;
     int       probability = 0;
     int       cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
@@ -605,7 +605,7 @@ public class RootDisease extends Process {
 /**
  * Method to calculate Root Disease probability for South Central Alaska.  This is based on treatment type, species, and habitat type gropu.  
  */
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) {
     int     page = 0, row = -1, col = 0;
     int     probability = 0;
     Species species;

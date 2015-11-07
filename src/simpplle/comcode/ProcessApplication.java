@@ -111,7 +111,7 @@ public class ProcessApplication {
     Area    area = Simpplle.getCurrentArea();
     int     cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     Integer id;
-    Evu     evu;
+    simpplle.comcode.element.Evu evu;
     Vector  chosenUnits;
 
     if (cStep != timeStep) { return null; }
@@ -125,8 +125,8 @@ public class ProcessApplication {
     return chosenUnits;
   }
 
-  private void readGeneral(StringTokenizerPlus strTok) throws ParseError {
-    StringTokenizerPlus subStrTok;
+  private void readGeneral(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
+    simpplle.comcode.utility.StringTokenizerPlus subStrTok;
     String              str;
     int                 tStep, count, i;
 
@@ -150,7 +150,7 @@ public class ProcessApplication {
  * @throws ParseError
  * @throws IOException
  */
-  private void readUnitIds(StringTokenizerPlus strTok)
+  private void readUnitIds(simpplle.comcode.utility.StringTokenizerPlus strTok)
                                 throws ParseError, IOException {
     String str;
     int    i, id, count;
@@ -159,7 +159,7 @@ public class ProcessApplication {
     str    = strTok.getToken();
     if (str == null) { return; }  // i.e. a schedule with no units
 
-    strTok = new StringTokenizerPlus(str,":");
+    strTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
     count  = strTok.countTokens();
 
     for(i=0;i<count;i++) {
@@ -178,7 +178,7 @@ public class ProcessApplication {
   }
 
   public void read(BufferedReader fin) throws ParseError, IOException {
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     String              line;
 
     // Get the General Information.
@@ -187,7 +187,7 @@ public class ProcessApplication {
       throw new ParseError("Invalid treatment Schedule file.");
     }
 
-    strTok = new StringTokenizerPlus(line,",");
+    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
     readGeneral(strTok);
 
     // Get the list of unit id's (if any)
@@ -195,7 +195,7 @@ public class ProcessApplication {
     if (line == null) {
       throw new ParseError("Invalid Process Schedule file.");
     }
-    strTok = new StringTokenizerPlus(line,",");
+    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
     readUnitIds(strTok);/*
      * 
      */

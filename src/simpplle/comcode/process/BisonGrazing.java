@@ -54,7 +54,7 @@ public class BisonGrazing extends Process {
   public static int getHeavy()    { return heavy; }
 
   // used in simulations
-  private static Evu.WaterUnitData isPermanentWater = new Evu.WaterUnitData();
+  private static simpplle.comcode.element.Evu.WaterUnitData isPermanentWater = new simpplle.comcode.element.Evu.WaterUnitData();
 /**
  * Constructor for Bison Grazing, sets the spreading to false, description to Bison Grazing and uniqueUI to true.
  */
@@ -253,7 +253,7 @@ public class BisonGrazing extends Process {
    * 
    * @param evu vegetative unit to have its Bison grazing calculated
    */
-  public static void calcProbability(Evu evu) {
+  public static void calcProbability(simpplle.comcode.element.Evu evu) {
     int lightProb=0, moderateProb=0, heavyProb=0;
 
     light = 0;

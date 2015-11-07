@@ -11,8 +11,10 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
 import java.util.ArrayList;
+
 import simpplle.comcode.Process;
 import simpplle.comcode.*;
+
 import java.util.*;
 
 /**
@@ -76,8 +78,8 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
 
   private void doVegetativeTypeChooser() {
     int row = theTable.getSelectedRow();
-    int col = RegenerationData.SPECIES_CODE_COL;
-    Species species = (Species)RegenerationLogic.getValueAt(row,col,RegenerationLogic.FIRE);
+    int col = simpplle.comcode.logic.RegenerationData.SPECIES_CODE_COL;
+    Species species = (Species) simpplle.comcode.logic.RegenerationLogic.getValueAt(row,col, simpplle.comcode.logic.RegenerationLogic.FIRE);
 
     final RegenVegTypeChooser dlg =
                 new RegenVegTypeChooser(dialog,title,true,species,(ArrayList<VegetativeType>)value,false);
@@ -86,8 +88,8 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
   }
   private void doSpeciesChooser() {
     int row = theTable.getSelectedRow();
-    int col = RegenerationData.SPECIES_CODE_COL;
-    Species species = (Species)RegenerationLogic.getValueAt(row,col,RegenerationLogic.SUCCESSION);
+    int col = simpplle.comcode.logic.RegenerationData.SPECIES_CODE_COL;
+    Species species = (Species) simpplle.comcode.logic.RegenerationLogic.getValueAt(row,col, simpplle.comcode.logic.RegenerationLogic.SUCCESSION);
 
     final RegenSuccessionChooser dlg =
        new RegenSuccessionChooser(dialog,title,true,species,(ArrayList<RegenerationSuccessionInfo>)value,true);
@@ -95,22 +97,22 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
     dlg.finishUp((ArrayList<RegenerationSuccessionInfo>)value);
   }
 
-  private void doLogicSpeciesChooser(LogicData logicData) {
+  private void doLogicSpeciesChooser(simpplle.comcode.logic.LogicData logicData) {
     LogicSpeciesChooser dlg =
       new LogicSpeciesChooser(dialog,title,true,logicData);
     dlg.setVisible(true);
   }
-  private void doLogicSizeClassChooser(LogicData logicData) {
+  private void doLogicSizeClassChooser(simpplle.comcode.logic.LogicData logicData) {
     LogicSizeClassChooser dlg =
       new LogicSizeClassChooser(dialog,title,true,logicData);
     dlg.setVisible(true);
   }
-  private void doLogicDensityChooser(LogicData logicData) {
+  private void doLogicDensityChooser(simpplle.comcode.logic.LogicData logicData) {
     LogicDensityChooser dlg =
       new LogicDensityChooser(dialog,title,true,logicData);
     dlg.setVisible(true);
   }
-  private void doLogicProcessChooser(LogicData logicData) {
+  private void doLogicProcessChooser(simpplle.comcode.logic.LogicData logicData) {
     String desc = "";
     if (logicData.isDefaultDescription(SimpplleType.PROCESS) == false) {
       desc = logicData.getDescription(SimpplleType.PROCESS);
@@ -136,7 +138,7 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
     logicData.setProcessPastTimeSteps(dlg.getTimeSteps());
     logicData.setProcessInclusiveTimeSteps(dlg.isInclusiveTimeSteps());
   }
-  private void doLogicAdjProcessChooser(ProcessProbLogicData logicData) {
+  private void doLogicAdjProcessChooser(simpplle.comcode.logic.ProcessProbLogicData logicData) {
     String desc = "";
     if (logicData.isDefaultAdjProcessDescription() == false) {
       desc = logicData.getAdjProcessDescription();
@@ -154,7 +156,7 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
     logicData.setAdjProcessPastTimeSteps(dlg.getTimeSteps());
   }
 
-  private void doLogicTreatmentChooser(LogicData logicData) {
+  private void doLogicTreatmentChooser(simpplle.comcode.logic.LogicData logicData) {
     boolean inclusiveTS = logicData.getTreatmentInclusiveTimeSteps();
     boolean anyExcept   = logicData.getTreatmentAnyExcept();
 
@@ -163,37 +165,37 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
       new LogicTreatmentChooser(dialog,title,true,logicData,inclusiveTS,anyExcept);
     dlg.setVisible(true);
   }
-  private void doLogicTrackingSpeciesChooser(LogicData logicData) {
+  private void doLogicTrackingSpeciesChooser(simpplle.comcode.logic.LogicData logicData) {
     LogicTrackingSpeciesChooser dlg =
       new LogicTrackingSpeciesChooser(dialog,title,true,logicData);
     dlg.setVisible(true);
   }
-  private void doSoilTypeChooser(InvasiveSpeciesLogicData logicData) {
+  private void doSoilTypeChooser(simpplle.comcode.logic.InvasiveSpeciesLogicData logicData) {
     SoilTypeChooser dlg =
       new SoilTypeChooser(dialog,title,true,logicData);
     dlg.setVisible(true);
   }
-  private void doInvasiveSpeciesChooser(LogicData logicData) {
+  private void doInvasiveSpeciesChooser(simpplle.comcode.logic.LogicData logicData) {
     LogicInvasiveSpeciesChooser dlg =
       new LogicInvasiveSpeciesChooser(dialog,title,true,logicData);
     dlg.setVisible(true);
   }
-  private void doLogicEcoGroupChooser(LogicData logicData) {
+  private void doLogicEcoGroupChooser(simpplle.comcode.logic.LogicData logicData) {
     LogicEcoGroupChooser dlg =
       new LogicEcoGroupChooser(dialog,title,true,logicData);
     dlg.setVisible(true);
   }
-  private void doFireLogicPositionChooser(LogicData logicData) {
+  private void doFireLogicPositionChooser(simpplle.comcode.logic.LogicData logicData) {
     LogicPositionChooser dlg =
-      new LogicPositionChooser(dialog,title,true,(FireSpreadLogicData)logicData);
+      new LogicPositionChooser(dialog,title,true,(simpplle.comcode.logic.FireSpreadLogicData)logicData);
     dlg.setVisible(true);
   }
-  private void doFireLogicOriginProcessChooser(LogicData logicData) {
+  private void doFireLogicOriginProcessChooser(simpplle.comcode.logic.LogicData logicData) {
     LogicOriginFireProcessChooser dlg =
-      new LogicOriginFireProcessChooser(dialog,title,true,(FireSpreadLogicData)logicData);
+      new LogicOriginFireProcessChooser(dialog,title,true,(simpplle.comcode.logic.FireSpreadLogicData)logicData);
     dlg.setVisible(true);
   }
-  private void doMoistureChooser(LogicData logicData) {
+  private void doMoistureChooser(simpplle.comcode.logic.LogicData logicData) {
     Climate.Moisture[] allValues = Climate.Moisture.values();
     int countTS = logicData.getMoistureCountTimeStep();
     int numTS   = logicData.getMoistureNumTimeStep();
@@ -214,7 +216,7 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
     logicData.setMoistureCountTimeStep(dlg.getCountTimeStep());
     logicData.setMoistureNumTimeStep(dlg.getNumTimeStep());
   }
-  private void doTemperatureChooser(LogicData logicData) {
+  private void doTemperatureChooser(simpplle.comcode.logic.LogicData logicData) {
     Climate.Temperature[] allValues = Climate.Temperature.values();
     int countTS = logicData.getTempCountTimeStep();
     int numTS   = logicData.getTempNumTimeStep();
@@ -235,7 +237,7 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
     logicData.setTempCountTimeStep(dlg.getCountTimeStep());
     logicData.setTempNumTimeStep(dlg.getNumTimeStep());
   }
-  private void doMpbHazardChooser(ProcessProbLogicData logicData) {
+  private void doMpbHazardChooser(simpplle.comcode.logic.ProcessProbLogicData logicData) {
     ArrayList<MtnPineBeetleHazard.Hazard> allValues =
       new ArrayList<MtnPineBeetleHazard.Hazard>(Arrays.asList(MtnPineBeetleHazard.Hazard.values()));
 
@@ -291,7 +293,7 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
 //  }
 
 
-  private void doCompetitionLifeformChooser(DoCompetitionData logicData) {
+  private void doCompetitionLifeformChooser(simpplle.comcode.logic.DoCompetitionData logicData) {
     Lifeform lifeform = logicData.getLifeform();
     ArrayList<Lifeform> changeLifeforms = logicData.getChangeLifeforms();
     ArrayList<Lifeform> lives = new ArrayList<Lifeform>();
@@ -319,26 +321,26 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
       }
     }
   }
-  private void doListSelectionChooser(AbstractLogicData logicData, int column) {
+  private void doListSelectionChooser(simpplle.comcode.logic.AbstractLogicData logicData, int column) {
     JTableListSelectionDialog dlg =
         new JTableListSelectionDialog(dialog,title,true,logicData,column);
     dlg.setVisible(true);
   }
 
-  private void doRegenTypeChooser(ProducingSeedLogicData logicData) {
-    ArrayList<Evu.RegenTypes> allValues =
-      new ArrayList<Evu.RegenTypes>(Arrays.asList(Evu.RegenTypes.values()));
+  private void doRegenTypeChooser(simpplle.comcode.logic.ProducingSeedLogicData logicData) {
+    ArrayList<simpplle.comcode.element.Evu.RegenTypes> allValues =
+      new ArrayList<simpplle.comcode.element.Evu.RegenTypes>(Arrays.asList(simpplle.comcode.element.Evu.RegenTypes.values()));
 
     CheckBoxChooser dlg =
       new CheckBoxChooser(dialog,title,true,allValues,
-                          (ArrayList)logicData.getValueAt(ProducingSeedLogic.REGEN_TYPE_COL));
+                          (ArrayList)logicData.getValueAt(simpplle.comcode.logic.ProducingSeedLogic.REGEN_TYPE_COL));
     dlg.setVisible(true);
 
 
     logicData.setRegenTypes(dlg.getChosenItems());
   }
 
-  private void doFireTypeChooser(AbstractLogicData logicData, int col) {
+  private void doFireTypeChooser(simpplle.comcode.logic.AbstractLogicData logicData, int col) {
     ArrayList<String> fireProcesses = Process.getFireSpreadUIProcesses(true);
 
     ArrayList<String> values = (ArrayList<String>)logicData.getValueAt(col);
@@ -354,7 +356,7 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
     }
   }
 
-  private void doInvasiveSpeciesSimpplleTypeChooser(InvasiveSpeciesLogicDataMSU logicData,
+  private void doInvasiveSpeciesSimpplleTypeChooser(simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU logicData,
                                                     SimpplleType.Types kind)
   {
     LogicInvasiveSpeciesSimpplleTypeChooser dlg =
@@ -363,7 +365,7 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
     dlg.setVisible(true);
   }
 
-  private void doLogicOwnershipChooser(LogicData logicData, int column)
+  private void doLogicOwnershipChooser(simpplle.comcode.logic.LogicData logicData, int column)
   {
     ArrayList dataList = Ownership.getAllInstances();
     ListTableChooser dlg =
@@ -371,7 +373,7 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
 
     dlg.setVisible(true);
   }
-  private void doLogicSpecialAreaChooser(LogicData logicData, int column)
+  private void doLogicSpecialAreaChooser(simpplle.comcode.logic.LogicData logicData, int column)
   {
     ArrayList dataList = SpecialArea.getAllInstances();
     ListTableChooser dlg =
@@ -379,23 +381,23 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
 
     dlg.setVisible(true);
   }
-  private void doLogicRoadStatusChooser(LogicData logicData, int column)
+  private void doLogicRoadStatusChooser(simpplle.comcode.logic.LogicData logicData, int column)
   {
-    ArrayList dataList = new ArrayList<Roads.Status>(Arrays.asList(Roads.Status.values()));
+    ArrayList dataList = new ArrayList<simpplle.comcode.element.Roads.Status>(Arrays.asList(simpplle.comcode.element.Roads.Status.values()));
     ListTableChooser dlg =
       new ListTableChooser(dialog,title,true,logicData,dataList,column);
 
     dlg.setVisible(true);
   }
-  private void doLogicTrailStatusChooser(LogicData logicData, int column)
+  private void doLogicTrailStatusChooser(simpplle.comcode.logic.LogicData logicData, int column)
   {
-    ArrayList dataList = new ArrayList<Trails.Status>(Arrays.asList(Trails.Status.values()));
+    ArrayList dataList = new ArrayList<simpplle.comcode.element.Trails.Status>(Arrays.asList(simpplle.comcode.element.Trails.Status.values()));
     ListTableChooser dlg =
       new ListTableChooser(dialog,title,true,logicData,dataList,column);
 
     dlg.setVisible(true);
   }
-  private void doLogicLandtypeChooser(LogicData logicData, int column)
+  private void doLogicLandtypeChooser(simpplle.comcode.logic.LogicData logicData, int column)
   {
     ArrayList dataList = Landtype.getAllInstances();
     ListTableChooser dlg =
@@ -425,96 +427,96 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
         dialog instanceof FireSuppEventLogicDlg
        )
     {
-      AbstractLogicData logicData;
+      simpplle.comcode.logic.AbstractLogicData logicData;
       if ((dialog instanceof RegenerationLogicDialog)) {
-        logicData = (AbstractLogicData)((LogicDataModel)theTable.getModel()).getValueAt(theTable.getSelectedRow());
+        logicData = (simpplle.comcode.logic.AbstractLogicData)((LogicDataModel)theTable.getModel()).getValueAt(theTable.getSelectedRow());
       }
       else {
-        logicData = (AbstractLogicData)dataModel.getValueAt(theTable.getSelectedRow());
+        logicData = (simpplle.comcode.logic.AbstractLogicData)dataModel.getValueAt(theTable.getSelectedRow());
       }
 
       if (dialog instanceof VegUnitFireTypeLogicDlg) {
         doFireTypeChooser(logicData, column);
       }
       else {
-        if (column == BaseLogic.SPECIES_COL) {
-          doLogicSpeciesChooser((LogicData) logicData);
+        if (column == simpplle.comcode.logic.BaseLogic.SPECIES_COL) {
+          doLogicSpeciesChooser((simpplle.comcode.logic.LogicData) logicData);
         }
-        else if (column == BaseLogic.SIZE_CLASS_COL) {
-          doLogicSizeClassChooser((LogicData) logicData);
+        else if (column == simpplle.comcode.logic.BaseLogic.SIZE_CLASS_COL) {
+          doLogicSizeClassChooser((simpplle.comcode.logic.LogicData) logicData);
         }
-        else if (column == BaseLogic.DENSITY_COL) {
-          doLogicDensityChooser((LogicData) logicData);
+        else if (column == simpplle.comcode.logic.BaseLogic.DENSITY_COL) {
+          doLogicDensityChooser((simpplle.comcode.logic.LogicData) logicData);
         }
-        else if (column == BaseLogic.PROCESS_COL) {
-          doLogicProcessChooser((LogicData) logicData);
+        else if (column == simpplle.comcode.logic.BaseLogic.PROCESS_COL) {
+          doLogicProcessChooser((simpplle.comcode.logic.LogicData) logicData);
         }
-        else if (column == BaseLogic.TREATMENT_COL) {
-          doLogicTreatmentChooser((LogicData) logicData);
+        else if (column == simpplle.comcode.logic.BaseLogic.TREATMENT_COL) {
+          doLogicTreatmentChooser((simpplle.comcode.logic.LogicData) logicData);
         }
-        else if (column == BaseLogic.ECO_GROUP_COL) {
-          doLogicEcoGroupChooser((LogicData) logicData);
+        else if (column == simpplle.comcode.logic.BaseLogic.ECO_GROUP_COL) {
+          doLogicEcoGroupChooser((simpplle.comcode.logic.LogicData) logicData);
         }
-        else if (column == BaseLogic.MOISTURE_COL) {
-          doMoistureChooser((LogicData) logicData);
+        else if (column == simpplle.comcode.logic.BaseLogic.MOISTURE_COL) {
+          doMoistureChooser((simpplle.comcode.logic.LogicData) logicData);
         }
-        else if (column == BaseLogic.TEMP_COL) {
-          doTemperatureChooser((LogicData) logicData);
+        else if (column == simpplle.comcode.logic.BaseLogic.TEMP_COL) {
+          doTemperatureChooser((simpplle.comcode.logic.LogicData) logicData);
         }
-        else if (column == BaseLogic.TRACKING_SPECIES_COL) {
-          doLogicTrackingSpeciesChooser((LogicData) logicData);
+        else if (column == simpplle.comcode.logic.BaseLogic.TRACKING_SPECIES_COL) {
+          doLogicTrackingSpeciesChooser((simpplle.comcode.logic.LogicData) logicData);
         }
-        else if (column == BaseLogic.OWNERSHIP_COL) {
-          doLogicOwnershipChooser((LogicData) logicData, column);
+        else if (column == simpplle.comcode.logic.BaseLogic.OWNERSHIP_COL) {
+          doLogicOwnershipChooser((simpplle.comcode.logic.LogicData) logicData, column);
         }
-        else if (column == BaseLogic.SPECIAL_AREA_COL) {
-          doLogicSpecialAreaChooser((LogicData) logicData, column);
+        else if (column == simpplle.comcode.logic.BaseLogic.SPECIAL_AREA_COL) {
+          doLogicSpecialAreaChooser((simpplle.comcode.logic.LogicData) logicData, column);
         }
-        else if (column == BaseLogic.ROAD_STATUS_COL) {
-          doLogicRoadStatusChooser((LogicData) logicData, column);
+        else if (column == simpplle.comcode.logic.BaseLogic.ROAD_STATUS_COL) {
+          doLogicRoadStatusChooser((simpplle.comcode.logic.LogicData) logicData, column);
         }
-        else if (column == BaseLogic.TRAIL_STATUS_COL) {
-          doLogicTrailStatusChooser((LogicData) logicData, column);
+        else if (column == simpplle.comcode.logic.BaseLogic.TRAIL_STATUS_COL) {
+          doLogicTrailStatusChooser((simpplle.comcode.logic.LogicData) logicData, column);
         }
-        else if (column == BaseLogic.LANDTYPE_COL) {
-          doLogicLandtypeChooser((LogicData) logicData, column);
+        else if (column == simpplle.comcode.logic.BaseLogic.LANDTYPE_COL) {
+          doLogicLandtypeChooser((simpplle.comcode.logic.LogicData) logicData, column);
         }
         else if (dialog instanceof ProcessProbabilityLogicDialog) {
-          if (column == ProcessProbLogic.MPB_HAZARD_COL) {
-            doMpbHazardChooser((ProcessProbLogicData) logicData);
+          if (column == simpplle.comcode.logic.ProcessProbLogic.MPB_HAZARD_COL) {
+            doMpbHazardChooser((simpplle.comcode.logic.ProcessProbLogicData) logicData);
           }
-          else if (column == ProcessProbLogic.ADJ_PROCESS_COL) {
-            doLogicAdjProcessChooser((ProcessProbLogicData) logicData);
+          else if (column == simpplle.comcode.logic.ProcessProbLogic.ADJ_PROCESS_COL) {
+            doLogicAdjProcessChooser((simpplle.comcode.logic.ProcessProbLogicData) logicData);
           }
         }
         else if (dialog instanceof FireEventLogicDialog) {
-          if (column == FireEventLogic.POSITION_COL) {
-            doFireLogicPositionChooser((LogicData) logicData);
+          if (column == simpplle.comcode.logic.FireEventLogic.POSITION_COL) {
+            doFireLogicPositionChooser((simpplle.comcode.logic.LogicData) logicData);
           }
-          else if (column == FireEventLogic.ORIGIN_PROCESS_COL) {
-            doFireLogicOriginProcessChooser((LogicData) logicData);
+          else if (column == simpplle.comcode.logic.FireEventLogic.ORIGIN_PROCESS_COL) {
+            doFireLogicOriginProcessChooser((simpplle.comcode.logic.LogicData) logicData);
           }
         }
         else if (dialog instanceof InvasiveSpeciesLogicDialog) {
-          if (column == InvasiveSpeciesLogic.SOIL_TYPE_COL) {
-            doSoilTypeChooser((InvasiveSpeciesLogicData) logicData);
+          if (column == simpplle.comcode.logic.InvasiveSpeciesLogic.SOIL_TYPE_COL) {
+            doSoilTypeChooser((simpplle.comcode.logic.InvasiveSpeciesLogicData) logicData);
           }
-          else if (column == InvasiveSpeciesLogic.INVASIVE_SPECIES_COL) {
-            doInvasiveSpeciesChooser((LogicData) logicData);
+          else if (column == simpplle.comcode.logic.InvasiveSpeciesLogic.INVASIVE_SPECIES_COL) {
+            doInvasiveSpeciesChooser((simpplle.comcode.logic.LogicData) logicData);
           }
         }
         else if (dialog instanceof InvasiveSpeciesMSULogicDialog) {
-          if (column == InvasiveSpeciesLogicMSU.PROCESS_COEFF_COL) {
-            doInvasiveSpeciesSimpplleTypeChooser((InvasiveSpeciesLogicDataMSU)logicData,SimpplleType.PROCESS);
+          if (column == simpplle.comcode.logic.InvasiveSpeciesLogicMSU.PROCESS_COEFF_COL) {
+            doInvasiveSpeciesSimpplleTypeChooser((simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU)logicData,SimpplleType.PROCESS);
           }
-          else if (column == InvasiveSpeciesLogicMSU.TREATMENT_COEFF_COL) {
-            doInvasiveSpeciesSimpplleTypeChooser((InvasiveSpeciesLogicDataMSU)logicData,SimpplleType.TREATMENT);
+          else if (column == simpplle.comcode.logic.InvasiveSpeciesLogicMSU.TREATMENT_COEFF_COL) {
+            doInvasiveSpeciesSimpplleTypeChooser((simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU)logicData,SimpplleType.TREATMENT);
           }
         }
         else if (dialog instanceof RegenerationLogicDialog) {
           if (column == SuccessionRegenerationData.SUCCESSION_SPECIES_COL &&
               ((RegenerationLogicDialog) dialog).getLogicKind() ==
-              RegenerationLogic.SUCCESSION) {
+              simpplle.comcode.logic.RegenerationLogic.SUCCESSION) {
             doSpeciesChooser();
           }
           else {
@@ -522,16 +524,16 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
           }
         }
         else if (dialog instanceof DoCompetitionDlg) {
-          if (column == DoCompetitionLogic.CHANGE_LIFEFORMS_COL) {
-            doCompetitionLifeformChooser((DoCompetitionData) logicData);
+          if (column == simpplle.comcode.logic.DoCompetitionLogic.CHANGE_LIFEFORMS_COL) {
+            doCompetitionLifeformChooser((simpplle.comcode.logic.DoCompetitionData) logicData);
           }
         }
         else if (dialog instanceof EvuSearchLogicDlg) {
-          doListSelectionChooser((EvuSearchData) logicData, column);
+          doListSelectionChooser((simpplle.comcode.logic.EvuSearchData) logicData, column);
         }
         else if (dialog instanceof ProducingSeedLogicDlg) {
-          if (column == ProducingSeedLogic.REGEN_TYPE_COL) {
-            doRegenTypeChooser((ProducingSeedLogicData) logicData);
+          if (column == simpplle.comcode.logic.ProducingSeedLogic.REGEN_TYPE_COL) {
+            doRegenTypeChooser((simpplle.comcode.logic.ProducingSeedLogicData) logicData);
           }
         }
 //        else if (dialog instanceof FireSuppClassALogicDlg) {

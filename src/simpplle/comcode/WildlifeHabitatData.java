@@ -136,7 +136,7 @@ public class WildlifeHabitatData {
 
   public String getBuffers() { return buffers; }
 
-  public void readLandCover(StringTokenizerPlus strTok) throws ParseError {
+  public void readLandCover(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
     if (strTok.countTokens() != 2) {
       throw new ParseError("Wrong number of fields in Land Cover file");
     }
@@ -192,7 +192,7 @@ public class WildlifeHabitatData {
     return strBuf.toString();
   }
 
-  public void readR1WHRLandCoverStruct(StringTokenizerPlus strTok) throws ParseError {
+  public void readR1WHRLandCoverStruct(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
     if (strTok.countTokens() != 4) {
       throw new ParseError("Wrong number of fields in Land Cover file");
     }
@@ -230,7 +230,7 @@ public class WildlifeHabitatData {
     str = strTok.getToken();
     if (str == null) { return; }
 
-    StringTokenizerPlus strTok1 = new StringTokenizerPlus(str,";");
+    simpplle.comcode.utility.StringTokenizerPlus strTok1 = new simpplle.comcode.utility.StringTokenizerPlus(str,";");
     int       count = strTok1.countTokens();
     SizeClass sizeClassValue;
     for(int i=0; i<count; i++) {
@@ -240,12 +240,12 @@ public class WildlifeHabitatData {
     }
   }
 
-  public void readDensity(StringTokenizerPlus strTok) throws ParseError {
+  public void readDensity(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
     if (strTok.countTokens() != 1) {
       throw new ParseError("Wrong number of fields in Density file");
     }
 
-    StringTokenizerPlus strTok1 = new StringTokenizerPlus(strTok.getToken(),"-");
+    simpplle.comcode.utility.StringTokenizerPlus strTok1 = new simpplle.comcode.utility.StringTokenizerPlus(strTok.getToken(),"-");
     if (density == null) { density = new Vector(); }
     int     count = strTok1.countTokens();
     Density densityValue;
@@ -257,7 +257,7 @@ public class WildlifeHabitatData {
     }
   }
 
-  public void readOther(StringTokenizerPlus strTok) throws ParseError {
+  public void readOther(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
     if (strTok.countTokens() != 3) {
       throw new ParseError("Wrong number of fields in Buffers file");
     }
@@ -267,7 +267,7 @@ public class WildlifeHabitatData {
     buffers = strTok.getToken();
  }
 
-  public void readElevation(StringTokenizerPlus strTok) throws ParseError {
+  public void readElevation(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
     if (strTok.countTokens() != 2) {
       throw new ParseError("Wrong number of fields in Elevation file");
     }
@@ -281,7 +281,7 @@ public class WildlifeHabitatData {
     elevation.addElement(elev);
  }
 
-  public void readR1WHRElevation(StringTokenizerPlus strTok) throws ParseError {
+  public void readR1WHRElevation(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
     if (strTok.countTokens() != 3) {
       throw new ParseError("Wrong number of fields in Elevation file");
     }
@@ -295,7 +295,7 @@ public class WildlifeHabitatData {
     elevation.addElement(elev);
   }
 
-  public void readR1WHRMinArea(StringTokenizerPlus strTok) throws ParseError {
+  public void readR1WHRMinArea(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
     if (strTok.countTokens() != 1) {
       throw new ParseError("Wrong number of fields in Min Area file");
     }
@@ -341,7 +341,7 @@ public class WildlifeHabitatData {
     return line;
   }
 
-  public boolean isValidHabitat(Evu evu, int tStep) {
+  public boolean isValidHabitat(simpplle.comcode.element.Evu evu, int tStep) {
     VegSimStateData state = evu.getState(tStep);
     if (state == null) { return false; }
 

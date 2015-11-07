@@ -51,7 +51,7 @@ public class FireSuppBeyondClassALogicDlg extends VegLogicDialog {
  */
   private void initialize() {
     sysKnowKind = SystemKnowledge.FIRE_SUPP_BEYOND_CLASS_A_LOGIC;
-    String[] kinds = new String[] {FireSuppBeyondClassALogic.FIRE_SUPP_BEYOND_CLASS_A.toString()};
+    String[] kinds = new String[] {simpplle.comcode.logic.FireSuppBeyondClassALogic.FIRE_SUPP_BEYOND_CLASS_A.toString()};
     super.initialize(kinds);
 
     tabPanels = new FireSuppBeyondClassALogicPanel[panelKinds.length];
@@ -59,7 +59,7 @@ public class FireSuppBeyondClassALogicDlg extends VegLogicDialog {
       String kind = panelKinds[i];
       tabPanels[i] =
           new FireSuppBeyondClassALogicPanel(this, kind,
-                                       FireSuppBeyondClassALogic.getInstance(),
+                                       simpplle.comcode.logic.FireSuppBeyondClassALogic.getInstance(),
                                        sysKnowKind);
       tabbedPane.add(tabPanels[i], kind);
     }

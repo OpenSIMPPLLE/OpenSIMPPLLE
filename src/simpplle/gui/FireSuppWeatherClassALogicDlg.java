@@ -2,7 +2,8 @@ package simpplle.gui;
 
 import java.awt.Frame;
 import simpplle.comcode.*;
-/** 
+
+/**
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
@@ -34,7 +35,7 @@ public class FireSuppWeatherClassALogicDlg extends VegLogicDialog {
 
   private void initialize() {
     sysKnowKind = SystemKnowledge.FIRE_SUPP_WEATHER_CLASS_A_LOGIC;
-    String[] kinds = new String[] {FireSuppWeatherClassALogic.FIRE_SUPP_WEATHER_CLASS_A_LOGIC.toString()};
+    String[] kinds = new String[] {simpplle.comcode.logic.FireSuppWeatherClassALogic.FIRE_SUPP_WEATHER_CLASS_A_LOGIC.toString()};
     super.initialize(kinds);
 
     tabPanels = new FireSuppWeatherClassALogicPanel[panelKinds.length];
@@ -42,7 +43,7 @@ public class FireSuppWeatherClassALogicDlg extends VegLogicDialog {
       String kind = panelKinds[i];
       tabPanels[i] =
           new FireSuppWeatherClassALogicPanel(this, kind,
-                                       FireSuppWeatherClassALogic.getInstance(),
+                                       simpplle.comcode.logic.FireSuppWeatherClassALogic.getInstance(),
                                        sysKnowKind);
       tabbedPane.add(tabPanels[i], kind);
     }

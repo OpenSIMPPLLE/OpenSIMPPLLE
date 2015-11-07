@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.util.*;
 
 import simpplle.comcode.TreatmentApplication;
-import simpplle.comcode.MyInteger;
+import simpplle.comcode.utility.MyInteger;
 import java.awt.event.*;
 
 /** 

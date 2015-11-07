@@ -16,7 +16,7 @@ package simpplle.comcode;
  * 
  */
 public class Range implements Comparable {
-  int lower, upper;
+  public int lower, upper;
 
   /**
    * Constructor for range.  takes in argument for lower and upper limits of range.  

@@ -1,12 +1,10 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-import simpplle.comcode.BaseLogic;
-import simpplle.comcode.SystemKnowledge;
+import simpplle.comcode.logic.BaseLogic;
 import simpplle.comcode.SystemKnowledge.Kinds;
-import simpplle.comcode.*;
-import javax.swing.table.*;
-/** 
+
+/**
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
@@ -36,16 +34,16 @@ public class FireSuppSpreadRateLogicPanel extends VegLogicPanel {
 
 
   protected void initColumns(TableColumn column, int col) {
-    if (col == FireSuppSpreadRateLogic.SLOPE_COL) {
-      column.setIdentifier(FireSuppSpreadRateLogic.SLOPE_COL);
+    if (col == simpplle.comcode.logic.FireSuppSpreadRateLogic.SLOPE_COL) {
+      column.setIdentifier(simpplle.comcode.logic.FireSuppSpreadRateLogic.SLOPE_COL);
       Utility.setColumnCellColor(column);
     }
-    else if (col == FireSuppSpreadRateLogic.AVERAGE_RATE_COL) {
-      column.setIdentifier(FireSuppSpreadRateLogic.AVERAGE_RATE_COL);
+    else if (col == simpplle.comcode.logic.FireSuppSpreadRateLogic.AVERAGE_RATE_COL) {
+      column.setIdentifier(simpplle.comcode.logic.FireSuppSpreadRateLogic.AVERAGE_RATE_COL);
       Utility.setColumnCellColor(column);
     }
-    else if (col == FireSuppSpreadRateLogic.EXTREME_RATE_COL) {
-      column.setIdentifier(FireSuppSpreadRateLogic.EXTREME_RATE_COL);
+    else if (col == simpplle.comcode.logic.FireSuppSpreadRateLogic.EXTREME_RATE_COL) {
+      column.setIdentifier(simpplle.comcode.logic.FireSuppSpreadRateLogic.EXTREME_RATE_COL);
       Utility.setColumnCellColor(column);
     }
     else {

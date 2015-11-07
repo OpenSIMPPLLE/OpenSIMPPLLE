@@ -5,7 +5,6 @@ import simpplle.comcode.Process;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Vector;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.*;
@@ -33,8 +32,8 @@ public class Succession extends Process {
     description = "Succession";
     color       = new Color(0,170,0);
 
-    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
   public static ProcessType getColoradoSuccession() {
@@ -52,11 +51,11 @@ public class Succession extends Process {
   }
 
 
-  protected int doProbability (Evu evu) {
+  protected int doProbability (simpplle.comcode.element.Evu evu) {
     return 100;
   }
 
-  public int doProbability (RegionalZone zone, Evu evu) {
+  public int doProbability (RegionalZone zone, simpplle.comcode.element.Evu evu) {
     return doProbability(evu);
   }
 
@@ -64,8 +63,8 @@ public class Succession extends Process {
     return printName;
   }
 
-  public static boolean isRegenState(RegionalZone zone, Evu evu, Lifeform lifeform) {
-    if (RegenerationLogic.isDataPresent()) {
+  public static boolean isRegenState(RegionalZone zone, simpplle.comcode.element.Evu evu, Lifeform lifeform) {
+    if (simpplle.comcode.logic.RegenerationLogic.isDataPresent()) {
       if (zone.getId() == ValidZones.SOUTH_CENTRAL_ALASKA) {
         return isRegenStateAlaska(zone,evu,lifeform);
       }
@@ -89,12 +88,12 @@ public class Succession extends Process {
     }
   }
 
-  public static boolean isRegenStateNew(Evu evu, Lifeform lifeform) {
-    return RegenerationLogic.isSuccessionSpecies(evu.getHabitatTypeGroup().getType(),evu,lifeform);
+  public static boolean isRegenStateNew(simpplle.comcode.element.Evu evu, Lifeform lifeform) {
+    return simpplle.comcode.logic.RegenerationLogic.isSuccessionSpecies(evu.getHabitatTypeGroup().getType(),evu,lifeform);
   }
-  public static boolean isRegenStateAlaska(RegionalZone zone, Evu evu, Lifeform lifeform) {
+  public static boolean isRegenStateAlaska(RegionalZone zone, simpplle.comcode.element.Evu evu, Lifeform lifeform) {
     boolean isRegenSpecies =
-                 RegenerationLogic.isSuccessionSpecies(evu.getHabitatTypeGroup().getType(),evu,lifeform);
+                 simpplle.comcode.logic.RegenerationLogic.isSuccessionSpecies(evu.getHabitatTypeGroup().getType(),evu,lifeform);
     Density density = (Density)evu.getState(SimpplleType.DENSITY);
 
     return (isRegenSpecies &&
@@ -106,7 +105,7 @@ public class Succession extends Process {
  * @param evu
  * @return true if zone is in regeneration state
  */
-  public static boolean isRegenStateCommon(RegionalZone zone, Evu evu) {
+  public static boolean isRegenStateCommon(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     HabitatTypeGroup     htGrp;
     HabitatTypeGroupType groupType;
 
@@ -154,7 +153,7 @@ public class Succession extends Process {
  * @param evu
  * @return false if no species, true if species equals Bo, MTN_CHP, XERIC shrubs, Mesic Shrubs, or CA chp, false otherwise
  */
-  public static boolean isRegenStateCalifornia(RegionalZone zone, Evu evu) {
+  public static boolean isRegenStateCalifornia(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return false; }
 
@@ -174,7 +173,7 @@ public class Succession extends Process {
  * @param evu
  * @return true if regen is regeneration delay, false otherwise, defaults to just whether an evu is in delay
  */
-  public static boolean isRegenDelay(RegionalZone zone, Evu evu) {
+  public static boolean isRegenDelay(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     switch (zone.getId()) {
       case ValidZones.WESTSIDE_REGION_ONE:
       case ValidZones.EASTSIDE_REGION_ONE:
@@ -196,7 +195,7 @@ public class Succession extends Process {
  * @param evu
  * @return false no matter the evu input into this method... it is designed only to invalidate an isRegenDelay
  */
-  public static boolean isRegenDelay(Evu evu) {
+  public static boolean isRegenDelay(simpplle.comcode.element.Evu evu) {
     return false;
   }
 /**
@@ -207,7 +206,7 @@ public class Succession extends Process {
  * <p>True if habitat type group is A1, A2, B2, D3, or E2 AND species = NS Mesic Shrubs, Upland Grasses, Xeric Shrubs, Alpine or Altered Grasses or Native vorbs
  * AND the evu succession is not 3 decades
  */
-  private static boolean isRegenDelayCommon (RegionalZone zone, Evu evu) {
+  private static boolean isRegenDelayCommon (RegionalZone zone, simpplle.comcode.element.Evu evu) {
     HabitatTypeGroupType groupType = evu.getHabitatTypeGroup().getType();
     Species              species   = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return false; }
@@ -230,10 +229,10 @@ public class Succession extends Process {
   }
 
   public static VegetativeType regen(RegionalZone zone,
-                                     Evu evu,
+                                     simpplle.comcode.element.Evu evu,
                                      Lifeform lifeform,
                                      Lifeform adjLifeform) {
-    if (RegenerationLogic.isDataPresent()) {
+    if (simpplle.comcode.logic.RegenerationLogic.isDataPresent()) {
       switch (zone.getId()) {
         default:
           return regenNew(zone, evu, lifeform, adjLifeform);
@@ -246,9 +245,9 @@ public class Succession extends Process {
 
   // These variables are to eliminate excess temporaries being created
   // in the following method during simulations.
-  private static HashMap<Evu,Integer> seedSource      = new HashMap<Evu,Integer>();
-  private static ArrayList<Evu>       seedSourceKeys  = new ArrayList<Evu>();
-  private static ArrayList<MyInteger>   seedSourceAcres = new ArrayList<MyInteger>();
+  private static HashMap<simpplle.comcode.element.Evu,Integer> seedSource      = new HashMap<simpplle.comcode.element.Evu,Integer>();
+  private static ArrayList<simpplle.comcode.element.Evu>       seedSourceKeys  = new ArrayList<simpplle.comcode.element.Evu>();
+  private static ArrayList<simpplle.comcode.utility.MyInteger>   seedSourceAcres = new ArrayList<simpplle.comcode.utility.MyInteger>();
   private static ArrayList<Species>   seedSourceSpecies = new ArrayList<Species>();
   /**
    *    The Adjacent Process we are looking at below and in the other R1 regen could be either the
@@ -264,7 +263,7 @@ public class Succession extends Process {
    * @return
    */
   private static VegetativeType regenNew(RegionalZone zone,
-                                         Evu evu,
+                                         simpplle.comcode.element.Evu evu,
                                          Lifeform lifeform,
                                          Lifeform regenLifeform) {
     AdjacentData[]   adjacentData;
@@ -314,18 +313,18 @@ public class Succession extends Process {
     Species tmpSpecies;
     index = 0;
     for(i=0;i<numAdj;i++) {
-      Evu adj        = adjacentData[i].evu;
+      simpplle.comcode.element.Evu adj        = adjacentData[i].evu;
       // Do not want current because doNextState may have already happened
       // for this adj unit, in which case we would be getting the wrong Species.
       VegSimStateData adjState = adj.getState(cStep-1,regenLifeform);
       if (adjState == null) { continue; }
 
-      if (adj.producingSeed(regenLifeform,Evu.ADJACENT_SEED))
+      if (adj.producingSeed(regenLifeform, simpplle.comcode.element.Evu.ADJACENT_SEED))
       {
-        MyInteger acres;
+        simpplle.comcode.utility.MyInteger acres;
         Integer keyValueIndex = (Integer) seedSource.get(adj);
         if (keyValueIndex == null) {
-          acres         = new MyInteger(adj.getAcres());
+          acres         = new simpplle.comcode.utility.MyInteger(adj.getAcres());
           keyValueIndex = index;
           seedSource.put(adj,keyValueIndex);
           seedSourceKeys.add(adj);
@@ -348,9 +347,9 @@ public class Succession extends Process {
           evu.calculateProducingSeed(lastLifeState.getVeg(),
                                      lastLifeState.getTimeStep(),
                                      regenLifeform,
-                                     Evu.IN_LANDSCAPE_SEED))
+                                     simpplle.comcode.element.Evu.IN_LANDSCAPE_SEED))
       {
-        tmpState = RegenerationLogic.getInLandscapeSeedState(ecoGroup,
+        tmpState = simpplle.comcode.logic.RegenerationLogic.getInLandscapeSeedState(ecoGroup,
           evu,
           lastLifeState,
           lastLifeState.getTimeStep(),
@@ -370,7 +369,7 @@ public class Succession extends Process {
     tmpState = null;
 
     ArrayList<RegenerationSuccessionInfo>  prefSpecies =
-      RegenerationLogic.getSuccessionSpecies(ecoGroup,evu,lifeform);
+      simpplle.comcode.logic.RegenerationLogic.getSuccessionSpecies(ecoGroup,evu,lifeform);
     RegenerationSuccessionInfo regenInfo;
     if (prefSpecies != null && prefSpecies.size() > 0) {
       for (i=0; i<prefSpecies.size(); i++) {
@@ -393,13 +392,13 @@ public class Succession extends Process {
       return null;
     }
 
-    Utility.sort(seedSourceKeys,seedSourceAcres);
-    ArrayList<Evu> sortedKeys = seedSourceKeys;
+    simpplle.comcode.utility.Utility.sort(seedSourceKeys,seedSourceAcres);
+    ArrayList<simpplle.comcode.element.Evu> sortedKeys = seedSourceKeys;
 
     ArrayList<VegetativeType>  v;
     for (i=0; i<sortedKeys.size(); i++) {
       if (sortedKeys.get(i) == null) { continue; }
-      v = RegenerationLogic.getAdjacentStates(ecoGroup,sortedKeys.get(i),cStep-1,lifeform);
+      v = simpplle.comcode.logic.RegenerationLogic.getAdjacentStates(ecoGroup,sortedKeys.get(i),cStep-1,lifeform);
       if (v == null || v.size() == 0) { continue; }
       for (j=0; j<v.size(); j++) {
         tmpState = (VegetativeType)v.get(j);
@@ -426,7 +425,7 @@ public class Succession extends Process {
    * @param evu
    * @return
    */
-  private static VegetativeType regenCommon(RegionalZone zone, Evu evu) {
+  private static VegetativeType regenCommon(RegionalZone zone, simpplle.comcode.element.Evu evu) {
     AdjacentData[]   adjacentData;
     Hashtable        seedSource = null;
     int              zoneId;
@@ -439,7 +438,7 @@ public class Succession extends Process {
     VegetativeType   newState = null;
     HabitatTypeGroup htGrp;
     Area             area = Simpplle.currentArea;
-    Evu              adj;
+    simpplle.comcode.element.Evu adj;
     Enumeration      e;
     int              i,j;
     int              numAdj;
@@ -512,7 +511,7 @@ public class Succession extends Process {
 
       // Find species with most acres since we didn't find
       // any of the species in the above searches.
-      Utility.sort(key,value);
+      simpplle.comcode.utility.Utility.sort(key,value);
       sortedKeys = key;
 
       for(i=0;i<sortedKeys.length;i++) {

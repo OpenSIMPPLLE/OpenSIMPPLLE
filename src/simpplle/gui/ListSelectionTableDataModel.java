@@ -2,7 +2,7 @@ package simpplle.gui;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
-import simpplle.comcode.AbstractLogicData;
+import simpplle.comcode.logic.AbstractLogicData;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 

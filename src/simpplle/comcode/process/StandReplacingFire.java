@@ -41,7 +41,7 @@ public class StandReplacingFire extends Process {
  * Method to calculate if Stand replacing fire spreads.  If fire is suppressed returns false, otherwise returns the result of fire spread calculation based
  * on the fire resistance of Evu.  
  */
-  public boolean doSpread(RegionalZone zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread(RegionalZone zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     boolean fireSupp = Simpplle.getCurrentSimulation().fireSuppression();
     int     ts       = Simulation.getCurrentTimeStep();
 
@@ -49,7 +49,7 @@ public class StandReplacingFire extends Process {
     VegetativeType  vegType  = state.getVeg();
     Lifeform        lifeform = state.getLifeform();
 
-    FireSuppBeyondClassALogic logicInst = FireSuppBeyondClassALogic.getInstance();
+    simpplle.comcode.logic.FireSuppBeyondClassALogic logicInst = simpplle.comcode.logic.FireSuppBeyondClassALogic.getInstance();
     boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
 
     if (fireSupp &&

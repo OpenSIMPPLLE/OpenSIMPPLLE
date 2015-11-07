@@ -1,6 +1,6 @@
 package simpplle.gui;
 
-import simpplle.comcode.ConiferEncroachmentLogicData;
+import simpplle.comcode.logic.ConiferEncroachmentLogicData;
 
 import java.awt.*;
 import javax.swing.*;

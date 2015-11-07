@@ -171,7 +171,7 @@ public class LtaValleySegmentGroup {
     return key.equalsIgnoreCase(KEYWORD[keyid]);
   }
 
-  private int getKeyword (StringTokenizerPlus strTok) throws ParseError, IOException {
+  private int getKeyword (simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError, IOException {
     String value;
 
     value = strTok.nextToken();
@@ -192,14 +192,14 @@ public class LtaValleySegmentGroup {
   private void readGroup (BufferedReader fin) throws ParseError, IOException {
     int                 key = EOF;
     String              value, line, name;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
 
     // loop until we find the "END", "CLASS", or EOF.
     do {
       line   = fin.readLine();
       if (line == null) { key = EOF; continue;}
 
-      strTok = new StringTokenizerPlus(line," ");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line," ");
       if (strTok.hasMoreTokens() == false) {continue;}
 
       key = getKeyword(strTok);
@@ -278,7 +278,7 @@ public class LtaValleySegmentGroup {
   private void readData(BufferedReader fin) {
     int                 key = EOF, i;
     String              value, line;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
 
     // Create a log file name
     String dir  = System.getProperty("user.dir");
@@ -295,7 +295,7 @@ public class LtaValleySegmentGroup {
         line   = fin.readLine();
         if (line == null) { key = EOF; continue;}
 
-        strTok = new StringTokenizerPlus(line," ");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line," ");
         if (strTok.hasMoreTokens() == false) {continue;}
 
         key = getKeyword(strTok);
@@ -337,7 +337,7 @@ public class LtaValleySegmentGroup {
     BufferedReader        fin;
     int                   key = EOF, i;
     String                value, line;
-    StringTokenizerPlus   strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     boolean               foundGroup = false, foundState = false;
     LtaValleySegmentGroup newGroup;
 
@@ -360,7 +360,7 @@ public class LtaValleySegmentGroup {
       do {
         if (line == null) { key = EOF; continue;}
 
-        strTok = new StringTokenizerPlus(line);
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line);
         if (strTok.hasMoreTokens() == false) {
           line = fin.readLine();
           continue;
@@ -410,7 +410,7 @@ public class LtaValleySegmentGroup {
   {
     int                 key = -1;
     String              value, line;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
 
     String name = groupName.trim().toUpperCase();
     if (name == null) { throw new ParseError("Invalid Group Name Found."); }
@@ -424,7 +424,7 @@ public class LtaValleySegmentGroup {
       line   = fin.readLine();
       if (line == null) { key = EOF; continue;}
 
-      strTok = new StringTokenizerPlus(line);
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line);
       if (strTok.hasMoreTokens() == false) {continue;}
 
       key = getKeyword(strTok);
@@ -454,7 +454,7 @@ public class LtaValleySegmentGroup {
 //    return parseList(strTok,false);
 //  }
 
-  private Vector parseList(StringTokenizerPlus strTok, boolean isInteger)
+  private Vector parseList(simpplle.comcode.utility.StringTokenizerPlus strTok, boolean isInteger)
     throws ParseError
   {
     Vector  result = null;
@@ -505,14 +505,14 @@ public class LtaValleySegmentGroup {
   }
 
   public void saveAs(File outfile) throws SimpplleError {
-    setFilename(Utility.makeSuffixedPathname(outfile,"",FILE_EXT));
+    setFilename(simpplle.comcode.utility.Utility.makeSuffixedPathname(outfile,"",FILE_EXT));
     save();
   }
 
   public void save() throws SimpplleError {
     PrintWriter fout;
     try {
-      fout = Utility.openPrintWriter(getFilename());
+      fout = simpplle.comcode.utility.Utility.openPrintWriter(getFilename());
     }
     catch (SimpplleError err) {
       clearFilename();
@@ -616,7 +616,7 @@ public class LtaValleySegmentGroup {
       v.addElement((String)keys.nextElement());
     }
     stateStrings = (String[]) v.toArray(new String[v.size()]);
-    Utility.sort(stateStrings);
+    simpplle.comcode.utility.Utility.sort(stateStrings);
 
     for(int i=0; i<stateStrings.length; i++) {
       state = (PotentialAquaticState) states.get(stateStrings[i]);

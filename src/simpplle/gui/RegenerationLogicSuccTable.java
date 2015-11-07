@@ -1,30 +1,20 @@
 package simpplle.gui;
 
-import java.awt.*;
-import java.io.File;
-import java.util.Enumeration;
 import java.util.Vector;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
 
 import simpplle.JSimpplle;
 import simpplle.comcode.HabitatTypeGroup;
 import simpplle.comcode.SuccessionRegenerationData;
-import simpplle.comcode.RegenerationLogic;
-import simpplle.comcode.Simpplle;
-import simpplle.comcode.SimpplleError;
+import simpplle.comcode.logic.RegenerationLogic;
 import simpplle.comcode.Species;
-import simpplle.comcode.SystemKnowledge;
+
 import java.awt.event.*;
 import simpplle.comcode.HabitatTypeGroupType;
 import java.awt.Font;
 import simpplle.comcode.SystemKnowledge.Kinds;
-import simpplle.comcode.FireRegenerationData;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 

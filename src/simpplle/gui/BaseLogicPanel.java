@@ -9,12 +9,11 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
-import simpplle.comcode.AbstractBaseLogic;
+import simpplle.comcode.logic.AbstractBaseLogic;
 import javax.swing.table.TableColumn;
 import java.util.Enumeration;
 
 import simpplle.comcode.*;
-import java.awt.Color;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -110,8 +109,8 @@ public class BaseLogicPanel extends JPanel {
  * @param col
  */
   protected void initBaseColumns(TableColumn column, int col) { 
-    if (col == BaseLogic.ROW_COL) {
-      column.setIdentifier(BaseLogic.ROW_COL);
+    if (col == simpplle.comcode.logic.BaseLogic.ROW_COL) {
+      column.setIdentifier(simpplle.comcode.logic.BaseLogic.ROW_COL);
       column.setCellRenderer(new AlternateRowColorDefaultTableCellRenderer());
     }
   }

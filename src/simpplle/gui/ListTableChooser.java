@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
-import simpplle.comcode.LogicData;
+import simpplle.comcode.logic.LogicData;
 import java.util.ArrayList;
 /** 
  * The University of Montana owns copyright of the designated documentation contained 

@@ -26,7 +26,7 @@ public class ProcessChooser {
  * @param processes the list of processes in an evu
  * @return
  */
-  private static ProcessType init(Evu evu, ArrayList<ProcessType> processes) {
+  private static ProcessType init(simpplle.comcode.element.Evu evu, ArrayList<ProcessType> processes) {
     int totalProb = 0;
     CumulativeProcessProb cumulProbData;
 
@@ -68,7 +68,7 @@ public class ProcessChooser {
    * @param processes
    * @return the process type, returns succession as default
    */
-  public static ProcessType doStochastic(Evu evu, ArrayList<ProcessType> processes) {
+  public static ProcessType doStochastic(simpplle.comcode.element.Evu evu, ArrayList<ProcessType> processes) {
     init(evu,processes);
 
     int                   randNum = Simulation.getInstance().random();
@@ -91,7 +91,7 @@ public class ProcessChooser {
    * @param processes all the processes in a particular evu
    * @return the highest process probability.  By default this is set to SUCCESSION.  
    */
-  public static ProcessType doHighest(Evu evu, ArrayList<ProcessType> processes) {
+  public static ProcessType doHighest(simpplle.comcode.element.Evu evu, ArrayList<ProcessType> processes) {
     ProcessType   selectedType = ProcessType.SUCCESSION;
     int           highestProb = 0, prob;
 

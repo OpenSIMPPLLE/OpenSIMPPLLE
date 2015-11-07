@@ -2,9 +2,9 @@ package simpplle.gui;
 
 import javax.swing.table.TableColumn;
 
-import simpplle.comcode.BaseLogic;
+import simpplle.comcode.logic.BaseLogic;
 import simpplle.comcode.Climate;
-import simpplle.comcode.FireSuppEventLogic;
+import simpplle.comcode.logic.FireSuppEventLogic;
 import simpplle.comcode.SystemKnowledge.Kinds;
 /** 
  * The University of Montana owns copyright of the designated documentation contained 

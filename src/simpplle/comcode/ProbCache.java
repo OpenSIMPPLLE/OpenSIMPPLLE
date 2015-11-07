@@ -18,15 +18,15 @@ package simpplle.comcode;
 public abstract class ProbCache {
   private static final Short[] values;
 
-  private static final Short NOPROB = new Short((short)Evu.NOPROB);
-  private static final Short D      = new Short((short)Evu.D);
-  private static final Short L      = new Short((short)Evu.L);
-  private static final Short S      = new Short((short)Evu.S);
-  private static final Short SUPP   = new Short((short)Evu.SUPP);
-  private static final Short SE     = new Short((short)Evu.SE);
-  private static final Short SFS    = new Short((short)Evu.SFS);
-  private static final Short COMP   = new Short((short)Evu.COMP);
-  private static final Short GAP    = new Short((short)Evu.GAP);
+  private static final Short NOPROB = new Short((short) simpplle.comcode.element.Evu.NOPROB);
+  private static final Short D      = new Short((short) simpplle.comcode.element.Evu.D);
+  private static final Short L      = new Short((short) simpplle.comcode.element.Evu.L);
+  private static final Short S      = new Short((short) simpplle.comcode.element.Evu.S);
+  private static final Short SUPP   = new Short((short) simpplle.comcode.element.Evu.SUPP);
+  private static final Short SE     = new Short((short) simpplle.comcode.element.Evu.SE);
+  private static final Short SFS    = new Short((short) simpplle.comcode.element.Evu.SFS);
+  private static final Short COMP   = new Short((short) simpplle.comcode.element.Evu.COMP);
+  private static final Short GAP    = new Short((short) simpplle.comcode.element.Evu.GAP);
 
   static {
     values = new Short[10100];
@@ -42,15 +42,15 @@ public abstract class ProbCache {
  */
   public static Short get(int value) {
     switch (value) {
-      case Evu.NOPROB: return NOPROB;
-      case Evu.D:      return D;
-      case Evu.L:      return L;
-      case Evu.S:      return S;
-      case Evu.SUPP:   return SUPP;
-      case Evu.SE:     return SE;
-      case Evu.SFS:    return SFS;
-      case Evu.COMP:   return COMP;
-      case Evu.GAP:    return GAP;
+      case simpplle.comcode.element.Evu.NOPROB: return NOPROB;
+      case simpplle.comcode.element.Evu.D:      return D;
+      case simpplle.comcode.element.Evu.L:      return L;
+      case simpplle.comcode.element.Evu.S:      return S;
+      case simpplle.comcode.element.Evu.SUPP:   return SUPP;
+      case simpplle.comcode.element.Evu.SE:     return SE;
+      case simpplle.comcode.element.Evu.SFS:    return SFS;
+      case simpplle.comcode.element.Evu.COMP:   return COMP;
+      case simpplle.comcode.element.Evu.GAP:    return GAP;
       default:         return values[value];
     }
   }

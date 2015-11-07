@@ -3,6 +3,8 @@ package simpplle.comcode;
 import java.io.*;
 import java.util.*;
 
+import simpplle.comcode.element.ExistingAquaticUnit;
+import simpplle.comcode.element.Trails;
 import simpplle.gui.ElevationRelativePosition;
 
 
@@ -50,9 +52,9 @@ public class ImportArea {
  */
   private boolean readNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
     String              line, str;
-    StringTokenizerPlus strTok;
-    HashMap<Integer,Evu>  unitHm = new HashMap<Integer, Evu>();
-    Evu[]               allEvu;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    HashMap<Integer, simpplle.comcode.element.Evu>  unitHm = new HashMap<Integer, simpplle.comcode.element.Evu>();
+    simpplle.comcode.element.Evu[]               allEvu;
     int                 maxEvuId = -1, i, id, adjId, index;
     String              posStr, windStr;
     char                pos, wind;
@@ -66,7 +68,7 @@ public class ImportArea {
 
     while (line != null && line.trim().equals("END") == false) {
       if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       id = strTok.getIntToken();
       adjId = strTok.getIntToken();
@@ -111,22 +113,22 @@ public class ImportArea {
       }
       wind = windStr.charAt(0);
 
-      if (pos != Evu.ABOVE && pos != Evu.BELOW && pos != Evu.NEXT_TO) {
+      if (pos != simpplle.comcode.element.Evu.ABOVE && pos != simpplle.comcode.element.Evu.BELOW && pos != simpplle.comcode.element.Evu.NEXT_TO) {
         logFile.println(line);
         logFile.println("   " + pos + " is not a valid position value.");
         logFile.println("   Valid values are:  A, B, N");
         return false;
       }
-      if (wind != Evu.DOWNWIND && wind != Evu.NO_WIND) {
+      if (wind != simpplle.comcode.element.Evu.DOWNWIND && wind != simpplle.comcode.element.Evu.NO_WIND) {
         logFile.println(line);
         logFile.println("   " + wind + " is not a valid wind value.");
         logFile.println("   Valid values are:  D, N");
         return false;
       }
 
-      Evu evu = unitHm.get(id);
+      simpplle.comcode.element.Evu evu = unitHm.get(id);
       if (evu == null) {
-        evu = new Evu(id);
+        evu = new simpplle.comcode.element.Evu(id);
         unitHm.put(id, evu);
       }
       area.addAdjacentData(evu,adjId,pos,wind);
@@ -141,9 +143,9 @@ public class ImportArea {
       hasAttributes = true;
     }
 
-    allEvu = new Evu[maxEvuId+1];
+    allEvu = new simpplle.comcode.element.Evu[maxEvuId+1];
 
-    for (Evu evu : unitHm.values()) {
+    for (simpplle.comcode.element.Evu evu : unitHm.values()) {
       id = evu.getId();
       allEvu[id] = evu;
     }
@@ -167,9 +169,9 @@ public class ImportArea {
  */
   private boolean readNeighborsNew(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
     String              line, str;
-    StringTokenizerPlus strTok;
-    HashMap<Integer,Evu>  unitHm = new HashMap<Integer, Evu>();
-    Evu[]               allEvu;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    HashMap<Integer, simpplle.comcode.element.Evu>  unitHm = new HashMap<Integer, simpplle.comcode.element.Evu>();
+    simpplle.comcode.element.Evu[]               allEvu;
     int                 maxEvuId = -1, i, id, adjId, index;
     String              windStr;
     char                pos='N', wind;
@@ -184,7 +186,7 @@ public class ImportArea {
 
     while (line != null && line.trim().equals("END") == false) {
       if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       id = strTok.getIntToken();
       adjId = strTok.getIntToken();
@@ -202,10 +204,10 @@ public class ImportArea {
         elevation = Integer.parseInt(str);
       }
       catch (NumberFormatException ex) {
-        elevation = NaturalElement.INVALID_ELEV;
+        elevation = simpplle.comcode.element.NaturalElement.INVALID_ELEV;
       }
 
-      if (elevation == NaturalElement.INVALID_ELEV) {
+      if (elevation == simpplle.comcode.element.NaturalElement.INVALID_ELEV) {
         String posStr = str;
         if (posStr.length() > 1) {
           index = posStr.lastIndexOf('\'');
@@ -222,7 +224,7 @@ public class ImportArea {
         }
         pos = posStr.charAt(0);
 
-        if (pos != Evu.ABOVE && pos != Evu.BELOW && pos != Evu.NEXT_TO) {
+        if (pos != simpplle.comcode.element.Evu.ABOVE && pos != simpplle.comcode.element.Evu.BELOW && pos != simpplle.comcode.element.Evu.NEXT_TO) {
           logFile.println(line);
           logFile.println("   " + pos + " is not a valid position or Elevation value.");
           logFile.println("   Valid values are:  A, B, N or Integer Elevation");
@@ -250,16 +252,16 @@ public class ImportArea {
       }
       wind = windStr.charAt(0);
 
-      if (wind != Evu.DOWNWIND && wind != Evu.NO_WIND) {
+      if (wind != simpplle.comcode.element.Evu.DOWNWIND && wind != simpplle.comcode.element.Evu.NO_WIND) {
         logFile.println(line);
         logFile.println("   " + wind + " is not a valid wind value.");
         logFile.println("   Valid values are:  D, N");
         return false;
       }
 
-      Evu evu = unitHm.get(id);
+      simpplle.comcode.element.Evu evu = unitHm.get(id);
       if (evu == null) {
-        evu = new Evu(id);
+        evu = new simpplle.comcode.element.Evu(id);
         unitHm.put(id, evu);
 
         // Need only set elevation once.
@@ -278,9 +280,9 @@ public class ImportArea {
       hasAttributes = true;
     }
 
-    allEvu = new Evu[maxEvuId+1];
+    allEvu = new simpplle.comcode.element.Evu[maxEvuId+1];
 
-    for (Evu evu : unitHm.values()) {
+    for (simpplle.comcode.element.Evu evu : unitHm.values()) {
       id = evu.getId();
       allEvu[id] = evu;
     }
@@ -301,10 +303,10 @@ public class ImportArea {
  */
   private boolean readLandNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
     String              line, str;
-    StringTokenizerPlus strTok;
-    ExistingLandUnit    elu = null, adjElu = null;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    simpplle.comcode.element.ExistingLandUnit elu = null, adjElu = null;
     HashMap             units = new HashMap();
-    ExistingLandUnit[]  allElu;
+    simpplle.comcode.element.ExistingLandUnit[]  allElu;
     int                 maxId = -1, i, id, adjId, index;
     int                 elevation;
     Integer             idObj, adjIdObj;
@@ -318,7 +320,7 @@ public class ImportArea {
 
     while (line != null && line.trim().equals("END") == false) {
       if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       id = strTok.getIntToken();
       adjId = strTok.getIntToken();
@@ -340,16 +342,16 @@ public class ImportArea {
       }
 
       idObj = new Integer(id);
-      elu = (ExistingLandUnit)units.get(idObj);
+      elu = (simpplle.comcode.element.ExistingLandUnit)units.get(idObj);
       if (elu == null) {
-        elu = new ExistingLandUnit(id);
+        elu = new simpplle.comcode.element.ExistingLandUnit(id);
         units.put(idObj,elu);
       }
 
       adjIdObj = new Integer(adjId);
-      adjElu = (ExistingLandUnit)units.get(adjIdObj);
+      adjElu = (simpplle.comcode.element.ExistingLandUnit)units.get(adjIdObj);
       if (adjElu == null) {
-        adjElu = new ExistingLandUnit(adjId);
+        adjElu = new simpplle.comcode.element.ExistingLandUnit(adjId);
         units.put(adjIdObj,adjElu);
       }
 
@@ -366,12 +368,12 @@ public class ImportArea {
       hasAttributes = true;
     }
 
-    allElu = new ExistingLandUnit[maxId+1];
+    allElu = new simpplle.comcode.element.ExistingLandUnit[maxId+1];
 
     Iterator it = units.keySet().iterator();
     while (it.hasNext()) {
       idObj = (Integer)it.next();
-      elu   = (ExistingLandUnit)units.get(idObj);
+      elu   = (simpplle.comcode.element.ExistingLandUnit)units.get(idObj);
       allElu[elu.getId()] = elu;
     }
 
@@ -391,10 +393,10 @@ public class ImportArea {
  */
   private boolean readAquaticNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
     String              line, str;
-    StringTokenizerPlus strTok;
-    ExistingAquaticUnit eau = null, adjEau = null;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    simpplle.comcode.element.ExistingAquaticUnit eau = null, adjEau = null;
     HashMap             units = new HashMap();
-    ExistingAquaticUnit[] allEau;
+    simpplle.comcode.element.ExistingAquaticUnit[] allEau;
     int                 maxId = -1, id, adjId, index;
     Integer             idObj, adjIdObj;
     String              flowStr;
@@ -409,7 +411,7 @@ public class ImportArea {
 
     while (line != null && line.trim().equals("END") == false) {
       if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       id = strTok.getIntToken();
       adjId = strTok.getIntToken();
@@ -439,15 +441,15 @@ public class ImportArea {
       flow = flowStr.charAt(0);
 
       idObj = new Integer(id);
-      eau = (ExistingAquaticUnit)units.get(idObj);
+      eau = (simpplle.comcode.element.ExistingAquaticUnit)units.get(idObj);
       if (eau == null) {
-        eau = new ExistingAquaticUnit(id);
+        eau = new simpplle.comcode.element.ExistingAquaticUnit(id);
         units.put(idObj,eau);
       }
 
       if (adjId != -9999) {
         adjIdObj = new Integer(adjId);
-        adjEau = (ExistingAquaticUnit) units.get(adjIdObj);
+        adjEau = (simpplle.comcode.element.ExistingAquaticUnit) units.get(adjIdObj);
         if (adjEau == null) {
           adjEau = new ExistingAquaticUnit(adjId);
           units.put(adjIdObj, adjEau);
@@ -470,12 +472,12 @@ public class ImportArea {
       hasAttributes = true;
     }
 
-    allEau = new ExistingAquaticUnit[maxId+1];
+    allEau = new simpplle.comcode.element.ExistingAquaticUnit[maxId+1];
 
     Iterator it = units.keySet().iterator();
     while (it.hasNext()) {
       idObj = (Integer)it.next();
-      eau   = (ExistingAquaticUnit)units.get(idObj);
+      eau   = (simpplle.comcode.element.ExistingAquaticUnit)units.get(idObj);
       allEau[eau.getId()] = eau;
     }
 
@@ -490,9 +492,9 @@ public class ImportArea {
       ArrayList preds = allEau[i].getPredecessors();
       if (preds != null && preds.size() > 0) {
         for (int a=0; a<preds.size(); a++) {
-          ExistingAquaticUnit unit = (ExistingAquaticUnit)preds.get(a);
+          simpplle.comcode.element.ExistingAquaticUnit unit = (simpplle.comcode.element.ExistingAquaticUnit)preds.get(a);
           for (int b=a+1; b<preds.size(); b++) {
-            ExistingAquaticUnit unit2 = (ExistingAquaticUnit)preds.get(b);
+            simpplle.comcode.element.ExistingAquaticUnit unit2 = (simpplle.comcode.element.ExistingAquaticUnit)preds.get(b);
 
             ArrayList unitPreds = unit.getPredecessors();
             if (unitPreds != null) { unitPreds.remove(unit2); }
@@ -523,7 +525,7 @@ public class ImportArea {
    * @throws IOException caught in GUi
    */
   private boolean readRoadNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
-    HashMap<Integer,Roads> units = new HashMap<Integer,Roads>();
+    HashMap<Integer, simpplle.comcode.element.Roads> units = new HashMap<Integer, simpplle.comcode.element.Roads>();
     int                    maxId = -1;
 
     String line = fin.readLine();
@@ -535,10 +537,10 @@ public class ImportArea {
 
     while (line != null && line.trim().equals("END") == false) {
       int   id, adjId;
-      Roads roadUnit, adjRoadUnit;
+      simpplle.comcode.element.Roads roadUnit, adjRoadUnit;
 
       if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
+      simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       id = strTok.getIntToken();
       adjId = strTok.getIntToken();
@@ -553,14 +555,14 @@ public class ImportArea {
 
       roadUnit = units.get(id);
       if (roadUnit == null) {
-        roadUnit = new Roads(id);
+        roadUnit = new simpplle.comcode.element.Roads(id);
         units.put(id,roadUnit);
       }
 
       if (adjId != -9999) {
         adjRoadUnit = units.get(adjId);
         if (adjRoadUnit == null) {
-          adjRoadUnit = new Roads(adjId);
+          adjRoadUnit = new simpplle.comcode.element.Roads(adjId);
           units.put(adjId, adjRoadUnit);
         }
       }
@@ -574,8 +576,8 @@ public class ImportArea {
       hasAttributes = true;
     }
 
-    Roads[] allRoads = new Roads[maxId+1];
-    Roads   roadUnit;
+    simpplle.comcode.element.Roads[] allRoads = new simpplle.comcode.element.Roads[maxId+1];
+    simpplle.comcode.element.Roads roadUnit;
     for (Integer keyId : units.keySet()) {
       roadUnit = units.get(keyId);
       allRoads[roadUnit.getId()] = roadUnit;
@@ -597,7 +599,7 @@ public class ImportArea {
  * @throws IOException caught in GUI
  */
   private boolean readTrailNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
-    HashMap<Integer,Trails> units = new HashMap<Integer,Trails>();
+    HashMap<Integer, simpplle.comcode.element.Trails> units = new HashMap<Integer, simpplle.comcode.element.Trails>();
     int                    maxId = -1;
 
     String line = fin.readLine();
@@ -612,7 +614,7 @@ public class ImportArea {
       Trails trailUnit, adjTrailUnit;
 
       if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
+      simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       id = strTok.getIntToken();
       adjId = strTok.getIntToken();
@@ -627,14 +629,14 @@ public class ImportArea {
 
       trailUnit = units.get(id);
       if (trailUnit == null) {
-        trailUnit = new Trails(id);
+        trailUnit = new simpplle.comcode.element.Trails(id);
         units.put(id,trailUnit);
       }
 
       if (adjId != -9999) {
         adjTrailUnit = units.get(adjId);
         if (adjTrailUnit == null) {
-          adjTrailUnit = new Trails(adjId);
+          adjTrailUnit = new simpplle.comcode.element.Trails(adjId);
           units.put(adjId, adjTrailUnit);
         }
       }
@@ -648,8 +650,8 @@ public class ImportArea {
       hasAttributes = true;
     }
 
-    Trails[] allTrails = new Trails[maxId+1];
-    Trails   trailUnit;
+    simpplle.comcode.element.Trails[] allTrails = new simpplle.comcode.element.Trails[maxId+1];
+    simpplle.comcode.element.Trails trailUnit;
     for (Integer keyId : units.keySet()) {
       trailUnit = units.get(keyId);
       allTrails[trailUnit.getId()] = trailUnit;
@@ -672,9 +674,9 @@ public class ImportArea {
  */
   private boolean readAquaticVegRelations(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
     String              line, str;
-    StringTokenizerPlus strTok;
-    ExistingAquaticUnit eau = null;
-    Evu                 evu = null;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    simpplle.comcode.element.ExistingAquaticUnit eau = null;
+    simpplle.comcode.element.Evu evu = null;
     int                 i, id, evuId, index;
     String              upAdjStr;
     char                upAdj;
@@ -688,7 +690,7 @@ public class ImportArea {
 
     while (line != null && line.trim().equals("END") == false) {
       if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       id = strTok.getIntToken();
       evuId = strTok.getIntToken();
@@ -723,7 +725,7 @@ public class ImportArea {
 
       eau = area.getEau(id);
       if (eau == null) {
-        eau = new ExistingAquaticUnit(id);
+        eau = new simpplle.comcode.element.ExistingAquaticUnit(id);
         area.setEau(eau);
       }
 
@@ -762,9 +764,9 @@ public class ImportArea {
       throws ParseError, IOException
   {
     String              line, str;
-    StringTokenizerPlus strTok;
-    ExistingLandUnit    elu = null;
-    Evu                 evu = null;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    simpplle.comcode.element.ExistingLandUnit elu = null;
+    simpplle.comcode.element.Evu evu = null;
     int                 evuId, eluId;
 
     line = fin.readLine();
@@ -776,7 +778,7 @@ public class ImportArea {
 
     while (line != null && line.trim().equals("END") == false) {
       if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       evuId = strTok.getIntToken();
       eluId = strTok.getIntToken();
@@ -834,7 +836,7 @@ public class ImportArea {
 
     while (line != null && line.trim().equals("END") == false) {
       if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
+      simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       int roadId = strTok.getIntToken();
       int evuId = strTok.getIntToken();
@@ -845,14 +847,14 @@ public class ImportArea {
         return false;
       }
 
-      Evu evu = area.getEvu(evuId);
+      simpplle.comcode.element.Evu evu = area.getEvu(evuId);
       if (evu == null) {
         logFile.println(line);
         logFile.println("In Vegetation-Roads Evu-" + evuId + " is not valid");
         logFile.println();
       }
 
-      Roads roadUnit = area.getRoadUnit(roadId);
+      simpplle.comcode.element.Roads roadUnit = area.getRoadUnit(roadId);
       if (roadUnit == null) {
         logFile.println(line);
         logFile.println("In Vegetation-Roads Road Id: " + roadId + " is not valid");
@@ -892,7 +894,7 @@ public class ImportArea {
 
     while (line != null && line.trim().equals("END") == false) {
       if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
+      simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
       int trailId = strTok.getIntToken();
       int evuId = strTok.getIntToken();
@@ -903,14 +905,14 @@ public class ImportArea {
         return false;
       }
 
-      Evu evu = area.getEvu(evuId);
+      simpplle.comcode.element.Evu evu = area.getEvu(evuId);
       if (evu == null) {
         logFile.println(line);
         logFile.println("In Vegetation-Trails Evu-" + evuId + " is not valid");
         logFile.println();
       }
 
-      Trails trailUnit = area.getTrailUnit(trailId);
+      simpplle.comcode.element.Trails trailUnit = area.getTrailUnit(trailId);
       if (trailUnit == null) {
         logFile.println(line);
         logFile.println("In Vegetation-Trails Trail Id: " + trailId + " is not valid");
@@ -935,7 +937,7 @@ public class ImportArea {
  * @throws ParseError is caught in GUI, if trouble parsing line, however if it throws a parse error on field #5 while expecting a number it means we have a string which is caught here
  */
   private boolean hasRowCol(String line) throws ParseError {
-    StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
+    simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
 
     // If field #5 is a number than we have row & col,
     // however if it is a string we do not have row & col.
@@ -1034,10 +1036,10 @@ public class ImportArea {
    
 
     String              line, str;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     int                 value, count;
     float               fValue;
-    Evu                 evu;
+    simpplle.comcode.element.Evu evu;
     RegionalZone        zone = Simpplle.getCurrentZone();
     HabitatTypeGroup    htGrp;
     VegetativeType      state = null;
@@ -1067,7 +1069,7 @@ public class ImportArea {
         line = line.trim();
         if (line.length() == 0) { line = fin.readLine(); continue; }
 
-        line = Utility.preProcessInputLine(line);
+        line = simpplle.comcode.utility.Utility.preProcessInputLine(line);
 
         if (numReqFields == -1) {
           // Find out if we have row and col.
@@ -1075,7 +1077,7 @@ public class ImportArea {
           numReqFields = (hasRowCol) ? 9 : 7;
         }
 
-        strTok = new StringTokenizerPlus(line,",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
         count  = strTok.countTokens();
         if (count < numReqFields) {
           logFile.println(line);
@@ -1253,7 +1255,7 @@ public class ImportArea {
           }
 
           // In case there is not Initial Process.
-          evu.setInitialProcess(Evu.getDefaultInitialProcess());
+          evu.setInitialProcess(simpplle.comcode.element.Evu.getDefaultInitialProcess());
         }
 
         // Acres check depends on species being available.
@@ -1278,10 +1280,10 @@ public class ImportArea {
         if (str != null) { str = str.trim().toUpperCase(); }
 
         if (str == null) {
-          evu.setRoadStatus(Roads.Status.UNKNOWN);
+          evu.setRoadStatus(simpplle.comcode.element.Roads.Status.UNKNOWN);
         }
         else {
-          evu.setRoadStatus(Roads.Status.lookup(str));
+          evu.setRoadStatus(simpplle.comcode.element.Roads.Status.lookup(str));
         }
         if (count == (numReqFields+2)) { line = fin.readLine(); continue; }
 
@@ -1327,7 +1329,7 @@ public class ImportArea {
           // Read Initial Process
           str = strTok.getToken();
           if (str == null) {
-            str = Evu.getDefaultInitialProcess().toString();
+            str = simpplle.comcode.element.Evu.getDefaultInitialProcess().toString();
           }
           process = ProcessType.get(str.toUpperCase());
           if (process == null) {
@@ -1385,7 +1387,7 @@ public class ImportArea {
     if ((area.multipleLifeformsEnabled() == false) &&
         processedAsMultipleLife) {
       // Need to change Evu's to be single lifeform;
-      Evu[] evus = area.getAllEvu();
+      simpplle.comcode.element.Evu[] evus = area.getAllEvu();
       for (int i=0; i<evus.length; i++) {
         if (evus[i] != null) { evus[i].makeSingleLife(); }
       }
@@ -1401,8 +1403,8 @@ public class ImportArea {
  * @throws ParseError caught in GUI
  */
   private void readMultiLifeformState(PrintWriter logFile,
-                                      StringTokenizerPlus strTok,
-                                      String line, Evu evu,
+                                      simpplle.comcode.utility.StringTokenizerPlus strTok,
+                                      String line, simpplle.comcode.element.Evu evu,
                                       HabitatTypeGroup htGrp) throws ParseError {
     String              str;
     VegetativeType      vegState = null;
@@ -1487,7 +1489,7 @@ public class ImportArea {
         // Read Initial Process
         str = strTok.getToken();
         if (str == null) {
-          str = Evu.getDefaultInitialProcess().toString();
+          str = simpplle.comcode.element.Evu.getDefaultInitialProcess().toString();
         }
 
         process = ProcessType.get(str.toUpperCase());
@@ -1592,10 +1594,10 @@ public class ImportArea {
   private void readLandAttributes(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
 
     String              line, str;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     int                 count;
     int                 id;
-    ExistingLandUnit    elu;
+    simpplle.comcode.element.ExistingLandUnit elu;
     float               fValue;
     int                 numReqFields = 8;
 
@@ -1612,9 +1614,9 @@ public class ImportArea {
         line = line.trim();
         if (line.length() == 0) { line = fin.readLine(); continue; }
 
-        line = Utility.preProcessInputLine(line);
+        line = simpplle.comcode.utility.Utility.preProcessInputLine(line);
 
-        strTok = new StringTokenizerPlus(line,",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
         count  = strTok.countTokens();
         if (count < numReqFields) {
           logFile.println(line);
@@ -1741,10 +1743,10 @@ public class ImportArea {
     // slink(id),Status,Kind
 
     String              line, str;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     int                 count;
     int                 id;
-    Roads               roadUnit;
+    simpplle.comcode.element.Roads roadUnit;
     float               fValue;
     int                 numReqFields = 3;
 
@@ -1761,9 +1763,9 @@ public class ImportArea {
         line = line.trim();
         if (line.length() == 0) { line = fin.readLine(); continue; }
 
-        line = Utility.preProcessInputLine(line);
+        line = simpplle.comcode.utility.Utility.preProcessInputLine(line);
 
-        strTok = new StringTokenizerPlus(line,",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
         count  = strTok.countTokens();
         if (count < numReqFields) {
           logFile.println(line);
@@ -1793,10 +1795,10 @@ public class ImportArea {
         }
 
         // Get the Status
-        Roads.Status status = Roads.Status.UNKNOWN;
+        simpplle.comcode.element.Roads.Status status = simpplle.comcode.element.Roads.Status.UNKNOWN;
         str = strTok.getToken();
         if (str != null) {
-          status = Roads.Status.lookup(str);
+          status = simpplle.comcode.element.Roads.Status.lookup(str);
           if (status == null) {
             logFile.println(line);
             logFile.println("  Invalid Road Status: " + str);
@@ -1806,10 +1808,10 @@ public class ImportArea {
         roadUnit.setStatus(status);
 
         // Get the Kind
-        Roads.Kind kind = Roads.Kind.UNKNOWN;
+        simpplle.comcode.element.Roads.Kind kind = simpplle.comcode.element.Roads.Kind.UNKNOWN;
         str = strTok.getToken();
         if (str != null) {
-          kind = Roads.Kind.valueOf(str);
+          kind = simpplle.comcode.element.Roads.Kind.valueOf(str);
           if (kind == null) {
             logFile.println(line);
             logFile.println("  Invalid Road Kind: " + str);
@@ -1846,10 +1848,10 @@ public class ImportArea {
     // slink(id),Status,Kind
 
     String              line, str;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     int                 count;
     int                 id;
-    Trails              trailUnit;
+    simpplle.comcode.element.Trails trailUnit;
     float               fValue;
     int                 numReqFields = 3;
 
@@ -1866,9 +1868,9 @@ public class ImportArea {
         line = line.trim();
         if (line.length() == 0) { line = fin.readLine(); continue; }
 
-        line = Utility.preProcessInputLine(line);
+        line = simpplle.comcode.utility.Utility.preProcessInputLine(line);
 
-        strTok = new StringTokenizerPlus(line,",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
         count  = strTok.countTokens();
         if (count < numReqFields) {
           logFile.println(line);
@@ -1898,10 +1900,10 @@ public class ImportArea {
         }
 
         // Get the Status
-        Trails.Status status = Trails.Status.UNKNOWN;
+        simpplle.comcode.element.Trails.Status status = simpplle.comcode.element.Trails.Status.UNKNOWN;
         str = strTok.getToken();
         if (str != null) {
-          status = Trails.Status.valueOf(str);
+          status = simpplle.comcode.element.Trails.Status.valueOf(str);
           if (status == null) {
             logFile.println(line);
             logFile.println("  Invalid Road Status: " + str);
@@ -1911,10 +1913,10 @@ public class ImportArea {
         trailUnit.setStatus(status);
 
         // Get the Kind
-        Trails.Kind kind = Trails.Kind.UNKNOWN;
+        simpplle.comcode.element.Trails.Kind kind = simpplle.comcode.element.Trails.Kind.UNKNOWN;
         str = strTok.getToken();
         if (str != null) {
-          kind = Trails.Kind.valueOf(str);
+          kind = simpplle.comcode.element.Trails.Kind.valueOf(str);
           if (kind == null) {
             logFile.println(line);
             logFile.println("  Invalid Road Kind: " + str);
@@ -1946,10 +1948,10 @@ public class ImportArea {
     
 
     String              line, str;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
     int                 count;
     int                 id;
-    ExistingAquaticUnit eau;
+    simpplle.comcode.element.ExistingAquaticUnit eau;
     float               fValue;
     int                 numReqFields = 7;
 
@@ -1966,9 +1968,9 @@ public class ImportArea {
         line = line.trim();
         if (line.length() == 0) { line = fin.readLine(); continue; }
 
-        line = Utility.preProcessInputLine(line);
+        line = simpplle.comcode.utility.Utility.preProcessInputLine(line);
 
-        strTok = new StringTokenizerPlus(line,",");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
         count  = strTok.countTokens();
         if (count < numReqFields) {
           logFile.println(line);
@@ -1992,7 +1994,7 @@ public class ImportArea {
         }
         eau = area.getEau(id);
         if (eau == null) {
-          eau = new ExistingAquaticUnit(id);
+          eau = new simpplle.comcode.element.ExistingAquaticUnit(id);
           area.setEau(eau);
           logFile.println(line);
           logFile.println("  Aquatic unit #" + id + " not found in spatialrelate file" +
@@ -2091,7 +2093,7 @@ public class ImportArea {
         // Read Initial Process
         str = strTok.getToken();
         if (str == null) {
-          str = ExistingAquaticUnit.getDefaultInitialProcess().toString();
+          str = simpplle.comcode.element.ExistingAquaticUnit.getDefaultInitialProcess().toString();
         }
 
         Process process = Process.findInstance(ProcessType.get(str.toUpperCase()));
@@ -2110,10 +2112,10 @@ public class ImportArea {
         // Read the Status
         str = strTok.getToken();
         if (str == null) {
-          eau.setStatus(ExistingAquaticUnit.PERENNIAL);
+          eau.setStatus(simpplle.comcode.element.ExistingAquaticUnit.PERENNIAL);
         }
         else if (eau.setStatus(str) == false) {
-          eau.setStatus(ExistingAquaticUnit.PERENNIAL);
+          eau.setStatus(simpplle.comcode.element.ExistingAquaticUnit.PERENNIAL);
         }
 
 
@@ -2134,8 +2136,8 @@ public class ImportArea {
     hasAttributes = false;
 
     // Veg Attributes
-    file = Utility.makeSuffixedPathname(prefix, "", "attributes");
-    logFile = Utility.makeUniqueLogFile(prefix, "vegatt");
+    file = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix, "", "attributes");
+    logFile = simpplle.comcode.utility.Utility.makeUniqueLogFile(prefix, "vegatt");
     read(area, file, logFile, EVU, true);
 
     hasAttributes = true;
@@ -2144,9 +2146,9 @@ public class ImportArea {
   public Area importNewFiles(File filename) throws SimpplleError {
     Area newArea = importSpatialRelations(filename);
 
-    File prefix     = Utility.stripExtension(filename);
-    File logFile    = Utility.makeUniqueLogFile(prefix, "attrib");
-    File attribFile = Utility.makeSuffixedPathname(prefix, "", "attributesall");
+    File prefix     = simpplle.comcode.utility.Utility.stripExtension(filename);
+    File logFile    = simpplle.comcode.utility.Utility.makeUniqueLogFile(prefix, "attrib");
+    File attribFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix, "", "attributesall");
 
     if (attribFile.exists() == false) {
       hasAttributes = false;
@@ -2172,8 +2174,8 @@ public class ImportArea {
     BufferedReader fin=null;
     Area           newArea = new Area(Area.USER);
     boolean        attributesAdded = false;
-    File           prefix = Utility.stripExtension(filename);
-    File           logFile = Utility.makeUniqueLogFile(prefix,"");
+    File           prefix = simpplle.comcode.utility.Utility.stripExtension(filename);
+    File           logFile = simpplle.comcode.utility.Utility.makeUniqueLogFile(prefix,"");
     boolean        success = false;
 
     try {
@@ -2370,19 +2372,19 @@ public class ImportArea {
 
     boolean attributesAdded = false;
 
-    file = Utility.makeSuffixedPathname(prefix,"","nbr");
-    logFile = Utility.makeUniqueLogFile(prefix,"veg");
+    file = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix,"","nbr");
+    logFile = simpplle.comcode.utility.Utility.makeUniqueLogFile(prefix,"veg");
     if (read(newArea,file,logFile,EVU,false) == false) {
       return null;
     }
 
     if (!hasAttributes) {
-      file = Utility.makeSuffixedPathname(prefix,"","attributes");
+      file = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix,"","attributes");
       if (file.exists() == false) {
         hasAttributes = false;
         return newArea;
       }
-      logFile = Utility.makeUniqueLogFile(prefix,"vegatt");
+      logFile = simpplle.comcode.utility.Utility.makeUniqueLogFile(prefix,"vegatt");
       attributesAdded = read(newArea,file,logFile,EVU,true);
       if (!attributesAdded) { return null; }
     }

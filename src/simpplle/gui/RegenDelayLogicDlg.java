@@ -1,8 +1,8 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-import javax.swing.JDialog;
-import simpplle.comcode.RegenerationDelayLogic;
+
+import simpplle.comcode.logic.RegenerationDelayLogic;
 import simpplle.comcode.*;
 /** 
  * The University of Montana owns copyright of the designated documentation contained 

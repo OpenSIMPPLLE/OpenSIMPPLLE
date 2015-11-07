@@ -1,12 +1,10 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-import simpplle.comcode.BaseLogic;
-import simpplle.comcode.SystemKnowledge;
+import simpplle.comcode.logic.BaseLogic;
 import simpplle.comcode.SystemKnowledge.Kinds;
-import simpplle.comcode.*;
-import javax.swing.table.*;
-/** 
+
+/**
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
@@ -36,8 +34,8 @@ public class FireSuppWeatherClassALogicPanel extends VegLogicPanel {
 
 
   protected void initColumns(TableColumn column, int col) {
-    if (col == FireSuppWeatherClassALogic.PROB_COL) {
-      column.setIdentifier(FireSuppWeatherClassALogic.PROB_COL);
+    if (col == simpplle.comcode.logic.FireSuppWeatherClassALogic.PROB_COL) {
+      column.setIdentifier(simpplle.comcode.logic.FireSuppWeatherClassALogic.PROB_COL);
       Utility.setColumnCellColor(column);
     }
     else {

@@ -3,7 +3,7 @@ package simpplle.gui;
 import simpplle.JSimpplle;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.Simpplle;
-import simpplle.comcode.Evu;
+import simpplle.comcode.element.Evu;
 import simpplle.comcode.Area;
 import simpplle.comcode.Fmz;
 import simpplle.comcode.HabitatTypeGroupType;

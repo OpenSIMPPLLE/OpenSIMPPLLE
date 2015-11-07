@@ -42,7 +42,7 @@ public class VegUnitFireTypeLogicDlg extends AbstractLogicDialog {
  */
   private void initialize() {
     sysKnowKind = SystemKnowledge.VEG_UNIT_FIRE_TYPE_LOGIC;
-    String[] kinds = new String[] {VegUnitFireTypeLogic.UNIT_FIRE_TYPE.toString()};
+    String[] kinds = new String[] {simpplle.comcode.logic.VegUnitFireTypeLogic.UNIT_FIRE_TYPE.toString()};
     super.initialize(kinds);
 
     tabPanels = new VegUnitFireTypeLogicPanel[panelKinds.length];
@@ -50,7 +50,7 @@ public class VegUnitFireTypeLogicDlg extends AbstractLogicDialog {
       String kind = panelKinds[i];
       tabPanels[i] =
           new VegUnitFireTypeLogicPanel(this, kind,
-                                      VegUnitFireTypeLogic.getInstance(),
+                                      simpplle.comcode.logic.VegUnitFireTypeLogic.getInstance(),
                                       sysKnowKind);
       tabbedPane.add(tabPanels[i], kind);
     }

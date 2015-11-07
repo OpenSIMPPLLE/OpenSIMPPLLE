@@ -86,10 +86,10 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../simpplle/comcode/AbstractLogicData.html" title="class in simpplle.comcode">simpplle.comcode.AbstractLogicData</a></li>
+<li><a href="../../simpplle/comcode/AbstractLogicData.html" title="class in simpplle.comcode">simpplle.comcode.logic.AbstractLogicData</a></li>
 <li>
 <ul class="inheritance">
-<li>simpplle.comcode.LogicData</li>
+<li>simpplle.comcode.logic.LogicData</li>
 </ul>
 </li>
 </ul>
@@ -120,7 +120,7 @@ implements java.io.Externalizable</pre>
   <p>This is an abstract class for LogicData, itself an extension of AbstractLogicData.  
   It provides many of the methods used in the logic data classes throughout OpenSimpplle.  
   While it cannot be instantiated directly, it is subclassed by many other classes.</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../serialized-form.html#simpplle.comcode.LogicData">Serialized Form</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../serialized-form.html#simpplle.comcode.logic.LogicData">Serialized Form</a></dd></dl>
 </li>
 </ul>
 </div>
@@ -357,7 +357,7 @@ implements java.io.Externalizable</pre>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_simpplle.comcode.AbstractLogicData">
+<li class="blockList"><a name="fields_inherited_from_class_simpplle.comcode.logic.AbstractLogicData">
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;simpplle.comcode.<a href="../../simpplle/comcode/AbstractLogicData.html" title="class in simpplle.comcode">AbstractLogicData</a></h3>
@@ -423,7 +423,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#AddRuleData(simpplle.comcode.LogicData)">AddRuleData</a></strong>(<a href="../../simpplle/comcode/LogicData.html" title="class in simpplle.comcode">LogicData</a>&nbsp;logicData)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#AddRuleData(simpplle.comcode.logic.LogicData)">AddRuleData</a></strong>(<a href="../../simpplle/comcode/LogicData.html" title="class in simpplle.comcode">LogicData</a>&nbsp;logicData)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -451,11 +451,11 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#doAction(simpplle.comcode.Evu)">doAction</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#doAction(simpplle.comcode.element.Evu)">doAction</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#doAction(simpplle.comcode.Evu, simpplle.comcode.Lifeform)">doAction</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#doAction(simpplle.comcode.element.Evu, simpplle.comcode.Lifeform)">doAction</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
         <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -464,7 +464,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#duplicate(simpplle.comcode.LogicData)">duplicate</a></strong>(<a href="../../simpplle/comcode/LogicData.html" title="class in simpplle.comcode">LogicData</a>&nbsp;logicData)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#duplicate(simpplle.comcode.logic.LogicData)">duplicate</a></strong>(<a href="../../simpplle/comcode/LogicData.html" title="class in simpplle.comcode">LogicData</a>&nbsp;logicData)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
@@ -649,43 +649,43 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.Evu)">isMatch</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.element.Evu)">isMatch</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu)</code>
 <div class="block">return the true if the rule matches the data in the given evu.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.Evu, java.lang.Integer, simpplle.comcode.Lifeform)">isMatch</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.element.Evu, java.lang.Integer, simpplle.comcode.Lifeform)">isMatch</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
        java.lang.Integer&nbsp;tStep,
        <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.Evu, simpplle.comcode.Lifeform)">isMatch</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.element.Evu, simpplle.comcode.Lifeform)">isMatch</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
        <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;life)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.Evu, simpplle.comcode.VegSimStateData, int, simpplle.comcode.Lifeform)">isMatch</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.element.Evu, simpplle.comcode.VegSimStateData, int, simpplle.comcode.Lifeform)">isMatch</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
        <a href="../../simpplle/comcode/VegSimStateData.html" title="class in simpplle.comcode">VegSimStateData</a>&nbsp;state,
        int&nbsp;tStep,
        <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.FireResistance, simpplle.comcode.Evu)">isMatch</a></strong>(<a href="../../simpplle/comcode/FireResistance.html" title="class in simpplle.comcode">FireResistance</a>&nbsp;resistance,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.FireResistance, simpplle.comcode.element.Evu)">isMatch</a></strong>(<a href="../../simpplle/comcode/FireResistance.html" title="class in simpplle.comcode">FireResistance</a>&nbsp;resistance,
        <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.FireResistance, simpplle.comcode.Evu, java.lang.Integer, simpplle.comcode.Lifeform)">isMatch</a></strong>(<a href="../../simpplle/comcode/FireResistance.html" title="class in simpplle.comcode">FireResistance</a>&nbsp;resistance,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.FireResistance, simpplle.comcode.element.Evu, java.lang.Integer, simpplle.comcode.Lifeform)">isMatch</a></strong>(<a href="../../simpplle/comcode/FireResistance.html" title="class in simpplle.comcode">FireResistance</a>&nbsp;resistance,
        <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
        java.lang.Integer&nbsp;tStep,
        <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.FireResistance, simpplle.comcode.Evu, java.lang.Integer, simpplle.comcode.Lifeform, simpplle.comcode.VegetativeType)">isMatch</a></strong>(<a href="../../simpplle/comcode/FireResistance.html" title="class in simpplle.comcode">FireResistance</a>&nbsp;resistance,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.FireResistance, simpplle.comcode.element.Evu, java.lang.Integer, simpplle.comcode.Lifeform, simpplle.comcode.VegetativeType)">isMatch</a></strong>(<a href="../../simpplle/comcode/FireResistance.html" title="class in simpplle.comcode">FireResistance</a>&nbsp;resistance,
        <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
        java.lang.Integer&nbsp;tStep,
        <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform,
@@ -693,7 +693,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.FireResistance, simpplle.comcode.Evu, java.lang.Integer, simpplle.comcode.ProcessType, simpplle.comcode.VegetativeType, boolean, simpplle.comcode.Climate.Season)">isMatch</a></strong>(<a href="../../simpplle/comcode/FireResistance.html" title="class in simpplle.comcode">FireResistance</a>&nbsp;resistance,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.FireResistance, simpplle.comcode.element.Evu, java.lang.Integer, simpplle.comcode.ProcessType, simpplle.comcode.VegetativeType, boolean, simpplle.comcode.Climate.Season)">isMatch</a></strong>(<a href="../../simpplle/comcode/FireResistance.html" title="class in simpplle.comcode">FireResistance</a>&nbsp;resistance,
        <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
        java.lang.Integer&nbsp;tStep,
        <a href="../../simpplle/comcode/ProcessType.html" title="class in simpplle.comcode">ProcessType</a>&nbsp;process,
@@ -703,7 +703,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.FireResistance, simpplle.comcode.Evu, simpplle.comcode.Lifeform)">isMatch</a></strong>(<a href="../../simpplle/comcode/FireResistance.html" title="class in simpplle.comcode">FireResistance</a>&nbsp;resistance,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#isMatch(simpplle.comcode.FireResistance, simpplle.comcode.element.Evu, simpplle.comcode.Lifeform)">isMatch</a></strong>(<a href="../../simpplle/comcode/FireResistance.html" title="class in simpplle.comcode">FireResistance</a>&nbsp;resistance,
        <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
        <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;life)</code>&nbsp;</td>
 </tr>
@@ -784,7 +784,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#rulesCompatible(simpplle.comcode.LogicData)">rulesCompatible</a></strong>(<a href="../../simpplle/comcode/LogicData.html" title="class in simpplle.comcode">LogicData</a>&nbsp;rule)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#rulesCompatible(simpplle.comcode.logic.LogicData)">rulesCompatible</a></strong>(<a href="../../simpplle/comcode/LogicData.html" title="class in simpplle.comcode">LogicData</a>&nbsp;rule)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -914,7 +914,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#trackingSpeciesMatch(simpplle.comcode.Evu, java.lang.Integer)">trackingSpeciesMatch</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/LogicData.html#trackingSpeciesMatch(simpplle.comcode.element.Evu, java.lang.Integer)">trackingSpeciesMatch</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu,
                     java.lang.Integer&nbsp;tStep)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -925,11 +925,11 @@ implements java.io.Externalizable</pre>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_simpplle.comcode.AbstractLogicData">
+<li class="blockList"><a name="methods_inherited_from_class_simpplle.comcode.logic.AbstractLogicData">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;simpplle.comcode.<a href="../../simpplle/comcode/AbstractLogicData.html" title="class in simpplle.comcode">AbstractLogicData</a></h3>
-<code><a href="../../simpplle/comcode/AbstractLogicData.html#duplicate(simpplle.comcode.AbstractLogicData)">duplicate</a>, <a href="../../simpplle/comcode/AbstractLogicData.html#isMatch()">isMatch</a>, <a href="../../simpplle/comcode/AbstractLogicData.html#markChanged()">markChanged</a></code></li>
+<code><a href="../../simpplle/comcode/AbstractLogicData.html#duplicate(simpplle.comcode.logic.AbstractLogicData)">duplicate</a>, <a href="../../simpplle/comcode/AbstractLogicData.html#isMatch()">isMatch</a>, <a href="../../simpplle/comcode/AbstractLogicData.html#markChanged()">markChanged</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -959,7 +959,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>serialVersionUID</h4>
 <pre>static final&nbsp;long serialVersionUID</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.LogicData.serialVersionUID">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.logic.LogicData.serialVersionUID">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="version">
@@ -969,7 +969,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>version</h4>
 <pre>static final&nbsp;int version</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.LogicData.version">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.logic.LogicData.version">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="ecoGroupList">
@@ -2403,7 +2403,7 @@ implements java.io.Externalizable</pre>
 <dt><span class="strong">Returns:</span></dt><dd>boolean</dd></dl>
 </li>
 </ul>
-<a name="isMatch(simpplle.comcode.Evu, simpplle.comcode.Lifeform)">
+<a name="isMatch(simpplle.comcode.element.Evu, simpplle.comcode.Lifeform)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -2413,7 +2413,7 @@ implements java.io.Externalizable</pre>
               <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;life)</pre>
 </li>
 </ul>
-<a name="isMatch(simpplle.comcode.Evu, java.lang.Integer, simpplle.comcode.Lifeform)">
+<a name="isMatch(simpplle.comcode.element.Evu, java.lang.Integer, simpplle.comcode.Lifeform)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -2434,7 +2434,7 @@ implements java.io.Externalizable</pre>
               <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu)</pre>
 </li>
 </ul>
-<a name="isMatch(simpplle.comcode.FireResistance, simpplle.comcode.Evu, simpplle.comcode.Lifeform)">
+<a name="isMatch(simpplle.comcode.FireResistance, simpplle.comcode.element.Evu, simpplle.comcode.Lifeform)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -2445,7 +2445,7 @@ implements java.io.Externalizable</pre>
               <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;life)</pre>
 </li>
 </ul>
-<a name="isMatch(simpplle.comcode.FireResistance, simpplle.comcode.Evu, java.lang.Integer, simpplle.comcode.Lifeform)">
+<a name="isMatch(simpplle.comcode.FireResistance, simpplle.comcode.element.Evu, java.lang.Integer, simpplle.comcode.Lifeform)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -2457,7 +2457,7 @@ implements java.io.Externalizable</pre>
               <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform)</pre>
 </li>
 </ul>
-<a name="isMatch(simpplle.comcode.Evu, simpplle.comcode.VegSimStateData, int, simpplle.comcode.Lifeform)">
+<a name="isMatch(simpplle.comcode.element.Evu, simpplle.comcode.VegSimStateData, int, simpplle.comcode.Lifeform)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -2469,7 +2469,7 @@ implements java.io.Externalizable</pre>
               <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform)</pre>
 </li>
 </ul>
-<a name="isMatch(simpplle.comcode.FireResistance, simpplle.comcode.Evu, java.lang.Integer, simpplle.comcode.Lifeform, simpplle.comcode.VegetativeType)">
+<a name="isMatch(simpplle.comcode.FireResistance, simpplle.comcode.element.Evu, java.lang.Integer, simpplle.comcode.Lifeform, simpplle.comcode.VegetativeType)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -2482,7 +2482,7 @@ implements java.io.Externalizable</pre>
               <a href="../../simpplle/comcode/VegetativeType.html" title="class in simpplle.comcode">VegetativeType</a>&nbsp;vegType)</pre>
 </li>
 </ul>
-<a name="isMatch(simpplle.comcode.FireResistance, simpplle.comcode.Evu, java.lang.Integer, simpplle.comcode.ProcessType, simpplle.comcode.VegetativeType, boolean, simpplle.comcode.Climate.Season)">
+<a name="isMatch(simpplle.comcode.FireResistance, simpplle.comcode.element.Evu, java.lang.Integer, simpplle.comcode.ProcessType, simpplle.comcode.VegetativeType, boolean, simpplle.comcode.Climate.Season)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -2497,7 +2497,7 @@ implements java.io.Externalizable</pre>
               <a href="../../simpplle/comcode/Climate.Season.html" title="enum in simpplle.comcode">Climate.Season</a>&nbsp;unitSeason)</pre>
 </li>
 </ul>
-<a name="trackingSpeciesMatch(simpplle.comcode.Evu, java.lang.Integer)">
+<a name="trackingSpeciesMatch(simpplle.comcode.element.Evu, java.lang.Integer)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -2507,7 +2507,7 @@ implements java.io.Externalizable</pre>
                            java.lang.Integer&nbsp;tStep)</pre>
 </li>
 </ul>
-<a name="doAction(simpplle.comcode.Evu, simpplle.comcode.Lifeform)">
+<a name="doAction(simpplle.comcode.element.Evu, simpplle.comcode.Lifeform)">
 <!--   -->
 </a>
 <ul class="blockList">

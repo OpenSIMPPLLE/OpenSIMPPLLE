@@ -44,7 +44,7 @@ public class SevereWsbw extends Process {
 /**
  * returns 0 if no western spruce budworm or computes wspw severe probability according to compute suscepti
  */
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     if (Wsbw.isEnabled()==false) { return 0; }
 
     int sIndex;
@@ -59,7 +59,7 @@ public class SevereWsbw extends Process {
  * if no wsbw returns 0, else if severe probability is set to -1, which is the flag which starts probability calculation
  * based on species 
  */
-  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
     if (Wsbw.isEnabled()==false) { return 0; }
 
     int     sIndex;
@@ -88,7 +88,7 @@ public class SevereWsbw extends Process {
    * if no western spruce budworm in area, returns 0.  else if the -1 flag for severe probability
    * the probability is calculated based on species 
    */
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
     if (Wsbw.isEnabled()==false) { return 0; }
 
     int     sIndex;
@@ -117,7 +117,7 @@ public class SevereWsbw extends Process {
    * if no western spruce budworm in area, returns 0.  else if the -1 flag for severe probability
    * the probability is calculated based on species  
    */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
     if (Wsbw.isEnabled()==false) { return 0; }
 
     int     sIndex;
@@ -143,46 +143,46 @@ public class SevereWsbw extends Process {
     return doProbabilityCommon();
   }
 
-  private boolean doSpreadCommon (RegionalZone zone, Evu evu) {
+  private boolean doSpreadCommon (RegionalZone zone, simpplle.comcode.element.Evu evu) {
     return Wsbw.doSpread(zone,this,evu);
   }
 
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(zone, evu);
   }
 
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(zone,evu);
   }
-  public boolean doSpread (simpplle.comcode.zone.Teton zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(zone,evu);
   }
-  public boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return doSpreadCommon(zone,evu);
   }
 
  /**
   * Western Spruce Budworm does not occur in Sierra Nevada so returns false for spread.
   */
-  public boolean doSpread(simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread(simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
  /**
   * Western Spruce Budworm does not occur in Southern California so returns false for spread.
   */
-  public boolean doSpread(simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread(simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     return false;
   }
 
  /**
   * Western Spruce Budworm does not occur in Gila so returns false for spread.
   */
-  public boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
   /**
    * Western Spruce Budworm does not occur in South Central Alaska so returns false for spread.
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
 
   public String toString () {
     return printName;

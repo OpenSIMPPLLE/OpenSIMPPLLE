@@ -9,6 +9,12 @@ import java.util.zip.*;
 import org.hibernate.*;
 import simpplle.*;
 import simpplle.comcode.Climate.*;
+import simpplle.comcode.element.ExistingAquaticUnit;
+import simpplle.comcode.element.Trails;
+import simpplle.comcode.logic.DoCompetitionLogic;
+import simpplle.comcode.logic.InvasiveSpeciesLogic;
+import simpplle.comcode.logic.InvasiveSpeciesLogicMSU;
+import simpplle.comcode.utility.Utility;
 import simpplle.comcode.zone.EastsideRegionOne;
 import simpplle.comcode.zone.NorthernCentralRockies;
 import simpplle.comcode.zone.SierraNevada;
@@ -50,13 +56,13 @@ public final class Area implements Externalizable {
   private int                   kind;
   private int                   acres;
   private int                   totalLength;
-  private Evu[]                 allEvu;
+  private simpplle.comcode.element.Evu[]                 allEvu;
   private ExistingAquaticUnit[] allEau;
-  private ExistingLandUnit[]    allElu;
-  private Roads[]               allRoads;
-  private Trails[]              allTrails;
-  private NaturalElement[][]    allUnits = new NaturalElement[3][];
-  private ManmadeElement[][]    allManmadeUnits = new ManmadeElement[2][];
+  private simpplle.comcode.element.ExistingLandUnit[]    allElu;
+  private simpplle.comcode.element.Roads[]               allRoads;
+  private simpplle.comcode.element.Trails[]              allTrails;
+  private simpplle.comcode.element.NaturalElement[][]    allUnits = new simpplle.comcode.element.NaturalElement[3][];
+  private simpplle.comcode.element.ManmadeElement[][]    allManmadeUnits = new simpplle.comcode.element.ManmadeElement[2][];
   private int                   fileVersion;
   private static TreatmentSchedule treatmentSchedule;
   private static ProcessSchedule   processSchedule;
@@ -77,7 +83,7 @@ public final class Area implements Externalizable {
 
   public static Lifeform currentLifeform;
 
-  public static Lifeform getCurrentLifeform(Evu evu) {
+  public static Lifeform getCurrentLifeform(simpplle.comcode.element.Evu evu) {
     return (currentLifeform != null ? currentLifeform : evu.getDominantLifeform());
   }
   /**
@@ -272,7 +278,7 @@ public final class Area implements Externalizable {
     * @return a float
     */
   public static float getFloatAcres(int acresVal) {
-    return ( (float)acresVal / (float)Utility.pow(10,getAcresPrecision()) );
+    return ( (float)acresVal / (float) simpplle.comcode.utility.Utility.pow(10,getAcresPrecision()) );
   }
   /**
    * length like acres is stored as an int to avoid inaccuracies of floating point numbers.  to convert to a floating point
@@ -281,7 +287,7 @@ public final class Area implements Externalizable {
    * @return length as a floating point number
    */
   public static float getFloatLength(int lengthVal) {
-    return ( (float)lengthVal / (float)Utility.pow(10,getLengthPrecision()) );
+    return ( (float)lengthVal / (float) simpplle.comcode.utility.Utility.pow(10,getLengthPrecision()) );
   }
 
   /**
@@ -295,7 +301,7 @@ public final class Area implements Externalizable {
   public static int getAcresPrecision() { return ACRES_PRECISION; }
 
   public static int getRationalAcres(float acres) {
-    return Math.round((float)Utility.pow(10,getAcresPrecision()) * acres);
+    return Math.round((float) simpplle.comcode.utility.Utility.pow(10,getAcresPrecision()) * acres);
   }
 /**
  *
@@ -305,7 +311,7 @@ public final class Area implements Externalizable {
   public static int getLengthPrecision() { return LENGTH_PRECISION; }
 
   public static int getRationalLength(float length) {
-    return Math.round((float)Utility.pow(10,getLengthPrecision()) * length);
+    return Math.round((float) simpplle.comcode.utility.Utility.pow(10,getLengthPrecision()) * length);
   }
 
   /**
@@ -406,8 +412,8 @@ public final class Area implements Externalizable {
       setLength(tmpLength);
     }
 
-    allOwnership   = Utility.vectorKeys(allOwnershipHt);
-    allSpecialArea = Utility.vectorKeys(allSpecialAreaHt);
+    allOwnership   = simpplle.comcode.utility.Utility.vectorKeys(allOwnershipHt);
+    allSpecialArea = simpplle.comcode.utility.Utility.vectorKeys(allSpecialAreaHt);
 
     allOwnershipHt   = null;
     allSpecialAreaHt = null;
@@ -418,7 +424,7 @@ public final class Area implements Externalizable {
    * @param id the Evu's ID.
    * @return an Evu.
    */
-  public Evu getEvu(int id) {
+  public simpplle.comcode.element.Evu getEvu(int id) {
     if (id < 0 || id > maxEvuId) { return null; }
     return allEvu[id];
   }
@@ -427,7 +433,7 @@ public final class Area implements Externalizable {
    * @param id the Eau ID
    * @return the Eau
    */
-  public ExistingAquaticUnit getEau(int id) {
+  public simpplle.comcode.element.ExistingAquaticUnit getEau(int id) {
     if (allEau == null || id < 0 || id > allEau.length-1) { return null; }
     return allEau[id];
   }
@@ -436,8 +442,8 @@ public final class Area implements Externalizable {
    * @param id
    * @return
    */
-  public ExistingAquaticUnit getNewEau(int id) {
-    ExistingAquaticUnit unit = new ExistingAquaticUnit(id);
+  public simpplle.comcode.element.ExistingAquaticUnit getNewEau(int id) {
+    simpplle.comcode.element.ExistingAquaticUnit unit = new simpplle.comcode.element.ExistingAquaticUnit(id);
     allEau[id] = unit;
     return unit;
   }
@@ -445,35 +451,35 @@ public final class Area implements Externalizable {
  * Adds an Evu to the Natural Elements multi dimensional array.  This is indexed by [Evu = 0] and [evu Id]
  * @param evu
  */
-  public void addEvu(Evu evu) {
+  public void addEvu(simpplle.comcode.element.Evu evu) {
     allUnits[EVU][evu.getId()] = evu;
   }
   /**
    * Adds an Elu to Natural Elements multi-dimensional array.  This is indexed by [Elu = 2] and [elu Id].
    * @param elu
    */
-  public void addElu(ExistingLandUnit elu) {
+  public void addElu(simpplle.comcode.element.ExistingLandUnit elu) {
     allUnits[ELU][elu.getId()] = elu;
   }
   /**
    * Adds road units to the manmade units multidimensional array.  This is indexed by [Roads = 0] [road Id]
    * @param unit
    */
-  public void addRoadUnit(Roads unit) {
+  public void addRoadUnit(simpplle.comcode.element.Roads unit) {
     allManmadeUnits[ROADS.ordinal()][unit.getId()] = unit;
   }
   /**
    * Adds trail units to the manmade units multidimensional array.  This is indexed by [Trails = 1] [trail Id]
    * @param unit
    */
-  public void addTrailUnit(Trails unit) {
+  public void addTrailUnit(simpplle.comcode.element.Trails unit) {
     allManmadeUnits[TRAILS.ordinal()][unit.getId()] = unit;
   }
 
   // *** Manmade Unit Methods ***
   // ****************************
-  public Roads getRoadUnit(int id) {
-    return (Roads)getManmadeUnit(id,ROADS);
+  public simpplle.comcode.element.Roads getRoadUnit(int id) {
+    return (simpplle.comcode.element.Roads)getManmadeUnit(id,ROADS);
   }
   /**
    * Gets manmade unit by looking up its id and kind
@@ -481,7 +487,7 @@ public final class Area implements Externalizable {
    * @param kind the manmade element kind.  Choices are road = 0, trail =1
    * @return
    */
-  private ManmadeElement getManmadeUnit(int id, ManmadeUnitKinds kind) {
+  private simpplle.comcode.element.ManmadeElement getManmadeUnit(int id, ManmadeUnitKinds kind) {
     if (allManmadeUnits[kind.ordinal()] == null ||
         id < 0 || id > allManmadeUnits[kind.ordinal()].length-1) {
       return null;
@@ -497,14 +503,14 @@ public final class Area implements Externalizable {
    * Gets all the roads in this Area.
    * @return returns the roads array for this area
    */
-  public Roads[] getAllRoads() { return this.allRoads; }
+  public simpplle.comcode.element.Roads[] getAllRoads() { return this.allRoads; }
   /**
    * Sets all roads.  Sets the array of road Id's  into the 2 dimensional array at the index of the roads ordinal, which = 0
    * @param newAllRoads
    */
-  public void setAllRoads(Roads[] newAllRoads) {
+  public void setAllRoads(simpplle.comcode.element.Roads[] newAllRoads) {
     allManmadeUnits[ROADS.ordinal()] = newAllRoads;
-    allRoads = (Roads[])allManmadeUnits[ROADS.ordinal()];
+    allRoads = (simpplle.comcode.element.Roads[])allManmadeUnits[ROADS.ordinal()];
   }
 /**
  * Gets a trail based on its Id.
@@ -512,7 +518,7 @@ public final class Area implements Externalizable {
  * @return A trail object
  */
   public Trails getTrailUnit(int id) {
-    return (Trails)getManmadeUnit(id,TRAILS);
+    return (simpplle.comcode.element.Trails)getManmadeUnit(id,TRAILS);
   }
 /**
  * Checks if this area has trails.
@@ -523,14 +529,14 @@ public final class Area implements Externalizable {
    * Gets the array of all trails for this Area.
    * @return array of trails.
    */
-  public Trails[] getAllTrails() { return this.allTrails; }
+  public simpplle.comcode.element.Trails[] getAllTrails() { return this.allTrails; }
   /**
    * Sets all the trails by setting the manmade unit 2D array at the trail ordinal to the passed in array of new trail objects
    * @param newAllTrails
    */
-  public void setAllTrails(Trails[] newAllTrails) {
+  public void setAllTrails(simpplle.comcode.element.Trails[] newAllTrails) {
     allManmadeUnits[TRAILS.ordinal()] = newAllTrails;
-    allTrails = (Trails[])allManmadeUnits[TRAILS.ordinal()];
+    allTrails = (simpplle.comcode.element.Trails[])allManmadeUnits[TRAILS.ordinal()];
   }
 
   // *** ExistingLandUnit Methods **
@@ -541,7 +547,7 @@ public final class Area implements Externalizable {
  * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2.
  * @return
  */
-  public NaturalElement getUnit(int id, int kind) {
+  public simpplle.comcode.element.NaturalElement getUnit(int id, int kind) {
     if (allUnits[kind] == null || id < 0 || id > allUnits[kind].length-1) { return null; }
     return allUnits[kind][id];
   }
@@ -550,7 +556,7 @@ public final class Area implements Externalizable {
    * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2.
    * @return
    */
-  private NaturalElement getFirstUnit(int kind) {
+  private simpplle.comcode.element.NaturalElement getFirstUnit(int kind) {
     if (allUnits[kind] == null) { return null;  }
     for(int i=0; i<allUnits[kind].length; i++) {
       if (allUnits[kind][i] != null) { return allUnits[kind][i]; }
@@ -563,7 +569,7 @@ public final class Area implements Externalizable {
    * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2
    * @return
    */
-  private NaturalElement getPrevUnit(NaturalElement unit, int kind) {
+  private simpplle.comcode.element.NaturalElement getPrevUnit(simpplle.comcode.element.NaturalElement unit, int kind) {
     int id = unit.getId();
 
     int i;
@@ -581,7 +587,7 @@ public final class Area implements Externalizable {
  * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2
  * @return
  */
-  private NaturalElement getNextUnit(NaturalElement unit, int kind) {
+  private simpplle.comcode.element.NaturalElement getNextUnit(simpplle.comcode.element.NaturalElement unit, int kind) {
     int id = unit.getId(), i;
     for (i=id+1; i<allUnits[kind].length; i++) {
       if (allUnits[kind][i] != null) { return allUnits[kind][i]; }
@@ -597,7 +603,7 @@ public final class Area implements Externalizable {
    * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2
    * @return
    */
-  private NaturalElement getPrevInvalidUnit(NaturalElement unit, int kind) {
+  private simpplle.comcode.element.NaturalElement getPrevInvalidUnit(simpplle.comcode.element.NaturalElement unit, int kind) {
     int id = unit.getId(), i;
     for (i=id-1;i>=0;i--) {
       if (allUnits[kind][i] != null && allUnits[kind][i].isValid() == false) {
@@ -617,7 +623,7 @@ public final class Area implements Externalizable {
    * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2
    * @return
    */
-  private NaturalElement getNextInvalidUnit(NaturalElement unit, int kind) {
+  private simpplle.comcode.element.NaturalElement getNextInvalidUnit(simpplle.comcode.element.NaturalElement unit, int kind) {
     int id = unit.getId(), i;
     for (i=id+1;i<=allUnits[kind].length-1;i++) {
       if (allUnits[kind][i] != null && allUnits[kind][i].isValid() == false) {
@@ -637,24 +643,24 @@ public final class Area implements Externalizable {
  * @param id Elu Id
  * @return the Elu
  */
-  public ExistingLandUnit getElu(Integer id) {
-    return (ExistingLandUnit) getUnit(id.intValue(), ELU);
+  public simpplle.comcode.element.ExistingLandUnit getElu(Integer id) {
+    return (simpplle.comcode.element.ExistingLandUnit) getUnit(id.intValue(), ELU);
   }
   /**
    * Gets an Elu by its Id.
    * @param id Elu Id
    * @return the Elu
    */
-  public ExistingLandUnit getElu(int id) {
-    return (ExistingLandUnit) getUnit(id, ELU);
+  public simpplle.comcode.element.ExistingLandUnit getElu(int id) {
+    return (simpplle.comcode.element.ExistingLandUnit) getUnit(id, ELU);
   }
   /**
    * Makes a new Elu with parameter Id, adds it to all Natural units 2D array, then returns theElu
    * @param id new Elu Id
    * @return new Elu object
    */
-  public ExistingLandUnit getNewElu(int id) {
-    ExistingLandUnit unit = new ExistingLandUnit(id);
+  public simpplle.comcode.element.ExistingLandUnit getNewElu(int id) {
+    simpplle.comcode.element.ExistingLandUnit unit = new simpplle.comcode.element.ExistingLandUnit(id);
     allUnits[ELU][id] = unit;
     return unit;
   }
@@ -662,40 +668,40 @@ public final class Area implements Externalizable {
    * Gets the first Elu in this Area
    * @return the first Elu in this Area
    */
-  public ExistingLandUnit getFirstElu() {
-    return (ExistingLandUnit) getFirstUnit(ELU);
+  public simpplle.comcode.element.ExistingLandUnit getFirstElu() {
+    return (simpplle.comcode.element.ExistingLandUnit) getFirstUnit(ELU);
   }
   /**
    * Uses parameter Elu to get the previous one.
    * @param unit the Elu used to find the previous.
    * @return previous Elu
    */
-  public ExistingLandUnit getPrevElu(ExistingLandUnit unit) {
-    return (ExistingLandUnit) getPrevUnit(unit, ELU);
+  public simpplle.comcode.element.ExistingLandUnit getPrevElu(simpplle.comcode.element.ExistingLandUnit unit) {
+    return (simpplle.comcode.element.ExistingLandUnit) getPrevUnit(unit, ELU);
   }
   /**
    * Uses parameter Elu to get the next Elu.
    * @param unit the Elu used to find the next Elu.
    * @return next Elu
    */
-  public ExistingLandUnit getNextElu(ExistingLandUnit unit) {
-    return (ExistingLandUnit) getNextUnit(unit, ELU);
+  public simpplle.comcode.element.ExistingLandUnit getNextElu(simpplle.comcode.element.ExistingLandUnit unit) {
+    return (simpplle.comcode.element.ExistingLandUnit) getNextUnit(unit, ELU);
   }
   /**
    * Uses parameter Elu to get the previous invalid Elu.
    * @param unit the Elu used to find the previous invalid Elu.
    * @return previous Elu
    */
-  public ExistingLandUnit getPrevInvalidUnit(ExistingLandUnit unit) {
-    return (ExistingLandUnit) getPrevInvalidUnit(unit, ELU);
+  public simpplle.comcode.element.ExistingLandUnit getPrevInvalidUnit(simpplle.comcode.element.ExistingLandUnit unit) {
+    return (simpplle.comcode.element.ExistingLandUnit) getPrevInvalidUnit(unit, ELU);
   }
   /**
    * Uses parameter Elu to get the next invalid Elu.
    * @param unit the Elu used to find the next invalid Elu.
    * @return next invalid Elu
    */
-  public ExistingLandUnit getNextInvalidUnit(ExistingLandUnit unit) {
-    return (ExistingLandUnit) getNextInvalidUnit(unit, ELU);
+  public simpplle.comcode.element.ExistingLandUnit getNextInvalidUnit(simpplle.comcode.element.ExistingLandUnit unit) {
+    return (simpplle.comcode.element.ExistingLandUnit) getNextInvalidUnit(unit, ELU);
   }
 
 
@@ -705,7 +711,7 @@ public final class Area implements Externalizable {
  * @param id Evu Id
  * @return the Evu
  */
-  public Evu getEvu(Integer id) {
+  public simpplle.comcode.element.Evu getEvu(Integer id) {
     return getEvu(id.intValue());
   }
   /**
@@ -713,14 +719,14 @@ public final class Area implements Externalizable {
    * @param id Eau Id
    * @return the Eau object
    */
-  public ExistingAquaticUnit getEau(Integer id) {
+  public simpplle.comcode.element.ExistingAquaticUnit getEau(Integer id) {
     return getEau(id.intValue());
   }
   /**
    * Gets the first Evu in this Area
    * @return the first Evu in this Area
    */
-  public Evu getFirstEvu() {
+  public simpplle.comcode.element.Evu getFirstEvu() {
     for(int i=0;i<=maxEvuId;i++) {
       if (allEvu[i] != null) { return allEvu[i]; }
     }
@@ -730,7 +736,7 @@ public final class Area implements Externalizable {
    * Gets the first Eau in this Area
    * @return the first Eau in this Area
    */
-  public ExistingAquaticUnit getFirstEau() {
+  public simpplle.comcode.element.ExistingAquaticUnit getFirstEau() {
     if (allEau == null) { return null;  }
     for(int i=0; i<allEau.length; i++) {
       if (allEau[i] != null) { return allEau[i]; }
@@ -742,7 +748,7 @@ public final class Area implements Externalizable {
  * @param evu the Evu that will be used to find the previous
  * @return the previous Evu
  */
-  public Evu getPrevEvu(Evu evu) {
+  public simpplle.comcode.element.Evu getPrevEvu(simpplle.comcode.element.Evu evu) {
     int id = evu.getId(), i;
     for (i=id-1;i>=0;i--) {
       if (allEvu[i] != null) { return allEvu[i]; }
@@ -757,7 +763,7 @@ public final class Area implements Externalizable {
    * @param eau the Evu that will be used to find the previous
    * @return the previous Eau
    */
-  public ExistingAquaticUnit getPrevEau(ExistingAquaticUnit eau) {
+  public simpplle.comcode.element.ExistingAquaticUnit getPrevEau(simpplle.comcode.element.ExistingAquaticUnit eau) {
     int id = eau.getId(), i;
     for (i=id-1;i>=0;i--) {
       if (allEau[i] != null) { return allEau[i]; }
@@ -772,7 +778,7 @@ public final class Area implements Externalizable {
    * @param evu the Evu used to find the previous.
    * @return previous Evu
    */
-  public Evu getNextEvu(Evu evu) {
+  public simpplle.comcode.element.Evu getNextEvu(simpplle.comcode.element.Evu evu) {
     int id = evu.getId(), i;
     for (i=id+1;i<=maxEvuId;i++) {
       if (allEvu[i] != null) { return allEvu[i]; }
@@ -787,7 +793,7 @@ public final class Area implements Externalizable {
    * @param eau the Evu used to find the previous.
    * @return previous Evu
    */
-  public ExistingAquaticUnit getNextEau(ExistingAquaticUnit eau) {
+  public simpplle.comcode.element.ExistingAquaticUnit getNextEau(simpplle.comcode.element.ExistingAquaticUnit eau) {
     int id = eau.getId(), i;
     for (i=id+1; i<allEau.length; i++) {
       if (allEau[i] != null) { return allEau[i]; }
@@ -802,7 +808,7 @@ public final class Area implements Externalizable {
    * @param evu the Evu that will be used to find the previous invalid Id.
    * @return the previous Evu
    */
-  public Evu getPrevInvalidEvu(Evu evu) {
+  public simpplle.comcode.element.Evu getPrevInvalidEvu(simpplle.comcode.element.Evu evu) {
     int id = evu.getId(), i;
     for (i=id-1;i>=0;i--) {
       if (allEvu[i] != null && allEvu[i].isValid() == false) {
@@ -821,7 +827,7 @@ public final class Area implements Externalizable {
    * @param eau the Eau that will be used to find the previous invalid Eau Id.
    * @return the previous invalid Eau
    */
-  public ExistingAquaticUnit getPrevInvalidEau(ExistingAquaticUnit eau) {
+  public simpplle.comcode.element.ExistingAquaticUnit getPrevInvalidEau(simpplle.comcode.element.ExistingAquaticUnit eau) {
     int id = eau.getId(), i;
     for (i=id-1;i>=0;i--) {
       if (allEau[i] != null && allEau[i].isValid() == false) {
@@ -840,7 +846,7 @@ public final class Area implements Externalizable {
    * @param evu the Evu that will be used to find the next invalid Id.
    * @return the next invalid Evu
    */
-  public Evu getNextInvalidEvu(Evu evu) {
+  public simpplle.comcode.element.Evu getNextInvalidEvu(simpplle.comcode.element.Evu evu) {
     int id = evu.getId(), i;
     for (i=id+1;i<=maxEvuId;i++) {
       if (allEvu[i] != null && allEvu[i].isValid() == false) {
@@ -859,7 +865,7 @@ public final class Area implements Externalizable {
    * @param eau the Eau that will be used to find the next invalid Id.
    * @return the next invalid Eau
    */
-  public ExistingAquaticUnit getNextInvalidEvu(ExistingAquaticUnit eau) {
+  public simpplle.comcode.element.ExistingAquaticUnit getNextInvalidEvu(simpplle.comcode.element.ExistingAquaticUnit eau) {
     int id = eau.getId(), i;
     for (i=id+1; i<allEau.length; i++) {
       if (allEau[i] != null && allEau[i].isValid() == false) {
@@ -877,31 +883,31 @@ public final class Area implements Externalizable {
  * Gets the array of all Evu's for this area.
  * @return
  */
-  public Evu[] getAllEvu() { return allEvu; }
+  public simpplle.comcode.element.Evu[] getAllEvu() { return allEvu; }
 /**
  * First sets the new Evu array into the all natural element 2D array at the Evu (0) index, then sets the allEvu array for this array
  * to the newAllEvu array.
  * @param newAllEvu the array of Evu's to be set.
  */
-  public void setAllEvu(Evu[] newAllEvu) {
+  public void setAllEvu(simpplle.comcode.element.Evu[] newAllEvu) {
     allUnits[EVU] = newAllEvu;
-    allEvu = (Evu[])allUnits[EVU];
+    allEvu = (simpplle.comcode.element.Evu[])allUnits[EVU];
   }
 /**
  * Gets all the Eau's for this are.
  * @return
  */
-  public ExistingAquaticUnit[] getAllEau() { return allEau; }
+  public simpplle.comcode.element.ExistingAquaticUnit[] getAllEau() { return allEau; }
 
   /**
    * Used when importing a new area that does not include isolated stream
    * segments in the aquatics-aquatics section of the spatial-relate file.
    * @param newEau ExistingAquaticUnit
    */
-  public void setEau(ExistingAquaticUnit newEau) {
+  public void setEau(simpplle.comcode.element.ExistingAquaticUnit newEau) {
     // Make array larger if need be.
     if (newEau.getId() > allEau.length-1) {
-      ExistingAquaticUnit[] units = new ExistingAquaticUnit[newEau.getId()+1];
+      simpplle.comcode.element.ExistingAquaticUnit[] units = new simpplle.comcode.element.ExistingAquaticUnit[newEau.getId()+1];
       for (int i=0; i<allEau.length; i++) {
         units[i] = allEau[i];
       }
@@ -917,26 +923,26 @@ public final class Area implements Externalizable {
    * Sets both the array of all Eau's in Area and the natural element 2d array at index EAU
    * @param newAllEau array of al the new Eau's for an area.
    */
-  public void setAllEau(ExistingAquaticUnit[] newAllEau) {
+  public void setAllEau(simpplle.comcode.element.ExistingAquaticUnit[] newAllEau) {
     allUnits[EAU] = newAllEau;
-    allEau = (ExistingAquaticUnit[])allUnits[EAU];
+    allEau = (simpplle.comcode.element.ExistingAquaticUnit[])allUnits[EAU];
   }
 /**
  * Gets all the natural elements (kinds are EVU, EAU, ELU) for this area.
  * @param kind
  * @return
  */
-  private NaturalElement[] getAllUnits(int kind) {
+  private simpplle.comcode.element.NaturalElement[] getAllUnits(int kind) {
     return allUnits[kind];
   }
-  public ExistingLandUnit[] getAllElu() {
-    return (ExistingLandUnit[])getAllUnits(ELU);
+  public simpplle.comcode.element.ExistingLandUnit[] getAllElu() {
+    return (simpplle.comcode.element.ExistingLandUnit[])getAllUnits(ELU);
   }
-  public void setAllElu(ExistingLandUnit[] newAllElu) {
+  public void setAllElu(simpplle.comcode.element.ExistingLandUnit[] newAllElu) {
     allUnits[ELU] = newAllElu;
-    allElu = (ExistingLandUnit[])allUnits[ELU];
+    allElu = (simpplle.comcode.element.ExistingLandUnit[])allUnits[ELU];
   }
-  public void addAllElu(ExistingLandUnit[] newAllElu) {
+  public void addAllElu(simpplle.comcode.element.ExistingLandUnit[] newAllElu) {
     if (newAllElu == null) {
       allUnits[ELU] = null;
       allElu        = null;
@@ -949,7 +955,7 @@ public final class Area implements Externalizable {
       }
     }
   }
-  public void addAllRoads(Roads[] newAllRoads) {
+  public void addAllRoads(simpplle.comcode.element.Roads[] newAllRoads) {
     if (newAllRoads == null) {
       allManmadeUnits[ROADS.ordinal()] = null;
       allRoads                         = null;
@@ -962,7 +968,7 @@ public final class Area implements Externalizable {
       }
     }
   }
-  public void addAllTrails(Trails[] newAllTrails) {
+  public void addAllTrails(simpplle.comcode.element.Trails[] newAllTrails) {
     if (newAllTrails == null) {
       allManmadeUnits[TRAILS.ordinal()] = null;
       allTrails                         = null;
@@ -1080,7 +1086,7 @@ public final class Area implements Externalizable {
     * @return a boolean
     */
   public boolean updateFmzData() {
-    Evu     evu;
+    simpplle.comcode.element.Evu evu;
     boolean changed = false, result;
 
     for (int i=0;i<=maxEvuId;i++) {
@@ -1097,7 +1103,7 @@ public final class Area implements Externalizable {
    * in the units.
    */
   public void updatePathwayData() {
-    Evu     evu;
+    simpplle.comcode.element.Evu evu;
     boolean changed = false, result;
 
     for (int i=0;i<=maxEvuId;i++) {
@@ -1133,7 +1139,7 @@ public final class Area implements Externalizable {
  * @throws ParseError
  * @throws IOException
  */
-  private int getKeyword (StringTokenizerPlus strTok) throws ParseError, IOException {
+  private int getKeyword (simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError, IOException {
     String value;
 
     value = strTok.nextToken();
@@ -1162,7 +1168,7 @@ public final class Area implements Externalizable {
   private void readArea (BufferedReader fin) throws ParseError, IOException {
     int                 key = EOF;
     String              value, line, msg;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
 
     fileVersion = 1; // 1 is the files that don't have version specified.
 
@@ -1171,7 +1177,7 @@ public final class Area implements Externalizable {
       line   = fin.readLine();
       if (line == null) { key = EOF; continue;}
 
-      strTok = new StringTokenizerPlus(line," ");
+      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line," ");
       if (strTok.hasMoreTokens() == false) {continue;}
 
       key = getKeyword(strTok);
@@ -1243,7 +1249,7 @@ public final class Area implements Externalizable {
   }
 
   private void readDelimitedEvu(BufferedReader fin) throws ParseError {
-    Evu     evuData;
+    simpplle.comcode.element.Evu evuData;
     String  line;
     boolean theEnd = false;
     int     id = 0;
@@ -1258,7 +1264,7 @@ public final class Area implements Externalizable {
 
       if (maxEvuId > 10000) { manualGC = true; }
 
-      setAllEvu(new Evu[maxEvuId+1]);
+      setAllEvu(new simpplle.comcode.element.Evu[maxEvuId+1]);
 
       int c;
       for(int i=0;i<=maxEvuId;i++) {
@@ -1281,7 +1287,7 @@ public final class Area implements Externalizable {
           }
         }
 
-        evuData = new Evu();
+        evuData = new simpplle.comcode.element.Evu();
         theEnd = (new LegacyEvu(evuData).readDelimitedData(strBuf));
         if (theEnd) {break;}
         id = evuData.getId();
@@ -1312,7 +1318,7 @@ public final class Area implements Externalizable {
     }
     finishAddingAdjacentData();
 
-    allOwnership   = Utility.vectorKeys(allOwnershipHt);
+    allOwnership   = simpplle.comcode.utility.Utility.vectorKeys(allOwnershipHt);
     allSpecialArea = Utility.vectorKeys(allSpecialAreaHt);
 
     allOwnershipHt   = null;
@@ -1324,7 +1330,7 @@ public final class Area implements Externalizable {
  * @throws ParseError
  */
   private void readDelimitedEau(BufferedReader fin) throws ParseError {
-    ExistingAquaticUnit unitData;
+    simpplle.comcode.element.ExistingAquaticUnit unitData;
     String              line;
     boolean             theEnd = false;
     int                 id = 0;
@@ -1336,7 +1342,7 @@ public final class Area implements Externalizable {
 
       if (maxEauId > 10000) { manualGC = true; }
 
-      allEau = new ExistingAquaticUnit[maxEauId+1];
+      allEau = new simpplle.comcode.element.ExistingAquaticUnit[maxEauId+1];
 
       int c;
       for(int i=0; i<allEau.length; i++) {
@@ -1359,7 +1365,7 @@ public final class Area implements Externalizable {
           }
         }
 
-        unitData = ExistingAquaticUnit.readDelimitedData(strBuf);
+        unitData = simpplle.comcode.element.ExistingAquaticUnit.readDelimitedData(strBuf);
         if (unitData == null) {break;}
         id = unitData.getId();
         allEau[id] = unitData;
@@ -1538,14 +1544,14 @@ public final class Area implements Externalizable {
   public void loadArea(BufferedReader fin) throws SimpplleError {
     int                 key = EOF, i;
     String              value, line;
-    StringTokenizerPlus strTok;
+    simpplle.comcode.utility.StringTokenizerPlus strTok;
 
     try {
       do {
         line   = fin.readLine();
         if (line == null) { key = EOF; continue;}
 
-        strTok = new StringTokenizerPlus(line," ");
+        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line," ");
         if (strTok.hasMoreTokens() == false) {continue;}
 
         key = getKeyword(strTok);
@@ -1615,13 +1621,13 @@ public final class Area implements Externalizable {
 
       if (adjEvus != null) {
         for (int j = 0; j < adjEvus.size(); j++) {
-          Evu evu = (Evu) adjEvus.get(j);
+          simpplle.comcode.element.Evu evu = (simpplle.comcode.element.Evu) adjEvus.get(j);
           evu.addAssociatedAquaticUnit(allEau[i]);
         }
       }
       if (upEvus != null) {
         for (int j = 0; j < upEvus.size(); j++) {
-          Evu evu = (Evu) upEvus.get(j);
+          simpplle.comcode.element.Evu evu = (simpplle.comcode.element.Evu) upEvus.get(j);
           evu.addAssociatedAquaticUnit(allEau[i]);
         }
       }
@@ -1682,7 +1688,7 @@ public final class Area implements Externalizable {
   }
 
   private void printIndividualSummary(PrintWriter fout) throws SimpplleError {
-    Evu evu;
+    simpplle.comcode.element.Evu evu;
 
     for(int i=0;i<=maxEvuId;i++) {
       evu = allEvu[i];
@@ -1790,7 +1796,7 @@ public final class Area implements Externalizable {
   // ** Simulation Methods **
   // ------------------------
 
-  public boolean extremeFireEvent(Evu evu) {
+  public boolean extremeFireEvent(simpplle.comcode.element.Evu evu) {
     int cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     ProcessOccurrenceSpreadingFire event;
 
@@ -1822,7 +1828,7 @@ public final class Area implements Externalizable {
 //  }
 
   public void restoreInitialConditions() {
-    Evu evu;
+    simpplle.comcode.element.Evu evu;
 
     for(int i=0;i<=maxEvuId;i++) {
       evu = allEvu[i];
@@ -1851,14 +1857,14 @@ public final class Area implements Externalizable {
    * Initialize some stuff before starting a simulation.
    */
   public void initSimulation() {
-    Evu     evu;
+    simpplle.comcode.element.Evu evu;
 
     // Treatment and Process Schedule stay until
     // removed by user.
 
 //    initOriginSpread(maxEvuId);
-    Evu.initCumulProb();
-    Evu.staticInitSimulation();
+    simpplle.comcode.element.Evu.initCumulProb();
+    simpplle.comcode.element.Evu.staticInitSimulation();
 
     for(int i=0;i<allEvu.length;i++) {
       evu = allEvu[i];
@@ -1897,7 +1903,7 @@ public final class Area implements Externalizable {
    * simulation.
    */
   public void initMultipleSimulation() {
-    Evu evu;
+    simpplle.comcode.element.Evu evu;
 
     for(int i=0;i<=maxEvuId;i++) {
       evu = allEvu[i];
@@ -1911,7 +1917,7 @@ public final class Area implements Externalizable {
    * Updates the multiple run summary data for each evu.
    */
   public void updateSummaries(MultipleRunSummary multipleRunSummary) {
-    Evu        evu;
+    simpplle.comcode.element.Evu evu;
     Simulation simulation = Simpplle.getCurrentSimulation();
     boolean    trackSpecialArea, trackOwnership;
 
@@ -1942,7 +1948,7 @@ public final class Area implements Externalizable {
    */
   public void initializeSpecialLists(Simulation simulation,
                                      MultipleRunSummary multipleRunSummary) {
-    Evu     evu;
+    simpplle.comcode.element.Evu evu;
     boolean trackSpecialArea, trackOwnership;
 
     trackSpecialArea = simulation.trackSpecialArea();
@@ -1998,7 +2004,7 @@ public final class Area implements Externalizable {
   public void doFuture() throws SimpplleError {
     currentLifeform = null;
 
-    FireSuppEventLogic.getInstance().clearSuppressed();
+    simpplle.comcode.logic.FireSuppEventLogic.getInstance().clearSuppressed();
 
     for(int i=0;i<allEvu.length;i++) {
       if (allEvu[i] != null) {
@@ -2043,7 +2049,7 @@ public final class Area implements Externalizable {
     RegionalZone zone = Simpplle.getCurrentZone();
 
     if (isWyoming) {
-      Evu.findWaterUnits();
+      simpplle.comcode.element.Evu.findWaterUnits();
     }
 
 
@@ -2082,7 +2088,7 @@ public final class Area implements Externalizable {
     doEvuNextState();
 
     if (RegionalZone.isWyoming()) {
-      for (Evu evu : allEvu) {
+      for (simpplle.comcode.element.Evu evu : allEvu) {
         if (evu != null) {
           evu.clearDummyProcesses();
         }
@@ -2099,14 +2105,14 @@ public final class Area implements Externalizable {
       switch (invasiveKind) {
         case MESA_VERDE_NP:
           if (InvasiveSpeciesLogic.hasData()) {
-            InvasiveSpeciesLogic.getInstance().doInvasive();
+            simpplle.comcode.logic.InvasiveSpeciesLogic.getInstance().doInvasive();
           }
           break;
         case R1:
           break;
         case MSU:
           if (InvasiveSpeciesLogicMSU.hasData()) {
-            InvasiveSpeciesLogicMSU.getInstance().doInvasive();
+            simpplle.comcode.logic.InvasiveSpeciesLogicMSU.getInstance().doInvasive();
           }
           break;
       }
@@ -2171,7 +2177,7 @@ public final class Area implements Externalizable {
         continue;
       }
       for (int j = 0; j < chosenUnits.size(); j++) {
-        Evu evu = (Evu) chosenUnits.elementAt(j);
+        simpplle.comcode.element.Evu evu = (simpplle.comcode.element.Evu) chosenUnits.elementAt(j);
         ArrayList<Lifeform> lives;
         if (this.multipleLifeformsEnabled()) {
           lives = Process.getProcessLifeforms(process);
@@ -2181,7 +2187,7 @@ public final class Area implements Externalizable {
         }
         for (int l=0; l<lives.size(); l++) {
           if (evu.hasLifeform(lives.get(l),cStep)) {
-            evu.updateState(lives.get(l),process, (short) Evu.L, Climate.Season.YEAR);
+            evu.updateState(lives.get(l),process, (short) simpplle.comcode.element.Evu.L, Climate.Season.YEAR);
           }
         }
       }
@@ -2215,7 +2221,7 @@ public final class Area implements Externalizable {
       if (treatmentUnits == null) { continue; }
 
       for(int j=0;j<treatmentUnits.size();j++) {
-        Evu evu = (Evu) treatmentUnits.elementAt(j);
+        simpplle.comcode.element.Evu evu = (simpplle.comcode.element.Evu) treatmentUnits.elementAt(j);
         // Don't treat an already treated unit.
         if (evu.getCurrentTreatment() != null) { continue; }
 
@@ -2242,7 +2248,7 @@ public final class Area implements Externalizable {
       if (treatmentUnits == null) { continue; }
 
       for(int j=0;j<treatmentUnits.size();j++) {
-        Evu evu = (Evu) treatmentUnits.elementAt(j);
+        simpplle.comcode.element.Evu evu = (simpplle.comcode.element.Evu) treatmentUnits.elementAt(j);
         Treatment treatment = new Treatment(treatmentType);
         treatment.setPreventReTreatment(app.preventReTreatment());
         treatment.setPreventReTreatmentTimeSteps(app.getPreventReTreatmentTimeSteps());
@@ -2268,7 +2274,7 @@ public final class Area implements Externalizable {
       if (treatmentUnits == null) { continue; }
 
       for(int j=0;j<treatmentUnits.size();j++) {
-        Evu evu = (Evu) treatmentUnits.elementAt(j);
+        simpplle.comcode.element.Evu evu = (simpplle.comcode.element.Evu) treatmentUnits.elementAt(j);
         // Don't treat an already treated unit.
         if (evu.getCurrentTreatment() != null) { continue; }
 
@@ -2297,7 +2303,7 @@ public final class Area implements Externalizable {
       }
 
       for(int j=0;j<treatmentUnits.size();j++) {
-        Evu evu = (Evu) treatmentUnits.elementAt(j);
+        simpplle.comcode.element.Evu evu = (simpplle.comcode.element.Evu) treatmentUnits.elementAt(j);
         // Don't treat an already treated unit.
         if (evu.getCurrentTreatment() != null) { continue; }
 
@@ -2480,7 +2486,7 @@ public final class Area implements Externalizable {
 
   private void doEvuWeedEncroachment() {
     int                  i, j;
-    Evu                  evu, adj;
+    simpplle.comcode.element.Evu evu, adj;
     AdjacentData[]       adjacentData;
     HabitatTypeGroupType groupType;
     Species              species;
@@ -2595,7 +2601,7 @@ public final class Area implements Externalizable {
     int                  index;
     VegetativeType       newState = null;
     HabitatTypeGroup     htGrp;
-    Evu                  evu, adj;
+    simpplle.comcode.element.Evu evu, adj;
     int                  i, j;
     int                  numDecades = 0;
     RegionalZone         zone = Simpplle.currentZone;
@@ -2655,8 +2661,8 @@ public final class Area implements Externalizable {
         newState = null;
         acres = evu.getAcres();
 
-        numDecades = ConiferEncroachmentLogicData.getTimeValue(acres);
-        if (numDecades == ConiferEncroachmentLogicData.NONE) {
+        numDecades = simpplle.comcode.logic.ConiferEncroachmentLogicData.getTimeValue(acres);
+        if (numDecades == simpplle.comcode.logic.ConiferEncroachmentLogicData.NONE) {
           continue;
         }
 
@@ -2716,7 +2722,7 @@ public final class Area implements Externalizable {
           continue;
         }
 
-        Utility.sort(key,value);
+        simpplle.comcode.utility.Utility.sort(key,value);
         sortedKeys = key;
 
         for(j=0;j<sortedKeys.length;j++) {
@@ -2780,11 +2786,11 @@ public final class Area implements Externalizable {
   // ** Reports **
   // *************
 
-  private String determineOwnerSpecialKey(Evu evu, int option) {
+  private String determineOwnerSpecialKey(simpplle.comcode.element.Evu evu, int option) {
     switch (option) {
-      case Reports.OWNERSHIP:    return evu.getOwnership();
-      case Reports.SPECIAL_AREA: return evu.getSpecialArea();
-      case Reports.OWNER_SPECIAL:
+      case simpplle.comcode.reports.Reports.OWNERSHIP:    return evu.getOwnership();
+      case simpplle.comcode.reports.Reports.SPECIAL_AREA: return evu.getSpecialArea();
+      case simpplle.comcode.reports.Reports.OWNER_SPECIAL:
         return evu.getOwnership() + "/" + evu.getSpecialArea();
       default:
         return "UNKNOWN";
@@ -2862,7 +2868,7 @@ public final class Area implements Externalizable {
     String         key;
     int            i, j, k;
     int[]          acres;
-    Evu            evu;
+    simpplle.comcode.element.Evu evu;
     boolean        applied;
 
     data = new Hashtable();
@@ -2924,7 +2930,7 @@ public final class Area implements Externalizable {
     String         key;
     int            i, j, k;
     int[]          acres;
-    Evu            evu;
+    simpplle.comcode.element.Evu evu;
     boolean        applied;
 
     optionHt = new Hashtable();
@@ -3073,8 +3079,8 @@ public final class Area implements Externalizable {
     try {
       outputFile = createLifeformOutputFile(outputFile,lifeform,combineLives);
 
-      tmpFile = Utility.makeNumberedPathname(outputFile, tStep);
-      newFile = Utility.makeSuffixedPathname(tmpFile, "-update", "txt");
+      tmpFile = simpplle.comcode.utility.Utility.makeNumberedPathname(outputFile, tStep);
+      newFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(tmpFile, "-update", "txt");
 
       fout = new PrintWriter(new FileOutputStream(newFile));
 
@@ -3091,7 +3097,7 @@ public final class Area implements Externalizable {
 
   private void produceArcFiles(PrintWriter fout, int tStep, Lifeform lifeform, boolean combineLives) {
     VegSimStateData state;
-    Evu            evu;
+    simpplle.comcode.element.Evu evu;
     ProcessType    process;
     Treatment      treatment;
     String         species;
@@ -3151,7 +3157,7 @@ public final class Area implements Externalizable {
       treatment    = evu.getTreatment(tStep);
 
 //      probStr = evu.getProbStr(tStep);
-      prob = Evu.getFloatProb(state.getProb());
+      prob = simpplle.comcode.element.Evu.getFloatProb(state.getProb());
 
       if (treatment != null) {
         switch (treatment.getStatus()) {
@@ -3165,7 +3171,7 @@ public final class Area implements Externalizable {
             treatmentStr = "NONE";
         }
       }
-      treatmentStr = Utility.dashesToUnderscores(treatmentStr);
+      treatmentStr = simpplle.comcode.utility.Utility.dashesToUnderscores(treatmentStr);
 
       NumberFormat nf = NumberFormat.getInstance();
       nf.setMaximumFractionDigits(2);
@@ -3236,8 +3242,8 @@ public final class Area implements Externalizable {
     PrintWriter fout;
     File tmpFile, newFile;
 
-    tmpFile = Utility.makeNumberedPathname(outputFile, tStep);
-    newFile = Utility.makeSuffixedPathname(tmpFile,"-spread","txt");
+    tmpFile = simpplle.comcode.utility.Utility.makeNumberedPathname(outputFile, tStep);
+    newFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(tmpFile,"-spread","txt");
 
     try {
       fout = new PrintWriter(new FileOutputStream(newFile));
@@ -3303,15 +3309,15 @@ public final class Area implements Externalizable {
   throws SimpplleError
   {
     int          acres = 0;
-    MyInteger    freq;
+    simpplle.comcode.utility.MyInteger freq;
     SimpplleType.Types[]        kinds;
     int          k;
-    HashMap<SimpplleType,MyInteger> freqHm;
+    HashMap<SimpplleType, simpplle.comcode.utility.MyInteger> freqHm;
     SimpplleType key;
     boolean      freqHighEnough;
     MultipleRunSummary mrSummary = Simpplle.getCurrentSimulation().getMultipleRunSummary();
 
-    kinds = new SimpplleType.Types[] {Evu.PROCESS, Evu.SPECIES, Evu.SIZE_CLASS, Evu.DENSITY};
+    kinds = new SimpplleType.Types[] {simpplle.comcode.element.Evu.PROCESS, simpplle.comcode.element.Evu.SPECIES, simpplle.comcode.element.Evu.SIZE_CLASS, simpplle.comcode.element.Evu.DENSITY};
 
     for(int i=0; i<=maxEvuId; i++) {
       if (allEvu[i] == null) { continue; }
@@ -3359,7 +3365,7 @@ public final class Area implements Externalizable {
         suffix[SimpplleType.PROCESS.ordinal()]    = "-" + Integer.toString(i) + "-process";
 
         for(j=0; j<types.length; j++) {
-          file = Utility.makeSuffixedPathname(outputFile, suffix[types[j].ordinal()], "txt");
+          file = simpplle.comcode.utility.Utility.makeSuffixedPathname(outputFile, suffix[types[j].ordinal()], "txt");
           fout[types[j].ordinal()] = new PrintWriter(new FileOutputStream(file));
         }
 
@@ -3407,7 +3413,7 @@ public final class Area implements Externalizable {
 
     for(int i=0; i<types.length; i++) {
       file[types[i].ordinal()] =
-          Utility.makeSuffixedPathname(outputFile, suffix[types[i].ordinal()], "txt");
+          simpplle.comcode.utility.Utility.makeSuffixedPathname(outputFile, suffix[types[i].ordinal()], "txt");
     }
 
 
@@ -3470,11 +3476,11 @@ public final class Area implements Externalizable {
 
 
     HashMap[] attribCount = new HashMap[SimpplleType.MAX];
-    MyInteger   freqObj;
+    simpplle.comcode.utility.MyInteger freqObj;
     int       expCount=0;
     int       freq;
 
-    for (Evu evu : allEvu) {
+    for (simpplle.comcode.element.Evu evu : allEvu) {
       if (evu == null) {
         continue;
       }
@@ -3495,11 +3501,11 @@ public final class Area implements Externalizable {
         fout[types[t].ordinal()].print(evu.getId());
 
         for (int j = 0; j < attributes[types[t].ordinal()].length; j++) {
-          freqObj = (MyInteger) attribCount[types[t].ordinal()].get(attributes[types[t].ordinal()][j]);
+          freqObj = (simpplle.comcode.utility.MyInteger) attribCount[types[t].ordinal()].get(attributes[types[t].ordinal()][j]);
           freq = (freqObj != null) ? freqObj.intValue() : 0;
 
           fout[types[t].ordinal()].print(COMMA_STR);
-          fout[types[t].ordinal()].print(IntToString.get(freq));
+          fout[types[t].ordinal()].print(simpplle.comcode.utility.IntToString.get(freq));
         }
         fout[types[t].ordinal()].println();
       }
@@ -3508,7 +3514,7 @@ public final class Area implements Externalizable {
 
 
   public void produceReburnProbabilityFile(File outfile) throws SimpplleError {
-    File newOutfile = Utility.makeSuffixedPathname(outfile, "-reburn", "txt");
+    File newOutfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(outfile, "-reburn", "txt");
     PrintWriter fout;
     try {
       fout = new PrintWriter(new FileOutputStream(newOutfile));
@@ -3634,9 +3640,9 @@ public final class Area implements Externalizable {
 
   public void exportCreationFiles(File outfile) throws SimpplleError {
     try {
-      File prefix = Utility.stripExtension(outfile);
-      File neighborsFile = Utility.makeSuffixedPathname(prefix,"","spatialrelate");
-      File attributesFile = Utility.makeSuffixedPathname(prefix,"","attributesall");
+      File prefix = simpplle.comcode.utility.Utility.stripExtension(outfile);
+      File neighborsFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix,"","spatialrelate");
+      File attributesFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix,"","attributesall");
 
       PrintWriter fout = new PrintWriter(new FileWriter(neighborsFile));
       exportNeighbors(fout);
@@ -3839,7 +3845,7 @@ public final class Area implements Externalizable {
    * @param pos The Position of the Adjacent unit relative to evu.
    * @param wind the direction the wind is coming from in the adjacent unit.
    */
-  public void addAdjacentData(Evu evu, int adjId, char pos, char wind) {
+  public void addAdjacentData(simpplle.comcode.element.Evu evu, int adjId, char pos, char wind) {
     if (tmpAdjacentData == null) {
       tmpAdjacentData = new Hashtable();
     }
@@ -3868,7 +3874,7 @@ public final class Area implements Externalizable {
     finishAddingAdjacentData(null);
   }
   public void finishAddingAdjacentData(PrintWriter logFile) {
-    Evu            evu, adjEvu;
+    simpplle.comcode.element.Evu evu, adjEvu;
     Vector         v;
     int            i;
     int[]          data;
@@ -3878,7 +3884,7 @@ public final class Area implements Externalizable {
 
     keys = tmpAdjacentData.keys();
     while (keys.hasMoreElements()) {
-      evu = (Evu)keys.nextElement();
+      evu = (simpplle.comcode.element.Evu)keys.nextElement();
 
       v   = (Vector)tmpAdjacentData.get(evu);
 
@@ -3932,8 +3938,8 @@ public final class Area implements Externalizable {
     }
     tmpAdjacentData = null;
   }
-  public char calcRelativePosition(Evu evu, AdjacentData adjData) {
-    Evu adj = adjData.evu;
+  public char calcRelativePosition(simpplle.comcode.element.Evu evu, AdjacentData adjData) {
+    simpplle.comcode.element.Evu adj = adjData.evu;
 
     if (evu.isElevationValid() == false || adj.isElevationValid() == false) {
       return adjData.position;
@@ -3950,23 +3956,23 @@ public final class Area implements Externalizable {
       double distance = evu.distancetoEvuMeters(adj);
       double pctDiff = ((double)elevDiff / distance) * 100;
       if (pctDiff > elevationRelativePosition) {
-        return (adjElev > evuElev) ? Evu.ABOVE : Evu.BELOW;
+        return (adjElev > evuElev) ? simpplle.comcode.element.Evu.ABOVE : simpplle.comcode.element.Evu.BELOW;
       }
     }
     else {
       if (elevDiff > elevationRelativePosition) {
-        return (adjElev > evuElev) ? Evu.ABOVE : Evu.BELOW;
+        return (adjElev > evuElev) ? simpplle.comcode.element.Evu.ABOVE : simpplle.comcode.element.Evu.BELOW;
       }
     }
 
-    return Evu.NEXT_TO;
+    return simpplle.comcode.element.Evu.NEXT_TO;
   }
 
   public Vector parseEvuIdList (String value) throws ParseError, IOException {
     StringTokenizer strTok;
     Vector          result = null;
     int             id;
-    Evu             evu;
+    simpplle.comcode.element.Evu evu;
     String          str = null;
     boolean         moreTokens;
 
@@ -4003,8 +4009,8 @@ public final class Area implements Externalizable {
     PrintWriter fout;
     File        processFile, treatmentFile;
 
-    processFile   = Utility.makeSuffixedPathname(outfile,"-magisprocess","txt");
-    treatmentFile = Utility.makeSuffixedPathname(outfile,"-magistreatment","txt");
+    processFile   = simpplle.comcode.utility.Utility.makeSuffixedPathname(outfile,"-magisprocess","txt");
+    treatmentFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(outfile,"-magistreatment","txt");
 
     try {
       fout = new PrintWriter(new BufferedWriter(new FileWriter(processFile)));
@@ -4191,7 +4197,7 @@ public final class Area implements Externalizable {
     acres       = in.readInt();
     totalLength = in.readInt();
 
-    Evu[] units = (Evu[])in.readObject();
+    simpplle.comcode.element.Evu[] units = (simpplle.comcode.element.Evu[])in.readObject();
     maxEvuId = units.length - 1;
     if (maxEvuId > 15000) { manualGC = true; }
 
@@ -4199,7 +4205,7 @@ public final class Area implements Externalizable {
 
 
     int count = in.readInt();
-    Evu evu;
+    simpplle.comcode.element.Evu evu;
     for (int i=0; i<count; i++) {
       evu = this.getEvu(in.readInt());
       if (evu == null) { continue; }
@@ -4213,12 +4219,12 @@ public final class Area implements Externalizable {
 
     Simpplle.setCurrentArea(this);
     if (version >= 2) {
-      ExistingAquaticUnit[] aquaUnits = (ExistingAquaticUnit[])in.readObject();
+      simpplle.comcode.element.ExistingAquaticUnit[] aquaUnits = (simpplle.comcode.element.ExistingAquaticUnit[])in.readObject();
       setAllEau(aquaUnits);
 
       if (aquaUnits != null) {
         count = in.readInt();
-        ExistingAquaticUnit eau;
+        simpplle.comcode.element.ExistingAquaticUnit eau;
         for (int i = 0; i < count; i++) {
           eau = this.getEau(in.readInt());
           if (eau == null) { continue; }
@@ -4229,23 +4235,23 @@ public final class Area implements Externalizable {
 
     if (version >= 4) {
       int size = in.readInt();
-      setAllElu(new ExistingLandUnit[size]);
-      ExistingLandUnit[] elus = (ExistingLandUnit[])in.readObject();
+      setAllElu(new simpplle.comcode.element.ExistingLandUnit[size]);
+      simpplle.comcode.element.ExistingLandUnit[] elus = (simpplle.comcode.element.ExistingLandUnit[])in.readObject();
       addAllElu(elus);
     }
 
     if (version >= 5) {
       {
         int size = in.readInt();
-        setAllRoads(new Roads[size]);
-        Roads[] roads = (Roads[]) in.readObject();
+        setAllRoads(new simpplle.comcode.element.Roads[size]);
+        simpplle.comcode.element.Roads[] roads = (simpplle.comcode.element.Roads[]) in.readObject();
         addAllRoads(roads);
       }
 
       {
         int size = in.readInt();
-        setAllTrails(new Trails[size]);
-        Trails[] trails = (Trails[]) in.readObject();
+        setAllTrails(new simpplle.comcode.element.Trails[size]);
+        simpplle.comcode.element.Trails[] trails = (simpplle.comcode.element.Trails[]) in.readObject();
         addAllTrails(trails);
       }
     }
@@ -4356,7 +4362,7 @@ public final class Area implements Externalizable {
     }
 
     out.writeInt(evuValidCount);
-    for (Evu evu : allEvu) {
+    for (simpplle.comcode.element.Evu evu : allEvu) {
       if (evu == null) { continue; }
       out.writeInt(evu.getId());
       evu.writeSpatialRelations(out);
@@ -4372,7 +4378,7 @@ public final class Area implements Externalizable {
 
       boolean moreData = true;
 
-      Evu evu;
+      simpplle.comcode.element.Evu evu;
       int id;
       int i = 0;
       // I changed this to a while loop, that looks for an id of -1, so that
@@ -4401,7 +4407,7 @@ public final class Area implements Externalizable {
 
       boolean moreData = (count > 0);
 
-      Roads road;
+      simpplle.comcode.element.Roads road;
       int i = 0;
       while (moreData) {
         road = getRoadUnit(in.readInt());
@@ -4418,7 +4424,7 @@ public final class Area implements Externalizable {
 
       boolean moreData = (count > 0);
 
-      Trails trail;
+      simpplle.comcode.element.Trails trail;
       int i = 0;
       while (moreData) {
         trail = getTrailUnit(in.readInt());
@@ -4495,7 +4501,7 @@ public final class Area implements Externalizable {
   public void writeAccumDatabase() throws SimpplleError {
     try {
       int    doneCount=0, pctFinish;
-      for (Evu evu : allEvu) {
+      for (simpplle.comcode.element.Evu evu : allEvu) {
         if (evu == null) {
           continue;
         }
@@ -4503,7 +4509,7 @@ public final class Area implements Externalizable {
         String msg = "Writing to database " + pctFinish + "% Finished";
         Simpplle.setStatusMessage(msg);
 
-        Session session = DatabaseCreator.getSessionFactory().openSession();
+        Session session = simpplle.comcode.utility.DatabaseCreator.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         evu.writeAccumDatabase(session);
         tx.commit();
@@ -4513,12 +4519,12 @@ public final class Area implements Externalizable {
       }
       if (allEau == null) { return; }
 
-      for (ExistingAquaticUnit eau : allEau) {
+      for (simpplle.comcode.element.ExistingAquaticUnit eau : allEau) {
         if (eau == null) {
           continue;
         }
 
-        Session session = DatabaseCreator.getSessionFactory().openSession();
+        Session session = simpplle.comcode.utility.DatabaseCreator.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         eau.writeAccumDatabase(session);
         tx.commit();
@@ -4539,7 +4545,7 @@ public final class Area implements Externalizable {
     int doneCount = 0, pctFinish;
 
     int ts = Simulation.getCurrentTimeStep();
-    for (Evu evu : allEvu) {
+    for (simpplle.comcode.element.Evu evu : allEvu) {
       if (evu == null) {
         continue;
       }
@@ -4568,12 +4574,12 @@ public final class Area implements Externalizable {
   public void writeSimulationDatabase() throws SimpplleError {
     int doneCount = 0, pctFinish;
 
-    Session     session = DatabaseCreator.getSessionFactory().openSession();
+    Session     session = simpplle.comcode.utility.DatabaseCreator.getSessionFactory().openSession();
     Transaction tx = session.beginTransaction();
 
     int ts = Simulation.getCurrentTimeStep();
     try {
-      for (Evu evu : allEvu) {
+      for (simpplle.comcode.element.Evu evu : allEvu) {
         if (evu == null) {
           continue;
         }
@@ -4606,7 +4612,7 @@ public final class Area implements Externalizable {
     String msg = "Writing Time Step #" + ts + " to textdata files.";
     Simpplle.setStatusMessage(msg);
 
-    for (Evu evu : allEvu) {
+    for (simpplle.comcode.element.Evu evu : allEvu) {
       if (evu == null) {
         continue;
       }

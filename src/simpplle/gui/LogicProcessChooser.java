@@ -24,7 +24,7 @@ import simpplle.comcode.*;
 public class LogicProcessChooser extends JDialog {
   LogicProcessTableDataModel dataModel =
       new LogicProcessTableDataModel(SimpplleType.PROCESS);
-  LogicData logicData;
+  simpplle.comcode.logic.LogicData logicData;
   private String description;
   private int    timeSteps;
   private boolean isAdjProcess;
@@ -75,7 +75,7 @@ public class LogicProcessChooser extends JDialog {
    * @param anyExcept
    */
   public LogicProcessChooser(JDialog owner, String title, boolean modal,
-                             LogicData logicData,
+                             simpplle.comcode.logic.LogicData logicData,
                              String description, int timeSteps,
                              boolean inclusiveTS,
                              boolean isAdjProcess,

@@ -43,7 +43,7 @@ public class MixedSeverityFire extends Process {
  * Returns false if fire is suppressed otherwise returns spreading boolean based on to and from Evu and fire resistance.  
  * 
  */
-  public boolean doSpread(RegionalZone zone, Evu fromEvu, Evu evu) {
+  public boolean doSpread(RegionalZone zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
     boolean fireSupp = Simpplle.getCurrentSimulation().fireSuppression();
     int     ts       = Simulation.getCurrentTimeStep();
 
@@ -51,7 +51,7 @@ public class MixedSeverityFire extends Process {
     VegetativeType  vegType  = state.getVeg();
     Lifeform        lifeform = state.getLifeform();
 
-    FireSuppBeyondClassALogic logicInst = FireSuppBeyondClassALogic.getInstance();
+    simpplle.comcode.logic.FireSuppBeyondClassALogic logicInst = simpplle.comcode.logic.FireSuppBeyondClassALogic.getInstance();
     boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
 
 
