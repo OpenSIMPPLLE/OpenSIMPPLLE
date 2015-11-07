@@ -57,7 +57,7 @@ public class AquaticAttribute extends SimpplleType {
       allAttributeHt.put(printName,this);
     }
 
-    simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(printName,SLASH);
+    StringTokenizerPlus strTok = new StringTokenizerPlus(printName,SLASH);
 
     int count = strTok.countTokens();
     if (count == 1) {

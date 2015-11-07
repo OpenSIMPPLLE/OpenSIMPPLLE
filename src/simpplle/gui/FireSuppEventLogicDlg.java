@@ -2,7 +2,7 @@ package simpplle.gui;
 
 import java.awt.Frame;
 
-import simpplle.comcode.logic.FireSuppEventLogic;
+import simpplle.comcode.FireSuppEventLogic;
 import simpplle.comcode.SystemKnowledge;
 /** 
  * The University of Montana owns copyright of the designated documentation contained 

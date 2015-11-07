@@ -40,7 +40,7 @@ public class LightSeverityFire extends Process {
  * calculates fire spread.  If fire is suppressed returns false, otherwise calculates spread boolean
  * based on to and from Evu and fire resistance.  
  */
-  public boolean doSpread(RegionalZone zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread(RegionalZone zone, Evu fromEvu, Evu evu) {
     boolean fireSupp = Simpplle.getCurrentSimulation().fireSuppression();
     int     ts       = Simulation.getCurrentTimeStep();
 
@@ -48,7 +48,7 @@ public class LightSeverityFire extends Process {
     VegetativeType  vegType  = state.getVeg();
     Lifeform        lifeform = state.getLifeform();
 
-    simpplle.comcode.logic.FireSuppBeyondClassALogic logicInst = simpplle.comcode.logic.FireSuppBeyondClassALogic.getInstance();
+    FireSuppBeyondClassALogic logicInst = FireSuppBeyondClassALogic.getInstance();
     boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
 
     if (fireSupp &&

@@ -1,8 +1,8 @@
 package simpplle.gui;
 
 import javax.swing.table.AbstractTableModel;
-
-import simpplle.comcode.logic.LogicData;
+import java.util.Vector;
+import simpplle.comcode.LogicData;
 import simpplle.comcode.SimpplleType;
 import simpplle.comcode.Density;
 import simpplle.comcode.Species;
@@ -10,7 +10,8 @@ import simpplle.comcode.SizeClass;
 import simpplle.comcode.ProcessType;
 import simpplle.comcode.TreatmentType;
 import simpplle.comcode.HabitatTypeGroupType;
-import simpplle.comcode.logic.ProcessProbLogicData;
+import simpplle.comcode.ProcessProbLogicData;
+import simpplle.comcode.*;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -98,8 +99,8 @@ public abstract class SimpplleTypeTableDataModel extends AbstractTableModel {
     if (logicData instanceof ProcessProbLogicData && nonBaseCol) {
       return ((ProcessProbLogicData)logicData).isMemberAdjProcess((ProcessType)item);
     }
-    else if (logicData instanceof simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU && nonBaseCol) {
-      return ((simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU)logicData).isMemberSimpplleType(item);
+    else if (logicData instanceof InvasiveSpeciesLogicDataMSU && nonBaseCol) {
+      return ((InvasiveSpeciesLogicDataMSU)logicData).isMemberSimpplleType(item);
     }
     return logicData.isMemberSimpplleType(item,kind);
   }
@@ -115,8 +116,8 @@ public abstract class SimpplleTypeTableDataModel extends AbstractTableModel {
       if (logicData instanceof ProcessProbLogicData && nonBaseCol) {
         ((ProcessProbLogicData)logicData).addAdjProcess((ProcessType)getValueAt(row));
       }
-      else if (logicData instanceof simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU && nonBaseCol) {
-        ((simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU)logicData).addSimpplleType(getValueAt(row));
+      else if (logicData instanceof InvasiveSpeciesLogicDataMSU && nonBaseCol) {
+        ((InvasiveSpeciesLogicDataMSU)logicData).addSimpplleType(getValueAt(row));
       }
       else {
         logicData.addSimpplleType(getValueAt(row), kind);
@@ -126,8 +127,8 @@ public abstract class SimpplleTypeTableDataModel extends AbstractTableModel {
       if (logicData instanceof ProcessProbLogicData && nonBaseCol) {
         ((ProcessProbLogicData)logicData).removeAdjProcess((ProcessType)getValueAt(row));
       }
-      else if (logicData instanceof simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU && nonBaseCol) {
-        ((simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU)logicData).removeSimpplleType(getValueAt(row));
+      else if (logicData instanceof InvasiveSpeciesLogicDataMSU && nonBaseCol) {
+        ((InvasiveSpeciesLogicDataMSU)logicData).removeSimpplleType(getValueAt(row));
       }
       else {
         logicData.removeSimpplleType(getValueAt(row), kind);

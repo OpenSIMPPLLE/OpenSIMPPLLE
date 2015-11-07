@@ -87,7 +87,7 @@ public final class TreatmentApplication {
 
     specialAreaList = new ArrayList<String>();
     ownershipList   = new ArrayList<String>();
-    roadStatus     = simpplle.comcode.element.Roads.Status.UNKNOWN.getValue();
+    roadStatus     = Roads.Status.UNKNOWN.getValue();
 
     preventReTreatment      = false;
     preventReTreatmentSteps = 5;
@@ -191,12 +191,12 @@ public final class TreatmentApplication {
     acres = newAcres;
   }
   public void setAcres(float newAcres) {
-    acres = Math.round(newAcres * simpplle.comcode.utility.Utility.pow(10,Area.getAcresPrecision()));
+    acres = Math.round(newAcres * Utility.pow(10,Area.getAcresPrecision()));
   }
 
   public int getAcres() { return acres; }
   public float getFloatAcres() {
-    return ( (float)acres / (float) simpplle.comcode.utility.Utility.pow(10,Area.getAcresPrecision()) );
+    return ( (float)acres / (float) Utility.pow(10,Area.getAcresPrecision()) );
   }
 
   public boolean isAcresSet() { return (acres != -1); }
@@ -247,7 +247,7 @@ public final class TreatmentApplication {
   public boolean useRoadStatus() { return useRoadStatus; }
   public void setUseRoadStatus(boolean val) { useRoadStatus = val; }
 
-  public void setRoadStatus(simpplle.comcode.element.Roads.Status status) {
+  public void setRoadStatus(Roads.Status status) {
     setRoadStatus(status.getValue());
   }
 
@@ -347,12 +347,12 @@ public final class TreatmentApplication {
   }
 
   private void scheduleFollowUpTreatments(Vector treatedUnits) {
-    simpplle.comcode.element.Evu evu;
+    Evu evu;
 
     if (nextTreatment != null) {
       nextApplication.setUseUnits(true);
       for(int i=0;i<treatedUnits.size();i++) {
-        evu = (simpplle.comcode.element.Evu) treatedUnits.elementAt(i);
+        evu = (Evu) treatedUnits.elementAt(i);
         nextApplication.addUnitId(evu.getId());
       }
     }
@@ -364,7 +364,7 @@ public final class TreatmentApplication {
     int        cStep      = simulation.getCurrentTimeStep();
     int        nSteps     = simulation.getNumTimeSteps();
     int        nextStep;
-    simpplle.comcode.element.Evu evu;
+    Evu        evu;
     int        acres, tmpMaxAcres = getAcres();
     Vector     treatedUnits = new Vector();
     int        i;
@@ -430,8 +430,8 @@ public final class TreatmentApplication {
     if (cStep != getTimeStep()) { return null; }
 
     RegionalZone zone = Simpplle.getCurrentZone();
-    simpplle.comcode.element.Evu[]        allEvu = Simpplle.getCurrentArea().getAllEvu();
-    simpplle.comcode.element.Evu evu;
+    Evu[]        allEvu = Simpplle.getCurrentArea().getAllEvu();
+    Evu          evu;
     Vector       treatedUnits = new Vector();
     int          tmpMaxAcres = getAcres(), acres;
 
@@ -450,7 +450,7 @@ public final class TreatmentApplication {
 
     int       chosenRoadStatus  = getRoadStatus();
 
-    indexes = simpplle.comcode.utility.Utility.makeRandomIndexSequence(allEvu.length-1);
+    indexes = Utility.makeRandomIndexSequence(allEvu.length-1);
     for (int i=0; i<allEvu.length; i++) {
       evu = allEvu[indexes[i]];
       if (evu == null) { continue; }
@@ -548,13 +548,13 @@ public final class TreatmentApplication {
     return treatedUnits;
   }
 
-  private boolean isClusterMember(ArrayList<simpplle.comcode.element.Evu> cluster, simpplle.comcode.element.Evu unit) {
+  private boolean isClusterMember(ArrayList<Evu> cluster, Evu unit) {
     if (cluster == null || cluster.size() == 0) {
       return false;
     }
 
     for (int i=0; i<cluster.size(); i++) {
-      simpplle.comcode.element.Evu clusterEvu = cluster.get(i);
+      Evu clusterEvu = cluster.get(i);
 
       if (unit.isNeighbor(clusterEvu)) {
         return true;
@@ -563,7 +563,7 @@ public final class TreatmentApplication {
     return false;
   }
 
-  private int getClusterAcresRational(ArrayList<simpplle.comcode.element.Evu> cluster) {
+  private int getClusterAcresRational(ArrayList<Evu> cluster) {
     int ratTotAcres=0;
 
     for (int i=0; i<cluster.size(); i++) {
@@ -572,7 +572,7 @@ public final class TreatmentApplication {
 
     return ratTotAcres;
   }
-  private int getClusterAcres(ArrayList<simpplle.comcode.element.Evu> cluster) {
+  private int getClusterAcres(ArrayList<Evu> cluster) {
     int rationalAcres = getClusterAcresRational(cluster);
     return Math.round(Area.getFloatAcres(rationalAcres));
   }
@@ -588,18 +588,18 @@ public final class TreatmentApplication {
       return;
     }
 
-    ArrayList<ArrayList<simpplle.comcode.element.Evu>> unitClusters = new ArrayList<ArrayList<simpplle.comcode.element.Evu>>();
+    ArrayList<ArrayList<Evu>> unitClusters = new ArrayList<ArrayList<Evu>>();
 
     if (aggregateAcres == null) {
       return;
     }
 
     for (int i=0; i<treatedUnits.size(); i++) {
-      simpplle.comcode.element.Evu unit = (simpplle.comcode.element.Evu)treatedUnits.get(i);
+      Evu unit = (Evu)treatedUnits.get(i);
 
       boolean isClusterMember = false;
       for (int uc=0; uc<unitClusters.size(); uc++) {
-        ArrayList<simpplle.comcode.element.Evu> cluster = unitClusters.get(uc);
+        ArrayList<Evu> cluster = unitClusters.get(uc);
 
         if (isClusterMember(cluster,unit)) {
           cluster.add(unit);
@@ -609,22 +609,22 @@ public final class TreatmentApplication {
       }
 
       if (!isClusterMember) {
-        ArrayList<simpplle.comcode.element.Evu> cluster = new ArrayList<simpplle.comcode.element.Evu>();
+        ArrayList<Evu> cluster = new ArrayList<Evu>();
         cluster.add(unit);
         unitClusters.add(cluster);
       }
     }
 
-    ArrayList<ArrayList<simpplle.comcode.element.Evu>> finalUnitClusters = new ArrayList<ArrayList<simpplle.comcode.element.Evu>>();
+    ArrayList<ArrayList<Evu>> finalUnitClusters = new ArrayList<ArrayList<Evu>>();
 
     for (int uc=0; uc<unitClusters.size(); uc++) {
-      ArrayList<simpplle.comcode.element.Evu> cluster = unitClusters.get(uc);
+      ArrayList<Evu> cluster = unitClusters.get(uc);
 
       int clusterAcres = getClusterAcres(cluster);
 
       if (!aggregateAcres.inRange(clusterAcres)) {
         for (int c=0; c<cluster.size(); c++) {
-          simpplle.comcode.element.Evu clusterUnit = cluster.get(c);
+          Evu clusterUnit = cluster.get(c);
           if (treatedUnits.contains(clusterUnit)) {
             treatedUnits.remove(clusterUnit);
             treatedAcres -= clusterUnit.getAcres();
@@ -648,7 +648,7 @@ public final class TreatmentApplication {
 
     int totClusterAcres = 0;
     for (int uc=0; uc<finalUnitClusters.size(); uc++) {
-      ArrayList<simpplle.comcode.element.Evu> cluster = finalUnitClusters.get(uc);
+      ArrayList<Evu> cluster = finalUnitClusters.get(uc);
 
       int clusterAcres = getClusterAcresRational(cluster);
 
@@ -656,7 +656,7 @@ public final class TreatmentApplication {
 
       if (totClusterAcres > tmpMaxAcres) {
         for (int c=0; c<cluster.size(); c++) {
-          simpplle.comcode.element.Evu clusterUnit = cluster.get(c);
+          Evu clusterUnit = cluster.get(c);
           if (treatedUnits.contains(clusterUnit)) {
             treatedUnits.remove(clusterUnit);
             treatedAcres -= clusterUnit.getAcres();
@@ -673,8 +673,8 @@ public final class TreatmentApplication {
     Area              area = Simpplle.getCurrentArea();
     RegionalZone      zone = Simpplle.getCurrentZone();
     int               cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
-    simpplle.comcode.element.Evu[]             allEvu = area.getAllEvu();
-    simpplle.comcode.element.Evu evu;
+    Evu[]             allEvu = area.getAllEvu();
+    Evu               evu;
     String            processName;
     ProcessType       processType;
     Integer           prob;
@@ -694,7 +694,7 @@ public final class TreatmentApplication {
         processType = ProcessType.get(processName);
         prob        = (Integer) processProb.get(processName);
 
-        indexes = simpplle.comcode.utility.Utility.makeRandomIndexSequence(allEvu.length-1);
+        indexes = Utility.makeRandomIndexSequence(allEvu.length-1);
         for(j=0;j<allEvu.length;j++) {
           evu = allEvu[indexes[j]];
           if (evu == null) { continue; }
@@ -960,8 +960,8 @@ public final class TreatmentApplication {
     }
   }
 
-  public void readGeneral(simpplle.comcode.utility.StringTokenizerPlus strTok, String line, int fileVersion) throws ParseError {
-    simpplle.comcode.utility.StringTokenizerPlus subStrTok;
+  public void readGeneral(StringTokenizerPlus strTok, String line, int fileVersion) throws ParseError {
+    StringTokenizerPlus subStrTok;
     String              str;
     int                 tStep, count, i;
     RegionalZone        zone = Simpplle.currentZone;
@@ -1002,7 +1002,7 @@ public final class TreatmentApplication {
     str = strTok.getToken();
     if (str != null) {
       setUseRoadStatus(true);
-      setRoadStatus(simpplle.comcode.element.Roads.Status.lookup(str).getValue());
+      setRoadStatus(Roads.Status.lookup(str).getValue());
     }
 
     // Wait Steps
@@ -1062,10 +1062,10 @@ public final class TreatmentApplication {
     }
   }
 
-  private void readSpecialArea(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
+  private void readSpecialArea(StringTokenizerPlus strTok) throws ParseError {
     String str = strTok.getToken();
     if (str != null) {
-      simpplle.comcode.utility.StringTokenizerPlus subStrTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+      StringTokenizerPlus subStrTok = new StringTokenizerPlus(str,":");
       int count = subStrTok.countTokens();
 
       for(int i=0;i<count;i++) {
@@ -1075,10 +1075,10 @@ public final class TreatmentApplication {
     }
 
   }
-  private void readOwnership(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
+  private void readOwnership(StringTokenizerPlus strTok) throws ParseError {
     String str = strTok.getToken();
     if (str != null) {
-      simpplle.comcode.utility.StringTokenizerPlus subStrTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+      StringTokenizerPlus subStrTok = new StringTokenizerPlus(str,":");
       int count = subStrTok.countTokens();
 
       for(int i=0;i<count;i++) {
@@ -1088,7 +1088,7 @@ public final class TreatmentApplication {
     }
   }
 
-  private void readUnitIds(simpplle.comcode.utility.StringTokenizerPlus strTok)
+  private void readUnitIds(StringTokenizerPlus strTok)
                                 throws ParseError, IOException {
     String str;
     int    i, id, count;
@@ -1099,7 +1099,7 @@ public final class TreatmentApplication {
       setUseUnits(true);
       return;
     }
-    strTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+    strTok = new StringTokenizerPlus(str,":");
     count  = strTok.countTokens();
 
     for(i=0;i<count;i++) {
@@ -1118,9 +1118,9 @@ public final class TreatmentApplication {
     setUseUnits(true);
   }
 
-  private void readAttributes(simpplle.comcode.utility.StringTokenizerPlus strTok, int fileVersion)
+  private void readAttributes(StringTokenizerPlus strTok, int fileVersion)
                                   throws ParseError, IOException {
-    simpplle.comcode.utility.StringTokenizerPlus subStrTok;
+    StringTokenizerPlus subStrTok;
     String              str;
     int                 count, i;
     RegionalZone        zone = Simpplle.currentZone;
@@ -1128,7 +1128,7 @@ public final class TreatmentApplication {
     // Habitat Type Group
     str = strTok.getToken();
     if (str != null) {
-      subStrTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+      subStrTok = new StringTokenizerPlus(str,":");
       count = subStrTok.countTokens();
 
       for(i=0;i<count;i++) {
@@ -1143,7 +1143,7 @@ public final class TreatmentApplication {
     // Species
     str = strTok.getToken();
     if (str != null) {
-      subStrTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+      subStrTok = new StringTokenizerPlus(str,":");
       count = subStrTok.countTokens();
 
       for(i=0;i<count;i++) {
@@ -1158,7 +1158,7 @@ public final class TreatmentApplication {
     // Size Class
     str = strTok.getToken();
     if (str != null) {
-      subStrTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+      subStrTok = new StringTokenizerPlus(str,":");
       count = subStrTok.countTokens();
 
       for(i=0;i<count;i++) {
@@ -1173,7 +1173,7 @@ public final class TreatmentApplication {
     // Density
     str = strTok.getToken();
     if (str != null) {
-      subStrTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+      subStrTok = new StringTokenizerPlus(str,":");
       count = subStrTok.countTokens();
 
       for(i=0;i<count;i++) {
@@ -1188,7 +1188,7 @@ public final class TreatmentApplication {
     // Process
     str = strTok.getToken();
     if (str != null) {
-      subStrTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+      subStrTok = new StringTokenizerPlus(str,":");
       count = subStrTok.countTokens();
 
       for(i=0;i<count;i++) {
@@ -1204,7 +1204,7 @@ public final class TreatmentApplication {
     if (fileVersion >= 2) {
       str = strTok.getToken();
       if (str != null) {
-        subStrTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+        subStrTok = new StringTokenizerPlus(str,":");
         count = subStrTok.countTokens();
         if (count != 2) {
           throw new ParseError(str + " is not a valid Aggregate Acres Range (format:  min:max");
@@ -1239,9 +1239,9 @@ public final class TreatmentApplication {
     setUseAttributes(true);
   }
 
-  public void readProcessProb(simpplle.comcode.utility.StringTokenizerPlus strTok)
+  public void readProcessProb(StringTokenizerPlus strTok)
                                   throws ParseError, IOException {
-    simpplle.comcode.utility.StringTokenizerPlus subStrTok;
+    StringTokenizerPlus subStrTok;
     String              str;
     int                 prob, count;
 
@@ -1255,7 +1255,7 @@ public final class TreatmentApplication {
       else if (str == null) {
         throw new ParseError("Invalid Process Probability Info");
       }
-      subStrTok = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+      subStrTok = new StringTokenizerPlus(str,":");
 
       str  = subStrTok.getToken();
       prob = subStrTok.getIntToken();
@@ -1265,7 +1265,7 @@ public final class TreatmentApplication {
   }
 
   public void read(BufferedReader fin, int fileVersion) throws ParseError, IOException {
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     String              line;
 
     // Get the General Information.
@@ -1274,7 +1274,7 @@ public final class TreatmentApplication {
       throw new ParseError("Invalid treatment Schedule file.");
     }
 
-    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+    strTok = new StringTokenizerPlus(line,",");
     readGeneral(strTok,line,fileVersion);
 
     // Get the Attributes (if any)
@@ -1283,7 +1283,7 @@ public final class TreatmentApplication {
       throw new ParseError("Invalid treatment Schedule file.");
     }
 
-    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+    strTok = new StringTokenizerPlus(line,",");
     setUseAttributes((line.equals("NIL") == false));
     if (useAttributes()) {
       readAttributes(strTok,fileVersion);
@@ -1294,7 +1294,7 @@ public final class TreatmentApplication {
     if (line == null) {
       throw new ParseError("Invalid treatment Schedule file.");
     }
-    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+    strTok = new StringTokenizerPlus(line,",");
     setUseUnits((line.equals("NIL") == false));
     if (useUnits()) {
       readUnitIds(strTok);
@@ -1305,7 +1305,7 @@ public final class TreatmentApplication {
     if (line == null) {
       throw new ParseError("Invalid treatment Schedule file.");
     }
-    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+    strTok = new StringTokenizerPlus(line,",");
     this.setUseProcessProb((line.equals("NIL") == false));
     if (useProcessProb()) {
       readProcessProb(strTok);
@@ -1339,7 +1339,7 @@ public final class TreatmentApplication {
     }
 
     if (useRoadStatus()) {
-      fout.print("," + simpplle.comcode.element.Roads.Status.lookup(getRoadStatus()).toString());
+      fout.print("," + Roads.Status.lookup(getRoadStatus()).toString());
     }
     else {
       fout.print(",?");
@@ -1475,10 +1475,10 @@ public final class TreatmentApplication {
     StringBuffer buf = new StringBuffer();
     String       str;
 
-    buf.append(simpplle.comcode.utility.Formatting.fixedField(getTimeStep(),4,true));
+    buf.append(Formatting.fixedField(getTimeStep(),4,true));
     buf.append(" ");
 
-    buf.append(simpplle.comcode.utility.Formatting.fixedField(getTreatmentType().toString(),42,true));
+    buf.append(Formatting.fixedField(getTreatmentType().toString(),42,true));
     buf.append(" ");
 
     NumberFormat nf = NumberFormat.getInstance();
@@ -1486,7 +1486,7 @@ public final class TreatmentApplication {
     nf.setMaximumFractionDigits(0);
 
     str = nf.format(getFloatAcres());
-    buf.append(simpplle.comcode.utility.Formatting.fixedField(str,10,true));
+    buf.append(Formatting.fixedField(str,10,true));
     buf.append(" ");
 
 //    str = (useSpecialArea) ? getSpecialArea() : "n/a";
@@ -1497,8 +1497,8 @@ public final class TreatmentApplication {
 //    buf.append(Formatting.fixedField(str,ownershipLength+1,true));
 //    buf.append(" ");
 
-    str = (useRoadStatus) ? simpplle.comcode.element.Roads.Status.lookup(this.getRoadStatus()).toString() : "n/a";
-    buf.append(simpplle.comcode.utility.Formatting.fixedField(str,roadStatusLength+1,true));
+    str = (useRoadStatus) ? Roads.Status.lookup(this.getRoadStatus()).toString() : "n/a";
+    buf.append(Formatting.fixedField(str,roadStatusLength+1,true));
 
     return buf.toString();
   }

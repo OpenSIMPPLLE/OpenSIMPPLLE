@@ -11,16 +11,15 @@ import javax.swing.JPanel;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import simpplle.comcode.Simpplle;
 import simpplle.comcode.*;
-
+import java.awt.Insets;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import com.borland.jbcl.layout.VerticalFlowLayout;
-
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.border.EtchedBorder;
@@ -587,12 +586,12 @@ public class SimParam extends JDialog {
 
     for (int i=0; i<kinds.length; i++) {
       if (kinds[i] == Simulation.InvasiveKind.MSU &&
-          ((simpplle.comcode.element.ExistingLandUnit.hasNumericAspect() == false) ||
-           (simpplle.comcode.logic.InvasiveSpeciesLogicMSU.hasData() == false))) {
+          ((ExistingLandUnit.hasNumericAspect() == false) ||
+           (InvasiveSpeciesLogicMSU.hasData() == false))) {
         continue;
       }
       if (kinds[i] == Simulation.InvasiveKind.MESA_VERDE_NP &&
-          ((simpplle.comcode.logic.InvasiveSpeciesLogic.hasData() == false))) {
+          ((InvasiveSpeciesLogic.hasData() == false))) {
         continue;
       }
       invasiveSpeciesCB.addItem(kinds[i]);

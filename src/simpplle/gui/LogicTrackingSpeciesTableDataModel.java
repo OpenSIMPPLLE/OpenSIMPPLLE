@@ -2,7 +2,7 @@ package simpplle.gui;
 
 import simpplle.comcode.Species;
 import simpplle.comcode.SimpplleType;
-import simpplle.comcode.logic.LogicData;
+import simpplle.comcode.LogicData;
 import javax.swing.table.AbstractTableModel;
 
 /**

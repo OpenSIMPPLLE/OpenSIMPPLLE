@@ -68,7 +68,7 @@ public class Restoration {
     int                 kind, filenum, j, k;
     int                 count, tmpId, firstId = -1;
     String              line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     for(kind=0;kind<NUM_KIND;kind++) {
       for(filenum=0;filenum<NUM_FILES;filenum++) {
@@ -76,7 +76,7 @@ public class Restoration {
           line = fin[kind][filenum].readLine();
           if (line == null) { return -1; }
 
-          strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+          strTok = new StringTokenizerPlus(line,",");
           if (strTok.countTokens() < 2) {
             throw new SimpplleError("Not Enough Fields");
           }
@@ -127,7 +127,7 @@ public class Restoration {
   private static Vector[][] readFieldNames(BufferedReader[][] fin) throws SimpplleError {
     int                 kind, filenum, count, j;
     String              line = null, str;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     Vector[][]          label = new Vector[NUM_KIND][NUM_FILES];
 
     for(kind=0;kind<3;kind++) {
@@ -140,7 +140,7 @@ public class Restoration {
           throw new SimpplleError("Error reading input file: " +
                                   infile[kind][filenum].toString());
         }
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        strTok = new StringTokenizerPlus(line,",");
         str = (String) strTok.nextToken();
         if (str.equalsIgnoreCase("SLINK") == false) {
           throw new SimpplleError("Invalid input file: " +

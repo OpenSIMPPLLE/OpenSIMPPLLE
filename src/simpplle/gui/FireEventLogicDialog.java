@@ -2,6 +2,8 @@ package simpplle.gui;
 
 import java.awt.Frame;
 
+import javax.swing.JDialog;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +14,7 @@ import simpplle.comcode.SimpplleError;
 import javax.swing.JOptionPane;
 import java.io.File;
 import simpplle.comcode.FireSpreadDataNewerLegacy;
-import simpplle.comcode.logic.FireEventLogic;
+import simpplle.comcode.FireEventLogic;
 import javax.swing.event.ChangeEvent;
 import simpplle.comcode.FireTypeDataLegacy;
 import simpplle.comcode.FireTypeDataNewerLegacy;

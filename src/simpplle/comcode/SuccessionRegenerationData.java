@@ -1,5 +1,6 @@
 package simpplle.comcode;
 
+import java.io.PrintWriter;
 import java.util.Vector;
 import java.io.Externalizable;
 import java.io.ObjectOutput;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
  */
 
 public class SuccessionRegenerationData
-  extends simpplle.comcode.logic.RegenerationData implements  Externalizable
+  extends RegenerationData implements  Externalizable
 {
   static final long serialVersionUID = 2575438321718108700L;
   static final int  version          = 2;
@@ -65,7 +66,7 @@ public class SuccessionRegenerationData
 /**
  * Duplicates this succession regeneration object.  
  */
-  public simpplle.comcode.logic.AbstractLogicData duplicate() {
+  public AbstractLogicData duplicate() {
     SuccessionRegenerationData logicData = new SuccessionRegenerationData();
     super.duplicate(logicData);
 
@@ -146,7 +147,7 @@ public class SuccessionRegenerationData
     switch (column) {
       case SUCCESSION_COL:         return "Succession Regen Possible";
       case SUCCESSION_SPECIES_COL: return "Succession Seed species/To State";
-      default:                     return simpplle.comcode.logic.RegenerationData.getColumnName(column);
+      default:                     return RegenerationData.getColumnName(column);
     }
   }
 /**
@@ -155,7 +156,7 @@ public class SuccessionRegenerationData
  * @param name
  * @return
  */
-  public static int getColumnNumFromName(simpplle.comcode.logic.BaseLogic logic, String name) {
+  public static int getColumnNumFromName(BaseLogic logic, String name) {
     if (name.equalsIgnoreCase("Succession Regen Possible")) {
       return SUCCESSION_COL;
     }
@@ -163,7 +164,7 @@ public class SuccessionRegenerationData
       return SUCCESSION_SPECIES_COL;
     }
     else {
-      return simpplle.comcode.logic.RegenerationData.getColumnNumFromName(logic,name);
+      return RegenerationData.getColumnNumFromName(logic,name);
     }
   }
 /**

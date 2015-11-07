@@ -1653,7 +1653,7 @@ public class SimpplleMain extends JFrame {
   public void fileExit_actionPerformed(ActionEvent e) {
     JSimpplle.writePropertiesFile();
     try {
-      simpplle.comcode.utility.DatabaseCreator.closeHibernate();
+      simpplle.comcode.DatabaseCreator.closeHibernate();
     }
     catch (SimpplleError ex) {
     }
@@ -1802,7 +1802,7 @@ public class SimpplleMain extends JFrame {
           choice != NewArea.PREVIOUS &&
           choice != NewArea.PREVIOUS_OLD) {
         // Need to change Evu's to be single lifeform;
-        simpplle.comcode.element.Evu[] evus = area.getAllEvu();
+        Evu[] evus = area.getAllEvu();
         for (int i=0; i<evus.length; i++) {
           if (evus[i] != null) { evus[i].makeSingleLife(); }
         }
@@ -1946,10 +1946,10 @@ public class SimpplleMain extends JFrame {
           Simulation.getInstance().doAllStatesSummaryAllTimeSteps(rulesFile);
         }
         if (rulesFile != null) {
-          simpplle.comcode.reports.Reports.generateAllStatesReport(rulesFile,outfile);
+          Reports.generateAllStatesReport(rulesFile,outfile);
         }
         else {
-          simpplle.comcode.reports.Reports.generateAllStatesReport(outfile);
+          Reports.generateAllStatesReport(outfile);
         }
       }
       catch (SimpplleError err) {
@@ -1980,7 +1980,7 @@ public class SimpplleMain extends JFrame {
 //        if (Simulation.getInstance().isDoTrackingSpeciesReport() == false) {
           Simulation.getInstance().doTrackingSpeciesReportAllTimeSteps();
 //        }
-        simpplle.comcode.reports.Reports.generateTrackingSpeciesReport(outfile);
+        Reports.generateTrackingSpeciesReport(outfile);
       }
       catch (SimpplleError err) {
         JOptionPane.showMessageDialog(this,err.getMessage(),"Error",
@@ -2934,12 +2934,12 @@ public class SimpplleMain extends JFrame {
   }
 
   void menuUtilityDatabaseTest_actionPerformed(ActionEvent e) {
-//    simpplle.comcode.utility.DatabaseCreator.doIt();
+//    simpplle.comcode.DatabaseCreator.doIt();
     try {
       File workDir = simpplle.JSimpplle.getWorkingDir();
-      simpplle.comcode.utility.DatabaseCreator.initHibernate(true,new File(workDir,"test"));
+      simpplle.comcode.DatabaseCreator.initHibernate(true,new File(workDir,"test"));
       Simpplle.getCurrentArea().writeSimulationDatabase();
-      simpplle.comcode.utility.DatabaseCreator.closeHibernate();
+      simpplle.comcode.DatabaseCreator.closeHibernate();
     }
     catch (SimpplleError ex) {
       ex.printStackTrace();
@@ -2951,7 +2951,7 @@ public class SimpplleMain extends JFrame {
     MyFileFilter  extFilter = new MyFileFilter("data",
                                                "Simpplle Simulation Database Files (*.data)");
     File outfile = Utility.getOpenFile(this,"User Defined Area File?",extFilter);
-    outfile = simpplle.comcode.utility.Utility.stripExtension(outfile);
+    outfile = simpplle.comcode.Utility.stripExtension(outfile);
 
     String url = "jdbc:hsqldb:file:" + outfile;
     DatabaseManagerSwing.main(new String[] {"-url", url});
@@ -3037,7 +3037,7 @@ public class SimpplleMain extends JFrame {
 //        simPrefix = new File(str.substring(0,index));
 //
 //        // Make output file name
-//        outfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(simPrefix,"-ls-cost","txt");
+//        outfile = simpplle.comcode.Utility.makeSuffixedPathname(simPrefix,"-ls-cost","txt");
 //
 //        // Read the Simulation Data
 //        simulation.readAllSimulationFiles(simPrefix);
@@ -3109,14 +3109,14 @@ public class SimpplleMain extends JFrame {
     return true;
   }
   void menuSysKnowRegen_actionPerformed(ActionEvent e) {
-    simpplle.comcode.logic.RegenerationLogic.setDefaultEcoGroup(simpplle.comcode.logic.RegenerationLogic.FIRE);
-    simpplle.comcode.logic.RegenerationLogic.setDefaultEcoGroup(simpplle.comcode.logic.RegenerationLogic.SUCCESSION);
+    RegenerationLogic.setDefaultEcoGroup(RegenerationLogic.FIRE);
+    RegenerationLogic.setDefaultEcoGroup(RegenerationLogic.SUCCESSION);
     if (arePathwaysLoaded() == false) { return; }
-    if (simpplle.comcode.logic.RegenerationLogic.isDataPresent(simpplle.comcode.logic.RegenerationLogic.FIRE) == false) {
-      simpplle.comcode.logic.RegenerationLogic.makeBlankLogic(simpplle.comcode.logic.RegenerationLogic.FIRE);
+    if (RegenerationLogic.isDataPresent(RegenerationLogic.FIRE) == false) {
+      RegenerationLogic.makeBlankLogic(RegenerationLogic.FIRE);
     }
-    if (simpplle.comcode.logic.RegenerationLogic.isDataPresent(simpplle.comcode.logic.RegenerationLogic.SUCCESSION) == false) {
-      simpplle.comcode.logic.RegenerationLogic.makeBlankLogic(simpplle.comcode.logic.RegenerationLogic.SUCCESSION);
+    if (RegenerationLogic.isDataPresent(RegenerationLogic.SUCCESSION) == false) {
+      RegenerationLogic.makeBlankLogic(RegenerationLogic.SUCCESSION);
     }
 
     RegenerationLogicDialog dlg = new RegenerationLogicDialog(this,"Regeneration Logic",false);
@@ -3381,12 +3381,12 @@ public class SimpplleMain extends JFrame {
       setWaitState(strBuf.toString());
       java.lang.Process proc = rt.exec(cmd);
       // any error message?
-      simpplle.comcode.utility.StreamGobbler errorGobbler = new
-              simpplle.comcode.utility.StreamGobbler(proc.getErrorStream(), "ERROR");
+      StreamGobbler errorGobbler = new
+                                   StreamGobbler(proc.getErrorStream(), "ERROR");
 
       // any output?
-      simpplle.comcode.utility.StreamGobbler outputGobbler = new
-              simpplle.comcode.utility.StreamGobbler(proc.getInputStream(),
+      StreamGobbler outputGobbler = new
+                                    StreamGobbler(proc.getInputStream(),
                                                   "OUTPUT");
 
       // kick them off
@@ -3529,7 +3529,7 @@ public class SimpplleMain extends JFrame {
   }
 
   public void menuSysKnowDisableWsbw_actionPerformed(ActionEvent e) {
-    simpplle.comcode.process.Wsbw.setEnabled(!menuSysKnowDisableWsbw.isSelected());
+    Wsbw.setEnabled(!menuSysKnowDisableWsbw.isSelected());
   }
 
   public void menuSysKnowProcessProbLogic_actionPerformed(ActionEvent e) {

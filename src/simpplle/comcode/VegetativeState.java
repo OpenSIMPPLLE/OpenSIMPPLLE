@@ -1,5 +1,6 @@
 package simpplle.comcode;
 
+import java.util.ArrayList;
 import java.io.*;
 
 /**
@@ -22,7 +23,7 @@ import java.io.*;
  * 
  * 
  *
- * @see simpplle.comcode.element.Evu
+ * @see Evu
  * @deprecated
  *
  */
@@ -53,10 +54,10 @@ public class VegetativeState  implements Externalizable {
 
     public LifeformState() {}
     public LifeformState(VegetativeType veg) {
-      this(veg,ProcessType.SUCCESSION, simpplle.comcode.element.Evu.NOPROB);
+      this(veg,ProcessType.SUCCESSION,Evu.NOPROB);
     }
     public LifeformState(VegetativeType veg, ProcessType process) {
-      this(veg,process, simpplle.comcode.element.Evu.NOPROB);
+      this(veg,process,Evu.NOPROB);
     }
     public LifeformState(VegetativeType veg, ProcessType process, int prob) {
       this.veg         = veg;
@@ -90,8 +91,8 @@ public class VegetativeState  implements Externalizable {
       // leading to fall through and excessive writing of probs.
       // Commented out multiple reads as stream seems to advance by itself
       // skipping the extra data.
-      if (str.equals(simpplle.comcode.element.Evu.D_STR)) {
-        processProb = simpplle.comcode.element.Evu.D;
+      if (str.equals(Evu.D_STR)) {
+        processProb = Evu.D;
         if (version == 1) {
 //          str = (String)in.readObject();
 //          str = (String)in.readObject();
@@ -102,8 +103,8 @@ public class VegetativeState  implements Externalizable {
 //          str = (String)in.readObject();
         }
       }
-      else if (str.equals(simpplle.comcode.element.Evu.L_STR)) {
-        processProb = simpplle.comcode.element.Evu.L;
+      else if (str.equals(Evu.L_STR)) {
+        processProb = Evu.L;
         if (version == 1) {
 //          str = (String)in.readObject();
 //          str = (String)in.readObject();
@@ -113,8 +114,8 @@ public class VegetativeState  implements Externalizable {
 //          str = (String)in.readObject();
         }
       }
-      else if (str.equals(simpplle.comcode.element.Evu.S_STR)) {
-        processProb = simpplle.comcode.element.Evu.S;
+      else if (str.equals(Evu.S_STR)) {
+        processProb = Evu.S;
         if (version == 1) {
 //          str = (String)in.readObject();
 //          str = (String)in.readObject();
@@ -123,8 +124,8 @@ public class VegetativeState  implements Externalizable {
 //          str = (String)in.readObject();
         }
       }
-      else if (str.equals(simpplle.comcode.element.Evu.SE_STR)) {
-        processProb = simpplle.comcode.element.Evu.SE;
+      else if (str.equals(Evu.SE_STR)) {
+        processProb = Evu.SE;
         if (version == 1) {
 //          str = (String)in.readObject();
 //          str = (String)in.readObject();
@@ -132,26 +133,26 @@ public class VegetativeState  implements Externalizable {
 //          str = (String)in.readObject();
         }
       }
-      else if (str.equals(simpplle.comcode.element.Evu.SFS_STR)) {
-        processProb = simpplle.comcode.element.Evu.SFS;
+      else if (str.equals(Evu.SFS_STR)) {
+        processProb = Evu.SFS;
         if (version == 1) {
 //          str = (String)in.readObject();
 //          str = (String)in.readObject();
 //          str = (String)in.readObject();
         }
       }
-      else if (str.equals(simpplle.comcode.element.Evu.SUPP_STR)) {
-        processProb = simpplle.comcode.element.Evu.SUPP;
+      else if (str.equals(Evu.SUPP_STR)) {
+        processProb = Evu.SUPP;
         if (version == 1) {
 //          str = (String)in.readObject();
 //          str = (String)in.readObject();
         }
       }
-      else if (str.equals(simpplle.comcode.element.Evu.COMP_STR)) {
-        processProb = simpplle.comcode.element.Evu.COMP;
+      else if (str.equals(Evu.COMP_STR)) {
+        processProb = Evu.COMP;
       }
-      else if (str.equals(simpplle.comcode.element.Evu.NOPROB_STR)) {
-        processProb = simpplle.comcode.element.Evu.NOPROB;
+      else if (str.equals(Evu.NOPROB_STR)) {
+        processProb = Evu.NOPROB;
         if (version == 1) {
 //          str = (String)in.readObject();
         }
@@ -161,7 +162,7 @@ public class VegetativeState  implements Externalizable {
           processProb = Integer.parseInt(str);
         }
         catch (NumberFormatException ex) {
-          processProb = simpplle.comcode.element.Evu.NOPROB;
+          processProb = Evu.NOPROB;
         }
       }
 
@@ -173,15 +174,15 @@ public class VegetativeState  implements Externalizable {
       veg.writeExternal(out);
       process.writeExternalSimple(out);
       switch (processProb) {
-        case simpplle.comcode.element.Evu.D:    out.writeObject(simpplle.comcode.element.Evu.D_STR); break;
-        case simpplle.comcode.element.Evu.L:    out.writeObject(simpplle.comcode.element.Evu.L_STR); break;
-        case simpplle.comcode.element.Evu.S:    out.writeObject(simpplle.comcode.element.Evu.S_STR); break;
-        case simpplle.comcode.element.Evu.SE:   out.writeObject(simpplle.comcode.element.Evu.SE_STR); break;
-        case simpplle.comcode.element.Evu.SFS:  out.writeObject(simpplle.comcode.element.Evu.SFS_STR); break;
-        case simpplle.comcode.element.Evu.SUPP: out.writeObject(simpplle.comcode.element.Evu.SUPP_STR); break;
-        case simpplle.comcode.element.Evu.COMP: out.writeObject(simpplle.comcode.element.Evu.COMP_STR); break;
-        case simpplle.comcode.element.Evu.NOPROB: out.writeObject(simpplle.comcode.element.Evu.NOPROB_STR); break;
-        default:   out.writeObject(simpplle.comcode.utility.IntToString.get(processProb)); break;
+        case Evu.D:    out.writeObject(Evu.D_STR); break;
+        case Evu.L:    out.writeObject(Evu.L_STR); break;
+        case Evu.S:    out.writeObject(Evu.S_STR); break;
+        case Evu.SE:   out.writeObject(Evu.SE_STR); break;
+        case Evu.SFS:  out.writeObject(Evu.SFS_STR); break;
+        case Evu.SUPP: out.writeObject(Evu.SUPP_STR); break;
+        case Evu.COMP: out.writeObject(Evu.COMP_STR); break;
+        case Evu.NOPROB: out.writeObject(Evu.NOPROB_STR); break;
+        default:   out.writeObject(IntToString.get(processProb)); break;
       }
 
       VegetativeType.clearLimitedSerialization();
@@ -348,7 +349,7 @@ public class VegetativeState  implements Externalizable {
     LifeformState state = findLifeformState(kind);
     if (state != null) { return state.processProb; }
 
-    return simpplle.comcode.element.Evu.NOPROB;
+    return Evu.NOPROB;
   }
 
   /**

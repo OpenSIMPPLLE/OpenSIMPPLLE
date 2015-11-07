@@ -11,12 +11,11 @@ import java.awt.GridLayout;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.event.*;
-import simpplle.comcode.reports.FireReports;
+import simpplle.comcode.FireReports;
 import simpplle.comcode.SimpplleType;
 import static simpplle.comcode.SimpplleType.*;
 import simpplle.comcode.*;
-
-/**
+/** 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
@@ -218,12 +217,12 @@ public class VegSummary extends JDialog {
    * @param e 'Size Class'
    */
   void processRB_actionPerformed(ActionEvent e) {
-    simpplle.comcode.reports.ProcessReports report;
+    simpplle.comcode.ProcessReports report;
     String                          processStr;
 
     if (state != PROCESS) {
       state      = PROCESS;
-      report     = new simpplle.comcode.reports.ProcessReports();
+      report     = new simpplle.comcode.ProcessReports();
       processStr = report.getSummaryReport();
       textArea.setText(processStr);
       textArea.setCaretPosition(0);
@@ -258,7 +257,7 @@ public class VegSummary extends JDialog {
    * If density radio button selected, calls to doStateReport to produce the vegetative states density report. 
    * This calls the comcode's state reports method to produce this report.  
    *  
-   * @see  simpplle.comcode.reports.StateReports
+   * @see  simpplle.comcode.StateReports  
    * @param e 'Density'
    */
   void densityRB_actionPerformed(ActionEvent e) {
@@ -273,12 +272,12 @@ public class VegSummary extends JDialog {
  * @param e 'Treatments'
  */
   void treatmentRB_actionPerformed(ActionEvent e) {
-    simpplle.comcode.reports.TreatmentReports report;
+    simpplle.comcode.TreatmentReports report;
     String                            reportStr;
 
     if (state != TREATMENT) {
       state      = TREATMENT;
-      report     = new simpplle.comcode.reports.TreatmentReports();
+      report     = new simpplle.comcode.TreatmentReports();
       reportStr  = report.getSummaryReport();
       textArea.setText(reportStr);
       textArea.setCaretPosition(0);
@@ -304,14 +303,14 @@ public class VegSummary extends JDialog {
   }
 /**
  * This is called when combine life forms is choosen.  It calls to the comcode StateReports class.  
- * @see  simpplle.comcode.reports.StateReports
+ * @see  simpplle.comcode.StateReports
  * @param kind the simpplle types kind.  choices are SPECIES, SIZE_CLASS, DENSITY, PROCESS, TREATMENT, GROUP
  */
   private void doStateReport(SimpplleType.Types kind) {
-    simpplle.comcode.reports.StateReports report;
+    simpplle.comcode.StateReports report;
     String                        data = "";
 
-    report = new simpplle.comcode.reports.StateReports();
+    report = new simpplle.comcode.StateReports();
     data = report.getStateReport(kind,combineLifeforms);
     textArea.setText(data);
     textArea.setCaretPosition(0);

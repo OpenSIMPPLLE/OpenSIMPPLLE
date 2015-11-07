@@ -5,35 +5,6 @@ import java.util.jar.*;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
-import simpplle.comcode.logic.DoCompetitionData;
-import simpplle.comcode.logic.DoCompetitionLogic;
-import simpplle.comcode.logic.EvuSearchLogic;
-import simpplle.comcode.logic.FireEventLogic;
-import simpplle.comcode.logic.FireSpottingLogicData;
-import simpplle.comcode.logic.FireSpreadLogicData;
-import simpplle.comcode.logic.FireSuppBeyondClassALogic;
-import simpplle.comcode.logic.FireSuppBeyondClassALogicData;
-import simpplle.comcode.logic.FireSuppClassALogic;
-import simpplle.comcode.logic.FireSuppClassALogicData;
-import simpplle.comcode.logic.FireSuppEventLogic;
-import simpplle.comcode.logic.FireSuppEventLogicData;
-import simpplle.comcode.logic.FireSuppProductionRateLogic;
-import simpplle.comcode.logic.FireSuppProductionRateLogicData;
-import simpplle.comcode.logic.FireSuppSpreadRateLogic;
-import simpplle.comcode.logic.FireSuppSpreadRateLogicData;
-import simpplle.comcode.logic.FireSuppWeatherClassALogic;
-import simpplle.comcode.logic.FireSuppWeatherClassALogicData;
-import simpplle.comcode.logic.FireTypeLogicData;
-import simpplle.comcode.logic.GapProcessLogic;
-import simpplle.comcode.logic.InvasiveSpeciesChangeLogicData;
-import simpplle.comcode.logic.InvasiveSpeciesLogic;
-import simpplle.comcode.logic.InvasiveSpeciesLogicData;
-import simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU;
-import simpplle.comcode.logic.InvasiveSpeciesLogicMSU;
-import simpplle.comcode.logic.ProcessProbLogic;
-import simpplle.comcode.logic.ProcessProbLogicData;
-import simpplle.comcode.logic.RegenerationDelayLogic;
-import simpplle.comcode.logic.VegUnitFireTypeLogic;
 
 
 /**
@@ -383,14 +354,14 @@ public class SystemKnowledge {
     File dir;
     if (kind.equalsIgnoreCase("mdb")) {
       dir = Simpplle.getCurrentZone().getSystemKnowledgeDummyMDBDir();
-      outfile = simpplle.comcode.utility.Utility.makePathname(destDir, prefix,kind);
+      outfile = Utility.makePathname(destDir, prefix,kind);
     }
     else {
       dir = Simpplle.getCurrentZone().getSystemKnowledgeDummyHsqldbDir();
       String dbPrefix=prefix+"db";
       File dbDir = new File(destDir,dbPrefix);
       dbDir.mkdir();
-      outfile = simpplle.comcode.utility.Utility.makePathname(dbDir.toString(),dbPrefix,kind);
+      outfile = Utility.makePathname(dbDir.toString(),dbPrefix,kind);
     }
     File filename = new File(dir,"dummy." + kind);
 
@@ -1144,7 +1115,7 @@ public class SystemKnowledge {
           SimpplleType.readData(jarIn,SimpplleType.SPECIES);
         }
         if (entryId == CONIFER_ENCROACHMENT && loadSaveMe[CONIFER_ENCROACHMENT.ordinal()]) {
-          simpplle.comcode.logic.ConiferEncroachmentLogicData.read(jarIn);
+          ConiferEncroachmentLogicData.read(jarIn);
         }
         if (name.startsWith(OLD_PROCESS_PROB_LOGIC_ENTRY)) {
           Process.readProbabilityLogic(jarIn);
@@ -1183,7 +1154,7 @@ public class SystemKnowledge {
           FireSuppWeatherData.readData(fin);
         }
         if (name.startsWith(OLD_REGEN_LOGIC_ENTRY)) {
-          simpplle.comcode.logic.RegenerationLogic.readDataLegacy(fin);
+          RegenerationLogic.readDataLegacy(fin);
           clearFile(REGEN_LOGIC_FIRE);
           clearFile(REGEN_LOGIC_SUCC);
         }
@@ -1231,23 +1202,23 @@ public class SystemKnowledge {
           ObjectInputStream in = xs.createObjectInputStream(strRead);
 
           if (entryId == FIRE_TYPE_LOGIC && loadSaveMe[FIRE_TYPE_LOGIC.ordinal()]) {
-            simpplle.comcode.logic.FireEventLogic.read(simpplle.comcode.logic.FireEventLogic.TYPE_STR,in);
+            FireEventLogic.read(FireEventLogic.TYPE_STR,in);
           }
           if (entryId == FIRE_SPREAD_LOGIC && loadSaveMe[FIRE_SPREAD_LOGIC.ordinal()]) {
-            simpplle.comcode.logic.FireEventLogic.read(simpplle.comcode.logic.FireEventLogic.SPREAD_STR,in);
+            FireEventLogic.read(FireEventLogic.SPREAD_STR,in);
           }
           if (entryId == FIRE_SPOTTING_LOGIC && loadSaveMe[FIRE_SPOTTING_LOGIC.ordinal()]) {
-            simpplle.comcode.logic.FireEventLogic.read(simpplle.comcode.logic.FireEventLogic.FIRE_SPOTTING_STR,in);
+            FireEventLogic.read(FireEventLogic.FIRE_SPOTTING_STR,in);
           }
           if (entryId == FIRE_SUPP_WEATHER_BEYOND_CLASS_A &&
               loadSaveMe[FIRE_SUPP_WEATHER_BEYOND_CLASS_A.ordinal()]) {
             FireSuppWeatherData.read(in);
           }
           if (entryId == REGEN_LOGIC_FIRE && loadSaveMe[REGEN_LOGIC_FIRE.ordinal()]) {
-            simpplle.comcode.logic.RegenerationLogic.readFire(in);
+            RegenerationLogic.readFire(in);
           }
           if (entryId == REGEN_LOGIC_SUCC && loadSaveMe[REGEN_LOGIC_SUCC.ordinal()]) {
-            simpplle.comcode.logic.RegenerationLogic.readSuccession(in);
+            RegenerationLogic.readSuccession(in);
           }
           if (entryId == PROCESS_PROB_LOGIC && loadSaveMe[PROCESS_PROB_LOGIC.ordinal()]) {
             ProcessProbLogic.getInstance().read(in);
@@ -1256,22 +1227,22 @@ public class SystemKnowledge {
             InvasiveSpeciesLogic.getInstance().read(in);
           }
           if (entryId == INVASIVE_SPECIES_LOGIC_MSU && loadSaveMe[INVASIVE_SPECIES_LOGIC_MSU.ordinal()]) {
-            simpplle.comcode.logic.InvasiveSpeciesLogicMSU.getInstance().read(in);
+            InvasiveSpeciesLogicMSU.getInstance().read(in);
           }
           if (entryId == REGEN_DELAY_LOGIC && loadSaveMe[REGEN_DELAY_LOGIC.ordinal()]) {
-            simpplle.comcode.logic.RegenerationDelayLogic.getInstance().read(in);
+            RegenerationDelayLogic.getInstance().read(in);
           }
           if (entryId == GAP_PROCESS_LOGIC && loadSaveMe[GAP_PROCESS_LOGIC.ordinal()]) {
-            simpplle.comcode.logic.GapProcessLogic.getInstance().read(in);
+            GapProcessLogic.getInstance().read(in);
           }
           if (entryId == DOCOMPETITION_LOGIC && loadSaveMe[DOCOMPETITION_LOGIC.ordinal()]) {
             DoCompetitionLogic.getInstance().read(in);
           }
           if (entryId == EVU_SEARCH_LOGIC && loadSaveMe[EVU_SEARCH_LOGIC.ordinal()]) {
-            simpplle.comcode.logic.EvuSearchLogic.getInstance().read(in);
+            EvuSearchLogic.getInstance().read(in);
           }
           if (entryId == PRODUCING_SEED_LOGIC && loadSaveMe[PRODUCING_SEED_LOGIC.ordinal()]) {
-            simpplle.comcode.logic.ProducingSeedLogic.getInstance().read(in);
+            ProducingSeedLogic.getInstance().read(in);
           }
           if (entryId == VEG_UNIT_FIRE_TYPE_LOGIC && loadSaveMe[VEG_UNIT_FIRE_TYPE_LOGIC.ordinal()]) {
             VegUnitFireTypeLogic.getInstance().read(in);
@@ -1280,16 +1251,16 @@ public class SystemKnowledge {
             FireSuppClassALogic.getInstance().read(in);
           }
           if (entryId == FIRE_SUPP_BEYOND_CLASS_A_LOGIC && loadSaveMe[FIRE_SUPP_BEYOND_CLASS_A_LOGIC.ordinal()]) {
-            simpplle.comcode.logic.FireSuppBeyondClassALogic.getInstance().read(in);
+            FireSuppBeyondClassALogic.getInstance().read(in);
           }
           if (entryId == FIRE_SUPP_PRODUCTION_RATE_LOGIC && loadSaveMe[FIRE_SUPP_PRODUCTION_RATE_LOGIC.ordinal()]) {
-            simpplle.comcode.logic.FireSuppProductionRateLogic.getInstance().read(in);
+            FireSuppProductionRateLogic.getInstance().read(in);
           }
           if (entryId == FIRE_SUPP_SPREAD_RATE_LOGIC && loadSaveMe[FIRE_SUPP_SPREAD_RATE_LOGIC.ordinal()]) {
             FireSuppSpreadRateLogic.getInstance().read(in);
           }
           if (entryId == FIRE_SUPP_WEATHER_CLASS_A_LOGIC && loadSaveMe[FIRE_SUPP_WEATHER_CLASS_A_LOGIC.ordinal()]) {
-            simpplle.comcode.logic.FireSuppWeatherClassALogic.getInstance().read(in);
+            FireSuppWeatherClassALogic.getInstance().read(in);
           }
           if (entryId == TRACKING_SPECIES_REPORT && loadSaveMe[TRACKING_SPECIES_REPORT.ordinal()]) {
             TrackingSpeciesReportData.makeInstance().read(in);
@@ -1328,8 +1299,8 @@ public class SystemKnowledge {
                               + "\n" + err.msg);
     }
     finally {
-      simpplle.comcode.utility.Utility.close(fin);
-      simpplle.comcode.utility.Utility.close(jarIn);
+      Utility.close(fin);
+      Utility.close(jarIn);
     }
   }
   /**
@@ -1403,7 +1374,7 @@ public class SystemKnowledge {
     String fileExt = getKnowledgeFileExtension(VEGETATION_PATHWAYS);
 
     try {
-      File outfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(filename, "", fileExt);
+      File outfile = Utility.makeSuffixedPathname(filename, "", fileExt);
       JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile),
           new Manifest());
       PrintWriter pout = new PrintWriter(jarOut);
@@ -1435,7 +1406,7 @@ public class SystemKnowledge {
     String fileExt = getKnowledgeFileExtension(AQUATIC_PATHWAYS);
 
     try {
-      File outfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(filename, "", fileExt);
+      File outfile = Utility.makeSuffixedPathname(filename, "", fileExt);
       JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile),
           new Manifest());
       PrintWriter pout = new PrintWriter(jarOut);
@@ -1502,7 +1473,7 @@ public class SystemKnowledge {
     PrintWriter     pout;
 
     try {
-      outfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(filename,"",fileExt);
+      outfile = Utility.makeSuffixedPathname(filename,"",fileExt);
       jarOut  = new JarOutputStream(new FileOutputStream(outfile),new Manifest());
 //      bufWriter = new BufferedWriter(new OutputStreamWriter(jarOut));
       pout    = new PrintWriter(new OutputStreamWriter(jarOut));
@@ -1614,7 +1585,7 @@ public class SystemKnowledge {
       if (loadSaveMe[CONIFER_ENCROACHMENT.ordinal()]) {
         jarEntry = new JarEntry(CONIFER_ENCROACHMENT_ENTRY);
         jarOut.putNextEntry(jarEntry);
-        simpplle.comcode.logic.ConiferEncroachmentLogicData.save(jarOut);
+        ConiferEncroachmentLogicData.save(jarOut);
       }
 
       // XStream needs to be setup last as it writes stuff to the stream
@@ -1665,7 +1636,7 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(FIRE_SPREAD_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.FireEventLogic.save(simpplle.comcode.logic.FireEventLogic.SPREAD_STR,os);
+          FireEventLogic.save(FireEventLogic.SPREAD_STR,os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -1674,7 +1645,7 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(FIRE_TYPE_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.FireEventLogic.save(FireEventLogic.TYPE_STR,os);
+          FireEventLogic.save(FireEventLogic.TYPE_STR,os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -1683,27 +1654,27 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(FIRE_SPOTTING_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.FireEventLogic.save(simpplle.comcode.logic.FireEventLogic.FIRE_SPOTTING_STR,os);
+          FireEventLogic.save(FireEventLogic.FIRE_SPOTTING_STR,os);
           os.flush();
           hw.endNode();
           headerWritten = false;
         }
         if (loadSaveMe[REGEN_LOGIC_FIRE.ordinal()] &&
-            simpplle.comcode.logic.RegenerationLogic.isDataPresent(simpplle.comcode.logic.RegenerationLogic.FIRE)) {
+            RegenerationLogic.isDataPresent(RegenerationLogic.FIRE)) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(REGEN_LOGIC_FIRE_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.RegenerationLogic.saveFire(os);
+          RegenerationLogic.saveFire(os);
           os.flush();
           hw.endNode();
           headerWritten = false;
         }
         if (loadSaveMe[REGEN_LOGIC_SUCC.ordinal()] &&
-            simpplle.comcode.logic.RegenerationLogic.isDataPresent(simpplle.comcode.logic.RegenerationLogic.SUCCESSION)) {
+            RegenerationLogic.isDataPresent(RegenerationLogic.SUCCESSION)) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(REGEN_LOGIC_SUCC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.RegenerationLogic.saveSuccession(os);
+          RegenerationLogic.saveSuccession(os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -1712,7 +1683,7 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(PROCESS_PROB_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.ProcessProbLogic.getInstance().save(os);
+          ProcessProbLogic.getInstance().save(os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -1721,7 +1692,7 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(INVASIVE_SPECIES_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.InvasiveSpeciesLogic.getInstance().save(os);
+          InvasiveSpeciesLogic.getInstance().save(os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -1757,7 +1728,7 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(DOCOMPETITION_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.DoCompetitionLogic.getInstance().save(os);
+          DoCompetitionLogic.getInstance().save(os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -1775,7 +1746,7 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(PRODUCING_SEED_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.ProducingSeedLogic.getInstance().save(os);
+          ProducingSeedLogic.getInstance().save(os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -1784,7 +1755,7 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.VegUnitFireTypeLogic.getInstance().save(os);
+          VegUnitFireTypeLogic.getInstance().save(os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -1793,7 +1764,7 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(FIRE_SUPP_CLASS_A_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.FireSuppClassALogic.getInstance().save(os);
+          FireSuppClassALogic.getInstance().save(os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -1820,7 +1791,7 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.FireSuppSpreadRateLogic.getInstance().save(os);
+          FireSuppSpreadRateLogic.getInstance().save(os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -1847,7 +1818,7 @@ public class SystemKnowledge {
           if (!headerWritten) { hw.startNode(rootNodeName); }
           jarEntry = new JarEntry(FIRE_SUPP_EVENT_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
-          simpplle.comcode.logic.FireSuppEventLogic.getInstance().save(os);
+          FireSuppEventLogic.getInstance().save(os);
           os.flush();
           hw.endNode();
           headerWritten = false;
@@ -2396,7 +2367,7 @@ public class SystemKnowledge {
     xs.alias("RegenerationSuccessionInfo",RegenerationSuccessionInfo.class);
     xs.alias("FireRegenerationData",FireRegenerationData.class);
     xs.alias("VegetativeType",VegetativeType.class);
-    xs.alias("ProcessProbLogicData", simpplle.comcode.logic.ProcessProbLogicData.class);
+    xs.alias("ProcessProbLogicData",ProcessProbLogicData.class);
     xs.alias("MtnPineBeetleHazard",MtnPineBeetleHazard.Hazard.class);
 
     xs.alias("InvasiveSpeciesLogicData",InvasiveSpeciesLogicData.class);
@@ -2409,30 +2380,30 @@ public class SystemKnowledge {
     xs.alias("Temperature",Climate.Temperature.class);
 
     xs.alias("SoilType",simpplle.comcode.SoilType.class);
-    xs.alias("VegFunctionalGroup", simpplle.comcode.logic.InvasiveSpeciesLogicData.VegFunctionalGroup.class);
+    xs.alias("VegFunctionalGroup",simpplle.comcode.InvasiveSpeciesLogicData.VegFunctionalGroup.class);
 
-    xs.alias("RegenerationDelayLogicData", simpplle.comcode.logic.RegenerationDelayLogicData.class);
-    xs.alias("GapProcessLogicData", simpplle.comcode.logic.GapProcessLogicData.class);
-    xs.alias("DoCompetitionData", simpplle.comcode.logic.DoCompetitionData.class);
+    xs.alias("RegenerationDelayLogicData",simpplle.comcode.RegenerationDelayLogicData.class);
+    xs.alias("GapProcessLogicData",simpplle.comcode.GapProcessLogicData.class);
+    xs.alias("DoCompetitionData",simpplle.comcode.DoCompetitionData.class);
 
-    xs.alias("DoCompetitionDataDensityChange",DoCompetitionData.DensityChange.class);
-    xs.alias("DoCompetitionDataActions", simpplle.comcode.logic.DoCompetitionData.Actions.class);
+    xs.alias("DoCompetitionDataDensityChange",simpplle.comcode.DoCompetitionData.DensityChange.class);
+    xs.alias("DoCompetitionDataActions",simpplle.comcode.DoCompetitionData.Actions.class);
 
-    xs.alias("EvuSearchData", simpplle.comcode.logic.EvuSearchData.class);
-    xs.alias("ProducingSeedLogicData", simpplle.comcode.logic.ProducingSeedLogicData.class);
-    xs.alias("EvuRegenTypes", simpplle.comcode.element.Evu.RegenTypes.class);
+    xs.alias("EvuSearchData",simpplle.comcode.EvuSearchData.class);
+    xs.alias("ProducingSeedLogicData",simpplle.comcode.ProducingSeedLogicData.class);
+    xs.alias("EvuRegenTypes",simpplle.comcode.Evu.RegenTypes.class);
 
-    xs.alias("AbstractLogicData", simpplle.comcode.logic.AbstractLogicData.class);
-    xs.alias("VegUnitFireTypeLogicData", simpplle.comcode.logic.VegUnitFireTypeLogicData.class);
-    xs.alias("FireSuppClassALogicData",FireSuppClassALogicData.class);
-    xs.alias("FireSuppBeyondClassALogicData",FireSuppBeyondClassALogicData.class);
-    xs.alias("FireSuppProductionRateLogicData",FireSuppProductionRateLogicData.class);
-    xs.alias("FireSuppSpreadRateLogicData",FireSuppSpreadRateLogicData.class);
-    xs.alias("FireSuppWeatherClassALogicData",FireSuppWeatherClassALogicData.class);
+    xs.alias("AbstractLogicData",simpplle.comcode.AbstractLogicData.class);
+    xs.alias("VegUnitFireTypeLogicData",simpplle.comcode.VegUnitFireTypeLogicData.class);
+    xs.alias("FireSuppClassALogicData",simpplle.comcode.FireSuppClassALogicData.class);
+    xs.alias("FireSuppBeyondClassALogicData",simpplle.comcode.FireSuppBeyondClassALogicData.class);
+    xs.alias("FireSuppProductionRateLogicData",simpplle.comcode.FireSuppProductionRateLogicData.class);
+    xs.alias("FireSuppSpreadRateLogicData",simpplle.comcode.FireSuppSpreadRateLogicData.class);
+    xs.alias("FireSuppWeatherClassALogicData",simpplle.comcode.FireSuppWeatherClassALogicData.class);
     xs.alias("Ownership",simpplle.comcode.Ownership.class);
-    xs.alias("RoadsStatus", simpplle.comcode.element.Roads.Status.class);
-    xs.alias("FireType", simpplle.comcode.logic.FireSuppBeyondClassALogicData.FireType.class);
-    xs.alias("SpreadKind", simpplle.comcode.logic.FireSuppBeyondClassALogicData.SpreadKind.class);
+    xs.alias("RoadsStatus",simpplle.comcode.Roads.Status.class);
+    xs.alias("FireType",simpplle.comcode.FireSuppBeyondClassALogicData.FireType.class);
+    xs.alias("SpreadKind",simpplle.comcode.FireSuppBeyondClassALogicData.SpreadKind.class);
     xs.alias("FireSpottingLogicData",FireSpottingLogicData.class);
     xs.alias("FireSuppEventLogicData",FireSuppEventLogicData.class);
 

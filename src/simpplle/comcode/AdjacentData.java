@@ -31,9 +31,9 @@ public class AdjacentData implements Externalizable {
    *   E = Use Elevation
    */
 
-  public simpplle.comcode.element.Evu evu;
-  public char position;
-  public char wind;
+  public Evu evu;
+  char position;
+  char wind;
 
   /**
    * Default constructor.  Set Evu to null, position and wind to 'N'
@@ -50,7 +50,7 @@ public class AdjacentData implements Externalizable {
    * @param position
    * @param wind
    */
-  public AdjacentData(simpplle.comcode.element.Evu evu, char position, char wind) {
+  public AdjacentData(Evu evu,  char position,  char wind) {
     this.evu      = evu;
     this.position = position;
     this.wind     = wind;
@@ -63,7 +63,7 @@ public class AdjacentData implements Externalizable {
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
 
-    evu      = (simpplle.comcode.element.Evu)in.readObject();
+    evu      = (Evu)in.readObject();
     position = in.readChar();
     wind     = in.readChar();
   }

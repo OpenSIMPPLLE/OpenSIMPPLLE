@@ -29,14 +29,14 @@ public class SpruceBeetle extends Process {
     spreading   = false;
     description = "Spruce Beetle";
 
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SPECIES_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SIZE_CLASS_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.PROCESS_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.SPECIES_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.SIZE_CLASS_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.PROCESS_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
-  private int doProbabilityCommon (RegionalZone zone, simpplle.comcode.element.Evu evu) {
+  private int doProbabilityCommon (RegionalZone zone, Evu evu) {
     int         page = 0, row = -1, col = 0;
     int         cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     HabitatTypeGroupType groupType;
@@ -101,11 +101,11 @@ public class SpruceBeetle extends Process {
     }
   }
 
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return 0; }
 
@@ -117,7 +117,7 @@ public class SpruceBeetle extends Process {
       return doProbabilityCommon(zone,evu);
     }
   }
-  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return 0; }
 
@@ -129,7 +129,7 @@ public class SpruceBeetle extends Process {
       return doProbabilityCommon(zone,evu);
     }
   }
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return 0; }
 
@@ -142,7 +142,7 @@ public class SpruceBeetle extends Process {
     }
   }
 
-  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return 0; }
 
@@ -172,7 +172,7 @@ public class SpruceBeetle extends Process {
 
     return getProbData(0,0,col);
   }
-  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return 0; }
 

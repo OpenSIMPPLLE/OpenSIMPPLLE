@@ -32,8 +32,8 @@ public class SevereBarkBeetles extends Process {
     spreading   = true;
     description = "Severe Bark Beetles";
 
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
   }
 /**
  * Will not have Severe Bark Beetles unless there is drought conditions.  
@@ -41,7 +41,7 @@ public class SevereBarkBeetles extends Process {
  * @param evu the existing vegetative unit being evaluated for severe bark beetles
  * @return 0 if not drought, the probability of severe bark beetles otherwise
  */
-  public int doProbabilityCommon(RegionalZone zone, simpplle.comcode.element.Evu evu) {
+  public int doProbabilityCommon(RegionalZone zone, Evu evu) {
    
     if (Simpplle.getClimate().isDrought() == false) {
       return 0;
@@ -108,33 +108,33 @@ public class SevereBarkBeetles extends Process {
  /**
   * Severe Bark Beetles do not occur in the Westside region 1, therefore it returns 0 by default
   */
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
     return 0;
   }
 
  /**
   * Severe Bark Beetles do not occur in the Eastside region 1, therefore it returns 0 by default
   */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
     return 0;
   }
 
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
  /**
   * Severe Bark Beetles do not occur in the Gila, therefore it returns 0 by default
   */
-  public int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) { return 0; }
   /**
    * Severe Bark Beetles do not occur in the South Central Alaska, therefore it returns 0 by default
    */
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) { return 0; }
 
   private boolean doSpreadCommon () {
     return false;
@@ -143,33 +143,33 @@ public class SevereBarkBeetles extends Process {
   /**
    * Severe Bark Beetles do not occur in the Westside region 1, therefore spread returns false by default
    */
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
     return false;
   }
 
   /**
    * Severe Bark Beetles do not occur in the Eastside region 1, therefore spread returns false by default
    */
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
     return false;
   }
 
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
     return doSpreadCommon();
   }
 
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
     return doSpreadCommon();
   }
 
   /**
    * Severe Bark Beetles do not occur in the Gila, therefore spread returns false by default
    */
-  public boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) { return false; }
   /**
    * Severe Bark Beetles do not occur in the South Central Alaska, therefore spread returns false by default
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
 /**
  * outputs "SEVERE-BARK-BEETLES"
  */

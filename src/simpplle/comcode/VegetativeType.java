@@ -476,7 +476,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   private void parseVegetativeTypeString(String vegTypeStr)
     throws ParseError
   {
-    simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(vegTypeStr,SLASH);
+    StringTokenizerPlus strTok = new StringTokenizerPlus(vegTypeStr,SLASH);
     RegionalZone zone = Simpplle.getCurrentZone();
 
     if (strTok.countTokens() != 3) {
@@ -592,7 +592,7 @@ public final class VegetativeType implements Comparable, Externalizable {
 
   // ** Start Parser Stuff **
   // ------------------------
-  public void importSpeciesChangeNew(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError, IOException {
+  public void importSpeciesChangeNew(StringTokenizerPlus strTok) throws ParseError, IOException {
     String errMsg = "VEGETATIVE-TYPE " + getCurrentState() +
                     " has errors in the " + SPECIES_CHANGE + " section";
 
@@ -619,7 +619,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     hm.put(sp,pct);
 
   }
-  public void importSpeciesRange(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError, IOException {
+  public void importSpeciesRange(StringTokenizerPlus strTok) throws ParseError, IOException {
     String errMsg = "VEGETATIVE-TYPE " + getCurrentState() +
                     " has errors in the " + SPECIES_RANGE + " section";
 
@@ -648,10 +648,10 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     line = line.trim();
 
-    simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(line);
+    StringTokenizerPlus strTok = new StringTokenizerPlus(line);
     importSpeciesChange(fin,strTok);
   }
-  public boolean importSpeciesChange(BufferedReader fin, simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError, IOException {
+  public boolean importSpeciesChange(BufferedReader fin, StringTokenizerPlus strTok) throws ParseError, IOException {
     int count = strTok.countTokens();
     if (count == 0) {
       throw new ParseError("No Species List is SPECIES-CHANGE section");
@@ -670,7 +670,7 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     ProcessType process;
     while (line != null) {
-      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,", \t\n\r\f");
+      strTok = new StringTokenizerPlus(line,", \t\n\r\f");
       if (strTok.countTokens() != (speciesList.size() + 1)) {
         throw new ParseError("Not enough data in line: " + line);
       }
@@ -707,7 +707,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     throws ParseError
   {
     String              line = "", firstValue;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     int                 count;
     Process             process;
     RegionalZone        zone = Simpplle.getCurrentZone();
@@ -718,7 +718,7 @@ public final class VegetativeType implements Comparable, Externalizable {
         if (line == null) { continue; }
         if (line.trim().length() == 0) { continue; }
 
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line);
+        strTok = new StringTokenizerPlus(line);
         count  = strTok.countTokens();
         firstValue = strTok.nextToken().toUpperCase();
 
@@ -762,7 +762,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     return null;
   }
 
-  private void importPositions(simpplle.comcode.utility.StringTokenizerPlus strTok)
+  private void importPositions(StringTokenizerPlus strTok)
    throws ParseError {
     String  str;
     Species posSpecies;
@@ -773,7 +773,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       posSpecies = new Species(str,true);
     }
 
-    simpplle.comcode.utility.StringTokenizerPlus posStrTok = new simpplle.comcode.utility.StringTokenizerPlus(strTok.nextToken(),",");
+    StringTokenizerPlus posStrTok = new StringTokenizerPlus(strTok.nextToken(),",");
     if (posStrTok.countTokens() != 2) {
       throw new ParseError("Invalid positions found");
     }
@@ -785,7 +785,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     positions.put(posSpecies,new Point(x,y));
   }
 
-  private void importProcessNextState(String processName, simpplle.comcode.utility.StringTokenizerPlus strTok)
+  private void importProcessNextState(String processName, StringTokenizerPlus strTok)
     throws ParseError
   {
     RegionalZone        zone = Simpplle.getCurrentZone();
@@ -809,20 +809,20 @@ public final class VegetativeType implements Comparable, Externalizable {
     probability.put(process,new Integer(nextStateProb));
   }
 
-  private void readProcessNextState(simpplle.comcode.utility.StringTokenizerPlus strTok)
+  private void readProcessNextState(StringTokenizerPlus strTok)
     throws ParseError
   {
     String              value = null;
     Process             process;
     String              state;
     Integer             prob;
-    simpplle.comcode.utility.StringTokenizerPlus listStrTok;
+    StringTokenizerPlus listStrTok;
     int                 count = -1;
     RegionalZone        zone = Simpplle.getCurrentZone();
 
     try {
       value = strTok.getToken();
-      listStrTok = new simpplle.comcode.utility.StringTokenizerPlus(value,LISTDELIM);
+      listStrTok = new StringTokenizerPlus(value,LISTDELIM);
 
       count = listStrTok.countTokens();
 
@@ -851,7 +851,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
   }
 
-  private void readSpeciesChange(simpplle.comcode.utility.StringTokenizerPlus mainTok) throws ParseError {
+  private void readSpeciesChange(StringTokenizerPlus mainTok) throws ParseError {
     String str = mainTok.getToken();
     int    processCount;
 
@@ -860,13 +860,13 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     speciesChange = new HashMap<ProcessType,HashMap<InclusionRuleSpecies,Float>>(processCount);
 
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus  strTok;
     ProcessType          process;
     InclusionRuleSpecies sp;
     HashMap<InclusionRuleSpecies,Float> hm;
 
     for (int i=0; i<processCount; i++) {
-      strTok = new simpplle.comcode.utility.StringTokenizerPlus(mainTok.getToken(),LISTDELIM);
+      strTok = new StringTokenizerPlus(mainTok.getToken(),LISTDELIM);
       process = ProcessType.get(strTok.getToken());
       int speciesCount = strTok.getIntToken();
       hm = new HashMap<InclusionRuleSpecies,Float>(speciesCount);
@@ -877,7 +877,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       speciesChange.put(process,hm);
     }
   }
-  private void readSpeciesRange(simpplle.comcode.utility.StringTokenizerPlus mainTok) throws ParseError {
+  private void readSpeciesRange(StringTokenizerPlus mainTok) throws ParseError {
     String str = mainTok.getToken();
     int    count;
 
@@ -886,12 +886,12 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     speciesRange = new HashMap<InclusionRuleSpecies,Range>(count);
 
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus  strTok;
     InclusionRuleSpecies sp;
     Range                range;
 
     for (int i=0; i<count; i++) {
-      strTok = new simpplle.comcode.utility.StringTokenizerPlus(mainTok.getToken(),LISTDELIM);
+      strTok = new StringTokenizerPlus(mainTok.getToken(),LISTDELIM);
       sp = InclusionRuleSpecies.get(strTok.getToken(),true);
       range = new Range(strTok.getIntToken(),strTok.getIntToken());
 
@@ -899,12 +899,12 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
   }
 
-  private void readPositions(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
+  private void readPositions(StringTokenizerPlus strTok) throws ParseError {
     String              value = null;
     Species             species;
     int                 x,y;
     int                 count;
-    simpplle.comcode.utility.StringTokenizerPlus listStrTok;
+    StringTokenizerPlus listStrTok;
     RegionalZone        zone = Simpplle.getCurrentZone();
 
     try {
@@ -920,7 +920,7 @@ public final class VegetativeType implements Comparable, Externalizable {
         return;
       }
 
-      listStrTok = new simpplle.comcode.utility.StringTokenizerPlus(value,LISTDELIM);
+      listStrTok = new StringTokenizerPlus(value,LISTDELIM);
 
       count = listStrTok.countTokens();
 
@@ -961,7 +961,7 @@ public final class VegetativeType implements Comparable, Externalizable {
    */
   public void readData(BufferedReader fin) throws ParseError {
     String              line,value;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     try {
       line = fin.readLine().trim();
@@ -973,7 +973,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       // look for age.  This due to a bug that incorrectly parsed input
       // files and thus generated incorrect output pathway files which now
       // have to be supported.
-      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,DELIM);
+      strTok = new StringTokenizerPlus(line,DELIM);
       int tmpAge = 1;
 
       String str = strTok.getToken();
@@ -1116,10 +1116,10 @@ public final class VegetativeType implements Comparable, Externalizable {
       if (state == null) { continue; }
 
       prob    = (Integer) probability.get(process);
-      fout.print("  " + simpplle.comcode.utility.Formatting.fixedField(process.toString(),25,true) + " ");
-      fout.print(simpplle.comcode.utility.Formatting.fixedField(state.toString(),36,true) + " ");
+      fout.print("  " + Formatting.fixedField(process.toString(),25,true) + " ");
+      fout.print(Formatting.fixedField(state.toString(),36,true) + " ");
       if (prob.intValue() != 0) {
-        fout.print(simpplle.comcode.utility.Formatting.fixedField(prob, 3));
+        fout.print(Formatting.fixedField(prob, 3));
       }
       fout.println();
     }

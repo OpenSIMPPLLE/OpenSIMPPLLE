@@ -9,9 +9,10 @@ import javax.swing.*;
 import javax.swing.JLabel;
 import javax.swing.border.*;
 
+import com.borland.jbcl.layout.*;
 import simpplle.*;
 import simpplle.comcode.*;
-
+import java.util.Vector;
 import java.beans.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,8 +36,8 @@ import java.util.ArrayList;
 */
 public class EvuAnalysis extends JDialog {
   simpplle.comcode.Area area;
-  simpplle.comcode.element.Evu currentEvu;
-  ArrayList<simpplle.comcode.element.Evu>        resultUnits;
+  simpplle.comcode.Evu  currentEvu;
+  ArrayList<Evu>        resultUnits;
   int                   resultIndex;
 
   public static boolean isOpen = false;
@@ -548,7 +549,7 @@ public class EvuAnalysis extends JDialog {
         DefaultListModel model = (DefaultListModel) eluList.getModel();
         model.removeAllElements();
         if (currentEvu.getAssociatedLandUnits() != null) {
-          for (simpplle.comcode.element.ExistingLandUnit landUnit : currentEvu.getAssociatedLandUnits()) {
+          for (ExistingLandUnit landUnit : currentEvu.getAssociatedLandUnits()) {
             model.addElement(landUnit);
           }
       //        eluList.setListData(currentEvu.getAssociatedLandUnits().toArray());
@@ -559,7 +560,7 @@ public class EvuAnalysis extends JDialog {
         DefaultListModel model = (DefaultListModel) eauList.getModel();
         model.removeAllElements();
         if (currentEvu.getAssociatedAquaticUnits() != null) {
-          for (simpplle.comcode.element.ExistingAquaticUnit aquaUnit : currentEvu.getAssociatedAquaticUnits()) {
+          for (ExistingAquaticUnit aquaUnit : currentEvu.getAssociatedAquaticUnits()) {
             model.addElement(aquaUnit);
           }
         }
@@ -635,11 +636,11 @@ public class EvuAnalysis extends JDialog {
   private void goAdjacent() {
     String              str = (String) adjacentList.getSelectedValue();
     int                 id = -1;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     if (str == null) { return; }
 
-    strTok = new simpplle.comcode.utility.StringTokenizerPlus(str," ");
+    strTok = new StringTokenizerPlus(str," ");
     try {
       id = strTok.getIntToken();
     }
@@ -664,7 +665,7 @@ public class EvuAnalysis extends JDialog {
     else {
       dlg = new UnitAnalysis(JSimpplle.getSimpplleMain(),"Unit Analysis", false);
     }
-    dlg.getLandInstance().goLandUnit((simpplle.comcode.element.ExistingLandUnit)eluList.getSelectedValue());
+    dlg.getLandInstance().goLandUnit((ExistingLandUnit)eluList.getSelectedValue());
     dlg.setVisible(true);
   }
   /**
@@ -681,7 +682,7 @@ public class EvuAnalysis extends JDialog {
     else {
       dlg = new EauAnalysis(JSimpplle.getSimpplleMain(),"Aquatic Unit Analysis", false);
     }
-    dlg.goAquaticUnit((simpplle.comcode.element.ExistingAquaticUnit)eauList.getSelectedValue());
+    dlg.goAquaticUnit((ExistingAquaticUnit)eauList.getSelectedValue());
     dlg.setVisible(true);
   }
 /**
@@ -695,7 +696,7 @@ public class EvuAnalysis extends JDialog {
    * Sets the Evu analysis to the Unit indicated by Evu parameter.  
    * @param evu - the Existing vegetative unit the Evu analysis will go to.  
    */
-  public void goUnit(simpplle.comcode.element.Evu evu) {
+  public void goUnit(Evu evu) {
     currentEvu = evu;
     updateDialog();
   }
@@ -707,7 +708,7 @@ public class EvuAnalysis extends JDialog {
     if (resultsOnlyCB.isSelected()) {
       if (resultIndex == 0) { resultIndex = resultUnits.size() - 1;  }
       else { resultIndex--; }
-      currentEvu = (simpplle.comcode.element.Evu)resultUnits.get(resultIndex);
+      currentEvu = (Evu)resultUnits.get(resultIndex);
     }
     else {
       currentEvu = area.getPrevEvu(currentEvu);
@@ -722,7 +723,7 @@ public class EvuAnalysis extends JDialog {
     if (resultsOnlyCB.isSelected()) {
       if (resultIndex == resultUnits.size() - 1) { resultIndex = 0;  }
       else { resultIndex++; }
-      currentEvu = (simpplle.comcode.element.Evu)resultUnits.get(resultIndex);
+      currentEvu = (Evu)resultUnits.get(resultIndex);
     }
     else {
       currentEvu = area.getNextEvu(currentEvu);
@@ -789,7 +790,7 @@ public class EvuAnalysis extends JDialog {
  * Sets the results units arraylist to the Evu arraylist. 
  * @param units
  */
-  public void setResultUnits(ArrayList<simpplle.comcode.element.Evu> units) {
+  public void setResultUnits(ArrayList<Evu> units) {
     if (units == null || units.size() == 0) { return; }
 
     resultUnits = units;

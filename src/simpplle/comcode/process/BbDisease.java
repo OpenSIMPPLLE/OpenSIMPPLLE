@@ -1,6 +1,7 @@
 package simpplle.comcode.process;
 
 
+import simpplle.comcode.*;
 import simpplle.comcode.Process;
 
 /**
@@ -31,13 +32,13 @@ public class BbDisease extends Process {
     spreading = true;
     description = "BEECH BARK DISEASE";
 
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
   }
 /**
  * If the Bark Beetles are from an adjacent Evu that is downwind spread returns true, otherwise false.  
  */
-  protected boolean doSpread (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  protected boolean doSpread (simpplle.comcode.zone.ColoradoFrontRange zone, Evu fromEvu, Evu evu) {
 
     return fromEvu.isAdjDownwind(evu);
   }

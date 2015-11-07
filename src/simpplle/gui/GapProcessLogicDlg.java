@@ -1,8 +1,8 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-
-import simpplle.comcode.logic.GapProcessLogic;
+import javax.swing.JDialog;
+import simpplle.comcode.GapProcessLogic;
 import simpplle.comcode.*;
 
 /** 

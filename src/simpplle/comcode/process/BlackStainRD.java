@@ -1,8 +1,8 @@
 package simpplle.comcode.process;
 
-import simpplle.comcode.logic.BaseLogic;
+import simpplle.comcode.BaseLogic;
 import simpplle.comcode.Process;
-import simpplle.comcode.logic.ProcessProbLogic;
+import simpplle.comcode.ProcessProbLogic;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 

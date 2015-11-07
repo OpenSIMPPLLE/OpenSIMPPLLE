@@ -1,11 +1,12 @@
 package simpplle.gui;
 
-import simpplle.comcode.logic.AbstractBaseLogic;
+import simpplle.comcode.AbstractBaseLogic;
 import simpplle.comcode.SystemKnowledge.Kinds;
 import javax.swing.table.*;
-import simpplle.comcode.logic.VegUnitFireTypeLogic;
+import simpplle.comcode.VegUnitFireTypeLogic;
 import simpplle.comcode.Process;
 import java.util.ArrayList;
+import simpplle.comcode.*;
 import java.awt.*;
 
 /** 

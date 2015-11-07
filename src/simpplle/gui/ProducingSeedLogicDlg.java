@@ -54,7 +54,7 @@ public class ProducingSeedLogicDlg extends VegLogicDialog {
  */
   private void initialize() {
     sysKnowKind = SystemKnowledge.PRODUCING_SEED_LOGIC;
-    String[] kinds = new String[] {simpplle.comcode.logic.ProducingSeedLogic.PRODUCING_SEED.toString()};
+    String[] kinds = new String[] {ProducingSeedLogic.PRODUCING_SEED.toString()};
     super.initialize(kinds);
 
     tabPanels = new ProducingSeedLogicPanel[panelKinds.length];
@@ -62,7 +62,7 @@ public class ProducingSeedLogicDlg extends VegLogicDialog {
       String kind = panelKinds[i];
       tabPanels[i] =
           new ProducingSeedLogicPanel(this, kind,
-                                      simpplle.comcode.logic.ProducingSeedLogic.getInstance(),
+                                      ProducingSeedLogic.getInstance(),
                                       sysKnowKind);
       tabbedPane.add(tabPanels[i], kind);
     }

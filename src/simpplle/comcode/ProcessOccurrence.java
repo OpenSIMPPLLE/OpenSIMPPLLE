@@ -1,7 +1,9 @@
 package simpplle.comcode;
 
 import java.io.*;
+import java.sql.SQLException;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import simpplle.comcode.Climate.Season;
 
@@ -68,7 +70,7 @@ public class ProcessOccurrence implements Externalizable {
   static final long serialVersionUID = 5069102844547741053L;
   static final int  version          = 3;
 
-  protected simpplle.comcode.element.Evu unit;
+  protected Evu            unit;
   protected ProcessType    process;
   protected int            processProb;
   protected Climate.Season season;
@@ -96,7 +98,7 @@ public class ProcessOccurrence implements Externalizable {
    * @param processData probability data for the process
    * @param timeStep 
    */
-  public ProcessOccurrence(simpplle.comcode.element.Evu evu, Lifeform lifeform, ProcessProbability processData, int timeStep) {
+  public ProcessOccurrence(Evu evu, Lifeform lifeform, ProcessProbability processData, int timeStep) {
     this.unit         = evu;
     this.process      = processData.processType;
     this.processProb  = processData.probability;
@@ -107,7 +109,7 @@ public class ProcessOccurrence implements Externalizable {
  * gets unit involved in event
  * @return the EVU
  */
-  public simpplle.comcode.element.Evu getUnit() {
+  public Evu getUnit() {
     return unit;
   }
 /**
@@ -124,7 +126,7 @@ public class ProcessOccurrence implements Externalizable {
    * @param evu
    * @return true if EVU is originating unit
    */
-  public boolean isOriginUnit(simpplle.comcode.element.Evu evu) {
+  public boolean isOriginUnit(Evu evu) {
     return isOriginUnit(evu.getId());
   }
 /**
@@ -245,7 +247,7 @@ public class ProcessOccurrence implements Externalizable {
     int fmzId     = unit.getFmz().getSimId();
     float acres   = unit.getFloatAcres();
 
-    float fProb    = (processProb < 0) ? processProb : ( (float)processProb / (float) simpplle.comcode.utility.Utility.pow(10,Area.getAcresPrecision()) );
+    float fProb    = (processProb < 0) ? processProb : ( (float)processProb / (float)Utility.pow(10,Area.getAcresPrecision()) );
     
     fout.printf("%d,%d,%d,%d,%d,",run,timeStep,rootId,rootId,toId);        
     fout.printf("%d,%.1f,%.1f,%d,%d,%d,%d,%d%n", processId,fProb,acres,seasonId,groupId,ownerId,specialId,fmzId);

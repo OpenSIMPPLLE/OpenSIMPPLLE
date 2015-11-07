@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.io.File;
+import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.Vector;
 
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -22,12 +24,12 @@ import javax.swing.event.ListSelectionListener;
 import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
-
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.awt.Font;
@@ -52,8 +54,8 @@ public class TreatmentSchedule extends JDialog {
   private TreatmentApplication treatment;
   private Vector               apps;
   private int                  appsIndex;
-  private simpplle.comcode.utility.MyInteger[]          allTimeSteps;
-  private simpplle.comcode.utility.MyInteger currentTimeStep;
+  private MyInteger[]          allTimeSteps;
+  private MyInteger            currentTimeStep;
   private boolean              noTimeStepCBAction=false;
   private boolean              nextTreatmentCBInit=false;
 
@@ -1340,7 +1342,7 @@ public class TreatmentSchedule extends JDialog {
     }
 
 
-    simpplle.comcode.element.Roads.Status[] allRoadStatus = simpplle.comcode.element.Roads.Status.values();
+    Roads.Status[] allRoadStatus = Roads.Status.values();
     for(int i=0;i<allRoadStatus.length;i++) {
       roadStatusCB.addItem(allRoadStatus[i]);
     }
@@ -1396,7 +1398,7 @@ public class TreatmentSchedule extends JDialog {
     apps = schedule.getApplications(currentTimeStep);
   }
 
-  private boolean isExistingTimeStep(simpplle.comcode.utility.MyInteger time) {
+  private boolean isExistingTimeStep(MyInteger time) {
     if (allTimeSteps == null) { return false; }
     for (int i=0; i<allTimeSteps.length; i++) {
       if (allTimeSteps[i].equals(time)) { return true; }
@@ -1529,7 +1531,7 @@ public class TreatmentSchedule extends JDialog {
     timeStepValue.setText(time);
     acresEdit.setText(acres);
 
-    roadStatusCB.setSelectedItem(simpplle.comcode.element.Roads.Status.lookup(treatment.getRoadStatus()));
+    roadStatusCB.setSelectedItem(Roads.Status.lookup(treatment.getRoadStatus()));
 
     roadStatusCheckBox.setSelected(treatment.useRoadStatus());
 
@@ -1804,7 +1806,7 @@ public class TreatmentSchedule extends JDialog {
       if (currentTimeStep == null) {
         timeStep = AskNumber.getInput("Enter a Time Step","Time Step",1);
         if (timeStep == -1) { return; }
-        currentTimeStep = new simpplle.comcode.utility.MyInteger(timeStep);
+        currentTimeStep = new MyInteger(timeStep);
         timeStepChange  = true;
       }
 
@@ -1829,7 +1831,7 @@ public class TreatmentSchedule extends JDialog {
     if (timeStep == -1) { return; }
 
     boolean   timeStepChanged = false, existingTimeStep = false;
-    simpplle.comcode.utility.MyInteger newTimeStep = new simpplle.comcode.utility.MyInteger(timeStep);
+    MyInteger newTimeStep = new MyInteger(timeStep);
 
     timeStepChanged  = (currentTimeStep.equals(newTimeStep) == false);
     currentTimeStep  = newTimeStep;
@@ -1899,7 +1901,7 @@ public class TreatmentSchedule extends JDialog {
 
   void roadStatusCB_itemStateChanged(ItemEvent e) {
     if (inInit) { return; }
-    simpplle.comcode.element.Roads.Status item = (simpplle.comcode.element.Roads.Status) e.getItem();
+    Roads.Status item = (Roads.Status) e.getItem();
 
     if (item != null && treatment != null) {
       treatment.setRoadStatus(item);
@@ -2509,7 +2511,7 @@ public class TreatmentSchedule extends JDialog {
     if (dlg.getSelectedApp() != null) {
       treatment = dlg.getSelectedApp();
       if (treatment.getTimeStep() != currentTimeStep.intValue()) {
-        currentTimeStep = new simpplle.comcode.utility.MyInteger(treatment.getTimeStep());
+        currentTimeStep = new MyInteger(treatment.getTimeStep());
         apps = schedule.getApplications(currentTimeStep);
       }
     }
@@ -2521,7 +2523,7 @@ public class TreatmentSchedule extends JDialog {
     int timeStep = AskNumber.getInput("Enter a Time Step","Time Step",1);
     if (timeStep == -1) { return; }
     if (timeStep == treatment.getTimeStep()) { return; }
-    simpplle.comcode.utility.MyInteger newTimeStep = new simpplle.comcode.utility.MyInteger(timeStep);
+    MyInteger newTimeStep = new MyInteger(timeStep);
 
     schedule.removeApplication(treatment);
     treatment.setTimeStep(timeStep);
@@ -2540,7 +2542,7 @@ public class TreatmentSchedule extends JDialog {
   void timeStepCB_actionPerformed(ActionEvent e) {
     if (inInit || noTimeStepCBAction) { return; }
 
-    simpplle.comcode.utility.MyInteger newTimeStep = (simpplle.comcode.utility.MyInteger)timeStepCB.getSelectedItem();
+    MyInteger newTimeStep = (MyInteger)timeStepCB.getSelectedItem();
     if (newTimeStep == null || newTimeStep.equals(currentTimeStep)) { return; }
 
     currentTimeStep = newTimeStep;

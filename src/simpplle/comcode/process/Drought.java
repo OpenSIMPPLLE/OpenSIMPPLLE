@@ -30,8 +30,8 @@ public class Drought extends Process {
     spreading   = false;
     description = "Drought";
 
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
   /**
@@ -42,7 +42,7 @@ public class Drought extends Process {
    * @return
    */
   
-  public int doProbabilityCommon(RegionalZone zone, simpplle.comcode.element.Evu evu) {
+  public int doProbabilityCommon(RegionalZone zone, Evu evu) {
     return doProbability(evu);
   }
 /**

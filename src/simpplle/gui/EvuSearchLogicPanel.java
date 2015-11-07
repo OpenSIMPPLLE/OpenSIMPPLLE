@@ -1,8 +1,9 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-import simpplle.comcode.logic.BaseLogic;
+import simpplle.comcode.BaseLogic;
 import simpplle.comcode.SystemKnowledge.Kinds;
+import simpplle.comcode.*;
 
 /**
 *
@@ -49,24 +50,24 @@ public class EvuSearchLogicPanel extends VegLogicPanel {
  * Initializes the columns depending on whether it is time step, age, fire management zone, or probabilty.  
  */
   protected void initColumns(TableColumn column, int col) {
-    if (col == simpplle.comcode.logic.EvuSearchLogic.TIME_STEP_COL) {
-      column.setIdentifier(simpplle.comcode.logic.EvuSearchLogic.TIME_STEP_COL);
-      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel, simpplle.comcode.logic.EvuSearchLogic.TIME_STEP_COL,"Time Steps",true));
+    if (col == EvuSearchLogic.TIME_STEP_COL) {
+      column.setIdentifier(EvuSearchLogic.TIME_STEP_COL);
+      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel,EvuSearchLogic.TIME_STEP_COL,"Time Steps",true));
       column.setCellRenderer(new MyJTextAreaRenderer());
     }
-    else if (col == simpplle.comcode.logic.EvuSearchLogic.AGE_COL) {
-      column.setIdentifier(simpplle.comcode.logic.EvuSearchLogic.AGE_COL);
-      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel, simpplle.comcode.logic.EvuSearchLogic.AGE_COL,"Age",true));
+    else if (col == EvuSearchLogic.AGE_COL) {
+      column.setIdentifier(EvuSearchLogic.AGE_COL);
+      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel,EvuSearchLogic.AGE_COL,"Age",true));
       column.setCellRenderer(new MyJTextAreaRenderer());
     }
-    else if (col == simpplle.comcode.logic.EvuSearchLogic.FMZ_COL) {
-      column.setIdentifier(simpplle.comcode.logic.EvuSearchLogic.FMZ_COL);
-      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel, simpplle.comcode.logic.EvuSearchLogic.FMZ_COL,"Fmz",true));
+    else if (col == EvuSearchLogic.FMZ_COL) {
+      column.setIdentifier(EvuSearchLogic.FMZ_COL);
+      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel,EvuSearchLogic.FMZ_COL,"Fmz",true));
       column.setCellRenderer(new MyJTextAreaRenderer());
     }
-    else if (col == simpplle.comcode.logic.EvuSearchLogic.PROB_COL) {
-      column.setIdentifier(simpplle.comcode.logic.EvuSearchLogic.PROB_COL);
-      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel, simpplle.comcode.logic.EvuSearchLogic.PROB_COL,"Process Probability",true));
+    else if (col == EvuSearchLogic.PROB_COL) {
+      column.setIdentifier(EvuSearchLogic.PROB_COL);
+      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel,EvuSearchLogic.PROB_COL,"Process Probability",true));
       column.setCellRenderer(new MyJTextAreaRenderer());
     }
     else {

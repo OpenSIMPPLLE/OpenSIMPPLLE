@@ -14,7 +14,6 @@ import javax.swing.event.ChangeEvent;
 import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
-
 import java.awt.event.*;
 
 /** 
@@ -41,9 +40,9 @@ public class TreatmentLogic extends JDialog {
   private boolean       inInit = false;
   private boolean       inInitChange = false;
 
-  private simpplle.comcode.logic.FeasibilityLogic feasibilityLogic;
+  private FeasibilityLogic feasibilityLogic;
   private Vector           changeLogic;
-  private simpplle.comcode.logic.ChangeLogic changeLogicRule;
+  private ChangeLogic      changeLogicRule;
   private int              changeLogicIndex;
 
   private JRadioButton[] evalANDRB  = new JRadioButton[5];
@@ -1876,8 +1875,8 @@ public class TreatmentLogic extends JDialog {
     String evalBool;
     for(i=0; i<evalANDRB.length; i++) {
       evalBool = feasibilityLogic.getBoolChoice(i);
-      evalANDRB[i].setSelected((evalBool == simpplle.comcode.logic.TreatmentLogicData.AND));
-      evalORRB[i].setSelected((evalBool == simpplle.comcode.logic.TreatmentLogicData.OR));
+      evalANDRB[i].setSelected((evalBool == TreatmentLogicData.AND));
+      evalORRB[i].setSelected((evalBool == TreatmentLogicData.OR));
     }
 
     feasibleRB.setSelected(feasibilityLogic.isFeasible());
@@ -1898,7 +1897,7 @@ public class TreatmentLogic extends JDialog {
     setSelectedTab(conditionTabbedPane,feasibilityLogic);
   }
 
-  private void updateSelectedTab(JTabbedPane tp, simpplle.comcode.logic.TreatmentLogicData treatData,
+  private void updateSelectedTab(JTabbedPane tp, TreatmentLogicData treatData,
                                  boolean selected, int index)
   {
     if (selected) {
@@ -1916,7 +1915,7 @@ public class TreatmentLogic extends JDialog {
     updateSelectedTab(conditionTabbedPaneC,changeLogicRule,selected,index);
   }
 
-  private void setSelectedTab(JTabbedPane tp, simpplle.comcode.logic.TreatmentLogicData treatData) {
+  private void setSelectedTab(JTabbedPane tp, TreatmentLogicData treatData) {
     if (treatData.useHtGrp()) {
       setSelectedTab(tp,"Ecological Grouping");
     }
@@ -1947,7 +1946,7 @@ public class TreatmentLogic extends JDialog {
     inInitChange = true;
     changeLogicRule = null;
     if (changeLogic.size() != 0) {
-      changeLogicRule = (simpplle.comcode.logic.ChangeLogic)changeLogic.elementAt(changeLogicIndex);
+      changeLogicRule = (ChangeLogic)changeLogic.elementAt(changeLogicIndex);
     }
 
     if (changeLogicRule != null) {
@@ -2055,8 +2054,8 @@ public class TreatmentLogic extends JDialog {
     String evalBoolC;
     for(i=0; i<evalANDRBC.length; i++) {
       evalBoolC = changeLogicRule.getBoolChoice(i);
-      evalANDRBC[i].setSelected((evalBoolC == simpplle.comcode.logic.TreatmentLogicData.AND));
-      evalORRBC[i].setSelected((evalBoolC == simpplle.comcode.logic.TreatmentLogicData.OR));
+      evalANDRBC[i].setSelected((evalBoolC == TreatmentLogicData.AND));
+      evalORRBC[i].setSelected((evalBoolC == TreatmentLogicData.OR));
     }
 
     htGrpOneOfRBC.setSelected(changeLogicRule.isOneOfHtGrp());
@@ -2085,11 +2084,11 @@ public class TreatmentLogic extends JDialog {
     String toValue  = changeLogicRule.getToValue();
 
 
-    boolean toState        = (toChoice == simpplle.comcode.logic.ChangeLogic.TO_STATE);
-    boolean toFunctionCall = (toChoice == simpplle.comcode.logic.ChangeLogic.TO_FUNCTION_CALL);
-    boolean toSpecies      = (toChoice == simpplle.comcode.logic.ChangeLogic.TO_SPECIES);
-    boolean toSizeClass    = (toChoice == simpplle.comcode.logic.ChangeLogic.TO_SIZE_CLASS);
-    boolean toDensity      = (toChoice == simpplle.comcode.logic.ChangeLogic.TO_DENSITY);
+    boolean toState        = (toChoice == ChangeLogic.TO_STATE);
+    boolean toFunctionCall = (toChoice == ChangeLogic.TO_FUNCTION_CALL);
+    boolean toSpecies      = (toChoice == ChangeLogic.TO_SPECIES);
+    boolean toSizeClass    = (toChoice == ChangeLogic.TO_SIZE_CLASS);
+    boolean toDensity      = (toChoice == ChangeLogic.TO_DENSITY);
 
     if (toState) {
       stateToValue.setText(toValue);
@@ -2113,16 +2112,16 @@ public class TreatmentLogic extends JDialog {
 
       enableToStateItem(toChoice);
     }
-    else if (toChoice == simpplle.comcode.logic.ChangeLogic.TO_FUNCTION_CALL) {
+    else if (toChoice == ChangeLogic.TO_FUNCTION_CALL) {
       callFunctionCBC.setSelectedItem(toValue);
       enableToFunctionCall();
     }
   }
 
   private void enableToStateItem(String toChoice) {
-    boolean toSpecies      = (toChoice == simpplle.comcode.logic.ChangeLogic.TO_SPECIES);
-    boolean toSizeClass    = (toChoice == simpplle.comcode.logic.ChangeLogic.TO_SIZE_CLASS);
-    boolean toDensity      = (toChoice == simpplle.comcode.logic.ChangeLogic.TO_DENSITY);
+    boolean toSpecies      = (toChoice == ChangeLogic.TO_SPECIES);
+    boolean toSizeClass    = (toChoice == ChangeLogic.TO_SIZE_CLASS);
+    boolean toDensity      = (toChoice == ChangeLogic.TO_DENSITY);
 
     speciesToCB.setEnabled(toSpecies);
     sizeClassToCB.setEnabled(toSizeClass);
@@ -2257,11 +2256,11 @@ public class TreatmentLogic extends JDialog {
   }
 
   void evalANDRB0_actionPerformed(ActionEvent e) {
-    feasibilityLogic.setBoolChoice(0, simpplle.comcode.logic.TreatmentLogicData.AND);
+    feasibilityLogic.setBoolChoice(0,TreatmentLogicData.AND);
   }
 
   void evalORRB0_actionPerformed(ActionEvent e) {
-    feasibilityLogic.setBoolChoice(0, simpplle.comcode.logic.TreatmentLogicData.OR);
+    feasibilityLogic.setBoolChoice(0,TreatmentLogicData.OR);
   }
 
   void speciesOneOfRB_actionPerformed(ActionEvent e) {
@@ -2286,11 +2285,11 @@ public class TreatmentLogic extends JDialog {
   }
 
   void evalANDRB1_actionPerformed(ActionEvent e) {
-    feasibilityLogic.setBoolChoice(1, simpplle.comcode.logic.TreatmentLogicData.AND);
+    feasibilityLogic.setBoolChoice(1,TreatmentLogicData.AND);
   }
 
   void evalORRB1_actionPerformed(ActionEvent e) {
-    feasibilityLogic.setBoolChoice(1, simpplle.comcode.logic.TreatmentLogicData.OR);
+    feasibilityLogic.setBoolChoice(1,TreatmentLogicData.OR);
   }
 
   void sizeClassOneOfRB_actionPerformed(ActionEvent e) {
@@ -2315,11 +2314,11 @@ public class TreatmentLogic extends JDialog {
   }
 
   void evalANDRB2_actionPerformed(ActionEvent e) {
-    feasibilityLogic.setBoolChoice(2, simpplle.comcode.logic.TreatmentLogicData.AND);
+    feasibilityLogic.setBoolChoice(2,TreatmentLogicData.AND);
   }
 
   void evalORRB2_actionPerformed(ActionEvent e) {
-    feasibilityLogic.setBoolChoice(2, simpplle.comcode.logic.TreatmentLogicData.OR);
+    feasibilityLogic.setBoolChoice(2,TreatmentLogicData.OR);
   }
 
   void densityOneOfRB_actionPerformed(ActionEvent e) {
@@ -2344,11 +2343,11 @@ public class TreatmentLogic extends JDialog {
   }
 
   void evalANDRB3_actionPerformed(ActionEvent e) {
-    feasibilityLogic.setBoolChoice(3, simpplle.comcode.logic.TreatmentLogicData.AND);
+    feasibilityLogic.setBoolChoice(3,TreatmentLogicData.AND);
   }
 
   void evalORRB3_actionPerformed(ActionEvent e) {
-    feasibilityLogic.setBoolChoice(3, simpplle.comcode.logic.TreatmentLogicData.OR);
+    feasibilityLogic.setBoolChoice(3,TreatmentLogicData.OR);
   }
 
   void callFunctionCB_actionPerformed(ActionEvent e) {
@@ -2365,11 +2364,11 @@ public class TreatmentLogic extends JDialog {
   }
 
   void evalANDRB4_actionPerformed(ActionEvent e) {
-    feasibilityLogic.setBoolChoice(4, simpplle.comcode.logic.TreatmentLogicData.AND);
+    feasibilityLogic.setBoolChoice(4,TreatmentLogicData.AND);
   }
 
   void evalORRB4_actionPerformed(ActionEvent e) {
-    feasibilityLogic.setBoolChoice(4, simpplle.comcode.logic.TreatmentLogicData.OR);
+    feasibilityLogic.setBoolChoice(4,TreatmentLogicData.OR);
   }
 
   void statePickPB_actionPerformed(ActionEvent e) {
@@ -2458,19 +2457,19 @@ public class TreatmentLogic extends JDialog {
   }
 
   void evalANDRBC0_actionPerformed(ActionEvent e) {
-    changeLogicRule.setBoolChoice(0, simpplle.comcode.logic.TreatmentLogicData.AND);
+    changeLogicRule.setBoolChoice(0,TreatmentLogicData.AND);
   }
 
   void evalORRBC0_actionPerformed(ActionEvent e) {
-    changeLogicRule.setBoolChoice(0, simpplle.comcode.logic.TreatmentLogicData.OR);
+    changeLogicRule.setBoolChoice(0,TreatmentLogicData.OR);
   }
 
   void evalANDRBC1_actionPerformed(ActionEvent e) {
-    changeLogicRule.setBoolChoice(1, simpplle.comcode.logic.TreatmentLogicData.AND);
+    changeLogicRule.setBoolChoice(1,TreatmentLogicData.AND);
   }
 
   void evalORRBC1_actionPerformed(ActionEvent e) {
-    changeLogicRule.setBoolChoice(1, simpplle.comcode.logic.TreatmentLogicData.OR);
+    changeLogicRule.setBoolChoice(1,TreatmentLogicData.OR);
   }
 
   void sizeClassOneOfRBC_actionPerformed(ActionEvent e) {
@@ -2495,11 +2494,11 @@ public class TreatmentLogic extends JDialog {
   }
 
   void evalANDRBC2_actionPerformed(ActionEvent e) {
-    changeLogicRule.setBoolChoice(2, simpplle.comcode.logic.TreatmentLogicData.AND);
+    changeLogicRule.setBoolChoice(2,TreatmentLogicData.AND);
   }
 
   void evalORRBC2_actionPerformed(ActionEvent e) {
-    changeLogicRule.setBoolChoice(2, simpplle.comcode.logic.TreatmentLogicData.OR);
+    changeLogicRule.setBoolChoice(2,TreatmentLogicData.OR);
   }
 
   void densityOneOfRBC_actionPerformed(ActionEvent e) {
@@ -2525,11 +2524,11 @@ public class TreatmentLogic extends JDialog {
   }
 
   void evalANDRBC3_actionPerformed(ActionEvent e) {
-    changeLogicRule.setBoolChoice(3, simpplle.comcode.logic.TreatmentLogicData.AND);
+    changeLogicRule.setBoolChoice(3,TreatmentLogicData.AND);
   }
 
   void evalORRBC3_actionPerformed(ActionEvent e) {
-    changeLogicRule.setBoolChoice(3, simpplle.comcode.logic.TreatmentLogicData.OR);
+    changeLogicRule.setBoolChoice(3,TreatmentLogicData.OR);
   }
 
   void statePickPBC_actionPerformed(ActionEvent e) {
@@ -2545,13 +2544,13 @@ public class TreatmentLogic extends JDialog {
     if (result == null) { return; }
 
     stateToValue.setText(result);
-    changeLogicRule.setToChoice(simpplle.comcode.logic.ChangeLogic.TO_STATE);
+    changeLogicRule.setToChoice(ChangeLogic.TO_STATE);
     changeLogicRule.setToValue(result);
   }
 
   private void densityChanged() {
     String value = ((SimpplleType)densityToCB.getSelectedItem()).toString();
-    changeLogicRule.setToChoice(simpplle.comcode.logic.ChangeLogic.TO_DENSITY);
+    changeLogicRule.setToChoice(ChangeLogic.TO_DENSITY);
     changeLogicRule.setToValue(value);
   }
   void densityToRB_actionPerformed(ActionEvent e) {
@@ -2702,7 +2701,7 @@ public class TreatmentLogic extends JDialog {
 
   private void sizeClassChanged() {
     String value = ((SimpplleType)sizeClassToCB.getSelectedItem()).toString();
-    changeLogicRule.setToChoice(simpplle.comcode.logic.ChangeLogic.TO_SIZE_CLASS);
+    changeLogicRule.setToChoice(ChangeLogic.TO_SIZE_CLASS);
     changeLogicRule.setToValue(value);
   }
   void sizeClassToRB_actionPerformed(ActionEvent e) {
@@ -2718,7 +2717,7 @@ public class TreatmentLogic extends JDialog {
 
   private void speciesChanged() {
     String value = ((SimpplleType)speciesToCB.getSelectedItem()).toString();
-    changeLogicRule.setToChoice(simpplle.comcode.logic.ChangeLogic.TO_SPECIES);
+    changeLogicRule.setToChoice(ChangeLogic.TO_SPECIES);
     changeLogicRule.setToValue(value);
   }
   void speciesToRB_actionPerformed(ActionEvent e) {
@@ -2737,7 +2736,7 @@ public class TreatmentLogic extends JDialog {
     String desc = Treatment.getChangeFunctionDesc(function);
     callFunctionTextC.setText(desc);
 
-    changeLogicRule.setToChoice(simpplle.comcode.logic.ChangeLogic.TO_FUNCTION_CALL);
+    changeLogicRule.setToChoice(ChangeLogic.TO_FUNCTION_CALL);
     changeLogicRule.setToValue(function);
     updateDialog();
   }
@@ -2961,7 +2960,7 @@ public class TreatmentLogic extends JDialog {
                                                JOptionPane.QUESTION_MESSAGE);
     if (choice == JOptionPane.NO_OPTION) { return;}
 
-    simpplle.comcode.logic.ChangeLogic rule = changeLogicRule;
+    ChangeLogic rule = changeLogicRule;
     if (changeLogic.size() > 1) {
       if (changeLogicIndex != 0) { prevPB_actionPerformed(null); }
 
@@ -3057,7 +3056,7 @@ public class TreatmentLogic extends JDialog {
       enableToStateItem(changeLogicRule.getToChoice());
     }
     else if (index == 1) {
-      changeLogicRule.setToChoice(simpplle.comcode.logic.ChangeLogic.TO_STATE);
+      changeLogicRule.setToChoice(ChangeLogic.TO_STATE);
       String toValue = stateToValue.getText();
       if (toValue != null && toValue.trim().length() == 0) {
         toValue = null;

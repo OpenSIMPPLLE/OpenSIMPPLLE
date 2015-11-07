@@ -18,7 +18,7 @@ import java.util.zip.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  *
- * @see simpplle.comcode.logic.BaseLogic
+ * @see simpplle.comcode.BaseLogic
  * 
  */
 
@@ -1171,7 +1171,7 @@ public abstract class FireTypeDataLegacy {
   // The three values are moisture: WETTER, NORMAL, DRIER
   public static void readData(BufferedReader fin) throws SimpplleError {
     String              line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok, values;
+    StringTokenizerPlus strTok, values;
     int                 numPages, numRows, numCols;
     int                 resist, page, row, col;
     ProcessType         processType;
@@ -1213,12 +1213,12 @@ public abstract class FireTypeDataLegacy {
         for (SizeClass.Structure structure : SizeClass.Structure.values()) {
           for(page=0;page<fireTypeData[resist][structure.ordinal()].length;page++) {
             line    = fin.readLine();
-            strTok  = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+            strTok  = new StringTokenizerPlus(line,",");
             numRows = strTok.countTokens();
             fireTypeData[resist][structure.ordinal()][page] = new ProcessType[numRows][];
 
             for(row=0;row<numRows;row++) {
-              values = new simpplle.comcode.utility.StringTokenizerPlus(strTok.getToken(),":");
+              values = new StringTokenizerPlus(strTok.getToken(),":");
               numCols = values.countTokens();
               fireTypeData[resist][structure.ordinal()][page][row] = new ProcessType[numCols];
               for(col=0;col<numCols;col++) {

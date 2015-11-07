@@ -8,13 +8,13 @@ import javax.swing.*;
 
 import simpplle.JSimpplle;
 import simpplle.comcode.HabitatTypeGroup;
-import simpplle.comcode.logic.RegenerationLogic;
+import simpplle.comcode.RegenerationLogic;
 import simpplle.comcode.SimpplleError;
 import simpplle.comcode.Species;
 import simpplle.comcode.SystemKnowledge;
 import java.awt.event.*;
 import javax.swing.event.ChangeEvent;
-import simpplle.comcode.logic.RegenerationLogic.DataKinds;
+import simpplle.comcode.RegenerationLogic.DataKinds;
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 

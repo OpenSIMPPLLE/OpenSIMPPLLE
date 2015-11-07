@@ -1,19 +1,5 @@
 package simpplle.comcode;
 
-import simpplle.comcode.logic.DoCompetitionLogic;
-import simpplle.comcode.logic.EvuSearchLogic;
-import simpplle.comcode.logic.FireEventLogic;
-import simpplle.comcode.logic.FireSuppBeyondClassALogic;
-import simpplle.comcode.logic.FireSuppClassALogic;
-import simpplle.comcode.logic.FireSuppEventLogic;
-import simpplle.comcode.logic.FireSuppProductionRateLogic;
-import simpplle.comcode.logic.FireSuppSpreadRateLogic;
-import simpplle.comcode.logic.FireSuppWeatherClassALogic;
-import simpplle.comcode.logic.GapProcessLogic;
-import simpplle.comcode.logic.InvasiveSpeciesLogic;
-import simpplle.comcode.logic.ProcessProbLogic;
-import simpplle.comcode.logic.ProducingSeedLogic;
-import simpplle.comcode.logic.RegenerationDelayLogic;
 import simpplle.comcode.zone.ColoradoPlateau;
 import simpplle.comcode.zone.EastsideRegionOne;
 import simpplle.comcode.zone.Gila;
@@ -289,8 +275,8 @@ public final class Simpplle {
 
     try {
       // Clear Previous data
-      simpplle.comcode.logic.RegenerationLogic.clearData(simpplle.comcode.logic.RegenerationLogic.FIRE);
-      simpplle.comcode.logic.RegenerationLogic.clearData(simpplle.comcode.logic.RegenerationLogic.SUCCESSION);
+      RegenerationLogic.clearData(RegenerationLogic.FIRE);
+      RegenerationLogic.clearData(RegenerationLogic.SUCCESSION);
       HabitatTypeGroup.clearGroups();
       FireSpreadDataNewerLegacy.clearData();
       FireTypeDataNewerLegacy.clearData();
@@ -314,8 +300,8 @@ public final class Simpplle {
       GapProcessLogic.initialize();
       EvuSearchLogic.initialize();
       ProducingSeedLogic.initialize();
-      simpplle.comcode.logic.VegUnitFireTypeLogic.initialize();
-      simpplle.comcode.logic.InvasiveSpeciesLogicMSU.initialize();
+      VegUnitFireTypeLogic.initialize();
+      InvasiveSpeciesLogicMSU.initialize();
 
       FireSuppClassALogic.initialize();
       FireSuppBeyondClassALogic.initialize();
@@ -454,12 +440,12 @@ public final class Simpplle {
  * @throws SimpplleError
  */
   public boolean importArea(File filename) throws SimpplleError {
-    String extension = simpplle.comcode.utility.Utility.getFileExtension(filename);
+    String extension = Utility.getFileExtension(filename);
     if (extension == null) {
       throw new SimpplleError("Invalid import filename");
     }
 
-    File       prefix = simpplle.comcode.utility.Utility.stripExtension(filename);
+    File       prefix = Utility.stripExtension(filename);
     ImportArea importer = new ImportArea();
 
     if (extension.equalsIgnoreCase("spatialrelate")) {
@@ -488,15 +474,15 @@ public final class Simpplle {
     saveCurrentArea(outputFile,true);
   }
   public void saveCurrentArea (File outputFile, boolean saveSimulation) throws SimpplleError {
-    File prefix = simpplle.comcode.utility.Utility.stripExtension(outputFile);
-    outputFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix,"","area");
+    File prefix = Utility.stripExtension(outputFile);
+    outputFile = Utility.makeSuffixedPathname(prefix,"","area");
 
 //    if (simpplle.JSimpplle.developerMode()) {
       saveCurrentAreaNew(outputFile);
 
       if (getCurrentSimulation() != null && saveSimulation) {
         Simpplle.setStatusMessage("Saving Simulation Data");
-        File newFile = simpplle.comcode.utility.Utility.makeNumberedPathname(prefix,1,"simdata");
+        File newFile = Utility.makeNumberedPathname(prefix,1,"simdata");
         this.saveSimulation(newFile,1);
       }
       Simpplle.clearStatusMessage();
@@ -642,28 +628,28 @@ public final class Simpplle {
     }
     switch (format) {
       case FORMATTED:
-        simpplle.comcode.reports.Reports.generateSummaryReport(file, simpplle.comcode.reports.Reports.NORMAL,combineLifeforms);
+        Reports.generateSummaryReport(file,Reports.NORMAL,combineLifeforms);
         break;
       case FORMATTED_OWNERSHIP:
-        simpplle.comcode.reports.Reports.generateSummaryReport(file, simpplle.comcode.reports.Reports.OWNERSHIP,combineLifeforms);
+        Reports.generateSummaryReport(file,Reports.OWNERSHIP,combineLifeforms);
         break;
       case FORMATTED_SPECIAL_AREA:
-        simpplle.comcode.reports.Reports.generateSummaryReport(file, simpplle.comcode.reports.Reports.SPECIAL_AREA,combineLifeforms);
+        Reports.generateSummaryReport(file,Reports.SPECIAL_AREA,combineLifeforms);
         break;
       case FORMATTED_OWNER_SPECIAL:
-        simpplle.comcode.reports.Reports.generateSummaryReport(file, simpplle.comcode.reports.Reports.OWNER_SPECIAL,combineLifeforms);
+        Reports.generateSummaryReport(file,Reports.OWNER_SPECIAL,combineLifeforms);
         break;
       case CDF:
-        simpplle.comcode.reports.Reports.generateSummaryReportCDF(file, simpplle.comcode.reports.Reports.NORMAL,combineLifeforms);
+        Reports.generateSummaryReportCDF(file,Reports.NORMAL,combineLifeforms);
         break;
       case CDF_OWNERSHIP:
-        simpplle.comcode.reports.Reports.generateSummaryReportCDF(file, simpplle.comcode.reports.Reports.OWNERSHIP,combineLifeforms);
+        Reports.generateSummaryReportCDF(file,Reports.OWNERSHIP,combineLifeforms);
         break;
       case CDF_SPECIAL_AREA:
-        simpplle.comcode.reports.Reports.generateSummaryReportCDF(file, simpplle.comcode.reports.Reports.SPECIAL_AREA,combineLifeforms);
+        Reports.generateSummaryReportCDF(file,Reports.SPECIAL_AREA,combineLifeforms);
         break;
       case CDF_OWNER_SPECIAL:
-        simpplle.comcode.reports.Reports.generateSummaryReportCDF(file, simpplle.comcode.reports.Reports.OWNER_SPECIAL,combineLifeforms);
+        Reports.generateSummaryReportCDF(file,Reports.OWNER_SPECIAL,combineLifeforms);
         break;
       default:
         return;
@@ -872,7 +858,7 @@ public final class Simpplle {
     int     size;
     Species species;
       try {
-        ObjectInputStream s = new simpplle.comcode.utility.MyObjectInputStream(stream);
+        ObjectInputStream s = new MyObjectInputStream(stream);
         int version = s.readInt();
         currentArea = (Area)s.readObject();
         stream.close();
@@ -888,7 +874,7 @@ public final class Simpplle {
 
   private void readSimulationData(InflaterInputStream stream) throws SimpplleError {
     try {
-      ObjectInputStream s = new simpplle.comcode.utility.MyObjectInputStream(stream);
+      ObjectInputStream s = new MyObjectInputStream(stream);
 
       int version = s.readInt();
 

@@ -51,52 +51,52 @@ public class InvalidProcess extends Process {
 /**
  * Invalid Processes cannot happen in Westside Region 1 so doProbability is set to 0 by default.
  */
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {return 0;}
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {return 0;}
   /**
    * Invalid Processes cannot happen in Eastside Region 1 so doProbability is set to 0 by default.
    */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {return 0;}
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {return 0;}
   /**
    * Invalid Processes cannot happen in Sierra Nevada so doProbability is set to 0 by default.
    */
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {return 0;}
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {return 0;}
   /**
    * Invalid Processes cannot happen in Southern California so doProbability is set to 0 by default.
    */
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {return 0;}
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {return 0;}
   /**
    * Invalid Processes cannot happen in Gila so doProbability is set to 0 by default.
    */
-  public int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu) {return 0;}
+  public int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) {return 0;}
   /**
    * Invalid Processes cannot happen in South Central Alaska so doProbability is set to 0 by default.
    */
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) {return 0;}
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) {return 0;}
 //********************************************
   /**
    * Invalid Processes cannot happen in Westside Region 1 so doSpread is set to false by default.
    */
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {return false;}
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {return false;}
 /**
  * Invalid Processes cannot happen in Eastside Region 1 so doSpread is set to false by default.
  */
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {return false;}
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {return false;}
   /**
    * Invalid Processes cannot happen in Sierra Nevada so doSpread is set to false by default.
    */
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {return false;}
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {return false;}
   /**
    * Invalid Processes cannot happen in Southern California so doSpread is set to false by default.
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {return false;}
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {return false;}
   /**
    * Invalid Processes cannot happen in Gila so doSpread is set to false by default.
    */
-  public boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {return false;}
+  public boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) {return false;}
   /**
    * Invalid Processes cannot happen in South Central Alaska so doSpread is set to false by default.
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {return false;}
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) {return false;}
 
   /**
    * outputs "UNKNOWN"

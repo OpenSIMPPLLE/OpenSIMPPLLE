@@ -2,7 +2,9 @@ package simpplle.gui;
 
 import java.awt.Frame;
 
-import simpplle.comcode.logic.InvasiveSpeciesLogic;
+import javax.swing.JDialog;
+import javax.swing.JTabbedPane;
+import simpplle.comcode.InvasiveSpeciesLogic;
 import simpplle.comcode.SystemKnowledge;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;

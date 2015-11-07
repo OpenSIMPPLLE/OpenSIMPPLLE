@@ -433,12 +433,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
         }
 
 
-        File logFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(outputFile, "-log", "txt");
+        File logFile = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
         PrintWriter logOut;
         try {
           logOut = new PrintWriter(new FileOutputStream(logFile));
           if (doSimLoggingFile) {
-            File tmpFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(outputFile, "-detaillog", "txt");
+            File tmpFile = Utility.makeSuffixedPathname(outputFile, "-detaillog", "txt");
             simLoggingWriter = new PrintWriter(new FileOutputStream(tmpFile));
 
           }
@@ -495,7 +495,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
       if (outputFile != null && writeDatabase) {
         Simpplle.setStatusMessage("Creating Database");
-        simpplle.comcode.utility.DatabaseCreator.initHibernate(true, getDatabasePath());
+        DatabaseCreator.initHibernate(true, getDatabasePath());
         writeDatabaseManagerBatFile();
         writeOpenOfficeBaseInstructions();
       }
@@ -510,10 +510,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
         Simpplle.setStatusMessage("Calculating Nearest Roads/Trails");
       }
       if (area.hasRoads()) {
-        simpplle.comcode.element.Evu.findRoadUnits();
+        Evu.findRoadUnits();
       }
       if (area.hasTrails()) {
-        simpplle.comcode.element.Evu.findTrailUnits();
+        Evu.findTrailUnits();
       }
 
       if (simpplle.JSimpplle.invasiveSpeciesMSUProbFile() && outputFile != null) {
@@ -535,7 +535,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
       }
 
       if (outputFile != null && writeDatabase) {
-        simpplle.comcode.utility.DatabaseCreator.closeHibernate();
+        DatabaseCreator.closeHibernate();
       }
       if (outputFile != null && writeAccess) {
         writeAccessTreeMaps();
@@ -755,7 +755,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     PrintWriter  fout;
 
     try {
-      prefixFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(outputFile,"","minfo");
+      prefixFile = Utility.makeSuffixedPathname(outputFile,"","minfo");
       fout = new PrintWriter(new FileWriter(prefixFile));
     }
     catch (IOException err) {
@@ -841,7 +841,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     PrintWriter  fout;
 
     try {
-      prefixFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(outfile,"","sinfo");
+      prefixFile = Utility.makeSuffixedPathname(outfile,"","sinfo");
       fout = new PrintWriter(new FileWriter(prefixFile));
     }
     catch (IOException err) {
@@ -1064,13 +1064,13 @@ public final class Simulation implements SimulationTypes, Externalizable {
       }
       if (doAllStatesSummary) {
         if (outputFile != null) {
-          simpplle.comcode.reports.Reports.generateAllStatesReport(getOutputFile());
+          Reports.generateAllStatesReport(getOutputFile());
         }
       }
 
       if (doTrackingSpeciesReport) {
         if (outputFile != null) {
-          simpplle.comcode.reports.Reports.generateTrackingSpeciesReport(getOutputFile());
+          Reports.generateTrackingSpeciesReport(getOutputFile());
         }
       }
 
@@ -1189,7 +1189,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     Simpplle.setStatusMessage("Saving Results From Run " + (cRun + 1) + "...");
 
-    newFile = simpplle.comcode.utility.Utility.makeNumberedPathname(simpplle.comcode.utility.Utility.stripExtension(outfile),
+    newFile = Utility.makeNumberedPathname(Utility.stripExtension(outfile),
                                              cRun + 1, "simdata");
     try {
       simpplle.JSimpplle.getComcode().saveSimulation(newFile,cRun+1);
@@ -1205,7 +1205,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     try {
       Simpplle.setStatusMessage("Saving Multiple Run Summary Data ...");
-      newFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(simpplle.comcode.utility.Utility.stripExtension(outputFile),
+      newFile = Utility.makeSuffixedPathname(Utility.stripExtension(outputFile),
                                              "-end","simdata");
       simpplle.JSimpplle.getComcode().saveSimulation(newFile,-1);
       Simpplle.clearStatusMessage();
@@ -1392,11 +1392,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
  */
   public void readSimulation(BufferedReader fin) throws ParseError, IOException {
     String              line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     int                 count, val;
 
     line = fin.readLine();
-    strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+    strTok = new StringTokenizerPlus(line,",");
     count  = strTok.countTokens();
 
     if (count != 6) {
@@ -1505,15 +1505,15 @@ public final class Simulation implements SimulationTypes, Externalizable {
                               outputDir);
     }
 
-    outputFile = new File(simpplle.comcode.utility.Utility.makePathname(outputDir.toString(), name));
+    outputFile = new File(Utility.makePathname(outputDir.toString(), name));
 
-    File newFile = simpplle.comcode.utility.Utility.makeSuffixedPathname(simpplle.comcode.utility.Utility.stripExtension(
+    File newFile = Utility.makeSuffixedPathname(Utility.stripExtension(
         outputFile), "", "area");
     simpplle.JSimpplle.getComcode().saveCurrentArea(newFile,false);
   }
 
   public static File findSimulationAreaFile (File datafile) {
-    String str = simpplle.comcode.utility.Utility.stripExtension(datafile).getName();
+    String str = Utility.stripExtension(datafile).getName();
     int    index = str.lastIndexOf("-");
     String name = str.substring(0,index) + ".area";
 
@@ -1532,7 +1532,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     ArrayList simfiles = new ArrayList();
     boolean areaFound = false, simdataFound = false;
     for (int i=0; i<files.length; i++) {
-      ext = simpplle.comcode.utility.Utility.getFileExtension(files[i]);
+      ext = Utility.getFileExtension(files[i]);
       if (ext == null) { continue; }
 
       if (ext.equalsIgnoreCase("simdata")) {
@@ -1541,7 +1541,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
     if (simfiles.size() == 0) { return null; }
 
-    String str = simpplle.comcode.utility.Utility.stripExtension((File)simfiles.get(0)).getName();
+    String str = Utility.stripExtension((File)simfiles.get(0)).getName();
     int    index = str.lastIndexOf("-");
     String name = str.substring(0,index) + ".area";
     for(int i=0; i<files.length; i++) {
@@ -1555,7 +1555,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
 
   public static String getDataFileDescription(File file) {
-    String str = simpplle.comcode.utility.Utility.stripExtension(file).getName();
+    String str = Utility.stripExtension(file).getName();
     int    index = str.lastIndexOf("-");
     String name = str.substring(0,index);
     String run  = str.substring(index+1);
@@ -1659,7 +1659,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   public void recreateMultipleRunSummary() {
     multipleRunSummary = new MultipleRunSummary(this);
 
-    simpplle.comcode.element.Evu[] allEvu = Simpplle.getCurrentArea().getAllEvu();
+    Evu[] allEvu = Simpplle.getCurrentArea().getAllEvu();
     if (trackSpecialArea() || trackOwnership()) {
       for (int i=0; i<allEvu.length; i++) {
         if (allEvu[i] != null) {

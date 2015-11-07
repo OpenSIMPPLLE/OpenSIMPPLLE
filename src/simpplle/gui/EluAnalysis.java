@@ -10,7 +10,6 @@ import javax.swing.border.*;
 import com.borland.jbcl.layout.*;
 import simpplle.*;
 import simpplle.comcode.*;
-
 import java.awt.Font;
 
 /**
@@ -31,7 +30,7 @@ import java.awt.Font;
 
 public class EluAnalysis extends JPanel {
   Area             area;
-  simpplle.comcode.element.ExistingLandUnit currentElu;
+  ExistingLandUnit currentElu;
   UnitAnalysis     dialog;
 
   public static final String protoCellValue = "123456         ";
@@ -506,13 +505,13 @@ public class EluAnalysis extends JPanel {
   */
 
   private void goLandUnit() {
-    goLandUnit((simpplle.comcode.element.ExistingLandUnit)adjacentList.getSelectedValue());
+    goLandUnit((ExistingLandUnit)adjacentList.getSelectedValue());
   }
   /**
    * Sets the current Elu to the passed Elu
    * @param elu
    */
-  public void goLandUnit(simpplle.comcode.element.ExistingLandUnit elu) {
+  public void goLandUnit(ExistingLandUnit elu) {
     currentElu = elu;
     updateDialog();
   }
@@ -529,7 +528,7 @@ public class EluAnalysis extends JPanel {
     else {
       dlg = new EvuAnalysis(JSimpplle.getSimpplleMain(),"Vegetative Unit Analysis",false);
     }
-    dlg.goUnit((simpplle.comcode.element.Evu)assocVegList.getSelectedValue());
+    dlg.goUnit((Evu)assocVegList.getSelectedValue());
     dlg.setVisible(true);
   }
 /**

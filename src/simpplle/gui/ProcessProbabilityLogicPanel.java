@@ -1,11 +1,12 @@
 package simpplle.gui;
 
-import simpplle.comcode.logic.BaseLogic;
+import simpplle.comcode.BaseLogic;
 import javax.swing.table.TableColumn;
-import simpplle.comcode.logic.ProcessProbLogic;
+import simpplle.comcode.ProcessProbLogic;
 import simpplle.comcode.SystemKnowledge.Kinds;
-
-/**
+import javax.swing.table.*;
+import java.awt.*;
+/** 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana

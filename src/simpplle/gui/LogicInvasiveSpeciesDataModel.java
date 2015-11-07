@@ -23,7 +23,7 @@ public class LogicInvasiveSpeciesDataModel extends AbstractTableModel {
   public static final int INVASIVE_SPECIES_COL = 0;
   public static final int SELECTED_COL         = 1;
 
-  protected simpplle.comcode.logic.LogicData logicData=null;
+  protected LogicData logicData=null;
   protected LogicInvasiveSpeciesChooser dialog;
 /**
  * Primary constructof for Invasive Species Logic Data Model.  It is a default constructor with no initialization.  
@@ -34,7 +34,7 @@ public class LogicInvasiveSpeciesDataModel extends AbstractTableModel {
  * Sets the logic data for Invasive Species Logic Data Model.  
  * @param logicData the logic data to be used.
  */
-  public void setLogicData(simpplle.comcode.logic.LogicData logicData) {
+  public void setLogicData(LogicData logicData) {
     this.logicData = logicData;
   }
 /**
@@ -71,11 +71,11 @@ public class LogicInvasiveSpeciesDataModel extends AbstractTableModel {
   public Object getValueAt(int row, int c) {
     if (c == SELECTED_COL) {
       Species species = Species.getInvasiveSpecies(row);
-      if (logicData instanceof simpplle.comcode.logic.InvasiveSpeciesLogicData) {
-        return ((simpplle.comcode.logic.InvasiveSpeciesLogicData)logicData).isMemberInvasiveSpecies(species);
+      if (logicData instanceof InvasiveSpeciesLogicData) {
+        return ((InvasiveSpeciesLogicData)logicData).isMemberInvasiveSpecies(species);
       }
-      else if (logicData instanceof simpplle.comcode.logic.InvasiveSpeciesChangeLogicData) {
-        return ((simpplle.comcode.logic.InvasiveSpeciesChangeLogicData)logicData).isMemberInvasiveSpecies(species);
+      else if (logicData instanceof InvasiveSpeciesChangeLogicData) {
+        return ((InvasiveSpeciesChangeLogicData)logicData).isMemberInvasiveSpecies(species);
       }
       return false;
     }
@@ -97,22 +97,22 @@ public class LogicInvasiveSpeciesDataModel extends AbstractTableModel {
       Boolean selected = (Boolean)value;
 
       if (selected) {
-        if (logicData instanceof simpplle.comcode.logic.InvasiveSpeciesLogicData) {
-          ((simpplle.comcode.logic.InvasiveSpeciesLogicData)logicData).addInvasiveSpecies(species);
+        if (logicData instanceof InvasiveSpeciesLogicData) {
+          ((InvasiveSpeciesLogicData)logicData).addInvasiveSpecies(species);
         }
-        else if (logicData instanceof simpplle.comcode.logic.InvasiveSpeciesChangeLogicData) {
-          ((simpplle.comcode.logic.InvasiveSpeciesChangeLogicData)logicData).addInvasiveSpecies(species);
+        else if (logicData instanceof InvasiveSpeciesChangeLogicData) {
+          ((InvasiveSpeciesChangeLogicData)logicData).addInvasiveSpecies(species);
         }
       }
       else {
-        if (logicData instanceof simpplle.comcode.logic.InvasiveSpeciesLogicData) {
-          simpplle.comcode.logic.InvasiveSpeciesLogicData data = (simpplle.comcode.logic.InvasiveSpeciesLogicData)logicData;
+        if (logicData instanceof InvasiveSpeciesLogicData) {
+          InvasiveSpeciesLogicData data = (InvasiveSpeciesLogicData)logicData;
           if (data.getInvasiveSpeciesCount() > 1) {
             data.removeInvasiveSpecies(species);
           }
         }
-        else if (logicData instanceof simpplle.comcode.logic.InvasiveSpeciesChangeLogicData) {
-          simpplle.comcode.logic.InvasiveSpeciesChangeLogicData data = (simpplle.comcode.logic.InvasiveSpeciesChangeLogicData)logicData;
+        else if (logicData instanceof InvasiveSpeciesChangeLogicData) {
+          InvasiveSpeciesChangeLogicData data = (InvasiveSpeciesChangeLogicData)logicData;
           if (data.getInvasiveSpeciesCount() > 1) {
             data.removeInvasiveSpecies(species);
           }

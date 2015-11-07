@@ -1,8 +1,12 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-import simpplle.comcode.logic.BaseLogic;
+import simpplle.comcode.BaseLogic;
+import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.SystemKnowledge.Kinds;
+import simpplle.comcode.*;
+import javax.swing.table.*;
+import java.util.ArrayList;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -53,13 +57,13 @@ public class ProducingSeedLogicPanel extends VegLogicPanel {
  *   
    */
   protected void initColumns(TableColumn column, int col) {
-    if (col == simpplle.comcode.logic.ProducingSeedLogic.PRODUCING_SEED_COL) {
-      column.setIdentifier(simpplle.comcode.logic.ProducingSeedLogic.PRODUCING_SEED_COL);
+    if (col == ProducingSeedLogic.PRODUCING_SEED_COL) {
+      column.setIdentifier(ProducingSeedLogic.PRODUCING_SEED_COL);
       Utility.setColumnCellColor(column);
     }
-    else if (col == simpplle.comcode.logic.ProducingSeedLogic.REGEN_TYPE_COL) {
-      column.setIdentifier(simpplle.comcode.logic.ProducingSeedLogic.REGEN_TYPE_COL);
-      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel, simpplle.comcode.logic.ProducingSeedLogic.REGEN_TYPE_COL,"Regen Type",true));
+    else if (col == ProducingSeedLogic.REGEN_TYPE_COL) {
+      column.setIdentifier(ProducingSeedLogic.REGEN_TYPE_COL);
+      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel,ProducingSeedLogic.REGEN_TYPE_COL,"Regen Type",true));
       column.setCellRenderer(new MyJTextAreaRenderer());
     }
     else {

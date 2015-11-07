@@ -43,7 +43,7 @@ public class VegSimStatesKeys {
     for (int ts = 0; ts < Simulation.MAX_TIME_STEPS; ts++) {
       for (int l = 0; l < lives.length; l++) {
         keys[ts][lives[l].getId()] =
-            new String(simpplle.comcode.utility.IntToString.get(ts) + "-" +
+            new String(IntToString.get(ts) + "-" +
                        lives[l].toString());
       }
     }

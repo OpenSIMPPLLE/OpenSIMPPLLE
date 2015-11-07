@@ -86,10 +86,10 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../simpplle/comcode/NaturalElement.html" title="class in simpplle.comcode">simpplle.comcode.element.NaturalElement</a></li>
+<li><a href="../../simpplle/comcode/NaturalElement.html" title="class in simpplle.comcode">simpplle.comcode.NaturalElement</a></li>
 <li>
 <ul class="inheritance">
-<li>simpplle.comcode.element.Evu</li>
+<li>simpplle.comcode.Evu</li>
 </ul>
 </li>
 </ul>
@@ -112,7 +112,7 @@ implements java.io.Externalizable</pre>
  UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
  Open Source License Contract pertaining to this documentation and agrees to abide by all
  restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../serialized-form.html#simpplle.comcode.element.Evu">Serialized Form</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../serialized-form.html#simpplle.comcode.Evu">Serialized Form</a></dd></dl>
 </li>
 </ul>
 </div>
@@ -544,7 +544,7 @@ implements java.io.Externalizable</pre>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_simpplle.comcode.element.NaturalElement">
+<li class="blockList"><a name="fields_inherited_from_class_simpplle.comcode.NaturalElement">
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;simpplle.comcode.<a href="../../simpplle/comcode/NaturalElement.html" title="class in simpplle.comcode">NaturalElement</a></h3>
@@ -590,25 +590,25 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#addAssociatedAquaticUnit(simpplle.comcode.element.ExistingAquaticUnit)">addAssociatedAquaticUnit</a></strong>(<a href="../../simpplle/comcode/ExistingAquaticUnit.html" title="class in simpplle.comcode">ExistingAquaticUnit</a>&nbsp;eau)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#addAssociatedAquaticUnit(simpplle.comcode.ExistingAquaticUnit)">addAssociatedAquaticUnit</a></strong>(<a href="../../simpplle/comcode/ExistingAquaticUnit.html" title="class in simpplle.comcode">ExistingAquaticUnit</a>&nbsp;eau)</code>
 <div class="block">If the associated aquatic unit arraylist does not contain passed Eau, adds the Eau to the arraylist.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#addAssociatedLandUnit(simpplle.comcode.element.ExistingLandUnit)">addAssociatedLandUnit</a></strong>(<a href="../../simpplle/comcode/ExistingLandUnit.html" title="class in simpplle.comcode">ExistingLandUnit</a>&nbsp;elu)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#addAssociatedLandUnit(simpplle.comcode.ExistingLandUnit)">addAssociatedLandUnit</a></strong>(<a href="../../simpplle/comcode/ExistingLandUnit.html" title="class in simpplle.comcode">ExistingLandUnit</a>&nbsp;elu)</code>
 <div class="block">If the associated land unit arraylist does not contain passed elu, adds the existing land unit to the arraylist.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#addAssociatedRoadUnit(simpplle.comcode.element.Roads)">addAssociatedRoadUnit</a></strong>(<a href="../../simpplle/comcode/Roads.html" title="class in simpplle.comcode">Roads</a>&nbsp;roadUnit)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#addAssociatedRoadUnit(simpplle.comcode.Roads)">addAssociatedRoadUnit</a></strong>(<a href="../../simpplle/comcode/Roads.html" title="class in simpplle.comcode">Roads</a>&nbsp;roadUnit)</code>
 <div class="block">If the associated road unit arraylist does not contain passed road, adds the existing road to the arraylist.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#addAssociatedTrailUnit(simpplle.comcode.element.Trails)">addAssociatedTrailUnit</a></strong>(<a href="../../simpplle/comcode/Trails.html" title="class in simpplle.comcode">Trails</a>&nbsp;trailUnit)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#addAssociatedTrailUnit(simpplle.comcode.Trails)">addAssociatedTrailUnit</a></strong>(<a href="../../simpplle/comcode/Trails.html" title="class in simpplle.comcode">Trails</a>&nbsp;trailUnit)</code>
 <div class="block">If the associated road unit arraylist does not contain passed road, adds the existing road to the arraylist.</div>
 </td>
 </tr>
@@ -639,14 +639,14 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#calculateProducingSeed(int, boolean, simpplle.comcode.Lifeform, simpplle.comcode.element.Evu.RegenTypes)">calculateProducingSeed</a></strong>(int&nbsp;tStep,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#calculateProducingSeed(int, boolean, simpplle.comcode.Lifeform, simpplle.comcode.Evu.RegenTypes)">calculateProducingSeed</a></strong>(int&nbsp;tStep,
                       boolean&nbsp;postTreatment,
                       <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform,
                       <a href="../../simpplle/comcode/Evu.RegenTypes.html" title="enum in simpplle.comcode">Evu.RegenTypes</a>&nbsp;regenType)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#calculateProducingSeed(simpplle.comcode.VegetativeType, int, simpplle.comcode.Lifeform, simpplle.comcode.element.Evu.RegenTypes)">calculateProducingSeed</a></strong>(<a href="../../simpplle/comcode/VegetativeType.html" title="class in simpplle.comcode">VegetativeType</a>&nbsp;state,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#calculateProducingSeed(simpplle.comcode.VegetativeType, int, simpplle.comcode.Lifeform, simpplle.comcode.Evu.RegenTypes)">calculateProducingSeed</a></strong>(<a href="../../simpplle/comcode/VegetativeType.html" title="class in simpplle.comcode">VegetativeType</a>&nbsp;state,
                       int&nbsp;tStep,
                       <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform,
                       <a href="../../simpplle/comcode/Evu.RegenTypes.html" title="enum in simpplle.comcode">Evu.RegenTypes</a>&nbsp;regenType)</code>
@@ -663,13 +663,13 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#changeRoadsStatus(simpplle.comcode.element.Roads.Status)">changeRoadsStatus</a></strong>(<a href="../../simpplle/comcode/Roads.Status.html" title="enum in simpplle.comcode">Roads.Status</a>&nbsp;status)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#changeRoadsStatus(simpplle.comcode.Roads.Status)">changeRoadsStatus</a></strong>(<a href="../../simpplle/comcode/Roads.Status.html" title="enum in simpplle.comcode">Roads.Status</a>&nbsp;status)</code>
 <div class="block">Method to take a road status and change the Evu's associated road units to the passed status</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#changeTrailsStatus(simpplle.comcode.element.Trails.Status)">changeTrailsStatus</a></strong>(<a href="../../simpplle/comcode/Trails.Status.html" title="enum in simpplle.comcode">Trails.Status</a>&nbsp;status)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#changeTrailsStatus(simpplle.comcode.Trails.Status)">changeTrailsStatus</a></strong>(<a href="../../simpplle/comcode/Trails.Status.html" title="enum in simpplle.comcode">Trails.Status</a>&nbsp;status)</code>
 <div class="block">Method to change trail status by taking in a trail status and changing the Evu's trails to that status</div>
 </td>
 </tr>
@@ -742,39 +742,39 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distanceToEvu(simpplle.comcode.element.Evu)">distanceToEvu</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distanceToEvu(simpplle.comcode.Evu)">distanceToEvu</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu)</code>
 <div class="block">Calculates the distance to Evu.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distancetoEvuMeters(simpplle.comcode.element.Evu)">distancetoEvuMeters</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distancetoEvuMeters(simpplle.comcode.Evu)">distancetoEvuMeters</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;evu)</code>
 <div class="block">Converts distance to evu from feet to meters.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private double</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distanceToRoad(simpplle.comcode.element.Evu.RoadUnitData, boolean)">distanceToRoad</a></strong>(<a href="../../simpplle/comcode/Evu.RoadUnitData.html" title="class in simpplle.comcode">Evu.RoadUnitData</a>&nbsp;roadData,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distanceToRoad(simpplle.comcode.Evu.RoadUnitData, boolean)">distanceToRoad</a></strong>(<a href="../../simpplle/comcode/Evu.RoadUnitData.html" title="class in simpplle.comcode">Evu.RoadUnitData</a>&nbsp;roadData,
               boolean&nbsp;onlyOpen)</code>
 <div class="block">Calculates Evu distance to road.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>private double</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distanceToTrail(simpplle.comcode.element.Evu.TrailUnitData, boolean)">distanceToTrail</a></strong>(<a href="../../simpplle/comcode/Evu.TrailUnitData.html" title="class in simpplle.comcode">Evu.TrailUnitData</a>&nbsp;trailData,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distanceToTrail(simpplle.comcode.Evu.TrailUnitData, boolean)">distanceToTrail</a></strong>(<a href="../../simpplle/comcode/Evu.TrailUnitData.html" title="class in simpplle.comcode">Evu.TrailUnitData</a>&nbsp;trailData,
                boolean&nbsp;onlyOpen)</code>
 <div class="block">Calculates distance to a trail.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distanceToWater(simpplle.comcode.element.Evu.WaterUnitData)">distanceToWater</a></strong>(<a href="../../simpplle/comcode/Evu.WaterUnitData.html" title="class in simpplle.comcode">Evu.WaterUnitData</a>&nbsp;isPermanentWater)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distanceToWater(simpplle.comcode.Evu.WaterUnitData)">distanceToWater</a></strong>(<a href="../../simpplle/comcode/Evu.WaterUnitData.html" title="class in simpplle.comcode">Evu.WaterUnitData</a>&nbsp;isPermanentWater)</code>
 <div class="block">Calls to overloaded distanceToWater with arraylist conataining water unit data arraylist</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distanceToWater(simpplle.comcode.element.Evu.WaterUnitData, int)">distanceToWater</a></strong>(<a href="../../simpplle/comcode/Evu.WaterUnitData.html" title="class in simpplle.comcode">Evu.WaterUnitData</a>&nbsp;isPermanentWater,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#distanceToWater(simpplle.comcode.Evu.WaterUnitData, int)">distanceToWater</a></strong>(<a href="../../simpplle/comcode/Evu.WaterUnitData.html" title="class in simpplle.comcode">Evu.WaterUnitData</a>&nbsp;isPermanentWater,
                int&nbsp;index)</code>
 <div class="block">This calculates the minimum distance to water by evaluating an areas Evu's water unit data.</div>
 </td>
@@ -804,7 +804,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#doFireSpread(simpplle.comcode.element.Evu, simpplle.comcode.element.Evu, simpplle.comcode.Lifeform)">doFireSpread</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;fromEvu,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#doFireSpread(simpplle.comcode.Evu, simpplle.comcode.Evu, simpplle.comcode.Lifeform)">doFireSpread</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;fromEvu,
             <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;toEvu,
             <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;fromLifeform)</code>
 <div class="block">This method will determine if an fire event spread from fromEvu in the param
@@ -887,7 +887,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#doSpread(simpplle.comcode.element.Evu, simpplle.comcode.element.Evu, simpplle.comcode.Lifeform)">doSpread</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;fromEvu,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#doSpread(simpplle.comcode.Evu, simpplle.comcode.Evu, simpplle.comcode.Lifeform)">doSpread</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;fromEvu,
         <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;toEvu,
         <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;fromLifeform)</code>
 <div class="block">This method will determine if an event spread from fromEvu in the param
@@ -934,13 +934,13 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>private <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a></code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#findClosestRoadEvu(simpplle.comcode.element.Roads)">findClosestRoadEvu</a></strong>(<a href="../../simpplle/comcode/Roads.html" title="class in simpplle.comcode">Roads</a>&nbsp;road)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#findClosestRoadEvu(simpplle.comcode.Roads)">findClosestRoadEvu</a></strong>(<a href="../../simpplle/comcode/Roads.html" title="class in simpplle.comcode">Roads</a>&nbsp;road)</code>
 <div class="block">Method to calculate the closest Evu to a road.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private <a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a></code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#findClosestTrailEvu(simpplle.comcode.element.Trails)">findClosestTrailEvu</a></strong>(<a href="../../simpplle/comcode/Trails.html" title="class in simpplle.comcode">Trails</a>&nbsp;trail)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#findClosestTrailEvu(simpplle.comcode.Trails)">findClosestTrailEvu</a></strong>(<a href="../../simpplle/comcode/Trails.html" title="class in simpplle.comcode">Trails</a>&nbsp;trail)</code>
 <div class="block">Calculates the closest Evu to a trail.</div>
 </td>
 </tr>
@@ -1090,7 +1090,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>char</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#getAdjPosition(simpplle.comcode.element.Evu)">getAdjPosition</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;adj)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#getAdjPosition(simpplle.comcode.Evu)">getAdjPosition</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;adj)</code>
 <div class="block">Calculates the position of an adjacent evu relative to this Evu.</div>
 </td>
 </tr>
@@ -1700,21 +1700,21 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>private boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#hasAssociatedAquaticUnit(simpplle.comcode.element.Evu.WaterUnitData)">hasAssociatedAquaticUnit</a></strong>(<a href="../../simpplle/comcode/Evu.WaterUnitData.html" title="class in simpplle.comcode">Evu.WaterUnitData</a>&nbsp;isPermanentWater)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#hasAssociatedAquaticUnit(simpplle.comcode.Evu.WaterUnitData)">hasAssociatedAquaticUnit</a></strong>(<a href="../../simpplle/comcode/Evu.WaterUnitData.html" title="class in simpplle.comcode">Evu.WaterUnitData</a>&nbsp;isPermanentWater)</code>
 <div class="block">Check if an Evu has an associated aquatic unit, based on whether there is associated aquatic units,
  and whether an Eau has water present and that water is permanent.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#hasAssociatedRoadUnit(simpplle.comcode.element.Evu.RoadUnitData, boolean)">hasAssociatedRoadUnit</a></strong>(<a href="../../simpplle/comcode/Evu.RoadUnitData.html" title="class in simpplle.comcode">Evu.RoadUnitData</a>&nbsp;data,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#hasAssociatedRoadUnit(simpplle.comcode.Evu.RoadUnitData, boolean)">hasAssociatedRoadUnit</a></strong>(<a href="../../simpplle/comcode/Evu.RoadUnitData.html" title="class in simpplle.comcode">Evu.RoadUnitData</a>&nbsp;data,
                      boolean&nbsp;onlyOpen)</code>
 <div class="block">Check if an Evu has an associated road unit</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>private boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#hasAssociatedTrailUnit(simpplle.comcode.element.Evu.TrailUnitData, boolean)">hasAssociatedTrailUnit</a></strong>(<a href="../../simpplle/comcode/Evu.TrailUnitData.html" title="class in simpplle.comcode">Evu.TrailUnitData</a>&nbsp;data,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#hasAssociatedTrailUnit(simpplle.comcode.Evu.TrailUnitData, boolean)">hasAssociatedTrailUnit</a></strong>(<a href="../../simpplle/comcode/Evu.TrailUnitData.html" title="class in simpplle.comcode">Evu.TrailUnitData</a>&nbsp;data,
                       boolean&nbsp;onlyOpen)</code>
 <div class="block">Check if an Evu has any associated trail units</div>
 </td>
@@ -1875,7 +1875,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#isAdjDownwind(simpplle.comcode.element.Evu)">isAdjDownwind</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;adj)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#isAdjDownwind(simpplle.comcode.Evu)">isAdjDownwind</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;adj)</code>
 <div class="block">Determines if the adjacent unit is downwind relative to this Evu.</div>
 </td>
 </tr>
@@ -1929,7 +1929,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#isNeighbor(simpplle.comcode.element.Evu)">isNeighbor</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;unit)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#isNeighbor(simpplle.comcode.Evu)">isNeighbor</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;unit)</code>
 <div class="block">Checks if specified Evu is neighboring to this Evu</div>
 </td>
 </tr>
@@ -2090,7 +2090,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#producingSeed(int, simpplle.comcode.Lifeform, simpplle.comcode.element.Evu.RegenTypes)">producingSeed</a></strong>(int&nbsp;tStep,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#producingSeed(int, simpplle.comcode.Lifeform, simpplle.comcode.Evu.RegenTypes)">producingSeed</a></strong>(int&nbsp;tStep,
              <a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform,
              <a href="../../simpplle/comcode/Evu.RegenTypes.html" title="enum in simpplle.comcode">Evu.RegenTypes</a>&nbsp;regenType)</code>
 <div class="block">Will return true if the unit is seed producing.</div>
@@ -2098,7 +2098,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#producingSeed(simpplle.comcode.Lifeform, simpplle.comcode.element.Evu.RegenTypes)">producingSeed</a></strong>(<a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform,
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#producingSeed(simpplle.comcode.Lifeform, simpplle.comcode.Evu.RegenTypes)">producingSeed</a></strong>(<a href="../../simpplle/comcode/Lifeform.html" title="class in simpplle.comcode">Lifeform</a>&nbsp;lifeform,
              <a href="../../simpplle/comcode/Evu.RegenTypes.html" title="enum in simpplle.comcode">Evu.RegenTypes</a>&nbsp;regenType)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -2332,7 +2332,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#setRoadStatus(simpplle.comcode.element.Roads.Status)">setRoadStatus</a></strong>(<a href="../../simpplle/comcode/Roads.Status.html" title="enum in simpplle.comcode">Roads.Status</a>&nbsp;status)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#setRoadStatus(simpplle.comcode.Roads.Status)">setRoadStatus</a></strong>(<a href="../../simpplle/comcode/Roads.Status.html" title="enum in simpplle.comcode">Roads.Status</a>&nbsp;status)</code>
 <div class="block">Sets the road status.</div>
 </td>
 </tr>
@@ -2586,7 +2586,7 @@ implements java.io.Externalizable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#weedWillSpread(simpplle.comcode.element.Evu)">weedWillSpread</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;adj)</code>
+<td class="colLast"><code><strong><a href="../../simpplle/comcode/Evu.html#weedWillSpread(simpplle.comcode.Evu)">weedWillSpread</a></strong>(<a href="../../simpplle/comcode/Evu.html" title="class in simpplle.comcode">Evu</a>&nbsp;adj)</code>
 <div class="block">Return true if Weed will spread from this Evu to another.</div>
 </td>
 </tr>
@@ -2643,11 +2643,11 @@ implements java.io.Externalizable</pre>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_simpplle.comcode.element.NaturalElement">
+<li class="blockList"><a name="methods_inherited_from_class_simpplle.comcode.NaturalElement">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;simpplle.comcode.<a href="../../simpplle/comcode/NaturalElement.html" title="class in simpplle.comcode">NaturalElement</a></h3>
-<code><a href="../../simpplle/comcode/NaturalElement.html#addNeighbor(simpplle.comcode.element.NaturalElement)">addNeighbor</a>, <a href="../../simpplle/comcode/NaturalElement.html#copyFrom(simpplle.comcode.element.NaturalElement)">copyFrom</a>, <a href="../../simpplle/comcode/NaturalElement.html#getAspect()">getAspect</a>, <a href="../../simpplle/comcode/NaturalElement.html#getAspectName()">getAspectName</a>, <a href="../../simpplle/comcode/NaturalElement.html#getElevation()">getElevation</a>, <a href="../../simpplle/comcode/NaturalElement.html#getNeighbors()">getNeighbors</a>, <a href="../../simpplle/comcode/NaturalElement.html#hasNumericAspect()">hasNumericAspect</a>, <a href="../../simpplle/comcode/NaturalElement.html#isElevationValid()">isElevationValid</a>, <a href="../../simpplle/comcode/NaturalElement.html#setAspect(double)">setAspect</a>, <a href="../../simpplle/comcode/NaturalElement.html#setAspectName(java.lang.String)">setAspectName</a>, <a href="../../simpplle/comcode/NaturalElement.html#setElevation(int)">setElevation</a>, <a href="../../simpplle/comcode/NaturalElement.html#setId(int)">setId</a>, <a href="../../simpplle/comcode/NaturalElement.html#setSlope(float)">setSlope</a></code></li>
+<code><a href="../../simpplle/comcode/NaturalElement.html#addNeighbor(simpplle.comcode.NaturalElement)">addNeighbor</a>, <a href="../../simpplle/comcode/NaturalElement.html#copyFrom(simpplle.comcode.NaturalElement)">copyFrom</a>, <a href="../../simpplle/comcode/NaturalElement.html#getAspect()">getAspect</a>, <a href="../../simpplle/comcode/NaturalElement.html#getAspectName()">getAspectName</a>, <a href="../../simpplle/comcode/NaturalElement.html#getElevation()">getElevation</a>, <a href="../../simpplle/comcode/NaturalElement.html#getNeighbors()">getNeighbors</a>, <a href="../../simpplle/comcode/NaturalElement.html#hasNumericAspect()">hasNumericAspect</a>, <a href="../../simpplle/comcode/NaturalElement.html#isElevationValid()">isElevationValid</a>, <a href="../../simpplle/comcode/NaturalElement.html#setAspect(double)">setAspect</a>, <a href="../../simpplle/comcode/NaturalElement.html#setAspectName(java.lang.String)">setAspectName</a>, <a href="../../simpplle/comcode/NaturalElement.html#setElevation(int)">setElevation</a>, <a href="../../simpplle/comcode/NaturalElement.html#setId(int)">setId</a>, <a href="../../simpplle/comcode/NaturalElement.html#setSlope(float)">setSlope</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -2677,7 +2677,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>serialVersionUID</h4>
 <pre>static final&nbsp;long serialVersionUID</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.serialVersionUID">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.serialVersionUID">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="version">
@@ -2687,7 +2687,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>version</h4>
 <pre>static final&nbsp;int version</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.version">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.version">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="accumDataVersion">
@@ -2697,7 +2697,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>accumDataVersion</h4>
 <pre>static final&nbsp;int accumDataVersion</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.accumDataVersion">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.accumDataVersion">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="spatialRelationsVersion">
@@ -2707,7 +2707,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>spatialRelationsVersion</h4>
 <pre>static final&nbsp;int spatialRelationsVersion</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.spatialRelationsVersion">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.spatialRelationsVersion">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="assocLandUnits">
@@ -3196,7 +3196,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>NOPROB</h4>
 <pre>public static final&nbsp;int NOPROB</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.NOPROB">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.NOPROB">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="D">
@@ -3206,7 +3206,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>D</h4>
 <pre>public static final&nbsp;int D</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.D">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.D">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="L">
@@ -3216,7 +3216,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>L</h4>
 <pre>public static final&nbsp;int L</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.L">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.L">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="S">
@@ -3226,7 +3226,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>S</h4>
 <pre>public static final&nbsp;int S</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.S">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.S">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="SUPP">
@@ -3236,7 +3236,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>SUPP</h4>
 <pre>public static final&nbsp;int SUPP</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.SUPP">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.SUPP">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="SE">
@@ -3246,7 +3246,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>SE</h4>
 <pre>public static final&nbsp;int SE</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.SE">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.SE">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="SFS">
@@ -3256,7 +3256,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>SFS</h4>
 <pre>public static final&nbsp;int SFS</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.SFS">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.SFS">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="COMP">
@@ -3266,7 +3266,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>COMP</h4>
 <pre>public static final&nbsp;int COMP</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.COMP">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.COMP">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="GAP">
@@ -3276,7 +3276,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>GAP</h4>
 <pre>public static final&nbsp;int GAP</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.GAP">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.GAP">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="D_STR">
@@ -3286,7 +3286,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>D_STR</h4>
 <pre>public static final&nbsp;java.lang.String D_STR</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.D_STR">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.D_STR">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="L_STR">
@@ -3296,7 +3296,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>L_STR</h4>
 <pre>public static final&nbsp;java.lang.String L_STR</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.L_STR">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.L_STR">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="S_STR">
@@ -3306,7 +3306,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>S_STR</h4>
 <pre>public static final&nbsp;java.lang.String S_STR</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.S_STR">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.S_STR">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="SFS_STR">
@@ -3316,7 +3316,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>SFS_STR</h4>
 <pre>public static final&nbsp;java.lang.String SFS_STR</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.SFS_STR">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.SFS_STR">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="SUPP_STR">
@@ -3326,7 +3326,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>SUPP_STR</h4>
 <pre>public static final&nbsp;java.lang.String SUPP_STR</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.SUPP_STR">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.SUPP_STR">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="SE_STR">
@@ -3336,7 +3336,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>SE_STR</h4>
 <pre>public static final&nbsp;java.lang.String SE_STR</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.SE_STR">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.SE_STR">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="NOPROB_STR">
@@ -3346,7 +3346,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>NOPROB_STR</h4>
 <pre>public static final&nbsp;java.lang.String NOPROB_STR</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.NOPROB_STR">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.NOPROB_STR">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="COMP_STR">
@@ -3356,7 +3356,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>COMP_STR</h4>
 <pre>public static final&nbsp;java.lang.String COMP_STR</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.COMP_STR">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.COMP_STR">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="GAP_STR">
@@ -3366,7 +3366,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>GAP_STR</h4>
 <pre>public static final&nbsp;java.lang.String GAP_STR</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.GAP_STR">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.GAP_STR">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="POSITION">
@@ -3376,7 +3376,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>POSITION</h4>
 <pre>public static final&nbsp;int POSITION</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.POSITION">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.POSITION">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="WIND">
@@ -3386,7 +3386,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>WIND</h4>
 <pre>public static final&nbsp;int WIND</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.WIND">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.WIND">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="DOWNWIND">
@@ -3396,7 +3396,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>DOWNWIND</h4>
 <pre>public static final&nbsp;char DOWNWIND</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.DOWNWIND">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.DOWNWIND">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="NO_WIND">
@@ -3406,7 +3406,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>NO_WIND</h4>
 <pre>public static final&nbsp;char NO_WIND</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.NO_WIND">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.NO_WIND">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="ABOVE">
@@ -3416,7 +3416,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>ABOVE</h4>
 <pre>public static final&nbsp;char ABOVE</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.ABOVE">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.ABOVE">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="BELOW">
@@ -3426,7 +3426,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>BELOW</h4>
 <pre>public static final&nbsp;char BELOW</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.BELOW">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.BELOW">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="NEXT_TO">
@@ -3436,7 +3436,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>NEXT_TO</h4>
 <pre>public static final&nbsp;char NEXT_TO</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.NEXT_TO">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.NEXT_TO">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="X">
@@ -3446,7 +3446,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>X</h4>
 <pre>public static final&nbsp;int X</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.X">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.X">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="Y">
@@ -3456,7 +3456,7 @@ implements java.io.Externalizable</pre>
 <li class="blockList">
 <h4>Y</h4>
 <pre>public static final&nbsp;int Y</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.element.Evu.Y">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#simpplle.comcode.Evu.Y">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="defaultInitialProcess">
@@ -3620,7 +3620,7 @@ implements java.io.Externalizable</pre>
  *@return associated trails at a given time step</div>
 </li>
 </ul>
-<a name="setRoadStatus(simpplle.comcode.element.Roads.Status)">
+<a name="setRoadStatus(simpplle.comcode.Roads.Status)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -3775,7 +3775,7 @@ implements java.io.Externalizable</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>roadUnit</code> - road unit to be added</dd></dl>
 </li>
 </ul>
-<a name="hasAssociatedRoadUnit(simpplle.comcode.element.Evu.RoadUnitData, boolean)">
+<a name="hasAssociatedRoadUnit(simpplle.comcode.Evu.RoadUnitData, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -3821,7 +3821,7 @@ implements java.io.Externalizable</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>trailUnit</code> - trail to be added</dd></dl>
 </li>
 </ul>
-<a name="hasAssociatedTrailUnit(simpplle.comcode.element.Evu.TrailUnitData, boolean)">
+<a name="hasAssociatedTrailUnit(simpplle.comcode.Evu.TrailUnitData, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -3845,7 +3845,7 @@ implements java.io.Externalizable</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>true if is aquatic</dd></dl>
 </li>
 </ul>
-<a name="hasAssociatedAquaticUnit(simpplle.comcode.element.Evu.WaterUnitData)">
+<a name="hasAssociatedAquaticUnit(simpplle.comcode.Evu.WaterUnitData)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -4710,7 +4710,7 @@ implements java.io.Externalizable</pre>
 <div class="block">Gets all permanent water units in an area's Evu's.  This includes if an evu isaquatic or has associated aquatic units with permantent water.</div>
 </li>
 </ul>
-<a name="distanceToWater(simpplle.comcode.element.Evu.WaterUnitData)">
+<a name="distanceToWater(simpplle.comcode.Evu.WaterUnitData)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -4722,7 +4722,7 @@ implements java.io.Externalizable</pre>
 <dt><span class="strong">Returns:</span></dt><dd></dd></dl>
 </li>
 </ul>
-<a name="distanceToWater(simpplle.comcode.element.Evu.WaterUnitData, int)">
+<a name="distanceToWater(simpplle.comcode.Evu.WaterUnitData, int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -4791,7 +4791,7 @@ implements java.io.Externalizable</pre>
 <dt><span class="strong">Returns:</span></dt><dd>the road unit data object of the nearest open orad</dd></dl>
 </li>
 </ul>
-<a name="distanceToRoad(simpplle.comcode.element.Evu.RoadUnitData, boolean)">
+<a name="distanceToRoad(simpplle.comcode.Evu.RoadUnitData, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -4838,7 +4838,7 @@ implements java.io.Externalizable</pre>
 <div class="block">Changes the road status to closed.</div>
 </li>
 </ul>
-<a name="changeRoadsStatus(simpplle.comcode.element.Roads.Status)">
+<a name="changeRoadsStatus(simpplle.comcode.Roads.Status)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -4869,7 +4869,7 @@ implements java.io.Externalizable</pre>
 <div class="block">Change Trail status to Closed.</div>
 </li>
 </ul>
-<a name="changeTrailsStatus(simpplle.comcode.element.Trails.Status)">
+<a name="changeTrailsStatus(simpplle.comcode.Trails.Status)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -4934,7 +4934,7 @@ implements java.io.Externalizable</pre>
 <dt><span class="strong">Returns:</span></dt><dd>closest open trail data, if none is found  - null</dd></dl>
 </li>
 </ul>
-<a name="distanceToTrail(simpplle.comcode.element.Evu.TrailUnitData, boolean)">
+<a name="distanceToTrail(simpplle.comcode.Evu.TrailUnitData, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -6466,7 +6466,7 @@ implements java.io.Externalizable</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>process with highest probability</dd></dl>
 </li>
 </ul>
-<a name="doSpread(simpplle.comcode.element.Evu, simpplle.comcode.element.Evu, simpplle.comcode.Lifeform)">
+<a name="doSpread(simpplle.comcode.Evu, simpplle.comcode.Evu, simpplle.comcode.Lifeform)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -6485,7 +6485,7 @@ implements java.io.Externalizable</pre>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if spread was successfull</dd></dl>
 </li>
 </ul>
-<a name="doFireSpread(simpplle.comcode.element.Evu, simpplle.comcode.element.Evu, simpplle.comcode.Lifeform)">
+<a name="doFireSpread(simpplle.comcode.Evu, simpplle.comcode.Evu, simpplle.comcode.Lifeform)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -6704,7 +6704,7 @@ implements java.io.Externalizable</pre>
 <dt><span class="strong">Returns:</span></dt><dd>true if can do fire regneration.</dd></dl>
 </li>
 </ul>
-<a name="producingSeed(int, simpplle.comcode.Lifeform, simpplle.comcode.element.Evu.RegenTypes)">
+<a name="producingSeed(int, simpplle.comcode.Lifeform, simpplle.comcode.Evu.RegenTypes)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -6741,7 +6741,7 @@ implements java.io.Externalizable</pre>
 <dt><span class="strong">Returns:</span></dt><dd></dd></dl>
 </li>
 </ul>
-<a name="producingSeed(simpplle.comcode.Lifeform, simpplle.comcode.element.Evu.RegenTypes)">
+<a name="producingSeed(simpplle.comcode.Lifeform, simpplle.comcode.Evu.RegenTypes)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -6764,7 +6764,7 @@ implements java.io.Externalizable</pre>
 <dt><span class="strong">Returns:</span></dt><dd>a boolean.</dd></dl>
 </li>
 </ul>
-<a name="calculateProducingSeed(int, boolean, simpplle.comcode.Lifeform, simpplle.comcode.element.Evu.RegenTypes)">
+<a name="calculateProducingSeed(int, boolean, simpplle.comcode.Lifeform, simpplle.comcode.Evu.RegenTypes)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -6776,7 +6776,7 @@ implements java.io.Externalizable</pre>
                              <a href="../../simpplle/comcode/Evu.RegenTypes.html" title="enum in simpplle.comcode">Evu.RegenTypes</a>&nbsp;regenType)</pre>
 </li>
 </ul>
-<a name="calculateProducingSeed(simpplle.comcode.VegetativeType, int, simpplle.comcode.Lifeform, simpplle.comcode.element.Evu.RegenTypes)">
+<a name="calculateProducingSeed(simpplle.comcode.VegetativeType, int, simpplle.comcode.Lifeform, simpplle.comcode.Evu.RegenTypes)">
 <!--   -->
 </a>
 <ul class="blockList">

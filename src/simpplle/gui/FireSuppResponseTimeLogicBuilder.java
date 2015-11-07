@@ -3,13 +3,14 @@ package simpplle.gui;
 import simpplle.comcode.Fmz;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.Simpplle;
-import simpplle.comcode.utility.Formatting;
+import simpplle.comcode.Formatting;
 
 import java.text.NumberFormat;
 import java.awt.*;
 import javax.swing.*;
 import com.borland.jbcl.layout.*;
 import java.awt.event.*;
+import javax.swing.event.*;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 

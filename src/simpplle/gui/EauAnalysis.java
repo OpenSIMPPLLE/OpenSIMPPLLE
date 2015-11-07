@@ -15,8 +15,8 @@ import javax.swing.border.TitledBorder;
 import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.JSimpplle;
 import simpplle.comcode.Area;
-import simpplle.comcode.element.ExistingAquaticUnit;
-import simpplle.comcode.utility.StringTokenizerPlus;
+import simpplle.comcode.ExistingAquaticUnit;
+import simpplle.comcode.StringTokenizerPlus;
 import java.beans.*;
 import java.awt.Font;
 

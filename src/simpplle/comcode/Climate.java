@@ -684,7 +684,7 @@ public class Climate {
    */
   public void readData(BufferedReader fin) throws SimpplleError {
     String              line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     RegionalZone        zone = Simpplle.getCurrentZone();
     String              msg;
     String              tempStr, moistStr;
@@ -710,7 +710,7 @@ public class Climate {
         if (line == null) {
           throw new ParseError("Invalid Climate Data file.");
         }
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        strTok = new StringTokenizerPlus(line,",");
 
         if (strTok.countTokens() == 3) {
           tStep = strTok.getIntToken();
@@ -779,7 +779,7 @@ public class Climate {
  * @throws IOException - caught if there are problems outputting file
  */
   public void save() {
-    File outfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(SystemKnowledge.getFile(SystemKnowledge.CLIMATE),"","climate");
+    File outfile = Utility.makeSuffixedPathname(SystemKnowledge.getFile(SystemKnowledge.CLIMATE),"","climate");
     GZIPOutputStream out;
     PrintWriter      fout;
     try {

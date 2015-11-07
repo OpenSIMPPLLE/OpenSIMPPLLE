@@ -2,12 +2,14 @@
 package simpplle.gui;
 
 import simpplle.comcode.HabitatTypeGroup;
+import simpplle.comcode.VegetativeType;
 import simpplle.comcode.Simpplle;
 import simpplle.comcode.Area;
 import simpplle.comcode.Species;
 import simpplle.comcode.SizeClass;
 import simpplle.comcode.Density;
-import simpplle.comcode.element.Evu;
+import simpplle.comcode.Evu;
+import simpplle.comcode.Area;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.Fmz;
 
@@ -668,7 +670,7 @@ public class EvuEditor extends JDialog {
  * and sets the current life form to trees and current Evu to first Evu.  
  */
   private void initialize() {
-    simpplle.comcode.element.Roads.Status[] allRoadStatus = simpplle.comcode.element.Roads.Status.values();
+    Roads.Status[] allRoadStatus = Roads.Status.values();
     for(int i=0;i<allRoadStatus.length;i++) {
       roadStatusCB.addItem(allRoadStatus[i]);
     }
@@ -1286,7 +1288,7 @@ public class EvuEditor extends JDialog {
   * @param e 
   */
   void roadStatusCB_itemStateChanged(ItemEvent e) {
-    simpplle.comcode.element.Roads.Status item = (simpplle.comcode.element.Roads.Status) e.getItem();
+    Roads.Status item = (Roads.Status) e.getItem();
     if (item == null || currentEvu == null) { return; }
 
     currentEvu.setRoadStatus(item);

@@ -4,6 +4,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.Component;
 import javax.swing.JTable;
 
+import simpplle.comcode.Evu;
+
 import java.awt.Color;
 
  

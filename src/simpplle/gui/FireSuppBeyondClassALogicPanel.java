@@ -1,8 +1,12 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-import simpplle.comcode.logic.BaseLogic;
+import simpplle.comcode.BaseLogic;
+import simpplle.comcode.FireEventLogic;
+import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.SystemKnowledge.Kinds;
+import simpplle.comcode.*;
+import javax.swing.table.*;
 
 
 /** 
@@ -53,22 +57,22 @@ public class FireSuppBeyondClassALogicPanel extends VegLogicPanel {
  * @param col the integer value of the column 
  */
   protected void initColumns(TableColumn column, int col) {
-    if (col == simpplle.comcode.logic.FireSuppBeyondClassALogic.SUPPRESS_COL) {
-      column.setIdentifier(simpplle.comcode.logic.FireSuppBeyondClassALogic.SUPPRESS_COL);
+    if (col == FireSuppBeyondClassALogic.SUPPRESS_COL) {
+      column.setIdentifier(FireSuppBeyondClassALogic.SUPPRESS_COL);
       Utility.setColumnCellColor(column);
     }
-    else if (col == simpplle.comcode.logic.FireSuppBeyondClassALogic.SPREAD_KIND_COL) {
-      column.setIdentifier(simpplle.comcode.logic.FireSuppBeyondClassALogic.SPREAD_KIND_COL);
-      column.setCellRenderer(new MyJComboBoxRenderer(simpplle.comcode.logic.FireSuppBeyondClassALogicData.SpreadKind.values()));
-      column.setCellEditor(new MyJComboBoxEditor(simpplle.comcode.logic.FireSuppBeyondClassALogicData.SpreadKind.values()));
+    else if (col == FireSuppBeyondClassALogic.SPREAD_KIND_COL) {
+      column.setIdentifier(FireSuppBeyondClassALogic.SPREAD_KIND_COL);
+      column.setCellRenderer(new MyJComboBoxRenderer(FireSuppBeyondClassALogicData.SpreadKind.values()));
+      column.setCellEditor(new MyJComboBoxEditor(FireSuppBeyondClassALogicData.SpreadKind.values()));
     }
-    else if (col == simpplle.comcode.logic.FireSuppBeyondClassALogic.FIRE_TYPE_COL) {
-      column.setIdentifier(simpplle.comcode.logic.FireSuppBeyondClassALogic.FIRE_TYPE_COL);
-      column.setCellRenderer(new MyJComboBoxRenderer(simpplle.comcode.logic.FireSuppBeyondClassALogicData.FireType.values()));
-      column.setCellEditor(new MyJComboBoxEditor(simpplle.comcode.logic.FireSuppBeyondClassALogicData.FireType.values()));
+    else if (col == FireSuppBeyondClassALogic.FIRE_TYPE_COL) {
+      column.setIdentifier(FireSuppBeyondClassALogic.FIRE_TYPE_COL);
+      column.setCellRenderer(new MyJComboBoxRenderer(FireSuppBeyondClassALogicData.FireType.values()));
+      column.setCellEditor(new MyJComboBoxEditor(FireSuppBeyondClassALogicData.FireType.values()));
     }
-    else if (col == simpplle.comcode.logic.FireSuppBeyondClassALogic.PROB_COL) {
-      column.setIdentifier(simpplle.comcode.logic.FireSuppBeyondClassALogic.PROB_COL);
+    else if (col == FireSuppBeyondClassALogic.PROB_COL) {
+      column.setIdentifier(FireSuppBeyondClassALogic.PROB_COL);
       Utility.setColumnCellColor(column);
     }
     else {

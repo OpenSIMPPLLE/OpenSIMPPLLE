@@ -34,8 +34,8 @@ public class LightBarkBeetles extends Process {
     spreading   = false;
     description = "Bark Beetles";
 
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
   }
 /**
  * common probability calculations.  If drought conditions, the process will be Severe Bark Beetles and light will have zero probability.
@@ -43,7 +43,7 @@ public class LightBarkBeetles extends Process {
  * @param evu ecological vegetative unit being evaluated
  * @return integer probability
  */
-  public int doProbabilityCommon(RegionalZone zone, simpplle.comcode.element.Evu evu) {
+  public int doProbabilityCommon(RegionalZone zone, Evu evu) {
   
     if (Simpplle.getClimate().isDrought()) {
       return 0;
@@ -110,18 +110,18 @@ public class LightBarkBeetles extends Process {
   /**
    * Westside Region 1 does not have this process, doProbability returns a 0.
    */
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {return 0;}
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {return 0;}
 
   /**
    * Eastside Region 1 does not have this process, doProbability returns a 0.
    */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {return 0;}
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {return 0;}
 
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
@@ -129,11 +129,11 @@ public class LightBarkBeetles extends Process {
   /**
    * Gila does not have this process, doProbability returns a 0.
    */
-  public int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) { return 0; }
   /**
    * South Central Alaska does not have this process, doProbability returns a 0.
    */
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) { return 0; }
 
   private boolean doSpreadCommon () {
     return false;
@@ -142,33 +142,33 @@ public class LightBarkBeetles extends Process {
   /**
    * Westside Region 1 does not have this process, doSpread returns false.
    */
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
     return false;
   }
 
  /**
   * Eastside Region 1 does not have this process, doSpread returns false.
   */
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
     return false;
   }
 
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
     return doSpreadCommon();
   }
 
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
     return doSpreadCommon();
   }
 
  /**
   *Gila does not have this process, doSpread returns false.
   */
-  public boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) { return false; }
   /**
    * South Central Alaska does not have this process, doSpread returns false.
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
 
   /**
    * outputs "LIGHT-BARK-BEETLES"

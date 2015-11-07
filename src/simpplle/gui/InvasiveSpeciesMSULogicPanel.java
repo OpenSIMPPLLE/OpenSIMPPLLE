@@ -1,16 +1,16 @@
 package simpplle.gui;
 
-import simpplle.comcode.logic.BaseLogic;
+import simpplle.comcode.BaseLogic;
 import javax.swing.table.TableColumn;
-
-import simpplle.comcode.logic.InvasiveSpeciesLogicMSU;
-import simpplle.comcode.logic.InvasiveSpeciesLogicDataMSU;
+import javax.swing.JTable;
+import simpplle.comcode.InvasiveSpeciesLogicMSU;
+import simpplle.comcode.InvasiveSpeciesLogicDataMSU;
 import simpplle.comcode.SystemKnowledge.Kinds;
 import simpplle.comcode.Species;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import simpplle.comcode.logic.InvasiveSpeciesChangeLogicData;
-import simpplle.comcode.logic.AbstractLogicData;
+import simpplle.comcode.InvasiveSpeciesChangeLogicData;
+import simpplle.comcode.AbstractLogicData;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 

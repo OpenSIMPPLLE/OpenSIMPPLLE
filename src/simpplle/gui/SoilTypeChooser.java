@@ -15,14 +15,15 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
-
-import simpplle.comcode.logic.InvasiveSpeciesLogicData;
+import simpplle.comcode.SimpplleType;
+import simpplle.comcode.InvasiveSpeciesLogicData;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import simpplle.comcode.SoilType;
 import java.io.File;
 
 /**

@@ -9,6 +9,8 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import simpplle.gui.SimpplleMain;
+
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
@@ -363,7 +365,7 @@ public abstract class WildlifeHabitat {
   }
   private static void readGroupFile(BufferedReader fin, int gapId)
     throws SimpplleError, ParseError {
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     String line;
 
     try {
@@ -372,7 +374,7 @@ public abstract class WildlifeHabitat {
         if (line == null) { continue; }
 
         line = WildlifeHabitatData.preProcessLine(line);
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        strTok = new StringTokenizerPlus(line,",");
         String commonName = strTok.getToken();
         String groupName  = strTok.getToken();
 
@@ -397,14 +399,14 @@ public abstract class WildlifeHabitat {
   {
     WildlifeHabitatData data;
     String              commonName, line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     try {
       do {
         line = fin.readLine();
         if (line == null) { continue; }
         line = WildlifeHabitatData.preProcessLine(line);
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        strTok = new StringTokenizerPlus(line,",");
 
         commonName = strTok.getToken();
         data = (WildlifeHabitatData) gapSpecies[gapId].get(commonName.toUpperCase());
@@ -431,14 +433,14 @@ public abstract class WildlifeHabitat {
   {
     WildlifeHabitatData data;
     String              commonName, line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     try {
       do {
         line = fin.readLine();
         if (line == null) { continue; }
         line = WildlifeHabitatData.preProcessLine(line);
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        strTok = new StringTokenizerPlus(line,",");
 
         commonName = strTok.getToken();
         data = (WildlifeHabitatData) gapSpecies[gapId].get(commonName.toUpperCase());
@@ -460,14 +462,14 @@ public abstract class WildlifeHabitat {
   {
     WildlifeHabitatData data;
     String              commonName, line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     try {
       do {
         line = fin.readLine();
         if (line == null) { continue; }
         line = WildlifeHabitatData.preProcessLine(line);
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        strTok = new StringTokenizerPlus(line,",");
 
         commonName = strTok.getToken();
         data = (WildlifeHabitatData) gapSpecies[gapId].get(commonName.toUpperCase());
@@ -494,14 +496,14 @@ public abstract class WildlifeHabitat {
   {
     WildlifeHabitatData data;
     String              commonName, line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     try {
       do {
         line = fin.readLine();
         if (line == null) { continue; }
         line = WildlifeHabitatData.preProcessLine(line);
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        strTok = new StringTokenizerPlus(line,",");
 
         commonName = strTok.getToken();
         data = (WildlifeHabitatData) gapSpecies[gapId].get(commonName.toUpperCase());
@@ -523,14 +525,14 @@ public abstract class WildlifeHabitat {
   {
     WildlifeHabitatData data;
     String              commonName, line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     try {
       do {
         line = fin.readLine();
         if (line == null) { continue; }
         line = WildlifeHabitatData.preProcessLine(line);
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        strTok = new StringTokenizerPlus(line,",");
 
         commonName = strTok.getToken();
         data = (WildlifeHabitatData) gapSpecies[R1_WHR].get(commonName.toUpperCase());
@@ -590,7 +592,7 @@ public abstract class WildlifeHabitat {
     Simulation          simulation = Simpplle.getCurrentSimulation();
     int                 nSteps = 0;
     Area                area = Simpplle.getCurrentArea();
-    simpplle.comcode.element.Evu[]               allEvu = area.getAllEvu();
+    Evu[]               allEvu = area.getAllEvu();
     int                 i, j, ts;
     int[]               acres;
     String              species;
@@ -630,17 +632,17 @@ public abstract class WildlifeHabitat {
       if (onFirst) {
         fout.println("  " + getGroupName(groupId));
 
-        fout.print(simpplle.comcode.utility.Formatting.padLeft("",40));
+        fout.print(Formatting.padLeft("",40));
         for(ts=0;ts<=nSteps;ts++) {
-          fout.print(simpplle.comcode.utility.Formatting.fixedField(ts,9));
+          fout.print(Formatting.fixedField(ts,9));
         }
         fout.println();
         onFirst = false;
       }
 
-      fout.print(simpplle.comcode.utility.Formatting.fixedField(species,35));
+      fout.print(Formatting.fixedField(species,35));
       for(ts=0;ts<=nSteps;ts++) {
-        fout.print(simpplle.comcode.utility.Formatting.fixedField(Area.getFloatAcres(acres[ts]),9));
+        fout.print(Formatting.fixedField(Area.getFloatAcres(acres[ts]),9));
       }
       fout.println();
     }

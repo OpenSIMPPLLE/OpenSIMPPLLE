@@ -446,7 +446,7 @@ public class Fmz {
   
   public static void readData(BufferedReader fin) throws SimpplleError {
     String              line, field;
-    simpplle.comcode.utility.StringTokenizerPlus strTok, fieldStrTok;
+    StringTokenizerPlus strTok, fieldStrTok;
     int                 count, i, j;
     Fmz                 fmz;
     String              fmzNames[];
@@ -467,7 +467,7 @@ public class Fmz {
       // Read in the the list of Fmz names contained in this file.
       // We want to delete all the fmz's in the allFmz
       // hashtable that are not contained in this file.
-      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+      strTok = new StringTokenizerPlus(line,",");
       count  = strTok.countTokens();
       fmzNames = new String[count];
       for(i=0;i<count;i++) {
@@ -481,7 +481,7 @@ public class Fmz {
 
       for(i=0;i<count;i++) {
         line    = fin.readLine();
-        strTok  = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        strTok  = new StringTokenizerPlus(line,",");
         if (strTok.countTokens() < 5) {
           msg = "Incorrect number of fields in the following line:\n"
                 + line + "\n" + "There should be at least five fields.";
@@ -500,7 +500,7 @@ public class Fmz {
 
         // Get the Natural Fires.
         field       = strTok.getToken();
-        fieldStrTok = new simpplle.comcode.utility.StringTokenizerPlus(field,":");
+        fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
           msg = "Incorrect number of items in Natural " +
                 "Fires Field of FMZ " + theName;
@@ -512,7 +512,7 @@ public class Fmz {
 
         // Get the Man Made Fires.
         field       = strTok.getToken();
-        fieldStrTok = new simpplle.comcode.utility.StringTokenizerPlus(field,":");
+        fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
           msg = "Incorrect number of items in Man Made " +
                 "Fires Field of FMZ " + theName;
@@ -524,7 +524,7 @@ public class Fmz {
 
         // Get the Cost.
         field       = strTok.getToken();
-        fieldStrTok = new simpplle.comcode.utility.StringTokenizerPlus(field,":");
+        fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
           msg = "Incorrect number of items in Cost " +
                 "Field of FMZ " + theName;
@@ -567,7 +567,7 @@ public class Fmz {
   }
 
   public static void saveAs(File outfile) {
-    setFilename(simpplle.comcode.utility.Utility.makeSuffixedPathname(outfile,"","fmz"));
+    setFilename(Utility.makeSuffixedPathname(outfile,"","fmz"));
     save();
   }
 /**
@@ -649,7 +649,7 @@ public class Fmz {
    * @param unit evu being evaluated for response time
    * @return the response time
    */
-  public static float getResponseTime(simpplle.comcode.element.Evu unit) {
+  public static float getResponseTime(Evu unit) {
     return unit.getFmz().getResponseTime();
   }
 /**

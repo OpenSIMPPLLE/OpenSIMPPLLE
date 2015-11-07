@@ -1,8 +1,9 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-import simpplle.comcode.logic.BaseLogic;
+import simpplle.comcode.BaseLogic;
 import simpplle.comcode.SystemKnowledge.Kinds;
+import simpplle.comcode.*;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -44,8 +45,8 @@ public class RegenDelayLogicPanel extends VegLogicPanel {
  * Treatment, Season, Moisture, Temperature, Tracking Species, Ownership, Special Area, Road Status, Trail Status, or Landtype
  */
   protected void initColumns(TableColumn column, int col) {
-    if (col == simpplle.comcode.logic.RegenerationDelayLogic.DELAY_COL) {
-      column.setIdentifier(simpplle.comcode.logic.RegenerationDelayLogic.DELAY_COL);
+    if (col == RegenerationDelayLogic.DELAY_COL) {
+      column.setIdentifier(RegenerationDelayLogic.DELAY_COL);
       Utility.setColumnCellColor(column);
     }
     else {

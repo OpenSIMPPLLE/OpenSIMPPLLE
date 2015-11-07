@@ -1,10 +1,11 @@
 package simpplle.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Frame;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import simpplle.comcode.logic.LogicData;
+import simpplle.comcode.LogicData;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.JCheckBox;

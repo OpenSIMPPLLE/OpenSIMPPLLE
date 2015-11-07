@@ -25,7 +25,7 @@ public class TrailsSimData implements Externalizable  {
     static final long serialVersionUID = -6804428826375799553L;
     static final int  version          = 1;
 
-    private simpplle.comcode.element.Trails.Status status;
+    private Trails.Status status;
 /**
  * Constructor for Trails simulation data.  Inherits from Java object superclass.
  * @see java.lang.Object.Object()
@@ -37,14 +37,14 @@ public class TrailsSimData implements Externalizable  {
  * Sets the simulation trails status.  
  * @param newStatus
  */
-    public void setStatus(simpplle.comcode.element.Trails.Status newStatus) {
+    public void setStatus(Trails.Status newStatus) {
       this.status = newStatus;
     }
     /**
      * Gets this simulation trails status.  
      * @return
      */
-    public simpplle.comcode.element.Trails.Status getStatus() {
+    public Trails.Status getStatus() {
       return status;
     }
 /**
@@ -54,7 +54,7 @@ public class TrailsSimData implements Externalizable  {
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
       int version = in.readInt();
 
-      status = (simpplle.comcode.element.Trails.Status) in.readObject();
+      status = (Trails.Status) in.readObject();
     }
     /**
      * writes to an external source  and trail status data

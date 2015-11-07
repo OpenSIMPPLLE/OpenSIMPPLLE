@@ -1,9 +1,6 @@
 
 package simpplle.comcode;
 
-import simpplle.comcode.logic.ChangeLogic;
-import simpplle.comcode.logic.FeasibilityLogic;
-import simpplle.comcode.logic.TreatmentLogic;
 import simpplle.comcode.zone.ColoradoFrontRange;
 import simpplle.comcode.zone.EastsideRegionOne;
 import simpplle.comcode.zone.Gila;
@@ -137,7 +134,7 @@ public class Treatment  implements Externalizable {
 //  private static TreatmentLogic getTreatmentLogic(String treatmentName) {
 //    return getTreatmentLogic(TreatmentType.get(treatmentName));
 //  }
-  private static simpplle.comcode.logic.TreatmentLogic getTreatmentLogic(TreatmentType treatment) {
+  private static TreatmentLogic getTreatmentLogic(TreatmentType treatment) {
     return (TreatmentLogic)treatmentLogicHt.get(treatment);
   }
 
@@ -146,32 +143,32 @@ public class Treatment  implements Externalizable {
      * @param treatment
      * @param feasibilityLogic
      */
-  public static void setFeasibilityLogic(TreatmentType treatment, simpplle.comcode.logic.FeasibilityLogic feasibilityLogic) {
-    simpplle.comcode.logic.TreatmentLogic treatLogic = (simpplle.comcode.logic.TreatmentLogic)treatmentLogicHt.get(treatment);
+  public static void setFeasibilityLogic(TreatmentType treatment, FeasibilityLogic feasibilityLogic) {
+    TreatmentLogic treatLogic = (TreatmentLogic)treatmentLogicHt.get(treatment);
     treatLogic.feasibility = feasibilityLogic;
   }
   public static FeasibilityLogic getFeasibilityLogic(TreatmentType treatment) {
-    return ( ((simpplle.comcode.logic.TreatmentLogic)treatmentLogicHt.get(treatment)).feasibility );
+    return ( ((TreatmentLogic)treatmentLogicHt.get(treatment)).feasibility );
   }
 
   public static String[] getFeasibilityFunctions() {
-    return simpplle.comcode.logic.FeasibilityLogic.getFeasibilityFunctions();
+    return FeasibilityLogic.getFeasibilityFunctions();
   }
   public static String[] getFeasibilityFunctionDesc() {
-    return simpplle.comcode.logic.FeasibilityLogic.getFeasibilityFunctionDesc();
+    return FeasibilityLogic.getFeasibilityFunctionDesc();
   }
   public static String getFeasibilityFunctionDesc(String feasibilityFunction) {
-    return simpplle.comcode.logic.FeasibilityLogic.getFeasibilityFunctionDesc(feasibilityFunction);
+    return FeasibilityLogic.getFeasibilityFunctionDesc(feasibilityFunction);
   }
 
 
-  public static simpplle.comcode.logic.ChangeLogic findChangeRule(TreatmentType treatment, simpplle.comcode.logic.ChangeLogic rule) {
-    simpplle.comcode.logic.TreatmentLogic treatLogic = (simpplle.comcode.logic.TreatmentLogic) treatmentLogicHt.get(treatment);
+  public static ChangeLogic findChangeRule(TreatmentType treatment, ChangeLogic rule) {
+    TreatmentLogic treatLogic = (TreatmentLogic) treatmentLogicHt.get(treatment);
     if (treatLogic == null) { return null; }
 
-    simpplle.comcode.logic.ChangeLogic tmpRule;
+    ChangeLogic tmpRule;
     for(int i=0; i<treatLogic.change.size(); i++) {
-      tmpRule = (simpplle.comcode.logic.ChangeLogic)treatLogic.change.elementAt(i);
+      tmpRule = (ChangeLogic)treatLogic.change.elementAt(i);
       if (tmpRule == rule) {
         return tmpRule;
       }
@@ -184,8 +181,8 @@ public class Treatment  implements Externalizable {
      * @param treatment the treatment being changed
      * @param rule
      */
-  public static void removeChangeRule(TreatmentType treatment, simpplle.comcode.logic.ChangeLogic rule) {
-    simpplle.comcode.logic.TreatmentLogic treatLogic = (simpplle.comcode.logic.TreatmentLogic) treatmentLogicHt.get(treatment);
+  public static void removeChangeRule(TreatmentType treatment, ChangeLogic rule) {
+    TreatmentLogic treatLogic = (TreatmentLogic) treatmentLogicHt.get(treatment);
     if (treatLogic == null) { return; }
 
     treatLogic.change.removeElement(rule);
@@ -197,49 +194,49 @@ public class Treatment  implements Externalizable {
      * @param treatment
      */
   public static void addChangeRule(TreatmentType treatment) {
-    simpplle.comcode.logic.ChangeLogic rule = new simpplle.comcode.logic.ChangeLogic();
+    ChangeLogic rule = new ChangeLogic();
     rule.setTreatType(treatment);
 
-    simpplle.comcode.logic.TreatmentLogic treatLogic = (simpplle.comcode.logic.TreatmentLogic)treatmentLogicHt.get(treatment);
+    TreatmentLogic treatLogic = (TreatmentLogic)treatmentLogicHt.get(treatment);
     if (findChangeRule(treatment, rule) != null) { return; }
 
     treatLogic.change.addElement(rule);
     markLogicChanged();
   }
-  public static void addChangeRule(TreatmentType treatment, simpplle.comcode.logic.ChangeLogic rule) {
-    simpplle.comcode.logic.TreatmentLogic treatLogic = (simpplle.comcode.logic.TreatmentLogic)treatmentLogicHt.get(treatment);
+  public static void addChangeRule(TreatmentType treatment, ChangeLogic rule) {
+    TreatmentLogic treatLogic = (TreatmentLogic)treatmentLogicHt.get(treatment);
     if (findChangeRule(treatment, rule) != null) { return; }
 
     treatLogic.change.addElement(rule);
     markLogicChanged();
   }
   public static Vector getChangeLogic(TreatmentType treatment) {
-    return ( ((simpplle.comcode.logic.TreatmentLogic)treatmentLogicHt.get(treatment)).change );
+    return ( ((TreatmentLogic)treatmentLogicHt.get(treatment)).change );
   }
 
   public static String[] getChangeFunctions() {
-    return simpplle.comcode.logic.ChangeLogic.getChangeFunctions();
+    return ChangeLogic.getChangeFunctions();
   }
   public static String[] getChangeFunctionDesc() {
-    return simpplle.comcode.logic.ChangeLogic.getChangeFunctionDesc();
+    return ChangeLogic.getChangeFunctionDesc();
   }
   public static String getChangeFunctionDesc(String changeFunction) {
-    return simpplle.comcode.logic.ChangeLogic.getChangeFunctionDesc(changeFunction);
+    return ChangeLogic.getChangeFunctionDesc(changeFunction);
   }
 
   public static String[] getChangeEvalFunctions() {
-    return simpplle.comcode.logic.ChangeLogic.getChangeEvalFunctions();
+    return ChangeLogic.getChangeEvalFunctions();
   }
   public static String[] getChangeEvalFunctionDesc() {
-    return simpplle.comcode.logic.ChangeLogic.getChangeEvalFunctionDesc();
+    return ChangeLogic.getChangeEvalFunctionDesc();
   }
   public static String getChangeEvalFunctionDesc(String changeFunction) {
-    return simpplle.comcode.logic.ChangeLogic.getChangeEvalFunctionDesc(changeFunction);
+    return ChangeLogic.getChangeEvalFunctionDesc(changeFunction);
   }
 
-  public static Treatment read(simpplle.comcode.element.Evu evu, String data) throws ParseError {
+  public static Treatment read(Evu evu, String data) throws ParseError {
     String              msg;
-    simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(data,SEPARATOR);
+    StringTokenizerPlus strTok = new StringTokenizerPlus(data,SEPARATOR);
 
     if (strTok.countTokens() != 1 && strTok.countTokens() != 4) {
       throw new ParseError("Invalid Treatment data in Evu");
@@ -376,56 +373,56 @@ public class Treatment  implements Externalizable {
   // data files.
   public static void initializeLogic() {
     treatmentLogicHt = new Hashtable();
-    treatmentLogicHt.put(TreatmentType.AGRICULTURE,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.CLEARCUT_WITH_RESERVES,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.CLEARCUT_WITH_RESERVES_PLANT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.COMMERCIAL_THINNING,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.ECOSYSTEM_MANAGEMENT_BROADCAST_BURN,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.ECOSYSTEM_MANAGEMENT_THIN_AND_UNDERBURN,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.ECOSYSTEM_MANAGEMENT_UNDERBURN,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.FIREWOOD_REMOVAL,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.GROUP_SELECTION_CUT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.IMPROVEMENT_CUT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.INDIVIDUAL_SELECTION_CUT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.LIBERATION_CUT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.PRECOMMERCIAL_THINNING,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.PRECOMMERCIAL_THINNING_DIVERSITY,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SANITATION_SALVAGE,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_CUT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_PLANT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_WITH_RESERVES,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_WR_PLANT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SEEDTREE_SEEDCUT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_CUT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_PLANT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_WITH_RESERVES,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_WR_PLANT,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_SEEDCUT,new simpplle.comcode.logic.TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.AGRICULTURE,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.CLEARCUT_WITH_RESERVES,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.CLEARCUT_WITH_RESERVES_PLANT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.COMMERCIAL_THINNING,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.ECOSYSTEM_MANAGEMENT_BROADCAST_BURN,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.ECOSYSTEM_MANAGEMENT_THIN_AND_UNDERBURN,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.ECOSYSTEM_MANAGEMENT_UNDERBURN,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.FIREWOOD_REMOVAL,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.GROUP_SELECTION_CUT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.IMPROVEMENT_CUT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.INDIVIDUAL_SELECTION_CUT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.LIBERATION_CUT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.PRECOMMERCIAL_THINNING,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.PRECOMMERCIAL_THINNING_DIVERSITY,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SANITATION_SALVAGE,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_CUT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_PLANT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_WITH_RESERVES,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_WR_PLANT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SEEDTREE_SEEDCUT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_CUT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_PLANT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_WITH_RESERVES,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_WR_PLANT,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_SEEDCUT,new TreatmentLogic());
 
     // Not in Westside
-    treatmentLogicHt.put(TreatmentType.LOW_INTENSITY_GRAZING,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.MODERATE_INTENSITY_GRAZING,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.HIGH_INTENSITY_GRAZING,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.HERBICIDE_SPRAYING,new simpplle.comcode.logic.TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.LOW_INTENSITY_GRAZING,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.MODERATE_INTENSITY_GRAZING,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.HIGH_INTENSITY_GRAZING,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.HERBICIDE_SPRAYING,new TreatmentLogic());
 
     // ***********************************
     // *** Eastside and Westside Zones ***
     // ***********************************
-    treatmentLogicHt.put(TreatmentType.CLEARCUT_WR_PRRWP,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_PRRWP,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_WR_PRRWP,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_PRRWP,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_WR_PRRWP,new simpplle.comcode.logic.TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.CLEARCUT_WR_PRRWP,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_PRRWP,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SEEDTREE_FINAL_WR_PRRWP,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_PRRWP,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.SHELTERWOOD_FINAL_WR_PRRWP,new TreatmentLogic());
 
     // ***************************************************
     // *** Sierra Nevada and Southern California Zones ***
     // ***************************************************
-    treatmentLogicHt.put(TreatmentType.CUTTING,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.CUTTING_BURNING,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.CRUSHING,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.CRUSHING_BURNING,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.CUT_STACK_BURN,new simpplle.comcode.logic.TreatmentLogic());
-    treatmentLogicHt.put(TreatmentType.LINE_BURNING,new simpplle.comcode.logic.TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.CUTTING,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.CUTTING_BURNING,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.CRUSHING,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.CRUSHING_BURNING,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.CUT_STACK_BURN,new TreatmentLogic());
+    treatmentLogicHt.put(TreatmentType.LINE_BURNING,new TreatmentLogic());
 
     setLogicChanged(false);
   }
@@ -434,7 +431,7 @@ public class Treatment  implements Externalizable {
     GZIPInputStream gzip_in;
     BufferedReader fin;
 
-    simpplle.comcode.logic.TreatmentLogicData.readZoneFile = false;
+    TreatmentLogicData.readZoneFile = false;
     try {
       gzip_in = new GZIPInputStream(new FileInputStream(infile));
       fin = new BufferedReader(new InputStreamReader(gzip_in));
@@ -460,7 +457,7 @@ public class Treatment  implements Externalizable {
     GZIPInputStream gzip_in;
     BufferedReader fin;
 
-    simpplle.comcode.logic.TreatmentLogicData.readZoneFile = true;
+    TreatmentLogicData.readZoneFile = true;
     try {
       gzip_in = new GZIPInputStream(stream);
       fin = new BufferedReader(new InputStreamReader(gzip_in));
@@ -482,7 +479,7 @@ public class Treatment  implements Externalizable {
     throws IOException, ParseError
   {
     String         zoneName, treatmentName;
-    simpplle.comcode.logic.TreatmentLogic treatLogic;
+    TreatmentLogic treatLogic;
     TreatmentType  treatType;
     RegionalZone   zone = Simpplle.getCurrentZone();
 
@@ -516,9 +513,9 @@ public class Treatment  implements Externalizable {
       if (isLegalTreatment(treatType) == false) {
         treatType = addLegalTreatment(treatmentName.toUpperCase());
       }
-      treatLogic = (simpplle.comcode.logic.TreatmentLogic)treatmentLogicHt.get(treatType);
+      treatLogic = (TreatmentLogic)treatmentLogicHt.get(treatType);
       if (treatLogic == null) {
-        treatLogic = new simpplle.comcode.logic.TreatmentLogic();
+        treatLogic = new TreatmentLogic();
       }
       else {
         treatLogic.clear();
@@ -533,10 +530,10 @@ public class Treatment  implements Externalizable {
   public static void readLogic(TreatmentType treat) throws SimpplleError {
     BufferedReader fin;
     String         zoneName, treatmentName, str;
-    simpplle.comcode.logic.TreatmentLogic treatLogic;
+    TreatmentLogic treatLogic;
     TreatmentType  treatType;
 
-    simpplle.comcode.logic.TreatmentLogicData.readZoneFile = true;
+    TreatmentLogicData.readZoneFile = true;
     try {
       fin      = Simpplle.getCurrentZone().getTreatmentLogicFileStream();
       zoneName = fin.readLine();  // Ignored for now.
@@ -598,19 +595,19 @@ public class Treatment  implements Externalizable {
       treatments[i] = ((TreatmentType)keys.nextElement()).toString();
       i++;
     }
-    simpplle.comcode.utility.Utility.sort(treatments);
+    Utility.sort(treatments);
 
-    simpplle.comcode.logic.FeasibilityLogic feasLogic;
+    FeasibilityLogic feasLogic;
     TreatmentType    treat;
-    simpplle.comcode.logic.TreatmentLogic treatLogic;
+    TreatmentLogic   treatLogic;
     Vector           changeRules;
-    simpplle.comcode.logic.ChangeLogic changeRule;
+    ChangeLogic      changeRule;
 
     int j;
     for(i=0; i<treatments.length; i++) {
       fout.println(treatments[i]);
       treat = TreatmentType.get(treatments[i]);
-      treatLogic = (simpplle.comcode.logic.TreatmentLogic)treatmentLogicHt.get(treat);
+      treatLogic = (TreatmentLogic)treatmentLogicHt.get(treat);
       treatLogic.save(fout);
     }
   }
@@ -628,7 +625,7 @@ public class Treatment  implements Externalizable {
       Collections.sort(legalTreatments);
       SimpplleType.initializeTreatmentList();
     }
-    simpplle.comcode.logic.TreatmentLogic treatLogic = new simpplle.comcode.logic.TreatmentLogic();
+    TreatmentLogic treatLogic = new TreatmentLogic();
     if (treatmentLogicHt == null) { treatmentLogicHt = new Hashtable(); }
     treatmentLogicHt.put(treatType,treatLogic);
     return treatType;
@@ -651,7 +648,7 @@ public class Treatment  implements Externalizable {
   }
 
   public static void readLegalFile(BufferedReader fin) throws SimpplleError {
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     String              line, str;
     TreatmentType       treatmentType;
 
@@ -663,7 +660,7 @@ public class Treatment  implements Externalizable {
       line = fin.readLine();
       if (line == null) { throw new SimpplleError("Invalid zone Definition File."); }
 
-      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+      strTok = new StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No Treatments Found."); }
 
       legalTreatments = new ArrayList(strTok.countTokens()+5);
@@ -869,7 +866,7 @@ public class Treatment  implements Externalizable {
 //  public abstract String[] getValidStateData(int zoneId, int kind);
 
   public static Vector getValidHabitatTypeGroups(TreatmentType treatment) {
-    simpplle.comcode.logic.TreatmentLogic treatLogic = (simpplle.comcode.logic.TreatmentLogic) treatmentLogicHt.get(treatment);
+    TreatmentLogic treatLogic = (TreatmentLogic) treatmentLogicHt.get(treatment);
 
     Vector groups = treatLogic.feasibility.getValidHabitatTypeGroups();
     if (groups == null) {
@@ -883,7 +880,7 @@ public class Treatment  implements Externalizable {
   }
 
   public static Vector getValidSpecies(TreatmentType treatment) {
-    simpplle.comcode.logic.TreatmentLogic treatLogic = (simpplle.comcode.logic.TreatmentLogic) treatmentLogicHt.get(treatment);
+    TreatmentLogic treatLogic = (TreatmentLogic) treatmentLogicHt.get(treatment);
 
     Vector allSpecies = treatLogic.feasibility.getValidSpecies();
     if (allSpecies == null) {
@@ -893,7 +890,7 @@ public class Treatment  implements Externalizable {
   }
 
   public static Vector getValidSizeClass(TreatmentType treatment) {
-    simpplle.comcode.logic.TreatmentLogic treatLogic = (simpplle.comcode.logic.TreatmentLogic) treatmentLogicHt.get(treatment);
+    TreatmentLogic treatLogic = (TreatmentLogic) treatmentLogicHt.get(treatment);
 
     Vector allSizeClass = treatLogic.feasibility.getValidSizeClass();
     if (allSizeClass == null) {
@@ -903,7 +900,7 @@ public class Treatment  implements Externalizable {
   }
 
   public static Vector getValidDensity(TreatmentType treatment) {
-    simpplle.comcode.logic.TreatmentLogic treatLogic = (simpplle.comcode.logic.TreatmentLogic) treatmentLogicHt.get(treatment);
+    TreatmentLogic treatLogic = (TreatmentLogic) treatmentLogicHt.get(treatment);
 
     Vector allDensity = treatLogic.feasibility.getValidDensity();
     if (allDensity == null) {
@@ -994,7 +991,7 @@ public class Treatment  implements Externalizable {
   /**
    * @deprecated
    */
-  public static boolean isHerbicideSprayingEffective(simpplle.comcode.element.Evu evu) {
+  public static boolean isHerbicideSprayingEffective(Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if ((Simulation.getInstance().random() < 7500) &&
         species != null &&
@@ -1005,7 +1002,7 @@ public class Treatment  implements Externalizable {
       return false;
     }
   }
-  public static boolean isEffective(simpplle.comcode.element.Evu evu, int prob) {
+  public static boolean isEffective(Evu evu, int prob) {
     if ((Simulation.getInstance().random() < prob)) {
       return true;
     }
@@ -1014,19 +1011,19 @@ public class Treatment  implements Externalizable {
     }
   }
 
-  public static boolean isFeasible(simpplle.comcode.element.Evu evu, TreatmentType treatmentType) {
-    simpplle.comcode.logic.FeasibilityLogic feasibilityLogic = getFeasibilityLogic(treatmentType);
+  public static boolean isFeasible(Evu evu, TreatmentType treatmentType) {
+    FeasibilityLogic feasibilityLogic = getFeasibilityLogic(treatmentType);
 
     return feasibilityLogic.evaluateFeasibility(evu);
   }
 
-  private void doChange(simpplle.comcode.element.Evu evu, Vector changeLogic) {
+  private void doChange(Evu evu, Vector changeLogic) {
     Vector      noMatchRules = new Vector();
     Vector      rules = new Vector();
-    simpplle.comcode.logic.ChangeLogic changeLogicRule;
+    ChangeLogic changeLogicRule;
 
     for (int i=0; i<changeLogic.size(); i++) {
-      changeLogicRule = (simpplle.comcode.logic.ChangeLogic)changeLogic.elementAt(i);
+      changeLogicRule = (ChangeLogic)changeLogic.elementAt(i);
       if (changeLogicRule.isNoMatchRule()) {
         noMatchRules.addElement(changeLogicRule);
       }
@@ -1041,8 +1038,8 @@ public class Treatment  implements Externalizable {
     }
   }
 
-  private void processChangeRules(simpplle.comcode.element.Evu evu, Vector rules) {
-    simpplle.comcode.logic.ChangeLogic changeLogicRule;
+  private void processChangeRules(Evu evu, Vector rules) {
+    ChangeLogic      changeLogicRule;
     String           result;
     boolean          speciesChanged=false,sizeClassChanged=false,densityChanged=false;
     HabitatTypeGroup htGrp = evu.getHabitatTypeGroup();
@@ -1057,21 +1054,21 @@ public class Treatment  implements Externalizable {
 
     for(int i=0; i<rules.size(); i++) {
       changeLogicRule = (ChangeLogic)rules.elementAt(i);
-      if (changeLogicRule.getToChoice().equals(simpplle.comcode.logic.ChangeLogic.TO_SPECIES)) {
+      if (changeLogicRule.getToChoice().equals(ChangeLogic.TO_SPECIES)) {
         result = changeLogicRule.doChange(this,evu);
         if (result != null && (Species.get(result) != newSpecies)) {
           newSpecies     = Species.get(result);
           speciesChanged = true;
         }
       }
-      else if (changeLogicRule.getToChoice().equals(simpplle.comcode.logic.ChangeLogic.TO_SIZE_CLASS)) {
+      else if (changeLogicRule.getToChoice().equals(ChangeLogic.TO_SIZE_CLASS)) {
         result = changeLogicRule.doChange(this,evu);
         if (result != null && (SizeClass.get(result) != newSizeClass)) {
           newSizeClass    = SizeClass.get(result);
          sizeClassChanged = true;
         }
       }
-      else if (changeLogicRule.getToChoice().equals(simpplle.comcode.logic.ChangeLogic.TO_DENSITY)) {
+      else if (changeLogicRule.getToChoice().equals(ChangeLogic.TO_DENSITY)) {
         result = changeLogicRule.doChange(this,evu);
         if (result != null && (Density.get(result) != newDensity)) {
           newDensity     = Density.get(result);
@@ -1164,8 +1161,8 @@ public class Treatment  implements Externalizable {
     then the treatment is applied with no state change.
   */
 
-  public void doChange (simpplle.comcode.element.Evu evu) {
-    simpplle.comcode.logic.FeasibilityLogic feasibilityLogic = getFeasibilityLogic(treatmentType);
+  public void doChange (Evu evu) {
+    FeasibilityLogic feasibilityLogic = getFeasibilityLogic(treatmentType);
     Vector           changeLogic      = getChangeLogic(treatmentType);
 
     newState = null;
@@ -1210,9 +1207,9 @@ public class Treatment  implements Externalizable {
   // do return true, otherwise false;
   // Treatment is infeasable if any adjacent unit has
   // Seedling sapling.
-  public static boolean checkAdjacentSS(simpplle.comcode.element.Evu evu) {
+  public static boolean checkAdjacentSS(Evu evu) {
     AdjacentData[] adjacentData = evu.getAdjacentData();
-    simpplle.comcode.element.Evu adj;
+    Evu            adj;
 
     for(int i=0;i<adjacentData.length;i++) {
       adj = adjacentData[i].evu;
@@ -1228,7 +1225,7 @@ public class Treatment  implements Externalizable {
   }
 
   public static String getPrintedTreatmentLogic(TreatmentType treatmentType) {
-    simpplle.comcode.logic.TreatmentLogic treat = getTreatmentLogic(treatmentType);
+    TreatmentLogic treat = getTreatmentLogic(treatmentType);
     StringBuffer   strBuf = new StringBuffer();
 
     strBuf.append("Treatment Logic for: ");

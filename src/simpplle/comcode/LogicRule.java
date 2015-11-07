@@ -71,7 +71,7 @@ public class LogicRule implements Externalizable {
  * @param evu the existing vegetative unit being evaluated
  * @return true if evu species, size class, density, process, and treatment is a match for the logic rules
  */
-  public boolean isUnitMatch(simpplle.comcode.element.Evu evu) {
+  public boolean isUnitMatch(Evu evu) {
     boolean match=false;
     if (groupList != null) {
       match = isMember(groupList,evu.getHabitatTypeGroup().getType());

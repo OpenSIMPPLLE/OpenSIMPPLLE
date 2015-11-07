@@ -33,24 +33,24 @@ public class PiedBB extends Process {
     spreading   = false;
     description = "Pinyon Pine Bark Beetle";
 
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SPECIES_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SIZE_CLASS_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.DENSITY_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.PROCESS_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.TEMP_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.MOISTURE_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.ADJ_PROCESS_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.SPECIES_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.SIZE_CLASS_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.DENSITY_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.PROCESS_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.TEMP_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.MOISTURE_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.ADJ_PROCESS_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
-  protected int doProbability (simpplle.comcode.element.Evu evu) {
+  protected int doProbability (Evu evu) {
     return 0;
   }
 /**
  * doProbability method for Colorado Front range.  Probability is affected by size class whether large, medium, or very large and density
  */
-  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return 0; }
 
@@ -136,7 +136,7 @@ public class PiedBB extends Process {
   /**
    * doProbability method for Colorado Plateau.  Probability is affected by size class whether large, medium, or very large and density
    */
-  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return 0; }
 

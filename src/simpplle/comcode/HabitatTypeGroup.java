@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.*;
 import java.awt.Point;
 import org.apache.commons.collections.map.Flat3Map;
-import simpplle.comcode.utility.Utility;
 
 
 /**
@@ -359,7 +358,7 @@ public final class HabitatTypeGroup {
 
     String speciesStr = species.toString();
     String sizeClassStr = sizeClass.toString();
-    String ageStr       = (age == 1 ? "" : simpplle.comcode.utility.IntToString.get(age));
+    String ageStr       = (age == 1 ? "" : IntToString.get(age));
     String densityStr   = density.toString();
 
     StringBuffer buf =
@@ -831,7 +830,7 @@ public final class HabitatTypeGroup {
 
   public String[] getSortedMatchingSpeciesTypes(Species species) {
     String[] result = getMatchingSpeciesTypes(species);
-    simpplle.comcode.utility.Utility.sort(result);
+    Utility.sort(result);
     return result;
   }
 
@@ -849,7 +848,7 @@ public final class HabitatTypeGroup {
     }
     result = new String[ht.size()];
     ht.values().toArray(result);
-    simpplle.comcode.utility.Utility.sort(result);
+    Utility.sort(result);
     return result;
   }
 
@@ -897,7 +896,7 @@ public final class HabitatTypeGroup {
     return key.equalsIgnoreCase(KEYWORD[keyid]);
   }
 
-  private int getKeyword (simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError, IOException {
+  private int getKeyword (StringTokenizerPlus strTok) throws ParseError, IOException {
     String value;
 
     value = strTok.nextToken();
@@ -923,7 +922,7 @@ public final class HabitatTypeGroup {
   private void readHtGrp (BufferedReader fin) throws ParseError, IOException {
     int                 key = EOF;
     String              value, line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     String              name;
 
     yearlyPathwayLives = null;
@@ -932,7 +931,7 @@ public final class HabitatTypeGroup {
       line   = fin.readLine();
       if (line == null) { key = EOF; continue;}
 
-      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line," ");
+      strTok = new StringTokenizerPlus(line," ");
       if (strTok.hasMoreTokens() == false) {continue;}
 
       key = getKeyword(strTok);
@@ -986,7 +985,7 @@ public final class HabitatTypeGroup {
     }
   }
 
-  private void readYearlyPathwayLives(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError, IOException {
+  private void readYearlyPathwayLives(StringTokenizerPlus strTok) throws ParseError, IOException {
     Vector v = strTok.getListValue();
     yearlyPathwayLives = new Lifeform[v.size()];
 
@@ -1065,7 +1064,7 @@ public final class HabitatTypeGroup {
   private void readData(BufferedReader fin) {
     int                 key = EOF, i;
     String              value, line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     // Create a log file name
     String dir  = System.getProperty("user.dir");
@@ -1082,7 +1081,7 @@ public final class HabitatTypeGroup {
         line   = fin.readLine();
         if (line == null) { key = EOF; continue;}
 
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line," ");
+        strTok = new StringTokenizerPlus(line," ");
         if (strTok.hasMoreTokens() == false) {continue;}
 
         key = getKeyword(strTok);
@@ -1128,7 +1127,7 @@ public final class HabitatTypeGroup {
         line = line.trim();
         if (line.length() == 0) { line = fin.readLine(); continue; }
 
-        simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,", \t\n\r\f");
+        StringTokenizerPlus strTok = new StringTokenizerPlus(line,", \t\n\r\f");
 
         String str = strTok.getToken();
         HabitatTypeGroup group = HabitatTypeGroup.findInstance(str);
@@ -1141,7 +1140,7 @@ public final class HabitatTypeGroup {
         while (line != null) {
           line = line.trim();
           if (line.length() > 0) {
-            strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,", \t\n\r\f");
+            strTok = new StringTokenizerPlus(line,", \t\n\r\f");
 
             str = strTok.getToken();
             VegetativeType vt = group.getVegetativeType(str);
@@ -1187,7 +1186,7 @@ public final class HabitatTypeGroup {
         if (line.length() == 0) { line = fin.readLine(); continue; }
 
         // Group Species List
-        simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
 
         String str = strTok.getToken();
         HabitatTypeGroup group = HabitatTypeGroup.findInstance(str);
@@ -1208,11 +1207,11 @@ public final class HabitatTypeGroup {
           throw new ParseError("No data for group" + group.toString());
         }
         while (line != null) {
-          line = simpplle.comcode.utility.Utility.preProcessInputLine(line);
+          line = Utility.preProcessInputLine(line);
           if (line.length() == 0) { line = fin.readLine(); continue; }
 
           // Veg Type <tab> pct Values for species
-          strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+          strTok = new StringTokenizerPlus(line,",");
           str = strTok.getToken();
           if (str.startsWith("END")) { line = null; continue; }
 
@@ -1226,7 +1225,7 @@ public final class HabitatTypeGroup {
 
           vt.clearSpeciesRange();
 
-          simpplle.comcode.utility.StringTokenizerPlus strTok2;
+          StringTokenizerPlus strTok2;
           int lowerPct=0, upperPct=100;
           for (InclusionRuleSpecies species : spList) {
             if (strTok.hasMoreTokens() == false) { continue; }
@@ -1242,7 +1241,7 @@ public final class HabitatTypeGroup {
               lowerPct = 0;
             }
             else if (str.contains(":")) {
-              strTok2 = new simpplle.comcode.utility.StringTokenizerPlus(str,":");
+              strTok2 = new StringTokenizerPlus(str,":");
               lowerPct = strTok2.getIntToken();
               upperPct = strTok2.getIntToken();
             }
@@ -1289,7 +1288,7 @@ public final class HabitatTypeGroup {
     BufferedReader      fin;
     int                 key = EOF, i;
     String              value, line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     boolean             foundHtGrp = false, foundVegType = false;
     HabitatTypeGroup    newGroup, oldGroup=null;
 
@@ -1312,7 +1311,7 @@ public final class HabitatTypeGroup {
       do {
         if (line == null) { key = EOF; continue;}
 
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line.trim());
+        strTok = new StringTokenizerPlus(line.trim());
         if (strTok.hasMoreTokens() == false) {
           line = fin.readLine();
           continue;
@@ -1368,7 +1367,7 @@ public final class HabitatTypeGroup {
   {
     int                 key = EOF;
     String              value, line;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     String name = htGrpName.trim().toUpperCase();
     if (name == null) { throw new ParseError("Invalid Group Name Found."); }
@@ -1379,7 +1378,7 @@ public final class HabitatTypeGroup {
     line   = fin.readLine();
     while (line != null && key != VEGETATIVE_TYPE) {
       line = line.trim();
-      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line);
+      strTok = new StringTokenizerPlus(line);
       if (line.length() == 0 || strTok.hasMoreTokens() == false) {
         line = fin.readLine();
         continue;
@@ -1418,13 +1417,13 @@ public final class HabitatTypeGroup {
     return line;
   }
 
-  private Vector parseList(simpplle.comcode.utility.StringTokenizerPlus strTok)
+  private Vector parseList(StringTokenizerPlus strTok)
     throws ParseError
   {
     return parseList(strTok,false);
   }
 
-  private Vector parseList(simpplle.comcode.utility.StringTokenizerPlus strTok, boolean isInteger)
+  private Vector parseList(StringTokenizerPlus strTok, boolean isInteger)
     throws ParseError
   {
     Vector  result = null;
@@ -1479,14 +1478,14 @@ public final class HabitatTypeGroup {
   }
 
   public void saveAs(File outfile) throws SimpplleError {
-    setFilename(simpplle.comcode.utility.Utility.makeSuffixedPathname(outfile,"",FILE_EXT));
+    setFilename(Utility.makeSuffixedPathname(outfile,"",FILE_EXT));
     save();
   }
 
   public void save() throws SimpplleError {
     PrintWriter fout;
     try {
-      fout = simpplle.comcode.utility.Utility.openPrintWriter(getFilename());
+      fout = Utility.openPrintWriter(getFilename());
     }
     catch (SimpplleError err) {
       clearFilename();
@@ -1887,7 +1886,7 @@ public final class HabitatTypeGroup {
       v.addElement((String)keys.next());
     }
     states = (String[]) v.toArray(new String[v.size()]);
-    simpplle.comcode.utility.Utility.sort(states);
+    Utility.sort(states);
 
     for(i=0; i<states.length; i++) {
       veg = (VegetativeType) vegTypes.get(states[i]);
@@ -2098,16 +2097,16 @@ public final class HabitatTypeGroup {
   }
 
   public static void makeAllSimpplleTypeFiles(File prefix) throws SimpplleError {
-    File newfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix,"-species","txt");
+    File newfile = Utility.makeSuffixedPathname(prefix,"-species","txt");
     printAllSimpplleType(newfile,getValidSpecies());
 
-    newfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix,"-size","txt");
+    newfile = Utility.makeSuffixedPathname(prefix,"-size","txt");
     printAllSimpplleType(newfile,getValidSizeClass());
 
-    newfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix,"-density","txt");
+    newfile = Utility.makeSuffixedPathname(prefix,"-density","txt");
     printAllSimpplleType(newfile,getValidDensity());
 
-    newfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(prefix,"-group","txt");
+    newfile = Utility.makeSuffixedPathname(prefix,"-group","txt");
     printAllSimpplleType(newfile,getAllLoadedGroups());
   }
   private static void printAllSimpplleType(File filename, List values) throws SimpplleError {
@@ -2163,9 +2162,9 @@ public final class HabitatTypeGroup {
       for (Iterator i = hm.keySet().iterator(); i.hasNext(); ) {
         String name = (String) i.next();
         String varName = Utility.dashesToUnderscores(name);
-        simpplle.comcode.utility.Formatting.fixedField(name,maxLength+1,true);
+        Formatting.fixedField(name,maxLength+1,true);
         fout.println("  public static final " + kind + " " +
-                     simpplle.comcode.utility.Formatting.fixedField(varName, maxLength + 1, true) +
+                     Formatting.fixedField(varName, maxLength + 1, true) +
                      " = new " + kind + "(\"" + name + "\",false);");
       }
       fout.flush();

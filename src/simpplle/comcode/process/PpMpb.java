@@ -33,20 +33,20 @@ public class PpMpb extends Process implements HazardValues {
     spreading   = true;
     description = "Ponderosa Pine Mountain Pine Beetle";
 
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.PROCESS_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.ADJ_PROCESS_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.MPB_HAZARD_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.ADJ_HIGH_HAZARD_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.ADJ_MOD_HAZARD_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.PROCESS_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.ADJ_PROCESS_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.MPB_HAZARD_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.ADJ_HIGH_HAZARD_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.ADJ_MOD_HAZARD_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
   }
 
   private int doProbabilityCommon () {
     return probability;
   }
 
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
     adjustHazard(zone,evu);
 
     return doProbabilityCommon();
@@ -54,7 +54,7 @@ public class PpMpb extends Process implements HazardValues {
 /**
  * For Eastside Region if species is not a variety of ponderosa pine the probability is 0, else does probability common
  */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return 0; }
 
@@ -71,7 +71,7 @@ public class PpMpb extends Process implements HazardValues {
   /**
    * Probability for Teton zone, if species is not a variety of ponderosa pine the probability is 0, else does probability common
    */
-  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return 0; }
 
@@ -88,7 +88,7 @@ public class PpMpb extends Process implements HazardValues {
   /**
    * Probability for Northern Central Rockies if species is not a variety of ponderosa pine the probability is 0, else does probability common
    */
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return 0; }
 
@@ -103,12 +103,12 @@ public class PpMpb extends Process implements HazardValues {
     return doProbabilityCommon();
   }
 
-  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, Evu evu) {
     adjustHazard(zone,evu);
 
     return doProbabilityCommon();
   }
-  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, Evu evu) {
     adjustHazard(zone,evu);
 
     return doProbabilityCommon();
@@ -118,7 +118,7 @@ public class PpMpb extends Process implements HazardValues {
  * @param zone regional zone 
  * @param evu existing vegetative unit
  */
-  public static void computeHazard(RegionalZone zone, simpplle.comcode.element.Evu evu) {
+  public static void computeHazard(RegionalZone zone, Evu evu) {
     switch (zone.getId()) {
       case ValidZones.COLORADO_FRONT_RANGE:
         computeHazardColorado(zone, evu);
@@ -136,7 +136,7 @@ public class PpMpb extends Process implements HazardValues {
    * @param zone
    * @param evu
    */
-  public static void computeHazardCommon(RegionalZone zone, simpplle.comcode.element.Evu evu) {
+  public static void computeHazardCommon(RegionalZone zone, Evu evu) {
     Species   species;
     SizeClass sizeClass;
     Density   density;
@@ -246,7 +246,7 @@ public class PpMpb extends Process implements HazardValues {
    * @param zone Regional zone being evaluated
    * @param evu
    */
-  public static void computeHazardColorado(RegionalZone zone, simpplle.comcode.element.Evu evu) {
+  public static void computeHazardColorado(RegionalZone zone, Evu evu) {
     Species   species;
     SizeClass sizeClass;
     Density   density;
@@ -317,10 +317,10 @@ public class PpMpb extends Process implements HazardValues {
  * @param zone
  * @param evu
  */
-  public void adjustHazard(RegionalZone zone, simpplle.comcode.element.Evu evu) {
+  public void adjustHazard(RegionalZone zone, Evu evu) {
     Area           area = Simpplle.currentArea;
     AdjacentData[] adjacentData;
-    simpplle.comcode.element.Evu adj;
+    Evu            adj;
     boolean        lowHazard, modHazard, highHazard;
     MtnPineBeetleHazard.Hazard unitHazard, adjHazard;
     int            adjLowCount = 0, adjModerateCount = 0, adjHighCount = 0;
@@ -473,17 +473,17 @@ public class PpMpb extends Process implements HazardValues {
     }
   }
 
-  public void adjustHazard(simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public void adjustHazard(simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
     adjustHazard((RegionalZone)zone,evu);
   }
 
-  public void adjustHazard(simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public void adjustHazard(simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
     adjustHazard((RegionalZone)zone,evu);
   }
-  public void adjustHazard(simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
+  public void adjustHazard(simpplle.comcode.zone.Teton zone, Evu evu) {
     adjustHazard((RegionalZone)zone,evu);
   }
-  public void adjustHazard(simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
+  public void adjustHazard(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
     adjustHazard((RegionalZone)zone,evu);
   }
 
@@ -492,7 +492,7 @@ public class PpMpb extends Process implements HazardValues {
    * @param evu
    * @return
    */
-  private int determineRisk(simpplle.comcode.element.Evu evu) {
+  private int determineRisk(Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return 0; }
 
@@ -542,7 +542,7 @@ public class PpMpb extends Process implements HazardValues {
  * @param evu
  * @return 
  */
-  private int doProbabilityGilaUtah(simpplle.comcode.element.Evu evu) {
+  private int doProbabilityGilaUtah(Evu evu) {
     int risk = determineRisk(evu);
     int prob = 0;
     int page=0, row=0, col=0;
@@ -560,26 +560,26 @@ public class PpMpb extends Process implements HazardValues {
 
     return getProbData(page,row,col);
   }
-  public int doProbability (simpplle.comcode.zone.SouthwestUtah zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthwestUtah zone, Evu evu) {
     return doProbabilityGilaUtah(evu);
   }
 
-  public int doProbability (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Gila zone, Evu evu) {
     return doProbabilityGilaUtah(evu);
   }
 
-  private boolean doSpreadCommon (RegionalZone zone, simpplle.comcode.element.Evu evu) {
+  private boolean doSpreadCommon (RegionalZone zone, Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return false; }
 
     int         prob        = state.getProb();
     ProcessType processType = state.getProcess();
 
-    if (prob != simpplle.comcode.element.Evu.L &&
+    if (prob != Evu.L &&
         processType.equals(ProcessType.SUCCESSION)) {
       if (evu.getProcessProb(ProcessType.PP_MPB) >= 1000) {
         evu.updateCurrentProcess(ProcessType.PP_MPB);
-        evu.updateCurrentProb(simpplle.comcode.element.Evu.S);
+        evu.updateCurrentProb(Evu.S);
 
         // TO DO: landscape summary spread-to information.
         // Move to after original call of doSpread.
@@ -588,7 +588,7 @@ public class PpMpb extends Process implements HazardValues {
       else if (evu.getProcessProb(ProcessType.LIGHT_LP_MPB) >= 5000 ||
                evu.getProcessProb(ProcessType.SEVERE_LP_MPB) >= 5000) {
         evu.updateCurrentProcess(ProcessType.LIGHT_LP_MPB);
-        evu.updateCurrentProb(simpplle.comcode.element.Evu.S);
+        evu.updateCurrentProb(Evu.S);
 
         // TO DO: landscape summary spread-to information.
         // Move to after original call of doSpread.
@@ -598,55 +598,55 @@ public class PpMpb extends Process implements HazardValues {
     return false;
   }
 
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
     return doSpreadCommon(zone,evu);
   }
 
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
     return doSpreadCommon(zone,evu);
   }
-  public boolean doSpread (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.Teton zone, Evu fromEvu, Evu evu) {
     return doSpreadCommon(zone,evu);
   }
-  public boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.NorthernCentralRockies zone, Evu fromEvu, Evu evu) {
     return doSpreadCommon(zone,evu);
   }
 
   /**
    * Ponderosa Pine Mountain Pine Beetle does not occur Sierra Nevada, so spread is set to false. 
    */
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
     return false;
   }
 
   /**
    * Ponderosa Pine Mountain Pine Beetle does not occur Sierra Nevada, so spread is set to false. 
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
     return false;
   }
 /**
  * Ponderosa Pine Mountain Pine Beetle does not occur Sierra Nevada, so spread is set to false. 
  */
 
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
 
   /**
    * Spread for Gila zone.  This is based on current simulation vegetative state process type and probability 
    * returns true spread, false otherwise
    */
-  public boolean doSpread (simpplle.comcode.zone.Gila zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.Gila zone, Evu fromEvu, Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return false; }
 
     int         prob        = state.getProb();
     ProcessType processType = state.getProcess();
 
-    if (prob != simpplle.comcode.element.Evu.L &&
+    if (prob != Evu.L &&
         processType.equals(ProcessType.SUCCESSION)) {
       if (evu.getProcessProb(ProcessType.PP_MPB) >= 1000) {
         evu.updateCurrentProcess(ProcessType.PP_MPB);
-        evu.updateCurrentProb(simpplle.comcode.element.Evu.S);
+        evu.updateCurrentProb(Evu.S);
         return true;
       }
     }
@@ -655,18 +655,18 @@ public class PpMpb extends Process implements HazardValues {
 /**
  * Spread for Southwest Utah zone.  This is based on current simulation vegetative state process type and probability 
  */
-  public boolean doSpread (simpplle.comcode.zone.SouthwestUtah zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SouthwestUtah zone, Evu fromEvu, Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return false; }
 
     int         prob        = state.getProb();
     ProcessType processType = state.getProcess();
 
-    if (prob != simpplle.comcode.element.Evu.L &&
+    if (prob != Evu.L &&
         processType.equals(ProcessType.SUCCESSION)) {
       if (evu.getProcessProb(ProcessType.PP_MPB) >= 1000) {
         evu.updateCurrentProcess(ProcessType.PP_MPB);
-        evu.updateCurrentProb(simpplle.comcode.element.Evu.S);
+        evu.updateCurrentProb(Evu.S);
         return true;
       }
     }
@@ -675,14 +675,14 @@ public class PpMpb extends Process implements HazardValues {
 /**
  * Spread for Colorado Front Range zone.  This is based on current simulation vegetative state process type and probability 
  */
-  public boolean doSpread(simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread(simpplle.comcode.zone.ColoradoFrontRange zone, Evu fromEvu, Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return false; }
 
     int         prob        = state.getProb();
     ProcessType processType = state.getProcess();
 
-    if (prob == simpplle.comcode.element.Evu.L ||
+    if (prob == Evu.L ||
         (processType.equals(ProcessType.SUCCESSION) == false)) {
       return false;
     }
@@ -690,12 +690,12 @@ public class PpMpb extends Process implements HazardValues {
     if (evu.getProcessProb(ProcessType.LIGHT_LP_MPB) >= 5000 ||
         evu.getProcessProb(ProcessType.SEVERE_LP_MPB) >= 5000) {
       evu.updateCurrentProcess(ProcessType.LIGHT_LP_MPB);
-      evu.updateCurrentProb(simpplle.comcode.element.Evu.S);
+      evu.updateCurrentProb(Evu.S);
       return true;
     }
     else if (evu.getProcessProb(ProcessType.PP_MPB) >= 5000) {
       evu.updateCurrentProcess(ProcessType.PP_MPB);
-      evu.updateCurrentProb(simpplle.comcode.element.Evu.S);
+      evu.updateCurrentProb(Evu.S);
       return true;
     }
 
@@ -704,14 +704,14 @@ public class PpMpb extends Process implements HazardValues {
   /**
    * Spread for Colorado Plateau zone.  This is based on current simulation vegetative state process type and probability 
    */
-  public boolean doSpread(simpplle.comcode.zone.ColoradoPlateau zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread(simpplle.comcode.zone.ColoradoPlateau zone, Evu fromEvu, Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return false; }
 
     int         prob        = state.getProb();
     ProcessType processType = state.getProcess();
 
-    if (prob == simpplle.comcode.element.Evu.L ||
+    if (prob == Evu.L ||
         (processType.equals(ProcessType.SUCCESSION) == false)) {
       return false;
     }
@@ -719,12 +719,12 @@ public class PpMpb extends Process implements HazardValues {
     if (evu.getProcessProb(ProcessType.LIGHT_LP_MPB) >= 5000 ||
         evu.getProcessProb(ProcessType.SEVERE_LP_MPB) >= 5000) {
       evu.updateCurrentProcess(ProcessType.LIGHT_LP_MPB);
-      evu.updateCurrentProb(simpplle.comcode.element.Evu.S);
+      evu.updateCurrentProb(Evu.S);
       return true;
     }
     else if (evu.getProcessProb(ProcessType.PP_MPB) >= 5000) {
       evu.updateCurrentProcess(ProcessType.PP_MPB);
-      evu.updateCurrentProb(simpplle.comcode.element.Evu.S);
+      evu.updateCurrentProb(Evu.S);
       return true;
     }
 

@@ -5,11 +5,13 @@ import java.io.ObjectOutput;
 import java.io.ObjectInput;
 import java.util.jar.JarInputStream;
 import java.io.ObjectInputStream;
+import java.util.Vector;
 import java.util.ArrayList;
 import java.util.jar.JarOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -63,7 +65,7 @@ public abstract class SimpplleType implements Comparable {
         if (this instanceof Density) {
             return ((Density)this).getGisPrintName();
         }
-        return simpplle.comcode.utility.Utility.dashesToUnderscores(toString());
+        return Utility.dashesToUnderscores(toString());
     }
 
     public abstract boolean equals(Object obj);

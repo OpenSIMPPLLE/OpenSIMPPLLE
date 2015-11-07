@@ -1,5 +1,6 @@
 package simpplle.comcode.process;
 
+import simpplle.comcode.*;
 import simpplle.comcode.Process;
 
 /**
@@ -36,7 +37,7 @@ public class LightBisonGrazing extends Process {
 	 * @return the probability of light bison grazing in the choosen evu
 	 */
   
-  public int doProbabilityWyoming (simpplle.comcode.element.Evu evu) {
+  public int doProbabilityWyoming (Evu evu) {
     int prob = simpplle.comcode.BisonGrazing.getLight();
 
     if (prob == -1) {
@@ -46,13 +47,13 @@ public class LightBisonGrazing extends Process {
     simpplle.comcode.BisonGrazing.resetLight();
     return prob;
   }
-  public int doProbability (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, Evu evu) {
     return doProbabilityWyoming(evu);
   }
-  public int doProbability (simpplle.comcode.zone.GreatPlainsSteppe zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.GreatPlainsSteppe zone, Evu evu) {
     return doProbabilityWyoming(evu);
   }
-  public int doProbability (simpplle.comcode.zone.MixedGrassPrairie zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.MixedGrassPrairie zone, Evu evu) {
     return doProbabilityWyoming(evu);
   }
 }

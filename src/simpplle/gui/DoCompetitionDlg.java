@@ -1,8 +1,8 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-
-import simpplle.comcode.logic.DoCompetitionLogic;
+import javax.swing.JDialog;
+import simpplle.comcode.DoCompetitionLogic;
 import simpplle.comcode.*;
 
 /**

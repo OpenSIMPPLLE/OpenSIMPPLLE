@@ -38,7 +38,7 @@ public abstract class SpruceBeetleRisk {
   public static int getModerateProbability() { return moderateProb; }
   public static int getHighProbability()     { return highProb; }
 
-  public static void compute(simpplle.comcode.element.Evu evu) {
+  public static void compute(Evu evu) {
     int    iterations = (evu.getAcres() <= 510) ? 3 : 2;
     Hazard hazard = new Hazard();
 
@@ -84,15 +84,15 @@ public abstract class SpruceBeetleRisk {
 
     if (hazard.low > 0) {
       hazard.low += total;
-      hazard.low = simpplle.comcode.utility.CDF_Weibull2.w2cdf(lambda,beta,hazard.low);
+      hazard.low = CDF_Weibull2.w2cdf(lambda,beta,hazard.low);
     }
     if (hazard.moderate > 0) {
       hazard.moderate += total;
-      hazard.moderate = simpplle.comcode.utility.CDF_Weibull2.w2cdf(lambda,beta,hazard.moderate);
+      hazard.moderate = CDF_Weibull2.w2cdf(lambda,beta,hazard.moderate);
     }
     if (hazard.high > 0) {
       hazard.high += total;
-      hazard.high = simpplle.comcode.utility.CDF_Weibull2.w2cdf(lambda,beta,hazard.high);
+      hazard.high = CDF_Weibull2.w2cdf(lambda,beta,hazard.high);
     }
 
     if (simpplle.JSimpplle.debug()) {
@@ -111,11 +111,11 @@ public abstract class SpruceBeetleRisk {
     highProb     = (int)Math.round(hazard.high     * 100.0);
   }
 
-  private static void addAdjacentUnits(simpplle.comcode.element.Evu evu, int iterations) {
+  private static void addAdjacentUnits(Evu evu, int iterations) {
     if (iterations == 0) { return; }
 
     AdjacentData[] adjUnits = evu.getAdjacentData();
-    simpplle.comcode.element.Evu unit;
+    Evu            unit;
     for (int i=0; i<adjUnits.length; i++) {
       unit = adjUnits[i].evu;
       adjUnitsHt.put(unit,unit);
@@ -123,7 +123,7 @@ public abstract class SpruceBeetleRisk {
     }
   }
 
-  private static Hazard doHazard(Hazard hazard, simpplle.comcode.element.Evu evu) {
+  private static Hazard doHazard(Hazard hazard, Evu evu) {
     VegSimStateData state = evu.getState();
     if (state == null) { return hazard; }
 
@@ -146,12 +146,12 @@ public abstract class SpruceBeetleRisk {
       return hazard;
     }
 
-    if (simpplle.comcode.element.Evu.haveHighSpruceBeetle() &&
+    if (Evu.haveHighSpruceBeetle() &&
         sizeClass.equals(SizeClass.LARGE) == false &&
         sizeClass.equals(SizeClass.POLE) == false) {
       return hazard;
     }
-    else if (simpplle.comcode.element.Evu.haveHighSpruceBeetle() == false &&
+    else if (Evu.haveHighSpruceBeetle() == false &&
              sizeClass.equals(SizeClass.LARGE) == false) {
       return hazard;
     }
@@ -225,7 +225,7 @@ public abstract class SpruceBeetleRisk {
 
   private static double doAdjacentMortality () {
     int         iterations;
-    simpplle.comcode.element.Evu unit;
+    Evu         unit;
     int         tStep = Simulation.getCurrentTimeStep();
     int         lightSbCount = 0, mediumSbCount = 0, highSbCount = 0;
     int         otherCount = 0;
@@ -233,7 +233,7 @@ public abstract class SpruceBeetleRisk {
 
     Enumeration units = adjUnitsHt.keys();
     while (units.hasMoreElements()) {
-      unit = (simpplle.comcode.element.Evu)units.nextElement();
+      unit = (Evu)units.nextElement();
 
       VegSimStateData state = unit.getState(tStep);
       if (state == null) { continue; }
@@ -279,7 +279,7 @@ public abstract class SpruceBeetleRisk {
   }
 
   private static double doAdjacentBreedingMaterial() {
-    simpplle.comcode.element.Evu unit;
+    Evu         unit;
     Enumeration units = adjUnitsHt.keys();
     int         lowWindCount = 0, modWindCount = 0, highWindCount = 0;
     int         otherCount = 0;
@@ -288,7 +288,7 @@ public abstract class SpruceBeetleRisk {
     double      result = 0;
 
     while (units.hasMoreElements()) {
-      unit = (simpplle.comcode.element.Evu)units.nextElement();
+      unit = (Evu)units.nextElement();
 
       VegSimStateData state = unit.getState(tStep);
       if (state == null) { continue; }
@@ -366,8 +366,8 @@ public abstract class SpruceBeetleRisk {
     return result;
   }
 
-  private static double doFire(simpplle.comcode.element.Evu evu) {
-    simpplle.comcode.element.Evu unit;
+  private static double doFire(Evu evu) {
+    Evu         unit;
     Enumeration units = adjUnitsHt.keys();
     int         lsf = 0, msf = 0, srf = 0;
     int         otherCount = 0;
@@ -376,7 +376,7 @@ public abstract class SpruceBeetleRisk {
     double      result = 0;
 
     while (units.hasMoreElements()) {
-      unit = (simpplle.comcode.element.Evu)units.nextElement();
+      unit = (Evu)units.nextElement();
 
       VegSimStateData state = unit.getState(tStep);
       if (state == null) { continue; }
@@ -439,7 +439,7 @@ public abstract class SpruceBeetleRisk {
   }
 
   private static double doAdjacentHarvest() {
-    simpplle.comcode.element.Evu unit;
+    Evu           unit;
     Enumeration   units = adjUnitsHt.keys();
     int           harvestCount = 0;
     int           tStep = Simulation.getCurrentTimeStep();
@@ -448,7 +448,7 @@ public abstract class SpruceBeetleRisk {
     double        result = 0;
 
     while (units.hasMoreElements()) {
-      unit = (simpplle.comcode.element.Evu)units.nextElement();
+      unit = (Evu)units.nextElement();
       treatment = unit.getTreatment(tStep,true);
       if (treatment == null) { continue; }
 

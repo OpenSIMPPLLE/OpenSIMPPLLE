@@ -16,7 +16,9 @@ import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import simpplle.comcode.Evu;
 import simpplle.comcode.TreatmentApplication;
+import simpplle.comcode.*;
 
 
 /** 
@@ -84,7 +86,7 @@ public class TreatmentAppDragDropList extends JList
 //      if (str == null) { str = "n/a"; }
 //      if (str.length() > ownershipLength) { ownershipLength = str.length(); }
 
-      str = simpplle.comcode.element.Roads.Status.lookup(app.getRoadStatus()).toString();
+      str = Roads.Status.lookup(app.getRoadStatus()).toString();
       if (str == null) { str = "n/a"; }
       if (str.length() > roadStatusLength) { roadStatusLength = str.length(); }
     }

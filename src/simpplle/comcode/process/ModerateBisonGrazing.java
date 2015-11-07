@@ -1,6 +1,7 @@
 package simpplle.comcode.process;
 
 
+import simpplle.comcode.*;
 import simpplle.comcode.Process;
 
 /**
@@ -38,7 +39,7 @@ public class ModerateBisonGrazing extends Process {
 	 * @param evu
 	 * @return probability of moderate bison grazing in wyoming.  
 	 */
-  public int doProbabilityWyoming (simpplle.comcode.element.Evu evu) {
+  public int doProbabilityWyoming (Evu evu) {
     int prob = simpplle.comcode.BisonGrazing.getModerate();
 
     if (prob == -1) {
@@ -48,13 +49,13 @@ public class ModerateBisonGrazing extends Process {
     simpplle.comcode.BisonGrazing.resetModerate();
     return prob;
   }
-  public int doProbability (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WesternGreatPlainsSteppe zone, Evu evu) {
     return doProbabilityWyoming(evu);
   }
-  public int doProbability (simpplle.comcode.zone.GreatPlainsSteppe zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.GreatPlainsSteppe zone, Evu evu) {
     return doProbabilityWyoming(evu);
   }
-  public int doProbability (simpplle.comcode.zone.MixedGrassPrairie zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.MixedGrassPrairie zone, Evu evu) {
     return doProbabilityWyoming(evu);
   }
 }

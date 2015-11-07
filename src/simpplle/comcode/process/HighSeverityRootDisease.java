@@ -1,5 +1,6 @@
 package simpplle.comcode.process;
 
+import simpplle.comcode.*;
 import simpplle.comcode.Process;
 
 /**
@@ -25,45 +26,45 @@ public class HighSeverityRootDisease extends Process {
     spreading   = false;
     description = "High Severity Root Disease\"";
 
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ECO_GROUP_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SPECIES_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.TREATMENT_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.ECO_GROUP_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.SPECIES_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.TREATMENT_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
   }
   public String toString () {
     return printName;
   }
-  protected int doProbability (simpplle.comcode.element.Evu evu) {
+  protected int doProbability (Evu evu) {
     return 0;
   }
 
-  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoFrontRange zone, Evu evu) {
     return 0;
   }
-  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.ColoradoPlateau zone, Evu evu) {
     return 0;
   }
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
     return 0;
   }
 
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
     return 0;
   }
-  public int doProbability (simpplle.comcode.zone.Teton zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.Teton zone, Evu evu) {
     return 0;
   }
-  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
     return 0;
   }
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {
     return 0;
   }
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {
     return 0;
   }
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) {
     return 0;
   }
 }

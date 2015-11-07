@@ -1,9 +1,8 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-
 import simpplle.comcode.SystemKnowledge.Kinds;
-
+import simpplle.comcode.*;
 /**
 *
 * The University of Montana owns copyright of the designated documentation contained 
@@ -29,7 +28,7 @@ public class DoCompetitionLogicPanel extends VegLogicPanel {
 	 * @param sysKnowKind 
 	 */
   public DoCompetitionLogicPanel(AbstractLogicDialog dialog,
-                                 String kind, simpplle.comcode.logic.AbstractBaseLogic logicInst, Kinds sysKnowKind) {
+                                 String kind, AbstractBaseLogic logicInst, Kinds sysKnowKind) {
     super(dialog,kind,logicInst,sysKnowKind);
     try {
       initialize();
@@ -50,37 +49,37 @@ public class DoCompetitionLogicPanel extends VegLogicPanel {
  * Choices are selected column, lifeform, minimum canopy, maximum canopy, density, change lifeforms, and action.
  */
   protected void initColumns(TableColumn column, int col) {
-    if (col == simpplle.comcode.logic.DoCompetitionLogic.SELECTED_COL) {
-      column.setIdentifier(simpplle.comcode.logic.DoCompetitionLogic.SELECTED_COL);
+    if (col == DoCompetitionLogic.SELECTED_COL) {
+      column.setIdentifier(DoCompetitionLogic.SELECTED_COL);
       column.setCellRenderer(new AlternateRowColorDefaultTableCellRenderer());
     }
-    else if (col == simpplle.comcode.logic.DoCompetitionLogic.LIFEFORM_COL) {
-      column.setIdentifier(simpplle.comcode.logic.DoCompetitionLogic.LIFEFORM_COL);
-      column.setCellRenderer(new MyJComboBoxRenderer(simpplle.comcode.logic.DoCompetitionData.getLifeformValues()));
-      column.setCellEditor(new MyJComboBoxEditor(simpplle.comcode.logic.DoCompetitionData.getLifeformValues()));
+    else if (col == DoCompetitionLogic.LIFEFORM_COL) {
+      column.setIdentifier(DoCompetitionLogic.LIFEFORM_COL);
+      column.setCellRenderer(new MyJComboBoxRenderer(DoCompetitionData.getLifeformValues()));
+      column.setCellEditor(new MyJComboBoxEditor(DoCompetitionData.getLifeformValues()));
     }
-    else if (col == simpplle.comcode.logic.DoCompetitionLogic.MIN_CANOPY_COL) {
-      column.setIdentifier(simpplle.comcode.logic.DoCompetitionLogic.MIN_CANOPY_COL);
+    else if (col == DoCompetitionLogic.MIN_CANOPY_COL) {
+      column.setIdentifier(DoCompetitionLogic.MIN_CANOPY_COL);
       column.setCellRenderer(new AlternateRowColorDefaultTableCellRenderer());
     }
-    else if (col == simpplle.comcode.logic.DoCompetitionLogic.MAX_CANOPY_COL) {
-      column.setIdentifier(simpplle.comcode.logic.DoCompetitionLogic.MAX_CANOPY_COL);
+    else if (col == DoCompetitionLogic.MAX_CANOPY_COL) {
+      column.setIdentifier(DoCompetitionLogic.MAX_CANOPY_COL);
       column.setCellRenderer(new AlternateRowColorDefaultTableCellRenderer());
     }
-    else if (col == simpplle.comcode.logic.DoCompetitionLogic.DENSITY_CHANGE_COL) {
-      column.setIdentifier(simpplle.comcode.logic.DoCompetitionLogic.DENSITY_CHANGE_COL);
-      column.setCellRenderer(new MyJComboBoxRenderer(simpplle.comcode.logic.DoCompetitionData.DensityChange.values()));
-      column.setCellEditor(new MyJComboBoxEditor(simpplle.comcode.logic.DoCompetitionData.DensityChange.values()));
+    else if (col == DoCompetitionLogic.DENSITY_CHANGE_COL) {
+      column.setIdentifier(DoCompetitionLogic.DENSITY_CHANGE_COL);
+      column.setCellRenderer(new MyJComboBoxRenderer(DoCompetitionData.DensityChange.values()));
+      column.setCellEditor(new MyJComboBoxEditor(DoCompetitionData.DensityChange.values()));
     }
-    else if (col == simpplle.comcode.logic.DoCompetitionLogic.CHANGE_LIFEFORMS_COL) {
-      column.setIdentifier(simpplle.comcode.logic.DoCompetitionLogic.CHANGE_LIFEFORMS_COL);
-      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel, simpplle.comcode.logic.DoCompetitionLogic.CHANGE_LIFEFORMS_COL,"Soil Type",true));
+    else if (col == DoCompetitionLogic.CHANGE_LIFEFORMS_COL) {
+      column.setIdentifier(DoCompetitionLogic.CHANGE_LIFEFORMS_COL);
+      column.setCellEditor(new MyJButtonEditor(dialog,logicTable,dataModel,DoCompetitionLogic.CHANGE_LIFEFORMS_COL,"Soil Type",true));
       column.setCellRenderer(new MyJTextAreaRenderer());
     }
-    else if (col == simpplle.comcode.logic.DoCompetitionLogic.ACTION_COL) {
-      column.setIdentifier(simpplle.comcode.logic.DoCompetitionLogic.ACTION_COL);
-      column.setCellRenderer(new MyJComboBoxRenderer(simpplle.comcode.logic.DoCompetitionData.Actions.values()));
-      column.setCellEditor(new MyJComboBoxEditor(simpplle.comcode.logic.DoCompetitionData.Actions.values()));
+    else if (col == DoCompetitionLogic.ACTION_COL) {
+      column.setIdentifier(DoCompetitionLogic.ACTION_COL);
+      column.setCellRenderer(new MyJComboBoxRenderer(DoCompetitionData.Actions.values()));
+      column.setCellEditor(new MyJComboBoxEditor(DoCompetitionData.Actions.values()));
     }
     else {
       super.initBaseColumns(column,col);

@@ -35,12 +35,12 @@ public class WpMpb extends Process {
     spreading   = false;
     description = "White Pine Mountain Pine Beetle";
 
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.ROW_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SPECIES_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.SIZE_CLASS_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.DENSITY_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.BaseLogic.Columns.PROCESS_COL.toString());
-    defaultVisibleColumns.add(simpplle.comcode.logic.ProcessProbLogic.Columns.PROB_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.ROW_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.SPECIES_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.SIZE_CLASS_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.DENSITY_COL.toString());
+    defaultVisibleColumns.add(BaseLogic.Columns.PROCESS_COL.toString());
+    defaultVisibleColumns.add(ProcessProbLogic.Columns.PROB_COL.toString());
   }
 /**
  * Probability common method, based on process type, current simulation time step, species, size class, density, process type and a combination of species
@@ -48,7 +48,7 @@ public class WpMpb extends Process {
  * @param evu 
  * @return probability 
  */
-  private int doProbabilityCommon (RegionalZone zone, simpplle.comcode.element.Evu evu) {
+  private int doProbabilityCommon (RegionalZone zone, Evu evu) {
     int         page = -1, row = -1, col = 0;
     int         cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
@@ -116,66 +116,66 @@ public class WpMpb extends Process {
     }
   }
 
-  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
     return doProbabilityCommon(zone,evu);
   }
 
  /**
   * White Pine Mountain Pine Beetle does not occur in Eastside Region 1 so returns 0
   */
-  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
     return 0;
   }
 
   /**
    * White Pine Mountain Pine Beetle does not occur in Sierra Nevada,  so returns 0
    */
-  public int doProbability (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SierraNevada zone, Evu evu) {
     return 0;
   }
 
   /**
    * White Pine Mountain Pine Beetle does not occur in Southern California, so returns 0
    */
-  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu evu) {
+  public int doProbability (simpplle.comcode.zone.SouthernCalifornia zone, Evu evu) {
     return 0;
   }
 
   /**
    * White Pine Mountain Pine Beetle does not occur in South Central Alaska, so returns 0
    */
-  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu evu) { return 0; }
+  public int doProbability (simpplle.comcode.zone.SouthCentralAlaska zone, Evu evu) { return 0; }
 
   private boolean doSpreadCommon () {
     return false;
   }
 
-  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.WestsideRegionOne zone, Evu fromEvu, Evu evu) {
     return doSpreadCommon();
   }
 
-  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.EastsideRegionOne zone, Evu fromEvu, Evu evu) {
     return doSpreadCommon();
   }
 
  /**
   * Sierra Nevada does not have this process so returns false by default.
   */
-  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SierraNevada zone, Evu fromEvu, Evu evu) {
     return false;
   }
 
  /**
   * Southern California does not have this process so returns false by default.
   */
-  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) {
+  public boolean doSpread (simpplle.comcode.zone.SouthernCalifornia zone, Evu fromEvu, Evu evu) {
     return false;
   }
 
   /**
    * South Central Alaska does not have this process so returns false by default.
    */
-  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, simpplle.comcode.element.Evu fromEvu, simpplle.comcode.element.Evu evu) { return false; }
+  public boolean doSpread (simpplle.comcode.zone.SouthCentralAlaska zone, Evu fromEvu, Evu evu) { return false; }
 
   /**
    * outputs "WP-MPB"

@@ -25,10 +25,10 @@ public class FireSuppressionBeyondAData {
   private static final int NF_OTHER      = simpplle.comcode.process.FireEvent.NF_OTHER;
   private static final int OTHER         = simpplle.comcode.process.FireEvent.OTHER;
 
-  private static final int UNKNOWN       = simpplle.comcode.element.Roads.Status.UNKNOWN.getValue();
-  private static final int NONE          = simpplle.comcode.element.Roads.Status.NONE.getValue();
-  private static final int OPEN_ROADED   = simpplle.comcode.element.Roads.Status.OPEN.getValue();
-  private static final int CLOSED_ROADED = simpplle.comcode.element.Roads.Status.CLOSED.getValue();
+  private static final int UNKNOWN       = Roads.Status.UNKNOWN.getValue();
+  private static final int NONE          = Roads.Status.NONE.getValue();
+  private static final int OPEN_ROADED   = Roads.Status.OPEN.getValue();
+  private static final int CLOSED_ROADED = Roads.Status.CLOSED.getValue();
 
   private static boolean dataChanged;
 
@@ -165,7 +165,7 @@ public class FireSuppressionBeyondAData {
 
   public static void read(BufferedReader fin) throws IOException, ParseError {
     String              line=null, str;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     ProcessType         process;
     int                 owner, roadStatus;
     boolean[]           suppressBool;
@@ -185,7 +185,7 @@ public class FireSuppressionBeyondAData {
           if (line == null) {
             throw new ParseError("Invalid, none, or improper data in file.");
           }
-          strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+          strTok = new StringTokenizerPlus(line,",");
 
           str     = strTok.getStringToken();
           process = (str != null) ? ProcessType.get(str) : null;
@@ -206,7 +206,7 @@ public class FireSuppressionBeyondAData {
             if (line == null) {
               throw new ParseError("Invalid, none, or improper data in file.");
             }
-            strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+            strTok = new StringTokenizerPlus(line,",");
 
             str     = strTok.getStringToken();
             process = (str != null) ? ProcessType.get(str) : null;
@@ -216,7 +216,7 @@ public class FireSuppressionBeyondAData {
             owner = simpplle.comcode.process.FireEvent.findOwnership(str);
 
             str        = strTok.getStringToken();
-            roadStatus = simpplle.comcode.element.Roads.Status.lookup(str).getValue();
+            roadStatus = Roads.Status.lookup(str).getValue();
 
             suppressRoadsBool = (boolean[][])suppressRoad.get(process);
             if (suppressRoadsBool == null) {

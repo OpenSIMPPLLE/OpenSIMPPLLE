@@ -275,7 +275,7 @@ public class PotentialAquaticState {
   private void parseStateString(String stateStr)
     throws ParseError
   {
-    simpplle.comcode.utility.StringTokenizerPlus strTok = new simpplle.comcode.utility.StringTokenizerPlus(stateStr,DASH);
+    StringTokenizerPlus strTok = new StringTokenizerPlus(stateStr,DASH);
     RegionalZone zone = Simpplle.getCurrentZone();
 
     if (strTok.countTokens() != 2) {
@@ -359,7 +359,7 @@ public class PotentialAquaticState {
     throws ParseError
   {
     String              line = "", firstValue;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
     int                 count;
     Process             process;
     RegionalZone        zone = Simpplle.getCurrentZone();
@@ -370,7 +370,7 @@ public class PotentialAquaticState {
         if (line == null) { continue; }
         if (line.trim().length() == 0) { continue; }
 
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line);
+        strTok = new StringTokenizerPlus(line);
         count  = strTok.countTokens();
         firstValue = strTok.nextToken().toUpperCase();
 
@@ -406,14 +406,14 @@ public class PotentialAquaticState {
     return null;
   }
 
-  private void importPositions(simpplle.comcode.utility.StringTokenizerPlus strTok)
+  private void importPositions(StringTokenizerPlus strTok)
    throws ParseError {
     String       str;
     AquaticClass posAquaticClass;
 
     posAquaticClass = AquaticClass.get(strTok.nextToken());
 
-    simpplle.comcode.utility.StringTokenizerPlus posStrTok = new simpplle.comcode.utility.StringTokenizerPlus(strTok.nextToken(),",");
+    StringTokenizerPlus posStrTok = new StringTokenizerPlus(strTok.nextToken(),",");
     if (posStrTok.countTokens() != 2) {
       throw new ParseError("Invalid positions found");
     }
@@ -425,7 +425,7 @@ public class PotentialAquaticState {
     positions.put(posAquaticClass,new Point(x,y));
   }
 
-  private void importProcessNextState(String processName, simpplle.comcode.utility.StringTokenizerPlus strTok)
+  private void importProcessNextState(String processName, StringTokenizerPlus strTok)
     throws ParseError
   {
     RegionalZone        zone = Simpplle.getCurrentZone();
@@ -447,20 +447,20 @@ public class PotentialAquaticState {
     probability.put(process,new Integer(nextStateProb));
   }
 
-  private void readProcessNextState(simpplle.comcode.utility.StringTokenizerPlus strTok)
+  private void readProcessNextState(StringTokenizerPlus strTok)
     throws ParseError
   {
     String              value = null;
     Process             process;
     String              state;
     Integer             prob;
-    simpplle.comcode.utility.StringTokenizerPlus listStrTok;
+    StringTokenizerPlus listStrTok;
     int                 count = -1;
     RegionalZone        zone = Simpplle.getCurrentZone();
 
     try {
       value = strTok.getToken();
-      listStrTok = new simpplle.comcode.utility.StringTokenizerPlus(value,LISTDELIM);
+      listStrTok = new StringTokenizerPlus(value,LISTDELIM);
 
       count = listStrTok.countTokens();
 
@@ -489,17 +489,17 @@ public class PotentialAquaticState {
     }
   }
 
-  private void readPositions(simpplle.comcode.utility.StringTokenizerPlus strTok) throws ParseError {
+  private void readPositions(StringTokenizerPlus strTok) throws ParseError {
     String              value = null;
     AquaticClass        posAquaticClass;
     int                 x,y;
     int                 count;
-    simpplle.comcode.utility.StringTokenizerPlus listStrTok;
+    StringTokenizerPlus listStrTok;
     RegionalZone        zone = Simpplle.getCurrentZone();
 
     try {
       value = strTok.getToken();
-      listStrTok = new simpplle.comcode.utility.StringTokenizerPlus(value,LISTDELIM);
+      listStrTok = new StringTokenizerPlus(value,LISTDELIM);
 
       count = listStrTok.countTokens();
 
@@ -540,7 +540,7 @@ public class PotentialAquaticState {
    */
   public void readData(BufferedReader fin) throws ParseError {
     String              line,value;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus strTok;
 
     try {
       line = fin.readLine().trim();
@@ -548,7 +548,7 @@ public class PotentialAquaticState {
         throw new ParseError ("Not enough Pathway records in file.");
       }
 
-      strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,DELIM);
+      strTok = new StringTokenizerPlus(line,DELIM);
       String str = strTok.getToken();
 
       aquaticClass = AquaticClass.get(str);
@@ -634,9 +634,9 @@ public class PotentialAquaticState {
       process = (Process) keys.nextElement();
       state   = (PotentialAquaticState) nextState.get(process);
       prob    = (Integer) probability.get(process);
-      fout.print("  " + simpplle.comcode.utility.Formatting.fixedField(process.toString(),25,true) + " ");
-      fout.print(simpplle.comcode.utility.Formatting.fixedField(state.toString(),36,true) + " ");
-      fout.println(simpplle.comcode.utility.Formatting.fixedField(prob,3));
+      fout.print("  " + Formatting.fixedField(process.toString(),25,true) + " ");
+      fout.print(Formatting.fixedField(state.toString(),36,true) + " ");
+      fout.println(Formatting.fixedField(prob,3));
     }
 
     AquaticClass posAquaticClass;

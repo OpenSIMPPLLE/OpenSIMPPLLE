@@ -340,7 +340,7 @@ public class FireSpreadDataNewerLegacy {
 
   public static ProcessType getTypeOfFire(ProcessType process, int position,
                                           int resistance, boolean extreme,
-                                          simpplle.comcode.element.Evu evu, Climate.Season season)
+                                          Evu evu, Climate.Season season)
   {
     VegSimStateData state = evu.getState();
     if (state == null) { return null; }
@@ -527,7 +527,7 @@ public class FireSpreadDataNewerLegacy {
   }
   public static void readData(BufferedReader fin) {
     String              line, str;
-    simpplle.comcode.utility.StringTokenizerPlus strTok, strListTok;
+    StringTokenizerPlus strTok, strListTok;
     int                 fireClass=0, relativePosition=0, resistance=0;
     SizeClass.Structure structure;
     int                 numEntries=0, numRules=0;
@@ -545,7 +545,7 @@ public class FireSpreadDataNewerLegacy {
 
       while (line != null) {
 
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line, ",");
+        strTok = new StringTokenizerPlus(line, ",");
         str = strTok.getToken();
         if (str.equals("LMSF")) {
           fireClass = LMSF_CLASS;
@@ -594,11 +594,11 @@ public class FireSpreadDataNewerLegacy {
 
         for (i = 0; i < numEntries; i++) {
           line = fin.readLine();
-          strTok = new simpplle.comcode.utility.StringTokenizerPlus(line, ",");
+          strTok = new StringTokenizerPlus(line, ",");
 
           numRules = strTok.getIntToken();
 
-          strListTok = new simpplle.comcode.utility.StringTokenizerPlus(strTok.getToken(), ":");
+          strListTok = new StringTokenizerPlus(strTok.getToken(), ":");
           count = strListTok.countTokens();
           entry = new FireSpreadDataEntry(count, numRules,structure);
 
@@ -612,12 +612,12 @@ public class FireSpreadDataNewerLegacy {
             entry.addDensityRule(entryRule);
 
             line = fin.readLine();
-            strTok = new simpplle.comcode.utility.StringTokenizerPlus(line, ",");
+            strTok = new StringTokenizerPlus(line, ",");
 
             // Read the Size Class list
             str = strTok.getToken();
             if (str != null) {
-              strListTok = new simpplle.comcode.utility.StringTokenizerPlus(str, ":");
+              strListTok = new StringTokenizerPlus(str, ":");
               count = strListTok.countTokens();
               entryRule.sizeClasses = new SizeClass[count];
               for (k = 0; k < count; k++) {
@@ -628,7 +628,7 @@ public class FireSpreadDataNewerLegacy {
             // Read the Process List (if any)
             str = strTok.getToken();
             if (str != null) {
-              strListTok = new simpplle.comcode.utility.StringTokenizerPlus(str, ":");
+              strListTok = new StringTokenizerPlus(str, ":");
               count = strListTok.countTokens();
               entryRule.processes = new ProcessType[count];
               for (k = 0; k < count; k++) {
@@ -797,7 +797,7 @@ public class FireSpreadDataNewerLegacy {
   public static void convertToFireSpreadLogic() {
     FireSpreadDataEntry entry;
 
-    simpplle.comcode.logic.FireEventLogic.getInstance().clearData(simpplle.comcode.logic.FireEventLogic.SPREAD_STR);
+    FireEventLogic.getInstance().clearData(FireEventLogic.SPREAD_STR);
     for (int p=0; p<NUM_PROCESS_CLASS; p++) {
       ArrayList<ProcessType> originProcessList = new ArrayList<ProcessType>(3);
       if (p == LMSF_CLASS) {
@@ -855,7 +855,7 @@ public class FireSpreadDataNewerLegacy {
                   positions.add(simpplle.comcode.process.FireEvent.NEXT_TO);
                 }
 
-                simpplle.comcode.logic.FireEventLogic.getInstance().addLegacyData(fireResist,
+                FireEventLogic.getInstance().addLegacyData(fireResist,
                                             rule.sizeClasses,
                                             densities,
                                             rule.processes,

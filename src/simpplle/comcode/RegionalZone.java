@@ -174,10 +174,10 @@ public abstract class RegionalZone {
    */
   public String getPathwayDir () {
     if (historicPathways) {
-      return (simpplle.comcode.utility.Utility.makePathname(zoneDir, historicPathwayDir));
+      return (Utility.makePathname(zoneDir, historicPathwayDir));
     }
     else {
-      return (simpplle.comcode.utility.Utility.makePathname(zoneDir, pathwayDir));
+      return (Utility.makePathname(zoneDir, pathwayDir));
     }
   }
 
@@ -186,7 +186,7 @@ public abstract class RegionalZone {
     * @return a String
     */
   public String getDataDir() {
-    return (simpplle.comcode.utility.Utility.makePathname(zoneDir,dataDir));
+    return (Utility.makePathname(zoneDir,dataDir));
   }
 /**
  * Makes and gets the Image directory for this regional zone.  An example of this from the sierra nevada regional zone:
@@ -194,7 +194,7 @@ public abstract class RegionalZone {
  * @return the image directory.  from above example: "knowledge/zones/sierra-nevada/images"
  */
   public String getImageDir() {
-    return (simpplle.comcode.utility.Utility.makePathname(zoneDir,imageDir));
+    return (Utility.makePathname(zoneDir,imageDir));
   }
 /**
  * Gets the GIS Directory for this Regional zone.  Must call to the utility class to make the pathname.
@@ -203,7 +203,7 @@ public abstract class RegionalZone {
  * @return pathname with zoneDir/gisDir  from above example: "knowledge/zones/sierra-nevada/gis"
  */
   public String getGisDir() {
-    return (simpplle.comcode.utility.Utility.makePathname(zoneDir,gisDir));
+    return (Utility.makePathname(zoneDir,gisDir));
   }
 /**
  * Gets the wildlife directory by passing to Utility class to make the pathname with zonedir and datadir, then passing that again to utility 
@@ -212,8 +212,8 @@ public abstract class RegionalZone {
  * @return wildlife directory.  from above example: "knowledge/zones/sierra-nevada/data/wildlife"
  */
   public String getWildlifeDir() {
-    String dir = simpplle.comcode.utility.Utility.makePathname(zoneDir,dataDir);
-    return (simpplle.comcode.utility.Utility.makePathname(dir,wildlifeDir));
+    String dir = Utility.makePathname(zoneDir,dataDir);
+    return (Utility.makePathname(dir,wildlifeDir));
   }
 
   /**
@@ -223,7 +223,7 @@ public abstract class RegionalZone {
    * @return the directory contains a zones sample area files. from above example: "knowledge/zones/sierra-nevada/sample-areas"
    */
   public String getSampleAreasDir () {
-    return (simpplle.comcode.utility.Utility.makePathname(zoneDir, sampleAreasDir));
+    return (Utility.makePathname(zoneDir, sampleAreasDir));
   }
 
   /**

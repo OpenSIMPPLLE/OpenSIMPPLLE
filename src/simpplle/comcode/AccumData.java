@@ -263,7 +263,7 @@ public class AccumData {
    * @throws HibernateException
    * @throws SQLException
    */
-  public static void writeDatabase(Session session, simpplle.comcode.element.Evu evu, int run,
+  public static void writeDatabase(Session session, Evu evu, int run,
                                    ArrayList<HashMap<Lifeform,ArrayList<VegSimStateData>>> data)
       throws HibernateException, SQLException
   {

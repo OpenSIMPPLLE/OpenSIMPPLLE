@@ -83,7 +83,7 @@ public class ProcessSchedule {
     int                  count = 0;
     String               processName;
     ProcessType          processType;
-    simpplle.comcode.utility.StringTokenizerPlus strTok;
+    StringTokenizerPlus  strTok;
     boolean              newProcessApp = true;
 
     try {
@@ -94,7 +94,7 @@ public class ProcessSchedule {
       line = line.trim();
 
       do {
-        strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+        strTok = new StringTokenizerPlus(line,",");
         if (strTok.countTokens() != 2) {
           throw new ParseError("Invalid line in input file: " + line);
         }
@@ -133,7 +133,7 @@ public class ProcessSchedule {
             continue;
           }
 
-          strTok = new simpplle.comcode.utility.StringTokenizerPlus(line,",");
+          strTok = new StringTokenizerPlus(line,",");
           count  = strTok.countTokens();
           if (count != 1 && count != 2) {
             throw new ParseError("Invalid line in file: " + line);
@@ -230,7 +230,7 @@ public class ProcessSchedule {
   }
 
   public void save(File filename) {
-    File             outfile = simpplle.comcode.utility.Utility.makeSuffixedPathname(filename,"","process");
+    File             outfile = Utility.makeSuffixedPathname(filename,"","process");
     GZIPOutputStream out;
     PrintWriter      fout;
 

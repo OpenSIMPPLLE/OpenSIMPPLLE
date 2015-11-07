@@ -1,13 +1,16 @@
 package simpplle.comcode;
 
+import java.io.Externalizable;
 import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.apache.commons.collections.map.MultiKeyMap;
 import java.util.HashMap;
-
+import org.apache.commons.collections.keyvalue.MultiKey;
 import org.apache.commons.collections.MapIterator;
 import org.apache.commons.collections.map.Flat3Map;
-
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -464,7 +467,7 @@ public class TrackingSpeciesReportData {
    * @param unit
    * @param timeStep
    */
-  public void updateSummary(simpplle.comcode.element.Evu unit, int timeStep) {
+  public void updateSummary(Evu unit, int timeStep) {
     Simulation simulation = Simulation.getInstance();
 
     Lifeform[] lives  = Lifeform.getAllValues();

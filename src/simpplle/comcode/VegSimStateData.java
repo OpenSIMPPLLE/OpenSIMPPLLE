@@ -10,8 +10,6 @@ import org.apache.commons.collections.map.*;
 import org.apache.commons.collections.MapIterator;
 import org.hibernate.Session;
 import org.hibernate.HibernateException;
-import simpplle.comcode.utility.IntToString;
-
 import java.io.*;
 
 /**
@@ -65,7 +63,7 @@ public class VegSimStateData implements Externalizable {
 
   public VegSimStateData() {
     this.process = ProcessType.SUCCESSION;
-    this.prob    = simpplle.comcode.element.Evu.NOPROB;
+    this.prob    = Evu.NOPROB;
     this.trackingSpecies = null;
     this.season  = Climate.Season.YEAR;
   }
@@ -143,46 +141,46 @@ public class VegSimStateData implements Externalizable {
     }
     else {
       // For old versions these values are set when this class is loaded
-      // by simpplle.comcode.element.Evu
+      // by simpplle.comcode.Evu
     }
 
     veg = VegetativeType.readExternalData(in);
     process = ProcessType.readExternalSimple(in);
 
     String str = (String)in.readObject();
-    if (str.equals(simpplle.comcode.element.Evu.D_STR)) {
-      prob = simpplle.comcode.element.Evu.D;
+    if (str.equals(Evu.D_STR)) {
+      prob = Evu.D;
     }
-    else if (str.equals(simpplle.comcode.element.Evu.L_STR)) {
-      prob = simpplle.comcode.element.Evu.L;
+    else if (str.equals(Evu.L_STR)) {
+      prob = Evu.L;
     }
-    else if (str.equals(simpplle.comcode.element.Evu.S_STR)) {
-      prob = simpplle.comcode.element.Evu.S;
+    else if (str.equals(Evu.S_STR)) {
+      prob = Evu.S;
     }
-    else if (str.equals(simpplle.comcode.element.Evu.SE_STR)) {
-      prob = simpplle.comcode.element.Evu.SE;
+    else if (str.equals(Evu.SE_STR)) {
+      prob = Evu.SE;
     }
-    else if (str.equals(simpplle.comcode.element.Evu.SFS_STR)) {
-      prob = simpplle.comcode.element.Evu.SFS;
+    else if (str.equals(Evu.SFS_STR)) {
+      prob = Evu.SFS;
     }
-    else if (str.equals(simpplle.comcode.element.Evu.SUPP_STR)) {
-      prob = simpplle.comcode.element.Evu.SUPP;
+    else if (str.equals(Evu.SUPP_STR)) {
+      prob = Evu.SUPP;
     }
-    else if (str.equals(simpplle.comcode.element.Evu.COMP_STR)) {
-      prob = simpplle.comcode.element.Evu.COMP;
+    else if (str.equals(Evu.COMP_STR)) {
+      prob = Evu.COMP;
     }
-    else if (str.equals(simpplle.comcode.element.Evu.GAP_STR)) {
-      prob = simpplle.comcode.element.Evu.GAP;
+    else if (str.equals(Evu.GAP_STR)) {
+      prob = Evu.GAP;
     }
-    else if (str.equals(simpplle.comcode.element.Evu.NOPROB_STR)) {
-      prob = simpplle.comcode.element.Evu.NOPROB;
+    else if (str.equals(Evu.NOPROB_STR)) {
+      prob = Evu.NOPROB;
     }
     else {
       try {
         prob = (short)Integer.parseInt(str);
       }
       catch (NumberFormatException ex) {
-        prob = simpplle.comcode.element.Evu.NOPROB;
+        prob = Evu.NOPROB;
       }
     }
 
@@ -277,7 +275,7 @@ public class VegSimStateData implements Externalizable {
    */
   public void setVeg(VegetativeType veg) {
     // Make sure we get the existing instance, not a newly created one.
-    simpplle.comcode.element.Evu evu = Simpplle.getCurrentArea().getEvu(slink);
+    Evu evu = Simpplle.getCurrentArea().getEvu(slink);
     HabitatTypeGroup group = evu.getHabitatTypeGroup();
 
     this.veg = group.getVegetativeType(veg.getSpecies(),veg.getSizeClass(),veg.getAge(),veg.getDensity());
@@ -304,19 +302,19 @@ public class VegSimStateData implements Externalizable {
   public void setProb(int prob) { this.prob = (short)prob; }
 
   public float getFloatProb() {
-    return ( (float)prob / (float) simpplle.comcode.utility.Utility.pow(10,Area.getAcresPrecision()) );
+    return ( (float)prob / (float)Utility.pow(10,Area.getAcresPrecision()) );
   }
   public String getProbString() {
     switch (prob) {
-      case simpplle.comcode.element.Evu.D:    return simpplle.comcode.element.Evu.D_STR;
-      case simpplle.comcode.element.Evu.L:    return simpplle.comcode.element.Evu.L_STR;
-      case simpplle.comcode.element.Evu.S:    return simpplle.comcode.element.Evu.S_STR;
-      case simpplle.comcode.element.Evu.SE:   return simpplle.comcode.element.Evu.SE_STR;
-      case simpplle.comcode.element.Evu.SFS:  return simpplle.comcode.element.Evu.SFS_STR;
-      case simpplle.comcode.element.Evu.SUPP: return simpplle.comcode.element.Evu.SUPP_STR;
-      case simpplle.comcode.element.Evu.COMP: return simpplle.comcode.element.Evu.COMP_STR;
-      case simpplle.comcode.element.Evu.GAP:  return simpplle.comcode.element.Evu.GAP_STR;
-      case simpplle.comcode.element.Evu.NOPROB: return simpplle.comcode.element.Evu.NOPROB_STR;
+      case Evu.D:    return Evu.D_STR;
+      case Evu.L:    return Evu.L_STR;
+      case Evu.S:    return Evu.S_STR;
+      case Evu.SE:   return Evu.SE_STR;
+      case Evu.SFS:  return Evu.SFS_STR;
+      case Evu.SUPP: return Evu.SUPP_STR;
+      case Evu.COMP: return Evu.COMP_STR;
+      case Evu.GAP:  return Evu.GAP_STR;
+      case Evu.NOPROB: return Evu.NOPROB_STR;
       default:   return IntToString.get(prob);
     }
   }
@@ -531,7 +529,7 @@ public class VegSimStateData implements Externalizable {
       throw new SimpplleError("Problems writing database", ex);
     }
   }
-  public static void writeAccessFiles(PrintWriter fout, PrintWriter trackOut, simpplle.comcode.element.Evu evu, VegSimStateData state)
+  public static void writeAccessFiles(PrintWriter fout, PrintWriter trackOut, Evu evu, VegSimStateData state)
   {
     Simulation sim = Simulation.getInstance();
     

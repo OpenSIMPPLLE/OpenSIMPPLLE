@@ -23,7 +23,7 @@ public class RoadsSimData implements Externalizable {
   static final long serialVersionUID = 3189835244576017961L;
   static final int  version          = 1;
 
-  private simpplle.comcode.element.Roads.Status status;
+  private Roads.Status status;
 /**
  * Constructor.  Inherits from java Object class.  
  */
@@ -34,14 +34,14 @@ public class RoadsSimData implements Externalizable {
  * Sets the status of the roads in the simulation data to a new status.   Choices are OPEN(O), CLOSED(C), PROPOSED(P), ELIMINATED(E), UNKNOWN(NIL), NONE(N)
  * @param newStatus
  */
-  public void setStatus(simpplle.comcode.element.Roads.Status newStatus) {
+  public void setStatus(Roads.Status newStatus) {
     this.status = newStatus;
   }
   /**
    * Gets the status of the roads.  Choices are OPEN(O), CLOSED(C), PROPOSED(P), ELIMINATED(E), UNKNOWN(NIL), NONE(N)
    * @return
    */
-  public simpplle.comcode.element.Roads.Status getStatus() {
+  public Roads.Status getStatus() {
     return status;
   }
 /**
@@ -51,7 +51,7 @@ public class RoadsSimData implements Externalizable {
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
 
-    status = (simpplle.comcode.element.Roads.Status) in.readObject();
+    status = (Roads.Status) in.readObject();
   }
   /**
    * writes to an external source the road status

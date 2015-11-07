@@ -1,8 +1,10 @@
 package simpplle.gui;
 
 import javax.swing.table.AbstractTableModel;
+import simpplle.comcode.BaseLogic;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
+import simpplle.comcode.*;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -24,7 +26,7 @@ import javax.swing.table.TableColumn;
 
 
 public class LogicDataModel extends AbstractTableModel {
-  private simpplle.comcode.logic.AbstractBaseLogic logicInst;
+  private AbstractBaseLogic logicInst;
   private String    kindStr;
   private JTable    table;
   private boolean   isRegen=false;
@@ -34,7 +36,7 @@ public class LogicDataModel extends AbstractTableModel {
  * @param logicInst
  * @param table
  */
-  public LogicDataModel(String kind, simpplle.comcode.logic.AbstractBaseLogic logicInst, JTable table) {
+  public LogicDataModel(String kind, AbstractBaseLogic logicInst, JTable table) {
     this.kindStr   = kind;
     this.logicInst = logicInst;
     this.table     = table;
@@ -54,8 +56,8 @@ public class LogicDataModel extends AbstractTableModel {
    * Gets the logic instance.  If it is a regeneration instance gets regeneration logic instance for the process.  Otherwise returns the logic instance for the data model.
    * @return
    */
-  public simpplle.comcode.logic.AbstractBaseLogic getLogicInst() {
-    return ( (isRegen) ? simpplle.comcode.logic.RegenerationLogic.getLogicInstance(kindStr) : logicInst);
+  public AbstractBaseLogic getLogicInst() {
+    return ( (isRegen) ? RegenerationLogic.getLogicInstance(kindStr) : logicInst);
   }
 /**
  * This gets the column model for this logic data instance and then gets a particular column and returns the column identifier.  If the column identifier is a 
@@ -94,7 +96,7 @@ public class LogicDataModel extends AbstractTableModel {
     col = getRealColumnValue(col);
     if (isRegen) {
       return (col != getLogicInst().ROW_COL &&
-              col != simpplle.comcode.logic.RegenerationData.SPECIES_CODE_COL);
+              col != RegenerationData.SPECIES_CODE_COL);
     }
     else {
       return (col != getLogicInst().ROW_COL);
@@ -115,7 +117,7 @@ public class LogicDataModel extends AbstractTableModel {
  * @param row
  * @return Gets the value of a particular row based on the logic data instance and kind. 
  */
-  public simpplle.comcode.logic.AbstractLogicData getValueAt(int row) {
+  public AbstractLogicData getValueAt(int row) {
     return getLogicInst().getValueAt(row,kindStr);
   }
 /**
@@ -131,7 +133,7 @@ public class LogicDataModel extends AbstractTableModel {
    * Gets the current logic data instance.  If it is not null gets the row count by counting the size of the data kind arraylist.  
    */
   public int getRowCount() {
-    simpplle.comcode.logic.AbstractBaseLogic inst = getLogicInst();
+    AbstractBaseLogic inst = getLogicInst();
     return (inst != null) ? inst.getRowCount(kindStr) : 0;
   }
 /**
