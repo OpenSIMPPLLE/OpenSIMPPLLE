@@ -116,7 +116,7 @@ public class FireEventLogic extends BaseLogic {
                                    ProcessType[] processes,
                                    Climate.Season  season,
                                    ArrayList<ProcessType> originProcesses,
-                                   ArrayList<simpplle.comcode.process.FireEvent.Position> positions,
+                                   ArrayList<FireEvent.Position> positions,
                                    ProcessType     average,
                                    ProcessType     extreme) {
 

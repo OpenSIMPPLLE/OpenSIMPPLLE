@@ -1059,7 +1059,7 @@ public abstract class FireTypeDataLegacy {
   {
 
     int       page = -1;
-    SizeClass.Structure structure = simpplle.comcode.process.FireEvent.NON_FOREST;
+    SizeClass.Structure structure = FireEvent.NON_FOREST;
 
     if (sizeClass == SizeClass.GRASS           || sizeClass == SizeClass.UNIFORM           ||
         sizeClass == SizeClass.SCATTERED       || sizeClass == SizeClass.CLUMPED           ||
@@ -1067,20 +1067,20 @@ public abstract class FireTypeDataLegacy {
         sizeClass == SizeClass.OPEN_LOW_SHRUB  || sizeClass == SizeClass.CLOSED_LOW_SHRUB  ||
         sizeClass == SizeClass.OPEN_MID_SHRUB  || sizeClass == SizeClass.CLOSED_MID_SHRUB  ||
         sizeClass == SizeClass.OPEN_TALL_SHRUB || sizeClass == SizeClass.CLOSED_TALL_SHRUB) {
-      structure = simpplle.comcode.process.FireEvent.NON_FOREST;
+      structure = FireEvent.NON_FOREST;
       page = 0;
     }
     else if (sizeClass == SizeClass.SS) {
-      structure = simpplle.comcode.process.FireEvent.SINGLE_STORY;
+      structure = FireEvent.SINGLE_STORY;
       page = 0;
     }
     else if (sizeClass == SizeClass.POLE) {
-      structure = simpplle.comcode.process.FireEvent.SINGLE_STORY;
+      structure = FireEvent.SINGLE_STORY;
       page = 1;
     }
     else if (sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.LARGE ||
              sizeClass == SizeClass.VERY_LARGE) {
-      structure = simpplle.comcode.process.FireEvent.SINGLE_STORY;
+      structure = FireEvent.SINGLE_STORY;
       page = 2;
     }
     else if (sizeClass == SizeClass.PTS || sizeClass == SizeClass.PMU  ||
@@ -1088,7 +1088,7 @@ public abstract class FireTypeDataLegacy {
              sizeClass == SizeClass.LMU || sizeClass == SizeClass.MU   ||
              sizeClass == SizeClass.LTS || sizeClass == SizeClass.VLMU ||
              sizeClass == SizeClass.VLTS) {
-      structure = simpplle.comcode.process.FireEvent.MULTIPLE_STORY;
+      structure = FireEvent.MULTIPLE_STORY;
       page = 0;
     }
     else {
@@ -1096,11 +1096,11 @@ public abstract class FireTypeDataLegacy {
     }
 
     switch (resistance) {
-      case simpplle.comcode.process.FireEvent.LOW:
+      case FireEvent.LOW:
         return getLowTypeOfFire(structure,page,resistance,sizeClass,density,pastProcessType,treatType);
-      case simpplle.comcode.process.FireEvent.MODERATE:
+      case FireEvent.MODERATE:
         return getModerateTypeOfFire(structure,page,resistance,sizeClass,density,pastProcessType,treatType);
-      case simpplle.comcode.process.FireEvent.HIGH:
+      case FireEvent.HIGH:
         return getHighTypeOfFire(structure,page,resistance,sizeClass,density,pastProcessType,treatType);
       default:
         return getLowTypeOfFire(structure,page,resistance,sizeClass,density,pastProcessType,treatType);
@@ -1116,31 +1116,31 @@ public abstract class FireTypeDataLegacy {
   {
 
     int       page = -1;
-    SizeClass.Structure structure = simpplle.comcode.process.FireEvent.NON_FOREST;
+    SizeClass.Structure structure = FireEvent.NON_FOREST;
 
     if (sizeClass == SizeClass.HERB        || sizeClass == SizeClass.GH        ||
         sizeClass == SizeClass.TALL_SHRUB  || sizeClass == SizeClass.LOW_SHRUB ||
         sizeClass == SizeClass.DWARF_SHRUB || sizeClass == SizeClass.AQU) {
-      structure = simpplle.comcode.process.FireEvent.NON_FOREST;
+      structure = FireEvent.NON_FOREST;
       page = 0;
     }
     else if (sizeClass == SizeClass.SS || sizeClass == SizeClass.SS_SS) {
-      structure = simpplle.comcode.process.FireEvent.SINGLE_STORY;
+      structure = FireEvent.SINGLE_STORY;
       page = 0;
     }
     else if (sizeClass == SizeClass.POLE || sizeClass == SizeClass.POLE_POLE) {
-      structure = simpplle.comcode.process.FireEvent.SINGLE_STORY;
+      structure = FireEvent.SINGLE_STORY;
       page = 1;
     }
     else if (sizeClass == SizeClass.LARGE ||
              sizeClass == SizeClass.LARGE_LARGE) {
-      structure = simpplle.comcode.process.FireEvent.SINGLE_STORY;
+      structure = FireEvent.SINGLE_STORY;
       page = 2;
     }
     else if (sizeClass == SizeClass.SS_POLE || sizeClass == SizeClass.SS_LARGE  ||
              sizeClass == SizeClass.POLE_SS || sizeClass == SizeClass.POLE_LARGE  ||
              sizeClass == SizeClass.LARGE_SS || sizeClass == SizeClass.LARGE_POLE) {
-      structure = simpplle.comcode.process.FireEvent.MULTIPLE_STORY;
+      structure = FireEvent.MULTIPLE_STORY;
       page = 0;
     }
     else {
@@ -1148,11 +1148,11 @@ public abstract class FireTypeDataLegacy {
     }
 
     switch (resistance) {
-      case simpplle.comcode.process.FireEvent.LOW:
+      case FireEvent.LOW:
         return getLowTypeOfFire(structure,page,resistance,sizeClass,density,pastProcessType,treatType);
-      case simpplle.comcode.process.FireEvent.MODERATE:
+      case FireEvent.MODERATE:
         return getModerateTypeOfFire(structure,page,resistance,sizeClass,density,pastProcessType,treatType);
-      case simpplle.comcode.process.FireEvent.HIGH:
+      case FireEvent.HIGH:
         return getHighTypeOfFire(structure,page,resistance,sizeClass,density,pastProcessType,treatType);
       default:
         return getLowTypeOfFire(structure,page,resistance,sizeClass,density,pastProcessType,treatType);
@@ -1187,21 +1187,21 @@ public abstract class FireTypeDataLegacy {
       // Non Forest
       numPages = Integer.parseInt(line);
       for(resist=0; resist<NUM_RESISTANCE; resist++) {
-        fireTypeData[resist][simpplle.comcode.process.FireEvent.NON_FOREST.ordinal()] = new ProcessType[numPages][][];
+        fireTypeData[resist][FireEvent.NON_FOREST.ordinal()] = new ProcessType[numPages][][];
       }
 
       // Single Story
       line     = fin.readLine();
       numPages = Integer.parseInt(line);
       for(resist=0; resist<NUM_RESISTANCE; resist++) {
-        fireTypeData[resist][simpplle.comcode.process.FireEvent.SINGLE_STORY.ordinal()] = new ProcessType[numPages][][];
+        fireTypeData[resist][FireEvent.SINGLE_STORY.ordinal()] = new ProcessType[numPages][][];
       }
 
       // Multiple Story
       line     = fin.readLine();
       numPages = Integer.parseInt(line);
       for(resist=0; resist<NUM_RESISTANCE; resist++) {
-        fireTypeData[resist][simpplle.comcode.process.FireEvent.MULTIPLE_STORY.ordinal()] = new ProcessType[numPages][][];
+        fireTypeData[resist][FireEvent.MULTIPLE_STORY.ordinal()] = new ProcessType[numPages][][];
       }
 
       for(resist=0;resist<NUM_RESISTANCE;resist++) {

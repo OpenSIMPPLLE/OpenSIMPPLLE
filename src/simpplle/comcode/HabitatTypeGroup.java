@@ -1737,7 +1737,7 @@ public final class HabitatTypeGroup {
               sizeClass == SizeClass.GRA || sizeClass == SizeClass.SHR ||
               sizeClass == E) ||
              /* Utah */
-             (zone instanceof simpplle.comcode.zone.SouthwestUtah &&
+             (zone instanceof SouthwestUtah &&
                (sizeClass == SizeClass.GF || sizeClass == SizeClass.MEDIUM ||
                 sizeClass == SizeClass.LS || sizeClass == SizeClass.MS ||
                 sizeClass == SizeClass.TS)))) {

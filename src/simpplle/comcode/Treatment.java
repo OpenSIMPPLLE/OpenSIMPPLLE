@@ -1,15 +1,6 @@
 
 package simpplle.comcode;
 
-import simpplle.comcode.zone.ColoradoFrontRange;
-import simpplle.comcode.zone.EastsideRegionOne;
-import simpplle.comcode.zone.Gila;
-import simpplle.comcode.zone.NorthernCentralRockies;
-import simpplle.comcode.zone.SierraNevada;
-import simpplle.comcode.zone.SouthernCalifornia;
-import simpplle.comcode.zone.Teton;
-import simpplle.comcode.zone.WestsideRegionOne;
-
 import java.io.*;
 import java.util.*;
 import java.util.zip.*;
@@ -727,23 +718,23 @@ public class Treatment  implements Externalizable {
 
     switch (zoneId) {
       case ValidZones.WESTSIDE_REGION_ONE:
-        return getFollowUpTreatment((simpplle.comcode.zone.WestsideRegionOne)zone, treatment);
+        return getFollowUpTreatment((WestsideRegionOne)zone, treatment);
       case ValidZones.EASTSIDE_REGION_ONE:
-        return getFollowUpTreatment((simpplle.comcode.zone.EastsideRegionOne)zone, treatment);
+        return getFollowUpTreatment((EastsideRegionOne)zone, treatment);
       case ValidZones.TETON:
-        return getFollowUpTreatment((simpplle.comcode.zone.Teton)zone, treatment);
+        return getFollowUpTreatment((Teton)zone, treatment);
       case ValidZones.NORTHERN_CENTRAL_ROCKIES:
-        return getFollowUpTreatment((simpplle.comcode.zone.NorthernCentralRockies)zone, treatment);
+        return getFollowUpTreatment((NorthernCentralRockies)zone, treatment);
       case ValidZones.SIERRA_NEVADA:
         return getFollowUpTreatment((SierraNevada)zone, treatment);
       case ValidZones.SOUTHERN_CALIFORNIA:
-        return getFollowUpTreatment((simpplle.comcode.zone.SouthernCalifornia)zone, treatment);
+        return getFollowUpTreatment((SouthernCalifornia)zone, treatment);
       case ValidZones.GILA:
         return getFollowUpTreatment((Gila)zone, treatment);
       case ValidZones.SOUTH_CENTRAL_ALASKA:
-        return getFollowUpTreatment((simpplle.comcode.zone.SouthCentralAlaska)zone, treatment);
+        return getFollowUpTreatment((SouthCentralAlaska)zone, treatment);
       case ValidZones.COLORADO_FRONT_RANGE:
-        return getFollowUpTreatment((simpplle.comcode.zone.ColoradoFrontRange)zone, treatment);
+        return getFollowUpTreatment((ColoradoFrontRange)zone, treatment);
       default: return null;
     }
   }
@@ -832,7 +823,7 @@ public class Treatment  implements Externalizable {
     return getFollowUpTreatmentCommon(treatment);
   }
 
-  private static TreatmentType getFollowUpTreatment(simpplle.comcode.zone.SierraNevada zone, TreatmentType treatment) {
+  private static TreatmentType getFollowUpTreatment(SierraNevada zone, TreatmentType treatment) {
     return getFollowUpTreatment(treatment);
   }
 
@@ -840,11 +831,11 @@ public class Treatment  implements Externalizable {
     return getFollowUpTreatment(treatment);
   }
 
-  private static TreatmentType getFollowUpTreatment(simpplle.comcode.zone.Gila zone, TreatmentType treatment) {
+  private static TreatmentType getFollowUpTreatment(Gila zone, TreatmentType treatment) {
     return getFollowUpTreatment(treatment);
   }
 
-  private static TreatmentType getFollowUpTreatment(simpplle.comcode.zone.SouthCentralAlaska zone, TreatmentType treatment) {
+  private static TreatmentType getFollowUpTreatment(SouthCentralAlaska zone, TreatmentType treatment) {
     return getFollowUpTreatment(treatment);
   }
 

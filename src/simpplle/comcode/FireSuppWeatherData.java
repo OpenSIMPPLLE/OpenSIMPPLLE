@@ -5,9 +5,8 @@ import java.util.Formatter;
 import java.util.Locale;
 import java.util.zip.*;
 import java.util.ArrayList;
-
-import simpplle.comcode.zone.ColoradoFrontRange;
-import simpplle.comcode.zone.ColoradoPlateau;
+import com.thoughtworks.xstream.XStream;
+import simpplle.gui.FireSuppWeather;
 
 /**
  * 
@@ -96,7 +95,7 @@ public class FireSuppWeatherData {
   private static void convert(int[] data) {
     instances.clear();
     RegionalZone zone = Simpplle.getCurrentZone();
-    if ((zone instanceof simpplle.comcode.zone.SouthCentralAlaska) ||
+    if ((zone instanceof SouthCentralAlaska) ||
         (zone instanceof ColoradoFrontRange) ||
         (zone instanceof ColoradoPlateau)) {
       convertSeasonsVersion(data);

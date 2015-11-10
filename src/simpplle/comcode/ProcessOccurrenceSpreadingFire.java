@@ -250,11 +250,11 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
 //    if (getProcess().equals(ProcessType.STAND_REPLACING_FIRE)) {
     if (!isExtremeSet) {
-      isExtreme = simpplle.comcode.process.FireEvent.isExtremeSpread();
+      isExtreme = FireEvent.isExtremeSpread();
       isExtremeSet = true;
     }
     if (!isFireSeasonSet && getProcess().isFireProcess()) {
-      fireSeason = simpplle.comcode.process.FireEvent.getFireSeason();
+      fireSeason = FireEvent.getFireSeason();
       isFireSeasonSet = true;
       
     }
@@ -311,7 +311,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       
       
       
-      if (simpplle.comcode.process.FireEvent.doSpreadEndingWeather(zone,getEventAcres(),getFireSeason(),weatherProb)) {
+      if (FireEvent.doSpreadEndingWeather(zone,getEventAcres(),getFireSeason(),weatherProb)) {
         finished = true;
         eventStopReason = EventStop.WEATHER;
 
@@ -330,7 +330,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         return;
       }
 
-      if (Area.getFloatAcres(eventAcres) > simpplle.comcode.process.FireEvent.getExtremeEventAcres()) {
+      if (Area.getFloatAcres(eventAcres) > FireEvent.getExtremeEventAcres()) {
         isExtreme = true;
       }
 
@@ -427,7 +427,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         }
       }
 
-      simpplle.comcode.process.FireEvent.currentEvent = this;
+      FireEvent.currentEvent = this;
       // TODO Getting a null pointer exception when getDominantLifeformFire returns null.
       //      This apparently is result of isSuppressed returning false when should be true.
       //      cannot get error to repeat after numerous attempts.
@@ -452,7 +452,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
       finished = (spreadQueue.size() == 0);
 
-      simpplle.comcode.process.FireEvent.currentEvent = null;
+      FireEvent.currentEvent = null;
       Area.currentLifeform = null;
 //      thread.yield();  // Give other thread a chance to run.
 //    }
@@ -569,7 +569,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     if (isSpot)
     {
-      fireType = simpplle.comcode.process.FireEvent.getTypeOfFire(Simpplle.getCurrentZone(), toEvu, toLifeform);
+      fireType = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(), toEvu, toLifeform);
       if (fireType == ProcessType.NONE) { return false; }
 
       if (Area.multipleLifeformsEnabled()) {

@@ -1,10 +1,6 @@
 package simpplle.comcode;
 
-import simpplle.comcode.zone.EastsideRegionOne;
-import simpplle.comcode.zone.Teton;
-import simpplle.comcode.zone.WestsideRegionOne;
-
-/** The University of Montana owns copyright of the designated documentation contained
+/** The University of Montana owns copyright of the designated documentation contained 
 * within this file as part of the software product designated by Uniform Resource Identifier 
 * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
 * Open Source License Contract pertaining to this documentation and agrees to abide by all 
@@ -73,8 +69,8 @@ public abstract class Wsbw {
    * @param zone is WestsideRegionOne
    * @param evu is an Evu.
    */
-  public static int computeSusceptibilityIndex (simpplle.comcode.zone.WestsideRegionOne zone,
-                                                Evu evu) {
+  public static int computeSusceptibilityIndex (WestsideRegionOne zone,
+                                                 Evu evu) {
     float index = 0.0f;
 
     if (oneOfHosts(zone,evu)) {
@@ -101,7 +97,7 @@ public abstract class Wsbw {
    * @param zone is a EastsideRegionOne
    * @param evu is an Evu.
    */
-  public static int computeSusceptibilityIndex (simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  public static int computeSusceptibilityIndex (EastsideRegionOne zone, Evu evu) {
     float index = 0.0f;
 
     if (oneOfHosts(zone,evu)) {
@@ -121,7 +117,7 @@ public abstract class Wsbw {
 
     return Math.round(index);
   }
-  public static int computeSusceptibilityIndex (simpplle.comcode.zone.Teton zone, Evu evu) {
+  public static int computeSusceptibilityIndex (Teton zone, Evu evu) {
     float index = 0.0f;
 
     if (oneOfHosts(zone,evu)) {
@@ -141,7 +137,7 @@ public abstract class Wsbw {
 
     return Math.round(index);
   }
-  public static int computeSusceptibilityIndex (simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  public static int computeSusceptibilityIndex (NorthernCentralRockies zone, Evu evu) {
     float index = 0.0f;
 
     if (oneOfHosts(zone,evu)) {
@@ -162,7 +158,7 @@ public abstract class Wsbw {
     return Math.round(index);
   }
 
-  private static boolean oneOfHosts(simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  private static boolean oneOfHosts(WestsideRegionOne zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
 
     if (species == Species.DF         ||
@@ -185,13 +181,13 @@ public abstract class Wsbw {
     }
   }
 
-  private static boolean oneOfHosts(simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  private static boolean oneOfHosts(EastsideRegionOne zone, Evu evu) {
     return oneOfHostsEast(evu);
   }
-  private static boolean oneOfHosts(simpplle.comcode.zone.Teton zone, Evu evu) {
+  private static boolean oneOfHosts(Teton zone, Evu evu) {
     return oneOfHostsEast(evu);
   }
-  private static boolean oneOfHosts(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  private static boolean oneOfHosts(NorthernCentralRockies zone, Evu evu) {
     return oneOfHostsEast(evu);
   }
   private static boolean oneOfHostsEast(Evu evu) {
@@ -243,13 +239,13 @@ public abstract class Wsbw {
     return index;
   }
 
-  private static float percentHostIndex(simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  private static float percentHostIndex(EastsideRegionOne zone, Evu evu) {
     return percentHostIndexEast(evu);
   }
-  private static float percentHostIndex(simpplle.comcode.zone.Teton zone, Evu evu) {
+  private static float percentHostIndex(Teton zone, Evu evu) {
     return percentHostIndexEast(evu);
   }
-  private static float percentHostIndex(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  private static float percentHostIndex(NorthernCentralRockies zone, Evu evu) {
     return percentHostIndexEast(evu);
   }
   private static float percentHostIndexEast(Evu evu) {
@@ -279,7 +275,7 @@ public abstract class Wsbw {
     return index;
   }
 
-  private static float percentClimateHostIndex(simpplle.comcode.zone.WestsideRegionOne zone,
+  private static float percentClimateHostIndex(WestsideRegionOne zone,
                                                Evu evu) {
     float   index   = 0.0f;
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
@@ -344,10 +340,10 @@ public abstract class Wsbw {
   private static float percentClimateHostIndex(EastsideRegionOne zone, Evu evu) {
     return percentClimateHostIndexEast(evu);
   }
-  private static float percentClimateHostIndex(simpplle.comcode.zone.Teton zone, Evu evu) {
+  private static float percentClimateHostIndex(Teton zone, Evu evu) {
     return percentClimateHostIndexEast(evu);
   }
-  private static float percentClimateHostIndex(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  private static float percentClimateHostIndex(NorthernCentralRockies zone, Evu evu) {
     return percentClimateHostIndexEast(evu);
   }
   private static float percentClimateHostIndexEast(Evu evu) {
@@ -430,17 +426,17 @@ public abstract class Wsbw {
     return index;
   }
 
-  private static float densityIndex(simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  private static float densityIndex(WestsideRegionOne zone, Evu evu) {
     return densityIndex(evu);
   }
 
-  private static float densityIndex(simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  private static float densityIndex(EastsideRegionOne zone, Evu evu) {
     return densityIndex(evu);
   }
   private static float densityIndex(Teton zone, Evu evu) {
     return densityIndex(evu);
   }
-  private static float densityIndex(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  private static float densityIndex(NorthernCentralRockies zone, Evu evu) {
     return densityIndex(evu);
   }
 
@@ -467,17 +463,17 @@ public abstract class Wsbw {
     return index;
   }
 
-  private static float structureIndex(simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  private static float structureIndex(WestsideRegionOne zone, Evu evu) {
     return structureIndex((RegionalZone)zone,evu);
   }
 
-  private static float structureIndex(simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  private static float structureIndex(EastsideRegionOne zone, Evu evu) {
     return structureIndex((RegionalZone)zone,evu);
   }
-  private static float structureIndex(simpplle.comcode.zone.Teton zone, Evu evu) {
+  private static float structureIndex(Teton zone, Evu evu) {
     return structureIndex((RegionalZone)zone,evu);
   }
-  private static float structureIndex(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  private static float structureIndex(NorthernCentralRockies zone, Evu evu) {
     return structureIndex((RegionalZone)zone,evu);
   }
 
@@ -521,17 +517,17 @@ public abstract class Wsbw {
     return index;
   }
 
-  private static float standVigorIndex(simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  private static float standVigorIndex(WestsideRegionOne zone, Evu evu) {
     return standVigorIndex((RegionalZone)zone,evu);
   }
 
-  private static float standVigorIndex(simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  private static float standVigorIndex(EastsideRegionOne zone, Evu evu) {
     return standVigorIndex((RegionalZone)zone,evu);
   }
-  private static float standVigorIndex(simpplle.comcode.zone.Teton zone, Evu evu) {
+  private static float standVigorIndex(Teton zone, Evu evu) {
     return standVigorIndex((RegionalZone)zone,evu);
   }
-  private static float standVigorIndex(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  private static float standVigorIndex(NorthernCentralRockies zone, Evu evu) {
     return standVigorIndex((RegionalZone)zone,evu);
   }
 
@@ -555,20 +551,20 @@ public abstract class Wsbw {
     return index;
   }
 
-  private static float maturityIndex(simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  private static float maturityIndex(WestsideRegionOne zone, Evu evu) {
     return maturityIndex((RegionalZone)zone,evu);
   }
-  private static float maturityIndex(simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  private static float maturityIndex(EastsideRegionOne zone, Evu evu) {
     return maturityIndex((RegionalZone)zone,evu);
   }
-  private static float maturityIndex(simpplle.comcode.zone.Teton zone, Evu evu) {
+  private static float maturityIndex(Teton zone, Evu evu) {
     return maturityIndex((RegionalZone)zone,evu);
   }
-  private static float maturityIndex(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  private static float maturityIndex(NorthernCentralRockies zone, Evu evu) {
     return maturityIndex((RegionalZone)zone,evu);
   }
 
-  private static float siteClimateIndex(simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  private static float siteClimateIndex(WestsideRegionOne zone, Evu evu) {
     float                index;
     HabitatTypeGroupType groupType;
 
@@ -604,13 +600,13 @@ public abstract class Wsbw {
     return index;
   }
 
-  private static float siteClimateIndex(simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  private static float siteClimateIndex(EastsideRegionOne zone, Evu evu) {
     return siteClimateIndexEast(evu);
   }
-  private static float siteClimateIndex(simpplle.comcode.zone.Teton zone, Evu evu) {
+  private static float siteClimateIndex(Teton zone, Evu evu) {
     return siteClimateIndexEast(evu);
   }
-  private static float siteClimateIndex(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  private static float siteClimateIndex(NorthernCentralRockies zone, Evu evu) {
     return siteClimateIndexEast(evu);
   }
   private static float siteClimateIndexEast(Evu evu) {
@@ -654,21 +650,21 @@ public abstract class Wsbw {
     return 1.2f;
   }
 
-  private static float regionalClimateIndex(simpplle.comcode.zone.WestsideRegionOne zone, Evu evu) {
+  private static float regionalClimateIndex(WestsideRegionOne zone, Evu evu) {
     return regionalClimateIndex();
   }
 
-  private static float regionalClimateIndex(simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  private static float regionalClimateIndex(EastsideRegionOne zone, Evu evu) {
     return regionalClimateIndex();
   }
-  private static float regionalClimateIndex(simpplle.comcode.zone.Teton zone, Evu evu) {
+  private static float regionalClimateIndex(Teton zone, Evu evu) {
     return regionalClimateIndex();
   }
-  private static float regionalClimateIndex(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  private static float regionalClimateIndex(NorthernCentralRockies zone, Evu evu) {
     return regionalClimateIndex();
   }
 
-  private static float characterOfAdjacentIndex(simpplle.comcode.zone.WestsideRegionOne zone,
+  private static float characterOfAdjacentIndex(WestsideRegionOne zone,
                                                 Evu evu) {
     int   immatureOneThird = 0;
     int   immatureOneHalf  = 0;
@@ -770,13 +766,13 @@ public abstract class Wsbw {
 
     return index;
   }
-  private static float characterOfAdjacentIndex(simpplle.comcode.zone.EastsideRegionOne zone, Evu evu) {
+  private static float characterOfAdjacentIndex(EastsideRegionOne zone, Evu evu) {
     return characterOfAdjacentIndexEast(evu);
   }
-  private static float characterOfAdjacentIndex(simpplle.comcode.zone.Teton zone, Evu evu) {
+  private static float characterOfAdjacentIndex(Teton zone, Evu evu) {
     return characterOfAdjacentIndexEast(evu);
   }
-  private static float characterOfAdjacentIndex(simpplle.comcode.zone.NorthernCentralRockies zone, Evu evu) {
+  private static float characterOfAdjacentIndex(NorthernCentralRockies zone, Evu evu) {
     return characterOfAdjacentIndexEast(evu);
   }
 

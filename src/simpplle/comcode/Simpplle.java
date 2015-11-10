@@ -1,19 +1,5 @@
 package simpplle.comcode;
 
-import simpplle.comcode.zone.ColoradoPlateau;
-import simpplle.comcode.zone.EastsideRegionOne;
-import simpplle.comcode.zone.Gila;
-import simpplle.comcode.zone.GreatPlainsSteppe;
-import simpplle.comcode.zone.MixedGrassPrairie;
-import simpplle.comcode.zone.NorthernCentralRockies;
-import simpplle.comcode.zone.SierraNevada;
-import simpplle.comcode.zone.SouthCentralAlaska;
-import simpplle.comcode.zone.SouthernCalifornia;
-import simpplle.comcode.zone.SouthwestUtah;
-import simpplle.comcode.zone.Teton;
-import simpplle.comcode.zone.WesternGreatPlainsSteppe;
-import simpplle.comcode.zone.WestsideRegionOne;
-
 import java.io.*;
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -44,8 +30,8 @@ public final class Simpplle {
   private static final int version = 3;
   private static boolean recreateMrSummary = false;
 
-  public static Area         currentArea = null;
-  public static RegionalZone currentZone = null;
+  static Area         currentArea = null;
+  static RegionalZone currentZone = null;
   private static Climate climate = null;
 
   public static final String endl = System.getProperty("line.separator");
@@ -111,8 +97,8 @@ public final class Simpplle {
   /**
    * @return Current Zone instance
    * @see simpplle.comcode.RegionalZone
-   * @see simpplle.comcode.zone.WestsideRegionOne
-   * @see simpplle.comcode.zone.EastsideRegionOne
+   * @see simpplle.comcode.WestsideRegionOne
+   * @see simpplle.comcode.EastsideRegionOne
    */
   public static RegionalZone getCurrentZone () {
     return currentZone;
@@ -250,7 +236,7 @@ public final class Simpplle {
         zone = new SouthwestUtah();
         break;
       case ValidZones.COLORADO_FRONT_RANGE:
-        zone = new simpplle.comcode.zone.ColoradoFrontRange();
+        zone = new ColoradoFrontRange();
         break;
       case ValidZones.COLORADO_PLATEAU:
         zone = new ColoradoPlateau();
@@ -326,7 +312,7 @@ public final class Simpplle {
       
       Process droughtProcess = Process.findInstance(ProcessType.DROUGHT);
       if (droughtProcess != null) {
-        droughtProcess.setYearlyStatus((zone instanceof simpplle.comcode.zone.ColoradoPlateau));
+        droughtProcess.setYearlyStatus((zone instanceof ColoradoPlateau));
       }
     }
     catch (SimpplleError err) {

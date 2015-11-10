@@ -1,8 +1,5 @@
 package simpplle.comcode;
 
-import simpplle.comcode.zone.ColoradoPlateau;
-import simpplle.comcode.zone.SouthwestUtah;
-
 import java.io.*;
 import java.util.HashMap;
 
@@ -129,7 +126,7 @@ public class Density extends SimpplleType implements Externalizable {
  */
   private void initPctCanopy() {
     RegionalZone zone = Simpplle.getCurrentZone();
-    if (zone instanceof simpplle.comcode.zone.Gila) {
+    if (zone instanceof Gila) {
 
     }
     else if (zone instanceof SouthwestUtah) {

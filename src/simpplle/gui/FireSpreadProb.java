@@ -1,7 +1,7 @@
 
 package simpplle.gui;
 
-import simpplle.comcode.process.FireEvent;
+import simpplle.comcode.FireEvent;
 
 import java.awt.*;
 import javax.swing.*;
@@ -183,7 +183,7 @@ public class FireSpreadProb extends JDialog {
  * This initializes the Fire Spread Probability class by getting the extreme probability from fire event class.  
  */
   private void initialize() {
-    prob = FireEvent.getExtremeProb();
+    prob = simpplle.comcode.FireEvent.getExtremeProb();
     probText.setText(Integer.toString(prob));
 
     extremeEventAcres = FireEvent.getExtremeEventAcres();

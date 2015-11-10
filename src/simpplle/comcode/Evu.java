@@ -12,13 +12,6 @@ import org.apache.commons.collections.keyvalue.*;
 import org.apache.commons.collections.map.*;
 import org.hibernate.*;
 import simpplle.comcode.Climate.*;
-import simpplle.comcode.process.BisonGrazing;
-import simpplle.comcode.process.FireEvent;
-import simpplle.comcode.process.PpMpb;
-import simpplle.comcode.process.Succession;
-import simpplle.comcode.zone.ColoradoFrontRange;
-import simpplle.comcode.zone.ColoradoPlateau;
-import simpplle.comcode.zone.WestsideRegionOne;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained
@@ -2389,7 +2382,7 @@ public final class Evu extends NaturalElement implements Externalizable {
  * @return true if initial process is not an invalid process
  */
   public boolean isInitialProcessValid() {
-    return ((Process.findInstance(getInitialProcess())instanceof simpplle.comcode.process.InvalidProcess) == false);
+    return ((Process.findInstance(getInitialProcess())instanceof InvalidProcess) == false);
   }
 /**
  * Gets the probabilitiy at a particular time step.  Uses that in a switch to get the string literal version of the probability.
@@ -4711,7 +4704,7 @@ public final class Evu extends NaturalElement implements Externalizable {
          (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false)  &&
          (!processType.isRootDisease())) &&
          (pastProcess.isRootDisease())) {
-      if (Simpplle.getCurrentZone() instanceof simpplle.comcode.zone.WestsideRegionOne) {
+      if (Simpplle.getCurrentZone() instanceof WestsideRegionOne) {
         selected = getHighestRootDisease(pastProcess);
       }
       else {
@@ -4781,19 +4774,19 @@ public final class Evu extends NaturalElement implements Externalizable {
     VegSimStateData state = getState();
     if (Simulation.getInstance().fireSuppression() &&
         state.getProb() != Evu.L) {
-      suppressed = simpplle.comcode.process.FireEvent.doSuppression(zone, this);
+      suppressed = FireEvent.doSuppression(zone, this);
     }
     else if (Simulation.getInstance().fireSuppression() == false &&
              state.getProb() != Evu.L &&
-             ((Simpplle.getCurrentZone() instanceof simpplle.comcode.zone.ColoradoPlateau) == false)) {
-      suppressed = simpplle.comcode.process.FireEvent.doWeatherEvent(zone, this);
+             ((Simpplle.getCurrentZone() instanceof ColoradoPlateau) == false)) {
+      suppressed = FireEvent.doWeatherEvent(zone, this);
     }
     else {
       suppressed = false;
     }
 
     if (!suppressed) {
-      selected = simpplle.comcode.process.FireEvent.getTypeOfFire(zone, this, lifeform);
+      selected = FireEvent.getTypeOfFire(zone, this, lifeform);
       if (selected == ProcessType.NONE) {
         selected = ProcessType.SUCCESSION;
         updateCurrentProb(Evu.L);
@@ -4962,7 +4955,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
       if (fireStarted) {
         ProcessType p =
-            simpplle.comcode.process.FireEvent.getTypeOfFire(Simpplle.getCurrentZone(),toEvu,toLifeform);
+            FireEvent.getTypeOfFire(Simpplle.getCurrentZone(),toEvu,toLifeform);
         if (p != null && p.isFireProcess()) {
           if (p.isFireLessIntense(fireProcess)) {
             p = fireProcess;
@@ -5424,23 +5417,23 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if ((processType.equals(ProcessType.SUCCESSION) &&
          (isRegenDelay(dominantLifeform) != true) &&
-         simpplle.comcode.process.Succession.isRegenState(zone,this,dominantLifeform) &&
-         (simpplle.comcode.process.FireEvent.useRegenPulse() == false || simpplle.comcode.process.FireEvent.isRegenPulse())) ||
+         Succession.isRegenState(zone,this,dominantLifeform) &&
+         (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse())) ||
 
         (processType.equals(ProcessType.SEVERE_LP_MPB) && species == Species.LP &&
-         simpplle.comcode.process.Succession.isRegenState(zone,this,dominantLifeform) &&
-         (simpplle.comcode.process.FireEvent.useRegenPulse() == false || simpplle.comcode.process.FireEvent.isRegenPulse()))) {
-      newState = simpplle.comcode.process.Succession.regen(zone,this,dominantLifeform,dominantLifeform);
+         Succession.isRegenState(zone,this,dominantLifeform) &&
+         (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse()))) {
+      newState = Succession.regen(zone,this,dominantLifeform,dominantLifeform);
       newState = validateNewState(newState);
     }
     else if (processType.equals(ProcessType.SUCCESSION) &&
-             (simpplle.comcode.process.FireEvent.useRegenPulse() && simpplle.comcode.process.FireEvent.isRegenPulse())) {
-      newState = simpplle.comcode.process.FireEvent.regenPulse(this);
+             (FireEvent.useRegenPulse() && FireEvent.isRegenPulse())) {
+      newState = FireEvent.regenPulse(this);
       newState = validateNewState(newState);
     }
     else if (canDoFireRegen(processType,zone) &&
              isRegenDelay(dominantLifeform) == false) {
-      newState = simpplle.comcode.process.FireEvent.regen(dominantLifeform,this);
+      newState = FireEvent.regen(dominantLifeform,this);
       newState = validateNewState(newState);
     }
 
@@ -5466,7 +5459,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       // Make sure we are using the correct kind of SUCCESSION
       ProcessType succession = ProcessType.SUCCESSION;
       if (((zone instanceof ColoradoFrontRange) ||
-           (zone instanceof simpplle.comcode.zone.ColoradoPlateau) ||
+           (zone instanceof ColoradoPlateau) ||
            (RegionalZone.isWyoming()) ||
           (species.getLifeform() == Lifeform.HERBACIOUS)))
       {
@@ -5537,9 +5530,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (newState != null &&
         (getState().getProcess() == ProcessType.SUCCESSION) &&
-        ((zone instanceof simpplle.comcode.zone.ColoradoFrontRange) ||
+        ((zone instanceof ColoradoFrontRange) ||
          (RegionalZone.isWyoming()) ||
-         (zone instanceof simpplle.comcode.zone.ColoradoPlateau) &&
+         (zone instanceof ColoradoPlateau) &&
         (species.getLifeform() == Lifeform.HERBACIOUS)))
     {
       VegetativeType tmpState=newState;
@@ -5592,18 +5585,18 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if ((processType.equals(ProcessType.SUCCESSION) &&
          (isRegenDelay(lowerLifeform) != true) &&
-         simpplle.comcode.process.Succession.isRegenState(zone,this,lowerLifeform) &&
-         (simpplle.comcode.process.FireEvent.useRegenPulse() == false || simpplle.comcode.process.FireEvent.isRegenPulse())) ||
+         Succession.isRegenState(zone,this,lowerLifeform) &&
+         (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse())) ||
 
         (processType.equals(ProcessType.SEVERE_LP_MPB) && species == Species.LP &&
          Succession.isRegenState(zone,this,lowerLifeform) &&
-         (simpplle.comcode.process.FireEvent.useRegenPulse() == false || simpplle.comcode.process.FireEvent.isRegenPulse()))) {
-      newState = simpplle.comcode.process.Succession.regen(zone,this,lowerLifeform,adjLifeform);
+         (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse()))) {
+      newState = Succession.regen(zone,this,lowerLifeform,adjLifeform);
       newState = validateNewState(newState);
     }
     else if (processType.equals(ProcessType.SUCCESSION) &&
-             (simpplle.comcode.process.FireEvent.useRegenPulse() && simpplle.comcode.process.FireEvent.isRegenPulse())) {
-      newState = simpplle.comcode.process.FireEvent.regenPulse(this);
+             (FireEvent.useRegenPulse() && FireEvent.isRegenPulse())) {
+      newState = FireEvent.regenPulse(this);
       newState = validateNewState(newState);
     }
     return newState;
@@ -5611,7 +5604,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public VegetativeType doFireRegen(Lifeform lifeform) {
     VegetativeType newState=null;
 
-    newState = simpplle.comcode.process.FireEvent.regen(lifeform,this);
+    newState = FireEvent.regen(lifeform,this);
     newState = validateNewState(newState);
     return newState;
   }
@@ -5658,8 +5651,8 @@ public final class Evu extends NaturalElement implements Externalizable {
     {
       // Make sure we are using the correct kind of SUCCESSION
       ProcessType succession = ProcessType.SUCCESSION;
-      if (((zone instanceof simpplle.comcode.zone.ColoradoFrontRange) ||
-           (zone instanceof simpplle.comcode.zone.ColoradoPlateau) ||
+      if (((zone instanceof ColoradoFrontRange) ||
+           (zone instanceof ColoradoPlateau) ||
            (RegionalZone.isWyoming()) ||
           (species.getLifeform() == Lifeform.HERBACIOUS)))
       {
@@ -5729,10 +5722,10 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (newState != null &&
         (processType == ProcessType.SUCCESSION) &&
-        ((zone instanceof simpplle.comcode.zone.ColoradoFrontRange) ||
+        ((zone instanceof ColoradoFrontRange) ||
          (zone instanceof ColoradoPlateau) ||
          (RegionalZone.isWyoming()) ||
-         (zone instanceof simpplle.comcode.zone.ColoradoPlateau) &&
+         (zone instanceof ColoradoPlateau) &&
         (species.getLifeform() == Lifeform.HERBACIOUS)))
     {
       VegetativeType tmpState=newState;
@@ -5789,10 +5782,10 @@ public final class Evu extends NaturalElement implements Externalizable {
         Climate.Season.SPRING) {
       return false;
     }
-    if (simpplle.comcode.process.FireEvent.useRegenPulse() && simpplle.comcode.process.FireEvent.isRegenPulse() == false) {
+    if (FireEvent.useRegenPulse() && FireEvent.isRegenPulse() == false) {
       return false;
     }
-    if (simpplle.comcode.process.FireEvent.isRegenState(zone,this) == false) {
+    if (FireEvent.isRegenState(zone,this) == false) {
       return false;
     }
 
@@ -5915,9 +5908,9 @@ public final class Evu extends NaturalElement implements Externalizable {
   {
     RegionalZone   zone = Simpplle.currentZone;
 
-    if ((zone instanceof simpplle.comcode.zone.ColoradoPlateau) ||
-        (zone instanceof simpplle.comcode.zone.WestsideRegionOne) ||
-        (zone instanceof simpplle.comcode.zone.EastsideRegionOne))
+    if ((zone instanceof ColoradoPlateau) ||
+        (zone instanceof WestsideRegionOne) ||
+        (zone instanceof EastsideRegionOne))
     {
       return ProducingSeedLogic.getInstance().isSeedProducing(state,this,tStep,lifeform,regenType);
     }
@@ -5981,7 +5974,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
       else { return false; }
     }
-    else if (zone instanceof simpplle.comcode.zone.ColoradoFrontRange) {
+    else if (zone instanceof ColoradoFrontRange) {
       if (species.getLifeform() == Lifeform.SHRUBS ||
           species.getLifeform() == Lifeform.HERBACIOUS) {
         return true;
@@ -6108,7 +6101,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
 
     }
-    else if (zone instanceof simpplle.comcode.zone.ColoradoPlateau) {
+    else if (zone instanceof ColoradoPlateau) {
       if (regenType == null) { return false; }
 
       if (species.getLifeform() == Lifeform.HERBACIOUS &&

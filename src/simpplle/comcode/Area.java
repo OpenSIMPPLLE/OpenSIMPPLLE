@@ -9,10 +9,6 @@ import java.util.zip.*;
 import org.hibernate.*;
 import simpplle.*;
 import simpplle.comcode.Climate.*;
-import simpplle.comcode.zone.EastsideRegionOne;
-import simpplle.comcode.zone.NorthernCentralRockies;
-import simpplle.comcode.zone.SierraNevada;
-import simpplle.comcode.zone.Teton;
 
 
 /** The University of Montana owns copyright of the designated documentation contained
@@ -2114,14 +2110,14 @@ public final class Area implements Externalizable {
     else if (simulation.isDoInvasiveSpecies() &&
              ((zone instanceof EastsideRegionOne) ||
               (zone instanceof SierraNevada) ||
-              (zone instanceof simpplle.comcode.zone.SouthernCalifornia) ||
-              (zone instanceof simpplle.comcode.zone.Teton) ||
-              (zone instanceof simpplle.comcode.zone.NorthernCentralRockies))) {
+              (zone instanceof SouthernCalifornia) ||
+              (zone instanceof Teton) ||
+              (zone instanceof NorthernCentralRockies))) {
       //      doEvuProducingSeed(true);
       doEvuWeedEncroachment();
     }
 
-    if ((zone instanceof simpplle.comcode.zone.EastsideRegionOne) ||
+    if ((zone instanceof EastsideRegionOne) ||
         (zone instanceof Teton) ||
         (zone instanceof NorthernCentralRockies)) {
       doEvuConiferEncroachment();

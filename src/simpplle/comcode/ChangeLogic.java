@@ -334,11 +334,11 @@ public class ChangeLogic extends TreatmentLogicData {
     }
     else if (toChoice.equals(TO_FUNCTION_CALL)) {
       if (FIRE_REGEN_FUNCTION.equalsIgnoreCase(toValue)) {
-        newState = simpplle.comcode.process.FireEvent.regen(evu.getDominantLifeform(),evu);
+        newState = FireEvent.regen(evu.getDominantLifeform(),evu);
         return (newState != null) ? newState.toString() : null;
       }
       else if (FIRE_TYPE_STATE_FUNCTION.equalsIgnoreCase(toValue)) {
-        ProcessType fireProcess = simpplle.comcode.process.FireEvent.getTypeOfFire(zone,evu,evu.getDominantLifeform());
+        ProcessType fireProcess = FireEvent.getTypeOfFire(zone,evu,evu.getDominantLifeform());
         if (fireProcess == ProcessType.NONE) {
           return null;
         }
@@ -353,8 +353,8 @@ public class ChangeLogic extends TreatmentLogicData {
       else if (NO_SPREAD_SRF_REGEN.equalsIgnoreCase(toValue)) {
         if ((treatType == TreatmentType.ENCROACHMENT_BURN ||
              treatType == TreatmentType.ENCROACHMENT_CUT_AND_BURN) &&
-             simpplle.comcode.process.FireEvent.isRegenState(zone,evu)) {
-          newState = simpplle.comcode.process.FireEvent.regen(evu.getDominantLifeform(),evu);
+             FireEvent.isRegenState(zone,evu)) {
+          newState = FireEvent.regen(evu.getDominantLifeform(),evu);
           if (newState != null) { return newState.toString(); }
         }
 

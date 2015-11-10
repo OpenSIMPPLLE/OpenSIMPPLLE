@@ -2,6 +2,7 @@ package simpplle.comcode;
 
 import java.io.*;
 import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 /**
  * 
@@ -22,26 +23,26 @@ public abstract class FireSpreadDataLegacy {
   private static boolean extreme;
 
   // Fire Type (for Spread)
-  public static final int LMSF_CLASS = simpplle.comcode.process.FireEvent.LMSF_CLASS;
-  public static final int SRF_CLASS  = simpplle.comcode.process.FireEvent.SRF_CLASS;
+  public static final int LMSF_CLASS = FireEvent.LMSF_CLASS;
+  public static final int SRF_CLASS  = FireEvent.SRF_CLASS;
 
   // Relative Position
-  public static final int A  = simpplle.comcode.process.FireEvent.A;
-  public static final int BN = simpplle.comcode.process.FireEvent.BN;
+  public static final int A  = FireEvent.A;
+  public static final int BN = FireEvent.BN;
 
   // Density Grouping
-  public static final int LOW_DENSITY  = simpplle.comcode.process.FireEvent.LOW_DENSITY;
-  public static final int HIGH_DENSITY = simpplle.comcode.process.FireEvent.HIGH_DENSITY;
+  public static final int LOW_DENSITY  = FireEvent.LOW_DENSITY;
+  public static final int HIGH_DENSITY = FireEvent.HIGH_DENSITY;
 
   // Resistance.
-  public static final int LOW      = simpplle.comcode.process.FireEvent.LOW;
-  public static final int MODERATE = simpplle.comcode.process.FireEvent.MODERATE;
-  public static final int HIGH     = simpplle.comcode.process.FireEvent.HIGH;
+  public static final int LOW      = FireEvent.LOW;
+  public static final int MODERATE = FireEvent.MODERATE;
+  public static final int HIGH     = FireEvent.HIGH;
 
   // Ownership
-  public static final int NF_WILDERNESS = simpplle.comcode.process.FireEvent.NF_WILDERNESS;
-  public static final int NF_OTHER      = simpplle.comcode.process.FireEvent.NF_OTHER;
-  public static final int OTHER         = simpplle.comcode.process.FireEvent.OTHER;
+  public static final int NF_WILDERNESS = FireEvent.NF_WILDERNESS;
+  public static final int NF_OTHER      = FireEvent.NF_OTHER;
+  public static final int OTHER         = FireEvent.OTHER;
 
   public static final SizeClass.Structure NON_FOREST     = SizeClass.NON_FOREST;
   public static final SizeClass.Structure SINGLE_STORY   = SizeClass.SINGLE_STORY;

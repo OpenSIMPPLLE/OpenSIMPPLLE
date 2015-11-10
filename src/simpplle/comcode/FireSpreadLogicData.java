@@ -3,7 +3,7 @@ package simpplle.comcode;
 import java.io.*;
 import java.util.ArrayList;
 
-import simpplle.comcode.process.FireEvent.Position;
+import simpplle.comcode.FireEvent.Position;
 import java.util.Collections;
 /**
  * 
@@ -246,8 +246,8 @@ public class FireSpreadLogicData extends LogicData implements Externalizable {
    * @param list2
    * @return a concatenated list of list1 and list 2, sorted in ascending order
    */
-  private static ArrayList<simpplle.comcode.process.FireEvent.Position> combinePositions(ArrayList<simpplle.comcode.process.FireEvent.Position> list1, ArrayList<simpplle.comcode.process.FireEvent.Position> list2) {
-    for (simpplle.comcode.process.FireEvent.Position position : list2) {
+  private static ArrayList<FireEvent.Position> combinePositions(ArrayList<FireEvent.Position> list1, ArrayList<FireEvent.Position> list2) {
+    for (FireEvent.Position position : list2) {
       if (list1.contains(position) == false) { list1.add(position); }
     }
     Collections.sort(list1);
@@ -306,7 +306,7 @@ public class FireSpreadLogicData extends LogicData implements Externalizable {
 //      return false;
 //    }
 
-    boolean isExtreme = simpplle.comcode.process.FireEvent.currentEvent.isExtremeEvent() &&
+    boolean isExtreme = FireEvent.currentEvent.isExtremeEvent() &&
                         fromEvu.isAdjDownwind(evu);
 
     ProcessType fireProcessType = (isExtreme) ? extreme : average;
