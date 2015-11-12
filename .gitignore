@@ -3,6 +3,12 @@
 # Ant
 #--------------------------
 
+# Build zone data output
+
+/data/zones/
+
+# Build jar output
+
 OpenSIMPPLLE.jar
 
 #--------------------------

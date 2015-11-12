@@ -1,253 +1,257 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="ZoneDataFiles" basedir="." default="zonedata">
-	<property name="destdir" value="lib/data/zones"/>
-	<property name="zonedir" value="simpplle/comcode/knowledge/zones"/>
 
-	<target name="zonedata" description="Create the JAR data files for the zones">
+<project name = "ZoneDataFiles"
+         basedir = "."
+         default = "zonedata">
 
-    <!--  Colorado Front Range  -->
-    <jar destfile="${destdir}/colorado-front-range.jar"
-       basedir="${zonedir}/colorado-front-range"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, data/wildlife/*.txt, sample-areas/*.area"/>
-    <jar destfile="${destdir}/colorado-front-range-defn.jar"
-       basedir="${zonedir}/colorado-front-range"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/colorado-front-range-pathways.jar"
-       basedir="${zonedir}/colorado-front-range"
-       update="false"
-       casesensitive="false" 
-       includes="pathways/*"/>
+    <!-- Global Properties -->
 
-    <!--  Colorado Plateau  -->
-    <jar destfile="${destdir}/colorado-plateau.jar"
-       basedir="${zonedir}/colorado-plateau"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, arcgis/*.lyr, data/wildlife/*.txt, sample-areas/*.area"/>
-    <jar destfile="${destdir}/colorado-plateau-defn.jar"
-       basedir="${zonedir}/colorado-plateau"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/colorado-plateau-pathways.jar"
-       basedir="${zonedir}/colorado-plateau"
-       update="false"
-       casesensitive="false" 
-       includes="pathways/* aquatic-pathways/*"/>
+    <property name = "destdir" value = "data/zones"/>
+    <property name = "zonedir" value = "simpplle/comcode/knowledge/zones"/>
 
-    <!--  Eastside Region One  -->
-    <jar destfile="${destdir}/eastside-r1.jar"
-       basedir="${zonedir}/eastside-r1"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, data/wildlife/*.txt, sample-areas/*.area"/>
-		<jar destfile="${destdir}/eastside-r1-defn.jar"
-       basedir="${zonedir}/eastside-r1"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/eastside-r1-pathways.jar"
-       basedir="${zonedir}/eastside-r1"
-       update="false"
-       casesensitive="false" 
-       includes="historic-pathways/* pathways/*"/>
+    <!-- Build Targets -->
 
-    <!--  Teton  -->
-    <jar destfile="${destdir}/teton.jar"
-       basedir="${zonedir}/teton"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
-    <jar destfile="${destdir}/teton-defn.jar"
-       basedir="${zonedir}/teton"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/teton-pathways.jar"
-       basedir="${zonedir}/teton"
-       update="false"
-       casesensitive="false" 
-       includes="pathways/*"/>
+    <target name = "zonedata" description = "Create the JAR data files for the zones">
 
-    <!--  Northern Central Rockies  -->
-    <jar destfile="${destdir}/northern-central-rockies.jar"
-       basedir="${zonedir}/northern-central-rockies"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
-    <jar destfile="${destdir}/northern-central-rockies-defn.jar"
-       basedir="${zonedir}/northern-central-rockies"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/northern-central-rockies-pathways.jar"
-       basedir="${zonedir}/northern-central-rockies"
-       update="false"
-       casesensitive="false" 
-       includes="pathways/*"/>
+        <!--  Colorado Front Range  -->
+        <jar destfile = "${destdir}/colorado-front-range.jar"
+             basedir = "${zonedir}/colorado-front-range"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, data/wildlife/*.txt, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/colorado-front-range-defn.jar"
+             basedir = "${zonedir}/colorado-front-range"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/colorado-front-range-pathways.jar"
+             basedir = "${zonedir}/colorado-front-range"
+             update = "false"
+             casesensitive = "false"
+             includes = "pathways/*"/>
 
-    <!--  Gila  -->
-    <jar destfile="${destdir}/gila.jar"
-       basedir="${zonedir}/gila"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, data/wildlife/*.txt, sample-areas/*.area"/>
-    <jar destfile="${destdir}/gila-defn.jar"
-       basedir="${zonedir}/gila"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/gila-pathways.jar"
-       basedir="${zonedir}/gila"
-       update="false"
-       casesensitive="false" 
-       includes="historic-pathways/* pathways/*"/>
+        <!--  Colorado Plateau  -->
+        <jar destfile = "${destdir}/colorado-plateau.jar"
+             basedir = "${zonedir}/colorado-plateau"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, arcgis/*.lyr, data/wildlife/*.txt, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/colorado-plateau-defn.jar"
+             basedir = "${zonedir}/colorado-plateau"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/colorado-plateau-pathways.jar"
+             basedir = "${zonedir}/colorado-plateau"
+             update = "false"
+             casesensitive = "false"
+             includes = "pathways/* aquatic-pathways/*"/>
 
-    <!--  Great Plains Steppe  -->
-    <jar destfile="${destdir}/great-plains-steppe.jar"
-       basedir="${zonedir}/great-plains-steppe"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, data/wildlife/*.txt, sample-areas/*.area"/>
-    <jar destfile="${destdir}/great-plains-steppe-defn.jar"
-       basedir="${zonedir}/great-plains-steppe"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/great-plains-steppe-pathways.jar"
-       basedir="${zonedir}/great-plains-steppe"
-       update="false"
-       casesensitive="false" 
-       includes="pathways/* aquatic-pathways/*"/>
+        <!--  Eastside Region One  -->
+        <jar destfile = "${destdir}/eastside-r1.jar"
+             basedir = "${zonedir}/eastside-r1"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, data/wildlife/*.txt, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/eastside-r1-defn.jar"
+             basedir = "${zonedir}/eastside-r1"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/eastside-r1-pathways.jar"
+             basedir = "${zonedir}/eastside-r1"
+             update = "false"
+             casesensitive = "false"
+             includes = "historic-pathways/* pathways/*"/>
 
+        <!--  Teton  -->
+        <jar destfile = "${destdir}/teton.jar"
+             basedir = "${zonedir}/teton"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/teton-defn.jar"
+             basedir = "${zonedir}/teton"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/teton-pathways.jar"
+             basedir = "${zonedir}/teton"
+             update = "false"
+             casesensitive = "false"
+             includes = "pathways/*"/>
 
+        <!--  Northern Central Rockies  -->
+        <jar destfile = "${destdir}/northern-central-rockies.jar"
+             basedir = "${zonedir}/northern-central-rockies"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/northern-central-rockies-defn.jar"
+             basedir = "${zonedir}/northern-central-rockies"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/northern-central-rockies-pathways.jar"
+             basedir = "${zonedir}/northern-central-rockies"
+             update = "false"
+             casesensitive = "false"
+             includes = "pathways/*"/>
 
-    <!--  Mixed Grass Prairie  -->
-    <jar destfile="${destdir}/mixed-grass-prairie.jar"
-       basedir="${zonedir}/mixed-grass-prairie"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, data/wildlife/*.txt, sample-areas/*.area"/>
-    <jar destfile="${destdir}/mixed-grass-prairie-defn.jar"
-       basedir="${zonedir}/mixed-grass-prairie"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/mixed-grass-prairie-pathways.jar"
-       basedir="${zonedir}/mixed-grass-prairie"
-       update="false"
-       casesensitive="false" 
-       includes="pathways/* aquatic-pathways/*"/>
+        <!--  Gila  -->
+        <jar destfile = "${destdir}/gila.jar"
+             basedir = "${zonedir}/gila"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, data/wildlife/*.txt, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/gila-defn.jar"
+             basedir = "${zonedir}/gila"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/gila-pathways.jar"
+             basedir = "${zonedir}/gila"
+             update = "false"
+             casesensitive = "false"
+             includes = "historic-pathways/* pathways/*"/>
 
-    <!--  Sierra Nevada  -->
-    <jar destfile="${destdir}/sierra-nevada.jar"
-       basedir="${zonedir}/sierra-nevada"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
-    <jar destfile="${destdir}/sierra-nevada-defn.jar"
-       basedir="${zonedir}/sierra-nevada"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/sierra-nevada-pathways.jar"
-       basedir="${zonedir}/sierra-nevada"
-       update="false"
-       casesensitive="false" 
-       includes="historic-pathways/* pathways/*"/>
+        <!--  Great Plains Steppe  -->
+        <jar destfile = "${destdir}/great-plains-steppe.jar"
+             basedir = "${zonedir}/great-plains-steppe"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, data/wildlife/*.txt, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/great-plains-steppe-defn.jar"
+             basedir = "${zonedir}/great-plains-steppe"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/great-plains-steppe-pathways.jar"
+             basedir = "${zonedir}/great-plains-steppe"
+             update = "false"
+             casesensitive = "false"
+             includes = "pathways/* aquatic-pathways/*"/>
 
-    <!--  South Central Alaska  -->
-    <jar destfile="${destdir}/south-central-alaska.jar"
-       basedir="${zonedir}/south-central-alaska"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
-    <jar destfile="${destdir}/south-central-alaska-defn.jar"
-       basedir="${zonedir}/south-central-alaska"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/south-central-alaska-pathways.jar"
-       basedir="${zonedir}/south-central-alaska"
-       update="false"
-       casesensitive="false" 
-       includes="historic-pathways/* pathways/*"/>
+        <!--  Mixed Grass Prairie  -->
+        <jar destfile = "${destdir}/mixed-grass-prairie.jar"
+             basedir = "${zonedir}/mixed-grass-prairie"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, data/wildlife/*.txt, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/mixed-grass-prairie-defn.jar"
+             basedir = "${zonedir}/mixed-grass-prairie"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/mixed-grass-prairie-pathways.jar"
+             basedir = "${zonedir}/mixed-grass-prairie"
+             update = "false"
+             casesensitive = "false"
+             includes = "pathways/* aquatic-pathways/*"/>
 
-    <!--  Southern California  -->
-    <jar destfile="${destdir}/southern-california.jar"
-       basedir="${zonedir}/southern-california"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
-    <jar destfile="${destdir}/southern-california-defn.jar"
-       basedir="${zonedir}/southern-california"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/southern-california-pathways.jar"
-       basedir="${zonedir}/southern-california"
-       update="false"
-       casesensitive="false" 
-       includes="historic-pathways/* pathways/*"/>
+        <!--  Sierra Nevada  -->
+        <jar destfile = "${destdir}/sierra-nevada.jar"
+             basedir = "${zonedir}/sierra-nevada"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/sierra-nevada-defn.jar"
+             basedir = "${zonedir}/sierra-nevada"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/sierra-nevada-pathways.jar"
+             basedir = "${zonedir}/sierra-nevada"
+             update = "false"
+             casesensitive = "false"
+             includes = "historic-pathways/* pathways/*"/>
 
-    <!--  Southwest Utah  -->
-    <jar destfile="${destdir}/southwest-utah.jar"
-       basedir="${zonedir}/southwest-utah"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
-    <jar destfile="${destdir}/southwest-utah-defn.jar"
-       basedir="${zonedir}/southwest-utah"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/southwest-utah-pathways.jar"
-       basedir="${zonedir}/southwest-utah"
-       update="false"
-       casesensitive="false" 
-       includes="pathways/*"/>
+        <!--  South Central Alaska  -->
+        <jar destfile = "${destdir}/south-central-alaska.jar"
+             basedir = "${zonedir}/south-central-alaska"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/south-central-alaska-defn.jar"
+             basedir = "${zonedir}/south-central-alaska"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/south-central-alaska-pathways.jar"
+             basedir = "${zonedir}/south-central-alaska"
+             update = "false"
+             casesensitive = "false"
+             includes = "historic-pathways/* pathways/*"/>
 
-    <!--  Western Great Plains  -->
-    <jar destfile="${destdir}/western-great-plains-steppe.jar"
-       basedir="${zonedir}/western-great-plains-steppe"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, data/wildlife/*.txt, sample-areas/*.area"/>
-    <jar destfile="${destdir}/western-great-plains-steppe-defn.jar"
-       basedir="${zonedir}/western-great-plains-steppe"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/western-great-plains-steppe-pathways.jar"
-       basedir="${zonedir}/western-great-plains-steppe"
-       update="false"
-       casesensitive="false" 
-       includes="pathways/* aquatic-pathways/*"/>
+        <!--  Southern California  -->
+        <jar destfile = "${destdir}/southern-california.jar"
+             basedir = "${zonedir}/southern-california"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/southern-california-defn.jar"
+             basedir = "${zonedir}/southern-california"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/southern-california-pathways.jar"
+             basedir = "${zonedir}/southern-california"
+             update = "false"
+             casesensitive = "false"
+             includes = "historic-pathways/* pathways/*"/>
 
-    <!--  Westside R1  -->
-    <jar destfile="${destdir}/westside-r1.jar"
-       basedir="${zonedir}/westside-r1"
-       update="false"
-       casesensitive="false" 
-       includes="data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, data/wildlife/*.txt, sample-areas/*.area"/>
-    <jar destfile="${destdir}/westside-r1-defn.jar"
-       basedir="${zonedir}/westside-r1"
-       update="false"
-       casesensitive="false" 
-       includes="zone/*.txt, zone/*.xml"/>
-    <jar destfile="${destdir}/westside-r1-pathways.jar"
-       basedir="${zonedir}/westside-r1"
-       update="false"
-       casesensitive="false" 
-       includes="historic-pathways/* pathways/* aquatic-pathways/*"/>
+        <!--  Southwest Utah  -->
+        <jar destfile = "${destdir}/southwest-utah.jar"
+             basedir = "${zonedir}/southwest-utah"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/southwest-utah-defn.jar"
+             basedir = "${zonedir}/southwest-utah"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/southwest-utah-pathways.jar"
+             basedir = "${zonedir}/southwest-utah"
+             update = "false"
+             casesensitive = "false"
+             includes = "pathways/*"/>
 
+        <!--  Western Great Plains  -->
+        <jar destfile = "${destdir}/western-great-plains-steppe.jar"
+             basedir = "${zonedir}/western-great-plains-steppe"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, data/wildlife/*.txt, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/western-great-plains-steppe-defn.jar"
+             basedir = "${zonedir}/western-great-plains-steppe"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/western-great-plains-steppe-pathways.jar"
+             basedir = "${zonedir}/western-great-plains-steppe"
+             update = "false"
+             casesensitive = "false"
+             includes = "pathways/* aquatic-pathways/*"/>
 
+        <!--  Westside R1  -->
+        <jar destfile = "${destdir}/westside-r1.jar"
+             basedir = "${zonedir}/westside-r1"
+             update = "false"
+             casesensitive = "false"
+             includes = "data/*.txt, data/*.ser, data/*.xml, gis/*.avl, gis/*.apr, arcgis/*.lyr, data/wildlife/*.txt, sample-areas/*.area"/>
+        <jar destfile = "${destdir}/westside-r1-defn.jar"
+             basedir = "${zonedir}/westside-r1"
+             update = "false"
+             casesensitive = "false"
+             includes = "zone/*.txt, zone/*.xml"/>
+        <jar destfile = "${destdir}/westside-r1-pathways.jar"
+             basedir = "${zonedir}/westside-r1"
+             update = "false"
+             casesensitive = "false"
+             includes = "historic-pathways/* pathways/* aquatic-pathways/*"/>
 
-  </target>
+    </target>
 
 </project>
 
