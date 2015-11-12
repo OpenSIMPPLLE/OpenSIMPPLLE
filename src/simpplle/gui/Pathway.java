@@ -22,6 +22,7 @@ import java.awt.event.*;
 import javax.swing.border.*;
 import simpplle.comcode.*;
 import java.util.*;
+import java.util.Arrays; //Added to sort the string array for ecological grouping (pathwayGroupCB)
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -480,7 +481,7 @@ public class Pathway extends JDialog {
       autoPositionStates.setEnabled(true);
     }
     // *** end new code ***
-
+    Arrays.sort(groups); // Sort array of groups
     if (pathwayGroup == null) { pathwayGroup = groups[0]; }
     pathwayGroupCB.removeAllItems();
     for(i=0; i<groups.length; i++) {
