@@ -11,7 +11,7 @@
     <property name = "buildDirectory"   location = "out" />
     <property name = "dataDirectory"    location = "data" />
     <property name = "jarDirectory"     location = "." />
-    <property name = "jarName"          value = "SIMPPLLE" />
+    <property name = "jarName"          value = "OpenSIMPPLLE" />
     <property name = "mainClass"        value = "simpplle/JSimpplle" />
 
     <!-- Build Targets -->
