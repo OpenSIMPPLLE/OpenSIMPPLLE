@@ -69,24 +69,16 @@ public abstract class Utility {
   }
   // Display a Save directory dialog with given title.
   // Returns either null or the chosen Directory.
-  public static File getSaveDir(Component parent, String title,
-                                 MyFileFilter extFilter) {
+  public static File getSaveDir(Component parent, String title) {
     JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
     chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    chooser.setAcceptAllFileFilterUsed(false);
     int          returnVal;
-
-    if (extFilter != null) {
-      chooser.setFileFilter(extFilter);
-      chooser.setAcceptAllFileFilterUsed(false);
-    }
     chooser.setDialogTitle(title);
     returnVal = chooser.showSaveDialog(parent);
     if(returnVal == JFileChooser.APPROVE_OPTION) {
-      File file = chooser.getSelectedFile();
-      if (extFilter != null) {
-        file = addFileExt(file,extFilter.getExtension());
-      }
-      return file;
+      File dir = chooser.getSelectedFile();
+      return dir;
     }
     else {
       return null;

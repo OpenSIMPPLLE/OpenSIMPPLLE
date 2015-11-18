@@ -23,6 +23,7 @@ import javax.swing.border.*;
 import simpplle.comcode.*;
 import java.util.*;
 import java.util.Arrays; //Added to sort the string array for ecological grouping (pathwayGroupCB)
+import java.util.List;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -712,35 +713,42 @@ public class Pathway extends JDialog {
     Area         area = Simpplle.getCurrentArea();
     Frame               theFrame = JSimpplle.getSimpplleMain();
     ListSelectionDialog dlg;
-    String              result;
-
-    MyFileFilter extFilter = new MyFileFilter("txt",
-                                              "Text Files (*.txt)");
+    List<String> results = new ArrayList<>();
 
     dlg = new ListSelectionDialog(theFrame,"Select a Ecological Grouping",true,
-                                  HabitatTypeGroup.getLoadedGroupNames());
+            HabitatTypeGroup.getLoadedGroupNames(), true);
 
     dlg.setLocation(getLocation());
     dlg.setVisible(true);
-    result = (String)dlg.getSelection();
-    if (result == null) { return; }
+    // get selections back in generic objects
+    Object[] objs = dlg.getSelections();
+    for(Object o: objs){
+      results.add((String)o);
+    }
+//    Object a = dlg.getSelections();
+    if (results.isEmpty()) { return; }
 
-    File outfile = Utility.getSaveFile(this,"File to export to?",extFilter);
-    if (outfile == null) { return; }
+    // get directory
+    File dir = Utility.getSaveDir(this,"Select a Directory to Export to");
+    if (dir == null) { return; }
 
     setCursor(Utility.getWaitCursor());
-    try {
-      HabitatTypeGroup pathwayGroupInst = HabitatTypeGroup.findInstance(result);
-      pathwayGroupInst.export(outfile);
-    }
-    catch (SimpplleError err) {
-      JOptionPane.showMessageDialog(this,err.getMessage(),
-                                    "Error exporting pathway",
-                                    JOptionPane.ERROR_MESSAGE);
+    for (String habitat: results){
+
+      try {
+        HabitatTypeGroup pathwayGroupInst = HabitatTypeGroup.findInstance(habitat);
+        System.out.println(habitat);
+        File outfile = new File(dir.getAbsolutePath()+File.separatorChar+habitat);
+        pathwayGroupInst.export(outfile);
+      }
+      catch (SimpplleError err) {
+        JOptionPane.showMessageDialog(this, err.getMessage(),
+                "Error exporting pathway",
+                JOptionPane.ERROR_MESSAGE);
+      }
     }
     setCursor(Utility.getNormalCursor());
   }
-
   void menuFileUnloadPathway_actionPerformed(ActionEvent e) {
     RegionalZone zone = Simpplle.getCurrentZone();
     Area         area = Simpplle.getCurrentArea();
