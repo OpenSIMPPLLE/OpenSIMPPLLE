@@ -1,31 +1,26 @@
 package simpplle.gui;
 
+import org.hsqldb.util.DatabaseManagerSwing;
+import simpplle.JSimpplle;
+import simpplle.comcode.*;
+
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.net.URL;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowEvent;
+import java.io.*;
+import java.util.Vector;
 
 //import javax.help.CSH;
 //import javax.help.HelpBroker;
 //import javax.help.HelpSet;
-import javax.swing.*;
-import javax.swing.JMenuItem;
-import javax.swing.border.TitledBorder;
-
-import simpplle.JSimpplle;
-import simpplle.comcode.*;
-import java.awt.event.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Vector;
 //import org.hibernate.HibernateException;
 //import java.sql.SQLException;
 //import net.sf.hibern8ide.Hibern8IDE;
 //import org.hibernate.SessionFactory;
-import org.hsqldb.util.DatabaseManagerSwing;
 //import java.util.*;
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -43,9 +38,9 @@ import org.hsqldb.util.DatabaseManagerSwing;
  */
 @SuppressWarnings("serial")
 public class SimpplleMain extends JFrame {
-  public static final String VERSION      = "1.0";
-  public static final String RELEASE_KIND = "";
-  public static final String BUILD_DATE   = "";
+  public static final String VERSION      = "1.2";
+  public static final String RELEASE_KIND = "Douglas Fir";
+  public static final String BUILD_DATE   = "November 2015";
 
   public static Color RESULT_COL_COLOR    = new Color(90,190,190);
   public static Color ROW_HIGHLIGHT_COLOR = new Color(162,200,157);
@@ -284,7 +279,7 @@ public class SimpplleMain extends JFrame {
     this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     this.setSize(new Dimension(1000, 600));
     this.setLocation(100,100);
-    this.setTitle("OpenSIMPPLLE Version " + SimpplleMain.VERSION + " " + SimpplleMain.RELEASE_KIND + SimpplleMain.BUILD_DATE);
+    this.setTitle("OpenSIMPPLLE " + SimpplleMain.VERSION + " " + SimpplleMain.RELEASE_KIND);
     this.addComponentListener(new java.awt.event.ComponentAdapter() {
 
       public void componentResized(ComponentEvent e) {
