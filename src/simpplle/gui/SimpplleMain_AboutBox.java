@@ -1,9 +1,10 @@
 package simpplle.gui;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -19,12 +20,8 @@ import javax.swing.border.*;
  *   
  */
 public class SimpplleMain_AboutBox extends JDialog {
-  public static final String VERSION      = "1.01";
-  public static final String RELEASE_KIND = "Beta";
-  public static final String BUILD_DATE   = "22 October 2015";
 
-  private static final String creditText =
-      "";
+  private static final String creditText = "";
 
   JPanel splashPanel = new JPanel();
   JLabel splashLabel = new JLabel();
@@ -49,7 +46,7 @@ public class SimpplleMain_AboutBox extends JDialog {
   private void jbInit() throws Exception  {
     //imageIcon = new ImageIcon(getClass().getResource("your image name goes here"));
     titledBorder1 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140)),"Credits");
-    this.setTitle("OpenSIMPPLLE Version " + VERSION + " " + RELEASE_KIND + " (" + BUILD_DATE + ")");
+    this.setTitle("OpenSIMPPLLE " + SimpplleMain.VERSION + " " + SimpplleMain.RELEASE_KIND + " (" + SimpplleMain.BUILD_DATE + ")");
     setResizable(false);
     splashPanel.setLayout(borderLayout1);
     splashLabel.setIcon(new ImageIcon(simpplle.gui.SimpplleMain_AboutBox.class.getResource("images/splash.jpg")));
