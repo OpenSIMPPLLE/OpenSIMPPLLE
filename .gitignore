@@ -31,6 +31,7 @@ OpenSIMPPLLE.jar
 # User Settings
 
 .classpath
+.factorypath
 .project
 .settings
 
