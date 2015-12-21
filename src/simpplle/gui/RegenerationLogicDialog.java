@@ -1,20 +1,16 @@
 package simpplle.gui;
 
-import java.awt.*;
-import java.io.File;
-import java.util.Vector;
+import simpplle.JSimpplle;
+import simpplle.comcode.*;
+import simpplle.comcode.RegenerationLogic.DataKinds;
 
 import javax.swing.*;
-
-import simpplle.JSimpplle;
-import simpplle.comcode.HabitatTypeGroup;
-import simpplle.comcode.RegenerationLogic;
-import simpplle.comcode.SimpplleError;
-import simpplle.comcode.Species;
-import simpplle.comcode.SystemKnowledge;
-import java.awt.event.*;
 import javax.swing.event.ChangeEvent;
-import simpplle.comcode.RegenerationLogic.DataKinds;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.util.Vector;
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
@@ -83,9 +79,6 @@ public class RegenerationLogicDialog extends VegLogicDialog {
         menuFileOldFormat_actionPerformed(e);
       }
     });
-
-    menuEcoGroup.setVisible(false);
-    menuSpecies.setVisible(false);
 
     menuBar.add(menuOptions);
     menuFile.add(menuFileOldFormat);
