@@ -105,7 +105,7 @@ public class ListSelectionDialog extends JDialog {
     theList.setSelectionForeground(Color.orange);
     theList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     theList.setVisibleRowCount(10);
-    this.setResizable(false);
+    this.setResizable(true);
     getContentPane().add(mainPanel);
     mainPanel.add(titleLabel, BorderLayout.NORTH);
     mainPanel.add(buttonPanel, BorderLayout.SOUTH);

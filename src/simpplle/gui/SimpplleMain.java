@@ -279,7 +279,7 @@ public class SimpplleMain extends JFrame {
     this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     this.setSize(new Dimension(1000, 600));
     this.setLocation(100,100);
-    this.setTitle("OpenSIMPPLLE " + SimpplleMain.VERSION + " " + SimpplleMain.RELEASE_KIND);
+    this.setTitle("OpenSIMPPLLE " + SimpplleMain.VERSION + " " + SimpplleMain.BUILD_DATE);
     this.addComponentListener(new java.awt.event.ComponentAdapter() {
 
       public void componentResized(ComponentEvent e) {

@@ -222,7 +222,7 @@ public class Pathway extends JDialog {
         menuFileImport_actionPerformed(e);
       }
     });
-    menuFileExport.setText("Export Pathway to Text File ...");
+    menuFileExport.setText("Export Pathway(s) to Text File ...");
     menuFileExport.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuFileExport_actionPerformed(e);
@@ -715,7 +715,7 @@ public class Pathway extends JDialog {
     ListSelectionDialog dlg;
     List<String> results = new ArrayList<>();
 
-    dlg = new ListSelectionDialog(theFrame,"Select a Ecological Grouping",true,
+    dlg = new ListSelectionDialog(theFrame,"Select Ecological Grouping(s)",true,
             HabitatTypeGroup.getLoadedGroupNames(), true);
 
     dlg.setLocation(getLocation());
