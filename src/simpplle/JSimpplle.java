@@ -256,7 +256,7 @@ public final class JSimpplle {
    * 
    * @param args
    * @throws IOException
-   * @see readXMLPropertiesFile()
+   * @see readXmlPropertiesFile()
    */
 
   //Main method
@@ -339,13 +339,13 @@ public final class JSimpplle {
   
   public static void readPropertiesFile() {
     String homeDir = System.getProperty("user.home");
-    File   file = new File(homeDir,"simpplle.properties");
+    File   file = new File(homeDir,"opensimpplle.properties");
     BufferedReader fin;
 
     setWorkingDir(new File(homeDir));
     debug = false;
     try {
-      if (file.exists() == false) { return; }
+      if (!file.exists()) { return; }
       else {
         fin = new BufferedReader(new FileReader(file));
         String line = fin.readLine();
@@ -417,7 +417,7 @@ public final class JSimpplle {
    */
   public static void writePropertiesFile() {
     String dir = System.getProperty("user.home");
-    File   file = new File(dir,"simpplle.properties");
+    File   file = new File(dir,"opensimpplle.properties");
     PrintWriter fout;
 
     try {

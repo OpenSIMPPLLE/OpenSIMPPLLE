@@ -229,6 +229,7 @@ public final class HabitatTypeGroup {
       names[i] = group.getName();
       i++;
     }
+    Arrays.sort(names);
     return names;
   }
 /**

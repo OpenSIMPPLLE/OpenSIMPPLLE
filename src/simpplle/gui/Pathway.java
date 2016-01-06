@@ -738,7 +738,7 @@ public class Pathway extends JDialog {
       try {
         HabitatTypeGroup pathwayGroupInst = HabitatTypeGroup.findInstance(habitat);
         System.out.println(habitat);
-        File outfile = new File(dir.getAbsolutePath()+File.separatorChar+habitat);
+        File outfile = new File(dir.getAbsolutePath()+File.separatorChar+habitat+".txt");
         pathwayGroupInst.export(outfile);
       }
       catch (SimpplleError err) {
