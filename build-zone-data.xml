@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<project name = "ZoneDataFiles"
+<project name = "BuildZoneData"
          basedir = "."
-         default = "zonedata">
+         default = "build">
 
     <!-- Global Properties -->
 
     <property name = "destdir" value = "data/zones"/>
     <property name = "zonedir" value = "simpplle/comcode/knowledge/zones"/>
+    <property name = "copysrc" value = "data"/>
+    <property name = "copydst" value = "out/production/data"/>
 
     <!-- Build Targets -->
 
-    <target name = "zonedata" description = "Create the JAR data files for the zones">
+    <target name = "build">
 
         <!--  Colorado Front Range  -->
         <jar destfile = "${destdir}/colorado-front-range.jar"
@@ -250,6 +252,12 @@
              update = "false"
              casesensitive = "false"
              includes = "historic-pathways/* pathways/* aquatic-pathways/*"/>
+
+        <!-- Copy the data directory into your IDE build directory -->
+
+        <copy todir="${copydst}">
+            <fileset dir="${copysrc}"/>
+        </copy>
 
     </target>
 
