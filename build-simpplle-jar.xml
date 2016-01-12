@@ -8,7 +8,7 @@
 
     <property name = "libraryDirectory" location = "lib" />
     <property name = "sourceDirectory"  location = "src" />
-    <property name = "buildDirectory"   location = "out" />
+    <property name = "buildDirectory"   location = "tmp" />
     <property name = "dataDirectory"    location = "data" />
     <property name = "jarDirectory"     location = "." />
     <property name = "jarName"          value = "OpenSIMPPLLE" />
@@ -22,7 +22,7 @@
 
     </target>
 
-    <target name = "compile" depends = "clean">
+    <target name = "compile">
 
         <mkdir dir = "${buildDirectory}"/>
 
@@ -77,6 +77,8 @@
             </manifest>
 
         </jar>
+
+        <antcall target="clean"/>
 
     </target>
 
