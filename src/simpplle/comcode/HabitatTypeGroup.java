@@ -177,10 +177,13 @@ public final class HabitatTypeGroup {
    * Creates a vector of HabitatTypeGroupTypes from the hashmap <HabitatTypeGroupType, HabitatTypeGroup> 
    * @return
    */
+  //Edited to sort Eco Groups
   public static Vector getAllLoadedTypes() {
     if (groups.size() == 0) { return null; }
-
-    return new Vector(groups.keySet());
+    
+    Vector dummy = new Vector(groups.keySet());
+    Collections.sort(dummy);
+    return dummy;
   }
   /**
    * 

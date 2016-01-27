@@ -461,7 +461,6 @@ public abstract class SimpplleType implements Comparable {
      */
     public static Object getValueAt(int row, int col, Types kind) {
         ArrayList<SimpplleType> allList = getList(kind);
-
         return ((SimpplleType)allList.get(row)).getColumnData(col);
     }
     /**

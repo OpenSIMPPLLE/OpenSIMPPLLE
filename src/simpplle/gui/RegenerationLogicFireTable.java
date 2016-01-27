@@ -138,7 +138,7 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
 
     selectedEcoGroup = HabitatTypeGroupType.ANY;
     for (HabitatTypeGroupType elem : HabitatTypeGroup.getAllLoadedTypesNew(true)) {
-      ecoGroupCB.addItem(elem);
+    	ecoGroupCB.addItem(elem);
     }
     ecoGroupCB.setSelectedItem(selectedEcoGroup);
 
