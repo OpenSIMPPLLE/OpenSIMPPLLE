@@ -76,8 +76,9 @@ public class RegenerationLogicSuccTable extends VegLogicPanel {
     });
     ecoGroupLabel.setFont(new java.awt.Font("Monospaced", Font.BOLD, 12));
     ecoGroupLabel.setText("Ecological Grouping");
-    ecoGroupCBPanel.add(ecoGroupLabel);
-    ecoGroupCBPanel.add(ecoGroupCB);
+    //"Quack - EcoGroup Dropdown Succession"
+    //ecoGroupCBPanel.add(ecoGroupLabel);
+    //ecoGroupCBPanel.add(ecoGroupCB);
 
     northPanel.add(ecoGroupCBPanel);
   }

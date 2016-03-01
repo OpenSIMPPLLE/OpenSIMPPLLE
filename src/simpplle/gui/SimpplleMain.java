@@ -1019,6 +1019,10 @@ public class SimpplleMain extends JFrame {
         menuSysKnowDisableWsbw_actionPerformed(e);
       }
     });
+    //Quack - Disable WSBW Logic
+    //Disables WSBW logic manually, instead of using menu item directly above, since that has been hidden
+	Wsbw.setEnabled(false);
+
     menuUtilityDatabaseManager.setEnabled(false);
     menuUtilityDatabaseManager.setText("DatabaseManager");
     menuUtilityDatabaseManager.addActionListener(new ActionListener() {
@@ -1213,8 +1217,9 @@ public class SimpplleMain extends JFrame {
     menuSysKnowVegProc.add(menuSysKnowSpeciesKnowledgeEditor);
     menuSysKnowVegProc.addSeparator();
     menuSysKnowVegProc.add(menuBisonGrazingLogic);
-    menuSysKnowVegProc.add(menuSysKnowWSBWLogic);
-    menuSysKnowVegProc.add(menuSysKnowDisableWsbw);
+    //Quack - WSBW Logic Menu
+    //menuSysKnowVegProc.add(menuSysKnowWSBWLogic);
+    //menuSysKnowVegProc.add(menuSysKnowDisableWsbw);
     menuSysKnowVegProc.add(menuSysKnowProcessProbLogic);
     menuSysKnowVegProc.add(menuSysKnowGapProcessLogic);
     menuSysKnowVegProc.add(menuSysKnowInsectDiseaseSpread);
@@ -3525,7 +3530,10 @@ public class SimpplleMain extends JFrame {
   }
 
   public void menuSysKnowDisableWsbw_actionPerformed(ActionEvent e) {
-    Wsbw.setEnabled(!menuSysKnowDisableWsbw.isSelected());
+    //Quack - Disable WSBW Logic
+	//Wsbw.setEnabled(!menuSysKnowDisableWsbw.isSelected());
+	  Wsbw.setEnabled(false);
+	 System.out.println(Wsbw.isEnabled());
   }
 
   public void menuSysKnowProcessProbLogic_actionPerformed(ActionEvent e) {

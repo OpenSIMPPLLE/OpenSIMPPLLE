@@ -1,0 +1,8 @@
+CHANGES
+	Commit
+		-Ecological Grouping Names Alphabetized
+		-Ecological Group Dropdown removed (can be re-added by removing the comment around it in both RegenerationLogicFireTable and RegenerationLogicSuccTable)
+		-Western Spruce Budworm Logic menu and disable checkbox hidden
+		-Western Spruce Budworm logic disabled by default
+		-Created LightWsbw2 and SevereWsbw2
+		-Added previous 2 processes to ProcessType.java and WestsideRegionOne.java

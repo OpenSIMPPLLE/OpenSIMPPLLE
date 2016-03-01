@@ -125,8 +125,9 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
     adjacentPrefLabelPanel.add(adjacentPrefLabel2, null);
     adjacentPrefPanel.add(adjacentPrefValue, null);
     adjacentPrefPanel.add(adjacentPrefPickPB, null);
-    ecoGroupCBPanel.add(ecoGroupLabel);
-    ecoGroupCBPanel.add(ecoGroupCB);
+    //Quack - EcoGroup Dropdown
+    //ecoGroupCBPanel.add(ecoGroupLabel);
+    // ecoGroupCBPanel.add(ecoGroupCB);
     adjacentPrefPanel.add(adjacentPrefLabelPanel, null);
 
     northPanel.add(aPanel, null);
@@ -135,7 +136,7 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
   }
 
   protected void initColumns(TableColumn column, int col) {
-
+	  //This is the dropdown menu
     selectedEcoGroup = HabitatTypeGroupType.ANY;
     for (HabitatTypeGroupType elem : HabitatTypeGroup.getAllLoadedTypesNew(true)) {
     	ecoGroupCB.addItem(elem);
