@@ -131,6 +131,7 @@ public class ProcessType extends SimpplleType implements Externalizable {
   //New Process types for WSBW
   public static final ProcessType LIGHT_WSBW2               = new ProcessType("LIGHT-WSBW2","LightWsbw2",true);
   public static final ProcessType SEVERE_WSBW2              = new ProcessType("SEVERE-WSBW2","SevereWsbw2",true);
+
   // ***************************************************
   // *** Sierra Nevada and Southern California Zones ***
   // ***************************************************

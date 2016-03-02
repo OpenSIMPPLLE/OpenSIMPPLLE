@@ -1,22 +1,18 @@
  package simpplle.comcode;
 
- 
 
-/**
 
-* <p>Title: SIMulating Patterns and Processes at Landscape scaLEs</p>
-
-* <p>Description: </p>
-
-* <p>Copyright: Public Domain</p>
-
-* <p>Company: USDA Forest Service, Rocky Mountain Research Station, Missoula Forestry Sciences Lab</p>
-
-* @author Kirk A. Moeller
-
-* @version 2.3
-
-*/
+ /**
+  *
+  * The University of Montana owns copyright of the designated documentation contained
+  * within this file as part of the software product designated by Uniform Resource Identifier
+  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
+  * Open Source License Contract pertaining to this documentation and agrees to abide by all
+  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
+  *
+  * <p>This class contains methods for Light Western Spruce Budworm, a type of Process.
+  *
+  */
 
  
 
