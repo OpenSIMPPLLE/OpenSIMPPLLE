@@ -127,6 +127,10 @@ public class ProcessType extends SimpplleType implements Externalizable {
   public static final ProcessType SPRUCE_BEETLE            = new ProcessType("SPRUCE-BEETLE","SpruceBeetle",false);
 
   public static final ProcessType WSBW                     = new ProcessType("WSBW","Wsbw",false);
+  //Quack - New Processes (Also at Line 55 in WestSideRegionOne.java)
+  //New Process types for WSBW
+  public static final ProcessType LIGHT_WSBW2               = new ProcessType("LIGHT-WSBW2","LightWsbw2",true);
+  public static final ProcessType SEVERE_WSBW2              = new ProcessType("SEVERE-WSBW2","SevereWsbw2",true);
 
   // ***************************************************
   // *** Sierra Nevada and Southern California Zones ***

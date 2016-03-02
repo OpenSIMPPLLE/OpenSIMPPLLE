@@ -1,0 +1,10 @@
+
+Version 1.2.2 : March 1, 2016
+
+	-Ecological Grouping names alphabetized
+	-Ecological Group dropdown removed
+	-Western Spruce Budworm Logic menu item hidden
+	-Disable Western Spruce Budworm menu item hidden
+	-Western Spruce Budworm logic disabled by default
+	-Created LightWsbw2 and SevereWsbw2 processes
+	-Added the new processes to the Westside Region 1 zone

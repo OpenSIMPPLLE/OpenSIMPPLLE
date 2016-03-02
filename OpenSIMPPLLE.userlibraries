@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="commons-collections-3.1">
+    <archive path="/home/joeypace/git/opensimpplle/lib/apache/commons-collections-3.1.jar" />
+  </library>
+  <library name="jbcl">
+    <archive path="/home/joeypace/git/opensimpplle/lib/jbcl.jar" />
+  </library>
+  <library name="hibernate">
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/asm.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jta.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jaas.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/xml-apis.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/asm-attrs.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/connector.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jboss-jmx.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/c3p0-0.9.0.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/hibernate3.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/cglib-2.1.3.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/dom4j-1.6.1.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/ehcache-1.1.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jacc-1_0-fr.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jboss-cache.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/oscache-2.1.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jboss-common.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jboss-system.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/log4j-1.2.11.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/xerces-2.6.2.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jgroups-2.2.8.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/proxool-0.8.3.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/antlr-2.7.6rc1.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jdbc2_0-stdext.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/concurrent-1.3.2.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jaxen-1.1-beta-7.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/swarmcache-1.0rc2.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/commons-logging-1.0.4.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/asm.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jta.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jaas.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/xml-apis.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/asm-attrs.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/connector.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jboss-jmx.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/c3p0-0.9.0.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/hibernate3.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/cglib-2.1.3.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/dom4j-1.6.1.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/ehcache-1.1.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jacc-1_0-fr.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jboss-cache.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/oscache-2.1.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jboss-common.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jboss-system.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/log4j-1.2.11.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/xerces-2.6.2.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jgroups-2.2.8.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/proxool-0.8.3.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/antlr-2.7.6rc1.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jdbc2_0-stdext.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/concurrent-1.3.2.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/jaxen-1.1-beta-7.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/swarmcache-1.0rc2.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/hibernate/commons-logging-1.0.4.jar" />
+  </library>
+  <library name="SIMPPLLE Extra">
+    <archive path="/home/joeypace/git/opensimpplle/lib/hsqldb.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/ode.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/jh.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/docs.jar" />
+  </library>
+  <library name="XStream">
+    <archive path="/home/joeypace/git/opensimpplle/lib/XStream/xpp3-1.1.3.4d_b4_min.jar" />
+    <archive path="/home/joeypace/git/opensimpplle/lib/XStream/xstream-1.1.3.jar" />
+  </library>
+</eclipse-userlibraries>
+
