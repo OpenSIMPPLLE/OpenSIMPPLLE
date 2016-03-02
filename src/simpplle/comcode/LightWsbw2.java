@@ -18,7 +18,7 @@
 
 public class LightWsbw2 extends Process {
 
-  private static final String printName = "LIGHT-WSBW2";
+  private static final String printName = "LIGHT-WSBW";
 
   public LightWsbw2() {
 

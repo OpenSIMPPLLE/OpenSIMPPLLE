@@ -18,7 +18,7 @@
 
 public class SevereWsbw2 extends Process {
 
-  private static final String printName = "SEVERE-WSBW2";
+  private static final String printName = "SEVERE-WSBW";
 
   public SevereWsbw2() {
 

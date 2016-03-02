@@ -53,8 +53,8 @@ public final class WestsideRegionOne extends RegionalZone {
       ProcessType.WP_MPB,
       //Quack - New Processes (Also at Line 132 in ProcessType.java)
       //New Process types for WSBW
-      ProcessType.LIGHT_WSBW2,
-      ProcessType.SEVERE_WSBW2
+      ProcessType.LIGHT_WSBW,
+      ProcessType.SEVERE_WSBW
     };
 
     createSampleAreas();

@@ -20,7 +20,7 @@ package simpplle.comcode;
 
 
 public class LightWsbw extends Process {
-  private static final String printName = "LIGHT-WSBW";
+  private static final String printName = "LIGHT-WSBW_OLD";
   /**
    * Constructor for  Light Western Spruce Budworm.  Inherits from Process superclass and intializes spreading to true and description. 
    */

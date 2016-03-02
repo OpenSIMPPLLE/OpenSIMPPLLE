@@ -21,7 +21,7 @@ package simpplle.comcode;
  *
  */
 public class SevereWsbw extends Process {
-  private static final String printName = "SEVERE-WSBW";
+  private static final String printName = "SEVERE-WSBW_OLD";
   /**
    * Constructor for Severe Western Spruce Budworm.  Inherits from Process superclass and initializing spread to true.  
    */
