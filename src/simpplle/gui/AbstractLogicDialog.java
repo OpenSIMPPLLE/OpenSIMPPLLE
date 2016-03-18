@@ -1,25 +1,17 @@
 package simpplle.gui;
 
-import javax.swing.JDialog;
-
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import java.awt.event.ActionEvent;
-import javax.swing.event.ChangeEvent;
-import java.awt.event.ActionListener;
-import javax.swing.event.ChangeListener;
-import simpplle.comcode.SystemKnowledge;
-import javax.swing.JOptionPane;
-import java.io.File;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Frame;
 import simpplle.JSimpplle;
+import simpplle.comcode.SimpplleError;
+import simpplle.comcode.SystemKnowledge;
+
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
-import simpplle.comcode.*;
+import java.io.File;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -92,8 +84,10 @@ public class AbstractLogicDialog extends JDialog {
    * @throws Exception
    */
   private void jbInit() throws Exception {
+
     mainPanel.setLayout(borderLayout1);
     tabsPanel.setLayout(borderLayout2);
+
     menuFile.setText("File");
     menuFileOpen.setText("Open");
     menuFileOpen.addActionListener(new
@@ -113,6 +107,7 @@ public class AbstractLogicDialog extends JDialog {
     menuFileQuit.setText("Close Dialog");
     menuFileQuit.addActionListener(new
         AbstractLogicDialog_menuFileQuit_actionAdapter(this));
+
     menuAction.setText("Action");
     menuActionMoveRuleUp.setText("Move Rule Up");
     menuActionMoveRuleUp.addActionListener(new
@@ -139,16 +134,20 @@ public class AbstractLogicDialog extends JDialog {
     getContentPane().add(mainPanel);
     mainPanel.add(tabsPanel, java.awt.BorderLayout.CENTER);
     tabsPanel.add(tabbedPane, java.awt.BorderLayout.CENTER);
+
     this.setJMenuBar(menuBar);
+
     this.addComponentListener(new java.awt.event.ComponentAdapter() {
 
       public void componentResized(ComponentEvent e) {
         this_componentResized(e);
       }
     });
+
     menuBar.add(menuFile);
     menuBar.add(menuAction);
     menuBar.add(menuKnowledgeSource);
+
     menuFile.add(menuFileOpen);
     menuFile.add(menuFileClose);
     menuFile.addSeparator();
@@ -156,16 +155,21 @@ public class AbstractLogicDialog extends JDialog {
     menuFile.add(menuFileSaveAs);
     menuFile.addSeparator();
     menuFile.add(menuFileLoadDefault);
+
     menuAction.add(menuActionMoveRuleUp);
     menuAction.add(menuActionMoveRuleDown);
     menuAction.addSeparator();
     menuAction.add(menuActionInsertNewRule);
     menuAction.add(menuActionDeleteSelectedRule);
     menuAction.add(menuActionDuplicateSelectedRule);
+
     menuFile.addSeparator();
     menuFile.add(menuFileQuit);
+
     menuKnowledgeSource.add(menuKnowledgeSourceEdit);
+
     mainPanel.setPreferredSize(new Dimension(825, 400));
+
   }
 
   protected void initialize(String[] kinds) {
