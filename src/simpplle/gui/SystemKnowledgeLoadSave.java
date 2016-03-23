@@ -1,16 +1,20 @@
 package simpplle.gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.*;
+import com.borland.jbcl.layout.VerticalFlowLayout;
+import simpplle.JSimpplle;
+import simpplle.comcode.LtaValleySegmentGroup;
+import simpplle.comcode.Simpplle;
+import simpplle.comcode.SimpplleError;
+import simpplle.comcode.SystemKnowledge;
 
 import javax.swing.*;
-import javax.swing.border.*;
-
-import com.borland.jbcl.layout.*;
-import simpplle.*;
-import simpplle.comcode.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.util.HashMap;
 
 
 /** 
@@ -29,96 +33,98 @@ import simpplle.comcode.*;
 
 @SuppressWarnings("serial")
 public class SystemKnowledgeLoadSave extends JDialog {
+
   private boolean dialogCanceled;
   private File loadSaveFile;
   private boolean save;
-  private HashMap<SystemKnowledge.Kinds,JCheckBox> checkBoxes =
-      new HashMap<SystemKnowledge.Kinds,JCheckBox>();
+  private HashMap<SystemKnowledge.Kinds,JCheckBox> checkBoxes = new HashMap<SystemKnowledge.Kinds,JCheckBox>();
 
+  private JButton cancelPB = new JButton();
+  private JButton loadSavePB = new JButton();
+  private JButton pickFilePB = new JButton();
+  private JButton selectAllPB = new JButton();
+  private JButton selectNonePB = new JButton();
+  private JCheckBox aquaticPathwaysCB = new JCheckBox();
+  private JCheckBox climateCB = new JCheckBox();
+  private JCheckBox competitionLogicCB = new JCheckBox();
+  private JCheckBox coniferEncroachLogicCB = new JCheckBox();
+  private JCheckBox exteremeFireDataCB = new JCheckBox();
+  private JCheckBox fireSeasonCB = new JCheckBox();
+  private JCheckBox fireSpreadCB = new JCheckBox();
+  private JCheckBox fireSpottingCB = new JCheckBox();
+  private JCheckBox fireSuppBeyondClassACB = new JCheckBox();
+  private JCheckBox fireSuppClassACB = new JCheckBox();
+  private JCheckBox fireSuppProductionRateCB = new JCheckBox();
+  private JCheckBox fireSuppSpreadRateCB = new JCheckBox();
+  private JCheckBox fireSuppWeatherBeyondClassACB = new JCheckBox();
+  private JCheckBox fireSuppWeatherClassACB = new JCheckBox();
+  private JCheckBox fireTypeLogicCB = new JCheckBox();
+  private JCheckBox fmzCB = new JCheckBox();
+  private JCheckBox gapProcessLogicCB = new JCheckBox();
+  private JCheckBox insectDiseaseProbCB = new JCheckBox();
+  private JCheckBox invasiveSpeciesLogicCB = new JCheckBox();
+  private JCheckBox invasiveSpeciesLogicMSUCB = new JCheckBox();
+  private JCheckBox processProbLogicCB = new JCheckBox();
+  private JCheckBox processScheduleCB = new JCheckBox();
+  private JCheckBox producingSeedLogicCB = new JCheckBox();
+  private JCheckBox regenLogicFireCB = new JCheckBox();
+  private JCheckBox regenLogicSuccCB = new JCheckBox();
+  private JCheckBox regenDelayLogicCB = new JCheckBox();
+  private JCheckBox speciesCB = new JCheckBox();
+  private JCheckBox treatmentLogicCB = new JCheckBox();
+  private JCheckBox treatmentScheduleCB = new JCheckBox();
+  private JCheckBox vegetationPathwaysCB = new JCheckBox();
+  private JCheckBox vegUnitFireTypeLogicLogicCB = new JCheckBox();
   private JPanel mainPanel = new JPanel();
+  private JPanel CBMainPanel = new JPanel();
+  private JPanel CBPanel = new JPanel();
+  private JPanel jPanel2 = new JPanel();
+  private JPanel jPanel3 = new JPanel();
+  private JPanel jPanel4 = new JPanel();
+  private JPanel jPanel5 = new JPanel();
+  private JPanel jPanel6 = new JPanel();
+  private JPanel jPanel7 = new JPanel();
+  private JPanel jPanel8 = new JPanel();
+  private JPanel jPanel9 = new JPanel();
+  private JPanel jPanel10 = new JPanel();
+  private JPanel jPanel11 = new JPanel();
+  private Border border1;
+  private Border border2;
+  private Border border3;
+  private Border border4;
+  private Border border5;
+  private TitledBorder mainTitleBorder;
+  private TitledBorder titledBorder2;
+  private TitledBorder titledBorder3;
+  private TitledBorder titledBorder4;
+  private TitledBorder titledBorder5;
+  private TitledBorder titledBorder6;
+  private GridLayout gridLayout1 = new GridLayout();
+  private GridLayout gridLayout2 = new GridLayout();
+  private GridLayout gridLayout3 = new GridLayout();
+  private GridLayout gridLayout4 = new GridLayout();
   private BorderLayout borderLayout1 = new BorderLayout();
-  JPanel CBMainPanel = new JPanel();
-  TitledBorder mainTitleBorder;
-  JCheckBox coniferEncroachLogicCB = new JCheckBox();
-  JCheckBox speciesCB = new JCheckBox();
-  JCheckBox aquaticPathwaysCB = new JCheckBox();
-  JCheckBox vegetationPathwaysCB = new JCheckBox();
-  JCheckBox treatmentLogicCB = new JCheckBox();
-  JCheckBox treatmentScheduleCB = new JCheckBox();
-  JCheckBox processScheduleCB = new JCheckBox();
-  JCheckBox insectDiseaseProbCB = new JCheckBox();
-  JCheckBox climateCB = new JCheckBox();
-  JCheckBox regenLogicFireCB = new JCheckBox();
-  JCheckBox regenLogicSuccCB = new JCheckBox();
-  JCheckBox fireSuppSpreadRateCB = new JCheckBox();
-  JCheckBox fireSuppProductionRateCB = new JCheckBox();
-  JCheckBox fireSeasonCB = new JCheckBox();
-  JCheckBox exteremeFireDataCB = new JCheckBox();
-  JCheckBox fireSuppWeatherBeyondClassACB = new JCheckBox();
-  JCheckBox fireSuppWeatherClassACB = new JCheckBox();
-  JCheckBox fireSuppBeyondClassACB = new JCheckBox();
-  JCheckBox fireSuppClassACB = new JCheckBox();
-  JCheckBox fireSpreadCB = new JCheckBox();
-  JCheckBox fmzCB = new JCheckBox();
-  JPanel jPanel2 = new JPanel();
-  JPanel jPanel3 = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
-  JPanel jPanel4 = new JPanel();
-  GridLayout gridLayout1 = new GridLayout();
-  Border border1;
-  TitledBorder titledBorder2;
-  JPanel jPanel5 = new JPanel();
-  GridLayout gridLayout2 = new GridLayout();
-  Border border2;
-  TitledBorder titledBorder3;
-  JPanel jPanel6 = new JPanel();
-  JPanel jPanel7 = new JPanel();
-  Border border3;
-  TitledBorder titledBorder4;
-  GridLayout gridLayout3 = new GridLayout();
-  GridLayout gridLayout4 = new GridLayout();
-  Border border4;
-  TitledBorder titledBorder5;
-  JPanel jPanel8 = new JPanel();
-  JButton selectNonePB = new JButton();
-  JButton selectAllPB = new JButton();
-  JPanel jPanel9 = new JPanel();
-  JPanel jPanel10 = new JPanel();
-  JButton pickFilePB = new JButton();
-  Border border5;
-  TitledBorder titledBorder6;
-  BorderLayout borderLayout2 = new BorderLayout();
-  BorderLayout borderLayout3 = new BorderLayout();
-  BorderLayout borderLayout4 = new BorderLayout();
-  JPanel jPanel11 = new JPanel();
-  BorderLayout borderLayout5 = new BorderLayout();
-  JScrollPane jScrollPane1 = new JScrollPane();
-  JTextField outputFileText = new JTextField();
-  JButton cancelPB = new JButton();
-  JButton loadSavePB = new JButton();
-  JCheckBox fireTypeLogicCB = new JCheckBox();
-  JPanel CBPanel = new JPanel();
-  JScrollPane CBScroll = new JScrollPane();
-  BorderLayout borderLayout6 = new BorderLayout();
-  JCheckBox processProbLogicCB = new JCheckBox();
-  JCheckBox regenDelayLogicCB = new JCheckBox();
-  JCheckBox gapProcessLogicCB = new JCheckBox();
-  JCheckBox competitionLogicCB = new JCheckBox();
-  JCheckBox invasiveSpeciesLogicCB = new JCheckBox();
-  JCheckBox producingSeedLogicCB = new JCheckBox();
-  JCheckBox vegUnitFireTypeLogicLogicCB = new JCheckBox();
-  JCheckBox invasiveSpeciesLogicMSUCB = new JCheckBox();
+  private BorderLayout borderLayout2 = new BorderLayout();
+  private BorderLayout borderLayout3 = new BorderLayout();
+  private BorderLayout borderLayout4 = new BorderLayout();
+  private BorderLayout borderLayout5 = new BorderLayout();
+  private BorderLayout borderLayout6 = new BorderLayout();
+  private VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
+  private JScrollPane CBScroll = new JScrollPane();
+  private JScrollPane jScrollPane1 = new JScrollPane();
+  private JTextField outputFileText = new JTextField();
 
-  private final JCheckBox fireSpottingCB = new JCheckBox();
   public SystemKnowledgeLoadSave(Frame frame, String title, boolean modal, boolean save) {
+
     super(frame, title, modal);
+
     this.save = save;
+
     try {
       jbInit();
       initialize();
       pack();
-    }
-    catch(Exception ex) {
+    } catch (Exception ex) {
       ex.printStackTrace();
     }
   }
@@ -126,6 +132,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
   public SystemKnowledgeLoadSave() {
     this(null, "", false,true);
   }
+
   private void jbInit() throws Exception {
     mainTitleBorder = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140)),"Check what data you wish saved");
     border1 = BorderFactory.createLineBorder(Color.white,1);
@@ -331,6 +338,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     setSize(getPreferredSize());
     update(getGraphics());
   }
+
   private void setLoadSaveOptions() {
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
       JCheckBox cb = checkBoxes.get(kind);
@@ -341,6 +349,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     SystemKnowledge.setLoadSaveOption(SystemKnowledge.TRACKING_SPECIES_REPORT,false);
     SystemKnowledge.setLoadSaveOption(SystemKnowledge.EVU_SEARCH_LOGIC,false);
   }
+
   private void initCheckBoxes() {
     boolean option;
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
