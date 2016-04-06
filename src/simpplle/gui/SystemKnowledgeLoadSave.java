@@ -154,6 +154,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     fireKnowledgePanel.setBorder(fireKnowledgeBorder);
     fireKnowledgePanel.setLayout(new BoxLayout(fireKnowledgePanel,BoxLayout.X_AXIS));
     fireKnowledgePanel.add(fireKnowledgeColA);
+    fireKnowledgePanel.add(Box.createHorizontalGlue());
     fireKnowledgePanel.add(fireKnowledgeColB);
 
     /* Pathways */
@@ -234,17 +235,6 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
     /* Output File */
 
-    cancelPB.setText("Cancel");
-    cancelPB.addActionListener(new SystemKnowledgeLoadSave_cancelPB_actionAdapter(this));
-    loadSavePB.setToolTipText("");
-    loadSavePB.setText("Save");
-    loadSavePB.addActionListener(new SystemKnowledgeLoadSave_loadSavePB_actionAdapter(this));
-
-    JPanel loadSaveCancelPanel = new JPanel();
-    loadSaveCancelPanel.setBorder(BorderFactory.createLoweredBevelBorder());
-    loadSaveCancelPanel.add(loadSavePB, null);
-    loadSaveCancelPanel.add(cancelPB, null);
-
     outputFileText.setBackground(Color.white);
     outputFileText.setEnabled(false);
     outputFileText.setDisabledTextColor(Color.black);
@@ -252,7 +242,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     outputFileText.setColumns(30);
 
     JScrollPane fileScrollPane = new JScrollPane();
-    fileScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    fileScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     fileScrollPane.getViewport().add(outputFileText, null);
 
     JPanel fileScrollPanel = new JPanel();
@@ -270,14 +260,19 @@ public class SystemKnowledgeLoadSave extends JDialog {
     pickFilePanel.add(pickFilePB, BorderLayout.WEST);
     pickFilePanel.add(fileScrollPanel, BorderLayout.CENTER);
 
-    JPanel pickLoadSaveCancelPanel = new JPanel();
-    pickLoadSaveCancelPanel.setLayout(new BorderLayout());
-    pickLoadSaveCancelPanel.add(pickFilePanel, BorderLayout.NORTH);
-    pickLoadSaveCancelPanel.add(loadSaveCancelPanel, BorderLayout.SOUTH);
+    loadSavePB.setText("Save");
+    loadSavePB.addActionListener(new SystemKnowledgeLoadSave_loadSavePB_actionAdapter(this));
+    cancelPB.setText("Cancel");
+    cancelPB.addActionListener(new SystemKnowledgeLoadSave_cancelPB_actionAdapter(this));
+
+    JPanel loadSaveCancelPanel = new JPanel();
+    loadSaveCancelPanel.add(loadSavePB, null);
+    loadSaveCancelPanel.add(cancelPB, null);
 
     JPanel outputFilePanel = new JPanel();
     outputFilePanel.setLayout(new BorderLayout());
-    outputFilePanel.add(pickLoadSaveCancelPanel, BorderLayout.NORTH);
+    outputFilePanel.add(pickFilePanel, BorderLayout.NORTH);
+    outputFilePanel.add(loadSaveCancelPanel, BorderLayout.SOUTH);
 
     /* Main */
 
