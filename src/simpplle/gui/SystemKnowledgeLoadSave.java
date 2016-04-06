@@ -48,12 +48,13 @@ public class SystemKnowledgeLoadSave extends JDialog {
   private JCheckBox climateCB = new JCheckBox();
   private JCheckBox competitionLogicCB = new JCheckBox();
   private JCheckBox coniferEncroachLogicCB = new JCheckBox();
-  private JCheckBox exteremeFireDataCB = new JCheckBox();
+  private JCheckBox extremeFireDataCB = new JCheckBox();
   private JCheckBox fireSeasonCB = new JCheckBox();
   private JCheckBox fireSpreadCB = new JCheckBox();
   private JCheckBox fireSpottingCB = new JCheckBox();
   private JCheckBox fireSuppBeyondClassACB = new JCheckBox();
   private JCheckBox fireSuppClassACB = new JCheckBox();
+  private JCheckBox fireSuppEventProb = new JCheckBox();
   private JCheckBox fireSuppProductionRateCB = new JCheckBox();
   private JCheckBox fireSuppSpreadRateCB = new JCheckBox();
   private JCheckBox fireSuppWeatherBeyondClassACB = new JCheckBox();
@@ -117,9 +118,10 @@ public class SystemKnowledgeLoadSave extends JDialog {
     speciesCB.setText("Species Settings (e.g. Fire Resistance)");
     fireSpottingCB.setText("Fire Spotting");
     fireSeasonCB.setText("Fire Season");
+    fireSuppEventProb.setText("Fire Suppression Event Probability");
     fireSuppSpreadRateCB.setText("Fire Spread Rate");
     fireSuppProductionRateCB.setText("Fire Suppression Production Rate");
-    exteremeFireDataCB.setText("Extreme Fire Settings");
+    extremeFireDataCB.setText("Extreme Fire Settings");
     fireSuppWeatherBeyondClassACB.setText("Fire Suppression Beyond Class A due to Weather");
     fireSuppWeatherClassACB.setText("Class A Fire Suppression due to Weather");
     fireSuppBeyondClassACB.setText("Fire Suppression Beyond Class A");
@@ -141,11 +143,12 @@ public class SystemKnowledgeLoadSave extends JDialog {
     fireKnowledgePanel.add(fireSuppBeyondClassACB, null);
     fireKnowledgePanel.add(fireSuppWeatherClassACB, null);
     fireKnowledgePanel.add(fireSuppWeatherBeyondClassACB, null);
-    fireKnowledgePanel.add(exteremeFireDataCB, null);
+    fireKnowledgePanel.add(extremeFireDataCB, null);
     fireKnowledgePanel.add(fireSuppSpreadRateCB, null);
     fireKnowledgePanel.add(fireSuppProductionRateCB, null);
     fireKnowledgePanel.add(fireSeasonCB, null);
     fireKnowledgePanel.add(speciesCB, null);
+    fireKnowledgePanel.add(fireSuppEventProb, null);
 
     /* Pathways */
 
@@ -303,13 +306,14 @@ public class SystemKnowledgeLoadSave extends JDialog {
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_SPREAD_RATE_LOGIC,fireSuppSpreadRateCB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_PRODUCTION_RATE_LOGIC,fireSuppProductionRateCB);
     checkBoxes.put(SystemKnowledge.FIRE_SEASON,fireSeasonCB);
-    checkBoxes.put(SystemKnowledge.EXTREME_FIRE_DATA,exteremeFireDataCB);
+    checkBoxes.put(SystemKnowledge.EXTREME_FIRE_DATA, extremeFireDataCB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A,fireSuppWeatherBeyondClassACB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_WEATHER_CLASS_A_LOGIC,fireSuppWeatherClassACB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_BEYOND_CLASS_A_LOGIC,fireSuppBeyondClassACB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_CLASS_A_LOGIC,fireSuppClassACB);
     checkBoxes.put(SystemKnowledge.FIRE_SPREAD_LOGIC,fireSpreadCB);
     checkBoxes.put(SystemKnowledge.FMZ,fmzCB);
+    checkBoxes.put(SystemKnowledge.FIRE_SUPP_EVENT_LOGIC,fireSuppEventProb);
 
     checkBoxes.put(SystemKnowledge.FIRE_TYPE_LOGIC,fireTypeLogicCB);
     checkBoxes.put(SystemKnowledge.FIRE_SPOTTING_LOGIC,fireSpottingCB);
