@@ -2,6 +2,8 @@
 Version 1.2.3 : ???
 
     -Duplicated rules now inserted under selection
+    -Alphabetized save/load system knowledge dialog
+    -Added "Fire Suppression Event Probability" to save/load sys knowledge
 
 
 Version 1.2.2 : March 1, 2016

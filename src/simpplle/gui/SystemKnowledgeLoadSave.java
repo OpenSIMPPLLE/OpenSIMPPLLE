@@ -1,16 +1,18 @@
 package simpplle.gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.*;
+import com.borland.jbcl.layout.VerticalFlowLayout;
+import simpplle.JSimpplle;
+import simpplle.comcode.LtaValleySegmentGroup;
+import simpplle.comcode.Simpplle;
+import simpplle.comcode.SimpplleError;
+import simpplle.comcode.SystemKnowledge;
 
 import javax.swing.*;
-import javax.swing.border.*;
-
-import com.borland.jbcl.layout.*;
-import simpplle.*;
-import simpplle.comcode.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.util.HashMap;
 
 
 /** 
@@ -29,96 +31,66 @@ import simpplle.comcode.*;
 
 @SuppressWarnings("serial")
 public class SystemKnowledgeLoadSave extends JDialog {
+
   private boolean dialogCanceled;
   private File loadSaveFile;
   private boolean save;
-  private HashMap<SystemKnowledge.Kinds,JCheckBox> checkBoxes =
-      new HashMap<SystemKnowledge.Kinds,JCheckBox>();
 
-  private JPanel mainPanel = new JPanel();
-  private BorderLayout borderLayout1 = new BorderLayout();
-  JPanel CBMainPanel = new JPanel();
-  TitledBorder mainTitleBorder;
-  JCheckBox coniferEncroachLogicCB = new JCheckBox();
-  JCheckBox speciesCB = new JCheckBox();
-  JCheckBox aquaticPathwaysCB = new JCheckBox();
-  JCheckBox vegetationPathwaysCB = new JCheckBox();
-  JCheckBox treatmentLogicCB = new JCheckBox();
-  JCheckBox treatmentScheduleCB = new JCheckBox();
-  JCheckBox processScheduleCB = new JCheckBox();
-  JCheckBox insectDiseaseProbCB = new JCheckBox();
-  JCheckBox climateCB = new JCheckBox();
-  JCheckBox regenLogicFireCB = new JCheckBox();
-  JCheckBox regenLogicSuccCB = new JCheckBox();
-  JCheckBox fireSuppSpreadRateCB = new JCheckBox();
-  JCheckBox fireSuppProductionRateCB = new JCheckBox();
-  JCheckBox fireSeasonCB = new JCheckBox();
-  JCheckBox exteremeFireDataCB = new JCheckBox();
-  JCheckBox fireSuppWeatherBeyondClassACB = new JCheckBox();
-  JCheckBox fireSuppWeatherClassACB = new JCheckBox();
-  JCheckBox fireSuppBeyondClassACB = new JCheckBox();
-  JCheckBox fireSuppClassACB = new JCheckBox();
-  JCheckBox fireSpreadCB = new JCheckBox();
-  JCheckBox fmzCB = new JCheckBox();
-  JPanel jPanel2 = new JPanel();
-  JPanel jPanel3 = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
-  JPanel jPanel4 = new JPanel();
-  GridLayout gridLayout1 = new GridLayout();
-  Border border1;
-  TitledBorder titledBorder2;
-  JPanel jPanel5 = new JPanel();
-  GridLayout gridLayout2 = new GridLayout();
-  Border border2;
-  TitledBorder titledBorder3;
-  JPanel jPanel6 = new JPanel();
-  JPanel jPanel7 = new JPanel();
-  Border border3;
-  TitledBorder titledBorder4;
-  GridLayout gridLayout3 = new GridLayout();
-  GridLayout gridLayout4 = new GridLayout();
-  Border border4;
-  TitledBorder titledBorder5;
-  JPanel jPanel8 = new JPanel();
-  JButton selectNonePB = new JButton();
-  JButton selectAllPB = new JButton();
-  JPanel jPanel9 = new JPanel();
-  JPanel jPanel10 = new JPanel();
-  JButton pickFilePB = new JButton();
-  Border border5;
-  TitledBorder titledBorder6;
-  BorderLayout borderLayout2 = new BorderLayout();
-  BorderLayout borderLayout3 = new BorderLayout();
-  BorderLayout borderLayout4 = new BorderLayout();
-  JPanel jPanel11 = new JPanel();
-  BorderLayout borderLayout5 = new BorderLayout();
-  JScrollPane jScrollPane1 = new JScrollPane();
-  JTextField outputFileText = new JTextField();
-  JButton cancelPB = new JButton();
-  JButton loadSavePB = new JButton();
-  JCheckBox fireTypeLogicCB = new JCheckBox();
-  JPanel CBPanel = new JPanel();
-  JScrollPane CBScroll = new JScrollPane();
-  BorderLayout borderLayout6 = new BorderLayout();
-  JCheckBox processProbLogicCB = new JCheckBox();
-  JCheckBox regenDelayLogicCB = new JCheckBox();
-  JCheckBox gapProcessLogicCB = new JCheckBox();
-  JCheckBox competitionLogicCB = new JCheckBox();
-  JCheckBox invasiveSpeciesLogicCB = new JCheckBox();
-  JCheckBox producingSeedLogicCB = new JCheckBox();
-  JCheckBox vegUnitFireTypeLogicLogicCB = new JCheckBox();
-  JCheckBox invasiveSpeciesLogicMSUCB = new JCheckBox();
+  private HashMap<SystemKnowledge.Kinds,JCheckBox> checkBoxes = new HashMap<SystemKnowledge.Kinds,JCheckBox>();
 
-  private final JCheckBox fireSpottingCB = new JCheckBox();
+  private JButton cancelPB = new JButton();
+  private JButton loadSavePB = new JButton();
+  private JButton pickFilePB = new JButton();
+  private JButton selectAllPB = new JButton();
+  private JButton selectNonePB = new JButton();
+  private JCheckBox aquaticPathwaysCB = new JCheckBox();
+  private JCheckBox climateCB = new JCheckBox();
+  private JCheckBox lifeformCompLogicCB = new JCheckBox();
+  private JCheckBox coniferEncroachLogicCB = new JCheckBox();
+  private JCheckBox extremeFireDataCB = new JCheckBox();
+  private JCheckBox fireSeasonCB = new JCheckBox();
+  private JCheckBox fireSpreadCB = new JCheckBox();
+  private JCheckBox fireSpottingCB = new JCheckBox();
+  private JCheckBox fireSuppBeyondClassACB = new JCheckBox();
+  private JCheckBox fireSuppClassACB = new JCheckBox();
+  private JCheckBox fireSuppEventProb = new JCheckBox();
+  private JCheckBox fireSuppProductionRateCB = new JCheckBox();
+  private JCheckBox fireSuppSpreadRateCB = new JCheckBox();
+  private JCheckBox fireSuppWeatherBeyondClassACB = new JCheckBox();
+  private JCheckBox fireSuppWeatherClassACB = new JCheckBox();
+  private JCheckBox fireTypeLogicCB = new JCheckBox();
+  private JCheckBox fmzCB = new JCheckBox();
+  private JCheckBox gapProcessLogicCB = new JCheckBox();
+  private JCheckBox insectDiseaseProbCB = new JCheckBox();
+  private JCheckBox invasiveSpeciesLogicCB = new JCheckBox();
+  private JCheckBox invasiveSpeciesLogicMsuCB = new JCheckBox();
+  private JCheckBox processProbLogicCB = new JCheckBox();
+  private JCheckBox processScheduleCB = new JCheckBox();
+  private JCheckBox producingSeedLogicCB = new JCheckBox();
+  private JCheckBox fireRegenLogicCB = new JCheckBox();
+  private JCheckBox regenLogicSuccCB = new JCheckBox();
+  private JCheckBox regenDelayLogicCB = new JCheckBox();
+  private JCheckBox speciesCB = new JCheckBox();
+  private JCheckBox treatmentLogicCB = new JCheckBox();
+  private JCheckBox treatmentScheduleCB = new JCheckBox();
+  private JCheckBox vegetationPathwaysCB = new JCheckBox();
+  private JCheckBox vegUnitFireTypeLogicLogicCB = new JCheckBox();
+  private JScrollPane CBScroll = new JScrollPane();
+  private JTextField outputFileText = new JTextField();
+  private TitledBorder mainTitleBorder;
+  private VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
+
   public SystemKnowledgeLoadSave(Frame frame, String title, boolean modal, boolean save) {
+
     super(frame, title, modal);
+
     this.save = save;
+
     try {
       jbInit();
       initialize();
       pack();
-    }
-    catch(Exception ex) {
+    } catch (Exception ex) {
       ex.printStackTrace();
     }
   }
@@ -126,150 +98,210 @@ public class SystemKnowledgeLoadSave extends JDialog {
   public SystemKnowledgeLoadSave() {
     this(null, "", false,true);
   }
+
   private void jbInit() throws Exception {
-    mainTitleBorder = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140)),"Check what data you wish saved");
-    border1 = BorderFactory.createLineBorder(Color.white,1);
-    titledBorder2 = new TitledBorder(BorderFactory.createLineBorder(Color.black,1),"Fire Knowledge");
-    border2 = BorderFactory.createLineBorder(SystemColor.controlText,1);
-    titledBorder3 = new TitledBorder(BorderFactory.createLineBorder(Color.black,1),"Pathways");
-    border3 = BorderFactory.createLineBorder(Color.black,1);
-    titledBorder4 = new TitledBorder(border3,"Schedules");
-    border4 = BorderFactory.createLineBorder(Color.black,1);
-    titledBorder5 = new TitledBorder(border4,"Miscellaneous");
-    border5 = BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140));
-    titledBorder6 = new TitledBorder(border5,"Output File");
-    mainPanel.setLayout(borderLayout1);
-    CBMainPanel.setBorder(mainTitleBorder);
-    CBMainPanel.setLayout(verticalFlowLayout1);
-    coniferEncroachLogicCB.setText("Conifer Encroachment Logic");
-    speciesCB.setText("Species Settings (e.g. Fire Resistance)");
-    aquaticPathwaysCB.setEnabled(false);
-    aquaticPathwaysCB.setText("Aquatic Pathways");
-    vegetationPathwaysCB.setText("Vegetative Pathways");
-    treatmentLogicCB.setText("Treatment Logic");
-    treatmentScheduleCB.setText("Treatment Schedules");
-    processScheduleCB.setText("Process Schedules");
-    insectDiseaseProbCB.setText("Insect/Disease Probabilities");
-    climateCB.setText("Climate");
-    regenLogicFireCB.setText("Fire Regeneration Logic");
-    regenLogicSuccCB.setText("Succession Regeneration Logic");
-    fireSuppSpreadRateCB.setText("Fire Spread Rate");
-    fireSuppProductionRateCB.setText("Fire Suppression Production Rate");
-    fireSeasonCB.setText("Fire Season");
-    exteremeFireDataCB.setText("Extreme Fire Settings");
-    fireSuppWeatherBeyondClassACB.setText("Fire Suppression Beyond Class A due to Weather");
-    fireSuppWeatherClassACB.setText("Class A Fire Suppression due to Weather");
-    fireSuppBeyondClassACB.setText("Fire Suppression Beyond Class A");
-    fireSuppClassACB.setText("Class A Fire Suppression");
-    fireSpreadCB.setText("Fire Spread");
-    
-    jPanel4.add(fireSpottingCB);
-    fireSpottingCB.setText("Fire Spotting");
-    fmzCB.setText("Fire Occurrence -- Fire Suppression Costs -- Fire Management Zones");
-    jPanel4.setLayout(gridLayout1);
-    gridLayout1.setRows(7);
-    jPanel4.setBorder(titledBorder2);
-    jPanel5.setLayout(gridLayout2);
-    gridLayout2.setRows(2);
-    jPanel5.setBorder(titledBorder3);
-    jPanel7.setBorder(titledBorder4);
-    jPanel7.setLayout(gridLayout3);
-    gridLayout3.setRows(2);
-    jPanel6.setLayout(gridLayout4);
-    gridLayout4.setRows(6);
-    gridLayout4.setColumns(2);
-    jPanel6.setBorder(titledBorder5);
-    selectNonePB.setText("Select None");
-    selectNonePB.addActionListener(new SystemKnowledgeLoadSave_selectNonePB_actionAdapter(this));
+
+    /* Selection */
+
     selectAllPB.setText("Select All");
     selectAllPB.addActionListener(new SystemKnowledgeLoadSave_selectAllPB_actionAdapter(this));
-    pickFilePB.setText("Pick");
-    pickFilePB.addActionListener(new SystemKnowledgeLoadSave_pickFilePB_actionAdapter(this));
-    jPanel10.setBorder(titledBorder6);
-    jPanel10.setLayout(borderLayout4);
-    jPanel3.setLayout(borderLayout2);
-    jPanel2.setLayout(borderLayout3);
-    jPanel11.setLayout(borderLayout5);
+    selectNonePB.setText("Select None");
+    selectNonePB.addActionListener(new SystemKnowledgeLoadSave_selectNonePB_actionAdapter(this));
+
+    JPanel selectPanel = new JPanel();
+    selectPanel.add(selectAllPB, null);
+    selectPanel.add(selectNonePB, null);
+
+    /* Fire Knowledge */
+
+    fireSuppClassACB.setText("Class A Fire Suppression");
+    fireSuppWeatherClassACB.setText("Class A Fire Suppression due to Weather");
+    extremeFireDataCB.setText("Extreme Fire Settings");
+    fmzCB.setText("Fire Occurrence / Suppression Costs / Management Zones");
+    fireSeasonCB.setText("Fire Season");
+    fireSpottingCB.setText("Fire Spotting");
+    fireSpreadCB.setText("Fire Spread");
+    fireSuppBeyondClassACB.setText("Fire Suppression Beyond Class A");
+    fireSuppWeatherBeyondClassACB.setText("Fire Suppression Beyond Class A due to Weather");
+    fireSuppEventProb.setText("Fire Suppression Event Probability");
+    fireSuppProductionRateCB.setText("Fire Suppression Production Rate");
+    fireSuppSpreadRateCB.setText("Fire Suppression Spread Rate");
+    speciesCB.setText("Species Settings (e.g. Fire Resistance)");
+    fireTypeLogicCB.setText("Type of Fire Logic");
+    fireTypeLogicCB.setActionCommand("Type of Fire Logic");
+
+    Box fireKnowledgeColA = new Box(BoxLayout.Y_AXIS);
+    fireKnowledgeColA.add(fireSuppClassACB, null);
+    fireKnowledgeColA.add(fireSuppWeatherClassACB, null);
+    fireKnowledgeColA.add(extremeFireDataCB, null);
+    fireKnowledgeColA.add(fmzCB, null);
+    fireKnowledgeColA.add(fireSeasonCB, null);
+    fireKnowledgeColA.add(fireSpottingCB);
+    fireKnowledgeColA.add(fireSpreadCB, null);
+
+    Box fireKnowledgeColB = new Box(BoxLayout.Y_AXIS);
+    fireKnowledgeColB.add(fireSuppBeyondClassACB, null);
+    fireKnowledgeColB.add(fireSuppWeatherBeyondClassACB, null);
+    fireKnowledgeColB.add(fireSuppEventProb, null);
+    fireKnowledgeColB.add(fireSuppProductionRateCB, null);
+    fireKnowledgeColB.add(fireSuppSpreadRateCB, null);
+    fireKnowledgeColB.add(speciesCB, null);
+    fireKnowledgeColB.add(fireTypeLogicCB, null);
+
+    TitledBorder fireKnowledgeBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Fire Knowledge");
+
+    JPanel fireKnowledgePanel = new JPanel();
+    fireKnowledgePanel.setBorder(fireKnowledgeBorder);
+    fireKnowledgePanel.setLayout(new BoxLayout(fireKnowledgePanel,BoxLayout.X_AXIS));
+    fireKnowledgePanel.add(fireKnowledgeColA);
+    fireKnowledgePanel.add(Box.createHorizontalGlue());
+    fireKnowledgePanel.add(fireKnowledgeColB);
+
+    /* Pathways */
+
+    aquaticPathwaysCB.setText("Aquatic Pathways");
+    aquaticPathwaysCB.setEnabled(false);
+    vegetationPathwaysCB.setText("Vegetative Pathways");
+
+    TitledBorder pathwaysBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Pathways");
+
+    JPanel pathwaysPanel = new JPanel();
+    pathwaysPanel.setBorder(pathwaysBorder);
+    pathwaysPanel.setLayout(new GridLayout(2,0));
+    pathwaysPanel.add(aquaticPathwaysCB, null);
+    pathwaysPanel.add(vegetationPathwaysCB, null);
+
+    /* Schedules */
+
+    processScheduleCB.setText("Process Schedules");
+    treatmentScheduleCB.setText("Treatment Schedules");
+
+    TitledBorder schedulesBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Schedules");
+
+    JPanel schedulesPanel = new JPanel();
+    schedulesPanel.setBorder(schedulesBorder);
+    schedulesPanel.setLayout(new GridLayout(2,0));
+    schedulesPanel.add(processScheduleCB, null);
+    schedulesPanel.add(treatmentScheduleCB, null);
+
+    /* Miscellaneous */
+
+    climateCB.setText("Climate");
+    coniferEncroachLogicCB.setText("Conifer Encroachment Logic");
+    fireRegenLogicCB.setText("Fire Regeneration Logic");
+    gapProcessLogicCB.setText("Gap Process Logic");
+    insectDiseaseProbCB.setText("Insect/Disease Probabilities");
+    invasiveSpeciesLogicCB.setText("Invasive Species Logic");
+    invasiveSpeciesLogicMsuCB.setText("Invasive Species Logic MSU");
+    lifeformCompLogicCB.setText("Lifeform Competition Logic");
+    processProbLogicCB.setText("Process Probability Logic");
+    producingSeedLogicCB.setText("Producing Seed Logic");
+    regenDelayLogicCB.setText("Regeneration Delay Logic");
+    regenLogicSuccCB.setText("Succession Regeneration Logic");
+    treatmentLogicCB.setText("Treatment Logic");
+    vegUnitFireTypeLogicLogicCB.setText("Veg Unit Fire Type Logic");
+
+    Box miscColA = new Box(BoxLayout.Y_AXIS);
+    miscColA.add(climateCB, null);
+    miscColA.add(coniferEncroachLogicCB, null);
+    miscColA.add(fireRegenLogicCB, null);
+    miscColA.add(gapProcessLogicCB);
+    miscColA.add(insectDiseaseProbCB, null);
+
+    Box miscColB = new Box(BoxLayout.Y_AXIS);
+    miscColB.add(invasiveSpeciesLogicCB);
+    miscColB.add(invasiveSpeciesLogicMsuCB);
+    miscColB.add(lifeformCompLogicCB);
+    miscColB.add(processProbLogicCB);
+    miscColB.add(producingSeedLogicCB);
+
+    Box miscColC = new Box(BoxLayout.Y_AXIS);
+    miscColC.add(regenDelayLogicCB);
+    miscColC.add(regenLogicSuccCB, null);
+    miscColC.add(treatmentLogicCB, null);
+    miscColC.add(vegUnitFireTypeLogicLogicCB);
+    miscColC.add(Box.createVerticalGlue());
+
+    TitledBorder miscBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Miscellaneous");
+
+    JPanel miscPanel = new JPanel();
+    miscPanel.setBorder(miscBorder);
+    miscPanel.setLayout(new BoxLayout(miscPanel,BoxLayout.X_AXIS));
+    miscPanel.add(miscColA);
+    miscPanel.add(Box.createHorizontalGlue());
+    miscPanel.add(miscColB);
+    miscPanel.add(Box.createHorizontalGlue());
+    miscPanel.add(miscColC);
+
+    /* Output File */
+
     outputFileText.setBackground(Color.white);
     outputFileText.setEnabled(false);
     outputFileText.setDisabledTextColor(Color.black);
     outputFileText.setEditable(false);
-    outputFileText.setText("C:/MyDocuments/MyProjects/testing/poorman/test.sysknowledge");
     outputFileText.setColumns(30);
-    jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    cancelPB.setText("Cancel");
-    cancelPB.addActionListener(new SystemKnowledgeLoadSave_cancelPB_actionAdapter(this));
-    loadSavePB.setToolTipText("");
+
+    JScrollPane fileScrollPane = new JScrollPane();
+    fileScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    fileScrollPane.getViewport().add(outputFileText, null);
+
+    JPanel fileScrollPanel = new JPanel();
+    fileScrollPanel.setLayout(new BorderLayout());
+    fileScrollPanel.add(fileScrollPane, BorderLayout.NORTH);
+
+    pickFilePB.setText("Pick");
+    pickFilePB.addActionListener(new SystemKnowledgeLoadSave_pickFilePB_actionAdapter(this));
+
+    TitledBorder pickFileBorder = new TitledBorder(BorderFactory.createEtchedBorder(Color.white, new Color(148, 145, 140)), "File Name");
+
+    JPanel pickFilePanel = new JPanel();
+    pickFilePanel.setBorder(pickFileBorder);
+    pickFilePanel.setLayout(new BorderLayout());
+    pickFilePanel.add(pickFilePB, BorderLayout.WEST);
+    pickFilePanel.add(fileScrollPanel, BorderLayout.CENTER);
+
     loadSavePB.setText("Save");
     loadSavePB.addActionListener(new SystemKnowledgeLoadSave_loadSavePB_actionAdapter(this));
-    jPanel9.setBorder(BorderFactory.createLoweredBevelBorder());
-    titledBorder6.setTitle("File Name");
-    fireTypeLogicCB.setActionCommand("Type of Fire Logic");
-    fireTypeLogicCB.setText("Type of Fire Logic");
-    CBPanel.setLayout(borderLayout6);
-    processProbLogicCB.setText("Process Probability Logic");
-    regenDelayLogicCB.setText("Regeneration Delay Logic");
-    gapProcessLogicCB.setText("Gap Process Logic");
-    competitionLogicCB.setText("Lifeform Competition Logic");
-    invasiveSpeciesLogicCB.setText("Invasive Species Logic");
-    invasiveSpeciesLogicMSUCB.setText("Invasive Species Logic MSU");
-    producingSeedLogicCB.setText("Producing Seed Logic");
-    vegUnitFireTypeLogicLogicCB.setText("Veg Unit Fire Type Logic");
-    jPanel3.add(jPanel10,  BorderLayout.NORTH);
-    jPanel10.add(pickFilePB,  BorderLayout.WEST);
-    jPanel10.add(jPanel11,  BorderLayout.CENTER);
-    jPanel11.add(jScrollPane1, BorderLayout.NORTH);
-    jScrollPane1.getViewport().add(outputFileText, null);
-    jPanel3.add(jPanel9,  BorderLayout.SOUTH);
-    CBMainPanel.add(jPanel8, null);
-    jPanel8.add(selectAllPB, null);
-    jPanel8.add(selectNonePB, null);
-    getContentPane().add(mainPanel);
-    mainPanel.add(CBPanel,  BorderLayout.NORTH);
-    CBMainPanel.add(jPanel4, null);
-    jPanel4.add(fmzCB, null);
-    jPanel4.add(fireSpreadCB, null);
-    jPanel4.add(fireTypeLogicCB, null);
-    jPanel4.add(fireSuppClassACB, null);
-    jPanel4.add(fireSuppBeyondClassACB, null);
-    jPanel4.add(fireSuppWeatherClassACB, null);
-    jPanel4.add(fireSuppWeatherBeyondClassACB, null);
-    jPanel4.add(exteremeFireDataCB, null);
-    jPanel4.add(fireSuppSpreadRateCB, null);
-    jPanel4.add(fireSuppProductionRateCB, null);
-    jPanel4.add(fireSeasonCB, null);
-    jPanel4.add(speciesCB, null);
-    CBMainPanel.add(jPanel5, null);
-    jPanel5.add(vegetationPathwaysCB, null);
-    jPanel5.add(aquaticPathwaysCB, null);
-    CBMainPanel.add(jPanel7, null);
-    jPanel7.add(processScheduleCB, null);
-    jPanel7.add(treatmentScheduleCB, null);
-    CBMainPanel.add(jPanel6, null);
-    jPanel6.add(regenLogicFireCB, null);
-    jPanel6.add(regenLogicSuccCB, null);
-    jPanel6.add(coniferEncroachLogicCB, null);
-    jPanel6.add(treatmentLogicCB, null);
-    jPanel6.add(insectDiseaseProbCB, null);
-    jPanel6.add(processProbLogicCB);
-    jPanel6.add(invasiveSpeciesLogicCB);
-    jPanel6.add(invasiveSpeciesLogicMSUCB);
-    jPanel6.add(regenDelayLogicCB);
-    jPanel6.add(gapProcessLogicCB);
-    jPanel6.add(competitionLogicCB);
-    jPanel6.add(producingSeedLogicCB);
-    jPanel6.add(vegUnitFireTypeLogicLogicCB);
-    jPanel6.add(climateCB, null);
-    mainPanel.add(jPanel2, BorderLayout.SOUTH);
-    jPanel2.add(jPanel3, BorderLayout.NORTH);
-    jPanel9.add(loadSavePB, null);
-    jPanel9.add(cancelPB, null);
-    mainPanel.add(CBPanel, BorderLayout.CENTER);
-    CBPanel.add(CBScroll, BorderLayout.CENTER);
+    cancelPB.setText("Cancel");
+    cancelPB.addActionListener(new SystemKnowledgeLoadSave_cancelPB_actionAdapter(this));
+
+    JPanel loadSaveCancelPanel = new JPanel();
+    loadSaveCancelPanel.add(loadSavePB, null);
+    loadSaveCancelPanel.add(cancelPB, null);
+
+    JPanel outputFilePanel = new JPanel();
+    outputFilePanel.setLayout(new BorderLayout());
+    outputFilePanel.add(pickFilePanel, BorderLayout.NORTH);
+    outputFilePanel.add(loadSaveCancelPanel, BorderLayout.SOUTH);
+
+    /* Main */
+
+    JPanel CBMainPanel = new JPanel();
+    CBMainPanel.setLayout(verticalFlowLayout1);
+    CBMainPanel.add(fireKnowledgePanel, null);
+    CBMainPanel.add(pathwaysPanel, null);
+    CBMainPanel.add(schedulesPanel, null);
+    CBMainPanel.add(miscPanel, null);
+    CBMainPanel.add(selectPanel, null);
+
     CBScroll.getViewport().add(CBMainPanel, null);
+
+    JPanel CBPanel = new JPanel();
+    CBPanel.setLayout(new BorderLayout());
+    CBPanel.add(CBScroll, BorderLayout.CENTER);
+
+    JPanel mainPanel = new JPanel();
+    mainPanel.setLayout(new BorderLayout());
+    mainPanel.add(CBPanel, BorderLayout.NORTH);
+    mainPanel.add(outputFilePanel, BorderLayout.SOUTH);
+    mainPanel.add(CBPanel, BorderLayout.CENTER);
+
+    getContentPane().add(mainPanel);
+
   }
 
   private void initialize() {
+
     Dimension size = CBScroll.getPreferredSize();
     CBScroll.setPreferredSize(new Dimension(size.width+25,560));
 
@@ -283,40 +315,39 @@ public class SystemKnowledgeLoadSave extends JDialog {
     checkBoxes.put(SystemKnowledge.INSECT_DISEASE_PROB,insectDiseaseProbCB);
     checkBoxes.put(SystemKnowledge.PROCESS_PROB_LOGIC,processProbLogicCB);
     checkBoxes.put(SystemKnowledge.CLIMATE,climateCB);
-    checkBoxes.put(SystemKnowledge.REGEN_LOGIC_FIRE,regenLogicFireCB);
+    checkBoxes.put(SystemKnowledge.REGEN_LOGIC_FIRE, fireRegenLogicCB);
     checkBoxes.put(SystemKnowledge.REGEN_LOGIC_SUCC,regenLogicSuccCB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_SPREAD_RATE_LOGIC,fireSuppSpreadRateCB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_PRODUCTION_RATE_LOGIC,fireSuppProductionRateCB);
     checkBoxes.put(SystemKnowledge.FIRE_SEASON,fireSeasonCB);
-    checkBoxes.put(SystemKnowledge.EXTREME_FIRE_DATA,exteremeFireDataCB);
+    checkBoxes.put(SystemKnowledge.EXTREME_FIRE_DATA, extremeFireDataCB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A,fireSuppWeatherBeyondClassACB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_WEATHER_CLASS_A_LOGIC,fireSuppWeatherClassACB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_BEYOND_CLASS_A_LOGIC,fireSuppBeyondClassACB);
     checkBoxes.put(SystemKnowledge.FIRE_SUPP_CLASS_A_LOGIC,fireSuppClassACB);
     checkBoxes.put(SystemKnowledge.FIRE_SPREAD_LOGIC,fireSpreadCB);
     checkBoxes.put(SystemKnowledge.FMZ,fmzCB);
-
+    checkBoxes.put(SystemKnowledge.FIRE_SUPP_EVENT_LOGIC,fireSuppEventProb);
     checkBoxes.put(SystemKnowledge.FIRE_TYPE_LOGIC,fireTypeLogicCB);
     checkBoxes.put(SystemKnowledge.FIRE_SPOTTING_LOGIC,fireSpottingCB);
-
     checkBoxes.put(SystemKnowledge.REGEN_DELAY_LOGIC,regenDelayLogicCB);
     checkBoxes.put(SystemKnowledge.GAP_PROCESS_LOGIC,gapProcessLogicCB);
-    checkBoxes.put(SystemKnowledge.DOCOMPETITION_LOGIC,competitionLogicCB);
+    checkBoxes.put(SystemKnowledge.DOCOMPETITION_LOGIC, lifeformCompLogicCB);
     checkBoxes.put(SystemKnowledge.INVASIVE_SPECIES_LOGIC,invasiveSpeciesLogicCB);
-    checkBoxes.put(SystemKnowledge.INVASIVE_SPECIES_LOGIC_MSU,invasiveSpeciesLogicMSUCB);
+    checkBoxes.put(SystemKnowledge.INVASIVE_SPECIES_LOGIC_MSU, invasiveSpeciesLogicMsuCB);
     checkBoxes.put(SystemKnowledge.PRODUCING_SEED_LOGIC,producingSeedLogicCB);
     checkBoxes.put(SystemKnowledge.VEG_UNIT_FIRE_TYPE_LOGIC,vegUnitFireTypeLogicLogicCB);
 
     if (save) {
-      mainTitleBorder.setTitle("Check what data you wish to save");
+
       loadSavePB.setText("Save");
-      outputFileText.setText("");
       loadSavePB.setEnabled(false);
       initCheckBoxes();
-    }
-    else {
-      mainTitleBorder.setTitle("Check what data you wish to load");
+
+    } else {
+
       loadSavePB.setText("Load");
+
     }
 
     checkBoxes.get(SystemKnowledge.AQUATIC_PATHWAYS).setEnabled(LtaValleySegmentGroup.loaded());
@@ -331,6 +362,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     setSize(getPreferredSize());
     update(getGraphics());
   }
+
   private void setLoadSaveOptions() {
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
       JCheckBox cb = checkBoxes.get(kind);
@@ -341,6 +373,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     SystemKnowledge.setLoadSaveOption(SystemKnowledge.TRACKING_SPECIES_REPORT,false);
     SystemKnowledge.setLoadSaveOption(SystemKnowledge.EVU_SEARCH_LOGIC,false);
   }
+
   private void initCheckBoxes() {
     boolean option;
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
@@ -390,11 +423,11 @@ public class SystemKnowledgeLoadSave extends JDialog {
     if (save) {
       filename = Utility.getSaveFile(JSimpplle.getSimpplleMain(),
                                 "System Knowledge File", extFilter);
-    }
-    else {
+    } else {
       filename = Utility.getOpenFile(JSimpplle.getSimpplleMain(),
                                 "System Knowledge File", extFilter);
     }
+
     if (filename == null) { return; }
 
     outputFileText.setText(filename.toString());
@@ -405,9 +438,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
         SystemKnowledge.processInputFileEntries(loadSaveFile);
         initCheckBoxes();
       }
-    }
-    catch (SimpplleError ex) {
-    }
+    } catch (SimpplleError ex) {}
   }
 
   void loadSavePB_actionPerformed(ActionEvent e) {
@@ -419,13 +450,15 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
 
     setLoadSaveOptions();
+
     try {
+
       if (save) {
         SystemKnowledge.saveInputFile(loadSaveFile);
-      }
-      else {
+      } else {
         SystemKnowledge.readInputFile(loadSaveFile);
       }
+
       String msg = (save) ? "File Saved Successfully" :
                             "File Loaded Successfully";
       JOptionPane.showMessageDialog(this, msg, "Success",
@@ -433,11 +466,13 @@ public class SystemKnowledgeLoadSave extends JDialog {
       dialogCanceled = false;
       setVisible(false);
       dispose();
-    }
-    catch (SimpplleError ex) {
+
+    } catch (SimpplleError ex) {
+
       JOptionPane.showMessageDialog(this, ex.getMessage(),
                                     "Problems processing file",
                                     JOptionPane.ERROR_MESSAGE);
+
     }
   }
 
@@ -446,6 +481,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     setVisible(false);
     dispose();
   }
+
   void cancelPB_actionPerformed(ActionEvent e) {
     dialogCanceled = true;
     setVisible(false);
