@@ -8,7 +8,6 @@ import simpplle.comcode.SimpplleError;
 import simpplle.comcode.SystemKnowledge;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -37,6 +36,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
   private boolean dialogCanceled;
   private File loadSaveFile;
   private boolean save;
+
   private HashMap<SystemKnowledge.Kinds,JCheckBox> checkBoxes = new HashMap<SystemKnowledge.Kinds,JCheckBox>();
 
   private JButton cancelPB = new JButton();
@@ -75,44 +75,10 @@ public class SystemKnowledgeLoadSave extends JDialog {
   private JCheckBox treatmentScheduleCB = new JCheckBox();
   private JCheckBox vegetationPathwaysCB = new JCheckBox();
   private JCheckBox vegUnitFireTypeLogicLogicCB = new JCheckBox();
-  private JPanel mainPanel = new JPanel();
-  private JPanel CBMainPanel = new JPanel();
-  private JPanel CBPanel = new JPanel();
-  private JPanel jPanel2 = new JPanel();
-  private JPanel jPanel3 = new JPanel();
-  private JPanel jPanel4 = new JPanel();
-  private JPanel jPanel5 = new JPanel();
-  private JPanel jPanel6 = new JPanel();
-  private JPanel jPanel7 = new JPanel();
-  private JPanel jPanel8 = new JPanel();
-  private JPanel jPanel9 = new JPanel();
-  private JPanel jPanel10 = new JPanel();
-  private JPanel jPanel11 = new JPanel();
-  private Border border1;
-  private Border border2;
-  private Border border3;
-  private Border border4;
-  private Border border5;
-  private TitledBorder mainTitleBorder;
-  private TitledBorder titledBorder2;
-  private TitledBorder titledBorder3;
-  private TitledBorder titledBorder4;
-  private TitledBorder titledBorder5;
-  private TitledBorder titledBorder6;
-  private GridLayout gridLayout1 = new GridLayout();
-  private GridLayout gridLayout2 = new GridLayout();
-  private GridLayout gridLayout3 = new GridLayout();
-  private GridLayout gridLayout4 = new GridLayout();
-  private BorderLayout borderLayout1 = new BorderLayout();
-  private BorderLayout borderLayout2 = new BorderLayout();
-  private BorderLayout borderLayout3 = new BorderLayout();
-  private BorderLayout borderLayout4 = new BorderLayout();
-  private BorderLayout borderLayout5 = new BorderLayout();
-  private BorderLayout borderLayout6 = new BorderLayout();
-  private VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   private JScrollPane CBScroll = new JScrollPane();
-  private JScrollPane jScrollPane1 = new JScrollPane();
   private JTextField outputFileText = new JTextField();
+  private TitledBorder mainTitleBorder;
+  private VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
 
   public SystemKnowledgeLoadSave(Frame frame, String title, boolean modal, boolean save) {
 
@@ -134,86 +100,86 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   private void jbInit() throws Exception {
-    mainTitleBorder = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140)),"Check what data you wish saved");
-    border1 = BorderFactory.createLineBorder(Color.white,1);
-    titledBorder2 = new TitledBorder(BorderFactory.createLineBorder(Color.black,1),"Fire Knowledge");
-    border2 = BorderFactory.createLineBorder(SystemColor.controlText,1);
-    titledBorder3 = new TitledBorder(BorderFactory.createLineBorder(Color.black,1),"Pathways");
-    border3 = BorderFactory.createLineBorder(Color.black,1);
-    titledBorder4 = new TitledBorder(border3,"Schedules");
-    border4 = BorderFactory.createLineBorder(Color.black,1);
-    titledBorder5 = new TitledBorder(border4,"Miscellaneous");
-    border5 = BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140));
-    titledBorder6 = new TitledBorder(border5,"Output File");
-    mainPanel.setLayout(borderLayout1);
-    CBMainPanel.setBorder(mainTitleBorder);
-    CBMainPanel.setLayout(verticalFlowLayout1);
-    coniferEncroachLogicCB.setText("Conifer Encroachment Logic");
+
+    /* Selection */
+
+    selectAllPB.setText("Select All");
+    selectAllPB.addActionListener(new SystemKnowledgeLoadSave_selectAllPB_actionAdapter(this));
+    selectNonePB.setText("Select None");
+    selectNonePB.addActionListener(new SystemKnowledgeLoadSave_selectNonePB_actionAdapter(this));
+
+    JPanel selectPanel = new JPanel();
+    selectPanel.add(selectAllPB, null);
+    selectPanel.add(selectNonePB, null);
+
+    /* Fire Knowledge */
+
     speciesCB.setText("Species Settings (e.g. Fire Resistance)");
-    aquaticPathwaysCB.setEnabled(false);
-    aquaticPathwaysCB.setText("Aquatic Pathways");
-    vegetationPathwaysCB.setText("Vegetative Pathways");
-    treatmentLogicCB.setText("Treatment Logic");
-    treatmentScheduleCB.setText("Treatment Schedules");
-    processScheduleCB.setText("Process Schedules");
-    insectDiseaseProbCB.setText("Insect/Disease Probabilities");
-    climateCB.setText("Climate");
-    regenLogicFireCB.setText("Fire Regeneration Logic");
-    regenLogicSuccCB.setText("Succession Regeneration Logic");
+    fireSpottingCB.setText("Fire Spotting");
+    fireSeasonCB.setText("Fire Season");
     fireSuppSpreadRateCB.setText("Fire Spread Rate");
     fireSuppProductionRateCB.setText("Fire Suppression Production Rate");
-    fireSeasonCB.setText("Fire Season");
     exteremeFireDataCB.setText("Extreme Fire Settings");
     fireSuppWeatherBeyondClassACB.setText("Fire Suppression Beyond Class A due to Weather");
     fireSuppWeatherClassACB.setText("Class A Fire Suppression due to Weather");
     fireSuppBeyondClassACB.setText("Fire Suppression Beyond Class A");
     fireSuppClassACB.setText("Class A Fire Suppression");
     fireSpreadCB.setText("Fire Spread");
-    
-    jPanel4.add(fireSpottingCB);
-    fireSpottingCB.setText("Fire Spotting");
     fmzCB.setText("Fire Occurrence -- Fire Suppression Costs -- Fire Management Zones");
-    jPanel4.setLayout(gridLayout1);
-    gridLayout1.setRows(7);
-    jPanel4.setBorder(titledBorder2);
-    jPanel5.setLayout(gridLayout2);
-    gridLayout2.setRows(2);
-    jPanel5.setBorder(titledBorder3);
-    jPanel7.setBorder(titledBorder4);
-    jPanel7.setLayout(gridLayout3);
-    gridLayout3.setRows(2);
-    jPanel6.setLayout(gridLayout4);
-    gridLayout4.setRows(6);
-    gridLayout4.setColumns(2);
-    jPanel6.setBorder(titledBorder5);
-    selectNonePB.setText("Select None");
-    selectNonePB.addActionListener(new SystemKnowledgeLoadSave_selectNonePB_actionAdapter(this));
-    selectAllPB.setText("Select All");
-    selectAllPB.addActionListener(new SystemKnowledgeLoadSave_selectAllPB_actionAdapter(this));
-    pickFilePB.setText("Pick");
-    pickFilePB.addActionListener(new SystemKnowledgeLoadSave_pickFilePB_actionAdapter(this));
-    jPanel10.setBorder(titledBorder6);
-    jPanel10.setLayout(borderLayout4);
-    jPanel3.setLayout(borderLayout2);
-    jPanel2.setLayout(borderLayout3);
-    jPanel11.setLayout(borderLayout5);
-    outputFileText.setBackground(Color.white);
-    outputFileText.setEnabled(false);
-    outputFileText.setDisabledTextColor(Color.black);
-    outputFileText.setEditable(false);
-    outputFileText.setText("C:/MyDocuments/MyProjects/testing/poorman/test.sysknowledge");
-    outputFileText.setColumns(30);
-    jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    cancelPB.setText("Cancel");
-    cancelPB.addActionListener(new SystemKnowledgeLoadSave_cancelPB_actionAdapter(this));
-    loadSavePB.setToolTipText("");
-    loadSavePB.setText("Save");
-    loadSavePB.addActionListener(new SystemKnowledgeLoadSave_loadSavePB_actionAdapter(this));
-    jPanel9.setBorder(BorderFactory.createLoweredBevelBorder());
-    titledBorder6.setTitle("File Name");
-    fireTypeLogicCB.setActionCommand("Type of Fire Logic");
     fireTypeLogicCB.setText("Type of Fire Logic");
-    CBPanel.setLayout(borderLayout6);
+    fireTypeLogicCB.setActionCommand("Type of Fire Logic");
+
+    TitledBorder fireKnowledgeBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Fire Knowledge");
+    JPanel fireKnowledgePanel = new JPanel();
+    fireKnowledgePanel.setBorder(fireKnowledgeBorder);
+    fireKnowledgePanel.setLayout(new GridLayout(7,0));
+    fireKnowledgePanel.add(fireSpottingCB);
+    fireKnowledgePanel.add(fmzCB, null);
+    fireKnowledgePanel.add(fireSpreadCB, null);
+    fireKnowledgePanel.add(fireTypeLogicCB, null);
+    fireKnowledgePanel.add(fireSuppClassACB, null);
+    fireKnowledgePanel.add(fireSuppBeyondClassACB, null);
+    fireKnowledgePanel.add(fireSuppWeatherClassACB, null);
+    fireKnowledgePanel.add(fireSuppWeatherBeyondClassACB, null);
+    fireKnowledgePanel.add(exteremeFireDataCB, null);
+    fireKnowledgePanel.add(fireSuppSpreadRateCB, null);
+    fireKnowledgePanel.add(fireSuppProductionRateCB, null);
+    fireKnowledgePanel.add(fireSeasonCB, null);
+    fireKnowledgePanel.add(speciesCB, null);
+
+    /* Pathways */
+
+    vegetationPathwaysCB.setText("Vegetative Pathways");
+    aquaticPathwaysCB.setText("Aquatic Pathways");
+    aquaticPathwaysCB.setEnabled(false);
+
+    TitledBorder pathwaysBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Pathways");
+    JPanel pathwaysPanel = new JPanel();
+    pathwaysPanel.setBorder(pathwaysBorder);
+    pathwaysPanel.setLayout(new GridLayout(2,0));
+    pathwaysPanel.add(vegetationPathwaysCB, null);
+    pathwaysPanel.add(aquaticPathwaysCB, null);
+
+    /* Schedules */
+
+    processScheduleCB.setText("Process Schedules");
+    treatmentScheduleCB.setText("Treatment Schedules");
+
+    TitledBorder schedulesBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Schedules");
+    JPanel schedulesPanel = new JPanel();
+    schedulesPanel.setBorder(schedulesBorder);
+    schedulesPanel.setLayout(new GridLayout(2,0));
+    schedulesPanel.add(processScheduleCB, null);
+    schedulesPanel.add(treatmentScheduleCB, null);
+
+    /* Miscellaneous */
+
+    regenLogicFireCB.setText("Fire Regeneration Logic");
+    treatmentLogicCB.setText("Treatment Logic");
+    coniferEncroachLogicCB.setText("Conifer Encroachment Logic");
+    insectDiseaseProbCB.setText("Insect/Disease Probabilities");
+    regenLogicSuccCB.setText("Succession Regeneration Logic");
+    climateCB.setText("Climate");
     processProbLogicCB.setText("Process Probability Logic");
     regenDelayLogicCB.setText("Regeneration Delay Logic");
     gapProcessLogicCB.setText("Gap Process Logic");
@@ -222,61 +188,103 @@ public class SystemKnowledgeLoadSave extends JDialog {
     invasiveSpeciesLogicMSUCB.setText("Invasive Species Logic MSU");
     producingSeedLogicCB.setText("Producing Seed Logic");
     vegUnitFireTypeLogicLogicCB.setText("Veg Unit Fire Type Logic");
-    jPanel3.add(jPanel10,  BorderLayout.NORTH);
-    jPanel10.add(pickFilePB,  BorderLayout.WEST);
-    jPanel10.add(jPanel11,  BorderLayout.CENTER);
-    jPanel11.add(jScrollPane1, BorderLayout.NORTH);
-    jScrollPane1.getViewport().add(outputFileText, null);
-    jPanel3.add(jPanel9,  BorderLayout.SOUTH);
-    CBMainPanel.add(jPanel8, null);
-    jPanel8.add(selectAllPB, null);
-    jPanel8.add(selectNonePB, null);
-    getContentPane().add(mainPanel);
-    mainPanel.add(CBPanel,  BorderLayout.NORTH);
-    CBMainPanel.add(jPanel4, null);
-    jPanel4.add(fmzCB, null);
-    jPanel4.add(fireSpreadCB, null);
-    jPanel4.add(fireTypeLogicCB, null);
-    jPanel4.add(fireSuppClassACB, null);
-    jPanel4.add(fireSuppBeyondClassACB, null);
-    jPanel4.add(fireSuppWeatherClassACB, null);
-    jPanel4.add(fireSuppWeatherBeyondClassACB, null);
-    jPanel4.add(exteremeFireDataCB, null);
-    jPanel4.add(fireSuppSpreadRateCB, null);
-    jPanel4.add(fireSuppProductionRateCB, null);
-    jPanel4.add(fireSeasonCB, null);
-    jPanel4.add(speciesCB, null);
-    CBMainPanel.add(jPanel5, null);
-    jPanel5.add(vegetationPathwaysCB, null);
-    jPanel5.add(aquaticPathwaysCB, null);
-    CBMainPanel.add(jPanel7, null);
-    jPanel7.add(processScheduleCB, null);
-    jPanel7.add(treatmentScheduleCB, null);
-    CBMainPanel.add(jPanel6, null);
-    jPanel6.add(regenLogicFireCB, null);
-    jPanel6.add(regenLogicSuccCB, null);
-    jPanel6.add(coniferEncroachLogicCB, null);
-    jPanel6.add(treatmentLogicCB, null);
-    jPanel6.add(insectDiseaseProbCB, null);
-    jPanel6.add(processProbLogicCB);
-    jPanel6.add(invasiveSpeciesLogicCB);
-    jPanel6.add(invasiveSpeciesLogicMSUCB);
-    jPanel6.add(regenDelayLogicCB);
-    jPanel6.add(gapProcessLogicCB);
-    jPanel6.add(competitionLogicCB);
-    jPanel6.add(producingSeedLogicCB);
-    jPanel6.add(vegUnitFireTypeLogicLogicCB);
-    jPanel6.add(climateCB, null);
-    mainPanel.add(jPanel2, BorderLayout.SOUTH);
-    jPanel2.add(jPanel3, BorderLayout.NORTH);
-    jPanel9.add(loadSavePB, null);
-    jPanel9.add(cancelPB, null);
-    mainPanel.add(CBPanel, BorderLayout.CENTER);
-    CBPanel.add(CBScroll, BorderLayout.CENTER);
+
+    TitledBorder miscBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Miscellaneous");
+    JPanel miscPanel = new JPanel();
+    miscPanel.setBorder(miscBorder);
+    miscPanel.setLayout(new GridLayout(6,2));
+    miscPanel.add(regenLogicFireCB, null);
+    miscPanel.add(regenLogicSuccCB, null);
+    miscPanel.add(coniferEncroachLogicCB, null);
+    miscPanel.add(treatmentLogicCB, null);
+    miscPanel.add(insectDiseaseProbCB, null);
+    miscPanel.add(processProbLogicCB);
+    miscPanel.add(invasiveSpeciesLogicCB);
+    miscPanel.add(invasiveSpeciesLogicMSUCB);
+    miscPanel.add(regenDelayLogicCB);
+    miscPanel.add(gapProcessLogicCB);
+    miscPanel.add(competitionLogicCB);
+    miscPanel.add(producingSeedLogicCB);
+    miscPanel.add(vegUnitFireTypeLogicLogicCB);
+    miscPanel.add(climateCB, null);
+
+    /* Output File */
+
+    cancelPB.setText("Cancel");
+    cancelPB.addActionListener(new SystemKnowledgeLoadSave_cancelPB_actionAdapter(this));
+    loadSavePB.setToolTipText("");
+    loadSavePB.setText("Save");
+    loadSavePB.addActionListener(new SystemKnowledgeLoadSave_loadSavePB_actionAdapter(this));
+
+    JPanel loadSaveCancelPanel = new JPanel();
+    loadSaveCancelPanel.setBorder(BorderFactory.createLoweredBevelBorder());
+    loadSaveCancelPanel.add(loadSavePB, null);
+    loadSaveCancelPanel.add(cancelPB, null);
+
+    outputFileText.setBackground(Color.white);
+    outputFileText.setEnabled(false);
+    outputFileText.setDisabledTextColor(Color.black);
+    outputFileText.setEditable(false);
+    outputFileText.setColumns(30);
+
+    JScrollPane fileScrollPane = new JScrollPane();
+    fileScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    fileScrollPane.getViewport().add(outputFileText, null);
+
+    JPanel fileScrollPanel = new JPanel();
+    fileScrollPanel.setLayout(new BorderLayout());
+    fileScrollPanel.add(fileScrollPane, BorderLayout.NORTH);
+
+    pickFilePB.setText("Pick");
+    pickFilePB.addActionListener(new SystemKnowledgeLoadSave_pickFilePB_actionAdapter(this));
+
+    TitledBorder pickFileBorder = new TitledBorder(BorderFactory.createEtchedBorder(Color.white, new Color(148, 145, 140)), "File Name");
+    JPanel pickFilePanel = new JPanel();
+    pickFilePanel.setBorder(pickFileBorder);
+    pickFilePanel.setLayout(new BorderLayout());
+    pickFilePanel.add(pickFilePB, BorderLayout.WEST);
+    pickFilePanel.add(fileScrollPanel, BorderLayout.CENTER);
+
+    JPanel pickLoadSaveCancelPanel = new JPanel();
+    pickLoadSaveCancelPanel.setLayout(new BorderLayout());
+    pickLoadSaveCancelPanel.add(pickFilePanel, BorderLayout.NORTH);
+    pickLoadSaveCancelPanel.add(loadSaveCancelPanel, BorderLayout.SOUTH);
+
+    JPanel outputFilePanel = new JPanel();
+    outputFilePanel.setLayout(new BorderLayout());
+    outputFilePanel.add(pickLoadSaveCancelPanel, BorderLayout.NORTH);
+
+    /* Main */
+
+    mainTitleBorder = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140)),"Check what data you wish saved");
+
+    JPanel CBMainPanel = new JPanel();
+    CBMainPanel.setBorder(mainTitleBorder);
+    CBMainPanel.setLayout(verticalFlowLayout1);
+    CBMainPanel.add(selectPanel, null);
+    CBMainPanel.add(fireKnowledgePanel, null);
+    CBMainPanel.add(pathwaysPanel, null);
+    CBMainPanel.add(schedulesPanel, null);
+    CBMainPanel.add(miscPanel, null);
+
     CBScroll.getViewport().add(CBMainPanel, null);
+
+    JPanel CBPanel = new JPanel();
+    CBPanel.setLayout(new BorderLayout());
+    CBPanel.add(CBScroll, BorderLayout.CENTER);
+
+    JPanel mainPanel = new JPanel();
+    mainPanel.setLayout(new BorderLayout());
+    mainPanel.add(CBPanel, BorderLayout.NORTH);
+    mainPanel.add(outputFilePanel, BorderLayout.SOUTH);
+    mainPanel.add(CBPanel, BorderLayout.CENTER);
+
+    getContentPane().add(mainPanel);
+
   }
 
   private void initialize() {
+
     Dimension size = CBScroll.getPreferredSize();
     CBScroll.setPreferredSize(new Dimension(size.width+25,560));
 
@@ -315,15 +323,17 @@ public class SystemKnowledgeLoadSave extends JDialog {
     checkBoxes.put(SystemKnowledge.VEG_UNIT_FIRE_TYPE_LOGIC,vegUnitFireTypeLogicLogicCB);
 
     if (save) {
+
       mainTitleBorder.setTitle("Check what data you wish to save");
       loadSavePB.setText("Save");
-      outputFileText.setText("");
       loadSavePB.setEnabled(false);
       initCheckBoxes();
-    }
-    else {
+
+    } else {
+
       mainTitleBorder.setTitle("Check what data you wish to load");
       loadSavePB.setText("Load");
+
     }
 
     checkBoxes.get(SystemKnowledge.AQUATIC_PATHWAYS).setEnabled(LtaValleySegmentGroup.loaded());
@@ -399,11 +409,11 @@ public class SystemKnowledgeLoadSave extends JDialog {
     if (save) {
       filename = Utility.getSaveFile(JSimpplle.getSimpplleMain(),
                                 "System Knowledge File", extFilter);
-    }
-    else {
+    } else {
       filename = Utility.getOpenFile(JSimpplle.getSimpplleMain(),
                                 "System Knowledge File", extFilter);
     }
+
     if (filename == null) { return; }
 
     outputFileText.setText(filename.toString());
@@ -414,9 +424,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
         SystemKnowledge.processInputFileEntries(loadSaveFile);
         initCheckBoxes();
       }
-    }
-    catch (SimpplleError ex) {
-    }
+    } catch (SimpplleError ex) {}
   }
 
   void loadSavePB_actionPerformed(ActionEvent e) {
@@ -428,13 +436,15 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
 
     setLoadSaveOptions();
+
     try {
+
       if (save) {
         SystemKnowledge.saveInputFile(loadSaveFile);
-      }
-      else {
+      } else {
         SystemKnowledge.readInputFile(loadSaveFile);
       }
+
       String msg = (save) ? "File Saved Successfully" :
                             "File Loaded Successfully";
       JOptionPane.showMessageDialog(this, msg, "Success",
@@ -442,11 +452,13 @@ public class SystemKnowledgeLoadSave extends JDialog {
       dialogCanceled = false;
       setVisible(false);
       dispose();
-    }
-    catch (SimpplleError ex) {
+
+    } catch (SimpplleError ex) {
+
       JOptionPane.showMessageDialog(this, ex.getMessage(),
                                     "Problems processing file",
                                     JOptionPane.ERROR_MESSAGE);
+
     }
   }
 
@@ -455,6 +467,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     setVisible(false);
     dispose();
   }
+
   void cancelPB_actionPerformed(ActionEvent e) {
     dialogCanceled = true;
     setVisible(false);
