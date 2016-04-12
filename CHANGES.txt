@@ -1,5 +1,5 @@
 
-Version 1.2.3 : ???
+Version 1.2.3 : April 12, 2016
 
     -Duplicated rules now inserted under selection
     -Alphabetized save/load system knowledge dialog
