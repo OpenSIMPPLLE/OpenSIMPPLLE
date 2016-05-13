@@ -671,11 +671,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessEcoGroupOut = new PrintWriter(new FileWriter(path, true));
     accessEcoGroupOut.println("ID,ECOGROUP");
 
-    for (int run=0; run<numSimulations; run++) {
-      path = new File (getAccessFilesPath(),"AREASUMMARY" + Integer.toString(run+1) + ".txt");
-      accessAreaSummaryOut[run] = new PrintWriter(new FileWriter(path, true));
-      accessAreaSummaryOut[run].println("RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID");
-    }
+    //for (int run=0; run<numSimulations; run++) {
+    //  path = new File (getAccessFilesPath(),"AREASUMMARY" + Integer.toString(run+1) + ".txt");
+    //  accessAreaSummaryOut[run] = new PrintWriter(new FileWriter(path, true));
+    //  accessAreaSummaryOut[run].println("RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID");
+    //}
     path = new File (getAccessFilesPath(),"FMZ.txt");
     accessFmzOut = new PrintWriter(new FileWriter(path, true));
     accessFmzOut.println("ID,FMZNAME");
@@ -720,10 +720,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessEcoGroupOut.flush();
     accessEcoGroupOut.close();
 
-    for (int run=0; run<numSimulations; run++) {
-      accessAreaSummaryOut[run].flush();
-      accessAreaSummaryOut[run].close();
-    }
+    //for (int run=0; run<numSimulations; run++) {
+    //  accessAreaSummaryOut[run].flush();
+    //  accessAreaSummaryOut[run].close();
+    //}
+
     accessFmzOut.flush();
     accessFmzOut.close();
 
@@ -1038,11 +1039,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
           areaSummary.writeDatabase();
           Simpplle.clearStatusMessage();
         }
-        if (outputFile != null && writeAccess) {
-          Simpplle.setStatusMessage("Writing Area Summary Data to text data");
-          areaSummary.writeAccessFiles(accessAreaSummaryOut[currentRun]);
-          Simpplle.clearStatusMessage();
-        }
+        //if (outputFile != null && writeAccess) {
+        //  Simpplle.setStatusMessage("Writing Area Summary Data to text data");
+        //  areaSummary.writeAccessFiles(accessAreaSummaryOut[currentRun]);
+        //  Simpplle.clearStatusMessage();
+        //}
 //        if (currentArea.doManualGC()) { System.gc(); }
         if (fireSuppression()) {
           areaSummary.doSuppressionCosts(currentTimeStep);

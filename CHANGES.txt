@@ -1,4 +1,9 @@
 
+Version 1.2.4 : May __, 2016
+
+    -Removed writing of AREASUMMARY text files
+
+
 Version 1.2.3 : April 12, 2016
 
     -Duplicated rules now inserted under selection
