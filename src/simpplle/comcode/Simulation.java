@@ -74,6 +74,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private PrintWriter  accessOwnershipOut;
   private PrintWriter  accessSpecialAreaOut;
   private PrintWriter  accessTrackingSpeciesOut;
+  private PrintWriter  accessSlinkMetricsOut;
 
 
   public static final int MAX_TIME_STEPS = 10000;
@@ -425,29 +426,35 @@ public final class Simulation implements SimulationTypes, Externalizable {
    * @throws SimpplleError caught in GUI
    */
   public void runSimulation () throws SimpplleError {
+
     inSimulation = true;
+
     try {
+
       if (outputFile != null) {
+
         if (simpplle.JSimpplle.simLoggingFile()) {
           this.doSimLoggingFile=true;
-
         }
 
-
         File logFile = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
+
         PrintWriter logOut;
+
         try {
+
           logOut = new PrintWriter(new FileOutputStream(logFile));
+
           if (doSimLoggingFile) {
             File tmpFile = Utility.makeSuffixedPathname(outputFile, "-detaillog", "txt");
             simLoggingWriter = new PrintWriter(new FileOutputStream(tmpFile));
-
           }
-        }
-        catch (Exception ex) {
-          throw new SimpplleError(ex.getMessage(),ex);
-        }
 
+        } catch (Exception ex) {
+
+          throw new SimpplleError(ex.getMessage(),ex);
+
+        }
 
         logOut.println("SIMPPLLE Simulation Log File");
         logOut.println();
@@ -539,6 +546,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
         DatabaseCreator.closeHibernate();
       }
       if (outputFile != null && writeAccess) {
+        writeAccessSlinkMetrics();
         writeAccessTreeMaps();
         closeAccessTextFiles();
       }
@@ -558,6 +566,28 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
     finally {
       inSimulation = false;
+    }
+  }
+
+  void writeAccessSlinkMetrics() {
+
+    PrintWriter out = Simulation.getInstance().getAccessSlinkMetricsOut();
+
+    Evu[] allEvu = Simpplle.currentArea.getAllEvu();
+
+    for (Evu evu : allEvu) {
+
+      if (evu == null) continue;
+
+      int    slink       = evu.getId();
+      float  acres       = evu.getFloatAcres();
+      String ecoGroup    = evu.getHabitatTypeGroup().getName();
+      String ownership   = evu.getOwnership();
+      String specialArea = evu.getSpecialArea();
+      String fmz         = evu.getFmz().getName();
+
+      out.printf("%d,%f,%s,%s,%s,%s%n",slink,acres,ecoGroup,ownership,specialArea,fmz);
+
     }
   }
 
@@ -638,6 +668,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   public PrintWriter getAccessEvuSimDataOut() { return accessEvuSimDataOut[currentRun]; }
   public PrintWriter getAccessTrackingSpeciesOut() { return accessTrackingSpeciesOut; }
+  public PrintWriter getAccessSlinkMetricsOut() {
+    return accessSlinkMetricsOut;
+  }
 
   private void openAccessTextFiles() throws SimpplleError, IOException {
     makeAccessFilesDir();
@@ -699,7 +732,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
     path = new File (getAccessFilesPath(),"TRACKINGSPECIESPCT.txt");
     accessTrackingSpeciesOut = new PrintWriter(new FileWriter(path, true));
     accessTrackingSpeciesOut.println("RUN,TIMESTEP,SLINK,LIFEFORM_ID,SPECIES_ID,PCT");
+
+    path = new File (getAccessFilesPath(),"SLINKMETRICS.txt");
+    accessSlinkMetricsOut = new PrintWriter(new FileWriter(path, true));
+    accessSlinkMetricsOut.println("SLINK,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
   }
+
   private void closeAccessTextFiles() throws SimpplleError {
     for (int run=0; run<numSimulations; run++) {
       accessEvuSimDataOut[run].flush();
@@ -742,6 +780,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     accessTrackingSpeciesOut.flush();
     accessTrackingSpeciesOut.close();
+
+    accessSlinkMetricsOut.flush();
+    accessSlinkMetricsOut.close();
   }
 
   public PrintWriter getInvasiveSpeciesMSUPrintWriter() {

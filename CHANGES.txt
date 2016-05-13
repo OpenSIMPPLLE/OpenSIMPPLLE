@@ -1,7 +1,8 @@
 
 Version 1.2.4 : May __, 2016
 
-    -Removed writing of AREASUMMARY text files
+    -Added writing to SLINKMETRICS file
+    -Removed writing to AREASUMMARY files
 
 
 Version 1.2.3 : April 12, 2016
