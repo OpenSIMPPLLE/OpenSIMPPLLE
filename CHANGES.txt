@@ -1,8 +1,9 @@
 
 Version 1.2.4 : May __, 2016
 
-    -Added writing to SLINKMETRICS file
-    -Removed writing to AREASUMMARY files
+    -EVU_SIM_DATA is now saved without compression
+    -Added SLINKMETRICS to simulation output
+    -Removed AREASUMMARY from simulation output
 
 
 Version 1.2.3 : April 12, 2016
