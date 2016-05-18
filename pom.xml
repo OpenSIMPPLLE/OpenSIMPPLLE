@@ -8,6 +8,11 @@
     <artifactId>OpenSIMPPLLE</artifactId>
     <version>1.2.2</version>
 
+    <!-- configure encoding for platform independence-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>commons-collections</groupId>
