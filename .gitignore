@@ -19,12 +19,13 @@ OpenSIMPPLLE.jar
 
 # User Settings
 
-.idea/tasks.xml
-.idea/workspace.xml
+.idea/*
+OpenSIMPPLLE.userlibraries
 
 # Build Directory
 
 /out/
+/target/
 
 #--------------------------
 # Eclipse
