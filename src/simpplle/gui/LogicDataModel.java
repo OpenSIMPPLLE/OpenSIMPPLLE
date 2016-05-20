@@ -1,10 +1,13 @@
 package simpplle.gui;
 
+import simpplle.comcode.AbstractBaseLogic;
+import simpplle.comcode.AbstractLogicData;
+import simpplle.comcode.RegenerationData;
+import simpplle.comcode.RegenerationLogic;
+
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import simpplle.comcode.BaseLogic;
-import javax.swing.JTable;
 import javax.swing.table.TableColumn;
-import simpplle.comcode.*;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -138,7 +141,7 @@ public class LogicDataModel extends AbstractTableModel {
   }
 /**
  * Adds a row and then notifies all listeners for the table that a row has been added between the 0th row and the Nth row.  
- * @param insertPos the postion where the row will be inserted
+ * @param insertPos the position where the row will be inserted
  */
   public void addRow(int insertPos) {
     getLogicInst().addRow(insertPos,kindStr);

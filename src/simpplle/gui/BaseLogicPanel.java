@@ -1,20 +1,15 @@
 package simpplle.gui;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionListener;
 import simpplle.comcode.AbstractBaseLogic;
-import javax.swing.table.TableColumn;
-import java.util.Enumeration;
+import simpplle.comcode.BaseLogic;
+import simpplle.comcode.SystemKnowledge;
 
-import simpplle.comcode.*;
-import java.awt.Color;
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableColumn;
+import java.awt.*;
+import java.util.Enumeration;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -243,10 +238,11 @@ public class BaseLogicPanel extends JPanel {
     logicTable.removeEditor();
   }
   /**
-   * duplicates a row by calling LogicDataModel class which will then call the simpplle package
+   * Inserts a duplicated at to the position of the selected row. If there is no selection, then the row is
+   * appended to the end.
    */
   public void duplicateSelectedRow() {
-    int position = dataModel.getRowCount() + 1;
+    int position = (selectedRow != -1) ? selectedRow : dataModel.getRowCount() + 1;
     dataModel.duplicateRow(selectedRow,position);
   }
   /**
@@ -267,7 +263,8 @@ public class BaseLogicPanel extends JPanel {
     }
   }
 /**
- * inserts a row according to position.  the position is determined by a user row selection to be inserted above below, if there is no row selected will default to last row in Logic Data Model +1 
+ * Inserts a row according to position. The position is determined by a user row selection to be inserted above
+ * or below, if there is no row selected then the row is appended to the end.
  */
   public void insertRow() {
     int position = (selectedRow != -1) ? selectedRow : dataModel.getRowCount() + 1;
