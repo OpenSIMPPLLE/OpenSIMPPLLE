@@ -1,6 +1,7 @@
 
 Version 1.2.4 : May __, 2016
 
+    -Fixed excessive flickering after resizing rule dialogs
     -EVU_SIM_DATA is now saved without compression
     -Added SLINKMETRICS to simulation output
     -Removed AREASUMMARY from simulation output
@@ -8,7 +9,6 @@ Version 1.2.4 : May __, 2016
 
 Version 1.2.3 : April 12, 2016
 
-    -Fixed excessive flickering after resizing rule dialogs
     -Duplicated rules now inserted under selection
     -Alphabetized save/load system knowledge dialog
     -Added "Fire Suppression Event Probability" to save/load sys knowledge
