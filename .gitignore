@@ -19,8 +19,10 @@ OpenSIMPPLLE.jar
 
 # User Settings
 
-.idea/tasks.xml
-.idea/workspace.xml
+/.idea/tasks.xml
+/.idea/workspace.xml
+/.idea/libraries/
+
 
 # Build Directory
 
@@ -37,6 +39,10 @@ OpenSIMPPLLE.jar
 # Build Directory
 
 /classes/
+
+# Libraries
+
+OpenSIMPPLLE.userlibraries
 
 #--------------------------
 # Python
@@ -59,3 +65,11 @@ Desktop.ini
 
 .DS_Store
 ._.DS_Store
+
+#--------------------------
+# Maven
+#--------------------------
+
+# Build
+
+/target/
