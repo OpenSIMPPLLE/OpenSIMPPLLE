@@ -181,10 +181,17 @@ public class AbstractLogicDialog extends JDialog {
 //      });
 
   }
+
   protected void this_componentResized(ComponentEvent e) {
-    currentPanel.updateColumnWidth();
-    updateDialog();
+
+    // These lines cause excessive flickering and do not seem to be
+    // necessary during resizing.
+
+    //currentPanel.updateColumnWidth();
+    //updateDialog();
+
   }
+
   /**
    * Updates the Abstract Logic Dialog.
    */
