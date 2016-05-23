@@ -5,11 +5,11 @@
 
 # Build zone data output
 
-/data/zones/
+data/zones
 
 # Build jar output
 
-/tmp
+tmp
 
 OpenSIMPPLLE.jar
 
@@ -19,14 +19,15 @@ OpenSIMPPLLE.jar
 
 # User Settings
 
-/.idea/tasks.xml
-/.idea/workspace.xml
-/.idea/libraries/
+.idea/tasks.xml
+.idea/workspace.xml
+.idea/libraries
+.idea/dictionaries
 
 
 # Build Directory
 
-/out/
+out
 
 #--------------------------
 # Eclipse
@@ -38,7 +39,7 @@ OpenSIMPPLLE.jar
 
 # Build Directory
 
-/classes/
+classes
 
 # Libraries
 
@@ -72,4 +73,4 @@ Desktop.ini
 
 # Build
 
-/target/
+target
