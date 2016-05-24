@@ -19,12 +19,11 @@ OpenSIMPPLLE.jar
 
 # User Settings
 
-.idea/tasks.xml
-.idea/workspace.xml
+.idea
 
 # Build Directory
 
-/out/
+out/
 
 #--------------------------
 # Eclipse
@@ -36,7 +35,7 @@ OpenSIMPPLLE.jar
 
 # Build Directory
 
-/classes/
+classes/
 
 #--------------------------
 # Python
