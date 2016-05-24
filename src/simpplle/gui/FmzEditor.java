@@ -17,8 +17,7 @@ import simpplle.comcode.RegionalZone;
 import simpplle.comcode.Area;
 import simpplle.comcode.SimpplleError;
 import simpplle.comcode.Simpplle;
-import com.borland.jbcl.layout.*;
-/** 
+/**
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
@@ -110,7 +109,6 @@ public class FmzEditor extends JDialog {
   JMenuItem menuActionDeleteAll = new JMenuItem();
   JMenu menuKnowledgeSource = new JMenu();
   JMenuItem menuKnowledgeSourceDisplay = new JMenuItem();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JPanel responseTimePanel = new JPanel();
   FlowLayout flowLayout4 = new FlowLayout();
   JLabel responseTimeLabel = new JLabel();
@@ -464,7 +462,7 @@ public class FmzEditor extends JDialog {
         costTextF_actionPerformed(e);
       }
     });
-    southPanel.setLayout(verticalFlowLayout1);
+    southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
     dataPanel.setLayout(flowLayout1);
     Col4Label2.setHorizontalAlignment(SwingConstants.CENTER);
     Col4Label2.setText("$/Acre");

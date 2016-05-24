@@ -19,7 +19,6 @@ import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
-import com.borland.jbcl.layout.VerticalFlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.border.EtchedBorder;
@@ -112,13 +111,11 @@ public class SimParam extends JDialog {
     controlText, 2);
   private Border border2 = new TitledBorder(border1,
                                             "All States Report Rules File");
-  private VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   private JPanel timeStepsInMemoryPanel = new JPanel();
   private FlowLayout flowLayout14 = new FlowLayout();
   private JTextField tsInMemoryText = new JTextField();
   private JLabel tsInMemoryLabel = new JLabel();
   private JPanel jPanel1 = new JPanel();
-  private VerticalFlowLayout verticalFlowLayout2 = new VerticalFlowLayout();
   private Border border3 = BorderFactory.createLineBorder(SystemColor.
     controlText, 2);
   private Border border4 = new TitledBorder(border3, "Memory Saving Options");
@@ -278,7 +275,7 @@ public class SimParam extends JDialog {
         fireSuppCB_itemStateChanged(e);
       }
     });
-    northPanel.setLayout(verticalFlowLayout1);
+    northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
     discountCB.setEnabled(false);
     discountCB.setFont(new java.awt.Font("Monospaced", Font.PLAIN, 14));
     discountCB.setNextFocusableComponent(discountText);
@@ -423,7 +420,7 @@ public class SimParam extends JDialog {
     });
     tsInMemoryLabel.setEnabled(false);
     tsInMemoryLabel.setText("Time Steps kept in memory (minimum 10)");
-    jPanel1.setLayout(verticalFlowLayout2);
+    jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
     jPanel1.setBorder(border4);
     allStatesPanel.setLayout(borderLayout3);
     allStatesCB.setText(
@@ -445,11 +442,9 @@ public class SimParam extends JDialog {
     flowLayout1.setHgap(0);
     flowLayout1.setVgap(0);
     optionsOuterPanel.setBorder(border10);
-    verticalFlowLayout2.setVgap(0);
     databaseWritePanel.setLayout(flowLayout2);
     flowLayout2.setAlignment(FlowLayout.LEFT);
     flowLayout2.setVgap(0);
-    verticalFlowLayout1.setVgap(2);
     trackingSpeciesPanel.setLayout(borderLayout10);
     trackSpeciesCBPanel.setLayout(flowLayout3);
     trackSpeciesCategoryButtonPanel.setLayout(flowLayout4);
