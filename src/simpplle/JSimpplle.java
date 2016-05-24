@@ -1,5 +1,6 @@
 package simpplle;
 
+import java.nio.file.Path;
 import java.util.StringTokenizer;
 import java.io.*;
 
@@ -450,7 +451,8 @@ public final class JSimpplle {
   public static boolean debug() { return debug; }
   
   public static void showSplashScreen() {
-    ImageIcon splash = new ImageIcon(simpplle.JSimpplle.class.getResource("gui/images/splash.jpg"));
+    URL p = simpplle.JSimpplle.class.getResource("gui/images/splash.jpg");
+    ImageIcon splash = new ImageIcon(p);
     JLabel label = new JLabel(splash);
 
     splashScreen = new JWindow();
