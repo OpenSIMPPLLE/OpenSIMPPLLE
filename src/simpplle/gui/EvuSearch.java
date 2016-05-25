@@ -25,7 +25,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.event.*;
-import com.borland.jbcl.layout.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -114,7 +113,6 @@ public class EvuSearch extends JDialog {
   FlowLayout flowLayout15 = new FlowLayout();
   JButton makeTreatmentPB = new JButton();
   JButton lockInProcessPB = new JButton();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JPanel timeStepPanel = new JPanel();
   FlowLayout flowLayout13 = new FlowLayout();
   JLabel timeStepLabel = new JLabel();
@@ -273,7 +271,7 @@ public class EvuSearch extends JDialog {
     flowLayout12.setAlignment(FlowLayout.LEFT);
     flowLayout12.setHgap(3);
     flowLayout12.setVgap(0);
-    actionPanel.setLayout(verticalFlowLayout1);
+    actionPanel.setLayout(new BoxLayout(actionPanel, BoxLayout.Y_AXIS));
     resultsPanel.setBorder(resultsBorder);
     actionPanel.setBorder(titledBorder3);
     ageText.setEnabled(false);

@@ -7,7 +7,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.border.*;
-import com.borland.jbcl.layout.*;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -45,14 +44,12 @@ public class FireSpreadProb extends JDialog {
   JPanel fireSizePanel = new JPanel();
   JLabel fireSizeLabel2 = new JLabel();
   TitledBorder titledBorder1;
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JPanel probTextPanel = new JPanel();
   FlowLayout flowLayout3 = new FlowLayout();
   JTextField probText = new JTextField();
   JPanel fireSizeTextPanel = new JPanel();
   JTextField fireSizeText = new JTextField();
   FlowLayout flowLayout5 = new FlowLayout();
-  VerticalFlowLayout verticalFlowLayout2 = new VerticalFlowLayout();
   JLabel fireSizeLabel1 = new JLabel();
 /**
  * Constructor for Fire Spread Probabilty.  
@@ -105,7 +102,7 @@ public class FireSpreadProb extends JDialog {
     });
     southPanel.setBorder(BorderFactory.createEtchedBorder());
     probPanel.setLayout(gridLayout1);
-    weatherProbPanel.setLayout(verticalFlowLayout1);
+    weatherProbPanel.setLayout(new BoxLayout(weatherProbPanel, BoxLayout.Y_AXIS));
     probText.setToolTipText("Enter a number between 0-100");
     probText.setColumns(5);
     probText.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -122,7 +119,7 @@ public class FireSpreadProb extends JDialog {
     });
     probLabel.setFont(new java.awt.Font("Monospaced", 1, 12));
     probLabel.setText("Probability that a single event will spread under extreme conditions");
-    fireSizePanel.setLayout(verticalFlowLayout2);
+    fireSizePanel.setLayout(new BoxLayout(fireSizePanel, BoxLayout.Y_AXIS));
     gridLayout1.setRows(2);
     fireSizeText.setText("1000");
     fireSizeText.setColumns(10);

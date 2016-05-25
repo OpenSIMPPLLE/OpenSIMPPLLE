@@ -2,7 +2,6 @@ package simpplle.gui;
 
 import java.awt.*;
 import javax.swing.*;
-import com.borland.jbcl.layout.*;
 import javax.swing.border.*;
 import java.awt.event.*;
 import simpplle.comcode.Species;
@@ -29,7 +28,6 @@ public class WsbwLogicPanel extends JPanel {
   JScrollPane mainScroll = new JScrollPane();
   BorderLayout borderLayout2 = new BorderLayout();
   JPanel scrollPanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JPanel characterOfAdjacentIndexPanel = new JPanel();
   JPanel regionalClimateIndexPanel = new JPanel();
   JPanel siteClimateIndexPanel = new JPanel();
@@ -69,7 +67,6 @@ public class WsbwLogicPanel extends JPanel {
   JPanel severeBorderPanel = new JPanel();
   Border border13;
   TitledBorder titledBorder13;
-  VerticalFlowLayout verticalFlowLayout2 = new VerticalFlowLayout();
   JPanel lightBorderPanel = new JPanel();
   Border border14;
   TitledBorder titledBorder14;
@@ -128,7 +125,6 @@ public class WsbwLogicPanel extends JPanel {
   JCheckBox OneOfPercentHostCB = new JCheckBox();
   JLabel OneOfLabel1 = new JLabel();
   JPanel OneOfPanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout4 = new VerticalFlowLayout();
   BorderLayout borderLayout8 = new BorderLayout();
   TitledBorder titledBorder15;
   JCheckBox oneOfRegionalClimateCB = new JCheckBox();
@@ -167,7 +163,6 @@ public class WsbwLogicPanel extends JPanel {
   JLabel OneOfLabel2 = new JLabel();
   JPanel OneOfFinalPanel = new JPanel();
   JLabel oneOfFinalLabel2 = new JLabel();
-  VerticalFlowLayout verticalFlowLayout3 = new VerticalFlowLayout();
   JLabel OneOfFinalLabel1 = new JLabel();
   JPanel notOneOfBorderPanel = new JPanel();
   JPanel notOneOfPanel = new JPanel();
@@ -230,9 +225,9 @@ public class WsbwLogicPanel extends JPanel {
     titledBorder16 = new TitledBorder(BorderFactory.createMatteBorder(6,6,6,6,new Color(153, 153, 153)),"For NON susceptible Species");
     this.setLayout(borderLayout1);
     centerPanel.setLayout(borderLayout2);
-    scrollPanel.setLayout(verticalFlowLayout1);
+    scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
     probabilityPanel.setBorder(titledBorder1);
-    probabilityPanel.setLayout(verticalFlowLayout2);
+    probabilityPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
     susceptibilityIndexPanel.setBorder(titledBorder2);
     susceptibilityIndexPanel.setLayout(borderLayout7);
     oneOfHostsPanel.setBorder(titledBorder3);
@@ -279,7 +274,6 @@ public class WsbwLogicPanel extends JPanel {
     severeDefaultProbText.setHorizontalAlignment(SwingConstants.RIGHT);
     severeTopPanel.setBorder(BorderFactory.createLoweredBevelBorder());
     severeBottomPanel.setBorder(BorderFactory.createLoweredBevelBorder());
-    verticalFlowLayout2.setHorizontalFill(true);
     severeTopLeftPanel.setLayout(flowLayout2);
     severeTopRightPanel.setLayout(flowLayout1);
     severeTopLeftPanel.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -368,7 +362,7 @@ public class WsbwLogicPanel extends JPanel {
     OneOfPercentHostCB.setFont(new java.awt.Font("Monospaced", 2, 12));
     OneOfPercentHostCB.setSelected(true);
     OneOfPercentHostCB.setText("Index = Index *");
-    OneOfPanel.setLayout(verticalFlowLayout4);
+    OneOfPanel.setLayout(new BoxLayout(OneOfPanel, BoxLayout.Y_AXIS));
     oneOfborderPanel.setBorder(titledBorder15);
     oneOfRegionalClimateCB.setFont(new java.awt.Font("Monospaced", 0, 12));
     oneOfRegionalClimateCB.setSelected(true);
@@ -449,7 +443,7 @@ public class WsbwLogicPanel extends JPanel {
     OneOfLabel2.setFont(new java.awt.Font("Monospaced", 0, 12));
     oneOfFinalLabel2.setFont(new java.awt.Font("Monospaced", 2, 12));
     oneOfFinalLabel2.setText("sIndex = 0 (if none checked)");
-    OneOfFinalPanel.setLayout(verticalFlowLayout3);
+    OneOfFinalPanel.setLayout(new BoxLayout(OneOfFinalPanel, BoxLayout.Y_AXIS));
     OneOfFinalLabel1.setText("sIndex = Index (rounded  to whole number)");
     OneOfFinalLabel1.setFont(new java.awt.Font("Monospaced", 2, 12));
     notOneOfBorderPanel.setLayout(borderLayout9);

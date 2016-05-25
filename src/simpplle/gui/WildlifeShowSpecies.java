@@ -2,7 +2,6 @@ package simpplle.gui;
 
 import java.awt.*;
 import javax.swing.*;
-import com.borland.jbcl.layout.*;
 import java.awt.event.*;
 import simpplle.comcode.WildlifeHabitatData;
 import javax.swing.border.*;
@@ -35,10 +34,8 @@ public class WildlifeShowSpecies extends JDialog {
   BorderLayout borderLayout1 = new BorderLayout();
   JPanel northPanel = new JPanel();
   JPanel landCoverPanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JScrollPane landCoverScrollPane = new JScrollPane();
   JTextArea landCoverText = new JTextArea();
-  VerticalFlowLayout verticalFlowLayout2 = new VerticalFlowLayout();
   JPanel modelPanel = new JPanel();
   FlowLayout flowLayout1 = new FlowLayout();
   JRadioButton region1RB = new JRadioButton();
@@ -46,7 +43,6 @@ public class WildlifeShowSpecies extends JDialog {
   JRadioButton MTGapRB = new JRadioButton();
   ButtonGroup modelButtonGroup = new ButtonGroup();
   JPanel dataPanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout3 = new VerticalFlowLayout();
   FlowLayout flowLayout5 = new FlowLayout();
   JPanel buffersPanel = new JPanel();
   JLabel aspectLabel = new JLabel();
@@ -66,9 +62,7 @@ public class WildlifeShowSpecies extends JDialog {
   JPanel messagePanel = new JPanel();
   JLabel messageLabel2 = new JLabel();
   JLabel messageLabel1 = new JLabel();
-  VerticalFlowLayout verticalFlowLayout4 = new VerticalFlowLayout();
   JPanel elevationPanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout5 = new VerticalFlowLayout();
   JLabel maxElevLabel = new JLabel();
   JLabel maxElevValue = new JLabel();
   FlowLayout flowLayout8 = new FlowLayout();
@@ -108,9 +102,8 @@ public class WildlifeShowSpecies extends JDialog {
     validHabitatBorder = new TitledBorder(BorderFactory.createEmptyBorder(),"Valid Habitat");
     titledBorder1 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140)),"Elevation");
     mainPanel.setLayout(borderLayout1);
-    northPanel.setLayout(verticalFlowLayout2);
-    landCoverPanel.setLayout(verticalFlowLayout1);
-    verticalFlowLayout1.setHorizontalFill(false);
+    northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+    landCoverPanel.setLayout(new BoxLayout(landCoverPanel, BoxLayout.Y_AXIS));
     landCoverText.setEditable(false);
     landCoverText.setColumns(80);
     landCoverText.setRows(10);
@@ -138,7 +131,7 @@ public class WildlifeShowSpecies extends JDialog {
         MTGapRB_actionPerformed(e);
       }
     });
-    dataPanel.setLayout(verticalFlowLayout3);
+    dataPanel.setLayout(new BoxLayout(dataPanel, BoxLayout.Y_AXIS));
     buffersPanel.setLayout(flowLayout5);
     flowLayout5.setAlignment(FlowLayout.LEFT);
     flowLayout5.setHgap(10);
@@ -175,13 +168,12 @@ public class WildlifeShowSpecies extends JDialog {
     });
     landCoverPanel.setBorder(validHabitatBorder);
     validHabitatBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 12));
-    verticalFlowLayout3.setHgap(0);
     messageLabel2.setFont(new java.awt.Font("Monospaced", 2, 12));
     messageLabel2.setText("  complete report has to be done in the Arcview extension.");
-    messagePanel.setLayout(verticalFlowLayout4);
+    messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
     messageLabel1.setFont(new java.awt.Font("Monospaced", 2, 12));
     messageLabel1.setText("* These items cannot be determined within SIMPPLLE,");
-    elevationPanel.setLayout(verticalFlowLayout5);
+    elevationPanel.setLayout(new BoxLayout(elevationPanel, BoxLayout.Y_AXIS));
     maxElevLabel.setText("Max*       ");
     maxElevLabel.setFont(new java.awt.Font("Monospaced", 1, 12));
     maxElevValue.setText("3900");

@@ -7,7 +7,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import com.borland.jbcl.layout.*;
 import simpplle.*;
 import simpplle.comcode.*;
 import java.awt.Font;
@@ -72,7 +71,6 @@ public class EluAnalysis extends JPanel {
   JLabel parentMaterialLabel = new JLabel();
   JLabel slopeValue = new JLabel();
   JLabel parentMaterialValue = new JLabel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   FlowLayout flowLayout3 = new FlowLayout();
   JPanel panelCol2 = new JPanel();
   JPanel panelCol1 = new JPanel();
@@ -163,7 +161,7 @@ public class EluAnalysis extends JPanel {
     border7 = BorderFactory.createEmptyBorder();
     border8 = new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140));
     vegUnitBorder = new TitledBorder(border8,"Vegetative Units");
-    this.setLayout(verticalFlowLayout1);
+    this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     topPanel.setLayout(flowLayout6);
     prevNextPanel.setLayout(flowLayout1);
     prevPB.setEnabled(false);
@@ -271,8 +269,6 @@ public class EluAnalysis extends JPanel {
     infoPanel.setBorder(attributesBorder);
     attributesBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
     adjacentUnitsBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 12));
-    verticalFlowLayout1.setVgap(0);
-    verticalFlowLayout1.setVerticalFill(true);
     flowLayout1.setVgap(1);
     jPanel1.setLayout(flowLayout10);
     resultsOnlyCB.setEnabled(false);
