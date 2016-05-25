@@ -2,7 +2,6 @@ package simpplle.comcode;
 
 import java.io.*;
 import java.util.*;
-import java.util.regex.*;
 import java.util.zip.*;
 
 /**
@@ -29,28 +28,28 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   public enum InvasiveKind { R1, MSU, MESA_VERDE_NP, NONE};
 
-  private int         numSimulations;
-  private int         numTimeSteps;
-  private int         pastTimeStepsInMemory;
-  private boolean     fireSuppression;
-  private int         simulationMethod;
-  private Random      random;
-  private File        outputFile;
-  private float       discount;
-  private long        randomSeed;
-  private boolean     fixedRandom;
-  private boolean     trackSpecialArea;
-  private boolean     trackOwnership;
-  private boolean     yearlySteps;
-  private boolean     writeDatabase=false;
-  private boolean     writeAccess=false;
-  private boolean     writeProbFiles=false;
+  private int          numSimulations;
+  private int          numTimeSteps;
+  private int          pastTimeStepsInMemory;
+  private boolean      fireSuppression;
+  private int          simulationMethod;
+  private Random       random;
+  private File         outputFile;
+  private float        discount;
+  private long         randomSeed;
+  private boolean      fixedRandom;
+  private boolean      trackSpecialArea;
+  private boolean      trackOwnership;
+  private boolean      yearlySteps;
+  private boolean      writeDatabase=false;
+  private boolean      writeAccess=false;
+  private boolean      writeProbFiles=false;
   private InvasiveKind invasiveSpeciesKind=InvasiveKind.NONE;
-  private boolean     discardData=false;
-  private boolean     doAllStatesSummary=true;
-  private boolean     doTrackingSpeciesReport=false;
-  private boolean     doGisFiles=false;
-  private boolean     doSimLoggingFile=false;
+  private boolean      discardData=false;
+  private boolean      doAllStatesSummary=true;
+  private boolean      doTrackingSpeciesReport=false;
+  private boolean      doGisFiles=false;
+  private boolean      doSimLoggingFile=false;
   private PrintWriter  simLoggingWriter;
 
   private File        allStatesRulesFile;
@@ -61,20 +60,21 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   private PrintWriter invasiveSpeciesMSUProbOut;
 
-  private PrintWriter[]  accessEvuSimDataOut;
-  private PrintWriter  accessProcessOut;
-  private PrintWriter  accessSpeciesOut;
-  private PrintWriter  accessSizeClassOut;
-  private PrintWriter  accessDensityOut;
-  private PrintWriter  accessEcoGroupOut;
-  private PrintWriter[]  accessAreaSummaryOut;
-  private PrintWriter  accessFmzOut;
-  private PrintWriter  accessInclusionRuleSpecies;
-  private PrintWriter  accessLifeformOut;
-  private PrintWriter  accessOwnershipOut;
-  private PrintWriter  accessSpecialAreaOut;
-  private PrintWriter  accessTrackingSpeciesOut;
-  private PrintWriter  accessSlinkMetricsOut;
+  private PrintWriter[] accessEvuSimDataOut;
+  private PrintWriter   accessProcessOut;
+  private PrintWriter   accessSpeciesOut;
+  private PrintWriter   accessSizeClassOut;
+  private PrintWriter   accessDensityOut;
+  private PrintWriter   accessEcoGroupOut;
+  private PrintWriter[] accessAreaSummaryOut;
+  private PrintWriter   accessFmzOut;
+  private PrintWriter   accessInclusionRuleSpecies;
+  private PrintWriter   accessLifeformOut;
+  private PrintWriter   accessOwnershipOut;
+  private PrintWriter   accessSpecialAreaOut;
+  private PrintWriter   accessTrackingSpeciesOut;
+  private PrintWriter   accessSlinkMetricsOut;
+  private PrintWriter   accessTreatmentOut;
 
 
   public static final int MAX_TIME_STEPS = 10000;
@@ -103,24 +103,25 @@ public final class Simulation implements SimulationTypes, Externalizable {
    * Constructor for Simulation.  Initializes some class variables. 1-5 time steps are considered short term simulations.  Greater than 5 time steps are long term simulations.
    */
   public Simulation () {
-    numSimulations   = 1;
-    numTimeSteps     = 5;
+
+    numSimulations        = 1;
+    numTimeSteps          = 5;
     pastTimeStepsInMemory = 10;
-    fireSuppression  = false;
-    simulationMethod = STOCHASTIC;
-    random           = null;
-    outputFile       = null;
-    discount         = 1.0f;
-    fixedRandom      = false;
-    trackSpecialArea = false;
-    trackOwnership   = false;
-    yearlySteps      = false; // means decade time steps used the default for OpenSimpplle
-    writeDatabase    = false;
-    writeAccess      = false;
-    writeProbFiles   = false;
-    currentTimeStep  = -1;
-    inSimulation     = false;
-    invasiveSpeciesKind = InvasiveKind.NONE;
+    fireSuppression       = false;
+    simulationMethod      = STOCHASTIC;
+    random                = null;
+    outputFile            = null;
+    discount              = 1.0f;
+    fixedRandom           = false;
+    trackSpecialArea      = false;
+    trackOwnership        = false;
+    yearlySteps           = false; // means decade time steps used the default for OpenSimpplle
+    writeDatabase         = false;
+    writeAccess           = false;
+    writeProbFiles        = false;
+    currentTimeStep       = -1;
+    inSimulation          = false;
+    invasiveSpeciesKind   = InvasiveKind.NONE;
 
     String prop = System.getProperty("simpplle.fixedRandom");
     if (prop != null && prop.equalsIgnoreCase("enabled")) {
@@ -165,7 +166,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
                      boolean discardData, boolean doAllStatesSummary,
                      boolean doTrackingSpeciesReport,
                      boolean doGisFiles) {
+
     this();
+
     numSimulations           = nSims;
     numTimeSteps             = nSteps;
     pastTimeStepsInMemory    = nStepsInMemory;
@@ -591,18 +594,20 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private TreeMap<Short,String> accessProcessList        = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessSpeciesList        = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessSizeClassList      = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessDensityList        = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessEcoGroupList       = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessFmzList            = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessIncRuleSpeciesList = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessLifeformList       = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessOnwershipList      = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<Short,String>();
+  private TreeMap<Short,String> accessProcessList        = new TreeMap<>();
+  private TreeMap<Short,String> accessSpeciesList        = new TreeMap<>();
+  private TreeMap<Short,String> accessSizeClassList      = new TreeMap<>();
+  private TreeMap<Short,String> accessDensityList        = new TreeMap<>();
+  private TreeMap<Short,String> accessEcoGroupList       = new TreeMap<>();
+  private TreeMap<Short,String> accessFmzList            = new TreeMap<>();
+  private TreeMap<Short,String> accessIncRuleSpeciesList = new TreeMap<>();
+  private TreeMap<Short,String> accessLifeformList       = new TreeMap<>();
+  private TreeMap<Short,String> accessOnwershipList      = new TreeMap<>();
+  private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<>();
+  private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
 
   private void initAccessTreeMaps() {
+
     accessProcessList.clear();
     accessSpeciesList.clear();
     accessSizeClassList.clear();
@@ -613,8 +618,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessLifeformList.clear();
     accessOnwershipList.clear();
     accessSpecialAreaList.clear();
+    accessTreatmentTypeList.clear();
+
   }
+
   private void writeAccessTreeMaps() throws IOException {
+
     writeAccessTreeMap(accessProcessOut,accessProcessList);
     writeAccessTreeMap(accessSpeciesOut,accessSpeciesList);
     writeAccessTreeMap(accessSizeClassOut,accessSizeClassList);
@@ -625,6 +634,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     writeAccessTreeMap(accessLifeformOut,accessLifeformList);
     writeAccessTreeMap(accessOwnershipOut,accessOnwershipList);
     writeAccessTreeMap(accessSpecialAreaOut,accessSpecialAreaList);
+    writeAccessTreeMap(accessTreatmentOut, accessTreatmentTypeList);
 
   }
   private void writeAccessTreeMap(PrintWriter fout, TreeMap<Short,String> map) throws IOException {
@@ -664,6 +674,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
   public void addAccessSpecialArea(SpecialArea specialArea) {
     accessSpecialAreaList.put(specialArea.getSimId(), specialArea.toString());
+  }
+  public void addAccessTreatment(TreatmentType treatmentType) {
+    accessTreatmentTypeList.put(treatmentType.getSimId(),treatmentType.toString());
   }
 
   public PrintWriter getAccessEvuSimDataOut() { return accessEvuSimDataOut[currentRun]; }
@@ -736,13 +749,20 @@ public final class Simulation implements SimulationTypes, Externalizable {
     path = new File (getAccessFilesPath(),"SLINKMETRICS.txt");
     accessSlinkMetricsOut = new PrintWriter(new FileWriter(path, true));
     accessSlinkMetricsOut.println("SLINK,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
+
+    path = new File (getAccessFilesPath(),"TREATMENT.txt");
+    accessTreatmentOut = new PrintWriter(new FileWriter(path,true));
+    accessTreatmentOut.println("ID,TREATMENT");
+
   }
 
   private void closeAccessTextFiles() throws SimpplleError {
+
     for (int run=0; run<numSimulations; run++) {
       accessEvuSimDataOut[run].flush();
       accessEvuSimDataOut[run].close();
     }
+
     accessProcessOut.flush();
     accessProcessOut.close();
 
@@ -783,6 +803,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     accessSlinkMetricsOut.flush();
     accessSlinkMetricsOut.close();
+
+    accessTreatmentOut.flush();
+    accessTreatmentOut.close();
+
   }
 
   public PrintWriter getInvasiveSpeciesMSUPrintWriter() {

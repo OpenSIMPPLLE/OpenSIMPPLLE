@@ -532,7 +532,10 @@ public class VegSimStateData implements Externalizable {
   public static void writeAccessFiles(PrintWriter fout, PrintWriter trackOut, Evu evu, VegSimStateData state)
   {
     Simulation sim = Simulation.getInstance();
-    
+
+    int run = Simulation.getCurrentRun() + 1;
+    int ts  = Simulation.getCurrentTimeStep();
+
     sim.addAccessLifeform(state.lifeform);
     sim.addAccessSpecies(state.veg.getSpecies());
     sim.addAccessSizeClass(state.veg.getSizeClass());
@@ -540,32 +543,31 @@ public class VegSimStateData implements Externalizable {
     sim.addAccessProcess(state.process);
     sim.addAccessOwnership(Ownership.get(evu.getOwnership(),true));
     sim.addAccessSpecialArea(SpecialArea.get(evu.getSpecialArea(),true));
-    
-    int ts = Simulation.getCurrentTimeStep();
-    int run = Simulation.getCurrentRun()+1;
-    float acres = evu.getFloatAcres();
-    int lifeId = state.lifeform.getSimId();
-    int speciesId = state.getVeg().getSpecies().getSimId();
-    int sizeId    = state.getVeg().getSizeClass().getSimId();
-    int age       = state.getVeg().getAge();
-    int densityId = state.getVeg().getDensity().getSimId();
-    int processId = state.process.getSimId();
-    int seasonId  = state.season.ordinal();
 
-    int ownerId   = Ownership.get(evu.getOwnership(),true).getSimId();
-    int specialId = SpecialArea.get(evu.getSpecialArea(),true).getSimId();
-    
+    Treatment treatment = evu.getTreatment(ts);
+    int treatmentId = -1;
+    if (treatment != null) {
+      sim.addAccessTreatment(treatment.getType());
+      treatmentId = treatment.getType().getSimId();
+    }
 
-    int prob = state.getProb();
-    float fProb = state.getFloatProb();
-    String probStr="n/a";
+    int   lifeId      = state.lifeform.getSimId();
+    int   speciesId   = state.getVeg().getSpecies().getSimId();
+    int   sizeId      = state.getVeg().getSizeClass().getSimId();
+    int   age         = state.getVeg().getAge();
+    int   densityId   = state.getVeg().getDensity().getSimId();
+    int   processId   = state.process.getSimId();
+    int   seasonId    = state.season.ordinal();
+    int   prob        = state.getProb();
+    float fProb       = state.getFloatProb();
 
+    String probStr = "n/a";
     if (prob < 0) {
       fProb = 0.0f;
       probStr = state.getProbString();
     }
 
-    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,-1,-1,-1,-1,-1%n", run,ts,seasonId,state.slink,lifeId,speciesId,sizeId,age,densityId,processId,fProb,probStr);
+    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,-1,-1,-1,-1%n", run,ts,seasonId,state.slink,lifeId,speciesId,sizeId,age,densityId,processId,fProb,probStr,treatmentId);
 
     if (state.trackingSpecies != null) {
       MapIterator it = ((Flat3Map) state.trackingSpecies).mapIterator();

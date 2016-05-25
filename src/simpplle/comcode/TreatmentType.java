@@ -24,6 +24,9 @@ public class TreatmentType extends SimpplleType implements Externalizable {
 
   private String treatmentName;
 
+  private short simId = -1;
+  private static short nextSimId = 0;
+
   // ************************************
   // *** Common to more than one zone ***
   // ************************************
@@ -107,6 +110,14 @@ public class TreatmentType extends SimpplleType implements Externalizable {
 
   public TreatmentType() {
     treatmentName = null;
+  }
+
+  public short getSimId() {
+    if (simId == -1) {
+      simId = nextSimId;
+      nextSimId++;
+    }
+    return simId;
   }
 
   public boolean equals(Object obj) {
