@@ -774,22 +774,22 @@ public final class Evu extends NaturalElement implements Externalizable {
   /**
    * Gets the most dominant vegetative state based on time step.
    * The order it checks for dominance are (does the state have:) Trees, Shrubs Herbacious, Agriculture, then NA
-   * @param ts time step
+   * @param timeStep time step
    * @return
    */
-  public VegSimStateData getStateMostDominant(int ts) {
-    VegSimStateData state = getState(ts,Lifeform.TREES);
+  public VegSimStateData getStateMostDominant(int timeStep) {
+    VegSimStateData state = getState(timeStep,Lifeform.TREES);
     if (state == null) {
-      state = getState(ts,Lifeform.SHRUBS);
+      state = getState(timeStep,Lifeform.SHRUBS);
     }
     if (state == null) {
-      state = getState(ts,Lifeform.HERBACIOUS);
+      state = getState(timeStep,Lifeform.HERBACIOUS);
     }
     if (state == null) {
-      state = getState(ts,Lifeform.AGRICULTURE);
+      state = getState(timeStep,Lifeform.AGRICULTURE);
     }
     if (state == null) {
-      state = getState(ts,Lifeform.NA);
+      state = getState(timeStep,Lifeform.NA);
     }
     return state;
   }
@@ -824,11 +824,11 @@ public final class Evu extends NaturalElement implements Externalizable {
   /**
    * Gets the vegetative state based on the dominant life form and passed in time step.
    *
-   * @param tStep time step to check
+   * @param timeStep time step to check
    * @return the result of getState(timeStep, lifeform)
    */
-  public VegSimStateData getState (int tStep) {
-    return getState(tStep, dominantLifeform);
+  public VegSimStateData getState (int timeStep) {
+    return getState(timeStep, dominantLifeform);
   }
 
   /**
@@ -850,17 +850,17 @@ public final class Evu extends NaturalElement implements Externalizable {
    * life form of this evu will be used. This goes through the season array in reverse until it finds a season with
    * a vegetative state.
    *
-   * @param ts time step to check
+   * @param timeStep time step to check
    * @param lifeform life form to check
    * @return the result of getState(timeStep, lifeform, season)
    */
-  public VegSimStateData getState (int ts, Lifeform lifeform) {
+  public VegSimStateData getState (int timeStep, Lifeform lifeform) {
     if (lifeform == null) { lifeform = dominantLifeform; }
 
     // work our way backward through seasons until we find one with data.
     Season[] seasons = Climate.allSeasons;
     for (int i=seasons.length-1; i>=0; i--) {
-      VegSimStateData state = getState(ts,lifeform,seasons[i]);
+      VegSimStateData state = getState(timeStep,lifeform,seasons[i]);
       if (state != null) { return state; }
     }
     return null;
@@ -871,13 +871,13 @@ public final class Evu extends NaturalElement implements Externalizable {
    * the area's current life form or dominant life form will be used. If the time step is 0, the initial state is
    * returned. If there is no vegetative state otherwise, then the database is queried if one exists.
    *
-   * @param tStep time step to check
+   * @param timeStep time step to check
    * @param lifeform life form to check
    * @param season season to check
    * @return vegetative simulation state
    */
-  public VegSimStateData getState (int tStep, Lifeform lifeform, Season season) {
-    if (tStep < 0) { return null; }
+  public VegSimStateData getState (int timeStep, Lifeform lifeform, Season season) {
+    if (timeStep < 0) { return null; }
 
     if (Area.currentLifeform != null && lifeform == null) {
       lifeform = Area.currentLifeform;
@@ -886,15 +886,15 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (lifeform == null) {
       lifeform = dominantLifeform;
     }
-    if (simData == null && tStep > 0) { return null; }
-    if (tStep == 0) {
+    if (simData == null && timeStep > 0) { return null; }
+    if (timeStep == 0) {
       if (initialState == null) { return null; }
       MultiKey key = LifeformSeasonKeys.getKey(lifeform,Season.YEAR);
       VegSimStateData foundState = (VegSimStateData)initialState.get(key);
       return (foundState != null ? foundState : null);
     }
 
-    int simDataIndex = this.getSimDataIndex(tStep);
+    int simDataIndex = this.getSimDataIndex(timeStep);
 
 
     if (simDataIndex >= 0 && simData[simDataIndex] != null) {
@@ -911,7 +911,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       if (lastLifeState != null &&
           lastLifeState.getSlink()    == getId() &&
           lastLifeState.getLifeform() == lifeform &&
-          lastLifeState.getTimeStep() == tStep    &&
+          lastLifeState.getTimeStep() == timeStep    &&
           lastLifeState.getRun()      == Simulation.getInstance().getCurrentRun() &&
           lastLifeState.getSeason()   == season) {
         return lastLifeState;
@@ -929,7 +929,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       strBuf.append(" and state.seasonOrd=");
       strBuf.append(season.ordinal());
       strBuf.append(" and state.timeStep=");
-      strBuf.append(tStep);
+      strBuf.append(timeStep);
       strBuf.append(" and state.run=");
       strBuf.append(Simulation.getInstance().getCurrentRun());
 
