@@ -771,25 +771,6 @@ public final class Evu extends NaturalElement implements Externalizable {
       return 0;
     }
   }
-/**
- * Gets the vegetative state based on the life form of evaluated area.
- * @return
- */
-  public VegSimStateData getState() {
-    return getState(Area.currentLifeform);
-  }
-  /**
-   * Overloaded VegSimStateData getState()method.  Gets the vegetative state based on passed life form, and default time step.
-   * If life form is null, the dominant life form of an area will be used.
-   * @param lifeform
-   * @return the vegetative simulation state
-   */
-  public VegSimStateData getState (Lifeform lifeform) {
-    if (lifeform == null) { lifeform = dominantLifeform; }
-
-    int ts = determineDefaultTimeStep();
-    return getState(ts,lifeform);
-  }
   /**
    * Gets the most dominant vegetative state based on time step.
    * The order it checks for dominance are (does the state have:) Trees, Shrubs Herbacious, Agriculture, then NA
@@ -812,6 +793,54 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return state;
   }
+
+  /**
+   * Gets the state based on passed simpplle type
+   * @param kind simpplle type to be used in switch to get the state type.
+   * @return null if state is null, else returns the species, size class, density or process based on passed simpplle type.
+   */
+  public SimpplleType getState (SimpplleType.Types kind) {
+    VegSimStateData state = getState();
+    if (state == null) { return null; }
+    switch (kind) {
+      case SPECIES:    return state.getVeg().getSpecies();
+      case SIZE_CLASS: return state.getVeg().getSizeClass();
+      case DENSITY:    return state.getVeg().getDensity();
+      case PROCESS:    return state.getProcess();
+    }
+    return null;
+  }
+
+/**
+ * Gets the vegetative state based on the life form of evaluated area.
+ * @return
+ */
+  public VegSimStateData getState() {
+    return getState(Area.currentLifeform);
+  }
+
+  /**
+   * Overloaded VegSimStateData getState() method.  Passes to getState(ts, lifeForm)
+   * @param tStep time step to be used to find state
+   * @return the result of passing to getState(ts, lifeform)
+   */
+  public VegSimStateData getState (int tStep) {
+    return getState(tStep, dominantLifeform);
+  }
+
+  /**
+   * Overloaded VegSimStateData getState()method.  Gets the vegetative state based on passed life form, and default time step.
+   * If life form is null, the dominant life form of an area will be used.
+   * @param lifeform
+   * @return the vegetative simulation state
+   */
+  public VegSimStateData getState (Lifeform lifeform) {
+    if (lifeform == null) { lifeform = dominantLifeform; }
+
+    int ts = determineDefaultTimeStep();
+    return getState(ts,lifeform);
+  }
+
 /**
  * Overloaded VegSimStateData getState() method.  gets the vegetative simulation state based on time step, and life form.
  * If life form is null, uses the dominant life form.  Goes through season array in reverse till finds a season with data,
@@ -831,22 +860,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return null;
   }
-/**
- * Gets the state based on passed simpplle type
- * @param kind simpplle type to be used in switch to get the state type.
- * @return null if state is null, else returns the species, size class, density or process based on passed simpplle type.
- */
-  public SimpplleType getState (SimpplleType.Types kind) {
-    VegSimStateData state = getState();
-    if (state == null) { return null; }
-    switch (kind) {
-      case SPECIES:    return state.getVeg().getSpecies();
-      case SIZE_CLASS: return state.getVeg().getSizeClass();
-      case DENSITY:    return state.getVeg().getDensity();
-      case PROCESS:    return state.getProcess();
-    }
-    return null;
-  }
+
   /**
    * Overloaded VegSimStateData getState() method.  Gets the simulation vegetative state based on time step, life form and season.
    *  If life form is null uses areas life form unless that is null and then uses dominant life form.  Uses hibernate to query database
@@ -954,14 +968,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       return (VegSimStateData)initialState.remove(key);
     }
   }
-/**
- * Overloaded VegSimStateData getState() method.  Passes to getState(ts, lifeForm)
- * @param tStep time step to be used to find state
- * @return the result of passing to getState(ts, lifeform)
- */
-  public VegSimStateData getState (int tStep) {
-    return getState(tStep, dominantLifeform);
-  }
+
   public VegSimStateData getStateLastSeason(int tStep) {
     return getStateLastSeason(tStep,dominantLifeform);
   }
