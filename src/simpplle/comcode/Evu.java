@@ -778,20 +778,16 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return
    */
   public VegSimStateData getStateMostDominant(int timeStep) {
+
     VegSimStateData state = getState(timeStep,Lifeform.TREES);
-    if (state == null) {
-      state = getState(timeStep,Lifeform.SHRUBS);
-    }
-    if (state == null) {
-      state = getState(timeStep,Lifeform.HERBACIOUS);
-    }
-    if (state == null) {
-      state = getState(timeStep,Lifeform.AGRICULTURE);
-    }
-    if (state == null) {
-      state = getState(timeStep,Lifeform.NA);
-    }
+
+    if (state == null) state = getState(timeStep,Lifeform.SHRUBS);
+    if (state == null) state = getState(timeStep,Lifeform.HERBACIOUS);
+    if (state == null) state = getState(timeStep,Lifeform.AGRICULTURE);
+    if (state == null) state = getState(timeStep,Lifeform.NA);
+
     return state;
+
   }
 
   /**
@@ -802,7 +798,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public SimpplleType getState (SimpplleType.Types kind) {
     VegSimStateData state = getState();
-    if (state == null) { return null; }
+    if (state == null) return null;
     switch (kind) {
       case SPECIES:    return state.getVeg().getSpecies();
       case SIZE_CLASS: return state.getVeg().getSizeClass();
@@ -818,7 +814,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return the result of getState(lifeform)
    */
   public VegSimStateData getState() {
-    return getState(Area.currentLifeform);
+    return getState(Area.currentLifeform); // Why isn't this dominantLifeform like in the other methods?
   }
 
   /**
@@ -839,10 +835,8 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return the result of getState(timeStep, lifeform)
    */
   public VegSimStateData getState (Lifeform lifeform) {
-    if (lifeform == null) { lifeform = dominantLifeform; }
-
-    int ts = determineDefaultTimeStep();
-    return getState(ts,lifeform);
+    if (lifeform == null) lifeform = dominantLifeform;
+    return getState(determineDefaultTimeStep(),lifeform);
   }
 
   /**
@@ -855,15 +849,17 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return the result of getState(timeStep, lifeform, season)
    */
   public VegSimStateData getState (int timeStep, Lifeform lifeform) {
-    if (lifeform == null) { lifeform = dominantLifeform; }
 
-    // work our way backward through seasons until we find one with data.
+    if (lifeform == null) lifeform = dominantLifeform;
+
     Season[] seasons = Climate.allSeasons;
     for (int i=seasons.length-1; i>=0; i--) {
       VegSimStateData state = getState(timeStep,lifeform,seasons[i]);
-      if (state != null) { return state; }
+      if (state != null) return state;
     }
+
     return null;
+
   }
 
   /**
@@ -877,49 +873,51 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return vegetative simulation state
    */
   public VegSimStateData getState (int timeStep, Lifeform lifeform, Season season) {
-    if (timeStep < 0) { return null; }
 
-    if (Area.currentLifeform != null && lifeform == null) {
-      lifeform = Area.currentLifeform;
-    }
+    if (lifeform == null) lifeform = Area.currentLifeform;
+    if (lifeform == null) lifeform = dominantLifeform;
 
-    if (lifeform == null) {
-      lifeform = dominantLifeform;
-    }
-    if (simData == null && timeStep > 0) { return null; }
+    if (timeStep < 0) return null;
+    if (timeStep > 0 && simData == null) return null;
+
     if (timeStep == 0) {
-      if (initialState == null) { return null; }
+
+      if (initialState == null) return null;
+
       MultiKey key = LifeformSeasonKeys.getKey(lifeform,Season.YEAR);
       VegSimStateData foundState = (VegSimStateData)initialState.get(key);
       return (foundState != null ? foundState : null);
+
     }
 
     int simDataIndex = this.getSimDataIndex(timeStep);
 
-
     if (simDataIndex >= 0 && simData[simDataIndex] != null) {
+
       MultiKey key = LifeformSeasonKeys.getKey(lifeform,season);
       VegSimStateData foundState = (VegSimStateData)simData[simDataIndex].get(key);
       return (foundState != null ? foundState : null);
-    }
-    else { // Get From Database
-      // Check first to see if the state we are looking for is in the
-      // lastLife variable
-      // This does happen in the case of succession regen searching for
-      // in-landscape seed.
+
+    } else { // Get From Database
+
+      // Check first to see if the state we are looking for is in the lastLife variable
+      // This does happen in the case of succession regen searching for in-landscape seed.
+
       VegSimStateData lastLifeState = lastLife[lifeform.getId()];
-      if (lastLifeState != null &&
+
+      if (lastLifeState               != null &&
           lastLifeState.getSlink()    == getId() &&
           lastLifeState.getLifeform() == lifeform &&
-          lastLifeState.getTimeStep() == timeStep    &&
+          lastLifeState.getTimeStep() == timeStep &&
           lastLifeState.getRun()      == Simulation.getInstance().getCurrentRun() &&
           lastLifeState.getSeason()   == season) {
+
         return lastLifeState;
+
       }
 
-      if (Simulation.getInstance().getWriteDatabase() == false) {
-        return null;
-      }
+      if (Simulation.getInstance().getWriteDatabase() == false) return null;
+
       StringBuffer strBuf = new StringBuffer();
       strBuf.append("from VegSimStateData as state where");
       strBuf.append(" state.slink=");
@@ -933,23 +931,18 @@ public final class Evu extends NaturalElement implements Externalizable {
       strBuf.append(" and state.run=");
       strBuf.append(Simulation.getInstance().getCurrentRun());
 
-      Session     session = DatabaseCreator.getSessionFactory().openSession();
+      Session session = DatabaseCreator.getSessionFactory().openSession();
       Query q = session.createQuery(strBuf.toString());
-      strBuf = null;
       List totList = q.list();
-
       session.close();
 
-      if (totList == null || totList.size() == 0) {
-        return null;
-      }
-      VegSimStateData state = (VegSimStateData)totList.get(0);
-      return state;
+      if (totList == null || totList.size() == 0) return null;
 
+      return (VegSimStateData)totList.get(0);
 
     }
-
   }
+
 /**
  * Removes a state based on a specified time step, life form, and season.
  * @param ts time step used to find state to be removed
