@@ -132,90 +132,78 @@ public class VegSimStateData implements Externalizable {
 //  }
 
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+
     int version = in.readInt();
 
     if (version > 2) {
-      slink = in.readInt();
+
+      slink    = in.readInt();
       timeStep = (short)in.readInt();
-      run = (short)in.readInt();
-      lifeform = (Lifeform) in.readObject();
-    }
-    else {
+      run      = (short)in.readInt();
+      lifeform = (Lifeform)in.readObject();
+
+    } else {
+
       // For old versions these values are set when this class is loaded
       // by simpplle.comcode.Evu
+
     }
 
     veg = VegetativeType.readExternalData(in);
     process = ProcessType.readExternalSimple(in);
 
     String str = (String)in.readObject();
-    if (str.equals(Evu.D_STR)) {
-      prob = Evu.D;
-    }
-    else if (str.equals(Evu.L_STR)) {
-      prob = Evu.L;
-    }
-    else if (str.equals(Evu.S_STR)) {
-      prob = Evu.S;
-    }
-    else if (str.equals(Evu.SE_STR)) {
-      prob = Evu.SE;
-    }
-    else if (str.equals(Evu.SFS_STR)) {
-      prob = Evu.SFS;
-    }
-    else if (str.equals(Evu.SUPP_STR)) {
-      prob = Evu.SUPP;
-    }
-    else if (str.equals(Evu.COMP_STR)) {
-      prob = Evu.COMP;
-    }
-    else if (str.equals(Evu.GAP_STR)) {
-      prob = Evu.GAP;
-    }
-    else if (str.equals(Evu.NOPROB_STR)) {
-      prob = Evu.NOPROB;
-    }
+
+    if      (str.equals(Evu.D_STR))      prob = Evu.D;
+    else if (str.equals(Evu.L_STR))      prob = Evu.L;
+    else if (str.equals(Evu.S_STR))      prob = Evu.S;
+    else if (str.equals(Evu.SE_STR))     prob = Evu.SE;
+    else if (str.equals(Evu.SFS_STR))    prob = Evu.SFS;
+    else if (str.equals(Evu.SUPP_STR))   prob = Evu.SUPP;
+    else if (str.equals(Evu.COMP_STR))   prob = Evu.COMP;
+    else if (str.equals(Evu.GAP_STR))    prob = Evu.GAP;
+    else if (str.equals(Evu.NOPROB_STR)) prob = Evu.NOPROB;
     else {
       try {
+
         prob = (short)Integer.parseInt(str);
-      }
-      catch (NumberFormatException ex) {
+
+      } catch (NumberFormatException ex) {
+
         prob = Evu.NOPROB;
+
       }
     }
 
     int size = in.readInt();
+
     if (size > 0) {
+
       trackingSpecies = new Flat3Map();
 
-      for (int i=0; i<size; i++) {
-        String spStr = (String) in.readObject();
+      for (int i = 0; i < size; i++) {
+
+        String spStr = (String)in.readObject();
+
         float pct;
         if (version == 1) {
-          pct = (float) in.readInt();
-        }
-        else {
+          pct = (float)in.readInt();
+        } else {
           pct = in.readFloat();
         }
 
         trackingSpecies.put(InclusionRuleSpecies.get(spStr, true), pct);
+
       }
     }
 
     str = (String)in.readObject();
-    if (str.equals("SPRING")) {
-      season = Climate.Season.SPRING;
-    }
-    else if (str.equals("SUMMER")) {
-      season = Climate.Season.SUMMER;
-    }
-    else if (str.equals("FALL")) {
-      season = Climate.Season.FALL;
-    }
-    else if (str.equals("WINTER")) {
-      season = Climate.Season.WINTER;
-    }
+
+    if      (str.equals("SPRING")) season = Climate.Season.SPRING;
+    else if (str.equals("SUMMER")) season = Climate.Season.SUMMER;
+    else if (str.equals("FALL"))   season = Climate.Season.FALL;
+    else if (str.equals("WINTER")) season = Climate.Season.WINTER;
+
   }
 
   public void writeExternal(ObjectOutput out) throws IOException {
