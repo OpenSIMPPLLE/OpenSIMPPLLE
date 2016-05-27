@@ -2,7 +2,6 @@ package simpplle.comcode;
 
 import java.io.*;
 import java.util.*;
-import java.util.regex.*;
 import java.util.zip.*;
 
 /**
@@ -29,28 +28,28 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   public enum InvasiveKind { R1, MSU, MESA_VERDE_NP, NONE};
 
-  private int         numSimulations;
-  private int         numTimeSteps;
-  private int         pastTimeStepsInMemory;
-  private boolean     fireSuppression;
-  private int         simulationMethod;
-  private Random      random;
-  private File        outputFile;
-  private float       discount;
-  private long        randomSeed;
-  private boolean     fixedRandom;
-  private boolean     trackSpecialArea;
-  private boolean     trackOwnership;
-  private boolean     yearlySteps;
-  private boolean     writeDatabase=false;
-  private boolean     writeAccess=false;
-  private boolean     writeProbFiles=false;
+  private int          numSimulations;
+  private int          numTimeSteps;
+  private int          pastTimeStepsInMemory;
+  private boolean      fireSuppression;
+  private int          simulationMethod;
+  private Random       random;
+  private File         outputFile;
+  private float        discount;
+  private long         randomSeed;
+  private boolean      fixedRandom;
+  private boolean      trackSpecialArea;
+  private boolean      trackOwnership;
+  private boolean      yearlySteps;
+  private boolean      writeDatabase=false;
+  private boolean      writeAccess=false;
+  private boolean      writeProbFiles=false;
   private InvasiveKind invasiveSpeciesKind=InvasiveKind.NONE;
-  private boolean     discardData=false;
-  private boolean     doAllStatesSummary=true;
-  private boolean     doTrackingSpeciesReport=false;
-  private boolean     doGisFiles=false;
-  private boolean     doSimLoggingFile=false;
+  private boolean      discardData=false;
+  private boolean      doAllStatesSummary=true;
+  private boolean      doTrackingSpeciesReport=false;
+  private boolean      doGisFiles=false;
+  private boolean      doSimLoggingFile=false;
   private PrintWriter  simLoggingWriter;
 
   private File        allStatesRulesFile;
@@ -61,19 +60,21 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   private PrintWriter invasiveSpeciesMSUProbOut;
 
-  private PrintWriter[]  accessEvuSimDataOut;
-  private PrintWriter  accessProcessOut;
-  private PrintWriter  accessSpeciesOut;
-  private PrintWriter  accessSizeClassOut;
-  private PrintWriter  accessDensityOut;
-  private PrintWriter  accessEcoGroupOut;
-  private PrintWriter[]  accessAreaSummaryOut;
-  private PrintWriter  accessFmzOut;
-  private PrintWriter  accessInclusionRuleSpecies;
-  private PrintWriter  accessLifeformOut;
-  private PrintWriter  accessOwnershipOut;
-  private PrintWriter  accessSpecialAreaOut;
-  private PrintWriter  accessTrackingSpeciesOut;
+  private PrintWriter[] accessEvuSimDataOut;
+  private PrintWriter   accessProcessOut;
+  private PrintWriter   accessSpeciesOut;
+  private PrintWriter   accessSizeClassOut;
+  private PrintWriter   accessDensityOut;
+  private PrintWriter   accessEcoGroupOut;
+  private PrintWriter[] accessAreaSummaryOut;
+  private PrintWriter   accessFmzOut;
+  private PrintWriter   accessInclusionRuleSpecies;
+  private PrintWriter   accessLifeformOut;
+  private PrintWriter   accessOwnershipOut;
+  private PrintWriter   accessSpecialAreaOut;
+  private PrintWriter   accessTrackingSpeciesOut;
+  private PrintWriter   accessSlinkMetricsOut;
+  private PrintWriter   accessTreatmentOut;
 
 
   public static final int MAX_TIME_STEPS = 10000;
@@ -102,24 +103,25 @@ public final class Simulation implements SimulationTypes, Externalizable {
    * Constructor for Simulation.  Initializes some class variables. 1-5 time steps are considered short term simulations.  Greater than 5 time steps are long term simulations.
    */
   public Simulation () {
-    numSimulations   = 1;
-    numTimeSteps     = 5;
+
+    numSimulations        = 1;
+    numTimeSteps          = 5;
     pastTimeStepsInMemory = 10;
-    fireSuppression  = false;
-    simulationMethod = STOCHASTIC;
-    random           = null;
-    outputFile       = null;
-    discount         = 1.0f;
-    fixedRandom      = false;
-    trackSpecialArea = false;
-    trackOwnership   = false;
-    yearlySteps      = false; // means decade time steps used the default for OpenSimpplle
-    writeDatabase    = false;
-    writeAccess      = false;
-    writeProbFiles   = false;
-    currentTimeStep  = -1;
-    inSimulation     = false;
-    invasiveSpeciesKind = InvasiveKind.NONE;
+    fireSuppression       = false;
+    simulationMethod      = STOCHASTIC;
+    random                = null;
+    outputFile            = null;
+    discount              = 1.0f;
+    fixedRandom           = false;
+    trackSpecialArea      = false;
+    trackOwnership        = false;
+    yearlySteps           = false; // means decade time steps used the default for OpenSimpplle
+    writeDatabase         = false;
+    writeAccess           = false;
+    writeProbFiles        = false;
+    currentTimeStep       = -1;
+    inSimulation          = false;
+    invasiveSpeciesKind   = InvasiveKind.NONE;
 
     String prop = System.getProperty("simpplle.fixedRandom");
     if (prop != null && prop.equalsIgnoreCase("enabled")) {
@@ -164,7 +166,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
                      boolean discardData, boolean doAllStatesSummary,
                      boolean doTrackingSpeciesReport,
                      boolean doGisFiles) {
+
     this();
+
     numSimulations           = nSims;
     numTimeSteps             = nSteps;
     pastTimeStepsInMemory    = nStepsInMemory;
@@ -425,29 +429,35 @@ public final class Simulation implements SimulationTypes, Externalizable {
    * @throws SimpplleError caught in GUI
    */
   public void runSimulation () throws SimpplleError {
+
     inSimulation = true;
+
     try {
+
       if (outputFile != null) {
+
         if (simpplle.JSimpplle.simLoggingFile()) {
           this.doSimLoggingFile=true;
-
         }
 
-
         File logFile = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
+
         PrintWriter logOut;
+
         try {
+
           logOut = new PrintWriter(new FileOutputStream(logFile));
+
           if (doSimLoggingFile) {
             File tmpFile = Utility.makeSuffixedPathname(outputFile, "-detaillog", "txt");
             simLoggingWriter = new PrintWriter(new FileOutputStream(tmpFile));
-
           }
-        }
-        catch (Exception ex) {
-          throw new SimpplleError(ex.getMessage(),ex);
-        }
 
+        } catch (Exception ex) {
+
+          throw new SimpplleError(ex.getMessage(),ex);
+
+        }
 
         logOut.println("SIMPPLLE Simulation Log File");
         logOut.println();
@@ -539,6 +549,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
         DatabaseCreator.closeHibernate();
       }
       if (outputFile != null && writeAccess) {
+        writeAccessSlinkMetrics();
         writeAccessTreeMaps();
         closeAccessTextFiles();
       }
@@ -561,18 +572,42 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private TreeMap<Short,String> accessProcessList        = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessSpeciesList        = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessSizeClassList      = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessDensityList        = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessEcoGroupList       = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessFmzList            = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessIncRuleSpeciesList = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessLifeformList       = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessOnwershipList      = new TreeMap<Short,String>();
-  private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<Short,String>();
+  void writeAccessSlinkMetrics() {
+
+    PrintWriter out = Simulation.getInstance().getAccessSlinkMetricsOut();
+
+    Evu[] allEvu = Simpplle.currentArea.getAllEvu();
+
+    for (Evu evu : allEvu) {
+
+      if (evu == null) continue;
+
+      int    slink       = evu.getId();
+      float  acres       = evu.getFloatAcres();
+      String ecoGroup    = evu.getHabitatTypeGroup().getName();
+      String ownership   = evu.getOwnership();
+      String specialArea = evu.getSpecialArea();
+      String fmz         = evu.getFmz().getName();
+
+      out.printf("%d,%f,%s,%s,%s,%s%n",slink,acres,ecoGroup,ownership,specialArea,fmz);
+
+    }
+  }
+
+  private TreeMap<Short,String> accessProcessList        = new TreeMap<>();
+  private TreeMap<Short,String> accessSpeciesList        = new TreeMap<>();
+  private TreeMap<Short,String> accessSizeClassList      = new TreeMap<>();
+  private TreeMap<Short,String> accessDensityList        = new TreeMap<>();
+  private TreeMap<Short,String> accessEcoGroupList       = new TreeMap<>();
+  private TreeMap<Short,String> accessFmzList            = new TreeMap<>();
+  private TreeMap<Short,String> accessIncRuleSpeciesList = new TreeMap<>();
+  private TreeMap<Short,String> accessLifeformList       = new TreeMap<>();
+  private TreeMap<Short,String> accessOnwershipList      = new TreeMap<>();
+  private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<>();
+  private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
 
   private void initAccessTreeMaps() {
+
     accessProcessList.clear();
     accessSpeciesList.clear();
     accessSizeClassList.clear();
@@ -583,8 +618,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessLifeformList.clear();
     accessOnwershipList.clear();
     accessSpecialAreaList.clear();
+    accessTreatmentTypeList.clear();
+
   }
+
   private void writeAccessTreeMaps() throws IOException {
+
     writeAccessTreeMap(accessProcessOut,accessProcessList);
     writeAccessTreeMap(accessSpeciesOut,accessSpeciesList);
     writeAccessTreeMap(accessSizeClassOut,accessSizeClassList);
@@ -595,6 +634,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     writeAccessTreeMap(accessLifeformOut,accessLifeformList);
     writeAccessTreeMap(accessOwnershipOut,accessOnwershipList);
     writeAccessTreeMap(accessSpecialAreaOut,accessSpecialAreaList);
+    writeAccessTreeMap(accessTreatmentOut, accessTreatmentTypeList);
 
   }
   private void writeAccessTreeMap(PrintWriter fout, TreeMap<Short,String> map) throws IOException {
@@ -635,20 +675,26 @@ public final class Simulation implements SimulationTypes, Externalizable {
   public void addAccessSpecialArea(SpecialArea specialArea) {
     accessSpecialAreaList.put(specialArea.getSimId(), specialArea.toString());
   }
+  public void addAccessTreatment(TreatmentType treatmentType) {
+    accessTreatmentTypeList.put(treatmentType.getSimId(),treatmentType.toString());
+  }
 
   public PrintWriter getAccessEvuSimDataOut() { return accessEvuSimDataOut[currentRun]; }
   public PrintWriter getAccessTrackingSpeciesOut() { return accessTrackingSpeciesOut; }
+  public PrintWriter getAccessSlinkMetricsOut() {
+    return accessSlinkMetricsOut;
+  }
 
   private void openAccessTextFiles() throws SimpplleError, IOException {
     makeAccessFilesDir();
 
     File path;
     for (int run=0; run<numSimulations; run++) {
-      path = new File (getAccessFilesPath(),"EVU_SIM_DATA" + Integer.toString(run+1) + ".txt.gz");
-      GZIPOutputStream out = new GZIPOutputStream(new FileOutputStream(path));
-      accessEvuSimDataOut[run] = new PrintWriter(out);
-//      accessEvuSimDataOut[run] = new PrintWriter(new FileWriter(path, true));
-      accessEvuSimDataOut[run].println("RUN,TIMESTEP,SEASON_ID,SLINK,ACRES,LIFEFORM_ID,SPECIES_ID,SIZECLASS_ID,AGE,DENSITY_ID,PROCESS_ID,PROB,PROBSTR,OWNERSHIP_ID,SPECIAL_AREA_ID");
+      path = new File (getAccessFilesPath(),"EVU_SIM_DATA" + Integer.toString(run+1) + ".txt");
+      //GZIPOutputStream out = new GZIPOutputStream(new FileOutputStream(path));
+      //accessEvuSimDataOut[run] = new PrintWriter(out);
+      accessEvuSimDataOut[run] = new PrintWriter(new FileWriter(path, true));
+      accessEvuSimDataOut[run].println("RUN,TIMESTEP,SEASON_ID,SLINK,LIFEFORM_ID,SPECIES_ID,SIZECLASS_ID,AGE,DENSITY_ID,PROCESS_ID,PROB,PROBSTR,TREATMENT_ID,ORIGINUNITID,PROCESS_RULE,REGENERATION_RULE");
     }
 
     path = new File (getAccessFilesPath(),"PROCESS.txt");
@@ -671,11 +717,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessEcoGroupOut = new PrintWriter(new FileWriter(path, true));
     accessEcoGroupOut.println("ID,ECOGROUP");
 
-    for (int run=0; run<numSimulations; run++) {
-      path = new File (getAccessFilesPath(),"AREASUMMARY" + Integer.toString(run+1) + ".txt");
-      accessAreaSummaryOut[run] = new PrintWriter(new FileWriter(path, true));
-      accessAreaSummaryOut[run].println("RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID");
-    }
+    //for (int run=0; run<numSimulations; run++) {
+    //  path = new File (getAccessFilesPath(),"AREASUMMARY" + Integer.toString(run+1) + ".txt");
+    //  accessAreaSummaryOut[run] = new PrintWriter(new FileWriter(path, true));
+    //  accessAreaSummaryOut[run].println("RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID");
+    //}
     path = new File (getAccessFilesPath(),"FMZ.txt");
     accessFmzOut = new PrintWriter(new FileWriter(path, true));
     accessFmzOut.println("ID,FMZNAME");
@@ -699,12 +745,24 @@ public final class Simulation implements SimulationTypes, Externalizable {
     path = new File (getAccessFilesPath(),"TRACKINGSPECIESPCT.txt");
     accessTrackingSpeciesOut = new PrintWriter(new FileWriter(path, true));
     accessTrackingSpeciesOut.println("RUN,TIMESTEP,SLINK,LIFEFORM_ID,SPECIES_ID,PCT");
+
+    path = new File (getAccessFilesPath(),"SLINKMETRICS.txt");
+    accessSlinkMetricsOut = new PrintWriter(new FileWriter(path, true));
+    accessSlinkMetricsOut.println("SLINK,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
+
+    path = new File (getAccessFilesPath(),"TREATMENT.txt");
+    accessTreatmentOut = new PrintWriter(new FileWriter(path,true));
+    accessTreatmentOut.println("ID,TREATMENT");
+
   }
+
   private void closeAccessTextFiles() throws SimpplleError {
+
     for (int run=0; run<numSimulations; run++) {
       accessEvuSimDataOut[run].flush();
       accessEvuSimDataOut[run].close();
     }
+
     accessProcessOut.flush();
     accessProcessOut.close();
 
@@ -720,10 +778,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessEcoGroupOut.flush();
     accessEcoGroupOut.close();
 
-    for (int run=0; run<numSimulations; run++) {
-      accessAreaSummaryOut[run].flush();
-      accessAreaSummaryOut[run].close();
-    }
+    //for (int run=0; run<numSimulations; run++) {
+    //  accessAreaSummaryOut[run].flush();
+    //  accessAreaSummaryOut[run].close();
+    //}
+
     accessFmzOut.flush();
     accessFmzOut.close();
 
@@ -741,6 +800,13 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     accessTrackingSpeciesOut.flush();
     accessTrackingSpeciesOut.close();
+
+    accessSlinkMetricsOut.flush();
+    accessSlinkMetricsOut.close();
+
+    accessTreatmentOut.flush();
+    accessTreatmentOut.close();
+
   }
 
   public PrintWriter getInvasiveSpeciesMSUPrintWriter() {
@@ -1038,11 +1104,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
           areaSummary.writeDatabase();
           Simpplle.clearStatusMessage();
         }
-        if (outputFile != null && writeAccess) {
-          Simpplle.setStatusMessage("Writing Area Summary Data to text data");
-          areaSummary.writeAccessFiles(accessAreaSummaryOut[currentRun]);
-          Simpplle.clearStatusMessage();
-        }
+        //if (outputFile != null && writeAccess) {
+        //  Simpplle.setStatusMessage("Writing Area Summary Data to text data");
+        //  areaSummary.writeAccessFiles(accessAreaSummaryOut[currentRun]);
+        //  Simpplle.clearStatusMessage();
+        //}
 //        if (currentArea.doManualGC()) { System.gc(); }
         if (fireSuppression()) {
           areaSummary.doSuppressionCosts(currentTimeStep);

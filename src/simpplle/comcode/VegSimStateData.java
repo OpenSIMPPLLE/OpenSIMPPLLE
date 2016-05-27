@@ -28,6 +28,7 @@ import java.io.*;
  *
  */
 public class VegSimStateData implements Externalizable {
+
   static final long serialVersionUID = -159138068111213685L;
   static final int  version          = 3;
 
@@ -43,6 +44,9 @@ public class VegSimStateData implements Externalizable {
   private short                    prob;
   private Climate.Season         season;
   private short                  seasonOrd;  // Used for hibernate mapping only!
+
+  private int fireSpreadRuleIndex = -1;
+  private int fireRegenerationRuleIndex = -1;
 
   // Object[Species][Integer]
 
@@ -60,7 +64,6 @@ public class VegSimStateData implements Externalizable {
     trackingSpecies = null;
   }
 
-
   public VegSimStateData() {
     this.process = ProcessType.SUCCESSION;
     this.prob    = Evu.NOPROB;
@@ -71,6 +74,7 @@ public class VegSimStateData implements Externalizable {
   public VegSimStateData(int slink) {
     this(slink,0,0);
   }
+
   public VegSimStateData(int slink, int timeStep, int run) {
     this();
     this.slink    = slink;
@@ -98,6 +102,7 @@ public class VegSimStateData implements Externalizable {
     this.process  = process;
     this.prob     = (short)prob;
   }
+
   public VegSimStateData(int slink, int timeStep, int run,
                          VegetativeType vegType, ProcessType process, int prob,
                          Climate.Season season) {
@@ -117,7 +122,6 @@ public class VegSimStateData implements Externalizable {
     trackingSpecies = new Flat3Map();
   }
 
-
 //  public void setSpecies(InclusionRuleSpecies[] trkSpecies, float[] trkSpeciesPct) {
 //    if (trkSpecies == null) { return; }
 //
@@ -131,94 +135,82 @@ public class VegSimStateData implements Externalizable {
 //  }
 
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+
     int version = in.readInt();
 
     if (version > 2) {
-      slink = in.readInt();
+
+      slink    = in.readInt();
       timeStep = (short)in.readInt();
-      run = (short)in.readInt();
-      lifeform = (Lifeform) in.readObject();
-    }
-    else {
+      run      = (short)in.readInt();
+      lifeform = (Lifeform)in.readObject();
+
+    } else {
+
       // For old versions these values are set when this class is loaded
       // by simpplle.comcode.Evu
+
     }
 
     veg = VegetativeType.readExternalData(in);
     process = ProcessType.readExternalSimple(in);
 
     String str = (String)in.readObject();
-    if (str.equals(Evu.D_STR)) {
-      prob = Evu.D;
-    }
-    else if (str.equals(Evu.L_STR)) {
-      prob = Evu.L;
-    }
-    else if (str.equals(Evu.S_STR)) {
-      prob = Evu.S;
-    }
-    else if (str.equals(Evu.SE_STR)) {
-      prob = Evu.SE;
-    }
-    else if (str.equals(Evu.SFS_STR)) {
-      prob = Evu.SFS;
-    }
-    else if (str.equals(Evu.SUPP_STR)) {
-      prob = Evu.SUPP;
-    }
-    else if (str.equals(Evu.COMP_STR)) {
-      prob = Evu.COMP;
-    }
-    else if (str.equals(Evu.GAP_STR)) {
-      prob = Evu.GAP;
-    }
-    else if (str.equals(Evu.NOPROB_STR)) {
-      prob = Evu.NOPROB;
-    }
+
+    if      (str.equals(Evu.D_STR))      prob = Evu.D;
+    else if (str.equals(Evu.L_STR))      prob = Evu.L;
+    else if (str.equals(Evu.S_STR))      prob = Evu.S;
+    else if (str.equals(Evu.SE_STR))     prob = Evu.SE;
+    else if (str.equals(Evu.SFS_STR))    prob = Evu.SFS;
+    else if (str.equals(Evu.SUPP_STR))   prob = Evu.SUPP;
+    else if (str.equals(Evu.COMP_STR))   prob = Evu.COMP;
+    else if (str.equals(Evu.GAP_STR))    prob = Evu.GAP;
+    else if (str.equals(Evu.NOPROB_STR)) prob = Evu.NOPROB;
     else {
       try {
+
         prob = (short)Integer.parseInt(str);
-      }
-      catch (NumberFormatException ex) {
+
+      } catch (NumberFormatException ex) {
+
         prob = Evu.NOPROB;
+
       }
     }
 
     int size = in.readInt();
+
     if (size > 0) {
+
       trackingSpecies = new Flat3Map();
 
-      for (int i=0; i<size; i++) {
-        String spStr = (String) in.readObject();
+      for (int i = 0; i < size; i++) {
+
+        String spStr = (String)in.readObject();
+
         float pct;
         if (version == 1) {
-          pct = (float) in.readInt();
-        }
-        else {
+          pct = (float)in.readInt();
+        } else {
           pct = in.readFloat();
         }
 
         trackingSpecies.put(InclusionRuleSpecies.get(spStr, true), pct);
+
       }
     }
 
     str = (String)in.readObject();
-    if (str.equals("SPRING")) {
-      season = Climate.Season.SPRING;
-    }
-    else if (str.equals("SUMMER")) {
-      season = Climate.Season.SUMMER;
-    }
-    else if (str.equals("FALL")) {
-      season = Climate.Season.FALL;
-    }
-    else if (str.equals("WINTER")) {
-      season = Climate.Season.WINTER;
-    }
+
+    if      (str.equals("SPRING")) season = Climate.Season.SPRING;
+    else if (str.equals("SUMMER")) season = Climate.Season.SUMMER;
+    else if (str.equals("FALL"))   season = Climate.Season.FALL;
+    else if (str.equals("WINTER")) season = Climate.Season.WINTER;
+
   }
+
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
-
     out.writeInt(slink);
     out.writeInt(timeStep);
     out.writeInt(run);
@@ -237,8 +229,6 @@ public class VegSimStateData implements Externalizable {
         InclusionRuleSpecies sp = (InclusionRuleSpecies)it.next();
         out.writeObject(sp.toString());
         out.writeFloat((Float)it.getValue());
-
-
       }
     }
     else {
@@ -248,8 +238,9 @@ public class VegSimStateData implements Externalizable {
     out.writeObject(getSeasonString());
   }
 
-
-  public VegetativeType getVegType() { return veg; }
+  public VegetativeType getVegType() {
+    return veg;
+  }
 
   /**
    * Sets the simulation vegetative type.  If the area being evaluated has multiple life forms sets the life from for this area to 
@@ -265,11 +256,15 @@ public class VegSimStateData implements Externalizable {
       this.lifeform = Lifeform.NA;
     }
   }
+
 /**
  * Gets the simulation vegetative type.   
  * @return
  */
-  public VegetativeType getVeg() { return veg; }
+  public VegetativeType getVeg() {
+    return veg;
+  }
+
   /**
    * Used by hibernate
    */
@@ -280,30 +275,39 @@ public class VegSimStateData implements Externalizable {
 
     this.veg = group.getVegetativeType(veg.getSpecies(),veg.getSizeClass(),veg.getAge(),veg.getDensity());
   }
+
 /**
  * Gets the process type.  
  * @return process type
  */
-  public ProcessType getProcess() { return process; }
+  public ProcessType getProcess() {
+    return process;
+  }
+
 /**
  * Gets the probability 
  * @return probability
  */
-  public short getProb() { return prob; }
+  public short getProb() {
+    return prob;
+  }
+
   /**
    * Sets the probability for this vegetative simulation state data.  
    * @param prob probability
    */
-  public void setProb(short prob) { this.prob = prob; }
-  /**
-   * 
-   * @param prob
-   */
-  public void setProb(int prob) { this.prob = (short)prob; }
+  public void setProb(short prob) {
+    this.prob = prob;
+  }
+
+  public void setProb(int prob) {
+    this.prob = (short)prob;
+  }
 
   public float getFloatProb() {
     return ( (float)prob / (float)Utility.pow(10,Area.getAcresPrecision()) );
   }
+
   public String getProbString() {
     switch (prob) {
       case Evu.D:    return Evu.D_STR;
@@ -319,10 +323,33 @@ public class VegSimStateData implements Externalizable {
     }
   }
 
-  public Climate.Season getSeason() { return season; }
-  public void setSeason(Climate.Season season) { this.season = season; }
+  public Climate.Season getSeason() {
+    return season;
+  }
 
-  public String getSeasonString() { return season.toString(); }
+  public void setSeason(Climate.Season season) {
+    this.season = season;
+  }
+
+  public int getFireSpreadRuleIndex() {
+    return fireSpreadRuleIndex;
+  }
+
+  public void setFireSpreadRuleIndex(int index) {
+    fireSpreadRuleIndex = index;
+  }
+
+  public int getFireRegenerationRuleIndex() {
+    return fireRegenerationRuleIndex;
+  }
+
+  public void setFireRegenerationRuleIndex(int index) {
+    fireRegenerationRuleIndex = index;
+  }
+
+  public String getSeasonString() {
+    return season.toString();
+  }
 
   public void setProcess(ProcessType process) {
     this.process = ProcessType.get(process.toString());
@@ -342,6 +369,7 @@ public class VegSimStateData implements Externalizable {
     return (pct != null) ? pct : -1;
 
   }
+
   public void addMissingTrackSpecies() {
     Set<InclusionRuleSpecies> allSpecies = veg.getTrackingSpecies();
     if (allSpecies != null) {
@@ -388,15 +416,18 @@ public class VegSimStateData implements Externalizable {
   public Map getTrackingSpecies() {
     return trackingSpecies;
   }
+
   public InclusionRuleSpecies[] getTrackingSpeciesArray() {
     if (trackingSpecies != null) {
       return (InclusionRuleSpecies[]) trackingSpecies.keySet().toArray(new InclusionRuleSpecies[trackingSpecies.size()]);
     }
     return null;
   }
+
   public Flat3Map getTrackingSpeciesMap() {
     return (Flat3Map)trackingSpecies;
   }
+
   public void setTrackingSpecies(Map trkSpecies) {
     trackingSpecies = new Flat3Map();
     for (Object elem : trkSpecies.keySet()) {
@@ -427,9 +458,7 @@ public class VegSimStateData implements Externalizable {
    * In addition to the change as Percent difference this one also removes
    * species that have been reduced to zero.
    */
-  public float updateTrackingSpecies(InclusionRuleSpecies trkSpecies, float change,
-                                     boolean changeAsPercent)
-  {
+  public float updateTrackingSpecies(InclusionRuleSpecies trkSpecies, float change, boolean changeAsPercent) {
     float newPct = 0.0f;
     if (changeAsPercent) {
       Float pct = (Float) trackingSpecies.get(trkSpecies);
@@ -460,27 +489,50 @@ public class VegSimStateData implements Externalizable {
     return newPct;
   }
 
-  public short  getTimeStep()             { return timeStep; }
-  public void setTimeStep(short timeStep) { this.timeStep = timeStep; }
-  public void setTimeStep(int timeStep) { this.timeStep = (short)timeStep; }
+  public short getTimeStep() {
+    return timeStep;
+  }
 
-  public short  getRun()        { return run; }
-  public void setRun(short run) { this.run = run; }
-  public void setRun(int run) { this.run = (short)run; }
+  public void setTimeStep(short timeStep) {
+    this.timeStep = timeStep;
+  }
+
+  public void setTimeStep(int timeStep) {
+    this.timeStep = (short)timeStep;
+  }
+
+  public short getRun() {
+    return run;
+  }
+
+  public void setRun(short run) {
+    this.run = run;
+  }
+
+  public void setRun(int run) {
+    this.run = (short) run;
+  }
 
   public Lifeform getLifeform() {
     return lifeform;
   }
+
   public void setLifeform(Lifeform lifeform) {
     this.lifeform = Lifeform.get(lifeform.getName());
   }
 
-  public int  getSlink()          { return slink; }
-  public void setSlink(int slink) { this.slink = slink; }
+  public int getSlink() {
+    return slink;
+  }
+
+  public void setSlink(int slink) {
+    this.slink = slink;
+  }
 
   public short getSeasonOrd() {
     return (short)season.ordinal();
   }
+
   public void setSeasonOrd(short ordinal) {
     switch (ordinal) {
       case 0: season = Season.SPRING; break;
@@ -491,16 +543,19 @@ public class VegSimStateData implements Externalizable {
     }
   }
 
-  public long getDbid() { return dbid; }
-  public void setDbid(long dbid) { this.dbid = dbid; }
+  public long getDbid() {
+    return dbid;
+  }
 
+  public void setDbid(long dbid) {
+    this.dbid = dbid;
+  }
 
   public static void clearWriteCount() {
     writeCount=0;
   }
-  public static void writeDatabase(Session session, VegSimStateData state)
-    throws SimpplleError
-  {
+
+  public static void writeDatabase(Session session, VegSimStateData state) throws SimpplleError {
     try {
       session.saveOrUpdate(state.lifeform);
       session.saveOrUpdate(state.veg.getSpecies());
@@ -529,10 +584,13 @@ public class VegSimStateData implements Externalizable {
       throw new SimpplleError("Problems writing database", ex);
     }
   }
-  public static void writeAccessFiles(PrintWriter fout, PrintWriter trackOut, Evu evu, VegSimStateData state)
-  {
+
+  public static void writeAccessFiles(PrintWriter fout, PrintWriter trackOut, Evu evu, VegSimStateData state) {
     Simulation sim = Simulation.getInstance();
-    
+
+    int run = Simulation.getCurrentRun() + 1;
+    int ts  = Simulation.getCurrentTimeStep();
+
     sim.addAccessLifeform(state.lifeform);
     sim.addAccessSpecies(state.veg.getSpecies());
     sim.addAccessSizeClass(state.veg.getSizeClass());
@@ -540,32 +598,37 @@ public class VegSimStateData implements Externalizable {
     sim.addAccessProcess(state.process);
     sim.addAccessOwnership(Ownership.get(evu.getOwnership(),true));
     sim.addAccessSpecialArea(SpecialArea.get(evu.getSpecialArea(),true));
-    
-    int ts = Simulation.getCurrentTimeStep();
-    int run = Simulation.getCurrentRun()+1;
-    float acres = evu.getFloatAcres();
-    int lifeId = state.lifeform.getSimId();
-    int speciesId = state.getVeg().getSpecies().getSimId();
-    int sizeId    = state.getVeg().getSizeClass().getSimId();
-    int age       = state.getVeg().getAge();
-    int densityId = state.getVeg().getDensity().getSimId();
-    int processId = state.process.getSimId();
-    int seasonId  = state.season.ordinal();
 
-    int ownerId   = Ownership.get(evu.getOwnership(),true).getSimId();
-    int specialId = SpecialArea.get(evu.getSpecialArea(),true).getSimId();
-    
+    Treatment treatment = evu.getTreatment(ts);
+    int treatmentId = -1;
+    if (treatment != null) {
+      sim.addAccessTreatment(treatment.getType());
+      treatmentId = treatment.getType().getSimId();
+    }
 
-    int prob = state.getProb();
-    float fProb = state.getFloatProb();
-    String probStr="n/a";
+    int   lifeId      = state.lifeform.getSimId();
+    int   speciesId   = state.getVeg().getSpecies().getSimId();
+    int   sizeId      = state.getVeg().getSizeClass().getSimId();
+    int   age         = state.getVeg().getAge();
+    int   densityId   = state.getVeg().getDensity().getSimId();
+    int   processId   = state.process.getSimId();
+    int   seasonId    = state.season.ordinal();
+    int   prob        = state.getProb();
+    float fProb       = state.getFloatProb();
 
+    String probStr = "n/a";
     if (prob < 0) {
       fProb = 0.0f;
       probStr = state.getProbString();
     }
 
-    fout.printf("%d,%d,%d,%d,%.1f,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d%n", run,ts,seasonId,state.slink,acres,lifeId,speciesId,sizeId,age,densityId,processId,fProb,probStr,ownerId,specialId);
+    Evu originUnit = evu.getOriginUnit();
+    int originUnitId = -1;
+    if (originUnit != null) {
+      originUnitId = originUnit.getId();
+    }
+
+    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d,%d%n", run,ts,seasonId,state.slink,lifeId,speciesId,sizeId,age,densityId,processId,fProb,probStr,treatmentId,originUnitId,state.fireSpreadRuleIndex,state.fireRegenerationRuleIndex);
 
     if (state.trackingSpecies != null) {
       MapIterator it = ((Flat3Map) state.trackingSpecies).mapIterator();
