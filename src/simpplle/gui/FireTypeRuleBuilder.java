@@ -9,7 +9,6 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.comcode.Density;
 import simpplle.comcode.FireTypeDataNewerLegacy;
 import simpplle.comcode.HabitatTypeGroup;
@@ -51,7 +50,6 @@ public class FireTypeRuleBuilder extends JDialog {
   JPanel mainPanel = new JPanel();
   BorderLayout borderLayout1 = new BorderLayout();
   JPanel jPanel1 = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JPanel processPanel = new JPanel();
   JPanel treatmentPanel = new JPanel();
   JPanel densityPanel = new JPanel();
@@ -70,7 +68,6 @@ public class FireTypeRuleBuilder extends JDialog {
   FlowLayout flowLayout2 = new FlowLayout();
   JPanel treatmentTargetPanel = new JPanel();
   JPanel treatmentSourcePanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout2 = new VerticalFlowLayout();
   JScrollPane treatmentSourceScroll = new JScrollPane();
   DragSourceList treatmentSourceList = new DragSourceList();
   JScrollPane treatmentTargetScroll = new JScrollPane();
@@ -119,7 +116,7 @@ public class FireTypeRuleBuilder extends JDialog {
     titledBorder7 = new TitledBorder("");
     titledBorder8 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140)),"Processes");
     mainPanel.setLayout(borderLayout1);
-    jPanel1.setLayout(verticalFlowLayout1);
+    jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
     densityPanel.setLayout(flowLayout1);
     flowLayout1.setAlignment(FlowLayout.LEFT);
     densitySourcePanel.setLayout(borderLayout2);
@@ -129,7 +126,7 @@ public class FireTypeRuleBuilder extends JDialog {
     densityPanel.setBorder(titledBorder3);
     treatmentPanel.setLayout(flowLayout2);
     treatmentSourcePanel.setLayout(borderLayout4);
-    treatmentTargetPanel.setLayout(verticalFlowLayout2);
+    treatmentTargetPanel.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
     flowLayout2.setAlignment(FlowLayout.LEFT);
     treatmentAnyExceptCB.setEnabled(true);
     treatmentAnyExceptCB.setFont(new java.awt.Font("Monospaced", 0, 12));
@@ -169,7 +166,6 @@ public class FireTypeRuleBuilder extends JDialog {
     processSourcePanel.setBorder(titledBorder1);
     processTargetPanel.setBorder(titledBorder2);
     processPanel.setBorder(titledBorder8);
-    verticalFlowLayout1.setHorizontalFill(true);
     densityPanel.add(densitySourcePanel, null);
     densitySourcePanel.add(densitySourceScroll, BorderLayout.CENTER);
     densitySourceScroll.getViewport().add(densitySourceList, null);

@@ -15,7 +15,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.comcode.HabitatTypeGroup;
 import simpplle.comcode.Process;
 import simpplle.comcode.ProcessType;
@@ -86,7 +85,6 @@ public class PathwayEditor extends JDialog {
   JPanel currentSelectionPanel = new JPanel();
   FlowLayout flowLayout2 = new FlowLayout();
   JPanel VegetativeTypeInfoPanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JPanel agePanel = new JPanel();
   JPanel densityPanel = new JPanel();
   JPanel sizeClassPanel = new JPanel();
@@ -114,7 +112,6 @@ public class PathwayEditor extends JDialog {
   JPopupMenu listPopupMenu = new JPopupMenu();
   JMenuItem contextMenuEdit = new JMenuItem();
   JMenuItem contextMenuDelete = new JMenuItem();
-  VerticalFlowLayout verticalFlowLayout2 = new VerticalFlowLayout();
   TitledBorder titledBorder1;
   JPanel saveEditPanel = new JPanel();
   JPanel nextStateVegTypePanel = new JPanel();
@@ -183,10 +180,10 @@ public class PathwayEditor extends JDialog {
       }
     });
     editPanel.setLayout(flowLayout2);
-    currentSelectionPanel.setLayout(verticalFlowLayout2);
+    currentSelectionPanel.setLayout(new BoxLayout(currentSelectionPanel, BoxLayout.Y_AXIS));
     currentSelectionPanel.setBorder(titledBorder1);
     flowLayout2.setAlignment(FlowLayout.LEFT);
-    VegetativeTypeInfoPanel.setLayout(verticalFlowLayout1);
+    VegetativeTypeInfoPanel.setLayout(new BoxLayout(VegetativeTypeInfoPanel, BoxLayout.Y_AXIS));
     SpeciesPanel.setLayout(flowLayout5);
     speciesText.setFont(new java.awt.Font("Monospaced", 0, 12));
     speciesText.setForeground(Color.blue);
@@ -230,7 +227,6 @@ public class PathwayEditor extends JDialog {
     flowLayout7.setAlignment(FlowLayout.LEFT);
     flowLayout8.setAlignment(FlowLayout.LEFT);
     flowLayout9.setAlignment(FlowLayout.LEFT);
-    verticalFlowLayout1.setVgap(0);
     VegetativeTypeInfoPanel.setBorder(BorderFactory.createLoweredBevelBorder());
     contextMenuEdit.setText("Edit");
     contextMenuEdit.addActionListener(new java.awt.event.ActionListener() {

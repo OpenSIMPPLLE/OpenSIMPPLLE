@@ -11,7 +11,6 @@ import java.awt.event.*;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Vector;
-import com.borland.jbcl.layout.*;
 import java.awt.dnd.DropTarget;
 import javax.swing.event.*;
 
@@ -53,7 +52,6 @@ public class FireResistanceConditionalEditor extends JDialog {
   FlowLayout flowLayout3 = new FlowLayout();
   FlowLayout flowLayout4 = new FlowLayout();
   JPanel groupDragSourcePanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JPanel groupSourcePanel = new JPanel();
   JScrollPane groupSourceScroll = new JScrollPane();
   JList groupSourceList = new JList();
@@ -122,7 +120,7 @@ public class FireResistanceConditionalEditor extends JDialog {
     sourceBorder = new TitledBorder(border4,"Ecological Grouping Not Yet Assigned");
     border5 = BorderFactory.createEmptyBorder();
     mainDropBorder = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140)),"Fire Resistance by Ecological Grouping");
-    panel1.setLayout(verticalFlowLayout1);
+    panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
     dropPanel.setLayout(flowLayout9);
     lowPanel.setLayout(flowLayout1);
     moderatePanel.setLayout(flowLayout3);
@@ -179,7 +177,7 @@ public class FireResistanceConditionalEditor extends JDialog {
     sourceBorder.setTitle("Ecological Grouping Not Yet Assigned");
     moderateBorder.setTitle("Moderate");
     highBorder.setTitle("High");
-    verticalFlowLayout1.setHorizontalFill(true);
+//    verticalFlowLayout1.setHorizontalFill(true);
     groupScrollPanel.setLayout(flowLayout11);
     groupSourcePanel.setBorder(null);
     groupDragSourcePanel.setBorder(sourceBorder);

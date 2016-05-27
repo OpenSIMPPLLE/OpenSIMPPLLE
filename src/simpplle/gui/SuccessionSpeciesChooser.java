@@ -9,7 +9,6 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.comcode.Species;
 import java.util.ArrayList;
 
@@ -42,11 +41,9 @@ public class SuccessionSpeciesChooser extends JDialog {
   FlowLayout flowLayout1 = new FlowLayout();
   JPanel targetPanel = new JPanel();
   JPanel sourcePanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JScrollPane sourceScrollPane = new JScrollPane();
   DragSourceList sourceList = new DragSourceList();
   JScrollPane targetScrollPane = new JScrollPane();
-  VerticalFlowLayout verticalFlowLayout2 = new VerticalFlowLayout();
   DragDropList targetList = new DragDropList();
   BorderLayout borderLayout2 = new BorderLayout();
   TitledBorder titledBorder1;
@@ -54,7 +51,6 @@ public class SuccessionSpeciesChooser extends JDialog {
   JPanel infoPanel = new JPanel();
   JLabel infoLabel2 = new JLabel();
   JLabel infoLabel1 = new JLabel();
-  VerticalFlowLayout verticalFlowLayout3 = new VerticalFlowLayout();
   JLabel infoLabel3 = new JLabel();
 
   public SuccessionSpeciesChooser(JDialog dialog, String title, boolean modal,
@@ -83,10 +79,8 @@ public class SuccessionSpeciesChooser extends JDialog {
     flowLayout1.setHgap(0);
     flowLayout1.setVgap(0);
     SourceTargetPanel.setLayout(borderLayout2);
-    sourcePanel.setLayout(verticalFlowLayout1);
-    targetPanel.setLayout(verticalFlowLayout2);
-    verticalFlowLayout1.setVerticalFill(true);
-    verticalFlowLayout2.setVerticalFill(true);
+    sourcePanel.setLayout(new BoxLayout(sourcePanel, BoxLayout.Y_AXIS));
+    targetPanel.setLayout(new BoxLayout(targetPanel, BoxLayout.Y_AXIS));
     sourcePanel.setBorder(titledBorder1);
     targetPanel.setBorder(titledBorder2);
     targetList.setToolTipText("");
@@ -96,7 +90,7 @@ public class SuccessionSpeciesChooser extends JDialog {
     this.setModal(true);
     titledBorder1.setTitle("Available Species");
     titledBorder2.setTitle("Chosen Species");
-    infoPanel.setLayout(verticalFlowLayout3);
+    infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
     infoLabel2.setFont(new java.awt.Font("Monospaced", 1, 12));
     infoLabel2.setText("Use mouse to order species as desired.");
     infoLabel1.setFont(new java.awt.Font("Monospaced", 1, 12));
@@ -125,9 +119,7 @@ public class SuccessionSpeciesChooser extends JDialog {
    * The sampleItems are just an simpplle type object from the arraylist.  Will be used later to in conditional of update vector method.  
    * Note: the toString method of simpplle types returns all upper case process names ex "DEBRIS_EVENT"
    * SourceList and targetList are drag source lists
-   * @see simpplle.gui.dragsourcelist
-   * @param sourceItems vector of simpplle type objects to be set
-   * @param targetItems
+   * @see simpplle.gui.DragSourceList
    */
   private void initialize(Vector validSpecies, ArrayList<Species> chosenSpecies) {
     inInit = true;

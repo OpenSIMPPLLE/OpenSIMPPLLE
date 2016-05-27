@@ -3,7 +3,6 @@ package simpplle.gui;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import com.borland.jbcl.layout.*;
 import java.awt.event.*;
 
 /** 
