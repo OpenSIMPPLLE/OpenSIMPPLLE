@@ -6,7 +6,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import com.borland.jbcl.layout.*;
 import simpplle.comcode.*;
 import simpplle.comcode.FireSpreadDataNewerLegacy.*;
 import simpplle.comcode.Process;
@@ -41,7 +40,6 @@ public class FireSpreadRuleBuilder extends JDialog {
   JPanel mainPanel = new JPanel();
   BorderLayout borderLayout1 = new BorderLayout();
   JPanel jPanel1 = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JPanel processPanel = new JPanel();
   JPanel sizeClassPanel = new JPanel();
   FlowLayout flowLayout1 = new FlowLayout();
@@ -90,7 +88,7 @@ public class FireSpreadRuleBuilder extends JDialog {
     titledBorder3 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140)),"Density");
     titledBorder8 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140)),"Processes");
     mainPanel.setLayout(borderLayout1);
-    jPanel1.setLayout(verticalFlowLayout1);
+    jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
     sizeClassPanel.setLayout(flowLayout1);
     flowLayout1.setAlignment(FlowLayout.LEFT);
     sizeClassSourcePanel.setLayout(borderLayout2);
@@ -122,7 +120,6 @@ public class FireSpreadRuleBuilder extends JDialog {
     processSourcePanel.setBorder(titledBorder1);
     processTargetPanel.setBorder(titledBorder2);
     processPanel.setBorder(titledBorder8);
-    verticalFlowLayout1.setHorizontalFill(true);
     titledBorder3.setTitle("Size Class");
     sizeClassPanel.add(sizeClassSourcePanel, null);
     sizeClassSourcePanel.add(sizeClassSourceScroll, BorderLayout.CENTER);

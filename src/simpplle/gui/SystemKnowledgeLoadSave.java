@@ -1,6 +1,5 @@
 package simpplle.gui;
 
-import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.JSimpplle;
 import simpplle.comcode.LtaValleySegmentGroup;
 import simpplle.comcode.Simpplle;
@@ -78,7 +77,6 @@ public class SystemKnowledgeLoadSave extends JDialog {
   private JScrollPane CBScroll = new JScrollPane();
   private JTextField outputFileText = new JTextField();
   private TitledBorder mainTitleBorder;
-  private VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
 
   public SystemKnowledgeLoadSave(Frame frame, String title, boolean modal, boolean save) {
 
@@ -277,7 +275,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     /* Main */
 
     JPanel CBMainPanel = new JPanel();
-    CBMainPanel.setLayout(verticalFlowLayout1);
+    CBMainPanel.setLayout(new BoxLayout(CBMainPanel, BoxLayout.Y_AXIS));
     CBMainPanel.add(fireKnowledgePanel, null);
     CBMainPanel.add(pathwaysPanel, null);
     CBMainPanel.add(schedulesPanel, null);

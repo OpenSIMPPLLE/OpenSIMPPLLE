@@ -11,7 +11,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 
-import com.borland.jbcl.layout.VerticalFlowLayout;
+//import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
 import java.awt.event.*;
@@ -115,7 +115,6 @@ public class TreatmentLogic extends JDialog {
   JLabel treatmentLabel = new JLabel();
   JPanel southPanel = new JPanel();
   JPanel centerPanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout5 = new VerticalFlowLayout();
   JPanel densityPanel = new JPanel();
   JPanel centerInnerPanel = new JPanel();
   JScrollPane densityScrollPane = new JScrollPane();
@@ -248,7 +247,6 @@ public class TreatmentLogic extends JDialog {
   JRadioButton feasibleRB = new JRadioButton();
   JPanel feasiblePanel = new JPanel();
   FlowLayout flowLayout9 = new FlowLayout();
-  VerticalFlowLayout verticalFlowLayout12 = new VerticalFlowLayout();
   JLabel evalLabel5 = new JLabel();
   JRadioButton evalANDRB4 = new JRadioButton();
   JRadioButton evalORRB4 = new JRadioButton();
@@ -294,7 +292,6 @@ public class TreatmentLogic extends JDialog {
   FlowLayout flowLayout26 = new FlowLayout();
   JButton nextPB = new JButton();
   FlowLayout flowLayout12 = new FlowLayout();
-  VerticalFlowLayout verticalFlowLayout13 = new VerticalFlowLayout();
   JLabel evalLabelC0 = new JLabel();
   JLabel evalLabelC4 = new JLabel();
   JLabel evalLabelC3 = new JLabel();
@@ -333,7 +330,6 @@ public class TreatmentLogic extends JDialog {
   BorderLayout borderLayout8 = new BorderLayout();
   BorderLayout borderLayout9 = new BorderLayout();
   BorderLayout borderLayout10 = new BorderLayout();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   FlowLayout flowLayout3 = new FlowLayout();
   FlowLayout flowLayout36 = new FlowLayout();
   FlowLayout flowLayout37 = new FlowLayout();
@@ -347,7 +343,6 @@ public class TreatmentLogic extends JDialog {
   FlowLayout flowLayout16 = new FlowLayout();
   FlowLayout flowLayout19 = new FlowLayout();
   FlowLayout flowLayout51 = new FlowLayout();
-  VerticalFlowLayout verticalFlowLayout2 = new VerticalFlowLayout();
   JScrollPane speciesScrollPaneC = new JScrollPane();
   JTextArea speciesTextC = new JTextArea();
   JPanel speciesControlPanelC = new JPanel();
@@ -356,15 +351,12 @@ public class TreatmentLogic extends JDialog {
   JPanel sizeClassControlPanelC = new JPanel();
   FlowLayout flowLayout49 = new FlowLayout();
   JButton sizeClassSelectPickPBC = new JButton();
-  VerticalFlowLayout verticalFlowLayout3 = new VerticalFlowLayout();
   JPanel densityControlPanelC = new JPanel();
   JPanel htGrpControlPanelC = new JPanel();
   FlowLayout flowLayout44 = new FlowLayout();
   FlowLayout flowLayout48 = new FlowLayout();
   JButton densitySelectPickPBC = new JButton();
   JButton htGrpSelectPickPBC = new JButton();
-  VerticalFlowLayout verticalFlowLayout4 = new VerticalFlowLayout();
-  VerticalFlowLayout verticalFlowLayout6 = new VerticalFlowLayout();
   JTabbedPane conditionTabbedPane = new JTabbedPane();
   JPanel htGrpControlPanel = new JPanel();
   JPanel speciesControlPanel = new JPanel();
@@ -378,10 +370,6 @@ public class TreatmentLogic extends JDialog {
   JButton speciesSelectPickPB = new JButton();
   JButton sizeClassSelectPickPB = new JButton();
   JButton densitySelectPickPB = new JButton();
-  VerticalFlowLayout verticalFlowLayout7 = new VerticalFlowLayout();
-  VerticalFlowLayout verticalFlowLayout8 = new VerticalFlowLayout();
-  VerticalFlowLayout verticalFlowLayout9 = new VerticalFlowLayout();
-  VerticalFlowLayout verticalFlowLayout10 = new VerticalFlowLayout();
   JTextArea densityText = new JTextArea();
   JTextArea sizeClassText = new JTextArea();
   JTextArea speciesText = new JTextArea();
@@ -437,15 +425,15 @@ public class TreatmentLogic extends JDialog {
     changePane.setLayout(borderLayout8);
     southPanelC.setLayout(flowLayout51);
     centerPanelC.setLayout(flowLayout19);
-    densityPanelC.setLayout(verticalFlowLayout4);
+    densityPanelC.setLayout(new BoxLayout(densityPanelC, BoxLayout.Y_AXIS));
     densityPanelC.setBorder(BorderFactory.createEtchedBorder());
     centerInnerPanelC.setLayout(flowLayout16);
     changeMainPanel.setLayout(borderLayout5);
-    speciesPanelC.setLayout(verticalFlowLayout2);
+    speciesPanelC.setLayout(new BoxLayout(speciesPanelC, BoxLayout.Y_AXIS));
     speciesPanelC.setBorder(BorderFactory.createEtchedBorder());
-    sizeClassPanelC.setLayout(verticalFlowLayout3);
+    sizeClassPanelC.setLayout(new BoxLayout(sizeClassPanelC, BoxLayout.Y_AXIS));
     sizeClassPanelC.setBorder(BorderFactory.createEtchedBorder());
-    northPanelC.setLayout(verticalFlowLayout13);
+    northPanelC.setLayout(new BoxLayout(northPanelC, BoxLayout.Y_AXIS));
     toPanel.setLayout(flowLayout13);
     toPanel.setBorder(toPanelBorder);
     statePickPBC.setMargin(new Insets(0, 0, 0, 0));
@@ -462,7 +450,7 @@ public class TreatmentLogic extends JDialog {
     stateValueC.setText("                                    ");
     statePanelC.setLayout(flowLayout18);
     statePanelC.setBorder(BorderFactory.createEtchedBorder());
-    htGrpPanelC.setLayout(verticalFlowLayout6);
+    htGrpPanelC.setLayout(new BoxLayout(htGrpPanelC, BoxLayout.Y_AXIS));
     htGrpPanelC.setBorder(BorderFactory.createEtchedBorder());
     northMainPanel.setLayout(flowLayout1);
     flowLayout1.setAlignment(FlowLayout.LEFT);
@@ -471,14 +459,12 @@ public class TreatmentLogic extends JDialog {
     treatmentLabel.setText("Current Treatment");
     borderLayout6.setVgap(10);
     southPanel.setLayout(flowLayout6);
-    centerPanel.setLayout(verticalFlowLayout1);
-    verticalFlowLayout5.setHgap(0);
-    verticalFlowLayout5.setVgap(0);
-    densityPanel.setLayout(verticalFlowLayout10);
+    centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+    densityPanel.setLayout(new BoxLayout(densityPanel, BoxLayout.Y_AXIS));
     densityPanel.setBorder(BorderFactory.createEtchedBorder());
-    centerInnerPanel.setLayout(verticalFlowLayout5);
+    centerInnerPanel.setLayout(new BoxLayout(centerInnerPanel, BoxLayout.Y_AXIS));
     feasibilityMainPanel.setLayout(borderLayout2);
-    speciesPanel.setLayout(verticalFlowLayout8);
+    speciesPanel.setLayout(new BoxLayout(speciesPanel, BoxLayout.Y_AXIS));
     speciesPanel.setBorder(BorderFactory.createEtchedBorder());
     stateOuterPanel.setLayout(flowLayout5);
     feasibilityMainPane.setLayout(borderLayout10);
@@ -488,10 +474,10 @@ public class TreatmentLogic extends JDialog {
     flowLayout5.setAlignment(FlowLayout.LEFT);
     flowLayout5.setHgap(0);
     flowLayout5.setVgap(0);
-    sizeClassPanel.setLayout(verticalFlowLayout9);
+    sizeClassPanel.setLayout(new BoxLayout(sizeClassPanel, BoxLayout.Y_AXIS));
     sizeClassPanel.setBorder(BorderFactory.createEtchedBorder());
-    northPanel.setLayout(verticalFlowLayout12);
-    htGrpPanel.setLayout(verticalFlowLayout7);
+    northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+    htGrpPanel.setLayout(new BoxLayout(htGrpPanel, BoxLayout.Y_AXIS));
     htGrpNotOneOfRB.setText("NOT one of:");
     htGrpNotOneOfRB.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -1204,8 +1190,6 @@ public class TreatmentLogic extends JDialog {
         callFunctionEvalCBC_actionPerformed(e);
       }
     });
-    verticalFlowLayout1.setHgap(0);
-    verticalFlowLayout1.setVgap(0);
     flowLayout3.setAlignment(FlowLayout.LEFT);
     flowLayout3.setHgap(0);
     flowLayout3.setVgap(0);
@@ -1349,22 +1333,6 @@ public class TreatmentLogic extends JDialog {
     sizeClassTextC.setColumns(105);
     densityTextC.setEditable(false);
     densityTextC.setColumns(105);
-    verticalFlowLayout7.setHorizontalFill(false);
-    verticalFlowLayout7.setVerticalFill(true);
-    verticalFlowLayout8.setHorizontalFill(false);
-    verticalFlowLayout8.setVerticalFill(true);
-    verticalFlowLayout9.setHorizontalFill(false);
-    verticalFlowLayout9.setVerticalFill(true);
-    verticalFlowLayout10.setHorizontalFill(false);
-    verticalFlowLayout10.setVerticalFill(true);
-    verticalFlowLayout6.setHorizontalFill(false);
-    verticalFlowLayout6.setVerticalFill(true);
-    verticalFlowLayout2.setHorizontalFill(false);
-    verticalFlowLayout2.setVerticalFill(true);
-    verticalFlowLayout3.setHorizontalFill(false);
-    verticalFlowLayout3.setVerticalFill(true);
-    verticalFlowLayout4.setHorizontalFill(false);
-    verticalFlowLayout4.setVerticalFill(true);
     toTabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
       public void stateChanged(ChangeEvent e) {
         toTabbedPane_stateChanged(e);

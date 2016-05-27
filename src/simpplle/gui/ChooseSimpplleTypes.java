@@ -3,7 +3,6 @@ package simpplle.gui;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import com.borland.jbcl.layout.*;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -33,7 +32,6 @@ public class ChooseSimpplleTypes extends JDialog {
   JPanel buttonInnerPanel = new JPanel();
   BorderLayout borderLayout2 = new BorderLayout();
   JPanel listPBPanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   FlowLayout flowLayout3 = new FlowLayout();
   JButton allPB = new JButton();
   JButton nonePB = new JButton();
@@ -81,7 +79,7 @@ public class ChooseSimpplleTypes extends JDialog {
     });
     buttonPanel.setLayout(borderLayout2);
     buttonInnerPanel.setLayout(flowLayout1);
-    northPanel.setLayout(verticalFlowLayout1);
+    northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
     listPBPanel.setLayout(flowLayout3);
     allPB.setMargin(new Insets(2, 2, 2, 2));
     allPB.setText("All");
@@ -116,8 +114,8 @@ public class ChooseSimpplleTypes extends JDialog {
         list_mousePressed(e);
       }
     });
-    verticalFlowLayout1.setHgap(0);
-    verticalFlowLayout1.setVgap(0);
+//    verticalFlowLayout1.setHgap(0);
+//    verticalFlowLayout1.setVgap(0);
     northPanel.setBorder(BorderFactory.createEtchedBorder());
     northPanel.add(listPBPanel, null);
     northPanel.add(listScroll, null);
