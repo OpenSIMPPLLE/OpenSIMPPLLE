@@ -45,6 +45,9 @@ public class VegSimStateData implements Externalizable {
   private Climate.Season         season;
   private short                  seasonOrd;  // Used for hibernate mapping only!
 
+  private int fireSpreadRuleIndex = -1;
+  private int fireRegenerationRuleIndex = -1;
+
   // Object[Species][Integer]
 
   // Flat3Map
@@ -328,6 +331,22 @@ public class VegSimStateData implements Externalizable {
     this.season = season;
   }
 
+  public int getFireSpreadRuleIndex() {
+    return fireSpreadRuleIndex;
+  }
+
+  public void setFireSpreadRuleIndex(int index) {
+    fireSpreadRuleIndex = index;
+  }
+
+  public int getFireRegenerationRuleIndex() {
+    return fireRegenerationRuleIndex;
+  }
+
+  public void setFireRegenerationRuleIndex(int index) {
+    fireRegenerationRuleIndex = index;
+  }
+
   public String getSeasonString() {
     return season.toString();
   }
@@ -609,7 +628,7 @@ public class VegSimStateData implements Externalizable {
       originUnitId = originUnit.getId();
     }
 
-    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,-1,-1%n", run,ts,seasonId,state.slink,lifeId,speciesId,sizeId,age,densityId,processId,fProb,probStr,treatmentId,originUnitId);
+    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d,%d%n", run,ts,seasonId,state.slink,lifeId,speciesId,sizeId,age,densityId,processId,fProb,probStr,treatmentId,originUnitId,state.fireSpreadRuleIndex,state.fireRegenerationRuleIndex);
 
     if (state.trackingSpecies != null) {
       MapIterator it = ((Flat3Map) state.trackingSpecies).mapIterator();
