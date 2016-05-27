@@ -5,11 +5,11 @@
 
 # Build zone data output
 
-/data/zones/
+data/zones
 
 # Build jar output
 
-/tmp
+tmp
 
 OpenSIMPPLLE.jar
 
@@ -21,10 +21,13 @@ OpenSIMPPLLE.jar
 
 .idea/tasks.xml
 .idea/workspace.xml
+.idea/libraries
+.idea/dictionaries
+
 
 # Build Directory
 
-/out/
+out
 
 #--------------------------
 # Eclipse
@@ -36,7 +39,11 @@ OpenSIMPPLLE.jar
 
 # Build Directory
 
-/classes/
+classes
+
+# Libraries
+
+OpenSIMPPLLE.userlibraries
 
 #--------------------------
 # Python
@@ -59,3 +66,11 @@ Desktop.ini
 
 .DS_Store
 ._.DS_Store
+
+#--------------------------
+# Maven
+#--------------------------
+
+# Build
+
+target
