@@ -603,7 +603,13 @@ public class VegSimStateData implements Externalizable {
       probStr = state.getProbString();
     }
 
-    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,-1,-1,-1,-1%n", run,ts,seasonId,state.slink,lifeId,speciesId,sizeId,age,densityId,processId,fProb,probStr,treatmentId);
+    Evu originUnit = evu.getOriginUnit();
+    int originUnitId = -1;
+    if (originUnit != null) {
+      originUnitId = originUnit.getId();
+    }
+
+    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,-1,-1%n", run,ts,seasonId,state.slink,lifeId,speciesId,sizeId,age,densityId,processId,fProb,probStr,treatmentId,originUnitId);
 
     if (state.trackingSpecies != null) {
       MapIterator it = ((Flat3Map) state.trackingSpecies).mapIterator();

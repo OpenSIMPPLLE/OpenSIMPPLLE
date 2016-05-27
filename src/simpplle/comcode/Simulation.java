@@ -694,7 +694,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
       //GZIPOutputStream out = new GZIPOutputStream(new FileOutputStream(path));
       //accessEvuSimDataOut[run] = new PrintWriter(out);
       accessEvuSimDataOut[run] = new PrintWriter(new FileWriter(path, true));
-      accessEvuSimDataOut[run].println("RUN,TIMESTEP,SEASON_ID,SLINK,LIFEFORM_ID,SPECIES_ID,SIZECLASS_ID,AGE,DENSITY_ID,PROCESS_ID,PROB,PROBSTR,TREATMENT_ID,ORIGINUNITID,TOUNITID,PROCESS_RULE,REGENERATION_RULE");
+      accessEvuSimDataOut[run].println("RUN,TIMESTEP,SEASON_ID,SLINK,LIFEFORM_ID,SPECIES_ID,SIZECLASS_ID,AGE,DENSITY_ID,PROCESS_ID,PROB,PROBSTR,TREATMENT_ID,ORIGINUNITID,PROCESS_RULE,REGENERATION_RULE");
     }
 
     path = new File (getAccessFilesPath(),"PROCESS.txt");
