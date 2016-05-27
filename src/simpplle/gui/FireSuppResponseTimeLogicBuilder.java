@@ -8,7 +8,6 @@ import simpplle.comcode.Formatting;
 import java.text.NumberFormat;
 import java.awt.*;
 import javax.swing.*;
-import com.borland.jbcl.layout.*;
 import java.awt.event.*;
 import javax.swing.event.*;
 
@@ -36,7 +35,6 @@ public class FireSuppResponseTimeLogicBuilder extends JDialog {
   BorderLayout borderLayout3 = new BorderLayout();
   JScrollPane rulesListScrollPane = new JScrollPane();
   JPanel rulesPanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
 
   public FireSuppResponseTimeLogicBuilder(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
@@ -59,7 +57,7 @@ public class FireSuppResponseTimeLogicBuilder extends JDialog {
     rulesListPanel.setLayout(borderLayout3);
     rulesHeaderTextArea.setEditable(false);
     rulesHeaderTextArea.setText("");
-    rulesPanel.setLayout(verticalFlowLayout1);
+    rulesPanel.setLayout(new BoxLayout(rulesPanel, BoxLayout.Y_AXIS));
     getContentPane().add(mainPanel);
     mainPanel.add(headerPanel,  BorderLayout.NORTH);
     mainPanel.add(rulesListPanel, BorderLayout.CENTER);
