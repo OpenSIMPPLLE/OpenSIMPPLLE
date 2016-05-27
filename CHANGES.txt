@@ -1,11 +1,19 @@
-    -Removed unnecessary development files
 
-Version 1.2.4 : May __, 2016
+Version 1.2.4 : May 27, 2016
 
+    -Modified EVU_SIM_DATA columns
+        Removed ACRES
+        Removed OWNERSHIP_ID
+        Removed SPECIAL_AREA_ID
+        Added TREATMENT_ID
+        Added ORIGINUNITID
+        Added PROCESS_RULE
+        Added REGENERATION_RULE (Not populated with values)
     -Fixed excessive flickering after resizing rule dialogs
     -EVU_SIM_DATA is now saved without compression
     -Added SLINKMETRICS to simulation output
     -Removed AREASUMMARY from simulation output
+    -Removed unnecessary development files
 
 
 Version 1.2.3 : April 12, 2016
