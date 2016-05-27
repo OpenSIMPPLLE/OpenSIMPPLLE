@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="poorman.e00">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/simpplle/comcode/knowledge/zones/eastside-r1/gisdata/poorman.e00.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

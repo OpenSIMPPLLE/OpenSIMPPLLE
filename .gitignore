@@ -19,7 +19,11 @@ OpenSIMPPLLE.jar
 
 # User Settings
 
-.idea
+.idea/tasks.xml
+.idea/workspace.xml
+.idea/libraries
+.idea/dictionaries
+
 
 # Build Directory
 
