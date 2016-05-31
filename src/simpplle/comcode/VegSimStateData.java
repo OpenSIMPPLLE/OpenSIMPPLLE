@@ -29,26 +29,23 @@ import java.io.*;
 public class VegSimStateData implements Externalizable {
 
   static final long serialVersionUID = -159138068111213685L;
-  static final int  version          = 3;
+  static final int version = 3;
 
-  private long        dbid;  // Database row id
-
-  private int         slink;
-  private short       timeStep;
-  private short       run;
-  private Lifeform    lifeform;
-
-  private VegetativeType           veg;
-  private ProcessType              process;
-  private short                    prob;
-  private Climate.Season         season;
-  private short                  seasonOrd;  // Used for hibernate mapping only!
+  private long           dbid; // Database row id
+  private int            slink;
+  private short          timeStep;
+  private short          run;
+  private Lifeform       lifeform;
+  private VegetativeType veg;
+  private ProcessType    process;
+  private short          prob;
+  private Climate.Season season;
+  private short          seasonOrd;  // Used for hibernate mapping only!
 
   private int fireSpreadRuleIndex = -1;
   private int fireRegenerationRuleIndex = -1;
 
   // Object[Species][Integer]
-
   // Flat3Map
   // Key: InclusionRuleSpecies, Value: Percent(float)
   private Map trackingSpecies;
@@ -56,18 +53,18 @@ public class VegSimStateData implements Externalizable {
   private static int writeCount=0;
 
   public void destroy() {
-    lifeform = null;
-    veg      = null;
-    process  = null;
-    season   = null;
+    lifeform        = null;
+    veg             = null;
+    process         = null;
+    season          = null;
     trackingSpecies = null;
   }
 
   public VegSimStateData() {
-    this.process = ProcessType.SUCCESSION;
-    this.prob    = Evu.NOPROB;
+    this.process         = ProcessType.SUCCESSION;
+    this.prob            = Evu.NOPROB;
     this.trackingSpecies = null;
-    this.season  = Climate.Season.YEAR;
+    this.season          = Climate.Season.YEAR;
   }
 
   public VegSimStateData(int slink) {
@@ -84,17 +81,14 @@ public class VegSimStateData implements Externalizable {
   public VegSimStateData(int slink, VegetativeType veg) {
     this(slink);
     this.veg = veg;
-
     if (Area.multipleLifeformsEnabled()) {
       this.lifeform = veg.getSpecies().getLifeform();
-    }
-    else {
+    } else {
       this.lifeform = Lifeform.NA;
     }
   }
 
-  public VegSimStateData(int slink, int timeStep, int run,
-                         VegetativeType veg, ProcessType process, int prob) {
+  public VegSimStateData(int slink, int timeStep, int run, VegetativeType veg, ProcessType process, int prob) {
     this(slink,veg);
     this.timeStep = (short)timeStep;
     this.run      = (short)run;
@@ -102,16 +96,13 @@ public class VegSimStateData implements Externalizable {
     this.prob     = (short)prob;
   }
 
-  public VegSimStateData(int slink, int timeStep, int run,
-                         VegetativeType vegType, ProcessType process, int prob,
-                         Climate.Season season) {
+  public VegSimStateData(int slink, int timeStep, int run, VegetativeType vegType, ProcessType process, int prob, Climate.Season season) {
     this(slink,timeStep,run,vegType,process,prob);
     this.season = season;
   }
 
   public VegSimStateData(int slink,int timeStep, int run, VegSimStateData state) {
     this(slink,timeStep,run,state.veg,state.process,state.prob,state.season);
-
     if (state.trackingSpecies != null) {
       setTrackingSpecies(state.trackingSpecies);
     }
@@ -167,13 +158,9 @@ public class VegSimStateData implements Externalizable {
     else if (str.equals(Evu.NOPROB_STR)) prob = Evu.NOPROB;
     else {
       try {
-
         prob = (short)Integer.parseInt(str);
-
       } catch (NumberFormatException ex) {
-
         prob = Evu.NOPROB;
-
       }
     }
 
@@ -209,6 +196,7 @@ public class VegSimStateData implements Externalizable {
   }
 
   public void writeExternal(ObjectOutput out) throws IOException {
+
     out.writeInt(version);
     out.writeInt(slink);
     out.writeInt(timeStep);
@@ -220,6 +208,7 @@ public class VegSimStateData implements Externalizable {
     out.writeObject(getProbString());
 
     if (trackingSpecies != null) {
+
       Flat3Map map = (Flat3Map)trackingSpecies;
       out.writeInt(map.size());
 
@@ -229,12 +218,15 @@ public class VegSimStateData implements Externalizable {
         out.writeObject(sp.toString());
         out.writeFloat((Float)it.getValue());
       }
-    }
-    else {
+
+    } else {
+
       out.writeInt(0);
+
     }
 
     out.writeObject(getSeasonString());
+
   }
 
   public VegetativeType getVegType() {
@@ -246,20 +238,20 @@ public class VegSimStateData implements Externalizable {
    * @param veg
    */
   public void setVegType(VegetativeType veg) {
+
     this.veg = veg;
 
     if (Area.multipleLifeformsEnabled()) {
       this.lifeform = this.veg.getSpecies().getLifeform();
-    }
-    else {
+    } else {
       this.lifeform = Lifeform.NA;
     }
   }
 
-/**
- * Gets the simulation vegetative type.   
- * @return
- */
+  /**
+   * Gets the simulation vegetative type.
+   * @return
+   */
   public VegetativeType getVeg() {
     return veg;
   }
@@ -275,18 +267,18 @@ public class VegSimStateData implements Externalizable {
     this.veg = group.getVegetativeType(veg.getSpecies(),veg.getSizeClass(),veg.getAge(),veg.getDensity());
   }
 
-/**
- * Gets the process type.  
- * @return process type
- */
+  /**
+   * Gets the process type.
+   * @return process type
+   */
   public ProcessType getProcess() {
     return process;
   }
 
-/**
- * Gets the probability 
- * @return probability
- */
+  /**
+   * Gets the probability
+   * @return probability
+   */
   public short getProb() {
     return prob;
   }
@@ -309,16 +301,16 @@ public class VegSimStateData implements Externalizable {
 
   public String getProbString() {
     switch (prob) {
-      case Evu.D:    return Evu.D_STR;
-      case Evu.L:    return Evu.L_STR;
-      case Evu.S:    return Evu.S_STR;
-      case Evu.SE:   return Evu.SE_STR;
-      case Evu.SFS:  return Evu.SFS_STR;
-      case Evu.SUPP: return Evu.SUPP_STR;
-      case Evu.COMP: return Evu.COMP_STR;
-      case Evu.GAP:  return Evu.GAP_STR;
+      case Evu.D:      return Evu.D_STR;
+      case Evu.L:      return Evu.L_STR;
+      case Evu.S:      return Evu.S_STR;
+      case Evu.SE:     return Evu.SE_STR;
+      case Evu.SFS:    return Evu.SFS_STR;
+      case Evu.SUPP:   return Evu.SUPP_STR;
+      case Evu.COMP:   return Evu.COMP_STR;
+      case Evu.GAP:    return Evu.GAP_STR;
       case Evu.NOPROB: return Evu.NOPROB_STR;
-      default:   return IntToString.get(prob);
+      default:         return IntToString.get(prob);
     }
   }
 
@@ -381,15 +373,17 @@ public class VegSimStateData implements Externalizable {
   }
 
   public void removeInvalidTrackSpecies() {
-    if (trackingSpecies == null) { return; }
 
-    ArrayList<InclusionRuleSpecies> removeList = new ArrayList<InclusionRuleSpecies>();
+    if (trackingSpecies == null) return;
+
+    ArrayList<InclusionRuleSpecies> removeList = new ArrayList<>();
 
     for (Object spObj : trackingSpecies.keySet()) {
+
       InclusionRuleSpecies sp = (InclusionRuleSpecies)spObj;
-      if (veg.isTrackingSpecies(sp)) {
-        continue;
-      }
+
+      if (veg.isTrackingSpecies(sp)) continue;
+
       Float pct = (Float)trackingSpecies.get(sp);
       if (pct != null && pct == 0) {
         removeList.add(sp);
@@ -437,16 +431,20 @@ public class VegSimStateData implements Externalizable {
   }
 
   public float updateTrackingSpecies(InclusionRuleSpecies trkSpecies, float change) {
+
     Float pct = (Float)trackingSpecies.get(trkSpecies);
     float newPct = change;
-    if (pct != null) { newPct += pct; }
+
+    if (pct != null) {
+      newPct += pct;
+    }
 
     if (newPct < 0) {
       newPct = 0.0f;
-    }
-    else if (newPct > 100) {
+    } else if (newPct > 100) {
       newPct = 100.0f;
     }
+
     trackingSpecies.put(trkSpecies,newPct);
 
     return newPct;
@@ -458,9 +456,13 @@ public class VegSimStateData implements Externalizable {
    * species that have been reduced to zero.
    */
   public float updateTrackingSpecies(InclusionRuleSpecies trkSpecies, float change, boolean changeAsPercent) {
+
     float newPct = 0.0f;
+
     if (changeAsPercent) {
+
       Float pct = (Float) trackingSpecies.get(trkSpecies);
+
       if (pct == null) {
         pct = 0.0f;
       }
@@ -470,14 +472,16 @@ public class VegSimStateData implements Externalizable {
 
       if (newPct < 0) {
         newPct = 0.0f;
-      }
-      else if (newPct > 100) {
+      } else if (newPct > 100) {
         newPct = 100.0f;
       }
+
       trackingSpecies.put(trkSpecies, newPct);
-    }
-    else {
+
+    } else {
+
       newPct = updateTrackingSpecies(trkSpecies,change);
+
     }
 
     if (newPct < 0.005) {
@@ -562,7 +566,6 @@ public class VegSimStateData implements Externalizable {
       session.saveOrUpdate(state.veg.getDensity());
       session.saveOrUpdate(state.process);
 
-
       if (state.trackingSpecies != null) {
         MapIterator it = ((Flat3Map) state.trackingSpecies).mapIterator();
         while (it.hasNext()) {
@@ -578,8 +581,7 @@ public class VegSimStateData implements Externalizable {
         session.flush();
         session.clear();
       }
-    }
-    catch (HibernateException ex) {
+    } catch (HibernateException ex) {
       throw new SimpplleError("Problems writing database", ex);
     }
   }
@@ -605,15 +607,15 @@ public class VegSimStateData implements Externalizable {
       treatmentId = treatment.getType().getSimId();
     }
 
-    int   lifeId      = state.lifeform.getSimId();
-    int   speciesId   = state.getVeg().getSpecies().getSimId();
-    int   sizeId      = state.getVeg().getSizeClass().getSimId();
-    int   age         = state.getVeg().getAge();
-    int   densityId   = state.getVeg().getDensity().getSimId();
-    int   processId   = state.process.getSimId();
-    int   seasonId    = state.season.ordinal();
-    int   prob        = state.getProb();
-    float fProb       = state.getFloatProb();
+    int   lifeId    = state.lifeform.getSimId();
+    int   speciesId = state.getVeg().getSpecies().getSimId();
+    int   sizeId    = state.getVeg().getSizeClass().getSimId();
+    int   age       = state.getVeg().getAge();
+    int   densityId = state.getVeg().getDensity().getSimId();
+    int   processId = state.process.getSimId();
+    int   seasonId  = state.season.ordinal();
+    int   prob      = state.getProb();
+    float fProb     = state.getFloatProb();
 
     String probStr = "n/a";
     if (prob < 0) {
@@ -630,9 +632,13 @@ public class VegSimStateData implements Externalizable {
     fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d,%d%n", run,ts,seasonId,state.slink,lifeId,speciesId,sizeId,age,densityId,processId,fProb,probStr,treatmentId,originUnitId,state.fireSpreadRuleIndex,state.fireRegenerationRuleIndex);
 
     if (state.trackingSpecies != null) {
+
       MapIterator it = ((Flat3Map) state.trackingSpecies).mapIterator();
+
       while (it.hasNext()) {
+
         InclusionRuleSpecies sp = (InclusionRuleSpecies) it.next();
+
         int spId = sp.getSimId();
         float pct = (Float)it.getValue();
         
@@ -646,7 +652,6 @@ public class VegSimStateData implements Externalizable {
     if (writeCount % 30 == 0) {
       fout.flush();
     }
-   
   }
 
 //  public static long writeRandomAccessFile(RandomAccessFile simFile, VegSimStateData state)
