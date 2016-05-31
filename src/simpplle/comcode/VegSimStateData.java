@@ -188,10 +188,14 @@ public class VegSimStateData implements Externalizable {
 
     str = (String)in.readObject();
 
-    if      (str.equals("SPRING")) season = Climate.Season.SPRING;
-    else if (str.equals("SUMMER")) season = Climate.Season.SUMMER;
-    else if (str.equals("FALL"))   season = Climate.Season.FALL;
-    else if (str.equals("WINTER")) season = Climate.Season.WINTER;
+    switch (str) {
+
+      case "SPRING": season = Climate.Season.SPRING; break;
+      case "SUMMER": season = Climate.Season.SUMMER; break;
+      case "FALL":   season = Climate.Season.FALL;   break;
+      case "WINTER": season = Climate.Season.WINTER; break;
+
+    }
 
   }
 
