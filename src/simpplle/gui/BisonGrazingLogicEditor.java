@@ -5,7 +5,6 @@ import java.awt.Frame;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import com.borland.jbcl.layout.VerticalFlowLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
@@ -81,7 +80,6 @@ public class BisonGrazingLogicEditor extends JDialog {
   TitledBorder waterAdjustBorder =
       new TitledBorder("Distance to Water Probablity Adjustment Table");
   TitledBorder grazingKindBorder = new TitledBorder("Percent Landscape Burned Table");
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JMenuBar jMenuBar1 = new JMenuBar();
   JMenu menuFile = new JMenu();
   JMenuItem menuFileSave = new JMenuItem();
@@ -151,7 +149,7 @@ public class BisonGrazingLogicEditor extends JDialog {
 
   private void jbInit() throws Exception {
     mainPanel.setLayout(borderLayout1);
-    tablesPanel.setLayout(verticalFlowLayout1);
+    tablesPanel.setLayout(new BoxLayout(tablesPanel, BoxLayout.Y_AXIS));
     initProbPanel.setLayout(borderLayout2);
     waterAdjustPanel.setLayout(borderLayout3);
     grazingKindPanel.setLayout(borderLayout4);

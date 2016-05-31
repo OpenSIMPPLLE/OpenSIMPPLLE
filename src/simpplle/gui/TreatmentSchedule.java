@@ -21,7 +21,6 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
 import java.awt.event.*;
@@ -260,7 +259,6 @@ public class TreatmentSchedule extends JDialog {
   JLabel preventNote = new JLabel();
   JMenu menuUtility = new JMenu();
   JMenuItem menuUtilityViewTreatments = new JMenuItem();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JPanel treatmentTitlePanel = new JPanel();
   FlowLayout flowLayout4 = new FlowLayout();
   JPanel generalEditFlowPanel = new JPanel();
@@ -921,7 +919,7 @@ public class TreatmentSchedule extends JDialog {
       }
     });
     borderLayout19.setVgap(5);
-    generalEditOuterPanel.setLayout(verticalFlowLayout1);
+    generalEditOuterPanel.setLayout(new BoxLayout(generalEditOuterPanel, BoxLayout.Y_AXIS));
     menuFileRemoveTreatment.setEnabled(false);
     menuFileRemoveTreatment.setText("Remove Current Treatment");
     menuFileRemoveTreatment.setActionCommand("Remove Current Treatment ...");

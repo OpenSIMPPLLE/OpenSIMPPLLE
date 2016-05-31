@@ -8,7 +8,6 @@ import java.io.*;
 import simpplle.JSimpplle;
 import java.util.ArrayList;
 import simpplle.comcode.Simulation;
-import com.borland.jbcl.layout.*;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -45,7 +44,6 @@ public class ChooseSimulation extends JDialog {
   JScrollPane listScrollPane = new JScrollPane();
   JList simList = new JList();
   TitledBorder titledBorder1;
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JPanel jPanel1 = new JPanel();
   JTextField directoryText = new JTextField();
   BorderLayout borderLayout4 = new BorderLayout();
@@ -79,7 +77,7 @@ public class ChooseSimulation extends JDialog {
     northPanel.setLayout(borderLayout2);
     directoryPB.setText("Simulation Directory..");
     directoryPB.addActionListener(new ChooseSimulation_directoryPB_actionAdapter(this));
-    directoryPanel.setLayout(verticalFlowLayout1);
+    directoryPanel.setLayout(new BoxLayout(directoryPanel, BoxLayout.Y_AXIS));
     centerPanel.setLayout(borderLayout3);
     simListPanel.setLayout(borderLayout4);
     simListPanel.setBorder(titledBorder1);
@@ -87,7 +85,6 @@ public class ChooseSimulation extends JDialog {
     simList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     simList.addMouseListener(new ChooseSimulation_simList_mouseAdapter(this));
     this.addWindowListener(new ChooseSimulation_this_windowAdapter(this));
-    verticalFlowLayout1.setVerticalFill(false);
     directoryText.setBackground(Color.white);
     directoryText.setEnabled(true);
     directoryText.setFont(new java.awt.Font("Dialog", 1, 12));

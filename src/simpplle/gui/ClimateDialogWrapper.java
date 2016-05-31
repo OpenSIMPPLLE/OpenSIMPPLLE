@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import com.borland.jbcl.layout.VerticalFlowLayout;
 import static simpplle.comcode.Climate.Season;
 import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.SimpplleError;

@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import com.borland.jbcl.layout.VerticalFlowLayout;
 
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
@@ -64,7 +63,7 @@ public class ClimateDialog extends JDialog {
    JPanel jPanel1 = new JPanel();
    FlowLayout flowLayout5 = new FlowLayout();
    JPanel jPanel2 = new JPanel();
-   VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
+   BoxLayout boxLayout = new BoxLayout(centerPanel, BoxLayout.Y_AXIS);
    FlowLayout flowLayout4 = new FlowLayout();
    JCheckBox userCB = new JCheckBox();
    JPanel jPanel3 = new JPanel();
@@ -179,7 +178,7 @@ public class ClimateDialog extends JDialog {
     });
     temperaturePanel.setLayout(gridLayout4);
     moisturePanel.setLayout(gridLayout5);
-    centerPanel.setLayout(verticalFlowLayout1);
+    centerPanel.setLayout(boxLayout);
     temperatureLabel.setHorizontalAlignment(SwingConstants.RIGHT);
     temperatureLabel.setText("Temperature");
     moistureLabel.setHorizontalAlignment(SwingConstants.RIGHT);

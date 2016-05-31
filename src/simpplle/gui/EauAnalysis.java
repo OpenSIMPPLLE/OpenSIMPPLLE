@@ -12,7 +12,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.JSimpplle;
 import simpplle.comcode.Area;
 import simpplle.comcode.ExistingAquaticUnit;
@@ -82,7 +81,7 @@ public class EauAnalysis extends JDialog {
   JLabel segmentNumLabel = new JLabel();
   JLabel lengthValue = new JLabel();
   JLabel segmentNumValue = new JLabel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
+  BoxLayout boxLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
   FlowLayout flowLayout3 = new FlowLayout();
   JPanel panelCol2 = new JPanel();
   JPanel panelCol1 = new JPanel();
@@ -183,7 +182,7 @@ public class EauAnalysis extends JDialog {
     aquaticUnitBorder = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140)),"Aquatic Units");
     border8 = new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140));
     vegUnitBorder = new TitledBorder(border8,"Vegetative Units");
-    mainPanel.setLayout(verticalFlowLayout1);
+    mainPanel.setLayout(boxLayout);
     topPanel.setLayout(flowLayout6);
     prevNextPanel.setLayout(flowLayout1);
     prevPB.setEnabled(false);
@@ -293,8 +292,6 @@ public class EauAnalysis extends JDialog {
     infoPanel.setBorder(attributesBorder);
     attributesBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
     adjacentUnitsBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
-    verticalFlowLayout1.setVgap(0);
-    verticalFlowLayout1.setVerticalFill(true);
     flowLayout1.setVgap(1);
     jPanel1.setLayout(flowLayout10);
     resultsOnlyCB.setEnabled(false);

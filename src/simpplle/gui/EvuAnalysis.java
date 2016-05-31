@@ -9,7 +9,6 @@ import javax.swing.*;
 import javax.swing.JLabel;
 import javax.swing.border.*;
 
-import com.borland.jbcl.layout.*;
 import simpplle.*;
 import simpplle.comcode.*;
 import java.util.Vector;

@@ -405,6 +405,10 @@ public class FireEventLogic extends BaseLogic {
           int ts = Simulation.getCurrentTimeStep();
           logOut.printf("Time: %d, Spread From: %d, To: %d, To Life: %s, Type: %s, Rule#: %d%n",
               ts, fromEvu.getId(), evu.getId(), toLifeform.toString(), fireProcess.toString(), i);
+
+          VegSimStateData state = evu.getState(toLifeform);
+          state.setFireSpreadRuleIndex(i);
+
         }
         if (fireProcess.isFireProcess() == false) { fireProcess = null; } // fireProcess is ProcessType.NONE
         return fireProcess;

@@ -1,0 +1,23 @@
+Prerequisites
+    -To run OpenSIMPPLLE you need version 1.8 of the Java Runtime
+     Environment (JRE). The latest version can be found at
+     http://www.oracle.com/technetwork/java/javase/downloads/index.html
+    -You can verify that the JRE is installed by visiting
+     https://www.java.com/en/download/installed.jsp
+
+Moving the Program
+    -To move the program, copy
+      a) ReadMe.txt,
+      b) OpenSIMPPLLE.jar, and
+      c) data (folder and contents) to the same directory.
+    The data folder must be in the same directory as OpenSIMPPLLE.jar to function properly.
+
+Running OpenSIMPPLLE
+    -Windows or Mac
+      Double Click OpenSIMPPLLE.jar
+    -Linux
+      Right-click OpenSIMPPLLE.jar, go to "Open With", and select
+      "Oracle Java Runtime". If this is not an option select "Other
+      Application", "Show Other Applications", then select "Oracle
+      Java Runtime". Alternatively, you can run 'java -jar <name-of-jar>'
+      from the command line.

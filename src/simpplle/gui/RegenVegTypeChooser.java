@@ -10,7 +10,6 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-import com.borland.jbcl.layout.VerticalFlowLayout;
 import simpplle.comcode.HabitatTypeGroup;
 import simpplle.comcode.Species;
 import simpplle.comcode.VegetativeType;
@@ -49,11 +48,9 @@ public class RegenVegTypeChooser extends JDialog {
   FlowLayout flowLayout1 = new FlowLayout();
   JPanel targetPanel = new JPanel();
   JPanel sourcePanel = new JPanel();
-  VerticalFlowLayout verticalFlowLayout1 = new VerticalFlowLayout();
   JScrollPane sourceScrollPane = new JScrollPane();
   DragSourceList sourceList = new DragSourceList();
   JScrollPane targetScrollPane = new JScrollPane();
-  VerticalFlowLayout verticalFlowLayout2 = new VerticalFlowLayout();
   DragDropList targetList = new DragDropList();
   BorderLayout borderLayout2 = new BorderLayout();
   TitledBorder titledBorder1;
@@ -66,7 +63,6 @@ public class RegenVegTypeChooser extends JDialog {
   JLabel infoLabel3 = new JLabel();
   JLabel infoLabel2 = new JLabel();
   JLabel infoLabel1 = new JLabel();
-  VerticalFlowLayout verticalFlowLayout3 = new VerticalFlowLayout();
 
   public RegenVegTypeChooser(JDialog dialog, String title, boolean modal,
                              Species species, ArrayList<VegetativeType> targetStates, boolean multiValued)
@@ -96,10 +92,8 @@ public class RegenVegTypeChooser extends JDialog {
     flowLayout1.setHgap(0);
     flowLayout1.setVgap(0);
     SourceTargetPanel.setLayout(borderLayout2);
-    sourcePanel.setLayout(verticalFlowLayout1);
-    targetPanel.setLayout(verticalFlowLayout2);
-    verticalFlowLayout1.setVerticalFill(true);
-    verticalFlowLayout2.setVerticalFill(true);
+    sourcePanel.setLayout(new BoxLayout(sourcePanel, BoxLayout.Y_AXIS));
+    targetPanel.setLayout(new BoxLayout(targetPanel, BoxLayout.Y_AXIS));
     sourcePanel.setBorder(titledBorder1);
     targetPanel.setBorder(titledBorder2);
     jPanel1.setLayout(flowLayout2);
@@ -116,7 +110,7 @@ public class RegenVegTypeChooser extends JDialog {
     targetList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     sourceList.setPrototypeCellValue(protoCellValue);
     this.setModal(true);
-    jPanel2.setLayout(verticalFlowLayout3);
+    jPanel2.setLayout(new BoxLayout(jPanel2, BoxLayout.Y_AXIS));
     infoLabel2.setFont(new java.awt.Font("Monospaced", 1, 12));
     infoLabel2.setText("Use mouse to order states as desired.");
     infoLabel1.setFont(new java.awt.Font("Monospaced", 1, 12));
