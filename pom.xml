@@ -29,12 +29,6 @@
             <version>3.3.2.GA</version>
         </dependency>
         <dependency>
-            <!-- Registered Locally -->
-            <groupId>com.borland</groupId>
-            <artifactId>jbcl</artifactId>
-            <version>0.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>1.8.0.10</version>
@@ -49,6 +43,14 @@
 
     <build>
         <sourceDirectory>src</sourceDirectory>
+        <resources>
+            <resource>
+                <!-- include images directory -->
+                <directory>src/simpplle/resources</directory>
+                <!-- place in simpplle/gui dir on build-->
+                <targetPath>simpplle/gui</targetPath>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
@@ -99,11 +101,6 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/simpplle/gui/images</directory>
-            </resource>
-        </resources>
     </build>
 
 
