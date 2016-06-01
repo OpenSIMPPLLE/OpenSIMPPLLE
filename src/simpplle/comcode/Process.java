@@ -27,8 +27,8 @@ import java.awt.Color;
  *
  */
 
-public abstract class Process
-{
+public abstract class Process {
+
   protected static final int probLogicVersion = 1;
 
   protected Color color = Color.CYAN;
@@ -43,16 +43,16 @@ public abstract class Process
   protected boolean        yearlyProcess;
   protected boolean        uniqueUI;
 
-  protected ArrayList rules;
-  protected String[]  probLabels;
+  protected ArrayList          rules;
+  protected String[]           probLabels;
   protected ArrayList<String>  defaultVisibleColumns = new ArrayList<String>();
 
   protected ArrayList<Lifeform> validLifeforms;
 
-  private static Hashtable     processHt;
+  private static Hashtable              processHt;
   private static ArrayList<ProcessType> legalProcesses;
-  private static ArrayList     simulationProcesses;
-  private static ArrayList     summaryProcesses;
+  private static ArrayList              simulationProcesses;
+  private static ArrayList              summaryProcesses;
   private static ArrayList<ProcessType> probLogicProcesses;
 
   private static HashMap<Lifeform,ArrayList<ProcessType>> lifeformSimProcesses;
@@ -61,24 +61,27 @@ public abstract class Process
   private static ProcessType[] aquaticLegalProcesses;
   private static ProcessType[] aquaticSimulationProcesses;
   private static ProcessType[] aquaticSummaryProcesses;
+
   /**
    * Constructor for process. Initilizes process description, spreading, yearly process, valid lifeforms and uniqueUI.
    */
   protected Process () {
     super();
-    description = null;
-    spreading = false;
-    yearlyProcess = true;
+    description    = null;
+    spreading      = false;
+    yearlyProcess  = true;
     validLifeforms = new ArrayList<Lifeform>(5);
-    uniqueUI = false;
+    uniqueUI       = false;
   }
-/**
- * Gets the default base logic default visible columns for Process.  This will be used in the GUI table models.  
- * @return arraylist of all default visible columns by their string name.  
- */
+
+  /**
+   * Gets the default base logic default visible columns for Process.  This will be used in the GUI table models.
+   * @return arraylist of all default visible columns by their string name.
+   */
   public ArrayList<String> getDefaultVisibleColumns() {
     return defaultVisibleColumns;
   }
+
   /**
    * Adds a lifeform to the valid lifeforms arraylist.  Possible lifeforms are trees, shrubs, herbacious, agriculture, and no classifciation.
    * @param lifeform
@@ -86,6 +89,7 @@ public abstract class Process
   public void addValidLifeform(Lifeform lifeform) {
     validLifeforms.add(lifeform);
   }
+
   /**
    * Checks if a lifeform is in the validLifeForms arraylist.  Lifeforms are trees, shrubs, herbacious, agriculture, and no classifciation.
    * @param lifeform
@@ -94,28 +98,39 @@ public abstract class Process
   public boolean isValidLifeform(Lifeform lifeform) {
     return validLifeforms.contains(lifeform);
   }
+
   /**
    * Gets the color of Process.  Used in GUI.
    * @return
    */
-  public Color getColor() { return color; }
-/**
- * Sets whether this process is a spreading process
- * @return true if this process is a spreading process
- */
+  public Color getColor() {
+    return color;
+  }
+
+  /**
+   * Sets whether this process is a spreading process
+   * @return true if this process is a spreading process
+   */
   public boolean isSpreading () {
     return spreading;
   }
-/**
- * Checks if process is a unique user interface
- * @return true if unique user interface
- */
-  public boolean isUniqueUI() { return uniqueUI; }
-/**
- * Checks if this is a yearly process.
- * @return true if yearly process
- */
-  public boolean isYearly() { return yearlyProcess; }
+
+  /**
+   * Checks if process is a unique user interface
+   * @return true if unique user interface
+   */
+  public boolean isUniqueUI() {
+    return uniqueUI;
+  }
+
+  /**
+   * Checks if this is a yearly process.
+   * @return true if yearly process
+   */
+  public boolean isYearly() {
+    return yearlyProcess;
+  }
+
   /**
    * Sets whether this process is a yearly process.    
    * @param isYearly 
@@ -123,12 +138,18 @@ public abstract class Process
   public void setYearlyStatus(boolean isYearly) {
     yearlyProcess = isYearly;
   }
-/**
- * Gets the process type.
- * @return 
- */
-  public ProcessType getType() { return processType; }
-  public void setType(ProcessType processType) { this.processType = processType; }
+
+  /**
+   * Gets the process type.
+   * @return
+   */
+  public ProcessType getType() {
+    return processType;
+  }
+
+  public void setType(ProcessType processType) {
+    this.processType = processType;
+  }
 
   /**
    * Gets the appropriate process next state probability from
@@ -141,8 +162,7 @@ public abstract class Process
    */
   protected int doProbability (Evu evu) {
     VegSimStateData state = evu.getState();
-    if (state == null) { return 0; }
-
+    if (state == null) return 0;
     return state.getVeg().getProcessProbability(this);
   }
 
@@ -161,8 +181,7 @@ public abstract class Process
 
     if (validLifeforms == null || validLifeforms.size() == 0) {
       Area.currentLifeform = null;
-    }
-    else if (Simpplle.getCurrentArea().multipleLifeformsEnabled() == false)  {
+    } else if (Simpplle.getCurrentArea().multipleLifeformsEnabled() == false)  {
       Area.currentLifeform = null;
     }
 //    else if (Simpplle.getCurrentArea().multipleLifeformsEnabled())  {
@@ -178,8 +197,7 @@ public abstract class Process
 //      Area.currentLifeform = null;
 //    }
 
-    if (ProcessProbLogic.hasLogic(this.getType()) &&
-        isUniqueUI() == false) {
+    if (ProcessProbLogic.hasLogic(this.getType()) && isUniqueUI() == false) {
       return ProcessProbLogic.getInstance().getProbability(this.getType(),evu);
     }
 
@@ -270,19 +288,21 @@ public abstract class Process
   }
 
   public void setProbData(int grouping, int row, int col, int value) {
-    if (probData[grouping][row][col] == value) { return; }
-
+    if (probData[grouping][row][col] == value) return;
     markChanged();
     probData[grouping][row][col] = value;
   }
 
-  public int getProbGroupingCount() { return probData.length; }
+  public int getProbGroupingCount() {
+    return probData.length;
+  }
   
   public int getProbRowCount(int group) {
     if (probData != null && group >= 0 && group < probData.length) {
       return probData[group].length;
+    } else {
+      return 0;
     }
-    else { return 0; }
   }
 
   /**
@@ -300,8 +320,7 @@ public abstract class Process
       setFilename(infile);
       fin.close();
       gzip_in.close();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       String msg = "Problems reading from Probability data file:" + infile;
       throw new SimpplleError(msg);
     }
@@ -318,20 +337,20 @@ public abstract class Process
       // *** Important ***
       // DO NOT CLOSE THESE STREAMS.
       // IT WILL CAUSE READING FROM JAR FILES TO FAIL.
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       String msg = "Problems reading from " +
                    " Probability data file\n" +
                    "knowledge.jar file may be missing or damaged.";
       throw new SimpplleError(msg);
     }
   }
-/**
- * Reads the probability file.
- * @param fin
- * @throws SimpplleError
- * @throws IOException
- */
+
+  /**
+   * Reads the probability file.
+   * @param fin
+   * @throws SimpplleError
+   * @throws IOException
+   */
   public static void readProbDataFile(BufferedReader fin)
     throws SimpplleError, IOException
   {
@@ -368,13 +387,11 @@ public abstract class Process
   }
 
   /**
-   * 
    *Probability data is organized into pages, rows, and columns;
-  *Lines in the input file are the groupings (e.g. pages).  Each line has the rows comma delimited.
-  *Each row is colon delimited and usually has two values.
-  *The two values usually are light and severe probabilities.
-  *Note: The first line of the input file is the number
-  *  of lines in the file.
+   *Lines in the input file are the groupings (e.g. pages).  Each line has the rows comma delimited.
+   *Each row is colon delimited and usually has two values.
+   *The two values usually are light and severe probabilities.
+   *Note: The first line of the input file is the number of lines in the file.
    * 
    * @param fin
    * @throws SimpplleError IOException, Parse Error, Number Format Exception caught in GUI
@@ -410,27 +427,28 @@ public abstract class Process
         }
       }
       setChanged(false);
-    }
-    catch (NumberFormatException nfe) {
+    } catch (NumberFormatException nfe) {
       String msg = "Invalid value found in probability data file.";
       System.out.println(msg);
       throw new SimpplleError(msg);
-    }
-    catch (ParseError pe) {
+    } catch (ParseError pe) {
       System.out.println(pe.msg);
       throw new SimpplleError(pe.msg);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       String msg = "Problems read from Probability data file.";
       System.out.println(msg);
       throw new SimpplleError(msg);
     }
   }
-/**
- * Returns the current boolean which marks whether a process has changed.  
- * @return true if process has changed
- */
-  public static boolean hasChanged() { return changed; }
+
+  /**
+   * Returns the current boolean which marks whether a process has changed.
+   * @return true if process has changed
+   */
+  public static boolean hasChanged() {
+    return changed;
+  }
+
   /**
    * Marks the SystemKnowledge changed for insect disease probability.  
    */
@@ -438,35 +456,44 @@ public abstract class Process
     setChanged(true);
     SystemKnowledge.markChanged(SystemKnowledge.INSECT_DISEASE_PROB);
   }
-  protected static void setChanged(boolean value) { changed = value; }
-/**
- * sets the insect disease probability file and marks the system knowledge changed.  
- * @param file
- */
+
+  protected static void setChanged(boolean value) {
+    changed = value;
+  }
+
+  /**
+   * sets the insect disease probability file and marks the system knowledge changed.
+   * @param file
+   */
   protected static void setFilename(File file) {
     SystemKnowledge.setFile(SystemKnowledge.INSECT_DISEASE_PROB,file);
     SystemKnowledge.markChanged(SystemKnowledge.INSECT_DISEASE_PROB);
   }
-/**
- * clears the insect disease probability file
- */
+
+  /**
+   * clears the insect disease probability file
+   */
   protected static void clearFilename() {
     SystemKnowledge.clearFile(SystemKnowledge.INSECT_DISEASE_PROB);
   }
-/**
- * 
- * @return based on whether the spread knowledge has changed
- */
+
+  /**
+   *
+   * @return based on whether the spread knowledge has changed
+   */
   public boolean hasSpreadChanged() { return spreadChanged; }
+
   /**
    * marks the set spreadchanged method to true
    */
   protected void markSpreadChanged() { setSpreadChanged(true); }
+
   /**
    * 
    * @param value true if changed
    */
   protected void setSpreadChanged(boolean value) { spreadChanged = value; }
+
   /**
    * gets the spread file
    */
@@ -477,6 +504,7 @@ public abstract class Process
    * @param file
    */
   protected void setSpreadFilename(File file) { spreadFile = file; }
+
   /**
    * Clears the spread file name by changing the file name to null.
    */
@@ -486,10 +514,11 @@ public abstract class Process
     setFilename(Utility.makeSuffixedPathname(outfile,"","probability"));
     save();
   }
-/**
- * method to save to System knowledge insect disease probability file and sets changed 
- * @throws IOException 
- */
+
+  /**
+   * method to save to System knowledge insect disease probability file and sets changed
+   * @throws IOException
+   */
   public static void save() {
     File             outfile = SystemKnowledge.getFile(SystemKnowledge.INSECT_DISEASE_PROB);
     GZIPOutputStream out;
@@ -499,8 +528,7 @@ public abstract class Process
     try {
       out = new GZIPOutputStream(new FileOutputStream(outfile));
       fout = new PrintWriter(out);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("Problems opening output file.");
       return;
     }
@@ -511,10 +539,11 @@ public abstract class Process
 
     setChanged(false);
   }
-/**
- * Saves the current zone user probability processes. 
- * @param fout uses printwriter to print
- */
+
+  /**
+   * Saves the current zone user probability processes.
+   * @param fout uses printwriter to print
+   */
   public static void saveProcesses(PrintWriter fout) {
     RegionalZone zone = Simpplle.getCurrentZone();
     ProcessType[] probProcesses = zone.getUserProbProcesses();
@@ -525,10 +554,11 @@ public abstract class Process
       process.save(fout);
     }
   }
-/**
- * Method to save process information.  
- * @param fout
- */
+
+  /**
+   * Method to save process information.
+   * @param fout
+   */
   protected void save(PrintWriter fout) {
     int groupCount;
     int group, row, col;
@@ -546,13 +576,15 @@ public abstract class Process
       fout.println();
     }
   }
-/**
- * Closes file by making the clearing the SystemKnowledge.INSECT_DISEASE_PROB and sets the changed boolean for this process to false
- */
+
+  /**
+   * Closes file by making the clearing the SystemKnowledge.INSECT_DISEASE_PROB and sets the changed boolean for this process to false
+   */
   public static void closeFile() {
     clearFilename();
     setChanged(false);
   }
+
   /**
    * Closes file by making the clearing spreadfile and sets the changed boolean for this process to false
    */
@@ -640,7 +672,7 @@ public abstract class Process
   protected boolean doSpread (NorthernCentralRockies   zone, Evu fromEvu, Evu evu) { return false; }
   protected boolean doSpread (SierraNevada             zone, Evu fromEvu, Evu evu) { return false; }
   protected boolean doSpread (SouthernCalifornia       zone, Evu fromEvu, Evu evu) { return false; }
-  protected boolean doSpread (Gila                     zone, Evu fromEvu, Evu evu)  { return false; }
+  protected boolean doSpread (Gila                     zone, Evu fromEvu, Evu evu) { return false; }
   protected boolean doSpread (SouthCentralAlaska       zone, Evu fromEvu, Evu evu) { return false; }
   protected boolean doSpread (SouthwestUtah            zone, Evu fromEvu, Evu evu) { return false; }
   protected boolean doSpread (ColoradoFrontRange       zone, Evu fromEvu, Evu evu) { return false; }
@@ -655,15 +687,14 @@ public abstract class Process
     return (description == null) ? getType().toString() : description;
   }
 
-/**
- * 
- * @return probability logic processes arraylist
- */
+  /**
+   * @return probability logic processes arraylist
+   */
   public static ArrayList getProbLogicProcesses() {
     return probLogicProcesses;
   }
+
   /**
-   * 
    * @return simulation processes arraylist
    */
   public static ArrayList getSimulationProcesses() {
@@ -690,22 +721,24 @@ public abstract class Process
   private static ArrayList<ProcessType> getSimulationProcessesNoFireEvent(Lifeform lifeform) {
     return lifeformSimProcessesNoFireEvent.get(lifeform);
   }
+
   public static ArrayList<ProcessType> getSimulationProcesses(Lifeform lifeform) {
     return getSimulationProcesses(lifeform,true);
   }
+
   public static ArrayList<ProcessType> getSimulationProcesses(Lifeform lifeform, boolean includeFireEvent) {
     if (includeFireEvent) {
       return lifeformSimProcesses.get(lifeform);
-    }
-    else {
+    } else {
       return getSimulationProcessesNoFireEvent(lifeform);
     }
   }
-/**
- * Gets all the lifeforms for a particular process.  Choices of lifeforms are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, OR NA (for no classification)
- * @param process the process being evaluated.  
- * @return an arraylist of all the lifeforms for a particular process. 
- */
+
+  /**
+   * Gets all the lifeforms for a particular process.  Choices of lifeforms are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, OR NA (for no classification)
+   * @param process the process being evaluated.
+   * @return an arraylist of all the lifeforms for a particular process.
+   */
   public static ArrayList<Lifeform> getProcessLifeforms(ProcessType process) {
     ArrayList<Lifeform> result = new ArrayList<Lifeform>();
     Lifeform[] allLives = Lifeform.getAllValues();
@@ -716,6 +749,7 @@ public abstract class Process
     }
     return result;
   }
+
   /**
    * check to see if lifeform object is a member of the lifeform Process type
    * @param lifeform
@@ -726,14 +760,13 @@ public abstract class Process
     ArrayList<ProcessType> processes = getSimulationProcesses(lifeform);
     return processes.contains(process);
   }
+
   /**
-   * 
    * @param process process type
    * @return true if there are more than one life form.  
    */
   public static boolean isMultiLifeformProcess(ProcessType process) {
     if (process.isFireProcess()) { process = ProcessType.FIRE_EVENT; }
-
     int lifeCount = 0;
     Lifeform[] allLives = Lifeform.getAllValues();
     for (int i=0; i<allLives.length; i++) {
@@ -743,13 +776,15 @@ public abstract class Process
     }
     return lifeCount > 1;
   }
-/**
- * Makes the simulation processes arraylist into a process type array.  
- * @return
- */
+
+  /**
+   * Makes the simulation processes arraylist into a process type array.
+   * @return
+   */
   public static ProcessType[] getSimulationProcessesArray() {
     return (ProcessType[]) simulationProcesses.toArray(new ProcessType[simulationProcesses.size()]);
   }
+
   /**
    * Makes the simulation summary processes arraylist into a process type array.  
    * @return the array with all the summary processes 
@@ -803,6 +838,7 @@ public abstract class Process
     }
     fout.println();
   }
+
   /**
    * Reads, in order, process types, and put into arraylists for legal processes, simulation processes, 
    * summary processes, lifeform simulation processes, probability logic processes  
@@ -810,7 +846,6 @@ public abstract class Process
    * @throws SimpplleError thrown for Invalid zone definition file, no process found, null processes found 
    * invalid processes found caught in GUI
    */
-  
   public static void readLegalFile(BufferedReader fin) throws SimpplleError {
     StringTokenizerPlus strTok;
     String              line, str;
@@ -843,11 +878,9 @@ public abstract class Process
         processHt.put(processType,process);
         if (processType.equals(ProcessType.STAND_REPLACING_FIRE)) {
           processHt.put(ProcessType.SRF,process);
-        }
-        else if (processType.equals(ProcessType.MIXED_SEVERITY_FIRE)) {
+        } else if (processType.equals(ProcessType.MIXED_SEVERITY_FIRE)) {
           processHt.put(ProcessType.MSF,process);
-        }
-        else if (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE)) {
+        } else if (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE)) {
           processHt.put(ProcessType.LSF,process);
         }
 
@@ -938,7 +971,6 @@ public abstract class Process
         line = fin.readLine();
       }
 
-
       makeNoFireEventSimProcessCopy();
 
       if (Simpplle.getCurrentZone().hasAquatics() == false) {
@@ -1010,19 +1042,15 @@ public abstract class Process
         i++;
       }
 
-    }
-    catch (IOException ex) {
+    } catch (IOException ex) {
       throw new SimpplleError("Problems reading Legal Processes from zone definition file.");
-    }
-    catch (ParseError ex) {
+    } catch (ParseError ex) {
       throw new SimpplleError(ex.msg);
     }
-
   }
 
   /**
-   * reads a text file that contains a process name on each line and
-   * creates those processes.
+   * Reads a text file that contains a process name on each line and creates those processes.
    *
    * @param filename File
    * @throws SimpplleError
@@ -1073,8 +1101,7 @@ public abstract class Process
         line = fin.readLine();
       }
       fin.close();
-    }
-    catch (IOException ex) {
+    } catch (IOException ex) {
       throw new SimpplleError("Problems importing Legal Processes from file.");
     }
   }
@@ -1082,15 +1109,18 @@ public abstract class Process
   public static Process findInstance(String processName) {
     return findInstance(ProcessType.get(processName));
   }
+
   public static Process findInstance(ProcessType pt) {
     if (pt == null) { return null; }
     return (Process)processHt.get(pt);
   }
-/**
- * Gets all the logic rules for the process.  
- * @return all the logic rules in list
- */
+
+  /**
+   * Gets all the logic rules for the process.
+   * @return all the logic rules in list
+   */
   public List getLogicRules() { return rules; }
+
   /**
    * Used in the GUI to construct base panel for process logic rules.  
    * @return string array of probability labels.  
@@ -1110,6 +1140,7 @@ public abstract class Process
 
     probLabels = (String[])in.readObject();
   }
+
   public void writeExternalProbabilityLogic(ObjectOutput out) throws IOException {
     out.writeInt(rules.size());
     for (Iterator iter = rules.iterator(); iter.hasNext();) {
@@ -1141,6 +1172,7 @@ public abstract class Process
       processInst.readExternalProbabilityLogic(in);
     }
   }
+
   /**
    * @deprecated
    */
@@ -1161,11 +1193,12 @@ public abstract class Process
       processInst.writeExternalProbabilityLogic(out);
     }
   }
-/**
- * Gets an arraylist of fire spread UI Processes.  This are used in the GUI to set visible combo boxes.  The choices are SRF, MSF or LSF
- * @param includeNone true if do to include none as a process.  
- * @return arraylist with legal fire process short name (SRF, MSF, or LSF)
- */
+
+  /**
+   * Gets an arraylist of fire spread UI Processes.  This are used in the GUI to set visible combo boxes.  The choices are SRF, MSF or LSF
+   * @param includeNone true if do to include none as a process.
+   * @return arraylist with legal fire process short name (SRF, MSF, or LSF)
+   */
   public static ArrayList<String> getFireSpreadUIProcesses(boolean includeNone) {
     ArrayList<String> fireProcesses = new ArrayList<String>(3);
 
@@ -1244,7 +1277,6 @@ public abstract class Process
 //
 //    return null;
   }
-
 
 }
 

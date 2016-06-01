@@ -17,16 +17,20 @@ import java.util.zip.*;
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- * 
- *
  */
 public class Climate {
+
   // Ordinal values must not be changed unless the change
   // is accounted for in database interaction (esp. in EvuSimData)
   // Do not change order of these seasons as other code is dependent on
   // the order, including the position of YEAR.
-  public enum Season { SPRING, SUMMER, FALL, WINTER, YEAR;
+
+  public enum Season {
+
+    SPRING, SUMMER, FALL, WINTER, YEAR;
+
     public static int numValues() { return 5; }
+
     public static Season getPriorSeason(Season season) {
       switch (season) {
         case SPRING: return WINTER;
@@ -37,18 +41,15 @@ public class Climate {
         default:     return YEAR;
       }
     }
-  };
+  }
 
   public static Season[] allSeasons = Season.values();
 
-  public enum Moisture { WETTER, NORMAL, DRIER };
-  public enum Temperature { COOLER, NORMAL, WARMER };
-
-  // Moisture conditions
+  public enum Moisture { WETTER, NORMAL, DRIER }
   public static final Moisture WETTER = Moisture.WETTER;
   public static final Moisture DRIER  = Moisture.DRIER;
 
-  // Temperature conditions
+  public enum Temperature { COOLER, NORMAL, WARMER }
   public static final Temperature COOLER = Temperature.COOLER;
   public static final Temperature WARMER = Temperature.WARMER;
 
@@ -68,22 +69,26 @@ public class Climate {
 
 //  private static String allTemperatures[] = {"COOLER", "NORMAL", "WARMER"};
 //  private static String allMoisture[] = {"WETTER", "NORMAL", "DRIER"};
-/**
- * constructor - initializes the TreeMap to store user values, Temperature [][] and Moisture [][], and a new random variable maker 
- * Then calls initProbs which sets all temperature and moisture for seasons to normal
- */
-  public Climate() {
-    userValues = new TreeMap<Integer,ArrayList<Season>>();
-    changed     = false;
 
+  /**
+   * Initializes the TreeMap to store user values, Temperature [][] and Moisture [][], and a new random variable maker
+   * Then calls initProbs which sets all temperature and moisture for seasons to normal
+   */
+  public Climate() {
+
+    userValues  = new TreeMap<Integer,ArrayList<Season>>();
+    changed     = false;
     temperature = new Temperature[Season.numValues()][Simulation.MAX_TIME_STEPS+1];
     moisture    = new Moisture[Season.numValues()][temperature[0].length];
-    rand = new Random();
+    rand        = new Random();
+
     initProbs();
+
   }
-/**
- * initialize probablities.  outer loop goes through all the seasons, inner loop sets the temperature and moisture for all season to normal
- */
+
+  /**
+   * Initialize probablities.  outer loop goes through all the seasons, inner loop sets the temperature and moisture for all season to normal
+   */
   private void initProbs() {
     int prob;
     for (Season season : Climate.allSeasons) {
@@ -95,7 +100,7 @@ public class Climate {
   }
 
   /**
-   * will set any moisture or temperature value not input by user to NORMAL 
+   * Will set any moisture or temperature value not input by user to NORMAL
    */
   public void allNonUserNormal() {
     for (Season season : Climate.allSeasons) {
@@ -107,8 +112,9 @@ public class Climate {
       }
     }
   }
+
   /**
-   * calls pickNewValues to put randomized values into the temperature and moisture arrays for each season in spots where user values are not stored.  
+   * Calls pickNewValues to put randomized values into the temperature and moisture arrays for each season in spots where user values are not stored.
    */
   public void randomizeClimate() {
     for (Season season : Climate.allSeasons) {
@@ -122,39 +128,32 @@ public class Climate {
   }
   
   /**
-   * method to create random temperature and moisture conditions for  
+   * Method to create random temperature and moisture conditions for
    * @param tStep the time step
    * @param season from season enumeration.  
    */
   private void pickNewValues(int tStep, Season season) {
-    int prob;
-    prob = rand.nextInt(100);
-    if (prob >= 0 && prob <= 32) {
-      temperature[season.ordinal()][tStep] = COOLER;
-    }
-    else if (prob >= 33 && prob <= 67) {
-      temperature[season.ordinal()][tStep] = Temperature.NORMAL;
-    }
-    else if (prob >= 68 && prob <= 100) {
-      temperature[season.ordinal()][tStep] = WARMER;
-    }
+
+    int prob = rand.nextInt(100);
+
+    if      (prob >= 0  && prob <= 32)  temperature[season.ordinal()][tStep] = COOLER;
+    else if (prob >= 33 && prob <= 67)  temperature[season.ordinal()][tStep] = Temperature.NORMAL;
+    else if (prob >= 68 && prob <= 100) temperature[season.ordinal()][tStep] = WARMER;
 
     prob = rand.nextInt(100);
-    if (prob >= 0 && prob <= 32) {
-      moisture[season.ordinal()][tStep] = WETTER;
-    }
-    else if (prob >= 33 && prob <= 67) {
-      moisture[season.ordinal()][tStep] = Moisture.NORMAL;
-    }
-    else if (prob >= 68 && prob <= 100) {
-      moisture[season.ordinal()][tStep] = DRIER;
-    }
+
+    if      (prob >= 0  && prob <= 32)  moisture[season.ordinal()][tStep] = WETTER;
+    else if (prob >= 33 && prob <= 67)  moisture[season.ordinal()][tStep] = Moisture.NORMAL;
+    else if (prob >= 68 && prob <= 100) moisture[season.ordinal()][tStep] = DRIER;
+
   }
-/**
- * Gets all the temperatures in this Climate object.  It is an array of temperatures. 
- * @return the array of temperatures for this climate.  
- */
+
+  /**
+   * Gets all the temperatures in this Climate object.  It is an array of temperatures.
+   * @return the array of temperatures for this climate.
+   */
   public static Temperature[] getAllTemperatures() { return Temperature.values(); }
+
   /**
    * Gets all the moistures for this Climate object.  It is an array of moisture values.  
    * @return an arrray of moisture values for this climate
@@ -166,6 +165,7 @@ public class Climate {
    * @return normal temperature
    */
   public static Temperature getDefaultTemperature() { return Temperature.NORMAL; }
+
   /**
    * gets the default Moisture.  This defaults to NORMAL throughout the climate class
    * @return normal Moisture
@@ -184,8 +184,11 @@ public class Climate {
    */
   public Temperature getTemperature() {
     Simulation simulation = Simpplle.getCurrentSimulation();
-    if (simulation != null) { return getTemperature(simulation.getCurrentSeason()); }
-    else { return getDefaultTemperature(); }
+    if (simulation != null) {
+      return getTemperature(simulation.getCurrentSeason());
+    } else {
+      return getDefaultTemperature();
+    }
   }
   
   /**
@@ -221,10 +224,10 @@ public class Climate {
    * @return the temperature
    */
   private Temperature getTemperatureId(String str) {
-    if (str.equals("COOLER")) { return COOLER; }
-    else if (str.equals("NORMAL")) { return Temperature.NORMAL; }
-    else if (str.equals("WARMER")) { return WARMER; }
-    else { return Temperature.NORMAL; }
+    if      (str.equals("COOLER")) return COOLER;
+    else if (str.equals("NORMAL")) return Temperature.NORMAL;
+    else if (str.equals("WARMER")) return WARMER;
+    else                           return Temperature.NORMAL;
   }
 
   /**
@@ -248,8 +251,11 @@ public class Climate {
    */
   public Moisture getMoisture() {
     Simulation simulation = Simpplle.getCurrentSimulation();
-    if (simulation != null) { return getMoisture(simulation.getCurrentSeason()); }
-    else { return getDefaultMoisture(); }
+    if (simulation != null) {
+      return getMoisture(simulation.getCurrentSeason());
+    } else {
+      return getDefaultMoisture();
+    }
   }
 
   /**
@@ -293,10 +299,10 @@ public class Climate {
    * @return id in enum of parameter moisture condition
    */
   private Moisture getMoistureId(String str) {
-    if (str.equals("WETTER")) { return WETTER; }
-    else if (str.equals("NORMAL")) { return Moisture.NORMAL; }
-    else if (str.equals("DRIER")) { return DRIER; }
-    else { return Moisture.NORMAL; }
+    if      (str.equals("WETTER")) return WETTER;
+    else if (str.equals("NORMAL")) return Moisture.NORMAL;
+    else if (str.equals("DRIER"))  return DRIER;
+    else                           return Moisture.NORMAL;
   }
 
   /**
@@ -312,25 +318,33 @@ public class Climate {
       default:     return "NORMAL";
     }
   }
-/**
- * Initializes a climate arraylist with all seasons. adds to userValues keyed by time step
- * @param tStep time step is key into userValue mapping
- * @param season if YEAR will initialize a climate arrayList, 
- * <p>if null will create ArrayList for season and map the userValues to the time step and null season
- * <p> if season arraylist does not contain the parameter season, will add the season to arrayList and mark changed.  
- */
+
+  /**
+   * Initializes a climate arraylist with all seasons. adds to userValues keyed by time step
+   * @param tStep time step is key into userValue mapping
+   * @param season if YEAR will initialize a climate arrayList,
+   * <p>if null will create ArrayList for season and map the userValues to the time step and null season
+   * <p> if season arraylist does not contain the parameter season, will add the season to arrayList and mark changed.
+   */
   public void addClimate(int tStep, Season season) {
+
     ArrayList<Season> seasons;
+
     if (season == Season.YEAR) {
+
       seasons = new ArrayList<Season>();
+
       seasons.add(Season.YEAR);
       seasons.add(Season.SPRING);
       seasons.add(Season.SUMMER);
       seasons.add(Season.FALL);
       seasons.add(Season.WINTER);
+
       userValues.put(tStep,seasons);
+
       markChanged();
       return;
+
     }
 
     seasons = userValues.get(tStep);
@@ -353,17 +367,18 @@ public class Climate {
   public void setTemperature(int tStep, Season season, String str) {
     setTemperature(tStep,season,getTemperatureId(str));
   }
-/**
- * overloaded setTemperature function.  sets the temperature [season][time step] to the season and time step
- * if season = YEAR, will set the temperature [season] [time step] to the temperatureID for all seasons in enum 
- * @param tStep time step
- * @param season from Season enum choices are SPRING, SUMMER, FALL, WINTER, YEAR
- * @param value temperatureID value
- */
+
+  /**
+   * overloaded setTemperature function.  sets the temperature [season][time step] to the season and time step
+   * if season = YEAR, will set the temperature [season] [time step] to the temperatureID for all seasons in enum
+   * @param tStep time step
+   * @param season from Season enum choices are SPRING, SUMMER, FALL, WINTER, YEAR
+   * @param value temperatureID value
+   */
   public void setTemperature(int tStep, Season season, Temperature value) {
     temperature[season.ordinal()][tStep] = value;
     if (season == Season.YEAR) {
-      temperature[Season.YEAR.ordinal()][tStep] = value;
+      temperature[Season.YEAR.ordinal()][tStep]   = value;
       temperature[Season.SPRING.ordinal()][tStep] = value;
       temperature[Season.SUMMER.ordinal()][tStep] = value;
       temperature[Season.FALL.ordinal()][tStep]   = value;
@@ -392,7 +407,7 @@ public class Climate {
   public void setMoisture(int tStep, Season season, Moisture value) {
     moisture[season.ordinal()][tStep] = value;
     if (season == Season.YEAR) {
-      moisture[Season.YEAR.ordinal()][tStep] = value;
+      moisture[Season.YEAR.ordinal()][tStep]   = value;
       moisture[Season.SPRING.ordinal()][tStep] = value;
       moisture[Season.SUMMER.ordinal()][tStep] = value;
       moisture[Season.FALL.ordinal()][tStep]   = value;
@@ -400,18 +415,18 @@ public class Climate {
     }
     markChanged();
   }
-/**
- * removes a specific time step of climate in userValues map either by removing the season, time step - if no corresponding season, or by setting moisture and temperature to NORMAL 
- * @param tStep time step
- * @param season 
- */
+
+  /**
+   * removes a specific time step of climate in userValues map either by removing the season, time step - if no corresponding season, or by setting moisture and temperature to NORMAL
+   * @param tStep time step
+   * @param season
+   */
   public void removeClimate(int tStep, Season season) {
     if (userValues.containsKey(tStep) == false) { return; }
 
     if (season == Climate.Season.YEAR) {
       userValues.remove(tStep);
-    }
-    else {
+    } else {
       ArrayList<Season> seasons = userValues.get(tStep);
       if (seasons == null) { return; }
 
@@ -424,10 +439,11 @@ public class Climate {
     moisture[season.ordinal()][tStep] = Moisture.NORMAL;
     markChanged();
   }
-/**
- * removes all climate information for a given time step by setting the temperature[][] and moisture [][] to the default NORMAL, then removes the timestep from UserValue map
- * @param tStep
- */
+
+  /**
+   * removes all climate information for a given time step by setting the temperature[][] and moisture [][] to the default NORMAL, then removes the timestep from UserValue map
+   * @param tStep
+   */
   public void removeAllClimate(int tStep) {
     if (userValues.containsKey(tStep) == false) { return; }
 
@@ -441,9 +457,10 @@ public class Climate {
     userValues.remove(tStep);
     markChanged();
   }
-/**
- * sets all indexes in temperature []][]and moisture[][] to the default temperature and moisture - NORMAL then clears the userValue map 
- */
+
+  /**
+   * sets all indexes in temperature []][]and moisture[][] to the default temperature and moisture - NORMAL then clears the userValue map
+   */
   public void removeAll() {
     for (Integer ts : userValues.keySet()) {
       ArrayList<Season> seasons = userValues.get(ts);
@@ -456,24 +473,27 @@ public class Climate {
     userValues.clear();
     markChanged();
   }
-/**
- * Closes climate file.  
- * Sets all indexes in temperature []][]and moisture[][] to the default temperature and moisture - NORMAL then clears the userValue map
- * Clears the Climate file and sets changed to false.
- */
+
+  /**
+   * Closes climate file.
+   * Sets all indexes in temperature []][]and moisture[][] to the default temperature and moisture - NORMAL then clears the userValue map
+   * Clears the Climate file and sets changed to false.
+   */
   public void closeFile() {
     removeAll();
     clearFilename();
     setChanged(false);
   }
-/**
- * Checks if a particular time step has a user input climate.  
- * @param tStep time step
- * @return true if climate at time step is a user value.  
- */
+
+  /**
+   * Checks if a particular time step has a user input climate.
+   * @param tStep time step
+   * @return true if climate at time step is a user value.
+   */
   public boolean isUserClimate(int tStep) {
     return (userValues.containsKey(tStep));
   }
+
   /**
    * Gets the user seasons by using the parameter time step to get the 
    * ArrayList of seasons from the user values tree map <time step, ArrayList<Season>> then 
@@ -486,23 +506,26 @@ public class Climate {
     ArrayList<Season> seasons = userValues.get(tStep);
     return (seasons != null && seasons.contains(season));
   }
-/**
- * Checks if user scheduled climate exists.  
- * @return True if there is a climate object in the user values arraylist. 
- */
+
+  /**
+   * Checks if user scheduled climate exists.
+   * @return True if there is a climate object in the user values arraylist.
+   */
   public boolean userScheduleClimateExists() {
     return (userValues.size() != 0);
   }
-/**
- * gets the first time step.  checks for null or size ==0 
- * @return if null or size ==0 returns -1, else returns the first time step
- */
+
+  /**
+   * gets the first time step.  checks for null or size ==0
+   * @return if null or size ==0 returns -1, else returns the first time step
+   */
   public int getFirstTimeStep() {
     if (userValues == null || userValues.size() == 0) {
       return -1;
     }
     return userValues.firstKey();
   }
+
   /**
    * method to get the first season using first time step
    * @return the season of the first time step
@@ -510,10 +533,11 @@ public class Climate {
   public Season getFirstTimeStepSeason() {
     return getFirstUserSeason(userValues.firstKey());
   }
-/**
- * Gets the last key value in user values <time step, ArrayList<Season>>
- * @return last key which is the last time step.
- */
+
+  /**
+   * Gets the last key value in user values <time step, ArrayList<Season>>
+   * @return last key which is the last time step.
+   */
   public int getLastTimeStep() {
     return userValues.lastKey();   
   }
@@ -528,6 +552,7 @@ public class Climate {
     ArrayList<Season> seasons = userValues.get(timeStep);
     return seasons.get(0);
   }
+
   /**
    * Gets the previous user season by first using the parameter time step to get the 
    * ArrayList of seasons from the user values tree map <time step, ArrayList<Season>> then using the parameter 
@@ -543,6 +568,7 @@ public class Climate {
 
     return seasons.get(index-1);
   }
+
   /**
    * Gets the previous user season by first using the parameter time step to get the 
    * ArrayList of seasons from the user values tree map <time step, ArrayList<Season>> then using the parameter 
@@ -558,26 +584,21 @@ public class Climate {
 
     return seasons.get(index+1);
   }
+
   public int getPrevTimeStep(int currentTime, boolean userOnly) {
     if (!userOnly && currentTime == 1) {
       return temperature[0].length - 1;
-
-    }
-    else if (!userOnly) {
+    } else if (!userOnly) {
       return currentTime - 1;
-    }
-    else if (userValues.size() == 0) {
+    } else if (userValues.size() == 0) {
       return 1;
-    }
-    else {
+    } else {
       int tStep = currentTime - 1;
       int firstTime = getFirstTimeStep();
-
       while (isUserClimate(tStep) == false) {
         if (tStep > firstTime) {
           tStep--;
-        }
-        else if (tStep < firstTime) {
+        } else if (tStep < firstTime) {
           tStep = getLastTimeStep();
         }
         // otherwise it will be equal to firstTime which is Ok.
@@ -585,31 +606,27 @@ public class Climate {
       return tStep;
     }
   }
-/**
- * Calculates the next time step from the current time passed in the parameter.  
- * @param currentTime
- * @param userOnly
- * @return
- */
+
+  /**
+   * Calculates the next time step from the current time passed in the parameter.
+   * @param currentTime
+   * @param userOnly
+   * @return
+   */
   public int getNextTimeStep(int currentTime, boolean userOnly) {
     if (!userOnly && currentTime == (temperature[0].length - 1)) {
       return 1;
-    }
-    else if (!userOnly) {
+    } else if (!userOnly) {
       return currentTime+1;
-    }
-    else if (userValues.size() == 0) {
+    } else if (userValues.size() == 0) {
       return -1;
-    }
-    else {
+    } else {
       int tStep = currentTime + 1;
       int lastTime = getLastTimeStep();
-
       while (isUserClimate(tStep) == false) {
         if (tStep < lastTime) {
           tStep++;
-        }
-        else if (tStep > lastTime) {
+        } else if (tStep > lastTime) {
           tStep = getFirstTimeStep();
         }
         // otherwise it will be equal to lastTime which is Ok.
@@ -617,13 +634,15 @@ public class Climate {
       return tStep;
     }
   }
-/**
- * Calculates whether climate is wet Succession.  
- * @return true if wet succession. 
- */
+
+  /**
+   * Calculates whether climate is wet Succession.
+   * @return true if wet succession.
+   */
   public boolean isWetSuccession() {
     return (getMoisture() == WETTER);
   }
+
   /**
    * Calculates whether the climate is dry succession.  
    * @return
@@ -631,6 +650,7 @@ public class Climate {
   public boolean isDrySuccession() {
     return (getMoisture() == Climate.DRIER);
   }
+
   /**
    * calculates if current simulation season is a drought
    * @return true if temp is WARMER and moisture is DRIER
@@ -648,11 +668,12 @@ public class Climate {
     Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
     return (getMoisture(season) == WETTER);
   }
-/**
- * Calculates if time step instance is a drought
- * @param tStep time step
- * @return true if moisture of current simulation and current season is WETTER
- */
+
+  /**
+   * Calculates if time step instance is a drought
+   * @param tStep time step
+   * @return true if moisture of current simulation and current season is WETTER
+   */
   public boolean isDrought(int tStep) {
     Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
     return ((getTemperature(tStep,season) == WARMER) && (getMoisture(tStep,season) == DRIER));
@@ -671,8 +692,7 @@ public class Climate {
       setFilename(infile);
       fin.close();
       gzip_in.close();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       throw new SimpplleError("Problems reading from Climate data file:" + infile);
     }
   }
@@ -699,8 +719,7 @@ public class Climate {
 
       try {
         nSteps = Integer.parseInt(line);
-      }
-      catch (NumberFormatException e) {
+      } catch (NumberFormatException e) {
         throw new ParseError("Invalid number of time steps in Climate data file.");
       }
 
@@ -717,8 +736,7 @@ public class Climate {
           season = Season.YEAR;
           tempStr = strTok.getToken();
           moistStr = strTok.getToken();
-        }
-        else {
+        } else {
           tStep = strTok.getIntToken();
           season = Season.valueOf(strTok.getToken());
           tempStr = strTok.getToken();
@@ -730,19 +748,19 @@ public class Climate {
         setMoisture(tStep,season,moistStr);
       }
       setChanged(false);
-    }
-    catch (ParseError pe) {
+    } catch (ParseError pe) {
       throw new SimpplleError(pe.msg);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       throw new SimpplleError("Problems reading from Climate data file.");
     }
   }
-/**
- * True if changed
- * @return true if changed
- */
+
+  /**
+   * True if changed
+   * @return true if changed
+   */
   public boolean hasChanged() { return changed; }
+
   /**
    * Marks system knowledge changed for Climate.  
    */
@@ -750,34 +768,39 @@ public class Climate {
     setChanged(true);
     SystemKnowledge.markChanged(SystemKnowledge.CLIMATE);
   }
+
   private void setChanged(boolean value) { changed = value; }
-/**
- * Sets the file to a climate file.  
- * @param file
- */
+
+  /**
+   * Sets the file to a climate file.
+   * @param file
+   */
   private void setFilename(File file) {
     SystemKnowledge.setFile(SystemKnowledge.CLIMATE,file);
     markChanged();
   }
-/**
- * Clears the Climate file.
- */
+
+  /**
+   * Clears the Climate file.
+   */
   public void clearFilename() {
     SystemKnowledge.clearFile(SystemKnowledge.CLIMATE);
   }
-/**
- * Saves climate file to a particular parameter file name.  
- * @param outfile
- */
+
+  /**
+   * Saves climate file to a particular parameter file name.
+   * @param outfile
+   */
   public void saveAs(File outfile) {
     setFilename(outfile);
     save();
   }
-/**
- * saves file as zip GZIPOutputStream and printwrter. The file while have pathname of the Climate and .climate  
- * 
- * @throws IOException - caught if there are problems outputting file
- */
+
+  /**
+   * saves file as zip GZIPOutputStream and printwrter. The file while have pathname of the Climate and .climate
+   *
+   * @throws IOException - caught if there are problems outputting file
+   */
   public void save() {
     File outfile = Utility.makeSuffixedPathname(SystemKnowledge.getFile(SystemKnowledge.CLIMATE),"","climate");
     GZIPOutputStream out;
@@ -785,8 +808,7 @@ public class Climate {
     try {
       out = new GZIPOutputStream(new FileOutputStream(outfile));
       fout = new PrintWriter(out);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("Problems opening output file.");
       return;
     }

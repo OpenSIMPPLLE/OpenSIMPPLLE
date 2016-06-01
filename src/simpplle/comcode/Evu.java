@@ -26,9 +26,10 @@ import simpplle.comcode.Climate.*;
  */
 
 public final class Evu extends NaturalElement implements Externalizable {
-  static final long serialVersionUID = -4593527729379592789L;
-  static final int  version          = 8;
-  static final int  accumDataVersion = 1;
+
+  static final long serialVersionUID        = -4593527729379592789L;
+  static final int  version                 = 8;
+  static final int  accumDataVersion        = 1;
   static final int  spatialRelationsVersion = 1;
 
   private ArrayList<ExistingLandUnit>    assocLandUnits;
@@ -37,27 +38,25 @@ public final class Evu extends NaturalElement implements Externalizable {
   private ArrayList<Trails>              assocTrailUnits;
 
   private HabitatTypeGroup htGrp;
-    /**
-     * This is a bit ugly but only way I could think to do this since generic
-     * arrays are not allowed.
-     */
-//  private ArrayList<HashMap<Lifeform,ArrayList<VegSimStateData>>> simulatedStatesNew;
 
-    // one element for each lifeform, lifeform can be determine from species.
-//  private HashMap<Lifeform,ArrayList<VegSimStateData>> vegStateNew;
+  /**
+   * This is a bit ugly but only way I could think to do this since generic
+   * arrays are not allowed.
+   */
+  // private ArrayList<HashMap<Lifeform,ArrayList<VegSimStateData>>> simulatedStatesNew;
+  // one element for each lifeform, lifeform can be determine from species.
+  // private HashMap<Lifeform,ArrayList<VegSimStateData>> vegStateNew;
 
+  // Index: n=currentStep, n-1=currentStep-1, etc)
+  // Size:  Simulation.pastTimeStepsInMemory + 1;
+  // Key 1: Lifeform, Key 2: Season
+  // Value: VegSimStateData
+  private Flat3Map[] simData;
 
-    // Index: n=currentStep, n-1=currentStep-1, etc)
-    // Size:  Simulation.pastTimeStepsInMemory + 1;
-    // Key 1: Lifeform, Key 2: Season
-    // Value: VegSimStateData
-    private Flat3Map[] simData;
-
-    // Key 1: Lifeform, Key 2: Season
-    // We could end up with initial conditions with Season,
-    // by running seasonally and using simulation results as new initial Conditions.
-    private Flat3Map initialState;
-
+  // Key 1: Lifeform, Key 2: Season
+  // We could end up with initial conditions with Season,
+  // by running seasonally and using simulation results as new initial Conditions.
+  private Flat3Map initialState;
 
   private Lifeform dominantLifeform;
 
@@ -86,32 +85,32 @@ public final class Evu extends NaturalElement implements Externalizable {
   private double longitude;
 
   // ** Simulation Related **
-  private boolean               producingSeed;
+  private boolean        producingSeed;
   private Climate.Season fireSeason;
   private short          fireSeasonProb;
-  private int[] regenDelay = new int[Lifeform.getAllValues().length];
-  private boolean[] recentRegenDelay = new boolean[regenDelay.length];
+  private int[]          regenDelay = new int[Lifeform.getAllValues().length];
+  private boolean[]      recentRegenDelay = new boolean[regenDelay.length];
+  private SizeClass      cycleSizeClass=null;
+  private int            cycleSizeClassCount=0;
 
-  private SizeClass cycleSizeClass=null;
-  private int       cycleSizeClassCount=0;
-/**
- *
- * Creates a Water Unit Data class.
- * This has three variables - a boolean for permanence of present water, water source - whether aquatic unit or water Evu,
- * Evu closest to water source.
- *
- */
+  /**
+   * Creates a Water Unit Data class.
+   * This has three variables - a boolean for permanence of present water, water source - whether aquatic unit or water Evu,
+   * Evu closest to water source.
+   */
   public static class WaterUnitData {
     public boolean        permanentWater;
-    public NaturalElement unit; // Water Source (Aquatic Unit or Water Evu)
-    public Evu            waterEvu; // Unit closest to water source
+    public NaturalElement unit;           // Water Source (Aquatic Unit or Water Evu)
+    public Evu            waterEvu;       // Unit closest to water source
   }
+
   private static ArrayList<ArrayList<WaterUnitData>> waterUnits;
 
   public static class RoadUnitData {
     public Roads road;
     public Evu   evu;
   }
+
   public static ArrayList<RoadUnitData> roadUnits = new ArrayList<RoadUnitData>();
 
   // Outer array is index by time step.
@@ -122,15 +121,17 @@ public final class Evu extends NaturalElement implements Externalizable {
   public ArrayList<ArrayList<RoadUnitData>> nearestRoad;
 
   public static double MAX_ROAD_DIST=5280*2; // 2 Miles in Feet
-/**
- * creates a Trail Unit Data class with two variables for trail and evu.
- *
- *
- */
+
+  /**
+   * creates a Trail Unit Data class with two variables for trail and evu.
+   *
+   *
+   */
   public static class TrailUnitData {
     public Trails trail;
     public Evu    evu;
   }
+
   public static ArrayList<TrailUnitData> trailUnits = new ArrayList<TrailUnitData>();
 
   public ArrayList<ArrayList<TrailUnitData>> nearestTrail;
@@ -141,9 +142,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   // Making this static avoids constant allocation/deallocation.
   private static LinkedList cumulProb = new LinkedList();
-  private static ProcessType[] spruceBeetles = new ProcessType[] {
-      ProcessType.LIGHT_SB, ProcessType.MEDIUM_SB, ProcessType.HIGH_SB};
-
+  private static ProcessType[] spruceBeetles = new ProcessType[] { ProcessType.LIGHT_SB, ProcessType.MEDIUM_SB, ProcessType.HIGH_SB };
 
   // Used to avoid excess temporaries.
   private static HashSet lifeformSet = new HashSet();
@@ -186,24 +185,25 @@ public final class Evu extends NaturalElement implements Externalizable {
   public static final String NOPROB_STR  = "NA"; // No Probability
   public static final String COMP_STR    = "COMP"; // Competition
   public static final String GAP_STR     = "GAP"; // Gap Process
-/**
- * Invokes an instance of the current simulation.
- * For a running simulation gets the current time step for simulation and returns the road status,
- * or if not running gets the total num time steps and returns road status based on that.
- * @return road status of current simulation
- */
+
+  /**
+   * Invokes an instance of the current simulation.
+   * For a running simulation gets the current time step for simulation and returns the road status,
+   * or if not running gets the total num time steps and returns road status based on that.
+   * @return road status of current simulation
+   */
   public Roads.Status getRoadStatusNew() {
     Simulation simulation = Simpplle.getCurrentSimulation();
     int ts = 0;
     if (simulation != null && simulation.isSimulationRunning()) {
       ts = simulation.getCurrentTimeStep();
-    }
-    else if (simulation != null) {
+    } else if (simulation != null) {
       ts = simulation.getNumTimeSteps();
     }
 
     return getRoadStatusNew(ts);
   }
+
   /**
    * Uses the parameter time step to calculate roads if there are any present, if there are no roads will return that info.
    * @param ts time step
@@ -218,29 +218,30 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (road != null) {
       return road.getSimStatus(ts);
-    }
-    else {
+    } else {
       return roadStatus;
     }
   }
-/**
- * Invokes an instance of the current simulation.
- * For a running simulation gets the current time step for simulation and returns the trail status,
- * or if not running gets the total num time steps and returns trail status based on that.
- * @return
- */
+
+  /**
+   * Invokes an instance of the current simulation.
+   * For a running simulation gets the current time step for simulation and returns the trail status,
+   * or if not running gets the total num time steps and returns trail status based on that.
+   * @return
+   */
   public Trails.Status getTrailStatus() {
     Simulation simulation = Simpplle.getCurrentSimulation();
     int ts = 0;
     if (simulation != null && simulation.isSimulationRunning()) {
       ts = simulation.getCurrentTimeStep();
-    }
-    else if (simulation != null) {
+    } else if (simulation != null) {
       ts = simulation.getNumTimeSteps();
     }
 
     return getTrailStatus(ts);
+
   }
+
   /**
    * * Uses the parameter time step to calculate associated trails if there are any present,
    * if there are no trails will return that info.
@@ -256,19 +257,18 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (trail != null) {
       return trail.getSimStatus(ts);
-    }
-    else {
+    } else {
       return Trails.Status.UNKNOWN;
     }
   }
-/**
- * Sets the road status.
- * @param status
- */
+
+  /**
+   * Sets the road status.
+   * @param status
+   */
   public void setRoadStatus(Roads.Status status) {
     roadStatus = status;
   }
-
 
   // Adjacent Units data
   public static final int  POSITION = 0;
@@ -287,26 +287,25 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   private static final ProcessType defaultInitialProcess = ProcessType.SUCCESSION;
 
-  // ** Parsing Stuff **
-  // ** End Parsing Stuff **
-
   /**
    * Initializes fields to default values.
    */
   public Evu() {
-    super();
-    htGrp           = null;
-    initialState    = null;
-    simData         = null;
-    unitNumber      = null;
-    adjacentData    = null;
-    acres           = 0;
 
-    ownership     = null;
-    roadStatus    = Roads.Status.UNKNOWN;
-    ignitionProb  = 0;
-    fmz           = Simpplle.getCurrentZone().getDefaultFmz();
-    specialArea   = null;
+    super();
+
+    htGrp               = null;
+    initialState        = null;
+    simData             = null;
+    unitNumber          = null;
+    adjacentData        = null;
+    acres               = 0;
+
+    ownership           = null;
+    roadStatus          = Roads.Status.UNKNOWN;
+    ignitionProb        = 0;
+    fmz                 = Simpplle.getCurrentZone().getDefaultFmz();
+    specialArea         = null;
 
     source              = null;
     associatedLandtype  = null;
@@ -320,36 +319,40 @@ public final class Evu extends NaturalElement implements Externalizable {
     dominantLifeform    = Lifeform.NA;
     latitude            = Double.NaN;
     longitude           = Double.NaN;
+
   }
 
   /**
-   * Constructor.  Takes in the id of the zone
+   * Initializes the fields to default values and sets the ID
    * @param newId
    */
   public Evu(int newId) {
     this();
     id = newId;
   }
-/**
- * Determines whether a given object is an Evu and return true if its id matches.
- */
+
+  /**
+   * Returns true if the object is an Evu with a matching ID
+   */
   public boolean equals(Object obj) {
     if ((obj != null) && (obj instanceof Evu)) {
       return id == ((Evu)obj).id;
     }
     return false;
   }
-/**
- * Id used in hash code
- */
+
+  /**
+   * Returns a hash code, which is the Evu ID
+   */
   public int hashCode() {
     return id;
   }
-/**
- * If simulation null or data is not to be discarded returns parameter time step, if simulation is running gets the current time step -1
- * @param timeStep time step to be indexed
- * @return
- */
+
+  /**
+   * If simulation null or data is not to be discarded returns parameter time step, if simulation is running gets the current time step -1
+   * @param timeStep time step to be indexed
+   * @return
+   */
   private int getSimDataIndex(int timeStep) {
     Simulation simulation = Simulation.getInstance();
     if (simulation == null ||
@@ -358,31 +361,25 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     int cStep;
+
     if (Simulation.getInstance().isSimulationRunning()) {
       cStep = simulation.getCurrentTimeStep();
-    }
-    else {
+    } else {
       cStep = simulation.getNumTimeSteps();
     }
+
     if (cStep <= simData.length) {
       return timeStep - 1;
     }
 
-    int diff  = cStep - timeStep;
+    int diff = cStep - timeStep;
 
-    int result = ((simData.length - 1) - diff);
+    return (simData.length - 1) - diff;
 
-    return result;
   }
-/**
- * Gets boolean value of high spruce beetle inquiry.
- * @return
- */
+
   public static boolean haveHighSpruceBeetle() { return haveHighSpruceBeetle; }
-/**
- *
- * @return The default initial process type.
- */
+
   public static ProcessType getDefaultInitialProcess() { return defaultInitialProcess; }
 
   /**
@@ -396,53 +393,61 @@ public final class Evu extends NaturalElement implements Externalizable {
            isAcresValid()            &&
            isInitialProcessValid());
   }
-/**
- * Gets the slope.  IF there are no associated land units, will return 0, else gets the associated land units and returns their slope.
- */
-  public float getSlope() {
-    if (assocLandUnits == null || assocLandUnits.size() == 0) {
-      return 0;
-    }
-    ExistingLandUnit unit = assocLandUnits.get(0);
-    return unit.getSlope();
-  }
-/**
- * Gets associated land unit arraylist
- * @return an array liste of associated land units.
- */
-  public ArrayList<ExistingLandUnit> getAssociatedLandUnits() { return assocLandUnits; }
+
   /**
-   * If the associated land unit arraylist does not contain passed elu, adds the existing land unit to the arraylist.
-   * @param elu
+   * Returns the slope of the associated land units, or zero if there are none.
+   */
+  public float getSlope() {
+    if (assocLandUnits == null || assocLandUnits.size() == 0) return 0;
+    return assocLandUnits.get(0).getSlope();
+  }
+
+  /**
+   * Returns associated land unit arraylist
+   * @return an array list of associated land units
+   */
+  public ArrayList<ExistingLandUnit> getAssociatedLandUnits() { return assocLandUnits; }
+
+  /**
+   * Adds an existing land unit (ELU) to the list of associated land units if it isn't already a member.
+   * @param elu existing land unit
    */
   public void addAssociatedLandUnit(ExistingLandUnit elu)  {
-    if (assocLandUnits == null) { assocLandUnits = new ArrayList<ExistingLandUnit>(); }
+    if (assocLandUnits == null) {
+      assocLandUnits = new ArrayList<ExistingLandUnit>();
+    }
     if (assocLandUnits.contains(elu) == false) {
       assocLandUnits.add(elu);
     }
   }
-/**
- * Check if an elu has road units.
- * @return true if there are roads.
- */
+
+  /**
+   * Returns true if this contains associated road units
+   * @return true if there are roads
+   */
   public boolean hasRoadUnits() {
     return (assocRoadUnits != null && assocRoadUnits.size() > 0);
   }
-/**
- * Method to get the Elu's associated Roads Arraylist
- * @return arraylist of associated roads
- */
-  public ArrayList<Roads> getAssociatedRoadUnits() { return assocRoadUnits; }
+
   /**
-   *  If the associated road unit arraylist does not contain passed road, adds the existing road to the arraylist.
+   * Returns an ArrayList of associated road units
+   * @return ArrayList of associated roads
+   */
+  public ArrayList<Roads> getAssociatedRoadUnits() { return assocRoadUnits; }
+
+  /**
+   * Adds a road to the list of associated road units if it isn't already a member.
    * @param roadUnit road unit to be added
    */
   public void addAssociatedRoadUnit(Roads roadUnit)  {
-    if (assocRoadUnits == null) { assocRoadUnits = new ArrayList<Roads>(); }
+    if (assocRoadUnits == null) {
+      assocRoadUnits = new ArrayList<Roads>();
+    }
     if (assocRoadUnits.contains(roadUnit) == false) {
       assocRoadUnits.add(roadUnit);
     }
   }
+
   /**
    * Check if an Evu has an associated road unit
    * @param data road unit data
@@ -450,12 +455,12 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return true if there are associated roads, false if there are none
    */
   private boolean hasAssociatedRoadUnit(RoadUnitData data, boolean onlyOpen) {
+
     if (assocRoadUnits == null || assocRoadUnits.size() == 0) {
       return false;
     }
 
-    // May need to add restrictions on type of road in future,
-    // thus the reason for the code like this.
+    // May need to add restrictions on type of road in future, thus the reason for the code like this.
     for(int i=0; i<assocRoadUnits.size(); i++) {
       Roads road = assocRoadUnits.get(i);
       if (onlyOpen && road.getSimStatus() != Roads.Status.OPEN) {
@@ -466,42 +471,46 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
-/**
- * Checks where an Evu has trails.
- * @return true if Evu has trails
- */
+
+  /**
+   * Checks where an Evu has trails.
+   * @return true if Evu has trails
+   */
   public boolean hasTrailUnits() {
     return (assocTrailUnits != null && assocTrailUnits.size() > 0);
   }
-/**
- * Gets the arraylist of trails associated with Evu.
- * @return Arraylist of trails associated with Evu
- */
-  public ArrayList<Trails> getAssociatedTrailUnits() { return assocTrailUnits; }
-  /**
 
-   *  If the associated road unit arraylist does not contain passed road, adds the existing road to the arraylist.
+  /**
+   * Gets the arraylist of trails associated with Evu.
+   * @return Arraylist of trails associated with Evu
+   */
+  public ArrayList<Trails> getAssociatedTrailUnits() { return assocTrailUnits; }
+
+  /**
+   * Adds a trail unit to the list of associated trail units if it isn't already a member.
    * @param trailUnit trail to be added
    */
   public void addAssociatedTrailUnit(Trails trailUnit)  {
-    if (assocTrailUnits == null) { assocTrailUnits = new ArrayList<Trails>(); }
+    if (assocTrailUnits == null) {
+      assocTrailUnits = new ArrayList<Trails>();
+    }
     if (assocTrailUnits.contains(trailUnit) == false) {
       assocTrailUnits.add(trailUnit);
     }
   }
-/**
- * Check if an Evu has any associated trail units
+
+  /**
+   * Check if an Evu has any associated trail units
    * @param data trail data
    * @param onlyOpen
    * @return true if there are associated roads, false if there are none
- */
+   */
   private boolean hasAssociatedTrailUnit(TrailUnitData data, boolean onlyOpen) {
     if (assocTrailUnits == null || assocTrailUnits.size() == 0) {
       return false;
     }
 
-    // May need to add restrictions on type of trail in future,
-    // thus the reason for the code like this.
+    // May need to add restrictions on type of trail in future, thus the reason for the code like this.
     for(int i=0; i<assocTrailUnits.size(); i++) {
       Trails trail = assocTrailUnits.get(i);
       if (onlyOpen && trail.getSimStatus() != Trails.Status.OPEN) {
@@ -512,19 +521,21 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
-/**
- * Calculates whether something is aquatic based on whether the species present in current state are water species.
- * @return true if is aquatic
- */
+
+  /**
+   * Calculates whether something is aquatic based on whether the species present in current state are water species.
+   * @return true if is aquatic
+   */
   private boolean isAquatic() {
     return (Species)getState(SimpplleType.SPECIES) == Species.WATER;
   }
-/**
- * Check if an Evu has an associated aquatic unit, based on whether there is associated aquatic units,
- * and whether an Eau has water present and that water is permanent.
- * @param isPermanentWater
- * @return
- */
+
+  /**
+   * Check if an Evu has an associated aquatic unit, based on whether there is associated aquatic units,
+   * and whether an Eau has water present and that water is permanent.
+   * @param isPermanentWater
+   * @return
+   */
   private boolean hasAssociatedAquaticUnit(WaterUnitData isPermanentWater) {
     if (assocAquaticUnits == null || assocAquaticUnits.size() == 0) {
       return false;
@@ -541,25 +552,30 @@ public final class Evu extends NaturalElement implements Externalizable {
     isPermanentWater.unit = null;
     return false;
   }
-/**
- * Empties the associated aquatic unit arraylist.
- */
-  public void clearAssociatedAquaticUnits() {
-    if (assocAquaticUnits != null) { assocAquaticUnits.clear(); }
-  }
+
   /**
-   * Gets the Eau arraylist containing associated aquatic units
-   * @return arraylist with associated Eau's
+   * Empties the associated aquatic unit arraylist.
+   */
+  public void clearAssociatedAquaticUnits() {
+    if (assocAquaticUnits != null) assocAquaticUnits.clear();
+  }
+
+  /**
+   * Gets the existing aquatic unit (EAU) arraylist containing associated aquatic units
+   * @return arraylist with associated EAUs
    */
   public ArrayList<ExistingAquaticUnit> getAssociatedAquaticUnits() {
     return assocAquaticUnits;
   }
+
   /**
-   * If the associated aquatic unit arraylist does not contain passed Eau, adds the Eau to the arraylist.
-   * @param eau Existing Aquatic Unit to be added
+   * Adds an existing aquatic unit (EAU) to the list of associated aquatic units if it isn't already a member.
+   * @param eau existing aquatic unit to be added
    */
   public void addAssociatedAquaticUnit(ExistingAquaticUnit eau) {
-    if (assocAquaticUnits == null) { assocAquaticUnits = new ArrayList<ExistingAquaticUnit>(); }
+    if (assocAquaticUnits == null) {
+      assocAquaticUnits = new ArrayList<ExistingAquaticUnit>();
+    }
     if (assocAquaticUnits.contains(eau) == false) {
       assocAquaticUnits.add(eau);
     }
@@ -570,43 +586,50 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Gets the string literal name of the Evu which includes EVU + the Evu ID.
    * @return a String, the Evu's name. (e.g. "EVU-1")
    */
-  public String getName () { return "EVU-" + id; }
+  public String getName() { return "EVU-" + id; }
 
   /**
    * Gets the Evu's id.
    * @return the Evu id.
    */
-  public int getId () { return id; }
-/**
- * Gets the X coordinate.
- * @return X coordinate
- */
+  public int getId() { return id; }
+
+  /**
+   * Gets the X coordinate.
+   * @return X coordinate
+   */
   public int getLocationX() { return location[X]; }
+
   /**
    * Sets X coordinate of a specified location.
    * @param x the coordinate to be set
    */
   public void setLocationX(int x) { location[X] = x; }
-/**
- * Gets the Y coordinate of a specified location.
- * @return the location's Y coordinate
- */
+
+  /**
+   * Gets the Y coordinate of a specified location.
+   * @return the location's Y coordinate
+   */
   public int getLocationY() { return location[Y]; }
+
   /**
    * Sets Y coordinate of a specified location.
    * @param y the coordinate to be set
    */
   public void setLocationY(int y) { location[Y] = y; }
-/**
- * Gets a location, which is a Point with X and Y Coordinates
- * @return point (x,y) which represents a location
- */
+
+  /**
+   * Gets a location, which is a Point with X and Y Coordinates
+   * @return point (x,y) which represents a location
+   */
   public Point getLocation() { return new Point(location[X],location[Y]); }
-/**
- * Gets the string literal of Land type
- * @return land type
- */
+
+  /**
+   * Gets the string literal of Land type
+   * @return land type
+   */
   public String getLandtype() { return associatedLandtype; }
+
   /**
    * Sets the land type of an Evu.
    * @param value the land type
@@ -619,9 +642,8 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public HabitatTypeGroup getHabitatTypeGroup () { return htGrp; }
 
-
   /**
-   * This is used to set the Evu data to a group that doesn't exist.  This allows the user to correct incorrect data.
+   * This is used to set the Evu data to a group that doesn't exist. This allows the user to correct incorrect data.
    * @param htGrpStr the invalid habitat type group
    */
   private void setInvalidHabitatTypeGroup(String htGrpStr) {
@@ -629,51 +651,61 @@ public final class Evu extends NaturalElement implements Externalizable {
     setHabitatTypeGroup(group);
   }
 
- /**
-  * Sets the habitat type group based on habitat group string and lifeform.  If habitat group does not exists sets passed habitat group as invalid.
-  * Else sets the habitat type group and gets the current vegetative simulation state of a lifeform and sets the vegsimstate to groups vegetative type.
-  * @param htGrpStr habitat type group
-  * @param currentLife lifeform to be used get current vegetative state
-  */
+  /**
+   * Sets the habitat type group based on habitat group string and lifeform. If habitat group does not exists sets
+   * passed habitat group as invalid. Else sets the habitat type group and gets the current vegetative simulation state
+   * of a lifeform and sets the vegsimstate to groups vegetative type.
+   * @param htGrpStr habitat type group
+   * @param currentLife lifeform to be used get current vegetative state
+   */
   public void setHabitatTypeGroup(String htGrpStr, Lifeform currentLife) {
     HabitatTypeGroup group;
 
     group = HabitatTypeGroup.findInstance(htGrpStr);
+
     if (group == null) {
+
       setInvalidHabitatTypeGroup(htGrpStr);
-    }
-    else {
+
+    } else {
+
       setHabitatTypeGroup(group);
 
       // State may have been invalid due to invalid group.
       // Need to check if that was the case.
       VegSimStateData state = getState(currentLife);
       VegetativeType newVeg = group.getVegetativeType(state.getVeg().toString());
-      if (newVeg == null) { newVeg = VegetativeType.UNKNOWN; }
+
+      if (newVeg == null) {
+        newVeg = VegetativeType.UNKNOWN;
+      }
 
       if (state != null) {
         setState(newVeg);
       }
     }
   }
-/**
- * Sets the habitat type group.
- * @param group the habitat type group to be set
- */
+
+  /**
+   * Sets the habitat type group.
+   * @param group the habitat type group to be set
+   */
   public void setHabitatTypeGroup(HabitatTypeGroup group) { htGrp = group; }
-/**
- * Check if the habitat type group is valid by passing to HabitatTypeGroups ifValid() method.
- * @return true if valid
- */
+
+  /**
+   * Check if the habitat type group is valid by passing to HabitatTypeGroups ifValid() method.
+   * @return true if valid
+   */
   public boolean isHabitatTypeGroupValid() {
     return (htGrp != null) ? htGrp.isValid() : false;
   }
-/**
- * Check if has lifeform passed is present in any seasons.
- * @param lifeform the lifeform to be checked
- * @param map the map which contains lifeforms and season
- * @return true if life form is present in any season
- */
+
+  /**
+   * Check if has lifeform passed is present in any seasons.
+   * @param lifeform the lifeform to be checked
+   * @param map the map which contains lifeforms and season
+   * @return true if life form is present in any season
+   */
   private boolean hasLifeformAnySeason(Lifeform lifeform, Flat3Map map) {
 //    if (map == null) { return false; }
     Season[] seasons = Climate.allSeasons;
@@ -685,6 +717,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
+
   /**
    * Uses Hibernate to query database if life form is present in any season.
    * @param lifeform life form being evaluated
@@ -726,6 +759,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     int cStep = (simulation != null) ? simulation.getCurrentTimeStep() : 0;
     return hasLifeform(lifeform,cStep);
   }
+
   /**
    * Check if an Evu has a specific life form, based on passed time step.
    * This is based on a present in any season query of the life from and the simulation state of passed time step.
@@ -748,8 +782,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
       if (index >= 0) {
         return hasLifeformAnySeason(lifeform,simData[index]);
-      }
-      else {
+      } else {
         return hasLifeformAnySeasonDatabase(lifeform, timeStep);
       }
     }
@@ -757,17 +790,17 @@ public final class Evu extends NaturalElement implements Externalizable {
       return hasLifeformAnySeason(lifeform,initialState);
     }
   }
-/**
- * This method contains some deprecated variables.  As of now it will return only 0 as the default time step... which will indicate initial state.
- * @return 0 indicating initial state (time step 0) is default time step.
- */
+
+  /**
+   * This method contains some deprecated variables.  As of now it will return only 0 as the default time step... which
+   * will indicate initial state.
+   * @return 0 indicating initial state (time step 0) is default time step.
+   */
   private int determineDefaultTimeStep() {
     Simulation simulation = Simulation.getInstance();
     if (simData != null && simulation != null) {
-      return (simulation.isSimulationRunning() ?
-              simulation.getCurrentTimeStep() : simulation.getNumTimeSteps());
-    }
-    else {
+      return (simulation.isSimulationRunning() ? simulation.getCurrentTimeStep() : simulation.getNumTimeSteps());
+    } else {
       return 0;
     }
   }
@@ -943,14 +976,14 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-/**
- * Removes a state based on a specified time step, life form, and season.
- * @param ts time step used to find state to be removed
- * @param lifeform the life form used to find state to be removed
- * @param season the season used to find state to be removed
- * @return
- * @throws RuntimeException - not caught or thrown...
- */
+  /**
+   * Removes a state based on a specified time step, life form, and season.
+   * @param ts time step used to find state to be removed
+   * @param lifeform the life form used to find state to be removed
+   * @param season the season used to find state to be removed
+   * @return
+   * @throws RuntimeException - not caught or thrown...
+   */
   private VegSimStateData removeState(int ts, Lifeform lifeform, Season season) {
     MultiKey key = LifeformSeasonKeys.getKey(lifeform,season);
     if (ts > 0) {
@@ -959,8 +992,7 @@ public final class Evu extends NaturalElement implements Externalizable {
         throw new RuntimeException("Attempted access to unavailable time step");
       }
       return (VegSimStateData)simData[index].remove(key);
-    }
-    else {
+    } else {
       return (VegSimStateData)initialState.remove(key);
     }
   }
@@ -968,6 +1000,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public VegSimStateData getStateLastSeason(int tStep) {
     return getStateLastSeason(tStep,dominantLifeform);
   }
+
   /**
    * Gets the state that occurred in the next to last season;
    * Note this is only used for legacy type of fire code.
@@ -1013,16 +1046,17 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return null;
   }
-/**
- * If state has trees, shrubs, or herbacious, has primary life is true.
- * If veg state is not null for each life form present gets the vegetative simulation state and adds to the buffere as:
- * "Species__Size Class__Density__Process"
- * If veg state is null, will use the primary life form to decide if needs to return NONE
- * @param tStep time step
- * @param kind
- * @return "Species__Size Class__Density__Process" if state is not null,
- * NONE if state is null and trees, Shrubs, herbacious are present, empty string buffer otherwise.
- */
+
+  /**
+   * If state has trees, shrubs, or herbacious, has primary life is true.
+   * If veg state is not null for each life form present gets the vegetative simulation state and adds to the buffere as:
+   * "Species__Size Class__Density__Process"
+   * If veg state is null, will use the primary life form to decide if needs to return NONE
+   * @param tStep time step
+   * @param kind
+   * @return "Species__Size Class__Density__Process" if state is not null,
+   * NONE if state is null and trees, Shrubs, herbacious are present, empty string buffer otherwise.
+   */
   public String getStateCombineLives(int tStep, SimpplleType.Types kind) {
     boolean      first = true;
     boolean      hasPrimaryLife=false;
@@ -1052,12 +1086,9 @@ public final class Evu extends NaturalElement implements Externalizable {
             buf.append(state.getProcess().toString());
             break;
         }
-      }
-      else if (hasPrimaryLife &&
-               (lives[i] == Lifeform.TREES ||
-                lives[i] == Lifeform.SHRUBS ||
-                lives[i] == Lifeform.HERBACIOUS))
-      {
+      } else if (hasPrimaryLife && (lives[i] == Lifeform.TREES ||
+                                    lives[i] == Lifeform.SHRUBS ||
+                                    lives[i] == Lifeform.HERBACIOUS)) {
         if (!first) { buf.append("__"); }
         buf.append("NONE");
         first = false;
@@ -1067,13 +1098,14 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
 
-/**
- * Clears the state data by set initial state and simulation data to null.  This class has been deprecated.
- */
+  /**
+   * Clears the state data by set initial state and simulation data to null.  This class has been deprecated.
+   */
   public void clearStateData() {
     initialState = null;
     simData      = null;
   }
+
   /**
    * If an area does not have multiple life forms enabled will set dominant life form as NA, then sets states based on
    * vegetative type passed and season.YEAR (often used as default setting).
@@ -1085,6 +1117,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     setState(newState,Season.YEAR);
   }
+
   /**
    * Overloaded setState() method .  If multiple life forms are not enabled in an area and there is a dominant life form this is used
    * to get the vegetative state.  If multiple life forms are enabled the life form is gotten based on the new states life form.
@@ -1097,15 +1130,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (Area.multipleLifeformsEnabled() == false) {
       if (dominantLifeform == null) { dominantLifeform = Lifeform.NA; }
       lifeform = dominantLifeform;
-    }
-    else {
+    } else {
       lifeform = newState.getSpecies().getLifeform();
     }
     VegSimStateData state = getState(lifeform);
     if (state == null) {
       setState(new VegSimStateData(getId(),newState),season);
-    }
-    else {
+    } else {
       state.setVegType(newState);
     }
     simData = null;
@@ -1134,12 +1165,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     dominantLifeform = Lifeform.getMostDominant(dominantLifeform, lifeform);
     simData = null;
   }
-/**
- *  Checks if habitat type group is valid, if so loops through the seasons and gets the vegetative state based on time step, parameter life form, and season.
- *  If the state's toString is empty, means the state is not valid.
- * @param lifeform
- * @return True if current state is valid.
- */
+
+  /**
+   * Checks if habitat type group is valid, if so loops through the seasons and gets the vegetative state based on
+   * time step, parameter life form, and season. If the state's toString is empty, means the state is not valid.
+   * @param lifeform
+   * @return True if current state is valid.
+   */
   public boolean isCurrentStateValid(Lifeform lifeform) {
     if (isHabitatTypeGroupValid() == false) { return false; }
 
@@ -1147,10 +1179,11 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     Season[] seasons = Climate.allSeasons;
     for (int i=0; i<seasons.length; i++) {
+
       VegSimStateData state = getState(ts,lifeform,seasons[i]);
+
       // 3 Feb 2009, added check for getVegType == null
-      // not sure if this is correct thing to do as do not know why
-      // it is null.
+      // not sure if this is correct thing to do as do not know why it is null.
       if (state == null || state.getVegType() == null) { continue; }
 
       if (htGrp.getVegetativeType(state.getVegType().toString()) == null) {
@@ -1159,83 +1192,86 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return true;
   }
-/**
- * Overloaded isCurrentStateValid().
-*  Checks if habitat type group is valid, if so loops through the seasons and gets the vegetative state based on time step, life form from all life forms [], and season.
- *  If the state's toString is empty, means the state is not valid.
- * @return True if current vegetative state not found invalid.
- */
+  /**
+   * Overloaded isCurrentStateValid().
+   * Checks if habitat type group is valid, if so loops through the seasons and gets the vegetative state based on time step, life form from all life forms [], and season.
+   * If the state's toString is empty, means the state is not valid.
+   * @return True if current vegetative state not found invalid.
+   */
   public boolean isCurrentStateValid() {
-    if (isHabitatTypeGroupValid() == false) { return false; }
+
+    if (isHabitatTypeGroupValid() == false) return false;
 
     Lifeform[] lives = Lifeform.getAllValues();
     ArrayList<VegSimStateData> states;
 
     for (Lifeform lifeform : lives) {
-      if (isCurrentStateValid(lifeform) == false) { return false; }
+      if (isCurrentStateValid(lifeform) == false) return false;
     }
     return true;
   }
-/**
- * Gets a treatment state based on parameter time step.
- * @param tStep time step used to get the Treatment
- * @return the saved state of treatment which will be the past treated state.
- */
+
+  /**
+   * Gets a treatment state based on parameter time step.
+   * @param tStep time step used to get the Treatment
+   * @return the saved state of treatment which will be the past treated state.
+   */
   private VegetativeType getPastTreatedState(int tStep) {
     Treatment treat = getTreatment(tStep);
 
     if (treat == null) {
       return null;
-    }
-    else {
+    } else {
       return treat.getSavedState();
     }
   }
-/**
- * Checks if a species is valid by first getting the vegetative state. The state is then used to get their species and results of its isValid methods.
- * @return True if species is valid.
- */
+
+  /**
+   * Checks if a species is valid by first getting the vegetative state. The state is then used to get their species and results of its isValid methods.
+   * @return True if species is valid.
+   */
   public boolean isSpeciesValid() {
     VegSimStateData state = getState();
     return (state != null ? state.getVeg().getSpecies().isValid() : false);
   }
+
   /**
- * Checks if a size class is valid by first getting the vegetative state.  The state is then used to get its size class and results of its isValid methods.
- * @return True if size class is valid.
+   * Checks if a size class is valid by first getting the vegetative state.  The state is then used to get its size class and results of its isValid methods.
+   * @return True if size class is valid.
    */
   public boolean isSizeClassValid() {
     VegSimStateData state = getState();
     return (state != null ? state.getVeg().getSizeClass().isValid() : false);
   }
+
   /**
- * Checks if a density is valid by first getting the vegetative state.  The state is then used to get its density and results of its isValid methods.
- * @return True if density is valid.
+   * Checks if a density is valid by first getting the vegetative state.  The state is then used to get its density and results of its isValid methods.
+   * @return True if density is valid.
    */
   public boolean isDensityValid() {
     VegSimStateData state = getState();
     return (state != null ? state.getVeg().getDensity().isValid() : false);
   }
+
   /**
- * Checks if an age is valid by first getting the vegetative state.  The state is then used to get its age.  If this is >=1 the age is valid.
- * @return True if age is valid.
+   * Checks if an age is valid by first getting the vegetative state.  The state is then used to get its age.  If this is >=1 the age is valid.
+   * @return True if age is valid.
    */
   public boolean isAgeValid() {
     VegSimStateData state = getState();
     return (state != null ? state.getVeg().getAge() >= 1 : false);
   }
-/**
- * Creates a new vegetative type group (component used in GUI).  First checks if this an already valid habitat type group, if not will create a
- * new vegetative type with species, size class, age, and density.
- * @param species the species to be set
- * @param sizeClass the size class of vegetative type to be set
- * @param age the age of vegetative type to be set
- * @param density the density of vegetative type to be set
- */
-  private void newVegTypeComponent(Species species,
-                                   SizeClass sizeClass,
-                                   int age,
-                                   Density density)
-  {
+
+  /**
+   * Creates a new vegetative type group (component used in GUI).  First checks if this an already valid habitat type group, if not will create a
+   * new vegetative type with species, size class, age, and density.
+   * @param species the species to be set
+   * @param sizeClass the size class of vegetative type to be set
+   * @param age the age of vegetative type to be set
+   * @param density the density of vegetative type to be set
+   */
+  private void newVegTypeComponent(Species species, SizeClass sizeClass, int age, Density density) {
+
     VegetativeType newVegState = null;
 
     if (isHabitatTypeGroupValid()) {
@@ -1248,22 +1284,19 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     updateInitialTreatmentSavedState(newVegState);
   }
-/**
- * Used to update the initial treatment saved state for a new vegetative type.
- * If treatment is null of there has been now old initial treatments, returns null, else creates a new initial treatment based on type of old initial treatment type.
- *
- * @param newVegState The newly added vegetative state to have initial treatment evaluated.
- */
+
+  /**
+   * Used to update the initial treatment saved state for a new vegetative type.
+   * If treatment is null of there has been now old initial treatments, returns null, else creates a new initial treatment based on type of old initial treatment type.
+   *
+   * @param newVegState The newly added vegetative state to have initial treatment evaluated.
+   */
   public void updateInitialTreatmentSavedState(VegetativeType newVegState) {
     // Update initial Treatment with new saved state.
-    if (treatment == null || treatment.size() == 0) {
-      return;
-    }
+    if (treatment == null || treatment.size() == 0) return;
 
     Treatment oldInitialTreat = (Treatment)treatment.get(0);
-    if (oldInitialTreat == null) {
-      return;
-    }
+    if (oldInitialTreat == null) return;
 
     Treatment newInitialTreat = Treatment.createInitialTreatment(oldInitialTreat.getType(), newVegState);
 
@@ -1271,6 +1304,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     addTreatment(newInitialTreat);
 
   }
+
   /**
    * Creates a new vegetative type group for a passed species.
    * This is done by creating a new object and adding the species, rather than updating the old veg type group.
@@ -1279,7 +1313,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public void setSpecies(Species newSpecies, Lifeform life) {
     VegSimStateData state = getState(life);
-    if (state == null) { return; }
+    if (state == null) return;
 
     newVegTypeComponent(newSpecies,
                         state.getVeg().getSizeClass(),
@@ -1287,16 +1321,16 @@ public final class Evu extends NaturalElement implements Externalizable {
                         state.getVeg().getDensity());
   }
 
-/**
+  /**
    * Creates a new vegetative type group for a parameter size class.
    * This is done by creating a new object and adding the size class, rather than updating the old veg type group.
    * @param newSizeClass the size class to be set
    * @param life used to find the vegetative state.
    *
- */
+   */
   public void setSizeClass(SizeClass newSizeClass, Lifeform life) {
     VegSimStateData state = getState(life);
-    if (state == null) { return; }
+    if (state == null) return;
 
     newVegTypeComponent(state.getVeg().getSpecies(),
                         newSizeClass,
@@ -1304,21 +1338,22 @@ public final class Evu extends NaturalElement implements Externalizable {
                         state.getVeg().getDensity());
   }
 
-/**
+  /**
    * Creates a new vegetative type state for a parameter density.
    * This is done by creating a new object and adding the density, rather than updating the old veg type group.
    * @param newDensity the density to be set
    * @param life used to find the vegetative state.
- */
+   */
   public void setDensity(Density newDensity, Lifeform life) {
     VegSimStateData state = getState(life);
-    if (state == null) { return; }
+    if (state == null) return;
 
     newVegTypeComponent(state.getVeg().getSpecies(),
                         state.getVeg().getSizeClass(),
                         state.getVeg().getAge(),
                         newDensity);
   }
+
   /**
    * Creates a new vegetative type state for a parameter age.
    * This is done by creating a new object and adding the age, rather than updating the old veg type group.
@@ -1327,7 +1362,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public void setAge(int age, Lifeform life) {
     VegSimStateData state = getState(life);
-    if (state == null) { return; }
+    if (state == null) return;
 
     newVegTypeComponent(state.getVeg().getSpecies(),
                         state.getVeg().getSizeClass(),
@@ -1340,6 +1375,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return acres are always returned as an int, then / by 10^2
    */
   public int getAcres() { return acres; }
+
   /**
    * Gets the Evu's Acres in float form.
    * @return acres returned as a float, by dividing int acres/10^2.
@@ -1347,38 +1383,42 @@ public final class Evu extends NaturalElement implements Externalizable {
   public float getFloatAcres() {
     return ( (float)acres / (float)Utility.pow(10,Area.getAcresPrecision()) );
   }
-/**
- * Sets an Evu's acres.  Acres is always stored as an int.
- */
+
+  /**
+   * Sets an Evu's acres.  Acres is always stored as an int.
+   */
   public void setAcres(int val) { acres = val; }
+
   /**
    * Sets an Evu's acres from a float value by rounding the float value multiplied by 10^2
    */
   public void setAcres(float val) {
     acres = Math.round(val * Utility.pow(10,Area.getAcresPrecision()));
   }
-/**
- * Check if Evu's acres is valid. This checks if acres are greater than 0 or there is a species present and acres is >=0
- *@return true if acres are valid
- */
+
+  /**
+   * Check if Evu's acres is valid. This checks if acres are greater than 0 or there is a species present and acres is >=0
+   *@return true if acres are valid
+   */
   public boolean isAcresValid() {
     RegionalZone zone = Simpplle.getCurrentZone();
-    int          tmpAcres = getAcres();
+    int tmpAcres = getAcres();
 
-    if (tmpAcres > 0 ||
-        ((Species)getState(SimpplleType.SPECIES) == Species.ND &&
-         tmpAcres >= 0)) {
+    if (tmpAcres > 0 || ((Species)getState(SimpplleType.SPECIES) == Species.ND && tmpAcres >= 0)) {
       return true;
     }
-    else { return false; }
+    else {
+      return false;
+    }
   }
 
   /**
-   * Gets the Evu's Fmz(Fire Management Zone)
+   * Gets the Fire Management Zone (FMZ)
    * @see simpplle.comcode.Fmz
    * @return an Fmz
    */
   public Fmz getFmz() { return fmz; }
+
   /**
    * Sets the Evu's Fire Management Zone by creating a new fire management zone instance from the current zone's FMZ, or
    * setting it without new instance using parameter name
@@ -1394,27 +1434,28 @@ public final class Evu extends NaturalElement implements Externalizable {
       setFmz(tmpFmz);
     }
   }
-/**
- * Overloaded setFmz().  Sets the fire management zone without referring to current zone fmz.
- * @param newFmz
- */
-  public void setFmz(Fmz newFmz) { fmz = newFmz; }
-/**
- * Checks if there is a fire management zone present in the current zone .
- * @return true if fire management zone is valid.
- */
-  public boolean isFmzValid() {
-    if (fmz == null) { return false; }
 
+  /**
+   * Overloaded setFmz().  Sets the fire management zone without referring to current zone fmz.
+   * @param newFmz
+   */
+  public void setFmz(Fmz newFmz) { fmz = newFmz; }
+
+  /**
+   * Checks if there is a fire management zone present in the current zone .
+   * @return true if fire management zone is valid.
+   */
+  public boolean isFmzValid() {
+    if (fmz == null) return false;
     return (Simpplle.getCurrentZone().getFmz(fmz.getName()) != null);
   }
 
   /**
-    * Make sure the currently assigned Fmz is valid.
-    * It can become invalid if the user load a new fmz file.
-    * else updates the fire mangement zone with either the default zone or a the new fmz name.
-    * @return true if the fmz was changed.
-    */
+   * Make sure the currently assigned Fmz is valid.
+   * It can become invalid if the user load a new fmz file.
+   * else updates the fire mangement zone with either the default zone or a the new fmz name.
+   * @return true if the fmz was changed.
+   */
   public boolean updateFmz() {
     Fmz          tmpFmz = getFmz();
     String       name   = tmpFmz.getName();
@@ -1423,27 +1464,33 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (zone.getFmz(name) == null) {
       fmz = zone.getDefaultFmz();
       return true;
-    }
-    else {
+    } else {
       // Make sure fmz is remapped to newly loaded one.
       fmz = zone.getFmz(name);
     }
     return false;
   }
-/**
- * Gets the Mountain Pine Beetle hazard.  Will either return the Ponderosa pine Mountain pine beetle hazard, or
- * LpMpbHaszard
- * @param process
- * @return
- */
+
+  /**
+   * Gets the Mountain Pine Beetle hazard.  Will either return the Ponderosa pine Mountain pine beetle hazard, or
+   * LpMpbHaszard
+   * @param process
+   * @return
+   */
   public MtnPineBeetleHazard.Hazard getMpbHazard(ProcessType process) {
-    if (process == ProcessType.PP_MPB) { return getPpMpbHazard(); }
-    else if (process == ProcessType.LIGHT_LP_MPB ||
-             process == ProcessType.SEVERE_LP_MPB) {
+    if (process == ProcessType.PP_MPB) {
+
+      return getPpMpbHazard();
+
+    } else if (process == ProcessType.LIGHT_LP_MPB ||
+               process == ProcessType.SEVERE_LP_MPB) {
+
       return getLpMpbHazard();
+
     }
     return null;
   }
+
   /**
    * Gets the value of LpMpbHazard, used during simulations.
    * @return an int.
@@ -1473,12 +1520,14 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void setPpMpbHazard(MtnPineBeetleHazard.Hazard hazard) {
     ppMpbHazard = hazard;
   }
-/**
- * Calculates the distance to Evu.  Compares an x,y point with an Evu x,y point.
- * @param evu
- * @return The area polygon width * the distance formula for point - evu
- */
+
+  /**
+   * Calculates the distance to Evu.  Compares an x,y point with an Evu x,y point.
+   * @param evu
+   * @return The area polygon width * the distance formula for point - evu
+   */
   public double distanceToEvu(Evu evu) {
+
     int x1, x2, y1, y2;
 
     x1 = location[X];
@@ -1492,19 +1541,20 @@ public final class Evu extends NaturalElement implements Externalizable {
     return Simpplle.getCurrentArea().getPolygonWidth() * Math.sqrt(val1 + val2);
 
   }
+
   /**
    * Converts distance to evu from feet to meters.
    * @param evu
    * @return Distance to Evu in meters
    */
   public double distancetoEvuMeters(Evu evu) {
-    double distFeet = distanceToEvu(evu);
-
-    return distFeet * 0.3048;
+    return distanceToEvu(evu) * 0.3048;
   }
-/**
- * Gets all permanent water units in an area's Evu's.  This includes if an evu isaquatic or has associated aquatic units with permantent water.
- */
+
+  /**
+   * Gets all permanent water units in an area's Evu's. This includes if an evu isaquatic or has associated aquatic
+   * units with permantent water.
+   */
   public static void findWaterUnits() {
     Evu[] allUnits = Simpplle.getCurrentArea().getAllEvu();
 
@@ -1516,8 +1566,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     waterUnits.add(list);
 
     WaterUnitData isPermanentWater;
-    Evu           evu;
-    boolean       isDrySuccession = Simpplle.getClimate().isDrySuccession();
+    Evu evu;
+    boolean isDrySuccession = Simpplle.getClimate().isDrySuccession();
+
     for(int i=0; i<allUnits.length; i++) {
       evu = allUnits[i];
       if (evu == null) { continue; }
@@ -1532,13 +1583,13 @@ public final class Evu extends NaturalElement implements Externalizable {
         isPermanentWater.unit = evu;
         isPermanentWater.waterEvu = evu;
         list.add(isPermanentWater);
-      }
-      else if (evu.hasAssociatedAquaticUnit(isPermanentWater)) {
+      } else if (evu.hasAssociatedAquaticUnit(isPermanentWater)) {
         isPermanentWater.waterEvu = evu;
         list.add(isPermanentWater);
       }
     }
   }
+
   /**
    * Calls to overloaded distanceToWater with arraylist conataining water unit data arraylist
    * @param isPermanentWater
@@ -1547,6 +1598,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public double distanceToWater(WaterUnitData isPermanentWater) {
     return distanceToWater(isPermanentWater, waterUnits.size()-1);
   }
+
   /**
    * This calculates the minimum distance to water by evaluating an areas Evu's water unit data.  Calculations are based on min distance to permanant water
    * or min temporary distance tow water, and always returns the lesser.
@@ -1581,8 +1633,7 @@ public final class Evu extends NaturalElement implements Externalizable {
           permWaterEvu = i;
           minPermDistWater = dist;
         }
-      }
-      else {
+      } else {
         if (dist < minTempDistWater) {
           tempWaterEvu = i;
           minTempDistWater = dist;
@@ -1590,58 +1641,62 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
 
-    if (permWaterEvu != -1 && tempWaterEvu != -1 &&
-        (minTempDistWater < minPermDistWater)) {
+    if (permWaterEvu != -1 && tempWaterEvu != -1 && (minTempDistWater < minPermDistWater)) {
       if (BisonGrazing.isSameCategory(minTempDistWater, minPermDistWater)) {
         minDistWater = minPermDistWater;
         waterEvu     = permWaterEvu;
-      }
-      else {
+      } else {
         minDistWater = minTempDistWater;
         waterEvu     = tempWaterEvu;
       }
-    }
-    else if (minTempDistWater < minPermDistWater) {
+    } else if (minTempDistWater < minPermDistWater) {
       minDistWater = minTempDistWater;
       waterEvu     = tempWaterEvu;
-    }
-    else if (minPermDistWater < minTempDistWater) {
+    } else if (minPermDistWater < minTempDistWater) {
       minDistWater = minPermDistWater;
       waterEvu     = permWaterEvu;
     }
 
-    if (waterEvu == -1) { return -1; }
+    if (waterEvu == -1) return -1;
+
     WaterUnitData tmp = list.get(waterEvu);
+
     isPermanentWater.permanentWater = tmp.permanentWater;
     isPermanentWater.unit = tmp.unit;
     isPermanentWater.waterEvu = tmp.waterEvu;
+
     return minDistWater;
 
   }
 
-/**
- * Gets the current areas road array and adds them to the Evu's road units arraylist.
- */
+  /**
+   * Gets the current areas road array and adds them to the Evu's road units arraylist.
+   */
   public static void findRoadUnits() {
+
     Roads[] allUnits = Simpplle.getCurrentArea().getAllRoads();
 
     roadUnits.clear();
 
     for(int i=0; i<allUnits.length; i++) {
-      if (allUnits[i] == null) { continue; }
+
+      if (allUnits[i] == null) continue;
+
       Evu evu = allUnits[i].getFirstVegUnit();
-      if (evu == null) { continue; }
+      if (evu == null) continue;
 
       RoadUnitData roadData = new RoadUnitData();
       roadData.road = allUnits[i];
       roadData.evu  = evu;
+
       roadUnits.add(roadData);
     }
   }
-/**
- * Calculates the distance of a nearest road at current time step.
- * @return  nearest road if there is road unit data or else returns MAX_ROAD_DIST
- */
+
+  /**
+   * Calculates the distance of a nearest road at current time step.
+   * @return  nearest road if there is road unit data or else returns MAX_ROAD_DIST
+   */
   public double findDistanceNearestRoad() {
     int ts = Simulation.getCurrentTimeStep();
     ArrayList<RoadUnitData> list = null;
@@ -1665,18 +1720,21 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (data == null) {
       return MAX_ROAD_DIST;
     }
+
     if (data.evu == this) {
       return 1;
-    }
-    else if (data.evu == null) {
+    } else if (data.evu == null) {
       return MAX_ROAD_DIST;
     }
+
     return distanceToEvu(data.evu);
+
   }
-/**
- * Creates an array list with capacity of 2 and adds the nearest road to it.
- *
- */
+
+  /**
+   * Creates an array list with capacity of 2 and adds the nearest road to it.
+   *
+   */
   public void findNearestRoad() {
     RoadUnitData data = new RoadUnitData();
     double dist = distanceToRoad(data,false);
@@ -1715,11 +1773,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     list.add(data);
 
   }
-/**
- * gets the nearest road from road unit data and checks if is open.  If that road unit data is returned
- * @param ts time step to be evaluated
- * @return the road unit data object of the nearest open orad
- */
+
+  /**
+   * gets the nearest road from road unit data and checks if is open.  If that road unit data is returned
+   * @param ts time step to be evaluated
+   * @return the road unit data object of the nearest open orad
+   */
   private RoadUnitData getNearestOpenRoad(int ts) {
     ArrayList<RoadUnitData> list = new ArrayList<RoadUnitData>(nearestRoad.get(ts));
     for (int i=0; i<list.size(); i++) {
@@ -1733,17 +1792,19 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return null;
   }
-/**
- * Calculates Evu distance to road.  IF current road status is open or always open.  The closest road to the evu is determined.
- * The minimum distance to road is then calculated.
- * @param roadData
- * @param onlyOpen true if road is always open
- * @return default return is MAX_ROAD_DIST if there is no road units, otherwise the minimum distance to road is returned
- */
+
+  /**
+   * Calculates Evu distance to road.  IF current road status is open or always open.  The closest road to the evu is determined.
+   * The minimum distance to road is then calculated.
+   * @param roadData
+   * @param onlyOpen true if road is always open
+   * @return default return is MAX_ROAD_DIST if there is no road units, otherwise the minimum distance to road is returned
+   */
   private double distanceToRoad(RoadUnitData roadData, boolean onlyOpen) {
+
     if (roadUnits == null || roadUnits.size() == 0) {
       roadData.road = null;
-      roadData.evu   = null;
+      roadData.evu  = null;
       return MAX_ROAD_DIST;
     }
 
@@ -1761,7 +1822,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (roadUnits == null || roadUnits.size() == 0) {
       roadData.road = null;
-      roadData.evu   = null;
+      roadData.evu  = null;
       return MAX_ROAD_DIST;
     }
 
@@ -1785,7 +1846,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (roadEvu == -1) {
       roadData.road = null;
-      roadData.evu   = null;
+      roadData.evu  = null;
       return MAX_ROAD_DIST;
     }
 
@@ -1794,18 +1855,21 @@ public final class Evu extends NaturalElement implements Externalizable {
     roadData.evu  = closestEvu;
 
     return minDistRoad;
-  }
-/**
- * Method to calculate the closest Evu to a road.  Loops therough the vegetative units and calculates the distance to an evu (based on road)
- * the lowest distance is determined which sets the closest Evu variable.
- * @param road
- * @return the closest Evu to a specified road
- */
-  private Evu findClosestRoadEvu(Roads road) {
-    ArrayList<Evu> vegUnits = road.getAssociatedVegUnits();
-    if (vegUnits == null) { return null; }
 
-    Evu    closestEvu = null;
+  }
+
+  /**
+   * Method to calculate the closest Evu to a road.  Loops therough the vegetative units and calculates the distance to an evu (based on road)
+   * the lowest distance is determined which sets the closest Evu variable.
+   * @param road
+   * @return the closest Evu to a specified road
+   */
+  private Evu findClosestRoadEvu(Roads road) {
+
+    ArrayList<Evu> vegUnits = road.getAssociatedVegUnits();
+    if (vegUnits == null) return null;
+
+    Evu closestEvu = null;
     double lowestDist = Double.MAX_VALUE;
     for (int i=0; i<vegUnits.size(); i++) {
       double dist = distanceToEvu(vegUnits.get(i));
@@ -1816,18 +1880,21 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return closestEvu;
   }
-/**
- * Changes the roads status to Open.
- */
+
+  /**
+   * Changes the roads status to Open.
+   */
   public void openRoads() {
     changeRoadsStatus(Roads.Status.OPEN);
   }
+
   /**
    * Changes the road status to closed.
    */
   public void closeRoads() {
     changeRoadsStatus(Roads.Status.CLOSED);
   }
+
   /**
    * Method to take a road status and change the Evu's associated road units to the passed status
    * @param status this can be open or closed.
@@ -1841,18 +1908,20 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-/**
- * Change trail status to Open.
- */
+  /**
+   * Change trail status to Open.
+   */
   public void openTrails() {
     changeTrailsStatus(Trails.Status.OPEN);
   }
+
   /**
    * Change Trail status to Closed.
    */
   public void closeTrails() {
     changeTrailsStatus(Trails.Status.CLOSED);
   }
+
   /**
    * Method to change trail status by taking in a trail status and changing the Evu's trails to that status
    * @param status this can either open or closed
@@ -1865,10 +1934,11 @@ public final class Evu extends NaturalElement implements Externalizable {
       trail.setSimStatus(status);
     }
   }
-/**
- * Gets the trail units in current area.  It then clears a trail unit arraylist.  Trails are added to arraylist if
- * they are in an area.
- */
+
+  /**
+   * Gets the trail units in current area.  It then clears a trail unit arraylist.  Trails are added to arraylist if
+   * they are in an area.
+   */
   public static void findTrailUnits() {
     Trails[] allUnits = Simpplle.getCurrentArea().getAllTrails();
 
@@ -1885,10 +1955,11 @@ public final class Evu extends NaturalElement implements Externalizable {
       trailUnits.add(trailData);
     }
   }
-/**
- * Calculates the distance to nearest trail at the current time step.
- * @return MAX_TRAIL_DIST if there are no trails, 1 if trail is in this evu, or the minimum distance to trail.
- */
+
+  /**
+   * Calculates the distance to nearest trail at the current time step.
+   * @return MAX_TRAIL_DIST if there are no trails, 1 if trail is in this evu, or the minimum distance to trail.
+   */
   public double findDistanceNearestTrail() {
     int ts = Simulation.getCurrentTimeStep();
     ArrayList<TrailUnitData> list = null;
@@ -1912,14 +1983,17 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (data == null) {
       return MAX_TRAIL_DIST;
     }
+
     if (data.evu == this) {
       return 1;
-    }
-    else if (data.evu == null) {
+    } else if (data.evu == null) {
       return MAX_TRAIL_DIST;
     }
+
     return distanceToEvu(data.evu);
+
   }
+
   /**
    * Gets the nearest trail from arraylist.
    */
@@ -1932,13 +2006,14 @@ public final class Evu extends NaturalElement implements Externalizable {
     list.add(data);
     nearestTrail.add(list);
   }
+
   /**
-   * Gets the nearest trail at current time step-1. Searches through to see if there is an open nearest trail.  If not will call to find a new nearest trail.
-   *
+   * Gets the nearest trail at current time step-1. Searches through to see if there is an open nearest trail.
+   * If not will call to find a new nearest trail.
    */
   public void updateNearestTrail() {
-    int ts = Simulation.getCurrentTimeStep();
 
+    int ts = Simulation.getCurrentTimeStep();
 
     ArrayList<TrailUnitData> list = new ArrayList<TrailUnitData>(nearestTrail.get(ts-1));
     nearestTrail.add(list);
@@ -1958,11 +2033,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     double dist = distanceToTrail(data,true);
     list.add(data);
   }
-/**
- * Calculates the nearest open trail by going through the nearesttrail array list at passed time step.
- * @param ts time step to be evaluated
- * @return closest open trail data, if none is found  - null
- */
+
+  /**
+   * Calculates the nearest open trail by going through the nearesttrail array list at passed time step.
+   * @param ts time step to be evaluated
+   * @return closest open trail data, if none is found  - null
+   */
   private TrailUnitData getNearestOpenTrail(int ts) {
     ArrayList<TrailUnitData> list = new ArrayList<TrailUnitData>(nearestTrail.get(ts));
     for (int i=0; i<list.size(); i++) {
@@ -1976,14 +2052,15 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return null;
   }
-/**
- * Calculates distance to a trail.  If no trail data it will return MAX_TRAIL_DIST, else it does a shortest path search,
- * will return 1 if trail is within Evu, else loops through the trail units arrayList checks if a trail is open and computes the trail
- * with minimum distance.
- * @param trailData
- * @param onlyOpen true if trail is too be counted only when open
- * @return the minimum distance to a trail
- */
+
+  /**
+   * Calculates distance to a trail.  If no trail data it will return MAX_TRAIL_DIST, else it does a shortest path search,
+   * will return 1 if trail is within Evu, else loops through the trail units arrayList checks if a trail is open and computes the trail
+   * with minimum distance.
+   * @param trailData
+   * @param onlyOpen true if trail is too be counted only when open
+   * @return the minimum distance to a trail
+   */
   private double distanceToTrail(TrailUnitData trailData, boolean onlyOpen) {
     if (trailUnits == null || trailUnits.size() == 0) {
       trailData.trail = null;
@@ -2013,7 +2090,6 @@ public final class Evu extends NaturalElement implements Externalizable {
       TrailUnitData tmp = trailUnits.get(i);
       if (onlyOpen && tmp.trail.getSimStatus() != Trails.Status.OPEN) { continue; }
 
-
       evu = findClosestTrailEvu(tmp.trail);
       if (evu == null) { continue; }
 
@@ -2027,7 +2103,6 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
 
-
     if (trailEvu == -1) {
       trailData.trail = null;
       trailData.evu   = null;
@@ -2040,12 +2115,13 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return minDistTrail;
   }
-/**
- * Calculates the closest Evu to a trail.  Shortest distance algorithm.  Starts by setting the distance to max, goes through Evu units,
- * and calculates the shortest distance, and gets the closest Evu associated with the closest trail.
- * @param trail the trail being evaluated
- * @return the closest Evu to the trail
- */
+
+  /**
+   * Calculates the closest Evu to a trail.  Shortest distance algorithm.  Starts by setting the distance to max, goes through Evu units,
+   * and calculates the shortest distance, and gets the closest Evu associated with the closest trail.
+   * @param trail the trail being evaluated
+   * @return the closest Evu to the trail
+   */
   private Evu findClosestTrailEvu(Trails trail) {
     ArrayList<Evu> vegUnits = trail.getAssociatedVegUnits();
     if (vegUnits == null) { return null; }
@@ -2062,10 +2138,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     return closestEvu;
   }
 
-/**
- * Gets the spreading process for the current vegetative simulation state.
- * @return the spreading process
- */
+  /**
+   * Gets the spreading process for the current vegetative simulation state.
+   * @return the spreading process
+   */
   private ProcessOccurrence findSpreadEvent() {
     VegSimStateData state = getState();
     if (state == null) { return null; }
@@ -2074,14 +2150,15 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return Simpplle.getAreaSummary().findSpreadingProcessEvent(this,process);
   }
+
   /**
    * Gets the current simulation time step and uses the time step and dominant fire life form object to get the fire process for
    * for the state.
    * @return the fire spread process event at current simulation time step.
    */
   private ProcessOccurrence findFireSpreadEvent() {
-    Lifeform    life = getDominantLifeformFire();
-    int         cTime   = Simpplle.getCurrentSimulation().getCurrentTimeStep();
+    Lifeform life  = getDominantLifeformFire();
+    int      cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
     VegSimStateData state = getState(cTime,life);
     if (state == null) { return null; }
@@ -2100,12 +2177,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     ProcessOccurrence event = findSpreadEvent();
     return ( (event != null) ? event.getUnit() : this);
   }
+
   public Evu getOriginUnitFire() {
     ProcessOccurrence event = findFireSpreadEvent();
     return ( (event != null) ? event.getUnit() : this);
   }
-
-
 
   /**
    * Gets the Origin Process that spread to this unit.
@@ -2121,7 +2197,6 @@ public final class Evu extends NaturalElement implements Externalizable {
     return ((event != null) ? event.getProcess() : getState().getProcess());
   }
 
-
   /**
    * Gets the Process that occurred during the simulation time
    * step provided as the parameter, which will be the last season process unless there is not one.
@@ -2134,21 +2209,23 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return ProcessType.NONE;
   }
-/**
- * Checks if an Evu has a specified process at a specific time step.
- * @param tStep the time step being evaluated
- * @param process the process being evaluated
- * @return true if has the process being evaluated.
- */
+
+  /**
+   * Checks if an Evu has a specified process at a specific time step.
+   * @param tStep the time step being evaluated
+   * @param process the process being evaluated
+   * @return true if has the process being evaluated.
+   */
   public boolean hasProcess(int tStep, ProcessType process) {
     return hasProcess(tStep,dominantLifeform,process);
   }
-/**
- * Loops through all the life forms in the Evu to check if the specified process exists within the Evu
- * @param tStep the time step being evaluated
- * @param process the process being evaluated
- * @return true if the Evu has the process
- */
+
+  /**
+   * Loops through all the life forms in the Evu to check if the specified process exists within the Evu
+   * @param tStep the time step being evaluated
+   * @param process the process being evaluated
+   * @return true if the Evu has the process
+   */
   public boolean hasProcessAnyLifeform(int tStep, ProcessType process) {
     Lifeform[] allLives = Lifeform.getAllValues();
     for (int i=0; i<allLives.length; i++) {
@@ -2156,10 +2233,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
-/**
- * Searches to see if fire is present in the Evu life form at the current simulation time step.
- * @return true if process type is either SRF (Stand Replacing Fire), LSF, or MSF (Mixed Severity Fire
- */
+
+  /**
+   * Searches to see if fire is present in the Evu life form at the current simulation time step.
+   * @return true if process type is either SRF (Stand Replacing Fire), LSF, or MSF (Mixed Severity Fire
+   */
   public boolean hasFireAnyLifeform() {
     Lifeform[] allLives = Lifeform.getAllValues();
     int cStep = Simulation.getCurrentTimeStep();
@@ -2170,6 +2248,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
+
   /**
    * Checks if there is a life form present in Evu that has 'locking' probability - (getProb = L)
    * @return true if has any life form has locking probability
@@ -2183,14 +2262,15 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
-/**
- * Checks whether a the vegetative siumlation state at a particular time step and for a specified life form contains
- * a specific process.
- * @param tStep the time step used to returned the query vegetative state
- * @param lifeform the life form used to return the query vegetative state
- * @param process the process being evaluated
- * @return true if the Evu has the process at specified time step and for specific life form.
- */
+
+  /**
+   * Checks whether a the vegetative siumlation state at a particular time step and for a specified life form contains
+   * a specific process.
+   * @param tStep the time step used to returned the query vegetative state
+   * @param lifeform the life form used to return the query vegetative state
+   * @param process the process being evaluated
+   * @return true if the Evu has the process at specified time step and for specific life form.
+   */
   private boolean hasProcess(int tStep, Lifeform lifeform, ProcessType process) {
     VegSimStateData state = getState(tStep,lifeform);
     return (state != null) ? state.getProcess().equals(process) : false;
@@ -2203,14 +2283,15 @@ public final class Evu extends NaturalElement implements Externalizable {
   public boolean checkPastProcesses(ProcessType[] processes) {
     return processOccurredLastNDecades(processes,1);
   }
-/**
- * Checks if one or more specific processes occurred in the last N number of decades for the current simulation at the current
- * time step.  If time steps are yearly, multiplies int n by 10.  Else gets current simulation time step and subtracts the number of time steps
- * from it.  Loops through the parameter process array and evaluates whether the process is the state processes.
- * @param processes array of processes to be checked if they occurred in Evu in last N number of decades.
- * @param n - algebraic variable n which represents number of decades i.e. n = 2 == 2 decades.
- * @return true if process occurred in last N Decades
- */
+
+  /**
+   * Checks if one or more specific processes occurred in the last N number of decades for the current simulation at the current
+   * time step.  If time steps are yearly, multiplies int n by 10.  Else gets current simulation time step and subtracts the number of time steps
+   * from it.  Loops through the parameter process array and evaluates whether the process is the state processes.
+   * @param processes array of processes to be checked if they occurred in Evu in last N number of decades.
+   * @param n - algebraic variable n which represents number of decades i.e. n = 2 == 2 decades.
+   * @return true if process occurred in last N Decades
+   */
   private boolean processOccurredLastNDecades(ProcessType[] processes, int n) {
     Simulation   simulation = Simpplle.getCurrentSimulation();
     ProcessType  process;
@@ -2228,19 +2309,18 @@ public final class Evu extends NaturalElement implements Externalizable {
     return false;
   }
 
-/**
- * Method to check if a process has occurred at all in the past based only on proceses, variable n representing time steps being evaluated.
- *
- * @param processes the array of processes to be evaluated within an Evu for past n time steps
- * @param n variable representing time steps
- * @param checkCurrentTimeStep true if should include current time step in query
- * @return true if process occurred in specified number of time steps
- */
-  private boolean processOccurredAllPastNTimeSteps(ProcessType[] processes, int n,
-      boolean checkCurrentTimeStep)
-  {
+  /**
+   * Method to check if a process has occurred at all in the past based only on proceses, variable n representing time steps being evaluated.
+   *
+   * @param processes the array of processes to be evaluated within an Evu for past n time steps
+   * @param n variable representing time steps
+   * @param checkCurrentTimeStep true if should include current time step in query
+   * @return true if process occurred in specified number of time steps
+   */
+  private boolean processOccurredAllPastNTimeSteps(ProcessType[] processes, int n, boolean checkCurrentTimeStep) {
     return processOccurredAllPastNTimeSteps(null,processes,n,checkCurrentTimeStep);
   }
+
   /**
    * Checks if a process occurred in past time step quantity specified in passed int n argument. Gets the current simulation and time step
    * and time step.  If current time step is included counts backward from them, else subtracts 1 from it.  The time steps are then counted down
@@ -2252,10 +2332,8 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param checkCurrentTimeStep true if should include current time step in query
    * @return
    */
-  private boolean processOccurredAllPastNTimeSteps(Lifeform lifeform,
-      ProcessType[] processes, int n,
-      boolean checkCurrentTimeStep)
-  {
+  private boolean processOccurredAllPastNTimeSteps(Lifeform lifeform, ProcessType[] processes, int n, boolean checkCurrentTimeStep) {
+
     Simulation  simulation = Simpplle.getCurrentSimulation();
     int         cTime    = simulation.getCurrentTimeStep();
     boolean     found=false;
@@ -2294,6 +2372,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void updateCurrentProcess(Lifeform lifeform, ProcessType p) {
     updateCurrentProcess(lifeform,p,null);
   }
+
   /**
    * Overloaded updateCurrenProcess method.  Requires only the process type and then uses the areas current life form if there is one to get
    * update the current process.
@@ -2302,11 +2381,11 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void updateCurrentProcess(ProcessType p) {
     if (Area.multipleLifeformsEnabled()) {
       updateCurrentProcess(Area.currentLifeform,p);
-    }
-    else {
+    } else {
       updateCurrentProcess(null, p);
     }
   }
+
   /**
    * Overloaded updateCurrenProcess method.  Updates the current process by process type and season.
    * @param p the new process
@@ -2315,6 +2394,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void updateCurrentProcess(ProcessType p, Climate.Season season) {
     updateCurrentProcess(null, p, season);
   }
+
   /**
    * Overloaded updateCurrenProcess method.  Uses life form to get current vegetative sim state.  Then sets teh process for the
    * current state and sets the season if season does not equal null.
@@ -2329,6 +2409,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       state.setSeason(season);
     }
   }
+
   /**
    * Updates the current state for all life forms.  Loops through all life forms and gets the state, then sets the process and probability for thoses states.
    * @param p the new process
@@ -2345,23 +2426,26 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
   }
-/**
- * Gets the initial process for vegetative siumlation state.
- * @return the initial process for a veg simulation state
- */
+
+  /**
+   * Gets the initial process for vegetative siumlation state.
+   * @return the initial process for a veg simulation state
+   */
   public ProcessType getInitialProcess() {
     return getState(0).getProcess();
   }
+
   /**
    *Gets the initial treatment.
    * @returnthe initial treatment
    */
   public Treatment getInitialTreatment() { return getTreatment(0,false); }
-/**
- * Sets the initial process for a given state, by making an invalid instance (way to make new instances),
- * setting that instances initial type to passed process type, then passes to the overloaded setInitialProcess()
- * @param processName the string literal used to find process type
- */
+
+  /**
+   * Sets the initial process for a given state, by making an invalid instance (way to make new instances),
+   * setting that instances initial type to passed process type, then passes to the overloaded setInitialProcess()
+   * @param processName the string literal used to find process type
+   */
   public void setInitialProcess(String processName) {
     ProcessType pt = ProcessType.get(processName);
     if (pt == null) {
@@ -2371,27 +2455,30 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     setInitialProcess(pt);
   }
-/**
- * Sets the initial process for a specified process, by betting the initial state - time step = 0 and setting the process for that
- * state as the passed process.
- * @param p the initial process to be set
- */
+
+  /**
+   * Sets the initial process for a specified process, by betting the initial state - time step = 0 and setting the process for that
+   * state as the passed process.
+   * @param p the initial process to be set
+   */
   public void setInitialProcess(ProcessType p) {
     VegSimStateData state = getState(0);
     state.setProcess(p);
   }
-/**
- * Checks if the initial process is valid.
- * @return true if initial process is not an invalid process
- */
+
+  /**
+   * Checks if the initial process is valid.
+   * @return true if initial process is not an invalid process
+   */
   public boolean isInitialProcessValid() {
     return ((Process.findInstance(getInitialProcess())instanceof InvalidProcess) == false);
   }
-/**
- * Gets the probabilitiy at a particular time step.  Uses that in a switch to get the string literal version of the probability.
- * @param tStep the time step being evaluated; used to get the states probability
- * @return the string literal version of probability type
- */
+
+  /**
+   * Gets the probabilitiy at a particular time step.  Uses that in a switch to get the string literal version of the probability.
+   * @param tStep the time step being evaluated; used to get the states probability
+   * @return the string literal version of probability type
+   */
   public String getProbStr(int tStep) {
     NumberFormat nf = NumberFormat.getInstance();
     nf.setMaximumFractionDigits(2);
@@ -2410,11 +2497,12 @@ public final class Evu extends NaturalElement implements Externalizable {
       default:   return nf.format((tmpProb/100));
     }
   }
-/**
- * Gets the float probability based on the integer probability.  for all cases returns probability/100 by default
- * @param prob probability
- * @return the probability as a float
- */
+
+  /**
+   * Gets the float probability based on the integer probability.  for all cases returns probability/100 by default
+   * @param prob probability
+   * @return the probability as a float
+   */
   public static float getFloatProb(int prob) {
     switch (prob) {
       case D:
@@ -2445,11 +2533,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     Lifeform lifeform = Area.currentLifeform;
     updateCurrentProb(lifeform,prob);
   }
-/**
- * Gets the process probability.
- * @param pt the process being evaluated
- * @return null if no process or by default, else gets the process probability if later process probability is not needed
- */
+
+  /**
+   * Gets the process probability.
+   * @param pt the process being evaluated
+   * @return null if no process or by default, else gets the process probability if later process probability is not needed
+   */
   public ProcessProbability findProcessProb(ProcessType pt) {
     if (pt == null) { return null; }
 
@@ -2467,7 +2556,6 @@ public final class Evu extends NaturalElement implements Externalizable {
     return null;
   }
 
-
   /**
    * Gets the previously calculated probability of Process p occurring
    * for this Evu.
@@ -2479,6 +2567,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (probData != null) { return probData.probability; }
     return 0;
   }
+
   /**
    * Sets the probability of a process occurring for this Evu.
    * @param pt process whose probability will be set
@@ -2490,21 +2579,22 @@ public final class Evu extends NaturalElement implements Externalizable {
       probData.probability = prob;
     }
   }
-/**
- * Gets the float version of process probability.
- * @param p the process whose probability is sought
- * @return the float version of a specified process proability
- */
+
+  /**
+   * Gets the float version of process probability.
+   * @param p the process whose probability is sought
+   * @return the float version of a specified process proability
+   */
   public float getFloatProcessProb(ProcessType p) {
     return ( (float)getProcessProb(p) / (float)Utility.pow(10,2) );
   }
 
- /**
-  * Attempts to determine whether this unit spread an average of extreme fire.
-  * This is used by the Emissions class.
-  * @param tStep time step being evaluated
-  * @return the probability of a fire spread event, returns NOPROB if state is null or state does not have any fires.
-  */
+  /**
+   * Attempts to determine whether this unit spread an average of extreme fire.
+   * This is used by the Emissions class.
+   * @param tStep time step being evaluated
+   * @return the probability of a fire spread event, returns NOPROB if state is null or state does not have any fires.
+   */
   public int getFireSpreadType(int tStep) {
     VegSimStateData state = getState(tStep);
     if (state == null) { return NOPROB; }
@@ -2512,7 +2602,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     ProcessType  processType = getState(tStep).getProcess();
 
     if ((processType.equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
-        (processType.equals(ProcessType.MIXED_SEVERITY_FIRE)  == false)  &&
+        (processType.equals(ProcessType.MIXED_SEVERITY_FIRE)  == false) &&
         (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE)  == false)) {
       return NOPROB;
     }
@@ -2522,8 +2612,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (tmpProb == Evu.S || tmpProb == Evu.SE) {
       return tmpProb;
-    }
-    else {
+    } else {
       AreaSummary areaSummary = Simpplle.getAreaSummary();
 
       return areaSummary.getOriginFireSpreadType(this,tStep);
@@ -2544,8 +2633,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (treatment.size() == 0) {
       treat = null;
-    }
-    else {
+    } else {
       treat  = (Treatment) treatment.lastElement();
       status = treat.getStatus();
       if (status != Treatment.EFFECTIVE &&
@@ -2564,14 +2652,15 @@ public final class Evu extends NaturalElement implements Externalizable {
   public boolean checkPastTreatments(TreatmentType[] treatments) {
     return treatmentOccurredLastNDecades(treatments,1);
   }
-/**
- * Method to check if a treatment has occurred at all in the past based only on treatment,
- * variable n representing time steps being evaluated.
- *
- * @param treatments the array of treatments to be evaluated within an Evu for past n time steps
- * @param n variable representing time steps
- * @return true if treatment occurred in specified number of time steps
- */
+
+  /**
+   * Method to check if a treatment has occurred at all in the past based only on treatment,
+   * variable n representing time steps being evaluated.
+   *
+   * @param treatments the array of treatments to be evaluated within an Evu for past n time steps
+   * @param n variable representing time steps
+   * @return true if treatment occurred in specified number of time steps
+   */
   private boolean treatmentOccurredLastNDecades(TreatmentType[] treatments, int n) {
     Simulation   simulation = Simpplle.getCurrentSimulation();
     Treatment    treat;
@@ -2595,18 +2684,20 @@ public final class Evu extends NaturalElement implements Externalizable {
   public Treatment getCurrentTreatment() {
     return getTreatment(Simulation.getInstance().getCurrentTimeStep());
   }
-/**
- * Gets the treatment in the Evu at a particular time step.
- * @param tStep time step being evaluated
- * @return the treatment occurring at a specified time step.
- */
+
+  /**
+   * Gets the treatment in the Evu at a particular time step.
+   * @param tStep time step being evaluated
+   * @return the treatment occurring at a specified time step.
+   */
   public Treatment getTreatment(int tStep) {
     return getTreatment(tStep,true);
   }
-/**
- * Gets the vector for a particular set of treatments.
- * @return a vector of treatments.
- */
+
+  /**
+   * Gets the vector for a particular set of treatments.
+   * @return a vector of treatments.
+   */
   public Vector getTreatments() { return treatment; }
 
   /**
@@ -2640,10 +2731,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     return treat;
   }
 
- /**
-  * Once a treatment has been performed, store the information in the unit for future use.
-  * @param treat the treatment to be added
-  */
+  /**
+   * Once a treatment has been performed, store the information in the unit for future use.
+   * @param treat the treatment to be added
+   */
   public void addTreatment(Treatment treat) {
     if (treat == null) { return; }
 
@@ -2653,11 +2744,12 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     treatment.addElement(treat);
   }
-/**
- * Applies specified treatment on a specified vegetative type.
- * @param treat the treatment being applied
- * @param newVegType the vegetative type being treated
- */
+
+  /**
+   * Applies specified treatment on a specified vegetative type.
+   * @param treat the treatment being applied
+   * @param newVegType the vegetative type being treated
+   */
   public void applyTreatment(Treatment treat, VegetativeType newVegType) {
     addTreatment(treat);
     if (newVegType != null) {
@@ -2668,23 +2760,26 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     dominantLifeform = Lifeform.findDominant(getLifeforms());
   }
-/**
- * Sets the data for adjacent Evu
- * @param newAdjData the adjacent data array being set
- */
+
+  /**
+   * Sets the data for adjacent Evu
+   * @param newAdjData the adjacent data array being set
+   */
   public void setAdjacentData(AdjacentData[] newAdjData) {
     adjacentData = newAdjData;
   }
+
   /**
    * Gets the data for adjacent Evu
    * @return the Adjacent Evu data array
    */
   public AdjacentData[] getAdjacentData() { return adjacentData; }
-/**
- * Loops through adjacent evu's in an area, counts them and checks their ID's validity.
- * If the count of their Id's validity is same as adjacent data array length returns , else will create a new adjacent evu array limited in size
- * to only valid count and transfer adjacent evu data to it.
- */
+
+  /**
+   * Loops through adjacent evu's in an area, counts them and checks their ID's validity.
+   * If the count of their Id's validity is same as adjacent data array length returns , else will create a new adjacent evu array limited in size
+   * to only valid count and transfer adjacent evu data to it.
+   */
   public void removeInvalidAdjacents() {
     Area           area = Simpplle.getCurrentArea();
     AdjacentData[] newData;
@@ -2708,11 +2803,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     adjacentData = newData;
     newData      = null;
   }
-/**
- * Checks if specified Evu is neighboring to this Evu
- * @param unit the evu being evaluated.
- * @return true if Evu being evaluated is adjacent to this Evu
- */
+
+  /**
+   * Checks if specified Evu is neighboring to this Evu
+   * @param unit the evu being evaluated.
+   * @return true if Evu being evaluated is adjacent to this Evu
+   */
   public boolean isNeighbor(Evu unit) {
     for (int i=0; i<adjacentData.length; i++) {
       if (adjacentData[i].evu.getId() == unit.id) {
@@ -2721,11 +2817,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
-/**
- * Calculates the position of an adjacent evu relative to this Evu.  Choices are N - next to, A - above, B - below, or Unknown.
- * @param adj the adjacent Evu ID
- * @return the char representing relative postion of adjacent evu
- */
+
+  /**
+   * Calculates the position of an adjacent evu relative to this Evu.  Choices are N - next to, A - above, B - below, or Unknown.
+   * @param adj the adjacent Evu ID
+   * @return the char representing relative postion of adjacent evu
+   */
   public char getAdjPosition(Evu adj) {
     int adjId = adj.getId();
 
@@ -2777,10 +2874,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return strList;
   }
-/**
- * Gets the string literal array of this Evu's associated Aquatic Units.
- * @return the associated Aquatic Units of this Evu
- */
+
+  /**
+   * Gets the string literal array of this Evu's associated Aquatic Units.
+   * @return the associated Aquatic Units of this Evu
+   */
   public String[] getAssosAqauticUnitDisplay() {
     if (assocAquaticUnits == null) { return null; }
 
@@ -2794,9 +2892,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return strList;
   }
-/**
- * Sets the state at begining time step.  Sets the life forms, probability, season, succession, treatment thinning cycle.
- */
+
+  /**
+   * Sets the state at begining time step.  Sets the life forms, probability, season, succession, treatment thinning cycle.
+   */
   public void setBeginTimeStepState() {
     int cStep = Simulation.getCurrentTimeStep();
 
@@ -2859,7 +2958,6 @@ public final class Evu extends NaturalElement implements Externalizable {
     else {
       cycleSizeClassCount++;
     }
-
   }
 
   /**
@@ -2895,7 +2993,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     return lives;
+
   }
+
   /**
    * Gets the vegetative simulation state of a prior season for this Evu.
    * @param ts time step used to get current state.
@@ -2930,13 +3030,15 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return state;
   }
-/**
- * Updates the current state with a new vegetative type.
- * @param vegType the new vegetative type being set.
- */
+
+  /**
+   * Updates the current state with a new vegetative type.
+   * @param vegType the new vegetative type being set.
+   */
   public void updateState(VegetativeType vegType) {
     getState().setVegType(vegType);
   }
+
   /**
    * Uses the current simulation time step along with life form to get current vegetative state, then sets a process, probability, and season for that state.
    *
@@ -2953,29 +3055,29 @@ public final class Evu extends NaturalElement implements Externalizable {
     state.setProb(prob);
     state.setSeason(season);
   }
-/**
- * Creates a new vegetative simultion state data object with the passed in parameters
- * @param tStep the time step of the new state.
- * @param run the run of the new state
- * @param vegType the vegetative type of the new state
- * @param process the process of the new state
- * @param prob the probability of the new state
- * @param season the season of the new state
- * @return
- */
-  public VegSimStateData newState(int tStep, int run,
-                        VegetativeType vegType, ProcessType process, short prob,
-                        Season season) {
+
+  /**
+   * Creates a new vegetative simultion state data object with the passed in parameters
+   * @param tStep the time step of the new state.
+   * @param run the run of the new state
+   * @param vegType the vegetative type of the new state
+   * @param process the process of the new state
+   * @param prob the probability of the new state
+   * @param season the season of the new state
+   * @return
+   */
+  public VegSimStateData newState(int tStep, int run, VegetativeType vegType, ProcessType process, short prob, Season season) {
     VegSimStateData state = new VegSimStateData(getId(),tStep,run,vegType,process,prob);
     newState(tStep, state, season);
     return state;
   }
-/**
- * Creates a new veg state object.
- * @param tStep
- * @param state
- * @param season
- */
+
+  /**
+   * Creates a new veg state object.
+   * @param tStep
+   * @param state
+   * @param season
+   */
   private void newState(int tStep, VegSimStateData state, Season season) {
     Lifeform lifeform = state.getLifeform();
     if (Area.multipleLifeformsEnabled() == false) {
@@ -3054,11 +3156,13 @@ public final class Evu extends NaturalElement implements Externalizable {
   public String getSpecialArea() {
     return ((specialArea == null) ? "UNKNOWN" : specialArea);
   }
+
   /**
    * Gets a string version of the special area within this Evu
    * @return the special area.
    */
   public String getSpecialAreaEditor() { return specialArea; }
+
   /**
    * Sets the special area for this Evu.
    * @param str the special area to be set for this Evu.
@@ -3072,22 +3176,25 @@ public final class Evu extends NaturalElement implements Externalizable {
   public String getOwnership() {
     return ((ownership == null) ? "UNKNOWN" : ownership);
   }
+
   /**
    *Gets the string literal ownership for this Evu
    * @return the ownership for this Evu, unknown if null
    */
   public String getOwnershipEditor() { return ownership; }
+
   /**
    * Sets the ownership for this evu
    * @param str the ownership to be set
    */
-
   public void setOwnership(String str) { ownership = str; }
-/**
- * Gets the Evu unit number.
- * @return the unit number
- */
+
+  /**
+   * Gets the Evu unit number.
+   * @return the unit number
+   */
   public String getUnitNumber() { return unitNumber; }
+
   /**
    * Sets the Unit number
    * @param newUnitNum the unit number to be set.
@@ -3098,67 +3205,74 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Gets the ignition probability for this Evu
    * @return the ignition probability
    */
-
   public int getIgnitionProb() { return ignitionProb; }
-/**
- * Gest the fire season probabilty for this Evu
- * @return the fire season probabilt
- */
+
+  /**
+   * Gest the fire season probabilty for this Evu
+   * @return the fire season probabilt
+   */
   public short getFireSeasonProb() {
     return fireSeasonProb;
   }
-/**
- * Gets the fire season for this Evu
- * @return the fire season
- */
+
+  /**
+   * Gets the fire season for this Evu
+   * @return the fire season
+   */
   public Season getFireSeason() {
     return fireSeason;
   }
-/**
- * Updates the fire season to the passed in season.  Sets the fire season probability to 1.
- * @param season the fire season
- */
+
+  /**
+   * Updates the fire season to the passed in season.  Sets the fire season probability to 1.
+   * @param season the fire season
+   */
   public void updateFireSeason(Climate.Season season) {
     fireSeason = season;
     fireSeasonProb = 1;
   }
-/**
- * Gets the dominant life form for this Evu
- * @return the Evu's dominant life form
- */
+
+  /**
+   * Gets the dominant life form for this Evu
+   * @return the Evu's dominant life form
+   */
   public Lifeform getDominantLifeform() {
     return dominantLifeform;
   }
-/**
- * Gets the latitude of this Evu
- * @return the Evu latitude
- */
+
+  /**
+   * Gets the latitude of this Evu
+   * @return the Evu latitude
+   */
   public double getLatitude() {
     return latitude;
   }
-/**
- * Gets the longitude of this Evu
- * @return the Evu's longitude
- */
+
+  /**
+   * Gets the longitude of this Evu
+   * @return the Evu's longitude
+   */
   public double getLongitude() {
     return longitude;
   }
-/**
- * Gets the Recent regeneration delay for a specified life form
- * @param lifeform the life form being evaluated for recent regeneration delay
- * @return true if there was  a recent regeneration delay
- */
+
+  /**
+   * Gets the Recent regeneration delay for a specified life form
+   * @param lifeform the life form being evaluated for recent regeneration delay
+   * @return true if there was  a recent regeneration delay
+   */
   public boolean getRecentRegenDelay(Lifeform lifeform) {
     return recentRegenDelay[lifeform.getId()];
   }
-/**
- * Calculates the dominant life form for an Evu.  The dominant life form is caluculated in life form from the array of life forms available.
- * These are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA
- * Uses the current time step and life form array to get state, then makes sure the evu has life form and that the process is the state process,
- *
- * @param process
- * @return gets the dominant life forms array
- */
+
+  /**
+   * Calculates the dominant life form for an Evu.  The dominant life form is caluculated in life form from the array of life forms available.
+   * These are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA
+   * Uses the current time step and life form array to get state, then makes sure the evu has life form and that the process is the state process,
+   *
+   * @param process
+   * @return gets the dominant life forms array
+   */
   public Lifeform getDominantLifeform(ProcessType process) {
     Lifeform[] lives = Lifeform.getAllValues();
     for (int i=dominantLifeform.getId(); i<lives.length; i++) {
@@ -3170,6 +3284,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return null;
   }
+
   /**
    * Gets the dominant life form and uses that as the upper limit for loop to go through life forms.  Then checks to make sure the current state process
    * is a fire process
@@ -3187,43 +3302,48 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return null;
   }
-/**
- * Sets the ignition probability of the Evu
- * @param val the Evu's ignition probability.
- */
+
+  /**
+   * Sets the ignition probability of the Evu
+   * @param val the Evu's ignition probability.
+   */
   public void setIgnitionProb(int val) { ignitionProb = val; }
-/**
- * Sets the latitude of the Evu.
- * @param latitude The Evu's latitude
- */
+
+  /**
+   * Sets the latitude of the Evu.
+   * @param latitude The Evu's latitude
+   */
   public void setLatitude(double latitude) {
     this.latitude = latitude;
   }
-/**
- * Sets the logitude for the Evu.
- * @param longitude the Evu's longitude
- */
+
+  /**
+   * Sets the logitude for the Evu.
+   * @param longitude the Evu's longitude
+   */
   public void setLongitude(double longitude) {
     this.longitude = longitude;
   }
-/**
- * Sets the recent regeneration delay within an the recent Regen Delay boolean array for a specified life form.
- * @param lifeform life form to have its recent regeneration delay set... uses the ID as index into boolean recen regen delay array
- * @param recentRegenDelay true if recent regeneration delay
- */
+
+  /**
+   * Sets the recent regeneration delay within an the recent Regen Delay boolean array for a specified life form.
+   * @param lifeform life form to have its recent regeneration delay set... uses the ID as index into boolean recen regen delay array
+   * @param recentRegenDelay true if recent regeneration delay
+   */
   public void setRecentRegenDelay(Lifeform lifeform, boolean recentRegenDelay) {
     this.recentRegenDelay[lifeform.getId()] = recentRegenDelay;
   }
 
-/**
- * Gets species frequency for this Evu
- * @return hash map with Evu's species frequency keyed with to this Evu
- * @throws SimpplleError caught in GUI
- */
+  /**
+   * Gets species frequency for this Evu
+   * @return hash map with Evu's species frequency keyed with to this Evu
+   * @throws SimpplleError caught in GUI
+   */
   public HashMap<SimpplleType,MyInteger> getSpeciesFrequency() throws SimpplleError {
     MultipleRunSummary mrSummary = Simpplle.getCurrentSimulation().getMultipleRunSummary();
     return mrSummary.getFrequency(this,Evu.SPECIES);
   }
+
   /**
    * Gets size class frequency for this Evu
    * @return hash map with Evu's size class frequency keyed with to this Evu
@@ -3233,16 +3353,17 @@ public final class Evu extends NaturalElement implements Externalizable {
     MultipleRunSummary mrSummary = Simpplle.getCurrentSimulation().getMultipleRunSummary();
     return mrSummary.getFrequency(this,Evu.SIZE_CLASS);
   }
+
   /**
    * Gets density frequency for this Evu
    * @return hash map with Evu's densityfrequency keyed with to this Evu
    * @throws SimpplleError caught in GUI
    */
-
   public HashMap<SimpplleType,MyInteger> getDensityFrequency() throws SimpplleError {
     MultipleRunSummary mrSummary = Simpplle.getCurrentSimulation().getMultipleRunSummary();
     return mrSummary.getFrequency(this,Evu.DENSITY);
   }
+
   /**
    * Gets Process frequency for this Evu
    * @return hash map with Evu's Process frequency keyed with to this Evu
@@ -3252,12 +3373,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     MultipleRunSummary mrSummary = Simpplle.getCurrentSimulation().getMultipleRunSummary();
     return mrSummary.getFrequency(this,Evu.PROCESS);
   }
-/**
- * Method to decipher if history is to be no multiple history or a single history.  As long as current simulation is not null this will depend on whether the
- * user choose a multiple run summary or there is an existing muliple run summmary (has been choosen in past)
- * @return result of call to either getMultipleHistory() or getSingleHistory()
- * @throws SimpplleError
- */
+
+  /**
+   * Method to decipher if history is to be no multiple history or a single history.  As long as current simulation is not null this will depend on whether the
+   * user choose a multiple run summary or there is an existing muliple run summmary (has been choosen in past)
+   * @return result of call to either getMultipleHistory() or getSingleHistory()
+   * @throws SimpplleError
+   */
   public String getHistory() throws SimpplleError {
     Simulation simulation = Simpplle.getCurrentSimulation();
 
@@ -3270,13 +3392,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-/**
- * Method to get single history of an Evu with all information pertaining to Evu, Eau, associated aquatic units, roads, and trails.  This will include time, season, lifeform, resulting state, process, probability,
- * original process, distance to water, distance to road, distance trail, tracking species, life form , vegetative types,
- * Note** In the past this had an expanded section for Wyoming.  This was eliminated for OpenSimpple V1.0
- * Brian Losi 10/28/13
- * @return
- */
+  /**
+   * Method to get single history of an Evu with all information pertaining to Evu, Eau, associated aquatic units, roads, and trails.  This will include time, season, lifeform, resulting state, process, probability,
+   * original process, distance to water, distance to road, distance trail, tracking species, life form , vegetative types,
+   * Note** In the past this had an expanded section for Wyoming.  This was eliminated for OpenSimpple V1.0
+   * Brian Losi 10/28/13
+   * @return
+   */
   public String getSingleHistoryExpanded() {
     Simulation   simulation = Simpplle.getCurrentSimulation();
     StringBuilder sb = new StringBuilder();
@@ -3447,23 +3569,25 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return sb.toString();
   }
-/**
- * Method to get single history.  In the past this had an expanded section for Wyoming.  This was eliminated for OpenSimpple V1.0
- * Now this just calls getSingleHistoryExpanded().
- * Brian Losi 10/28/13
- * @return call to single history expanded.
- */
+
+  /**
+   * Method to get single history.  In the past this had an expanded section for Wyoming.  This was eliminated for OpenSimpple V1.0
+   * Now this just calls getSingleHistoryExpanded().
+   * Brian Losi 10/28/13
+   * @return call to single history expanded.
+   */
   public String getSingleHistory() {
     return getSingleHistoryExpanded();
   }
-/**
- * This method creates a formatted string of species size, class, density, and process frequencies
- * @return
- * @throws SimpplleError
- */
+
+  /**
+   * This method creates a formatted string of species size, class, density, and process frequencies
+   * @return
+   * @throws SimpplleError
+   */
   public String getMultipleHistory() throws SimpplleError {
-    PrintWriter   fout;
-    StringWriter  strOut   = new StringWriter();
+    PrintWriter  fout;
+    StringWriter strOut = new StringWriter();
 
     HashMap<SimpplleType,MyInteger> speciesFreq;
     HashMap<SimpplleType,MyInteger> sizeClassFreq;
@@ -3521,8 +3645,7 @@ public final class Evu extends NaturalElement implements Externalizable {
         freq = speciesFreq.get(key);
         fout.print(Formatting.fixedField(key.toString(),16,true));
         fout.print(Formatting.fixedField(freq.intValue(),4) + "% ");
-      }
-      else {
+      } else {
         fout.print(Formatting.fixedField("",22,true));
       }
       if (sizeClassIt.hasNext()) {
@@ -3530,8 +3653,7 @@ public final class Evu extends NaturalElement implements Externalizable {
         freq = sizeClassFreq.get(key);
         fout.print(Formatting.fixedField(key.toString(),17,true));
         fout.print(Formatting.fixedField(freq.intValue(),4) + "% ");
-      }
-      else {
+      } else {
         fout.print(Formatting.fixedField("",23,true));
       }
       if (densityIt.hasNext()) {
@@ -3539,8 +3661,7 @@ public final class Evu extends NaturalElement implements Externalizable {
         freq = densityFreq.get(key);
         fout.print(Formatting.fixedField(key.toString(),11,true));
         fout.print(Formatting.fixedField(freq.intValue(),4) + "% ");
-      }
-      else {
+      } else {
         fout.print(Formatting.fixedField("",17,true));
       }
       if (processIt.hasNext()) {
@@ -3548,8 +3669,7 @@ public final class Evu extends NaturalElement implements Externalizable {
         freq = processFreq.get(key);
         fout.print(Formatting.fixedField(key.toString(),20,true));
         fout.print(Formatting.fixedField(freq.intValue(),4) + "%");
-      }
-      else {
+      } else {
         fout.print(Formatting.fixedField("",26,true));
       }
       fout.println();
@@ -3559,11 +3679,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     strOut.flush();
     return strOut.toString();
   }
-/**
- * This method creates a string for treatment history of this Evu.  The report includes treatment information (if there is any)
- * including time treatement, status, treatment state change and effectiveness.
- * @return
- */
+
+  /**
+   * This method creates a string for treatment history of this Evu.  The report includes treatment information (if there is any)
+   * including time treatement, status, treatment state change and effectiveness.
+   * @return
+   */
   public String getTreatmentHistory() {
     PrintWriter  fout;
     StringWriter strOut   = new StringWriter();
@@ -3635,7 +3756,6 @@ public final class Evu extends NaturalElement implements Externalizable {
     strOut.flush();
     return strOut.toString();
   }
-
 
   /**
    * Print out an human readable representation of the Evu. This will include the Evu ID, the current vegetative state,
@@ -3730,10 +3850,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     fout.println();
     fout.println();
   }
-/**
- * Makes an arraylist of all the possible special probabilities.
- * @return
- */
+
+  /**
+   * Makes an arraylist of all the possible special probabilities.
+   * @return
+   */
   public static ArrayList<String> getAllProbabilitySpecial() {
     ArrayList<String> values = new ArrayList<String>();
 
@@ -3748,11 +3869,12 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return values;
   }
-/**
- * Gets the string version of probability logic for use in data storage.
- * @param prob the probability in integer form
- * @return string version of probabiliyt
- */
+
+  /**
+   * Gets the string version of probability logic for use in data storage.
+   * @param prob the probability in integer form
+   * @return string version of probabiliyt
+   */
   public static String getProbabilitySaveString(int prob) {
     switch (prob) {
       case Evu.D:      return Evu.D_STR;
@@ -3767,14 +3889,16 @@ public final class Evu extends NaturalElement implements Externalizable {
       default:         return IntToString.get(prob);
     }
   }
-/**
- * Gets the probability in readable format.
- * @param prob probability
- * @return string literal version of probility
- */
+
+  /**
+   * Gets the probability in readable format.
+   * @param prob probability
+   * @return string literal version of probility
+   */
   public static String getProbabilityPrintString(int prob) {
     return getProbabilityPrintString(prob,2);
   }
+
   /**
    * Gets the probability in a printable string literal format
    * @param prob the probability
@@ -3798,52 +3922,35 @@ public final class Evu extends NaturalElement implements Externalizable {
       default:         return nf.format((prob/100));
     }
   }
-/**
- * Parses the probability from string literal.  Then returns the int version of the string.
- * @param str the Evu probability to be parsed
- * @return an int representation of probability passed as a string.
- */
+
+  /**
+   * Parses the probability from string literal.  Then returns the int version of the string.
+   * @param str the Evu probability to be parsed
+   * @return an int representation of probability passed as a string.
+   */
   public static int parseProbabilityString(String str) {
-    if (str.equals(Evu.D_STR)) {
-      return Evu.D;
-    }
-    else if (str.equals(Evu.L_STR)) {
-      return Evu.L;
-    }
-    else if (str.equals(Evu.S_STR)) {
-      return Evu.S;
-    }
-    else if (str.equals(Evu.SE_STR)) {
-      return Evu.SE;
-    }
-    else if (str.equals(Evu.SFS_STR)) {
-      return Evu.SFS;
-    }
-    else if (str.equals(Evu.SUPP_STR)) {
-      return Evu.SUPP;
-    }
-    else if (str.equals(Evu.COMP_STR)) {
-      return Evu.COMP;
-    }
-    else if (str.equals(Evu.GAP_STR)) {
-      return Evu.GAP;
-    }
-    else if (str.equals(Evu.NOPROB_STR)) {
-      return Evu.NOPROB;
-    }
+
+    if      (str.equals(Evu.D_STR))      return Evu.D;
+    else if (str.equals(Evu.L_STR))      return Evu.L;
+    else if (str.equals(Evu.S_STR))      return Evu.S;
+    else if (str.equals(Evu.SE_STR))     return Evu.SE;
+    else if (str.equals(Evu.SFS_STR))    return Evu.SFS;
+    else if (str.equals(Evu.SUPP_STR))   return Evu.SUPP;
+    else if (str.equals(Evu.COMP_STR))   return Evu.COMP;
+    else if (str.equals(Evu.GAP_STR))    return Evu.GAP;
+    else if (str.equals(Evu.NOPROB_STR)) return Evu.NOPROB;
     else {
       try {
         return Integer.parseInt(str);
-      }
-      catch (NumberFormatException ex) {
+      } catch (NumberFormatException ex) {
         return Evu.NOPROB;
       }
     }
   }
 
- /**
-  * Method to make simulation by loading lifeforms, seasons, .
-  */
+  /**
+   * Method to make simulation by loading lifeforms, seasons, .
+   */
   public void makeSimulationReady() {
     if (simData != null) {
       initialState.clear();
@@ -3878,6 +3985,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     restoreInitialConditions();
   }
+
   public void restoreInitialConditions() {
     simData   = null;
     treatment = null;
@@ -3885,9 +3993,10 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     haveHighSpruceBeetle = false;
   }
-/**
- * Creates a temporary treatment instance for this Evu, then clears out the treatment vector.  If temporary treatment is not null, adds it back as a treatment.
- */
+
+  /**
+   * Creates a temporary treatment instance for this Evu, then clears out the treatment vector.  If temporary treatment is not null, adds it back as a treatment.
+   */
   private void clearSimulationTreatments() {
     if (treatment == null) { return; }
 
