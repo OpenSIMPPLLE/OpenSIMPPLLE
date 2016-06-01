@@ -102,6 +102,8 @@ public class SimParam extends JDialog {
   private FlowLayout flowLayout13 = new FlowLayout();
   private JPanel discardDataPanel = new JPanel();
   private JCheckBox discardDataCB = new JCheckBox();
+  private JPanel discardTextPanel = new JPanel();
+  private JCheckBox discardTextFilesCB = new JCheckBox();
   private FlowLayout flowLayout7 = new FlowLayout();
   private JPanel allStatesRulesFilePanel = new JPanel();
   private FlowLayout flowLayout12 = new FlowLayout();
@@ -375,10 +377,19 @@ public class SimParam extends JDialog {
     discardDataCB.setFont(new java.awt.Font("Monospaced", Font.PLAIN, 14));
     discardDataCB.setText(
       "Discard Unnecessary Simulation Data, needed for extremely long term " +
-      "simulations.");
+        "simulations.");
     discardDataCB.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         discardDataCB_actionPerformed(e);
+      }
+    });
+    discardTextFilesCB.setFont(new java.awt.Font("Monospaced", Font.PLAIN, 14));
+    discardTextFilesCB.setText(
+      "Disable probability reporting for multiple simulations." );
+    discardTextFilesCB.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        discardTextFilesCB_actionPerformed(e);
       }
     });
     discardDataPanel.setLayout(flowLayout7);
@@ -528,8 +539,10 @@ public class SimParam extends JDialog {
     northPanel.add(jPanel1);
     jPanel1.add(databaseWritePanel);
     databaseWritePanel.add(databaseWriteCB, null);
-    jPanel1.add(discardDataPanel);
+    discardTextPanel.add(discardTextFilesCB);
+    jPanel1.add(discardTextPanel);
     discardDataPanel.add(discardDataCB);
+    jPanel1.add(discardDataPanel);
     jPanel1.add(timeStepsInMemoryPanel);
     timeStepsInMemoryPanel.add(tsInMemoryText);
     timeStepsInMemoryPanel.add(tsInMemoryLabel);
@@ -611,9 +624,11 @@ public class SimParam extends JDialog {
     dispose();
   }
 /**
- * Runs the simulation (if 'Run Simulation' button is pushed).  Basically it parses in the user set parameters and calls the runsimulation method from comcode Simpplle.java which then creates 
- * a new simulation instance with the passed parameters.   
- * @return
+ * Runs the simulation (if 'Run Simulation' button is pushed).  Basically it
+ * parses in the user set parameters and calls the runsimulation method
+ * from comcode Simpplle.java which then creates a new simulation instance
+ * with the passed parameters.
+ * @return if running simulation was successful.
  */
   private boolean runSimulation() {
     int     numSimulations, numSteps;
@@ -951,8 +966,8 @@ public class SimParam extends JDialog {
 
   }
 /**
- * If discard data check box is selected, allows the user to discard time step data - for longer term simulations.  (minimum kept in memory must be 10)
- * @param e
+ * If discard data check box is selected, allows the user to discard time step data
+ * - for longer term simulations.  (minimum kept in memory must be 10)
  */
   public void discardDataCB_actionPerformed(ActionEvent e) {
     tsInMemoryText.setEnabled(discardDataCB.isSelected());
@@ -960,6 +975,16 @@ public class SimParam extends JDialog {
 
     if (discardDataCB.isSelected()) {
       allStatesCB.setSelected(true);
+    }
+  }
+
+  /**
+   * If discard text check box is selected, the canopy, process, and species text files will not be written.
+   * According to power users, this data is not used in the output processing.
+   */
+  public void  discardTextFilesCB_actionPerformed(ActionEvent e) {
+    if (discardTextFilesCB.isSelected()){
+      System.out.println("TODO discard text files");
     }
   }
 
