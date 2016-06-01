@@ -163,8 +163,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
                      boolean writeDatabase, boolean writeAccess,
                      boolean writeProbFiles, InvasiveKind invasiveKind,
                      int nStepsInMemory, File allStatesRulesFile,
-                     boolean discardData, boolean doAllStatesSummary,
-                     boolean doTrackingSpeciesReport,
+                     boolean discardData, boolean disableReporting,
+                     boolean doAllStatesSummary, boolean doTrackingSpeciesReport,
                      boolean doGisFiles) {
 
     this();
