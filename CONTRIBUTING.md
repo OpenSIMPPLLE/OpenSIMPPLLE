@@ -17,7 +17,7 @@ Pull Request. This is ensures a clean series of commits to master.
 
 `git push origin my_new_feature`
 
-* [Create a Pull Request][https://bitbucket.org/opensimpplleteam/opensimpplle/pull-requests/] with your feature branch *my_new_feature* on
+* [Create a Pull Request](https://bitbucket.org/opensimpplleteam/opensimpplle/pull-requests) with your feature branch *my_new_feature* on
 the left, and *master* on the right.
 
 * Create an overview of why this change is important and details that may be
@@ -28,7 +28,7 @@ the left, and *master* on the right.
 
 * Merge the Pull Request and enjoy your successful contribution!
 
-This process is explained in more detail by the [Bitbucket Documentation][https://confluence.atlassian.com/bitbucket/work-with-pull-requests-223220593.html]. 
+This process is explained in more detail by the [Bitbucket Documentation](https://confluence.atlassian.com/bitbucket/work-with-pull-requests-223220593.html). 
 
 ## Keeping In Sync
 
