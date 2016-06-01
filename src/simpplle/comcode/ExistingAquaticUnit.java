@@ -1521,7 +1521,12 @@ public final class ExistingAquaticUnit extends NaturalElement implements Externa
   public boolean isPermanentWater() {
     return (getStatus() == PERENNIAL);
   }
+
+  /**
+   * Currently does nothing.
+   */
   public void initSimulation() {
+
   }
 
   public void doFuture() {

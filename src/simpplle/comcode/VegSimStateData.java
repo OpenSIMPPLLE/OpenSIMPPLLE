@@ -597,7 +597,7 @@ public class VegSimStateData implements Externalizable {
     int run = Simulation.getCurrentRun() + 1;  // TODO: Use VegSimStateData's value
     int ts  = Simulation.getCurrentTimeStep(); // TODO: Use VegSimStateData's value
 
-    if (run != state.run) System.out.println("False");
+    //if (run != state.run) System.out.println("False");
 
     sim.addAccessLifeform(state.lifeform);
     sim.addAccessSpecies(state.veg.getSpecies());

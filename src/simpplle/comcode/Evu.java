@@ -3949,32 +3949,44 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Method to make simulation by loading lifeforms, seasons, .
+   * Replaces the initial state with the last season of VegSimStateData for each lifeform from the last timestep
+   * and calls restoreInitialConditions().
    */
   public void makeSimulationReady() {
+
     if (simData != null) {
+
       initialState.clear();
 
-      ArrayList<Lifeform> lives = new ArrayList<Lifeform>();
-      Flat3Map data = simData[simData.length-1];
+      // Create an array of unique lifeforms from the the last time step
 
+      ArrayList<Lifeform> lives = new ArrayList<>();
+
+      Flat3Map data = simData[simData.length - 1];
       MapIterator it = data.mapIterator();
+
       while (it.hasNext()) {
+
         MultiKey key = (MultiKey)it.next();
         Lifeform lifeform = (Lifeform)key.getKey(0);
+
         if (lives.contains(lifeform) == false) {
           lives.add(lifeform);
         }
       }
 
-      // We want only the last season of data and change that to
-      // a season of YEAR.
-      for (int i=0; i<lives.size(); i++) {
+      // Store the last season of VegSimStateData for each lifeform in the initial state with a year season.
+
+      for (int i = 0; i < lives.size(); i++) {
+
         Lifeform lifeform = lives.get(i);
         Season[] seasons = Climate.allSeasons;
-        for (int s=seasons.length-1; s>=0; s--) {
+
+        for (int s = seasons.length - 1; s >= 0; s--) {
+
           MultiKey key = LifeformSeasonKeys.getKey(lifeform,seasons[s]);
           VegSimStateData state = (VegSimStateData)data.get(key);
+
           if (state != null) {
             key = LifeformSeasonKeys.getKey(lifeform,Season.YEAR);
             initialState.put(key,state);
@@ -3983,15 +3995,22 @@ public final class Evu extends NaturalElement implements Externalizable {
         }
       }
     }
+
     restoreInitialConditions();
+
   }
 
+  /**
+   * Clears stored VegSimStateData and Treatments, and sets haveHighSpruceBeetle to false
+   */
   public void restoreInitialConditions() {
+
     simData   = null;
     treatment = null;
 //    processProb.clear();
 
     haveHighSpruceBeetle = false;
+
   }
 
   /**
@@ -4007,9 +4026,10 @@ public final class Evu extends NaturalElement implements Externalizable {
       addTreatment(tmpTreatment);
     }
   }
-/**
- * initialzies a simulation by setting water units to null and getting the number of time steps at the simulation instance.
- */
+
+  /**
+   * Initializes a simulation by setting water units to null and getting the number of time steps at the simulation instance.
+   */
   public static void staticInitSimulation() {
     waterUnits = null;
     int numSteps = Simulation.getInstance().getNumTimeSteps();
@@ -4022,26 +4042,25 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void initSimDataLegacy(int numSteps) {
     simData = new Flat3Map[numSteps+1];
   }
+
   /**
-   * Initialize some fields now that we know the number
-   * of time steps the simulation will have.
-   * This gets called at the beginning of each simulation.
+   * Initialize some fields now that we know the number of time steps the simulation will have. This gets called at
+   * the beginning of each simulation.
    */
   public void initSimulation() {
-    int          numSteps;
-    Simulation   simulation = Simpplle.getCurrentSimulation();
 
-    numSteps = simulation.getNumTimeSteps();
+    Simulation simulation = Simpplle.getCurrentSimulation();
+
+    int numSteps = simulation.getNumTimeSteps();
 
     MapIterator it = initialState.mapIterator();
-    int count=0;
+    int count = 0;
     while (it.hasNext()) {
       MultiKey key = (MultiKey)it.next();
       Lifeform lifeform = (Lifeform)key.getKey(0);
       if (count == 0) {
         dominantLifeform = lifeform;
-      }
-      else {
+      } else {
         dominantLifeform = Lifeform.getMostDominant(dominantLifeform, lifeform);
       }
       count++;
@@ -4052,26 +4071,30 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     if (Simulation.getInstance().isDiscardData()) {
+
       int pastInMem = Simulation.getInstance().getPastTimeStepsInMemory();
-      simData = new Flat3Map[pastInMem+1];
+      simData = new Flat3Map[pastInMem + 1];
       simData[0] = new Flat3Map();
-    }
-    else {
+
+    } else {
+
       simData = new Flat3Map[numSteps + 1];
       simData[0] = initialState;
+
     }
 
-    for(int i=1; i<simData.length; i++) {
+    for(int i = 1; i < simData.length; i++) {
       simData[i] = new Flat3Map();
     }
 
     if (simulation.isMultipleRun() == false || simulation.getCurrentRun() == 0) {
 
-      ProcessType processType;
       ArrayList processTypes = Process.getSimulationProcesses();
-      int       needLaterCount=0;
+
+      int needLaterCount = 0;
+
       for (int i=0; i<processTypes.size(); i++) {
-        processType = (ProcessType)processTypes.get(i);
+        ProcessType processType = (ProcessType)processTypes.get(i);
         if (processType == ProcessType.LIGHT_WSBW ||
             processType == ProcessType.SEVERE_WSBW ||
             processType == ProcessType.LIGHT_LP_MPB ||
@@ -4081,14 +4104,13 @@ public final class Evu extends NaturalElement implements Externalizable {
         }
       }
 
-
       needLaterProcessProb = new ProcessProbability[needLaterCount];
       tempProcessProb      = new ProcessProbability[processTypes.size() - needLaterCount];
 
       int probIndex = 0;
       int needLaterIndex = 0;
-      for (int i=0; i<processTypes.size(); i++) {
-        processType = (ProcessType)processTypes.get(i);
+      for (int i = 0; i < processTypes.size(); i++) {
+        ProcessType processType = (ProcessType)processTypes.get(i);
         if (processType != ProcessType.LIGHT_WSBW &&
             processType != ProcessType.SEVERE_WSBW &&
             processType != ProcessType.LIGHT_LP_MPB &&
@@ -4096,8 +4118,7 @@ public final class Evu extends NaturalElement implements Externalizable {
             processType != ProcessType.PP_MPB) {
           tempProcessProb[probIndex] = new ProcessProbability(processType);
           probIndex++;
-        }
-        else {
+        } else {
           needLaterProcessProb[needLaterIndex] = new ProcessProbability(processType);
           needLaterIndex++;
         }
@@ -4108,14 +4129,16 @@ public final class Evu extends NaturalElement implements Externalizable {
       MultipleRunSummary mrSummary = simulation.getMultipleRunSummary();
       mrSummary.initFrequencyCount(this);
     }
+
     if (simulation.isMultipleRun()) {
       MultipleRunSummary mrSummary = simulation.getMultipleRunSummary();
       mrSummary.updateSummaries(this);
     }
+
     clearSimulationTreatments();
     haveHighSpruceBeetle = false;
 
-    for (int i=0; i<regenDelay.length; i++) {
+    for (int i = 0; i < regenDelay.length; i++) {
       regenDelay[i] = 0;
       recentRegenDelay[i] = false;
     }
@@ -4127,8 +4150,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     FireSuppEventLogic.getInstance().clearSuppressed();
 
-    this.cycleSizeClass = null;
-    this.cycleSizeClassCount = 0;
+    cycleSizeClass = null;
+    cycleSizeClassCount = 0;
+
   }
 
   /**
@@ -4136,10 +4160,8 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public void initMultipleSimulation() {
     Simulation simulation = Simpplle.getCurrentSimulation();
-    int        numRuns, numSteps;
-
-    numRuns  = simulation.getNumSimulations();
-    numSteps = simulation.getNumTimeSteps();
+    int numRuns  = simulation.getNumSimulations();
+    int numSteps = simulation.getNumTimeSteps();
   }
 
   /**
@@ -4153,6 +4175,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       cumulProb.add(new CumulativeProcessProb((ProcessType)processTypes.get(i)));
     }
   }
+
 /**
  * Finds the cumulative probability for a specified process
  * @param pt the process being evaluated

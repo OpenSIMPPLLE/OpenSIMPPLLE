@@ -126,12 +126,17 @@ public class Roads extends ManmadeElement implements Externalizable {
     super(id);
   }
 
+  /**
+   * Clears existing simulation data and allocates a new array of RoadsSimData
+   */
   public void initSimulation() {
+
     int numSteps = Simpplle.getCurrentSimulation().getNumTimeSteps();
 
     simData = new RoadsSimData[numSteps+1];
     simData[0] = new RoadsSimData();
     simData[0].setStatus(status);
+
   }
 
   public void doBeginTimeStep() {
