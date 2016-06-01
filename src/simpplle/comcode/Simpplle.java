@@ -554,7 +554,7 @@ public final class Simpplle {
                             boolean writeProbFiles,
                             Simulation.InvasiveKind invasiveKind, int nStepsInMemory,
                             File allStatesRulesFile, boolean discardData,
-                            boolean doAllStatesSummary,
+                            boolean disableReporting, boolean doAllStatesSummary,
                             boolean doTrackingSpeciesReport,
                             boolean doGisFiles)
     throws SimpplleError {

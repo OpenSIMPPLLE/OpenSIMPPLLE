@@ -673,13 +673,12 @@ public class SimParam extends JDialog {
     try {
       comcode.runSimulation(numSimulations,numSteps,fireSuppression,outputFile,
                           discount,trackSpecialArea,trackOwnership,yearlySteps,
-                          simulationMethod,
-                          databaseWriteCB.isSelected(),
+                          simulationMethod, databaseWriteCB.isSelected(),
                           writeAccessFilesCB.isSelected(), /*write access files*/
                           /*writeProbFilesCB.isSelected()*/true,
                           (Simulation.InvasiveKind)invasiveSpeciesCB.getSelectedItem(),
-                          tsInMemory,allStatesRulesFile,discardDataCB.isSelected(),
-                          allStatesCB.isSelected(),
+                          tsInMemory, allStatesRulesFile, discardDataCB.isSelected(),
+                          discardTextFilesCB.isSelected(), allStatesCB.isSelected(),
                           trackingSpeciesCB.isSelected(),
                           gisUpdateSpreadCB.isSelected());
     }
