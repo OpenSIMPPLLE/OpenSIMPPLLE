@@ -5,24 +5,31 @@ successfully introduce changes to a repository in a concise and logical manner.
 This is done by creating branches off of master and submitting a change via a
 Pull Request. This is ensures a clean series of commits to master.
 
-### Creating a Pull Request
+## Creating a Pull Request
 
 * Create a branch
-    * `git checkout -b my_new_feature`
+
+`git checkout -b my_new_feature`
+
 * Use commits to logically group changes
+
 * Push your branch to Bitbucket
-    * `git push origin my_new_feature`
+`git push origin my_new_feature`
+
 * [Create a Pull Request][compare] with your feature branch *my_new_feature* on
 the left, and *master* on the right.
+
 * Create an overview of why this change is important and details that may be
   relevant to understanding the change.
+
 * Allow a teammate or two to read over the Pull Request adding comments if
   necessary.
+
 * Merge the Pull Request and enjoy your successful contribution!
 
 This process is explained in more detail by the [Bitbucket Documentation][pr_docs]. 
 
-### Keeping In Sync
+## Keeping In Sync
 
 Since all Pull Requests are merged into master it is possible for your local
 repository to fall behind. You can always ensure you have the latest commits on
