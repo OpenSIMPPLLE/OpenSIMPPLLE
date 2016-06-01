@@ -1089,6 +1089,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
       }
     }
 
+    // ~~~~~~~~~~ Write time step zero before this comment ~~~~~~~~~
+
     try {
       for(int i=0;i<numTimeSteps;i++) {
         currentTimeStep++;

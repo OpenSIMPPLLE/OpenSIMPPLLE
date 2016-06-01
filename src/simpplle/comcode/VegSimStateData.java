@@ -591,10 +591,13 @@ public class VegSimStateData implements Externalizable {
   }
 
   public static void writeAccessFiles(PrintWriter fout, PrintWriter trackOut, Evu evu, VegSimStateData state) {
+
     Simulation sim = Simulation.getInstance();
 
-    int run = Simulation.getCurrentRun() + 1;
-    int ts  = Simulation.getCurrentTimeStep();
+    int run = Simulation.getCurrentRun() + 1;  // TODO: Use VegSimStateData's value
+    int ts  = Simulation.getCurrentTimeStep(); // TODO: Use VegSimStateData's value
+
+    if (run != state.run) System.out.println("False");
 
     sim.addAccessLifeform(state.lifeform);
     sim.addAccessSpecies(state.veg.getSpecies());

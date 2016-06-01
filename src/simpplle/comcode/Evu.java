@@ -7541,132 +7541,134 @@ public final class Evu extends NaturalElement implements Externalizable {
     this.setLocationX(x);
     this.setLocationY(y);
   }
-    public void readExternalSimData(ObjectInput in, int run) throws IOException, ClassNotFoundException {
-        Species   species;
-        SizeClass sizeClass;
-        int       age;
-        Density   density;
-        int       version = in.readInt();
 
-        // State history
-        if (version == 1) {
+  public void readExternalSimData(ObjectInput in, int run) throws IOException, ClassNotFoundException {
 
-        }
-        else if (version == 2) {
+    Species   species;
+    SizeClass sizeClass;
+    int       age;
+    Density   density;
 
-        }
-        else if (version == 3) {
-        }
-        else if (version == 4) {
-            simData = new Flat3Map[in.readInt()];
+    int version = in.readInt();
 
-            for (int i=0; i<simData.length; i++) {
-                simData[i] = readSimStateDataOld(in,i,run);
-            }
-            simData[0] = initialState;
-        }
-        else {
-            simData = new Flat3Map[in.readInt()];
+    if (version == 1) {
 
-            for (int i=0; i<simData.length; i++) {
-                simData[i] = readSimStateData(in);
-            }
-        }
+    } else if (version == 2) {
 
-        treatment    = (Vector)in.readObject();
-        if (version == 1) {
-            VegetativeType[][] tmpAccumState = (VegetativeType[][]) in.readObject();
-            ProcessType[][]    accumProcess = (ProcessType[][]) in.readObject();
+    } else if (version == 3) {
 
-            int numValidRuns=0;
-            if (tmpAccumState != null && tmpAccumState[0] != null) {
-                for (int r = 1; r <= tmpAccumState.length; r++) {
-                    if (tmpAccumState[r - 1][0] != null) { numValidRuns++; }
-                }
-            }
+    } else if (version == 4) {
 
-        }
-        else if (version == 2) {
-            VegetativeState[][] tmpAccumState = (VegetativeState[][])in.readObject();
-            int numValidRuns=0;
-            if (tmpAccumState != null && tmpAccumState[0] != null) {
-                for (int r = 1; r <= tmpAccumState.length; r++) {
-                    if (tmpAccumState[r - 1][0] != null) { numValidRuns++; }
-                }
-            }
+      simData = new Flat3Map[in.readInt()];
 
-        }
-        else {
+      for (int i = 0; i < simData.length; i++) {
+        simData[i] = readSimStateDataOld(in,i,run);
+      }
 
-        }
+      simData[0] = initialState;
 
-        if (version > 5) {
-            Area area = Simpplle.getCurrentArea();
-            nearestRoad = null;
-            nearestTrail = null;
+    } else {
 
-            {
-                int size = in.readInt();
-                if (size > 0) {
-                    nearestRoad = new ArrayList<ArrayList<RoadUnitData>>();
-                    for (int i = 0; i < size; i++) {
-                        int sizeIn = in.readInt();
-                        ArrayList<RoadUnitData> list = new ArrayList<RoadUnitData>();
-                        nearestRoad.add(list);
-                        for (int j = 0; j < sizeIn; j++) {
-                            RoadUnitData data = new RoadUnitData();
-                            data.evu = null;
-                            data.road = null;
+      simData = new Flat3Map[in.readInt()];
 
-                            int roadId = in.readInt();
-                            if (roadId != -1) {
-                                data.road = area.getRoadUnit(roadId);
-                            }
-
-                            int evuId = in.readInt();
-                            if (evuId != -1) {
-                                data.evu = area.getEvu(evuId);
-                            }
-
-                            list.add(data);
-                        }
-                    }
-                }
-            }
-
-            {
-                int size = in.readInt();
-                if (size > 0) {
-                    nearestTrail = new ArrayList<ArrayList<TrailUnitData>>();
-                    for (int i = 0; i < size; i++) {
-                        int sizeIn = in.readInt();
-                        ArrayList<TrailUnitData> list = new ArrayList<TrailUnitData>();
-                        nearestTrail.add(list);
-                        for (int j = 0; j < sizeIn; j++) {
-                            TrailUnitData data = new TrailUnitData();
-                            data.evu = null;
-                            data.trail = null;
-
-                            int trailId = in.readInt();
-                            if (trailId != -1) {
-                                data.trail = area.getTrailUnit(trailId);
-                            }
-
-                            int evuId = in.readInt();
-                            if (evuId != -1) {
-                                data.evu = area.getEvu(evuId);
-                            }
-
-                            list.add(data);
-                        }
-                    }
-                }
-            }
-
-        }
-
-
+      for (int i = 0; i < simData.length; i++) {
+        simData[i] = readSimStateData(in);
+      }
     }
+
+    treatment = (Vector)in.readObject();
+
+    if (version == 1) {
+
+      VegetativeType[][] tmpAccumState = (VegetativeType[][]) in.readObject();
+      ProcessType[][] accumProcess = (ProcessType[][]) in.readObject();
+
+      int numValidRuns = 0;
+      if (tmpAccumState != null && tmpAccumState[0] != null) {
+        for (int r = 1; r <= tmpAccumState.length; r++) {
+          if (tmpAccumState[r - 1][0] != null) {
+            numValidRuns++;
+          }
+        }
+      }
+
+    } else if (version == 2) {
+
+      VegetativeState[][] tmpAccumState = (VegetativeState[][])in.readObject();
+
+      int numValidRuns = 0;
+      if (tmpAccumState != null && tmpAccumState[0] != null) {
+        for (int r = 1; r <= tmpAccumState.length; r++) {
+          if (tmpAccumState[r - 1][0] != null) {
+            numValidRuns++;
+          }
+        }
+      }
+
+    } else if (version > 5) {
+      Area area = Simpplle.getCurrentArea();
+      nearestRoad = null;
+      nearestTrail = null;
+
+      {
+        int size = in.readInt();
+        if (size > 0) {
+          nearestRoad = new ArrayList<ArrayList<RoadUnitData>>();
+          for (int i = 0; i < size; i++) {
+            int sizeIn = in.readInt();
+            ArrayList<RoadUnitData> list = new ArrayList<RoadUnitData>();
+            nearestRoad.add(list);
+            for (int j = 0; j < sizeIn; j++) {
+              RoadUnitData data = new RoadUnitData();
+              data.evu = null;
+              data.road = null;
+
+              int roadId = in.readInt();
+              if (roadId != -1) {
+                data.road = area.getRoadUnit(roadId);
+              }
+
+              int evuId = in.readInt();
+              if (evuId != -1) {
+                data.evu = area.getEvu(evuId);
+              }
+
+              list.add(data);
+            }
+          }
+        }
+      }
+
+      {
+        int size = in.readInt();
+        if (size > 0) {
+          nearestTrail = new ArrayList<ArrayList<TrailUnitData>>();
+          for (int i = 0; i < size; i++) {
+            int sizeIn = in.readInt();
+            ArrayList<TrailUnitData> list = new ArrayList<TrailUnitData>();
+            nearestTrail.add(list);
+            for (int j = 0; j < sizeIn; j++) {
+              TrailUnitData data = new TrailUnitData();
+              data.evu = null;
+              data.trail = null;
+
+              int trailId = in.readInt();
+              if (trailId != -1) {
+                data.trail = area.getTrailUnit(trailId);
+              }
+
+              int evuId = in.readInt();
+              if (evuId != -1) {
+                data.evu = area.getEvu(evuId);
+              }
+
+              list.add(data);
+            }
+          }
+        }
+      }
+    }
+  }
 
   private void writeSimStateData(ObjectOutput out, Flat3Map map)
     throws IOException
