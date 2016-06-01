@@ -103,6 +103,10 @@ public class SimParam extends JDialog {
   private JPanel discardDataPanel = new JPanel();
   private JCheckBox discardDataCB = new JCheckBox();
   private JPanel discardTextPanel = new JPanel();
+  /**
+   *  Disable writing canopy, process and species files if checked. According to
+   *  users, this information is not used in output processing.
+   */
   private JCheckBox discardTextFilesCB = new JCheckBox();
   private FlowLayout flowLayout7 = new FlowLayout();
   private JPanel allStatesRulesFilePanel = new JPanel();
@@ -386,12 +390,6 @@ public class SimParam extends JDialog {
     discardTextFilesCB.setFont(new java.awt.Font("Monospaced", Font.PLAIN, 14));
     discardTextFilesCB.setText(
       "Disable probability reporting for multiple simulations." );
-    discardTextFilesCB.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        discardTextFilesCB_actionPerformed(e);
-      }
-    });
     discardDataPanel.setLayout(flowLayout7);
     flowLayout7.setAlignment(FlowLayout.LEFT);
     flowLayout7.setVgap(0);
@@ -977,16 +975,6 @@ public class SimParam extends JDialog {
     }
   }
 
-  /**
-   * If discard text check box is selected, the canopy, process, and species text files will not be written.
-   * According to power users, this data is not used in the output processing.
-   */
-  public void  discardTextFilesCB_actionPerformed(ActionEvent e) {
-    if (discardTextFilesCB.isSelected()){
-      System.out.println("TODO discard text files");
-    }
-  }
-
   public void gisUpdateSpreadCB_actionPerformed(ActionEvent e) {
     if (outputFile != null && gisUpdateSpreadCB.isSelected()) {
       String nFiles = Integer.toString(numSims * numSteps * 2);
@@ -999,7 +987,6 @@ public class SimParam extends JDialog {
   }
 /**
  * If "Adjust Categories" check box is selected - will create a new tracking species report dialog.    
- * @param e
  */
   public void trackingSpeciesCategoryPB_actionPerformed(ActionEvent e) {
     TrackingSpeciesReportDlg dlg =

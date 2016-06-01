@@ -46,6 +46,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private boolean      writeProbFiles=false;
   private InvasiveKind invasiveSpeciesKind=InvasiveKind.NONE;
   private boolean      discardData=false;
+  private boolean      disableReporting = false;
   private boolean      doAllStatesSummary=true;
   private boolean      doTrackingSpeciesReport=false;
   private boolean      doGisFiles=false;
@@ -115,7 +116,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     fixedRandom           = false;
     trackSpecialArea      = false;
     trackOwnership        = false;
-    yearlySteps           = false; // means decade time steps used the default for OpenSimpplle
+    yearlySteps           = false; // means decade time steps used, the default for OpenSimpplle
     writeDatabase         = false;
     writeAccess           = false;
     writeProbFiles        = false;
@@ -182,6 +183,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     this.writeProbFiles      = writeProbFiles;
     this.invasiveSpeciesKind = invasiveKind;
     this.discardData         = discardData;
+    this.disableReporting    = disableReporting;
     this.doAllStatesSummary  = doAllStatesSummary;
     this.doTrackingSpeciesReport = doTrackingSpeciesReport;
     this.doGisFiles          = doGisFiles;
@@ -1416,6 +1418,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
         invasiveSpeciesKind = (invasive ? InvasiveKind.MESA_VERDE_NP : InvasiveKind.NONE);
       }
       discardData           = in.readBoolean();
+      disableReporting      = in.readBoolean();
       doAllStatesSummary    = in.readBoolean();
 
       if (version > 5) {
@@ -1448,6 +1451,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     out.writeBoolean(writeProbFiles);
     out.writeObject(invasiveSpeciesKind);
     out.writeBoolean(discardData);
+    out.writeBoolean(disableReporting);
     out.writeBoolean(doAllStatesSummary);
     out.writeBoolean(doTrackingSpeciesReport);
   }
@@ -1788,6 +1792,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   public boolean isDiscardData() {
     return discardData;
+  }
+
+  public boolean isDisableReporting() {
+    return disableReporting;
   }
 
   public boolean isDoAllStatesSummary() {
