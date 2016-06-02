@@ -126,12 +126,18 @@ public class Roads extends ManmadeElement implements Externalizable {
     super(id);
   }
 
+  /**
+   * Reallocates an array of simulation data. The size of the array equals the number of time steps in the current
+   * simulation. The first entry is initialized with the status of this road unit.
+   */
   public void initSimulation() {
+
     int numSteps = Simpplle.getCurrentSimulation().getNumTimeSteps();
 
-    simData = new RoadsSimData[numSteps+1];
+    simData = new RoadsSimData[numSteps + 1];
     simData[0] = new RoadsSimData();
     simData[0].setStatus(status);
+
   }
 
   public void doBeginTimeStep() {

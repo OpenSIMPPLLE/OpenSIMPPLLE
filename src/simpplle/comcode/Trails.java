@@ -56,15 +56,19 @@ public class Trails extends ManmadeElement implements Externalizable {
   public Trails(int id) {
     super(id);
   }
-/**
- * initializes a trails simulation data array of size = time steps
- */
+
+  /**
+   * Reallocates an array of simulation data. The size of the array equals the number of time steps in the current
+   * simulation. The first entry is initialized with the status of this trail unit.
+   */
   public void initSimulation() {
+
     int numSteps = Simpplle.getCurrentSimulation().getNumTimeSteps();
 
-    simData = new TrailsSimData[numSteps+1];
+    simData = new TrailsSimData[numSteps + 1];
     simData[0] = new TrailsSimData();
     simData[0].setStatus(status);
+
   }
 
   public void doBeginTimeStep() {
