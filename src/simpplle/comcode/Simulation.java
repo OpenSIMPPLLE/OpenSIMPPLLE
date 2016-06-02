@@ -46,15 +46,13 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private boolean      writeProbFiles=false;
   private InvasiveKind invasiveSpeciesKind=InvasiveKind.NONE;
   private boolean      discardData=false;
-  private boolean      disableReporting = false;
+  private boolean      doProbArcFiles = false;
   private boolean      doAllStatesSummary=true;
   private boolean      doTrackingSpeciesReport=false;
   private boolean      doGisFiles=false;
   private boolean      doSimLoggingFile=false;
   private PrintWriter  simLoggingWriter;
-
   private File        allStatesRulesFile;
-
   private boolean     inSimulation;
   private AreaSummary        areaSummary;
   private MultipleRunSummary multipleRunSummary;
@@ -164,7 +162,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                      boolean writeDatabase, boolean writeAccess,
                      boolean writeProbFiles, InvasiveKind invasiveKind,
                      int nStepsInMemory, File allStatesRulesFile,
-                     boolean discardData, boolean disableReporting,
+                     boolean discardData, boolean doProbArcFiles,
                      boolean doAllStatesSummary, boolean doTrackingSpeciesReport,
                      boolean doGisFiles) {
 
@@ -183,7 +181,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     this.writeProbFiles      = writeProbFiles;
     this.invasiveSpeciesKind = invasiveKind;
     this.discardData         = discardData;
-    this.disableReporting    = disableReporting;
+    this.doProbArcFiles = doProbArcFiles;
     this.doAllStatesSummary  = doAllStatesSummary;
     this.doTrackingSpeciesReport = doTrackingSpeciesReport;
     this.doGisFiles          = doGisFiles;
@@ -1106,12 +1104,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
           areaSummary.writeDatabase();
           Simpplle.clearStatusMessage();
         }
-        //if (outputFile != null && writeAccess) {
-        //  Simpplle.setStatusMessage("Writing Area Summary Data to text data");
-        //  areaSummary.writeAccessFiles(accessAreaSummaryOut[currentRun]);
-        //  Simpplle.clearStatusMessage();
-        //}
-//        if (currentArea.doManualGC()) { System.gc(); }
         if (fireSuppression()) {
           areaSummary.doSuppressionCosts(currentTimeStep);
         }
@@ -1128,7 +1120,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
       if (outputFile != null) {
         areaSummary.fireSpreadReportFinish(getFireSpreadReportPath());
       }
-      if (outputFile != null && isMultipleRun() == false) {
+      if (outputFile != null && !isMultipleRun()) {
         save();
       }
       if (doAllStatesSummary) {
@@ -1239,7 +1231,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 //      multipleRunSummary.calculateFrequency();
 //    }
 
-    if (writeProbFiles) {
+    if (writeProbFiles && doProbArcFiles) {
       currentArea.produceDecadeProbabilityArcFiles(outputFile);
       currentArea.produceProbabilityArcFiles(outputFile);
     }
@@ -1418,7 +1410,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
         invasiveSpeciesKind = (invasive ? InvasiveKind.MESA_VERDE_NP : InvasiveKind.NONE);
       }
       discardData           = in.readBoolean();
-      disableReporting      = in.readBoolean();
+      doProbArcFiles = in.readBoolean();
       doAllStatesSummary    = in.readBoolean();
 
       if (version > 5) {
@@ -1451,7 +1443,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     out.writeBoolean(writeProbFiles);
     out.writeObject(invasiveSpeciesKind);
     out.writeBoolean(discardData);
-    out.writeBoolean(disableReporting);
+    out.writeBoolean(doProbArcFiles);
     out.writeBoolean(doAllStatesSummary);
     out.writeBoolean(doTrackingSpeciesReport);
   }
@@ -1794,8 +1786,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
     return discardData;
   }
 
-  public boolean isDisableReporting() {
-    return disableReporting;
+  public boolean isDoProbArcFiles() {
+    return doProbArcFiles;
   }
 
   public boolean isDoAllStatesSummary() {

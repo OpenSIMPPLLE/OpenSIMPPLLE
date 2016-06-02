@@ -2123,7 +2123,7 @@ public class SimpplleMain extends JFrame {
       outfile = chooser.getSelectedFile();
     }
 
-    if (outfile != null) {
+    if (outfile != null ) {
       setWaitState("Generating GIS Decade Probability Files ...");
       try {
         comcode.createGisDecadeProbabilityFiles(outfile);

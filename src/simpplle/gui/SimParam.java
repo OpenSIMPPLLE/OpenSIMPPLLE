@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import simpplle.comcode.Simpplle;
+
 import simpplle.comcode.*;
-import java.awt.Insets;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
@@ -104,10 +104,10 @@ public class SimParam extends JDialog {
   private JCheckBox discardDataCB = new JCheckBox();
   private JPanel discardTextPanel = new JPanel();
   /**
-   *  Disable writing canopy, process and species files if checked. According to
+   *  Option to disable writing probability Arc Files
    *  users, this information is not used in output processing.
    */
-  private JCheckBox discardTextFilesCB = new JCheckBox();
+  private JCheckBox writeAreaProbFilesCB = new JCheckBox();
   private FlowLayout flowLayout7 = new FlowLayout();
   private JPanel allStatesRulesFilePanel = new JPanel();
   private FlowLayout flowLayout12 = new FlowLayout();
@@ -387,9 +387,9 @@ public class SimParam extends JDialog {
         discardDataCB_actionPerformed(e);
       }
     });
-    discardTextFilesCB.setFont(new java.awt.Font("Monospaced", Font.PLAIN, 14));
-    discardTextFilesCB.setText(
-      "Disable probability reporting for multiple simulations." );
+    writeAreaProbFilesCB.setFont(new java.awt.Font("Monospaced", Font.PLAIN, 14));
+    writeAreaProbFilesCB.setText(
+      "Write probability reports for multiple simulations." );
     discardDataPanel.setLayout(flowLayout7);
     flowLayout7.setAlignment(FlowLayout.LEFT);
     flowLayout7.setVgap(0);
@@ -528,17 +528,20 @@ public class SimParam extends JDialog {
     final FlowLayout flowLayout = new FlowLayout();
     flowLayout.setAlignment(FlowLayout.LEFT);
     panel_1.setLayout(flowLayout);
-    
+    // write Access Files
     panel_1.add(writeAccessFilesCB);
     writeAccessFilesCB.setEnabled(false);
     writeAccessFilesCB.setSelected(false);
     writeAccessFilesCB.addActionListener(new WriteAccessFilesCBActionListener());
     writeAccessFilesCB.setText("Write Data to Text Files (Suitable for import into Access or other Programs)");
+    // write Area prob
+    writeAreaProbFilesCB.setEnabled(false);
+    discardTextPanel.setLayout(flowLayout);
+    discardTextPanel.add(writeAreaProbFilesCB);
+    outputOptionsPanel.add(discardTextPanel);
     northPanel.add(jPanel1);
     jPanel1.add(databaseWritePanel);
     databaseWritePanel.add(databaseWriteCB, null);
-    discardTextPanel.add(discardTextFilesCB);
-    jPanel1.add(discardTextPanel);
     discardDataPanel.add(discardDataCB);
     jPanel1.add(discardDataPanel);
     jPanel1.add(timeStepsInMemoryPanel);
@@ -676,7 +679,7 @@ public class SimParam extends JDialog {
                           /*writeProbFilesCB.isSelected()*/true,
                           (Simulation.InvasiveKind)invasiveSpeciesCB.getSelectedItem(),
                           tsInMemory, allStatesRulesFile, discardDataCB.isSelected(),
-                          discardTextFilesCB.isSelected(), allStatesCB.isSelected(),
+                          writeAreaProbFilesCB.isSelected(), allStatesCB.isSelected(),
                           trackingSpeciesCB.isSelected(),
                           gisUpdateSpreadCB.isSelected());
     }
@@ -903,6 +906,7 @@ public class SimParam extends JDialog {
       }
       writeAccessFilesCB.setEnabled(true);
       writeAccessFilesCB.setSelected(false);
+      writeAreaProbFilesCB.setEnabled(true);
     }
     else {
       outputFile = null;
