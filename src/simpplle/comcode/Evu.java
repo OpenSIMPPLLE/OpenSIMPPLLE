@@ -473,8 +473,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Checks where an Evu has trails.
-   * @return true if Evu has trails
+   * Returns true if this contains associated trail units
+   * @return true if there are trails
    */
   public boolean hasTrailUnits() {
     return (assocTrailUnits != null && assocTrailUnits.size() > 0);
