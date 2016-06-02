@@ -1670,7 +1670,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the current areas road array and adds them to the Evu's road units arraylist.
+   * Stores road units from the current area that have an EVU. Each road unit is stored in a static array with
+   * the road's first associated vegetation unit.
    */
   public static void findRoadUnits() {
 
@@ -1678,9 +1679,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     roadUnits.clear();
 
-    for(int i=0; i<allUnits.length; i++) {
+    for(int i = 0; i < allUnits.length; i++) {
 
-      if (allUnits[i] == null) continue;
+      if (allUnits[i] != null) continue;
 
       Evu evu = allUnits[i].getFirstVegUnit();
       if (evu == null) continue;
@@ -1690,6 +1691,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       roadData.evu  = evu;
 
       roadUnits.add(roadData);
+
     }
   }
 
@@ -1936,23 +1938,28 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the trail units in current area.  It then clears a trail unit arraylist.  Trails are added to arraylist if
-   * they are in an area.
+   * Stores trail units from the current area that have an EVU. Each trail unit is stored in a static array with
+   * the trail's first associated vegetation unit.
    */
   public static void findTrailUnits() {
+
     Trails[] allUnits = Simpplle.getCurrentArea().getAllTrails();
 
     trailUnits.clear();
 
-    for(int i=0; i<allUnits.length; i++) {
-      if (allUnits[i] == null) { continue; }
+    for(int i = 0; i < allUnits.length; i++) {
+
+      if (allUnits[i] == null) continue;
+
       Evu evu = allUnits[i].getFirstVegUnit();
-      if (evu == null) { continue; }
+      if (evu == null) continue;
 
       TrailUnitData trailData = new TrailUnitData();
       trailData.trail = allUnits[i];
-      trailData.evu  = evu;
+      trailData.evu   = evu;
+
       trailUnits.add(trailData);
+
     }
   }
 
