@@ -9,62 +9,58 @@ import java.util.zip.GZIPInputStream;
 import simpplle.JSimpplle;
 
 
- /** 
-  * 
-  * The University of Montana owns copyright of the designated documentation contained 
+/**
+ * The University of Montana owns copyright of the designated documentation contained
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This is an abstract class containing fields and methods common to all zones.  This class is not instantiated but
- * rather serves as a common type for zones for use throughout this software.
+ * <p>
+ * RegionalZone serves as a common type for zones throughout this software.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
- */ 
+ */
 
 public abstract class RegionalZone {
+
   public static final int HTGRP      = 0;
   public static final int SPECIES    = 1;
   public static final int SIZE_CLASS = 2;
   public static final int DENSITY    = 3;
   public static final int PROCESS    = 4;
 
-  protected String          name;
-  protected boolean         available;
-  protected String          zoneDir;
-  protected Area[]          sampleAreas;
-  protected Hashtable       allFmz;
-  protected String          pathwayKnowFile;
-  protected String          sysKnowFile;
-  protected String          zoneDefnFile;
-  protected String          gisExtraFile;
-  protected boolean         hasAquatics;
+  protected String    name;
+  protected boolean   available;
+  protected String    zoneDir;
+  protected Area[]    sampleAreas;
+  protected Hashtable allFmz;
+  protected String    pathwayKnowFile;
+  protected String    sysKnowFile;
+  protected String    zoneDefnFile;
+  protected String    gisExtraFile;
+  protected boolean   hasAquatics;
 
   protected ProcessType[] probDataProcesses;
 
-  protected static final String pathwayDir            = "pathways";
-  protected static final String historicPathwayDir    = "historic-pathways";
-  protected static final String sampleAreasDir        = "sample-areas";
-  protected static final String dataDir               = "data";
-  protected static final String appDataDir            = "data";
-  protected static final String appGisExtraDir        = "gisdata";
-  protected static final String imageDir              = "images";
-  protected static final String gisDir                = "gis";
-  protected static final String wildlifeDir           = "wildlife";
-  protected static final String emissionsDataFile     = "emissions.txt";
-  protected static final String insectDiseaseDataFile = "insectdisease.probability";
-  protected static final String fireSpreadFile        = "firespread.firespread";
-  protected static final String fireTypeFile          = "firetype.firetype";
-  protected static final String fireSuppressionFile   = "firesuppression.firesuppression";
-  protected static final String fmzFile               = "fmz.fmz";
-  protected static final String treatmentLogicFile    = "treatmentlogic.treatmentlogic";
-  protected static final String fireSuppWeatherClassAFile  =
-      "firesuppweathera.firesuppweathera";
-  protected static final String fireSuppWeatherFile  =
-      "firesuppweather.firesuppweather";
+  protected static final String pathwayDir                = "pathways";
+  protected static final String historicPathwayDir        = "historic-pathways";
+  protected static final String sampleAreasDir            = "sample-areas";
+  protected static final String dataDir                   = "data";
+  protected static final String appDataDir                = "data";
+  protected static final String appGisExtraDir            = "gisdata";
+  protected static final String imageDir                  = "images";
+  protected static final String gisDir                    = "gis";
+  protected static final String wildlifeDir               = "wildlife";
+  protected static final String emissionsDataFile         = "emissions.txt";
+  protected static final String insectDiseaseDataFile     = "insectdisease.probability";
+  protected static final String fireSpreadFile            = "firespread.firespread";
+  protected static final String fireTypeFile              = "firetype.firetype";
+  protected static final String fireSuppressionFile       = "firesuppression.firesuppression";
+  protected static final String fmzFile                   = "fmz.fmz";
+  protected static final String treatmentLogicFile        = "treatmentlogic.treatmentlogic";
+  protected static final String fireSuppWeatherClassAFile = "firesuppweathera.firesuppweathera";
+  protected static final String fireSuppWeatherFile       = "firesuppweather.firesuppweather";
 
   protected static final String DEFAULT_FMZ_NAME = "all";
 
@@ -103,16 +99,19 @@ public abstract class RegionalZone {
   public static String[] availableZones () {
     return availableZones;
   }
+
   /**
    * Gets the vector of all the valid species for all the habitat type groups in this regional zone.  
    * @return
    */
   public Vector getAllSpecies() { return HabitatTypeGroup.getValidSpecies(); }
+
   /**
    * Gets the vector of all the valid size classes for all the habitat type groups in this regional zone.  
    * @return
    */
   public Vector getAllSizeClass() { return HabitatTypeGroup.getValidSizeClass(); }
+
   /**
    * Gets the vector of all the valid densities for all the habitat type groups in this regional zone.  
    * @return
@@ -136,11 +135,12 @@ public abstract class RegionalZone {
   public String getName () {
     return name;
   }
-/**
- * Name of regional zone. Currently available zones are "Westside Region One", "Eastside Region One", "Sierra Nevada", "Southern California",
- * "Gila", "South Central Alaska", "Southwest Utah",  "Colorado Front Range", "Western Great Plains Steppe",
- *  "Great Plains Steppe", "Mixed Grass Prairie", "Colorado Plateau",  "Teton", "Northern Central Rockies 
- */
+
+  /**
+   * Name of regional zone. Currently available zones are "Westside Region One", "Eastside Region One", "Sierra Nevada", "Southern California",
+   * "Gila", "South Central Alaska", "Southwest Utah",  "Colorado Front Range", "Western Great Plains Steppe",
+   *  "Great Plains Steppe", "Mixed Grass Prairie", "Colorado Plateau",  "Teton", "Northern Central Rockies
+   */
   public String toString() {
     return getName();
   }
@@ -184,29 +184,32 @@ public abstract class RegionalZone {
   public String getDataDir() {
     return (Utility.makePathname(zoneDir,dataDir));
   }
-/**
- * Makes and gets the Image directory for this regional zone.  An example of this from the sierra nevada regional zone:
- * ("knowledge/zones/sierra-nevada" , "images").  This will make a pathname of "knowledge/zones/sierra-nevada/images"
- * @return the image directory.  from above example: "knowledge/zones/sierra-nevada/images"
- */
+
+  /**
+   * Makes and gets the Image directory for this regional zone.  An example of this from the sierra nevada regional zone:
+   * ("knowledge/zones/sierra-nevada" , "images").  This will make a pathname of "knowledge/zones/sierra-nevada/images"
+   * @return the image directory.  from above example: "knowledge/zones/sierra-nevada/images"
+   */
   public String getImageDir() {
     return (Utility.makePathname(zoneDir,imageDir));
   }
-/**
- * Gets the GIS Directory for this Regional zone.  Must call to the utility class to make the pathname.
- *  Example: From the Regional zone sierra nevada.
- * ("knowledge/zones/sierra-nevada" , "gis").  This will make a pathname of "knowledge/zones/sierra-nevada/gis"
- * @return pathname with zoneDir/gisDir  from above example: "knowledge/zones/sierra-nevada/gis"
- */
+
+  /**
+   * Gets the GIS Directory for this Regional zone.  Must call to the utility class to make the pathname.
+   *  Example: From the Regional zone sierra nevada.
+   * ("knowledge/zones/sierra-nevada" , "gis").  This will make a pathname of "knowledge/zones/sierra-nevada/gis"
+   * @return pathname with zoneDir/gisDir  from above example: "knowledge/zones/sierra-nevada/gis"
+   */
   public String getGisDir() {
     return (Utility.makePathname(zoneDir,gisDir));
   }
-/**
- * Gets the wildlife directory by passing to Utility class to make the pathname with zonedir and datadir, then passing that again to utility 
- * to make pathname.  
- * "knowledge/zones/sierra-nevada/data" , "wildlife".  This will make a pathname of "knowledge/zones/sierra-nevada/data/wildlife"
- * @return wildlife directory.  from above example: "knowledge/zones/sierra-nevada/data/wildlife"
- */
+
+  /**
+   * Gets the wildlife directory by passing to Utility class to make the pathname with zonedir and datadir, then passing that again to utility
+   * to make pathname.
+   * "knowledge/zones/sierra-nevada/data" , "wildlife".  This will make a pathname of "knowledge/zones/sierra-nevada/data/wildlife"
+   * @return wildlife directory.  from above example: "knowledge/zones/sierra-nevada/data/wildlife"
+   */
   public String getWildlifeDir() {
     String dir = Utility.makePathname(zoneDir,dataDir);
     return (Utility.makePathname(dir,wildlifeDir));
@@ -249,16 +252,16 @@ public abstract class RegionalZone {
   public Fmz getFmz(String fmz) {
     if (fmz == null) {
       return null;
-    }
-    else {
+    } else {
       return (Fmz) allFmz.get(fmz.toLowerCase());
     }
   }
-/**
- * Gets all the fire management zones for this regional zone.  First makes a temporary fmz array then transfers into it all the elements
- * from the enumeration of the allFmz hashtable elements. 
- * @return array of all the fire management zones for this regional zone.  
- */
+
+  /**
+   * Gets all the fire management zones for this regional zone.  First makes a temporary fmz array then transfers into it all the elements
+   * from the enumeration of the allFmz hashtable elements.
+   * @return array of all the fire management zones for this regional zone.
+   */
   public Fmz[] getAllFmz() {
     Fmz[]       tmpAllFmz;
     Enumeration e;
@@ -272,10 +275,11 @@ public abstract class RegionalZone {
     }
     return tmpAllFmz;
   }
-/**
- * First makes a temporary array of all the fire management zones in this regional zone, then adds them to a vector.  
- * @return the vector with all fire management zones in a regional zone.  
- */
+
+  /**
+   * First makes a temporary array of all the fire management zones in this regional zone, then adds them to a vector.
+   * @return the vector with all fire management zones in a regional zone.
+   */
   public Vector getAllFmzNames() {
     Fmz[] tmpAllFmz = getAllFmz();
     Vector fmzNames = new Vector();
@@ -285,37 +289,39 @@ public abstract class RegionalZone {
     }
     return fmzNames;
   }
-/**
- * Adds a fire management zone to the hash table that contains all the fire management zones for this regional zone.  
- * @param fmz the fire management zone to be added to allFmz hashtable. 
- */
+
+  /**
+   * Adds a fire management zone to the hash table that contains all the fire management zones for this regional zone.
+   * @param fmz the fire management zone to be added to allFmz hashtable.
+   */
   public void addFmz(Fmz fmz) {
     String fmzName = fmz.getName();
     allFmz.put(fmzName.toLowerCase(),fmz);
   }
-/**
- * Removes a fire management zone from this regional zone by removing it from the zone's fmz hashtable.  
- * Also updates the current area's fire management zones, which in turn updates all the EVU's who position is in this fmz, 
- * which are then reset to default fmz.  
- * @param fmz the fire management zone to be removed.  
- */
+
+  /**
+   * Removes a fire management zone from this regional zone by removing it from the zone's fmz hashtable.
+   * Also updates the current area's fire management zones, which in turn updates all the EVU's who position is in this fmz,
+   * which are then reset to default fmz.
+   * @param fmz the fire management zone to be removed.
+   */
   public void removeFmz(Fmz fmz) {
     allFmz.remove(fmz.getName());
     fmz = null;
 
-    // Make sure EVU's who point to this fmz are
-    // reset to the default fmz.
+    // Make sure EVU's who point to this fmz are reset to the default fmz.
     Area area = Simpplle.getCurrentArea();
     if (area != null) {
       area.updateFmzData();
     }
   }
-/**
- * Removes all fire management zones for this regional zone by clearing the allFmz hashtable.  
- * Also updates the current area's fire management zones, which in turn updates all the EVU's who position is in this fmz, 
- * which are then reset to default fmz.
- * 
- */
+
+  /**
+   * Removes all fire management zones for this regional zone by clearing the allFmz hashtable.
+   * Also updates the current area's fire management zones, which in turn updates all the EVU's who position is in this fmz,
+   * which are then reset to default fmz.
+   *
+   */
   public void removeAllFmz() {
     Fmz all = getDefaultFmz();
     allFmz.clear();
@@ -355,10 +361,10 @@ public abstract class RegionalZone {
     }
   }
 
- /**
-  * Gets the default fire management zone.  
-  * @return the default fire management zone for this regional zone. 
-  */
+  /**
+   * Gets the default fire management zone.
+   * @return the default fire management zone for this regional zone.
+   */
   public Fmz getDefaultFmz() {
     Fmz fmz = getFmz(DEFAULT_FMZ_NAME);
     if (fmz == null) {
@@ -367,10 +373,11 @@ public abstract class RegionalZone {
     }
     return fmz;
   }
-/**
- * Gets the default fire management zone for this regional zone.  This returns "all".
- * @return
- */
+
+  /**
+   * Gets the default fire management zone for this regional zone.  This returns "all".
+   * @return
+   */
   public String getDefaultFmzName() { return DEFAULT_FMZ_NAME; }
 
   protected InputStream getKnowledgeFile(String path) throws IOException {
@@ -381,8 +388,7 @@ public abstract class RegionalZone {
       String msg = "Could not load " + path + " from jar file";
       System.out.println(msg);
       throw new IOException(msg);
-    }
-    else {
+    } else {
       return is;
     }
   }
@@ -390,29 +396,35 @@ public abstract class RegionalZone {
   public File getSystemKnowledgeFile() {
     return new File(getAppDataDir(),sysKnowFile);
   }
+
   public File getSystemKnowledgePathwayFile() {
     if (pathwayKnowFile != null) {
       return new File(getAppDataDir(),pathwayKnowFile);
-    }
-    else {
+    } else {
       return new File(getAppDataDir(),sysKnowFile);
     }
   }
+
   public File getSystemKnowledgeGisExtraFile() {
     return new File(getAppGisExtraDir(),gisExtraFile);
   }
+
   public File getSystemKnowledgeDummyMDBDir() {
     return getAppDataDir();
   }
+
   public File getAppDataDir() {
     return new File (JSimpplle.getInstallDirectory(),appDataDir);
   }
+
   public File getAppGisExtraDir() {
     return new File (JSimpplle.getInstallDirectory(),appGisExtraDir);
   }
+
   public File getSystemKnowledgeDummyHsqldbDir() {
     return new File(getAppDataDir(),"db");
   }
+
   public static File getSystemFSLandscapeDiretory() {
     return new File(new File(JSimpplle.getInstallDirectory(),"gis"),"fslandscape");
   }
@@ -437,18 +449,17 @@ public abstract class RegionalZone {
       newGroup = loadPathway(new FileInputStream(path));
       newGroup.setFilename(path);
       return newGroup;
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       throw new SimpplleError(e.getMessage() + "\nCould not load Pathway File " + path);
     }
   }
+
   public void loadAquaticPathway (File path) throws SimpplleError {
     LtaValleySegmentGroup newGroup;
     try {
       newGroup = loadAquaticPathway(new FileInputStream(path));
       newGroup.setFilename(path);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       throw new SimpplleError(e.getMessage() + "\nCould not load Pathway File " + path);
     }
   }
@@ -464,13 +475,13 @@ public abstract class RegionalZone {
 
       newGroup = loadAquaticPathway(fin);
       fin.close();
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       throw new SimpplleError("Problems accessing knowledge.jar file");
     }
 
     return newGroup;
   }
+
   private HabitatTypeGroup loadPathway (InputStream is) throws SimpplleError {
     BufferedReader   fin;
     GZIPInputStream  gzip_in;
@@ -482,8 +493,7 @@ public abstract class RegionalZone {
 
       newGroup = loadPathway(fin);
       fin.close();
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       throw new SimpplleError("Problems accessing knowledge.jar file");
     }
 
@@ -493,6 +503,7 @@ public abstract class RegionalZone {
   public LtaValleySegmentGroup loadAquaticPathway(BufferedReader fin) {
     return LtaValleySegmentGroup.read(fin);
   }
+
   public HabitatTypeGroup loadPathway(BufferedReader fin) {
     return HabitatTypeGroup.read(fin);
   }
@@ -503,12 +514,12 @@ public abstract class RegionalZone {
     try {
       newGroup = new LtaValleySegmentGroup();
       newGroup.importTextFile(infile);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       throw new SimpplleError(e.getMessage() + "\nCould not import Pathway File " + infile);
     }
   }
+
   public HabitatTypeGroup importPathway(File infile) throws SimpplleError {
     HabitatTypeGroup newGroup;
 
@@ -516,8 +527,7 @@ public abstract class RegionalZone {
       newGroup = new HabitatTypeGroup();
       newGroup.importTextFile(infile);
       return newGroup;
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       throw new SimpplleError(e.getMessage() + "\nCould not import Pathway File " + infile);
     }
@@ -541,6 +551,7 @@ public abstract class RegionalZone {
     System.gc();
     Simpplle.clearStatusMessage();
   }
+
   public void loadAllPathways () throws SimpplleError {
     String msg = (isHistoric()) ? "Loading all Historic Pathways ..." :
                                   "Loading all Pathways ...";
@@ -561,6 +572,7 @@ public abstract class RegionalZone {
     if (LtaValleySegmentGroup.findInstance(groupName) == null) { return; }
     SystemKnowledge.loadAquaticPathway(groupName);
   }
+
   public void loadPathway(String groupName) throws SimpplleError {
     if (HabitatTypeGroup.findInstance(groupName) == null) { return; }
     SystemKnowledge.loadPathway(groupName);
@@ -572,11 +584,11 @@ public abstract class RegionalZone {
 
     if (group.isSystemGroup()) {
       SystemKnowledge.loadAquaticPathway(groupName);
-    }
-    else {
+    } else {
       LtaValleySegmentGroup.removeGroup(groupName);
     }
   }
+
   /**
    * Removes a pathway 
    * @param groupName
@@ -588,16 +600,17 @@ public abstract class RegionalZone {
 
     if (group.isSystemGroup()) {
       SystemKnowledge.loadPathway(groupName);
-    }
-    else {
+    } else {
       HabitatTypeGroup.removeGroup(groupName);
     }
   }
-/**
- * Checks if file pathway is historic pathway. 
- * @return
- */
+
+  /**
+   * Checks if file pathway is historic pathway.
+   * @return
+   */
   public boolean isHistoric() { return historicPathways; }
+
   /**
    * Tells OpenSimpplle to use historic pathways files.   
    * @param value
@@ -625,16 +638,15 @@ public abstract class RegionalZone {
   }
 
   public BufferedReader getTreatmentLogicFileStream() throws SimpplleError {
-    return SystemKnowledge.getEntryStream(getSystemKnowledgeFile(),
-                                          SystemKnowledge.TREATMENT_LOGIC_ENTRY);
+    return SystemKnowledge.getEntryStream(getSystemKnowledgeFile(), SystemKnowledge.TREATMENT_LOGIC_ENTRY);
   }
 
   public abstract ProcessType[] getUserProbProcesses();
 
-/**
- * Reads the definition file at "ZONE/LEGAL-DESCRIPTION.TXT" and reads the process and treatemt legal files 
- * @throws SimpplleError
- */
+  /**
+   * Reads the definition file at "ZONE/LEGAL-DESCRIPTION.TXT" and reads the process and treatemt legal files
+   * @throws SimpplleError
+   */
   public void readZoneDefinitionFile() throws SimpplleError {
     File           defnFile = new File(getAppDataDir(),zoneDefnFile);
     BufferedReader fin;
@@ -644,23 +656,27 @@ public abstract class RegionalZone {
       Process.readLegalFile(fin);
       Treatment.readLegalFile(fin);
   }
-/**
- * Writes the process and treatment legal files, which constitute the zone definition file.  
- * @param fout 
- */
+
+  /**
+   * Writes the process and treatment legal files, which constitute the zone definition file.
+   * @param fout
+   */
   public void writeZoneDefinitionFile(PrintWriter fout) {
     Process.writeLegalFile(fout);
     Treatment.writeLegalFile(fout);
   }
-/**
- * Checks whether this regional zone has aquatic units.
- * @return true if the zone has aquatic evu's
- */
+
+  /**
+   * Checks whether this regional zone has aquatic units.
+   * @return true if the zone has aquatic evu's
+   */
   public boolean hasAquatics() { return hasAquatics; }
-/**
- * Checks if regional zone is wyoming by checking if regional zone object is instance of WesternGreatPlainsSteppe, GreatPlainsSteppe, or MixedGrassPrairie.
- * @return true if regional zone is wyoming
- */
+
+  /**
+   * Checks if regional zone is wyoming by checking if regional zone object is instance of WesternGreatPlainsSteppe,
+   * GreatPlainsSteppe, or MixedGrassPrairie.
+   * @return true if regional zone is wyoming
+   */
   public static boolean isWyoming() {
     RegionalZone zone = Simpplle.getCurrentZone();
     return ((zone instanceof WesternGreatPlainsSteppe) ||

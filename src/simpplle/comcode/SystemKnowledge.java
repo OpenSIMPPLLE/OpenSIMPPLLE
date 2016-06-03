@@ -8,8 +8,6 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamDriver;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 
-
-
 /** 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
@@ -25,9 +23,9 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
 public class SystemKnowledge {
+
   public enum Kinds {
     FMZ,
     TREATMENT_SCHEDULE,
@@ -44,7 +42,7 @@ public class SystemKnowledge {
     FIRE_SEASON,
     PROCESS_SCHEDULE,
     FIRESUPP_PRODUCTION_RATE,  /* need for load of old format file */
-    FIRESUPP_SPREAD_RATE,  /* need for load of old format file */
+    FIRESUPP_SPREAD_RATE,      /* need for load of old format file */
     SPECIES,
     CONIFER_ENCROACHMENT,
     FIRE_TYPE_LOGIC,
@@ -78,7 +76,7 @@ public class SystemKnowledge {
     SPRUCE_BEETLE,
     DF_BEETLE,
     WILDLIFE
-  };
+  }
 
   public static final Kinds FMZ                              = Kinds.FMZ;
   public static final Kinds TREATMENT_SCHEDULE               = Kinds.TREATMENT_SCHEDULE;
@@ -117,113 +115,86 @@ public class SystemKnowledge {
   public static final Kinds FIRE_SUPP_WEATHER_CLASS_A_LOGIC  = Kinds.FIRE_SUPP_WEATHER_CLASS_A_LOGIC;
   public static final Kinds FIRE_SPOTTING_LOGIC              = Kinds.FIRE_SPOTTING_LOGIC;
   public static final Kinds FIRE_SUPP_EVENT_LOGIC            = Kinds.FIRE_SUPP_EVENT_LOGIC;
-
-  // ** Needed for Knowledge Source info.
-  public static final Kinds LP_MPB              = Kinds.LP_MPB;
-  public static final Kinds PP_MPB              = Kinds.PP_MPB;
-  public static final Kinds WP_MPB              = Kinds.WP_MPB;
-  public static final Kinds WBP_MPB             = Kinds.WBP_MPB;
-  public static final Kinds WSBW                = Kinds.WSBW;
-  public static final Kinds ROOT_DISEASE        = Kinds.ROOT_DISEASE;
-  public static final Kinds SPRUCE_BEETLE       = Kinds.SPRUCE_BEETLE;
-  public static final Kinds DF_BEETLE           = Kinds.DF_BEETLE;
-  public static final Kinds WILDLIFE            = Kinds.WILDLIFE;
+  public static final Kinds LP_MPB                           = Kinds.LP_MPB;
+  public static final Kinds PP_MPB                           = Kinds.PP_MPB;
+  public static final Kinds WP_MPB                           = Kinds.WP_MPB;
+  public static final Kinds WBP_MPB                          = Kinds.WBP_MPB;
+  public static final Kinds WSBW                             = Kinds.WSBW;
+  public static final Kinds ROOT_DISEASE                     = Kinds.ROOT_DISEASE;
+  public static final Kinds SPRUCE_BEETLE                    = Kinds.SPRUCE_BEETLE;
+  public static final Kinds DF_BEETLE                        = Kinds.DF_BEETLE;
+  public static final Kinds WILDLIFE                         = Kinds.WILDLIFE;
 
   public static final int NUMID = Kinds.values().length;
 
   private static final int VEG     = 0;
   private static final int AQUATIC = 1;
 
-
-  private static boolean[] hasChanged = new boolean[NUMID];
-  private static boolean[] loadSaveMe = new boolean[NUMID];
-  private static boolean[] hasUserData   = new boolean[NUMID];
+  private static boolean[] hasChanged  = new boolean[NUMID];
+  private static boolean[] loadSaveMe  = new boolean[NUMID];
+  private static boolean[] hasUserData = new boolean[NUMID];
 
   private static File[] files = new File[NUMID];
 
   private static HabitatTypeGroup lastPathwayLoaded;
   private static LtaValleySegmentGroup lastAquaticPathwayLoaded;
 
-  public static final String FMZ_ENTRY                      = "DATA/FMZ.TXT";
-  public static final String TREATMENT_SCHEDULE_ENTRY       = "DATA/TREATMENT";
-  public static final String TREATMENT_LOGIC_ENTRY          = "DATA/TREATMENT-LOGIC.TXT";
-  public static final String PROCESS_SCHEDULE_ENTRY         = "DATA/PROCESS";
-//  public static final String INSECT_DISEASE_PROB_ENTRY      = "DATA/INSECT-DISEASE-PROB.TXT";
-  public static final String OLD_PROCESS_PROB_LOGIC_ENTRY   = "DATA/PROCESS-PROB-LOGIC.SER";
-  public static final String PROCESS_PROB_LOGIC_ENTRY       = "DATA/PROCESS-PROB-LOGIC.XML";
-  public static final String FIRE_SUPP_CLASS_A_ENTRY        = "DATA/FIRE-SUPPRESSION-CLASS-A.TXT";
-  public static final String FIRE_SUPP_BEYOND_CLASS_A_ENTRY = "DATA/FIRE-SUPPRESSION-BEYOND-CLASS-A.TXT";
-  public static final String EXTREME_FIRE_DATA_ENTRY        = "DATA/EXTREME-FIRE-DATA.TXT";
-  public static final String CLIMATE_ENTRY                  = "DATA/CLIMATE";
-  public static final String WILDLIFE_ENTRY                 = "DATA/WILDLIFE";
-  public static final String EMISSIONS_ENTRY                = "DATA/EMISSIONS.TXT";
-  public static final String PATHWAYS_ENTRY                 = "PATHWAYS";
-  public static final String PATHWAYS_ENTRY_AQUATIC         = "AQUATIC-PATHWAYS";
-  public static final String HISTORIC_PATHWAYS_ENTRY        = "HISTORIC-PATHWAYS";
-  public static final String FIRE_SEASON_ENTRY              = "DATA/FIRE-SEASON.TXT";
-  public static final String FIRESUPP_PRODUCTION_RATE_ENTRY = "DATA/FIRESUPP-PRODUCTION-RATE.SER";
-  public static final String FIRESUPP_SPREAD_RATE_ENTRY     = "DATA/FIRESUPP-SPREAD-RATE.SER";
-  public static final String SPECIES_ENTRY                  = "DATA/SPECIES.SER";
-  public static final String CONIFER_ENCROACHMENT_ENTRY     = "DATA/CONIFER-ENCROACHMENT.SER";
-  public static final String INVASIVE_SPECIES_LOGIC_ENTRY   = "DATA/INVASIVE-SPECIES-LOGIC.XML";
-  public static final String INVASIVE_SPECIES_LOGIC_MSU_ENTRY = "DATA/INVASIVE-SPECIES-LOGIC-MSU.XML";
+  public static final String FMZ_ENTRY                         = "DATA/FMZ.TXT";
+  public static final String TREATMENT_SCHEDULE_ENTRY          = "DATA/TREATMENT";
+  public static final String TREATMENT_LOGIC_ENTRY             = "DATA/TREATMENT-LOGIC.TXT";
+  public static final String PROCESS_SCHEDULE_ENTRY            = "DATA/PROCESS";
+//  public static final String INSECT_DISEASE_PROB_ENTRY         = "DATA/INSECT-DISEASE-PROB.TXT";
+  public static final String OLD_PROCESS_PROB_LOGIC_ENTRY      = "DATA/PROCESS-PROB-LOGIC.SER";
+  public static final String PROCESS_PROB_LOGIC_ENTRY          = "DATA/PROCESS-PROB-LOGIC.XML";
+  public static final String FIRE_SUPP_CLASS_A_ENTRY           = "DATA/FIRE-SUPPRESSION-CLASS-A.TXT";
+  public static final String FIRE_SUPP_BEYOND_CLASS_A_ENTRY    = "DATA/FIRE-SUPPRESSION-BEYOND-CLASS-A.TXT";
+  public static final String EXTREME_FIRE_DATA_ENTRY           = "DATA/EXTREME-FIRE-DATA.TXT";
+  public static final String CLIMATE_ENTRY                     = "DATA/CLIMATE";
+  public static final String WILDLIFE_ENTRY                    = "DATA/WILDLIFE";
+  public static final String EMISSIONS_ENTRY                   = "DATA/EMISSIONS.TXT";
+  public static final String PATHWAYS_ENTRY                    = "PATHWAYS";
+  public static final String PATHWAYS_ENTRY_AQUATIC            = "AQUATIC-PATHWAYS";
+  public static final String HISTORIC_PATHWAYS_ENTRY           = "HISTORIC-PATHWAYS";
+  public static final String FIRE_SEASON_ENTRY                 = "DATA/FIRE-SEASON.TXT";
+  public static final String FIRESUPP_PRODUCTION_RATE_ENTRY    = "DATA/FIRESUPP-PRODUCTION-RATE.SER";
+  public static final String FIRESUPP_SPREAD_RATE_ENTRY        = "DATA/FIRESUPP-SPREAD-RATE.SER";
+  public static final String SPECIES_ENTRY                     = "DATA/SPECIES.SER";
+  public static final String CONIFER_ENCROACHMENT_ENTRY        = "DATA/CONIFER-ENCROACHMENT.SER";
+  public static final String INVASIVE_SPECIES_LOGIC_ENTRY      = "DATA/INVASIVE-SPECIES-LOGIC.XML";
+  public static final String INVASIVE_SPECIES_LOGIC_MSU_ENTRY  = "DATA/INVASIVE-SPECIES-LOGIC-MSU.XML";
 
-  public static final String GAP_PROCESS_LOGIC_ENTRY   = "DATA/GAP-PROCESS-LOGIC.XML";
-  public static final String DOCOMPETITION_LOGIC_ENTRY = "DATA/DOCOMPETITION-LOGIC.XML";
-  public static final String REGEN_DELAY_LOGIC_ENTRY   = "DATA/REGEN-DELAY-LOGIC.XML";
+  public static final String GAP_PROCESS_LOGIC_ENTRY           = "DATA/GAP-PROCESS-LOGIC.XML";
+  public static final String DOCOMPETITION_LOGIC_ENTRY         = "DATA/DOCOMPETITION-LOGIC.XML";
+  public static final String REGEN_DELAY_LOGIC_ENTRY           = "DATA/REGEN-DELAY-LOGIC.XML";
 
-  public static final String EVU_SEARCH_LOGIC_ENTRY     = "DATA/EVU-SEARCH-LOGIC.XML";
-  public static final String PRODUCING_SEED_LOGIC_ENTRY = "DATA/PRODUCING-SEED-LOGIC.XML";
-  public static final String VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY
-      = "DATA/VEG-UNIT-FIRE-TYPE-LOGIC.XML";
+  public static final String EVU_SEARCH_LOGIC_ENTRY            = "DATA/EVU-SEARCH-LOGIC.XML";
+  public static final String PRODUCING_SEED_LOGIC_ENTRY        = "DATA/PRODUCING-SEED-LOGIC.XML";
+  public static final String VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY    = "DATA/VEG-UNIT-FIRE-TYPE-LOGIC.XML";
 
-  public static final String REGEN_LOGIC_FIRE_ENTRY
-      = "DATA/REGENERATION-LOGIC-FIRE.XML";
-  public static final String REGEN_LOGIC_SUCC_ENTRY
-      = "DATA/REGENERATION-LOGIC-SUCCESSION.XML";
-  public static final String OLD_REGEN_LOGIC_ENTRY
-      = "DATA/REGENERATION-LOGIC.TXT";
+  public static final String REGEN_LOGIC_FIRE_ENTRY            = "DATA/REGENERATION-LOGIC-FIRE.XML";
+  public static final String REGEN_LOGIC_SUCC_ENTRY            = "DATA/REGENERATION-LOGIC-SUCCESSION.XML";
+  public static final String OLD_REGEN_LOGIC_ENTRY             = "DATA/REGENERATION-LOGIC.TXT";
 
-  public static final String FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY =
-    "DATA/FIRE-SUPPRESSION-WEATHER-BEYOND-CLASS-A.XML";
-  public static final String OLD_FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY =
-    "DATA/FIRE-SUPPRESSION-WEATHER-BEYOND-CLASS-A.TXT";
+  public static final String FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY     = "DATA/FIRE-SUPPRESSION-WEATHER-BEYOND-CLASS-A.XML";
+  public static final String OLD_FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY = "DATA/FIRE-SUPPRESSION-WEATHER-BEYOND-CLASS-A.TXT";
+  public static final String FIRE_SUPP_WEATHER_CLASS_A_ENTRY            = "DATA/FIRE-SUPPRESSION-WEATHER-CLASS-A.TXT";
 
-  public static final String FIRE_SUPP_WEATHER_CLASS_A_ENTRY  =
-    "DATA/FIRE-SUPPRESSION-WEATHER-CLASS-A.TXT";
+  public static final String OLD_FIRE_SPREAD_ENTRY             = "DATA/FIRE-SPREAD.TXT";
+  public static final String FIRE_SPREAD_DATA_ENTRY            = "DATA/FIRE-SPREAD-DATA.TXT";
+  public static final String FIRE_SPREAD_LOGIC_ENTRY           = "DATA/FIRE-SPREAD-DATA.XML";
 
-  public static final String OLD_FIRE_SPREAD_ENTRY      = "DATA/FIRE-SPREAD.TXT";
-  public static final String FIRE_SPREAD_DATA_ENTRY = "DATA/FIRE-SPREAD-DATA.TXT";
-  public static final String FIRE_SPREAD_LOGIC_ENTRY    = "DATA/FIRE-SPREAD-DATA.XML";
+  public static final String FIRE_TYPE_LOGIC_ENTRY             = "DATA/FIRE-TYPE-DATA.XML";
+  public static final String FIRE_TYPE_DATA_ENTRY              = "DATA/FIRE-TYPE-DATA.TXT";
+  public static final String OLD_TYPE_OF_FIRE_ENTRY            = "DATA/TYPE-OF-FIRE.TXT";
 
-
-  public static final String FIRE_TYPE_LOGIC_ENTRY  = "DATA/FIRE-TYPE-DATA.XML";
-  public static final String FIRE_TYPE_DATA_ENTRY   = "DATA/FIRE-TYPE-DATA.TXT";
-  public static final String OLD_TYPE_OF_FIRE_ENTRY = "DATA/TYPE-OF-FIRE.TXT";
-
-  public static final String FIRE_SUPP_CLASS_A_LOGIC_ENTRY =
-      "DATA/FIRE-SUPP-CLASS-A-LOGIC.XML";
-
-  public static final String FIRE_SUPP_BEYOND_CLASS_A_LOGIC_ENTRY =
-      "DATA/FIRE-SUPP-BEYOND-CLASS-A-LOGIC.XML";
-
-  public static final String FIRE_SUPP_PRODUCTION_RATE_LOGIC_ENTRY =
-      "DATA/FIRE-SUPP-PRODUCTION-RATE-LOGIC.XML";
-
-  public static final String FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY =
-      "DATA/FIRE-SUPP-SPREAD-RATE-LOGIC.XML";
-
-  public static final String FIRE_SUPP_WEATHER_CLASS_A_LOGIC_ENTRY =
-      "DATA/FIRE-SUPP-WEATHER-CLASS-A-LOGIC.XML";
-
-  public static final String TRACKING_SPECIES_REPORT_ENTRY =
-      "DATA/TRACKING-SPECIES-REPORT.XML";
-
-  public static final String FIRE_SPOTTING_LOGIC_ENTRY =
-    "DATA/FIRE-SPOTTING-LOGIC.XML";
-
-  public static final String FIRE_SUPP_EVENT_LOGIC_ENTRY =
-    "DATA/FIRE-SUPP-EVENT-LOGIC.XML";
+  public static final String FIRE_SUPP_CLASS_A_LOGIC_ENTRY         = "DATA/FIRE-SUPP-CLASS-A-LOGIC.XML";
+  public static final String FIRE_SUPP_BEYOND_CLASS_A_LOGIC_ENTRY  = "DATA/FIRE-SUPP-BEYOND-CLASS-A-LOGIC.XML";
+  public static final String FIRE_SUPP_PRODUCTION_RATE_LOGIC_ENTRY = "DATA/FIRE-SUPP-PRODUCTION-RATE-LOGIC.XML";
+  public static final String FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY     = "DATA/FIRE-SUPP-SPREAD-RATE-LOGIC.XML";
+  public static final String FIRE_SUPP_WEATHER_CLASS_A_LOGIC_ENTRY = "DATA/FIRE-SUPP-WEATHER-CLASS-A-LOGIC.XML";
+  public static final String TRACKING_SPECIES_REPORT_ENTRY         = "DATA/TRACKING-SPECIES-REPORT.XML";
+  public static final String FIRE_SPOTTING_LOGIC_ENTRY             = "DATA/FIRE-SPOTTING-LOGIC.XML";
+  public static final String FIRE_SUPP_EVENT_LOGIC_ENTRY           = "DATA/FIRE-SUPP-EVENT-LOGIC.XML";
 
   private static final String SYSKNOW_FILEEXT = "sysknowledge";
 
@@ -243,18 +214,22 @@ public class SystemKnowledge {
    * @param value true if has changed
    */
   public static void setHasChanged(Kinds kind,boolean value) { hasChanged[kind.ordinal()] = value; }
+
   /**
-   * Method notifies that system knowledge has changed through file input.  This is called from the main input reader readInputFile()
+   * Method notifies that system knowledge has changed through file input. This is called from the main input
+   * reader readInputFile()
    * @param kind System Knowledge kind
    * @return true if has System Knowledge kind changed
    */
   private static boolean hasChanged(Kinds kind) { return hasChanged[kind.ordinal()]; }
-/**
- * Sets that the system knowledge for a particular kind to true to indicate user data has been entered.  
- * @param kind SystemKnowledge kind checked against the boolean array with marking if system has user data.  
- * @param value true if file has user data
- */
+
+  /**
+   * Sets that the system knowledge for a particular kind to true to indicate user data has been entered.
+   * @param kind SystemKnowledge kind checked against the boolean array with marking if system has user data.
+   * @param value true if file has user data
+   */
   public static void setHasUserData(Kinds kind, boolean value) { hasUserData[kind.ordinal()] = value; }
+
   /**
    * Sets the boolan for has system has user data or a particular system knowledge kind.  
    * These are indexed by the ordinal into system knowledge enumeration.  
@@ -282,6 +257,7 @@ public class SystemKnowledge {
   public static void setLoadSaveOption(Kinds which, boolean bool) {
     loadSaveMe[which.ordinal()] = bool;
   }
+
   /**
    * Checks both the hasChanged or hasUserData arrays of a particular system knowledge kind. 
    * These are indexed by the ordinal into system knowledge enumeration.
@@ -291,6 +267,7 @@ public class SystemKnowledge {
   public static boolean hasChangedOrUserData(Kinds which) {
     return (hasChanged[which.ordinal()] || hasUserData[which.ordinal()]);
   }
+
   /**
    * Checks the boolean array loadSaveMe at the parameter system knowledge kind ordinal into kind enumeration.   
    * @param which
@@ -299,14 +276,16 @@ public class SystemKnowledge {
   public static boolean isPresentInFile(Kinds which) {
     return (loadSaveMe[which.ordinal()]);
   }
-/**
- * Gets the file for a particular system knowledge kind.  
- * @param kind
- * @return
- */
+
+  /**
+   * Gets the file for a particular system knowledge kind.
+   * @param kind
+   * @return
+   */
   public static File getFile(Kinds kind) {
     return files[kind.ordinal()];
   }
+
   /**
    * Puts a system knowledge file into system knowledge file array at the index of its ordinal into kind enumeration. 
    * declared at beginning of SystemKnowledge class. 
@@ -316,6 +295,7 @@ public class SystemKnowledge {
   public static void setFile(Kinds kind, File file) {
     files[kind.ordinal()] = file;
   }
+
   /**
    * Clears a file in the system knowledge file array based on the ordinal into kind enumeration.
    * @param kind
@@ -323,17 +303,19 @@ public class SystemKnowledge {
   public static void clearFile(Kinds kind) {
     files[kind.ordinal()] = null;
   }
-/**
- * Gets the Habitat Type Group at the lastPathwayLoaded
- * @return
- */
+
+  /**
+   * Gets the Habitat Type Group at the lastPathwayLoaded
+   * @return
+   */
   public static HabitatTypeGroup getLastPathwayLoaded() {
     return lastPathwayLoaded;
   }
-/**
- * Gets the LtaValleySegmentGroup at the last aquatic pathway loaded. 
- * @return
- */
+
+  /**
+   * Gets the LtaValleySegmentGroup at the last aquatic pathway loaded.
+   * @return
+   */
   public static LtaValleySegmentGroup getLastAquaticPathwayLoaded() {
     return lastAquaticPathwayLoaded;
   }
@@ -386,15 +368,15 @@ public class SystemKnowledge {
     }
   }
 
-
-/**
- * Copies ArcviewGIS Files from the gis directory to a destination file. 
- * @param destDir File to be copied to.  
- * @throws SimpplleError not caught
- */
+  /**
+   * Copies ArcviewGIS Files from the gis directory to a destination file.
+   * @param destDir File to be copied to.
+   * @throws SimpplleError not caught
+   */
   public static void copyArcviewGisFiles(File destDir) throws SimpplleError {
     copyGisFiles(destDir,"gis");
   }
+
   /**
    * Copies ArcGISFiles  files from the arcgis directory to a destination file. 
    * @param destDir File where the ArcGisFiles willbe copied to 
@@ -413,9 +395,9 @@ public class SystemKnowledge {
     return (file.exists() && file.length() > 0);
   }
 
-  
   /**
-   * Method to copy GIS coverage data.  If the entry name ends in zip or mdb the jar.  If entry is a directory, a new directory path is created. 
+   * Method to copy GIS coverage data.  If the entry name ends in zip or mdb the jar.  If entry is a directory, a
+   * new directory path is created.
    * @param destDir
    * @throws SimpplleError
    */
@@ -478,20 +460,21 @@ public class SystemKnowledge {
         jarEntry = jarIn.getNextJarEntry();
       }
       fin.close();
-    }
-    catch (IOException err) {
+    } catch (IOException err) {
       err.printStackTrace();
       throw new SimpplleError("Could not copy one or more GIS files.");
     }
   }
-/**
- * Copies Interchange files by passing to copyGISExtrasFiles from the e00.zip directory to a destination file. 
- * @param destDir File where the data will be copied to
- * @throws SimpplleError
- */
+
+  /**
+   * Copies Interchange files by passing to copyGISExtrasFiles from the e00.zip directory to a destination file.
+   * @param destDir File where the data will be copied to
+   * @throws SimpplleError
+   */
   public static void copyInterchangeFile(File destDir) throws SimpplleError {
     copyGisExtraFiles(destDir, "e00.zip");
   }
+
   /**
    * Method to copy Geodatabase files, suffixed with "mdb".  
    * @param destDir File where the information is to be copied to.  
@@ -548,13 +531,13 @@ public class SystemKnowledge {
       throw new SimpplleError("Could not copy file.");
     }
   }
+
   /**
    * Copies gis files from the gis directory to a destination directory.  
    * @param destDir directory where file to be copied is kept
    * @param gisDir the suffix which will be appended at the end of the file to tell what type of GIS file it is.  
    * @throws SimpplleError caught if could not copy one or more files
    */
-
   private static void copyGisFiles(File destDir, String gisDir) throws SimpplleError {
     JarInputStream       jarIn=null;
     JarEntry             jarEntry;
@@ -599,12 +582,12 @@ public class SystemKnowledge {
     }
   }
 
-/**
- * 
- * @param path
- * @return
- * @throws SimpplleError
- */
+  /**
+   *
+   * @param path
+   * @return
+   * @throws SimpplleError
+   */
   public static JarInputStream getSampleAreaStream(String path) throws SimpplleError {
     JarInputStream  jarIn=null;
     JarEntry        jarEntry;
@@ -628,11 +611,11 @@ public class SystemKnowledge {
         jarEntry = jarIn.getNextJarEntry();
       }
       return null;
-    }
-    catch (IOException err) {
+    } catch (IOException err) {
       throw new SimpplleError("Could not read Sample Area", err);
     }
   }
+
   /**
    * Method to load sample area. Uses a JarInputStream to read the FileInputStream  
    * @param area The Area to be loaded - from Simpplle.comcode.Area
@@ -665,12 +648,12 @@ public class SystemKnowledge {
         jarEntry = jarIn.getNextJarEntry();
       }
       fin.close();
-    }
-    catch (IOException err) {
+    } catch (IOException err) {
       err.printStackTrace();
       throw new SimpplleError("Could not read Sample Area");
     }
   }
+
   /**
    * Sets a HabitatTypeGroupType file pathway
    * @param groupName
@@ -679,6 +662,7 @@ public class SystemKnowledge {
   public static void loadPathway(String groupName) throws SimpplleError {
     loadPathway(groupName,VEG);
   }
+
   /**
    * Sets aquatic HabitatTypeGroupType file pathway.
    * @param groupName
@@ -706,8 +690,7 @@ public class SystemKnowledge {
     String pathwayStr;
     if (kind == VEG) {
       pathwayStr = (zone.isHistoric()) ? HISTORIC_PATHWAYS_ENTRY : PATHWAYS_ENTRY;
-    }
-    else {
+    } else {
       pathwayStr = PATHWAYS_ENTRY_AQUATIC;
     }
 
@@ -727,26 +710,30 @@ public class SystemKnowledge {
         if (name.startsWith(pathwayStr) &&
             (name.endsWith(groupFileOld.toUpperCase()) ||
              name.endsWith(groupFileNew.toUpperCase()))) {
-          if (kind == VEG) { zone.loadPathway(fin).setIsUserData(false); }
-          else { zone.loadAquaticPathway(fin).setIsUserData(false); }
+          if (kind == VEG) {
+            zone.loadPathway(fin).setIsUserData(false);
+          } else {
+            zone.loadAquaticPathway(fin).setIsUserData(false);
+          }
           break;
         }
         jarEntry = jarIn.getNextJarEntry();
       }
       fin.close();
-    }
-    catch (IOException err) {
+    } catch (IOException err) {
       err.printStackTrace();
       throw new SimpplleError("Could not read Sample Area");
     }
   }
-/**
- * Loads all EVU pathways.  
- * @throws SimpplleError
- */
+
+  /**
+   * Loads all EVU pathways.
+   * @throws SimpplleError
+   */
   public static void loadAllPathways() throws SimpplleError {
     loadAllPathways(VEG);
   }
+
   /**
    * Loads all aquatic files. 
    * @throws SimpplleError
@@ -770,8 +757,7 @@ public class SystemKnowledge {
     String pathwayStr;
     if (kind == VEG) {
       pathwayStr = (zone.isHistoric()) ? HISTORIC_PATHWAYS_ENTRY : PATHWAYS_ENTRY;
-    }
-    else {
+    } else {
       pathwayStr = PATHWAYS_ENTRY_AQUATIC;
     }
 
@@ -789,14 +775,16 @@ public class SystemKnowledge {
         name = jarEntry.getName().toUpperCase();
         name = stripZoneDir(name);
         if (name.startsWith(pathwayStr)) { 
-          if (kind == VEG) { zone.loadPathway(fin).setIsUserData(false); }
-          else {  zone.loadAquaticPathway(fin).setIsUserData(false); }
+          if (kind == VEG) {
+            zone.loadPathway(fin).setIsUserData(false);
+          } else {
+            zone.loadAquaticPathway(fin).setIsUserData(false);
+          }
         }
         jarEntry = jarIn.getNextJarEntry();
       }
       fin.close();
-    }
-    catch (IOException err) {
+    } catch (IOException err) {
       err.printStackTrace();
       throw new SimpplleError("Could not read Sample Area");
     }
@@ -812,8 +800,8 @@ public class SystemKnowledge {
   private static boolean findEntry(JarInputStream jarIn, String entryName)
     throws IOException
   {
-    JarEntry        jarEntry;
-    String          name=null;
+    JarEntry jarEntry;
+    String   name = null;
 
     jarEntry = jarIn.getNextJarEntry();
     while (jarEntry != null) {
@@ -829,13 +817,14 @@ public class SystemKnowledge {
     }
     return false;
   }
-/**
- * Method to set the BufferedReader to desired input settings.  
- * @param filename File to be read
- * @param entryName 
- * @return BufferedReader
- * @throws SimpplleError caught exception if not able to find an entry or could not read the System Knowledge File.  
- */
+
+  /**
+   * Method to set the BufferedReader to desired input settings.
+   * @param filename File to be read
+   * @param entryName
+   * @return BufferedReader
+   * @throws SimpplleError caught exception if not able to find an entry or could not read the System Knowledge File.
+   */
   public static BufferedReader getEntryStream(File filename, String entryName)
     throws SimpplleError
   {
@@ -850,17 +839,17 @@ public class SystemKnowledge {
         throw new SimpplleError("Unable to find entry: " + entryName);
       }
       return fin;
-    }
-    catch (IOException err) {
+    } catch (IOException err) {
       err.printStackTrace();
       throw new SimpplleError("Could not read System Knowledge File");
     }
   }
-/**
- * Method to take off the directory path name.
- * @param name name of System Knowledge kind.  
- * @return name of System Knowledge kind in uppercase
- */
+
+  /**
+   * Method to take off the directory path name.
+   * @param name name of System Knowledge kind.
+   * @return name of System Knowledge kind in uppercase
+   */
   private static String stripZoneDir(String name) {
     name = name.toUpperCase();
     String zoneDir = Simpplle.getCurrentZone().getZoneDir().toUpperCase();
@@ -873,78 +862,72 @@ public class SystemKnowledge {
 
     return name;
   }
-/**
- * Method first takes off the directory path name, then in a series of conditionals to find ordinal of SystemKnowledgeKind which it calls EntryID.
- * @param name
- * @return int of ordinal location of SystemKnowledge kind in SystemKnowledge Kind enumeration.  Ordinal is now called EntryID.
- * Note: if name is null or name starts with WILDLIFE_ENTRY OR EMISSIONS_ENTRY returns null
- */
+
+  /**
+   * Method first takes off the directory path name, then in a series of conditionals to find ordinal of SystemKnowledgeKind which it calls EntryID.
+   * @param name
+   * @return int of ordinal location of SystemKnowledge kind in SystemKnowledge Kind enumeration.  Ordinal is now called EntryID.
+   * Note: if name is null or name starts with WILDLIFE_ENTRY OR EMISSIONS_ENTRY returns null
+   */
   private static Kinds getKnowledgeEntryId(String name) {
     name = stripZoneDir(name);
 
-    if (name.equals(FMZ_ENTRY))                           { return FMZ; }
-    else if (name.equals(FIRE_TYPE_LOGIC_ENTRY))           { return FIRE_TYPE_LOGIC; }
-    else if (name.equals(FIRE_SPREAD_LOGIC_ENTRY))         { return FIRE_SPREAD_LOGIC; }
-    else if (name.equals(TREATMENT_SCHEDULE_ENTRY))       { return TREATMENT_SCHEDULE; }
-    else if (name.equals(TREATMENT_LOGIC_ENTRY))          { return TREATMENT_LOGIC; }
-    else if (name.equals(PROCESS_SCHEDULE_ENTRY))         { return PROCESS_SCHEDULE; }
-//    else if (name.equals(INSECT_DISEASE_PROB_ENTRY))      { return INSECT_DISEASE_PROB; }
-    else if (name.equals(PROCESS_PROB_LOGIC_ENTRY))       { return PROCESS_PROB_LOGIC; }
-    else if (name.equals(INVASIVE_SPECIES_LOGIC_ENTRY))   { return INVASIVE_SPECIES_LOGIC; }
-    else if (name.equals(INVASIVE_SPECIES_LOGIC_MSU_ENTRY)) { return INVASIVE_SPECIES_LOGIC_MSU; }
-    else if (name.startsWith(PATHWAYS_ENTRY))             { return VEGETATION_PATHWAYS; }
-    else if (name.startsWith(HISTORIC_PATHWAYS_ENTRY))    { return VEGETATION_PATHWAYS; }
-    else if (name.startsWith(PATHWAYS_ENTRY_AQUATIC))     { return AQUATIC_PATHWAYS; }
-    else if (name.equals(EXTREME_FIRE_DATA_ENTRY))        { return EXTREME_FIRE_DATA; }
-    else if (name.equals(CLIMATE_ENTRY))                  { return CLIMATE; }
-    else if (name.equals(REGEN_LOGIC_FIRE_ENTRY))         { return REGEN_LOGIC_FIRE; }
-    else if (name.equals(REGEN_LOGIC_SUCC_ENTRY))         { return REGEN_LOGIC_SUCC; }
-    else if (name.equals(FIRE_SEASON_ENTRY))              { return FIRE_SEASON; }
-    else if (name.equals(FIRESUPP_PRODUCTION_RATE_ENTRY)) { return FIRESUPP_PRODUCTION_RATE; }
-    else if (name.equals(FIRESUPP_SPREAD_RATE_ENTRY))     { return FIRESUPP_SPREAD_RATE; }
-    else if (name.equals(SPECIES_ENTRY))                  { return SPECIES; }
-    else if (name.equals(CONIFER_ENCROACHMENT_ENTRY))     { return CONIFER_ENCROACHMENT; }
-
-    else if (name.equals(REGEN_DELAY_LOGIC_ENTRY))    { return REGEN_DELAY_LOGIC; }
-    else if (name.equals(DOCOMPETITION_LOGIC_ENTRY))  { return DOCOMPETITION_LOGIC; }
-    else if (name.equals(GAP_PROCESS_LOGIC_ENTRY))    { return GAP_PROCESS_LOGIC; }
-    else if (name.equals(EVU_SEARCH_LOGIC_ENTRY))     { return EVU_SEARCH_LOGIC; }
-    else if (name.equals(PRODUCING_SEED_LOGIC_ENTRY)) { return PRODUCING_SEED_LOGIC; }
-    else if (name.equals(VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY))        { return VEG_UNIT_FIRE_TYPE_LOGIC; }
-    else if (name.equals(FIRE_SUPP_CLASS_A_LOGIC_ENTRY))         { return FIRE_SUPP_CLASS_A_LOGIC; }
-    else if (name.equals(FIRE_SUPP_BEYOND_CLASS_A_LOGIC_ENTRY))  { return FIRE_SUPP_BEYOND_CLASS_A_LOGIC; }
-    else if (name.equals(FIRE_SUPP_PRODUCTION_RATE_LOGIC_ENTRY)) { return FIRE_SUPP_PRODUCTION_RATE_LOGIC; }
-    else if (name.equals(FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY))     { return FIRE_SUPP_SPREAD_RATE_LOGIC; }
-    else if (name.equals(FIRE_SUPP_WEATHER_CLASS_A_LOGIC_ENTRY)) { return FIRE_SUPP_WEATHER_CLASS_A_LOGIC; }
-    else if (name.equals(TRACKING_SPECIES_REPORT_ENTRY))         { return TRACKING_SPECIES_REPORT; }
-    else if (name.equals(FIRE_SPOTTING_LOGIC_ENTRY))             { return FIRE_SPOTTING_LOGIC; }
-    else if (name.equals(FIRE_SUPP_EVENT_LOGIC_ENTRY))           { return FIRE_SUPP_EVENT_LOGIC; }
-
-    else if (name.equals(FIRE_SUPP_BEYOND_CLASS_A_ENTRY)) {
-      return FIRE_SUPP_BEYOND_CLASS_A;
-    }
-    else if (name.equals(FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY)) {
-      return FIRE_SUPP_WEATHER_BEYOND_CLASS_A;
-    }
-
-    else if (name.startsWith(WILDLIFE_ENTRY))             { return null;}
-    else if (name.equals(EMISSIONS_ENTRY))                { return null;}
+    if (name.equals(FMZ_ENTRY))                                   return FMZ;
+    else if (name.equals(FIRE_TYPE_LOGIC_ENTRY))                  return FIRE_TYPE_LOGIC;
+    else if (name.equals(FIRE_SPREAD_LOGIC_ENTRY))                return FIRE_SPREAD_LOGIC;
+    else if (name.equals(TREATMENT_SCHEDULE_ENTRY))               return TREATMENT_SCHEDULE;
+    else if (name.equals(TREATMENT_LOGIC_ENTRY))                  return TREATMENT_LOGIC;
+    else if (name.equals(PROCESS_SCHEDULE_ENTRY))                 return PROCESS_SCHEDULE;
+//    else if (name.equals(INSECT_DISEASE_PROB_ENTRY))            return INSECT_DISEASE_PROB;
+    else if (name.equals(PROCESS_PROB_LOGIC_ENTRY))               return PROCESS_PROB_LOGIC;
+    else if (name.equals(INVASIVE_SPECIES_LOGIC_ENTRY))           return INVASIVE_SPECIES_LOGIC;
+    else if (name.equals(INVASIVE_SPECIES_LOGIC_MSU_ENTRY))       return INVASIVE_SPECIES_LOGIC_MSU;
+    else if (name.startsWith(PATHWAYS_ENTRY))                     return VEGETATION_PATHWAYS;
+    else if (name.startsWith(HISTORIC_PATHWAYS_ENTRY))            return VEGETATION_PATHWAYS;
+    else if (name.startsWith(PATHWAYS_ENTRY_AQUATIC))             return AQUATIC_PATHWAYS;
+    else if (name.equals(EXTREME_FIRE_DATA_ENTRY))                return EXTREME_FIRE_DATA;
+    else if (name.equals(CLIMATE_ENTRY))                          return CLIMATE;
+    else if (name.equals(REGEN_LOGIC_FIRE_ENTRY))                 return REGEN_LOGIC_FIRE;
+    else if (name.equals(REGEN_LOGIC_SUCC_ENTRY))                 return REGEN_LOGIC_SUCC;
+    else if (name.equals(FIRE_SEASON_ENTRY))                      return FIRE_SEASON;
+    else if (name.equals(FIRESUPP_PRODUCTION_RATE_ENTRY))         return FIRESUPP_PRODUCTION_RATE;
+    else if (name.equals(FIRESUPP_SPREAD_RATE_ENTRY))             return FIRESUPP_SPREAD_RATE;
+    else if (name.equals(SPECIES_ENTRY))                          return SPECIES;
+    else if (name.equals(CONIFER_ENCROACHMENT_ENTRY))             return CONIFER_ENCROACHMENT;
+    else if (name.equals(REGEN_DELAY_LOGIC_ENTRY))                return REGEN_DELAY_LOGIC;
+    else if (name.equals(DOCOMPETITION_LOGIC_ENTRY))              return DOCOMPETITION_LOGIC;
+    else if (name.equals(GAP_PROCESS_LOGIC_ENTRY))                return GAP_PROCESS_LOGIC;
+    else if (name.equals(EVU_SEARCH_LOGIC_ENTRY))                 return EVU_SEARCH_LOGIC;
+    else if (name.equals(PRODUCING_SEED_LOGIC_ENTRY))             return PRODUCING_SEED_LOGIC;
+    else if (name.equals(VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY))         return VEG_UNIT_FIRE_TYPE_LOGIC;
+    else if (name.equals(FIRE_SUPP_CLASS_A_LOGIC_ENTRY))          return FIRE_SUPP_CLASS_A_LOGIC;
+    else if (name.equals(FIRE_SUPP_BEYOND_CLASS_A_LOGIC_ENTRY))   return FIRE_SUPP_BEYOND_CLASS_A_LOGIC;
+    else if (name.equals(FIRE_SUPP_PRODUCTION_RATE_LOGIC_ENTRY))  return FIRE_SUPP_PRODUCTION_RATE_LOGIC;
+    else if (name.equals(FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY))      return FIRE_SUPP_SPREAD_RATE_LOGIC;
+    else if (name.equals(FIRE_SUPP_WEATHER_CLASS_A_LOGIC_ENTRY))  return FIRE_SUPP_WEATHER_CLASS_A_LOGIC;
+    else if (name.equals(TRACKING_SPECIES_REPORT_ENTRY))          return TRACKING_SPECIES_REPORT;
+    else if (name.equals(FIRE_SPOTTING_LOGIC_ENTRY))              return FIRE_SPOTTING_LOGIC;
+    else if (name.equals(FIRE_SUPP_EVENT_LOGIC_ENTRY))            return FIRE_SUPP_EVENT_LOGIC;
+    else if (name.equals(FIRE_SUPP_BEYOND_CLASS_A_ENTRY))         return FIRE_SUPP_BEYOND_CLASS_A;
+    else if (name.equals(FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY)) return FIRE_SUPP_WEATHER_BEYOND_CLASS_A;
+    else if (name.startsWith(WILDLIFE_ENTRY))                     return null;
+    else if (name.equals(EMISSIONS_ENTRY))                        return null;
 
     return null;
 
   }
-/**
- * If entryID is Vegetation pathway or Aquatic pathways uses SystemKnowledge PathwayFile() else it reads in the SystemKnowledgeFile.  
- * @param entryId ordinal of SystemKnowledge kind in SystemKnowledge kind enumeration
- * @throws SimpplleError - not caught
- */
+
+  /**
+   * If entryID is Vegetation pathway or Aquatic pathways uses SystemKnowledge PathwayFile() else it reads in the SystemKnowledgeFile.
+   * @param entryId ordinal of SystemKnowledge kind in SystemKnowledge kind enumeration
+   * @throws SimpplleError - not caught
+   */
   public static void readZoneDefault(Kinds entryId)
     throws SimpplleError
   {
     if (entryId == VEGETATION_PATHWAYS || entryId == AQUATIC_PATHWAYS) {
       readEntry(Simpplle.getCurrentZone().getSystemKnowledgePathwayFile(),entryId);
-    }
-    else {
+    } else {
       readEntry(Simpplle.getCurrentZone().getSystemKnowledgeFile(), entryId);
     }
   }
@@ -994,7 +977,8 @@ public class SystemKnowledge {
   }
 
   /**
-   * Overloaded readInputFile passes to readInputFile the file name, false for zoneFile, true for readAll, and false for isIndividualFile.
+   * Overloaded readInputFile passes to readInputFile the file name, false for zoneFile, true for readAll, and false
+   * for isIndividualFile.
    * 
    * @param filename File to be read
    * @param zoneFile true if it is a zone file, false otherwise
@@ -1007,9 +991,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * Overloaded readInputFile.  This is the main input file reader.  If zoneFile and readAll are true loops through the loadSaveMe boolean array 
-   * and sets to indexes in its length. The method then uses conditionals to decide how to read input files, whether to clear the file previously present.   
-   * Note: uses XStream to serialize to XML and back.  For more information on XStream 
+   * Overloaded readInputFile. This is the main input file reader.  If zoneFile and readAll are true loops through the
+   * loadSaveMe boolean array and sets to indexes in its length. The method then uses conditionals to decide how to
+   * read input files, whether to clear the file previously present. Note: uses XStream to serialize to XML and back.
+   * For more information on XStream
    * @link http://xstream.codehaus.org/
    * @param filename File to be read
    * @param zoneFile true if file is a zone file, false otherwise
@@ -1017,8 +1002,7 @@ public class SystemKnowledge {
    * @param isIndividualFile true if this is an individual file
    * @throws SimpplleError caught if could not read SystemKnowledge file
    */
-  public static void readInputFile(File filename, boolean zoneFile,
-                                   boolean readAll, boolean isIndividualFile)
+  public static void readInputFile(File filename, boolean zoneFile, boolean readAll, boolean isIndividualFile)
     throws SimpplleError
   {
     RegionalZone    zone = Simpplle.getCurrentZone();
@@ -1186,6 +1170,7 @@ public class SystemKnowledge {
             entryId == FIRE_SPOTTING_LOGIC ||
             entryId == FIRE_SUPP_EVENT_LOGIC ||
             entryId == TRACKING_SPECIES_REPORT) {
+
           String line = fin.readLine();
           // For some reason some files start with blank lines.
           while (line.indexOf("object-stream") == -1) {
@@ -1275,6 +1260,7 @@ public class SystemKnowledge {
           strRead.close();
           in.close();
           strBuf = null;
+
         }
 
         if (entryId != null) {
@@ -1289,30 +1275,25 @@ public class SystemKnowledge {
       }
 //      if (d != null) { hr.close(); }
       Simpplle.clearStatusMessage();
-    }
-    catch (IOException err) {
+    } catch (IOException err) {
       throw new SimpplleError("Could not read System Knowledge File",err);
-    }
-    catch (ClassNotFoundException err) {
+    } catch (ClassNotFoundException err) {
       err.printStackTrace();
       throw new SimpplleError("Could not read System Knowledge File");
-    }
-    catch (ParseError err) {
-      throw new SimpplleError("While reading System Knowledge File: " + name
-                              + "\n" + err.msg);
-    }
-    finally {
+    } catch (ParseError err) {
+      throw new SimpplleError("While reading System Knowledge File: " + name + "\n" + err.msg);
+    } finally {
       Utility.close(fin);
       Utility.close(jarIn);
     }
   }
+
   /**
    * Method processes System Knowledge files and creates an boolean array called loadSaveMe to indicate whether there is a system knowledge file of a particular kind. 
    * pertaining to Fire Type, Fire Logic, and Fire Spread 
    * @param filename File to be processed.  
    * @throws SimpplleError caught if could not read file
    */
-
   public static void processInputFileEntries(File filename)
     throws SimpplleError
   {
@@ -1341,20 +1322,15 @@ public class SystemKnowledge {
         name = stripZoneDir(name);
         if (entryId != null) {
           loadSaveMe[entryId.ordinal()] = true;
-        }
-        else if (name.equals(OLD_TYPE_OF_FIRE_ENTRY)) {
+        } else if (name.equals(OLD_TYPE_OF_FIRE_ENTRY)) {
           loadSaveMe[FIRE_TYPE_LOGIC.ordinal()] = true;
-        }
-        else if (name.equals(OLD_FIRE_SPREAD_ENTRY)) {
+        } else if (name.equals(OLD_FIRE_SPREAD_ENTRY)) {
           loadSaveMe[FIRE_SPREAD_LOGIC.ordinal()] = true;
-        }
-        else if (name.equals(FIRE_TYPE_DATA_ENTRY)) {
+        } else if (name.equals(FIRE_TYPE_DATA_ENTRY)) {
           loadSaveMe[FIRE_TYPE_LOGIC.ordinal()] = true;
-        }
-        else if (name.equals(FIRE_SPREAD_DATA_ENTRY)) {
+        } else if (name.equals(FIRE_SPREAD_DATA_ENTRY)) {
           loadSaveMe[FIRE_SPREAD_LOGIC.ordinal()] = true;
-        }
-        else if (name.equals(OLD_REGEN_LOGIC_ENTRY)) {
+        } else if (name.equals(OLD_REGEN_LOGIC_ENTRY)) {
           loadSaveMe[REGEN_LOGIC_FIRE.ordinal()] = true;
           loadSaveMe[REGEN_LOGIC_SUCC.ordinal()] = true;
         }
@@ -1362,8 +1338,7 @@ public class SystemKnowledge {
         jarEntry = jarIn.getNextJarEntry();
       }
       jarIn.close();
-    }
-    catch (IOException err) {
+    } catch (IOException err) {
       err.printStackTrace();
       throw new SimpplleError("Could not read System Knowledge File");
     }
@@ -1378,8 +1353,7 @@ public class SystemKnowledge {
 
     try {
       File outfile = Utility.makeSuffixedPathname(filename, "", fileExt);
-      JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile),
-          new Manifest());
+      JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile), new Manifest());
       PrintWriter pout = new PrintWriter(jarOut);
 
       JarEntry jarEntry = new JarEntry(PATHWAYS_ENTRY + "/" + group.getName());
@@ -1391,19 +1365,18 @@ public class SystemKnowledge {
       pout.flush();
       pout.close();
       jarOut.close();
-    }
-    catch (IOException ex) {
+    } catch (IOException ex) {
       throw new SimpplleError("Problems writing system knowledge file");
     }
   }
-/**
- * Saves an individual aquatic pathway file for a particular LtaValleySegmentGroup group
- * @param filename
- * @param group
- * @throws SimpplleError
- */
-  public static void saveIndividualAquaticPathwayFile(File filename,
-                                                      LtaValleySegmentGroup group)
+
+  /**
+   * Saves an individual aquatic pathway file for a particular LtaValleySegmentGroup group
+   * @param filename
+   * @param group
+   * @throws SimpplleError
+   */
+  public static void saveIndividualAquaticPathwayFile(File filename, LtaValleySegmentGroup group)
     throws SimpplleError
   {
     String fileExt = getKnowledgeFileExtension(AQUATIC_PATHWAYS);
@@ -1423,11 +1396,11 @@ public class SystemKnowledge {
       pout.flush();
       pout.close();
       jarOut.close();
-    }
-    catch (IOException ex) {
+    } catch (IOException ex) {
       throw new SimpplleError("Problems writing system knowledge file");
     }
   }
+
   /**
    * Saves one particular input file.  
    * First makes all the loadSaveMe booleans false.  Then changes the boolean at the system knowledge kind ordinal to true and 
@@ -1446,6 +1419,7 @@ public class SystemKnowledge {
     saveInputFile(filename,getKnowledgeFileExtension(entryId),false);
     files[entryId.ordinal()] = filename;
   }
+
   /**
    * Saves 
    * @param zoneName
@@ -1454,18 +1428,18 @@ public class SystemKnowledge {
   public static void saveZone(File zoneName) throws SimpplleError {
     saveInputFile(zoneName,"simpplle_zone",true);
   }
-  public static void saveInputFile(File fileprefix)
-    throws SimpplleError
-  {
+
+  public static void saveInputFile(File fileprefix) throws SimpplleError {
     saveInputFile(fileprefix,SYSKNOW_FILEEXT,false);
   }
-/**
- * Saves a particular system knowledge file.  This long method goes through all the types of system knowledge kinds and 
- * @param filename
- * @param fileExt
- * @param doZoneDef
- * @throws SimpplleError
- */
+
+  /**
+   * Saves a particular system knowledge file.  This long method goes through all the types of system knowledge kinds and
+   * @param filename
+   * @param fileExt
+   * @param doZoneDef
+   * @throws SimpplleError
+   */
   private static void saveInputFile(File filename, String fileExt, boolean doZoneDef)
     throws SimpplleError
   {
@@ -1838,8 +1812,7 @@ public class SystemKnowledge {
         setHasChanged(kinds[i],false);
       }
 
-    }
-    catch (IOException err) {
+    } catch (IOException err) {
       throw new SimpplleError("Problems writing system knowledge file");
     }
 
@@ -1851,11 +1824,12 @@ public class SystemKnowledge {
     zone.readZoneSystemKnowledgeFile();
     FireEvent.resetExtremeData();
   }
-/**
- * Gets the system knowledge file extension based on system knowledge kind.  
- * @param kind system knowledge kind 
- * @return file extension.  example for System Knowledge TREATMENT_SCHEDULE will return "sk_treatsched";
- */
+
+  /**
+   * Gets the system knowledge file extension based on system knowledge kind.
+   * @param kind system knowledge kind
+   * @return file extension.  example for System Knowledge TREATMENT_SCHEDULE will return "sk_treatsched";
+   */
   public static String getKnowledgeFileExtension(Kinds kind) {
     // old Fire Spread files .firespread
     // old Type of Fire files .firetype
@@ -1903,6 +1877,7 @@ public class SystemKnowledge {
       // Wildlife doesn't have its own file.
     }
   }
+
   /**
    * Gets the string descrpition of the file for a particular system knowledge kind.  
    * Example for system knowledge TREATMENT_SCHEDULE will return "Treatment Schedule"
@@ -1955,11 +1930,12 @@ public class SystemKnowledge {
       // Wildlife doesn't have its own file.
     }
   }
-/**
- * Gets the system knowledge 
- * @param kind
- * @return the System Knowledge file kind as a 
- */
+
+  /**
+   * Gets the system knowledge
+   * @param kind
+   * @return the System Knowledge file kind as a
+   */
   public static String getKnowledgeFileTitle(Kinds kind) {
     // old Fire Spread files .firespread
     // old Type of Fire files .firetype
@@ -2025,13 +2001,14 @@ public class SystemKnowledge {
       default:  return "No Knowledge Source Data Available at this time.";
     }
   }
-/**
- * Gets the historical source information for a particular system knowledge kind in Westside Region 1.  
- * These are string descriptions which will be output in GUI.  
- * Kinds with historical source are: FMZ, LP_MPB, PP_MPB, WSBW, TREATMENT_LOGIC, REGEN_LOGIC_FIRE, REGEN_LOGIC_SUCC  
- * @param kind system knowledge kind.  
- * @return string representing the system knowledge kinds historical source
- */
+
+  /**
+   * Gets the historical source information for a particular system knowledge kind in Westside Region 1.
+   * These are string descriptions which will be output in GUI.
+   * Kinds with historical source are: FMZ, LP_MPB, PP_MPB, WSBW, TREATMENT_LOGIC, REGEN_LOGIC_FIRE, REGEN_LOGIC_SUCC
+   * @param kind system knowledge kind.
+   * @return string representing the system knowledge kinds historical source
+   */
   private static String getWestsideRegionOneSource(Kinds kind) {
     StringBuffer strBuf = new StringBuffer();
     strBuf.append(
@@ -2090,6 +2067,7 @@ public class SystemKnowledge {
     }
     return strBuf.toString();
   }
+
   /**
    * Gets the historical source information for a particular system knowledge kind in Eastside Region 1.  
    * These are string descriptions which will be output in GUI.  
@@ -2143,6 +2121,7 @@ public class SystemKnowledge {
     }
     return strBuf.toString();
   }
+
   /**
    * Gets the historical source information for a particular system knowledge kind in Colorado Plateau  
    * These are string descriptions which will be output in GUI.  
@@ -2163,12 +2142,13 @@ public class SystemKnowledge {
         "map of past fire occurrences.");
     return strBuf.toString();
   }
-/**
- * Gets the history of system knowledge information for the Teton regional zone.  
- * @param kind This will be either FMZ, LP_MPB, PP_MPB, or WSBW.  Used to print out info on the history and sources for information pertaining to these
- * system processes. 
- * @return a string.  this will be printed in GUI.
- */
+
+  /**
+   * Gets the history of system knowledge information for the Teton regional zone.
+   * @param kind This will be either FMZ, LP_MPB, PP_MPB, or WSBW.  Used to print out info on the history and sources for information pertaining to these
+   * system processes.
+   * @return a string.  this will be printed in GUI.
+   */
   private static String getTetonSource(Kinds kind) {
     StringBuffer strBuf = new StringBuffer();
 
@@ -2223,6 +2203,7 @@ public class SystemKnowledge {
     }
     return strBuf.toString();
   }
+
   /**
    * Gets the historical source information for a particular system knowledge kind in Westside Region 1.  
    * These are string descriptions which will be output in GUI.  
@@ -2285,10 +2266,9 @@ public class SystemKnowledge {
     return strBuf.toString();
   }
 
-  private static String[]  knowledgeSource = new String[NUMID];
+  private static String[] knowledgeSource = new String[NUMID];
   public static String KNOWLEDGE_SOURCE_KEYWORD="KNOWLEDGE-SOURCE";
 
-  
   /**
    * Gets the system knowledge source by looking up the system knowledge kind by its ordinal into enumeration. 
    * @param kind
@@ -2297,6 +2277,7 @@ public class SystemKnowledge {
   public static String getKnowledgeSource(Kinds kind) {
     return knowledgeSource[kind.ordinal()];
   }
+
   /**
    * Sets the system knowledge source to parameter at index of a system knowledge kind. 
    * @param kind
@@ -2305,11 +2286,12 @@ public class SystemKnowledge {
   public static void setKnowledgeSource(Kinds kind, String source)  {
     knowledgeSource[kind.ordinal()] = source;
   }
-/**
- * Writes the knowledge source, will Knowledge Source, dummy, value, end knowledge source.  
- * @param fout
- * @param value
- */
+
+  /**
+   * Writes the knowledge source, will Knowledge Source, dummy, value, end knowledge source.
+   * @param fout
+   * @param value
+   */
   public static void writeKnowledgeSource(PrintWriter fout, String value) {
     if (value != null && value.length() > 0) {
       fout.print(KNOWLEDGE_SOURCE_KEYWORD);
@@ -2318,6 +2300,7 @@ public class SystemKnowledge {
       fout.println("END-KNOWLEDGE-SOURCE");
     }
   }
+
   public static void writeKnowledgeSource(PrintWriter fout, Kinds kind) {
     writeKnowledgeSource(fout,knowledgeSource[kind.ordinal()]);
   }
@@ -2344,16 +2327,16 @@ public class SystemKnowledge {
     }
     if (kind != VEGETATION_PATHWAYS && kind != AQUATIC_PATHWAYS) {
       setKnowledgeSource(kind,strBuf.toString());
-    }
-    else {
+    } else {
       return strBuf.toString();
     }
     return getKnowledgeSource(kind);
   }
-/**
- * Sets the aliases used in xstream xml encoding. 
- * @param xs
- */
+
+  /**
+   * Sets the aliases used in xstream xml encoding.
+   * @param xs
+   */
   public static void setupXStreamAliases(XStream xs) {
     xs.alias("FireResistance",FireResistance.class);
     xs.alias("FireTypeLogicData",FireTypeLogicData.class);
