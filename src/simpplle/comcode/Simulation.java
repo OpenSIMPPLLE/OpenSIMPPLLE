@@ -163,6 +163,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                      int nStepsInMemory,
                      File allStatesRulesFile,
                      boolean discardData,
+                     boolean doProbArcFiles,
                      boolean doAllStatesSummary,
                      boolean doTrackingSpeciesReport,
                      boolean doGisFiles) {
@@ -182,6 +183,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     this.writeProbFiles          = writeProbFiles;
     this.invasiveSpeciesKind     = invasiveKind;
     this.discardData             = discardData;
+    this.doProbArcFiles          = doProbArcFiles;
     this.doAllStatesSummary      = doAllStatesSummary;
     this.doTrackingSpeciesReport = doTrackingSpeciesReport;
     this.doGisFiles              = doGisFiles;
