@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="BuildSimpplleJar"
+         basedir="."
+         default="package">
+
+    <!-- Global Properties -->
+
+    <property name="libraryDirectory" location="lib" />
+    <property name="sourceDirectory"  location="src" />
+    <property name="buildDirectory"   location="tmp" />
+    <property name="dataDirectory"    location="data" />
+    <property name="jarDirectory"     location="." />
+    <property name="jarName"          value="OpenSIMPPLLE" />
+    <property name="mainClass"        value="simpplle/JSimpplle" />
+
+    <!-- Build Targets -->
+
+    <target name="clean">
+
+        <delete dir="${buildDirectory}"/>
+
+    </target>
+
+    <target name="compile">
+
+        <mkdir dir="${buildDirectory}"/>
+
+        <path id="master-classpath">
+
+            <fileset dir="${libraryDirectory}" includes="**/*.jar"/>
+
+        </path>
+
+        <javac srcdir="${sourceDirectory}"
+               destdir="${buildDirectory}"
+               debug="false"
+               verbose="false"
+               listfiles="false"
+               failonerror="true"
+               includeantruntime="false"
+               includejavaruntime="false">
+
+            <classpath refid="master-classpath"/>
+
+        </javac>
+
+        <copy todir="${buildDirectory}/simpplle/gui/images"
+              failonerror="false"
+              overwrite="true"
+              verbose="false"
+              quiet="false"
+              force="false">
+
+            <fileset dir="${sourceDirectory}/simpplle/gui/images" includes="**"/>
+
+        </copy>
+
+    </target>
+
+	<target name="package" depends="compile">
+
+        <jar destfile="${jarDirectory}/${jarName}.jar"
+             compress="false"
+             update="false">
+
+            <!--fileset dir="${dataDirectory}"/-->
+
+            <fileset dir="${buildDirectory}" includes="**/*.class, **/*.xml, **/*.gif, **/*.jpg"/>
+
+            <fileset dir="${libraryDirectory}" includes="**/*.class, log4j.properties"/>
+
+            <zipgroupfileset dir="${libraryDirectory}" includes="hibernate/*.jar, apache/*.jar, XStream/*.jar"/>
+
+            <manifest>
+                <attribute name="Main-Class" value="${mainClass}" />
+            </manifest>
+
+        </jar>
+
+        <antcall target="clean"/>
+
+    </target>
+
+</project>
+
