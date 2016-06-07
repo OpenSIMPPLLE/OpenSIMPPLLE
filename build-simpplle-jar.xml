@@ -52,7 +52,7 @@
               quiet="false"
               force="false">
 
-            <fileset dir="${sourceDirectory}/simpplle/gui/images" includes="**"/>
+            <fileset dir="${sourceDirectory}/simpplle/resources/images" includes="**"/>
 
         </copy>
 
