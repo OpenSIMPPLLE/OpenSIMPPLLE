@@ -437,29 +437,33 @@ public final class Area implements Externalizable {
     allEau[id] = unit;
     return unit;
   }
-/**
- * Adds an Evu to the Natural Elements multi dimensional array.  This is indexed by [Evu = 0] and [evu Id]
- * @param evu
- */
-  public void addEvu(Evu evu) {
-    allUnits[EVU][evu.getId()] = evu;
-  }
+
   /**
-   * Adds an Elu to Natural Elements multi-dimensional array.  This is indexed by [Elu = 2] and [elu Id].
-   * @param elu
+   * Adds an existing vegetation unit to the area's natural elements.
+   * @param unit
    */
-  public void addElu(ExistingLandUnit elu) {
-    allUnits[ELU][elu.getId()] = elu;
+  public void addEvu(Evu unit) {
+    allUnits[EVU][unit.getId()] = unit;
   }
+
   /**
-   * Adds road units to the manmade units multidimensional array.  This is indexed by [Roads = 0] [road Id]
+   * Adds an existing land unit to the area's natural elements.
+   * @param unit
+   */
+  public void addElu(ExistingLandUnit unit) {
+    allUnits[ELU][unit.getId()] = unit;
+  }
+
+  /**
+   * Adds a roads unit to the area's manmade elements.
    * @param unit
    */
   public void addRoadUnit(Roads unit) {
     allManmadeUnits[ROADS.ordinal()][unit.getId()] = unit;
   }
+
   /**
-   * Adds trail units to the manmade units multidimensional array.  This is indexed by [Trails = 1] [trail Id]
+   * Adds a trails unit to the area's manmade elements.
    * @param unit
    */
   public void addTrailUnit(Trails unit) {
@@ -471,6 +475,7 @@ public final class Area implements Externalizable {
   public Roads getRoadUnit(int id) {
     return (Roads)getManmadeUnit(id,ROADS);
   }
+
   /**
    * Gets manmade unit by looking up its id and kind
    * @param id
