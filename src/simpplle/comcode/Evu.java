@@ -1863,7 +1863,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   private Evu findClosestRoadEvu(Roads road) {
 
-    ArrayList<Evu> vegUnits = road.getAssociatedVegUnits();
+    List<Evu> vegUnits = road.getAssociatedVegUnits();
     if (vegUnits == null) return null;
 
     Evu closestEvu = null;
