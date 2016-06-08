@@ -429,6 +429,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   public boolean isSimulationRunning() { return inSimulation; }
 
+  /**
+   * Invasive species predictions require the nearest distance to each road and trail.
+   * @return True if there is an invasive species
+   */
   public boolean needNearestRoadTrailInfo() {
     return invasiveSpeciesKind != InvasiveKind.NONE;
   }
