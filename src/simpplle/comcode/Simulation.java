@@ -61,9 +61,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private PrintWriter   accessSpeciesOut;
   private PrintWriter   accessSizeClassOut;
   private PrintWriter   accessDensityOut;
-  private PrintWriter   accessEcoGroupOut;
-  private PrintWriter[] accessAreaSummaryOut;
-  private PrintWriter   accessFmzOut;
+  //private PrintWriter   accessEcoGroupOut;
+  //private PrintWriter[] accessAreaSummaryOut;
+  //private PrintWriter   accessFmzOut;
   private PrintWriter   accessInclusionRuleSpecies;
   private PrintWriter   accessLifeformOut;
   private PrintWriter   accessOwnershipOut;
@@ -201,7 +201,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
 
     accessEvuSimDataOut  = new PrintWriter[numSimulations];
-    accessAreaSummaryOut = new PrintWriter[numSimulations];
+    //accessAreaSummaryOut = new PrintWriter[numSimulations];
 
   }
 
@@ -632,8 +632,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
     writeAccessTreeMap(accessSpeciesOut,accessSpeciesList);
     writeAccessTreeMap(accessSizeClassOut,accessSizeClassList);
     writeAccessTreeMap(accessDensityOut,accessDensityList);
-    writeAccessTreeMap(accessEcoGroupOut,accessEcoGroupList);
-    writeAccessTreeMap(accessFmzOut,accessFmzList);
+    //writeAccessTreeMap(accessEcoGroupOut,accessEcoGroupList);
+    //writeAccessTreeMap(accessFmzOut,accessFmzList);
     writeAccessTreeMap(accessTrackingSpeciesOut,accessIncRuleSpeciesList);
     writeAccessTreeMap(accessLifeformOut,accessLifeformList);
     writeAccessTreeMap(accessOwnershipOut,accessOnwershipList);
@@ -736,9 +736,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessDensityOut = new PrintWriter(new FileWriter(path, true));
     accessDensityOut.println("ID,DENSITY");
 
-    path = new File (getAccessFilesPath(),"ECOGROUP.txt");
-    accessEcoGroupOut = new PrintWriter(new FileWriter(path, true));
-    accessEcoGroupOut.println("ID,ECOGROUP");
+    //path = new File (getAccessFilesPath(),"ECOGROUP.txt");
+    //accessEcoGroupOut = new PrintWriter(new FileWriter(path, true));
+    //accessEcoGroupOut.println("ID,ECOGROUP");
 
     //for (int run=0; run<numSimulations; run++) {
     //  path = new File (getAccessFilesPath(),"AREASUMMARY" + Integer.toString(run+1) + ".txt");
@@ -746,9 +746,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
     //  accessAreaSummaryOut[run].println("RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID");
     //}
 
-    path = new File (getAccessFilesPath(),"FMZ.txt");
-    accessFmzOut = new PrintWriter(new FileWriter(path, true));
-    accessFmzOut.println("ID,FMZNAME");
+    //path = new File (getAccessFilesPath(),"FMZ.txt");
+    //accessFmzOut = new PrintWriter(new FileWriter(path, true));
+    //accessFmzOut.println("ID,FMZNAME");
 
     path = new File (getAccessFilesPath(),"TRACKSPECIES.txt");
     accessInclusionRuleSpecies = new PrintWriter(new FileWriter(path, true));
@@ -799,16 +799,16 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessDensityOut.flush();
     accessDensityOut.close();
 
-    accessEcoGroupOut.flush();
-    accessEcoGroupOut.close();
+    //accessEcoGroupOut.flush();
+    //accessEcoGroupOut.close();
 
     //for (int run=0; run<numSimulations; run++) {
     //  accessAreaSummaryOut[run].flush();
     //  accessAreaSummaryOut[run].close();
     //}
 
-    accessFmzOut.flush();
-    accessFmzOut.close();
+    //accessFmzOut.flush();
+    //accessFmzOut.close();
 
     accessInclusionRuleSpecies.flush();
     accessInclusionRuleSpecies.close();
