@@ -449,27 +449,29 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Check if an Evu has an associated road unit
-   * @param data road unit data
-   * @param onlyOpen
-   * @return true if there are associated roads, false if there are none
+   * Checks if this EVU has any associated roads. If it does, then the first road is recorded in the RoadUnitData.
+   * @param roadData Road unit data for recording the first associated road
+   * @param onlyOpen Only include roads with an open status
+   * @return True if there are associated road units
    */
-  private boolean hasAssociatedRoadUnit(RoadUnitData data, boolean onlyOpen) {
+  private boolean hasAssociatedRoadUnit(RoadUnitData roadData, boolean onlyOpen) {
 
-    if (assocRoadUnits == null || assocRoadUnits.size() == 0) {
-      return false;
-    }
+    if (assocRoadUnits == null) return false;
 
-    // May need to add restrictions on type of road in future, thus the reason for the code like this.
-    for(int i=0; i<assocRoadUnits.size(); i++) {
+    for(int i = 0; i < assocRoadUnits.size(); i++) {
       Roads road = assocRoadUnits.get(i);
       if (onlyOpen && road.getSimStatus() != Roads.Status.OPEN) {
         continue;
       }
-      data.road = road;
+
+      roadData.road = road;
+
       return true;
+
     }
+
     return false;
+
   }
 
   /**
@@ -500,26 +502,29 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Check if an Evu has any associated trail units
-   * @param data trail data
-   * @param onlyOpen
-   * @return true if there are associated roads, false if there are none
+   * Checks if this EVU has any associated trails. If it does, then the first trail is recorded in the TrailUnitData.
+   * @param trailData Trail unit data for recording the first associated trail
+   * @param onlyOpen Only include trails with an open status
+   * @return True if there are associated trail units
    */
-  private boolean hasAssociatedTrailUnit(TrailUnitData data, boolean onlyOpen) {
-    if (assocTrailUnits == null || assocTrailUnits.size() == 0) {
-      return false;
-    }
+  private boolean hasAssociatedTrailUnit(TrailUnitData trailData, boolean onlyOpen) {
 
-    // May need to add restrictions on type of trail in future, thus the reason for the code like this.
-    for(int i=0; i<assocTrailUnits.size(); i++) {
+    if (assocTrailUnits == null) return false;
+
+    for(int i = 0; i < assocTrailUnits.size(); i++) {
       Trails trail = assocTrailUnits.get(i);
       if (onlyOpen && trail.getSimStatus() != Trails.Status.OPEN) {
         continue;
       }
-      data.trail = trail;
+
+      trailData.trail = trail;
+
       return true;
+
     }
+
     return false;
+
   }
 
   /**
