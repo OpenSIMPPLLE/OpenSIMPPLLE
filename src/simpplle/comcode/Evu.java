@@ -1821,12 +1821,6 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
 
-    if (roadUnits == null || roadUnits.size() == 0) {
-      roadData.road = null;
-      roadData.evu  = null;
-      return MAX_ROAD_DIST;
-    }
-
     for (int i=0; i<roadUnits.size(); i++) {
       RoadUnitData tmp = roadUnits.get(i);
       if (onlyOpen && tmp.road.getSimStatus() != Roads.Status.OPEN) { continue; }
@@ -2082,12 +2076,6 @@ public final class Evu extends NaturalElement implements Externalizable {
         trailData.evu = this;
         return 1;
       }
-    }
-
-    if (trailUnits == null || trailUnits.size() == 0) {
-      trailData.trail = null;
-      trailData.evu   = null;
-      return MAX_TRAIL_DIST;
     }
 
     for (int i=0; i<trailUnits.size(); i++) {
