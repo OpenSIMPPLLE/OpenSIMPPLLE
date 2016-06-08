@@ -1796,11 +1796,10 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Calculates Evu distance to road.  IF current road status is open or always open.  The closest road to the evu is determined.
-   * The minimum distance to road is then calculated.
-   * @param roadData
-   * @param onlyOpen true if road is always open
-   * @return default return is MAX_ROAD_DIST if there is no road units, otherwise the minimum distance to road is returned
+   * Returns the distance to the nearest road. The nearest road unit to this EVU is recorded in the RoadUnitData.
+   * @param roadData A road unit data instance to record the nearest road
+   * @param onlyOpen True if only open roads should be considered
+   * @return The minimum distance or MAX_ROAD_DIST if there are no road units
    */
   private double distanceToRoad(RoadUnitData roadData, boolean onlyOpen) {
 
@@ -1810,7 +1809,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       return MAX_ROAD_DIST;
     }
 
-    double minDistRoad = MAX_ROAD_DIST;  // Max Road Distance 2 Miles
+    double minDistRoad = MAX_ROAD_DIST;
     int    roadEvu = -1;
     double dist;
     Evu    evu, closestEvu=null;
@@ -2061,12 +2060,10 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Calculates distance to a trail.  If no trail data it will return MAX_TRAIL_DIST, else it does a shortest path search,
-   * will return 1 if trail is within Evu, else loops through the trail units arrayList checks if a trail is open and computes the trail
-   * with minimum distance.
-   * @param trailData
-   * @param onlyOpen true if trail is too be counted only when open
-   * @return the minimum distance to a trail
+   * Returns the distance to the nearest trail. The nearest trail unit to this EVU is recorded in the TrailUnitData.
+   * @param trailData A trail unit data instance to record the nearest trail
+   * @param onlyOpen True if only open trails should be considered
+   * @return The minimum distance or MAX_TRAIL_DIST if there are no trail units
    */
   private double distanceToTrail(TrailUnitData trailData, boolean onlyOpen) {
     if (trailUnits == null || trailUnits.size() == 0) {
