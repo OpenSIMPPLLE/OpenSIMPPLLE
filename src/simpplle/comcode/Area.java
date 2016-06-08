@@ -3953,7 +3953,7 @@ public final class Area implements Externalizable {
 
     int elevDiff = Math.abs(adjElev - evuElev);
     if (isUniformArea) {
-      double distance = evu.distancetoEvuMeters(adj);
+      double distance = evu.distanceToEvuMeters(adj);
       double pctDiff = ((double)elevDiff / distance) * 100;
       if (pctDiff > elevationRelativePosition) {
         return (adjElev > evuElev) ? Evu.ABOVE : Evu.BELOW;

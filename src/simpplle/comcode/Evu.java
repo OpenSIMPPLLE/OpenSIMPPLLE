@@ -1523,33 +1523,34 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Calculates the distance to Evu.  Compares an x,y point with an Evu x,y point.
-   * @param evu
-   * @return The area polygon width * the distance formula for point - evu
+   * Returns the distance to another EVU. The distance is equals the distance between the grid cell locations times
+   * the width of a polygon.
+   * @param evu An existing vegetation unit
+   * @return The distance in feet to the other EVU
    */
   public double distanceToEvu(Evu evu) {
 
-    int x1, x2, y1, y2;
+    int x1 = location[X];
+    int y1 = location[Y];
+    int x2 = evu.getLocationX();
+    int y2 = evu.getLocationY();
 
-    x1 = location[X];
-    x2 = evu.getLocationX();
-    y1 = location[Y];
-    y2 = evu.getLocationY();
+    int sqrDeltaX = (x2 - x1) * (x2 - x1);
+    int sqrDeltaY = (y2 - y1) * (y2 - y1);
 
-    int val1 = (x2 - x1) * (x2 - x1);
-    int val2 = (y2 - y1) * (y2 - y1);
-
-    return Simpplle.getCurrentArea().getPolygonWidth() * Math.sqrt(val1 + val2);
+    return Simpplle.getCurrentArea().getPolygonWidth() * Math.sqrt(sqrDeltaX + sqrDeltaY);
 
   }
 
   /**
-   * Converts distance to evu from feet to meters.
-   * @param evu
-   * @return Distance to Evu in meters
+   * Returns the distance to another EVU in meters.
+   * @param evu An existing vegetation unit
+   * @return The distance in meters to the other EVU
    */
-  public double distancetoEvuMeters(Evu evu) {
+  public double distanceToEvuMeters(Evu evu) {
+
     return distanceToEvu(evu) * 0.3048;
+
   }
 
   /**
