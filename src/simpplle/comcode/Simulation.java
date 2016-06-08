@@ -417,8 +417,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
 
   /**
-   * Resets simulation data to defaults.
-   * Called before running a new simulation.
+   * Resets simulation data to defaults. Called before running a new simulation.
    */
   public void reset() {
     numSimulations        = 1;
@@ -1088,6 +1087,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
         }
       }
     }
+
+    // ~~~~~~~~~~ Write time step zero before this comment ~~~~~~~~~
 
     try {
       for(int i=0;i<numTimeSteps;i++) {

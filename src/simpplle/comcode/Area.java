@@ -1103,19 +1103,17 @@ public final class Area implements Externalizable {
       if (result) { changed = true; }
     }
   }
-/**
- * Prepares the simulation for all evu's
- */
-  public void makeSimulationReady() {
-    VegetativeType newState;
-    ProcessType    process;
 
-    for (int i=0;i<=maxEvuId;i++) {
-      if (allEvu[i] == null) {continue; }
-      allEvu[i].makeSimulationReady();
+  /**
+   * Resets the state in all EVUs so they are ready for simulation.
+   */
+  public void makeSimulationReady() {
+    for (int i = 0; i <= maxEvuId; i++) {
+      if (allEvu[i] != null) {
+        allEvu[i].makeSimulationReady();
+      }
     }
   }
-
 
   // ** Parsing Stuff **
 
@@ -1817,75 +1815,62 @@ public final class Area implements Externalizable {
 //    }
 //  }
 
+  /**
+   * Clears simulation data in existing vegetation units, roads, and trails.
+   */
   public void restoreInitialConditions() {
-    Evu evu;
 
-    for(int i=0;i<=maxEvuId;i++) {
-      evu = allEvu[i];
-      if (evu != null) {
-        evu.restoreInitialConditions();
-      }
+    for(int i = 0; i <= maxEvuId; i++) {
+      if (allEvu[i] != null) allEvu[i].restoreInitialConditions();
     }
 
     if (allRoads != null) {
       for (int i = 0; i < allRoads.length; i++) {
-        if (allRoads[i] != null) {
-          allRoads[i].initSimulation();
-        }
+        if (allRoads[i] != null) allRoads[i].initSimulation();
       }
     }
+
     if (allTrails != null) {
       for (int i = 0; i < allTrails.length; i++) {
-        if (allTrails[i] != null) {
-          allTrails[i].initSimulation();
-        }
+        if (allTrails[i] != null) allTrails[i].initSimulation();
       }
     }
   }
 
   /**
-   * Initialize some stuff before starting a simulation.
+   * Initializes the cumulative probability for each process type, clears recorded water units, and clears state
+   * stored in EVUs, EAUs, roads, and trails.
    */
   public void initSimulation() {
-    Evu     evu;
 
-    // Treatment and Process Schedule stay until
-    // removed by user.
+    // Treatment and Process Schedule stay until removed by user.
 
 //    initOriginSpread(maxEvuId);
+
     Evu.initCumulProb();
     Evu.staticInitSimulation();
 
     for(int i=0;i<allEvu.length;i++) {
-      evu = allEvu[i];
-      if (evu != null) {
-        evu.initSimulation();
-      }
+      if (allEvu[i] != null) allEvu[i].initSimulation();
     }
 
     if (allEau != null) {
       for (int i = 0; i < allEau.length; i++) {
-        if (allEau[i] != null) {
-          allEau[i].initSimulation();
-        }
+        if (allEau[i] != null) allEau[i].initSimulation();
       }
     }
 
     if (allRoads != null) {
       for (int i = 0; i < allRoads.length; i++) {
-        if (allRoads[i] != null) {
-          allRoads[i].initSimulation();
-        }
-      }
-    }
-    if (allTrails != null) {
-      for (int i = 0; i < allTrails.length; i++) {
-        if (allTrails[i] != null) {
-          allTrails[i].initSimulation();
-        }
+        if (allRoads[i] != null) allRoads[i].initSimulation();
       }
     }
 
+    if (allTrails != null) {
+      for (int i = 0; i < allTrails.length; i++) {
+        if (allTrails[i] != null) allTrails[i].initSimulation();
+      }
+    }
   }
 
   /**

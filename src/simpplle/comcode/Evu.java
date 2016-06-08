@@ -3956,32 +3956,44 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Method to make simulation by loading lifeforms, seasons, .
+   * Replaces the initial state with the last season of VegSimStateData for each lifeform from the last timestep
+   * and calls restoreInitialConditions().
    */
   public void makeSimulationReady() {
+
     if (simData != null) {
+
       initialState.clear();
 
-      ArrayList<Lifeform> lives = new ArrayList<Lifeform>();
-      Flat3Map data = simData[simData.length-1];
+      // Create an array of unique lifeforms from the the last time step
 
+      ArrayList<Lifeform> lives = new ArrayList<>();
+
+      Flat3Map data = simData[simData.length - 1];
       MapIterator it = data.mapIterator();
+
       while (it.hasNext()) {
+
         MultiKey key = (MultiKey)it.next();
         Lifeform lifeform = (Lifeform)key.getKey(0);
+
         if (lives.contains(lifeform) == false) {
           lives.add(lifeform);
         }
       }
 
-      // We want only the last season of data and change that to
-      // a season of YEAR.
-      for (int i=0; i<lives.size(); i++) {
+      // Store the last season of VegSimStateData for each lifeform in the initial state with a year season.
+
+      for (int i = 0; i < lives.size(); i++) {
+
         Lifeform lifeform = lives.get(i);
         Season[] seasons = Climate.allSeasons;
-        for (int s=seasons.length-1; s>=0; s--) {
+
+        for (int s = seasons.length - 1; s >= 0; s--) {
+
           MultiKey key = LifeformSeasonKeys.getKey(lifeform,seasons[s]);
           VegSimStateData state = (VegSimStateData)data.get(key);
+
           if (state != null) {
             key = LifeformSeasonKeys.getKey(lifeform,Season.YEAR);
             initialState.put(key,state);
@@ -3990,15 +4002,22 @@ public final class Evu extends NaturalElement implements Externalizable {
         }
       }
     }
+
     restoreInitialConditions();
+
   }
 
+  /**
+   * Clears stored VegSimStateData and Treatments, and sets haveHighSpruceBeetle to false
+   */
   public void restoreInitialConditions() {
+
     simData   = null;
     treatment = null;
 //    processProb.clear();
 
     haveHighSpruceBeetle = false;
+
   }
 
   /**
@@ -4014,9 +4033,10 @@ public final class Evu extends NaturalElement implements Externalizable {
       addTreatment(tmpTreatment);
     }
   }
-/**
- * initialzies a simulation by setting water units to null and getting the number of time steps at the simulation instance.
- */
+
+  /**
+   * Initializes a simulation by setting water units to null and getting the number of time steps at the simulation instance.
+   */
   public static void staticInitSimulation() {
     waterUnits = null;
     int numSteps = Simulation.getInstance().getNumTimeSteps();
@@ -4029,26 +4049,25 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void initSimDataLegacy(int numSteps) {
     simData = new Flat3Map[numSteps+1];
   }
+
   /**
-   * Initialize some fields now that we know the number
-   * of time steps the simulation will have.
-   * This gets called at the beginning of each simulation.
+   * Initialize some fields now that we know the number of time steps the simulation will have. This gets called at
+   * the beginning of each simulation.
    */
   public void initSimulation() {
-    int          numSteps;
-    Simulation   simulation = Simpplle.getCurrentSimulation();
 
-    numSteps = simulation.getNumTimeSteps();
+    Simulation simulation = Simpplle.getCurrentSimulation();
+
+    int numSteps = simulation.getNumTimeSteps();
 
     MapIterator it = initialState.mapIterator();
-    int count=0;
+    int count = 0;
     while (it.hasNext()) {
       MultiKey key = (MultiKey)it.next();
       Lifeform lifeform = (Lifeform)key.getKey(0);
       if (count == 0) {
         dominantLifeform = lifeform;
-      }
-      else {
+      } else {
         dominantLifeform = Lifeform.getMostDominant(dominantLifeform, lifeform);
       }
       count++;
@@ -4059,26 +4078,30 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     if (Simulation.getInstance().isDiscardData()) {
+
       int pastInMem = Simulation.getInstance().getPastTimeStepsInMemory();
-      simData = new Flat3Map[pastInMem+1];
+      simData = new Flat3Map[pastInMem + 1];
       simData[0] = new Flat3Map();
-    }
-    else {
+
+    } else {
+
       simData = new Flat3Map[numSteps + 1];
       simData[0] = initialState;
+
     }
 
-    for(int i=1; i<simData.length; i++) {
+    for(int i = 1; i < simData.length; i++) {
       simData[i] = new Flat3Map();
     }
 
     if (simulation.isMultipleRun() == false || simulation.getCurrentRun() == 0) {
 
-      ProcessType processType;
       ArrayList processTypes = Process.getSimulationProcesses();
-      int       needLaterCount=0;
+
+      int needLaterCount = 0;
+
       for (int i=0; i<processTypes.size(); i++) {
-        processType = (ProcessType)processTypes.get(i);
+        ProcessType processType = (ProcessType)processTypes.get(i);
         if (processType == ProcessType.LIGHT_WSBW ||
             processType == ProcessType.SEVERE_WSBW ||
             processType == ProcessType.LIGHT_LP_MPB ||
@@ -4088,14 +4111,13 @@ public final class Evu extends NaturalElement implements Externalizable {
         }
       }
 
-
       needLaterProcessProb = new ProcessProbability[needLaterCount];
       tempProcessProb      = new ProcessProbability[processTypes.size() - needLaterCount];
 
       int probIndex = 0;
       int needLaterIndex = 0;
-      for (int i=0; i<processTypes.size(); i++) {
-        processType = (ProcessType)processTypes.get(i);
+      for (int i = 0; i < processTypes.size(); i++) {
+        ProcessType processType = (ProcessType)processTypes.get(i);
         if (processType != ProcessType.LIGHT_WSBW &&
             processType != ProcessType.SEVERE_WSBW &&
             processType != ProcessType.LIGHT_LP_MPB &&
@@ -4103,8 +4125,7 @@ public final class Evu extends NaturalElement implements Externalizable {
             processType != ProcessType.PP_MPB) {
           tempProcessProb[probIndex] = new ProcessProbability(processType);
           probIndex++;
-        }
-        else {
+        } else {
           needLaterProcessProb[needLaterIndex] = new ProcessProbability(processType);
           needLaterIndex++;
         }
@@ -4115,14 +4136,16 @@ public final class Evu extends NaturalElement implements Externalizable {
       MultipleRunSummary mrSummary = simulation.getMultipleRunSummary();
       mrSummary.initFrequencyCount(this);
     }
+
     if (simulation.isMultipleRun()) {
       MultipleRunSummary mrSummary = simulation.getMultipleRunSummary();
       mrSummary.updateSummaries(this);
     }
+
     clearSimulationTreatments();
     haveHighSpruceBeetle = false;
 
-    for (int i=0; i<regenDelay.length; i++) {
+    for (int i = 0; i < regenDelay.length; i++) {
       regenDelay[i] = 0;
       recentRegenDelay[i] = false;
     }
@@ -4134,8 +4157,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     FireSuppEventLogic.getInstance().clearSuppressed();
 
-    this.cycleSizeClass = null;
-    this.cycleSizeClassCount = 0;
+    cycleSizeClass = null;
+    cycleSizeClassCount = 0;
+
   }
 
   /**
@@ -4143,10 +4167,8 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public void initMultipleSimulation() {
     Simulation simulation = Simpplle.getCurrentSimulation();
-    int        numRuns, numSteps;
-
-    numRuns  = simulation.getNumSimulations();
-    numSteps = simulation.getNumTimeSteps();
+    int numRuns  = simulation.getNumSimulations();
+    int numSteps = simulation.getNumTimeSteps();
   }
 
   /**
@@ -4160,6 +4182,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       cumulProb.add(new CumulativeProcessProb((ProcessType)processTypes.get(i)));
     }
   }
+
 /**
  * Finds the cumulative probability for a specified process
  * @param pt the process being evaluated
@@ -7548,132 +7571,134 @@ public final class Evu extends NaturalElement implements Externalizable {
     this.setLocationX(x);
     this.setLocationY(y);
   }
-    public void readExternalSimData(ObjectInput in, int run) throws IOException, ClassNotFoundException {
-        Species   species;
-        SizeClass sizeClass;
-        int       age;
-        Density   density;
-        int       version = in.readInt();
 
-        // State history
-        if (version == 1) {
+  public void readExternalSimData(ObjectInput in, int run) throws IOException, ClassNotFoundException {
 
-        }
-        else if (version == 2) {
+    Species   species;
+    SizeClass sizeClass;
+    int       age;
+    Density   density;
 
-        }
-        else if (version == 3) {
-        }
-        else if (version == 4) {
-            simData = new Flat3Map[in.readInt()];
+    int version = in.readInt();
 
-            for (int i=0; i<simData.length; i++) {
-                simData[i] = readSimStateDataOld(in,i,run);
-            }
-            simData[0] = initialState;
-        }
-        else {
-            simData = new Flat3Map[in.readInt()];
+    if (version == 1) {
 
-            for (int i=0; i<simData.length; i++) {
-                simData[i] = readSimStateData(in);
-            }
-        }
+    } else if (version == 2) {
 
-        treatment    = (Vector)in.readObject();
-        if (version == 1) {
-            VegetativeType[][] tmpAccumState = (VegetativeType[][]) in.readObject();
-            ProcessType[][]    accumProcess = (ProcessType[][]) in.readObject();
+    } else if (version == 3) {
 
-            int numValidRuns=0;
-            if (tmpAccumState != null && tmpAccumState[0] != null) {
-                for (int r = 1; r <= tmpAccumState.length; r++) {
-                    if (tmpAccumState[r - 1][0] != null) { numValidRuns++; }
-                }
-            }
+    } else if (version == 4) {
 
-        }
-        else if (version == 2) {
-            VegetativeState[][] tmpAccumState = (VegetativeState[][])in.readObject();
-            int numValidRuns=0;
-            if (tmpAccumState != null && tmpAccumState[0] != null) {
-                for (int r = 1; r <= tmpAccumState.length; r++) {
-                    if (tmpAccumState[r - 1][0] != null) { numValidRuns++; }
-                }
-            }
+      simData = new Flat3Map[in.readInt()];
 
-        }
-        else {
+      for (int i = 0; i < simData.length; i++) {
+        simData[i] = readSimStateDataOld(in,i,run);
+      }
 
-        }
+      simData[0] = initialState;
 
-        if (version > 5) {
-            Area area = Simpplle.getCurrentArea();
-            nearestRoad = null;
-            nearestTrail = null;
+    } else {
 
-            {
-                int size = in.readInt();
-                if (size > 0) {
-                    nearestRoad = new ArrayList<ArrayList<RoadUnitData>>();
-                    for (int i = 0; i < size; i++) {
-                        int sizeIn = in.readInt();
-                        ArrayList<RoadUnitData> list = new ArrayList<RoadUnitData>();
-                        nearestRoad.add(list);
-                        for (int j = 0; j < sizeIn; j++) {
-                            RoadUnitData data = new RoadUnitData();
-                            data.evu = null;
-                            data.road = null;
+      simData = new Flat3Map[in.readInt()];
 
-                            int roadId = in.readInt();
-                            if (roadId != -1) {
-                                data.road = area.getRoadUnit(roadId);
-                            }
-
-                            int evuId = in.readInt();
-                            if (evuId != -1) {
-                                data.evu = area.getEvu(evuId);
-                            }
-
-                            list.add(data);
-                        }
-                    }
-                }
-            }
-
-            {
-                int size = in.readInt();
-                if (size > 0) {
-                    nearestTrail = new ArrayList<ArrayList<TrailUnitData>>();
-                    for (int i = 0; i < size; i++) {
-                        int sizeIn = in.readInt();
-                        ArrayList<TrailUnitData> list = new ArrayList<TrailUnitData>();
-                        nearestTrail.add(list);
-                        for (int j = 0; j < sizeIn; j++) {
-                            TrailUnitData data = new TrailUnitData();
-                            data.evu = null;
-                            data.trail = null;
-
-                            int trailId = in.readInt();
-                            if (trailId != -1) {
-                                data.trail = area.getTrailUnit(trailId);
-                            }
-
-                            int evuId = in.readInt();
-                            if (evuId != -1) {
-                                data.evu = area.getEvu(evuId);
-                            }
-
-                            list.add(data);
-                        }
-                    }
-                }
-            }
-
-        }
-
-
+      for (int i = 0; i < simData.length; i++) {
+        simData[i] = readSimStateData(in);
+      }
     }
+
+    treatment = (Vector)in.readObject();
+
+    if (version == 1) {
+
+      VegetativeType[][] tmpAccumState = (VegetativeType[][]) in.readObject();
+      ProcessType[][] accumProcess = (ProcessType[][]) in.readObject();
+
+      int numValidRuns = 0;
+      if (tmpAccumState != null && tmpAccumState[0] != null) {
+        for (int r = 1; r <= tmpAccumState.length; r++) {
+          if (tmpAccumState[r - 1][0] != null) {
+            numValidRuns++;
+          }
+        }
+      }
+
+    } else if (version == 2) {
+
+      VegetativeState[][] tmpAccumState = (VegetativeState[][])in.readObject();
+
+      int numValidRuns = 0;
+      if (tmpAccumState != null && tmpAccumState[0] != null) {
+        for (int r = 1; r <= tmpAccumState.length; r++) {
+          if (tmpAccumState[r - 1][0] != null) {
+            numValidRuns++;
+          }
+        }
+      }
+
+    } else if (version > 5) {
+      Area area = Simpplle.getCurrentArea();
+      nearestRoad = null;
+      nearestTrail = null;
+
+      {
+        int size = in.readInt();
+        if (size > 0) {
+          nearestRoad = new ArrayList<ArrayList<RoadUnitData>>();
+          for (int i = 0; i < size; i++) {
+            int sizeIn = in.readInt();
+            ArrayList<RoadUnitData> list = new ArrayList<RoadUnitData>();
+            nearestRoad.add(list);
+            for (int j = 0; j < sizeIn; j++) {
+              RoadUnitData data = new RoadUnitData();
+              data.evu = null;
+              data.road = null;
+
+              int roadId = in.readInt();
+              if (roadId != -1) {
+                data.road = area.getRoadUnit(roadId);
+              }
+
+              int evuId = in.readInt();
+              if (evuId != -1) {
+                data.evu = area.getEvu(evuId);
+              }
+
+              list.add(data);
+            }
+          }
+        }
+      }
+
+      {
+        int size = in.readInt();
+        if (size > 0) {
+          nearestTrail = new ArrayList<ArrayList<TrailUnitData>>();
+          for (int i = 0; i < size; i++) {
+            int sizeIn = in.readInt();
+            ArrayList<TrailUnitData> list = new ArrayList<TrailUnitData>();
+            nearestTrail.add(list);
+            for (int j = 0; j < sizeIn; j++) {
+              TrailUnitData data = new TrailUnitData();
+              data.evu = null;
+              data.trail = null;
+
+              int trailId = in.readInt();
+              if (trailId != -1) {
+                data.trail = area.getTrailUnit(trailId);
+              }
+
+              int evuId = in.readInt();
+              if (evuId != -1) {
+                data.evu = area.getEvu(evuId);
+              }
+
+              list.add(data);
+            }
+          }
+        }
+      }
+    }
+  }
 
   private void writeSimStateData(ObjectOutput out, Flat3Map map)
     throws IOException
