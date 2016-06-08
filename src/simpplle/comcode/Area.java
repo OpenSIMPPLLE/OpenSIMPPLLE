@@ -472,9 +472,6 @@ public final class Area implements Externalizable {
 
   // *** Manmade Unit Methods ***
   // ****************************
-  public Roads getRoadUnit(int id) {
-    return (Roads)getManmadeUnit(id,ROADS);
-  }
 
   /**
    * Gets manmade unit by looking up its id and kind
@@ -484,11 +481,16 @@ public final class Area implements Externalizable {
    */
   private ManmadeElement getManmadeUnit(int id, ManmadeUnitKinds kind) {
     if (allManmadeUnits[kind.ordinal()] == null ||
-        id < 0 || id > allManmadeUnits[kind.ordinal()].length-1) {
+            id < 0 || id > allManmadeUnits[kind.ordinal()].length-1) {
       return null;
     }
     return allManmadeUnits[kind.ordinal()][id];
   }
+
+  public Roads getRoadUnit(int id) {
+    return (Roads)getManmadeUnit(id,ROADS);
+  }
+
   /**
    * Checks if an area has roads.  If the all roads array is null, returns false, othewise returns true.
    * @return true if area has roads
