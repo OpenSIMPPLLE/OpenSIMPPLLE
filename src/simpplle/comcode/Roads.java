@@ -140,11 +140,15 @@ public class Roads extends ManmadeElement implements Externalizable {
 
   }
 
+  /**
+   * Creates simulation data for the current time step with the status of the previous time step.
+   */
   public void doBeginTimeStep() {
     int ts = Simulation.getCurrentTimeStep();
     simData[ts] = new RoadsSimData();
-    simData[ts].setStatus(simData[ts-1].getStatus());
+    simData[ts].setStatus(simData[ts - 1].getStatus());
   }
+
   /**
    * Get the first associated Vegetative unit.  Used in distance to road
    * calculations. Not 100% accurate distance as the road unit will cover

@@ -71,10 +71,13 @@ public class Trails extends ManmadeElement implements Externalizable {
 
   }
 
+  /**
+   * Creates simulation data for the current time step with the status of the previous time step.
+   */
   public void doBeginTimeStep() {
     int ts = Simulation.getCurrentTimeStep();
     simData[ts] = new TrailsSimData();
-    simData[ts].setStatus(simData[ts-1].getStatus());
+    simData[ts].setStatus(simData[ts - 1].getStatus());
   }
 
   /**
