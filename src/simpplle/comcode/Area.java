@@ -474,62 +474,80 @@ public final class Area implements Externalizable {
   // ****************************
 
   /**
-   * Gets manmade unit by looking up its id and kind
+   * Returns a specific kind of manmade unit with a matching id.
    * @param id
-   * @param kind the manmade element kind.  Choices are road = 0, trail =1
+   * @param kind The kind of manmade unit (ROAD,TRAIL)
    * @return
    */
   private ManmadeElement getManmadeUnit(int id, ManmadeUnitKinds kind) {
-    if (allManmadeUnits[kind.ordinal()] == null ||
-            id < 0 || id > allManmadeUnits[kind.ordinal()].length-1) {
+    if (allManmadeUnits[kind.ordinal()] == null || id < 0 || id > allManmadeUnits[kind.ordinal()].length-1) {
       return null;
     }
     return allManmadeUnits[kind.ordinal()][id];
   }
 
+  /**
+   * Returns a road unit with a matching id.
+   * @param id Road ID
+   * @return A road unit
+   */
   public Roads getRoadUnit(int id) {
     return (Roads)getManmadeUnit(id,ROADS);
   }
 
   /**
-   * Checks if an area has roads.  If the all roads array is null, returns false, othewise returns true.
-   * @return true if area has roads
+   * Checks if this area has roads units.
+   * @return True if the roads array is not null
    */
-  public boolean hasRoads() { return allRoads != null; }
+  public boolean hasRoads() {
+    return allRoads != null;
+  }
+
   /**
-   * Gets all the roads in this Area.
-   * @return returns the roads array for this area
+   * Returns all the roads units in this area.
+   * @return An array of roads
    */
-  public Roads[] getAllRoads() { return this.allRoads; }
+  public Roads[] getAllRoads() {
+    return allRoads;
+  }
+
   /**
-   * Sets all roads.  Sets the array of road Id's  into the 2 dimensional array at the index of the roads ordinal, which = 0
-   * @param newAllRoads
+   * Replaces all roads units in this area.
+   * @param newAllRoads An array of roads
    */
   public void setAllRoads(Roads[] newAllRoads) {
     allManmadeUnits[ROADS.ordinal()] = newAllRoads;
     allRoads = (Roads[])allManmadeUnits[ROADS.ordinal()];
   }
-/**
- * Gets a trail based on its Id.
- * @param id the trail Id
- * @return A trail object
- */
+
+  /**
+   * Returns a trail unit with a matching id.
+   * @param id Trail ID
+   * @return A trail unit
+   */
   public Trails getTrailUnit(int id) {
     return (Trails)getManmadeUnit(id,TRAILS);
   }
-/**
- * Checks if this area has trails.
- * @return true if this area has trails.
- */
-  public boolean hasTrails() { return allTrails != null; }
+
   /**
-   * Gets the array of all trails for this Area.
-   * @return array of trails.
+   * Checks if this area has trail units.
+   * @return True if the trails array is not null
    */
-  public Trails[] getAllTrails() { return this.allTrails; }
+  public boolean hasTrails() {
+    return allTrails != null;
+  }
+
   /**
-   * Sets all the trails by setting the manmade unit 2D array at the trail ordinal to the passed in array of new trail objects
-   * @param newAllTrails
+   * Returns all the trails units in this area.
+   * @return An array of trails
+   */
+  public Trails[] getAllTrails() {
+    return allTrails;
+  }
+
+  /**
+   * Replaces all trail units in this area.
+   * @param newAllTrails An array of trails
    */
   public void setAllTrails(Trails[] newAllTrails) {
     allManmadeUnits[TRAILS.ordinal()] = newAllTrails;
