@@ -1856,10 +1856,9 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Method to calculate the closest Evu to a road.  Loops therough the vegetative units and calculates the distance to an evu (based on road)
-   * the lowest distance is determined which sets the closest Evu variable.
-   * @param road
-   * @return the closest Evu to a specified road
+   * Returns the closest EVU associated with the given road.
+   * @param road A road unit
+   * @return The closest EVU
    */
   private Evu findClosestRoadEvu(Roads road) {
 
@@ -1868,14 +1867,16 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     Evu closestEvu = null;
     double lowestDist = Double.MAX_VALUE;
-    for (int i=0; i<vegUnits.size(); i++) {
-      double dist = distanceToEvu(vegUnits.get(i));
+    for (Evu evu : vegUnits) {
+      double dist = distanceToEvu(evu);
       if (dist < lowestDist) {
         lowestDist = dist;
-        closestEvu = vegUnits.get(i);
+        closestEvu = evu;
       }
     }
+
     return closestEvu;
+
   }
 
   /**
@@ -2111,25 +2112,27 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Calculates the closest Evu to a trail.  Shortest distance algorithm.  Starts by setting the distance to max, goes through Evu units,
-   * and calculates the shortest distance, and gets the closest Evu associated with the closest trail.
-   * @param trail the trail being evaluated
-   * @return the closest Evu to the trail
+   * Returns the closest EVU associated with the given trail.
+   * @param trail A trail unit
+   * @return The closest EVU
    */
   private Evu findClosestTrailEvu(Trails trail) {
-    ArrayList<Evu> vegUnits = trail.getAssociatedVegUnits();
-    if (vegUnits == null) { return null; }
 
-    Evu    closestEvu = null;
+    List<Evu> vegUnits = trail.getAssociatedVegUnits();
+    if (vegUnits == null) return null;
+
+    Evu closestEvu = null;
     double lowestDist = Double.MAX_VALUE;
-    for (int i=0; i<vegUnits.size(); i++) {
-      double dist = distanceToEvu(vegUnits.get(i));
+    for (Evu evu : vegUnits) {
+      double dist = distanceToEvu(evu);
       if (dist < lowestDist) {
         lowestDist = dist;
-        closestEvu = vegUnits.get(i);
+        closestEvu = evu;
       }
     }
+
     return closestEvu;
+
   }
 
   /**
