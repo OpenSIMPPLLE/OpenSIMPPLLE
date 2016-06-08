@@ -1061,7 +1061,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     currentArea.initSimulation();
     areaSummary = new AreaSummary();
 
-    if ((currentArea.hasRoads() || currentArea.hasTrails()) && needNearestRoadTrailInfo()) {
+    if (needNearestRoadTrailInfo()) {
       currentArea.findNearestRoadsTrails();
     }
 
