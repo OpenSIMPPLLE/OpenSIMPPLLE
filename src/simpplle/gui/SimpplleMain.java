@@ -1723,7 +1723,7 @@ public class SimpplleMain extends JFrame {
   void newArea_actionPerformed(ActionEvent e) {
     int           choice;
     File          outfile;
-    NewArea       dlg = new NewArea(this,"",true);
+    NewArea       dlg = new NewArea(this,true);
     NewSampleArea sampleDlg;
     String        str;
     MyFileFilter  extFilter = new MyFileFilter("area",
