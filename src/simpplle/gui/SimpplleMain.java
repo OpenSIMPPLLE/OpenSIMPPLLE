@@ -1686,7 +1686,7 @@ public class SimpplleMain extends JFrame {
     String str;
     simpplle.comcode.RegionalZone zone;
 
-    NewZone   dlg = new NewZone(this,"Select a Zone.",true);
+    NewZone   dlg = new NewZone(this,true);
     setDialogLocation(dlg);
     dlg.setVisible(true);
     if (Simpplle.getCurrentZone() != null && dlg.isNewZone()) {

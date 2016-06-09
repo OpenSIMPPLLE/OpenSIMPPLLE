@@ -77,7 +77,6 @@ public abstract class RegionalZone {
                                                   "Southwest Utah",
                                                   "Colorado Front Range",
                                                   "Western Great Plains Steppe",
-                                                  "Great Plains Steppe",
                                                   "Mixed Grass Prairie",
                                                   "Colorado Plateau",
                                                   "Teton",
