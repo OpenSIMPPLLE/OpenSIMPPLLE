@@ -1736,17 +1736,19 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Creates an array list with capacity of 2 and adds the nearest road to it.
-   *
+   * Clears the array of nearest roads and adds the nearest road of any status.
    */
   public void findNearestRoad() {
-    RoadUnitData data = new RoadUnitData();
-    double dist = distanceToRoad(data,false);
 
-    nearestRoad = new ArrayList<ArrayList<RoadUnitData>>();
-    ArrayList<RoadUnitData> list = new ArrayList<RoadUnitData>(2);
+    RoadUnitData data = new RoadUnitData();
+    distanceToRoad(data,false);
+
+    ArrayList<RoadUnitData> list = new ArrayList<>(2);
     list.add(data);
+
+    nearestRoad = new ArrayList<>();
     nearestRoad.add(list);
+
   }
 
   /**
@@ -1995,16 +1997,19 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the nearest trail from arraylist.
+   * Clears the array of nearest trails and adds the nearest trail of any status.
    */
   public void findNearestTrail() {
-    TrailUnitData data = new TrailUnitData();
-    double dist = distanceToTrail(data,false);
 
-    nearestTrail = new ArrayList<ArrayList<TrailUnitData>>();
-    ArrayList<TrailUnitData> list = new ArrayList<TrailUnitData>(2);
+    TrailUnitData data = new TrailUnitData();
+    distanceToTrail(data,false);
+
+    ArrayList<TrailUnitData> list = new ArrayList<>(2);
     list.add(data);
+
+    nearestTrail = new ArrayList<>();
     nearestTrail.add(list);
+
   }
 
   /**
