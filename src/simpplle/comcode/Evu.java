@@ -111,7 +111,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     public Evu   evu;
   }
 
-  public static ArrayList<RoadUnitData> roadUnits = new ArrayList<RoadUnitData>();
+  public static List<RoadUnitData> roadUnits = new ArrayList<>();
 
   // Outer array is index by time step.
   // Inner array is for future use.  If road status changes and we
@@ -120,7 +120,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   // closest road in case its status changes to available again.
   public ArrayList<ArrayList<RoadUnitData>> nearestRoad;
 
-  public static double MAX_ROAD_DIST=5280*2; // 2 Miles in Feet
+  public static double MAX_ROAD_DIST = 2 * 5280; // 2 Miles in Feet
 
   /**
    * creates a Trail Unit Data class with two variables for trail and evu.
@@ -1798,12 +1798,14 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Returns the distance to the nearest road. The nearest road unit to this EVU is recorded in the RoadUnitData.
+   * Returns the distance in feet to the nearest road. The nearest road unit to this EVU is recorded in the RoadUnitData.
    * @param roadData A road unit data instance to record the nearest road
    * @param onlyOpen True if only open roads should be considered
    * @return The minimum distance or MAX_ROAD_DIST if there are no road units
    */
   private double distanceToRoad(RoadUnitData roadData, boolean onlyOpen) {
+
+    // If there are no roads in any EVU, return the max road distance
 
     if (roadUnits == null || roadUnits.size() == 0) {
       roadData.road = null;
@@ -1811,45 +1813,40 @@ public final class Evu extends NaturalElement implements Externalizable {
       return MAX_ROAD_DIST;
     }
 
-    double minDistRoad = MAX_ROAD_DIST;
-    int    roadEvu = -1;
-    double dist;
-    Evu    evu, closestEvu=null;
+    // If this EVU has roads, return a very small distance
 
-    if (this.assocRoadUnits != null && this.assocRoadUnits.size() > 0) {
-      if (this.hasAssociatedRoadUnit(roadData,onlyOpen)) {
+    if (assocRoadUnits != null && assocRoadUnits.size() > 0) {
+      if (hasAssociatedRoadUnit(roadData,onlyOpen)) {
         roadData.evu = this;
         return 1;
       }
     }
 
-    for (int i=0; i<roadUnits.size(); i++) {
-      RoadUnitData tmp = roadUnits.get(i);
-      if (onlyOpen && tmp.road.getSimStatus() != Roads.Status.OPEN) { continue; }
+    // Otherwise find the nearest road
 
-      evu = findClosestRoadEvu(tmp.road);
-      if (evu == null) { continue; }
+    roadData.road = null;
+    roadData.evu  = null;
 
-      dist = distanceToEvu(evu);
-      if (dist > minDistRoad) { continue; }
+    double minDistRoad = MAX_ROAD_DIST;
+
+    for (RoadUnitData roadUnit : roadUnits) {
+
+      if (onlyOpen && roadUnit.road.getSimStatus() != Roads.Status.OPEN) continue;
+
+      Evu evu = findClosestRoadEvu(roadUnit.road);
+      if (evu == null) continue;
+
+      double dist = distanceToEvu(evu);
 
       if (dist < minDistRoad) {
-        roadEvu = i;
+
         minDistRoad = dist;
-        closestEvu  = evu;
+
+        roadData.road = roadUnit.road;
+        roadData.evu  = evu;
+
       }
     }
-
-
-    if (roadEvu == -1) {
-      roadData.road = null;
-      roadData.evu  = null;
-      return MAX_ROAD_DIST;
-    }
-
-    RoadUnitData tmp = roadUnits.get(roadEvu);
-    roadData.road = tmp.road;
-    roadData.evu  = closestEvu;
 
     return minDistRoad;
 
@@ -2057,58 +2054,58 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Returns the distance to the nearest trail. The nearest trail unit to this EVU is recorded in the TrailUnitData.
+   * Returns the distance in feet to the nearest trail. The nearest trail unit to this EVU is recorded in the TrailUnitData.
    * @param trailData A trail unit data instance to record the nearest trail
    * @param onlyOpen True if only open trails should be considered
    * @return The minimum distance or MAX_TRAIL_DIST if there are no trail units
    */
   private double distanceToTrail(TrailUnitData trailData, boolean onlyOpen) {
+
+    // If there are no trails in any EVU, return the max trail distance
+
     if (trailUnits == null || trailUnits.size() == 0) {
       trailData.trail = null;
       trailData.evu   = null;
       return MAX_TRAIL_DIST;
     }
 
-    double minDistTrail = MAX_TRAIL_DIST;
-    int    trailEvu = -1;
-    double dist;
-    Evu    evu, closestEvu=null;
+    // If this EVU has trails, return a very small distance
 
-    if (this.assocTrailUnits != null && this.assocTrailUnits.size() > 0) {
-      if (this.hasAssociatedTrailUnit(trailData,onlyOpen)) {
+    if (assocTrailUnits != null && assocTrailUnits.size() > 0) {
+      if (hasAssociatedTrailUnit(trailData,onlyOpen)) {
         trailData.evu = this;
         return 1;
       }
     }
 
-    for (int i=0; i<trailUnits.size(); i++) {
-      TrailUnitData tmp = trailUnits.get(i);
-      if (onlyOpen && tmp.trail.getSimStatus() != Trails.Status.OPEN) { continue; }
+    // Otherwise find the nearest trail
 
-      evu = findClosestTrailEvu(tmp.trail);
-      if (evu == null) { continue; }
+    trailData.trail = null;
+    trailData.evu   = null;
 
-      dist = distanceToEvu(evu);
-      if (dist > minDistTrail) { continue; }
+    double minDistTrail = MAX_TRAIL_DIST;
+
+    for (TrailUnitData trailUnit : trailUnits) {
+
+      if (onlyOpen && trailUnit.trail.getSimStatus() != Trails.Status.OPEN) continue;
+
+      Evu evu = findClosestTrailEvu(trailUnit.trail);
+      if (evu == null) continue;
+
+      double dist = distanceToEvu(evu);
 
       if (dist < minDistTrail) {
-        trailEvu = i;
+
         minDistTrail = dist;
-        closestEvu  = evu;
+
+        trailData.trail = trailUnit.trail;
+        trailData.evu   = evu;
+
       }
     }
 
-    if (trailEvu == -1) {
-      trailData.trail = null;
-      trailData.evu   = null;
-      return MAX_TRAIL_DIST;
-    }
-
-    TrailUnitData tmp = trailUnits.get(trailEvu);
-    trailData.trail   = tmp.trail;
-    trailData.evu     = closestEvu;
-
     return minDistTrail;
+
   }
 
   /**
