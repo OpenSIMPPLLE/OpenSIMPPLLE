@@ -187,10 +187,9 @@ public final class Evu extends NaturalElement implements Externalizable {
   public static final String GAP_STR     = "GAP"; // Gap Process
 
   /**
-   * Invokes an instance of the current simulation.
-   * For a running simulation gets the current time step for simulation and returns the road status,
-   * or if not running gets the total num time steps and returns road status based on that.
-   * @return road status of current simulation
+   * Returns the road status at the current time step if the simulation is running. Otherwise the road status is
+   * returned for the first time step if there is no simulation, or the last if the simulation is not running.
+   * @return Road status
    */
   public Roads.Status getRoadStatusNew() {
     Simulation simulation = Simpplle.getCurrentSimulation();
@@ -202,15 +201,16 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     return getRoadStatusNew(ts);
+
   }
 
   /**
-   * Uses the parameter time step to calculate roads if there are any present, if there are no roads will return that info.
-   * @param ts time step
-   * @return associated road status
+   * Returns the road status at a specific time step.
+   * @param ts Simulation time step
+   * @return Road status
    */
   public Roads.Status getRoadStatusNew(int ts) {
-    ArrayList<Roads> roads = this.getAssociatedRoadUnits();
+    ArrayList<Roads> roads = getAssociatedRoadUnits();
     Roads road = null;
     if (roads != null && roads.size() > 0) {
       road = roads.get(0);
@@ -224,10 +224,9 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Invokes an instance of the current simulation.
-   * For a running simulation gets the current time step for simulation and returns the trail status,
-   * or if not running gets the total num time steps and returns trail status based on that.
-   * @return
+   * Returns the trail status at the current time step if the simulation is running. Otherwise the trail status is
+   * returned for the first time step if there is no simulation, or the last if the simulation is not running.
+   * @return Trail status
    */
   public Trails.Status getTrailStatus() {
     Simulation simulation = Simpplle.getCurrentSimulation();
@@ -243,13 +242,12 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * * Uses the parameter time step to calculate associated trails if there are any present,
-   * if there are no trails will return that info.
-   * *@param ts time step
-   * *@return associated trails at a given time step
+   * Returns the trail status at a specific time step.
+   * @param ts Simulation time step
+   * @return Trail status
    */
   public Trails.Status getTrailStatus(int ts) {
-    ArrayList<Trails> trails = this.getAssociatedTrailUnits();
+    ArrayList<Trails> trails = getAssociatedTrailUnits();
     Trails trail = null;
     if (trails != null && trails.size() > 0) {
       trail = trails.get(0);
@@ -263,8 +261,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Sets the road status.
-   * @param status
+   * Sets the road status of this EVU.
+   * @param status Road status
    */
   public void setRoadStatus(Roads.Status status) {
     roadStatus = status;
