@@ -330,8 +330,7 @@ public final class Simpplle {
    */
   public void loadSampleArea (Area area) throws SimpplleError {
     clearSimulation();
-    setStatusMessage("Loading Sample Area: " +
-                     area.getName() + "...");
+    setStatusMessage("Loading Sample Area: " + area.getName() + "...");
     try {
       InclusionRuleSpecies.clearAllInstances();
       if (area.getPath().indexOf("SWEATHOUSE.AREA") != -1) {

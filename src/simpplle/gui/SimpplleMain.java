@@ -1737,7 +1737,7 @@ public class SimpplleMain extends JFrame {
     choice = dlg.getChoice();
     try {
       if (choice == NewArea.SAMPLE) {
-        sampleDlg = new NewSampleArea(this,"Select an Area.",true);
+        sampleDlg = new NewSampleArea(this,true);
         setDialogLocation(sampleDlg);
         sampleDlg.setVisible(true);
       }
