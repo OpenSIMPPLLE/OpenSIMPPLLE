@@ -27,9 +27,6 @@ public class GreatPlainsSteppe extends RegionalZone {
                                              "spread_legend.avl",
                                              "treatment_legend.avl" };
 
-  /**
-   * Creates a regional zone for the Great Plains Steppe.
-   */
   public GreatPlainsSteppe() {
 
     super();
@@ -50,9 +47,6 @@ public class GreatPlainsSteppe extends RegionalZone {
 
   }
 
-  /**
-   * @return True if this is the current zone
-   */
   public static boolean isCurrent() {
     RegionalZone zone = Simpplle.getCurrentZone();
     if (zone == null) return false;
@@ -71,10 +65,6 @@ public class GreatPlainsSteppe extends RegionalZone {
     return gisFiles;
   }
 
-  /**
-   * @return The unique identifier for this zone
-   * @see simpplle.comcode.ValidZones
-   */
   public int getId () {
     return ValidZones.GREAT_PLAINS_STEPPE;
   }

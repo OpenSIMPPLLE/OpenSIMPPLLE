@@ -11,7 +11,7 @@ package simpplle.comcode;
  * use of this zone was to assist in developing a representation of historical conditions, so an emphasis was placed
  * on bison grazing. The use of NCRS soil ecosystems as ecological stratification is common in all three areas.
  *
- * <p>Original source code authorship: Kirk A. Moeller
+ * <p> Original source code authorship: Kirk A. Moeller
  */
 
 public class MixedGrassPrairie extends RegionalZone {

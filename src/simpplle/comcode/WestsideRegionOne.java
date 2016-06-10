@@ -25,9 +25,6 @@ public final class WestsideRegionOne extends RegionalZone {
                                              "spread_legend.avl",
                                              "treatment_legend.avl" };
 
-  /**
-   * Creates a regional zone for Westside Region One.
-   */
   public WestsideRegionOne () {
 
     super();
@@ -67,10 +64,6 @@ public final class WestsideRegionOne extends RegionalZone {
 
   protected String[] getGisFiles() { return gisFiles; }
 
-  /**
-   * @return The unique identifier for this zone
-   * @see simpplle.comcode.ValidZones
-   */
   public int getId () {
     return ValidZones.WESTSIDE_REGION_ONE;
   }

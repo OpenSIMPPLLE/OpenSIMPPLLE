@@ -7,9 +7,9 @@ package simpplle.comcode;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p> SouthCentralAlaska describes the shorlines and uplands of the central Gulf of Alaska.
+ * <p> SouthCentralAlaska describes the shorelines and uplands of the central Gulf of Alaska.
  *
- * <p>Original source code authorship: Kirk A. Moeller
+ * <p> Original source code authorship: Kirk A. Moeller
  */
 
 public final class SouthCentralAlaska extends RegionalZone {

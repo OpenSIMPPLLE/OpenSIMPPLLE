@@ -29,13 +29,13 @@ public class SouthwestUtah extends RegionalZone {
 
     super();
 
-    name         = "Southwest Utah";
-    available    = true;
-    zoneDir      = "knowledge/zones/southwest-utah";
+    name            = "Southwest Utah";
+    available       = true;
+    zoneDir         = "knowledge/zones/southwest-utah";
     pathwayKnowFile = "zones/southwest-utah-pathways.jar";
-    sysKnowFile  = "zones/southwest-utah.jar";
-    zoneDefnFile = "zones/southwest-utah-defn.jar";
-    gisExtraFile = "zones/southwest-utah-gis.jar";
+    sysKnowFile     = "zones/southwest-utah.jar";
+    zoneDefnFile    = "zones/southwest-utah-defn.jar";
+    gisExtraFile    = "zones/southwest-utah-gis.jar";
 
     probDataProcesses = new ProcessType[] {
       ProcessType.PP_MPB

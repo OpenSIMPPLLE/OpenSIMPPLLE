@@ -10,7 +10,7 @@ package simpplle.comcode;
  *
  * <p> SouthernCalifornia describes the Southern California mountains and valleys.
  *
- * <p>Original source code authorship: Kirk A. Moeller
+ * <p> Original source code authorship: Kirk A. Moeller
  */
 
 public class SouthernCalifornia extends RegionalZone {
