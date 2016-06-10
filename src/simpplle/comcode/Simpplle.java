@@ -205,8 +205,8 @@ public final class Simpplle {
    * @see simpplle.comcode.ValidZones
    */
   public void loadZone (int choice, boolean historic) throws SimpplleError {
+
     RegionalZone zone;
-    Climate      tmpClimate;
 
     switch (choice) {
       case ValidZones.WESTSIDE_REGION_ONE:
@@ -279,6 +279,7 @@ public final class Simpplle {
 
       // load the data files.
       zone.readZoneDefinitionFile();
+
       SimpplleType.initializeProcessTreatmentLists();
 
       ProcessProbLogic.initialize();
@@ -291,7 +292,6 @@ public final class Simpplle {
       ProducingSeedLogic.initialize();
       VegUnitFireTypeLogic.initialize();
       InvasiveSpeciesLogicMSU.initialize();
-
       FireSuppClassALogic.initialize();
       FireSuppBeyondClassALogic.initialize();
       FireSuppProductionRateLogic.initialize();
@@ -301,9 +301,11 @@ public final class Simpplle {
       FireSuppEventLogic.initialize();
 
       zone.setUseHistoricPathways(historic);
+
       zone.readZoneSystemKnowledgeFile();
 
       SimpplleType.initializeAllLists();
+
       // This is necessary in case the species file is loaded after
       // pathways (which normally it is).
       // This is also called when pathways are loaded, which is necessary

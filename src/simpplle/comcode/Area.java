@@ -1094,21 +1094,22 @@ public final class Area implements Externalizable {
   }
 
   /**
-    * Traverse the units and update the fmz,
-    * changing invalid ones to the default fmz.
-    * Also remap valid ones to the newly loaded version.
-    * If any are changed return true.
-    * @return a boolean
-    */
+   * Updates all contained EVUs so they reference the
+   * Traverse the units and update the fmz,
+   * changing invalid ones to the default fmz.
+   * Also remap valid ones to the newly loaded version.
+   * If any are changed return true.
+   * @return a boolean
+   */
   public boolean updateFmzData() {
-    Evu     evu;
-    boolean changed = false, result;
-
-    for (int i=0;i<=maxEvuId;i++) {
-      evu = allEvu[i];
-      if (evu == null) {continue; }
-      result = evu.updateFmz();
-      if (result) { changed = true; }
+    boolean changed = false;
+    for (int i = 0; i <= maxEvuId; i++) {
+      Evu evu = allEvu[i];
+      if (evu != null) {
+        if (evu.updateFmz()) {
+          changed = true;
+        }
+      }
     }
     return changed;
   }
