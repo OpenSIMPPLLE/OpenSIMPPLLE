@@ -36,8 +36,8 @@ public class NewZone extends JDialog {
   private JPanel       northPanel    = new JPanel();
   private JPanel       southPanel    = new JPanel();
   private JPanel       historicPanel = new JPanel();
-  private FlowLayout   flowLayout2   = new FlowLayout();
   private FlowLayout   flowLayout1   = new FlowLayout();
+  private FlowLayout   flowLayout2   = new FlowLayout();
   private BorderLayout borderLayout1 = new BorderLayout();
   private BorderLayout borderLayout2 = new BorderLayout();
 
@@ -105,8 +105,8 @@ public class NewZone extends JDialog {
     historicPanel.add(historicCB, null);
 
     northPanel.setLayout(borderLayout2);
+    northPanel.add(scrollPane, BorderLayout.CENTER);
     northPanel.add(historicPanel, BorderLayout.SOUTH);
-    northPanel.add(scrollPane);
 
     okButton.setMaximumSize(new Dimension(73, 27));
     okButton.setMinimumSize(new Dimension(73, 27));

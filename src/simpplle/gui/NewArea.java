@@ -37,9 +37,9 @@ public class NewArea extends JDialog {
   private JPanel       mainPanel     = new JPanel();
   private JPanel       buttonPanel   = new JPanel();
   private JPanel       radioPanel    = new JPanel();
-  private GridLayout   gridLayout1   = new GridLayout(4,1);
-  private FlowLayout   flowLayout1   = new FlowLayout();
-  private BorderLayout borderLayout1 = new BorderLayout();
+  private GridLayout   gridLayout    = new GridLayout(4,1);
+  private FlowLayout   flowLayout    = new FlowLayout();
+  private BorderLayout borderLayout  = new BorderLayout();
 
   /**
    * Creates an area dialog with no owner and not modal.
@@ -90,21 +90,21 @@ public class NewArea extends JDialog {
     });
 
     buttonPanel.setBorder(BorderFactory.createEtchedBorder());
-    buttonPanel.setLayout(flowLayout1);
+    buttonPanel.setLayout(flowLayout);
     buttonPanel.add(okButton, null);
     buttonPanel.add(cancelButton, null);
 
-    gridLayout1.setColumns(1);
-    gridLayout1.setRows(4);
+    gridLayout.setColumns(1);
+    gridLayout.setRows(4);
 
     radioPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-    radioPanel.setLayout(gridLayout1);
+    radioPanel.setLayout(gridLayout);
     radioPanel.add(sampleAreaRB, null);
     radioPanel.add(userAreaRB, null);
     radioPanel.add(prevAreaRB, null);
     radioPanel.add(prevAreaOldRB, null);
 
-    mainPanel.setLayout(borderLayout1);
+    mainPanel.setLayout(borderLayout);
     mainPanel.add(buttonPanel, BorderLayout.SOUTH);
     mainPanel.add(radioPanel, BorderLayout.NORTH);
 

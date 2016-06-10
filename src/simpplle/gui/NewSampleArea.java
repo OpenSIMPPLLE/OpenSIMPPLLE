@@ -23,13 +23,13 @@ import java.awt.event.MouseEvent;
 
 public class NewSampleArea extends JDialog {
 
-  private JList        theList       = new JList();
-  private JPanel       panel1        = new JPanel();
-  private JPanel       buttonPanel   = new JPanel();
-  private JButton      okButton      = new JButton("Ok");
-  private JButton      cancelButton  = new JButton("Cancel");
-  private FlowLayout   flowLayout2   = new FlowLayout();
-  private BorderLayout borderLayout1 = new BorderLayout();
+  private JList        areaList     = new JList();
+  private JButton      okButton     = new JButton("Ok");
+  private JButton      cancelButton = new JButton("Cancel");
+  private JPanel       mainPanel    = new JPanel();
+  private JPanel       buttonPanel  = new JPanel();
+  private FlowLayout   flowLayout   = new FlowLayout();
+  private BorderLayout borderLayout = new BorderLayout();
 
   /**
    * Creates a new area dialog with no owner and not modal.
@@ -66,15 +66,14 @@ public class NewSampleArea extends JDialog {
    */
   void jbInit() throws Exception {
 
-    theList.setBorder(BorderFactory.createRaisedBevelBorder());
-    theList.setMinimumSize(new Dimension(161, 200));
-    theList.setPreferredSize(new Dimension(161, 200));
-    theList.setForeground(Color.white);
-    theList.setBackground(Color.darkGray);
-    theList.setSelectionBackground(Color.white);
-    theList.setSelectionForeground(Color.orange);
-    theList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    theList.addMouseListener(new java.awt.event.MouseAdapter() {
+    areaList.setBorder(BorderFactory.createRaisedBevelBorder());
+    areaList.setMinimumSize(new Dimension(161, 200));
+    areaList.setForeground(Color.white);
+    areaList.setBackground(Color.darkGray);
+    areaList.setSelectionBackground(Color.white);
+    areaList.setSelectionForeground(Color.orange);
+    areaList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    areaList.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(MouseEvent e) {
         clickListItem(e);
       }
@@ -94,19 +93,17 @@ public class NewSampleArea extends JDialog {
       }
     });
 
-    buttonPanel.setLayout(flowLayout2);
+    buttonPanel.setLayout(flowLayout);
     buttonPanel.add(okButton, null);
     buttonPanel.add(cancelButton, null);
 
-    panel1.setLayout(borderLayout1);
-    panel1.setMinimumSize(new Dimension(300, 237));
-    panel1.setPreferredSize(new Dimension(300, 237));
-    panel1.add(buttonPanel, BorderLayout.SOUTH);
-    panel1.add(theList, BorderLayout.NORTH);
+    mainPanel.setLayout(borderLayout);
+    mainPanel.setMinimumSize(new Dimension(300, 237));
+    mainPanel.setPreferredSize(new Dimension(300, 237));
+    mainPanel.add(areaList, BorderLayout.CENTER);
+    mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-    getContentPane().add(panel1);
-
-    setResizable(false);
+    getContentPane().add(mainPanel);
 
   }
 
@@ -115,7 +112,7 @@ public class NewSampleArea extends JDialog {
    */
   private void initialize() {
 
-    theList.setListData(JSimpplle.getComcode().getSampleAreas());
+    areaList.setListData(JSimpplle.getComcode().getSampleAreas());
 
   }
 
@@ -125,7 +122,7 @@ public class NewSampleArea extends JDialog {
    * @param e Mouse event
    */
   void clickListItem(MouseEvent e) {
-    if (e.getClickCount() == 2 && theList.isSelectionEmpty() == false) {
+    if (e.getClickCount() == 2 && areaList.isSelectionEmpty() == false) {
       loadSampleArea();
       setVisible(false);
       dispose();
@@ -138,7 +135,7 @@ public class NewSampleArea extends JDialog {
    */
   private void selectOk() {
 
-    if (theList.isSelectionEmpty()) {
+    if (areaList.isSelectionEmpty()) {
       JOptionPane.showMessageDialog(this,"Please Select an Area","No Area Selected",JOptionPane.WARNING_MESSAGE);
       return;
     }
@@ -166,7 +163,7 @@ public class NewSampleArea extends JDialog {
 
     setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-    Area area = (Area)theList.getSelectedValue();
+    Area area = (Area) areaList.getSelectedValue();
 
     try {
       JSimpplle.getComcode().loadSampleArea(area);
