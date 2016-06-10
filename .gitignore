@@ -18,17 +18,21 @@ OpenSIMPPLLE.jar
 #--------------------------
 
 # User Settings
-
-/.idea/
+.idea/dictionaries
+.idea/libraries
+.idea/workspace.xml
+.idea/tasks.xml
 
 # Build Directory
 
-/out/
-/target/
+out/
 
 #--------------------------
 # Eclipse
 #--------------------------
+
+.classpath
+.project
 
 # User Settings
 
