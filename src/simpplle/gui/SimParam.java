@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import simpplle.comcode.Simpplle;
+
 import simpplle.comcode.*;
-import java.awt.Insets;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
@@ -102,6 +102,12 @@ public class SimParam extends JDialog {
   private FlowLayout flowLayout13 = new FlowLayout();
   private JPanel discardDataPanel = new JPanel();
   private JCheckBox discardDataCB = new JCheckBox();
+  private JPanel discardTextPanel = new JPanel();
+  /**
+   *  Option to disable writing probability Arc Files
+   *  users, this information is not used in output processing.
+   */
+  private JCheckBox writeAreaProbFilesCB = new JCheckBox();
   private FlowLayout flowLayout7 = new FlowLayout();
   private JPanel allStatesRulesFilePanel = new JPanel();
   private FlowLayout flowLayout12 = new FlowLayout();
@@ -210,14 +216,6 @@ public class SimParam extends JDialog {
 
       public void actionPerformed(ActionEvent e) {
         cancelButton_actionPerformed(e);
-      }
-    });
-    menuFile.setText("File");
-    menuFileQuit.setText("Close Dialog");
-    menuFileQuit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        menuFileQuit_actionPerformed(e);
       }
     });
     buttonPanel.setAlignmentX((float) 0.0);
@@ -375,12 +373,15 @@ public class SimParam extends JDialog {
     discardDataCB.setFont(new java.awt.Font("Monospaced", Font.PLAIN, 14));
     discardDataCB.setText(
       "Discard Unnecessary Simulation Data, needed for extremely long term " +
-      "simulations.");
+        "simulations.");
     discardDataCB.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         discardDataCB_actionPerformed(e);
       }
     });
+    writeAreaProbFilesCB.setFont(new java.awt.Font("Monospaced", Font.PLAIN, 14));
+    writeAreaProbFilesCB.setText(
+      "Write probability reports for multiple simulations." );
     discardDataPanel.setLayout(flowLayout7);
     flowLayout7.setAlignment(FlowLayout.LEFT);
     flowLayout7.setVgap(0);
@@ -519,17 +520,21 @@ public class SimParam extends JDialog {
     final FlowLayout flowLayout = new FlowLayout();
     flowLayout.setAlignment(FlowLayout.LEFT);
     panel_1.setLayout(flowLayout);
-    
+    // write Access Files
     panel_1.add(writeAccessFilesCB);
     writeAccessFilesCB.setEnabled(false);
     writeAccessFilesCB.setSelected(false);
-    writeAccessFilesCB.addActionListener(new WriteAccessFilesCBActionListener());
     writeAccessFilesCB.setText("Write Data to Text Files (Suitable for import into Access or other Programs)");
+    // write Area prob
+    writeAreaProbFilesCB.setEnabled(false);
+    discardTextPanel.setLayout(flowLayout);
+    discardTextPanel.add(writeAreaProbFilesCB);
+    outputOptionsPanel.add(discardTextPanel);
     northPanel.add(jPanel1);
     jPanel1.add(databaseWritePanel);
     databaseWritePanel.add(databaseWriteCB, null);
-    jPanel1.add(discardDataPanel);
     discardDataPanel.add(discardDataCB);
+    jPanel1.add(discardDataPanel);
     jPanel1.add(timeStepsInMemoryPanel);
     timeStepsInMemoryPanel.add(tsInMemoryText);
     timeStepsInMemoryPanel.add(tsInMemoryLabel);
@@ -611,9 +616,11 @@ public class SimParam extends JDialog {
     dispose();
   }
 /**
- * Runs the simulation (if 'Run Simulation' button is pushed).  Basically it parses in the user set parameters and calls the runsimulation method from comcode Simpplle.java which then creates 
- * a new simulation instance with the passed parameters.   
- * @return
+ * Runs the simulation (if 'Run Simulation' button is pushed).  Basically it
+ * parses in the user set parameters and calls the runsimulation method
+ * from comcode Simpplle.java which then creates a new simulation instance
+ * with the passed parameters.
+ * @return if running simulation was successful.
  */
   private boolean runSimulation() {
     int     numSimulations, numSteps;
@@ -656,17 +663,26 @@ public class SimParam extends JDialog {
     refresh();
 
     try {
-      comcode.runSimulation(numSimulations,numSteps,fireSuppression,outputFile,
-                          discount,trackSpecialArea,trackOwnership,yearlySteps,
-                          simulationMethod,
-                          databaseWriteCB.isSelected(),
-                          writeAccessFilesCB.isSelected(), /*write access files*/
-                          /*writeProbFilesCB.isSelected()*/true,
-                          (Simulation.InvasiveKind)invasiveSpeciesCB.getSelectedItem(),
-                          tsInMemory,allStatesRulesFile,discardDataCB.isSelected(),
-                          allStatesCB.isSelected(),
-                          trackingSpeciesCB.isSelected(),
-                          gisUpdateSpreadCB.isSelected());
+      comcode.runSimulation(numSimulations,
+              numSteps,
+              fireSuppression,
+              outputFile,
+              discount,
+              trackSpecialArea,
+              trackOwnership,
+              yearlySteps,
+              simulationMethod,
+              databaseWriteCB.isSelected(),
+              writeAccessFilesCB.isSelected(), /*write access files*/
+              /*writeProbFilesCB.isSelected()*/true,
+              (Simulation.InvasiveKind)invasiveSpeciesCB.getSelectedItem(),
+              tsInMemory,
+              allStatesRulesFile,
+              discardDataCB.isSelected(),
+              writeAreaProbFilesCB.isSelected(),
+              allStatesCB.isSelected(),
+              trackingSpeciesCB.isSelected(),
+              gisUpdateSpreadCB.isSelected());
     }
     catch (simpplle.comcode.SimpplleError e) {
       JOptionPane.showMessageDialog(this,e.getError(),"Simulation Failed",
@@ -710,13 +726,6 @@ public class SimParam extends JDialog {
  * @param e
  */
   void cancelButton_actionPerformed(ActionEvent e) {
-    cancel();
-  }
-  /**
-   * If 'Quit' menu item is selected will dispose of the Simulation Parameter dialog.  
-   * @param e
-   */
-  void menuFileQuit_actionPerformed(ActionEvent e) {
     cancel();
   }
 /**
@@ -891,6 +900,7 @@ public class SimParam extends JDialog {
       }
       writeAccessFilesCB.setEnabled(true);
       writeAccessFilesCB.setSelected(false);
+      writeAreaProbFilesCB.setEnabled(true);
     }
     else {
       outputFile = null;
@@ -951,8 +961,8 @@ public class SimParam extends JDialog {
 
   }
 /**
- * If discard data check box is selected, allows the user to discard time step data - for longer term simulations.  (minimum kept in memory must be 10)
- * @param e
+ * If discard data check box is selected, allows the user to discard time step data
+ * - for longer term simulations.  (minimum kept in memory must be 10)
  */
   public void discardDataCB_actionPerformed(ActionEvent e) {
     tsInMemoryText.setEnabled(discardDataCB.isSelected());
@@ -975,20 +985,11 @@ public class SimParam extends JDialog {
   }
 /**
  * If "Adjust Categories" check box is selected - will create a new tracking species report dialog.    
- * @param e
  */
   public void trackingSpeciesCategoryPB_actionPerformed(ActionEvent e) {
     TrackingSpeciesReportDlg dlg =
       new TrackingSpeciesReportDlg(JSimpplle.getSimpplleMain(),"Tracking Species Report Categories",true);
     dlg.setVisible(true);
-  }
-  private class WriteAccessFilesCBActionListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-      writeAccessFilesCB_actionPerformed(e);
-    }
-  }
-  protected void writeAccessFilesCB_actionPerformed(ActionEvent e) {
-    // Nothing needs doing here.
   }
 
 }

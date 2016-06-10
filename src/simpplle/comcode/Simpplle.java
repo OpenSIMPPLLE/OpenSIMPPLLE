@@ -557,16 +557,31 @@ public final class Simpplle {
                             boolean writeProbFiles,
                             Simulation.InvasiveKind invasiveKind, int nStepsInMemory,
                             File allStatesRulesFile, boolean discardData,
-                            boolean doAllStatesSummary,
+                            boolean disableReporting, boolean doAllStatesSummary,
                             boolean doTrackingSpeciesReport,
                             boolean doGisFiles)
     throws SimpplleError {
     Simulation.setInstance(
-      new Simulation(numSimulations,numSteps,suppression,outputFile,discount,
-                     spArea,owner,yearlySteps,simulationMethod,
-                     writeDatabase,writeAccess,writeProbFiles,invasiveKind,
-                     nStepsInMemory,allStatesRulesFile,discardData,
-                     doAllStatesSummary,doTrackingSpeciesReport,doGisFiles));
+      new Simulation(numSimulations,
+              numSteps,
+              suppression,
+              outputFile,
+              discount,
+              spArea,
+              owner,
+              yearlySteps,
+              simulationMethod,
+              writeDatabase,
+              writeAccess,
+              writeProbFiles,
+              invasiveKind,
+              nStepsInMemory,
+              allStatesRulesFile,
+              discardData,
+              disableReporting,
+              doAllStatesSummary,
+              doTrackingSpeciesReport,
+              doGisFiles));
     getCurrentSimulation().runSimulation();
   }
 

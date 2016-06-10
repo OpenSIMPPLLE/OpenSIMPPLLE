@@ -44,16 +44,15 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private boolean      writeProbFiles=false;
   private InvasiveKind invasiveSpeciesKind=InvasiveKind.NONE;
   private boolean      discardData=false;
+  private boolean      doProbArcFiles = false;
   private boolean      doAllStatesSummary=true;
   private boolean      doTrackingSpeciesReport=false;
   private boolean      doGisFiles=false;
   private boolean      doSimLoggingFile=false;
   private File         allStatesRulesFile;
   private boolean      inSimulation;
-
   private AreaSummary        areaSummary;
   private MultipleRunSummary multipleRunSummary;
-
   private PrintWriter   simLoggingWriter;
   private PrintWriter   invasiveSpeciesMSUProbOut;
   private PrintWriter[] accessEvuSimDataOut;
@@ -164,6 +163,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                      int nStepsInMemory,
                      File allStatesRulesFile,
                      boolean discardData,
+                     boolean doProbArcFiles,
                      boolean doAllStatesSummary,
                      boolean doTrackingSpeciesReport,
                      boolean doGisFiles) {
@@ -183,6 +183,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     this.writeProbFiles          = writeProbFiles;
     this.invasiveSpeciesKind     = invasiveKind;
     this.discardData             = discardData;
+    this.doProbArcFiles          = doProbArcFiles;
     this.doAllStatesSummary      = doAllStatesSummary;
     this.doTrackingSpeciesReport = doTrackingSpeciesReport;
     this.doGisFiles              = doGisFiles;
@@ -1137,12 +1138,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
           areaSummary.writeDatabase();
           Simpplle.clearStatusMessage();
         }
-        //if (outputFile != null && writeAccess) {
-        //  Simpplle.setStatusMessage("Writing Area Summary Data to text data");
-        //  areaSummary.writeAccessFiles(accessAreaSummaryOut[currentRun]);
-        //  Simpplle.clearStatusMessage();
-        //}
-//        if (currentArea.doManualGC()) { System.gc(); }
         if (fireSuppression()) {
           areaSummary.doSuppressionCosts(currentTimeStep);
         }
@@ -1159,7 +1154,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
       if (outputFile != null) {
         areaSummary.fireSpreadReportFinish(getFireSpreadReportPath());
       }
-      if (outputFile != null && isMultipleRun() == false) {
+      if (outputFile != null && !isMultipleRun()) {
         save();
       }
       if (doAllStatesSummary) {
@@ -1273,7 +1268,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 //      multipleRunSummary.calculateFrequency();
 //    }
 
-    if (writeProbFiles) {
+    if (writeProbFiles && doProbArcFiles) {
       currentArea.produceDecadeProbabilityArcFiles(outputFile);
       currentArea.produceProbabilityArcFiles(outputFile);
     }
@@ -1453,6 +1448,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
       if (version > 5) {
         doTrackingSpeciesReport = in.readBoolean();
+        doProbArcFiles          = in.readBoolean();
       }
     }
 
@@ -1482,6 +1478,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     out.writeBoolean(discardData);
     out.writeBoolean(doAllStatesSummary);
     out.writeBoolean(doTrackingSpeciesReport);
+    out.writeBoolean(doProbArcFiles);
   }
 
   /**
@@ -1824,6 +1821,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   public boolean isDiscardData() {
     return discardData;
+  }
+
+  public boolean isDoProbArcFiles() {
+    return doProbArcFiles;
   }
 
   public boolean isDoAllStatesSummary() {
