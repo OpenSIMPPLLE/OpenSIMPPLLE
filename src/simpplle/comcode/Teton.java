@@ -7,32 +7,31 @@ package simpplle.comcode;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>This class defines the zone for Teton.
- * The primary purpose is to initialize class fields with values unique to Teton.  
- * <p>As a result most member functions are private.
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
- * 
- *  @see simpplle.comcode.RegionalZone
+ * <p> Teton describes the Teton Range of the Rocky Mountains.
  *
+ * <p> Original source code authorship: Kirk A. Moeller
  */
-public class Teton extends RegionalZone {
-  private static final String arcviewDir  = "gis/teton";
-  private static final String homeDir = "knowledge/zones/teton";
-  private static final String gisFiles[] =
-    {"simpplle_arcview.apr", "process_legend.avl", "species_legend.avl",
-     "size_legend.avl", "canopy_legend.avl", "spread_legend.avl",
-     "probability_legend.avl", "spread_legend.avl", "treatment_legend.avl"};
 
-  /**
-   * Constructor for Teton regional zone.  Inherits from regional zone and initializes some fields inherited from RegionalZone.
-   */
+public class Teton extends RegionalZone {
+
+  private static final String arcviewDir = "gis/teton";
+  private static final String gisFiles[] = { "simpplle_arcview.apr",
+                                             "process_legend.avl",
+                                             "species_legend.avl",
+                                             "size_legend.avl",
+                                             "canopy_legend.avl",
+                                             "spread_legend.avl",
+                                             "probability_legend.avl",
+                                             "spread_legend.avl",
+                                             "treatment_legend.avl" };
+
   public Teton() {
+
     super();
-    name      = "Teton";
-    available = true;
-    zoneDir = homeDir;
+
+    name            = "Teton";
+    available       = true;
+    zoneDir         = "knowledge/zones/teton";
     pathwayKnowFile = "zones/teton-pathways.jar";
     sysKnowFile     = "zones/teton.jar";
     zoneDefnFile    = "zones/teton-defn.jar";
@@ -46,28 +45,23 @@ public class Teton extends RegionalZone {
       ProcessType.WBP_MPB
     };
 
-    createSampleAreas();
+    //sampleAreas = new Area[1];
+    //sampleAreas[0] = new Area("Poorman","SAMPLE-AREAS/POORMAN.AREA",Area.SAMPLE);
+
   }
 
-  /**
-   * @return  "gis/teton"
-   */
-  public String getArcviewDir() { return arcviewDir; }
-
-  public ProcessType[] getUserProbProcesses() { return probDataProcesses; }
-
-  protected String[] getGisFiles() { return gisFiles; }
-
-  private void createSampleAreas () {
-//    sampleAreas    = new Area[1];
-//    sampleAreas[0] = new Area("Poorman","SAMPLE-AREAS/POORMAN.AREA",Area.SAMPLE);
+  public String getArcviewDir() {
+    return arcviewDir;
   }
 
-  /**
-   * Gets the id of this zone.
-   * @see simpplle.comcode.ValidZones
-   * @return the id of this zone.
-   */
+  public ProcessType[] getUserProbProcesses() {
+    return probDataProcesses;
+  }
+
+  protected String[] getGisFiles() {
+    return gisFiles;
+  }
+
   public int getId () {
     return ValidZones.TETON;
   }
