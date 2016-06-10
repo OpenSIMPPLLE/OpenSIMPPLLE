@@ -16,16 +16,6 @@ package simpplle.comcode;
 
 public class WesternGreatPlainsSteppe extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public WesternGreatPlainsSteppe() {
 
     super();
@@ -40,6 +30,15 @@ public class WesternGreatPlainsSteppe extends RegionalZone {
     sysKnowFile     = "zones/western-great-plains-steppe.jar";
     zoneDefnFile    = "zones/western-great-plains-steppe-defn.jar";
     gisExtraFile    = "zones/western-great-plains-steppe-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = new ProcessType[] {
       ProcessType.BISON_GRAZING
@@ -54,10 +53,6 @@ public class WesternGreatPlainsSteppe extends RegionalZone {
     RegionalZone zone = Simpplle.getCurrentZone();
     if (zone == null) return false;
     return (zone instanceof WesternGreatPlainsSteppe);
-  }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
   }
 
 }

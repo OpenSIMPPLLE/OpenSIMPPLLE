@@ -15,16 +15,6 @@ package simpplle.comcode;
 
 public class SierraNevada extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public SierraNevada() {
 
     super();
@@ -38,6 +28,15 @@ public class SierraNevada extends RegionalZone {
     sysKnowFile     = "zones/sierra-nevada.jar";
     zoneDefnFile    = "zones/sierra-nevada-defn.jar";
     gisExtraFile    = "zones/sierra-nevada-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_BARK_BEETLES,
@@ -50,9 +49,4 @@ public class SierraNevada extends RegionalZone {
     sampleAreas[1] = new Area("Yosemite","SAMPLE-AREAS/YOSEMITE.AREA",Area.SAMPLE);
 
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }

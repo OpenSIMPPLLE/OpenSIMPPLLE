@@ -15,16 +15,6 @@ package simpplle.comcode;
 
 public class ColoradoPlateau extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public ColoradoPlateau() {
 
     super();
@@ -39,6 +29,15 @@ public class ColoradoPlateau extends RegionalZone {
     sysKnowFile     = "zones/colorado-plateau.jar";
     zoneDefnFile    = "zones/colorado-plateau-defn.jar";
     gisExtraFile    = "zones/colorado-plateau-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = new ProcessType[] {
       ProcessType.DF_BEETLE,
@@ -50,9 +49,4 @@ public class ColoradoPlateau extends RegionalZone {
     sampleAreas[0] = new Area("Mesa Verde","SAMPLE-AREAS/MV.AREA",Area.SAMPLE);
 
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }

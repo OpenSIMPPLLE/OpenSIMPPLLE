@@ -15,16 +15,6 @@ package simpplle.comcode;
 
 public class SouthernCalifornia extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public SouthernCalifornia() {
 
     super();
@@ -38,6 +28,15 @@ public class SouthernCalifornia extends RegionalZone {
     sysKnowFile     = "zones/southern-california.jar";
     zoneDefnFile    = "zones/southern-california-defn.jar";
     gisExtraFile    = "zones/southern-california-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_BARK_BEETLES,
@@ -49,9 +48,4 @@ public class SouthernCalifornia extends RegionalZone {
     sampleAreas[0] = new Area("Angeles","SAMPLE-AREAS/ANGELES.AREA",Area.SAMPLE);
 
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }

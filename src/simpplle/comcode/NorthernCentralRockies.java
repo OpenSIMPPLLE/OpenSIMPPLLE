@@ -15,8 +15,6 @@ package simpplle.comcode;
 
 public class NorthernCentralRockies extends RegionalZone {
 
-  private static final String gisFiles[] = {};
-
   public NorthernCentralRockies() {
 
     super();
@@ -30,6 +28,7 @@ public class NorthernCentralRockies extends RegionalZone {
     sysKnowFile     = "zones/northern-central-rockies.jar";
     zoneDefnFile    = "zones/northern-central-rockies-defn.jar";
     gisExtraFile    = "zones/northern-central-rockies-gis.jar";
+    gisFiles        = new String[] {};
 
     userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_LP_MPB,
@@ -43,9 +42,4 @@ public class NorthernCentralRockies extends RegionalZone {
     //sampleAreas[0] = new Area("Poorman","SAMPLE-AREAS/POORMAN.AREA",Area.SAMPLE);
 
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }

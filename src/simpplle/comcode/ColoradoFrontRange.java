@@ -14,16 +14,6 @@ package simpplle.comcode;
 
 public class ColoradoFrontRange extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public ColoradoFrontRange () {
 
     super();
@@ -37,6 +27,15 @@ public class ColoradoFrontRange extends RegionalZone {
     sysKnowFile     = "zones/colorado-front-range.jar";
     zoneDefnFile    = "zones/colorado-front-range-defn.jar";
     gisExtraFile    = "zones/colorado-front-range-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_LP_MPB,
@@ -50,9 +49,4 @@ public class ColoradoFrontRange extends RegionalZone {
     sampleAreas[1] = new Area("Trout","SAMPLE-AREAS/TROUT.AREA",Area.SAMPLE);
 
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }

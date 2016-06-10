@@ -14,16 +14,6 @@ package simpplle.comcode;
 
 public class SouthwestUtah extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public SouthwestUtah () {
 
     super();
@@ -37,6 +27,15 @@ public class SouthwestUtah extends RegionalZone {
     sysKnowFile     = "zones/southwest-utah.jar";
     zoneDefnFile    = "zones/southwest-utah-defn.jar";
     gisExtraFile    = "zones/southwest-utah-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = new ProcessType[] {
       ProcessType.PP_MPB
@@ -46,9 +45,4 @@ public class SouthwestUtah extends RegionalZone {
     sampleAreas[0] = new Area("Utah","SAMPLE-AREAS/UTAH.AREA",Area.SAMPLE);
 
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }

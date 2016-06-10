@@ -14,16 +14,6 @@ package simpplle.comcode;
 
 public class EastsideRegionOne extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public EastsideRegionOne () {
 
     super();
@@ -37,6 +27,15 @@ public class EastsideRegionOne extends RegionalZone {
     sysKnowFile     = "zones/eastside-r1.jar";
     zoneDefnFile    = "zones/eastside-r1-defn.jar";
     gisExtraFile    = "zones/eastside-r1-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_LP_MPB,
@@ -53,11 +52,6 @@ public class EastsideRegionOne extends RegionalZone {
     sampleAreas[0] = new Area("Poorman","SAMPLE-AREAS/POORMAN.AREA",Area.SAMPLE);
 
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }
 
 

@@ -16,16 +16,6 @@ package simpplle.comcode;
 
 public class MixedGrassPrairie extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public MixedGrassPrairie() {
 
     super();
@@ -40,6 +30,15 @@ public class MixedGrassPrairie extends RegionalZone {
     sysKnowFile     = "zones/mixed-grass-prairie.jar";
     zoneDefnFile    = "zones/mixed-grass-prairie-defn.jar";
     //gisExtraFile    = "zones/mixed-grass-prairie-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = null;
 
@@ -53,10 +52,5 @@ public class MixedGrassPrairie extends RegionalZone {
     if (zone == null) return false;
     return (zone instanceof MixedGrassPrairie);
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }
 

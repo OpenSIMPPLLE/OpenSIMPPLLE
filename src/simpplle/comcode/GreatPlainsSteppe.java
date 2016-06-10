@@ -16,16 +16,6 @@ package simpplle.comcode;
 
 public class GreatPlainsSteppe extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public GreatPlainsSteppe() {
 
     super();
@@ -40,6 +30,15 @@ public class GreatPlainsSteppe extends RegionalZone {
     sysKnowFile     = "zones/great-plains-steppe.jar";
     zoneDefnFile    = "zones/great-plains-steppe-defn.jar";
     //gisExtraFile    = "zones/great-plains-steppe-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = null;
 
@@ -53,10 +52,5 @@ public class GreatPlainsSteppe extends RegionalZone {
     if (zone == null) return false;
     return (zone instanceof GreatPlainsSteppe);
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }
 

@@ -15,16 +15,6 @@ package simpplle.comcode;
 
 public class Gila extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public Gila () {
 
     super();
@@ -38,6 +28,15 @@ public class Gila extends RegionalZone {
     sysKnowFile     = "zones/gila.jar";
     zoneDefnFile    = "zones/gila-defn.jar";
     gisExtraFile    = "zones/gila-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = new ProcessType[] {
       //ProcessType.LIGHT_LP_MPB,
@@ -52,11 +51,6 @@ public class Gila extends RegionalZone {
     sampleAreas[0] = new Area("Gila","SAMPLE-AREAS/GILA.AREA",Area.SAMPLE);
 
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }
 
 

@@ -14,16 +14,6 @@ package simpplle.comcode;
 
 public class SouthCentralAlaska extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public SouthCentralAlaska () {
 
     super();
@@ -37,6 +27,15 @@ public class SouthCentralAlaska extends RegionalZone {
     sysKnowFile     = "zones/south-central-alaska.jar";
     zoneDefnFile    = "zones/south-central-alaska-defn.jar";
     gisExtraFile    = "zones/south-central-alaska-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = new ProcessType[] {
       ProcessType.ROOT_DISEASE
@@ -46,11 +45,6 @@ public class SouthCentralAlaska extends RegionalZone {
     sampleAreas[0] = new Area("Kenai","SAMPLE-AREAS/KENAI.AREA",Area.SAMPLE);
 
   }
-
-  protected String[] getGisFiles() {
-    return gisFiles;
-  }
-
 }
 
 

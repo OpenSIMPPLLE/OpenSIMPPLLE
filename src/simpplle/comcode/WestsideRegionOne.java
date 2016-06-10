@@ -14,16 +14,6 @@ package simpplle.comcode;
 
 public class WestsideRegionOne extends RegionalZone {
 
-  private static final String gisFiles[] = { "simpplle_arcview.apr",
-                                             "process_legend.avl",
-                                             "species_legend.avl",
-                                             "size_legend.avl",
-                                             "canopy_legend.avl",
-                                             "spread_legend.avl",
-                                             "probability_legend.avl",
-                                             "spread_legend.avl",
-                                             "treatment_legend.avl" };
-
   public WestsideRegionOne () {
 
     super();
@@ -38,6 +28,15 @@ public class WestsideRegionOne extends RegionalZone {
     sysKnowFile     = "zones/westside-r1.jar";
     zoneDefnFile    = "zones/westside-r1-defn.jar";
     gisExtraFile    = "zones/westside-r1-gis.jar";
+    gisFiles        = new String[] { "simpplle_arcview.apr",
+                                     "process_legend.avl",
+                                     "species_legend.avl",
+                                     "size_legend.avl",
+                                     "canopy_legend.avl",
+                                     "spread_legend.avl",
+                                     "probability_legend.avl",
+                                     "spread_legend.avl",
+                                     "treatment_legend.avl" };
 
     userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_LP_MPB,
@@ -58,9 +57,6 @@ public class WestsideRegionOne extends RegionalZone {
     sampleAreas[1] = new Area("Sweathouse Creek","SAMPLE-AREAS/SWEATHOUSE.AREA",Area.SAMPLE);
 
   }
-
-  protected String[] getGisFiles() { return gisFiles; }
-
 }
 
 

@@ -33,12 +33,13 @@ public abstract class RegionalZone {
   protected boolean hasAquatics;
   protected Area[]  sampleAreas;
 
-  protected String zoneDir;
-  protected String arcviewDir;
-  protected String pathwayKnowFile;
-  protected String sysKnowFile;
-  protected String zoneDefnFile;
-  protected String gisExtraFile;
+  protected String   zoneDir;
+  protected String   arcviewDir;
+  protected String   pathwayKnowFile;
+  protected String   sysKnowFile;
+  protected String   zoneDefnFile;
+  protected String   gisExtraFile;
+  protected String[] gisFiles;
 
   protected Hashtable<String,Fmz> allFmz;
 
@@ -413,7 +414,9 @@ public abstract class RegionalZone {
   /**
    * @return All GIS file paths for this regional zone
    */
-  protected abstract String[] getGisFiles();
+  protected final String[] getGisFiles() {
+    return gisFiles;
+  }
 
   /**
    * Copies all GIS files in this regional zone to another directory
