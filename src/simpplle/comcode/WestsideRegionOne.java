@@ -12,7 +12,7 @@ package simpplle.comcode;
  * <p> Original source code authorship: Kirk A. Moeller
  */
 
-public final class WestsideRegionOne extends RegionalZone {
+public class WestsideRegionOne extends RegionalZone {
 
   private static final String gisFiles[] = { "simpplle_arcview.apr",
                                              "process_legend.avl",
