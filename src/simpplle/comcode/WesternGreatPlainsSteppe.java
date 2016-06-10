@@ -41,7 +41,7 @@ public class WesternGreatPlainsSteppe extends RegionalZone {
     zoneDefnFile    = "zones/western-great-plains-steppe-defn.jar";
     gisExtraFile    = "zones/western-great-plains-steppe-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.BISON_GRAZING
     };
 
@@ -54,10 +54,6 @@ public class WesternGreatPlainsSteppe extends RegionalZone {
     RegionalZone zone = Simpplle.getCurrentZone();
     if (zone == null) return false;
     return (zone instanceof WesternGreatPlainsSteppe);
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

@@ -38,7 +38,7 @@ public class EastsideRegionOne extends RegionalZone {
     zoneDefnFile    = "zones/eastside-r1-defn.jar";
     gisExtraFile    = "zones/eastside-r1-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_LP_MPB,
       ProcessType.DF_BEETLE,
       ProcessType.ROOT_DISEASE,
@@ -52,14 +52,6 @@ public class EastsideRegionOne extends RegionalZone {
     sampleAreas = new Area[1];
     sampleAreas[0] = new Area("Poorman","SAMPLE-AREAS/POORMAN.AREA",Area.SAMPLE);
 
-  }
-
-  public String getArcviewDir() {
-    return arcviewDir;
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

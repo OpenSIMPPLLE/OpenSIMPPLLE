@@ -39,7 +39,7 @@ public class WestsideRegionOne extends RegionalZone {
     zoneDefnFile    = "zones/westside-r1-defn.jar";
     gisExtraFile    = "zones/westside-r1-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_LP_MPB,
       ProcessType.DF_BEETLE,
       ProcessType.ROOT_DISEASE,
@@ -58,8 +58,6 @@ public class WestsideRegionOne extends RegionalZone {
     sampleAreas[1] = new Area("Sweathouse Creek","SAMPLE-AREAS/SWEATHOUSE.AREA",Area.SAMPLE);
 
   }
-
-  public ProcessType[] getUserProbProcesses() { return probDataProcesses; }
 
   protected String[] getGisFiles() { return gisFiles; }
 

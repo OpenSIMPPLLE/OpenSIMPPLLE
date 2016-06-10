@@ -42,7 +42,7 @@ public abstract class RegionalZone {
 
   protected Hashtable<String,Fmz> allFmz;
 
-  protected ProcessType[] probDataProcesses;
+  protected ProcessType[] userProbProcesses;
 
   protected static final String pathwayDir                = "pathways";
   protected static final String historicPathwayDir        = "historic-pathways";
@@ -612,7 +612,9 @@ public abstract class RegionalZone {
   /**
    * @return An array of process types used by this regional zone
    */
-  public abstract ProcessType[] getUserProbProcesses();
+  public final ProcessType[] getUserProbProcesses() {
+    return userProbProcesses;
+  }
 
   /**
    * Reads legal processes and treatments from the zone definition file.

@@ -39,7 +39,7 @@ public class SierraNevada extends RegionalZone {
     zoneDefnFile    = "zones/sierra-nevada-defn.jar";
     gisExtraFile    = "zones/sierra-nevada-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_BARK_BEETLES,
       ProcessType.BB_RD_DM_COMPLEX,
       ProcessType.ROOT_DISEASE
@@ -49,10 +49,6 @@ public class SierraNevada extends RegionalZone {
     sampleAreas[0] = new Area("Yosemite NW","SAMPLE-AREAS/YOSEMITE-NW.AREA",Area.SAMPLE);
     sampleAreas[1] = new Area("Yosemite","SAMPLE-AREAS/YOSEMITE.AREA",Area.SAMPLE);
 
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

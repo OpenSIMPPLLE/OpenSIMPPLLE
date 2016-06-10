@@ -39,7 +39,7 @@ public class SouthernCalifornia extends RegionalZone {
     zoneDefnFile    = "zones/southern-california-defn.jar";
     gisExtraFile    = "zones/southern-california-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_BARK_BEETLES,
       ProcessType.BB_RD_DM_COMPLEX,
       ProcessType.ROOT_DISEASE
@@ -48,10 +48,6 @@ public class SouthernCalifornia extends RegionalZone {
     sampleAreas = new Area[1];
     sampleAreas[0] = new Area("Angeles","SAMPLE-AREAS/ANGELES.AREA",Area.SAMPLE);
 
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

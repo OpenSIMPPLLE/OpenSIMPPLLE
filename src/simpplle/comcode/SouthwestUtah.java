@@ -38,17 +38,13 @@ public class SouthwestUtah extends RegionalZone {
     zoneDefnFile    = "zones/southwest-utah-defn.jar";
     gisExtraFile    = "zones/southwest-utah-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.PP_MPB
     };
 
     sampleAreas = new Area[1];
     sampleAreas[0] = new Area("Utah","SAMPLE-AREAS/UTAH.AREA",Area.SAMPLE);
 
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

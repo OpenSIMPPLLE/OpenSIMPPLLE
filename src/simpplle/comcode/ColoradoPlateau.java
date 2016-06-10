@@ -40,7 +40,7 @@ public class ColoradoPlateau extends RegionalZone {
     zoneDefnFile    = "zones/colorado-plateau-defn.jar";
     gisExtraFile    = "zones/colorado-plateau-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.DF_BEETLE,
       ProcessType.SPRUCE_BEETLE,
       ProcessType.PIED_BB
@@ -49,10 +49,6 @@ public class ColoradoPlateau extends RegionalZone {
     sampleAreas = new Area[1];
     sampleAreas[0] = new Area("Mesa Verde","SAMPLE-AREAS/MV.AREA",Area.SAMPLE);
 
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

@@ -39,7 +39,7 @@ public class Gila extends RegionalZone {
     zoneDefnFile    = "zones/gila-defn.jar";
     gisExtraFile    = "zones/gila-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       //ProcessType.LIGHT_LP_MPB,
       //ProcessType.DF_BEETLE,
       //ProcessType.ROOT_DISEASE,
@@ -51,10 +51,6 @@ public class Gila extends RegionalZone {
     sampleAreas = new Area[1];
     sampleAreas[0] = new Area("Gila","SAMPLE-AREAS/GILA.AREA",Area.SAMPLE);
 
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

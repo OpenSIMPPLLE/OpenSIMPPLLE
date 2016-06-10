@@ -38,7 +38,7 @@ public class ColoradoFrontRange extends RegionalZone {
     zoneDefnFile    = "zones/colorado-front-range-defn.jar";
     gisExtraFile    = "zones/colorado-front-range-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_LP_MPB,
       ProcessType.DF_BEETLE,
       ProcessType.SPRUCE_BEETLE,
@@ -49,10 +49,6 @@ public class ColoradoFrontRange extends RegionalZone {
     sampleAreas[0] = new Area("Wet Mtns","SAMPLE-AREAS/WETMTN.AREA",Area.SAMPLE);
     sampleAreas[1] = new Area("Trout","SAMPLE-AREAS/TROUT.AREA",Area.SAMPLE);
 
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

@@ -38,17 +38,13 @@ public class SouthCentralAlaska extends RegionalZone {
     zoneDefnFile    = "zones/south-central-alaska-defn.jar";
     gisExtraFile    = "zones/south-central-alaska-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.ROOT_DISEASE
     };
 
     sampleAreas = new Area[1];
     sampleAreas[0] = new Area("Kenai","SAMPLE-AREAS/KENAI.AREA",Area.SAMPLE);
 
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

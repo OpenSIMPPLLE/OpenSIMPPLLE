@@ -41,7 +41,7 @@ public class MixedGrassPrairie extends RegionalZone {
     zoneDefnFile    = "zones/mixed-grass-prairie-defn.jar";
     //gisExtraFile    = "zones/mixed-grass-prairie-gis.jar";
 
-    probDataProcesses = null;
+    userProbProcesses = null;
 
     sampleAreas = new Area[1];
     sampleAreas[0] = new Area("West Faulk","SAMPLE-AREAS/WEST-FAULK.AREA",Area.SAMPLE);
@@ -52,10 +52,6 @@ public class MixedGrassPrairie extends RegionalZone {
     RegionalZone zone = Simpplle.getCurrentZone();
     if (zone == null) return false;
     return (zone instanceof MixedGrassPrairie);
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

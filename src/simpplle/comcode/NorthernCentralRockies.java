@@ -31,7 +31,7 @@ public class NorthernCentralRockies extends RegionalZone {
     zoneDefnFile    = "zones/northern-central-rockies-defn.jar";
     gisExtraFile    = "zones/northern-central-rockies-gis.jar";
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_LP_MPB,
       ProcessType.DF_BEETLE,
       ProcessType.ROOT_DISEASE,
@@ -42,10 +42,6 @@ public class NorthernCentralRockies extends RegionalZone {
     //sampleAreas = new Area[1];
     //sampleAreas[0] = new Area("Poorman","SAMPLE-AREAS/POORMAN.AREA",Area.SAMPLE);
 
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {

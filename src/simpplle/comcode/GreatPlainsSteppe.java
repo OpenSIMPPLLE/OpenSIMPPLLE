@@ -41,7 +41,7 @@ public class GreatPlainsSteppe extends RegionalZone {
     zoneDefnFile    = "zones/great-plains-steppe-defn.jar";
     //gisExtraFile    = "zones/great-plains-steppe-gis.jar";
 
-    probDataProcesses = null;
+    userProbProcesses = null;
 
     sampleAreas = new Area[1];
     sampleAreas[0] = new Area("NE Haakon","SAMPLE-AREAS/NE_HAAKON4.AREA",Area.SAMPLE);
@@ -52,10 +52,6 @@ public class GreatPlainsSteppe extends RegionalZone {
     RegionalZone zone = Simpplle.getCurrentZone();
     if (zone == null) return false;
     return (zone instanceof GreatPlainsSteppe);
-  }
-
-  public ProcessType[] getUserProbProcesses() {
-    return probDataProcesses;
   }
 
   protected String[] getGisFiles() {
