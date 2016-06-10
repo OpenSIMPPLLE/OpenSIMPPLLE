@@ -1439,7 +1439,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
         invasiveSpeciesKind = (invasive ? InvasiveKind.MESA_VERDE_NP : InvasiveKind.NONE);
       }
       discardData           = in.readBoolean();
-      doProbArcFiles = in.readBoolean();
+      doProbArcFiles        = in.readBoolean();
       doAllStatesSummary    = in.readBoolean();
 
       if (version > 5) {

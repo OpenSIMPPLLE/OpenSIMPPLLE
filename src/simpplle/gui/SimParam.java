@@ -218,14 +218,6 @@ public class SimParam extends JDialog {
         cancelButton_actionPerformed(e);
       }
     });
-    menuFile.setText("File");
-    menuFileQuit.setText("Close Dialog");
-    menuFileQuit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        menuFileQuit_actionPerformed(e);
-      }
-    });
     buttonPanel.setAlignmentX((float) 0.0);
     buttonPanel.setBorder(BorderFactory.createEtchedBorder());
     numSimText.setBackground(Color.white);
@@ -532,7 +524,6 @@ public class SimParam extends JDialog {
     panel_1.add(writeAccessFilesCB);
     writeAccessFilesCB.setEnabled(false);
     writeAccessFilesCB.setSelected(false);
-    writeAccessFilesCB.addActionListener(new WriteAccessFilesCBActionListener());
     writeAccessFilesCB.setText("Write Data to Text Files (Suitable for import into Access or other Programs)");
     // write Area prob
     writeAreaProbFilesCB.setEnabled(false);
@@ -672,16 +663,26 @@ public class SimParam extends JDialog {
     refresh();
 
     try {
-      comcode.runSimulation(numSimulations,numSteps,fireSuppression,outputFile,
-                          discount,trackSpecialArea,trackOwnership,yearlySteps,
-                          simulationMethod, databaseWriteCB.isSelected(),
-                          writeAccessFilesCB.isSelected(), /*write access files*/
-                          /*writeProbFilesCB.isSelected()*/true,
-                          (Simulation.InvasiveKind)invasiveSpeciesCB.getSelectedItem(),
-                          tsInMemory, allStatesRulesFile, discardDataCB.isSelected(),
-                          writeAreaProbFilesCB.isSelected(), allStatesCB.isSelected(),
-                          trackingSpeciesCB.isSelected(),
-                          gisUpdateSpreadCB.isSelected());
+      comcode.runSimulation(numSimulations,
+              numSteps,
+              fireSuppression,
+              outputFile,
+              discount,
+              trackSpecialArea,
+              trackOwnership,
+              yearlySteps,
+              simulationMethod,
+              databaseWriteCB.isSelected(),
+              writeAccessFilesCB.isSelected(), /*write access files*/
+              /*writeProbFilesCB.isSelected()*/true,
+              (Simulation.InvasiveKind)invasiveSpeciesCB.getSelectedItem(),
+              tsInMemory,
+              allStatesRulesFile,
+              discardDataCB.isSelected(),
+              writeAreaProbFilesCB.isSelected(),
+              allStatesCB.isSelected(),
+              trackingSpeciesCB.isSelected(),
+              gisUpdateSpreadCB.isSelected());
     }
     catch (simpplle.comcode.SimpplleError e) {
       JOptionPane.showMessageDialog(this,e.getError(),"Simulation Failed",
@@ -725,13 +726,6 @@ public class SimParam extends JDialog {
  * @param e
  */
   void cancelButton_actionPerformed(ActionEvent e) {
-    cancel();
-  }
-  /**
-   * If 'Quit' menu item is selected will dispose of the Simulation Parameter dialog.  
-   * @param e
-   */
-  void menuFileQuit_actionPerformed(ActionEvent e) {
     cancel();
   }
 /**
@@ -996,14 +990,6 @@ public class SimParam extends JDialog {
     TrackingSpeciesReportDlg dlg =
       new TrackingSpeciesReportDlg(JSimpplle.getSimpplleMain(),"Tracking Species Report Categories",true);
     dlg.setVisible(true);
-  }
-  private class WriteAccessFilesCBActionListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-      writeAccessFilesCB_actionPerformed(e);
-    }
-  }
-  protected void writeAccessFilesCB_actionPerformed(ActionEvent e) {
-    // Nothing needs doing here.
   }
 
 }
