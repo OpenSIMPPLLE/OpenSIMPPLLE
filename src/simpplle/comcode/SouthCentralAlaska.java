@@ -14,7 +14,6 @@ package simpplle.comcode;
 
 public final class SouthCentralAlaska extends RegionalZone {
 
-  private static final String arcviewDir = "gis/south-central-alaska";
   private static final String gisFiles[] = { "simpplle_arcview.apr",
                                              "process_legend.avl",
                                              "species_legend.avl",
@@ -32,6 +31,7 @@ public final class SouthCentralAlaska extends RegionalZone {
     name            = "South Central Alaska";
     available       = true;
     zoneDir         = "knowledge/zones/south-central-alaska";
+    arcviewDir      = "gis/south-central-alaska";
     pathwayKnowFile = "zones/south-central-alaska-pathways.jar";
     sysKnowFile     = "zones/south-central-alaska.jar";
     zoneDefnFile    = "zones/south-central-alaska-defn.jar";
@@ -44,10 +44,6 @@ public final class SouthCentralAlaska extends RegionalZone {
     sampleAreas = new Area[1];
     sampleAreas[0] = new Area("Kenai","SAMPLE-AREAS/KENAI.AREA",Area.SAMPLE);
 
-  }
-
-  public String getArcviewDir() {
-    return arcviewDir;
   }
 
   public ProcessType[] getUserProbProcesses() {

@@ -15,7 +15,6 @@ package simpplle.comcode;
 
 public class NorthernCentralRockies extends RegionalZone {
 
-  private static final String arcviewDir = "gis/northern-central-rockies";
   private static final String gisFiles[] = {};
 
   public NorthernCentralRockies() {
@@ -25,6 +24,7 @@ public class NorthernCentralRockies extends RegionalZone {
     name            = "Northern Central Rockies";
     available       = true;
     zoneDir         = "knowledge/zones/northern-central-rockies";
+    arcviewDir      = "gis/northern-central-rockies";
     pathwayKnowFile = "zones/northern-central-rockies-pathways.jar";
     sysKnowFile     = "zones/northern-central-rockies.jar";
     zoneDefnFile    = "zones/northern-central-rockies-defn.jar";
@@ -41,10 +41,6 @@ public class NorthernCentralRockies extends RegionalZone {
     //sampleAreas = new Area[1];
     //sampleAreas[0] = new Area("Poorman","SAMPLE-AREAS/POORMAN.AREA",Area.SAMPLE);
 
-  }
-
-  public String getArcviewDir() {
-    return arcviewDir;
   }
 
   public ProcessType[] getUserProbProcesses() {

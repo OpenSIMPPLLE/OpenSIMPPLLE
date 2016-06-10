@@ -13,9 +13,8 @@ package simpplle.comcode;
  * <p> Original source code authorship: Kirk A. Moeller
  */
 
-public final class Gila extends RegionalZone {
+public class Gila extends RegionalZone {
 
-  private static final String arcviewDir = "gis/gila";
   private static final String gisFiles[] = { "simpplle_arcview.apr",
                                              "process_legend.avl",
                                              "species_legend.avl",
@@ -26,9 +25,6 @@ public final class Gila extends RegionalZone {
                                              "spread_legend.avl",
                                              "treatment_legend.avl" };
 
-  /**
-   * Creates a regional zone for the Gila National Forest
-   */
   public Gila () {
 
     super();
@@ -36,6 +32,7 @@ public final class Gila extends RegionalZone {
     name            = "Gila";
     available       = true;
     zoneDir         = "knowledge/zones/gila";
+    arcviewDir      = "gis/gila";
     pathwayKnowFile = "zones/gila-pathways.jar";
     sysKnowFile     = "zones/gila.jar";
     zoneDefnFile    = "zones/gila-defn.jar";
@@ -55,16 +52,14 @@ public final class Gila extends RegionalZone {
 
   }
 
-  public String getArcviewDir() { return arcviewDir; }
+  public ProcessType[] getUserProbProcesses() {
+    return probDataProcesses;
+  }
 
-  public ProcessType[] getUserProbProcesses() { return probDataProcesses; }
+  protected String[] getGisFiles() {
+    return gisFiles;
+  }
 
-  protected String[] getGisFiles() { return gisFiles; }
-
-  /**
-   * @return The unique identifier for this zone
-   * @see simpplle.comcode.ValidZones
-   */
   public int getId () {
     return ValidZones.GILA;
   }

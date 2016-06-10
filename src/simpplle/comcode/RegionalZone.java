@@ -33,6 +33,7 @@ public abstract class RegionalZone {
   protected Area[]  sampleAreas;
 
   protected String zoneDir;
+  protected String arcviewDir;
   protected String pathwayKnowFile;
   protected String sysKnowFile;
   protected String zoneDefnFile;
@@ -158,7 +159,9 @@ public abstract class RegionalZone {
   /**
    * @return A path to the zone's arcview directory
    */
-  public abstract String getArcviewDir();
+  public String getArcviewDir() {
+    return arcviewDir;
+  }
 
   /**
    * @return A path to the zone's pathway directory

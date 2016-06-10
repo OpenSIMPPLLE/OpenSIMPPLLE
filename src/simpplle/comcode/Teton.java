@@ -14,7 +14,6 @@ package simpplle.comcode;
 
 public class Teton extends RegionalZone {
 
-  private static final String arcviewDir = "gis/teton";
   private static final String gisFiles[] = { "simpplle_arcview.apr",
                                              "process_legend.avl",
                                              "species_legend.avl",
@@ -32,6 +31,7 @@ public class Teton extends RegionalZone {
     name            = "Teton";
     available       = true;
     zoneDir         = "knowledge/zones/teton";
+    arcviewDir      = "gis/teton";
     pathwayKnowFile = "zones/teton-pathways.jar";
     sysKnowFile     = "zones/teton.jar";
     zoneDefnFile    = "zones/teton-defn.jar";
@@ -48,10 +48,6 @@ public class Teton extends RegionalZone {
     //sampleAreas = new Area[1];
     //sampleAreas[0] = new Area("Poorman","SAMPLE-AREAS/POORMAN.AREA",Area.SAMPLE);
 
-  }
-
-  public String getArcviewDir() {
-    return arcviewDir;
   }
 
   public ProcessType[] getUserProbProcesses() {

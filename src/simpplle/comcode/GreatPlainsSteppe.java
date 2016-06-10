@@ -16,7 +16,6 @@ package simpplle.comcode;
 
 public class GreatPlainsSteppe extends RegionalZone {
 
-  private static final String arcviewDir = "gis/great-plains-steppe";
   private static final String gisFiles[] = { "simpplle_arcview.apr",
                                              "process_legend.avl",
                                              "species_legend.avl",
@@ -35,6 +34,7 @@ public class GreatPlainsSteppe extends RegionalZone {
     available       = true;
     hasAquatics     = true;
     zoneDir         = "knowledge/zones/great-plains-steppe";
+    arcviewDir      = "gis/great-plains-steppe";
     pathwayKnowFile = "zones/great-plains-steppe-pathways.jar";
     sysKnowFile     = "zones/great-plains-steppe.jar";
     zoneDefnFile    = "zones/great-plains-steppe-defn.jar";
@@ -51,10 +51,6 @@ public class GreatPlainsSteppe extends RegionalZone {
     RegionalZone zone = Simpplle.getCurrentZone();
     if (zone == null) return false;
     return (zone instanceof GreatPlainsSteppe);
-  }
-
-  public String getArcviewDir() {
-    return arcviewDir;
   }
 
   public ProcessType[] getUserProbProcesses() {

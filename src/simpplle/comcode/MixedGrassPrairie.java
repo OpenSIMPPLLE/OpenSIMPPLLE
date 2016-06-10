@@ -16,7 +16,6 @@ package simpplle.comcode;
 
 public class MixedGrassPrairie extends RegionalZone {
 
-  private static final String arcviewDir = "gis/mixed-grass-prairie";
   private static final String gisFiles[] = { "simpplle_arcview.apr",
                                              "process_legend.avl",
                                              "species_legend.avl",
@@ -35,6 +34,7 @@ public class MixedGrassPrairie extends RegionalZone {
     available       = true;
     hasAquatics     = true;
     zoneDir         = "knowledge/zones/mixed-grass-prairie";
+    arcviewDir      = "gis/mixed-grass-prairie";
     pathwayKnowFile = "zones/mixed-grass-prairie-pathways.jar";
     sysKnowFile     = "zones/mixed-grass-prairie.jar";
     zoneDefnFile    = "zones/mixed-grass-prairie-defn.jar";
@@ -51,10 +51,6 @@ public class MixedGrassPrairie extends RegionalZone {
     RegionalZone zone = Simpplle.getCurrentZone();
     if (zone == null) return false;
     return (zone instanceof MixedGrassPrairie);
-  }
-
-  public String getArcviewDir() {
-    return arcviewDir;
   }
 
   public ProcessType[] getUserProbProcesses() {

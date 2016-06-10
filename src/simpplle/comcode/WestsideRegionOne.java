@@ -14,7 +14,6 @@ package simpplle.comcode;
 
 public final class WestsideRegionOne extends RegionalZone {
 
-  private static final String arcviewDir = "gis/westside-r1";
   private static final String gisFiles[] = { "simpplle_arcview.apr",
                                              "process_legend.avl",
                                              "species_legend.avl",
@@ -33,6 +32,7 @@ public final class WestsideRegionOne extends RegionalZone {
     available       = true;
     hasAquatics     = true;
     zoneDir         = "knowledge/zones/westside-r1";
+    arcviewDir      = "gis/westside-r1";
     pathwayKnowFile = "zones/westside-r1-pathways.jar";
     sysKnowFile     = "zones/westside-r1.jar";
     zoneDefnFile    = "zones/westside-r1-defn.jar";
@@ -57,8 +57,6 @@ public final class WestsideRegionOne extends RegionalZone {
     sampleAreas[1] = new Area("Sweathouse Creek","SAMPLE-AREAS/SWEATHOUSE.AREA",Area.SAMPLE);
 
   }
-
-  public String getArcviewDir() { return arcviewDir; }
 
   public ProcessType[] getUserProbProcesses() { return probDataProcesses; }
 
