@@ -17,7 +17,7 @@ import java.awt.event.MouseEvent;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p> A NewArea dialog prompts the user for a type of area.
+ * <p> A NewZone dialog prompts the user for a regional zone.
  *
  * <p>Original source code authorship: Kirk A. Moeller  
  */

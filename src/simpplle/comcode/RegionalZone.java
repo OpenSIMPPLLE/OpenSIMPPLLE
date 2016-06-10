@@ -81,7 +81,7 @@ public abstract class RegionalZone {
                                                   "Mixed Grass Prairie",
                                                   "Colorado Plateau",
                                                   "Teton",
-                                                  "Northern Central Rockies"};
+                                                  "Northern Central Rockies"};36730
 
   /**
    *  Constructor Sets several fields with values that are common to all zones.
