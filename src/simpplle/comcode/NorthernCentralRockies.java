@@ -1,45 +1,36 @@
 package simpplle.comcode;
 
 /**
- * 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>This class defines the zone for Northern Central Rockies.
- * The primary purpose is to initialize class fields with values unique to eastside region one.  As a result
- * most member functions are private.
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+ * <p> NorthernCentralRockies describes the Rocky Mountain region extending from southeastern British Columbia to
+ * northwestern Montana.
  *
- * @see simpplle.comcode.RegionalZone
- *
+ * <p> Original source code authorship: Kirk A. Moeller
  */
 
 public class NorthernCentralRockies extends RegionalZone {
-  private static final String arcviewDir  = "gis/northern-central-rockies";
-  private static final String homeDir = "knowledge/zones/northern-central-rockies";
-  private static final String gisFiles[] =
-    {};
 
-  /**
-   * Constructor for Northern Central Rockies.  Inherits from Regional Zone superclass and 
-   * initializes name, available to true, zone directory, file pathways to jar files, and initializes process types.
-   */
   public NorthernCentralRockies() {
+
     super();
-    name      = "Northern Central Rockies";
-    available = true;
-    zoneDir = homeDir;
+
+    id              = ValidZones.NORTHERN_CENTRAL_ROCKIES;
+    name            = "Northern Central Rockies";
+    available       = true;
+    zoneDir         = "knowledge/zones/northern-central-rockies";
+    arcviewDir      = "gis/northern-central-rockies";
     pathwayKnowFile = "zones/northern-central-rockies-pathways.jar";
     sysKnowFile     = "zones/northern-central-rockies.jar";
     zoneDefnFile    = "zones/northern-central-rockies-defn.jar";
     gisExtraFile    = "zones/northern-central-rockies-gis.jar";
+    gisFiles        = new String[] {};
 
-    probDataProcesses = new ProcessType[] {
+    userProbProcesses = new ProcessType[] {
       ProcessType.LIGHT_LP_MPB,
       ProcessType.DF_BEETLE,
       ProcessType.ROOT_DISEASE,
@@ -47,31 +38,8 @@ public class NorthernCentralRockies extends RegionalZone {
       ProcessType.WBP_MPB
     };
 
-    createSampleAreas();
+    //sampleAreas = new Area[1];
+    //sampleAreas[0] = new Area("Poorman","SAMPLE-AREAS/POORMAN.AREA",Area.SAMPLE);
+
   }
-/**
- * returns "gis/northern-central-rockies""gis/northern-central-rockies"
- */
-  public String getArcviewDir() { return arcviewDir; }
-
-  public ProcessType[] getUserProbProcesses() { return probDataProcesses; }
-/**
- * returns null
- */
-  protected String[] getGisFiles() { return gisFiles; }
-
-  private void createSampleAreas () {
-//    sampleAreas    = new Area[1];
-//    sampleAreas[0] = new Area("Poorman","SAMPLE-AREAS/POORMAN.AREA",Area.SAMPLE);
-  }
-
-  /**
-   * Gets the id of this zone.
-   * @see simpplle.comcode.ValidZones
-   * @return the id of this zone.
-   */
-  public int getId () {
-    return ValidZones.NORTHERN_CENTRAL_ROCKIES;
-  }
-
 }

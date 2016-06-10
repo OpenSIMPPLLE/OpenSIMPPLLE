@@ -354,8 +354,12 @@ public abstract class SimpplleType implements Comparable {
                 v = zone.getAllSpecies();
                 Species.clearInvasive();
                 break;
-            case SIZE_CLASS: v = zone.getAllSizeClass(); break;
-            case DENSITY:    v = zone.getAllDensity(); break;
+            case SIZE_CLASS:
+                v = zone.getAllSizeClass();
+                break;
+            case DENSITY:
+                v = zone.getAllDensity();
+                break;
             case PROCESS:
             {
                 List tmp = Process.getLegalProcessesList();

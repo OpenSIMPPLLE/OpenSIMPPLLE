@@ -1453,19 +1453,17 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Make sure the currently assigned Fmz is valid.
    * It can become invalid if the user load a new fmz file.
    * else updates the fire mangement zone with either the default zone or a the new fmz name.
-   * @return true if the fmz was changed.
+   * @return true if the fmz was changed to the default fmz
    */
   public boolean updateFmz() {
-    Fmz          tmpFmz = getFmz();
-    String       name   = tmpFmz.getName();
-    RegionalZone zone   = Simpplle.getCurrentZone();
+    String fmzName = getFmz().getName();
+    RegionalZone zone = Simpplle.getCurrentZone();
 
-    if (zone.getFmz(name) == null) {
+    if (zone.getFmz(fmzName) == null) {
       fmz = zone.getDefaultFmz();
       return true;
     } else {
-      // Make sure fmz is remapped to newly loaded one.
-      fmz = zone.getFmz(name);
+      fmz = zone.getFmz(fmzName);
     }
     return false;
   }
