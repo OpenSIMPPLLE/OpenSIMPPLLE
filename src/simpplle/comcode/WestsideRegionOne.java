@@ -28,6 +28,7 @@ public class WestsideRegionOne extends RegionalZone {
 
     super();
 
+    id              = ValidZones.WESTSIDE_REGION_ONE;
     name            = "Westside Region One";
     available       = true;
     hasAquatics     = true;
@@ -61,10 +62,6 @@ public class WestsideRegionOne extends RegionalZone {
   public ProcessType[] getUserProbProcesses() { return probDataProcesses; }
 
   protected String[] getGisFiles() { return gisFiles; }
-
-  public int getId () {
-    return ValidZones.WESTSIDE_REGION_ONE;
-  }
 
 }
 

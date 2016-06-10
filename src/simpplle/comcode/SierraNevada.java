@@ -29,6 +29,7 @@ public class SierraNevada extends RegionalZone {
 
     super();
 
+    id              = ValidZones.SIERRA_NEVADA;
     name            = "Sierra Nevada";
     available       = true;
     zoneDir         = "knowledge/zones/sierra-nevada";
@@ -56,10 +57,6 @@ public class SierraNevada extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.SIERRA_NEVADA;
   }
 
 }

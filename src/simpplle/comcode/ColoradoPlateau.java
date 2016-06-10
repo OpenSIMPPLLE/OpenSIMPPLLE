@@ -29,6 +29,7 @@ public class ColoradoPlateau extends RegionalZone {
 
     super();
 
+    id              = ValidZones.COLORADO_PLATEAU;
     name            = "Colorado Plateau";
     available       = true;
     hasAquatics     = true;
@@ -56,10 +57,6 @@ public class ColoradoPlateau extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.COLORADO_PLATEAU;
   }
 
 }

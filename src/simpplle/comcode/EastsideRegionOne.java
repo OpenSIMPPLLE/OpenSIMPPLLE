@@ -9,7 +9,7 @@ package simpplle.comcode;
  *
  * <p> EastsideRegionOne describes the region east of the Continental Divide.
  *
- * <p>Original source code authorship: Kirk A. Moeller
+ * <p> Original source code authorship: Kirk A. Moeller
  */
 
 public class EastsideRegionOne extends RegionalZone {
@@ -28,6 +28,7 @@ public class EastsideRegionOne extends RegionalZone {
 
     super();
 
+    id              = ValidZones.EASTSIDE_REGION_ONE;
     name            = "Eastside Region One";
     available       = true;
     zoneDir         = "knowledge/zones/eastside-r1";
@@ -63,10 +64,6 @@ public class EastsideRegionOne extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.EASTSIDE_REGION_ONE;
   }
 
 }

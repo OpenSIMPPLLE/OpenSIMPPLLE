@@ -27,6 +27,7 @@ public abstract class RegionalZone {
   public static final int DENSITY    = 3;
   public static final int PROCESS    = 4;
 
+  protected int     id;
   protected String  name;
   protected boolean available;
   protected boolean hasAquatics;
@@ -124,14 +125,21 @@ public abstract class RegionalZone {
   /**
    * @return True if the zone is available
    */
-  public boolean isAvailable () {
+  public boolean isAvailable() {
     return available;
+  }
+
+  /**
+   * @return The zone's unique idenifier
+   */
+  public final int getId() {
+    return id;
   }
 
   /**
    * @return The name of the zone
    */
-  public String getName () {
+  public String getName() {
     return name;
   }
 
@@ -152,7 +160,7 @@ public abstract class RegionalZone {
   /**
    * @return A path to the zone's directory
    */
-  public String getZoneDir () {
+  public String getZoneDir() {
     return zoneDir;
   }
 
@@ -216,11 +224,6 @@ public abstract class RegionalZone {
   public Area[] getSampleAreas () {
     return sampleAreas;
   }
-
-  /**
-   * @return A unique zone identifier
-   */
-  public abstract int getId ();
 
   /**
    * @return A fire management zone with a matching name

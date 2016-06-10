@@ -29,6 +29,7 @@ public class Gila extends RegionalZone {
 
     super();
 
+    id              = ValidZones.GILA;
     name            = "Gila";
     available       = true;
     zoneDir         = "knowledge/zones/gila";
@@ -58,10 +59,6 @@ public class Gila extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.GILA;
   }
 
 }

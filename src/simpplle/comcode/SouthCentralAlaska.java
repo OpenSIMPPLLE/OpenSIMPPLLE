@@ -12,7 +12,7 @@ package simpplle.comcode;
  * <p> Original source code authorship: Kirk A. Moeller
  */
 
-public final class SouthCentralAlaska extends RegionalZone {
+public class SouthCentralAlaska extends RegionalZone {
 
   private static final String gisFiles[] = { "simpplle_arcview.apr",
                                              "process_legend.avl",
@@ -28,6 +28,7 @@ public final class SouthCentralAlaska extends RegionalZone {
 
     super();
 
+    id              = ValidZones.SOUTH_CENTRAL_ALASKA;
     name            = "South Central Alaska";
     available       = true;
     zoneDir         = "knowledge/zones/south-central-alaska";
@@ -52,10 +53,6 @@ public final class SouthCentralAlaska extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.SOUTH_CENTRAL_ALASKA;
   }
 
 }

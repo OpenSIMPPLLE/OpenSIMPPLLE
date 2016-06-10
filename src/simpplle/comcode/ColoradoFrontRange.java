@@ -28,6 +28,7 @@ public class ColoradoFrontRange extends RegionalZone {
 
     super();
 
+    id              = ValidZones.COLORADO_FRONT_RANGE;
     name            = "Colorado Front Range";
     available       = true;
     zoneDir         = "knowledge/zones/colorado-front-range";
@@ -56,10 +57,6 @@ public class ColoradoFrontRange extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.COLORADO_FRONT_RANGE;
   }
 
 }

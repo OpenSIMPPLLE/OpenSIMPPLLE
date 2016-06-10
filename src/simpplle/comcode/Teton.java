@@ -28,6 +28,7 @@ public class Teton extends RegionalZone {
 
     super();
 
+    id              = ValidZones.TETON;
     name            = "Teton";
     available       = true;
     zoneDir         = "knowledge/zones/teton";
@@ -56,10 +57,6 @@ public class Teton extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.TETON;
   }
 
 }

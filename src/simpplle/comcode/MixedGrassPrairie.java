@@ -30,6 +30,7 @@ public class MixedGrassPrairie extends RegionalZone {
 
     super();
 
+    id              = ValidZones.MIXED_GRASS_PRAIRIE;
     name            = "Mixed Grass Prairie";
     available       = true;
     hasAquatics     = true;
@@ -59,10 +60,6 @@ public class MixedGrassPrairie extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.MIXED_GRASS_PRAIRIE;
   }
 
 }

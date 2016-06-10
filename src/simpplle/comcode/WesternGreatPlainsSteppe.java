@@ -30,6 +30,7 @@ public class WesternGreatPlainsSteppe extends RegionalZone {
 
     super();
 
+    id              = ValidZones.WESTERN_GREAT_PLAINS_STEPPE;
     name            = "Western Great Plains Steppe";
     available       = true;
     hasAquatics     = true;
@@ -61,10 +62,6 @@ public class WesternGreatPlainsSteppe extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.WESTERN_GREAT_PLAINS_STEPPE;
   }
 
 }

@@ -29,6 +29,7 @@ public class SouthernCalifornia extends RegionalZone {
 
     super();
 
+    id              = ValidZones.SOUTHERN_CALIFORNIA;
     name            = "Southern California";
     available       = true;
     zoneDir         = "knowledge/zones/southern-california";
@@ -55,10 +56,6 @@ public class SouthernCalifornia extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.SOUTHERN_CALIFORNIA;
   }
 
 }

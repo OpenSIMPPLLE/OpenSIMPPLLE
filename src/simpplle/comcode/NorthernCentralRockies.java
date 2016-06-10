@@ -21,6 +21,7 @@ public class NorthernCentralRockies extends RegionalZone {
 
     super();
 
+    id              = ValidZones.NORTHERN_CENTRAL_ROCKIES;
     name            = "Northern Central Rockies";
     available       = true;
     zoneDir         = "knowledge/zones/northern-central-rockies";
@@ -49,10 +50,6 @@ public class NorthernCentralRockies extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.NORTHERN_CENTRAL_ROCKIES;
   }
 
 }

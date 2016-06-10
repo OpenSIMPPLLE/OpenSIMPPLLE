@@ -28,6 +28,7 @@ public class SouthwestUtah extends RegionalZone {
 
     super();
 
+    id              = ValidZones.SOUTHWEST_UTAH;
     name            = "Southwest Utah";
     available       = true;
     zoneDir         = "knowledge/zones/southwest-utah";
@@ -52,10 +53,6 @@ public class SouthwestUtah extends RegionalZone {
 
   protected String[] getGisFiles() {
     return gisFiles;
-  }
-
-  public int getId () {
-    return ValidZones.SOUTHWEST_UTAH;
   }
 
 }
