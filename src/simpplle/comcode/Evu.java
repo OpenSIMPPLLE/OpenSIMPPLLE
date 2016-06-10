@@ -111,7 +111,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     public Evu   evu;
   }
 
-  public static ArrayList<RoadUnitData> roadUnits = new ArrayList<RoadUnitData>();
+  public static List<RoadUnitData> roadUnits = new ArrayList<>();
 
   // Outer array is index by time step.
   // Inner array is for future use.  If road status changes and we
@@ -120,7 +120,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   // closest road in case its status changes to available again.
   public ArrayList<ArrayList<RoadUnitData>> nearestRoad;
 
-  public static double MAX_ROAD_DIST=5280*2; // 2 Miles in Feet
+  public static double MAX_ROAD_DIST = 2 * 5280; // 2 Miles in Feet
 
   /**
    * creates a Trail Unit Data class with two variables for trail and evu.
@@ -187,10 +187,9 @@ public final class Evu extends NaturalElement implements Externalizable {
   public static final String GAP_STR     = "GAP"; // Gap Process
 
   /**
-   * Invokes an instance of the current simulation.
-   * For a running simulation gets the current time step for simulation and returns the road status,
-   * or if not running gets the total num time steps and returns road status based on that.
-   * @return road status of current simulation
+   * Returns the road status at the current time step if the simulation is running. Otherwise the road status is
+   * returned for the first time step if there is no simulation, or the last if the simulation is not running.
+   * @return Road status
    */
   public Roads.Status getRoadStatusNew() {
     Simulation simulation = Simpplle.getCurrentSimulation();
@@ -202,15 +201,16 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     return getRoadStatusNew(ts);
+
   }
 
   /**
-   * Uses the parameter time step to calculate roads if there are any present, if there are no roads will return that info.
-   * @param ts time step
-   * @return associated road status
+   * Returns the road status at a specific time step.
+   * @param ts Simulation time step
+   * @return Road status
    */
   public Roads.Status getRoadStatusNew(int ts) {
-    ArrayList<Roads> roads = this.getAssociatedRoadUnits();
+    ArrayList<Roads> roads = getAssociatedRoadUnits();
     Roads road = null;
     if (roads != null && roads.size() > 0) {
       road = roads.get(0);
@@ -224,10 +224,9 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Invokes an instance of the current simulation.
-   * For a running simulation gets the current time step for simulation and returns the trail status,
-   * or if not running gets the total num time steps and returns trail status based on that.
-   * @return
+   * Returns the trail status at the current time step if the simulation is running. Otherwise the trail status is
+   * returned for the first time step if there is no simulation, or the last if the simulation is not running.
+   * @return Trail status
    */
   public Trails.Status getTrailStatus() {
     Simulation simulation = Simpplle.getCurrentSimulation();
@@ -243,13 +242,12 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * * Uses the parameter time step to calculate associated trails if there are any present,
-   * if there are no trails will return that info.
-   * *@param ts time step
-   * *@return associated trails at a given time step
+   * Returns the trail status at a specific time step.
+   * @param ts Simulation time step
+   * @return Trail status
    */
   public Trails.Status getTrailStatus(int ts) {
-    ArrayList<Trails> trails = this.getAssociatedTrailUnits();
+    ArrayList<Trails> trails = getAssociatedTrailUnits();
     Trails trail = null;
     if (trails != null && trails.size() > 0) {
       trail = trails.get(0);
@@ -263,8 +261,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Sets the road status.
-   * @param status
+   * Sets the road status of this EVU.
+   * @param status Road status
    */
   public void setRoadStatus(Roads.Status status) {
     roadStatus = status;
@@ -449,32 +447,32 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Check if an Evu has an associated road unit
-   * @param data road unit data
-   * @param onlyOpen
-   * @return true if there are associated roads, false if there are none
+   * Checks if this EVU has any associated roads. If it does, then the first road is recorded in the RoadUnitData.
+   * @param roadData Road unit data for recording the first associated road
+   * @param onlyOpen Only include roads with an open status
+   * @return True if there are associated road units
    */
-  private boolean hasAssociatedRoadUnit(RoadUnitData data, boolean onlyOpen) {
+  private boolean hasAssociatedRoadUnit(RoadUnitData roadData, boolean onlyOpen) {
 
-    if (assocRoadUnits == null || assocRoadUnits.size() == 0) {
-      return false;
-    }
+    if (assocRoadUnits == null) return false;
 
-    // May need to add restrictions on type of road in future, thus the reason for the code like this.
-    for(int i=0; i<assocRoadUnits.size(); i++) {
-      Roads road = assocRoadUnits.get(i);
-      if (onlyOpen && road.getSimStatus() != Roads.Status.OPEN) {
-        continue;
-      }
-      data.road = road;
+    for (Roads road : assocRoadUnits) {
+
+      if (onlyOpen && road.getSimStatus() != Roads.Status.OPEN) continue;
+
+      roadData.road = road;
+
       return true;
+
     }
+
     return false;
+
   }
 
   /**
-   * Checks where an Evu has trails.
-   * @return true if Evu has trails
+   * Returns true if this contains associated trail units
+   * @return true if there are trails
    */
   public boolean hasTrailUnits() {
     return (assocTrailUnits != null && assocTrailUnits.size() > 0);
@@ -500,26 +498,27 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Check if an Evu has any associated trail units
-   * @param data trail data
-   * @param onlyOpen
-   * @return true if there are associated roads, false if there are none
+   * Checks if this EVU has any associated trails. If it does, then the first trail is recorded in the TrailUnitData.
+   * @param trailData Trail unit data for recording the first associated trail
+   * @param onlyOpen Only include trails with an open status
+   * @return True if there are associated trail units
    */
-  private boolean hasAssociatedTrailUnit(TrailUnitData data, boolean onlyOpen) {
-    if (assocTrailUnits == null || assocTrailUnits.size() == 0) {
-      return false;
+  private boolean hasAssociatedTrailUnit(TrailUnitData trailData, boolean onlyOpen) {
+
+    if (assocTrailUnits == null) return false;
+
+    for (Trails trail : assocTrailUnits) {
+
+      if (onlyOpen && trail.getSimStatus() != Trails.Status.OPEN) continue;
+
+      trailData.trail = trail;
+
+      return true;
+
     }
 
-    // May need to add restrictions on type of trail in future, thus the reason for the code like this.
-    for(int i=0; i<assocTrailUnits.size(); i++) {
-      Trails trail = assocTrailUnits.get(i);
-      if (onlyOpen && trail.getSimStatus() != Trails.Status.OPEN) {
-        continue;
-      }
-      data.trail = trail;
-      return true;
-    }
     return false;
+
   }
 
   /**
@@ -1522,33 +1521,34 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Calculates the distance to Evu.  Compares an x,y point with an Evu x,y point.
-   * @param evu
-   * @return The area polygon width * the distance formula for point - evu
+   * Returns the distance to another EVU. The distance is equals the distance between the grid cell locations times
+   * the width of a polygon.
+   * @param evu An existing vegetation unit
+   * @return The distance in feet to the other EVU
    */
   public double distanceToEvu(Evu evu) {
 
-    int x1, x2, y1, y2;
+    int x1 = location[X];
+    int y1 = location[Y];
+    int x2 = evu.getLocationX();
+    int y2 = evu.getLocationY();
 
-    x1 = location[X];
-    x2 = evu.getLocationX();
-    y1 = location[Y];
-    y2 = evu.getLocationY();
+    int sqrDeltaX = (x2 - x1) * (x2 - x1);
+    int sqrDeltaY = (y2 - y1) * (y2 - y1);
 
-    int val1 = (x2 - x1) * (x2 - x1);
-    int val2 = (y2 - y1) * (y2 - y1);
-
-    return Simpplle.getCurrentArea().getPolygonWidth() * Math.sqrt(val1 + val2);
+    return Simpplle.getCurrentArea().getPolygonWidth() * Math.sqrt(sqrDeltaX + sqrDeltaY);
 
   }
 
   /**
-   * Converts distance to evu from feet to meters.
-   * @param evu
-   * @return Distance to Evu in meters
+   * Returns the distance to another EVU in meters.
+   * @param evu An existing vegetation unit
+   * @return The distance in meters to the other EVU
    */
-  public double distancetoEvuMeters(Evu evu) {
+  public double distanceToEvuMeters(Evu evu) {
+
     return distanceToEvu(evu) * 0.3048;
+
   }
 
   /**
@@ -1670,7 +1670,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the current areas road array and adds them to the Evu's road units arraylist.
+   * Stores road units from the current area that have an EVU. Each road unit is stored in a static array with
+   * the road's first associated vegetation unit.
    */
   public static void findRoadUnits() {
 
@@ -1678,9 +1679,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     roadUnits.clear();
 
-    for(int i=0; i<allUnits.length; i++) {
+    for(int i = 0; i < allUnits.length; i++) {
 
-      if (allUnits[i] == null) continue;
+      if (allUnits[i] != null) continue;
 
       Evu evu = allUnits[i].getFirstVegUnit();
       if (evu == null) continue;
@@ -1690,6 +1691,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       roadData.evu  = evu;
 
       roadUnits.add(roadData);
+
     }
   }
 
@@ -1732,17 +1734,19 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Creates an array list with capacity of 2 and adds the nearest road to it.
-   *
+   * Clears the array of nearest roads and adds the nearest road of any status.
    */
   public void findNearestRoad() {
-    RoadUnitData data = new RoadUnitData();
-    double dist = distanceToRoad(data,false);
 
-    nearestRoad = new ArrayList<ArrayList<RoadUnitData>>();
-    ArrayList<RoadUnitData> list = new ArrayList<RoadUnitData>(2);
+    RoadUnitData data = new RoadUnitData();
+    distanceToRoad(data,false);
+
+    ArrayList<RoadUnitData> list = new ArrayList<>(2);
     list.add(data);
+
+    nearestRoad = new ArrayList<>();
     nearestRoad.add(list);
+
   }
 
   /**
@@ -1794,13 +1798,14 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Calculates Evu distance to road.  IF current road status is open or always open.  The closest road to the evu is determined.
-   * The minimum distance to road is then calculated.
-   * @param roadData
-   * @param onlyOpen true if road is always open
-   * @return default return is MAX_ROAD_DIST if there is no road units, otherwise the minimum distance to road is returned
+   * Returns the distance in feet to the nearest road. The nearest road unit to this EVU is recorded in the RoadUnitData.
+   * @param roadData A road unit data instance to record the nearest road
+   * @param onlyOpen True if only open roads should be considered
+   * @return The minimum distance or MAX_ROAD_DIST if there are no road units
    */
   private double distanceToRoad(RoadUnitData roadData, boolean onlyOpen) {
+
+    // If there are no roads in any EVU, return the max road distance
 
     if (roadUnits == null || roadUnits.size() == 0) {
       roadData.road = null;
@@ -1808,77 +1813,67 @@ public final class Evu extends NaturalElement implements Externalizable {
       return MAX_ROAD_DIST;
     }
 
-    double minDistRoad = MAX_ROAD_DIST;  // Max Road Distance 2 Miles
-    int    roadEvu = -1;
-    double dist;
-    Evu    evu, closestEvu=null;
+    // If this EVU has roads, return a very small distance
 
-    if (this.assocRoadUnits != null && this.assocRoadUnits.size() > 0) {
-      if (this.hasAssociatedRoadUnit(roadData,onlyOpen)) {
+    if (assocRoadUnits != null && assocRoadUnits.size() > 0) {
+      if (hasAssociatedRoadUnit(roadData,onlyOpen)) {
         roadData.evu = this;
         return 1;
       }
     }
 
-    if (roadUnits == null || roadUnits.size() == 0) {
-      roadData.road = null;
-      roadData.evu  = null;
-      return MAX_ROAD_DIST;
-    }
+    // Otherwise find the nearest road
 
-    for (int i=0; i<roadUnits.size(); i++) {
-      RoadUnitData tmp = roadUnits.get(i);
-      if (onlyOpen && tmp.road.getSimStatus() != Roads.Status.OPEN) { continue; }
+    roadData.road = null;
+    roadData.evu  = null;
 
-      evu = findClosestRoadEvu(tmp.road);
-      if (evu == null) { continue; }
+    double minDistRoad = MAX_ROAD_DIST;
 
-      dist = distanceToEvu(evu);
-      if (dist > minDistRoad) { continue; }
+    for (RoadUnitData roadUnit : roadUnits) {
+
+      if (onlyOpen && roadUnit.road.getSimStatus() != Roads.Status.OPEN) continue;
+
+      Evu evu = findClosestRoadEvu(roadUnit.road);
+      if (evu == null) continue;
+
+      double dist = distanceToEvu(evu);
 
       if (dist < minDistRoad) {
-        roadEvu = i;
+
         minDistRoad = dist;
-        closestEvu  = evu;
+
+        roadData.road = roadUnit.road;
+        roadData.evu  = evu;
+
       }
     }
-
-
-    if (roadEvu == -1) {
-      roadData.road = null;
-      roadData.evu  = null;
-      return MAX_ROAD_DIST;
-    }
-
-    RoadUnitData tmp = roadUnits.get(roadEvu);
-    roadData.road = tmp.road;
-    roadData.evu  = closestEvu;
 
     return minDistRoad;
 
   }
 
   /**
-   * Method to calculate the closest Evu to a road.  Loops therough the vegetative units and calculates the distance to an evu (based on road)
-   * the lowest distance is determined which sets the closest Evu variable.
-   * @param road
-   * @return the closest Evu to a specified road
+   * Returns the closest EVU associated with the given road.
+   * @param road A road unit
+   * @return The closest EVU
    */
   private Evu findClosestRoadEvu(Roads road) {
 
-    ArrayList<Evu> vegUnits = road.getAssociatedVegUnits();
+    List<Evu> vegUnits = road.getAssociatedVegUnits();
     if (vegUnits == null) return null;
 
     Evu closestEvu = null;
     double lowestDist = Double.MAX_VALUE;
-    for (int i=0; i<vegUnits.size(); i++) {
-      double dist = distanceToEvu(vegUnits.get(i));
+    for (Evu evu : vegUnits) {
+      double dist = distanceToEvu(evu);
       if (dist < lowestDist) {
         lowestDist = dist;
-        closestEvu = vegUnits.get(i);
+        closestEvu = evu;
       }
     }
+
     return closestEvu;
+
   }
 
   /**
@@ -1936,23 +1931,28 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the trail units in current area.  It then clears a trail unit arraylist.  Trails are added to arraylist if
-   * they are in an area.
+   * Stores trail units from the current area that have an EVU. Each trail unit is stored in a static array with
+   * the trail's first associated vegetation unit.
    */
   public static void findTrailUnits() {
+
     Trails[] allUnits = Simpplle.getCurrentArea().getAllTrails();
 
     trailUnits.clear();
 
-    for(int i=0; i<allUnits.length; i++) {
-      if (allUnits[i] == null) { continue; }
+    for(int i = 0; i < allUnits.length; i++) {
+
+      if (allUnits[i] == null) continue;
+
       Evu evu = allUnits[i].getFirstVegUnit();
-      if (evu == null) { continue; }
+      if (evu == null) continue;
 
       TrailUnitData trailData = new TrailUnitData();
       trailData.trail = allUnits[i];
-      trailData.evu  = evu;
+      trailData.evu   = evu;
+
       trailUnits.add(trailData);
+
     }
   }
 
@@ -1995,16 +1995,19 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the nearest trail from arraylist.
+   * Clears the array of nearest trails and adds the nearest trail of any status.
    */
   public void findNearestTrail() {
-    TrailUnitData data = new TrailUnitData();
-    double dist = distanceToTrail(data,false);
 
-    nearestTrail = new ArrayList<ArrayList<TrailUnitData>>();
-    ArrayList<TrailUnitData> list = new ArrayList<TrailUnitData>(2);
+    TrailUnitData data = new TrailUnitData();
+    distanceToTrail(data,false);
+
+    ArrayList<TrailUnitData> list = new ArrayList<>(2);
     list.add(data);
+
+    nearestTrail = new ArrayList<>();
     nearestTrail.add(list);
+
   }
 
   /**
@@ -2054,88 +2057,82 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Calculates distance to a trail.  If no trail data it will return MAX_TRAIL_DIST, else it does a shortest path search,
-   * will return 1 if trail is within Evu, else loops through the trail units arrayList checks if a trail is open and computes the trail
-   * with minimum distance.
-   * @param trailData
-   * @param onlyOpen true if trail is too be counted only when open
-   * @return the minimum distance to a trail
+   * Returns the distance in feet to the nearest trail. The nearest trail unit to this EVU is recorded in the TrailUnitData.
+   * @param trailData A trail unit data instance to record the nearest trail
+   * @param onlyOpen True if only open trails should be considered
+   * @return The minimum distance or MAX_TRAIL_DIST if there are no trail units
    */
   private double distanceToTrail(TrailUnitData trailData, boolean onlyOpen) {
+
+    // If there are no trails in any EVU, return the max trail distance
+
     if (trailUnits == null || trailUnits.size() == 0) {
       trailData.trail = null;
       trailData.evu   = null;
       return MAX_TRAIL_DIST;
     }
 
-    double minDistTrail = MAX_TRAIL_DIST;
-    int    trailEvu = -1;
-    double dist;
-    Evu    evu, closestEvu=null;
+    // If this EVU has trails, return a very small distance
 
-    if (this.assocTrailUnits != null && this.assocTrailUnits.size() > 0) {
-      if (this.hasAssociatedTrailUnit(trailData,onlyOpen)) {
+    if (assocTrailUnits != null && assocTrailUnits.size() > 0) {
+      if (hasAssociatedTrailUnit(trailData,onlyOpen)) {
         trailData.evu = this;
         return 1;
       }
     }
 
-    if (trailUnits == null || trailUnits.size() == 0) {
-      trailData.trail = null;
-      trailData.evu   = null;
-      return MAX_TRAIL_DIST;
-    }
+    // Otherwise find the nearest trail
 
-    for (int i=0; i<trailUnits.size(); i++) {
-      TrailUnitData tmp = trailUnits.get(i);
-      if (onlyOpen && tmp.trail.getSimStatus() != Trails.Status.OPEN) { continue; }
+    trailData.trail = null;
+    trailData.evu   = null;
 
-      evu = findClosestTrailEvu(tmp.trail);
-      if (evu == null) { continue; }
+    double minDistTrail = MAX_TRAIL_DIST;
 
-      dist = distanceToEvu(evu);
-      if (dist > minDistTrail) { continue; }
+    for (TrailUnitData trailUnit : trailUnits) {
+
+      if (onlyOpen && trailUnit.trail.getSimStatus() != Trails.Status.OPEN) continue;
+
+      Evu evu = findClosestTrailEvu(trailUnit.trail);
+      if (evu == null) continue;
+
+      double dist = distanceToEvu(evu);
 
       if (dist < minDistTrail) {
-        trailEvu = i;
+
         minDistTrail = dist;
-        closestEvu  = evu;
+
+        trailData.trail = trailUnit.trail;
+        trailData.evu   = evu;
+
       }
     }
 
-    if (trailEvu == -1) {
-      trailData.trail = null;
-      trailData.evu   = null;
-      return MAX_TRAIL_DIST;
-    }
-
-    TrailUnitData tmp = trailUnits.get(trailEvu);
-    trailData.trail   = tmp.trail;
-    trailData.evu     = closestEvu;
-
     return minDistTrail;
+
   }
 
   /**
-   * Calculates the closest Evu to a trail.  Shortest distance algorithm.  Starts by setting the distance to max, goes through Evu units,
-   * and calculates the shortest distance, and gets the closest Evu associated with the closest trail.
-   * @param trail the trail being evaluated
-   * @return the closest Evu to the trail
+   * Returns the closest EVU associated with the given trail.
+   * @param trail A trail unit
+   * @return The closest EVU
    */
   private Evu findClosestTrailEvu(Trails trail) {
-    ArrayList<Evu> vegUnits = trail.getAssociatedVegUnits();
-    if (vegUnits == null) { return null; }
 
-    Evu    closestEvu = null;
+    List<Evu> vegUnits = trail.getAssociatedVegUnits();
+    if (vegUnits == null) return null;
+
+    Evu closestEvu = null;
     double lowestDist = Double.MAX_VALUE;
-    for (int i=0; i<vegUnits.size(); i++) {
-      double dist = distanceToEvu(vegUnits.get(i));
+    for (Evu evu : vegUnits) {
+      double dist = distanceToEvu(evu);
       if (dist < lowestDist) {
         lowestDist = dist;
-        closestEvu = vegUnits.get(i);
+        closestEvu = evu;
       }
     }
+
     return closestEvu;
+
   }
 
   /**
@@ -3949,32 +3946,44 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Method to make simulation by loading lifeforms, seasons, .
+   * Replaces the initial state with the last season of VegSimStateData for each lifeform from the last timestep
+   * and calls restoreInitialConditions().
    */
   public void makeSimulationReady() {
+
     if (simData != null) {
+
       initialState.clear();
 
-      ArrayList<Lifeform> lives = new ArrayList<Lifeform>();
-      Flat3Map data = simData[simData.length-1];
+      // Create an array of unique lifeforms from the the last time step
 
+      ArrayList<Lifeform> lives = new ArrayList<>();
+
+      Flat3Map data = simData[simData.length - 1];
       MapIterator it = data.mapIterator();
+
       while (it.hasNext()) {
+
         MultiKey key = (MultiKey)it.next();
         Lifeform lifeform = (Lifeform)key.getKey(0);
+
         if (lives.contains(lifeform) == false) {
           lives.add(lifeform);
         }
       }
 
-      // We want only the last season of data and change that to
-      // a season of YEAR.
-      for (int i=0; i<lives.size(); i++) {
+      // Store the last season of VegSimStateData for each lifeform in the initial state with a year season.
+
+      for (int i = 0; i < lives.size(); i++) {
+
         Lifeform lifeform = lives.get(i);
         Season[] seasons = Climate.allSeasons;
-        for (int s=seasons.length-1; s>=0; s--) {
+
+        for (int s = seasons.length - 1; s >= 0; s--) {
+
           MultiKey key = LifeformSeasonKeys.getKey(lifeform,seasons[s]);
           VegSimStateData state = (VegSimStateData)data.get(key);
+
           if (state != null) {
             key = LifeformSeasonKeys.getKey(lifeform,Season.YEAR);
             initialState.put(key,state);
@@ -3983,15 +3992,22 @@ public final class Evu extends NaturalElement implements Externalizable {
         }
       }
     }
+
     restoreInitialConditions();
+
   }
 
+  /**
+   * Clears stored VegSimStateData and Treatments, and sets haveHighSpruceBeetle to false
+   */
   public void restoreInitialConditions() {
+
     simData   = null;
     treatment = null;
 //    processProb.clear();
 
     haveHighSpruceBeetle = false;
+
   }
 
   /**
@@ -4007,9 +4023,10 @@ public final class Evu extends NaturalElement implements Externalizable {
       addTreatment(tmpTreatment);
     }
   }
-/**
- * initialzies a simulation by setting water units to null and getting the number of time steps at the simulation instance.
- */
+
+  /**
+   * Initializes a simulation by setting water units to null and getting the number of time steps at the simulation instance.
+   */
   public static void staticInitSimulation() {
     waterUnits = null;
     int numSteps = Simulation.getInstance().getNumTimeSteps();
@@ -4022,26 +4039,25 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void initSimDataLegacy(int numSteps) {
     simData = new Flat3Map[numSteps+1];
   }
+
   /**
-   * Initialize some fields now that we know the number
-   * of time steps the simulation will have.
-   * This gets called at the beginning of each simulation.
+   * Initialize some fields now that we know the number of time steps the simulation will have. This gets called at
+   * the beginning of each simulation.
    */
   public void initSimulation() {
-    int          numSteps;
-    Simulation   simulation = Simpplle.getCurrentSimulation();
 
-    numSteps = simulation.getNumTimeSteps();
+    Simulation simulation = Simpplle.getCurrentSimulation();
+
+    int numSteps = simulation.getNumTimeSteps();
 
     MapIterator it = initialState.mapIterator();
-    int count=0;
+    int count = 0;
     while (it.hasNext()) {
       MultiKey key = (MultiKey)it.next();
       Lifeform lifeform = (Lifeform)key.getKey(0);
       if (count == 0) {
         dominantLifeform = lifeform;
-      }
-      else {
+      } else {
         dominantLifeform = Lifeform.getMostDominant(dominantLifeform, lifeform);
       }
       count++;
@@ -4052,26 +4068,30 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     if (Simulation.getInstance().isDiscardData()) {
+
       int pastInMem = Simulation.getInstance().getPastTimeStepsInMemory();
-      simData = new Flat3Map[pastInMem+1];
+      simData = new Flat3Map[pastInMem + 1];
       simData[0] = new Flat3Map();
-    }
-    else {
+
+    } else {
+
       simData = new Flat3Map[numSteps + 1];
       simData[0] = initialState;
+
     }
 
-    for(int i=1; i<simData.length; i++) {
+    for(int i = 1; i < simData.length; i++) {
       simData[i] = new Flat3Map();
     }
 
     if (simulation.isMultipleRun() == false || simulation.getCurrentRun() == 0) {
 
-      ProcessType processType;
       ArrayList processTypes = Process.getSimulationProcesses();
-      int       needLaterCount=0;
+
+      int needLaterCount = 0;
+
       for (int i=0; i<processTypes.size(); i++) {
-        processType = (ProcessType)processTypes.get(i);
+        ProcessType processType = (ProcessType)processTypes.get(i);
         if (processType == ProcessType.LIGHT_WSBW ||
             processType == ProcessType.SEVERE_WSBW ||
             processType == ProcessType.LIGHT_LP_MPB ||
@@ -4081,14 +4101,13 @@ public final class Evu extends NaturalElement implements Externalizable {
         }
       }
 
-
       needLaterProcessProb = new ProcessProbability[needLaterCount];
       tempProcessProb      = new ProcessProbability[processTypes.size() - needLaterCount];
 
       int probIndex = 0;
       int needLaterIndex = 0;
-      for (int i=0; i<processTypes.size(); i++) {
-        processType = (ProcessType)processTypes.get(i);
+      for (int i = 0; i < processTypes.size(); i++) {
+        ProcessType processType = (ProcessType)processTypes.get(i);
         if (processType != ProcessType.LIGHT_WSBW &&
             processType != ProcessType.SEVERE_WSBW &&
             processType != ProcessType.LIGHT_LP_MPB &&
@@ -4096,8 +4115,7 @@ public final class Evu extends NaturalElement implements Externalizable {
             processType != ProcessType.PP_MPB) {
           tempProcessProb[probIndex] = new ProcessProbability(processType);
           probIndex++;
-        }
-        else {
+        } else {
           needLaterProcessProb[needLaterIndex] = new ProcessProbability(processType);
           needLaterIndex++;
         }
@@ -4108,14 +4126,16 @@ public final class Evu extends NaturalElement implements Externalizable {
       MultipleRunSummary mrSummary = simulation.getMultipleRunSummary();
       mrSummary.initFrequencyCount(this);
     }
+
     if (simulation.isMultipleRun()) {
       MultipleRunSummary mrSummary = simulation.getMultipleRunSummary();
       mrSummary.updateSummaries(this);
     }
+
     clearSimulationTreatments();
     haveHighSpruceBeetle = false;
 
-    for (int i=0; i<regenDelay.length; i++) {
+    for (int i = 0; i < regenDelay.length; i++) {
       regenDelay[i] = 0;
       recentRegenDelay[i] = false;
     }
@@ -4127,8 +4147,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     FireSuppEventLogic.getInstance().clearSuppressed();
 
-    this.cycleSizeClass = null;
-    this.cycleSizeClassCount = 0;
+    cycleSizeClass = null;
+    cycleSizeClassCount = 0;
+
   }
 
   /**
@@ -4136,10 +4157,8 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public void initMultipleSimulation() {
     Simulation simulation = Simpplle.getCurrentSimulation();
-    int        numRuns, numSteps;
-
-    numRuns  = simulation.getNumSimulations();
-    numSteps = simulation.getNumTimeSteps();
+    int numRuns  = simulation.getNumSimulations();
+    int numSteps = simulation.getNumTimeSteps();
   }
 
   /**
@@ -4153,6 +4172,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       cumulProb.add(new CumulativeProcessProb((ProcessType)processTypes.get(i)));
     }
   }
+
 /**
  * Finds the cumulative probability for a specified process
  * @param pt the process being evaluated
@@ -7541,132 +7561,134 @@ public final class Evu extends NaturalElement implements Externalizable {
     this.setLocationX(x);
     this.setLocationY(y);
   }
-    public void readExternalSimData(ObjectInput in, int run) throws IOException, ClassNotFoundException {
-        Species   species;
-        SizeClass sizeClass;
-        int       age;
-        Density   density;
-        int       version = in.readInt();
 
-        // State history
-        if (version == 1) {
+  public void readExternalSimData(ObjectInput in, int run) throws IOException, ClassNotFoundException {
 
-        }
-        else if (version == 2) {
+    Species   species;
+    SizeClass sizeClass;
+    int       age;
+    Density   density;
 
-        }
-        else if (version == 3) {
-        }
-        else if (version == 4) {
-            simData = new Flat3Map[in.readInt()];
+    int version = in.readInt();
 
-            for (int i=0; i<simData.length; i++) {
-                simData[i] = readSimStateDataOld(in,i,run);
-            }
-            simData[0] = initialState;
-        }
-        else {
-            simData = new Flat3Map[in.readInt()];
+    if (version == 1) {
 
-            for (int i=0; i<simData.length; i++) {
-                simData[i] = readSimStateData(in);
-            }
-        }
+    } else if (version == 2) {
 
-        treatment    = (Vector)in.readObject();
-        if (version == 1) {
-            VegetativeType[][] tmpAccumState = (VegetativeType[][]) in.readObject();
-            ProcessType[][]    accumProcess = (ProcessType[][]) in.readObject();
+    } else if (version == 3) {
 
-            int numValidRuns=0;
-            if (tmpAccumState != null && tmpAccumState[0] != null) {
-                for (int r = 1; r <= tmpAccumState.length; r++) {
-                    if (tmpAccumState[r - 1][0] != null) { numValidRuns++; }
-                }
-            }
+    } else if (version == 4) {
 
-        }
-        else if (version == 2) {
-            VegetativeState[][] tmpAccumState = (VegetativeState[][])in.readObject();
-            int numValidRuns=0;
-            if (tmpAccumState != null && tmpAccumState[0] != null) {
-                for (int r = 1; r <= tmpAccumState.length; r++) {
-                    if (tmpAccumState[r - 1][0] != null) { numValidRuns++; }
-                }
-            }
+      simData = new Flat3Map[in.readInt()];
 
-        }
-        else {
+      for (int i = 0; i < simData.length; i++) {
+        simData[i] = readSimStateDataOld(in,i,run);
+      }
 
-        }
+      simData[0] = initialState;
 
-        if (version > 5) {
-            Area area = Simpplle.getCurrentArea();
-            nearestRoad = null;
-            nearestTrail = null;
+    } else {
 
-            {
-                int size = in.readInt();
-                if (size > 0) {
-                    nearestRoad = new ArrayList<ArrayList<RoadUnitData>>();
-                    for (int i = 0; i < size; i++) {
-                        int sizeIn = in.readInt();
-                        ArrayList<RoadUnitData> list = new ArrayList<RoadUnitData>();
-                        nearestRoad.add(list);
-                        for (int j = 0; j < sizeIn; j++) {
-                            RoadUnitData data = new RoadUnitData();
-                            data.evu = null;
-                            data.road = null;
+      simData = new Flat3Map[in.readInt()];
 
-                            int roadId = in.readInt();
-                            if (roadId != -1) {
-                                data.road = area.getRoadUnit(roadId);
-                            }
-
-                            int evuId = in.readInt();
-                            if (evuId != -1) {
-                                data.evu = area.getEvu(evuId);
-                            }
-
-                            list.add(data);
-                        }
-                    }
-                }
-            }
-
-            {
-                int size = in.readInt();
-                if (size > 0) {
-                    nearestTrail = new ArrayList<ArrayList<TrailUnitData>>();
-                    for (int i = 0; i < size; i++) {
-                        int sizeIn = in.readInt();
-                        ArrayList<TrailUnitData> list = new ArrayList<TrailUnitData>();
-                        nearestTrail.add(list);
-                        for (int j = 0; j < sizeIn; j++) {
-                            TrailUnitData data = new TrailUnitData();
-                            data.evu = null;
-                            data.trail = null;
-
-                            int trailId = in.readInt();
-                            if (trailId != -1) {
-                                data.trail = area.getTrailUnit(trailId);
-                            }
-
-                            int evuId = in.readInt();
-                            if (evuId != -1) {
-                                data.evu = area.getEvu(evuId);
-                            }
-
-                            list.add(data);
-                        }
-                    }
-                }
-            }
-
-        }
-
-
+      for (int i = 0; i < simData.length; i++) {
+        simData[i] = readSimStateData(in);
+      }
     }
+
+    treatment = (Vector)in.readObject();
+
+    if (version == 1) {
+
+      VegetativeType[][] tmpAccumState = (VegetativeType[][]) in.readObject();
+      ProcessType[][] accumProcess = (ProcessType[][]) in.readObject();
+
+      int numValidRuns = 0;
+      if (tmpAccumState != null && tmpAccumState[0] != null) {
+        for (int r = 1; r <= tmpAccumState.length; r++) {
+          if (tmpAccumState[r - 1][0] != null) {
+            numValidRuns++;
+          }
+        }
+      }
+
+    } else if (version == 2) {
+
+      VegetativeState[][] tmpAccumState = (VegetativeState[][])in.readObject();
+
+      int numValidRuns = 0;
+      if (tmpAccumState != null && tmpAccumState[0] != null) {
+        for (int r = 1; r <= tmpAccumState.length; r++) {
+          if (tmpAccumState[r - 1][0] != null) {
+            numValidRuns++;
+          }
+        }
+      }
+
+    } else if (version > 5) {
+      Area area = Simpplle.getCurrentArea();
+      nearestRoad = null;
+      nearestTrail = null;
+
+      {
+        int size = in.readInt();
+        if (size > 0) {
+          nearestRoad = new ArrayList<ArrayList<RoadUnitData>>();
+          for (int i = 0; i < size; i++) {
+            int sizeIn = in.readInt();
+            ArrayList<RoadUnitData> list = new ArrayList<RoadUnitData>();
+            nearestRoad.add(list);
+            for (int j = 0; j < sizeIn; j++) {
+              RoadUnitData data = new RoadUnitData();
+              data.evu = null;
+              data.road = null;
+
+              int roadId = in.readInt();
+              if (roadId != -1) {
+                data.road = area.getRoadUnit(roadId);
+              }
+
+              int evuId = in.readInt();
+              if (evuId != -1) {
+                data.evu = area.getEvu(evuId);
+              }
+
+              list.add(data);
+            }
+          }
+        }
+      }
+
+      {
+        int size = in.readInt();
+        if (size > 0) {
+          nearestTrail = new ArrayList<ArrayList<TrailUnitData>>();
+          for (int i = 0; i < size; i++) {
+            int sizeIn = in.readInt();
+            ArrayList<TrailUnitData> list = new ArrayList<TrailUnitData>();
+            nearestTrail.add(list);
+            for (int j = 0; j < sizeIn; j++) {
+              TrailUnitData data = new TrailUnitData();
+              data.evu = null;
+              data.trail = null;
+
+              int trailId = in.readInt();
+              if (trailId != -1) {
+                data.trail = area.getTrailUnit(trailId);
+              }
+
+              int evuId = in.readInt();
+              if (evuId != -1) {
+                data.evu = area.getEvu(evuId);
+              }
+
+              list.add(data);
+            }
+          }
+        }
+      }
+    }
+  }
 
   private void writeSimStateData(ObjectOutput out, Flat3Map map)
     throws IOException

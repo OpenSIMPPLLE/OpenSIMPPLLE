@@ -1,193 +1,178 @@
 package simpplle.gui;
 
 import simpplle.JSimpplle;
+import simpplle.comcode.Area;
 import simpplle.comcode.SimpplleError;
 
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
-import simpplle.comcode.InclusionRuleSpecies;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+
 /**
- * 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- *<p> This class creates the New Sample Area dialog, a type of JDialog.  This allows the user to select a sample area
- *from the comcode.    
+ * <p> A NewSampleArea dialog prompts the user to select a sample area for the current regional zone.
  *
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
- *  *     
+ * <p> Original source code authorship: Kirk A. Moeller
  */
 
 public class NewSampleArea extends JDialog {
-  JPanel panel1 = new JPanel();
-  JList theList = new JList();
-  JButton OkButton = new JButton();
-  JPanel buttonPanel = new JPanel();
-  FlowLayout flowLayout2 = new FlowLayout();
-  BorderLayout borderLayout1 = new BorderLayout();
-  JButton CancelButton = new JButton();
 
-  private SimpplleMain              simpplleMain;
-  private simpplle.comcode.Simpplle comcode;
+  private JList        areaList     = new JList();
+  private JButton      okButton     = new JButton("Ok");
+  private JButton      cancelButton = new JButton("Cancel");
+  private JPanel       mainPanel    = new JPanel();
+  private JPanel       buttonPanel  = new JPanel();
+  private FlowLayout   flowLayout   = new FlowLayout();
+  private BorderLayout borderLayout = new BorderLayout();
 
   /**
-   * Primary constructor for NewSampleArea dialog.  Sets the frame that owns the dialog to the main frame for Simpplle, dialog title, and modality. 
-   * @param frame owner of the dialog
-   * @param title title of dialog
-   * @param modal specifies whether dialog blocks user input to other top-level windows when shown
+   * Creates a new area dialog with no owner and not modal.
    */
-  public NewSampleArea(SimpplleMain frame, String title, boolean modal) {
-    super(frame, title, modal);
-    simpplleMain = frame;
+  public NewSampleArea() {
+
+    this(null, false);
+
+  }
+
+  /**
+   * Creates a new area dialog.
+   * @param frame Owner of the dialog
+   * @param modal If true, blocks input to other windows
+   */
+  public NewSampleArea(SimpplleMain frame, boolean modal) {
+
+    super(frame, "Select an Area", modal);
+
     try  {
       jbInit();
       pack();
-    }
-    catch(Exception ex) {
+    } catch(Exception ex) {
       ex.printStackTrace();
     }
+
     initialize();
+
   }
+
   /**
-   * Overloaded constructor for NewSampleArea dialog.  References the primary constructor and sets owner to null, title to empty string and modality to modeless.
-   */
-  public NewSampleArea() {
-    this(null, "", false);
-  }
-  /**
-   * Initializes the new sample area dialog with panels, components, titles, and layouts.  
+   * Initializes the dialog with buttons, a list, panels, and layouts.
    * @throws Exception
    */
   void jbInit() throws Exception {
-    panel1.setLayout(borderLayout1);
-    theList.setBackground(Color.darkGray);
-    theList.setForeground(Color.white);
-    theList.setBorder(BorderFactory.createRaisedBevelBorder());
-    theList.setMinimumSize(new Dimension(161, 200));
-    theList.setPreferredSize(new Dimension(161, 200));
-    theList.setToolTipText("Please select an Area.");
-    theList.setSelectionBackground(Color.white);
-    theList.setSelectionForeground(Color.orange);
-    theList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    theList.addMouseListener(new java.awt.event.MouseAdapter() {
+
+    areaList.setBorder(BorderFactory.createRaisedBevelBorder());
+    areaList.setMinimumSize(new Dimension(161, 200));
+    areaList.setForeground(Color.white);
+    areaList.setBackground(Color.darkGray);
+    areaList.setSelectionBackground(Color.white);
+    areaList.setSelectionForeground(Color.orange);
+    areaList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    areaList.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(MouseEvent e) {
-        theList_mouseClicked(e);
+        clickListItem(e);
       }
     });
-    OkButton.setMinimumSize(new Dimension(73, 27));
-    OkButton.setPreferredSize(new Dimension(73, 27));
-    OkButton.setText("Ok");
-    OkButton.addActionListener(new java.awt.event.ActionListener() {
 
+    okButton.setMinimumSize(new Dimension(73, 27));
+    okButton.setPreferredSize(new Dimension(73, 27));
+    okButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        OkButton_actionPerformed(e);
+        selectOk();
       }
     });
-    buttonPanel.setLayout(flowLayout2);
-    CancelButton.setText("Cancel");
-    CancelButton.addActionListener(new java.awt.event.ActionListener() {
 
+    cancelButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        CancelButton_actionPerformed(e);
+        selectCancel();
       }
     });
-    panel1.setMinimumSize(new Dimension(300, 237));
-    panel1.setPreferredSize(new Dimension(300, 237));
-    getContentPane().add(panel1);
-    panel1.add(buttonPanel, BorderLayout.SOUTH);
-    buttonPanel.add(OkButton, null);
-    buttonPanel.add(CancelButton, null);
-    panel1.add(theList, BorderLayout.NORTH);
-    this.setResizable(false);
+
+    buttonPanel.setLayout(flowLayout);
+    buttonPanel.add(okButton, null);
+    buttonPanel.add(cancelButton, null);
+
+    mainPanel.setLayout(borderLayout);
+    mainPanel.setMinimumSize(new Dimension(300, 237));
+    mainPanel.setPreferredSize(new Dimension(300, 237));
+    mainPanel.add(areaList, BorderLayout.CENTER);
+    mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+    getContentPane().add(mainPanel);
+
   }
-/**
- * Initializes the logic for the jdialog by getting the comcodes sample areas for the currently loaded zone.  
- */
+
+  /**
+   * Initializes the sample area list with the sample areas in the current regional zone.
+   */
   private void initialize() {
-    comcode = JSimpplle.getComcode();
 
-    theList.setListData(comcode.getSampleAreas());
-  }
-/**
- * If none of the list of sample areas are selected sends an error message to the user.  
- * If there is one selected loads the sample area, then disposes of the new sample area dialog.  
- */
-  private void ok() {
-    if (theList.isSelectionEmpty()) {
-      JOptionPane.showMessageDialog(this,"Please select an Area",
-                                    "No Area Selected.",
-                                    JOptionPane.WARNING_MESSAGE);
-      return;
-    }
-    loadSampleArea();
-    setVisible(false);
-    dispose();
-  }
-/**
- * Cancels the dialog in the normal way by setting the visibility to false and disposing it.  
- */
-  private void cancel() {
-    setVisible(false);
-    dispose();
-  }
-/**
- * Loads sample area for the current zone from the comcode that the user selected.  Sends a message to the user to reassure them that 
- * the selected sample area is loading.  Then tries to load it.  If there is a problem sends an error message to the user and sets the cursor to the
- * default cursor.   
- */
-  private void loadSampleArea() {
-    simpplle.comcode.Area area =
-      (simpplle.comcode.Area) theList.getSelectedValue();
+    areaList.setListData(JSimpplle.getComcode().getSampleAreas());
 
-    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
-    simpplleMain.setStatusMessage("Loading Area: " + area.getName() + " ...");
-    simpplleMain.refresh();
-    try {
-      comcode.loadSampleArea(area);
-    }
-    catch (SimpplleError err) {
-      JOptionPane.showMessageDialog(this,err.getMessage(),"Error",
-                                    JOptionPane.ERROR_MESSAGE);
-    }
-
-    simpplleMain.clearStatusMessage();
-
-    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
   }
 
-
-  // **** Events ****
-  // ****************
-/**
- * If ok button pushed, loads the sample area if one is selected (sends error if none selected), then disposes of the new sample area dialog.
- * @param e 'OK'
- */
-  void OkButton_actionPerformed(ActionEvent e) {
-    ok();
-  }
-/**
- * If user presses the 'Cancel' button, the new sample area dialog is disposed.   
- * @param e 'Cancel'
- */
-  void CancelButton_actionPerformed(ActionEvent e) {
-    cancel();
-  }
-/**
- * Handles a mouse click within the list of sample areas.  Loads the user selected area from the comcode and disposes the new sample area dialog.  
- * @param e
- */
-  void theList_mouseClicked(MouseEvent e) {
-    if (e.getClickCount() == 2 && theList.isSelectionEmpty() == false) {
+  /**
+   * Handles mouse input in the list view. If an item is double-clicked, then the selected sample area is loaded and
+   * the dialog is disposed.
+   * @param e Mouse event
+   */
+  void clickListItem(MouseEvent e) {
+    if (e.getClickCount() == 2 && areaList.isSelectionEmpty() == false) {
       loadSampleArea();
       setVisible(false);
       dispose();
     }
+  }
+
+  /**
+   * Handles selection of the ok button by loading the selected sample area and disposing of the dialog. An error
+   * message is displayed if there is no selection.
+   */
+  private void selectOk() {
+
+    if (areaList.isSelectionEmpty()) {
+      JOptionPane.showMessageDialog(this,"Please Select an Area","No Area Selected",JOptionPane.WARNING_MESSAGE);
+      return;
+    }
+
+    loadSampleArea();
+    setVisible(false);
+    dispose();
+
+  }
+
+  /**
+   * Handles selection of the cancel button by disposing of the dialog.
+   */
+  private void selectCancel() {
+
+    setVisible(false);
+    dispose();
+
+  }
+
+  /**
+   * Loads the selected sample area. An error message is displayed if there is an exception.
+   */
+  private void loadSampleArea() {
+
+    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+    Area area = (Area) areaList.getSelectedValue();
+
+    try {
+      JSimpplle.getComcode().loadSampleArea(area);
+    } catch (SimpplleError err) {
+      JOptionPane.showMessageDialog(this,err.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+    }
+
+    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
   }
 }
 

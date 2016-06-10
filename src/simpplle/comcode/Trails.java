@@ -16,7 +16,7 @@ import java.text.NumberFormat;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>This class defines Trails, one of two types of Manmade Elements (the other is Roads).
+ * <p>This class defines Trails, a type of Manmade Element.
  * 
  * @author Documentation by Brian Losi
  * <p>Original authorship: Kirk A. Moeller
@@ -25,60 +25,66 @@ import java.text.NumberFormat;
  *
  */
 
-
 public class Trails extends ManmadeElement implements Externalizable {
   static final long serialVersionUID = -6495013117293386445L;
   static final int  version          = 1;
   static final int  simDataVersion   = 1;
 
-  public enum Status { OPEN, CLOSED, PROPOSED, ELIMINATED, UNKNOWN };
-  public enum Kind { HIKE, UNKNOWN };
+  public enum Status { OPEN, CLOSED, PROPOSED, ELIMINATED, UNKNOWN }
+  public enum Kind { HIKE, UNKNOWN }
 
-  protected static final String COMMA         = ",";
+  protected static final String COMMA = ",";
 
-  private ArrayList<Evu> assocVegUnits = new ArrayList<Evu>();
+  private ArrayList<Evu> assocVegUnits = new ArrayList<>();
 
   private Status status;
-  private Kind   kind;
+  private Kind kind;
 
-  // Simulation
   private TrailsSimData[] simData;
-/**
- * Constructor for trails.  Inherits from Manmade Element superclass.  
- */
+
+  /**
+   * Calls super constructor.
+   */
   public Trails() {
     super();
   }
+
   /**
-   * Constructor for trails.  Inherits from Manmade Element superclass and passes in and ID
-   * @param id
+   * Calls super constructor with the given ID.
+   * @param id A unique identifier
    */
   public Trails(int id) {
     super(id);
   }
-/**
- * initializes a trails simulation data array of size = time steps
- */
+
+  /**
+   * Reallocates an array of simulation data. The size of the array equals the number of time steps in the current
+   * simulation. The first entry is initialized with the status of this trail unit.
+   */
   public void initSimulation() {
+
     int numSteps = Simpplle.getCurrentSimulation().getNumTimeSteps();
 
-    simData = new TrailsSimData[numSteps+1];
+    simData = new TrailsSimData[numSteps + 1];
     simData[0] = new TrailsSimData();
     simData[0].setStatus(status);
-  }
 
-  public void doBeginTimeStep() {
-    int ts = Simulation.getCurrentTimeStep();
-    simData[ts] = new TrailsSimData();
-    simData[ts].setStatus(simData[ts-1].getStatus());
   }
 
   /**
-   * Get the first associated Vegetative unit.  Used in distance to trail
-   * calculations. Not 100% accurate distance as the trail unit will cover
-   * several evu's, but it will save a lot of computation time, in finding the
-   * closest trail.
-   * @return Evu
+   * Creates simulation data for the current time step with the status of the previous time step.
+   */
+  public void doBeginTimeStep() {
+
+    int ts = Simulation.getCurrentTimeStep();
+
+    simData[ts] = new TrailsSimData();
+    simData[ts].setStatus(simData[ts - 1].getStatus());
+  }
+
+  /**
+   * Returns the first associated vegetation unit.
+   * @return An existing vegetation unit
    */
   public Evu getFirstVegUnit() {
     if (assocVegUnits != null && assocVegUnits.size() > 0) {
@@ -86,91 +92,115 @@ public class Trails extends ManmadeElement implements Externalizable {
     }
     return null;
   }
-  public ArrayList<Evu> getAssociatedVegUnits() { return assocVegUnits; }
+
+  /**
+   * Returns an array of associated vegetation units.
+   * @return Associated vegetation units
+   */
+  public ArrayList<Evu> getAssociatedVegUnits() {
+    return assocVegUnits;
+  }
+
+  /**
+   * Adds an existing vegetation unit to the list of associated vegetation units.
+   * @param evu An existing vegetation unit
+   */
   public void addAssociatedVegUnit(Evu evu)  {
     if (assocVegUnits.contains(evu) == false) {
       assocVegUnits.add(evu);
     }
   }
 
-  public simpplle.comcode.Trails.Kind getKind() {
+  public Kind getKind() {
     return kind;
   }
 
-  public simpplle.comcode.Trails.Status getStatus() {
+  public Status getStatus() {
     return status;
   }
 
-  public void setKind(simpplle.comcode.Trails.Kind kind) {
+  public void setKind(Kind kind) {
     this.kind = kind;
   }
 
-  public void setStatus(simpplle.comcode.Trails.Status status) {
+  public void setStatus(Status status) {
     this.status = status;
   }
-/**
- * gets the current simulation status, this is looked up by the current time step
- * @return
- */
+
+  /**
+   * Returns the status of this trail at the current time step in the current simulation. If the simulation is not
+   * running, the last time step is used.
+   * @return Trail status
+   */
   public Trails.Status getSimStatus() {
     Simulation simulation = Simpplle.getCurrentSimulation();
     int ts = 0;
-    if (simulation != null && simulation.isSimulationRunning()) {
-      ts = simulation.getCurrentTimeStep();
-    }
-    else if (simulation != null) {
-      ts = simulation.getNumTimeSteps();
+    if (simulation != null) {
+      if (simulation.isSimulationRunning()) {
+        ts = simulation.getCurrentTimeStep();
+      } else {
+        ts = simulation.getNumTimeSteps();
+      }
     }
     return getSimStatus(ts);
   }
-  public Trails.Status getSimStatus(int ts) {
-    if (simData == null) {
-      return status;
-    }
+
+  /**
+   * Returns the status of this trail at the requested time step in the current simulation.
+   * @param ts Time step
+   * @return Trail status
+   */
+  public Status getSimStatus(int ts) {
+    if (simData == null) return status;
     return simData[ts].getStatus();
   }
 
-  public void setSimStatus(simpplle.comcode.Trails.Status status) {
+  /**
+   * Sets the status of this road at the current time step in the current simulation.
+   * @param status Road status
+   */
+  public void setSimStatus(Status status) {
     int ts = Simulation.getCurrentTimeStep();
-    this.simData[ts].setStatus(status);
+    simData[ts].setStatus(status);
   }
 
+  /**
+   * Writes neighboring trails as one pair of comma separated IDs per line. This ID, neighbor ID.
+   * @param fout Output writer
+   */
   public void exportNeighbors(PrintWriter fout) {
-    if (neighbors == null) { return; }
 
-    // unit, adj
-    for (int i=0; i<neighbors.size(); i++) {
+    if (neighbors == null) return;
+
+    for (ManmadeElement element : neighbors) {
       fout.print(getId());
       fout.print(COMMA);
-      fout.print(((Roads)neighbors.get(i)).getId());
+      fout.print(element.getId());
       fout.println();
     }
   }
+
   /**
-   * method to export the adjacent area vegetation unit id's in comma separated format.  
-   * @param fout
+   * Writes the neighboring vegetation units as a pair of comma separated IDs per line. Neighbor ID, this ID.
+   * @param fout Output writer
    */
   public void exportNeighborsVegetation(PrintWriter fout) {
-    if (assocVegUnits == null) { return; }
 
-    for (int i=0; i<assocVegUnits.size(); i++) {
-      fout.print(assocVegUnits.get(i).getId());
+    if (assocVegUnits == null) return;
+
+    for (Evu evu : assocVegUnits) {
+      fout.print(evu.getId());
       fout.print(COMMA);
       fout.print(getId());
       fout.println();
     }
   }
+
   /**
-   * Attributes stored in the file in following order: slink (id), status, kind.  This is a comma separated format.  
+   * Writes the attributes of this trail unit at the current time step in the following order: slink(id), status, kind
    * @param fout
    */
   public void exportAttributes(PrintWriter fout) {
-    // attributes in the file in the following order:
-    // slink(id),status,kind
-    NumberFormat nf = NumberFormat.getInstance();
-    nf.setGroupingUsed(false);
-    nf.setMaximumFractionDigits(2);
-
     fout.print(getId());
     fout.print(COMMA);
     fout.print(getSimStatus());
@@ -178,30 +208,28 @@ public class Trails extends ManmadeElement implements Externalizable {
     fout.print(getKind());
     fout.println();
   }
-/**
- * writes to an external source, in order, version, status, kind, assiciated vegetative units size, and associated vegetative units ID
- */
+
+  /**
+   * Writes this instance to a serialization stream. The attributes include: version, status, kind, number of
+   * associated vegetative units, and the ID of each associated vegetative unit.
+   */
   public void writeExternal(ObjectOutput out) throws IOException {
     super.writeExternal(out);
     out.writeInt(version);
-
     out.writeObject(status.toString());
     out.writeObject(kind.toString());
-
     out.writeInt(assocVegUnits.size());
     for (Evu evu : assocVegUnits) {
       out.writeInt(evu.getId());
     }
 
   }
+
   /**
-   * reads from an external source.  Attributes are stored in file in following order: version, status, kind, size, 
-   * and associated vegetative unit (evu) ID
-   * 
+   * Reads attributes from a deserialization stream. The attributes include: version, status, kind, area (from the
+   * current simulation), size, and associated vegetative unit ids.
    */
-  public void readExternal(ObjectInput in)
-    throws IOException, ClassNotFoundException
-  {
+  public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     super.readExternal(in);
 
     int version = in.readInt();

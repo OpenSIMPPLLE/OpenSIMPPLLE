@@ -119,6 +119,7 @@ public final class Simpplle {
   public static Simulation getCurrentSimulation() {
     return Simulation.getInstance();
   }
+
   /**
    * Clears the current simulation, if one exists.  
    */
@@ -259,6 +260,8 @@ public final class Simpplle {
 
     clearSimulation();
 
+    setStatusMessage("Loading Zone: " + zone.getName() + "...");
+
     try {
       // Clear Previous data
       RegenerationLogic.clearData(RegenerationLogic.FIRE);
@@ -314,13 +317,14 @@ public final class Simpplle {
       if (droughtProcess != null) {
         droughtProcess.setYearlyStatus((zone instanceof ColoradoPlateau));
       }
-    }
-    catch (SimpplleError err) {
+    } catch (SimpplleError err) {
       String msg = "Unable to load zone: " + err.getMessage();
       System.out.println(msg);
       currentZone = null;
       climate     = null;
       throw new SimpplleError(msg,err);
+    } finally {
+      clearStatusMessage();
     }
   }
 
@@ -330,8 +334,7 @@ public final class Simpplle {
    */
   public void loadSampleArea (Area area) throws SimpplleError {
     clearSimulation();
-    setStatusMessage("Loading Sample Area: " +
-                     area.getName() + "...");
+    setStatusMessage("Loading Sample Area: " + area.getName() + "...");
     try {
       InclusionRuleSpecies.clearAllInstances();
       if (area.getPath().indexOf("SWEATHOUSE.AREA") != -1) {
@@ -583,17 +586,14 @@ public final class Simpplle {
   }
 
   /**
-    * This function only used in the gui.  It is used to restore
-    * the units to their original state, as well as deleting any
-    * simulation related stuff.
-    * This is no longer used before a simulation, the reseting of
-    * things is done as needed when the simulation is run.
-    * The name resetSimulation is kept primary for consistency with
-    * prior versions of this software.
-    */
+   * This function only used in the gui. It is used to restore the units to their original state, as well as deleting
+   * any simulation related stuff. This is no longer used before a simulation, the resetting of things is done as
+   * needed when the simulation is run. The name resetSimulation is kept primary for consistency with prior versions
+   * of this software.
+   */
   public static void resetSimulation() {
     clearSimulation();
-    if  (currentArea != null) {
+    if (currentArea != null) {
       currentArea.restoreInitialConditions();
     }
   }

@@ -1686,7 +1686,7 @@ public class SimpplleMain extends JFrame {
     String str;
     simpplle.comcode.RegionalZone zone;
 
-    NewZone   dlg = new NewZone(this,"Select a Zone.",true);
+    NewZone   dlg = new NewZone(this,true);
     setDialogLocation(dlg);
     dlg.setVisible(true);
     if (Simpplle.getCurrentZone() != null && dlg.isNewZone()) {
@@ -1723,7 +1723,7 @@ public class SimpplleMain extends JFrame {
   void newArea_actionPerformed(ActionEvent e) {
     int           choice;
     File          outfile;
-    NewArea       dlg = new NewArea(this,"",true);
+    NewArea       dlg = new NewArea(this,true);
     NewSampleArea sampleDlg;
     String        str;
     MyFileFilter  extFilter = new MyFileFilter("area",
@@ -1737,7 +1737,7 @@ public class SimpplleMain extends JFrame {
     choice = dlg.getChoice();
     try {
       if (choice == NewArea.SAMPLE) {
-        sampleDlg = new NewSampleArea(this,"Select an Area.",true);
+        sampleDlg = new NewSampleArea(this,true);
         setDialogLocation(sampleDlg);
         sampleDlg.setVisible(true);
       }

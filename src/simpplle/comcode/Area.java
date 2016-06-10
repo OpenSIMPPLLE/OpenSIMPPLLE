@@ -437,29 +437,33 @@ public final class Area implements Externalizable {
     allEau[id] = unit;
     return unit;
   }
-/**
- * Adds an Evu to the Natural Elements multi dimensional array.  This is indexed by [Evu = 0] and [evu Id]
- * @param evu
- */
-  public void addEvu(Evu evu) {
-    allUnits[EVU][evu.getId()] = evu;
-  }
+
   /**
-   * Adds an Elu to Natural Elements multi-dimensional array.  This is indexed by [Elu = 2] and [elu Id].
-   * @param elu
+   * Adds an existing vegetation unit to the area's natural elements.
+   * @param unit
    */
-  public void addElu(ExistingLandUnit elu) {
-    allUnits[ELU][elu.getId()] = elu;
+  public void addEvu(Evu unit) {
+    allUnits[EVU][unit.getId()] = unit;
   }
+
   /**
-   * Adds road units to the manmade units multidimensional array.  This is indexed by [Roads = 0] [road Id]
+   * Adds an existing land unit to the area's natural elements.
+   * @param unit
+   */
+  public void addElu(ExistingLandUnit unit) {
+    allUnits[ELU][unit.getId()] = unit;
+  }
+
+  /**
+   * Adds a roads unit to the area's manmade elements.
    * @param unit
    */
   public void addRoadUnit(Roads unit) {
     allManmadeUnits[ROADS.ordinal()][unit.getId()] = unit;
   }
+
   /**
-   * Adds trail units to the manmade units multidimensional array.  This is indexed by [Trails = 1] [trail Id]
+   * Adds a trails unit to the area's manmade elements.
    * @param unit
    */
   public void addTrailUnit(Trails unit) {
@@ -468,61 +472,82 @@ public final class Area implements Externalizable {
 
   // *** Manmade Unit Methods ***
   // ****************************
-  public Roads getRoadUnit(int id) {
-    return (Roads)getManmadeUnit(id,ROADS);
-  }
+
   /**
-   * Gets manmade unit by looking up its id and kind
+   * Returns a specific kind of manmade unit with a matching id.
    * @param id
-   * @param kind the manmade element kind.  Choices are road = 0, trail =1
+   * @param kind The kind of manmade unit (ROAD,TRAIL)
    * @return
    */
   private ManmadeElement getManmadeUnit(int id, ManmadeUnitKinds kind) {
-    if (allManmadeUnits[kind.ordinal()] == null ||
-        id < 0 || id > allManmadeUnits[kind.ordinal()].length-1) {
+    if (allManmadeUnits[kind.ordinal()] == null || id < 0 || id > allManmadeUnits[kind.ordinal()].length-1) {
       return null;
     }
     return allManmadeUnits[kind.ordinal()][id];
   }
+
   /**
-   * Checks if an area has roads.  If the all roads array is null, returns false, othewise returns true.
-   * @return true if area has roads
+   * Returns a road unit with a matching id.
+   * @param id Road ID
+   * @return A road unit
    */
-  public boolean hasRoads() { return allRoads != null; }
+  public Roads getRoadUnit(int id) {
+    return (Roads)getManmadeUnit(id,ROADS);
+  }
+
   /**
-   * Gets all the roads in this Area.
-   * @return returns the roads array for this area
+   * Checks if this area has roads units.
+   * @return True if the roads array is not null
    */
-  public Roads[] getAllRoads() { return this.allRoads; }
+  public boolean hasRoads() {
+    return allRoads != null;
+  }
+
   /**
-   * Sets all roads.  Sets the array of road Id's  into the 2 dimensional array at the index of the roads ordinal, which = 0
-   * @param newAllRoads
+   * Returns all the roads units in this area.
+   * @return An array of roads
+   */
+  public Roads[] getAllRoads() {
+    return allRoads;
+  }
+
+  /**
+   * Replaces all roads units in this area.
+   * @param newAllRoads An array of roads
    */
   public void setAllRoads(Roads[] newAllRoads) {
     allManmadeUnits[ROADS.ordinal()] = newAllRoads;
     allRoads = (Roads[])allManmadeUnits[ROADS.ordinal()];
   }
-/**
- * Gets a trail based on its Id.
- * @param id the trail Id
- * @return A trail object
- */
+
+  /**
+   * Returns a trail unit with a matching id.
+   * @param id Trail ID
+   * @return A trail unit
+   */
   public Trails getTrailUnit(int id) {
     return (Trails)getManmadeUnit(id,TRAILS);
   }
-/**
- * Checks if this area has trails.
- * @return true if this area has trails.
- */
-  public boolean hasTrails() { return allTrails != null; }
+
   /**
-   * Gets the array of all trails for this Area.
-   * @return array of trails.
+   * Checks if this area has trail units.
+   * @return True if the trails array is not null
    */
-  public Trails[] getAllTrails() { return this.allTrails; }
+  public boolean hasTrails() {
+    return allTrails != null;
+  }
+
   /**
-   * Sets all the trails by setting the manmade unit 2D array at the trail ordinal to the passed in array of new trail objects
-   * @param newAllTrails
+   * Returns all the trails units in this area.
+   * @return An array of trails
+   */
+  public Trails[] getAllTrails() {
+    return allTrails;
+  }
+
+  /**
+   * Replaces all trail units in this area.
+   * @param newAllTrails An array of trails
    */
   public void setAllTrails(Trails[] newAllTrails) {
     allManmadeUnits[TRAILS.ordinal()] = newAllTrails;
@@ -1103,19 +1128,17 @@ public final class Area implements Externalizable {
       if (result) { changed = true; }
     }
   }
-/**
- * Prepares the simulation for all evu's
- */
-  public void makeSimulationReady() {
-    VegetativeType newState;
-    ProcessType    process;
 
-    for (int i=0;i<=maxEvuId;i++) {
-      if (allEvu[i] == null) {continue; }
-      allEvu[i].makeSimulationReady();
+  /**
+   * Resets the state in all EVUs so they are ready for simulation.
+   */
+  public void makeSimulationReady() {
+    for (int i = 0; i <= maxEvuId; i++) {
+      if (allEvu[i] != null) {
+        allEvu[i].makeSimulationReady();
+      }
     }
   }
-
 
   // ** Parsing Stuff **
 
@@ -1817,75 +1840,62 @@ public final class Area implements Externalizable {
 //    }
 //  }
 
+  /**
+   * Clears simulation data in existing vegetation units, roads, and trails.
+   */
   public void restoreInitialConditions() {
-    Evu evu;
 
-    for(int i=0;i<=maxEvuId;i++) {
-      evu = allEvu[i];
-      if (evu != null) {
-        evu.restoreInitialConditions();
-      }
+    for(int i = 0; i <= maxEvuId; i++) {
+      if (allEvu[i] != null) allEvu[i].restoreInitialConditions();
     }
 
     if (allRoads != null) {
       for (int i = 0; i < allRoads.length; i++) {
-        if (allRoads[i] != null) {
-          allRoads[i].initSimulation();
-        }
+        if (allRoads[i] != null) allRoads[i].initSimulation();
       }
     }
+
     if (allTrails != null) {
       for (int i = 0; i < allTrails.length; i++) {
-        if (allTrails[i] != null) {
-          allTrails[i].initSimulation();
-        }
+        if (allTrails[i] != null) allTrails[i].initSimulation();
       }
     }
   }
 
   /**
-   * Initialize some stuff before starting a simulation.
+   * Initializes the cumulative probability for each process type, clears recorded water units, and clears state
+   * stored in EVUs, EAUs, roads, and trails.
    */
   public void initSimulation() {
-    Evu     evu;
 
-    // Treatment and Process Schedule stay until
-    // removed by user.
+    // Treatment and Process Schedule stay until removed by user.
 
 //    initOriginSpread(maxEvuId);
+
     Evu.initCumulProb();
     Evu.staticInitSimulation();
 
     for(int i=0;i<allEvu.length;i++) {
-      evu = allEvu[i];
-      if (evu != null) {
-        evu.initSimulation();
-      }
+      if (allEvu[i] != null) allEvu[i].initSimulation();
     }
 
     if (allEau != null) {
       for (int i = 0; i < allEau.length; i++) {
-        if (allEau[i] != null) {
-          allEau[i].initSimulation();
-        }
+        if (allEau[i] != null) allEau[i].initSimulation();
       }
     }
 
     if (allRoads != null) {
       for (int i = 0; i < allRoads.length; i++) {
-        if (allRoads[i] != null) {
-          allRoads[i].initSimulation();
-        }
-      }
-    }
-    if (allTrails != null) {
-      for (int i = 0; i < allTrails.length; i++) {
-        if (allTrails[i] != null) {
-          allTrails[i].initSimulation();
-        }
+        if (allRoads[i] != null) allRoads[i].initSimulation();
       }
     }
 
+    if (allTrails != null) {
+      for (int i = 0; i < allTrails.length; i++) {
+        if (allTrails[i] != null) allTrails[i].initSimulation();
+      }
+    }
   }
 
   /**
@@ -3943,7 +3953,7 @@ public final class Area implements Externalizable {
 
     int elevDiff = Math.abs(adjElev - evuElev);
     if (isUniformArea) {
-      double distance = evu.distancetoEvuMeters(adj);
+      double distance = evu.distanceToEvuMeters(adj);
       double pctDiff = ((double)elevDiff / distance) * 100;
       if (pctDiff > elevationRelativePosition) {
         return (adjElev > evuElev) ? Evu.ABOVE : Evu.BELOW;

@@ -418,8 +418,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
 
   /**
-   * Resets simulation data to defaults.
-   * Called before running a new simulation.
+   * Resets simulation data to defaults. Called before running a new simulation.
    */
   public void reset() {
     numSimulations        = 1;
@@ -431,6 +430,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   public boolean isSimulationRunning() { return inSimulation; }
 
+  /**
+   * Invasive species predictions require the nearest distance to each road and trail.
+   * @return True if there is an invasive species
+   */
   public boolean needNearestRoadTrailInfo() {
     return invasiveSpeciesKind != InvasiveKind.NONE;
   }
@@ -1059,7 +1062,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     currentArea.initSimulation();
     areaSummary = new AreaSummary();
 
-    if ((currentArea.hasRoads() || currentArea.hasTrails()) && needNearestRoadTrailInfo()) {
+    if (needNearestRoadTrailInfo()) {
       currentArea.findNearestRoadsTrails();
     }
 
@@ -1089,6 +1092,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
         }
       }
     }
+
+    // ~~~~~~~~~~ Write time step zero before this comment ~~~~~~~~~
 
     try {
       for(int i=0;i<numTimeSteps;i++) {
