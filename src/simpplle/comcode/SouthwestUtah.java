@@ -1,48 +1,37 @@
 package simpplle.comcode;
 
-import java.util.Hashtable;
-
 /**
- * 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>This class defines the zone for Southwest Utah
- * The primary purpose is to initialize class fields with values unique to Southwest Utah.  
- * <p>As a result most member functions are private.
- * <p> Ecological Stratification - 0 (Misc special habitates),1(Pinyon pine - Juniper),2 (Montane maple-oak),3 (Ponderosa-pine),4(Dry Douglas-fir),5 (cool or moist Douglas-fir),6 ( White fir and blue spruce),7(Aspen dominated)
- * <p> Range Density - 1-Open, 2-Closed
- * <p>Forest Density 1 = <40%, 2 = 41-70%, 3 = >70%
- * Disturbance processes = LSF, MSF, SRF (fire events), ponderosa pine mountain pine beetle.  
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+ * <p> SouthwestUtah describes the region of southwest Utah.
  *
- * @see simpplle.comcode.RegionalZone
- *
+ * <p> Original source code authorship: Kirk A. Moeller
  */
 
 public class SouthwestUtah extends RegionalZone {
-  private static final String arcviewDir  = "gis/southwest-utah";
-  private static final String homeDir = "knowledge/zones/southwest-utah";
-  private static final String gisFiles[] =
-    {"simpplle_arcview.apr", "process_legend.avl", "species_legend.avl",
-     "size_legend.avl", "canopy_legend.avl", "spread_legend.avl",
-     "probability_legend.avl", "spread_legend.avl", "treatment_legend.avl"};
 
-  private static final int NUM_TREATMENTS = 11;
+  private static final String arcviewDir = "gis/southwest-utah";
+  private static final String gisFiles[] = { "simpplle_arcview.apr",
+                                             "process_legend.avl",
+                                             "species_legend.avl",
+                                             "size_legend.avl",
+                                             "canopy_legend.avl",
+                                             "spread_legend.avl",
+                                             "probability_legend.avl",
+                                             "spread_legend.avl",
+                                             "treatment_legend.avl" };
 
-  /**
-   * Constructor for Southwest Utah.  Initializes name, available to true, directory, and jar pathways.
-   */
   public SouthwestUtah () {
+
     super();
+
     name         = "Southwest Utah";
     available    = true;
-    zoneDir      = homeDir;
+    zoneDir      = "knowledge/zones/southwest-utah";
     pathwayKnowFile = "zones/southwest-utah-pathways.jar";
     sysKnowFile  = "zones/southwest-utah.jar";
     zoneDefnFile = "zones/southwest-utah-defn.jar";
@@ -52,31 +41,25 @@ public class SouthwestUtah extends RegionalZone {
       ProcessType.PP_MPB
     };
 
-    createSampleAreas();
-  }
-
-  /**
-   * director address is "gis/southwest-utah"
-   */
-  public String getArcviewDir() { return arcviewDir; }
-
-  public ProcessType[] getUserProbProcesses() { return probDataProcesses; }
-
-  protected String[] getGisFiles() { return gisFiles; }
-
-  private void createSampleAreas () {
-    sampleAreas    = new Area[1];
+    sampleAreas = new Area[1];
     sampleAreas[0] = new Area("Utah","SAMPLE-AREAS/UTAH.AREA",Area.SAMPLE);
+
   }
 
-  /**
-   * Gets the id of this zone.
-   * @see simpplle.comcode.ValidZones
-   * @return the id of this zone.
-   */
+  public String getArcviewDir() {
+    return arcviewDir;
+  }
+
+  public ProcessType[] getUserProbProcesses() {
+    return probDataProcesses;
+  }
+
+  protected String[] getGisFiles() {
+    return gisFiles;
+  }
+
   public int getId () {
     return ValidZones.SOUTHWEST_UTAH;
   }
-
 
 }
