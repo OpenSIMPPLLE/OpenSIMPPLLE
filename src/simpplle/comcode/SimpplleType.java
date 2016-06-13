@@ -294,28 +294,38 @@ public abstract class SimpplleType implements Comparable {
     }
 
     /**
-     * Contrary to the name, this does not initialize all lists. It initializes the lists of Type Size class, Density, Group.
+     * Populates the size class list.
      */
-    public static void initializeAllLists() {
-        //initializeAllList(Types.SPECIES);
+    public static void initializeSizeClassList() {
         initializeAllList(Types.SIZE_CLASS);
-        initializeAllList(Types.DENSITY);
-        initializeAllList(Types.GROUP);
     }
 
     /**
-     * Initializes the process and treatments arraylist.
+     * Populates the density list.
      */
-    public static void initializeProcessTreatmentLists() {
-        initializeAllList(Types.PROCESS);
-        initializeAllList(Types.TREATMENT);
+    public static void initializeDensityList() {
+        initializeAllList(Types.DENSITY);
     }
 
     /**
-     * Populates the Treatment list.
+     * Populates the process list.
+     */
+    public static void initializeProcessList() {
+        initializeAllList(Types.PROCESS);
+    }
+
+    /**
+     * Populates the treatment list.
      */
     public static void initializeTreatmentList() {
         initializeAllList(Types.TREATMENT);
+    }
+
+    /**
+     * Populates the group list.
+     */
+    public static void initializeGroupList() {
+        initializeAllList(Types.GROUP);
     }
 
     /**

@@ -279,8 +279,8 @@ public final class Simpplle {
 
       // load the data files.
       zone.readZoneDefinitionFile();
-
-      SimpplleType.initializeProcessTreatmentLists();
+      SimpplleType.initializeProcessList();
+      SimpplleType.initializeTreatmentList();
 
       ProcessProbLogic.initialize();
       InvasiveSpeciesLogic.initialize();
@@ -304,7 +304,9 @@ public final class Simpplle {
 
       zone.readZoneSystemKnowledgeFile();
 
-      SimpplleType.initializeAllLists();
+      SimpplleType.initializeSizeClassList();
+      SimpplleType.initializeDensityList();
+      SimpplleType.initializeGroupList();
 
       // This is necessary in case the species file is loaded after
       // pathways (which normally it is).
