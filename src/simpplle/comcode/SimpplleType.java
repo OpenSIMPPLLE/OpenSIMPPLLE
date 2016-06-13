@@ -13,7 +13,7 @@ import java.util.jar.JarOutputStream;
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
  * <p> SimpplleType is the base class for fundamental data types in OpenSIMPPLLE. The primary purpose of this class
- * is to prevent duplicate instances of subclasses.
+ * is to reuse instances of subclasses.
  *
  * <p> Original source code authorship: Kirk A. Moeller
  */
@@ -238,58 +238,55 @@ public abstract class SimpplleType implements Comparable {
     }
 
     /**
-     * Gets the current zone and uses its species, size class, density, processes, treatments, or habitat group to form a vector.
-     * This vector will be then looped through to update all the arraylists for the types and then the all types hash map. ough create and initialize lists of simpplle types in that zone.
-     * Species - gets all species from vector, clear invasive species for the zone
-     * <li>Size_Class - gets all size class for the zone.
-     * <li>Density - gets all density for the zone.
-     * Note:  Processes and Treatment types are handled differently than species, size class, density, and habitat group.
-     * @param kind Type used in switch to
+     * Copies a list of global SimpplleType instances from another class into SimpplleType's own global list.
+     * @param kind A kind of SimpplleType
      */
     protected static void initializeAllList(Types kind) {
 
         ArrayList<SimpplleType> allList = getList(kind);
+        if (allList == null) return;
         allList.clear();
+
+        // The objects should really be passed in as an argument.
 
         List<SimpplleType> objects;
 
-        RegionalZone zone = Simpplle.getCurrentZone();
-
         switch (kind) {
-            case SPECIES:
-                objects = zone.getAllSpecies();
-                Species.clearInvasive();
-                break;
-            case SIZE_CLASS:
-                objects = zone.getAllSizeClass();
-                break;
-            case DENSITY:
-                objects = zone.getAllDensity();
-                break;
-            case PROCESS:
-            {
-                List tmp = Process.getLegalProcessesList();
-                objects = new ArrayList<SimpplleType>(tmp);
-                objects.add(ProcessType.WET_SUCCESSION);
-                objects.add(ProcessType.DRY_SUCCESSION);
-                break;
-            }
-            case TREATMENT:
-            {
-                List tmp = Treatment.getLegalTreatmentList();
-                objects = new ArrayList<SimpplleType>(tmp);
-                objects.add(TreatmentType.NONE);
-                break;
-            }
+
+            case SPECIES:    objects = Simpplle.getCurrentZone().getAllSpecies(); break;
+            case SIZE_CLASS: objects = Simpplle.getCurrentZone().getAllSizeClass(); break;
+            case DENSITY:    objects = Simpplle.getCurrentZone().getAllDensity(); break;
+            case PROCESS:    objects = Process.getLegalProcessesList(); break;
+            case TREATMENT:  objects = Treatment.getLegalTreatmentList(); break;
             case GROUP:      objects = HabitatTypeGroup.getAllLoadedTypes(); break;
 
             default: return;
+
         }
 
         if (objects == null) return;
 
         for (SimpplleType object : objects) {
             updateAllData(object,kind);
+        }
+
+        // These are special cases that should be dealt with outside of this method.
+
+        switch (kind) {
+
+            case SPECIES:
+                Species.clearInvasive();
+                break;
+
+            case PROCESS:
+                updateAllData(ProcessType.WET_SUCCESSION,PROCESS);
+                updateAllData(ProcessType.DRY_SUCCESSION,PROCESS);
+                break;
+
+            case TREATMENT:
+                updateAllData(TreatmentType.NONE,TREATMENT);
+                break;
+
         }
     }
 
