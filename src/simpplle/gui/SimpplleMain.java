@@ -165,6 +165,8 @@ public class SimpplleMain extends JFrame {
   JMenuItem menuSysKnowVegTreatDesired = new JMenuItem();
   JMenuItem menuUtilityGISFiles = new JMenuItem();
   JMenuItem menuSysKnowFireSeason = new JMenuItem();
+  JMenu menuSysKnowFireSpread = new JMenu("Fire Spread");
+  JMenuItem menuSysKnowCellPerc = new JMenuItem("Keane Cell Percolation");
   JMenuItem menuHelpUserGuide = new JMenuItem();
   JMenuItem MenuUtilityJavaHeap = new JMenuItem();
   JMenuItem menuSysKnowFireSuppProdRate = new JMenuItem();
@@ -871,6 +873,12 @@ public class SimpplleMain extends JFrame {
             menuSysKnowFireSeason_actionPerformed(e);
         }
     });
+    menuSysKnowCellPerc.setEnabled(false);
+    menuSysKnowCellPerc.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          menuSysKnowCellPerc_actionPerformed(e);
+        }
+    });
     menuHelpUserGuide.setText("User\'s Guide");
     menuHelpUserGuide.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -1210,6 +1218,8 @@ public class SimpplleMain extends JFrame {
     menuSysKnowVegProc.add(menuSysKnowFireCost);
     menuSysKnowVegProc.add(menuSysKnowFireInput);
     menuSysKnowVegProc.add(menuSysKnowFireSeason);
+    menuSysKnowVegProc.add(menuSysKnowFireSpread);
+    menuSysKnowFireSpread.add(menuSysKnowCellPerc);
     menuSysKnowVegProc.add(menuSysKnowFireSuppLogic);
     menuSysKnowVegProc.add(menuSysKnowWeatherEvent);
     menuSysKnowVegProc.add(menuSysKnowVegUnitFireTypeLogic);
@@ -1524,6 +1534,7 @@ public class SimpplleMain extends JFrame {
     menuSysKnowDisableWsbw.setEnabled(true);
 
     menuSysKnowFireSeason.setEnabled(true);
+    menuSysKnowCellPerc.setEnabled(true);
 
     menuSysKnowPathAquatic.setEnabled(Simpplle.getCurrentZone().hasAquatics());
 
@@ -2390,6 +2401,13 @@ public class SimpplleMain extends JFrame {
 
   void menuSysKnowFireSeason_actionPerformed(ActionEvent e) {
     FireSeason dlg = new FireSeason(this,"Fire Season Probabilities",true);
+    setDialogLocation(dlg);
+    dlg.setVisible(true);
+    refresh();
+  }
+
+  void menuSysKnowCellPerc_actionPerformed(ActionEvent e) {
+    KeaneCellPercolation dlg = new KeaneCellPercolation(this);
     setDialogLocation(dlg);
     dlg.setVisible(true);
     refresh();
