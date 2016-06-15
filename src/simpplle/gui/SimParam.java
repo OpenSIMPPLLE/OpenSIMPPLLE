@@ -68,6 +68,7 @@ public class SimParam extends JDialog {
   private FlowLayout numSimLayout = new FlowLayout();
   private FlowLayout numStepLayout = new FlowLayout();
   private FlowLayout invasiveSpeciesLayout = new FlowLayout();
+  private FlowLayout fireSpreadModelLayout = new FlowLayout();
   private FlowLayout discardDataLayout = new FlowLayout();
   private FlowLayout rulesFileLayout = new FlowLayout();
   private FlowLayout stepsInMemoryLayout = new FlowLayout();
@@ -105,6 +106,7 @@ public class SimParam extends JDialog {
   private JPanel outputOptionsPanel = new JPanel();
   private JPanel trackSpeciesCBPanel = new JPanel();
   private JPanel invasiveSpeciesPanel = new JPanel();
+  private JPanel fireSpreadModelPanel = new JPanel();
   private JPanel outputOptionsCBPanel = new JPanel();
   private JPanel trackingSpeciesPanel = new JPanel();
   private JPanel timeStepsInMemoryPanel = new JPanel();
@@ -120,6 +122,7 @@ public class SimParam extends JDialog {
   private JLabel tsInMemoryLabel = new JLabel();
   private JLabel gisUpdateSpreadLabel = new JLabel();
   private JLabel invasiveSpeciesLabel = new JLabel();
+  private JLabel fireSpreadModelLabel = new JLabel();
 
   // Elements
   private JButton runButton       = new JButton();
@@ -144,6 +147,7 @@ public class SimParam extends JDialog {
   private JButton trackingSpeciesCategoryPB = new JButton();
   private JCheckBox gisUpdateSpreadCB = new JCheckBox();
   private JComboBox invasiveSpeciesCB = new JComboBox();
+  private JComboBox fireSpreadModelCB = new JComboBox();
   private JCheckBox trackingSpeciesCB = new JCheckBox();
   private JCheckBox writeAccessFilesCB = new JCheckBox();
   //  Option to disable writing probability Arc Files. Currently, this information is not used in output processing.
@@ -209,6 +213,9 @@ public class SimParam extends JDialog {
     invasiveSpeciesLayout.setAlignment(FlowLayout.LEFT);
     invasiveSpeciesLayout.setHgap(10);
     invasiveSpeciesLayout.setVgap(1);
+    fireSpreadModelLayout.setAlignment(FlowLayout.LEFT);
+    fireSpreadModelLayout.setHgap(10);
+    fireSpreadModelLayout.setVgap(1);
     discardDataLayout.setAlignment(FlowLayout.LEFT);
     discardDataLayout.setVgap(0);
     rulesFileLayout.setAlignment(FlowLayout.LEFT);
@@ -244,6 +251,7 @@ public class SimParam extends JDialog {
     numSimPanel.setLayout(numSimLayout);
     numStepPanel.setLayout(numStepLayout);
     invasiveSpeciesPanel.setLayout(invasiveSpeciesLayout);
+    fireSpreadModelPanel.setLayout(fireSpreadModelLayout);
     discardDataPanel.setLayout(discardDataLayout);
     allStatesRulesFilePanel.setLayout(rulesFileLayout);
     timeStepsInMemoryPanel.setLayout(stepsInMemoryLayout);
@@ -443,6 +451,8 @@ public class SimParam extends JDialog {
     outputOptionsPanel.setBorder(outputBorder);
     invasiveSpeciesLabel.setFont(defaultFont);
     invasiveSpeciesLabel.setText("Invasive Species Logic");
+    fireSpreadModelLabel.setFont(defaultFont);
+    fireSpreadModelLabel.setText("Fire Spread Model");
     optionsOuterPanel.setBorder(optionsBorder);
     trackingSpeciesCB.setText(
       "Generate Tracking Species Report (needed if discarding data or multiple " +
@@ -471,6 +481,9 @@ public class SimParam extends JDialog {
     northPanel.add(invasiveSpeciesPanel);
     invasiveSpeciesPanel.add(invasiveSpeciesLabel);
     invasiveSpeciesPanel.add(invasiveSpeciesCB);
+    northPanel.add(fireSpreadModelPanel);
+    fireSpreadModelPanel.add(fireSpreadModelLabel,null);
+    fireSpreadModelPanel.add(fireSpreadModelCB,null);
     northPanel.add(optionsOuterPanel);
     optionsOuterPanel.add(optionsPanel);
     optionsPanel.add(yearlyStepPanel);
@@ -575,6 +588,10 @@ public class SimParam extends JDialog {
       invasiveSpeciesCB.addItem(kinds[i]);
     }
     invasiveSpeciesCB.setSelectedItem(Simulation.InvasiveKind.NONE);
+
+    fireSpreadModelCB.addItem("OpenSIMPPLLE");
+    fireSpreadModelCB.addItem("Keane Cell Percolation");
+    fireSpreadModelCB.setSelectedItem("OpenSIMPPLLE");
 
     boolean isWyoming =  (RegionalZone.isWyoming());
     yearlyStepCB.setEnabled(!isWyoming);
