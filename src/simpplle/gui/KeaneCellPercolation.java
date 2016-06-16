@@ -19,10 +19,6 @@ import java.text.NumberFormat;
  */
 public class KeaneCellPercolation extends JDialog {
 
-    private double extremeWindSpeedVariabilityFactor;
-    private double normalWindSpeedVariabilityFactor;
-    private double windDirectionVariability;
-
     private JPanel mainPanel   = new JPanel();
     private JPanel paramPanel  = new JPanel();
     private JPanel buttonPanel = new JPanel();
@@ -48,19 +44,6 @@ public class KeaneCellPercolation extends JDialog {
 
         initialize();
 
-    }
-
-    public void propertyChange(PropertyChangeEvent event) {
-
-        Object source = event.getSource();
-
-        if (source == windDirField) {
-
-            Double value = (Double)windDirField.getValue();
-
-            System.out.println("windDirField changed to " + value);
-
-        }
     }
 
     /**
@@ -100,21 +83,21 @@ public class KeaneCellPercolation extends JDialog {
      * @return The wind speed variability factor for extreme conditions
      */
     public double getExtremeWindSpeedVariabilityFactor() {
-        return extremeWindSpeedVariabilityFactor;
+        return extremeWindField.getValue();
     }
 
     /**
      * @return The wind speed variability factor for normal conditions
      */
     public double getNormalWindSpeedVariabilityFactor() {
-        return normalWindSpeedVariabilityFactor;
+        return normalWindField.getValue();
     }
 
     /**
      * @return The wind direction variability in degrees
      */
     public double getWindDirectionVariability() {
-        return windDirectionVariability;
+        return windDirField.getValue();
     }
 
     /**
@@ -129,11 +112,9 @@ public class KeaneCellPercolation extends JDialog {
     }
 
     /**
-     * Hides and disposes of the dialog after recording the parameters.
+     * Hides and disposes of the dialog.
      */
     private void selectOk() {
-
-        // TODO: Store the floating-point values in each field
 
         setVisible(false);
         dispose();
@@ -144,10 +125,6 @@ public class KeaneCellPercolation extends JDialog {
      * Hides and disposes of the dialog.
      */
     private void selectCancel() {
-
-        extremeWindSpeedVariabilityFactor = 0.0;
-        normalWindSpeedVariabilityFactor = 0.0;
-        windDirectionVariability   = 0.0;
 
         setVisible(false);
         dispose();
