@@ -165,7 +165,7 @@ public class SimpplleMain extends JFrame {
   JMenuItem menuSysKnowVegTreatDesired = new JMenuItem();
   JMenuItem menuUtilityGISFiles = new JMenuItem();
   JMenuItem menuSysKnowFireSeason = new JMenuItem();
-  JMenu menuSysKnowFireSpread = new JMenu("Fire Spread");
+  JMenu menuSysKnowFireSpread = new JMenu("Fire Spread Model");
   JMenuItem menuSysKnowCellPerc = new JMenuItem("Keane Cell Percolation");
   JMenuItem menuHelpUserGuide = new JMenuItem();
   JMenuItem MenuUtilityJavaHeap = new JMenuItem();
