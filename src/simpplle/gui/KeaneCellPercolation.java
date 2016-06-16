@@ -16,8 +16,8 @@ import java.awt.*;
  */
 public class KeaneCellPercolation extends JDialog {
 
-    private double extremeWindSpeedMultiplier;
-    private double normalWindSpeedMultiplier;
+    private double extremeWindSpeedVariabilityFactor;
+    private double normalWindSpeedVariabilityFactor;
     private double windDirectionVariability;
 
     private JPanel     mainPanel        = new JPanel();
@@ -25,8 +25,8 @@ public class KeaneCellPercolation extends JDialog {
     private JPanel     buttonPanel      = new JPanel();
     private JButton    okButton         = new JButton("Ok");
     private JButton    cancelButton     = new JButton("Cancel");
-    private JLabel     extremeWindLabel = new JLabel("Wind speed multiplier for extreme conditions");
-    private JLabel     normalWindLabel  = new JLabel("Wind speed multiplier for normal conditions");
+    private JLabel     extremeWindLabel = new JLabel("Wind speed variability factor for extreme conditions");
+    private JLabel     normalWindLabel  = new JLabel("Wind speed variability factor for normal conditions");
     private JLabel     windDirLabel     = new JLabel("Wind direction variability in degrees");
     private JTextField extremeWindField = new JTextField(6);
     private JTextField normalWindField  = new JTextField(6);
@@ -104,17 +104,17 @@ public class KeaneCellPercolation extends JDialog {
     }
 
     /**
-     * @return The wind speed multiplier for extreme conditions
+     * @return The wind speed variability factor for extreme conditions
      */
-    public double getExtremeWindSpeedMultiplier() {
-        return extremeWindSpeedMultiplier;
+    public double getExtremeWindSpeedVariabilityFactor() {
+        return extremeWindSpeedVariabilityFactor;
     }
 
     /**
-     * @return The wind speed multiplier for normal conditions
+     * @return The wind speed variability factor for normal conditions
      */
-    public double getNormalWindSpeedMultiplier() {
-        return normalWindSpeedMultiplier;
+    public double getNormalWindSpeedVariabilityFactor() {
+        return normalWindSpeedVariabilityFactor;
     }
 
     /**
@@ -129,7 +129,7 @@ public class KeaneCellPercolation extends JDialog {
      */
     private void initialize() {
 
-        extremeWindField.setText("45.0");
+        extremeWindField.setText("4.0");
         normalWindField.setText("0.5");
         windDirField.setText("45.0");
 
@@ -152,8 +152,8 @@ public class KeaneCellPercolation extends JDialog {
      */
     private void selectCancel() {
 
-        extremeWindSpeedMultiplier = 0.0;
-        normalWindSpeedMultiplier  = 0.0;
+        extremeWindSpeedVariabilityFactor = 0.0;
+        normalWindSpeedVariabilityFactor = 0.0;
         windDirectionVariability   = 0.0;
 
         setVisible(false);
