@@ -73,7 +73,6 @@ public class FireEvent extends Process {
 
   public FireEvent () {
     super();
-
     spreading = false;
     description = "Fire Event";
     yearlyProcess = false;
@@ -82,6 +81,7 @@ public class FireEvent extends Process {
   private static void markFireSeasonDataChanged() {
     SystemKnowledge.markChanged(SystemKnowledge.FIRE_SEASON);
   }
+
   /**
     *  Getter method for Extreme Fire Probability.
     */
@@ -99,6 +99,7 @@ public class FireEvent extends Process {
   }
 
   public static int getExtremeEventAcres() { return extremeEventAcres; }
+
   public static void setExtremeEventAcres(int acres) {
     if (extremeEventAcres == acres) { return; }
     extremeEventAcres = acres;
@@ -108,6 +109,7 @@ public class FireEvent extends Process {
   public static boolean hasExtremeDataChanged() {
     return extremeDataChanged;
   }
+
   /**
    * sets extreme data changed within Fire Event class, also marks the Extreme Fire Data System Knowledge changed for 
    */
@@ -137,6 +139,7 @@ public class FireEvent extends Process {
     fireSeasonData[Climate.Season.WINTER.ordinal()]   = winter;
     markFireSeasonDataChanged();
   }
+
 /**
  * gets fire season data according to 
  * @param kind this is a season, not system knowledge kind - spring, summer, fall, winter
@@ -155,6 +158,7 @@ public class FireEvent extends Process {
  * @param fin the buffered reader
  * @throws SimpplleError catches parseerror, IOException, and Exception for invalid number of items, read problems, or missing data respectively.  SimpplleError will be caught in gui, 
  */
+
   public static void readFireSeasonData(BufferedReader fin) throws SimpplleError {
     String              line;
     StringTokenizerPlus strTok;
@@ -197,6 +201,7 @@ public class FireEvent extends Process {
       throw new SimpplleError("Invalid or missing data in Fire Season Data File.");
     }
   }
+
 /**
  * Saves fire season data in CSF for use in excel.  Saves the fires season data for each of the seasons based indexed by their enum ordinal.  
  * Spring =0, summer = 1, fall = 2, winter = 3
@@ -273,6 +278,7 @@ public class FireEvent extends Process {
       return false;
     }
   }
+
 /**
  * calculates which fire season 
  * @return season  - spring, summer, fall, or winter
@@ -294,6 +300,7 @@ public class FireEvent extends Process {
     else if ((fall > 0) && (randNum <= fallEnd)) { return Climate.Season.FALL; }
     else { return Climate.Season.WINTER; }
   }
+
 /**
  * outputs "FIRE-EVENT"
  */
@@ -301,7 +308,7 @@ public class FireEvent extends Process {
     return printName;
   }
 /**
- * does fire spread calculation based on regional zone, process choosen, and two evu's - the originator and destination evu's 
+ * does fire spread calculation based on regional zone, process chosen, and two Evus - the originator and destination Evus
  * @param zone
  * @param p 
  * @param fromEvu the evu where fire is coming from  
@@ -319,7 +326,7 @@ public class FireEvent extends Process {
     return (fireType != null);
   }
 /**
- * gets the fire resistence based on zone, evu, and lifeform then gets type of fire based on resistence, evu, and lifeform
+ * gets the fire resistance based on zone, evu, and lifeform then gets type of fire based on resistance, evu, and lifeform
  * if firetype is null has default fire types based on wyoming region = SRF or all others LSF
  * @param zone
  * @param evu
@@ -341,7 +348,8 @@ public class FireEvent extends Process {
   }
 
 /**
- * finds current state, vegetative type, lifeform, and time step of evu then returns suppresion boolean based on these, 
+ * finds current state, vegetative type, lifeform, and time step of evu then
+ * returns suppression boolean based on these
  * @param zone regionalzone being evaluated
  * @param evu ecological vegetative unit being evaluated 
  * @return true if do suppression
@@ -370,6 +378,7 @@ public class FireEvent extends Process {
     }
     return suppress;
   }
+
 /**
  * calculates if a weather event can suppress fire
  * @param zone
@@ -402,6 +411,7 @@ public class FireEvent extends Process {
       return true;
     }
   }
+
 /**
  * calculates if a weather event will end spread based on fire suppression weather data
  * @param zone regional zone
@@ -416,6 +426,7 @@ public class FireEvent extends Process {
 
     return (randNum < prob);
   }
+
 /**
  * method to calculate if regeneration state based on zone and evu
  * @param zone regional zone to be evaluated
@@ -445,6 +456,7 @@ public class FireEvent extends Process {
     else { return true; }
 
   }
+
   /**
    *  
    * @param evu
@@ -1208,7 +1220,7 @@ public class FireEvent extends Process {
     }
   }
 /**
- * fire resistence for species in the specific region of SierraNevada.  this does not use the habitat group type as the common method did.  goes solely off species
+ * fire resistance for species in the specific region of SierraNevada.  this does not use the habitat group type as the common method did.  goes solely off species
  * <p> note species is from an list data structure requiring a cast to a Species object
  * @param zone
  * @param evu
@@ -1248,7 +1260,7 @@ public class FireEvent extends Process {
   }
 /**
  * 
- * fire resistence for species in the specific region of Southern California.  this does not use the habitat group type as the common method did.  goes solely off species
+ * fire resistance for species in the specific region of Southern California.  this does not use the habitat group type as the common method did.  goes solely off species
  * <p> note species is from an list data structure requiring a cast to a Species object
 
  * @param zone

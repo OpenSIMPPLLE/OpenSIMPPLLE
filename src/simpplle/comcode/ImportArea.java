@@ -2169,9 +2169,8 @@ public class ImportArea {
 
   private Area importSpatialRelations(File filename) throws SimpplleError {
     PrintWriter    log=null;
-    BufferedReader fin=null;
+    BufferedReader fin;
     Area           newArea = new Area(Area.USER);
-    boolean        attributesAdded = false;
     File           prefix = Utility.stripExtension(filename);
     File           logFile = Utility.makeUniqueLogFile(prefix,"");
     boolean        success = false;
@@ -2183,16 +2182,14 @@ public class ImportArea {
       String line = fin.readLine();
 
       while (line != null) {
+        // skip blank lines
         while (line != null && line.trim().length() == 0) {
           line = fin.readLine();
-        }
-        if (line == null) {
-          throw new SimpplleError("File is empty");
         }
 
         StringTokenizer strTok = new StringTokenizer(line.trim());
         String str = strTok.nextToken();
-        if (str == null || str.equalsIgnoreCase("BEGIN") == false) {
+        if (str == null || !str.equalsIgnoreCase("BEGIN")) {
           throw new SimpplleError(
               "Invalid Spatial Relationships file: missing BEGIN in line:" +
               line);
@@ -2245,7 +2242,7 @@ public class ImportArea {
 
 
         line = fin.readLine();
-        while (line != null && line.trim().toUpperCase().startsWith("BEGIN") == false) {
+        while (line != null && !line.trim().toUpperCase().startsWith("BEGIN")) {
           line = fin.readLine();
         }
       }
