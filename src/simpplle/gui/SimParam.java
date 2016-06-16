@@ -589,9 +589,9 @@ public class SimParam extends JDialog {
     }
     invasiveSpeciesCB.setSelectedItem(Simulation.InvasiveKind.NONE);
 
-    fireSpreadModelCB.addItem("OpenSIMPPLLE");
+    fireSpreadModelCB.addItem("SIMPPLLE");
     fireSpreadModelCB.addItem("Keane Cell Percolation");
-    fireSpreadModelCB.setSelectedItem("OpenSIMPPLLE");
+    fireSpreadModelCB.setSelectedItem("SIMPPLLE");
 
     boolean isWyoming =  (RegionalZone.isWyoming());
     yearlyStepCB.setEnabled(!isWyoming);
