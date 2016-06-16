@@ -2,9 +2,6 @@ package simpplle.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.text.NumberFormat;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained
@@ -17,6 +14,7 @@ import java.text.NumberFormat;
  * Keane, 2006. These parameters are used during simulation when the fire spread model is set to 'Keane'. Details about
  * the algorithm are published in RMRS-GTR-171CD.
  */
+
 public class KeaneCellPercolation extends JDialog {
 
     private JPanel mainPanel   = new JPanel();
@@ -29,7 +27,6 @@ public class KeaneCellPercolation extends JDialog {
     private LabeledDoubleField extremeWindField = new LabeledDoubleField("Wind speed variability factor for extreme conditions");
     private LabeledDoubleField normalWindField  = new LabeledDoubleField("Wind speed variability factor for normal conditions");
     private LabeledDoubleField windDirField     = new LabeledDoubleField("Wind direction variability in degrees");
-
 
     public KeaneCellPercolation(Frame frame) {
 
@@ -80,27 +77,6 @@ public class KeaneCellPercolation extends JDialog {
     }
 
     /**
-     * @return The wind speed variability factor for extreme conditions
-     */
-    public double getExtremeWindSpeedVariabilityFactor() {
-        return extremeWindField.getValue();
-    }
-
-    /**
-     * @return The wind speed variability factor for normal conditions
-     */
-    public double getNormalWindSpeedVariabilityFactor() {
-        return normalWindField.getValue();
-    }
-
-    /**
-     * @return The wind direction variability in degrees
-     */
-    public double getWindDirectionVariability() {
-        return windDirField.getValue();
-    }
-
-    /**
      * Sets initial values in the dialog.
      */
     private void initialize() {
@@ -130,4 +106,26 @@ public class KeaneCellPercolation extends JDialog {
         dispose();
 
     }
+
+    /**
+     * @return The wind speed variability factor for extreme conditions
+     */
+    public double getExtremeWindSpeedVariabilityFactor() {
+        return extremeWindField.getValue();
+    }
+
+    /**
+     * @return The wind speed variability factor for normal conditions
+     */
+    public double getNormalWindSpeedVariabilityFactor() {
+        return normalWindField.getValue();
+    }
+
+    /**
+     * @return The wind direction variability in degrees
+     */
+    public double getWindDirectionVariability() {
+        return windDirField.getValue();
+    }
+
 }

@@ -2,6 +2,8 @@ package simpplle.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.text.NumberFormat;
 
 /**
@@ -13,6 +15,7 @@ import java.text.NumberFormat;
  *
  * <p> LabeledDoubleField is a labeled text field that enforces entry of floating-point values.
  */
+
 public class LabeledDoubleField extends JPanel {
 
     private JFormattedTextField field;
@@ -42,6 +45,17 @@ public class LabeledDoubleField extends JPanel {
         field.setColumns(6);
         field.setValue(initialValue);
         field.setHorizontalAlignment(SwingConstants.RIGHT);
+        field.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        field.selectAll();
+                    }
+                });
+            }
+        });
 
         label = new Label(text);
 
