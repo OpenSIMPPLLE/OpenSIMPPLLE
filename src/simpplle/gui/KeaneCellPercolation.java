@@ -2,6 +2,9 @@ package simpplle.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.NumberFormat;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained
@@ -20,17 +23,16 @@ public class KeaneCellPercolation extends JDialog {
     private double normalWindSpeedVariabilityFactor;
     private double windDirectionVariability;
 
-    private JPanel     mainPanel        = new JPanel();
-    private JPanel     paramPanel       = new JPanel();
-    private JPanel     buttonPanel      = new JPanel();
-    private JButton    okButton         = new JButton("Ok");
-    private JButton    cancelButton     = new JButton("Cancel");
-    private JLabel     extremeWindLabel = new JLabel("Wind speed variability factor for extreme conditions");
-    private JLabel     normalWindLabel  = new JLabel("Wind speed variability factor for normal conditions");
-    private JLabel     windDirLabel     = new JLabel("Wind direction variability in degrees");
-    private JTextField extremeWindField = new JTextField(6);
-    private JTextField normalWindField  = new JTextField(6);
-    private JTextField windDirField     = new JTextField(6);
+    private JPanel mainPanel   = new JPanel();
+    private JPanel paramPanel  = new JPanel();
+    private JPanel buttonPanel = new JPanel();
+
+    private JButton okButton     = new JButton("Ok");
+    private JButton cancelButton = new JButton("Cancel");
+
+    private LabeledDoubleField extremeWindField = new LabeledDoubleField("Wind speed variability factor for extreme conditions");
+    private LabeledDoubleField normalWindField  = new LabeledDoubleField("Wind speed variability factor for normal conditions");
+    private LabeledDoubleField windDirField     = new LabeledDoubleField("Wind direction variability in degrees");
 
 
     public KeaneCellPercolation(Frame frame) {
@@ -48,38 +50,29 @@ public class KeaneCellPercolation extends JDialog {
 
     }
 
+    public void propertyChange(PropertyChangeEvent event) {
+
+        Object source = event.getSource();
+
+        if (source == windDirField) {
+
+            Double value = (Double)windDirField.getValue();
+
+            System.out.println("windDirField changed to " + value);
+
+        }
+    }
+
     /**
      * Configures components in the dialog.
      * @throws Exception
      */
     private void jbInit() throws Exception {
 
-        // TODO: Add a DoubleTextField class that enforces floating-point input
-
-        // TODO: Add a LabeledDoubleTextField class that adds a label next to the field (OpenSIMPPLLE's expects integers..)
-
-        extremeWindField.setHorizontalAlignment(SwingConstants.RIGHT);
-
-        normalWindField.setHorizontalAlignment(SwingConstants.RIGHT);
-
-        windDirField.setHorizontalAlignment(SwingConstants.RIGHT);
-
-        JPanel row1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        row1.add(extremeWindField);
-        row1.add(extremeWindLabel);
-
-        JPanel row2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        row2.add(normalWindField);
-        row2.add(normalWindLabel);
-
-        JPanel row3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        row3.add(windDirField);
-        row3.add(windDirLabel);
-
         paramPanel.setLayout(new BoxLayout(paramPanel,BoxLayout.Y_AXIS));
-        paramPanel.add(row1);
-        paramPanel.add(row2);
-        paramPanel.add(row3);
+        paramPanel.add(extremeWindField);
+        paramPanel.add(normalWindField);
+        paramPanel.add(windDirField);
 
         okButton.setMinimumSize(new Dimension(73, 27));
         okButton.setMaximumSize(new Dimension(73, 27));
@@ -129,9 +122,9 @@ public class KeaneCellPercolation extends JDialog {
      */
     private void initialize() {
 
-        extremeWindField.setText("5.0");
-        normalWindField.setText("0.5");
-        windDirField.setText("45.0");
+        extremeWindField.setValue(5.0);
+        normalWindField.setValue(0.5);
+        windDirField.setValue(45.0);
 
     }
 
