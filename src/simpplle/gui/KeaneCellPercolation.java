@@ -129,7 +129,7 @@ public class KeaneCellPercolation extends JDialog {
      */
     private void initialize() {
 
-        extremeWindField.setText("4.0");
+        extremeWindField.setText("5.0");
         normalWindField.setText("0.5");
         windDirField.setText("45.0");
 
