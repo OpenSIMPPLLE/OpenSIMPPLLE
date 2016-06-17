@@ -231,32 +231,25 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   public void doSpread() {
-    Node           spreadingNode;
-    AdjacentData[] adjData;
-    Evu            fromUnit, toUnit;
-    RegionalZone   zone = Simpplle.getCurrentZone();
-    int            newLine, sideLength;
-    int            prodRate;
-//    boolean        firstProduction=true;
+
+    //boolean firstProduction=true;
 
     tmpToUnits.clear();
 
-    boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
-    double  spreadTime, responseTime, suppTime=0.0;
-    boolean fireSuppression = Simpplle.getCurrentSimulation().fireSuppression();
-
-    responseTime = Fmz.getResponseTime(root.data.getUnit());
-    sideLength   = root.data.getUnit().getSideLength();
+    double suppTime = 0.0;
+    double responseTime = Fmz.getResponseTime(root.data.getUnit());
+    int sideLength = root.data.getUnit().getSideLength();
 
 //    if (getProcess().equals(ProcessType.STAND_REPLACING_FIRE)) {
+
     if (!isExtremeSet) {
       isExtreme = FireEvent.isExtremeSpread();
       isExtremeSet = true;
     }
+
     if (!isFireSeasonSet && getProcess().isFireProcess()) {
       fireSeason = FireEvent.getFireSeason();
       isFireSeasonSet = true;
-      
     }
     
     if (!eventFireSuppRandomDrawn) {
@@ -272,9 +265,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 //    if (!fireSuppressed) {
 //      fireSuppression = false;
 //    }
-    fireSuppression = (Simulation.getInstance().fireSuppression()) ? fireSuppressed : false; 
-    
+
 //    while (spreadQueue.size() > 0) {
+
     if (spreadQueue.size() == 0) {
       finished = true;
       eventStopReason = EventStop.OTHER;
@@ -308,8 +301,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       weatherProb = Simulation.getInstance().random();
       weatherProbAcresRangeNumber = rangeNum;      
     }
-      
-      
+
+    RegionalZone zone = Simpplle.getCurrentZone();
       
       if (FireEvent.doSpreadEndingWeather(zone,getEventAcres(),getFireSeason(),weatherProb)) {
         finished = true;
@@ -334,22 +327,24 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         isExtreme = true;
       }
 
-      spreadingNode = (Node) spreadQueue.removeFirst();
+      Node spreadingNode = (Node) spreadQueue.removeFirst();
 
-      fromUnit = spreadingNode.data.getUnit();
+      Evu fromUnit = spreadingNode.data.getUnit();
       Area.currentLifeform = fromUnit.getDominantLifeform();
 
       fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(fromUnit,eventFireSuppRandomNumber);
-      fireSuppression = (Simulation.getInstance().fireSuppression()) ? fireSuppressed : false; 
+      boolean fireSuppression = (Simulation.getInstance().fireSuppression()) ? fireSuppressed : false;
 
       int ts = Simulation.getCurrentTimeStep();
-      
+
+    boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
+
       if (hasUniformPolygons && fireSuppression) {
         VegSimStateData state    = fromUnit.getState();
         VegetativeType  vegType  = state.getVeg();
         Lifeform        lifeform = state.getLifeform();
 
-        spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,fromUnit,ts,lifeform);
+        double spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,fromUnit,ts,lifeform);
         hoursBurning += spreadTime;
 
         if (hoursBurning > responseTime) {
@@ -371,8 +366,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
             spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,theUnit,ts,lifeform);
             suppTime += spreadTime;
 
-            prodRate = FireSuppProductionRateLogic.getInstance().getRate(eventAcres,vegType,theUnit,ts,lifeform);
-            newLine = (int) Math.round( (double) prodRate * suppTime);
+            int prodRate = FireSuppProductionRateLogic.getInstance().getRate(eventAcres,vegType,theUnit,ts,lifeform);
+            int newLine = (int) Math.round( (double) prodRate * suppTime);
             totalLineProduced += newLine;
             
             int firePerimeter = calculateApproxPerimeter();
@@ -432,10 +427,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       //      This apparently is result of isSuppressed returning false when should be true.
       //      cannot get error to repeat after numerous attempts.
       if (!fromUnit.isSuppressed() &&  fromUnit.getDominantLifeformFire() != null ) {
-        adjData = fromUnit.getAdjacentData();
+        AdjacentData[] adjData = fromUnit.getAdjacentData();
         if (adjData != null) {
           for (int i = 0; i < adjData.length; i++) {
-            toUnit = adjData[i].evu;
+            Evu toUnit = adjData[i].evu;
             if (lineSuppUnits.contains(toUnit.getId())) {
               continue;
             }
