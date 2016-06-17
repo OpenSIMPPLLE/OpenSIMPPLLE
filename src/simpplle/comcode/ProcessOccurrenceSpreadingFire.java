@@ -47,7 +47,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   
   public enum EventStop { OTHER, WEATHER, LINE}
   
-  protected EventStop eventStopReason=EventStop.OTHER;
+  protected EventStop eventStopReason = EventStop.OTHER;
   
   protected ArrayList<Integer> lineSuppUnits = new ArrayList<Integer>();
 
@@ -56,14 +56,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 //    lineProductionNode = null;
 //    super.destoryMe();
 //  }
-  /**
-   * 
-   */
+
   public ProcessOccurrenceSpreadingFire() {
     super();
   }
-  public ProcessOccurrenceSpreadingFire(Evu evu, Lifeform lifeform,
-                                        ProcessProbability processData, int timeStep) {
+
+  public ProcessOccurrenceSpreadingFire(Evu evu, Lifeform lifeform, ProcessProbability processData, int timeStep) {
     super(evu,lifeform,processData,timeStep);
   }
 
@@ -71,54 +69,67 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     return eventStopReason.toString();
   }
   
-  public boolean isExtremeEvent() { return isExtreme; }
+  public boolean isExtremeEvent() {
+    return isExtreme;
+  }
 
-  public Climate.Season getFireSeason() { return fireSeason; }
-  public boolean isSuppressed() { return fireSuppressed; }
+  public Climate.Season getFireSeason() {
+    return fireSeason;
+  }
+
+  public boolean isSuppressed() {
+    return fireSuppressed;
+  }
 
   @SuppressWarnings("unchecked")
   protected int calculatePerimeter() {
-    int result = 0;
-    if (root == null) { return 0;  }
 
-    LinkedList queue= new LinkedList();
+    int result = 0;
+
+    if (root == null) return 0;
+
+    LinkedList queue = new LinkedList();
     queue.add(root);
 
-    Node           node;
+    Node node;
     AdjacentData[] adjData;
+
     while (queue.size() > 0) {
+
       node = (Node)queue.removeFirst();
 //      if (node.data.getProcessProbability() == Evu.SUPP) { continue; }
-      if (node.data.getUnit().isSuppressed()) { continue; }
-      adjData  = node.data.getUnit().getAdjacentData();
+      if (node.data.getUnit().isSuppressed()) continue;
+
+      adjData = node.data.getUnit().getAdjacentData();
+
       for (int i=0; i<adjData.length; i++) {
+
         VegSimStateData adjState = adjData[i].evu.getState();
-        if (adjState == null || adjState.getProcess().isFireProcess()) {
-          continue;
-        }
+        if (adjState == null || adjState.getProcess().isFireProcess()) continue;
+
         result += adjData[i].evu.getSideLength();
+
       }
 
-      if (node.toNodes == null) { continue; }
+      if (node.toNodes == null) continue;
+
       for (int i=0; i<node.toNodes.length; i++) {
         queue.add(node.toNodes[i]);
       }
     }
 
     return result;
+
   }
   
-  public int getLineProduced() { return totalLineProduced; }
-  /**
-   * 
-   * @return
-   */
+  public int getLineProduced() {
+    return totalLineProduced;
+  }
+
   public int calculateApproxPerimeter() {
     float fEventAcres = Area.getFloatAcres(eventAcres);
-    int   eventSideLength = (int)Math.round(Math.sqrt(fEventAcres*43560));
-    
-    int eventPerimeter = eventSideLength * 4;
-    return eventPerimeter;
+    int eventSideLength = (int)Math.round(Math.sqrt(fEventAcres*43560));
+    return eventSideLength * 4;
   }
 
   /**
@@ -130,9 +141,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @return
    */
   private boolean hasNonBurningNeighbors(Evu unit) {
-    AdjacentData[] adjData;
-    
-    adjData = unit.getAdjacentData();
+
+    AdjacentData[] adjData = unit.getAdjacentData();
+
     if (adjData != null) {
       for (int i = 0; i < adjData.length; i++) {
         if (!adjData[i].evu.hasFireAnyLifeform()) {
@@ -142,27 +153,33 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
     
     return false;
-  }
-  
-  private Evu getNonBurningLowestNeighbor(Evu unit) {
-    int lowestElevation = 1000000;
-    int unitElevation = 0;
-    Evu lowestUnit = null;
-    AdjacentData[] adjData;
-    
-    adjData = unit.getAdjacentData();
-    if (adjData != null) {
-      for (int i = 0; i < adjData.length; i++) {
-        unitElevation = adjData[i].evu.getElevation();
 
-        if (!adjData[i].evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
+  }
+
+  /**
+   * Returns the lowest non-burning neighbor of the provided EVU.
+   * @param unit An EVU with adjacent units
+   * @return The lowest non-burning EVU
+   */
+  private Evu getNonBurningLowestNeighbor(Evu unit) {
+
+    int lowestElevation = Integer.MAX_VALUE;
+    Evu lowestUnit = null;
+
+    AdjacentData[] adjDataArray = unit.getAdjacentData();
+
+    if (adjDataArray != null) {
+      for (AdjacentData adjData : adjDataArray) {
+        int unitElevation = adjData.evu.getElevation();
+        if (!adjData.evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
           lowestElevation = unitElevation;
-          lowestUnit = adjData[i].evu;
+          lowestUnit = adjData.evu;
         }
       }
     }
     
     return lowestUnit;
+
   }
 
   /**
@@ -175,10 +192,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   protected Node findLowestElevationNonSrfNonSuppNode() {
+
     FireSuppBeyondClassALogic logicInst = FireSuppBeyondClassALogic.getInstance();
+
     int ts = Simulation.getCurrentTimeStep();
 
-    if (root == null) { return null;  }
+    if (root == null) return null;
+
     LinkedList queue= new LinkedList();
 
     int lowestElevation = 1000000;
@@ -201,8 +221,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
           nonBurningNeighbors &&
           (node.data.getProcess().equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
           (node.data.getUnit().isSuppressed() == false)) {
+
         lowestNode = node;
         lowestElevation = nodeElevation;
+
       }
 
       if (node.toNodes == null) { continue; }
@@ -212,8 +234,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
 
     return lowestNode;
-  }
 
+  }
 
   /**
    * 23 August 2004.
@@ -231,32 +253,25 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   public void doSpread() {
-    Node           spreadingNode;
-    AdjacentData[] adjData;
-    Evu            fromUnit, toUnit;
-    RegionalZone   zone = Simpplle.getCurrentZone();
-    int            newLine, sideLength;
-    int            prodRate;
-//    boolean        firstProduction=true;
+
+    //boolean firstProduction=true;
 
     tmpToUnits.clear();
 
-    boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
-    double  spreadTime, responseTime, suppTime=0.0;
-    boolean fireSuppression = Simpplle.getCurrentSimulation().fireSuppression();
+    double suppTime = 0.0;
+    double responseTime = Fmz.getResponseTime(root.data.getUnit());
+    int sideLength = root.data.getUnit().getSideLength();
 
-    responseTime = Fmz.getResponseTime(root.data.getUnit());
-    sideLength   = root.data.getUnit().getSideLength();
+    //if (getProcess().equals(ProcessType.STAND_REPLACING_FIRE)) {
 
-//    if (getProcess().equals(ProcessType.STAND_REPLACING_FIRE)) {
     if (!isExtremeSet) {
       isExtreme = FireEvent.isExtremeSpread();
       isExtremeSet = true;
     }
+
     if (!isFireSeasonSet && getProcess().isFireProcess()) {
       fireSeason = FireEvent.getFireSeason();
       isFireSeasonSet = true;
-      
     }
     
     if (!eventFireSuppRandomDrawn) {
@@ -269,193 +284,228 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(originEvu,eventFireSuppRandomNumber);
     }
     
-//    if (!fireSuppressed) {
-//      fireSuppression = false;
-//    }
-    fireSuppression = (Simulation.getInstance().fireSuppression()) ? fireSuppressed : false; 
-    
-//    while (spreadQueue.size() > 0) {
+    //if (!fireSuppressed) {
+    //  fireSuppression = false;
+    //}
+
+    //while (spreadQueue.size() > 0) {
+
     if (spreadQueue.size() == 0) {
+
       finished = true;
       eventStopReason = EventStop.OTHER;
 
       if (Simulation.getInstance().isDoSimLoggingFile()) {
+
         PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
         int originUnitId = root.data.getUnit().getId();
         int firePerimeter = calculateApproxPerimeter();
 
         logOut.printf("Time: %d, Origin Unit: %d, Nowhere left to Spread, Line Produced: %d, Event Perimeter: %d %n",
             Simulation.getCurrentTimeStep(),originUnitId,totalLineProduced,firePerimeter);
+
       }
+
       return;
+
     }
 
     // Originally prob set just once, then changed to every call of this method.
     // Now modified to get new prob every time event acres changes to new acres
     // range.
-//    if (!isWeatherProbSet) {
-//      weatherProb = Simulation.getInstance().random();
-//      isWeatherProbSet = true;
-//    }
+    //if (!isWeatherProbSet) {
+    //  weatherProb = Simulation.getInstance().random();
+    //  isWeatherProbSet = true;
+    //}
       
     int rangeNum = FireSuppWeatherData.getAcresRangeNumber(getEventAcres());
+
     if (!isWeatherProbSet) {
+
       weatherProb = Simulation.getInstance().random();
       isWeatherProbSet = true;
       weatherProbAcresRangeNumber = rangeNum;
-    }
-    else if (rangeNum != weatherProbAcresRangeNumber) {
+
+    } else if (rangeNum != weatherProbAcresRangeNumber) {
+
       weatherProb = Simulation.getInstance().random();
-      weatherProbAcresRangeNumber = rangeNum;      
+      weatherProbAcresRangeNumber = rangeNum;
+
     }
-      
-      
-      
-      if (FireEvent.doSpreadEndingWeather(zone,getEventAcres(),getFireSeason(),weatherProb)) {
-        finished = true;
-        eventStopReason = EventStop.WEATHER;
 
-        if (Simulation.getInstance().isDoSimLoggingFile()) {
-          PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-          int ts = Simulation.getCurrentTimeStep();
-          int originUnitId = root.data.getUnit().getId();
+    RegionalZone zone = Simpplle.getCurrentZone();
+      
+    if (FireEvent.doSpreadEndingWeather(zone,getEventAcres(),getFireSeason(),weatherProb)) {
 
-          logOut.printf("Time: %d, Origin Unit of event where weather ended fire: %d%n",ts, originUnitId);
+      finished = true;
+      eventStopReason = EventStop.WEATHER;
+
+      if (Simulation.getInstance().isDoSimLoggingFile()) {
+
+        PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
+
+        int ts = Simulation.getCurrentTimeStep();
+        int originUnitId = root.data.getUnit().getId();
+
+        logOut.printf("Time: %d, Origin Unit of event where weather ended fire: %d%n",ts, originUnitId);
+
+        int firePerimeter = calculateApproxPerimeter();
+
+        logOut.printf("Time: %d, Origin Unit: %d, Weather Ending, Line Produced: %d, Event Perimeter: %d %n",
+                      ts,originUnitId,totalLineProduced,firePerimeter);
+      }
+
+      return;
+
+    }
+
+    if (Area.getFloatAcres(eventAcres) > FireEvent.getExtremeEventAcres()) {
+      isExtreme = true;
+    }
+
+    Node spreadingNode = (Node) spreadQueue.removeFirst();
+    Evu fromUnit = spreadingNode.data.getUnit();
+    Area.currentLifeform = fromUnit.getDominantLifeform();
+
+    fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(fromUnit,eventFireSuppRandomNumber);
+
+    boolean fireSuppression = (Simulation.getInstance().fireSuppression()) ? fireSuppressed : false;
+    boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
+
+    int ts = Simulation.getCurrentTimeStep();
+
+    if (hasUniformPolygons && fireSuppression) {
+
+      VegSimStateData state = fromUnit.getState();
+      VegetativeType vegType = state.getVeg();
+      Lifeform lifeform = state.getLifeform();
+
+      double spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,fromUnit,ts,lifeform);
+      hoursBurning += spreadTime;
+
+      if (hoursBurning > responseTime) {
+
+//        suppTime += ( (firstProduction) ? (hoursBurning - responseTime) : spreadTime);
+//        firstProduction=false;
+
+        do {
+
+          lineProductionNode = findLowestElevationNonSrfNonSuppNode();
+          Evu theUnit = lineProductionNode.data.getUnit();
+          if (theUnit.isSuppressed()) break;
+
+          state    = theUnit.getState(theUnit.getDominantLifeform());
+          vegType  = state.getVeg();
+          lifeform = state.getLifeform();
+
+          spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,theUnit,ts,lifeform);
+          suppTime += spreadTime;
+
+          int prodRate = FireSuppProductionRateLogic.getInstance().getRate(eventAcres,vegType,theUnit,ts,lifeform);
+          int newLine = (int) Math.round( (double) prodRate * suppTime);
+          totalLineProduced += newLine;
 
           int firePerimeter = calculateApproxPerimeter();
 
-          logOut.printf("Time: %d, Origin Unit: %d, Weather Ending, Line Produced: %d, Event Perimeter: %d %n",
-                        ts,originUnitId,totalLineProduced,firePerimeter);
-        }
-        return;
-      }
+          if (totalLineProduced > firePerimeter) {
 
-      if (Area.getFloatAcres(eventAcres) > FireEvent.getExtremeEventAcres()) {
-        isExtreme = true;
-      }
+            finished = true;
+            eventStopReason = EventStop.LINE;
 
-      spreadingNode = (Node) spreadQueue.removeFirst();
+            if (Simulation.getInstance().isDoSimLoggingFile()) {
 
-      fromUnit = spreadingNode.data.getUnit();
-      Area.currentLifeform = fromUnit.getDominantLifeform();
+              PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
 
-      fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(fromUnit,eventFireSuppRandomNumber);
-      fireSuppression = (Simulation.getInstance().fireSuppression()) ? fireSuppressed : false; 
+              int originUnitId = root.data.getUnit().getId();
 
-      int ts = Simulation.getCurrentTimeStep();
-      
-      if (hasUniformPolygons && fireSuppression) {
-        VegSimStateData state    = fromUnit.getState();
-        VegetativeType  vegType  = state.getVeg();
-        Lifeform        lifeform = state.getLifeform();
+              logOut.printf("Time: %d, Origin Unit: %d Event stopped due to line production exceeding perimeter size %n",
+                  Simulation.getCurrentTimeStep(),originUnitId);
 
-        spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,fromUnit,ts,lifeform);
-        hoursBurning += spreadTime;
+              logOut.printf("Time: %d, Origin Unit: %d, Line Produced: %d, Event Perimeter: %d %n",
+                            ts,originUnitId,totalLineProduced,firePerimeter);
 
-        if (hoursBurning > responseTime) {
-//          suppTime += ( (firstProduction) ? (hoursBurning - responseTime) : spreadTime);
-//          firstProduction=false;
-          
-          do {
-            lineProductionNode = findLowestElevationNonSrfNonSuppNode();
-            Evu theUnit = lineProductionNode.data.getUnit();
-            if (theUnit.isSuppressed()) {
-              break;
             }
 
+            return;
 
-            state    = theUnit.getState(theUnit.getDominantLifeform());
-            vegType  = state.getVeg();
-            lifeform = state.getLifeform();
+          }
 
-            spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,theUnit,ts,lifeform);
-            suppTime += spreadTime;
+          double pctLine = (double)newLine / (double)sideLength;
 
-            prodRate = FireSuppProductionRateLogic.getInstance().getRate(eventAcres,vegType,theUnit,ts,lifeform);
-            newLine = (int) Math.round( (double) prodRate * suppTime);
-            totalLineProduced += newLine;
-            
-            int firePerimeter = calculateApproxPerimeter();
+          if (newLine >= sideLength) {
 
-            if (totalLineProduced > firePerimeter) {
-              finished=true;
-              eventStopReason = EventStop.LINE;
+            theUnit = lineProductionNode.data.getUnit();
+            theUnit.suppressFire(false);
+
+            if (Simulation.getInstance().isDoSimLoggingFile()) {
+              PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
+              logOut.printf("Time: %d, Origin Unit %d further spread from Unit %d suppressed due to line production: %n",
+                  Simulation.getCurrentTimeStep(), root.data.getUnit().getId(), theUnit.getId());
+            }
+
+            double extraLine = newLine - sideLength;
+            double fProdRate = (double)prodRate;
+
+            suppTime = -(extraLine / fProdRate);
+
+          } else if (pctLine > 0.5) {
+            Evu lowAdj = getNonBurningLowestNeighbor(fromUnit);
+            if (lowAdj != null && !lineSuppUnits.contains(lowAdj.getId())) {
+              lineSuppUnits.add(lowAdj.getId());
 
               if (Simulation.getInstance().isDoSimLoggingFile()) {
                 PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-                int originUnitId = root.data.getUnit().getId();
-
-                logOut.printf("Time: %d, Origin Unit: %d Event stopped due to line production exceeding perimeter size %n",
-                    Simulation.getCurrentTimeStep(),originUnitId);
-
-                logOut.printf("Time: %d, Origin Unit: %d, Line Produced: %d, Event Perimeter: %d %n",
-                              ts,originUnitId,totalLineProduced,firePerimeter);
-              }
-              return;
-            }
-            
-            double pctLine = (double)newLine / (double)sideLength;
-            
-            if (newLine >= sideLength) {
-              theUnit = lineProductionNode.data.getUnit();
-              theUnit.suppressFire(false);
-              
-              if (Simulation.getInstance().isDoSimLoggingFile()) {
-                PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-                logOut.printf("Time: %d, Origin Unit %d further spread from Unit %d suppressed due to line production: %n",
-                    Simulation.getCurrentTimeStep(), root.data.getUnit().getId(), theUnit.getId());
-              }
-              double extraLine = newLine - sideLength;
-              double fProdRate = (double)prodRate;
-              suppTime = -(extraLine / fProdRate);
-            }
-            else if (pctLine > 0.5) {
-              Evu lowAdj = getNonBurningLowestNeighbor(fromUnit);
-              if (lowAdj != null && !lineSuppUnits.contains(lowAdj.getId())) {
-                lineSuppUnits.add(lowAdj.getId());
-
-                if (Simulation.getInstance().isDoSimLoggingFile()) {
-                  PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-                  logOut.printf("Time: %d, Origin Unit %d spread into Unit %d suppressed due to line production: %n",
-                      Simulation.getCurrentTimeStep(), root.data.getUnit().getId(), lowAdj.getId());
-                }
+                logOut.printf("Time: %d, Origin Unit %d spread into Unit %d suppressed due to line production: %n",
+                    Simulation.getCurrentTimeStep(), root.data.getUnit().getId(), lowAdj.getId());
               }
             }
-            else { break; }
+          } else {
+            break;
           }
-          while (true);
-        }
+        } while (true);
       }
+    }
 
-      FireEvent.currentEvent = this;
-      // TODO Getting a null pointer exception when getDominantLifeformFire returns null.
-      //      This apparently is result of isSuppressed returning false when should be true.
-      //      cannot get error to repeat after numerous attempts.
-      if (!fromUnit.isSuppressed() &&  fromUnit.getDominantLifeformFire() != null ) {
-        adjData = fromUnit.getAdjacentData();
-        if (adjData != null) {
-          for (int i = 0; i < adjData.length; i++) {
-            toUnit = adjData[i].evu;
-            if (lineSuppUnits.contains(toUnit.getId())) {
-              continue;
-            }
-            
-            if (Evu.doSpread(fromUnit, toUnit,fromUnit.getDominantLifeformFire())) {
-              tmpToUnits.add(toUnit);
-//              addSpreadEvent(fromUnit, toUnit);
-//              spreadQueue.add( (Node) nodeLookup.get(toUnit));
-            }
+    FireEvent.currentEvent = this;
+
+    // TODO Getting a null pointer exception when getDominantLifeformFire returns null.
+    //      This apparently is result of isSuppressed returning false when should be true.
+    //      cannot get error to repeat after numerous attempts.
+
+    if (!fromUnit.isSuppressed() &&  fromUnit.getDominantLifeformFire() != null ) {
+
+      AdjacentData[] adjData = fromUnit.getAdjacentData();
+
+      if (adjData != null) {
+        for (int i = 0; i < adjData.length; i++) {
+
+          Evu toUnit = adjData[i].evu;
+
+          if (lineSuppUnits.contains(toUnit.getId())) {
+            continue;
           }
-          doFireSpotting(fromUnit);
-        }
-      }
-      addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
-      finished = (spreadQueue.size() == 0);
 
-      FireEvent.currentEvent = null;
-      Area.currentLifeform = null;
-//      thread.yield();  // Give other thread a chance to run.
-//    }
+          if (Evu.doSpread(fromUnit, toUnit,fromUnit.getDominantLifeformFire())) {
+            tmpToUnits.add(toUnit);
+//            addSpreadEvent(fromUnit, toUnit);
+//            spreadQueue.add( (Node) nodeLookup.get(toUnit));
+          }
+        }
+
+        doFireSpotting(fromUnit);
+
+      }
+    }
+
+    addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
+
+    finished = (spreadQueue.size() == 0);
+
+    FireEvent.currentEvent = null;
+    Area.currentLifeform = null;
+
+//    thread.yield();  // Give other thread a chance to run.
+//  }
   }
 
   /**
@@ -473,6 +523,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   public void doFireSpotting(Evu fromEvu) {
+
     AdjacentData[] adjacentData;
     Evu            adj, fromAdj;
     ArrayList<Evu> spotFrom, newSpotFrom, tmpList, unitsTried;
@@ -484,13 +535,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
 
     adjacentData = fromEvu.getAdjacentData();
-    if (adjacentData == null) { return; }
+    if (adjacentData == null) return;
+
     spotFrom    = new ArrayList<Evu>();
     newSpotFrom = new ArrayList<Evu>();
-    unitsTried    = new ArrayList<Evu>();
+    unitsTried  = new ArrayList<Evu>();
 
     unitsTried.add(fromEvu);
-    for(i=0;i<adjacentData.length;i++) {
+    for (i = 0; i < adjacentData.length; i++) {
       adj = adjacentData[i].evu;
       unitsTried.add(adj);
       if (fromEvu.isAdjDownwind(adj) &&
@@ -505,21 +557,21 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     while (spotFrom != null && spotFrom.size() > 0) {
       levelsOut++;
       
-      for(j=0;j<spotFrom.size();j++) {
+      for(j = 0; j < spotFrom.size(); j++) {
         fromAdj = (Evu) spotFrom.get(j);
         adjacentData = fromAdj.getAdjacentData();
 
-        for(k=0;k<adjacentData.length;k++) {
+        for(k = 0; k < adjacentData.length; k++) {
+
           adj = adjacentData[k].evu;
-          if (adj == null) { continue; }
+          if (adj == null) continue;
           
-          if (unitsTried.contains(adj)) { continue; }
+          if (unitsTried.contains(adj)) continue;
           unitsTried.add(adj);
           
           if (!uniformPoly && levelsOut > 3) {
             continue;
-          }
-          else if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromEvu, adj)) {
+          } else if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromEvu, adj)) {
             continue;
           }
           
@@ -531,57 +583,62 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
           }
         }
       }
+
       // Swap.
       tmpList     = spotFrom;
       spotFrom    = newSpotFrom;
       newSpotFrom = tmpList;
       newSpotFrom.clear();
+
     }
     
     return;
+
   }
 
   private boolean determineSpotFire(Evu fromEvu, Evu toEvu) {
+
     Lifeform fromLifeform = fromEvu.getDominantLifeform();
 
     VegSimStateData state = fromEvu.getState(fromLifeform);
-    if (state == null) { return false; }
+    if (state == null) return false;
 
     ProcessType processType = state.getProcess();
     
     Lifeform toLifeform = toEvu.getDominantLifeform();
     VegSimStateData toState = toEvu.getState(toLifeform);
-    if (toState == null) { return false; }
+    if (toState == null) return false;
 
     ProcessType toProcessType = toState.getProcess();
-    if (toProcessType.isFireProcess()) {
-      return false;
-    }
+    if (toProcessType.isFireProcess()) return false;
 
     int prob = FireEventLogic.getInstance().getFireSpottingProbability(fromEvu, toEvu, processType, isExtreme);
+    prob *= 100;
 
     int rand = Simulation.getInstance().random();
-    prob *= 100;
 
     boolean isSpot = (rand < prob);
 
     ProcessType fireType;
 
-    if (isSpot)
-    {
+    if (isSpot) {
+
       fireType = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(), toEvu, toLifeform);
-      if (fireType == ProcessType.NONE) { return false; }
+      if (fireType == ProcessType.NONE) return false;
 
       if (Area.multipleLifeformsEnabled()) {
         toEvu.updateCurrentStateAllLifeforms(fireType,(short)Evu.SFS,season);
-      }
-      else {
+      } else {
         toEvu.updateCurrentProcess(toLifeform,fireType);
         toEvu.updateCurrentProb(toLifeform,Evu.SFS);
       }
+
       return true;
+
     }
+
     return false;
+
   }
 
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -589,6 +646,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     int version = in.readInt();
     super.readExternal(in);
   }
+
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
     super.writeExternal(out);

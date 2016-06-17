@@ -452,7 +452,7 @@ public class SimParam extends JDialog {
     invasiveSpeciesLabel.setFont(defaultFont);
     invasiveSpeciesLabel.setText("Invasive Species Logic");
     fireSpreadModelLabel.setFont(defaultFont);
-    fireSpreadModelLabel.setText("Fire Spread Model");
+    fireSpreadModelLabel.setText("Fire Spread Model     ");
     optionsOuterPanel.setBorder(optionsBorder);
     trackingSpeciesCB.setText(
       "Generate Tracking Species Report (needed if discarding data or multiple " +
@@ -589,9 +589,9 @@ public class SimParam extends JDialog {
     }
     invasiveSpeciesCB.setSelectedItem(Simulation.InvasiveKind.NONE);
 
-    fireSpreadModelCB.addItem("OpenSIMPPLLE");
+    fireSpreadModelCB.addItem("SIMPPLLE");
     fireSpreadModelCB.addItem("Keane Cell Percolation");
-    fireSpreadModelCB.setSelectedItem("OpenSIMPPLLE");
+    fireSpreadModelCB.setSelectedItem("SIMPPLLE");
 
     boolean isWyoming =  (RegionalZone.isWyoming());
     yearlyStepCB.setEnabled(!isWyoming);
