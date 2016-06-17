@@ -1,69 +1,62 @@
 
 package simpplle.comcode;
 
-import java.awt.Color;
-
-
+import java.awt.*;
 
 /**
- * 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
+ * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>This class contains methods for Mixed Severity Fire, a type of Disturbance Process.
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
- *  
- * @see simpplle.comcode.Process
+ * <p> MixedSeverityFire is a spreading process that does not occur yearly.
+ *
+ * <p> Original source code authorship: Kirk A. Moeller
  */
+
 public class MixedSeverityFire extends Process {
+
   private static final String printName = "MIXED-SEVERITY-FIRE";
+
   /**
-   * Constructor for Mixed Severity Fire.  Inherits from Process superclass and initializes spreading to true (cause fires spread)
-   * and yearly process to false (not able to be sure that Mixed Severity Fire are yearly processes), the colors and description.
+   * Creates a mixed severity fire with yearlyProcess = false.
    */
   public MixedSeverityFire () {
-    super();
 
-    spreading   = true;
-    description = "Mixed Severity Fire";
-    color       = new Color(255,110,0);
+    spreading     = true;
+    description   = "Mixed Severity Fire";
+    color         = new Color(255,110,0);
     yearlyProcess = false;
-  }
-/**
- * Calculates whether the Mixed Severity Fire spreads.  
- * Returns false if fire is suppressed otherwise returns spreading boolean based on to and from Evu and fire resistance.  
- * 
- */
-  public boolean doSpread(RegionalZone zone, Evu fromEvu, Evu evu) {
-    boolean fireSupp = Simpplle.getCurrentSimulation().fireSuppression();
-    int     ts       = Simulation.getCurrentTimeStep();
 
-    VegSimStateData state    = evu.getState();
-    VegetativeType  vegType  = state.getVeg();
-    Lifeform        lifeform = state.getLifeform();
+  }
+
+  /**
+   * Performs spread calculations if the fire is not suppressed, there are uniform size polygons, and this is not
+   * southwest Utah. Returns true if the process was spread.
+   */
+  public boolean doSpread(RegionalZone zone, Evu fromEvu, Evu evu) {
+
+    int ts = Simulation.getCurrentTimeStep();
+
+    VegSimStateData state = evu.getState();
 
     FireSuppBeyondClassALogic logicInst = FireSuppBeyondClassALogic.getInstance();
-    boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
 
-
-    if (fireSupp &&
+    if (Simpplle.getCurrentSimulation().fireSuppression() &&
         zone.getId() != ValidZones.SOUTHWEST_UTAH &&
-        !hasUniformPolygons &&
-        logicInst.isSuppressed(vegType,ProcessType.MSF,fromEvu,evu,ts,lifeform)) {
+        !Simpplle.getCurrentArea().hasUniformSizePolygons() &&
+        logicInst.isSuppressed(state.getVeg(),ProcessType.MSF,fromEvu,evu,ts,state.getLifeform())) {
+
       return false;
-    }
-    else {
+
+    } else {
+
       return FireEvent.doFireSpread(zone,this,fromEvu,evu);
+
     }
   }
-/**
- * outputs "MIXED-SEVERITY-FIRE"
- */
+
   public String toString () {
     return printName;
   }
