@@ -19,7 +19,7 @@ import java.io.PrintWriter;
  */
 public interface IParseArea {
 
-  boolean readNeighbors(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException;
+  boolean readNeighborsNew(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException;
 
   boolean readLandNeighbors(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException;
 
