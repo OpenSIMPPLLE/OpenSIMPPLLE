@@ -155,21 +155,25 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     return false;
 
   }
-  
+
+  /**
+   * Returns the lowest non-burning neighbor of the provided EVU.
+   * @param unit An EVU with adjacent units
+   * @return The lowest non-burning EVU
+   */
   private Evu getNonBurningLowestNeighbor(Evu unit) {
 
-    int lowestElevation = 1000000;
-    int unitElevation = 0;
+    int lowestElevation = Integer.MAX_VALUE;
     Evu lowestUnit = null;
 
-    AdjacentData[] adjData = unit.getAdjacentData();
+    AdjacentData[] adjDataArray = unit.getAdjacentData();
 
-    if (adjData != null) {
-      for (int i = 0; i < adjData.length; i++) {
-        unitElevation = adjData[i].evu.getElevation();
-        if (!adjData[i].evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
+    if (adjDataArray != null) {
+      for (AdjacentData adjData : adjDataArray) {
+        int unitElevation = adjData.evu.getElevation();
+        if (!adjData.evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
           lowestElevation = unitElevation;
-          lowestUnit = adjData[i].evu;
+          lowestUnit = adjData.evu;
         }
       }
     }
