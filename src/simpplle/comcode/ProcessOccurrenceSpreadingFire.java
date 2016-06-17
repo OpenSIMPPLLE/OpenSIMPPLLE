@@ -47,7 +47,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   
   public enum EventStop { OTHER, WEATHER, LINE}
   
-  protected EventStop eventStopReason=EventStop.OTHER;
+  protected EventStop eventStopReason = EventStop.OTHER;
   
   protected ArrayList<Integer> lineSuppUnits = new ArrayList<Integer>();
 
@@ -56,14 +56,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 //    lineProductionNode = null;
 //    super.destoryMe();
 //  }
-  /**
-   * 
-   */
+
   public ProcessOccurrenceSpreadingFire() {
     super();
   }
-  public ProcessOccurrenceSpreadingFire(Evu evu, Lifeform lifeform,
-                                        ProcessProbability processData, int timeStep) {
+
+  public ProcessOccurrenceSpreadingFire(Evu evu, Lifeform lifeform, ProcessProbability processData, int timeStep) {
     super(evu,lifeform,processData,timeStep);
   }
 
@@ -71,54 +69,67 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     return eventStopReason.toString();
   }
   
-  public boolean isExtremeEvent() { return isExtreme; }
+  public boolean isExtremeEvent() {
+    return isExtreme;
+  }
 
-  public Climate.Season getFireSeason() { return fireSeason; }
-  public boolean isSuppressed() { return fireSuppressed; }
+  public Climate.Season getFireSeason() {
+    return fireSeason;
+  }
+
+  public boolean isSuppressed() {
+    return fireSuppressed;
+  }
 
   @SuppressWarnings("unchecked")
   protected int calculatePerimeter() {
-    int result = 0;
-    if (root == null) { return 0;  }
 
-    LinkedList queue= new LinkedList();
+    int result = 0;
+
+    if (root == null) return 0;
+
+    LinkedList queue = new LinkedList();
     queue.add(root);
 
-    Node           node;
+    Node node;
     AdjacentData[] adjData;
+
     while (queue.size() > 0) {
+
       node = (Node)queue.removeFirst();
 //      if (node.data.getProcessProbability() == Evu.SUPP) { continue; }
-      if (node.data.getUnit().isSuppressed()) { continue; }
-      adjData  = node.data.getUnit().getAdjacentData();
+      if (node.data.getUnit().isSuppressed()) continue;
+
+      adjData = node.data.getUnit().getAdjacentData();
+
       for (int i=0; i<adjData.length; i++) {
+
         VegSimStateData adjState = adjData[i].evu.getState();
-        if (adjState == null || adjState.getProcess().isFireProcess()) {
-          continue;
-        }
+        if (adjState == null || adjState.getProcess().isFireProcess()) continue;
+
         result += adjData[i].evu.getSideLength();
+
       }
 
-      if (node.toNodes == null) { continue; }
+      if (node.toNodes == null) continue;
+
       for (int i=0; i<node.toNodes.length; i++) {
         queue.add(node.toNodes[i]);
       }
     }
 
     return result;
+
   }
   
-  public int getLineProduced() { return totalLineProduced; }
-  /**
-   * 
-   * @return
-   */
+  public int getLineProduced() {
+    return totalLineProduced;
+  }
+
   public int calculateApproxPerimeter() {
     float fEventAcres = Area.getFloatAcres(eventAcres);
-    int   eventSideLength = (int)Math.round(Math.sqrt(fEventAcres*43560));
-    
-    int eventPerimeter = eventSideLength * 4;
-    return eventPerimeter;
+    int eventSideLength = (int)Math.round(Math.sqrt(fEventAcres*43560));
+    return eventSideLength * 4;
   }
 
   /**
@@ -130,9 +141,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @return
    */
   private boolean hasNonBurningNeighbors(Evu unit) {
-    AdjacentData[] adjData;
-    
-    adjData = unit.getAdjacentData();
+
+    AdjacentData[] adjData = unit.getAdjacentData();
+
     if (adjData != null) {
       for (int i = 0; i < adjData.length; i++) {
         if (!adjData[i].evu.hasFireAnyLifeform()) {
@@ -142,19 +153,20 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
     
     return false;
+
   }
   
   private Evu getNonBurningLowestNeighbor(Evu unit) {
+
     int lowestElevation = 1000000;
     int unitElevation = 0;
     Evu lowestUnit = null;
-    AdjacentData[] adjData;
-    
-    adjData = unit.getAdjacentData();
+
+    AdjacentData[] adjData = unit.getAdjacentData();
+
     if (adjData != null) {
       for (int i = 0; i < adjData.length; i++) {
         unitElevation = adjData[i].evu.getElevation();
-
         if (!adjData[i].evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
           lowestElevation = unitElevation;
           lowestUnit = adjData[i].evu;
@@ -163,6 +175,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
     
     return lowestUnit;
+
   }
 
   /**
@@ -175,10 +188,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   protected Node findLowestElevationNonSrfNonSuppNode() {
+
     FireSuppBeyondClassALogic logicInst = FireSuppBeyondClassALogic.getInstance();
+
     int ts = Simulation.getCurrentTimeStep();
 
-    if (root == null) { return null;  }
+    if (root == null) return null;
+
     LinkedList queue= new LinkedList();
 
     int lowestElevation = 1000000;
@@ -201,8 +217,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
           nonBurningNeighbors &&
           (node.data.getProcess().equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
           (node.data.getUnit().isSuppressed() == false)) {
+
         lowestNode = node;
         lowestElevation = nodeElevation;
+
       }
 
       if (node.toNodes == null) { continue; }
@@ -212,8 +230,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
 
     return lowestNode;
-  }
 
+  }
 
   /**
    * 23 August 2004.
@@ -501,6 +519,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   public void doFireSpotting(Evu fromEvu) {
+
     AdjacentData[] adjacentData;
     Evu            adj, fromAdj;
     ArrayList<Evu> spotFrom, newSpotFrom, tmpList, unitsTried;
@@ -512,13 +531,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
 
     adjacentData = fromEvu.getAdjacentData();
-    if (adjacentData == null) { return; }
+    if (adjacentData == null) return;
+
     spotFrom    = new ArrayList<Evu>();
     newSpotFrom = new ArrayList<Evu>();
-    unitsTried    = new ArrayList<Evu>();
+    unitsTried  = new ArrayList<Evu>();
 
     unitsTried.add(fromEvu);
-    for(i=0;i<adjacentData.length;i++) {
+    for (i = 0; i < adjacentData.length; i++) {
       adj = adjacentData[i].evu;
       unitsTried.add(adj);
       if (fromEvu.isAdjDownwind(adj) &&
@@ -533,21 +553,21 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     while (spotFrom != null && spotFrom.size() > 0) {
       levelsOut++;
       
-      for(j=0;j<spotFrom.size();j++) {
+      for(j = 0; j < spotFrom.size(); j++) {
         fromAdj = (Evu) spotFrom.get(j);
         adjacentData = fromAdj.getAdjacentData();
 
-        for(k=0;k<adjacentData.length;k++) {
+        for(k = 0; k < adjacentData.length; k++) {
+
           adj = adjacentData[k].evu;
-          if (adj == null) { continue; }
+          if (adj == null) continue;
           
-          if (unitsTried.contains(adj)) { continue; }
+          if (unitsTried.contains(adj)) continue;
           unitsTried.add(adj);
           
           if (!uniformPoly && levelsOut > 3) {
             continue;
-          }
-          else if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromEvu, adj)) {
+          } else if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromEvu, adj)) {
             continue;
           }
           
@@ -559,57 +579,62 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
           }
         }
       }
+
       // Swap.
       tmpList     = spotFrom;
       spotFrom    = newSpotFrom;
       newSpotFrom = tmpList;
       newSpotFrom.clear();
+
     }
     
     return;
+
   }
 
   private boolean determineSpotFire(Evu fromEvu, Evu toEvu) {
+
     Lifeform fromLifeform = fromEvu.getDominantLifeform();
 
     VegSimStateData state = fromEvu.getState(fromLifeform);
-    if (state == null) { return false; }
+    if (state == null) return false;
 
     ProcessType processType = state.getProcess();
     
     Lifeform toLifeform = toEvu.getDominantLifeform();
     VegSimStateData toState = toEvu.getState(toLifeform);
-    if (toState == null) { return false; }
+    if (toState == null) return false;
 
     ProcessType toProcessType = toState.getProcess();
-    if (toProcessType.isFireProcess()) {
-      return false;
-    }
+    if (toProcessType.isFireProcess()) return false;
 
     int prob = FireEventLogic.getInstance().getFireSpottingProbability(fromEvu, toEvu, processType, isExtreme);
+    prob *= 100;
 
     int rand = Simulation.getInstance().random();
-    prob *= 100;
 
     boolean isSpot = (rand < prob);
 
     ProcessType fireType;
 
-    if (isSpot)
-    {
+    if (isSpot) {
+
       fireType = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(), toEvu, toLifeform);
-      if (fireType == ProcessType.NONE) { return false; }
+      if (fireType == ProcessType.NONE) return false;
 
       if (Area.multipleLifeformsEnabled()) {
         toEvu.updateCurrentStateAllLifeforms(fireType,(short)Evu.SFS,season);
-      }
-      else {
+      } else {
         toEvu.updateCurrentProcess(toLifeform,fireType);
         toEvu.updateCurrentProb(toLifeform,Evu.SFS);
       }
+
       return true;
+
     }
+
     return false;
+
   }
 
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -617,6 +642,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     int version = in.readInt();
     super.readExternal(in);
   }
+
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
     super.writeExternal(out);
