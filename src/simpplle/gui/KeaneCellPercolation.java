@@ -24,9 +24,9 @@ public class KeaneCellPercolation extends JDialog {
     private JButton okButton     = new JButton("Ok");
     private JButton cancelButton = new JButton("Cancel");
 
-    private LabeledDoubleField extremeWindField = new LabeledDoubleField("Wind speed variability factor for extreme conditions");
-    private LabeledDoubleField normalWindField  = new LabeledDoubleField("Wind speed variability factor for normal conditions");
-    private LabeledDoubleField windDirField     = new LabeledDoubleField("Wind direction variability in degrees");
+    private LabeledDoubleField windSpeedMultiplier      = new LabeledDoubleField("Wind speed multiplier for extreme conditions");
+    private LabeledDoubleField windSpeedVariability     = new LabeledDoubleField("Wind speed variability factor");
+    private LabeledDoubleField windDirectionVariability = new LabeledDoubleField("Wind direction variability in degrees");
 
     public KeaneCellPercolation(Frame frame) {
 
@@ -50,9 +50,9 @@ public class KeaneCellPercolation extends JDialog {
     private void jbInit() throws Exception {
 
         paramPanel.setLayout(new BoxLayout(paramPanel,BoxLayout.Y_AXIS));
-        paramPanel.add(extremeWindField);
-        paramPanel.add(normalWindField);
-        paramPanel.add(windDirField);
+        paramPanel.add(windSpeedMultiplier);
+        paramPanel.add(windSpeedVariability);
+        paramPanel.add(windDirectionVariability);
 
         okButton.setMinimumSize(new Dimension(73, 27));
         okButton.setMaximumSize(new Dimension(73, 27));
@@ -81,9 +81,9 @@ public class KeaneCellPercolation extends JDialog {
      */
     private void initialize() {
 
-        extremeWindField.setValue(5.0);
-        normalWindField.setValue(0.5);
-        windDirField.setValue(45.0);
+        windSpeedMultiplier.setValue(5.0);
+        windSpeedVariability.setValue(0.5);
+        windDirectionVariability.setValue(45.0);
 
     }
 
@@ -108,24 +108,24 @@ public class KeaneCellPercolation extends JDialog {
     }
 
     /**
-     * @return The wind speed variability factor for extreme conditions
+     * @return The wind speed multiplier for extreme conditions
      */
-    public double getExtremeWindSpeedVariabilityFactor() {
-        return extremeWindField.getValue();
+    public double getWindSpeedMultiplier() {
+        return windSpeedMultiplier.getValue();
     }
 
     /**
-     * @return The wind speed variability factor for normal conditions
+     * @return The wind speed variability factor
      */
-    public double getNormalWindSpeedVariabilityFactor() {
-        return normalWindField.getValue();
+    public double getWindSpeedVariabilityFactor() {
+        return windSpeedVariability.getValue();
     }
 
     /**
      * @return The wind direction variability in degrees
      */
     public double getWindDirectionVariability() {
-        return windDirField.getValue();
+        return windDirectionVariability.getValue();
     }
 
 }
