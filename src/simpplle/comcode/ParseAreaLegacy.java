@@ -19,6 +19,7 @@ import java.util.Iterator;
  */
 public class ParseAreaLegacy implements IParseArea {
 
+  // TODO resolve with ImportArea
   private boolean hasAttributes;
 
   /**
@@ -40,9 +41,9 @@ public class ParseAreaLegacy implements IParseArea {
 
     String line, str;
     StringTokenizerPlus strTok;
-    HashMap<Integer, Evu> unitHm = new HashMap<Integer, Evu>();
+    HashMap<Integer, Evu> unitHm = new HashMap<>();
     Evu[] allEvu;
-    int maxEvuId = -1, i, id, adjId, index;
+    int maxEvuId = -1, id, adjId, index;
     String windStr;
     char pos = 'N', wind;
     int elevation;
@@ -106,7 +107,6 @@ public class ParseAreaLegacy implements IParseArea {
         }
       }
 
-
       windStr = strTok.getToken();
       if (windStr.length() > 1) {
         index = windStr.lastIndexOf('\'');
@@ -146,11 +146,7 @@ public class ParseAreaLegacy implements IParseArea {
       // Get the next line.
       line = in.readLine();
     }
-    if (line == null) {
-      hasAttributes = false;
-    } else {
-      hasAttributes = true;
-    }
+    hasAttributes = line != null;
 
     allEvu = new Evu[maxEvuId + 1];
 
