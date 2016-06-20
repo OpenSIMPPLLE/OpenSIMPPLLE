@@ -81,7 +81,7 @@ public final class Area implements Externalizable {
    The key is Evu and the Value is Vector of int[]
   */
 
-  private Hashtable tmpAdjacentData;
+  private Hashtable<Evu, Vector> tmpAdjacentData;
 
   private boolean manualGC = false;
 
@@ -3847,21 +3847,52 @@ public final class Area implements Externalizable {
    * @param wind the direction the wind is coming from in the adjacent unit.
    */
   public void addAdjacentData(Evu evu, int adjId, char pos, char wind) {
-    if (tmpAdjacentData == null) {
-      tmpAdjacentData = new Hashtable();
-    }
-
-    Vector v = (Vector)tmpAdjacentData.get(evu);
-    if (v == null) {
-      v = new Vector();
-      tmpAdjacentData.put(evu,v);
-    }
-
+    // get vector from hash table
+    Vector<int[]> v = addAdjacentHelper(evu);
+    // add adjacent data to vector
     int[] data = new int[3];
     data[0] = adjId;
     data[1] = (int) pos;  // convert to ascii value
     data[2] = (int) wind; // convert to ascii value
     v.addElement(data);
+  }
+
+  /**
+   *  Overloaded.
+   * Adds the adjacent data information to a temp data structure until
+   * we have all the Evu instances created and can put the data in each
+   * Evu.
+   *
+   * @param evu The instance Evu that has 'from' as an adjacent unit.
+   * @param from The id of the adjacent unit.
+   * @param elevation Elevation  // TODO Does elevation need to be stored here?
+   * @param spread the “Degrees Azimuth” between the FROM_POLY and the TO_POLY
+   * @param windSpeed Wind Speed
+   * @param windDir direction that the wind is coming from.
+   */
+  public void addAdjacentData(Evu evu, int from, int elevation, int spread, int windSpeed, int windDir){
+    // get vector from hash table
+    Vector<int[]> v = addAdjacentHelper(evu);
+    // add adjacent data to vector
+    int[] data = {from, elevation, spread, windSpeed, windDir};
+    v.addElement(data);
+  }
+
+  /**
+   * Helper method for the overloaded addAdjacentData methods.
+   * @param evu The instance Evu
+   * @return vector for the given evu
+   */
+  public Vector<int[]> addAdjacentHelper(Evu evu){
+    if (tmpAdjacentData == null) {
+      tmpAdjacentData = new Hashtable<>();
+    }
+    Vector v = tmpAdjacentData.get(evu);
+    if (v == null) {
+      v = new Vector<int[]>();
+      tmpAdjacentData.put(evu,v);
+    }
+    return v;
   }
 
   /**
