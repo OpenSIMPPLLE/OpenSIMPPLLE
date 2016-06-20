@@ -5046,67 +5046,83 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-
-
-   * This method will determine if an fire event spread from fromEvu in the param
-   * list to this unit.
+   * Determines if a fire will spread from one EVU into another EVU.
+   *
    * This method is static and synchronized in order to be certain that the
    * fields we need in the fromEvu and toEvu are not modified by another
    * thread while this method is executing.  There is probably a non-static
    * way of doing this.
+   *
    * @todo make this method non-static and less restricted (if possible).
    *
    * @param fromEvu The Evu we are trying to spread from.
    * @param toEvu   The Evu we are trying to spread to.
-   * @return boolean true if spread was successfull
+   * @return True if spread was successful
    */
-
   public static synchronized boolean doFireSpread(Evu fromEvu, Evu toEvu, Lifeform fromLifeform) {
+
     // Don't spread into a unit that has fire or a lock-in process.
-    if (toEvu.hasFireAnyLifeform()) { return false; }
-    if (toEvu.hasLockinProcessAnyLifeform()) { return false; }
-    if (toEvu.isSuppressed()) { return false; }
 
-    ProcessType fromProcess   = fromEvu.getState(fromLifeform).getProcess();
-    ProcessType fireProcess=null;
-    int         fireProb=S;
-    boolean  fireStarted=false;
+    if (toEvu.hasFireAnyLifeform() ||
+        toEvu.hasLockinProcessAnyLifeform() ||
+        toEvu.isSuppressed()) {
 
+      return false;
+
+    }
+
+    ProcessType fromProcess = fromEvu.getState(fromLifeform).getProcess();
+    ProcessType fireProcess = null;
+    int fireProb = S;
+    boolean fireStarted = false;
 
     Climate.Season currentSeason = Simulation.getInstance().getCurrentSeason();
 
     Lifeform[] lives = Lifeform.getAllValues();
-    for (int i=0; i<lives.length; i++) {
+
+    for (int i = 0; i < lives.length; i++) {
+
       Lifeform toLifeform = lives[i];
       Area.currentLifeform = toLifeform;
-      if (toEvu.hasLifeform(toLifeform) == false) { continue; }
+
+      if (!toEvu.hasLifeform(toLifeform)) continue;
 
       Process processInst = Process.findInstance(fromProcess);
 
       if (fireStarted) {
-        ProcessType p =
-            FireEvent.getTypeOfFire(Simpplle.getCurrentZone(),toEvu,toLifeform);
+
+        ProcessType p = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(),toEvu,toLifeform);
+
         if (p != null && p.isFireProcess()) {
+
           if (p.isFireLessIntense(fireProcess)) {
             p = fireProcess;
           }
+
           toEvu.lastFireTimeStep = Simulation.getCurrentTimeStep();
           toEvu.updateCurrentProcess(toLifeform, p, currentSeason);
           toEvu.updateCurrentProb(toLifeform, fireProb);
           toEvu.updateFireSeason(currentSeason);
+
         }
-      }
-      else if (processInst.doSpread(Simpplle.getCurrentZone(),fromEvu,toEvu)) {
+      } else if (processInst.doSpread(Simpplle.getCurrentZone(),fromEvu,toEvu)) {
+
         toEvu.lastFireTimeStep = Simulation.getCurrentTimeStep();
+
         fireStarted = true;
         fireProcess = toEvu.getState(toLifeform).getProcess();
         fireProb    = toEvu.getState(toLifeform).getProb();
+
       }
 
     }
+
     Area.currentLifeform = null;
+
     return fireStarted;
+
   }
+
 /**
  * Method to calculate treatment thinning state.  This is based on current simulation vegetative state and time steps, treatment, original size class,
  * current size class, fire event if any, and species.
