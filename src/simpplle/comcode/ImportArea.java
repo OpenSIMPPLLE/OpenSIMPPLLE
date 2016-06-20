@@ -18,6 +18,8 @@ import simpplle.gui.ElevationRelativePosition;
  * that provides information needed to create a new area.
  * <p>This class handles all aspects of creating the new area
  * including verifying and correcting states if necessary.
+ *  TODO: This class should function as a bridge between GUI and Business Logic that
+ *  reads the file (IParseArea). Should validation be delegated to the current class?
  * 
  */
 
