@@ -1492,11 +1492,18 @@ public class ImportArea {
 
   private Area importSpatial(File filename) throws SimpplleError{
     String version2ID = "KEANE";
+    // File version, set while reading file
+    String version = "";
+    PrintWriter    log = null;
     BufferedReader fin;
-    Area newArea = new Area(Area.USER);
     IParseArea parser;
+    File           prefix = Utility.stripExtension(filename);
+    File           logFile = Utility.makeUniqueLogFile(prefix,"");
+    Area newArea = new Area(Area.USER);
+    Boolean success = false;
 
     try {
+      log = new PrintWriter(new FileWriter(logFile));
       fin = new BufferedReader(new FileReader(filename));
       String line = fin.readLine();
       while (line != null){
@@ -1514,20 +1521,71 @@ public class ImportArea {
               line);
         }
         // Determine parser strategy based on version
-        String version = strTok.nextToken();
-        if (version == null){
-          parser = new ParseAreaLegacy();
+        if (strTok.hasMoreTokens()) {
+           version = strTok.nextToken();
         }
-        else if (version.equalsIgnoreCase(version2ID)){
+        if (version.equalsIgnoreCase(version2ID)) {
           parser = new ParseAreaV2();
         }
+        else {
+          parser = new ParseAreaLegacy();
+        }
+        // read file based on key
+        switch (key.toUpperCase()){
+          case "VEGETATION-VEGETATION":
+            success = parser.readNeighborsNew(newArea, fin, log);
+            break;
+          case "LANDFORM-LANDFORM":
+            success = parser.readLandNeighbors(newArea, fin, log);
+            break;
+          case "AQUATIC-AQUATIC":
+            success = parser.readAquaticNeighbors(newArea, fin, log);
+            break;
+          case "VEGETATION-LANDFORM":
+            success = parser.readVegLandRelations(newArea,fin,log);
+            break;
+          case "VEGETATION-AQUATIC":
+            success = parser.readAquaticVegRelations(newArea,fin,log);
+            break;
+          case "ROADS-ROADS":
+            success = parser.readRoadNeighbors(newArea, fin, log);
+            break;
+          case "TRAILS-TRAILS":
+            success = parser.readTrailNeighbors(newArea, fin, log);
+            break;
+          case "VEGETATION-ROADS":
+            success = parser.readVegRoadRelations(newArea,fin,log);
+            break;
+          case "VEGETATION-TRAILS":
+            success = parser.readVegTrailRelations(newArea,fin,log);
+            break;
+          default:
+            line = fin.readLine();
+        }
+        if (!success) {
+          fin.close();
+          log.flush();
+          log.close();
+          throw new SimpplleError("Could not load files. Please check log file for details.");
+        }
+        line = fin.readLine();
+        while (line != null && !line.trim().toUpperCase().startsWith("BEGIN")) {
+          line = fin.readLine();
+        }
       }
+      fin.close();
+      return newArea;
     } catch (IOException e) {
       throw new SimpplleError("Error in reading " + filename);
     }
-
-    return newArea;
-
+    catch (ParseError e) {
+      String msg = "The following error occurred while trying to create the area:";
+      log.println(msg);
+      log.println(e.msg);
+      log.flush();
+      log.close();
+      throw new SimpplleError(msg + "\n" + e.msg,e);
+    }
   }
 
   private void readAttributesNew(Area area, File filename, File logFile) throws SimpplleError {
@@ -1652,6 +1710,9 @@ public class ImportArea {
     PrintWriter    log;
     int            n=1;
     boolean        success;
+    // TODO: refactor to accept parser
+    IParseArea parser = new ParseAreaLegacy();
+    // /TODO
 
     try {
       log = new PrintWriter(new FileWriter(logFile));
@@ -1671,7 +1732,7 @@ public class ImportArea {
             success = readNeighbors(newArea, fin, log);
             break;
           case ELU:
-            success = readLandNeighbors(newArea, fin, log);
+            success = parser.readLandNeighbors(newArea, fin, log);
             break;
           default:
             success = false;
@@ -1712,4 +1773,22 @@ public class ImportArea {
     return true;
   }
 
+  /**
+   *
+   * @param filename Name of the file that should have a corresponding log
+   * @param suffix optional
+   * @return PrintWriter open to log file
+   */
+//  private PrintWriter openLog(File filename, String suffix) {
+//    PrintWriter log;
+//    File prefix = Utility.stripExtension(filename);
+//    File logFile = Utility.makeUniqueLogFile(prefix, suffix);
+//    try {
+//      log = new PrintWriter(new FileWriter(logFile));
+//      return log;
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//      System.out.println("Could not Open log file for writing: logFile");
+//    }
+//  }
 }

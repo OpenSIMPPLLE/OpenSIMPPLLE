@@ -37,6 +37,7 @@ public class ParseAreaLegacy implements IParseArea {
    */
   @Override
   public boolean readNeighborsNew(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
+
     String line, str;
     StringTokenizerPlus strTok;
     HashMap<Integer, Evu> unitHm = new HashMap<Integer, Evu>();
@@ -63,9 +64,7 @@ public class ParseAreaLegacy implements IParseArea {
       id = strTok.getIntToken();
       adjId = strTok.getIntToken();
       if (id == -1 || adjId == -1) {
-        log.println(line);
-        log.println("  One of the id's in above line is invalid");
-        log.println();
+        log.println(line + "\n  One of the id's in above line is invalid.\n");
         return false;
       }
       if (id > maxEvuId) {
@@ -403,6 +402,7 @@ public class ParseAreaLegacy implements IParseArea {
    */
   @Override
   public boolean readVegLandRelations(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
+
     String              line;
     StringTokenizerPlus strTok;
     ExistingLandUnit    elu;
@@ -423,9 +423,7 @@ public class ParseAreaLegacy implements IParseArea {
       evuId = strTok.getIntToken();
       eluId = strTok.getIntToken();
       if (evuId == -1 || eluId == -1) {
-        log.println(line);
-        log.println("  One of the id's in above line is invalid");
-        log.println();
+        log.println(line + "\n  One of the id's in above line is invalid.\n");
         return false;
       }
 
@@ -764,9 +762,7 @@ public class ParseAreaLegacy implements IParseArea {
       int trailId = strTok.getIntToken();
       int evuId = strTok.getIntToken();
       if (evuId == -1 || trailId == -1) {
-        log.println(line);
-        log.println("  One of the id's in above line is invalid");
-        log.println();
+        log.println(line + "\n  One of the id's in above line is invalid.\n");
         return false;
       }
 
