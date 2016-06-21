@@ -12,19 +12,15 @@ import java.io.*;
  *
  * <p>This class creates an AdjacentData object.  
  * Adjacent data contains Evu, wind, and position (above, below, or next to)
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
  *
  */
 public class AdjacentData implements Externalizable {
   static final long serialVersionUID = 8588855941181047793L;
-  static final int  version          = 1;
+  static final int  version          = 2;
 
-  
    /*
     * Deprecated EarthSIMPPLLE V1.0 - will no longer be supported
-   * Position Values:  (legacy only, now caclulated dynamically.
+   * Position Values:  (legacy only, now calculated dynamically.
    *   A = Above
    *   B = Below
    *   N = Next to
@@ -34,9 +30,39 @@ public class AdjacentData implements Externalizable {
   Evu  evu;
   char position;
   char wind;
+  int spread;
+  int windSpeed;
+  int windDirection;
 
   /**
-   * Default constructor.  Set Evu to null, position and wind to 'N'
+   * Overloaded constructor for Keane spatial relations.
+   * @param evu adjacent evu.
+   * @param position appears to be deprecated? see above comment
+   * @param wind valid values are 'D' (down wind) or 'N' (no wind)
+   * @param spread Degrees Azimuth between the Adjacent polygons
+   * @param windSpeed Integer speed value
+   * @param windDirection Direction that the wind is coming from
+   */
+  public AdjacentData(Evu evu, char position, char wind, int spread, int windSpeed, int windDirection) {
+    this.evu = evu;
+    this.position = position;
+    this.wind = wind;
+    this.spread = spread;
+    this.windSpeed = windSpeed;
+    this.windDirection = windDirection;
+  }
+
+  /**
+   * Overloaded constructor for Legacy spatial relations.
+   */
+  public AdjacentData(Evu evu,  char position,  char wind) {
+    this.evu      = evu;
+    this.position = position;
+    this.wind     = wind;
+  }
+
+  /**
+   * Default constructor.
    */
   public AdjacentData() {
     evu      = null;
@@ -45,38 +71,53 @@ public class AdjacentData implements Externalizable {
   }
 
   /**
-   * Overloaded constructor.  Creates an adjacent data object with Existing Vegetation Unit (evu), position, and wind
-   * @param evu 
-   * @param position
-   * @param wind
-   */
-  public AdjacentData(Evu evu,  char position,  char wind) {
-    this.evu      = evu;
-    this.position = position;
-    this.wind     = wind;
-  }
-  
-  /**
-   * Method to read in Adjacent data objects.  These are stored in file as Evu object, position, wind.  
-   *@throws IOException, ClassNotFoundException
+   * Method to read in Adjacent data objects.
+   *@throws IOException
+   *@throws ClassNotFoundException
    */
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
+    if (version == 1) readV1(in);
+    else if (version == 2) readV2(in);
+  }
 
+  /**
+   * Read file version 1 (Legacy spatial relations)
+   * @throws IOException
+   * @throws ClassNotFoundException
+   */
+  public void readV1(ObjectInput in) throws IOException, ClassNotFoundException {
     evu      = (Evu)in.readObject();
     position = in.readChar();
     wind     = in.readChar();
   }
+
   /**
-   * Writes to an external source the Adjacent Data object, in the following order: evu object, position, and wind.
-   * *@throws IOException
+   * Read file version 2 (Keane spatial relations)
+   * @throws IOException
+   * @throws ClassNotFoundException
+   */
+  public void readV2(ObjectInput in) throws IOException, ClassNotFoundException {
+    evu           = (Evu)in.readObject();
+    position      = in.readChar();
+    wind          = in.readChar();
+    spread        = in.readInt();
+    windSpeed     = in.readInt();
+    windDirection = in.readInt();
+  }
+
+  /**
+   * Writes Adjacent Data object to an external source
+   * @throws IOException
    */
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
-
     out.writeObject(evu);
     out.writeChar(position);
     out.writeChar(wind);
+    out.writeInt(spread);
+    out.writeInt(windSpeed);
+    out.writeInt(windDirection);
   }
 }
 
