@@ -40,6 +40,7 @@ public class ParseAreaV2 implements IParseArea{
   @Override
   public boolean readNeighborsNew(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
     String line, str;
+    char wind, pos = 'E';
     StringTokenizerPlus st;
     HashMap<Integer, Evu> unitHm = new HashMap<>();
     Evu[] allEvu;
@@ -112,7 +113,13 @@ public class ParseAreaV2 implements IParseArea{
         return false;
       }
 
-      // Make or load existing evu
+      // Calculate if a unit is downwind based on spread and windDirection.
+      // TODO: define angle threshold for downwind
+      int threshold = 90;
+      if(getAngleDifference(spread, windDirection)>threshold) wind = 'D';
+      else wind = 'N';
+
+      // Make evu or load existing
       Evu evu = unitHm.get(from);
       if (evu == null) {
         evu = new Evu(from);
@@ -121,7 +128,7 @@ public class ParseAreaV2 implements IParseArea{
       }
 
       // Add info to current area
-      area.addAdjacentData(evu, to, spread, windSpeed, windDirection);
+      area.addAdjacentData(evu, to, pos, wind, spread, windSpeed, windDirection);
 
       line = in.readLine();
     }
@@ -136,6 +143,17 @@ public class ParseAreaV2 implements IParseArea{
     area.setAllEvu(allEvu);
     area.finishAddingAdjacentData(log);
     return true;
+  }
+
+  /**
+   * Helper Method
+   * @param a angle
+   * @param b angle 2
+   * @return UNSIGNED Angle difference between given angles
+   */
+  private int getAngleDifference(int a, int b){
+    int diff = Math.abs(a-b);
+    return (diff < 180) ? diff : 360 - diff;
   }
 
   @Override

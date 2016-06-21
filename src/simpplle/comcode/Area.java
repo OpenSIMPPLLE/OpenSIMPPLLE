@@ -3864,21 +3864,23 @@ public final class Area implements Externalizable {
 
   /**
    *  Overloaded.
-   * Adds the adjacent data information to a temp data structure until
+   * Adds the adjacent data information adjId a temp data structure until
    * we have all the Evu instances created and can put the data in each
    * Evu.
    *
-   * @param evu The instance Evu that has 'to' as an adjacent unit.
-   * @param to The id of the adjacent unit.
+   * @param evu The instance Evu that has 'adjId' as an adjacent unit.
+   * @param adjId The id of the adjacent unit.
+   * @param pos The Position of the Adjacent unit relative to evu.
+   * @param wind 'D' for downwind, 'N' for no wind
    * @param spread the “Degrees Azimuth” between the FROM_POLY and the TO_POLY
    * @param windSpeed Wind Speed
-   * @param windDir direction that the wind is coming to.
+   * @param windDir direction that the wind is coming adjId.
    */
-  public void addAdjacentData(Evu evu, int to, int spread, int windSpeed, int windDir){
-    // get adjacency vector to hash table
+  public void addAdjacentData(Evu evu, int adjId, char pos, char wind, int spread, int windSpeed, int windDir){
+    // get adjacency vector adjId hash table
     Vector<int[]> v = addAdjacentHelper(evu);
-    // add adjacent data to vector
-    int[] data = {to, spread, windSpeed, windDir};
+    // add adjacent data adjId vector
+    int[] data = {adjId, pos, wind, spread, windSpeed, windDir};
     v.addElement(data);
   }
 
