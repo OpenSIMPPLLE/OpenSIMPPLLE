@@ -33,23 +33,26 @@ public class AdjacentData implements Externalizable {
   int spread;
   int windSpeed;
   int windDirection;
+  double slope;
 
   /**
    * Overloaded constructor for Keane spatial relations.
    * @param evu adjacent evu.
    * @param position appears to be deprecated? see above comment
    * @param wind valid values are 'D' (down wind) or 'N' (no wind)
-   * @param spread Degrees Azimuth between the Adjacent polygons
+   * @param spread Degrees Azimuth between the Adjacent polygons TODO: from source unit to adjacent?
    * @param windSpeed Integer speed value
-   * @param windDirection Direction that the wind is coming from
+   * @param windDirection Direction that the wind is coming TODO: from source unit to adjacent?
+   * @param slope percent slope TODO: from source unit to adjacent?
    */
-  public AdjacentData(Evu evu, char position, char wind, int spread, int windSpeed, int windDirection) {
+  public AdjacentData(Evu evu, char position, char wind, int spread, int windSpeed, int windDirection, double slope) {
     this.evu = evu;
     this.position = position;
     this.wind = wind;
     this.spread = spread;
     this.windSpeed = windSpeed;
     this.windDirection = windDirection;
+    this.slope = slope;
   }
 
   /**

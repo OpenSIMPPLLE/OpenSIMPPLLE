@@ -3950,6 +3950,7 @@ public final class Area implements Externalizable {
       int  elevDiff, evuElev, adjElev;
       int spread, windSpeed, windDir;
       char pos, wind;
+      double slope;
       adjData = new AdjacentData[numAdj];
       for (i=0; i<v.size(); i++) {
         data = (int[])v.elementAt(i);
@@ -3961,7 +3962,7 @@ public final class Area implements Externalizable {
         // If we have elevation information make sure we use it.
         evuElev = evu.getElevation();
         adjElev = adjEvu.getElevation();
-        elevDiff = Math.abs(adjEvu.getElevation() - evu.getElevation());
+        slope   = adjElev/evuElev;
         if (!evu.isElevationValid() || !adjEvu.isElevationValid()) {
           pos = (char)data[1]; // ascii value back to char
         } else {
@@ -3975,7 +3976,7 @@ public final class Area implements Externalizable {
           spread =    data[3];
           windSpeed = data[4];
           windDir =   data[5];
-          adjData[i] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir);
+          adjData[i] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir, slope);
         }
 
       }
