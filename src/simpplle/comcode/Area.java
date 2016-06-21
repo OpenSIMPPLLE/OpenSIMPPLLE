@@ -3962,23 +3962,29 @@ public final class Area implements Externalizable {
         // If we have elevation information make sure we use it.
         evuElev = evu.getElevation();
         adjElev = adjEvu.getElevation();
-        slope   = adjElev/evuElev;
+
+        // Slope is being calculated FROM the 'center' unit, TO the adjacent unit.
+        slope = (adjEvu.getElevation() - evu.getElevation()) / (double)polygonWidth;
+
+        // Find or calculate position
         if (!evu.isElevationValid() || !adjEvu.isElevationValid()) {
           pos = (char)data[1]; // ascii value back to char
         } else {
-          pos = 'E';
+          pos = 'E'; // Means use elevation
         }
         wind = (char) data[2]; // ascii value back to char
-        if (dataLength < 4) { // Legacy spatial relation
+
+        // Legacy spatial relation
+        if (dataLength < 4) {
           adjData[i] = new AdjacentData(adjEvu, pos, wind);
         }
-        else { // Keane spatial relation
-          spread =    data[3];
-          windSpeed = data[4];
-          windDir =   data[5];
-          adjData[i] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir, slope);
+        // Keane spatial relation, more attributes available
+        else {
+          spread     = data[3];
+          windSpeed  = data[4];
+          windDir    = data[5];
+          adjData[i] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, indDir, slope);
         }
-
       }
       evu.setAdjacentData(adjData);
     }
