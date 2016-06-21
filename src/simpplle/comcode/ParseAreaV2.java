@@ -28,7 +28,7 @@ public class ParseAreaV2 implements IParseArea{
    * (POLY is the same as SLINK).
    * BASE_WIND_DIR is the direction of the wind is coming from.
    *
-   * Adds all info to current area. Also checks elevation to make sure it is valid.
+   * Adds all info to current area.
    *
    * @param area the current area whose neighbors are defined in this method
    * @param in   Buffered reader with spatialrelate file in stream
@@ -46,12 +46,10 @@ public class ParseAreaV2 implements IParseArea{
     int maxEvuId = -1,
         from,
         to,
-        index,
         elevation,
         spread,
         windSpeed,
         windDirection;
-    char pos = 'N';
 
     line = in.readLine();
     if (line == null) {
@@ -100,7 +98,7 @@ public class ParseAreaV2 implements IParseArea{
         windSpeed = Integer.parseInt(str);
       } catch (NumberFormatException ex) {
         log.println("invalid value for base wind speed : " + str +
-            "\nin line: " + line);
+            "\nIn line: " + line);
         return false;
       }
 
@@ -110,23 +108,21 @@ public class ParseAreaV2 implements IParseArea{
         windDirection = Integer.parseInt(str);
       } catch (NumberFormatException ex){
         log.println("invalid value for base wind direction : " + str +
-            "\nin line: " + line);
+            "\nIn line: " + line);
         return false;
       }
 
+      // Make or load existing evu
       Evu evu = unitHm.get(from);
       if (evu == null) {
         evu = new Evu(from);
-        unitHm.put(from, evu);
-
-        // Need only set elevation once.
         evu.setElevation(elevation);
+        unitHm.put(from, evu);
       }
 
       // Add info to current area
-      area.addAdjacentData(evu, from, elevation, spread, windSpeed, windDirection);
+      area.addAdjacentData(evu, to, spread, windSpeed, windDirection);
 
-      // Get the next line.
       line = in.readLine();
     }
     hasAttributes = line != null;
