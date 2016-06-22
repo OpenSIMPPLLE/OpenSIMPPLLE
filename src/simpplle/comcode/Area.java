@@ -178,6 +178,9 @@ public final class Area implements Externalizable {
   private static final String SLINK_STR_CAPS = "SLINK";
   private static final String COMMA_STR = ",";
 
+  // Conversion from acres to sq feet
+  private static final int ACRES_TO_FEET = 43560;
+
   /**
    * Area constructor.  Initializes acres, maxEVUId, and length to 0, sets current date to system current date
    */
@@ -2561,7 +2564,7 @@ public final class Area implements Externalizable {
 
           adjacentData = evu.getAdjacentData();
           for(j=0;j<adjacentData.length;j++) {
-            adj = adjacentData[j].evu;
+            adj = adjacentData[j].getEvu();
             treat     = adj.getLastTreatment();
             treatType = TreatmentType.NONE;
             if (treat != null) { treatType = treat.getType(); }
@@ -2707,7 +2710,7 @@ public final class Area implements Externalizable {
         //   if species is seed producing add its acres to the
         //   the value already in the hashtable.
         for(j=0;j<adjacentData.length;j++) {
-          adj = adjacentData[j].evu;
+          adj = adjacentData[j].getEvu();
 
           if (adj.succession_n_decades(numDecades) &&
               adj.producingSeed(numDecades)) {
@@ -3950,7 +3953,6 @@ public final class Area implements Externalizable {
       int  elevDiff, evuElev, adjElev;
       int spread, windSpeed, windDir;
       char pos, wind;
-      double slope;
       adjData = new AdjacentData[numAdj];
       for (i=0; i<v.size(); i++) {
         data = (int[])v.elementAt(i);
@@ -3958,13 +3960,6 @@ public final class Area implements Externalizable {
         adjEvu = getEvu(data[0]);
         // skip null Evus
         if (adjEvu == null) { continue; }
-
-        // If we have elevation information make sure we use it.
-        evuElev = evu.getElevation();
-        adjElev = adjEvu.getElevation();
-
-        // Slope is being calculated FROM the 'center' unit, TO the adjacent unit.
-        slope = (adjEvu.getElevation() - evu.getElevation()) / (double)polygonWidth;
 
         // Find or calculate position
         if (!evu.isElevationValid() || !adjEvu.isElevationValid()) {
@@ -3983,7 +3978,7 @@ public final class Area implements Externalizable {
           spread     = data[3];
           windSpeed  = data[4];
           windDir    = data[5];
-          adjData[i] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, indDir, slope);
+          adjData[i] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir);
         }
       }
       evu.setAdjacentData(adjData);
@@ -3991,11 +3986,42 @@ public final class Area implements Externalizable {
     tmpAdjacentData = null;
   }
 
+  public void calcRelativeSlopes(){
+    for (Evu evu : allEvu){
+      if (evu != null){
+        for (AdjacentData a : evu.getAdjacentData()){
+          a.setSlope(calcSlope(evu, a));
+        }
+      }
+    }
+  }
+
+  /**
+   * @param evu current evu
+   * @param adjData data representing the relationship between current and adj
+   * @return slope (as a percent) moving from the current evu to an adjacent
+   */
+  public double calcSlope(Evu evu, AdjacentData adjData){
+
+    Evu adj = adjData.getEvu();
+    double distanceFeet = Math.sqrt(evu.getFloatAcres() * ACRES_TO_FEET);
+
+    // find distance to edge of square based on spread (angle of adjacency)
+    double abs_sin = Math.abs(Math.sin(adjData.getSpread()));
+    double abs_cos = Math.abs(Math.cos(adjData.getSpread()));
+
+    // must use both sin and cos to avoid dividing by 0
+    if (abs_sin <= abs_cos) distanceFeet = distanceFeet / abs_cos;
+    else                    distanceFeet = distanceFeet / abs_sin;
+    // rise over run * 100 to get percent slope
+    return 100 * (adj.getElevation() - evu.getElevation()) / (distanceFeet * 2);
+  }
+
   public char calcRelativePosition(Evu evu, AdjacentData adjData) {
-    Evu adj = adjData.evu;
+    Evu adj = adjData.getEvu();
 
     if (!evu.isElevationValid() || !adj.isElevationValid()) {
-      return adjData.position;
+      return adjData.getPosition();
     }
 
     boolean isUniformArea = hasUniformSizePolygons();
@@ -4334,7 +4360,7 @@ public final class Area implements Externalizable {
     if (hasUniformSizePolygons()) {
       for (int i=0; i<allEvu.length; i++) {
         if (allEvu[i] != null) {
-          polygonWidth = (int)Math.sqrt(allEvu[i].getFloatAcres() * 43560);
+          polygonWidth = (int)Math.sqrt(allEvu[i].getFloatAcres() * ACRES_TO_FEET);
           break;
         }
       }

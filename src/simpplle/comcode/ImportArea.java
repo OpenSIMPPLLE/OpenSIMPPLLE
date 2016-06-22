@@ -18,9 +18,7 @@ import simpplle.gui.ElevationRelativePosition;
  * that provides information needed to create a new area.
  * <p>This class handles all aspects of creating the new area
  * including verifying and correcting states if necessary.
- *  TODO: This class should function as a bridge between GUI and Business Logic that
- *  reads the file (IParseArea). Should validation be delegated to the current class?
- * 
+ *
  */
 
 public class ImportArea {
@@ -285,7 +283,7 @@ public class ImportArea {
       return;
     }
 
-    while(line != null && line.trim().equals("END") == false) {
+    while(line != null && !line.trim().equals("END")) {
       try {
         line = line.trim();
         if (line.length() == 0) { line = fin.readLine(); continue; }
@@ -1386,6 +1384,7 @@ public class ImportArea {
     int elevRelativePos = dlg.getValue();
     
     newArea.initPolygonWidth();
+    newArea.calcRelativeSlopes(); // requires spatialrelation and attributesall to be loaded.
     newArea.setElevationRelativePosition(elevRelativePos);
     return newArea;
   }
@@ -1651,7 +1650,7 @@ public class ImportArea {
         }
 
         line = fin.readLine();
-        while (line != null && line.trim().toUpperCase().startsWith("BEGIN") == false) {
+        while (line != null && !line.trim().toUpperCase().startsWith("BEGIN")) {
           line = fin.readLine();
         }
       }

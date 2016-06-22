@@ -1203,7 +1203,7 @@ public class Treatment  implements Externalizable {
     Evu            adj;
 
     for(int i=0;i<adjacentData.length;i++) {
-      adj = adjacentData[i].evu;
+      adj = adjacentData[i].getEvu();
 
       SizeClass sizeClass = (SizeClass)adj.getState(SimpplleType.SIZE_CLASS);
       if (sizeClass == SizeClass.SS) { return true; }

@@ -2781,7 +2781,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     int            i, j=0, validCount=0;
 
     for (i=0; i<adjacentData.length; i++) {
-      if (area.isValidUnitId(adjacentData[i].evu.getId())) {
+      if (area.isValidUnitId(adjacentData[i].getEvu().getId())) {
         validCount++;
       }
     }
@@ -2790,7 +2790,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     newData = new AdjacentData[validCount];
 
     for (i=0; i<adjacentData.length; i++) {
-      if (area.isValidUnitId(adjacentData[i].evu.getId())) {
+      if (area.isValidUnitId(adjacentData[i].getEvu().getId())) {
         newData[j] = adjacentData[i];
         j++;
       }
@@ -2806,7 +2806,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public boolean isNeighbor(Evu unit) {
     for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].evu.getId() == unit.id) {
+      if (adjacentData[i].getEvu().getId() == unit.id) {
         return true;
       }
     }
@@ -2822,7 +2822,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     int adjId = adj.getId();
 
     for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].evu.getId() == adjId) {
+      if (adjacentData[i].getEvu().getId() == adjId) {
         return Simpplle.getCurrentArea().calcRelativePosition(this, adjacentData[i]);
       }
     }
@@ -2838,8 +2838,8 @@ public final class Evu extends NaturalElement implements Externalizable {
     int adjId = adj.getId();
 
     for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].evu.getId() == adjId) {
-        return (adjacentData[i].wind == DOWNWIND);
+      if (adjacentData[i].getEvu().getId() == adjId) {
+        return (adjacentData[i].getWind() == DOWNWIND);
       }
     }
     return false;
@@ -2862,9 +2862,9 @@ public final class Evu extends NaturalElement implements Externalizable {
         case 'B': pos = "Below";   break;
         default:  pos = "Unknown"; break;
       }
-      wind = (isAdjDownwind(adjacentData[i].evu)) ? "Downwind" : "No wind";
+      wind = (isAdjDownwind(adjacentData[i].getEvu())) ? "Downwind" : "No wind";
 
-      strList[i] = Integer.toString(adjacentData[i].evu.getId()) +
+      strList[i] = Integer.toString(adjacentData[i].getEvu().getId()) +
                               " (" + pos + ", " + wind + ")";
     }
     return strList;
@@ -7229,16 +7229,16 @@ public final class Evu extends NaturalElement implements Externalizable {
     for (int i=0; i<adjacentData.length; i++) {
       fout.print(getId());
       fout.print(COMMA);
-      fout.print(adjacentData[i].evu.getId());
+      fout.print(adjacentData[i].getEvu().getId());
       fout.print(COMMA);
       if (isElevationValid()) {
         fout.print(getElevation());
       }
       else {
-        fout.print(adjacentData[i].position);
+        fout.print(adjacentData[i].getPosition());
       }
       fout.print(COMMA);
-      fout.print(adjacentData[i].wind);
+      fout.print(adjacentData[i].getWind());
       fout.println();
     }
   }
@@ -7376,7 +7376,7 @@ public final class Evu extends NaturalElement implements Externalizable {
  */
   public boolean hasSameSizeNeighbors() {
     for (int i=0; i<adjacentData.length; i++) {
-      if (acres != adjacentData[i].evu.acres) { return false; }
+      if (acres != adjacentData[i].getEvu().acres) { return false; }
     }
     return true;
   }
@@ -7891,18 +7891,18 @@ public final class Evu extends NaturalElement implements Externalizable {
     adjacentData = new AdjacentData[in.readInt()];
     for (int i=0; i<adjacentData.length; i++) {
       adjacentData[i] = new AdjacentData();
-      adjacentData[i].evu      = area.getEvu(in.readInt());
-      adjacentData[i].position = in.readChar();
-      adjacentData[i].wind     = in.readChar();
+      adjacentData[i].setEvu(area.getEvu(in.readInt()));
+      adjacentData[i].setPosition(in.readChar());
+      adjacentData[i].setWind(in.readChar());
     }
   }
   public void writeExternalAdjacentData(ObjectOutput out) throws IOException {
     out.writeInt(version);
     out.writeInt(adjacentData.length);
     for (int i=0; i<adjacentData.length; i++) {
-      out.writeInt(adjacentData[i].evu.getId());
-      out.writeChar(adjacentData[i].position);
-      out.writeChar(adjacentData[i].wind);
+      out.writeInt(adjacentData[i].getEvu().getId());
+      out.writeChar(adjacentData[i].getPosition());
+      out.writeChar(adjacentData[i].getWind());
     }
   }
 

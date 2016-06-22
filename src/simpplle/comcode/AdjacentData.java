@@ -28,12 +28,15 @@ public class AdjacentData implements Externalizable {
    */
 
   Evu  evu;
-  char position;
-  char wind;
-  int spread;
-  int windSpeed;
-  int windDirection;
-  double slope;
+  private char position;
+  private char wind;
+  private int spread;
+  private int windSpeed;
+  private int windDirection;
+  /**
+   *  percent slope from source to adjacent.
+   */
+  private double slope;
 
   /**
    * Overloaded constructor for Keane spatial relations.
@@ -43,16 +46,14 @@ public class AdjacentData implements Externalizable {
    * @param spread Degrees Azimuth between the Adjacent polygons TODO: from source unit to adjacent?
    * @param windSpeed Integer speed value
    * @param windDirection Direction that the wind is coming TODO: from source unit to adjacent?
-   * @param slope percent slope TODO: from source unit to adjacent?
    */
-  public AdjacentData(Evu evu, char position, char wind, int spread, int windSpeed, int windDirection, double slope) {
+  public AdjacentData(Evu evu, char position, char wind, int spread, int windSpeed, int windDirection) {
     this.evu = evu;
     this.position = position;
     this.wind = wind;
     this.spread = spread;
     this.windSpeed = windSpeed;
     this.windDirection = windDirection;
-    this.slope = slope;
   }
 
   /**
@@ -121,6 +122,62 @@ public class AdjacentData implements Externalizable {
     out.writeInt(spread);
     out.writeInt(windSpeed);
     out.writeInt(windDirection);
+  }
+
+  public double getSlope() {
+    return slope;
+  }
+
+  public void setSlope(double slope) {
+    this.slope = slope;
+  }
+
+  public int getWindSpeed() {
+    return windSpeed;
+  }
+
+  public void setWindSpeed(int windSpeed) {
+    this.windSpeed = windSpeed;
+  }
+
+  public int getWindDirection() {
+    return windDirection;
+  }
+
+  public void setWindDirection(int windDirection) {
+    this.windDirection = windDirection;
+  }
+
+  public int getSpread() {
+    return spread;
+  }
+
+  public void setSpread(int spread) {
+    this.spread = spread;
+  }
+
+  public char getPosition() {
+    return position;
+  }
+
+  public void setPosition(char position) {
+    this.position = position;
+  }
+
+  public char getWind() {
+    return wind;
+  }
+
+  public void setWind(char wind) {
+    this.wind = wind;
+  }
+
+  public Evu getEvu() {
+    return evu;
+  }
+
+  public void setEvu(Evu evu) {
+    this.evu = evu;
   }
 }
 
