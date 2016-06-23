@@ -256,12 +256,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     //boolean firstProduction=true;
 
-    tmpToUnits.clear();
-
-    double suppTime = 0.0;
-    double responseTime = Fmz.getResponseTime(root.data.getUnit());
-    int sideLength = root.data.getUnit().getSideLength();
-
     //if (getProcess().equals(ProcessType.STAND_REPLACING_FIRE)) {
 
     if (!isExtremeSet) {
@@ -275,7 +269,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
     
     if (!eventFireSuppRandomDrawn) {
-      eventFireSuppRandomNumber = Simulation.getInstance().random();
+      eventFireSuppRandomNumber = Simulation.getInstance().random(); // Greg's Note: Can't this be local in the next block?
       eventFireSuppRandomDrawn = true;
     }
 
@@ -289,6 +283,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     //}
 
     //while (spreadQueue.size() > 0) {
+
+    // If the spread queue is empty, then the fire can't spread further so the event is finished.
 
     if (spreadQueue.size() == 0) {
 
@@ -367,10 +363,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     Evu fromUnit = spreadingNode.data.getUnit();
     Area.currentLifeform = fromUnit.getDominantLifeform();
 
+    // This will always equal the first assignment of this value.
     fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(fromUnit,eventFireSuppRandomNumber);
 
     boolean fireSuppression = (Simulation.getInstance().fireSuppression()) ? fireSuppressed : false;
     boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
+    double responseTime = Fmz.getResponseTime(root.data.getUnit());
+    int sideLength = root.data.getUnit().getSideLength();
 
     int ts = Simulation.getCurrentTimeStep();
 
@@ -384,6 +383,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       hoursBurning += spreadTime;
 
       if (hoursBurning > responseTime) {
+
+        double suppTime = 0.0;
 
 //        suppTime += ( (firstProduction) ? (hoursBurning - responseTime) : spreadTime);
 //        firstProduction=false;
@@ -471,6 +472,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     // TODO Getting a null pointer exception when getDominantLifeformFire returns null.
     //      This apparently is result of isSuppressed returning false when should be true.
     //      cannot get error to repeat after numerous attempts.
+
+    tmpToUnits.clear();
 
     if (!fromUnit.isSuppressed() &&  fromUnit.getDominantLifeformFire() != null ) {
 
