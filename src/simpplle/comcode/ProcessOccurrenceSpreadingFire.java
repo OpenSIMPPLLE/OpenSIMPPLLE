@@ -29,7 +29,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   static final int  version          = 1;
 
   protected int     hoursBurning=0;
-  protected int     burningPeriods=0;
   protected int     weatherProb;
   protected boolean isWeatherProbSet=false;
   protected int     weatherProbAcresRangeNumber=-1;
@@ -42,7 +41,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   protected boolean eventFireSuppRandomDrawn=false;
   protected int     eventFireSuppRandomNumber=0;
   protected Node    lineProductionNode = null;
-  protected boolean firstProduction=true;
   protected int     totalLineProduced=0;
   
   public enum EventStop { OTHER, WEATHER, LINE}
@@ -50,12 +48,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   protected EventStop eventStopReason = EventStop.OTHER;
   
   protected ArrayList<Integer> lineSuppUnits = new ArrayList<Integer>();
-
-//  public void destoryMe() {
-//    fireSeason = null;
-//    lineProductionNode = null;
-//    super.destoryMe();
-//  }
 
   public ProcessOccurrenceSpreadingFire() {
     super();
@@ -97,7 +89,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     while (queue.size() > 0) {
 
       node = (Node)queue.removeFirst();
-//      if (node.data.getProcessProbability() == Evu.SUPP) { continue; }
       if (node.data.getUnit().isSuppressed()) continue;
 
       adjData = node.data.getUnit().getAdjacentData();
@@ -254,10 +245,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   @SuppressWarnings("unchecked")
   public void doSpread() {
 
-    //boolean firstProduction=true;
-
-    //if (getProcess().equals(ProcessType.STAND_REPLACING_FIRE)) {
-
     if (!isExtremeSet) {
       isExtreme = FireEvent.isExtremeSpread();
       isExtremeSet = true;
@@ -277,21 +264,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       Evu originEvu = root.data.getUnit();
       fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(originEvu,eventFireSuppRandomNumber);
     }
-    
-    //if (!fireSuppressed) {
-    //  fireSuppression = false;
-    //}
 
-    //while (spreadQueue.size() > 0) {
-
-    // Originally prob set just once, then changed to every call of this method.
-    // Now modified to get new prob every time event acres changes to new acres
-    // range.
-    //if (!isWeatherProbSet) {
-    //  weatherProb = Simulation.getInstance().random();
-    //  isWeatherProbSet = true;
-    //}
-      
     int rangeNum = FireSuppWeatherData.getAcresRangeNumber(getEventAcres());
 
     if (!isWeatherProbSet) {
@@ -362,9 +335,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       if (hoursBurning > responseTime) {
 
         double suppTime = 0.0;
-
-//        suppTime += ( (firstProduction) ? (hoursBurning - responseTime) : spreadTime);
-//        firstProduction=false;
 
         do {
 
@@ -446,10 +416,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     FireEvent.currentEvent = this;
 
-    // TODO Getting a null pointer exception when getDominantLifeformFire returns null.
-    //      This apparently is result of isSuppressed returning false when should be true.
-    //      cannot get error to repeat after numerous attempts.
-
     tmpToUnits.clear();
 
     if (!fromUnit.isSuppressed() &&  fromUnit.getDominantLifeformFire() != null ) {
@@ -467,8 +433,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
           if (Evu.doSpread(fromUnit, toUnit,fromUnit.getDominantLifeformFire())) {
             tmpToUnits.add(toUnit);
-//            addSpreadEvent(fromUnit, toUnit);
-//            spreadQueue.add( (Node) nodeLookup.get(toUnit));
           }
         }
 
@@ -478,6 +442,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
 
     addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
+
+    finished = (spreadQueue.size() == 0);
 
     if (spreadQueue.size() == 0) {
 
@@ -502,8 +468,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     FireEvent.currentEvent = null;
     Area.currentLifeform = null;
 
-//    thread.yield();  // Give other thread a chance to run.
-//  }
   }
 
   /**
