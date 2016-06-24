@@ -284,28 +284,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     //while (spreadQueue.size() > 0) {
 
-    // If the spread queue is empty, then the fire can't spread further so the event is finished.
-
-    if (spreadQueue.size() == 0) {
-
-      finished = true;
-      eventStopReason = EventStop.OTHER;
-
-      if (Simulation.getInstance().isDoSimLoggingFile()) {
-
-        PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-        int originUnitId = root.data.getUnit().getId();
-        int firePerimeter = calculateApproxPerimeter();
-
-        logOut.printf("Time: %d, Origin Unit: %d, Nowhere left to Spread, Line Produced: %d, Event Perimeter: %d %n",
-            Simulation.getCurrentTimeStep(),originUnitId,totalLineProduced,firePerimeter);
-
-      }
-
-      return;
-
-    }
-
     // Originally prob set just once, then changed to every call of this method.
     // Now modified to get new prob every time event acres changes to new acres
     // range.
@@ -363,7 +341,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     Evu fromUnit = spreadingNode.data.getUnit();
     Area.currentLifeform = fromUnit.getDominantLifeform();
 
-    // This will always equal the first assignment of this value.
     fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(fromUnit,eventFireSuppRandomNumber);
 
     boolean fireSuppression = (Simulation.getInstance().fireSuppression()) ? fireSuppressed : false;
@@ -502,7 +479,25 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
 
-    finished = (spreadQueue.size() == 0);
+    if (spreadQueue.size() == 0) {
+
+      finished = true;
+      eventStopReason = EventStop.OTHER;
+
+      if (Simulation.getInstance().isDoSimLoggingFile()) {
+
+        PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
+        int originUnitId = root.data.getUnit().getId();
+        int firePerimeter = calculateApproxPerimeter();
+
+        logOut.printf("Time: %d, Origin Unit: %d, Nowhere left to Spread, Line Produced: %d, Event Perimeter: %d %n",
+            Simulation.getCurrentTimeStep(),originUnitId,totalLineProduced,firePerimeter);
+
+      }
+
+      return;
+
+    }
 
     FireEvent.currentEvent = null;
     Area.currentLifeform = null;
