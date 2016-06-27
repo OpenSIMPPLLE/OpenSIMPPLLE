@@ -27,15 +27,36 @@ public class AdjacentData implements Externalizable {
    *   E = Use Elevation
    */
 
+  /**
+   * Adjacent evu. This is the 'To' unit.
+   */
   Evu  evu;
+
+  /**
+   * appears to be deprecated? see above comment about position values
+   */
   private char position;
+
+  /**
+   * Valid values are 'D' (down wind) or 'N' (no wind)
+   */
   private char wind;
+
+  /**
+   *  Degrees Azimuth between the Adjacent polygons
+   */
   private double spread;
+
   /**
    * Wind speed is in meters per second (m/s)
    */
   private double windSpeed;
+
+  /**
+   * Direction (Azimuth) that the wind is coming from
+   */
   private double windDirection;
+
   /**
    *  percent slope from source to adjacent.
    */
@@ -43,12 +64,6 @@ public class AdjacentData implements Externalizable {
 
   /**
    * Overloaded constructor for Keane spatial relations.
-   * @param evu adjacent evu.
-   * @param position appears to be deprecated? see above comment
-   * @param wind valid values are 'D' (down wind) or 'N' (no wind)
-   * @param spread Degrees Azimuth between the Adjacent polygons
-   * @param windSpeed speed value
-   * @param windDirection Direction that the wind is coming
    */
   public AdjacentData(Evu evu, char position, char wind, double spread, double windSpeed, double windDirection) {
     this.evu = evu;

@@ -188,9 +188,6 @@ public final class Area implements Externalizable {
     maxEvuId         = 0;
     acres            = 0;
     this.totalLength = 0;
-//    origin           = null;
-//    spread           = null;
-//    weatherProb      = null;
     date             = Simpplle.currentDate();
     fileVersion      = CURRENT_FILE_VERSION;
     manualGC         = false;
