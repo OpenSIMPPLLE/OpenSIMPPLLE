@@ -47,7 +47,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * Creates a spreading fire event with an origin unit.
    *
    * @param evu A vegetation unit
-   * @param lifeform A lifeform
+   * @param lifeform A life form
    * @param processData A process probability
    * @param timeStep A time step (unused)
    */
@@ -73,24 +73,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * @return The reason that this event stopped, or OTHER if it hasn't stopped.
-   */
-  public String getEventStopReason() {
-    return eventStopReason.toString();
-  }
-
-  /**
    * @return True if this is an extreme fire event.
    */
   public boolean isExtremeEvent() {
     return isExtreme;
-  }
-
-  /**
-   * @return The season {spring,summer,fall,winter} that this fire occurs.
-   */
-  public Climate.Season getFireSeason() {
-    return fireSeason;
   }
 
   /**
@@ -101,48 +87,17 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * Calculates an exact fire perimeter.
-   *
-   * @return The fire perimeter in feet
+   * @return The reason that this event stopped, or OTHER if it hasn't stopped.
    */
-  @SuppressWarnings("unchecked")
-  protected int calculatePerimeter() {
+  public String getEventStopReason() {
+    return eventStopReason.toString();
+  }
 
-    int perimeter = 0;
-
-    if (root == null) return 0;
-
-    LinkedList queue = new LinkedList();
-    queue.add(root);
-
-    Node node;
-    AdjacentData[] adjData;
-
-    while (queue.size() > 0) {
-
-      node = (Node)queue.removeFirst();
-      if (node.data.getUnit().isSuppressed()) continue;
-
-      adjData = node.data.getUnit().getAdjacentData();
-
-      for (int i=0; i<adjData.length; i++) {
-
-        VegSimStateData adjState = adjData[i].evu.getState();
-        if (adjState == null || adjState.getProcess().isFireProcess()) continue;
-
-        perimeter += adjData[i].evu.getSideLength();
-
-      }
-
-      if (node.toNodes == null) continue;
-
-      for (int i=0; i<node.toNodes.length; i++) {
-        queue.add(node.toNodes[i]);
-      }
-    }
-
-    return perimeter;
-
+  /**
+   * @return The season {spring,summer,fall,winter} that this fire occurs.
+   */
+  public Climate.Season getFireSeason() {
+    return fireSeason;
   }
 
   /**
@@ -153,121 +108,20 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * Calculates an approximate fire perimeter. The approximation assumes that the fire shape is square.
-   *
-   * @return The fire perimeter in feet
+   * De-serializes this object from an object stream.
    */
-  public int calculateApproxPerimeter() {
-    float fEventAcres = Area.getFloatAcres(eventAcres);
-    int eventSideLength = (int)Math.round(Math.sqrt(fEventAcres*43560));
-    return eventSideLength * 4;
+  public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    @SuppressWarnings("unused")
+    int version = in.readInt();
+    super.readExternal(in);
   }
 
   /**
-   * Determine if this unit has any neighbors that are not burning. If so, we can build line here. More ideal would be
-   * finding only perimeter units, but not sure how best to achieve that right now without significantly affecting
-   * performance.
-   *
-   * @param unit A vegetation unit with neighbors
-   * @return True if a neighbor is burning
+   * Serializes this object to an object stream.
    */
-  private boolean hasNonBurningNeighbors(Evu unit) {
-
-    AdjacentData[] adjDataArray = unit.getAdjacentData();
-
-    if (adjDataArray != null) {
-      for (AdjacentData adjData : adjDataArray) {
-        if (!adjData.evu.hasFireAnyLifeform()) {
-          return true;
-        }
-      }
-    }
-    
-    return false;
-
-  }
-
-  /**
-   * Finds the neighbor with the lowest elevation that is not burning.
-   *
-   * @param unit A vegetation unit with neighbors
-   * @return A non-burning vegetation unit
-   */
-  private Evu getNonBurningLowestNeighbor(Evu unit) {
-
-    int lowestElevation = Integer.MAX_VALUE;
-    Evu lowestUnit = null;
-
-    AdjacentData[] adjDataArray = unit.getAdjacentData();
-
-    if (adjDataArray != null) {
-      for (AdjacentData adjData : adjDataArray) {
-        int unitElevation = adjData.evu.getElevation();
-        if (!adjData.evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
-          lowestElevation = unitElevation;
-          lowestUnit = adjData.evu;
-        }
-      }
-    }
-    
-    return lowestUnit;
-
-  }
-
-  /**
-   * Finds the neighbor with the lowest elevation that does not have a stand replacing fire or a fire line. These
-   * qualities are important as suppression forces cannot build line there.
-   *
-   * 8/23/11  Added check for beyond A suppression
-   * 8/24/11  Added check for non burning neighbors
-   *
-   * @return A vegetation unit fitting the requirements
-   */
-  @SuppressWarnings("unchecked")
-  protected Node findLowestElevationNonSrfNonSuppNode() {
-
-    FireSuppBeyondClassALogic logicInst = FireSuppBeyondClassALogic.getInstance();
-
-    int ts = Simulation.getCurrentTimeStep();
-
-    if (root == null) return null;
-
-    LinkedList queue= new LinkedList();
-
-    int lowestElevation = 1000000;
-    
-    queue.add(root);
-    Node node, lowestNode=root;
-    while (queue.size() > 0) {
-      node = (Node)queue.removeFirst();
-      VegSimStateData state = node.data.getUnit().getState();
-      boolean doLine = false;
-      if (state != null) { 
-        doLine = logicInst.isSuppressedUniform(this,state.getVeg(),state.getProcess(),isExtreme,node.data.getUnit(),ts,lifeform);
-      }
-      
-      boolean nonBurningNeighbors = hasNonBurningNeighbors(node.data.getUnit());
-      int nodeElevation = node.data.getUnit().getElevation();
-
-      if ((nodeElevation < lowestElevation) &&
-          doLine &&
-          nonBurningNeighbors &&
-          (node.data.getProcess().equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
-          (node.data.getUnit().isSuppressed() == false)) {
-
-        lowestNode = node;
-        lowestElevation = nodeElevation;
-
-      }
-
-      if (node.toNodes == null) { continue; }
-      for (int i=0; i<node.toNodes.length; i++) {
-        queue.add(node.toNodes[i]);
-      }
-    }
-
-    return lowestNode;
-
+  public void writeExternal(ObjectOutput out) throws IOException {
+    out.writeInt(version);
+    super.writeExternal(out);
   }
 
   /**
@@ -292,7 +146,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       fireSeason = FireEvent.getFireSeason();
       isFireSeasonSet = true;
     }
-    
+
     if (!fireSuppRandomDrawn) {
       fireSuppRandomNumber = Simulation.getInstance().random(); // Greg's Note: Can't this be local in the next block?
       fireSuppRandomDrawn = true;
@@ -319,7 +173,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
 
     RegionalZone zone = Simpplle.getCurrentZone();
-      
+
     if (FireEvent.doSpreadEndingWeather(zone,getEventAcres(),getFireSeason(),weatherProb)) {
 
       finished = true;
@@ -337,7 +191,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         int firePerimeter = calculateApproxPerimeter();
 
         logOut.printf("Time: %d, Origin Unit: %d, Weather Ending, Line Produced: %d, Event Perimeter: %d %n",
-                      ts,originUnitId,totalLineProduced,firePerimeter);
+            ts,originUnitId,totalLineProduced,firePerimeter);
       }
 
       return;
@@ -408,7 +262,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
                   Simulation.getCurrentTimeStep(),originUnitId);
 
               logOut.printf("Time: %d, Origin Unit: %d, Line Produced: %d, Event Perimeter: %d %n",
-                            ts,originUnitId,totalLineProduced,firePerimeter);
+                  ts,originUnitId,totalLineProduced,firePerimeter);
 
             }
 
@@ -509,6 +363,171 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
+   * Calculates an exact fire perimeter.
+   *
+   * @return The fire perimeter in feet
+   */
+  @SuppressWarnings("unchecked")
+  public int calculatePerimeter() {
+
+    int perimeter = 0;
+
+    if (root == null) return 0;
+
+    LinkedList queue = new LinkedList();
+    queue.add(root);
+
+    Node node;
+    AdjacentData[] adjData;
+
+    while (queue.size() > 0) {
+
+      node = (Node)queue.removeFirst();
+      if (node.data.getUnit().isSuppressed()) continue;
+
+      adjData = node.data.getUnit().getAdjacentData();
+
+      for (int i=0; i<adjData.length; i++) {
+
+        VegSimStateData adjState = adjData[i].evu.getState();
+        if (adjState == null || adjState.getProcess().isFireProcess()) continue;
+
+        perimeter += adjData[i].evu.getSideLength();
+
+      }
+
+      if (node.toNodes == null) continue;
+
+      for (int i=0; i<node.toNodes.length; i++) {
+        queue.add(node.toNodes[i]);
+      }
+    }
+
+    return perimeter;
+
+  }
+
+
+
+  /**
+   * Calculates an approximate fire perimeter. The approximation assumes that the fire shape is square.
+   *
+   * @return The fire perimeter in feet
+   */
+  public int calculateApproxPerimeter() {
+    float fEventAcres = Area.getFloatAcres(eventAcres);
+    int eventSideLength = (int)Math.round(Math.sqrt(fEventAcres * 43560));
+    return eventSideLength * 4;
+  }
+
+  /**
+   * Determine if this unit has any neighbors that are not burning. If so, we can build line here. More ideal would be
+   * finding only perimeter units, but not sure how best to achieve that right now without significantly affecting
+   * performance.
+   *
+   * @param unit A vegetation unit with neighbors
+   * @return True if a neighbor is burning
+   */
+  private boolean hasNonBurningNeighbors(Evu unit) {
+
+    AdjacentData[] adjDataArray = unit.getAdjacentData();
+
+    if (adjDataArray != null) {
+      for (AdjacentData adjData : adjDataArray) {
+        if (!adjData.evu.hasFireAnyLifeform()) {
+          return true;
+        }
+      }
+    }
+    
+    return false;
+
+  }
+
+  /**
+   * Finds the neighbor with the lowest elevation that is not burning.
+   *
+   * @param unit A vegetation unit with neighbors
+   * @return A non-burning vegetation unit
+   */
+  private Evu getNonBurningLowestNeighbor(Evu unit) {
+
+    int lowestElevation = Integer.MAX_VALUE;
+    Evu lowestUnit = null;
+
+    AdjacentData[] adjDataArray = unit.getAdjacentData();
+
+    if (adjDataArray != null) {
+      for (AdjacentData adjData : adjDataArray) {
+        int unitElevation = adjData.evu.getElevation();
+        if (!adjData.evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
+          lowestElevation = unitElevation;
+          lowestUnit = adjData.evu;
+        }
+      }
+    }
+    
+    return lowestUnit;
+
+  }
+
+  /**
+   * Finds the neighbor with the lowest elevation that does not have a stand replacing fire or a fire line. These
+   * qualities are important as suppression forces cannot build line there.
+   *
+   * 8/23/11  Added check for beyond A suppression
+   * 8/24/11  Added check for non burning neighbors
+   *
+   * @return A vegetation unit fitting the requirements
+   */
+  @SuppressWarnings("unchecked")
+  private Node findLowestElevationNonSrfNonSuppNode() {
+
+    FireSuppBeyondClassALogic logicInst = FireSuppBeyondClassALogic.getInstance();
+
+    int ts = Simulation.getCurrentTimeStep();
+
+    if (root == null) return null;
+
+    LinkedList queue= new LinkedList();
+
+    int lowestElevation = 1000000;
+    
+    queue.add(root);
+    Node node, lowestNode=root;
+    while (queue.size() > 0) {
+      node = (Node)queue.removeFirst();
+      VegSimStateData state = node.data.getUnit().getState();
+      boolean doLine = false;
+      if (state != null) { 
+        doLine = logicInst.isSuppressedUniform(this,state.getVeg(),state.getProcess(),isExtreme,node.data.getUnit(),ts,lifeform);
+      }
+      
+      boolean nonBurningNeighbors = hasNonBurningNeighbors(node.data.getUnit());
+      int nodeElevation = node.data.getUnit().getElevation();
+
+      if ((nodeElevation < lowestElevation) &&
+          doLine &&
+          nonBurningNeighbors &&
+          (node.data.getProcess().equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
+          (node.data.getUnit().isSuppressed() == false)) {
+
+        lowestNode = node;
+        lowestElevation = nodeElevation;
+
+      }
+
+      if (node.toNodes == null) { continue; }
+      for (int i=0; i<node.toNodes.length; i++) {
+        queue.add(node.toNodes[i]);
+      }
+    }
+
+    return lowestNode;
+
+  }
+
+  /**
    * Creates spot fires from blowing embers. All vegetation units in the area that are downwind and within the maximum
    * fire spotting distance are tested for spot fires. Spot fires start based on a fire spotting probability entered
    * in the 'Fire Event Logic' dialog.
@@ -519,7 +538,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @param fromEvu The unit we are trying to spot a fire from
    */
   @SuppressWarnings("unchecked")
-  public void doFireSpotting(Evu fromEvu) {
+  private void doFireSpotting(Evu fromEvu) {
 
     AdjacentData[] adjacentData;
     Evu            adj, fromAdj;
@@ -640,17 +659,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     return false;
 
-  }
-
-  public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-    @SuppressWarnings("unused")
-    int version = in.readInt();
-    super.readExternal(in);
-  }
-
-  public void writeExternal(ObjectOutput out) throws IOException {
-    out.writeInt(version);
-    super.writeExternal(out);
   }
 
 //  public void run() {
