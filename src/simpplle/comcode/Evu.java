@@ -8527,22 +8527,32 @@ public final class Evu extends NaturalElement implements Externalizable {
       Simpplle.getAreaSummary().updateSuppressedFires(this);
     }
   }
-/**
- * Uses the life forms to get vegetative state, then checks if Evu has life form and whether the vegetative state probability
- * equals suppression.
- * @return null if state is null, true if probability = suppression
- */
+
+  /**
+   * Determines if the fire is suppressed by looking for life forms that have a vegetative state with a 'suppressed'
+   * probability, in which case this whole vegetation unit will be reported as being suppressed.
+   *
+   * @return True if fire is suppressed
+   */
   public boolean isSuppressed() {
-    Lifeform[] allLives = Lifeform.getAllValues();
-    for (int i=0; i<allLives.length; i++) {
-      Lifeform lifeform = allLives[i];
+
+    Lifeform[] lifeforms = Lifeform.getAllValues();
+
+    for (Lifeform lifeform : lifeforms) {
+
       VegSimStateData state = getState(lifeform);
-      if (state == null) { continue; }
-      if (hasLifeform(lifeform) && state.getProb() == SUPP) {
+
+      if (state != null &&
+          hasLifeform(lifeform) &&
+          state.getProb() == SUPP) {
+
         return true;
+
       }
     }
+
     return false;
+
   }
 
   /**
