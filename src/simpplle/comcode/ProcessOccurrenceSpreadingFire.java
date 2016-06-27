@@ -306,18 +306,19 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     if (!fromUnit.isSuppressed() &&  fromUnit.getDominantLifeformFire() != null ) {
 
-      AdjacentData[] adjData = fromUnit.getAdjacentData();
+      AdjacentData[] adjDataArray = fromUnit.getAdjacentData();
 
-      if (adjData != null) {
-        for (int i = 0; i < adjData.length; i++) {
+      if (adjDataArray != null) {
 
-          Evu toUnit = adjData[i].evu;
+        for (AdjacentData adjData : adjDataArray) {
+
+          Evu toUnit = adjData.evu;
 
           if (lineSuppUnits.contains(toUnit.getId())) {
             continue;
           }
 
-          if (Evu.doSpread(fromUnit, toUnit,fromUnit.getDominantLifeformFire())) {
+          if (Evu.doSpread(fromUnit, toUnit, fromUnit.getDominantLifeformFire())) {
             tmpToUnits.add(toUnit);
           }
         }
