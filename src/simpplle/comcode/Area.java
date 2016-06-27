@@ -4004,17 +4004,20 @@ public final class Area implements Externalizable {
   public double calcSlope(Evu evu, AdjacentData adjData){
 
     Evu adj = adjData.getEvu();
+    // side length of a unit
     double distanceFeet = Math.sqrt(evu.getFloatAcres() * ACRES_TO_FEET);
 
+    // Math class needs radians
+    double radianSpread = Math.toRadians(adjData.getSpread());
     // find distance to edge of square based on spread (angle of adjacency)
-    double abs_sin = Math.abs(Math.sin(adjData.getSpread()));
-    double abs_cos = Math.abs(Math.cos(adjData.getSpread()));
+    double abs_sin = (Math.abs(Math.sin(radianSpread)));
+    double abs_cos = (Math.abs(Math.cos(radianSpread)));
 
     // must use both sin and cos to avoid dividing by 0
     if (abs_sin <= abs_cos) distanceFeet = distanceFeet / abs_cos;
     else                    distanceFeet = distanceFeet / abs_sin;
     // rise over run * 100 to get percent slope
-    return 100 * (adj.getElevation() - evu.getElevation()) / (distanceFeet * 2);
+    return 100 * (adj.getElevation() - evu.getElevation()) / distanceFeet;
   }
 
   public char calcRelativePosition(Evu evu, AdjacentData adjData) {
