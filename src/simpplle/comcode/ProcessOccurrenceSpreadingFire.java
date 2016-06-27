@@ -1,7 +1,8 @@
 package simpplle.comcode;
 
-import java.util.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -17,41 +18,58 @@ import java.io.*;
  * Original source code authorship: Kirk A. Moeller
  */
 
-
 public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading implements Externalizable {
   static final long serialVersionUID = -7840370421868476956L;
   static final int  version          = 1;
 
-  protected int     hoursBurning=0;
-  protected int     weatherProb;
-  protected boolean isWeatherProbSet=false;
-  protected int     weatherProbAcresRangeNumber=-1;
-  protected boolean isExtreme=false;
-  protected boolean isExtremeSet=false;
-  protected Climate.Season fireSeason;
-  protected boolean isFireSeasonSet=false;
-  protected boolean fireSuppressed=false;
-  protected boolean fireSuppressedSet=false;
-  protected boolean eventFireSuppRandomDrawn=false;
-  protected int     eventFireSuppRandomNumber=0;
-  protected Node    lineProductionNode = null;
-  protected int     totalLineProduced=0;
-  
-  public enum EventStop { OTHER, WEATHER, LINE}
-  
-  protected EventStop eventStopReason = EventStop.OTHER;
-  
-  protected ArrayList<Integer> lineSuppUnits = new ArrayList<Integer>();
+  public enum EventStop { OTHER, WEATHER, LINE }
+
+  private int            hoursBurning;
+  private int            weatherProb;
+  private boolean        isWeatherProbSet;
+  private int            weatherRangeIndex;
+  private boolean        isExtreme;
+  private boolean        isExtremeSet;
+  private Climate.Season fireSeason;
+  private boolean        isFireSeasonSet;
+  private boolean        fireSuppressed;
+  private boolean        fireSuppressedSet;
+  private boolean        fireSuppRandomDrawn;
+  private int            fireSuppRandomNumber;
+  private Node           lineProductionNode;
+  private int            totalLineProduced;
+
+  private EventStop eventStopReason = EventStop.OTHER;
+
+  private ArrayList<Integer> lineSuppUnits = new ArrayList<>();
 
   /**
    * Creates a spreading fire event with an origin unit.
+   *
    * @param evu A vegetation unit
    * @param lifeform A lifeform
    * @param processData A process probability
    * @param timeStep A time step (unused)
    */
   public ProcessOccurrenceSpreadingFire(Evu evu, Lifeform lifeform, ProcessProbability processData, int timeStep) {
+
     super(evu,lifeform,processData,timeStep);
+
+    hoursBurning         = 0;
+    weatherProb          = 0;
+    isWeatherProbSet     = false;
+    weatherRangeIndex    = -1;
+    isExtreme            = false;
+    isExtremeSet         = false;
+    fireSeason           = Climate.Season.SPRING;
+    isFireSeasonSet      = false;
+    fireSuppressed       = false;
+    fireSuppressedSet    = false;
+    fireSuppRandomNumber = 0;
+    fireSuppRandomDrawn  = false;
+    lineProductionNode   = null;
+    totalLineProduced    = 0;
+
   }
 
   /**
@@ -84,6 +102,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
   /**
    * Calculates an exact fire perimeter.
+   *
    * @return The fire perimeter in feet
    */
   @SuppressWarnings("unchecked")
@@ -135,6 +154,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
   /**
    * Calculates an approximate fire perimeter. The approximation assumes that the fire shape is square.
+   *
    * @return The fire perimeter in feet
    */
   public int calculateApproxPerimeter() {
@@ -147,6 +167,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * Determine if this unit has any neighbors that are not burning. If so, we can build line here. More ideal would be
    * finding only perimeter units, but not sure how best to achieve that right now without significantly affecting
    * performance.
+   *
    * @param unit A vegetation unit with neighbors
    * @return True if a neighbor is burning
    */
@@ -168,6 +189,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
   /**
    * Finds the neighbor with the lowest elevation that is not burning.
+   *
    * @param unit A vegetation unit with neighbors
    * @return A non-burning vegetation unit
    */
@@ -271,14 +293,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       isFireSeasonSet = true;
     }
     
-    if (!eventFireSuppRandomDrawn) {
-      eventFireSuppRandomNumber = Simulation.getInstance().random(); // Greg's Note: Can't this be local in the next block?
-      eventFireSuppRandomDrawn = true;
+    if (!fireSuppRandomDrawn) {
+      fireSuppRandomNumber = Simulation.getInstance().random(); // Greg's Note: Can't this be local in the next block?
+      fireSuppRandomDrawn = true;
     }
 
     if (!fireSuppressedSet) {
       Evu originEvu = root.data.getUnit();
-      fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(originEvu,eventFireSuppRandomNumber);
+      fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(originEvu, fireSuppRandomNumber);
     }
 
     int rangeNum = FireSuppWeatherData.getAcresRangeNumber(getEventAcres());
@@ -287,12 +309,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
       weatherProb = Simulation.getInstance().random();
       isWeatherProbSet = true;
-      weatherProbAcresRangeNumber = rangeNum;
+      weatherRangeIndex = rangeNum;
 
-    } else if (rangeNum != weatherProbAcresRangeNumber) {
+    } else if (rangeNum != weatherRangeIndex) {
 
       weatherProb = Simulation.getInstance().random();
-      weatherProbAcresRangeNumber = rangeNum;
+      weatherRangeIndex = rangeNum;
 
     }
 
@@ -330,7 +352,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     Evu fromUnit = spreadingNode.data.getUnit();
     Area.currentLifeform = fromUnit.getDominantLifeform();
 
-    fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(fromUnit,eventFireSuppRandomNumber);
+    fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(fromUnit, fireSuppRandomNumber);
 
     boolean fireSuppression = (Simulation.getInstance().fireSuppression()) ? fireSuppressed : false;
     boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
