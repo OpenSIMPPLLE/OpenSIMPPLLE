@@ -46,7 +46,8 @@ public class ParseAreaKeane implements IParseArea{
     Evu[] allEvu;
     int maxEvuId = -1,
         from,
-        to,
+        to;
+    double
         elevation,
         spread,
         windSpeed,
@@ -78,7 +79,7 @@ public class ParseAreaKeane implements IParseArea{
       // ELEV
       str = st.getToken();
       try {
-        elevation = Integer.parseInt(str);
+        elevation = Double.parseDouble(str);
       } catch (NumberFormatException ex) {
         log.print("Invalid elevation: " + str + "\nIn line: " + line);
         return false;
@@ -87,7 +88,7 @@ public class ParseAreaKeane implements IParseArea{
       // SPREAD_DEG
       str = st.getToken();
       try {
-        spread = Integer.parseInt(str);
+        spread = Double.parseDouble(str);
       } catch (NumberFormatException ex) {
         log.println("Invalid value for Spread Degrees: " + str +
             "\nIn line: " + line);
@@ -97,7 +98,7 @@ public class ParseAreaKeane implements IParseArea{
       // BASE_WIND_SPEED
       str = st.getToken();
       try {
-        windSpeed = Integer.parseInt(str);
+        windSpeed = Double.parseDouble(str);
       } catch (NumberFormatException ex) {
         log.println("invalid value for base wind speed : " + str +
             "\nIn line: " + line);
@@ -107,7 +108,7 @@ public class ParseAreaKeane implements IParseArea{
       // BASE_WIND_DIR
       str = st.getToken();
       try{
-        windDirection = Integer.parseInt(str);
+        windDirection = Double.parseDouble(str);
       } catch (NumberFormatException ex){
         log.println("invalid value for base wind direction : " + str +
             "\nIn line: " + line);
@@ -115,7 +116,6 @@ public class ParseAreaKeane implements IParseArea{
       }
 
       // Calculate if a unit is downwind based on spread and windDirection.
-      // TODO: define angle threshold for downwind
       int threshold = 90;
       if(getAngleDifference(spread, windDirection)>threshold) wind = 'D';
       else wind = 'N';
@@ -124,7 +124,7 @@ public class ParseAreaKeane implements IParseArea{
       Evu evu = unitHm.get(from);
       if (evu == null) {
         evu = new Evu(from);
-        evu.setElevation(elevation);
+        evu.setElevation((int)elevation);
         unitHm.put(from, evu);
       }
 
@@ -152,8 +152,8 @@ public class ParseAreaKeane implements IParseArea{
    * @param b angle 2
    * @return UNSIGNED Angle difference between given angles
    */
-  private int getAngleDifference(int a, int b){
-    int diff = Math.abs(a-b);
+  private double getAngleDifference(double a, double b){
+    double diff = Math.abs(a-b);
     return (diff < 180) ? diff : 360 - diff;
   }
 
