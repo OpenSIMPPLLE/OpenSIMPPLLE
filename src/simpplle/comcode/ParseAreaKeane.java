@@ -80,7 +80,8 @@ public class ParseAreaKeane implements IParseArea{
       try {
         elevation = Integer.parseInt(str);
       } catch (NumberFormatException ex) {
-        elevation = NaturalElement.INVALID_ELEV;
+        log.print("Invalid elevation: " + str + "\nIn line: " + line);
+        return false;
       }
 
       // SPREAD_DEG
