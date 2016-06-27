@@ -4017,7 +4017,8 @@ public final class Area implements Externalizable {
     if (abs_sin <= abs_cos) distanceFeet = distanceFeet / abs_cos;
     else                    distanceFeet = distanceFeet / abs_sin;
     // rise over run * 100 to get percent slope
-    return 100 * (adj.getElevation() - evu.getElevation()) / distanceFeet;
+    // make sure to use elevation in feet
+    return 100 * (adj.getElevationFeet() - evu.getElevationFeet()) / distanceFeet;
   }
 
   public char calcRelativePosition(Evu evu, AdjacentData adjData) {
