@@ -30,9 +30,12 @@ public class AdjacentData implements Externalizable {
   Evu  evu;
   private char position;
   private char wind;
-  private int spread;
-  private int windSpeed;
-  private int windDirection;
+  private double spread;
+  /**
+   * Wind speed is in meters per second (m/s)
+   */
+  private double windSpeed;
+  private double windDirection;
   /**
    *  percent slope from source to adjacent.
    */
@@ -43,11 +46,11 @@ public class AdjacentData implements Externalizable {
    * @param evu adjacent evu.
    * @param position appears to be deprecated? see above comment
    * @param wind valid values are 'D' (down wind) or 'N' (no wind)
-   * @param spread Degrees Azimuth between the Adjacent polygons TODO: from source unit to adjacent?
-   * @param windSpeed Integer speed value
-   * @param windDirection Direction that the wind is coming TODO: from source unit to adjacent?
+   * @param spread Degrees Azimuth between the Adjacent polygons
+   * @param windSpeed speed value
+   * @param windDirection Direction that the wind is coming
    */
-  public AdjacentData(Evu evu, char position, char wind, int spread, int windSpeed, int windDirection) {
+  public AdjacentData(Evu evu, char position, char wind, double spread, double windSpeed, double windDirection) {
     this.evu = evu;
     this.position = position;
     this.wind = wind;
@@ -105,9 +108,9 @@ public class AdjacentData implements Externalizable {
     evu           = (Evu)in.readObject();
     position      = in.readChar();
     wind          = in.readChar();
-    spread        = in.readInt();
-    windSpeed     = in.readInt();
-    windDirection = in.readInt();
+    spread        = in.readDouble();
+    windSpeed     = in.readDouble();
+    windDirection = in.readDouble();
   }
 
   /**
@@ -119,9 +122,9 @@ public class AdjacentData implements Externalizable {
     out.writeObject(evu);
     out.writeChar(position);
     out.writeChar(wind);
-    out.writeInt(spread);
-    out.writeInt(windSpeed);
-    out.writeInt(windDirection);
+    out.writeDouble(spread);
+    out.writeDouble(windSpeed);
+    out.writeDouble(windDirection);
   }
 
   public double getSlope() {
@@ -132,7 +135,7 @@ public class AdjacentData implements Externalizable {
     this.slope = slope;
   }
 
-  public int getWindSpeed() {
+  public double getWindSpeed() {
     return windSpeed;
   }
 
@@ -140,7 +143,7 @@ public class AdjacentData implements Externalizable {
     this.windSpeed = windSpeed;
   }
 
-  public int getWindDirection() {
+  public double getWindDirection() {
     return windDirection;
   }
 
@@ -148,7 +151,7 @@ public class AdjacentData implements Externalizable {
     this.windDirection = windDirection;
   }
 
-  public int getSpread() {
+  public double getSpread() {
     return spread;
   }
 

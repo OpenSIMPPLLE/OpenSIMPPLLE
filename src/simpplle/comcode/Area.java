@@ -3856,12 +3856,12 @@ public final class Area implements Externalizable {
    */
   public void addAdjacentData(Evu evu, int adjId, char pos, char wind) {
     // get vector from hash table
-    Vector<int[]> v = addAdjacentHelper(evu);
+    Vector<double[]> v = addAdjacentHelper(evu);
     // add adjacent data to vector
-    int[] data = new int[3];
+    double[] data = new double[3];
     data[0] = adjId;
-    data[1] = (int) pos;  // convert to ascii value
-    data[2] = (int) wind; // convert to ascii value
+    data[1] = (double) pos;  // convert to ascii value
+    data[2] = (double) wind; // convert to ascii value
     v.addElement(data);
   }
 
@@ -3879,11 +3879,11 @@ public final class Area implements Externalizable {
    * @param windSpeed Wind Speed
    * @param windDir direction that the wind is coming adjId.
    */
-  public void addAdjacentData(Evu evu, int adjId, char pos, char wind, int spread, int windSpeed, int windDir){
+  public void addAdjacentData(Evu evu, int adjId, char pos, char wind, double spread, double windSpeed, double windDir){
     // get adjacency vector adjId hash table
-    Vector<int[]> v = addAdjacentHelper(evu);
+    Vector<double[]> v = addAdjacentHelper(evu);
     // add adjacent data adjId vector
-    int[] data = {adjId, pos, wind, spread, windSpeed, windDir};
+    double[] data = {(double) adjId, pos, wind, spread, windSpeed, windDir};
     v.addElement(data);
   }
 
@@ -3892,13 +3892,13 @@ public final class Area implements Externalizable {
    * @param evu The instance Evu
    * @return vector for the given evu
    */
-  public Vector<int[]> addAdjacentHelper(Evu evu){
+  public Vector<double[]> addAdjacentHelper(Evu evu){
     if (tmpAdjacentData == null) {
       tmpAdjacentData = new Hashtable<>();
     }
     Vector v = tmpAdjacentData.get(evu);
     if (v == null) {
-      v = new Vector<int[]>();
+      v = new Vector<double[]>();
       tmpAdjacentData.put(evu,v);
     }
     return v;
@@ -3918,7 +3918,7 @@ public final class Area implements Externalizable {
     Evu            evu, adjEvu;
     Vector         v;
     int            i;
-    int[]          data;
+    double[]          data;
     Enumeration    keys;
     AdjacentData[] adjData;
     int            numAdj;
@@ -3931,8 +3931,8 @@ public final class Area implements Externalizable {
       // Count the number valid adjacent units.
       numAdj = 0;
       for (i=0; i<v.size(); i++) {
-        data = (int[])v.elementAt(i);
-        adjEvu = getEvu(data[0]);
+        data = (double[])v.elementAt(i);
+        adjEvu = getEvu((int)data[0]);
         if (adjEvu != null) { numAdj++; }
       }
 
@@ -3950,14 +3950,13 @@ public final class Area implements Externalizable {
         continue;
       }
 
-      int  elevDiff, evuElev, adjElev;
-      int spread, windSpeed, windDir;
+      double spread, windSpeed, windDir;
       char pos, wind;
       adjData = new AdjacentData[numAdj];
       for (i=0; i<v.size(); i++) {
-        data = (int[])v.elementAt(i);
+        data = (double[])v.elementAt(i);
         int dataLength = data.length;
-        adjEvu = getEvu(data[0]);
+        adjEvu = getEvu((int)data[0]);
         // skip null Evus
         if (adjEvu == null) { continue; }
 
