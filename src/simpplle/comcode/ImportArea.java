@@ -1526,7 +1526,7 @@ public class ImportArea {
            version = strTok.nextToken();
         }
         if (version.equalsIgnoreCase(version2ID)) {
-          parser = new ParseAreaV2();
+          parser = new ParseAreaKeane();
         }
         else {
           parser = new ParseAreaLegacy();

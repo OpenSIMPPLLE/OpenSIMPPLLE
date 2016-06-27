@@ -16,7 +16,7 @@ import java.util.HashMap;
  * FROM_POLY, TO_POLY, ELEV, SPREAD_DEG, BASE_WIND_SPEED, BASE_WIND_DIR
  *
  */
-public class ParseAreaV2 implements IParseArea{
+public class ParseAreaKeane implements IParseArea{
 
   boolean hasAttributes;
 
