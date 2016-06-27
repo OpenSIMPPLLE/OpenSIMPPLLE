@@ -57,7 +57,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     hoursBurning         = 0;
     weatherProb          = 0;
-    isWeatherProbSet     = false;
     weatherRangeIndex    = -1;
     isExtreme            = false;
     isExtremeSet         = false;
@@ -157,18 +156,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(originEvu, fireSuppRandomNumber);
     }
 
-    int rangeNum = FireSuppWeatherData.getAcresRangeNumber(getEventAcres());
+    int rangeIndex = FireSuppWeatherData.getAcresRangeNumber(getEventAcres());
 
-    if (!isWeatherProbSet) {
-
-      weatherProb = Simulation.getInstance().random();
-      isWeatherProbSet = true;
-      weatherRangeIndex = rangeNum;
-
-    } else if (rangeNum != weatherRangeIndex) {
+    if (rangeIndex != weatherRangeIndex) {
 
       weatherProb = Simulation.getInstance().random();
-      weatherRangeIndex = rangeNum;
+      weatherRangeIndex = rangeIndex;
 
     }
 
@@ -210,10 +203,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     boolean fireSuppression = (Simulation.getInstance().fireSuppression()) ? fireSuppressed : false;
     boolean hasUniformPolygons = Simpplle.getCurrentArea().hasUniformSizePolygons();
-    double responseTime = Fmz.getResponseTime(root.data.getUnit());
-    int sideLength = root.data.getUnit().getSideLength();
-
-    int ts = Simulation.getCurrentTimeStep();
 
     if (hasUniformPolygons && fireSuppression) {
 
@@ -221,6 +210,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       VegetativeType vegType = state.getVeg();
       Lifeform lifeform = state.getLifeform();
 
+      int ts = Simulation.getCurrentTimeStep();
+
+      double responseTime = Fmz.getResponseTime(root.data.getUnit());
       double spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,fromUnit,ts,lifeform);
       hoursBurning += spreadTime;
 
@@ -269,6 +261,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
             return;
 
           }
+
+          int sideLength = root.data.getUnit().getSideLength();
 
           double pctLine = (double)newLine / (double)sideLength;
 
