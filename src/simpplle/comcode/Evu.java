@@ -3281,21 +3281,26 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the dominant life form and uses that as the upper limit for loop to go through life forms.  Then checks to make sure the current state process
-   * is a fire process
-   * @return an array of life dominant fire process life forms
+   * @return A dominant fire life form, or null if none exists
    */
   public Lifeform getDominantLifeformFire() {
-    Lifeform[] lives = Lifeform.getAllValues();
-    for (int i=dominantLifeform.getId(); i<lives.length; i++) {
-      if (hasLifeform(lives[i]) == false) { continue; }
 
-      VegSimStateData state = getState(Simulation.getCurrentTimeStep(),lives[i]);
+    Lifeform[] lifeforms = Lifeform.getAllValues();
+
+    for (int i = dominantLifeform.getId(); i < lifeforms.length; i++) {
+
+      Lifeform lifeform = lifeforms[i];
+
+      if (!hasLifeform(lifeform)) continue;
+
+      VegSimStateData state = getState(Simulation.getCurrentTimeStep(),lifeform);
       if (state != null && state.getProcess().isFireProcess()) {
-        return lives[i];
+        return lifeform;
       }
     }
+
     return null;
+
   }
 
   /**
