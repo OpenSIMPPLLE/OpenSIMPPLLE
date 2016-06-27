@@ -4,23 +4,17 @@ import java.util.*;
 import java.io.*;
 
 /**
- * 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>The idea behind this class is that we needed an entity to represent
- * a fire event.  Where the unit of origin and units it spread to are stored
- * as well as holding the methods that determine where and how a fire event
- * will spread.  
- * <p>It was not named FireEvent as that name is already taken to
- * represent a kind of process.
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
- *  
+ * <p>
+ * Represents a spreading fire event. An event starts at an origin unit and gradually spreads to adjacent units until
+ * the fire is extinguished due to weather, a fire suppression line, or running out of vegetation units. This class
+ * was not named FireEvent as that name is already taken to represent a kind of process.
+ * <p>
+ * Original source code authorship: Kirk A. Moeller
  */
 
 
@@ -49,34 +43,53 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   
   protected ArrayList<Integer> lineSuppUnits = new ArrayList<Integer>();
 
-  public ProcessOccurrenceSpreadingFire() {
-    super();
-  }
-
+  /**
+   * Creates a spreading fire event with an origin unit.
+   * @param evu A vegetation unit
+   * @param lifeform A lifeform
+   * @param processData A process probability
+   * @param timeStep A time step (unused)
+   */
   public ProcessOccurrenceSpreadingFire(Evu evu, Lifeform lifeform, ProcessProbability processData, int timeStep) {
     super(evu,lifeform,processData,timeStep);
   }
 
+  /**
+   * @return The reason that this event stopped, or OTHER if it hasn't stopped.
+   */
   public String getEventStopReason() {
     return eventStopReason.toString();
   }
-  
+
+  /**
+   * @return True if this is an extreme fire event.
+   */
   public boolean isExtremeEvent() {
     return isExtreme;
   }
 
+  /**
+   * @return The season {spring,summer,fall,winter} that this fire occurs.
+   */
   public Climate.Season getFireSeason() {
     return fireSeason;
   }
 
+  /**
+   * @return True if this event uses fire suppression.
+   */
   public boolean isSuppressed() {
     return fireSuppressed;
   }
 
+  /**
+   * Calculates an exact fire perimeter.
+   * @return The fire perimeter in feet
+   */
   @SuppressWarnings("unchecked")
   protected int calculatePerimeter() {
 
-    int result = 0;
+    int perimeter = 0;
 
     if (root == null) return 0;
 
@@ -98,7 +111,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         VegSimStateData adjState = adjData[i].evu.getState();
         if (adjState == null || adjState.getProcess().isFireProcess()) continue;
 
-        result += adjData[i].evu.getSideLength();
+        perimeter += adjData[i].evu.getSideLength();
 
       }
 
@@ -109,14 +122,21 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       }
     }
 
-    return result;
+    return perimeter;
 
   }
-  
+
+  /**
+   * @return The total length of fire suppression line produced in feet.
+   */
   public int getLineProduced() {
     return totalLineProduced;
   }
 
+  /**
+   * Calculates an approximate fire perimeter. The approximation assumes that the fire shape is square.
+   * @return The fire perimeter in feet
+   */
   public int calculateApproxPerimeter() {
     float fEventAcres = Area.getFloatAcres(eventAcres);
     int eventSideLength = (int)Math.round(Math.sqrt(fEventAcres*43560));
@@ -124,20 +144,19 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * Find out if this unit has any neighbors that are not burning.
-   * If so we can build line here.  More ideal would be finding only
-   * perimeter units, but not sure how best to achieve that right now
-   * without significantly affecting performance.
-   * @param unit
-   * @return
+   * Determine if this unit has any neighbors that are not burning. If so, we can build line here. More ideal would be
+   * finding only perimeter units, but not sure how best to achieve that right now without significantly affecting
+   * performance.
+   * @param unit A vegetation unit with neighbors
+   * @return True if a neighbor is burning
    */
   private boolean hasNonBurningNeighbors(Evu unit) {
 
-    AdjacentData[] adjData = unit.getAdjacentData();
+    AdjacentData[] adjDataArray = unit.getAdjacentData();
 
-    if (adjData != null) {
-      for (int i = 0; i < adjData.length; i++) {
-        if (!adjData[i].evu.hasFireAnyLifeform()) {
+    if (adjDataArray != null) {
+      for (AdjacentData adjData : adjDataArray) {
+        if (!adjData.evu.hasFireAnyLifeform()) {
           return true;
         }
       }
@@ -148,9 +167,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * Returns the lowest non-burning neighbor of the provided EVU.
-   * @param unit An EVU with adjacent units
-   * @return The lowest non-burning EVU
+   * Finds the neighbor with the lowest elevation that is not burning.
+   * @param unit A vegetation unit with neighbors
+   * @return A non-burning vegetation unit
    */
   private Evu getNonBurningLowestNeighbor(Evu unit) {
 
@@ -174,12 +193,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * Find the node whose unit is lowest in elevation relative to the root node.
-   * Also make sure that the we only consider node that don't have
-   * stand replacing fire or fire line, as suppression forces cannot build line there.
+   * Finds the neighbor with the lowest elevation that does not have a stand replacing fire or a fire line. These
+   * qualities are important as suppression forces cannot build line there.
+   *
    * 8/23/11  Added check for beyond A suppression
    * 8/24/11  Added check for non burning neighbors
-   * @return a Node, the lowest non-stand-replace-fire non-suppressed node.
+   *
+   * @return A vegetation unit fitting the requirements
    */
   @SuppressWarnings("unchecked")
   protected Node findLowestElevationNonSrfNonSuppNode() {
@@ -229,18 +249,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * 23 August 2004.
-   *   Modified code to allow any event to
-   *   spread as extreme if the FireEvent.isExtremeSpread() return true.
-   *   Previously we had it restricted so that only events that originate
-   *   in a StandReplacingFire unit could become extreme from probability.
+   * Spreads fire from a single vegetation unit to immediate neighbors. A fire is suppressed when it hits a fire line,
+   * runs out of vegetation units, or ends due to weather. Fire line is built at the lowest non-burning unit. Continue
+   * calling this method until the event is 'finished'. Spreading from only a single vegetation unit gives other
+   * spreading events a chance to spread.
    *
-   * will check if suppression forces are here and do line calculations
-   *       when starting at the from node and getting ready to spread.  Will
-   *       need to start building suppression line at the lowest elevation node.
-   *
-   * Pop a node off the queue and try to spread to its adjacent units,
-   * then return to allow spreading of other events to occur.
+   * 8/23/04 Modified code to allow any event to spread as extreme if FireEvent.isExtremeSpread() returns true.
+   *         Previously it was restricted so that only events that start with a stand replacing fire could become
+   *         extreme using probabilities.
    */
   @SuppressWarnings("unchecked")
   public void doSpread() {
@@ -471,17 +487,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * July 2004.
-   * Removed restriction that said adjacent units had to be
-   *   above the from unit in order to start a spot fire.
+   * Creates spot fires from blowing embers. All vegetation units in the area that are downwind and within the maximum
+   * fire spotting distance are tested for spot fires. Spot fires start based on a fire spotting probability entered
+   * in the 'Fire Event Logic' dialog.
    *
-   * 23 August 2004.
-   *  Modified spotting so that it can only
-   *   spot from a unit with StandReplacingFire.  Previously there was no
-   *   restriction on fire type.
+   * 7/??/04  Removed restriction that said adjacent units had to be above the from unit in order to start a spot fire.
+   * 8/23/04  Modified spotting so it can only start from a stand replacing fire. Previously there was no restriction.
    *
-   * @param fromEvu The unit we are trying to spot a fire from.
-   * @return true if fire spotting has occurred. (is this still used??)
+   * @param fromEvu The unit we are trying to spot a fire from
    */
   @SuppressWarnings("unchecked")
   public void doFireSpotting(Evu fromEvu) {
@@ -553,11 +566,15 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       newSpotFrom.clear();
 
     }
-    
-    return;
-
   }
 
+  /**
+   * Determines if a spot fire should start based on the fire spotting probabilities in the "Fire Event Logic" dialog.
+   *
+   * @param fromEvu A burning vegetation unit
+   * @param toEvu A non-burning vegetation unit
+   * @return True if a spot fire starts
+   */
   private boolean determineSpotFire(Evu fromEvu, Evu toEvu) {
 
     Lifeform fromLifeform = fromEvu.getDominantLifeform();
