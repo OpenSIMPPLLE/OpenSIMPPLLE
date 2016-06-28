@@ -2631,13 +2631,12 @@ public class SimpplleMain extends JFrame {
       return;
     }
 
-    if (attributeSuccess == false) {
-      msg =
-          "No Attribute data was found in the input file.\n" +
-          "In the following file dialog please specify\n" +
-          "the file containing the data.\n\n" +
-          "If there is no file yet, data can be added later\n" +
-          "via the import menu.  Just press cancel in the next dialog.";
+    if (!attributeSuccess) {
+      msg = "No Attribute data was found in the input file.\n" +
+            "In the following file dialog please specify\n" +
+            "the file containing the data.\n\n" +
+            "If there is no file yet, data can be added later\n" +
+            "via the import menu.  Just press cancel in the next dialog.";
 
       JOptionPane.showMessageDialog(this,msg,"No Attribute Data Found",
                                     JOptionPane.INFORMATION_MESSAGE);

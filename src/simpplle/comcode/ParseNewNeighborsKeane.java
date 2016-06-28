@@ -16,18 +16,18 @@ import java.util.HashMap;
  * FROM_POLY, TO_POLY, ELEV, SPREAD_DEG, BASE_WIND_SPEED, BASE_WIND_DIR
  *
  */
-public class ParseAreaKeane implements IParseArea{
+public class ParseNewNeighborsKeane implements RelationParser {
 
   boolean hasAttributes;
 
   /**
    * reads in area information for new neighbors:
    * FROM_POLY, TO_POLY, ELEV, SPREAD_DEG, BASE_WIND_SPEED, BASE_WIND_DIR
-   *
+   * <p>
    * SPREAD_DEG is supposed to be the “Degrees Azimuth” between the FROM_POLY and the TO_POLY
    * (POLY is the same as SLINK).
    * BASE_WIND_DIR is the direction of the wind is coming from.
-   *
+   * <p>
    * Adds all info to current area.
    *
    * @param area the current area whose neighbors are defined in this method
@@ -38,7 +38,7 @@ public class ParseAreaKeane implements IParseArea{
    * @throws IOException caught in ImportArea
    */
   @Override
-  public boolean readNeighborsNew(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
+  public boolean readSection(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
     String line, str;
     char wind, pos = 'E';
     StringTokenizerPlus st;
@@ -74,7 +74,7 @@ public class ParseAreaKeane implements IParseArea{
         return false;
       }
       if (from > maxEvuId) maxEvuId = from;
-      if (to > maxEvuId)   maxEvuId = to;
+      if (to > maxEvuId) maxEvuId = to;
 
       // ELEV
       str = st.getToken();
@@ -107,9 +107,9 @@ public class ParseAreaKeane implements IParseArea{
 
       // BASE_WIND_DIR
       str = st.getToken();
-      try{
+      try {
         windDirection = Double.parseDouble(str);
-      } catch (NumberFormatException ex){
+      } catch (NumberFormatException ex) {
         log.println("invalid value for base wind direction : " + str +
             "\nIn line: " + line);
         return false;
@@ -117,14 +117,14 @@ public class ParseAreaKeane implements IParseArea{
 
       // Calculate if a unit is downwind based on spread and windDirection.
       int threshold = 90;
-      if(getAngleDifference(spread, windDirection)>threshold) wind = 'D';
+      if (getAngleDifference(spread, windDirection) > threshold) wind = 'D';
       else wind = 'N';
 
       // Make evu or load existing
       Evu evu = unitHm.get(from);
       if (evu == null) {
         evu = new Evu(from);
-        evu.setElevation((int)elevation);
+        evu.setElevation((int) elevation);
         unitHm.put(from, evu);
       }
 
@@ -148,52 +148,14 @@ public class ParseAreaKeane implements IParseArea{
 
   /**
    * Helper Method
+   *
    * @param a angle
    * @param b angle 2
    * @return UNSIGNED Angle difference between given angles
    */
-  private double getAngleDifference(double a, double b){
-    double diff = Math.abs(a-b);
+  private double getAngleDifference(double a, double b) {
+    double diff = Math.abs(a - b);
     return (diff < 180) ? diff : 360 - diff;
   }
-
-  @Override
-  public boolean readLandNeighbors(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readAquaticNeighbors(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readVegLandRelations(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readAquaticVegRelations(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readRoadNeighbors(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readTrailNeighbors(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readVegRoadRelations(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readVegTrailRelations(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
 }
+
