@@ -18,9 +18,7 @@ import simpplle.gui.ElevationRelativePosition;
  * that provides information needed to create a new area.
  * <p>This class handles all aspects of creating the new area
  * including verifying and correcting states if necessary.
- *  TODO: This class should function as a bridge between GUI and Business Logic that
- *  reads the file (IParseArea). Should validation be delegated to the current class?
- * 
+ *
  */
 
 public class ImportArea {
@@ -33,123 +31,6 @@ public class ImportArea {
   public boolean attributesAdded() {
     return hasAttributes;
   }
-/**
- * reads in area id, adjacent area id's position(above, below, next to), wind value (down wind, no wind)
- * evu id, 
- *  @param area the current area whose neighbors are defined in this method
- * @param fin
- * @param logFile 
- * @return false if no area file, true if there is a file (sets neighbor information as well if true)
- * @throws ParseError caught in gui
- * @throws IOException caught in gui
- */
-  private boolean readNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
-    String              line, str;
-    StringTokenizerPlus strTok;
-    HashMap<Integer,Evu>  unitHm = new HashMap<Integer, Evu>();
-    Evu[]               allEvu;
-    int                 maxEvuId = -1, i, id, adjId, index;
-    String              posStr, windStr;
-    char                pos, wind;
-
-    line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
-
-      id = strTok.getIntToken();
-      adjId = strTok.getIntToken();
-      if (id == -1 || adjId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-      if (id > maxEvuId) { maxEvuId = id; }// changes id to maxID
-      if (adjId > maxEvuId) { maxEvuId = adjId; }
-
-      posStr = strTok.getToken();
-      if (posStr.length() > 1) {
-        index = posStr.lastIndexOf('\'');
-        if (index == -1) {
-          index = posStr.length() - 1;
-        }
-        posStr = posStr.substring(1, index);
-      }
-      if (posStr.length() > 1) {
-        logFile.println(line);
-        logFile.println("   " + posStr + " is not a valid position");
-        logFile.println("   Valid values are:  N, A, B");
-        return false;
-      }
-      pos = posStr.charAt(0);
-
-      windStr = strTok.getToken();
-      if (windStr.length() > 1) {
-        index = windStr.lastIndexOf('\'');
-        if (index == -1) {
-          index = windStr.length() - 1;
-        }
-        windStr = windStr.substring(1, index);
-      }
-      if (windStr.length() > 1) {
-        logFile.println(line);
-        logFile.println("   " + windStr + " is not valid wind value");
-        logFile.println("   Valid values are:  D, N");
-        return false;
-      }
-      wind = windStr.charAt(0);
-
-      if (pos != Evu.ABOVE && pos != Evu.BELOW && pos != Evu.NEXT_TO) {
-        logFile.println(line);
-        logFile.println("   " + pos + " is not a valid position value.");
-        logFile.println("   Valid values are:  A, B, N");
-        return false;
-      }
-      if (wind != Evu.DOWNWIND && wind != Evu.NO_WIND) {
-        logFile.println(line);
-        logFile.println("   " + wind + " is not a valid wind value.");
-        logFile.println("   Valid values are:  D, N");
-        return false;
-      }
-
-      Evu evu = unitHm.get(id);
-      if (evu == null) {
-        evu = new Evu(id);
-        unitHm.put(id, evu);
-      }
-      area.addAdjacentData(evu,adjId,pos,wind);
-
-      // Get the next line.
-      line = fin.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
-    }
-
-    allEvu = new Evu[maxEvuId+1];
-
-    for (Evu evu : unitHm.values()) {
-      id = evu.getId();
-      allEvu[id] = evu;
-    }
-
-    area.setMaxEvuId(maxEvuId);
-    area.setAllEvu(allEvu);
-    area.finishAddingAdjacentData(logFile);
-
-    return true;
-  }
-
 /**
  * Check to see if this has both a row & a column.  
  * Note: if Field #5 is a number than we have row & col, however if it is a string it is not a row & col
@@ -285,7 +166,7 @@ public class ImportArea {
       return;
     }
 
-    while(line != null && line.trim().equals("END") == false) {
+    while(line != null && !line.trim().equals("END")) {
       try {
         line = line.trim();
         if (line.length() == 0) { line = fin.readLine(); continue; }
@@ -1386,6 +1267,7 @@ public class ImportArea {
     int elevRelativePos = dlg.getValue();
     
     newArea.initPolygonWidth();
+    newArea.calcRelativeSlopes(); // requires spatialrelation and attributesall to be loaded.
     newArea.setElevationRelativePosition(elevRelativePos);
     return newArea;
   }
@@ -1493,12 +1375,9 @@ public class ImportArea {
 //  }
 
   private Area importSpatial(File filename) throws SimpplleError{
-    String version2ID = "KEANE";
-    // File version, set while reading file
-    String version = "";
     PrintWriter    log = null;
     BufferedReader fin;
-    IParseArea parser;
+    RelationParser parser;
     File           prefix = Utility.stripExtension(filename);
     File           logFile = Utility.makeUniqueLogFile(prefix,"");
     Area newArea = new Area(Area.USER);
@@ -1522,48 +1401,45 @@ public class ImportArea {
               "Invalid Spatial Relationships file: missing KEYWORD in line:" +
               line);
         }
-        // Determine parser strategy based on version
-        if (strTok.hasMoreTokens()) {
-           version = strTok.nextToken();
-        }
-        if (version.equalsIgnoreCase(version2ID)) {
-          parser = new ParseAreaV2();
-        }
-        else {
-          parser = new ParseAreaLegacy();
-        }
-        // read file based on key
+        // Determine parser strategy based on key
         switch (key.toUpperCase()){
           case "VEGETATION-VEGETATION":
-            success = parser.readNeighborsNew(newArea, fin, log);
+            parser = new ParseNewNeighbors();
+            break;
+          case "VEGETATION-VEGETATION-KEANE":
+            parser = new ParseNewNeighborsKeane();
             break;
           case "LANDFORM-LANDFORM":
-            success = parser.readLandNeighbors(newArea, fin, log);
+            parser = new ParseLandNeighbors();
             break;
           case "AQUATIC-AQUATIC":
-            success = parser.readAquaticNeighbors(newArea, fin, log);
+            parser = new ParseAquaticNeighbors();
             break;
           case "VEGETATION-LANDFORM":
-            success = parser.readVegLandRelations(newArea,fin,log);
+            parser = new ParseVegLandRelations();
             break;
           case "VEGETATION-AQUATIC":
-            success = parser.readAquaticVegRelations(newArea,fin,log);
+            parser = new ParseAquaticVegRelations();
             break;
           case "ROADS-ROADS":
-            success = parser.readRoadNeighbors(newArea, fin, log);
+            parser = new ParseRoadNeighbors();
             break;
           case "TRAILS-TRAILS":
-            success = parser.readTrailNeighbors(newArea, fin, log);
+            parser = new ParseTrailNeighbors();
             break;
           case "VEGETATION-ROADS":
-            success = parser.readVegRoadRelations(newArea,fin,log);
+            parser = new ParseVegRoadRelations();
             break;
           case "VEGETATION-TRAILS":
-            success = parser.readVegTrailRelations(newArea,fin,log);
+            parser = new ParseVegTrailRelations();
             break;
           default:
-            line = fin.readLine();
+            parser = null;
         }
+
+        if (parser == null) line = fin.readLine();   // no keyword, skip line
+        else  success = parser.readSection(newArea, fin, log);
+
         if (!success) {
           fin.close();
           log.flush();
@@ -1651,7 +1527,7 @@ public class ImportArea {
         }
 
         line = fin.readLine();
-        while (line != null && line.trim().toUpperCase().startsWith("BEGIN") == false) {
+        while (line != null && !line.trim().toUpperCase().startsWith("BEGIN")) {
           line = fin.readLine();
         }
       }
@@ -1710,11 +1586,8 @@ public class ImportArea {
   private boolean read(Area newArea, File inputFile, File logFile, int kind, boolean attribOnly) {
     BufferedReader fin;
     PrintWriter    log;
-    int            n=1;
     boolean        success;
-    // TODO: refactor to accept parser
-    IParseArea parser = new ParseAreaLegacy();
-    // /TODO
+    RelationParser parser;
 
     try {
       log = new PrintWriter(new FileWriter(logFile));
@@ -1731,10 +1604,12 @@ public class ImportArea {
       if (!attribOnly) {
         switch (kind) {
           case EVU:
-            success = readNeighbors(newArea, fin, log);
+            parser = new ParseNeighbors();
+            success = parser.readSection(newArea, fin, log);
             break;
           case ELU:
-            success = parser.readLandNeighbors(newArea, fin, log);
+            parser = new ParseLandNeighbors();
+            success = parser.readSection(newArea, fin, log);
             break;
           default:
             success = false;

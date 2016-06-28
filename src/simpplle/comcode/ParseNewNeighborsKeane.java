@@ -16,19 +16,17 @@ import java.util.HashMap;
  * FROM_POLY, TO_POLY, ELEV, SPREAD_DEG, BASE_WIND_SPEED, BASE_WIND_DIR
  *
  */
-public class ParseAreaV2 implements IParseArea{
-
-  boolean hasAttributes;
+public class ParseNewNeighborsKeane implements RelationParser {
 
   /**
    * reads in area information for new neighbors:
    * FROM_POLY, TO_POLY, ELEV, SPREAD_DEG, BASE_WIND_SPEED, BASE_WIND_DIR
-   *
+   * <p>
    * SPREAD_DEG is supposed to be the “Degrees Azimuth” between the FROM_POLY and the TO_POLY
    * (POLY is the same as SLINK).
    * BASE_WIND_DIR is the direction of the wind is coming from.
-   *
-   * Adds all info to current area. Also checks elevation to make sure it is valid.
+   * <p>
+   * Adds all info to current area.
    *
    * @param area the current area whose neighbors are defined in this method
    * @param in   Buffered reader with spatialrelate file in stream
@@ -38,20 +36,20 @@ public class ParseAreaV2 implements IParseArea{
    * @throws IOException caught in ImportArea
    */
   @Override
-  public boolean readNeighborsNew(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
+  public boolean readSection(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
     String line, str;
+    char wind, pos = 'E';
     StringTokenizerPlus st;
     HashMap<Integer, Evu> unitHm = new HashMap<>();
     Evu[] allEvu;
     int maxEvuId = -1,
         from,
-        to,
-        index,
+        to;
+    double
         elevation,
         spread,
         windSpeed,
         windDirection;
-    char pos = 'N';
 
     line = in.readLine();
     if (line == null) {
@@ -74,20 +72,21 @@ public class ParseAreaV2 implements IParseArea{
         return false;
       }
       if (from > maxEvuId) maxEvuId = from;
-      if (to > maxEvuId)   maxEvuId = to;
+      if (to > maxEvuId) maxEvuId = to;
 
       // ELEV
       str = st.getToken();
       try {
-        elevation = Integer.parseInt(str);
+        elevation = Double.parseDouble(str);
       } catch (NumberFormatException ex) {
-        elevation = NaturalElement.INVALID_ELEV;
+        log.print("Invalid elevation: " + str + "\nIn line: " + line);
+        return false;
       }
 
       // SPREAD_DEG
       str = st.getToken();
       try {
-        spread = Integer.parseInt(str);
+        spread = Double.parseDouble(str);
       } catch (NumberFormatException ex) {
         log.println("Invalid value for Spread Degrees: " + str +
             "\nIn line: " + line);
@@ -97,39 +96,41 @@ public class ParseAreaV2 implements IParseArea{
       // BASE_WIND_SPEED
       str = st.getToken();
       try {
-        windSpeed = Integer.parseInt(str);
+        windSpeed = Double.parseDouble(str);
       } catch (NumberFormatException ex) {
         log.println("invalid value for base wind speed : " + str +
-            "\nin line: " + line);
+            "\nIn line: " + line);
         return false;
       }
 
       // BASE_WIND_DIR
       str = st.getToken();
-      try{
-        windDirection = Integer.parseInt(str);
-      } catch (NumberFormatException ex){
+      try {
+        windDirection = Double.parseDouble(str);
+      } catch (NumberFormatException ex) {
         log.println("invalid value for base wind direction : " + str +
-            "\nin line: " + line);
+            "\nIn line: " + line);
         return false;
       }
 
+      // Calculate if a unit is downwind based on spread and windDirection.
+      int threshold = 90;
+      if (getAngleDifference(spread, windDirection) > threshold) wind = 'D';
+      else wind = 'N';
+
+      // Make evu or load existing
       Evu evu = unitHm.get(from);
       if (evu == null) {
         evu = new Evu(from);
+        evu.setElevation((int) elevation);
         unitHm.put(from, evu);
-
-        // Need only set elevation once.
-        evu.setElevation(elevation);
       }
 
       // Add info to current area
-      area.addAdjacentData(evu, from, elevation, spread, windSpeed, windDirection);
+      area.addAdjacentData(evu, to, pos, wind, spread, windSpeed, windDirection);
 
-      // Get the next line.
       line = in.readLine();
     }
-    hasAttributes = line != null;
     allEvu = new Evu[maxEvuId + 1];
     for (Evu evu : unitHm.values()) {
       from = evu.getId();
@@ -142,43 +143,16 @@ public class ParseAreaV2 implements IParseArea{
     return true;
   }
 
-  @Override
-  public boolean readLandNeighbors(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readAquaticNeighbors(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readVegLandRelations(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readAquaticVegRelations(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readRoadNeighbors(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readTrailNeighbors(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readVegRoadRelations(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
-  }
-
-  @Override
-  public boolean readVegTrailRelations(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
-    return false;
+  /**
+   * Helper Method
+   *
+   * @param a angle
+   * @param b angle 2
+   * @return UNSIGNED Angle difference between given angles
+   */
+  private double getAngleDifference(double a, double b) {
+    double diff = Math.abs(a - b);
+    return (diff < 180) ? diff : 360 - diff;
   }
 }
+
