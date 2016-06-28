@@ -19,9 +19,6 @@ import java.util.Iterator;
  */
 public class ParseNewNeighbors implements RelationParser {
 
-  // TODO resolve with ImportArea
-  private boolean hasAttributes;
-
   /**
    * reads in area information for new neighbors:
    * area id, adjacent area id, elevation, existing land units,
@@ -146,7 +143,6 @@ public class ParseNewNeighbors implements RelationParser {
       // Get the next line.
       line = in.readLine();
     }
-    hasAttributes = line != null;
 
     allEvu = new Evu[maxEvuId + 1];
 

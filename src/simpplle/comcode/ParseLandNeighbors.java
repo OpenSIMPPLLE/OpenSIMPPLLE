@@ -17,7 +17,6 @@ import java.util.Iterator;
  */
 public class ParseLandNeighbors implements RelationParser{
 
-  private boolean hasAttributes;
   /**
    * @return true if no area file found (sets neighbor information as well)
    * @throws ParseError
@@ -90,11 +89,6 @@ public class ParseLandNeighbors implements RelationParser{
 
       // Get the next line.
       line = in.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    } else {
-      hasAttributes = true;
     }
 
     allElu = new ExistingLandUnit[maxId + 1];

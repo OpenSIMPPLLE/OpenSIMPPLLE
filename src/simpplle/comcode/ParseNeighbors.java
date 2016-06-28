@@ -15,8 +15,6 @@ import java.util.HashMap;
  */
 public class ParseNeighbors implements RelationParser{
 
-  private boolean hasAttributes;
-
   /**
    * reads in area id, adjacent area id's position(above, below, next to), wind value (down wind, no wind)
    * evu id,
@@ -110,12 +108,6 @@ public class ParseNeighbors implements RelationParser{
 
       // Get the next line.
       line = fin.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
     }
 
     allEvu = new Evu[maxEvuId+1];

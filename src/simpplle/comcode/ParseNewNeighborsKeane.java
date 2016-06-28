@@ -18,8 +18,6 @@ import java.util.HashMap;
  */
 public class ParseNewNeighborsKeane implements RelationParser {
 
-  boolean hasAttributes;
-
   /**
    * reads in area information for new neighbors:
    * FROM_POLY, TO_POLY, ELEV, SPREAD_DEG, BASE_WIND_SPEED, BASE_WIND_DIR
@@ -133,7 +131,6 @@ public class ParseNewNeighborsKeane implements RelationParser {
 
       line = in.readLine();
     }
-    hasAttributes = line != null;
     allEvu = new Evu[maxEvuId + 1];
     for (Evu evu : unitHm.values()) {
       from = evu.getId();

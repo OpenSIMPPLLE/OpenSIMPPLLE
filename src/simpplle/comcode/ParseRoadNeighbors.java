@@ -16,7 +16,6 @@ import java.util.HashMap;
  */
 public class ParseRoadNeighbors implements RelationParser{
 
-  private boolean hasAttributes;
   /**
    * Reads in the neighboring roads to a specified area.  Sets Area id, adjacent area id,
    * road unit id, adjacent road unit id. * Also creates an array of roads.
@@ -68,12 +67,6 @@ public class ParseRoadNeighbors implements RelationParser{
       }
       // Get the next line.
       line = in.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
     }
 
     Roads[] allRoads = new Roads[maxId+1];

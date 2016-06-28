@@ -15,7 +15,6 @@ import java.util.HashMap;
  */
 public class ParseTrailNeighbors implements RelationParser{
 
-  private boolean hasAttributes;
   /**
    * Reads in the neighboring trails to a specified area.  Sets Area id, adjacent area id, trail units, adjacent trail units.
    * Also makes a trail unit array.
@@ -67,12 +66,6 @@ public class ParseTrailNeighbors implements RelationParser{
       }
       // Get the next line.
       line = in.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
     }
 
     Trails[] allTrails = new Trails[maxId+1];

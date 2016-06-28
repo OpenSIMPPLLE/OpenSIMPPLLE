@@ -13,15 +13,11 @@ import java.util.Iterator;
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
  * Open Source License Contract pertaining to this documentation and agrees to abide by all
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * <p>
- * <p> {{ Class Description }}
+ * <p> Reads in the aquatic neighbors of a specified area.
  *
- * @author Michael Kinsey
  */
 public class ParseAquaticNeighbors implements RelationParser{
 
-  // TODO: resolve with importarea
-  private boolean hasAttributes;
 
   /**
    * Reads in the aquatic neighbors of a specified area.  Area id, adjacent id, flow (P or S or N = no flow)
@@ -106,12 +102,6 @@ public class ParseAquaticNeighbors implements RelationParser{
       }
       // Get the next line.
       line = in.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
     }
 
     allEau = new ExistingAquaticUnit[maxId+1];
