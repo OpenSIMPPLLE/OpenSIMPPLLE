@@ -312,7 +312,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         Evu toUnit = adjData.evu;
 
-        if (lineSuppUnits.contains(toUnit.getId())) {
+        if (lineSuppUnits.contains(toUnit.getId())) { // Do units have a flag indicating if they are suppressed?
           continue;
         }
 
@@ -464,8 +464,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * Finds the neighbor with the lowest elevation that does not have a stand replacing fire or a fire line. These
-   * qualities are important as suppression forces cannot build line there.
+   * Finds the unit with the lowest elevation that does not have a stand replacing fire or a fire line. These
+   * qualities are important as suppression forces choose to build line in this type of unit.
    *
    * 8/23/11  Added check for beyond A suppression
    * 8/24/11  Added check for non burning neighbors
@@ -475,43 +475,42 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   @SuppressWarnings("unchecked")
   private Node findLowestElevationNonSrfNonSuppNode() {
 
+    if (root == null) return null;
+
     FireSuppBeyondClassALogic logicInst = FireSuppBeyondClassALogic.getInstance();
 
     int ts = Simulation.getCurrentTimeStep();
 
-    if (root == null) return null;
-
-    LinkedList queue= new LinkedList();
-
+    Node lowestNode = root;
     int lowestElevation = 1000000;
-    
+
+    LinkedList<Node> queue = new LinkedList<>();
     queue.add(root);
-    Node node, lowestNode=root;
+
     while (queue.size() > 0) {
-      node = (Node)queue.removeFirst();
+
+      Node node = queue.removeFirst();
+
       VegSimStateData state = node.data.getUnit().getState();
-      boolean doLine = false;
-      if (state != null) { 
-        doLine = logicInst.isSuppressedUniform(this,state.getVeg(),state.getProcess(),isExtreme,node.data.getUnit(),ts,lifeform);
-      }
-      
-      boolean nonBurningNeighbors = hasNonBurningNeighbors(node.data.getUnit());
+
       int nodeElevation = node.data.getUnit().getElevation();
 
-      if ((nodeElevation < lowestElevation) &&
-          doLine &&
-          nonBurningNeighbors &&
-          (node.data.getProcess().equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
-          (node.data.getUnit().isSuppressed() == false)) {
+      if (state != null &&
+          nodeElevation < lowestElevation &&
+          logicInst.isSuppressedUniform(this,state.getVeg(),state.getProcess(),isExtreme,node.data.getUnit(),ts,lifeform) &&
+          hasNonBurningNeighbors(node.data.getUnit()) &&
+          !node.data.getProcess().equals(ProcessType.STAND_REPLACING_FIRE) &&
+          !node.data.getUnit().isSuppressed()) {
 
         lowestNode = node;
         lowestElevation = nodeElevation;
 
       }
 
-      if (node.toNodes == null) { continue; }
-      for (int i=0; i<node.toNodes.length; i++) {
-        queue.add(node.toNodes[i]);
+      if (node.toNodes != null) {
+        for (Node toNode : node.toNodes) {
+          queue.add(toNode);
+        }
       }
     }
 
