@@ -3281,21 +3281,26 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the dominant life form and uses that as the upper limit for loop to go through life forms.  Then checks to make sure the current state process
-   * is a fire process
-   * @return an array of life dominant fire process life forms
+   * @return A dominant fire life form, or null if none exists
    */
   public Lifeform getDominantLifeformFire() {
-    Lifeform[] lives = Lifeform.getAllValues();
-    for (int i=dominantLifeform.getId(); i<lives.length; i++) {
-      if (hasLifeform(lives[i]) == false) { continue; }
 
-      VegSimStateData state = getState(Simulation.getCurrentTimeStep(),lives[i]);
+    Lifeform[] lifeforms = Lifeform.getAllValues();
+
+    for (int i = dominantLifeform.getId(); i < lifeforms.length; i++) {
+
+      Lifeform lifeform = lifeforms[i];
+
+      if (!hasLifeform(lifeform)) continue;
+
+      VegSimStateData state = getState(Simulation.getCurrentTimeStep(),lifeform);
       if (state != null && state.getProcess().isFireProcess()) {
-        return lives[i];
+        return lifeform;
       }
     }
+
     return null;
+
   }
 
   /**
@@ -8527,22 +8532,32 @@ public final class Evu extends NaturalElement implements Externalizable {
       Simpplle.getAreaSummary().updateSuppressedFires(this);
     }
   }
-/**
- * Uses the life forms to get vegetative state, then checks if Evu has life form and whether the vegetative state probability
- * equals suppression.
- * @return null if state is null, true if probability = suppression
- */
+
+  /**
+   * Determines if the fire is suppressed by looking for life forms that have a vegetative state with a 'suppressed'
+   * probability, in which case this whole vegetation unit will be reported as being suppressed.
+   *
+   * @return True if fire is suppressed
+   */
   public boolean isSuppressed() {
-    Lifeform[] allLives = Lifeform.getAllValues();
-    for (int i=0; i<allLives.length; i++) {
-      Lifeform lifeform = allLives[i];
+
+    Lifeform[] lifeforms = Lifeform.getAllValues();
+
+    for (Lifeform lifeform : lifeforms) {
+
       VegSimStateData state = getState(lifeform);
-      if (state == null) { continue; }
-      if (hasLifeform(lifeform) && state.getProb() == SUPP) {
+
+      if (state != null &&
+          hasLifeform(lifeform) &&
+          state.getProb() == SUPP) {
+
         return true;
+
       }
     }
+
     return false;
+
   }
 
   /**

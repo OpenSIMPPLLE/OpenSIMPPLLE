@@ -1,28 +1,20 @@
 package simpplle.comcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
+import org.hibernate.Session;
+
 import java.io.*;
-import java.util.List;
-import org.hibernate.*;
-import java.sql.SQLException;
+import java.util.*;
 
 /**
- * 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains methods for a Spreading Process Occurrence, a type of Process Occurrence.  There are a couple of classes that work as a unit.  
- * They are Process Occurrence, Process Occurrence Spreading, and Process Occurrence Spreading Fire. 
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
- *  
+ * <p>
+ * The base class for spreading events. This includes events for fire and non-fire processes.
+ * <p>
+ * Original source code authorship: Kirk A. Moeller
  */
 
 public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Externalizable {
@@ -33,17 +25,17 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
   protected LinkedList spreadQueue;
   protected boolean    finished;
   protected Node       root;
-  protected int        nodeCount=0;
+  protected int        nodeCount=0; // Greg's Note: Is this ever different from spreadQueue.size()?
 
 //  protected HashMap    nodeLookup;
   protected static HashMap    tmpNodeLookup;
   protected static HashMap    tmpToNodesHm;
   protected static ArrayList  tmpToUnits = new ArrayList(25);
 
- 
-  public class Node  implements Externalizable {
+  public class Node implements Externalizable {
     static final long serialVersionUID = 9013071459014314578L;
     static final int  version          = 2;
+
     public Node              fromNode;
     public ProcessOccurrence data;
     public int               relElevation;  // relative to the origin unit
@@ -59,14 +51,17 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       this.toNodes = toNodes;
       nodeCount += toNodes.length;
     }
+
     public void setToNode(int index, Node node) {
       toNodes[index] = node;
     }
-/**
- * reads in objects pertinent to this class from an external source.  
- * These are, in order: version, EVU of the unit the event came from, process occurrence data, 
- */
+
+    /**
+     * reads in objects pertinent to this class from an external source.
+     * These are, in order: version, EVU of the unit the event came from, process occurrence data,
+     */
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+
       Area area = Simpplle.getCurrentArea();
 
       int version = in.readInt();
@@ -78,6 +73,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       // duplicate spread to units but circularity in from Units with no
       // clear root.  Fortunately the variable unit from
       // ProcessOccurrence identifies the correct root unit.
+
       if (fromUnit == null || data.getUnit() == unit) {
         fromNode = null;
         root = this;
@@ -90,7 +86,6 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
           tmpNodeLookup.put(fromUnit,fromNode);
         }
       }
-
 
       Node thisNode = (Node)tmpNodeLookup.get(data.getUnit());
       if (thisNode == null) {
@@ -131,8 +126,11 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
         }
         thisNode.setToNode(i,node);
       }
+
       tmpToUnits.clear();
+
     }
+
     public void writeExternal(ObjectOutput out) throws IOException {
       out.writeInt(version);
       if (fromNode != null) {
@@ -148,8 +146,8 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       for (int i = 0; i < size; i++) {
         out.writeInt(toNodes[i].data.getUnit().getId());
       }
-
     }
+
     public void printMe() {
       if (fromNode != null) {
         System.out.print("parent=" + fromNode.data.getUnit().getId());
@@ -207,65 +205,66 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
    * This constructor used only for purposes of Serialization.
    */
   public ProcessOccurrenceSpreading() {
+
     super();
+
     spreadQueue = new LinkedList();
     finished    = true;
     nodeCount   = 0;
+
   }
+
   /**
-   * Overloaded constructor.  References Process Occurrence superclass.  
-   * @param evu 
-   * @param lifeform
-   * @param processData
-   * @param timeStep
+   * Creates a new event and adds the new instance to the spreading queue.
    */
-  public ProcessOccurrenceSpreading(Evu evu, Lifeform lifeform,
-                                    ProcessProbability processData, int timeStep) {
+  public ProcessOccurrenceSpreading(Evu evu, Lifeform lifeform, ProcessProbability processData, int timeStep) {
+
     super(evu,lifeform,processData,timeStep);
-    init();
-  }
-  /**
-   * initializes the event occurrence.  points to the root graph node, the data inside it, and initializes the spreadQueue which will start at the root.  
-   * Then it initializes the node count to 1, the elevation to 0 and finished to false.    
-   */
-  protected void init() {
-    eventAcres        = unit.getAcres();
-//    nodeLookup        = new HashMap();
+
     root              = new Node();
     root.data         = this;
     root.relElevation = 0;
+    eventAcres        = unit.getAcres();
+    finished          = false;
+    nodeCount         = 1;
 
-//    nodeLookup.put(unit,root);
     spreadQueue = new LinkedList();
     spreadQueue.add(root);
-    finished = false;
-    nodeCount = 1;
+
+    //nodeLookup = new HashMap();
+    //nodeLookup.put(unit,root);
+
   }
-/**
- * 
- * @return true if finished
- */
-  public boolean isFinished() { return finished; }
-/**
- * 
- * @param fromUnit evu where the process is coming from
- * @param toUnit evu where the process is spreading to
- * @return either 1 for above, 0 for next to, or -1 for below, by default returns 0
- */
+
+  /**
+   * @return True if the event has finished spreading
+   */
+  public boolean isFinished() {
+    return finished;
+  }
+
+  /**
+   * Determine the position of the unit that is being spread to relative to the unit that is spreading.
+   *
+   * @param fromUnit The vegetation unit where the process is coming from
+   * @param toUnit The vegetation unit where the process is spreading to
+   * @return An integer representing relative position; 1 = above, 0 = next to, -1 = below
+   */
   protected int determineElevation(Evu fromUnit, Evu toUnit) {
+
     char position = fromUnit.getAdjPosition(toUnit);
 
-    if (position == Evu.ABOVE) {
-      return 1;
+    switch (position) {
+
+      case Evu.ABOVE:   return 1;
+      case Evu.NEXT_TO: return 0;
+      case Evu.BELOW:   return -1;
+
+      default: return 0;
+
     }
-    else if (position == Evu.NEXT_TO) {
-      return 0;
-    }
-    else if (position == Evu.BELOW) {
-      return -1;
-    }
-    return 0;
   }
+
 //  public void save(PrintWriter fout) {
 // //   root.save(fout);
 //    Iterator it = nodeLookup.values().iterator();
@@ -277,22 +276,30 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 //    }
 //  }
 
-  public int getEventAcres() { return eventAcres; }
-/**
- * method to make the get process occurrence graph into an array
- * @return an array of process occurrences
- */
-  public ProcessOccurrence[] getProcessOccurrences() {
-    if (root == null) { return null; }
-    LinkedList queue= new LinkedList();
-    ProcessOccurrence[] items = new ProcessOccurrence[nodeCount];
-    ArrayList           visited = new ArrayList(nodeCount);
+  /**
+   * @return The total area of this event in acres
+   */
+  public int getEventAcres() {
+    return eventAcres;
+  }
 
+  /**
+   * @return An array of all process occurrences in this event
+   */
+  public ProcessOccurrence[] getProcessOccurrences() {
+
+    if (root == null) return null;
+
+    ProcessOccurrence[] items = new ProcessOccurrence[nodeCount];
+
+    ArrayList visited = new ArrayList(nodeCount);
+
+    LinkedList<Node> queue = new LinkedList<>();
     queue.add(root);
-    Node node;
-    int itemsIndex=0;
+
+    int itemsIndex = 0;
     while (queue.size() > 0) {
-      node = (Node)queue.removeFirst();
+      Node node = queue.removeFirst();
       if (visited.contains(node)) { continue; }
       visited.add(node);
       items[itemsIndex] = node.data;
@@ -302,22 +309,28 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
         queue.add(node.toNodes[i]);
       }
     }
+
     return items;
+
   }
 
 //  public void addSpreadEvent(Evu fromUnit, Evu toUnit) {
 //    int timeStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 //    addSpreadEvent(fromUnit,toUnit,toUnit.getProcessType(timeStep),toUnit.getProb(timeStep),timeStep);
 //  }
+
 //  public void addSpreadEvent(Evu fromUnit, Evu toUnit, int timeStep) {
 //    addSpreadEvent(fromUnit,toUnit,toUnit.getProcessType(timeStep),toUnit.getProb(timeStep),timeStep);
 //  }
+
   public void addLegacySpreadEvent(Evu fromUnit, Evu toUnit, ProcessType process, int timeStep) {
     addLegacySpreadEvent(fromUnit,toUnit,process,toUnit.getState(timeStep).getProb(),timeStep);
   }
+
   /**
    * This particular function is used to build the process event tree from data
    * read in from old area simulation files.
+   *
    * @param fromUnit Evu
    * @param toUnit Evu
    * @param process ProcessType
@@ -362,9 +375,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 
     eventAcres += toUnit.getAcres();
   }
-  /**
-   * 
-   */
+
   public void finishedAddingLegacySpreadEvents() {
     for (Iterator i=tmpToNodesHm.keySet().iterator(); i.hasNext(); ) {
       Node fromNode = (Node)i.next();
@@ -375,39 +386,62 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
     }
     tmpToNodesHm.clear();
   }
+
   public static void finishedLoadingLegacyFiles() {
     tmpToNodesHm  = null;
     tmpNodeLookup = null;
   }
 
+  /**
+   * Adds the 'to' units to the 'from' node, and adds each 'to' unit to the spreading queue.
+   *
+   * @param fromNode A node containing a spreading process
+   * @param toUnits Nodes that are being spread to
+   * @param lifeform The life form that the spreading process affects
+   */
   public void addSpreadEvent(Node fromNode, ArrayList toUnits, Lifeform lifeform) {
+
     Node[] toNodes = new Node[toUnits.size()];
 
     AreaSummary areaSummary = Simpplle.getAreaSummary();
-    Evu unit;
+
     int tStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
-    for (int i=0; i<toNodes.length; i++) {
-      unit = (Evu)toUnits.get(i);
-      toNodes[i] = new Node();
-      toNodes[i].fromNode = fromNode;
+
+    for (int i = 0; i < toNodes.length; i++) {
+
+      Evu unit = (Evu)toUnits.get(i);
+
       if (process.isFireProcess()) {
-        Lifeform newLife = unit.getDominantLifeformFire();
-        if (newLife != null) { lifeform = newLife; }
+        Lifeform dominant = unit.getDominantLifeformFire();
+        if (dominant != null) {
+          lifeform = dominant;
+        }
       }
 
       VegSimStateData state = unit.getState(tStep,lifeform);
-      ProcessProbability processData =
-          new ProcessProbability(state.getProcess(),state.getProb());
-      toNodes[i].data = new ProcessOccurrence(unit, lifeform,processData, tStep);
+      ProcessProbability processData = new ProcessProbability(state.getProcess(),state.getProb());
+
+      Node toNode = new Node();
+      toNode.data = new ProcessOccurrence(unit, lifeform, processData, tStep);
+      toNode.fromNode = fromNode;
+
+      toNodes[i] = toNode;
+
       eventAcres += unit.getAcres();
-      spreadQueue.add(toNodes[i]);
+
+      spreadQueue.add(toNode);
+
       areaSummary.addProcessEvent(tStep,unit.getId(),this);
+
     }
+
     fromNode.setToNodes(toNodes);
+
   }
 
 //  public void setThread(Thread t) { thread = t; }
 //  public Thread getThread() { return thread; }
+
   /**
    * Pop a node off the queue and spread try to spread to its adjacent units,
    * then return to allow spreading of other events to occur.
@@ -474,9 +508,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
     nodeCount = size;
     tmpNodeLookup.clear();
   }
-/**
- * method to print out process occurrence graph.  
- */
+
   public void printTree() {
     System.out.println("-------------------------PRINT TREE--------------------------------------------");
     if (root == null) { return;  }
@@ -515,7 +547,6 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       node = (Node)queue.removeFirst();
       if (visited.contains(node)) { continue; }
       visited.add(node);
-
       
       Evu evu = node.data.getUnit();
 
@@ -541,8 +572,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
         fout.printf("%d,%d,%d,%d,",run,timeStep,rootId,node.data.getUnit().getId());        
         fout.print("-1,");
         fout.printf("%d,%.1f,%.1f,%d,%d,%d,%d,%d%n", processId,fProb,acres,seasonId,groupId,ownerId,specialId,fmzId);
-      }
-      else {
+      } else {
         for (int i = 0; i < node.toNodes.length; i++) {
           fout.printf("%d,%d,%d,%d,",run,timeStep,rootId,node.data.getUnit().getId());
           fout.printf("%d,",node.toNodes[i].data.getUnit().getId());
@@ -550,16 +580,14 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
           queue.add(node.toNodes[i]);
         }
       }
-      
       // ** End Work **
     }
-
   }
-  public void writeEventDatabase(Session session, int run, int timeStep)
-      throws SimpplleError
-  {
-    LinkedList queue= new LinkedList();
-    ArrayList  visited = new ArrayList(nodeCount);
+
+  public void writeEventDatabase(Session session, int run, int timeStep) throws SimpplleError {
+
+    LinkedList queue = new LinkedList();
+    ArrayList visited = new ArrayList(nodeCount);
 
     int rootId = getUnit().getId();
 
@@ -636,6 +664,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 //    queue.clear();
 //    queue = null;
 //  }
+
   private void writeTree(ObjectOutput out) throws IOException {
     if (root == null) { return;  }
     LinkedList queue= new LinkedList();
@@ -655,6 +684,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       }
     }
   }
+
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
     super.writeExternal(out);
