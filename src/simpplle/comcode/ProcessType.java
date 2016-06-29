@@ -409,9 +409,10 @@ public class ProcessType extends SimpplleType implements Externalizable {
   }
 
   /**
-   * Calculates intensity of fires.
-   * @param p the process type.  this should be either SRF - stand replacing fire or MSF mixed severity fire. any other input will return false
-   * @return the levels of fire in decreasing order are SRF, MSF and LSF.  This method returns true if input fire type is less intense then current.
+   * Determines if this process type is less intense than the provided process type.
+   *
+   * @param p A fire process type
+   * @return True if this fire type is less intense
    */
   public boolean isFireLessIntense(ProcessType p) {
     if ((this == MSF) && (p == SRF)) {
