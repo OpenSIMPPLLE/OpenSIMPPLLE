@@ -122,11 +122,31 @@ public class FireTypeLogicData extends LogicData implements Externalizable {
     return getFireType(Simpplle.getClimate().getMoisture(currentSeason));
   }
 
-  protected ProcessType getFireType(Climate.Moisture moisture) {
-    if (moisture == Climate.WETTER) { return wetter; }
-    else if (moisture == Climate.Moisture.NORMAL) { return normal; }
-    else if (moisture == Climate.DRIER) { return drier; }
-    return wetter;
+  /**
+   * Returns a fire process type for a relative moisture level.
+   *
+   * @param moisture A relative moisture level
+   * @return A fire process type
+   */
+  private ProcessType getFireType(Climate.Moisture moisture) {
+
+    if (moisture == Climate.WETTER) {
+
+      return wetter;
+
+    } else if (moisture == Climate.Moisture.NORMAL) {
+
+      return normal;
+
+    } else if (moisture == Climate.DRIER) {
+
+      return drier;
+
+    } else {
+
+      return wetter;
+
+    }
   }
 
 
