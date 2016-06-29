@@ -7397,16 +7397,22 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     fout.println();
   }
-/**
- * Method to compare acreage of Evu's neighbors.
- * @return true if the neightbors have the same acreage
- */
+
+  /**
+   * @return True if this has the same number of acres as the neighbors
+   */
   public boolean hasSameSizeNeighbors() {
-    for (int i=0; i<adjacentData.length; i++) {
-      if (acres != adjacentData[i].getEvu().acres) { return false; }
+
+    for (AdjacentData adjacent : adjacentData) {
+      if (acres != adjacent.getEvu().acres) {
+        return false;
+      }
     }
+
     return true;
+
   }
+
   public String toString() {
     VegSimStateData state = getState();
     String stateStr = (state != null ? state.getVeg().toString() : "Unknown");
