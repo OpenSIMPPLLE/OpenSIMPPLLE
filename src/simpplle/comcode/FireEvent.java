@@ -1150,10 +1150,13 @@ public class FireEvent extends Process {
   }
 
   /**
-   * Returns the fire resistance of the vegetation unit. The result depends on the current simulation time step.
+   * Determines the fire resistance of the species in a vegetation unit's life form at the current time step. If a
+   * species has conditional resistance, then the resistance is based on the habitat type group of the unit.
    *
-   * @param zone A regional zone
-   * @param evu An existing vegetation unit
+   * @todo Remove the regional zone parameter. This class previously read fire resistance from hard-coded zone types.
+   *
+   * @param zone Ignore -- unused
+   * @param evu An vegetation unit
    * @param lifeform A life form
    * @return A fire resistance; low, moderate, or high
    */
@@ -1187,38 +1190,16 @@ public class FireEvent extends Process {
         return FireResistance.HIGH;
       }
 
-      // Default has traditionally been LOW
+      return FireResistance.LOW;
+
+    } else if (resistance == FireResistance.UNKNOWN) {
+
       return FireResistance.LOW;
 
     }
-    // Should not be possible as we don't allow FireEvents to occur
-    // with this Resistance.
-//    else if (resistance == FireResistance.UNKNOWN) {
-//      return FireResistance.LOW;
-//    }
 
     return resistance;
 
-//    int zoneId = zone.getId();
-//
-//    if (zoneId == ValidZones.SIERRA_NEVADA) {
-//      return getSpeciesResistanceSierraNevada(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.SOUTHERN_CALIFORNIA) {
-//      return getSpeciesResistanceSouthernCalifornia(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.SOUTH_CENTRAL_ALASKA) {
-//      return getSpeciesResistanceAlaska(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.GILA) {
-//      return getSpeciesResistanceGila(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.SOUTHWEST_UTAH) {
-//      return getSpeciesResistanceUtah(zone, evu);
-//    }
-//    else {
-//      return getSpeciesResistanceCommon(zone, evu);
-//    }
   }
 
   /**
