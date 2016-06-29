@@ -327,8 +327,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
 
-    finished = (spreadQueue.size() == 0);
-
     if (spreadQueue.size() == 0) {
 
       finished = true;
