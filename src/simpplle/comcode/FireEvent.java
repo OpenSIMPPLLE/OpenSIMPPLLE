@@ -416,11 +416,13 @@ public class FireEvent extends Process {
   }
 
   /**
-   * Gets the fire resistance based on zone, evu, and lifeform then gets type of fire based on resistance, evu, and
-   * lifeform if firetype is null has default fire types based on wyoming region = SRF or all others LSF
-   * @param zone
-   * @param evu
-   * @param lifeform
+   * Returns a fire process type from the first matching fire type logic rule. If no rules apply to the unit, then
+   * a light severity fire is returned, unless the current zone is in Wyoming, which results in a stand replacing fire.
+   *
+   * @param zone Unused
+   * @param evu A vegetation unit
+   * @param lifeform A life form
+   * @return A process type
    */
   public static ProcessType getTypeOfFire(RegionalZone zone, Evu evu, Lifeform lifeform) {
 
@@ -428,10 +430,10 @@ public class FireEvent extends Process {
 
     ProcessType fireType = FireEventLogic.getInstance().getTypeOfFire(resistance,evu,lifeform);
 
-    boolean isWyoming = RegionalZone.isWyoming();
-
     if (fireType == null) {
-      fireType = isWyoming ? ProcessType.SRF : ProcessType.LSF;
+
+      fireType = RegionalZone.isWyoming() ? ProcessType.SRF : ProcessType.LSF;
+
     }
 
     return fireType;
