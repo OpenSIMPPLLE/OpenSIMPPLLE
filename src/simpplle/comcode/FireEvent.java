@@ -397,12 +397,14 @@ public class FireEvent extends Process {
   }
 
   /**
-   * Determines if a fire process will spread from one EVU to another.
+   * Spreads a fire from one unit to another. This is entirely controlled by fire spreading logic rules. If a matching
+   * rule is found, state in the 'to' unit is updated and this method returns true.
    *
    * @param zone The regional zone containing the EVU
    * @param process The spreading process
    * @param fromEvu The EVU where the fire is coming from
    * @param toEvu The EVU that the fire may spread to
+   *
    * @return True if fireType is not null
    */
   public static boolean doFireSpread(RegionalZone zone, Process process, Evu fromEvu, Evu toEvu) {
