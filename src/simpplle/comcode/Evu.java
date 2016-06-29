@@ -5003,51 +5003,57 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * This method will determine if an event spread from fromEvu in the param
-   * list to this unit.
-   * This method is static and synchronized in order to be certain that the
-   * fields we need in the fromEvu and toEvu are not modified by another
-   * thread while this method is executing.  There is probably a non-static
-   * way of doing this.
-   * @todo make this method non-static and less restricted (if possible).
+   * Attempts to spread a process to another vegetation unit. Spreading a non-fire process requires that the
+   * destination unit has the same life form, does not have a lock-in process, and has a succession process type.
+   * Spreading a fire process results in a call to doFireSpread.
+   * <p>
+   * This method is static and synchronized in order to be certain that the fields we need in the fromEvu and toEvu are
+   * not modified by another thread while this method is executing. There is probably a non-static way of doing this.
    *
-   * @param fromEvu The Evu we are trying to spread from.
-   * @param toEvu   The Evu we are trying to spread to.
-   * @return boolean true if spread was successfull
+   * @todo Make this method non-static and less restricted if possible.
+   *
+   * @param fromEvu The veg unit we are trying to spread from
+   * @param toEvu The veg unit we are trying to spread to
+   * @param fromLifeform The life form containing the process being spread
+   * @return True if spread was successful
    */
   public static synchronized boolean doSpread(Evu fromEvu, Evu toEvu, Lifeform fromLifeform) {
-    ProcessType  fromProcess   = fromEvu.getState(fromLifeform).getProcess();
+
+    ProcessType fromProcess = fromEvu.getState(fromLifeform).getProcess();
+
     if (fromProcess.isFireProcess()) {
       return doFireSpread(fromEvu,toEvu,fromLifeform);
     }
 
+    boolean spread = false;
+
     Area.currentLifeform = fromLifeform;
 
-    Process processInst;
-    ProcessType  toProcess;
+    if (toEvu.hasLifeform(fromLifeform)) {
 
-    if (toEvu.hasLifeform(fromLifeform) == false) {
-      Area.currentLifeform = null;
-      return false;
-    }
-    else {
-      toProcess = toEvu.getState(fromLifeform).getProcess();
-      if (toEvu.getState(fromLifeform).getProb() == L) {
-        Area.currentLifeform = null;
-        return false;
-      }
-    }
+      VegSimStateData state = toEvu.getState(fromLifeform);
 
-    if (toProcess.equals(ProcessType.SUCCESSION)) {
-      processInst = Process.findInstance(fromProcess);
-      if (processInst.doSpread(Simpplle.getCurrentZone(), fromEvu, toEvu)) {
-        Area.currentLifeform = null;
-        return true;
+      if (state.getProb() != L) {
+
+        ProcessType toProcess = toEvu.getState(fromLifeform).getProcess();
+
+        if (toProcess.equals(ProcessType.SUCCESSION)) {
+
+          Process processInst = Process.findInstance(fromProcess);
+
+          if (processInst.doSpread(Simpplle.getCurrentZone(), fromEvu, toEvu)) {
+
+            spread = true;
+
+          }
+        }
       }
     }
 
     Area.currentLifeform = null;
-    return false;
+
+    return spread;
+
   }
 
   /**
