@@ -384,8 +384,7 @@ public class ProcessType extends SimpplleType implements Externalizable {
   }
 
   /**
-   * Method to figure if process type is a fire process
-   * @return true if process type is a fire process
+   * @return True if this is a fire process type
    */
   public boolean isFireProcess() {
     if (equals(ProcessType.STAND_REPLACING_FIRE) ||
@@ -396,6 +395,9 @@ public class ProcessType extends SimpplleType implements Externalizable {
     return false;
   }
 
+  /**
+   * @return True if this is a root disease process type
+   */
   public boolean isRootDisease() {
     if (equals(ROOT_DISEASE) ||
         equals(HS_ROOT_DISEASE) ||
