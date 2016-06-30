@@ -4769,30 +4769,5 @@ public final class Area implements Externalizable {
     }
   }
 
-  /**
-   * Function to get n units along a direction x.
-   * <b>Only to be used when Keane spatial data has been loaded.</b>
-   *
-   * @param origin current evu
-   * @param n number of neighbors in a given direction. Note that for neighbor
-   *          <i>n</i>, the array index, <i>i</i> will always be n-1.
-   * @param directionAzimuth given direction from the current Evu to the adjacent Evu.
-   * @return Array size n of adjacent evus in the given direction
-   */
-  public ArrayList<Evu> getNeighborsAlongDirection(Evu origin, int directionAzimuth, int n){
-    ArrayList<Evu> evus = new ArrayList<>(n);
-    Evu current = origin;
-    int i = 0;
-    while (i < n){
-      Evu next = current.getNeighborInDirection(directionAzimuth);
-      if (next == null) // No more neighbors in that direction
-        break;
-      else
-        evus.set(i, next);  // add neighbor to result
-        current = next;  // move down the line
-      i++;
-    }
-    return evus;
-  }
 }
 
