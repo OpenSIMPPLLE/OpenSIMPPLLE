@@ -2844,7 +2844,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    *          <i>n</i>, the array index, <i>i</i> will always be n-1.
    * @return Array size n of adjacent evus in the given direction
    */
-  public ArrayList<Evu> getNeighborsAlongDirection(int directionAzimuth, int n){
+  public ArrayList<Evu> getNeighborsAlongDirection(double directionAzimuth, int n){
     ArrayList<Evu> evus = new ArrayList<>(n);
     Evu current = this;
     int i = 0;
@@ -2865,8 +2865,8 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param degreesAzimuth given direction from the current Evu to the adjacent Evu.
    * @return Evu neighbor in a given direction, if exists.
    */
-  public Evu getNeighborInDirection(int degreesAzimuth) {
-    int tolerance = 1;  // angle threshold for matching a direction
+  public Evu getNeighborInDirection(double degreesAzimuth) {
+    double tolerance = 1;  // angle threshold for matching a direction
     for (AdjacentData n : adjacentData){
       double direction = n.getSpread();
       if (Math.abs(direction - degreesAzimuth) <= tolerance)
