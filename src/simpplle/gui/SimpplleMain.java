@@ -53,6 +53,11 @@ public class SimpplleMain extends JFrame {
   private boolean vegPathwayDlgOpen     = false;
   private boolean aquaticPathwayDlgOpen = false;
 
+  /**
+   * Populates Combo Box dynamically. SIMPPLLE is the default and always available.
+   */
+  private String[] fireSpreadModels = { "SIMPPLLE" };
+
   JMenuBar menuBar1 = new JMenuBar();
   JMenu menuFile = new JMenu();
   JMenuItem menuFileQuit = new JMenuItem();
@@ -1834,7 +1839,7 @@ public class SimpplleMain extends JFrame {
  * @param e
  */
   void runSimulation_actionPerformed(ActionEvent e) {
-    SimParam  dlg = new SimParam(this,"Set Simulation Parameters",true);
+    SimParam  dlg = new SimParam(this, "Set Simulation Parameters", true, fireSpreadModels);
     setDialogLocation(dlg);
     dlg.setVisible(true);
   }
