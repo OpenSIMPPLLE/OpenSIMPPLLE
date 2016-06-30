@@ -302,28 +302,11 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     FireEvent.currentEvent = this;
 
-    tmpToUnits.clear();
+    tmpToUnits.clear(); // TODO: Change this to a local variable in this class and the super class.
 
-    AdjacentData[] adjDataArray = fromUnit.getAdjacentData();
+    doSimpplleSpread(fromUnit,tmpToUnits); // TODO: Select proper method based on selected fire spreading model
 
-    if (adjDataArray != null) {
-
-      for (AdjacentData adjData : adjDataArray) {
-
-        Evu toUnit = adjData.evu;
-
-        if (lineSuppUnits.contains(toUnit.getId())) { // Do units have a flag indicating if they are suppressed?
-          continue;
-        }
-
-        if (Evu.doSpread(fromUnit, toUnit, fromUnit.getDominantLifeformFire())) {
-          tmpToUnits.add(toUnit);
-        }
-      }
-
-      doFireSpotting(fromUnit);
-
-    }
+    doFireSpotting(fromUnit);
 
     addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
 
@@ -350,6 +333,66 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     FireEvent.currentEvent = null;
     Area.currentLifeform = null;
 
+  }
+
+  /**
+   * Spreads fire from a burning vegetation unit to adjacent vegetation units. If a unit catches on fire, then it is
+   * added to the array list of 'to' units. This algorithm applies fire spreading logic to immediate neighbors.
+   *
+   * @param fromUnit A burning vegetation unit
+   * @param toUnits A list to store units that have been spread to
+   */
+  private void doSimpplleSpread(Evu fromUnit, ArrayList toUnits) {
+
+    AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
+
+    if (adjacentArray != null) {
+
+      for (AdjacentData adjacent : adjacentArray) {
+
+        Evu toUnit = adjacent.evu;
+
+        if (lineSuppUnits.contains(toUnit.getId())) continue;
+
+        if (Evu.doSpread(fromUnit, toUnit, fromUnit.getDominantLifeformFire())) {
+
+          toUnits.add(toUnit);
+
+        }
+      }
+    }
+  }
+
+  /**
+   * Spreads fire from a burning vegetation unit to adjacent vegetation units. If a unit catches on fire, then it is
+   * added to the array list of 'to' units. This algorithm applies fire spreading logic to neighbors around the 'from'
+   * unit. The number of neighbors tested in each direction depends on wind direction, wind speed, and the slope of
+   * each neighboring unit.
+   *
+   * @param fromUnit A burning vegetation unit
+   * @param toUnits A list to store units that have been spread to
+   */
+  private void doKeaneSpread(Evu fromUnit, ArrayList toUnits) {
+
+    AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
+
+    if (adjacentArray != null) {
+
+      // calculate spix
+
+      // get a list of 'n' neighbors in direction 'x'
+
+      // for each of these units,
+
+      //    if unit is a line suppression unit,
+
+      //        go to next unit
+
+      //    if fire logic spreads the fire,
+
+      //        add unit to toUnits
+
+    }
   }
 
   /**
