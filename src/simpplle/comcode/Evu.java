@@ -124,8 +124,6 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   /**
    * creates a Trail Unit Data class with two variables for trail and evu.
-   *
-   *
    */
   public static class TrailUnitData {
     public Trails trail;
@@ -2615,6 +2613,10 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
+   *    TREATMENT METHODS
+   */
+
+  /**
    * Gets the Treatment that was last applied to this unit (if any).
    * @return a Treatment or null.
    */
@@ -2757,6 +2759,10 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
+   *    ADJACENT METHODS
+   */
+
+  /**
    * Sets the data for adjacent Evu
    * @param newAdjData the adjacent data array being set
    */
@@ -2771,7 +2777,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public AdjacentData[] getAdjacentData() { return adjacentData; }
 
   /**
-   * Loops through adjacent evu's in an area, counts them and checks their ID's validity.
+   * Loops through adjacent evus in an area, counts them and checks their ID's validity.
    * If the count of their Id's validity is same as adjacent data array length returns , else will create a new adjacent evu array limited in size
    * to only valid count and transfer adjacent evu data to it.
    */
@@ -2827,6 +2833,47 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
     return NEXT_TO;
+  }
+
+  /**
+   * Function to get n units along a direction x.
+   * <b>Only to be used when Keane spatial data has been loaded.</b>
+   *
+   * @param directionAzimuth given direction from the current Evu to the adjacent Evu.
+   * @param n number of neighbors in a given direction. Note that for neighbor
+   *          <i>n</i>, the array index, <i>i</i> will always be n-1.
+   * @return Array size n of adjacent evus in the given direction
+   */
+  public ArrayList<Evu> getNeighborsAlongDirection(int directionAzimuth, int n){
+    ArrayList<Evu> evus = new ArrayList<>(n);
+    Evu current = this;
+    int i = 0;
+    while (i < n){
+      Evu next = current.getNeighborInDirection(directionAzimuth);
+      if (next == null) // No more neighbors in that direction
+        break;
+      else
+        evus.set(i, next);  // add neighbor to result
+      current = next;     // move down the line
+      i++;
+    }
+    return evus;
+  }
+
+  /**
+   * Potentially returns erroneous values if proper adjacent data (Keane) has not been loaded.
+   * @param degreesAzimuth given direction from the current Evu to the adjacent Evu.
+   * @return Evu neighbor in a given direction, if exists.
+   */
+  public Evu getNeighborInDirection(int degreesAzimuth) {
+    int tolerance = 1;  // angle threshold for matching a direction
+    for (AdjacentData n : adjacentData){
+      double direction = n.getSpread();
+      if (Math.abs(direction - degreesAzimuth) <= tolerance)
+        return n.evu;
+    }
+    // no result found
+    return null;
   }
 
   /**

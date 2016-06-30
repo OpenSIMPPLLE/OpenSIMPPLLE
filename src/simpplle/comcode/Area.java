@@ -4760,7 +4760,8 @@ public final class Area implements Externalizable {
   }
 
   /**
-   * If Area has uniform polygons sets the relative elevation position to 10, otherwise it sets to 100
+   * If Area has uniform polygons sets the relative elevation position to 10,
+   * otherwise it sets to 100
    */
   public void setElevationRelativePositionDefault() {
     if (hasUniformSizePolygons()) {
@@ -4769,5 +4770,6 @@ public final class Area implements Externalizable {
       setElevationRelativePosition(100);
     }
   }
+
 }
 
