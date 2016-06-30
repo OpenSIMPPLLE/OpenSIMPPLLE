@@ -2853,7 +2853,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       if (next == null) // No more neighbors in that direction
         break;
       else
-        evus.set(i, next);  // add neighbor to result
+        evus.add(next);  // add neighbor to result
       current = next;     // move down the line
       i++;
     }
