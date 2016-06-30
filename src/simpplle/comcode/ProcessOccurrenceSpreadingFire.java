@@ -378,19 +378,21 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     if (adjacentArray != null) {
 
-      // calculate spix
+      // for each neighbor,
 
-      // get a list of 'n' neighbors in direction 'x'
+      //    calculate spix
 
-      // for each of these units,
+      //    get a list of 'n' neighbors in direction 'x'
 
-      //    if unit is a line suppression unit,
+      //    for each of these units,
 
-      //        go to next unit
+      //       if unit is a line suppression unit,
 
-      //    if fire logic spreads the fire,
+      //           go to next unit
 
-      //        add unit to toUnits
+      //       if fire logic spreads the fire,
+
+      //           add unit to toUnits
 
     }
   }
