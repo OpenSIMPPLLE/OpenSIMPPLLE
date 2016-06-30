@@ -2836,16 +2836,18 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
+   * Potentially returns erroneous values if proper adjacent data (Keane) has not been loaded.
    * @param degreesAzimuth given direction from the current Evu to the adjacent Evu.
    * @return Evu neighbor in a given direction, if exists.
    */
   public Evu getNeighborInDirection(int degreesAzimuth) {
     int tolerance = 1;  // angle threshold for matching a direction
     for (AdjacentData n : adjacentData){
-
       double direction = n.getSpread();
-      if (Math.abs(direction - degreesAzimuth) <= tolerance) return n.evu;
+      if (Math.abs(direction - degreesAzimuth) <= tolerance)
+        return n.evu;
     }
+    // no result found
     return null;
   }
 
