@@ -4779,8 +4779,8 @@ public final class Area implements Externalizable {
    * @param directionAzimuth given direction from the current Evu to the adjacent Evu.
    * @return Array size n of adjacent evus in the given direction
    */
-  public Evu[] getNeighborsAlongDirection(Evu origin, int directionAzimuth, int n){
-    Evu[] evus = new Evu[n];
+  public ArrayList<Evu> getNeighborsAlongDirection(Evu origin, int directionAzimuth, int n){
+    ArrayList<Evu> evus = new ArrayList<>(n);
     Evu current = origin;
     int i = 0;
     while (i < n){
@@ -4788,8 +4788,9 @@ public final class Area implements Externalizable {
       if (next == null) // No more neighbors in that direction
         break;
       else
-        evus[i] = next;  // add neighbor to result
+        evus.set(i, next);  // add neighbor to result
         current = next;  // move down the line
+      i++;
     }
     return evus;
   }
