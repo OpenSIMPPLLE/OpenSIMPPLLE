@@ -4758,7 +4758,8 @@ public final class Area implements Externalizable {
   }
 
   /**
-   * If Area has uniform polygons sets the relative elevation position to 10, otherwise it sets to 100
+   * If Area has uniform polygons sets the relative elevation position to 10,
+   * otherwise it sets to 100
    */
   public void setElevationRelativePositionDefault() {
     if (hasUniformSizePolygons()) {
@@ -4766,6 +4767,31 @@ public final class Area implements Externalizable {
     } else {
       setElevationRelativePosition(100);
     }
+  }
+
+  /**
+   * Function to get n units along a direction x.
+   * <b>Only to be used when Keane spatial data has been loaded.</b>
+   *
+   * @param origin current evu
+   * @param n number of neighbors in a given direction. Note that for neighbor
+   *          <i>n</i>, the array index, <i>i</i> will always be n-1.
+   * @param directionAzimuth given direction from the current Evu to the adjacent Evu.
+   * @return Array size n of adjacent evus in the given direction
+   */
+  public Evu[] getNeighborsAlongDirection(Evu origin, int directionAzimuth, int n){
+    Evu[] evus = new Evu[n];
+    Evu current = origin;
+    int i = 0;
+    while (i < n){
+      Evu next = current.getNeighborInDirection(directionAzimuth);
+      if (next == null) // No more neighbors in that direction
+        break;
+      else
+        evus[i] = next;  // add neighbor to result
+        current = next;  // move down the line
+    }
+    return evus;
   }
 }
 
