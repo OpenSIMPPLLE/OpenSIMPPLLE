@@ -113,10 +113,7 @@ public class ParseNewNeighborsKeane implements RelationParser {
         return false;
       }
 
-      // Calculate if a unit is downwind based on spread and windDirection.
-      int threshold = 90;
-      if (getAngleDifference(spread, windDirection) > threshold) wind = 'D';
-      else wind = 'N';
+      wind = isDownwind(spread, windDirection);
 
       // Make evu or load existing
       Evu evu = unitHm.get(from);
@@ -153,6 +150,17 @@ public class ParseNewNeighborsKeane implements RelationParser {
   private double getAngleDifference(double a, double b) {
     double diff = Math.abs(a - b);
     return (diff < 180) ? diff : 360 - diff;
+  }
+
+  /**
+   * Determine if neighbor should be classified as downwind
+   * @param spread angle of adjacency
+   * @param windDirection degrees azimuth
+   */
+  private char isDownwind(double spread, double windDirection){
+    int threshold = 90;
+    if (getAngleDifference(spread, windDirection) < threshold) return 'D';
+    else return 'N';
   }
 }
 
