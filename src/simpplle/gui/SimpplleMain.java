@@ -2693,8 +2693,7 @@ public class SimpplleMain extends JFrame {
     }
     // Import was successful.
     else {
-      msg =
-           "Creation of the Area was successful.\n" +
+      msg = "Creation of the Area was successful.\n" +
            "Please give the area a name using the \"Change Area Name\"" +
            " function under the utility menu.\n\n" +
            "*** Do not to forget to save the area (File Menu) ***";
@@ -2703,13 +2702,8 @@ public class SimpplleMain extends JFrame {
       area.setName("No Name (to change use Utility-->Change Area Name)");
       String str = Simpplle.getCurrentArea().getName();
       areaValueLabel.setText(str);
-      areaInvalidLabel.setText("");
-
-      enableAreaControls();
+      markAreaValid();
       disableSimulationControls();
-      menuImportFixStates.setEnabled(false);
-      menuImportEditUnits.setEnabled(false);
-      menuImportInvalidReport.setEnabled(false);
     }
     refresh();
   }
