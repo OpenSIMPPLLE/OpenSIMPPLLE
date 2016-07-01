@@ -3995,7 +3995,7 @@ public final class Area implements Externalizable {
   /**
    * @param evu current evu
    * @param adjData data representing the relationship between current and adj
-   * @return slope (as a percent) moving from the current evu to an adjacent
+   * @return slope (as a decimal) moving from the current evu to an adjacent
    */
   public double calcSlope(Evu evu, AdjacentData adjData){
 
@@ -4012,9 +4012,9 @@ public final class Area implements Externalizable {
     // must use both sin and cos to avoid dividing by 0
     if (abs_sin <= abs_cos) distanceFeet = distanceFeet / abs_cos;
     else                    distanceFeet = distanceFeet / abs_sin;
-    // rise over run * 100 to get percent slope
+    // rise over run
     // make sure to use elevation in feet
-    return 100 * (adj.getElevationFeet() - evu.getElevationFeet()) / distanceFeet;
+    return (adj.getElevationFeet() - evu.getElevationFeet()) / distanceFeet;
   }
 
   public char calcRelativePosition(Evu evu, AdjacentData adjData) {
