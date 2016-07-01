@@ -63,8 +63,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     fireSeason           = FireEvent.getFireSeason();
     fireSuppressed       = false;
     fireSuppressedSet    = false;
-    fireSuppRandomNumber = 0;
-    fireSuppRandomDrawn  = false;
+    fireSuppRandomNumber = Simulation.getInstance().random();
     lineProductionNode   = null;
     totalLineProduced    = 0;
 
@@ -134,11 +133,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   public void doSpread() {
-
-    if (!fireSuppRandomDrawn) {
-      fireSuppRandomNumber = Simulation.getInstance().random();
-      fireSuppRandomDrawn = true;
-    }
 
     if (!fireSuppressedSet) {
       Evu originEvu = root.data.getUnit();
