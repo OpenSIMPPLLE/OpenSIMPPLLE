@@ -59,8 +59,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     hoursBurning         = 0;
     weatherProb          = 0;
     weatherRangeIndex    = -1;
-    isExtreme            = false;
-    isExtremeSet         = false;
+    isExtreme            = FireEvent.isExtremeSpread();
     fireSeason           = Climate.Season.SPRING;
     isFireSeasonSet      = false;
     fireSuppressed       = false;
@@ -136,11 +135,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   public void doSpread() {
-
-    if (!isExtremeSet) {
-      isExtreme = FireEvent.isExtremeSpread();
-      isExtremeSet = true;
-    }
 
     if (!isFireSeasonSet && getProcess().isFireProcess()) {
       fireSeason = FireEvent.getFireSeason();
