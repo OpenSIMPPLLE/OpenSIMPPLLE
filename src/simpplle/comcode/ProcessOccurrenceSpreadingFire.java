@@ -3,6 +3,7 @@ package simpplle.comcode;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -147,7 +148,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
 
     if (!fireSuppRandomDrawn) {
-      fireSuppRandomNumber = Simulation.getInstance().random(); // Greg's Note: Can't this be local in the next block?
+      fireSuppRandomNumber = Simulation.getInstance().random();
       fireSuppRandomDrawn = true;
     }
 
@@ -378,22 +379,25 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     if (adjacentArray != null) {
 
-      // for each neighbor,
+      for (AdjacentData adjacent : adjacentArray) {
 
-      //    calculate spix
+        double spix = 3.0; // TODO: Calculate spix value
 
-      //    get a list of 'n' neighbors in direction 'x'
+        List<Evu> neighbors = adjacent.evu.getNeighborsAlongDirection(adjacent.getSpread(),(int)Math.ceil(spix));
 
-      //    for each of these units,
+        for (Evu neighbor : neighbors) {
 
-      //       if unit is a line suppression unit,
+          if (lineSuppUnits.contains(neighbor.getId())) break;
 
-      //           go to next unit
+          // TODO: Apply probability to last unit if spix is not a whole number
 
-      //       if fire logic spreads the fire,
+          if (Evu.doSpread(fromUnit, neighbor, fromUnit.getDominantLifeformFire())) {
 
-      //           add unit to toUnits
+            toUnits.add(neighbor);
 
+          }
+        }
+      }
     }
   }
 
