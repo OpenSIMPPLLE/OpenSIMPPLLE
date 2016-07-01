@@ -27,15 +27,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
   private int            hoursBurning;
   private int            weatherProb;
-  private boolean        isWeatherProbSet;
   private int            weatherRangeIndex;
   private boolean        isExtreme;
-  private boolean        isExtremeSet;
   private Climate.Season fireSeason;
-  private boolean        isFireSeasonSet;
   private boolean        fireSuppressed;
-  private boolean        fireSuppressedSet;
-  private boolean        fireSuppRandomDrawn;
   private int            fireSuppRandomNumber;
   private Node           lineProductionNode;
   private int            totalLineProduced;
@@ -62,7 +57,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     isExtreme            = FireEvent.isExtremeSpread();
     fireSeason           = FireEvent.getFireSeason();
     fireSuppressed       = false;
-    fireSuppressedSet    = false;
     fireSuppRandomNumber = Simulation.getInstance().random();
     lineProductionNode   = null;
     totalLineProduced    = 0;
@@ -133,11 +127,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   public void doSpread() {
-
-    if (!fireSuppressedSet) {
-      Evu originEvu = root.data.getUnit();
-      fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(originEvu, fireSuppRandomNumber);
-    }
 
     int rangeIndex = FireSuppWeatherData.getAcresRangeNumber(getEventAcres());
 
