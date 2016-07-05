@@ -274,7 +274,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     FireEvent.currentEvent = this;
 
-    tmpToUnits.clear(); // TODO: Change this to a local variable in this class and the super class.
+    tmpToUnits.clear();
 
     doSimpplleSpread(fromUnit,tmpToUnits); // TODO: Select proper method based on selected fire spreading model
 
@@ -352,7 +352,28 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
       for (AdjacentData adjacent : adjacentArray) {
 
-        double spix = 3.0; // TODO: Calculate spix value
+        double windSpeed = Math.round(adjacent.getWindSpeed());
+        double windDir   = Math.toRadians(adjacent.getWindDirection());
+        double spreadDir = Math.toRadians(adjacent.getSpread());
+        double slope     = adjacent.getSlope() / 100.0;
+
+        double windFactor = (1.0 + 0.125 * windSpeed) * Math.pow((Math.cos(Math.abs(spreadDir - windDir))), Math.pow(windSpeed, 0.6));
+
+        double slopeFactor;
+
+        if (slope > 0.0) {
+
+          slopeFactor = 5.0 / (1.0 + 3.5 * Math.pow(Math.E,-10 * slope));
+
+        } else {
+
+          // TODO: Determine if equation should use square with negative sign
+
+          slopeFactor = Math.pow(Math.E,3 * slope);
+
+        }
+
+        double spix = windFactor * slopeFactor;
 
         List<Evu> neighbors = adjacent.evu.getNeighborsAlongDirection(adjacent.getSpread(),(int)Math.ceil(spix));
 
@@ -416,8 +437,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     return perimeter;
 
   }
-
-
 
   /**
    * Calculates an approximate fire perimeter. The approximation assumes that the fire shape is square.
