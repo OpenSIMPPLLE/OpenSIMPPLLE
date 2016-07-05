@@ -22,6 +22,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   static final long serialVersionUID = -7840370421868476956L;
   static final int  version          = 1;
 
+  private static double keaneExtremeWindMultiplier    = 5.0;
+  private static double keaneWindSpeedVariability     = 0.5;
+  private static double keaneWindDirectionVariability = 45.0;
+
   public enum EventStop { OTHER, WEATHER, LINE }
 
   private int            hoursBurning;
@@ -69,6 +73,48 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     lineProductionNode   = null;
     totalLineProduced    = 0;
 
+  }
+
+  /**
+   * @param value An extreme wind multiplier for Keane spreading
+   */
+  public static void setKeaneExtremeWindMultiplier(double value) {
+    keaneExtremeWindMultiplier = value;
+  }
+
+  /**
+   * @return An extreme wind multiplier for Keane spreading
+   */
+  public static double getKeaneExtremeWindMultiplier() {
+    return keaneExtremeWindMultiplier;
+  }
+
+  /**
+   * @param value A wind speed variability factor for Keane spreading
+   */
+  public static void setKeaneWindSpeedVariability(double value) {
+    keaneWindSpeedVariability = value;
+  }
+
+  /**
+   * @return A wind speed variability factor for Keane spreading
+   */
+  public static double getKeaneWindSpeedVariability() {
+    return keaneWindSpeedVariability;
+  }
+
+  /**
+   * @param value A wind direction variability in degrees for Keane spreading
+   */
+  public static void setKeaneWindDirectionVariability(double value) {
+    keaneWindDirectionVariability = value;
+  }
+
+  /**
+   * @return A wind direction variability in degrees for Keane spreading
+   */
+  public static double getKeaneWindDirectionVariability() {
+    return keaneWindDirectionVariability;
   }
 
   /**
