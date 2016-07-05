@@ -83,9 +83,9 @@ public class KeaneCellPercolation extends JDialog {
      */
     private void initialize() {
 
-        windSpeedMultiplier.setValue(5.0);
-        windSpeedVariability.setValue(0.5);
-        windDirectionVariability.setValue(45.0);
+        windSpeedMultiplier.setValue(ProcessOccurrenceSpreadingFire.getKeaneExtremeWindMultiplier());
+        windSpeedVariability.setValue(ProcessOccurrenceSpreadingFire.getKeaneWindSpeedVariability());
+        windDirectionVariability.setValue(ProcessOccurrenceSpreadingFire.getKeaneWindDirectionVariability());
 
     }
 
@@ -96,7 +96,7 @@ public class KeaneCellPercolation extends JDialog {
 
         ProcessOccurrenceSpreadingFire.setKeaneExtremeWindMultiplier(windSpeedMultiplier.getValue());
         ProcessOccurrenceSpreadingFire.setKeaneWindSpeedVariability(windSpeedVariability.getValue());
-        ProcessOccurrenceSpreadingFire.setKeaneWindDirVariability(windDirectionVariability.getValue());
+        ProcessOccurrenceSpreadingFire.setKeaneWindDirectionVariability(windDirectionVariability.getValue());
 
         setVisible(false);
         dispose();
