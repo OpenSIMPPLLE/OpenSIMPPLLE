@@ -19,6 +19,7 @@ import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.Vector;
 
 
 /**
@@ -51,6 +52,10 @@ public class SimParam extends JDialog {
   private File    outputFile;
   private File    allStatesRulesFile;
   private int     maxTimeSteps;
+  /**
+   * Used to dynamically populate available spread models
+   */
+  private Vector<String> fireSpreadModels;
 
   // Layouts
   private BorderLayout mainLayout  = new BorderLayout();
@@ -147,7 +152,7 @@ public class SimParam extends JDialog {
   private JButton trackingSpeciesCategoryPB = new JButton();
   private JCheckBox gisUpdateSpreadCB = new JCheckBox();
   private JComboBox invasiveSpeciesCB = new JComboBox();
-  private JComboBox fireSpreadModelCB = new JComboBox();
+  private JComboBox fireSpreadModelCB;
   private JCheckBox trackingSpeciesCB = new JCheckBox();
   private JCheckBox writeAccessFilesCB = new JCheckBox();
   //  Option to disable writing probability Arc Files. Currently, this information is not used in output processing.
@@ -157,8 +162,9 @@ public class SimParam extends JDialog {
   private SimpplleMain simpplleMain;
 
   // Overloaded Constructor
-  public SimParam(SimpplleMain frame, String title, boolean modal) {
+  public SimParam(SimpplleMain frame, String title, boolean modal, Vector<String> fireSpreadModels) {
     super(frame, title, modal);
+    this.fireSpreadModels = fireSpreadModels;
     try  {
       jbInit();
       pack();
@@ -171,7 +177,7 @@ public class SimParam extends JDialog {
   }
 
   public SimParam() {
-    this(null, "", false);
+    this(null, "", false, new Vector<>());
   }
 
   void jbInit() throws Exception {
@@ -269,6 +275,10 @@ public class SimParam extends JDialog {
     panel.setLayout(new GridLayout(2, 0));
     writeAccessPanel.setLayout(probReportsLayout);
     discardTextPanel.setLayout(probReportsLayout);
+
+    // Initialize
+    fireSpreadModelCB = new JComboBox(fireSpreadModels);
+
     // Run
     runButton.setNextFocusableComponent(cancelButton);
     runButton.setText("Run Simulation");
@@ -588,10 +598,6 @@ public class SimParam extends JDialog {
       invasiveSpeciesCB.addItem(kinds[i]);
     }
     invasiveSpeciesCB.setSelectedItem(Simulation.InvasiveKind.NONE);
-
-    fireSpreadModelCB.addItem("SIMPPLLE");
-    fireSpreadModelCB.addItem("Keane Cell Percolation");
-    fireSpreadModelCB.setSelectedItem("SIMPPLLE");
 
     boolean isWyoming =  (RegionalZone.isWyoming());
     yearlyStepCB.setEnabled(!isWyoming);

@@ -17,7 +17,8 @@ import simpplle.comcode.Climate.*;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>This class defines an Object describing a Forest Landscape.  Hierarchy for landscapes are Regional Zone -> Area -> Natural Element
+ * <p>This class defines an Object describing a Forest Landscape.  Hierarchy for landscapes are
+ * Regional Zone -> Area -> Natural Element
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
@@ -39,6 +40,11 @@ public final class Area implements Externalizable {
   public static final ManmadeUnitKinds TRAILS = ManmadeUnitKinds.TRAILS;
 
   private static boolean disableMultipleLifeforms=false;
+
+  /**
+   *  This area has specific Adjacency Data, and Keane spreading logic can be used.
+   */
+  private boolean hasKeaneAttributes;
 
   private String                name;
   private String                date;
@@ -3995,7 +4001,7 @@ public final class Area implements Externalizable {
   /**
    * @param evu current evu
    * @param adjData data representing the relationship between current and adj
-   * @return slope (as a percent) moving from the current evu to an adjacent
+   * @return slope (as a decimal) moving from the current evu to an adjacent
    */
   public double calcSlope(Evu evu, AdjacentData adjData){
 
@@ -4012,9 +4018,9 @@ public final class Area implements Externalizable {
     // must use both sin and cos to avoid dividing by 0
     if (abs_sin <= abs_cos) distanceFeet = distanceFeet / abs_cos;
     else                    distanceFeet = distanceFeet / abs_sin;
-    // rise over run * 100 to get percent slope
+    // rise over run
     // make sure to use elevation in feet
-    return 100 * (adj.getElevationFeet() - evu.getElevationFeet()) / distanceFeet;
+    return (adj.getElevationFeet() - evu.getElevationFeet()) / distanceFeet;
   }
 
   public char calcRelativePosition(Evu evu, AdjacentData adjData) {
@@ -4771,5 +4777,12 @@ public final class Area implements Externalizable {
     }
   }
 
+  public boolean getHasKeaneAttributes() {
+    return hasKeaneAttributes;
+  }
+
+  public void setHasKeaneAttributes(boolean hasKeaneAttributes) {
+    this.hasKeaneAttributes = hasKeaneAttributes;
+  }
 }
 
