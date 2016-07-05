@@ -425,24 +425,26 @@ public final class Simpplle {
   public void removeCurrentArea() {
     currentArea = null;
   }
+
 /**
- * imports and area from a file, if it is a GIS file will be listed as spatialrelate, and will need to import new files '
- * based on passed filename, otherwise will simply read area files.  
- * @param filename
+ * imports and area from a file, if it is a GIS file will be listed as spatialrelate,
+ * and will need to import associated files based on passed file, otherwise will simply
+ * read area files.
+ * @param file file path provided by chooser
  * @return
  * @throws SimpplleError
  */
-  public boolean importArea(File filename) throws SimpplleError {
-    String extension = Utility.getFileExtension(filename);
+  public boolean importArea(File file) throws SimpplleError {
+    String extension = Utility.getFileExtension(file);
     if (extension == null) {
-      throw new SimpplleError("Invalid import filename");
+      throw new SimpplleError("Invalid import file");
     }
 
-    File       prefix = Utility.stripExtension(filename);
+    File       prefix = Utility.stripExtension(file);
     ImportArea importer = new ImportArea();
 
     if (extension.equalsIgnoreCase("spatialrelate")) {
-      currentArea = importer.importNewFiles(filename);
+      currentArea = importer.importNewFiles(file);
     }
     else {
       currentArea = importer.readFiles(prefix);
