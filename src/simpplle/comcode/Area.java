@@ -41,6 +41,11 @@ public final class Area implements Externalizable {
 
   private static boolean disableMultipleLifeforms=false;
 
+  /**
+   *  This area has specific Adjacency Data, and Keane spreading logic can be used.
+   */
+  private boolean hasKeaneAttributes;
+
   private String                name;
   private String                date;
   private String                path;
@@ -4767,6 +4772,14 @@ public final class Area implements Externalizable {
     } else {
       setElevationRelativePosition(100);
     }
+  }
+
+  public boolean getHasKeaneAttributes() {
+    return hasKeaneAttributes;
+  }
+
+  public void setHasKeaneAttributes(boolean hasKeaneAttributes) {
+    this.hasKeaneAttributes = hasKeaneAttributes;
   }
 }
 

@@ -1414,6 +1414,7 @@ public class ImportArea {
             break;
           case "VEGETATION-VEGETATION-KEANE":
             parser = new ParseNewNeighborsKeane();
+            newArea.setHasKeaneAttributes(true);
             break;
           case "LANDFORM-LANDFORM":
             parser = new ParseLandNeighbors();

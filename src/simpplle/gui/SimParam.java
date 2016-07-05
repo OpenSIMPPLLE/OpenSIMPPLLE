@@ -19,6 +19,7 @@ import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.Vector;
 
 
 /**
@@ -54,7 +55,7 @@ public class SimParam extends JDialog {
   /**
    * Used to dynamically populate available spread models
    */
-  private String [] fireSpreadModels;
+  private Vector<String> fireSpreadModels;
 
   // Layouts
   private BorderLayout mainLayout  = new BorderLayout();
@@ -161,7 +162,7 @@ public class SimParam extends JDialog {
   private SimpplleMain simpplleMain;
 
   // Overloaded Constructor
-  public SimParam(SimpplleMain frame, String title, boolean modal, String[] fireSpreadModels) {
+  public SimParam(SimpplleMain frame, String title, boolean modal, Vector<String> fireSpreadModels) {
     super(frame, title, modal);
     this.fireSpreadModels = fireSpreadModels;
     try  {
@@ -176,7 +177,7 @@ public class SimParam extends JDialog {
   }
 
   public SimParam() {
-    this(null, "", false, new String[0]);
+    this(null, "", false, new Vector<>());
   }
 
   void jbInit() throws Exception {

@@ -1,5 +1,6 @@
 package simpplle.gui;
 
+import com.mchange.v1.util.ArrayUtils;
 import org.hsqldb.util.DatabaseManagerSwing;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
@@ -12,17 +13,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowEvent;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Vector;
 
-//import javax.help.CSH;
-//import javax.help.HelpBroker;
-//import javax.help.HelpSet;
-//import org.hibernate.HibernateException;
-//import java.sql.SQLException;
-//import net.sf.hibern8ide.Hibern8IDE;
-//import org.hibernate.SessionFactory;
-//import java.util.*;
-/** 
+/**
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
@@ -56,7 +50,7 @@ public class SimpplleMain extends JFrame {
   /**
    * Populates Combo Box dynamically. SIMPPLLE is the default and always available.
    */
-  private String[] fireSpreadModels = { "SIMPPLLE" };
+  private Vector<String> fireSpreadModels = new Vector<>(2);
 
   JMenuBar menuBar1 = new JMenuBar();
   JMenu menuFile = new JMenu();
@@ -273,6 +267,7 @@ public class SimpplleMain extends JFrame {
     menuSysKnowDisableWsbw.setState(false);
 
     menuReportsFireSuppCostAll.setVisible(false);
+    fireSpreadModels.add("SIMPPLLE");
   }
 
   //Component initialization
@@ -1810,7 +1805,8 @@ public class SimpplleMain extends JFrame {
       str = area.getName();
       areaValueLabel.setText(str);
 //      areaInvalidLabel.setText("");
-       area.setMultipleLifeformStatus();
+      area.setMultipleLifeformStatus();
+      updateSpreadModels(area.getHasKeaneAttributes());
 
       // Some areas seem to have been created incorrectly so we need
       // to make sure that if they only have one lifeform in all units
@@ -2702,6 +2698,7 @@ public class SimpplleMain extends JFrame {
       area.setName("No Name (to change use Utility-->Change Area Name)");
       String str = Simpplle.getCurrentArea().getName();
       areaValueLabel.setText(str);
+      updateSpreadModels(area.getHasKeaneAttributes());
       markAreaValid();
       disableSimulationControls();
     }
@@ -3699,6 +3696,18 @@ public class SimpplleMain extends JFrame {
     setDialogLocation(dlg);
     dlg.setVisible(true);
     refresh();
+  }
+
+  protected void updateSpreadModels(boolean hasKeane){
+    if(hasKeane) { // New area has Keane data
+      if (fireSpreadModels.contains("KEANE"))
+          return;  // Already exists, do nothing.
+      fireSpreadModels.add("KEANE"); // Not in vector, add it.
+    }
+    else { // New area does not have keane data
+      if (fireSpreadModels.contains("KEANE"))
+        fireSpreadModels.remove("KEANE");
+    }
   }
 
 }
