@@ -22,6 +22,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   static final long serialVersionUID = -7840370421868476956L;
   static final int  version          = 1;
 
+  public enum SpreadModel { SIMPPLLE, KEANE }
+
+  private static SpreadModel spreadModel = SpreadModel.SIMPPLLE;
+
   private static double keaneExtremeWindMultiplier    = 5.0;
   private static double keaneWindSpeedVariability     = 0.5;
   private static double keaneWindDirectionVariability = 45.0;
@@ -73,6 +77,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     lineProductionNode   = null;
     totalLineProduced    = 0;
 
+  }
+
+  /**
+   * @param value A fire spreading model
+   */
+  public static void setSpreadModel(SpreadModel value) {
+    spreadModel = value;
   }
 
   /**
