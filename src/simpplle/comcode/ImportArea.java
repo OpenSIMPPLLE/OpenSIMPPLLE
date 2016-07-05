@@ -1374,18 +1374,24 @@ public class ImportArea {
 //    }
 //  }
 
-  private Area importSpatial(File filename) throws SimpplleError{
+  /**
+   * Process .spatialrelate files based on key
+   * @param file input File
+   * @return newly created area with evus and associated data
+   * @throws SimpplleError
+   */
+  private Area importSpatial(File file) throws SimpplleError{
     PrintWriter    log = null;
     BufferedReader fin;
     RelationParser parser;
-    File           prefix = Utility.stripExtension(filename);
+    File           prefix = Utility.stripExtension(file);
     File           logFile = Utility.makeUniqueLogFile(prefix,"");
     Area newArea = new Area(Area.USER);
     Boolean success = false;
 
     try {
       log = new PrintWriter(new FileWriter(logFile));
-      fin = new BufferedReader(new FileReader(filename));
+      fin = new BufferedReader(new FileReader(file));
       String line = fin.readLine();
       while (line != null){
         StringTokenizer strTok = new StringTokenizer(line.trim());
@@ -1454,7 +1460,7 @@ public class ImportArea {
       fin.close();
       return newArea;
     } catch (IOException e) {
-      throw new SimpplleError("Error in reading " + filename);
+      throw new SimpplleError("Error in reading " + file);
     }
     catch (ParseError e) {
       String msg = "The following error occurred while trying to create the area:";

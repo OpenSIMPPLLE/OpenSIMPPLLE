@@ -2708,7 +2708,8 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 /**
- * Marks an area invalid and allows users to import fix states, edit units, or print invalid report.  
+ * Marks an area invalid and allows users to import fix states, edit units, or
+ * print invalid report.
  */
   public void markAreaInvalid() {
     areaInvalidLabel.setText("(invalid)");
@@ -2719,9 +2720,10 @@ public class SimpplleMain extends JFrame {
     menuImportInvalidReport.setEnabled(true);
     menuUtilityUnitEditor.setEnabled(true);
   }
+
 /**
- * Tells the reader the area is valid, by doing nothing (as opposed to marking area invalid which notifies user of invalidity).  
- * Then enables area controls. 
+ * Marks the area as valid, then enables area controls.
+ * @see #markAreaInvalid()
  */
   public void markAreaValid() {
     areaInvalidLabel.setText("");

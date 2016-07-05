@@ -17,7 +17,8 @@ import simpplle.comcode.Climate.*;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>This class defines an Object describing a Forest Landscape.  Hierarchy for landscapes are Regional Zone -> Area -> Natural Element
+ * <p>This class defines an Object describing a Forest Landscape.  Hierarchy for landscapes are
+ * Regional Zone -> Area -> Natural Element
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
