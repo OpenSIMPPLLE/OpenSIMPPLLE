@@ -1,5 +1,7 @@
 package simpplle.gui;
 
+import simpplle.comcode.ProcessOccurrenceSpreadingFire;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -91,6 +93,10 @@ public class KeaneCellPercolation extends JDialog {
      * Hides and disposes of the dialog.
      */
     private void selectOk() {
+
+        ProcessOccurrenceSpreadingFire.setKeaneExtremeWindMultiplier(windSpeedMultiplier.getValue());
+        ProcessOccurrenceSpreadingFire.setKeaneWindSpeedVariability(windSpeedVariability.getValue());
+        ProcessOccurrenceSpreadingFire.setKeaneWindDirVariability(windDirectionVariability.getValue());
 
         setVisible(false);
         dispose();
