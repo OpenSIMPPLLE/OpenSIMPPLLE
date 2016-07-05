@@ -711,6 +711,19 @@ public class SimParam extends JDialog {
  * Handles the pushing of the "Run Simulation" button.  
  */
   void runButton_actionPerformed(ActionEvent e) {
+
+    String selectedModel = (String)fireSpreadModelCB.getSelectedItem();
+
+    if (selectedModel.equals("KEANE")) {
+
+      ProcessOccurrenceSpreadingFire.setSpreadModel(ProcessOccurrenceSpreadingFire.SpreadModel.KEANE);
+
+    } else {
+
+      ProcessOccurrenceSpreadingFire.setSpreadModel(ProcessOccurrenceSpreadingFire.SpreadModel.SIMPPLLE);
+
+    }
+
     boolean success = runSimulation();
 
     if (success) {
