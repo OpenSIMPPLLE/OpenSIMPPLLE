@@ -333,7 +333,17 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     tmpToUnits.clear();
 
-    doSimpplleSpread(fromUnit,tmpToUnits); // TODO: Select proper method based on selected fire spreading model
+    switch (spreadModel) {
+
+      case SIMPPLLE:
+        doSimpplleSpread(fromUnit,tmpToUnits);
+        break;
+
+      case KEANE:
+        doKeaneSpread(fromUnit,tmpToUnits);
+        break;
+
+    }
 
     doFireSpotting(fromUnit);
 
