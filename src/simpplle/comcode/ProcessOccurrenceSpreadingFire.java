@@ -424,7 +424,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         double windSpeed = Math.round(adjacent.getWindSpeed());
         double windDir   = Math.toRadians(adjacent.getWindDirection());
         double spreadDir = Math.toRadians(adjacent.getSpread());
-        double slope     = adjacent.getSlope() / 100.0;
+        double slope     = adjacent.getSlope();
 
         // TODO: Confirm wind factor equation with Robert Keane
 
