@@ -419,12 +419,17 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
       for (AdjacentData adjacent : adjacentArray) {
 
+        // TODO: Apply stochastic elements from Keane Cell Percolation dialog
+
         double windSpeed = Math.round(adjacent.getWindSpeed());
         double windDir   = Math.toRadians(adjacent.getWindDirection());
         double spreadDir = Math.toRadians(adjacent.getSpread());
         double slope     = adjacent.getSlope() / 100.0;
 
-        double windFactor = (1.0 + 0.125 * windSpeed) * Math.pow((Math.cos(Math.abs(spreadDir - windDir))), Math.pow(windSpeed, 0.6));
+        // TODO: Confirm wind factor equation with Robert Keane
+
+        //double windFactor = (1.0 + 0.125 * windSpeed) * Math.pow(Math.cos(Math.abs(spreadDir - windDir)), Math.pow(windSpeed, 0.6));
+        double windFactor = Math.pow(1.0 + 0.125 * windSpeed,Math.cos(Math.abs(spreadDir - windDir)) * Math.pow(windSpeed, 0.6));
 
         double slopeFactor;
 
@@ -434,9 +439,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         } else {
 
-          // TODO: Determine if equation should use square with negative sign
+          // TODO: Confirm downhill slope factor equation with Robert Keane
 
-          slopeFactor = Math.pow(Math.E,3 * slope);
+          slopeFactor = Math.pow(Math.E,-3 * Math.pow(slope,2));
 
         }
 
