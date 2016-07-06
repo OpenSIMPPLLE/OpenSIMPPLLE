@@ -3,6 +3,7 @@ package simpplle.comcode;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -34,15 +35,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
   private int            hoursBurning;
   private int            weatherProb;
-  private boolean        isWeatherProbSet;
   private int            weatherRangeIndex;
   private boolean        isExtreme;
-  private boolean        isExtremeSet;
   private Climate.Season fireSeason;
-  private boolean        isFireSeasonSet;
   private boolean        fireSuppressed;
-  private boolean        fireSuppressedSet;
-  private boolean        fireSuppRandomDrawn;
   private int            fireSuppRandomNumber;
   private Node           lineProductionNode;
   private int            totalLineProduced;
@@ -66,14 +62,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     hoursBurning         = 0;
     weatherProb          = 0;
     weatherRangeIndex    = -1;
-    isExtreme            = false;
-    isExtremeSet         = false;
-    fireSeason           = Climate.Season.SPRING;
-    isFireSeasonSet      = false;
+    isExtreme            = FireEvent.isExtremeSpread();
+    fireSeason           = FireEvent.getFireSeason();
     fireSuppressed       = false;
-    fireSuppressedSet    = false;
-    fireSuppRandomNumber = 0;
-    fireSuppRandomDrawn  = false;
+    fireSuppRandomNumber = Simulation.getInstance().random();
     lineProductionNode   = null;
     totalLineProduced    = 0;
 
@@ -192,26 +184,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   @SuppressWarnings("unchecked")
   public void doSpread() {
-
-    if (!isExtremeSet) {
-      isExtreme = FireEvent.isExtremeSpread();
-      isExtremeSet = true;
-    }
-
-    if (!isFireSeasonSet && getProcess().isFireProcess()) {
-      fireSeason = FireEvent.getFireSeason();
-      isFireSeasonSet = true;
-    }
-
-    if (!fireSuppRandomDrawn) {
-      fireSuppRandomNumber = Simulation.getInstance().random(); // Greg's Note: Can't this be local in the next block?
-      fireSuppRandomDrawn = true;
-    }
-
-    if (!fireSuppressedSet) {
-      Evu originEvu = root.data.getUnit();
-      fireSuppressed = FireSuppEventLogic.getInstance().isSuppressed(originEvu, fireSuppRandomNumber);
-    }
 
     int rangeIndex = FireSuppWeatherData.getAcresRangeNumber(getEventAcres());
 
@@ -361,30 +333,21 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     tmpToUnits.clear();
 
-    AdjacentData[] adjDataArray = fromUnit.getAdjacentData();
+    switch (spreadModel) {
 
-    if (adjDataArray != null) {
+      case SIMPPLLE:
+        doSimpplleSpread(fromUnit,tmpToUnits);
+        break;
 
-      for (AdjacentData adjData : adjDataArray) {
-
-        Evu toUnit = adjData.evu;
-
-        if (lineSuppUnits.contains(toUnit.getId())) { // Do units have a flag indicating if they are suppressed?
-          continue;
-        }
-
-        if (Evu.doSpread(fromUnit, toUnit, fromUnit.getDominantLifeformFire())) {
-          tmpToUnits.add(toUnit);
-        }
-      }
-
-      doFireSpotting(fromUnit);
+      case KEANE:
+        doKeaneSpread(fromUnit,tmpToUnits);
+        break;
 
     }
 
-    addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
+    doFireSpotting(fromUnit);
 
-    finished = (spreadQueue.size() == 0);
+    addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
 
     if (spreadQueue.size() == 0) {
 
@@ -409,6 +372,97 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     FireEvent.currentEvent = null;
     Area.currentLifeform = null;
 
+  }
+
+  /**
+   * Spreads fire from a burning vegetation unit to adjacent vegetation units. If a unit catches on fire, then it is
+   * added to the array list of 'to' units. This algorithm applies fire spreading logic to immediate neighbors.
+   *
+   * @param fromUnit A burning vegetation unit
+   * @param toUnits A list to store units that have been spread to
+   */
+  private void doSimpplleSpread(Evu fromUnit, ArrayList toUnits) {
+
+    AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
+
+    if (adjacentArray != null) {
+
+      for (AdjacentData adjacent : adjacentArray) {
+
+        Evu toUnit = adjacent.evu;
+
+        if (lineSuppUnits.contains(toUnit.getId())) continue;
+
+        if (Evu.doSpread(fromUnit, toUnit, fromUnit.getDominantLifeformFire())) {
+
+          toUnits.add(toUnit);
+
+        }
+      }
+    }
+  }
+
+  /**
+   * Spreads fire from a burning vegetation unit to adjacent vegetation units. If a unit catches on fire, then it is
+   * added to the array list of 'to' units. This algorithm applies fire spreading logic to neighbors around the 'from'
+   * unit. The number of neighbors tested in each direction depends on wind direction, wind speed, and the slope of
+   * each neighboring unit.
+   *
+   * @param fromUnit A burning vegetation unit
+   * @param toUnits A list to store units that have been spread to
+   */
+  private void doKeaneSpread(Evu fromUnit, ArrayList toUnits) {
+
+    AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
+
+    if (adjacentArray != null) {
+
+      for (AdjacentData adjacent : adjacentArray) {
+
+        // TODO: Apply stochastic elements from Keane Cell Percolation dialog
+
+        double windSpeed = Math.round(adjacent.getWindSpeed());
+        double windDir   = Math.toRadians(adjacent.getWindDirection());
+        double spreadDir = Math.toRadians(adjacent.getSpread());
+        double slope     = adjacent.getSlope();
+
+        // TODO: Confirm wind factor equation with Robert Keane
+
+        //double windFactor = (1.0 + 0.125 * windSpeed) * Math.pow(Math.cos(Math.abs(spreadDir - windDir)), Math.pow(windSpeed, 0.6));
+        double windFactor = Math.pow(1.0 + 0.125 * windSpeed,Math.cos(Math.abs(spreadDir - windDir)) * Math.pow(windSpeed, 0.6));
+
+        double slopeFactor;
+
+        if (slope > 0.0) {
+
+          slopeFactor = 5.0 / (1.0 + 3.5 * Math.pow(Math.E,-10 * slope));
+
+        } else {
+
+          // TODO: Confirm downhill slope factor equation with Robert Keane
+
+          slopeFactor = Math.pow(Math.E,-3 * Math.pow(slope,2));
+
+        }
+
+        double spix = windFactor * slopeFactor;
+
+        List<Evu> neighbors = adjacent.evu.getNeighborsAlongDirection(adjacent.getSpread(),(int)Math.ceil(spix));
+
+        for (Evu neighbor : neighbors) {
+
+          if (lineSuppUnits.contains(neighbor.getId())) break;
+
+          // TODO: Apply probability to last unit if spix is not a whole number
+
+          if (Evu.doSpread(fromUnit, neighbor, fromUnit.getDominantLifeformFire())) {
+
+            toUnits.add(neighbor);
+
+          }
+        }
+      }
+    }
   }
 
   /**
@@ -455,8 +509,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     return perimeter;
 
   }
-
-
 
   /**
    * Calculates an approximate fire perimeter. The approximation assumes that the fire shape is square.

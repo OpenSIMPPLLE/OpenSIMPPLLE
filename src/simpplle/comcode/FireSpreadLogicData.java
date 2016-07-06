@@ -288,65 +288,67 @@ public class FireSpreadLogicData extends LogicData implements Externalizable {
   // ***********************
 
   /**
-   * If this logic data applies to the given parameters, return the type of fire process to apply.
+   * Returns a fire process type if the rule applies to the provided arguments. Additionally the current process,
+   * current probability, and fire season are updated in the destination unit.
+   *
+   * @param process The spreading process
+   * @param resistance The fire resistance of the 'to' EVU
+   * @param fromEvu The unit we are trying to spread from
+   * @param toEvu The unit we are trying to spread to
+   * @param lifeform The life form to be considered
+   *
+   * @return A fire process type if the rule matches, otherwise null
    */
-  public ProcessType getFireTypeIfMatch(ProcessType process,
-                                        FireResistance resistance,
-                                        Evu fromEvu,
-                                        Evu evu,
-                                        Lifeform lifeform) {
+  public ProcessType getFireTypeIfMatch(ProcessType process, FireResistance resistance, Evu fromEvu, Evu toEvu, Lifeform lifeform) {
 
-    if (super.isMatch(resistance,evu,lifeform) == false) { return null; }
+    if (super.isMatch(resistance,toEvu,lifeform)) {
 
-    if (originProcessList != null && originProcessList.size() > 0 &&
-        originProcessList.contains(process) == false) {
-      return null;
+      if (originProcessList != null &&
+          originProcessList.size() > 0 &&
+          originProcessList.contains(process)) {
+
+        Position adjPosition = null;
+
+        switch (fromEvu.getAdjPosition(toEvu)) {
+          case Evu.ABOVE:   adjPosition = ABOVE;   break;
+          case Evu.BELOW:   adjPosition = BELOW;   break;
+          case Evu.NEXT_TO: adjPosition = NEXT_TO; break;
+        }
+
+        if (positions.contains(adjPosition)) {
+
+          boolean isExtreme = FireEvent.currentEvent.isExtremeEvent() && fromEvu.isAdjDownwind(toEvu);
+
+          ProcessType fireType = isExtreme ? extreme : average;
+
+          if (fireType.isFireProcess()) {
+
+            Climate.Season currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
+
+            int prob = isExtreme ? Evu.SE : Evu.S;
+
+            if (Area.multipleLifeformsEnabled()) {
+
+              toEvu.updateCurrentProcess(lifeform, fireType, currentSeason);
+              toEvu.updateCurrentProb(lifeform, prob);
+              toEvu.updateFireSeason(currentSeason);
+
+            } else {
+
+              toEvu.updateCurrentProcess(fireType, currentSeason);
+              toEvu.updateCurrentProb(prob);
+              toEvu.updateFireSeason(currentSeason);
+
+            }
+
+            return fireType;
+
+          }
+        }
+      }
     }
 
-    Climate.Season currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
-
-    Position adjPosition = null;
-
-    switch (fromEvu.getAdjPosition(evu)) {
-      case Evu.ABOVE: adjPosition = ABOVE; break;
-      case Evu.BELOW: adjPosition = BELOW; break;
-      case Evu.NEXT_TO: adjPosition = NEXT_TO; break;
-    }
-
-    if (positions.size() > 0 && positions.contains(adjPosition) == false) {
-      return null;
-    }
-
-    // No longer needed.
-//    Species species = evu.getSpecies();
-//    if ((species == Species.ND || species == Species.AGR ||
-//         species == Species.NF || species == Species.WATER ||
-//         species == Species.ROCK_BARE ||
-//         species == Species.AGR_URB ||
-//         species.getFireResistance() == FireResistance.UNKNOWN)) {
-//      return false;
-//    }
-
-    boolean isExtreme = FireEvent.currentEvent.isExtremeEvent() &&
-                        fromEvu.isAdjDownwind(evu);
-
-    ProcessType fireProcessType = (isExtreme) ? extreme : average;
-    if (fireProcessType.isFireProcess() == false) { return fireProcessType; }
-
-    int prob = (isExtreme) ? Evu.SE : Evu.S;
-
-    if (Area.multipleLifeformsEnabled()) {
-//      evu.updateCurrentStateAllLifeforms(fireProcessType,(short)prob,currentSeason);
-      evu.updateCurrentProcess(lifeform,fireProcessType, currentSeason);
-      evu.updateCurrentProb(lifeform,prob);
-      evu.updateFireSeason(currentSeason);
-    } else {
-      evu.updateCurrentProcess(fireProcessType, currentSeason);
-      evu.updateCurrentProb(prob);
-      evu.updateFireSeason(currentSeason);
-    }
-
-    return fireProcessType;
+    return null;
 
   }
 

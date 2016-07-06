@@ -421,15 +421,14 @@ public class FireEventLogic extends BaseLogic {
           int ts = Simulation.getCurrentTimeStep();
           logOut.printf("Time: %d, Spread From: %d, To: %d, To Life: %s, Type: %s, Rule#: %d%n",
               ts, fromEvu.getId(), evu.getId(), toLifeform.toString(), fireType.toString(), i);
-
-          VegSimStateData state = evu.getState(toLifeform);
-          state.setFireSpreadRuleIndex(i);
-
         }
 
         if (!fireType.isFireProcess()) { // fireProcess is ProcessType.NONE
           fireType = null;
         }
+
+        VegSimStateData state = evu.getState(toLifeform);
+        state.setFireSpreadRuleIndex(i);
 
         return fireType;
 
@@ -448,26 +447,28 @@ public class FireEventLogic extends BaseLogic {
   }
 
   /**
-   * Returns the fire type of the first rule that matches the provided resistance, lifeform, and current season.
+   * Returns a fire type from the first fire type rule that applies to the arguments.
    *
-   * @param resistance FireResistance
-   * @param evu Evu
-   * @return ProcessType
+   * @param resistance A fire resistance level
+   * @param evu A vegetation unit
+   * @return A process type if there is a matching rule, otherwise null
    */
   public ProcessType getTypeOfFire(FireResistance resistance, Evu evu, Lifeform lifeform) {
-
-    ProcessType processType = null;
 
     for (int i = 0; i < getData(TYPE_STR).size(); i++) {
 
       FireTypeLogicData logicData = (FireTypeLogicData)getData(TYPE_STR).get(i);
 
-      processType = logicData.getFireTypeIfMatch(resistance, evu,lifeform);
-      if (processType != null) break;
+      ProcessType processType = logicData.getFireTypeIfMatch(resistance, evu,lifeform);
 
+      if (processType != null) {
+
+        return processType;
+
+      }
     }
 
-    return processType;
+    return null;
 
   }
 

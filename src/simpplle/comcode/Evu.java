@@ -2844,7 +2844,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    *          <i>n</i>, the array index, <i>i</i> will always be n-1.
    * @return Array size n of adjacent evus in the given direction
    */
-  public ArrayList<Evu> getNeighborsAlongDirection(int directionAzimuth, int n){
+  public ArrayList<Evu> getNeighborsAlongDirection(double directionAzimuth, int n){
     ArrayList<Evu> evus = new ArrayList<>(n);
     Evu current = this;
     int i = 0;
@@ -2853,7 +2853,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       if (next == null) // No more neighbors in that direction
         break;
       else
-        evus.set(i, next);  // add neighbor to result
+        evus.add(next);  // add neighbor to result
       current = next;     // move down the line
       i++;
     }
@@ -2865,8 +2865,8 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param degreesAzimuth given direction from the current Evu to the adjacent Evu.
    * @return Evu neighbor in a given direction, if exists.
    */
-  public Evu getNeighborInDirection(int degreesAzimuth) {
-    int tolerance = 1;  // angle threshold for matching a direction
+  public Evu getNeighborInDirection(double degreesAzimuth) {
+    double tolerance = 1;  // angle threshold for matching a direction
     for (AdjacentData n : adjacentData){
       double direction = n.getSpread();
       if (Math.abs(direction - degreesAzimuth) <= tolerance)
@@ -5050,51 +5050,57 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * This method will determine if an event spread from fromEvu in the param
-   * list to this unit.
-   * This method is static and synchronized in order to be certain that the
-   * fields we need in the fromEvu and toEvu are not modified by another
-   * thread while this method is executing.  There is probably a non-static
-   * way of doing this.
-   * @todo make this method non-static and less restricted (if possible).
+   * Attempts to spread a process to another vegetation unit. Spreading a non-fire process requires that the
+   * destination unit has the same life form, does not have a lock-in process, and has a succession process type.
+   * Spreading a fire process results in a call to doFireSpread.
+   * <p>
+   * This method is static and synchronized in order to be certain that the fields we need in the fromEvu and toEvu are
+   * not modified by another thread while this method is executing. There is probably a non-static way of doing this.
    *
-   * @param fromEvu The Evu we are trying to spread from.
-   * @param toEvu   The Evu we are trying to spread to.
-   * @return boolean true if spread was successfull
+   * @todo Make this method non-static and less restricted if possible.
+   *
+   * @param fromEvu The veg unit we are trying to spread from
+   * @param toEvu The veg unit we are trying to spread to
+   * @param fromLifeform The life form containing the process being spread
+   * @return True if spread was successful
    */
   public static synchronized boolean doSpread(Evu fromEvu, Evu toEvu, Lifeform fromLifeform) {
-    ProcessType  fromProcess   = fromEvu.getState(fromLifeform).getProcess();
+
+    ProcessType fromProcess = fromEvu.getState(fromLifeform).getProcess();
+
     if (fromProcess.isFireProcess()) {
       return doFireSpread(fromEvu,toEvu,fromLifeform);
     }
 
+    boolean spread = false;
+
     Area.currentLifeform = fromLifeform;
 
-    Process processInst;
-    ProcessType  toProcess;
+    if (toEvu.hasLifeform(fromLifeform)) {
 
-    if (toEvu.hasLifeform(fromLifeform) == false) {
-      Area.currentLifeform = null;
-      return false;
-    }
-    else {
-      toProcess = toEvu.getState(fromLifeform).getProcess();
-      if (toEvu.getState(fromLifeform).getProb() == L) {
-        Area.currentLifeform = null;
-        return false;
-      }
-    }
+      VegSimStateData state = toEvu.getState(fromLifeform);
 
-    if (toProcess.equals(ProcessType.SUCCESSION)) {
-      processInst = Process.findInstance(fromProcess);
-      if (processInst.doSpread(Simpplle.getCurrentZone(), fromEvu, toEvu)) {
-        Area.currentLifeform = null;
-        return true;
+      if (state.getProb() != L) {
+
+        ProcessType toProcess = toEvu.getState(fromLifeform).getProcess();
+
+        if (toProcess.equals(ProcessType.SUCCESSION)) {
+
+          Process processInst = Process.findInstance(fromProcess);
+
+          if (processInst.doSpread(Simpplle.getCurrentZone(), fromEvu, toEvu)) {
+
+            spread = true;
+
+          }
+        }
       }
     }
 
     Area.currentLifeform = null;
-    return false;
+
+    return spread;
+
   }
 
   /**
@@ -7438,16 +7444,22 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     fout.println();
   }
-/**
- * Method to compare acreage of Evu's neighbors.
- * @return true if the neightbors have the same acreage
- */
+
+  /**
+   * @return True if this has the same number of acres as the neighbors
+   */
   public boolean hasSameSizeNeighbors() {
-    for (int i=0; i<adjacentData.length; i++) {
-      if (acres != adjacentData[i].getEvu().acres) { return false; }
+
+    for (AdjacentData adjacent : adjacentData) {
+      if (acres != adjacent.getEvu().acres) {
+        return false;
+      }
     }
+
     return true;
+
   }
+
   public String toString() {
     VegSimStateData state = getState();
     String stateStr = (state != null ? state.getVeg().toString() : "Unknown");

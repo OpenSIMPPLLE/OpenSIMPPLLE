@@ -397,12 +397,14 @@ public class FireEvent extends Process {
   }
 
   /**
-   * Determines if a fire process will spread from one EVU to another.
+   * Spreads a fire from one unit to another. This is entirely controlled by fire spreading logic rules. If a matching
+   * rule is found, state in the 'to' unit is updated and this method returns true.
    *
    * @param zone The regional zone containing the EVU
    * @param process The spreading process
    * @param fromEvu The EVU where the fire is coming from
    * @param toEvu The EVU that the fire may spread to
+   *
    * @return True if fireType is not null
    */
   public static boolean doFireSpread(RegionalZone zone, Process process, Evu fromEvu, Evu toEvu) {
@@ -416,11 +418,13 @@ public class FireEvent extends Process {
   }
 
   /**
-   * Gets the fire resistance based on zone, evu, and lifeform then gets type of fire based on resistance, evu, and
-   * lifeform if firetype is null has default fire types based on wyoming region = SRF or all others LSF
-   * @param zone
-   * @param evu
-   * @param lifeform
+   * Returns a fire process type from the first matching fire type logic rule. If no rules apply to the unit, then
+   * a light severity fire is returned, unless the current zone is in Wyoming, which results in a stand replacing fire.
+   *
+   * @param zone Unused
+   * @param evu A vegetation unit
+   * @param lifeform A life form
+   * @return A process type
    */
   public static ProcessType getTypeOfFire(RegionalZone zone, Evu evu, Lifeform lifeform) {
 
@@ -428,10 +432,10 @@ public class FireEvent extends Process {
 
     ProcessType fireType = FireEventLogic.getInstance().getTypeOfFire(resistance,evu,lifeform);
 
-    boolean isWyoming = RegionalZone.isWyoming();
-
     if (fireType == null) {
-      fireType = isWyoming ? ProcessType.SRF : ProcessType.LSF;
+
+      fireType = RegionalZone.isWyoming() ? ProcessType.SRF : ProcessType.LSF;
+
     }
 
     return fireType;
@@ -1150,10 +1154,13 @@ public class FireEvent extends Process {
   }
 
   /**
-   * Returns the fire resistance of the vegetation unit. The result depends on the current simulation time step.
+   * Determines the fire resistance of the species in a vegetation unit's life form at the current time step. If a
+   * species has conditional resistance, then the resistance is based on the habitat type group of the unit.
    *
-   * @param zone A regional zone
-   * @param evu An existing vegetation unit
+   * @todo Remove the regional zone parameter. This class previously read fire resistance from hard-coded zone types.
+   *
+   * @param zone Ignore -- unused
+   * @param evu An vegetation unit
    * @param lifeform A life form
    * @return A fire resistance; low, moderate, or high
    */
@@ -1187,38 +1194,16 @@ public class FireEvent extends Process {
         return FireResistance.HIGH;
       }
 
-      // Default has traditionally been LOW
+      return FireResistance.LOW;
+
+    } else if (resistance == FireResistance.UNKNOWN) {
+
       return FireResistance.LOW;
 
     }
-    // Should not be possible as we don't allow FireEvents to occur
-    // with this Resistance.
-//    else if (resistance == FireResistance.UNKNOWN) {
-//      return FireResistance.LOW;
-//    }
 
     return resistance;
 
-//    int zoneId = zone.getId();
-//
-//    if (zoneId == ValidZones.SIERRA_NEVADA) {
-//      return getSpeciesResistanceSierraNevada(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.SOUTHERN_CALIFORNIA) {
-//      return getSpeciesResistanceSouthernCalifornia(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.SOUTH_CENTRAL_ALASKA) {
-//      return getSpeciesResistanceAlaska(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.GILA) {
-//      return getSpeciesResistanceGila(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.SOUTHWEST_UTAH) {
-//      return getSpeciesResistanceUtah(zone, evu);
-//    }
-//    else {
-//      return getSpeciesResistanceCommon(zone, evu);
-//    }
   }
 
   /**

@@ -58,7 +58,7 @@ public class AdjacentData implements Externalizable {
   private double windDirection;
 
   /**
-   *  percent slope from source to adjacent.
+   *  Slope (rise/run) from source to adjacent.
    */
   private double slope;
 

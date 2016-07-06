@@ -4238,24 +4238,26 @@ public final class Area implements Externalizable {
 //  }
 
   /**
-   * Find the first valid Evu and see if its neighbors are all the same size.
-   * Continue check units until we successfully checked about 10.
-   * If so then we probably can assume that they all are the same size.
-   * @return
+   * @return True if ten units and their neighbors have the same number of acres
    */
   public boolean hasUniformSizePolygons() {
-    int count=0;
-    for (int i=0; i<allEvu.length; i++) {
-      if (allEvu[i] == null) { continue; }
 
-      if ((allEvu[i].getAcres() == 0) ||
-          (allEvu[i].hasSameSizeNeighbors() == false)) {
+    int count = 0;
+
+    for (Evu evu : allEvu) {
+
+      if (evu == null) continue;
+
+      if (evu.getAcres() == 0 || !evu.hasSameSizeNeighbors()) {
         return false;
       }
 
-      if (count++ > 10) { return true; }
+      if (count++ > 10) break;
+
     }
+
     return true;
+
   }
 
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {

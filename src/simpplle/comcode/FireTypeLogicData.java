@@ -108,25 +108,52 @@ public class FireTypeLogicData extends LogicData implements Externalizable {
 
   // *** Simulation code ***
   // ***********************
+
   /**
-   * return the type of fire if the rule matches the data in the given evu.
-   * @param evu Evu
-   * @return ProcessType the Type of Fire.
+   * Returns a fire type if this rule applies to the resistance, evu, and lifeform.
+   *
+   * @param evu A vegetation unit
+   * @return A process type if the rule applies, otherwise null
    */
   public ProcessType getFireTypeIfMatch(FireResistance resistance, Evu evu, Lifeform lifeform) {
-    if (super.isMatch(resistance,evu,lifeform) == false) { return null; }
 
-    Climate.Season currentSeason =
-      Simpplle.getCurrentSimulation().getCurrentSeason();
+    if (super.isMatch(resistance,evu,lifeform)) {
 
-    return getFireType(Simpplle.getClimate().getMoisture(currentSeason));
+      Climate.Season currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
+
+      return getFireType(Simpplle.getClimate().getMoisture(currentSeason));
+
+    }
+
+    return null;
+
   }
 
-  protected ProcessType getFireType(Climate.Moisture moisture) {
-    if (moisture == Climate.WETTER) { return wetter; }
-    else if (moisture == Climate.Moisture.NORMAL) { return normal; }
-    else if (moisture == Climate.DRIER) { return drier; }
-    return wetter;
+  /**
+   * Returns a fire process type for a relative moisture level.
+   *
+   * @param moisture A relative moisture level
+   * @return A fire process type
+   */
+  private ProcessType getFireType(Climate.Moisture moisture) {
+
+    if (moisture == Climate.WETTER) {
+
+      return wetter;
+
+    } else if (moisture == Climate.Moisture.NORMAL) {
+
+      return normal;
+
+    } else if (moisture == Climate.DRIER) {
+
+      return drier;
+
+    } else {
+
+      return wetter;
+
+    }
   }
 
 
