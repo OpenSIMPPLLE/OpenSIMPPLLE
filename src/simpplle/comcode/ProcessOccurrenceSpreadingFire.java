@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -28,8 +29,28 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private static SpreadModel spreadModel = SpreadModel.SIMPPLLE;
 
   private static double keaneExtremeWindMultiplier    = 5.0;
+
+  /**
+   * How much wind speed can vary
+   */
   private static double keaneWindSpeedVariability     = 0.5;
+
+  /**
+   * Actual amount that wind speeds are changed,
+   * calculated when a fire event is created.
+   */
+  private double keaneWindSpeedOffset;
+
+  /**
+   * How much wind direction can vary
+   */
   private static double keaneWindDirectionVariability = 45.0;
+
+  /**
+   * Actual amount that the wind direction will change,
+   * calculated when a fire event is created.
+   */
+  private double keaneWindDirectionOffset;
 
   public enum EventStop { OTHER, WEATHER, LINE }
 
@@ -69,6 +90,18 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     lineProductionNode   = null;
     totalLineProduced    = 0;
 
+    if (spreadModel == SpreadModel.KEANE)
+      rollKeaneOffsets();
+  }
+
+  private void rollKeaneOffsets(){
+    Random random = new Random();
+    // TODO: review gaussian dist and determine a standard deviation
+    // offset will be between + keaneWindSpeedVariability and - keaneWindSpeedVariability
+    keaneWindSpeedOffset = (random.nextGaussian() * keaneWindSpeedVariability * 2) - keaneWindSpeedVariability;
+
+    // offset will be between + keaneWindDirectionVariability and - keaneWindDirectionVariability
+    keaneWindDirectionOffset = (random.nextGaussian() * keaneWindDirectionVariability * 2) - keaneWindDirectionVariability;
   }
 
   /**
@@ -421,8 +454,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         // TODO: Apply stochastic elements from Keane Cell Percolation dialog
 
-        double windSpeed = Math.round(adjacent.getWindSpeed());
-        double windDir   = Math.toRadians(adjacent.getWindDirection());
+        double windSpeed = Math.round(adjacent.getWindSpeed() + keaneWindSpeedOffset);
+        double windDir   = Math.toRadians(adjacent.getWindDirection() + keaneWindDirectionOffset);
         double spreadDir = Math.toRadians(adjacent.getSpread());
         double slope     = adjacent.getSlope();
 
@@ -445,10 +478,18 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         }
 
-        // TODO: Apply probability to last unit if spix is not a whole number
-        int spix = rollSpix(windFactor * slopeFactor);
+        double spix = windFactor + slopeFactor;
 
-        List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), spix);
+        // compensate for longer distances on corners
+        if (adjacent.getSpread() == 45.0  ||
+            adjacent.getSpread() == 135.0 ||
+            adjacent.getSpread() == 225.0 ||
+            adjacent.getSpread() == 315.0 ) {
+
+          spix /= Math.sqrt(2);
+        }
+
+        List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
 
         for (Evu neighbor : neighbors) {
 
