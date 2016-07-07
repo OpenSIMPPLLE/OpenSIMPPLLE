@@ -446,9 +446,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         }
 
         // TODO: Apply probability to last unit if spix is not a whole number
-        double spix = rollSpix(windFactor * slopeFactor);
+        int spix = rollSpix(windFactor * slopeFactor);
 
-        List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(),(int)Math.ceil(spix));
+        List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), spix);
 
         for (Evu neighbor : neighbors) {
 
