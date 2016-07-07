@@ -478,6 +478,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
             toUnits.add(neighbor);
 
+          } else {
+
+            break;
+
           }
         }
       }
