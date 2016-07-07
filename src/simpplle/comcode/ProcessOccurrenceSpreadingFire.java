@@ -447,7 +447,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         double spix = windFactor * slopeFactor;
 
-        List<Evu> neighbors = adjacent.evu.getNeighborsAlongDirection(adjacent.getSpread(),(int)Math.ceil(spix));
+        List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(),(int)Math.ceil(spix));
 
         for (Evu neighbor : neighbors) {
 
