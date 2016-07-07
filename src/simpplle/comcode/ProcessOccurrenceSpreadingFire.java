@@ -445,15 +445,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         }
 
-        double spix = windFactor * slopeFactor;
+        // TODO: Apply probability to last unit if spix is not a whole number
+        double spix = rollSpix(windFactor * slopeFactor);
 
         List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(),(int)Math.ceil(spix));
 
         for (Evu neighbor : neighbors) {
 
           if (lineSuppUnits.contains(neighbor.getId())) break;
-
-          // TODO: Apply probability to last unit if spix is not a whole number
 
           if (Evu.doSpread(fromUnit, neighbor, fromUnit.getDominantLifeformFire())) {
 
@@ -463,6 +462,23 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         }
       }
     }
+  }
+
+  /**
+   * TODO: add functionality to fix random?
+   * Function takes the fractional part (f) of the given spix, and has an
+   * 'f %' chance to return the ceiling of the spix, otherwise returns the floor.
+   *
+   * @param spix floating point value
+   * @return either the floor or ceiling of spix, based on the fractional part of spix
+   */
+  private int rollSpix(double spix){
+    // find fraction
+    double decimal = spix % 1;
+    // get random decimal
+    double r = Math.random();
+    // round up if successful
+    return decimal >= r ? (int)Math.ceil(spix) : (int)Math.floor(spix);
   }
 
   /**
