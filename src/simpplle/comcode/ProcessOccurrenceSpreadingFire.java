@@ -426,7 +426,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         double spreadDirection = adjacent.getSpread();                // Degrees azimuth
         double slope           = adjacent.getSlope();                 // Percent slope / 100
 
-        double windFactor;
+        double windSpread;
 
         if (windSpeed > 0.5) {
 
@@ -444,27 +444,27 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
           // Scale the function based on wind speed between 1 and 10
 
-          windFactor = lwr * Math.pow(coeff, Math.pow(windSpeed,0.6));
+          windSpread = lwr * Math.pow(coeff, Math.pow(windSpeed,0.6));
 
         } else {
 
-          windFactor = 1.0;
+          windSpread = 1.0;
 
         }
 
-        double slopeFactor;
+        double slopeSpread;
 
         if (slope > 0.0) {
 
-          slopeFactor = 4.0 / (1.0 + 3.5 * Math.exp(-10 * slope));
+          slopeSpread = 4.0 / (1.0 + 3.5 * Math.exp(-10 * slope));
 
         } else {
 
-          slopeFactor = Math.exp(-3 * slope * slope);
+          slopeSpread = Math.exp(-3 * slope * slope);
 
         }
 
-        double spix = windFactor * slopeFactor;
+        double spix = windSpread + slopeSpread;
 
         List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(),(int)Math.ceil(spix));
 
