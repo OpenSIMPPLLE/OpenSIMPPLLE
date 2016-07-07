@@ -468,13 +468,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(),(int)Math.ceil(spix));
 
+        Evu prevUnit = fromUnit;
+
         for (Evu neighbor : neighbors) {
 
           if (lineSuppUnits.contains(neighbor.getId())) break;
 
-          // TODO: Apply probability to last unit if spix is not a whole number
-
-          if (Evu.doSpread(fromUnit, neighbor, fromUnit.getDominantLifeformFire())) {
+          if (Evu.doSpread(prevUnit, neighbor, prevUnit.getDominantLifeformFire())) {
 
             toUnits.add(neighbor);
 
@@ -483,6 +483,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
             break;
 
           }
+
+          prevUnit = neighbor;
+
         }
       }
     }
