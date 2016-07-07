@@ -426,8 +426,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         double spreadDir = Math.toRadians(adjacent.getSpread());
         double slope     = adjacent.getSlope();
 
-        // TODO: Confirm wind factor equation with Robert Keane
-
         //double windFactor = (1.0 + 0.125 * windSpeed) * Math.pow(Math.cos(Math.abs(spreadDir - windDir)), Math.pow(windSpeed, 0.6));
         double windFactor = Math.pow(1.0 + 0.125 * windSpeed,Math.cos(Math.abs(spreadDir - windDir)) * Math.pow(windSpeed, 0.6));
 
@@ -435,13 +433,11 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         if (slope > 0.0) {
 
-          slopeFactor = 5.0 / (1.0 + 3.5 * Math.pow(Math.E,-10 * slope));
+          slopeFactor = 4.0 / (1.0 + 3.5 * Math.exp(-10 * slope));
 
         } else {
 
-          // TODO: Confirm downhill slope factor equation with Robert Keane
-
-          slopeFactor = Math.pow(Math.E,-3 * Math.pow(slope,2));
+          slopeFactor = Math.exp(-3 * slope * slope);
 
         }
 
