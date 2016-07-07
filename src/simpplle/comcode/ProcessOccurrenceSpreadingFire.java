@@ -421,13 +421,36 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         // TODO: Apply stochastic elements from Keane Cell Percolation dialog
 
-        double windSpeed = Math.round(adjacent.getWindSpeed());
-        double windDir   = Math.toRadians(adjacent.getWindDirection());
-        double spreadDir = Math.toRadians(adjacent.getSpread());
-        double slope     = adjacent.getSlope();
+        double windSpeed       = Math.round(adjacent.getWindSpeed());
+        double windDirection   = adjacent.getWindDirection();
+        double spreadDirection = adjacent.getSpread();
+        double slope           = adjacent.getSlope();
 
-        //double windFactor = (1.0 + 0.125 * windSpeed) * Math.pow(Math.cos(Math.abs(spreadDir - windDir)), Math.pow(windSpeed, 0.6));
-        double windFactor = Math.pow(1.0 + 0.125 * windSpeed,Math.cos(Math.abs(spreadDir - windDir)) * Math.pow(windSpeed, 0.6));
+        double windFactor;
+
+        if (windSpeed > 0.5) {
+
+          // Compute a coefficient that reflects wind direction
+
+          double coeff = Math.toRadians(Math.abs(spreadDirection - windDirection));
+
+          // Compute the length:width ratio from Andrews (1986)
+
+          double lwr = 1.0 + (0.125 * windSpeed);
+
+          // Scale the coefficient between 0 and 1
+
+          coeff = (Math.cos(coeff) + 1.0) / 2.0;
+
+          // Scale the function based on wind speed between 1 and 10
+
+          windFactor = lwr * Math.pow(coeff, Math.pow(windSpeed,0.6));
+
+        } else {
+
+          windFactor = 1.0;
+
+        }
 
         double slopeFactor;
 
