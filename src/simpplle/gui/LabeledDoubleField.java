@@ -86,7 +86,7 @@ public class LabeledDoubleField extends JPanel {
 
     public double getValue() {
 
-        return (Double)field.getValue();
+        return Double.parseDouble(field.getText());
 
     }
 }
