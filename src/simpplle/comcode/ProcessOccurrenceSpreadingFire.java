@@ -520,9 +520,15 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
           if (lineSuppUnits.contains(neighbor.getId())) break;
 
+          boolean toUnitWasBurning = neighbor.hasFireAnyLifeform();
+
           if (Evu.doSpread(prevUnit, neighbor, prevUnit.getDominantLifeformFire())) {
 
-            toUnits.add(neighbor);
+            if (!toUnitWasBurning) {
+
+              toUnits.add(neighbor);
+
+            }
 
           } else {
 
