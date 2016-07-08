@@ -288,8 +288,9 @@ public class FireSpreadLogicData extends LogicData implements Externalizable {
   // ***********************
 
   /**
-   * Returns a fire process type if the rule applies to the provided arguments. Additionally the current process,
-   * current probability, and fire season are updated in the destination unit.
+   * Returns a fire process type if the rule applies to the provided arguments. The current process, current
+   * probability, and fire season are updated in the destination unit if the rule matches. Empty lists are treated
+   * as if they contain all possible values, so they will always match their respective inputs.
    *
    * @param process The spreading process
    * @param resistance The fire resistance of the 'to' EVU
@@ -301,54 +302,63 @@ public class FireSpreadLogicData extends LogicData implements Externalizable {
    */
   public ProcessType getFireTypeIfMatch(ProcessType process, FireResistance resistance, Evu fromEvu, Evu toEvu, Lifeform lifeform) {
 
-    if (super.isMatch(resistance,toEvu,lifeform)) {
+    if (!super.isMatch(resistance,toEvu,lifeform)) {
 
-      if (originProcessList != null &&
-          originProcessList.size() > 0 &&
-          originProcessList.contains(process)) {
+      return null;
 
-        Position adjPosition = null;
-
-        switch (fromEvu.getAdjPosition(toEvu)) {
-          case Evu.ABOVE:   adjPosition = ABOVE;   break;
-          case Evu.BELOW:   adjPosition = BELOW;   break;
-          case Evu.NEXT_TO: adjPosition = NEXT_TO; break;
-        }
-
-        if (positions.contains(adjPosition)) {
-
-          boolean isExtreme = FireEvent.currentEvent.isExtremeEvent() && fromEvu.isAdjDownwind(toEvu);
-
-          ProcessType fireType = isExtreme ? extreme : average;
-
-          if (fireType.isFireProcess()) {
-
-            Climate.Season currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
-
-            int prob = isExtreme ? Evu.SE : Evu.S;
-
-            if (Area.multipleLifeformsEnabled()) {
-
-              toEvu.updateCurrentProcess(lifeform, fireType, currentSeason);
-              toEvu.updateCurrentProb(lifeform, prob);
-              toEvu.updateFireSeason(currentSeason);
-
-            } else {
-
-              toEvu.updateCurrentProcess(fireType, currentSeason);
-              toEvu.updateCurrentProb(prob);
-              toEvu.updateFireSeason(currentSeason);
-
-            }
-
-            return fireType;
-
-          }
-        }
-      }
     }
 
-    return null;
+    if (originProcessList.size() > 0 && !originProcessList.contains(process)) {
+
+      return null;
+
+    }
+
+    Position adjPosition = null;
+
+    switch (fromEvu.getAdjPosition(toEvu)) {
+
+      case Evu.ABOVE:   adjPosition = ABOVE;   break;
+      case Evu.BELOW:   adjPosition = BELOW;   break;
+      case Evu.NEXT_TO: adjPosition = NEXT_TO; break;
+
+    }
+
+    if (positions.size() > 0 && !positions.contains(adjPosition)) {
+
+      return null;
+
+    }
+
+    boolean isExtreme = FireEvent.currentEvent.isExtremeEvent() && fromEvu.isAdjDownwind(toEvu);
+
+    ProcessType fireProcessType = isExtreme ? extreme : average;
+
+    if (!fireProcessType.isFireProcess()) {
+
+      return fireProcessType;
+
+    }
+
+    Climate.Season currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
+
+    int prob = isExtreme ? Evu.SE : Evu.S;
+
+    if (Area.multipleLifeformsEnabled()) {
+
+      toEvu.updateCurrentProcess(lifeform, fireProcessType, currentSeason);
+      toEvu.updateCurrentProb(lifeform, prob);
+      toEvu.updateFireSeason(currentSeason);
+
+    } else {
+
+      toEvu.updateCurrentProcess(fireProcessType, currentSeason);
+      toEvu.updateCurrentProb(prob);
+      toEvu.updateFireSeason(currentSeason);
+
+    }
+
+    return fireProcessType;
 
   }
 

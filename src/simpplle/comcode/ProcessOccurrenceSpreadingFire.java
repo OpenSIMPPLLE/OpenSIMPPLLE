@@ -458,31 +458,50 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         // TODO: Apply stochastic elements from Keane Cell Percolation dialog
 
-        double windSpeed = Math.round(adjacent.getWindSpeed() + keaneWindSpeedOffset);
-        double windDir   = Math.toRadians(adjacent.getWindDirection() + keaneWindDirectionOffset);
-        double spreadDir = Math.toRadians(adjacent.getSpread());
-        double slope     = adjacent.getSlope();
+        double windSpeed       = Math.round(adjacent.getWindSpeed() + keaneWindSpeedOffset);              // Miles per hour
+        double windDirection   = Math.toRadians(adjacent.getWindDirection() + keaneWindDirectionOffset);  // Degrees azimuth
+        double spreadDirection = Math.toRadians(adjacent.getSpread());                                    // Degrees azimuth
+        double slope           = adjacent.getSlope();                                                     // Percent slope / 100
 
-        // TODO: Confirm wind factor equation with Robert Keane
+        double windSpread;
 
-        //double windFactor = (1.0 + 0.125 * windSpeed) * Math.pow(Math.cos(Math.abs(spreadDir - windDir)), Math.pow(windSpeed, 0.6));
-        double windFactor = Math.pow(1.0 + 0.125 * windSpeed,Math.cos(Math.abs(spreadDir - windDir)) * Math.pow(windSpeed, 0.6));
+        if (windSpeed > 0.5) {
 
-        double slopeFactor;
+          // Compute a coefficient that reflects wind direction
 
-        if (slope > 0.0) {
+          double coeff = Math.toRadians(Math.abs(spreadDirection - windDirection));
 
-          slopeFactor = 5.0 / (1.0 + 3.5 * Math.pow(Math.E,-10 * slope));
+          // Compute the length:width ratio from Andrews (1986)
+
+          double lwr = 1.0 + (0.125 * windSpeed);
+
+          // Scale the coefficient between 0 and 1
+
+          coeff = (Math.cos(coeff) + 1.0) / 2.0;
+
+          // Scale the function based on wind speed between 1 and 10
+
+          windSpread = lwr * Math.pow(coeff, Math.pow(windSpeed,0.6));
 
         } else {
 
-          // TODO: Confirm downhill slope factor equation with Robert Keane
-
-          slopeFactor = Math.pow(Math.E,-3 * Math.pow(slope,2));
+          windSpread = 1.0;
 
         }
 
-        double spix = windFactor + slopeFactor;
+        double slopeSpread;
+
+        if (slope > 0.0) {
+
+          slopeSpread = 4.0 / (1.0 + 3.5 * Math.exp(-10 * slope));
+
+        } else {
+
+          slopeSpread = Math.exp(-3 * slope * slope);
+
+        }
+
+        double spix = windSpread + slopeSpread;
 
         // compensate for longer distances on corners
         if (adjacent.getSpread() == 45.0  ||
@@ -495,15 +514,24 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
 
+        Evu prevUnit = fromUnit;
+
         for (Evu neighbor : neighbors) {
 
           if (lineSuppUnits.contains(neighbor.getId())) break;
 
-          if (Evu.doSpread(fromUnit, neighbor, fromUnit.getDominantLifeformFire())) {
+          if (Evu.doSpread(prevUnit, neighbor, prevUnit.getDominantLifeformFire())) {
 
             toUnits.add(neighbor);
 
+          } else {
+
+            break;
+
           }
+
+          prevUnit = neighbor;
+
         }
       }
     }
