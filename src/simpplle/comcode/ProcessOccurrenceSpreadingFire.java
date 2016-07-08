@@ -465,6 +465,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         double windSpread;
 
+        // Use wind multiplier for extreme fires
+        if (isExtreme) windSpeed *= keaneExtremeWindMultiplier;
+        
         if (windSpeed > 0.5) {
 
           // Compute a coefficient that reflects wind direction
@@ -538,7 +541,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * TODO: add functionality to fix random?
    * Function takes the fractional part (f) of the given spix, and has an
    * 'f %' chance to return the ceiling of the spix, otherwise returns the floor.
    *
