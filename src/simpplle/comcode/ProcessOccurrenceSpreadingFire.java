@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -28,8 +29,28 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private static SpreadModel spreadModel = SpreadModel.SIMPPLLE;
 
   private static double keaneExtremeWindMultiplier    = 5.0;
+
+  /**
+   * How much wind speed can vary
+   */
   private static double keaneWindSpeedVariability     = 0.5;
+
+  /**
+   * Actual amount that wind speeds are changed,
+   * calculated when a fire event is created.
+   */
+  private double keaneWindSpeedOffset;
+
+  /**
+   * How much wind direction can vary
+   */
   private static double keaneWindDirectionVariability = 45.0;
+
+  /**
+   * Actual amount that the wind direction will change,
+   * calculated when a fire event is created.
+   */
+  private double keaneWindDirectionOffset;
 
   public enum EventStop { OTHER, WEATHER, LINE }
 
@@ -69,6 +90,22 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     lineProductionNode   = null;
     totalLineProduced    = 0;
 
+    if (spreadModel == SpreadModel.KEANE)
+      rollKeaneOffsets();
+  }
+
+  /**
+   * Finds wind speed and direction offset values used for this fire.
+   *
+   * The nextGaussian function returns random numbers with a mean of 0 and std dev of 1
+   * Multiplying by 1/3 ensures that >99% percent of values will fall between -1 and 1.
+   * @see java.util.Random#nextGaussian()
+   */
+  private void rollKeaneOffsets(){
+    Random random = new Random();
+    double newStdDev = 1.0/3.0;
+    keaneWindSpeedOffset     = random.nextGaussian() * newStdDev * keaneWindSpeedVariability;
+    keaneWindDirectionOffset = random.nextGaussian() * newStdDev * keaneWindDirectionVariability;
   }
 
   /**
@@ -421,10 +458,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         // TODO: Apply stochastic elements from Keane Cell Percolation dialog
 
-        double windSpeed       = Math.round(adjacent.getWindSpeed()); // Miles per hour
-        double windDirection   = adjacent.getWindDirection();         // Degrees azimuth
-        double spreadDirection = adjacent.getSpread();                // Degrees azimuth
-        double slope           = adjacent.getSlope();                 // Percent slope / 100
+        double windSpeed       = Math.round(adjacent.getWindSpeed() + keaneWindSpeedOffset);              // Miles per hour
+        double windDirection   = Math.toRadians(adjacent.getWindDirection() + keaneWindDirectionOffset);  // Degrees azimuth
+        double spreadDirection = Math.toRadians(adjacent.getSpread());                                    // Degrees azimuth
+        double slope           = adjacent.getSlope();                                                     // Percent slope / 100
 
         double windSpread;
 
@@ -466,7 +503,16 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         double spix = windSpread + slopeSpread;
 
-        List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(),(int)Math.ceil(spix));
+        // compensate for longer distances on corners
+        if (adjacent.getSpread() == 45.0  ||
+            adjacent.getSpread() == 135.0 ||
+            adjacent.getSpread() == 225.0 ||
+            adjacent.getSpread() == 315.0 ) {
+
+          spix /= Math.sqrt(2);
+        }
+
+        List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
 
         Evu prevUnit = fromUnit;
 
@@ -489,6 +535,23 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         }
       }
     }
+  }
+
+  /**
+   * TODO: add functionality to fix random?
+   * Function takes the fractional part (f) of the given spix, and has an
+   * 'f %' chance to return the ceiling of the spix, otherwise returns the floor.
+   *
+   * @param spix floating point value
+   * @return either the floor or ceiling of spix, based on the fractional part of spix
+   */
+  private int rollSpix(double spix){
+    // find fraction
+    double decimal = spix % 1;
+    // get random decimal
+    double r = Math.random();
+    // round up if successful
+    return decimal >= r ? (int)Math.ceil(spix) : (int)Math.floor(spix);
   }
 
   /**
