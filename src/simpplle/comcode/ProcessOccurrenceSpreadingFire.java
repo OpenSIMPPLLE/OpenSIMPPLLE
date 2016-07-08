@@ -94,14 +94,18 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       rollKeaneOffsets();
   }
 
+  /**
+   * Finds wind speed and direction offset values used for this fire.
+   *
+   * The nextGaussian function returns random numbers with a mean of 0 and std dev of 1
+   * Multiplying by 1/3 ensures that >99% percent of values will fall between -1 and 1.
+   * @see java.util.Random#nextGaussian()
+   */
   private void rollKeaneOffsets(){
     Random random = new Random();
-    // TODO: review gaussian dist and determine a standard deviation
-    // offset will be between + keaneWindSpeedVariability and - keaneWindSpeedVariability
-    keaneWindSpeedOffset = (random.nextGaussian() * keaneWindSpeedVariability * 2) - keaneWindSpeedVariability;
-
-    // offset will be between + keaneWindDirectionVariability and - keaneWindDirectionVariability
-    keaneWindDirectionOffset = (random.nextGaussian() * keaneWindDirectionVariability * 2) - keaneWindDirectionVariability;
+    double newStdDev = 1.0/3.0;
+    keaneWindSpeedOffset     = random.nextGaussian() * newStdDev * keaneWindSpeedVariability;
+    keaneWindDirectionOffset = random.nextGaussian() * newStdDev * keaneWindDirectionVariability;
   }
 
   /**
