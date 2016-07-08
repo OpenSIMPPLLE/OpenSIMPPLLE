@@ -14,6 +14,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.WindowEvent;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Vector;
 
 /**
@@ -3703,6 +3704,7 @@ public class SimpplleMain extends JFrame {
       if (fireSpreadModels.contains("KEANE"))
           return;  // Already exists, do nothing.
       fireSpreadModels.add("KEANE"); // Not in vector, add it.
+      Collections.reverse(fireSpreadModels); // Should be at the top of the list
     }
     else { // New area does not have keane data
       if (fireSpreadModels.contains("KEANE"))
