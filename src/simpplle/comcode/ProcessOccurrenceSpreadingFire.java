@@ -456,10 +456,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
       for (AdjacentData adjacent : adjacentArray) {
 
-        double windSpeed       = Math.round(adjacent.getWindSpeed() + keaneWindSpeedOffset); // Miles per hour
-        double windDirection   = adjacent.getWindDirection() + keaneWindDirectionOffset;     // Degrees azimuth
-        double spreadDirection = adjacent.getSpread();                                       // Degrees azimuth
-        double slope           = adjacent.getSlope();                                        // Percent slope / 100
+        double windSpeed       = adjacent.getWindSpeed();     // Miles per hour
+        double windDirection   = adjacent.getWindDirection(); // Degrees azimuth
+        double spreadDirection = adjacent.getSpread();        // Degrees azimuth
+        double slope           = adjacent.getSlope();         // Percent slope / 100
+
+        windSpeed = Math.min(30, windSpeed + keaneWindSpeedOffset);
+
+        windDirection += keaneWindDirectionOffset;
 
         double windSpread;
 
