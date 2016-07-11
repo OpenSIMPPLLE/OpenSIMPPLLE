@@ -27,7 +27,7 @@ public class KeaneCellPercolation extends JDialog {
     private JButton cancelButton = new JButton("Cancel");
 
     private LabeledDoubleField windSpeedMultiplier      = new LabeledDoubleField("Wind speed multiplier for extreme conditions");
-    private LabeledDoubleField windSpeedVariability     = new LabeledDoubleField("Wind speed variability factor");
+    private LabeledDoubleField windSpeedVariability     = new LabeledDoubleField("Wind speed variability in miles per hour");
     private LabeledDoubleField windDirectionVariability = new LabeledDoubleField("Wind direction variability in degrees");
 
     public KeaneCellPercolation(Frame frame) {

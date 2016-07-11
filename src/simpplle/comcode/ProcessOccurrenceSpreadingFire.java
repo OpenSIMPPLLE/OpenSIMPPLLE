@@ -34,9 +34,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private static double keaneExtremeWindMultiplier = 4.0;
 
   /**
-   * How much wind speed can vary
+   * A wind speed variability in miles per hour.
    */
-  private static double keaneWindSpeedVariability = 0.5;
+  private static double keaneWindSpeedVariability = 5.0;
 
   /**
    * Actual amount that wind speeds are changed,
@@ -45,7 +45,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private double keaneWindSpeedOffset;
 
   /**
-   * How much wind direction can vary
+   * A wind direction variability in degrees.
    */
   private static double keaneWindDirectionVariability = 45.0;
 
