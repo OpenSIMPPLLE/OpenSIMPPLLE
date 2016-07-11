@@ -113,7 +113,6 @@ public class ParseNewNeighborsKeane implements RelationParser {
         return false;
       }
 
-      wind = isDownwind(spread, windDirection);
 
       // Make evu or load existing
       Evu evu = unitHm.get(from);
@@ -122,6 +121,8 @@ public class ParseNewNeighborsKeane implements RelationParser {
         evu.setElevation((int) elevation);
         unitHm.put(from, evu);
       }
+
+      wind = evu.isDownwind(spread, windDirection);
 
       // Add info to current area
       area.addAdjacentData(evu, to, pos, wind, spread, windSpeed, windDirection);
@@ -140,27 +141,6 @@ public class ParseNewNeighborsKeane implements RelationParser {
     return true;
   }
 
-  /**
-   * Helper Method
-   *
-   * @param a angle
-   * @param b angle 2
-   * @return UNSIGNED Angle difference between given angles
-   */
-  private double getAngleDifference(double a, double b) {
-    double diff = Math.abs(a - b);
-    return (diff < 180) ? diff : 360 - diff;
-  }
 
-  /**
-   * Determine if neighbor should be classified as downwind
-   * @param spread angle of adjacency
-   * @param windDirection degrees azimuth
-   */
-  private char isDownwind(double spread, double windDirection){
-    int threshold = 90;
-    if (getAngleDifference(spread, windDirection) < threshold) return 'D';
-    else return 'N';
-  }
 }
 
