@@ -464,11 +464,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         double spreadDirection = adjacent.getSpread();        // Degrees azimuth
         double slope           = adjacent.getSlope();         // Percent slope / 100
 
+        windSpeed += keaneWindSpeedOffset;
+
         // Use wind multiplier for extreme fires
         if (isExtreme) windSpeed *= keaneExtremeWindMultiplier;
 
         // Limit wind to 30mph max
-        windSpeed = Math.min(30, windSpeed + keaneWindSpeedOffset);
+        windSpeed = Math.min(30, windSpeed);
 
         windDirection = (windDirection + keaneWindDirectionOffset) % 360; // Wrap around if greater than 360 degrees
 
