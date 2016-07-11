@@ -28,12 +28,15 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
   private static SpreadModel spreadModel = SpreadModel.SIMPPLLE;
 
-  private static double keaneExtremeWindMultiplier    = 5.0;
+  /**
+   * The multiplicative factor to apply to the wind speed when this fire event is extreme.
+   */
+  private static double keaneExtremeWindMultiplier = 4.0;
 
   /**
    * How much wind speed can vary
    */
-  private static double keaneWindSpeedVariability     = 0.5;
+  private static double keaneWindSpeedVariability = 0.5;
 
   /**
    * Actual amount that wind speeds are changed,
