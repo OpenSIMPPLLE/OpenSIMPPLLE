@@ -502,12 +502,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         double spix = windSpread + slopeSpread;
 
         // compensate for longer distances on corners
-        if (adjacent.getSpread() == 45.0  ||
-            adjacent.getSpread() == 135.0 ||
-            adjacent.getSpread() == 225.0 ||
-            adjacent.getSpread() == 315.0 ) {
+        if (spreadDirection == 45.0  ||
+            spreadDirection == 135.0 ||
+            spreadDirection == 225.0 ||
+            spreadDirection == 315.0 ) {
 
           spix /= Math.sqrt(2);
+
         }
 
         List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
