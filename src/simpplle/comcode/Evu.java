@@ -8687,7 +8687,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param b angle 2
    * @return UNSIGNED Angle difference between given angles
    */
-  private double getAngleDifference(double a, double b) {
+  public double getAngleDifference(double a, double b) {
     double diff = Math.abs(a - b);
     return (diff < 180) ? diff : 360 - diff;
   }
@@ -8699,7 +8699,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public char isDownwind(double spread, double windDirection){
     int threshold = 90;
-    if (getAngleDifference(spread, windDirection) < threshold) return 'D';
+    if (getAngleDifference(spread, windDirection) <= threshold) return 'D';
     else return 'N';
   }
 }

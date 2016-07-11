@@ -470,7 +470,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         double windSpread;
 
-        adjacent.setWind(fromUnit.isDownwind(Math.toDegrees(spreadDirection), Math.toDegrees(windDirection))); // update wind direction to reflect offsets
+        adjacent.setWind(fromUnit.isDownwind(spreadDirection, windDirection)); // update wind direction to reflect offsets
 
         // Use wind multiplier for extreme fires
         if (isExtreme) windSpeed *= keaneExtremeWindMultiplier;
@@ -479,7 +479,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
           // Compute a coefficient that reflects wind direction
 
-          double coeff = Math.toRadians(Math.abs(spreadDirection - windDirection));
+          double coeff = Math.toRadians(fromUnit.getAngleDifference(spreadDirection, windDirection));
 
           // Compute the length:width ratio from Andrews (1986)
 
