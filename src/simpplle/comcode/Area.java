@@ -17,7 +17,8 @@ import simpplle.comcode.Climate.*;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>This class defines an Object describing a Forest Landscape.  Hierarchy for landscapes are Regional Zone -> Area -> Natural Element
+ * <p>This class defines an Object describing a Forest Landscape.  Hierarchy for landscapes are
+ * Regional Zone -> Area -> Natural Element
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
@@ -39,6 +40,11 @@ public final class Area implements Externalizable {
   public static final ManmadeUnitKinds TRAILS = ManmadeUnitKinds.TRAILS;
 
   private static boolean disableMultipleLifeforms=false;
+
+  /**
+   *  This area has specific Adjacency Data, and Keane spreading logic can be used.
+   */
+  private boolean hasKeaneAttributes;
 
   private String                name;
   private String                date;
@@ -81,7 +87,7 @@ public final class Area implements Externalizable {
    The key is Evu and the Value is Vector of int[]
   */
 
-  private Hashtable tmpAdjacentData;
+  private Hashtable<Evu, Vector> tmpAdjacentData;
 
   private boolean manualGC = false;
 
@@ -178,6 +184,9 @@ public final class Area implements Externalizable {
   private static final String SLINK_STR_CAPS = "SLINK";
   private static final String COMMA_STR = ",";
 
+  // Conversion from acres to sq feet
+  private static final int ACRES_TO_FEET = 43560;
+
   /**
    * Area constructor.  Initializes acres, maxEVUId, and length to 0, sets current date to system current date
    */
@@ -185,9 +194,6 @@ public final class Area implements Externalizable {
     maxEvuId         = 0;
     acres            = 0;
     this.totalLength = 0;
-//    origin           = null;
-//    spread           = null;
-//    weatherProb      = null;
     date             = Simpplle.currentDate();
     fileVersion      = CURRENT_FILE_VERSION;
     manualGC         = false;
@@ -894,23 +900,24 @@ public final class Area implements Externalizable {
     }
     return null;
   }
+
 /**
- * Gets the array of all Evu's for this area.
- * @return
+ * @return the array of all Evu's for this area.
  */
   public Evu[] getAllEvu() { return allEvu; }
+
 /**
- * First sets the new Evu array into the all natural element 2D array at the Evu (0) index, then sets the allEvu array for this array
- * to the newAllEvu array.
- * @param newAllEvu the array of Evu's to be set.
+ * First sets the new Evu array into the all natural element 2D array at the Evu (0) index,
+ * then sets the allEvu array for this array to the newAllEvu array.
+ * @param newAllEvu the array of Evus to be set.
  */
   public void setAllEvu(Evu[] newAllEvu) {
     allUnits[EVU] = newAllEvu;
     allEvu = (Evu[])allUnits[EVU];
   }
+
 /**
- * Gets all the Eau's for this are.
- * @return
+ * @return all the Eaus for this area.
  */
   public ExistingAquaticUnit[] getAllEau() { return allEau; }
 
@@ -934,18 +941,18 @@ public final class Area implements Externalizable {
     }
     allEau[newEau.getId()] = newEau;
   }
+
   /**
-   * Sets both the array of all Eau's in Area and the natural element 2d array at index EAU
-   * @param newAllEau array of al the new Eau's for an area.
+   * Sets both the array of all Eaus in Area and the natural element 2d array at index EAU
+   * @param newAllEau array of al the new Eaus for an area.
    */
   public void setAllEau(ExistingAquaticUnit[] newAllEau) {
     allUnits[EAU] = newAllEau;
     allEau = (ExistingAquaticUnit[])allUnits[EAU];
   }
+
 /**
- * Gets all the natural elements (kinds are EVU, EAU, ELU) for this area.
- * @param kind
- * @return
+ * @return all the natural elements (kinds are EVU, EAU, ELU) for this area.
  */
   private NaturalElement[] getAllUnits(int kind) {
     return allUnits[kind];
@@ -957,6 +964,7 @@ public final class Area implements Externalizable {
     allUnits[ELU] = newAllElu;
     allElu = (ExistingLandUnit[])allUnits[ELU];
   }
+
   public void addAllElu(ExistingLandUnit[] newAllElu) {
     if (newAllElu == null) {
       allUnits[ELU] = null;
@@ -970,6 +978,7 @@ public final class Area implements Externalizable {
       }
     }
   }
+
   public void addAllRoads(Roads[] newAllRoads) {
     if (newAllRoads == null) {
       allManmadeUnits[ROADS.ordinal()] = null;
@@ -983,6 +992,7 @@ public final class Area implements Externalizable {
       }
     }
   }
+
   public void addAllTrails(Trails[] newAllTrails) {
     if (newAllTrails == null) {
       allManmadeUnits[TRAILS.ordinal()] = null;
@@ -998,13 +1008,15 @@ public final class Area implements Externalizable {
   }
 
   public boolean existAquaticUnits() { return (allEau != null); }
+
   public boolean existLandUnits() { return allUnits[ELU] != null; }
 
   public int getMaxEvuId() { return maxEvuId; }
+
   public void setMaxEvuId(int newMaxId) { maxEvuId = newMaxId; }
 
     public void setDisableMultipleLifeforms(boolean disableMultipleLifeforms) {
-      this.disableMultipleLifeforms = disableMultipleLifeforms;
+      Area.disableMultipleLifeforms = disableMultipleLifeforms;
     }
 /**
  * Gets the highest Eau Id in this area, by counting the length of the allEau array and subracting 1.
@@ -1016,6 +1028,7 @@ public final class Area implements Externalizable {
       return allEau.length-1;
     }
   }
+
 /**
  * Gets the highest Elu Id, by finding the length of the 2D array at index [ELU][] - 1
  * @return the highest Existing Land Unit Id
@@ -1024,35 +1037,32 @@ public final class Area implements Externalizable {
     if (allUnits[ELU] == null) { return -1; }
     return allUnits[ELU].length - 1;
   }
+
 /**
  * Checks if an Evu Id is a valid Id based on Integer object.
  * @param id the Evu Id being checked
  * @return true if valid
  */
   public boolean isValidUnitId(Integer id) { return (getEvu(id) != null); }
-  /**
-   *
-   * @param id
-   * @return
-   */
+
   public boolean isValidUnitId(int id) { return (getEvu(id) != null); }
 
-  public boolean isValidAquaticUnitId(Integer id) { return (getEau(id) != null); }
   public boolean isValidAquaticUnitId(int id) { return (getEau(id) != null); }
 
-  public boolean isValidLandUnitId(Integer id) { return (getElu(id) != null); }
   public boolean isValidLandUnitId(int id) { return (getElu(id) != null); }
 
   public boolean existAnyInvalidVegUnits() {
     return existAnyInvalidUnits(EVU);
   }
-/**
- * Checks if there are any invalid Eau's by cycling through the Natural Element 2D array at [EAU][]
- * @return true if there is any invalid Eau's
- */
+
+  /**
+   * Checks if there are any invalid Eau's by cycling through the Natural Element 2D array at [EAU][]
+   * @return true if there is any invalid Eau's
+   */
   public boolean existAnyInvalidAquaticUnits() {
     return existAnyInvalidUnits(EAU);
   }
+
   /**
    * Checks if there are any invalid Eau's by cycling through the Natural Element 2D array at [ELU][]
    * @return true if there is any invalid ELu, Id's
@@ -1060,6 +1070,7 @@ public final class Area implements Externalizable {
   public boolean existAnyInvalidLandUnits() {
     return existAnyInvalidUnits(ELU);
   }
+
   /**
    * Method to check if there are any invalid EVU, EAU, or ELU Id's in the Natural Element 2D array based on the int kind
    *
@@ -1070,15 +1081,16 @@ public final class Area implements Externalizable {
     if (allUnits[kind] == null) { return false; }
     for(int i=0; i<allUnits[kind].length; i++) {
       if (allUnits[kind][i] == null) { continue; }
-      if (allUnits[kind][i].isValid() == false) {
+      if (!allUnits[kind][i].isValid()) {
         return true;
       }
     }
     return false;
   }
+
 /**
  * finds the Evu ID from a vector of units to be removed and their index in allEvu to null, and removes the now invalid adjacents.
- * @param units
+ * @param units a vector of units to be removed
  */
   public void removeUnits(Vector units) {
     int i;
@@ -1146,13 +1158,14 @@ public final class Area implements Externalizable {
   private boolean keyMatch (String key, int keyid) {
     return key.equalsIgnoreCase(KEYWORD[keyid]);
   }
-/**
- * method to get the ordinal within the enumeration based on string key parsed using string tokenizer and tries to match value with key ID
- * @param strTok
- * @return the int whithin
- * @throws ParseError
- * @throws IOException
- */
+
+  /**
+   * method to get the ordinal within the enumeration based on string key parsed using string tokenizer and tries to match value with key ID
+   * @param strTok
+   * @return the int whithin
+   * @throws ParseError
+   * @throws IOException
+   */
   private int getKeyword (StringTokenizerPlus strTok) throws ParseError, IOException {
     String value;
 
@@ -1173,6 +1186,7 @@ public final class Area implements Externalizable {
       throw new ParseError("Unknown Keyword: " + value);
     }
   }
+
 /**
  * Reads in information constructing an area.
  * @param fin
@@ -1338,11 +1352,11 @@ public final class Area implements Externalizable {
     allOwnershipHt   = null;
     allSpecialAreaHt = null;
   }
-/**
- * Reads from a CDF (comma delineated file) the information to create an Eau
- * @param fin
- * @throws ParseError
- */
+
+  /**
+   * Reads from a CDF (comma delineated file) the information to create an Eau
+   * @throws ParseError
+   */
   private void readDelimitedEau(BufferedReader fin) throws ParseError {
     ExistingAquaticUnit unitData;
     String              line;
@@ -1407,22 +1421,21 @@ public final class Area implements Externalizable {
     /** @todo call function to remove invalid adjacents and invalid units */
 //    finishAddingAdjacentData();
   }
-/**
- * Gets an ArrayList of all the ownerships in this Area.
- * @return
- */
-  public ArrayList getAllOwnership() { return new ArrayList(allOwnership); }
-//  public ArrayList getAllSpecialArea() { return new ArrayList(Arrays.asList(allSpecialArea)); }
+
   /**
-   * Gets an ArrayList of all the ownerships in this Area.
-   * @return
+   * @return an ArrayList of all the ownerships in this Area.
+   */
+  public ArrayList getAllOwnership() { return new ArrayList(allOwnership); }
+
+  /**
+   * @return an ArrayList of all the ownerships in this Area.
    */
   public ArrayList getAllSpecialArea() { return new ArrayList(allSpecialArea); }
-/**
- * Reads in Area Summary data.
- * @param fin
- * @throws ParseError
- */
+
+  /**
+   * Reads in Area Summary data.
+   * @throws ParseError
+   */
   private void readAreaSummary (BufferedReader fin) throws ParseError {
     try {
       Simpplle.getAreaSummary().readSimulation(fin);
@@ -1431,8 +1444,6 @@ public final class Area implements Externalizable {
       System.out.println("Error while trying to read Area Summary data.");
     }
   }
-
-
 
   /**
    * The purpose of this function is to search through the Area file
@@ -1452,7 +1463,7 @@ public final class Area implements Externalizable {
       if (line == null) {
         throw new ParseError("problems reading simulation file");
       }
-      while (line != null && line.equals("CLASS ALL-EVU") == false) {
+      while (line != null && !line.equals("CLASS ALL-EVU")) {
         line = fin.readLine();
       }
       line = fin.readLine();
@@ -1477,7 +1488,7 @@ public final class Area implements Externalizable {
       if (line == null) {
         throw new ParseError("problems reading simulation file");
       }
-      while (line != null && line.equals("CLASS SIMULATION") == false) {
+      while (line != null && !line.equals("CLASS SIMULATION")) {
         line = fin.readLine();
       }
       if (line != null && line.equals("CLASS SIMULATION")) {
@@ -1501,7 +1512,7 @@ public final class Area implements Externalizable {
       if (line == null) {
         throw new ParseError("Unable to find Simulation data in file");
       }
-      while (line != null && line.equals("CLASS AREA-SUMMARY") == false) {
+      while (line != null && !line.equals("CLASS AREA-SUMMARY")) {
         line = fin.readLine();
       }
       if (line != null) {
@@ -1566,10 +1577,10 @@ public final class Area implements Externalizable {
         if (line == null) { key = EOF; continue;}
 
         strTok = new StringTokenizerPlus(line," ");
-        if (strTok.hasMoreTokens() == false) {continue;}
+        if (!strTok.hasMoreTokens()) {continue;}
 
         key = getKeyword(strTok);
-        if (strTok.hasMoreTokens() == false) {
+        if (!strTok.hasMoreTokens()) {
           throw new ParseError("Keyword: " + KEYWORD[key] + " has no value.");
         }
 
@@ -1735,7 +1746,7 @@ public final class Area implements Externalizable {
   private void printAll(PrintWriter fout) throws SimpplleError {
     fout.println("CLASS TYPE = AREA");
     fout.println("NAME       = " + name);
-    fout.println("PATH       = " + path.toString());
+    fout.println("PATH       = " + path);
 
     fout.print("KIND       = ");
     switch (kind) {
@@ -1770,17 +1781,19 @@ public final class Area implements Externalizable {
     createProcessSchedule();
     processSchedule.read(inputFile);
   }
-/**
- * Creates a new treatment schedule for this area.
- * @return the treatment schedule
- */
+
+  /**
+   * Creates a new treatment schedule for this area.
+   * @return the treatment schedule
+   */
   public static TreatmentSchedule createTreatmentSchedule() {
     treatmentSchedule = new TreatmentSchedule();
     return getTreatmentSchedule();
   }
-/**
- * Makes the treatment schedule null.
- */
+
+  /**
+   * Makes the treatment schedule null.
+   */
   public static void removeTreatmentSchedule() {
     treatmentSchedule = null;
   }
@@ -1793,8 +1806,9 @@ public final class Area implements Externalizable {
     return polygonWidth;
   }
 
-  // Remove the follow up applications that were added
-  // during the simulation.
+  /**
+   * Remove the follow up applications that were added during the simulation.
+   */
   public static void resetTreatmentSchedule() {
     if (treatmentSchedule != null) {
       treatmentSchedule.removeFollowUpApplications();
@@ -1815,7 +1829,7 @@ public final class Area implements Externalizable {
     ProcessOccurrenceSpreadingFire event;
 
     event = (ProcessOccurrenceSpreadingFire)Simpplle.getAreaSummary().getProcessEventSpreadingFire(evu.getOriginUnitFire(),cStep);
-    return ( (event != null) ? event.isExtremeEvent() : false);
+    return ((event != null) && event.isExtremeEvent());
   }
 //  private void addExtremeFireEvent(Evu evu, Boolean isExtreme) {
 //    extremeFires.put(evu,isExtreme);
@@ -1955,7 +1969,7 @@ public final class Area implements Externalizable {
     trackSpecialArea = simulation.trackSpecialArea();
     trackOwnership   = simulation.trackOwnership();
 
-    if ((trackSpecialArea == false) && (trackOwnership == false)) {
+    if ((!trackSpecialArea) && (!trackOwnership)) {
       return;
     }
 
@@ -2195,7 +2209,7 @@ public final class Area implements Externalizable {
     }
   }
 /**
- * Does user treatmens, system treatments, attricute treatments, and process treatements.
+ * Does user treatments, system treatments, attribute treatments, and process treatments.
  */
   private void doTreatments() {
     if (treatmentSchedule == null) { return; }
@@ -2268,7 +2282,7 @@ public final class Area implements Externalizable {
   private void doSystemTreatments(Vector applications) {
     for(int i=0;i<applications.size();i++) {
       TreatmentApplication app = (TreatmentApplication) applications.elementAt(i);
-      if (app.isSystemGenerated() == false) { continue; }
+      if (!app.isSystemGenerated()) { continue; }
 
       TreatmentType treatmentType  = app.getTreatmentType();
       Vector        treatmentUnits = app.getUserChosenUnits();
@@ -2553,7 +2567,7 @@ public final class Area implements Externalizable {
 
           adjacentData = evu.getAdjacentData();
           for(j=0;j<adjacentData.length;j++) {
-            adj = adjacentData[j].evu;
+            adj = adjacentData[j].getEvu();
             treat     = adj.getLastTreatment();
             treatType = TreatmentType.NONE;
             if (treat != null) { treatType = treat.getType(); }
@@ -2699,7 +2713,7 @@ public final class Area implements Externalizable {
         //   if species is seed producing add its acres to the
         //   the value already in the hashtable.
         for(j=0;j<adjacentData.length;j++) {
-          adj = adjacentData[j].evu;
+          adj = adjacentData[j].getEvu();
 
           if (adj.succession_n_decades(numDecades) &&
               adj.producingSeed(numDecades)) {
@@ -3301,8 +3315,8 @@ public final class Area implements Externalizable {
   }
 
   /**
-   * This function will go thru all units and determine
-   * the frequency of occurance for each species, size class,
+   * This function will go through all units and determine
+   * the frequency of occurrence for each species, size class,
    * density, or process that occurred during the simulation.
    *
    */
@@ -3387,10 +3401,7 @@ public final class Area implements Externalizable {
     catch (IOException IOX) {
       System.out.println("Problems writing output files.");
     }
-    catch (SQLException ex) {
-      throw new SimpplleError("Problems writing to database" + ex.getMessage());
-    }
-    catch (HibernateException ex) {
+    catch (SQLException | HibernateException ex) {
       throw new SimpplleError("Problems writing to database" + ex.getMessage());
     }
   }
@@ -3847,21 +3858,53 @@ public final class Area implements Externalizable {
    * @param wind the direction the wind is coming from in the adjacent unit.
    */
   public void addAdjacentData(Evu evu, int adjId, char pos, char wind) {
-    if (tmpAdjacentData == null) {
-      tmpAdjacentData = new Hashtable();
-    }
+    // get vector from hash table
+    Vector<double[]> v = addAdjacentHelper(evu);
+    // add adjacent data to vector
+    double[] data = new double[3];
+    data[0] = adjId;
+    data[1] = (double) pos;  // convert to ascii value
+    data[2] = (double) wind; // convert to ascii value
+    v.addElement(data);
+  }
 
-    Vector v = (Vector)tmpAdjacentData.get(evu);
+  /**
+   *  Overloaded.
+   * Adds the adjacent data information adjId a temp data structure until
+   * we have all the Evu instances created and can put the data in each
+   * Evu.
+   *
+   * @param evu The instance Evu that has 'adjId' as an adjacent unit.
+   * @param adjId The id of the adjacent unit.
+   * @param pos The Position of the Adjacent unit relative to evu.
+   * @param wind 'D' for downwind, 'N' for no wind
+   * @param spread the “Degrees Azimuth” between the FROM_POLY and the TO_POLY
+   * @param windSpeed Wind Speed
+   * @param windDir direction that the wind is coming adjId.
+   */
+  public void addAdjacentData(Evu evu, int adjId, char pos, char wind, double spread, double windSpeed, double windDir){
+    // get adjacency vector adjId hash table
+    Vector<double[]> v = addAdjacentHelper(evu);
+    // add adjacent data adjId vector
+    double[] data = {(double) adjId, pos, wind, spread, windSpeed, windDir};
+    v.addElement(data);
+  }
+
+  /**
+   * Helper method for the overloaded addAdjacentData methods (reduce code duplication).
+   * @param evu The instance Evu
+   * @return vector for the given evu
+   */
+  public Vector<double[]> addAdjacentHelper(Evu evu){
+    if (tmpAdjacentData == null) {
+      tmpAdjacentData = new Hashtable<>();
+    }
+    Vector v = tmpAdjacentData.get(evu);
     if (v == null) {
-      v = new Vector();
+      v = new Vector<double[]>();
       tmpAdjacentData.put(evu,v);
     }
-
-    int[] data = new int[3];
-    data[0] = adjId;
-    data[1] = (int) pos;  // convert to ascii value
-    data[2] = (int) wind; // convert to ascii value
-    v.addElement(data);
+    return v;
   }
 
   /**
@@ -3878,22 +3921,21 @@ public final class Area implements Externalizable {
     Evu            evu, adjEvu;
     Vector         v;
     int            i;
-    int[]          data;
+    double[]          data;
     Enumeration    keys;
     AdjacentData[] adjData;
     int            numAdj;
-
     keys = tmpAdjacentData.keys();
+    // For each evu:
     while (keys.hasMoreElements()) {
       evu = (Evu)keys.nextElement();
-
-      v   = (Vector)tmpAdjacentData.get(evu);
+      v   = tmpAdjacentData.get(evu);
 
       // Count the number valid adjacent units.
       numAdj = 0;
       for (i=0; i<v.size(); i++) {
-        data = (int[])v.elementAt(i);
-        adjEvu = getEvu(data[0]);
+        data = (double[])v.elementAt(i);
+        adjEvu = getEvu((int)data[0]);
         if (adjEvu != null) { numAdj++; }
       }
 
@@ -3911,39 +3953,81 @@ public final class Area implements Externalizable {
         continue;
       }
 
-      int  ac = 0;
-      int  elevDiff, evuElev, adjElev;
-      char pos;
+      double spread, windSpeed, windDir;
+      char pos, wind;
       adjData = new AdjacentData[numAdj];
       for (i=0; i<v.size(); i++) {
-        data = (int[])v.elementAt(i);
-        adjEvu = getEvu(data[0]);
+        data = (double[])v.elementAt(i);
+        int dataLength = data.length;
+        adjEvu = getEvu((int)data[0]);
+        // skip null Evus
         if (adjEvu == null) { continue; }
 
-        // If we have elevation information make sure we use it.
-        evuElev = evu.getElevation();
-        adjElev = adjEvu.getElevation();
-        elevDiff = Math.abs(adjEvu.getElevation() - evu.getElevation());
-        if (evu.isElevationValid() == false || adjEvu.isElevationValid() == false) {
-          pos = (char)data[1];
+        // Find or calculate position
+        if (!evu.isElevationValid() || !adjEvu.isElevationValid()) {
+          pos = (char)data[1]; // ascii value back to char
+        } else {
+          pos = 'E'; // Means use elevation
         }
-        else {
-          pos = 'E';
-        }
+        wind = (char) data[2]; // ascii value back to char
 
-        // Here we convert data[1],data[2] ascii values back to char
-        adjData[ac] = new AdjacentData(adjEvu, pos, (char) data[2]);
-        ac++;
+        // Legacy spatial relation
+        if (dataLength < 4) {
+          adjData[i] = new AdjacentData(adjEvu, pos, wind);
+        }
+        // Keane spatial relation, more attributes available
+        else {
+          spread     = data[3];
+          windSpeed  = data[4];
+          windDir    = data[5];
+          adjData[i] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir);
+        }
       }
       evu.setAdjacentData(adjData);
     }
     tmpAdjacentData = null;
   }
-  public char calcRelativePosition(Evu evu, AdjacentData adjData) {
-    Evu adj = adjData.evu;
 
-    if (evu.isElevationValid() == false || adj.isElevationValid() == false) {
-      return adjData.position;
+  public void calcRelativeSlopes(){
+    for (Evu evu : allEvu){
+      if (evu != null){
+        for (AdjacentData a : evu.getAdjacentData()){
+          a.setSlope(calcSlope(evu, a));
+        }
+      }
+    }
+  }
+
+  /**
+   * @param evu current evu
+   * @param adjData data representing the relationship between current and adj
+   * @return slope (as a decimal) moving from the current evu to an adjacent
+   */
+  public double calcSlope(Evu evu, AdjacentData adjData){
+
+    Evu adj = adjData.getEvu();
+    // side length of a unit
+    double distanceFeet = Math.sqrt(evu.getFloatAcres() * ACRES_TO_FEET);
+
+    // Math class needs radians
+    double radianSpread = Math.toRadians(adjData.getSpread());
+    // find distance to edge of square based on spread (angle of adjacency)
+    double abs_sin = (Math.abs(Math.sin(radianSpread)));
+    double abs_cos = (Math.abs(Math.cos(radianSpread)));
+
+    // must use both sin and cos to avoid dividing by 0
+    if (abs_sin <= abs_cos) distanceFeet = distanceFeet / abs_cos;
+    else                    distanceFeet = distanceFeet / abs_sin;
+    // rise over run
+    // make sure to use elevation in feet
+    return (adj.getElevationFeet() - evu.getElevationFeet()) / distanceFeet;
+  }
+
+  public char calcRelativePosition(Evu evu, AdjacentData adjData) {
+    Evu adj = adjData.getEvu();
+
+    if (!evu.isElevationValid() || !adj.isElevationValid()) {
+      return adjData.getPosition();
     }
 
     boolean isUniformArea = hasUniformSizePolygons();
@@ -4154,24 +4238,26 @@ public final class Area implements Externalizable {
 //  }
 
   /**
-   * Find the first valid Evu and see if its neighbors are all the same size.
-   * Continue check units until we successfully checked about 10.
-   * If so then we probably can assume that they all are the same size.
-   * @return
+   * @return True if ten units and their neighbors have the same number of acres
    */
   public boolean hasUniformSizePolygons() {
-    int count=0;
-    for (int i=0; i<allEvu.length; i++) {
-      if (allEvu[i] == null) { continue; }
 
-      if ((allEvu[i].getAcres() == 0) ||
-          (allEvu[i].hasSameSizeNeighbors() == false)) {
+    int count = 0;
+
+    for (Evu evu : allEvu) {
+
+      if (evu == null) continue;
+
+      if (evu.getAcres() == 0 || !evu.hasSameSizeNeighbors()) {
         return false;
       }
 
-      if (count++ > 10) { return true; }
+      if (count++ > 10) break;
+
     }
+
     return true;
+
   }
 
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -4282,7 +4368,7 @@ public final class Area implements Externalizable {
     if (hasUniformSizePolygons()) {
       for (int i=0; i<allEvu.length; i++) {
         if (allEvu[i] != null) {
-          polygonWidth = (int)Math.sqrt(allEvu[i].getFloatAcres() * 43560);
+          polygonWidth = (int)Math.sqrt(allEvu[i].getFloatAcres() * ACRES_TO_FEET);
           break;
         }
       }
@@ -4665,14 +4751,12 @@ public final class Area implements Externalizable {
         }
         System.out.println("Evu ID=" + allEvu[i].getId() + " has mismatch in lifeform data storage");
       }
-
     }
-
   }
-/**
- * Gets the elevation relative position.
- * @return
- */
+
+  /**
+   * Gets the elevation relative position.
+   */
   public int getElevationRelativePosition() {
     return elevationRelativePosition;
   }
@@ -4680,21 +4764,25 @@ public final class Area implements Externalizable {
   public void setElevationRelativePosition(int elevationRelativePosition) {
     this.elevationRelativePosition = elevationRelativePosition;
   }
+
   /**
-   * If Area has uniform polygons sets the relative elevation position to 10, othewise it sets to 100
+   * If Area has uniform polygons sets the relative elevation position to 10,
+   * otherwise it sets to 100
    */
   public void setElevationRelativePositionDefault() {
     if (hasUniformSizePolygons()) {
       setElevationRelativePosition(10);
-    }
-    else {
+    } else {
       setElevationRelativePosition(100);
     }
   }
 
+  public boolean getHasKeaneAttributes() {
+    return hasKeaneAttributes;
+  }
+
+  public void setHasKeaneAttributes(boolean hasKeaneAttributes) {
+    this.hasKeaneAttributes = hasKeaneAttributes;
+  }
 }
-
-
-
-
 

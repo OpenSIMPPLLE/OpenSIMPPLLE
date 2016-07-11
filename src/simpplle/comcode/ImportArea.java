@@ -18,914 +18,18 @@ import simpplle.gui.ElevationRelativePosition;
  * that provides information needed to create a new area.
  * <p>This class handles all aspects of creating the new area
  * including verifying and correcting states if necessary.
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
  *
- * 
  */
 
 public class ImportArea {
+
   private static final int EVU = 0;
   private static final int ELU = 1;
   private static final int ERU = 2;
-
   private boolean hasAttributes;
-
-  public ImportArea() {
-  }
 
   public boolean attributesAdded() {
     return hasAttributes;
-  }
-/**
- * reads in area id, adjacent area id's position(above, below, next to), wind value (down wind, no wind)
- * evu id, 
- *  @param area the current area whose neighbors are defined in this method
- * @param fin
- * @param logFile 
- * @return false if no area file, true if there is a file (sets neighbor information as well if true)
- * @throws ParseError caught in gui
- * @throws IOException caught in gui
- */
-  private boolean readNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
-    String              line, str;
-    StringTokenizerPlus strTok;
-    HashMap<Integer,Evu>  unitHm = new HashMap<Integer, Evu>();
-    Evu[]               allEvu;
-    int                 maxEvuId = -1, i, id, adjId, index;
-    String              posStr, windStr;
-    char                pos, wind;
-
-    line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
-
-      id = strTok.getIntToken();
-      adjId = strTok.getIntToken();
-      if (id == -1 || adjId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-      if (id > maxEvuId) { maxEvuId = id; }// changes id to maxID
-      if (adjId > maxEvuId) { maxEvuId = adjId; }
-
-      posStr = strTok.getToken();
-      if (posStr.length() > 1) {
-        index = posStr.lastIndexOf('\'');
-        if (index == -1) {
-          index = posStr.length() - 1;
-        }
-        posStr = posStr.substring(1, index);
-      }
-      if (posStr.length() > 1) {
-        logFile.println(line);
-        logFile.println("   " + posStr + " is not a valid position");
-        logFile.println("   Valid values are:  N, A, B");
-        return false;
-      }
-      pos = posStr.charAt(0);
-
-      windStr = strTok.getToken();
-      if (windStr.length() > 1) {
-        index = windStr.lastIndexOf('\'');
-        if (index == -1) {
-          index = windStr.length() - 1;
-        }
-        windStr = windStr.substring(1, index);
-      }
-      if (windStr.length() > 1) {
-        logFile.println(line);
-        logFile.println("   " + windStr + " is not valid wind value");
-        logFile.println("   Valid values are:  D, N");
-        return false;
-      }
-      wind = windStr.charAt(0);
-
-      if (pos != Evu.ABOVE && pos != Evu.BELOW && pos != Evu.NEXT_TO) {
-        logFile.println(line);
-        logFile.println("   " + pos + " is not a valid position value.");
-        logFile.println("   Valid values are:  A, B, N");
-        return false;
-      }
-      if (wind != Evu.DOWNWIND && wind != Evu.NO_WIND) {
-        logFile.println(line);
-        logFile.println("   " + wind + " is not a valid wind value.");
-        logFile.println("   Valid values are:  D, N");
-        return false;
-      }
-
-      Evu evu = unitHm.get(id);
-      if (evu == null) {
-        evu = new Evu(id);
-        unitHm.put(id, evu);
-      }
-      area.addAdjacentData(evu,adjId,pos,wind);
-
-      // Get the next line.
-      line = fin.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
-    }
-
-    allEvu = new Evu[maxEvuId+1];
-
-    for (Evu evu : unitHm.values()) {
-      id = evu.getId();
-      allEvu[id] = evu;
-    }
-
-    area.setMaxEvuId(maxEvuId);
-    area.setAllEvu(allEvu);
-    area.finishAddingAdjacentData(logFile);
-
-    return true;
-  }
-/**
- * reads in area information for new neighbors: area id, adjacent area id, elevation, existing land units, position (valid are N = next to, A =above, or B =below), 
- * wind (valid are D =downwind or N =no wind), evu, and then sets evu elevation.  Adds all info to current area.  
- * Also checks elevation to make sure it is valid.
- * @param area the current area whose neighbors are defined in this method 
- * @param fin
- * @param logFile 
- * @return false if no area file found, true otherwise (sets neighbor information as well if true)
- * @throws ParseError caught in GUI
- * @throws IOException caught in GUI
- */
-  private boolean readNeighborsNew(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
-    String              line, str;
-    StringTokenizerPlus strTok;
-    HashMap<Integer,Evu>  unitHm = new HashMap<Integer, Evu>();
-    Evu[]               allEvu;
-    int                 maxEvuId = -1, i, id, adjId, index;
-    String              windStr;
-    char                pos='N', wind;
-    int                 elevation;
-
-    line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
-
-      id = strTok.getIntToken();
-      adjId = strTok.getIntToken();
-      if (id == -1 || adjId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-      if (id > maxEvuId) { maxEvuId = id; }
-      if (adjId > maxEvuId) { maxEvuId = adjId; }
-
-      str = strTok.getToken();
-      try {
-        elevation = Integer.parseInt(str);
-      }
-      catch (NumberFormatException ex) {
-        elevation = NaturalElement.INVALID_ELEV;
-      }
-
-      if (elevation == NaturalElement.INVALID_ELEV) {
-        String posStr = str;
-        if (posStr.length() > 1) {
-          index = posStr.lastIndexOf('\'');
-          if (index == -1) {
-            index = posStr.length() - 1;
-          }
-          posStr = posStr.substring(1, index);
-        }
-        if (posStr.length() > 1) {
-          logFile.println(line);
-          logFile.println("   " + posStr + " is not a valid position or Elevation");
-          logFile.println("   Valid values are:  N, A, B or Integer Elevation");
-          return false;
-        }
-        pos = posStr.charAt(0);
-
-        if (pos != Evu.ABOVE && pos != Evu.BELOW && pos != Evu.NEXT_TO) {
-          logFile.println(line);
-          logFile.println("   " + pos + " is not a valid position or Elevation value.");
-          logFile.println("   Valid values are:  A, B, N or Integer Elevation");
-          return false;
-        }
-      }
-
-
-      windStr = strTok.getToken();
-      if (windStr.length() > 1) {
-        index = windStr.lastIndexOf('\'');
-        if (index == -1) {
-          index = windStr.length() - 1;
-        }
-        windStr = windStr.substring(1, index);
-      }
-      if (windStr.length() > 1) {
-        logFile.println(line);
-        logFile.println("   " + windStr + " is not valid wind value");
-        logFile.println("   Valid values are:  D, N");
-        return false;
-      }
-      else if (windStr.length() == 0) {
-        windStr = "N";
-      }
-      wind = windStr.charAt(0);
-
-      if (wind != Evu.DOWNWIND && wind != Evu.NO_WIND) {
-        logFile.println(line);
-        logFile.println("   " + wind + " is not a valid wind value.");
-        logFile.println("   Valid values are:  D, N");
-        return false;
-      }
-
-      Evu evu = unitHm.get(id);
-      if (evu == null) {
-        evu = new Evu(id);
-        unitHm.put(id, evu);
-
-        // Need only set elevation once.
-        evu.setElevation(elevation);
-      }
-      
-      area.addAdjacentData(evu,adjId,pos,wind);
-
-      // Get the next line.
-      line = fin.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
-    }
-
-    allEvu = new Evu[maxEvuId+1];
-
-    for (Evu evu : unitHm.values()) {
-      id = evu.getId();
-      allEvu[id] = evu;
-    }
-
-    area.setMaxEvuId(maxEvuId);
-    area.setAllEvu(allEvu);
-    area.finishAddingAdjacentData(logFile);
-    return true;
-  }
-/**
- * 
- * @param area
- * @param fin
- * @param logFile
- * @return
- * @throws ParseError
- * @throws IOException
- */
-  private boolean readLandNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
-    String              line, str;
-    StringTokenizerPlus strTok;
-    ExistingLandUnit    elu = null, adjElu = null;
-    HashMap             units = new HashMap();
-    ExistingLandUnit[]  allElu;
-    int                 maxId = -1, i, id, adjId, index;
-    int                 elevation;
-    Integer             idObj, adjIdObj;
-
-    line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
-
-      id = strTok.getIntToken();
-      adjId = strTok.getIntToken();
-      if (id == -1 || adjId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-      if (id > maxId) { maxId = id; }
-      if (adjId > maxId) { maxId = adjId; }
-
-      elevation = strTok.getIntToken();
-      if (elevation == -1) {
-        logFile.println(line);
-        logFile.println("  Elevation in the above line is invalid");
-        logFile.println();
-        return false;
-      }
-
-      idObj = new Integer(id);
-      elu = (ExistingLandUnit)units.get(idObj);
-      if (elu == null) {
-        elu = new ExistingLandUnit(id);
-        units.put(idObj,elu);
-      }
-
-      adjIdObj = new Integer(adjId);
-      adjElu = (ExistingLandUnit)units.get(adjIdObj);
-      if (adjElu == null) {
-        adjElu = new ExistingLandUnit(adjId);
-        units.put(adjIdObj,adjElu);
-      }
-
-      elu.addNeighbor(adjElu);
-      elu.setElevation(elevation);
-
-      // Get the next line.
-      line = fin.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
-    }
-
-    allElu = new ExistingLandUnit[maxId+1];
-
-    Iterator it = units.keySet().iterator();
-    while (it.hasNext()) {
-      idObj = (Integer)it.next();
-      elu   = (ExistingLandUnit)units.get(idObj);
-      allElu[elu.getId()] = elu;
-    }
-
-    area.setAllElu(allElu);
-
-    return true;
-  }
-/**
- * Reads in the aquatic neighbors of a specified area.  Area id, adjacent id, flow (P or S or N = no flow)   
- * Sets existing aquatic unit.  Sets the predecessor, and successor units.  
- * @param area the current area whose neighbors are defined in this method.  
- * @param fin
- * @param logFile
- * @return false if no area file found, true otherwise (sets aquatic neighbor information as well if true)
- * @throws ParseError caught in GUI
- * @throws IOException caught in GUI
- */
-  private boolean readAquaticNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
-    String              line, str;
-    StringTokenizerPlus strTok;
-    ExistingAquaticUnit eau = null, adjEau = null;
-    HashMap             units = new HashMap();
-    ExistingAquaticUnit[] allEau;
-    int                 maxId = -1, id, adjId, index;
-    Integer             idObj, adjIdObj;
-    String              flowStr;
-    char                flow;
-
-    line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
-
-      id = strTok.getIntToken();
-      adjId = strTok.getIntToken();
-      if (id == -1 || adjId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-      if (id > maxId) { maxId = id; }// sets the current id as new max if greater than current max
-      if (adjId > maxId) { maxId = adjId; }
-
-      flowStr = strTok.getToken();
-      if (flowStr.length() > 1) {
-        index = flowStr.lastIndexOf('\'');
-        if (index == -1) {
-          index = flowStr.length() - 1;
-        }
-        flowStr = flowStr.substring(1, index);
-      }
-      if (flowStr.length() > 1) {
-        logFile.println(line);
-        logFile.println("   " + flowStr + " is not a valid Flow Direction");
-        logFile.println("   Valid values are:  P, S, N");
-        return false;
-      }
-      flow = flowStr.charAt(0);
-
-      idObj = new Integer(id);
-      eau = (ExistingAquaticUnit)units.get(idObj);
-      if (eau == null) {
-        eau = new ExistingAquaticUnit(id);
-        units.put(idObj,eau);
-      }
-
-      if (adjId != -9999) {
-        adjIdObj = new Integer(adjId);
-        adjEau = (ExistingAquaticUnit) units.get(adjIdObj);
-        if (adjEau == null) {
-          adjEau = new ExistingAquaticUnit(adjId);
-          units.put(adjIdObj, adjEau);
-        }
-
-        if (flow == 'P') {
-          eau.addPredecessor(adjEau);
-        }
-        else if (flow == 'S') {
-          eau.addSuccessor(adjEau);
-        }
-      }
-      // Get the next line.
-      line = fin.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
-    }
-
-    allEau = new ExistingAquaticUnit[maxId+1];
-
-    Iterator it = units.keySet().iterator();
-    while (it.hasNext()) {
-      idObj = (Integer)it.next();
-      eau   = (ExistingAquaticUnit)units.get(idObj);
-      allEau[eau.getId()] = eau;
-    }
-
-    area.setAllEau(allEau);
-
-    // In the situation where two stream come together at the same
-    // Arc Node to form one stream we need to make sure the upper streams
-    // do not reference each other as Predecessors or Successors.
-    for (int i=0; i<allEau.length; i++) {
-      if (allEau[i] == null) { continue; }
-
-      ArrayList preds = allEau[i].getPredecessors();
-      if (preds != null && preds.size() > 0) {
-        for (int a=0; a<preds.size(); a++) {
-          ExistingAquaticUnit unit = (ExistingAquaticUnit)preds.get(a);
-          for (int b=a+1; b<preds.size(); b++) {
-            ExistingAquaticUnit unit2 = (ExistingAquaticUnit)preds.get(b);
-
-            ArrayList unitPreds = unit.getPredecessors();
-            if (unitPreds != null) { unitPreds.remove(unit2); }
-
-            ArrayList unit2Preds = unit2.getPredecessors();
-            if (unit2Preds != null) { unit2Preds.remove(unit); }
-
-            ArrayList unitSuccs = unit.getSuccessors();
-            if (unitSuccs != null) { unitSuccs.remove(unit2); }
-
-            ArrayList unit2Succs = unit2.getSuccessors();
-            if (unit2Succs != null) { unit2Succs.remove(unit); }
-          }
-        }
-      }
-    }
-
-    return true;
-  }
-  /**
-   * Reads in the neighboring roads to a specified area.  Sets Area id, adjacent area id, road unit id, adjacent road unit id.
-   * Also creates an array of roads.  
-   * @param area the current area whose road neighbors are defined in this method.  
-   * @param fin
-   * @param logFile
-   * @return false if no area file found, true otherwise (sets road neighbor information as well if true)
-   * @throws ParseError caught in GUI
-   * @throws IOException caught in GUi
-   */
-  private boolean readRoadNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
-    HashMap<Integer,Roads> units = new HashMap<Integer,Roads>();
-    int                    maxId = -1;
-
-    String line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      int   id, adjId;
-      Roads roadUnit, adjRoadUnit;
-
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
-
-      id = strTok.getIntToken();
-      adjId = strTok.getIntToken();
-      if (id == -1 || adjId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-      if (id > maxId) { maxId = id; }
-      if (adjId > maxId) { maxId = adjId; }
-
-      roadUnit = units.get(id);
-      if (roadUnit == null) {
-        roadUnit = new Roads(id);
-        units.put(id,roadUnit);
-      }
-
-      if (adjId != -9999) {
-        adjRoadUnit = units.get(adjId);
-        if (adjRoadUnit == null) {
-          adjRoadUnit = new Roads(adjId);
-          units.put(adjId, adjRoadUnit);
-        }
-      }
-      // Get the next line.
-      line = fin.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
-    }
-
-    Roads[] allRoads = new Roads[maxId+1];
-    Roads   roadUnit;
-    for (Integer keyId : units.keySet()) {
-      roadUnit = units.get(keyId);
-      allRoads[roadUnit.getId()] = roadUnit;
-
-    }
-
-    area.setAllRoads(allRoads);
-
-    return true;
-  }
-/**
- * Reads in the neighboring trails to a specified area.  Sets Area id, adjacent area id, trail units, adjacent trail units.
- * Also makes a trail unit array.
- * @param area the current area whose trail neighbors are defined in this method. 
- * @param fin
- * @param logFile
- * @returnfalse false if no area file found, true otherwise (sets trail neighbor information as well if true)
- * @throws ParseError caught in GUI
- * @throws IOException caught in GUI
- */
-  private boolean readTrailNeighbors(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
-    HashMap<Integer,Trails> units = new HashMap<Integer,Trails>();
-    int                    maxId = -1;
-
-    String line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      int   id, adjId;
-      Trails trailUnit, adjTrailUnit;
-
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
-
-      id = strTok.getIntToken();
-      adjId = strTok.getIntToken();
-      if (id == -1 || adjId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-      if (id > maxId) { maxId = id; }
-      if (adjId > maxId) { maxId = adjId; }
-
-      trailUnit = units.get(id);
-      if (trailUnit == null) {
-        trailUnit = new Trails(id);
-        units.put(id,trailUnit);
-      }
-
-      if (adjId != -9999) {
-        adjTrailUnit = units.get(adjId);
-        if (adjTrailUnit == null) {
-          adjTrailUnit = new Trails(adjId);
-          units.put(adjId, adjTrailUnit);
-        }
-      }
-      // Get the next line.
-      line = fin.readLine();
-    }
-    if (line == null) {
-      hasAttributes = false;
-    }
-    else {
-      hasAttributes = true;
-    }
-
-    Trails[] allTrails = new Trails[maxId+1];
-    Trails   trailUnit;
-    for (Integer keyId : units.keySet()) {
-      trailUnit = units.get(keyId);
-      allTrails[trailUnit.getId()] = trailUnit;
-
-    }
-
-    area.setAllTrails(allTrails);
-
-    return true;
-  }
-/**
- * Reads in the Aquatic vegetation relations of a specified area.  Sets EVU id, upland adjacent value (valid are A = adjacent or U Upland), 
- * gets the existing aquatic unit for this area and adds the evu to it.
- * @param area the current area whose Aquatic vegetation relations are defined in this method.
- * @param fin
- * @param logFile
- * @returnfalse if no area file found, true otherwise (sets Aquatic vegetation relations information as well if true)
- * @throws ParseError caught in GUI
- * @throws IOException caught in GUI
- */
-  private boolean readAquaticVegRelations(Area area, BufferedReader fin, PrintWriter logFile) throws ParseError, IOException {
-    String              line, str;
-    StringTokenizerPlus strTok;
-    ExistingAquaticUnit eau = null;
-    Evu                 evu = null;
-    int                 i, id, evuId, index;
-    String              upAdjStr;
-    char                upAdj;
-
-    line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
-
-      id = strTok.getIntToken();
-      evuId = strTok.getIntToken();
-      if (id == -1 || evuId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-
-      upAdjStr = null;
-      if (strTok.hasMoreTokens()) {
-        upAdjStr = strTok.getToken();
-      }
-      // Currently the amls don't include this info, so use A as default.
-      if (upAdjStr == null) { upAdjStr = "A"; }
-
-      if (upAdjStr.length() > 1) {
-        index = upAdjStr.lastIndexOf('\'');
-        if (index == -1) {
-          index = upAdjStr.length() - 1;
-        }
-        upAdjStr = upAdjStr.substring(1, index);
-      }
-      if (upAdjStr.length() > 1) {
-        logFile.println(line);
-        logFile.println("   " + upAdjStr + " is not a Upland/Adjacent Value");
-        logFile.println("   Valid values are:  A, U");
-        return false;
-      }
-      upAdj = upAdjStr.charAt(0);
-
-      eau = area.getEau(id);
-      if (eau == null) {
-        eau = new ExistingAquaticUnit(id);
-        area.setEau(eau);
-      }
-
-      evu = area.getEvu(evuId);
-      if (evu == null) {
-        logFile.println(line);
-        logFile.println("Vegetative Unit " + evuId + " is not valid");
-        logFile.println();
-        return false;
-      }
-
-      evu.addAssociatedAquaticUnit(eau);
-      if (upAdj == 'A') {
-        eau.addAdjacentEvu(evu);
-      }
-      else if (upAdj == 'U') {
-        eau.addUplandEvu(evu);
-      }
-
-      // Get the next line.
-      line = fin.readLine();
-    }
-    return true;
-  }
-/**
- * Reads in Vegetative Land Relations of a specified Area.  Reads evu ID, elu ID, then sets the evu's associated land unit to the elu and sets the elu's associated evu to the evuID
- * @param area the current area whose Vegetative Land Relations are defined in this method.
- * @param fin
- * @param logFile
- * @return false if no area file found, true otherwise (sets Vegetative Land Relations information as well if true)
- * @throws ParseError caught in GUI
- * @throws IOException caught in GUI
- */
-  private boolean readVegLandRelations(Area area, BufferedReader fin,
-                                       PrintWriter logFile)
-      throws ParseError, IOException
-  {
-    String              line, str;
-    StringTokenizerPlus strTok;
-    ExistingLandUnit    elu = null;
-    Evu                 evu = null;
-    int                 evuId, eluId;
-
-    line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      strTok = new StringTokenizerPlus(line,",");
-
-      evuId = strTok.getIntToken();
-      eluId = strTok.getIntToken();
-      if (evuId == -1 || eluId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-
-      evu = area.getEvu(evuId);
-      if (evu == null) {
-        logFile.println(line);
-        logFile.println("In Vegetation-Landform Evu-" + evuId + " is not valid");
-        logFile.println();
-      }
-
-      elu = area.getElu(eluId);
-      if (elu == null) {
-        logFile.println(line);
-        logFile.println("In Vegetation-Landform Elu-" + eluId + " is not valid");
-        logFile.println();
-      }
-
-      if (evu != null && elu != null) {
-        evu.addAssociatedLandUnit(elu);
-        elu.addAssociatedVegUnit(evu);
-      }
-
-      // Get the next line.
-      line = fin.readLine();
-    }
-    return true;
-  }
-/**
- * Reads the Vegetative Road Relations for a specified Area.  Reads in road Id, and evu ID,
- * adds the adds the evu as an associated vegetative unit to the road and adds the roads as associated road units to the evu 
- * @param area the current area whose Vegetative Road  Relations are defined in this method.
- * @param fin
- * @param logFile
- * @returnfalse if no area file found, true otherwise (sets Vegetative Road Relations information as well if true)
- * @throws ParseError caught in GUI
- * @throws IOException caught in GUi
- */
-  private boolean readVegRoadRelations(Area area, BufferedReader fin,
-                                       PrintWriter logFile)
-      throws ParseError, IOException
-  {
-    String line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
-
-      int roadId = strTok.getIntToken();
-      int evuId = strTok.getIntToken();
-      if (evuId == -1 || roadId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-
-      Evu evu = area.getEvu(evuId);
-      if (evu == null) {
-        logFile.println(line);
-        logFile.println("In Vegetation-Roads Evu-" + evuId + " is not valid");
-        logFile.println();
-      }
-
-      Roads roadUnit = area.getRoadUnit(roadId);
-      if (roadUnit == null) {
-        logFile.println(line);
-        logFile.println("In Vegetation-Roads Road Id: " + roadId + " is not valid");
-        logFile.println();
-      }
-
-      if (evu != null && roadUnit != null) {
-        evu.addAssociatedRoadUnit(roadUnit);
-        roadUnit.addAssociatedVegUnit(evu);
-      }
-
-      // Get the next line.
-      line = fin.readLine();
-    }
-    return true;
-  }
-/**
- * Reads in and sets the vegetative trail relations of a specified Area.  Read in are the trial ID's, evu ID's 
- * then the evu is assigned the associated trail units (trail ID) and the trails are assigned the associated evu
- * @param area the current area whose Vegetative Trail Relations are defined in this method.
- * @param fin
- * @param logFile
- * @returnfalse if no area file found, true otherwise (sets Vegetative Trail Relations information as well if true)
- * @throws ParseError caught in GUI
- * @throws IOException caught in GUI
- */
-  private boolean readVegTrailRelations(Area area, BufferedReader fin,
-                                        PrintWriter logFile)
-      throws ParseError, IOException
-  {
-    String line = fin.readLine();
-    if (line == null) {
-      logFile.println("Invalid New Area File (file is empty))");
-      logFile.println();
-      return false;
-    }
-
-    while (line != null && line.trim().equals("END") == false) {
-      if (line.trim().length() == 0) { line = fin.readLine(); continue; }
-      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
-
-      int trailId = strTok.getIntToken();
-      int evuId = strTok.getIntToken();
-      if (evuId == -1 || trailId == -1) {
-        logFile.println(line);
-        logFile.println("  One of the id's in above line is invalid");
-        logFile.println();
-        return false;
-      }
-
-      Evu evu = area.getEvu(evuId);
-      if (evu == null) {
-        logFile.println(line);
-        logFile.println("In Vegetation-Trails Evu-" + evuId + " is not valid");
-        logFile.println();
-      }
-
-      Trails trailUnit = area.getTrailUnit(trailId);
-      if (trailUnit == null) {
-        logFile.println(line);
-        logFile.println("In Vegetation-Trails Trail Id: " + trailId + " is not valid");
-        logFile.println();
-      }
-
-      if (evu != null && trailUnit != null) {
-        evu.addAssociatedTrailUnit(trailUnit);
-        trailUnit.addAssociatedVegUnit(evu);
-      }
-
-      // Get the next line.
-      line = fin.readLine();
-    }
-    return true;
   }
 /**
  * Check to see if this has both a row & a column.  
@@ -956,7 +60,7 @@ public class ImportArea {
       if (str == null) {
         throw new ParseError("Not enough fields in line: " + line);
       }
-      float value = Float.valueOf(str).floatValue();
+      float value = Float.valueOf(str);
       // if no exception, than field #5 was a number.
       return true;
     }
@@ -975,7 +79,7 @@ public class ImportArea {
     boolean foundNumber = false;
 
     int i = 0;
-    while (i < str.length() && foundNumber == false) {
+    while (i < str.length() && !foundNumber) {
       foundNumber = Character.isDigit(str.charAt(i));
       i++;
     }
@@ -998,7 +102,7 @@ public class ImportArea {
     int     age = 1;
 
     int i = 0;
-    while (i < size.length() && foundNumber == false) {
+    while (i < size.length() && !foundNumber) {
       foundNumber = Character.isDigit(size.charAt(i));
       i++;
     }
@@ -1062,7 +166,7 @@ public class ImportArea {
       return;
     }
 
-    while(line != null && line.trim().equals("END") == false) {
+    while(line != null && !line.trim().equals("END")) {
       try {
         line = line.trim();
         if (line.length() == 0) { line = fin.readLine(); continue; }
@@ -2142,13 +1246,13 @@ public class ImportArea {
   }
 
   public Area importNewFiles(File filename) throws SimpplleError {
-    Area newArea = importSpatialRelations(filename);
+    Area newArea = importSpatial(filename);
 
     File prefix     = Utility.stripExtension(filename);
     File logFile    = Utility.makeUniqueLogFile(prefix, "attrib");
     File attribFile = Utility.makeSuffixedPathname(prefix, "", "attributesall");
 
-    if (attribFile.exists() == false) {
+    if (!attribFile.exists()) {
       hasAttributes = false;
     }
     readAttributesNew(newArea,attribFile,logFile);
@@ -2163,78 +1267,185 @@ public class ImportArea {
     int elevRelativePos = dlg.getValue();
     
     newArea.initPolygonWidth();
+    newArea.calcRelativeSlopes(); // requires spatialrelation and attributesall to be loaded.
     newArea.setElevationRelativePosition(elevRelativePos);
     return newArea;
   }
 
-  private Area importSpatialRelations(File filename) throws SimpplleError {
-    PrintWriter    log=null;
-    BufferedReader fin=null;
-    Area           newArea = new Area(Area.USER);
-    boolean        attributesAdded = false;
-    File           prefix = Utility.stripExtension(filename);
+//  private Area importSpatialRelations(File filename) throws SimpplleError {
+//    PrintWriter    log=null;
+//    BufferedReader fin;
+//    Area           newArea = new Area(Area.USER);
+//    File           prefix = Utility.stripExtension(filename);
+//    File           logFile = Utility.makeUniqueLogFile(prefix,"");
+//    boolean        success = false;
+//
+//    try {
+//      log = new PrintWriter(new FileWriter(logFile));
+//      fin = new BufferedReader(new FileReader(filename));
+//
+//      String line = fin.readLine();
+//
+//      while (line != null) {
+//        // skip blank lines
+//        while (line != null && line.trim().length() == 0) {
+//          line = fin.readLine();
+//        }
+//
+//        StringTokenizer strTok = new StringTokenizer(line.trim());
+//        String str = strTok.nextToken();
+//        if (str == null || !str.equalsIgnoreCase("BEGIN")) {
+//          throw new SimpplleError(
+//              "Invalid Spatial Relationships file: missing BEGIN in line:" +
+//              line);
+//        }
+//
+//        str = strTok.nextToken();
+//        if (str == null) {
+//          throw new SimpplleError(
+//              "Invalid Spatial Relationships file: missing KEYWORD in line:" +
+//              line);
+//        }
+//
+//        if (str.equalsIgnoreCase("VEGETATION-VEGETATION")) {
+//          success = readNeighborsNew(newArea, fin, log);
+//        }
+//        else if (str.equalsIgnoreCase("LANDFORM-LANDFORM")) {
+//          success = readLandNeighbors(newArea, fin, log);
+//        }
+//        else if (str.equalsIgnoreCase("AQUATIC-AQUATIC")) {
+//          success = readAquaticNeighbors(newArea, fin, log);
+//        }
+//        else if (str.equalsIgnoreCase("VEGETATION-LANDFORM")) {
+//          success = readVegLandRelations(newArea,fin,log);
+//        }
+//        else if (str.equalsIgnoreCase("VEGETATION-AQUATIC")) {
+//          success = readAquaticVegRelations(newArea,fin,log);
+//        }
+//        else if (str.equalsIgnoreCase("ROADS-ROADS")) {
+//          success = readRoadNeighbors(newArea, fin, log);
+//        }
+//        else if (str.equalsIgnoreCase("TRAILS-TRAILS")) {
+//          success = readTrailNeighbors(newArea, fin, log);
+//        }
+//        else if (str.equalsIgnoreCase("VEGETATION-ROADS")) {
+//          success = readVegRoadRelations(newArea,fin,log);
+//        }
+//        else if (str.equalsIgnoreCase("VEGETATION-TRAILS")) {
+//          success = readVegTrailRelations(newArea,fin,log);
+//        }
+//        else {
+//          line = fin.readLine();
+//        }
+//
+//        if (!success) {
+//          fin.close();
+//          log.flush();
+//          log.close();
+//          throw new SimpplleError("Could not load files. Please check log file for details.");
+//        }
+//
+//
+//        line = fin.readLine();
+//        while (line != null && !line.trim().toUpperCase().startsWith("BEGIN")) {
+//          line = fin.readLine();
+//        }
+//      }
+//      fin.close();
+//      return newArea;
+//    }
+//    catch (FileNotFoundException ex) {
+//      String msg = "Could not open input file: " + filename;
+//      log.println(msg);
+//      log.flush();
+//      log.close();
+//      throw new SimpplleError(msg);
+//    }
+//    catch (ParseError e) {
+//      String msg = "The following error occurred while trying to create the area:";
+//      log.println(msg);
+//      log.println(e.msg);
+//      log.flush();
+//      log.close();
+//      throw new SimpplleError(msg + "\n" + e.msg,e);
+//    }
+//    catch (IOException ex) {
+//      throw new SimpplleError("Could write to log file: " + logFile);
+//    }
+//  }
+
+  /**
+   * Process .spatialrelate files based on key
+   * @param file input File
+   * @return newly created area with evus and associated data
+   * @throws SimpplleError
+   */
+  private Area importSpatial(File file) throws SimpplleError{
+    PrintWriter    log = null;
+    BufferedReader fin;
+    RelationParser parser;
+    File           prefix = Utility.stripExtension(file);
     File           logFile = Utility.makeUniqueLogFile(prefix,"");
-    boolean        success = false;
+    Area newArea = new Area(Area.USER);
+    Boolean success = false;
 
     try {
       log = new PrintWriter(new FileWriter(logFile));
-      fin = new BufferedReader(new FileReader(filename));
-
+      fin = new BufferedReader(new FileReader(file));
       String line = fin.readLine();
-
-      while (line != null) {
-        while (line != null && line.trim().length() == 0) {
-          line = fin.readLine();
-        }
-        if (line == null) {
-          throw new SimpplleError("File is empty");
-        }
-
+      while (line != null){
         StringTokenizer strTok = new StringTokenizer(line.trim());
         String str = strTok.nextToken();
-        if (str == null || str.equalsIgnoreCase("BEGIN") == false) {
+        if (str == null || !str.equalsIgnoreCase("BEGIN")) {
           throw new SimpplleError(
               "Invalid Spatial Relationships file: missing BEGIN in line:" +
               line);
         }
-
-        str = strTok.nextToken();
-        if (str == null) {
+        String key = strTok.nextToken();
+        if (key == null) {
           throw new SimpplleError(
               "Invalid Spatial Relationships file: missing KEYWORD in line:" +
               line);
         }
+        // Determine parser strategy based on key
+        switch (key.toUpperCase()){
+          case "VEGETATION-VEGETATION":
+            parser = new ParseNewNeighbors();
+            break;
+          case "VEGETATION-VEGETATION-KEANE":
+            parser = new ParseNewNeighborsKeane();
+            newArea.setHasKeaneAttributes(true);
+            break;
+          case "LANDFORM-LANDFORM":
+            parser = new ParseLandNeighbors();
+            break;
+          case "AQUATIC-AQUATIC":
+            parser = new ParseAquaticNeighbors();
+            break;
+          case "VEGETATION-LANDFORM":
+            parser = new ParseVegLandRelations();
+            break;
+          case "VEGETATION-AQUATIC":
+            parser = new ParseAquaticVegRelations();
+            break;
+          case "ROADS-ROADS":
+            parser = new ParseRoadNeighbors();
+            break;
+          case "TRAILS-TRAILS":
+            parser = new ParseTrailNeighbors();
+            break;
+          case "VEGETATION-ROADS":
+            parser = new ParseVegRoadRelations();
+            break;
+          case "VEGETATION-TRAILS":
+            parser = new ParseVegTrailRelations();
+            break;
+          default:
+            parser = null;
+        }
 
-        if (str.equalsIgnoreCase("VEGETATION-VEGETATION")) {
-          success = readNeighborsNew(newArea, fin, log);
-        }
-        else if (str.equalsIgnoreCase("LANDFORM-LANDFORM")) {
-          success = readLandNeighbors(newArea, fin, log);
-        }
-        else if (str.equalsIgnoreCase("AQUATIC-AQUATIC")) {
-          success = readAquaticNeighbors(newArea, fin, log);
-        }
-        else if (str.equalsIgnoreCase("VEGETATION-LANDFORM")) {
-          success = readVegLandRelations(newArea,fin,log);
-        }
-        else if (str.equalsIgnoreCase("VEGETATION-AQUATIC")) {
-          success = readAquaticVegRelations(newArea,fin,log);
-        }
-        else if (str.equalsIgnoreCase("ROADS-ROADS")) {
-          success = readRoadNeighbors(newArea, fin, log);
-        }
-        else if (str.equalsIgnoreCase("TRAILS-TRAILS")) {
-          success = readTrailNeighbors(newArea, fin, log);
-        }
-        else if (str.equalsIgnoreCase("VEGETATION-ROADS")) {
-          success = readVegRoadRelations(newArea,fin,log);
-        }
-        else if (str.equalsIgnoreCase("VEGETATION-TRAILS")) {
-          success = readVegTrailRelations(newArea,fin,log);
-        }
-        else {
-          line = fin.readLine();
-        }
+        if (parser == null) line = fin.readLine();   // no keyword, skip line
+        else  success = parser.readSection(newArea, fin, log);
 
         if (!success) {
           fin.close();
@@ -2242,22 +1453,15 @@ public class ImportArea {
           log.close();
           throw new SimpplleError("Could not load files. Please check log file for details.");
         }
-
-
         line = fin.readLine();
-        while (line != null && line.trim().toUpperCase().startsWith("BEGIN") == false) {
+        while (line != null && !line.trim().toUpperCase().startsWith("BEGIN")) {
           line = fin.readLine();
         }
       }
       fin.close();
       return newArea;
-    }
-    catch (FileNotFoundException ex) {
-      String msg = "Could not open input file: " + filename;
-      log.println(msg);
-      log.flush();
-      log.close();
-      throw new SimpplleError(msg);
+    } catch (IOException e) {
+      throw new SimpplleError("Error in reading " + file);
     }
     catch (ParseError e) {
       String msg = "The following error occurred while trying to create the area:";
@@ -2267,14 +1471,11 @@ public class ImportArea {
       log.close();
       throw new SimpplleError(msg + "\n" + e.msg,e);
     }
-    catch (IOException ex) {
-      throw new SimpplleError("Could write to log file: " + logFile);
-    }
   }
 
   private void readAttributesNew(Area area, File filename, File logFile) throws SimpplleError {
-    PrintWriter    log=null;
-    BufferedReader fin=null;
+    PrintWriter    log = null;
+    BufferedReader fin;
 
     hasAttributes = false;
 
@@ -2333,7 +1534,7 @@ public class ImportArea {
         }
 
         line = fin.readLine();
-        while (line != null && line.trim().toUpperCase().startsWith("BEGIN") == false) {
+        while (line != null && !line.trim().toUpperCase().startsWith("BEGIN")) {
           line = fin.readLine();
         }
       }
@@ -2358,8 +1559,6 @@ public class ImportArea {
       throw new SimpplleError(msg + "\n" + e.msg);
     }
     catch (IOException ex) {
-      log.flush();
-      log.close();
       throw new SimpplleError("Could write to log file: " + logFile);
     }
   }
@@ -2372,13 +1571,13 @@ public class ImportArea {
 
     file = Utility.makeSuffixedPathname(prefix,"","nbr");
     logFile = Utility.makeUniqueLogFile(prefix,"veg");
-    if (read(newArea,file,logFile,EVU,false) == false) {
+    if (!read(newArea, file, logFile, EVU, false)) {
       return null;
     }
 
     if (!hasAttributes) {
       file = Utility.makeSuffixedPathname(prefix,"","attributes");
-      if (file.exists() == false) {
+      if (!file.exists()) {
         hasAttributes = false;
         return newArea;
       }
@@ -2394,8 +1593,8 @@ public class ImportArea {
   private boolean read(Area newArea, File inputFile, File logFile, int kind, boolean attribOnly) {
     BufferedReader fin;
     PrintWriter    log;
-    int            n=1;
     boolean        success;
+    RelationParser parser;
 
     try {
       log = new PrintWriter(new FileWriter(logFile));
@@ -2412,10 +1611,12 @@ public class ImportArea {
       if (!attribOnly) {
         switch (kind) {
           case EVU:
-            success = readNeighbors(newArea, fin, log);
+            parser = new ParseNeighbors();
+            success = parser.readSection(newArea, fin, log);
             break;
           case ELU:
-            success = readLandNeighbors(newArea, fin, log);
+            parser = new ParseLandNeighbors();
+            success = parser.readSection(newArea, fin, log);
             break;
           default:
             success = false;
@@ -2456,4 +1657,22 @@ public class ImportArea {
     return true;
   }
 
+  /**
+   *
+   * @param filename Name of the file that should have a corresponding log
+   * @param suffix optional
+   * @return PrintWriter open to log file
+   */
+//  private PrintWriter openLog(File filename, String suffix) {
+//    PrintWriter log;
+//    File prefix = Utility.stripExtension(filename);
+//    File logFile = Utility.makeUniqueLogFile(prefix, suffix);
+//    try {
+//      log = new PrintWriter(new FileWriter(logFile));
+//      return log;
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//      System.out.println("Could not Open log file for writing: logFile");
+//    }
+//  }
 }

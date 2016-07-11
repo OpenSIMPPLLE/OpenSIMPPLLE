@@ -19,6 +19,7 @@ import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.Vector;
 
 
 /**
@@ -51,6 +52,10 @@ public class SimParam extends JDialog {
   private File    outputFile;
   private File    allStatesRulesFile;
   private int     maxTimeSteps;
+  /**
+   * Used to dynamically populate available spread models
+   */
+  private Vector<String> fireSpreadModels;
 
   // Layouts
   private BorderLayout mainLayout  = new BorderLayout();
@@ -68,6 +73,7 @@ public class SimParam extends JDialog {
   private FlowLayout numSimLayout = new FlowLayout();
   private FlowLayout numStepLayout = new FlowLayout();
   private FlowLayout invasiveSpeciesLayout = new FlowLayout();
+  private FlowLayout fireSpreadModelLayout = new FlowLayout();
   private FlowLayout discardDataLayout = new FlowLayout();
   private FlowLayout rulesFileLayout = new FlowLayout();
   private FlowLayout stepsInMemoryLayout = new FlowLayout();
@@ -105,6 +111,7 @@ public class SimParam extends JDialog {
   private JPanel outputOptionsPanel = new JPanel();
   private JPanel trackSpeciesCBPanel = new JPanel();
   private JPanel invasiveSpeciesPanel = new JPanel();
+  private JPanel fireSpreadModelPanel = new JPanel();
   private JPanel outputOptionsCBPanel = new JPanel();
   private JPanel trackingSpeciesPanel = new JPanel();
   private JPanel timeStepsInMemoryPanel = new JPanel();
@@ -120,6 +127,7 @@ public class SimParam extends JDialog {
   private JLabel tsInMemoryLabel = new JLabel();
   private JLabel gisUpdateSpreadLabel = new JLabel();
   private JLabel invasiveSpeciesLabel = new JLabel();
+  private JLabel fireSpreadModelLabel = new JLabel();
 
   // Elements
   private JButton runButton       = new JButton();
@@ -144,6 +152,7 @@ public class SimParam extends JDialog {
   private JButton trackingSpeciesCategoryPB = new JButton();
   private JCheckBox gisUpdateSpreadCB = new JCheckBox();
   private JComboBox invasiveSpeciesCB = new JComboBox();
+  private JComboBox fireSpreadModelCB;
   private JCheckBox trackingSpeciesCB = new JCheckBox();
   private JCheckBox writeAccessFilesCB = new JCheckBox();
   //  Option to disable writing probability Arc Files. Currently, this information is not used in output processing.
@@ -153,8 +162,9 @@ public class SimParam extends JDialog {
   private SimpplleMain simpplleMain;
 
   // Overloaded Constructor
-  public SimParam(SimpplleMain frame, String title, boolean modal) {
+  public SimParam(SimpplleMain frame, String title, boolean modal, Vector<String> fireSpreadModels) {
     super(frame, title, modal);
+    this.fireSpreadModels = fireSpreadModels;
     try  {
       jbInit();
       pack();
@@ -167,7 +177,7 @@ public class SimParam extends JDialog {
   }
 
   public SimParam() {
-    this(null, "", false);
+    this(null, "", false, new Vector<>());
   }
 
   void jbInit() throws Exception {
@@ -209,6 +219,9 @@ public class SimParam extends JDialog {
     invasiveSpeciesLayout.setAlignment(FlowLayout.LEFT);
     invasiveSpeciesLayout.setHgap(10);
     invasiveSpeciesLayout.setVgap(1);
+    fireSpreadModelLayout.setAlignment(FlowLayout.LEFT);
+    fireSpreadModelLayout.setHgap(10);
+    fireSpreadModelLayout.setVgap(1);
     discardDataLayout.setAlignment(FlowLayout.LEFT);
     discardDataLayout.setVgap(0);
     rulesFileLayout.setAlignment(FlowLayout.LEFT);
@@ -244,6 +257,7 @@ public class SimParam extends JDialog {
     numSimPanel.setLayout(numSimLayout);
     numStepPanel.setLayout(numStepLayout);
     invasiveSpeciesPanel.setLayout(invasiveSpeciesLayout);
+    fireSpreadModelPanel.setLayout(fireSpreadModelLayout);
     discardDataPanel.setLayout(discardDataLayout);
     allStatesRulesFilePanel.setLayout(rulesFileLayout);
     timeStepsInMemoryPanel.setLayout(stepsInMemoryLayout);
@@ -261,6 +275,10 @@ public class SimParam extends JDialog {
     panel.setLayout(new GridLayout(2, 0));
     writeAccessPanel.setLayout(probReportsLayout);
     discardTextPanel.setLayout(probReportsLayout);
+
+    // Initialize
+    fireSpreadModelCB = new JComboBox(fireSpreadModels);
+
     // Run
     runButton.setNextFocusableComponent(cancelButton);
     runButton.setText("Run Simulation");
@@ -443,6 +461,8 @@ public class SimParam extends JDialog {
     outputOptionsPanel.setBorder(outputBorder);
     invasiveSpeciesLabel.setFont(defaultFont);
     invasiveSpeciesLabel.setText("Invasive Species Logic");
+    fireSpreadModelLabel.setFont(defaultFont);
+    fireSpreadModelLabel.setText("Fire Spread Model     ");
     optionsOuterPanel.setBorder(optionsBorder);
     trackingSpeciesCB.setText(
       "Generate Tracking Species Report (needed if discarding data or multiple " +
@@ -471,6 +491,9 @@ public class SimParam extends JDialog {
     northPanel.add(invasiveSpeciesPanel);
     invasiveSpeciesPanel.add(invasiveSpeciesLabel);
     invasiveSpeciesPanel.add(invasiveSpeciesCB);
+    northPanel.add(fireSpreadModelPanel);
+    fireSpreadModelPanel.add(fireSpreadModelLabel,null);
+    fireSpreadModelPanel.add(fireSpreadModelCB,null);
     northPanel.add(optionsOuterPanel);
     optionsOuterPanel.add(optionsPanel);
     optionsPanel.add(yearlyStepPanel);
@@ -688,6 +711,19 @@ public class SimParam extends JDialog {
  * Handles the pushing of the "Run Simulation" button.  
  */
   void runButton_actionPerformed(ActionEvent e) {
+
+    String selectedModel = (String)fireSpreadModelCB.getSelectedItem();
+
+    if (selectedModel.equals("KEANE")) {
+
+      ProcessOccurrenceSpreadingFire.setSpreadModel(ProcessOccurrenceSpreadingFire.SpreadModel.KEANE);
+
+    } else {
+
+      ProcessOccurrenceSpreadingFire.setSpreadModel(ProcessOccurrenceSpreadingFire.SpreadModel.SIMPPLLE);
+
+    }
+
     boolean success = runSimulation();
 
     if (success) {

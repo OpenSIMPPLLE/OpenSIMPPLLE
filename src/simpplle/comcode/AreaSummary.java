@@ -2066,28 +2066,33 @@ public final class AreaSummary implements Externalizable {
     event = (ProcessOccurrenceSpreadingFire)findSpreadingProcessEvent(unit);
     return event.getFireSeason();
   }
+
+  /**
+   * Applies spreading processes to each EVU until the spreading is complete.
+   */
   public void doSpread() {
+
     int cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    ArrayList   events = new ArrayList();
+    ArrayList events = new ArrayList();
+
 //    MyThreadGroup tg = new MyThreadGroup("ProcessSpreading",numSpreadProcesses);
 //    Thread       t;
 
     ProcessOccurrenceSpreading event;
 
     int size = getDataCount(cTime);
-    for (int id=0; id<size; id++) {
+    for (int id = 0; id < size; id++) {
       if (Area.multipleLifeformsEnabled()) {
         initSpreadEvents(getProcessEvents(cTime,id),events);
-      }
-      else {
+      } else {
         event = isSpreadEvent(getProcessEvents(cTime,id), false);
-        if (event != null) { events.add(event); }
+        if (event != null) events.add(event);
       }
     }
 
-//      t = new Thread(tg,event,event.getUnit().toString());
-//      event.setThread(t);
+//    t = new Thread(tg,event,event.getUnit().toString());
+//    event.setThread(t);
 
     int activeEvents = events.size();
     while (activeEvents > 0) {
@@ -2101,6 +2106,7 @@ public final class AreaSummary implements Externalizable {
         }
       }
     }
+
 //    for (i=0; i<events.size(); i++) {
 //      event = (ProcessOccurrenceSpreading)events.get(i);
 //      t     = event.getThread();
