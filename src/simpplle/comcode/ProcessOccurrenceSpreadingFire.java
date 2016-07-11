@@ -466,15 +466,20 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         windSpeed = Math.min(30, windSpeed + keaneWindSpeedOffset);
 
-        windDirection += keaneWindDirectionOffset;
+        windDirection = (windDirection + keaneWindDirectionOffset) % 360; // Wrap around if greater than 360 degrees
 
         double windSpread;
 
+        adjacent.setWind(fromUnit.isDownwind(spreadDirection, windDirection)); // update wind direction to reflect offsets
+
+        // Use wind multiplier for extreme fires
+        if (isExtreme) windSpeed *= keaneExtremeWindMultiplier;
+        
         if (windSpeed > 0.5) {
 
           // Compute a coefficient that reflects wind direction
 
-          double coeff = Math.toRadians(Math.abs(spreadDirection - windDirection));
+          double coeff = Math.toRadians(fromUnit.getAzimuthDifference(spreadDirection, windDirection));
 
           // Compute the length:width ratio from Andrews (1986)
 
@@ -522,6 +527,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         Evu prevUnit = fromUnit;
 
+
         for (Evu neighbor : neighbors) {
 
           if (lineSuppUnits.contains(neighbor.getId())) break;
@@ -550,7 +556,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * TODO: add functionality to fix random?
    * Function takes the fractional part (f) of the given spix, and has an
    * 'f %' chance to return the ceiling of the spix, otherwise returns the floor.
    *

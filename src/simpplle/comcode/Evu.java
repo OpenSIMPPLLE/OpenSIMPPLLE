@@ -8679,6 +8679,29 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     initialState.put(key,state);
   }
+
+  /**
+   * Helper Method - get the degree difference between two azimuth angles
+   *
+   * @param a angle <= 360
+   * @param b angle 2 <= 360
+   * @return UNSIGNED Angle difference between given angles
+   */
+  public double getAzimuthDifference(double a, double b) {
+    double diff = Math.abs(a - b);
+    return (diff < 180) ? diff : 360 - diff;
+  }
+
+  /**
+   * Determine if neighbor should be classified as downwind
+   * @param spread angle of adjacency
+   * @param windDirection degrees azimuth
+   */
+  public char isDownwind(double spread, double windDirection){
+    int threshold = 90;
+    if (getAzimuthDifference(spread, windDirection) <= threshold) return 'D';
+    else return 'N';
+  }
 }
 
 

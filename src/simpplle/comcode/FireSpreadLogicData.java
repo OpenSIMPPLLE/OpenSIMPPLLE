@@ -318,9 +318,15 @@ public class FireSpreadLogicData extends LogicData implements Externalizable {
 
     switch (fromEvu.getAdjPosition(toEvu)) {
 
-      case Evu.ABOVE:   adjPosition = ABOVE;   break;
-      case Evu.BELOW:   adjPosition = BELOW;   break;
-      case Evu.NEXT_TO: adjPosition = NEXT_TO; break;
+      case Evu.ABOVE:
+        adjPosition = ABOVE;
+        break;
+      case Evu.BELOW:
+        adjPosition = BELOW;
+        break;
+      case Evu.NEXT_TO:
+        adjPosition = NEXT_TO;
+        break;
 
     }
 
