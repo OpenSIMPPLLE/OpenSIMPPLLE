@@ -466,7 +466,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         windSpeed = Math.min(30, windSpeed + keaneWindSpeedOffset);
 
-        windDirection += keaneWindDirectionOffset;
+        windDirection = (windDirection + keaneWindDirectionOffset) % 360; // Wrap around if greater than 360 degrees
 
         double windSpread;
 
@@ -479,7 +479,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
           // Compute a coefficient that reflects wind direction
 
-          double coeff = Math.toRadians(fromUnit.getAngleDifference(spreadDirection, windDirection));
+          double coeff = Math.toRadians(fromUnit.getAzimuthDifference(spreadDirection, windDirection));
 
           // Compute the length:width ratio from Andrews (1986)
 
