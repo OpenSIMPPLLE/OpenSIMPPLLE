@@ -28,12 +28,15 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
   private static SpreadModel spreadModel = SpreadModel.SIMPPLLE;
 
-  private static double keaneExtremeWindMultiplier    = 5.0;
+  /**
+   * The multiplicative factor to apply to the wind speed when this fire event is extreme.
+   */
+  private static double keaneExtremeWindMultiplier = 4.0;
 
   /**
-   * How much wind speed can vary
+   * A wind speed variability in miles per hour.
    */
-  private static double keaneWindSpeedVariability     = 0.5;
+  private static double keaneWindSpeedVariability = 5.0;
 
   /**
    * Actual amount that wind speeds are changed,
@@ -42,7 +45,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private double keaneWindSpeedOffset;
 
   /**
-   * How much wind direction can vary
+   * A wind direction variability in degrees.
    */
   private static double keaneWindDirectionVariability = 45.0;
 
@@ -456,10 +459,15 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
       for (AdjacentData adjacent : adjacentArray) {
 
-        double windSpeed       = Math.round(adjacent.getWindSpeed() + keaneWindSpeedOffset);              // Miles per hour
-        double windDirection   = Math.toRadians(adjacent.getWindDirection() + keaneWindDirectionOffset);  // Degrees azimuth
-        double spreadDirection = Math.toRadians(adjacent.getSpread());                                    // Degrees azimuth
-        double slope           = adjacent.getSlope();                                                     // Percent slope / 100
+        double windSpeed       = adjacent.getWindSpeed();     // Miles per hour
+        double windDirection   = adjacent.getWindDirection(); // Degrees azimuth
+        double spreadDirection = adjacent.getSpread();        // Degrees azimuth
+        double slope           = adjacent.getSlope();         // Percent slope / 100
+
+        windSpeed = Math.min(30, windSpeed + keaneWindSpeedOffset);
+
+        windDirection += keaneWindDirectionOffset;
+
         double windSpread;
 
         adjacent.setWind(fromUnit.isDownwind(Math.toDegrees(spreadDirection), Math.toDegrees(windDirection))); // update wind direction to reflect offsets
@@ -506,12 +514,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         double spix = windSpread + slopeSpread;
 
         // compensate for longer distances on corners
-        if (adjacent.getSpread() == 45.0  ||
-            adjacent.getSpread() == 135.0 ||
-            adjacent.getSpread() == 225.0 ||
-            adjacent.getSpread() == 315.0 ) {
+        if (spreadDirection == 45.0  ||
+            spreadDirection == 135.0 ||
+            spreadDirection == 225.0 ||
+            spreadDirection == 315.0 ) {
 
           spix /= Math.sqrt(2);
+
         }
 
         List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
@@ -523,9 +532,15 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
           if (lineSuppUnits.contains(neighbor.getId())) break;
 
+          boolean toUnitWasBurning = neighbor.hasFireAnyLifeform();
+
           if (Evu.doSpread(prevUnit, neighbor, prevUnit.getDominantLifeformFire())) {
 
-            toUnits.add(neighbor);
+            if (!toUnitWasBurning) {
+
+              toUnits.add(neighbor);
+
+            }
 
           } else {
 

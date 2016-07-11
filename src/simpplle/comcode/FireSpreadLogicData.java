@@ -340,6 +340,16 @@ public class FireSpreadLogicData extends LogicData implements Externalizable {
 
     ProcessType fireProcessType = isExtreme ? extreme : average;
 
+    VegSimStateData state = toEvu.getState();
+
+    ProcessType currentProcess = state.getProcess();
+
+    if (fireProcessType.isFireLessIntense(currentProcess)) {
+
+      return null;
+
+    }
+
     if (!fireProcessType.isFireProcess()) {
 
       return fireProcessType;
