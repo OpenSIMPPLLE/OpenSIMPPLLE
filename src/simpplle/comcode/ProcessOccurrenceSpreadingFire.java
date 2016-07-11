@@ -456,13 +456,11 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
       for (AdjacentData adjacent : adjacentArray) {
 
-        // TODO: Apply stochastic elements from Keane Cell Percolation dialog
-
         double windSpeed       = Math.round(adjacent.getWindSpeed() + keaneWindSpeedOffset);              // Miles per hour
         double windDirection   = Math.toRadians(adjacent.getWindDirection() + keaneWindDirectionOffset);  // Degrees azimuth
         double spreadDirection = Math.toRadians(adjacent.getSpread());                                    // Degrees azimuth
         double slope           = adjacent.getSlope();                                                     // Percent slope / 100
-
+        char wind              = fromUnit.isDownwind(Math.toDegrees(spreadDirection), Math.toDegrees(windDirection)); // update wind direction to reflect offsets
         double windSpread;
 
         // Use wind multiplier for extreme fires
@@ -518,6 +516,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
 
         Evu prevUnit = fromUnit;
+
 
         for (Evu neighbor : neighbors) {
 
