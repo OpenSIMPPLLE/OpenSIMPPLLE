@@ -326,32 +326,10 @@ public class SimParam extends JDialog {
     JPanel discardTextPanel = new JPanel();
     discardTextPanel.setLayout(probReportsLayout);
 
-    JPanel buttonPanel = new JPanel();
-    buttonPanel.setAlignmentX(0.0f);
-    buttonPanel.setBorder(etchBorder);
-
     // Initialize
     fireSpreadModelCB = new JComboBox(fireSpreadModels);
 
-    // Run
-    runButton.setNextFocusableComponent(cancelButton);
-    runButton.setText("Run Simulation");
-    runButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        runButton_actionPerformed(e);
-      }
-    });
 
-    // Cancel
-    cancelButton.setMaximumSize(new Dimension(119, 27));
-    cancelButton.setMinimumSize(new Dimension(119, 27));
-    cancelButton.setPreferredSize(new Dimension(119, 27));
-    cancelButton.setText("Cancel");
-    cancelButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cancelButton_actionPerformed(e);
-      }
-    });
 
     numSimText.setBackground(Color.white);
     numSimText.setNextFocusableComponent(numStepText);
@@ -560,8 +538,34 @@ public class SimParam extends JDialog {
 
     writeAreaProbFilesCB.setEnabled(false);
 
+    /* Button Panel */
+
+    runButton.setText("Run Simulation");
+    runButton.setNextFocusableComponent(cancelButton);
+    runButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        runButton_actionPerformed(e);
+      }
+    });
+
+    cancelButton.setText("Cancel");
+    cancelButton.setMaximumSize(new Dimension(119, 27));
+    cancelButton.setMinimumSize(new Dimension(119, 27));
+    cancelButton.setPreferredSize(new Dimension(119, 27));
+    cancelButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        cancelButton_actionPerformed(e);
+      }
+    });
+
+    JPanel buttonPanel = new JPanel();
+    buttonPanel.setAlignmentX(0.0f);
+    buttonPanel.setBorder(etchBorder);
     buttonPanel.add(runButton, null);
     buttonPanel.add(cancelButton, null);
+
+    /* Main Panel */
+
     mainPanel.add(northPanel, BorderLayout.NORTH);
     mainPanel.add(southPanel, BorderLayout.SOUTH);
     southPanel.add(buttonPanel, BorderLayout.NORTH);
