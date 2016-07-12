@@ -176,10 +176,6 @@ public class SimParam extends JDialog {
     initialize();
   }
 
-  public SimParam() {
-    this(null, "", false, new Vector<>());
-  }
-
   void jbInit() throws Exception {
 
     // default font
