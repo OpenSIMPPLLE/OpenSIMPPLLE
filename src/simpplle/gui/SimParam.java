@@ -120,11 +120,11 @@ public class SimParam extends JDialog {
 
     /* Number of Simulations */
 
-    numSimText.setBackground(Color.white);
-    numSimText.setNextFocusableComponent(numStepText);
-    numSimText.setSelectionColor(Color.blue);
     numSimText.setText("1");
-    numSimText.setColumns(4);
+    numSimText.setBackground(Color.white);
+    numSimText.setSelectionColor(Color.blue);
+    numSimText.setPreferredSize(new Dimension(100,27));
+    numSimText.setNextFocusableComponent(numStepText);
     numSimText.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         numSimText_actionPerformed(e);
@@ -136,10 +136,12 @@ public class SimParam extends JDialog {
       }
     });
 
+    System.out.println(numSimText.getPreferredSize());
+
     JLabel numSimLabel = new JLabel();
     numSimLabel.setFont(monospaced);
-    numSimLabel.setLabelFor(numSimText);
     numSimLabel.setText("Number of Simulations ");
+    numSimLabel.setLabelFor(numSimText);
 
     FlowLayout numSimLayout = new FlowLayout();
     numSimLayout.setAlignment(FlowLayout.LEFT);
@@ -153,11 +155,11 @@ public class SimParam extends JDialog {
 
     /* Number of Time Steps */
 
-    numStepText.setBackground(Color.white);
-    numStepText.setNextFocusableComponent(fireSuppCB);
-    numStepText.setSelectionColor(Color.blue);
     numStepText.setText("5");
-    numStepText.setColumns(4);
+    numStepText.setBackground(Color.white);
+    numStepText.setSelectionColor(Color.blue);
+    numStepText.setPreferredSize(new Dimension(100,27));
+    numStepText.setNextFocusableComponent(fireSuppCB);
     numStepText.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         numStepText_actionPerformed(e);
@@ -186,6 +188,8 @@ public class SimParam extends JDialog {
 
     /* Simulation Method */
 
+    simMethodCB.setPreferredSize(new Dimension(200,27));
+
     JLabel simMethodLabel = new JLabel();
     simMethodLabel.setFont(monospaced);
     simMethodLabel.setText("Simulation Method     ");
@@ -201,6 +205,8 @@ public class SimParam extends JDialog {
     simMethodPanel.add(simMethodCB, null);
 
     /* Invasive Species Logic */
+
+    invasiveSpeciesCB.setPreferredSize(new Dimension(200,27));
 
     JLabel invasiveSpeciesLabel = new JLabel();
     invasiveSpeciesLabel.setFont(monospaced);
@@ -223,6 +229,7 @@ public class SimParam extends JDialog {
     fireSpreadModelLabel.setText("Fire Spread Model     ");
 
     fireSpreadModelCB = new JComboBox(fireSpreadModels);
+    fireSpreadModelCB.setPreferredSize(new Dimension(200,27));
 
     FlowLayout fireSpreadModelLayout = new FlowLayout();
     fireSpreadModelLayout.setAlignment(FlowLayout.LEFT);
