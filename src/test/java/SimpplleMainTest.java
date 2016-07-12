@@ -33,10 +33,4 @@ public class SimpplleMainTest {
     assertEquals(s.getStatusBar().getText(), "");
   }
 
-  // TODO
-  @Test
-  public void loadsNewZone(){
-    SimpplleMain s = new SimpplleMain();
-
-  }
 }

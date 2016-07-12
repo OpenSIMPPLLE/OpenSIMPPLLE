@@ -213,7 +213,7 @@ public class NewZoneDialog extends JDialog {
   /**
    * Loads the selected zone. An error message is displayed if there is an exception.
    */
-  private void loadZone() {
+  public void loadZone() {
 
     //=====================================================================
     // This is a hack from early OpenSIMPPLLE. It skips the index of the
@@ -265,6 +265,10 @@ public class NewZoneDialog extends JDialog {
 
     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
+  }
+
+  public JList getZoneList() {
+    return zoneList;
   }
 }
 

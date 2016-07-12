@@ -1,5 +1,6 @@
 import org.junit.Test;
-import simpplle.gui.NewZoneDialog;
+import simpplle.comcode.Area;
+import simpplle.comcode.Evu;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained
@@ -8,11 +9,13 @@ import simpplle.gui.NewZoneDialog;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  * <p>
- * <p> Contains tests pertaining to the NewZoneDialog class
+ * <p> Contains tests pertaining to the Area class
  */
-public class NewZoneDialogTest {
+public class AreaTest {
 
   @Test
-  public void loadZone(){
+  public void calculatesSlope(){
+    Area area = new Area();
+    Evu evu = new Evu();
   }
 }
