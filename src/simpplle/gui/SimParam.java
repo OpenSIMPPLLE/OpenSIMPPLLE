@@ -133,203 +133,9 @@ public class SimParam extends JDialog {
     Border rulesBorder    = new TitledBorder(etchBorder, "Rules File (optional)");
     Border statesBorder   = new TitledBorder(lineBorder, "All States Report");
 
-    // layout options
-
-    BorderLayout southLayout = new BorderLayout();
-    BorderLayout yearlyStepLayout = new BorderLayout();
-    BorderLayout ownershipLayout = new BorderLayout();
-    BorderLayout discountLayout = new BorderLayout();
-    BorderLayout spAreaPanel = new BorderLayout();
-    BorderLayout fireSuppLayout = new BorderLayout();
-    BorderLayout allStatesLayout = new BorderLayout();
-    BorderLayout outOptionsLayout = new BorderLayout();
-    BorderLayout trackSpeciesLayout = new BorderLayout();
-
-    FlowLayout outputOptionsLayout = new FlowLayout();
-    outputOptionsLayout.setAlignment(FlowLayout.LEFT);
-    outputOptionsLayout.setVgap(0);
-
-    BorderLayout mainLayout = new BorderLayout();
-    mainLayout.setHgap(5);
-    mainLayout.setVgap(5);
-
-    FlowLayout outfileLayout = new FlowLayout();
-    outfileLayout.setAlignment(FlowLayout.LEFT);
-    outfileLayout.setHgap(10);
-    outfileLayout.setVgap(1);
-
-    FlowLayout probReportsLayout = new FlowLayout();
-    probReportsLayout.setAlignment(FlowLayout.LEFT);
-
-    FlowLayout methodLayout = new FlowLayout();
-    methodLayout.setAlignment(FlowLayout.LEFT);
-    methodLayout.setHgap(10);
-    methodLayout.setVgap(1);
-
-    FlowLayout numSimLayout = new FlowLayout();
-    numSimLayout.setAlignment(FlowLayout.LEFT);
-    numSimLayout.setHgap(10);
-    numSimLayout.setVgap(1);
-
-    FlowLayout numStepLayout = new FlowLayout();
-    numStepLayout.setAlignment(FlowLayout.LEFT);
-    numStepLayout.setHgap(10);
-    numStepLayout.setVgap(1);
-
-    FlowLayout invasiveSpeciesLayout = new FlowLayout();
-    invasiveSpeciesLayout.setAlignment(FlowLayout.LEFT);
-    invasiveSpeciesLayout.setHgap(10);
-    invasiveSpeciesLayout.setVgap(1);
-
-    FlowLayout fireSpreadModelLayout = new FlowLayout();
-    fireSpreadModelLayout.setAlignment(FlowLayout.LEFT);
-    fireSpreadModelLayout.setHgap(10);
-    fireSpreadModelLayout.setVgap(1);
-
-    FlowLayout discardDataLayout = new FlowLayout();
-    discardDataLayout.setAlignment(FlowLayout.LEFT);
-    discardDataLayout.setVgap(0);
-
-    FlowLayout rulesFileLayout = new FlowLayout();
-    rulesFileLayout.setAlignment(FlowLayout.LEFT);
-    rulesFileLayout.setHgap(10);
-
-    FlowLayout stepsInMemoryLayout = new FlowLayout();
-    stepsInMemoryLayout.setAlignment(FlowLayout.LEFT);
-    stepsInMemoryLayout.setVgap(0);
-
-    GridLayout optionsLayout = new GridLayout();
-    optionsLayout.setColumns(2);
-    optionsLayout.setHgap(10);
-    optionsLayout.setRows(3);
-
-    FlowLayout outerOptionsLayout = new FlowLayout();
-    outerOptionsLayout.setAlignment(FlowLayout.LEFT);
-    outerOptionsLayout.setHgap(0);
-    outerOptionsLayout.setVgap(0);
-
-    FlowLayout databaseWriteLayout = new FlowLayout();
-    databaseWriteLayout.setAlignment(FlowLayout.LEFT);
-    databaseWriteLayout.setVgap(0);
-
-    FlowLayout trackSpeciesButtonLayout = new FlowLayout();
-    trackSpeciesButtonLayout.setAlignment(FlowLayout.LEFT);
-    trackSpeciesButtonLayout.setVgap(0);
-
-    FlowLayout trackSpeciesCBLayout = new FlowLayout();
-    trackSpeciesCBLayout.setAlignment(FlowLayout.LEFT);
-    trackSpeciesCBLayout.setVgap(0);
-
-    FlowLayout allStatesLayoutCB = new FlowLayout();
-    allStatesLayoutCB.setAlignment(FlowLayout.LEFT);
-    allStatesLayoutCB.setVgap(0);
-
-    // Set layouts
-
-    JPanel mainPanel = new JPanel();
-    mainPanel.setLayout(mainLayout);
-    mainPanel.setAlignmentX(0.0f);
-
-    JPanel southPanel = new JPanel();
-    southPanel.setLayout(southLayout);
-
-    JPanel northPanel = new JPanel();
-    northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
-
-    JPanel discountPanel = new JPanel();
-    discountPanel.setLayout(discountLayout);
-
-    JPanel fireSuppCBPanel = new JPanel();
-    fireSuppCBPanel.setLayout(fireSuppLayout);
-
-    JPanel ownershipPanel = new JPanel();
-    ownershipPanel.setLayout(ownershipLayout);
-
-    JPanel specialAreaPanel = new JPanel();
-    specialAreaPanel.setLayout(spAreaPanel);
-
-    JPanel outfilePanel = new JPanel();
-    outfilePanel.setLayout(outfileLayout);
-
-    JPanel yearlyStepPanel = new JPanel();
-    yearlyStepPanel.setLayout(yearlyStepLayout);
-
-    JPanel simMethodPanel = new JPanel();
-    simMethodPanel.setLayout(methodLayout);
-
-    JPanel numSimPanel = new JPanel();
-    numSimPanel.setLayout(numSimLayout);
-
-    JPanel numStepPanel = new JPanel();
-    numStepPanel.setLayout(numStepLayout);
-
-    JPanel invasiveSpeciesPanel = new JPanel();
-    invasiveSpeciesPanel.setLayout(invasiveSpeciesLayout);
-
-    JPanel fireSpreadModelPanel = new JPanel();
-    fireSpreadModelPanel.setLayout(fireSpreadModelLayout);
-
-    JPanel discardDataPanel = new JPanel();
-    discardDataPanel.setLayout(discardDataLayout);
-
-    JPanel allStatesRulesFilePanel = new JPanel();
-    allStatesRulesFilePanel.setLayout(rulesFileLayout);
-    allStatesRulesFilePanel.setBorder(rulesBorder);
-
-    JPanel timeStepsInMemoryPanel = new JPanel();
-    timeStepsInMemoryPanel.setLayout(stepsInMemoryLayout);
-
-    JPanel jPanel1 = new JPanel();
-    jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
-    jPanel1.setBorder(memoryBorder);
-
-    JPanel allStatesPanel = new JPanel();
-    allStatesPanel.setLayout(allStatesLayout);
-    allStatesPanel.setBorder(statesBorder);
-
-    JPanel allStatesCBPanel = new JPanel();
-    allStatesCBPanel.setLayout(allStatesLayoutCB);
-
-    JPanel outputOptionsPanel = new JPanel();
-    outputOptionsPanel.setLayout(outOptionsLayout);
-    outputOptionsPanel.setBorder(outputBorder);
-
-    JPanel optionsPanel = new JPanel();
-    optionsPanel.setLayout(optionsLayout);
-
-    JPanel optionsOuterPanel = new JPanel();
-    optionsOuterPanel.setLayout(outerOptionsLayout);
-    optionsOuterPanel.setBorder(optionsBorder);
-
-    JPanel databaseWritePanel = new JPanel();
-    databaseWritePanel.setLayout(databaseWriteLayout);
-
-    JPanel trackingSpeciesPanel = new JPanel();
-    trackingSpeciesPanel.setLayout(trackSpeciesLayout);
-    trackingSpeciesPanel.setBorder(trackingBorder);
-
-    JPanel trackSpeciesCBPanel = new JPanel();
-    trackSpeciesCBPanel.setLayout(trackSpeciesCBLayout);
-
-    JPanel trackSpeciesCategoryButtonPanel = new JPanel();
-    trackSpeciesCategoryButtonPanel.setLayout(trackSpeciesButtonLayout);
-
-    JPanel outputOptionsCBPanel = new JPanel();
-    outputOptionsCBPanel.setLayout(outputOptionsLayout);
-
-    JPanel panel = new JPanel();
-    panel.setLayout(new GridLayout(2, 0));
-
-    JPanel writeAccessPanel = new JPanel();
-    writeAccessPanel.setLayout(probReportsLayout);
-
-    JPanel discardTextPanel = new JPanel();
-    discardTextPanel.setLayout(probReportsLayout);
-
     // Initialize
+
     fireSpreadModelCB = new JComboBox(fireSpreadModels);
-
-
 
     numSimText.setBackground(Color.white);
     numSimText.setNextFocusableComponent(numStepText);
@@ -566,75 +372,238 @@ public class SimParam extends JDialog {
 
     /* Main Panel */
 
+    FlowLayout numSimLayout = new FlowLayout();
+    numSimLayout.setAlignment(FlowLayout.LEFT);
+    numSimLayout.setHgap(10);
+    numSimLayout.setVgap(1);
+
+    JPanel numSimPanel = new JPanel();
+    numSimPanel.setLayout(numSimLayout);
     numSimPanel.add(numSimLabel, null);
     numSimPanel.add(numSimText, null);
 
+    FlowLayout numStepLayout = new FlowLayout();
+    numStepLayout.setAlignment(FlowLayout.LEFT);
+    numStepLayout.setHgap(10);
+    numStepLayout.setVgap(1);
+
+    JPanel numStepPanel = new JPanel();
+    numStepPanel.setLayout(numStepLayout);
     numStepPanel.add(numStepLabel, null);
     numStepPanel.add(numStepText, null);
 
+    FlowLayout methodLayout = new FlowLayout();
+    methodLayout.setAlignment(FlowLayout.LEFT);
+    methodLayout.setHgap(10);
+    methodLayout.setVgap(1);
+
+    JPanel simMethodPanel = new JPanel();
+    simMethodPanel.setLayout(methodLayout);
     simMethodPanel.add(simMethodLabel, null);
     simMethodPanel.add(simMethodCB, null);
 
+    FlowLayout invasiveSpeciesLayout = new FlowLayout();
+    invasiveSpeciesLayout.setAlignment(FlowLayout.LEFT);
+    invasiveSpeciesLayout.setHgap(10);
+    invasiveSpeciesLayout.setVgap(1);
+
+    JPanel invasiveSpeciesPanel = new JPanel();
+    invasiveSpeciesPanel.setLayout(invasiveSpeciesLayout);
     invasiveSpeciesPanel.add(invasiveSpeciesLabel);
     invasiveSpeciesPanel.add(invasiveSpeciesCB);
 
+    FlowLayout fireSpreadModelLayout = new FlowLayout();
+    fireSpreadModelLayout.setAlignment(FlowLayout.LEFT);
+    fireSpreadModelLayout.setHgap(10);
+    fireSpreadModelLayout.setVgap(1);
+
+    JPanel fireSpreadModelPanel = new JPanel();
+    fireSpreadModelPanel.setLayout(fireSpreadModelLayout);
     fireSpreadModelPanel.add(fireSpreadModelLabel,null);
     fireSpreadModelPanel.add(fireSpreadModelCB,null);
 
+    BorderLayout yearlyStepLayout = new BorderLayout();
+
+    JPanel yearlyStepPanel = new JPanel();
+    yearlyStepPanel.setLayout(yearlyStepLayout);
     yearlyStepPanel.add(yearlyStepCB);
+
+    BorderLayout ownershipLayout = new BorderLayout();
+
+    JPanel ownershipPanel = new JPanel();
+    ownershipPanel.setLayout(ownershipLayout);
     ownershipPanel.add(ownershipCB);
+
+    BorderLayout fireSuppLayout = new BorderLayout();
+
+    JPanel fireSuppCBPanel = new JPanel();
+    fireSuppCBPanel.setLayout(fireSuppLayout);
     fireSuppCBPanel.add(fireSuppCB);
+
+    BorderLayout spAreaPanel = new BorderLayout();
+
+    JPanel specialAreaPanel = new JPanel();
+    specialAreaPanel.setLayout(spAreaPanel);
     specialAreaPanel.add(specialAreaCB);
+
+    BorderLayout discountLayout = new BorderLayout();
+
+    JPanel discountPanel = new JPanel();
+    discountPanel.setLayout(discountLayout);
     discountPanel.add(discountText, java.awt.BorderLayout.CENTER);
     discountPanel.add(discountCB, java.awt.BorderLayout.WEST);
 
+    GridLayout optionsLayout = new GridLayout();
+    optionsLayout.setColumns(2);
+    optionsLayout.setHgap(10);
+    optionsLayout.setRows(3);
+
+    JPanel optionsPanel = new JPanel();
+    optionsPanel.setLayout(optionsLayout);
     optionsPanel.add(yearlyStepPanel);
     optionsPanel.add(ownershipPanel);
     optionsPanel.add(fireSuppCBPanel);
     optionsPanel.add(specialAreaPanel);
     optionsPanel.add(discountPanel);
 
+    FlowLayout outerOptionsLayout = new FlowLayout();
+    outerOptionsLayout.setAlignment(FlowLayout.LEFT);
+    outerOptionsLayout.setHgap(0);
+    outerOptionsLayout.setVgap(0);
+
+    JPanel optionsOuterPanel = new JPanel();
+    optionsOuterPanel.setLayout(outerOptionsLayout);
+    optionsOuterPanel.setBorder(optionsBorder);
     optionsOuterPanel.add(optionsPanel);
 
+    FlowLayout outfileLayout = new FlowLayout();
+    outfileLayout.setAlignment(FlowLayout.LEFT);
+    outfileLayout.setHgap(10);
+    outfileLayout.setVgap(1);
+
+    JPanel outfilePanel = new JPanel();
+    outfilePanel.setLayout(outfileLayout);
     outfilePanel.add(outfileButton, null);
     outfilePanel.add(outfileText, null);
 
+    FlowLayout outputOptionsLayout = new FlowLayout();
+    outputOptionsLayout.setAlignment(FlowLayout.LEFT);
+    outputOptionsLayout.setVgap(0);
+
+    JPanel outputOptionsCBPanel = new JPanel();
+    outputOptionsCBPanel.setLayout(outputOptionsLayout);
     outputOptionsCBPanel.add(gisUpdateSpreadCB);
     outputOptionsCBPanel.add(gisUpdateSpreadLabel);
 
+    FlowLayout probReportsLayout = new FlowLayout();
+    probReportsLayout.setAlignment(FlowLayout.LEFT);
+
+    JPanel writeAccessPanel = new JPanel();
+    writeAccessPanel.setLayout(probReportsLayout);
     writeAccessPanel.add(writeAccessFilesCB);
 
+    JPanel panel = new JPanel();
+    panel.setLayout(new GridLayout(2, 0));
     panel.add(outputOptionsCBPanel);
     panel.add(writeAccessPanel);
 
+    JPanel discardTextPanel = new JPanel();
+    discardTextPanel.setLayout(probReportsLayout);
     discardTextPanel.add(writeAreaProbFilesCB);
 
+    BorderLayout outOptionsLayout = new BorderLayout();
+
+    JPanel outputOptionsPanel = new JPanel();
+    outputOptionsPanel.setLayout(outOptionsLayout);
+    outputOptionsPanel.setBorder(outputBorder);
     outputOptionsPanel.add(outfilePanel, java.awt.BorderLayout.NORTH);
     outputOptionsPanel.add(panel, BorderLayout.SOUTH);
     outputOptionsPanel.add(discardTextPanel);
 
+    FlowLayout databaseWriteLayout = new FlowLayout();
+    databaseWriteLayout.setAlignment(FlowLayout.LEFT);
+    databaseWriteLayout.setVgap(0);
+
+    JPanel databaseWritePanel = new JPanel();
+    databaseWritePanel.setLayout(databaseWriteLayout);
     databaseWritePanel.add(databaseWriteCB, null);
+
+    FlowLayout discardDataLayout = new FlowLayout();
+    discardDataLayout.setAlignment(FlowLayout.LEFT);
+    discardDataLayout.setVgap(0);
+
+    JPanel discardDataPanel = new JPanel();
+    discardDataPanel.setLayout(discardDataLayout);
     discardDataPanel.add(discardDataCB);
+
+    FlowLayout stepsInMemoryLayout = new FlowLayout();
+    stepsInMemoryLayout.setAlignment(FlowLayout.LEFT);
+    stepsInMemoryLayout.setVgap(0);
+
+    JPanel timeStepsInMemoryPanel = new JPanel();
+    timeStepsInMemoryPanel.setLayout(stepsInMemoryLayout);
     timeStepsInMemoryPanel.add(tsInMemoryText);
     timeStepsInMemoryPanel.add(tsInMemoryLabel);
 
+    JPanel jPanel1 = new JPanel();
+    jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+    jPanel1.setBorder(memoryBorder);
     jPanel1.add(databaseWritePanel);
     jPanel1.add(discardDataPanel);
     jPanel1.add(timeStepsInMemoryPanel);
 
+    FlowLayout allStatesLayoutCB = new FlowLayout();
+    allStatesLayoutCB.setAlignment(FlowLayout.LEFT);
+    allStatesLayoutCB.setVgap(0);
+
+    JPanel allStatesCBPanel = new JPanel();
+    allStatesCBPanel.setLayout(allStatesLayoutCB);
     allStatesCBPanel.add(allStatesCB);
+
+    FlowLayout rulesFileLayout = new FlowLayout();
+    rulesFileLayout.setAlignment(FlowLayout.LEFT);
+    rulesFileLayout.setHgap(10);
+
+    JPanel allStatesRulesFilePanel = new JPanel();
+    allStatesRulesFilePanel.setLayout(rulesFileLayout);
+    allStatesRulesFilePanel.setBorder(rulesBorder);
     allStatesRulesFilePanel.add(allStatesFilePB);
     allStatesRulesFilePanel.add(allStatesFileText);
+
+    BorderLayout allStatesLayout = new BorderLayout();
+
+    JPanel allStatesPanel = new JPanel();
+    allStatesPanel.setLayout(allStatesLayout);
+    allStatesPanel.setBorder(statesBorder);
     allStatesPanel.add(allStatesCBPanel, java.awt.BorderLayout.NORTH);
     allStatesPanel.add(allStatesRulesFilePanel, java.awt.BorderLayout.CENTER);
 
+    FlowLayout trackSpeciesButtonLayout = new FlowLayout();
+    trackSpeciesButtonLayout.setAlignment(FlowLayout.LEFT);
+    trackSpeciesButtonLayout.setVgap(0);
+
+    JPanel trackSpeciesCategoryButtonPanel = new JPanel();
+    trackSpeciesCategoryButtonPanel.setLayout(trackSpeciesButtonLayout);
     trackSpeciesCategoryButtonPanel.add(trackingSpeciesCategoryPB);
 
+    FlowLayout trackSpeciesCBLayout = new FlowLayout();
+    trackSpeciesCBLayout.setAlignment(FlowLayout.LEFT);
+    trackSpeciesCBLayout.setVgap(0);
+
+    JPanel trackSpeciesCBPanel = new JPanel();
+    trackSpeciesCBPanel.setLayout(trackSpeciesCBLayout);
     trackSpeciesCBPanel.add(trackingSpeciesCB);
 
+    BorderLayout trackSpeciesLayout = new BorderLayout();
+
+    JPanel trackingSpeciesPanel = new JPanel();
+    trackingSpeciesPanel.setLayout(trackSpeciesLayout);
+    trackingSpeciesPanel.setBorder(trackingBorder);
     trackingSpeciesPanel.add(trackSpeciesCategoryButtonPanel, java.awt.BorderLayout.CENTER);
     trackingSpeciesPanel.add(trackSpeciesCBPanel, java.awt.BorderLayout.NORTH);
 
+    JPanel northPanel = new JPanel();
+    northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
     northPanel.add(numSimPanel, null);
     northPanel.add(numStepPanel, null);
     northPanel.add(simMethodPanel, null);
@@ -646,8 +615,19 @@ public class SimParam extends JDialog {
     northPanel.add(allStatesPanel);
     northPanel.add(trackingSpeciesPanel);
 
+    BorderLayout southLayout = new BorderLayout();
+
+    JPanel southPanel = new JPanel();
+    southPanel.setLayout(southLayout);
     southPanel.add(buttonPanel, BorderLayout.NORTH);
 
+    BorderLayout mainLayout = new BorderLayout();
+    mainLayout.setHgap(5);
+    mainLayout.setVgap(5);
+
+    JPanel mainPanel = new JPanel();
+    mainPanel.setLayout(mainLayout);
+    mainPanel.setAlignmentX(0.0f);
     mainPanel.add(northPanel, BorderLayout.NORTH);
     mainPanel.add(southPanel, BorderLayout.SOUTH);
 
