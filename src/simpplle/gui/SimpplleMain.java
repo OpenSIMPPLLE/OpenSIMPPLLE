@@ -1836,7 +1836,7 @@ public class SimpplleMain extends JFrame {
  * @param e
  */
   void runSimulation_actionPerformed(ActionEvent e) {
-    SimParam  dlg = new SimParam(this, "Set Simulation Parameters", true, fireSpreadModels);
+    SimParam  dlg = new SimParam(this, fireSpreadModels);
     setDialogLocation(dlg);
     dlg.setVisible(true);
   }

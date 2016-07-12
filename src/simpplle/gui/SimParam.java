@@ -162,8 +162,8 @@ public class SimParam extends JDialog {
   private SimpplleMain simpplleMain;
 
   // Overloaded Constructor
-  public SimParam(SimpplleMain frame, String title, boolean modal, Vector<String> fireSpreadModels) {
-    super(frame, title, modal);
+  public SimParam(SimpplleMain frame, Vector<String> fireSpreadModels) {
+    super(frame, "Simulation Parameters", true);
     this.fireSpreadModels = fireSpreadModels;
     try  {
       jbInit();
