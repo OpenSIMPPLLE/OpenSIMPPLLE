@@ -546,6 +546,20 @@ public class SimParam extends JDialog {
       }
     });
 
+    gisUpdateSpreadCB.setEnabled(false);
+    gisUpdateSpreadCB.setText("GIS Update/Spread Files");
+    gisUpdateSpreadCB.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        gisUpdateSpreadCB_actionPerformed(e);
+      }
+    });
+
+    writeAccessFilesCB.setEnabled(false);
+    writeAccessFilesCB.setSelected(false);
+    writeAccessFilesCB.setText("Write Data to Text Files (Suitable for import into Access or other Programs)");
+
+    writeAreaProbFilesCB.setEnabled(false);
+
     buttonPanel.add(runButton, null);
     buttonPanel.add(cancelButton, null);
     mainPanel.add(northPanel, BorderLayout.NORTH);
@@ -582,30 +596,11 @@ public class SimParam extends JDialog {
     outfilePanel.add(outfileButton, null);
     outfilePanel.add(outfileText, null);
     outputOptionsPanel.add(panel, BorderLayout.SOUTH);
-
-    gisUpdateSpreadCB.setEnabled(false);
-    gisUpdateSpreadCB.setText("GIS Update/Spread Files");
-    gisUpdateSpreadCB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        gisUpdateSpreadCB_actionPerformed(e);
-      }
-    });
-
     panel.add(outputOptionsCBPanel);
-
     outputOptionsCBPanel.add(gisUpdateSpreadCB);
     outputOptionsCBPanel.add(gisUpdateSpreadLabel);
-
     panel.add(writeAccessPanel);
-
     writeAccessPanel.add(writeAccessFilesCB);
-
-    writeAccessFilesCB.setEnabled(false);
-    writeAccessFilesCB.setSelected(false);
-    writeAccessFilesCB.setText("Write Data to Text Files (Suitable for import into Access or other Programs)");
-
-    writeAreaProbFilesCB.setEnabled(false);
-
     discardTextPanel.add(writeAreaProbFilesCB);
     outputOptionsPanel.add(discardTextPanel);
     northPanel.add(jPanel1);
@@ -622,9 +617,6 @@ public class SimParam extends JDialog {
     trackSpeciesCategoryButtonPanel.add(trackingSpeciesCategoryPB);
     allStatesRulesFilePanel.add(allStatesFilePB);
     allStatesRulesFilePanel.add(allStatesFileText);
-
-    this.getContentPane().add(mainPanel, java.awt.BorderLayout.WEST);
-
     allStatesPanel.add(allStatesCBPanel, java.awt.BorderLayout.NORTH);
     allStatesCBPanel.add(allStatesCB);
     allStatesPanel.add(allStatesRulesFilePanel, java.awt.BorderLayout.CENTER);
@@ -632,6 +624,8 @@ public class SimParam extends JDialog {
     discountPanel.add(discountCB, java.awt.BorderLayout.WEST);
     trackingSpeciesPanel.add(trackSpeciesCategoryButtonPanel, java.awt.BorderLayout.CENTER);
     trackingSpeciesPanel.add(trackSpeciesCBPanel, java.awt.BorderLayout.NORTH);
+
+    getContentPane().add(mainPanel, java.awt.BorderLayout.WEST);
 
   }
 
