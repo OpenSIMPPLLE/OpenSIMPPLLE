@@ -117,25 +117,9 @@ public class SimParam extends JDialog {
 
   void jbInit() throws Exception {
 
-    // default font
-
     Font defaultFont = new java.awt.Font("Monospaced", Font.PLAIN, 14);
 
-    // build borders
-
-    Border lineBorder = BorderFactory.createLineBorder(Color.BLACK, 2);
-    Border etchBorder = BorderFactory.createEtchedBorder();
-
-    Border memoryBorder   = new TitledBorder(lineBorder, "Memory Saving Options");
-    Border trackingBorder = new TitledBorder(lineBorder, "Tracking Species Report");
-    Border optionsBorder  = new TitledBorder(lineBorder, "Options");
-    Border outputBorder   = new TitledBorder(lineBorder, "Results Output Options");
-    Border rulesBorder    = new TitledBorder(etchBorder, "Rules File (optional)");
-    Border statesBorder   = new TitledBorder(lineBorder, "All States Report");
-
-    // Initialize
-
-    fireSpreadModelCB = new JComboBox(fireSpreadModels);
+    /* Number of Simulations */
 
     numSimText.setBackground(Color.white);
     numSimText.setNextFocusableComponent(numStepText);
@@ -153,6 +137,23 @@ public class SimParam extends JDialog {
       }
     });
 
+    JLabel numSimLabel = new JLabel();
+    numSimLabel.setFont(defaultFont);
+    numSimLabel.setLabelFor(numSimText);
+    numSimLabel.setText("Number of Simulations ");
+
+    FlowLayout numSimLayout = new FlowLayout();
+    numSimLayout.setAlignment(FlowLayout.LEFT);
+    numSimLayout.setHgap(10);
+    numSimLayout.setVgap(1);
+
+    JPanel numSimPanel = new JPanel();
+    numSimPanel.setLayout(numSimLayout);
+    numSimPanel.add(numSimLabel, null);
+    numSimPanel.add(numSimText, null);
+
+    /* Number of Time Steps */
+
     numStepText.setBackground(Color.white);
     numStepText.setNextFocusableComponent(fireSuppCB);
     numStepText.setSelectionColor(Color.blue);
@@ -169,218 +170,10 @@ public class SimParam extends JDialog {
       }
     });
 
-    JLabel numSimLabel = new JLabel();
-    numSimLabel.setFont(defaultFont);
-    numSimLabel.setLabelFor(numSimText);
-    numSimLabel.setText("Number of Simulations ");
-
     JLabel numStepLabel = new JLabel();
     numStepLabel.setFont(defaultFont);
     numStepLabel.setLabelFor(numStepText);
     numStepLabel.setText("Number of Time Steps  ");
-
-    fireSuppCB.setFont(defaultFont);
-    fireSuppCB.setNextFocusableComponent(discountCB);
-    fireSuppCB.setText("Fire Suppression");
-    fireSuppCB.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(ItemEvent e) {
-        fireSuppCB_itemStateChanged(e);
-      }
-    });
-
-    discountCB.setEnabled(false);
-    discountCB.setFont(defaultFont);
-    discountCB.setNextFocusableComponent(discountText);
-    discountCB.setText("Discounted Cost");
-    discountCB.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(ItemEvent e) {
-        discountCB_itemStateChanged(e);
-      }
-    });
-
-    discountText.setBackground(Color.white);
-    discountText.setEnabled(false);
-    discountText.setNextFocusableComponent(ownershipCB);
-    discountText.setSelectionColor(Color.blue);
-    discountText.setText("1.04");
-    discountText.setColumns(4);
-
-    ownershipCB.setEnabled(false);
-    ownershipCB.setFont(defaultFont);
-    ownershipCB.setNextFocusableComponent(specialAreaCB);
-    ownershipCB.setText("Track Ownership");
-    ownershipCB.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(ItemEvent e) {
-        ownershipCB_itemStateChanged(e);
-      }
-    });
-
-    specialAreaCB.setEnabled(false);
-    specialAreaCB.setFont(defaultFont);
-    specialAreaCB.setText("Track Special Area");
-    specialAreaCB.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(ItemEvent e) {
-        specialAreaCB_itemStateChanged(e);
-      }
-    });
-
-    outfileText.setBackground(Color.white);
-    outfileText.setNextFocusableComponent(allStatesFilePB);
-    outfileText.setEditable(false);
-    outfileText.setSelectionColor(Color.blue);
-    outfileText.setColumns(40);
-
-    outfileButton.setMinimumSize(new Dimension(40, 27));
-    outfileButton.setNextFocusableComponent(outfileText);
-    outfileButton.setPreferredSize(new Dimension(40, 27));
-    outfileButton.setToolTipText("Set the output files prefex.");
-    outfileButton.setHorizontalTextPosition(SwingConstants.LEFT);
-    outfileButton.setIcon(new ImageIcon(simpplle.gui.SimParam.class.getResource("images/save.gif")));
-    outfileButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        outfileButton_actionPerformed(e);
-      }
-    });
-
-    yearlyStepCB.setFont(defaultFont);
-    yearlyStepCB.setText("Yearly Time Steps");
-    yearlyStepCB.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(ItemEvent e) {
-        yearlyStepCB_itemStateChanged(e);
-      }
-    });
-
-    JLabel simMethodLabel = new JLabel();
-    simMethodLabel.setFont(defaultFont);
-    simMethodLabel.setText("Simulation Method     ");
-
-    databaseWriteCB.setEnabled(false);
-    databaseWriteCB.setFont(defaultFont);
-    databaseWriteCB.setToolTipText("This will write simulation data to a database");
-    databaseWriteCB.setText("Use Database (saves memory, slows run)");
-
-//    writeProbFilesCB.setEnabled(false);
-//    writeProbFilesCB.setToolTipText("Write GIS Probability Files (slow)");
-//    writeProbFilesCB.setText("Write GIS Probability Files (slow)");
-
-    discardDataCB.setFont(defaultFont);
-    discardDataCB.setText(
-      "Discard Unnecessary Simulation Data, needed for extremely long term " +
-        "simulations.");
-    discardDataCB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        discardDataCB_actionPerformed(e);
-      }
-    });
-
-    writeAreaProbFilesCB.setFont(defaultFont);
-    writeAreaProbFilesCB.setText("Write probability reports for multiple simulations.");
-
-    allStatesFilePB.setIcon(new ImageIcon(simpplle.gui.SimParam.class.getResource("images/save.gif")));
-    allStatesFilePB.setMinimumSize(new Dimension(40, 27));
-    allStatesFilePB.setNextFocusableComponent(runButton);
-    allStatesFilePB.setPreferredSize(new Dimension(40, 27));
-    allStatesFilePB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        allStatesFilePB_actionPerformed(e);
-      }
-    });
-
-    allStatesFileText.setEditable(false);
-    allStatesFileText.setBackground(Color.white);
-    allStatesFileText.setSelectionColor(Color.blue);
-    allStatesFileText.setColumns(40);
-
-    tsInMemoryText.setEnabled(false);
-    tsInMemoryText.setNextFocusableComponent(allStatesFilePB);
-    tsInMemoryText.setText("10");
-    tsInMemoryText.setColumns(4);
-    tsInMemoryText.addFocusListener(new FocusAdapter() {
-      public void focusLost(FocusEvent e) {
-        tsInMemoryText_focusLost(e);
-      }
-    });
-    tsInMemoryText.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        tsInMemoryText_actionPerformed(e);
-      }
-    });
-
-    tsInMemoryLabel.setEnabled(false);
-    tsInMemoryLabel.setText("Time Steps kept in memory (minimum 10)");
-
-    allStatesCB.setText(
-      "Enable All States Report (needed if above discard option is checked or doing multiple runs)");
-
-    JLabel invasiveSpeciesLabel = new JLabel();
-    invasiveSpeciesLabel.setFont(defaultFont);
-    invasiveSpeciesLabel.setText("Invasive Species Logic");
-
-    JLabel fireSpreadModelLabel = new JLabel();
-    fireSpreadModelLabel.setFont(defaultFont);
-    fireSpreadModelLabel.setText("Fire Spread Model     ");
-
-    trackingSpeciesCB.setText(
-      "Generate Tracking Species Report (needed if discarding data or multiple " +
-      "runs)");
-    trackingSpeciesCategoryPB.setText("Adjust Categories");
-    trackingSpeciesCategoryPB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        trackingSpeciesCategoryPB_actionPerformed(e);
-      }
-    });
-
-    gisUpdateSpreadCB.setEnabled(false);
-    gisUpdateSpreadCB.setText("GIS Update/Spread Files");
-    gisUpdateSpreadCB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        gisUpdateSpreadCB_actionPerformed(e);
-      }
-    });
-
-    writeAccessFilesCB.setEnabled(false);
-    writeAccessFilesCB.setSelected(false);
-    writeAccessFilesCB.setText("Write Data to Text Files (Suitable for import into Access or other Programs)");
-
-    writeAreaProbFilesCB.setEnabled(false);
-
-    /* Button Panel */
-
-    runButton.setText("Run Simulation");
-    runButton.setNextFocusableComponent(cancelButton);
-    runButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        runButton_actionPerformed(e);
-      }
-    });
-
-    cancelButton.setText("Cancel");
-    cancelButton.setMaximumSize(new Dimension(119, 27));
-    cancelButton.setMinimumSize(new Dimension(119, 27));
-    cancelButton.setPreferredSize(new Dimension(119, 27));
-    cancelButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cancelButton_actionPerformed(e);
-      }
-    });
-
-    JPanel buttonPanel = new JPanel();
-    buttonPanel.setAlignmentX(0.0f);
-    buttonPanel.setBorder(etchBorder);
-    buttonPanel.add(runButton, null);
-    buttonPanel.add(cancelButton, null);
-
-    /* Main Panel */
-
-    FlowLayout numSimLayout = new FlowLayout();
-    numSimLayout.setAlignment(FlowLayout.LEFT);
-    numSimLayout.setHgap(10);
-    numSimLayout.setVgap(1);
-
-    JPanel numSimPanel = new JPanel();
-    numSimPanel.setLayout(numSimLayout);
-    numSimPanel.add(numSimLabel, null);
-    numSimPanel.add(numSimText, null);
 
     FlowLayout numStepLayout = new FlowLayout();
     numStepLayout.setAlignment(FlowLayout.LEFT);
@@ -392,6 +185,12 @@ public class SimParam extends JDialog {
     numStepPanel.add(numStepLabel, null);
     numStepPanel.add(numStepText, null);
 
+    /* Simulation Method */
+
+    JLabel simMethodLabel = new JLabel();
+    simMethodLabel.setFont(defaultFont);
+    simMethodLabel.setText("Simulation Method     ");
+
     FlowLayout methodLayout = new FlowLayout();
     methodLayout.setAlignment(FlowLayout.LEFT);
     methodLayout.setHgap(10);
@@ -401,6 +200,12 @@ public class SimParam extends JDialog {
     simMethodPanel.setLayout(methodLayout);
     simMethodPanel.add(simMethodLabel, null);
     simMethodPanel.add(simMethodCB, null);
+
+    /* Invasive Species Logic */
+
+    JLabel invasiveSpeciesLabel = new JLabel();
+    invasiveSpeciesLabel.setFont(defaultFont);
+    invasiveSpeciesLabel.setText("Invasive Species Logic");
 
     FlowLayout invasiveSpeciesLayout = new FlowLayout();
     invasiveSpeciesLayout.setAlignment(FlowLayout.LEFT);
@@ -412,6 +217,14 @@ public class SimParam extends JDialog {
     invasiveSpeciesPanel.add(invasiveSpeciesLabel);
     invasiveSpeciesPanel.add(invasiveSpeciesCB);
 
+    /* Fire Spread Model */
+
+    JLabel fireSpreadModelLabel = new JLabel();
+    fireSpreadModelLabel.setFont(defaultFont);
+    fireSpreadModelLabel.setText("Fire Spread Model     ");
+
+    fireSpreadModelCB = new JComboBox(fireSpreadModels);
+
     FlowLayout fireSpreadModelLayout = new FlowLayout();
     fireSpreadModelLayout.setAlignment(FlowLayout.LEFT);
     fireSpreadModelLayout.setHgap(10);
@@ -422,11 +235,33 @@ public class SimParam extends JDialog {
     fireSpreadModelPanel.add(fireSpreadModelLabel,null);
     fireSpreadModelPanel.add(fireSpreadModelCB,null);
 
+    /* Yearly Time Steps */
+
+    yearlyStepCB.setFont(defaultFont);
+    yearlyStepCB.setText("Yearly Time Steps");
+    yearlyStepCB.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(ItemEvent e) {
+        yearlyStepCB_itemStateChanged(e);
+      }
+    });
+
     BorderLayout yearlyStepLayout = new BorderLayout();
 
     JPanel yearlyStepPanel = new JPanel();
     yearlyStepPanel.setLayout(yearlyStepLayout);
     yearlyStepPanel.add(yearlyStepCB);
+
+    /* Track Ownership */
+
+    ownershipCB.setText("Track Ownership");
+    ownershipCB.setFont(defaultFont);
+    ownershipCB.setEnabled(false);
+    ownershipCB.setNextFocusableComponent(specialAreaCB);
+    ownershipCB.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(ItemEvent e) {
+        ownershipCB_itemStateChanged(e);
+      }
+    });
 
     BorderLayout ownershipLayout = new BorderLayout();
 
@@ -434,11 +269,33 @@ public class SimParam extends JDialog {
     ownershipPanel.setLayout(ownershipLayout);
     ownershipPanel.add(ownershipCB);
 
+    /* Fire Suppression */
+
+    fireSuppCB.setText("Fire Suppression");
+    fireSuppCB.setFont(defaultFont);
+    fireSuppCB.setNextFocusableComponent(discountCB);
+    fireSuppCB.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(ItemEvent e) {
+        fireSuppCB_itemStateChanged(e);
+      }
+    });
+
     BorderLayout fireSuppLayout = new BorderLayout();
 
     JPanel fireSuppCBPanel = new JPanel();
     fireSuppCBPanel.setLayout(fireSuppLayout);
     fireSuppCBPanel.add(fireSuppCB);
+
+    /* Track Special Area */
+
+    specialAreaCB.setText("Track Special Area");
+    specialAreaCB.setFont(defaultFont);
+    specialAreaCB.setEnabled(false);
+    specialAreaCB.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(ItemEvent e) {
+        specialAreaCB_itemStateChanged(e);
+      }
+    });
 
     BorderLayout spAreaPanel = new BorderLayout();
 
@@ -446,12 +303,35 @@ public class SimParam extends JDialog {
     specialAreaPanel.setLayout(spAreaPanel);
     specialAreaPanel.add(specialAreaCB);
 
+    /* Discounted Cost */
+
+    discountText.setText("1.04");
+    discountText.setEnabled(false);
+    discountText.setBackground(Color.white);
+    discountText.setNextFocusableComponent(ownershipCB);
+    discountText.setSelectionColor(Color.blue);
+    discountText.setColumns(4);
+
+    discountCB.setText("Discounted Cost");
+    discountCB.setFont(defaultFont);
+    discountCB.setEnabled(false);
+    discountCB.setNextFocusableComponent(discountText);
+    discountCB.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(ItemEvent e) {
+        discountCB_itemStateChanged(e);
+      }
+    });
+
     BorderLayout discountLayout = new BorderLayout();
 
     JPanel discountPanel = new JPanel();
     discountPanel.setLayout(discountLayout);
     discountPanel.add(discountText, java.awt.BorderLayout.CENTER);
     discountPanel.add(discountCB, java.awt.BorderLayout.WEST);
+
+    /* Options */
+
+    Border optionsBorder  = new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "Options");
 
     GridLayout optionsLayout = new GridLayout();
     optionsLayout.setColumns(2);
@@ -476,6 +356,26 @@ public class SimParam extends JDialog {
     optionsOuterPanel.setBorder(optionsBorder);
     optionsOuterPanel.add(optionsPanel);
 
+    /* Results Output File Chooser */
+
+    outfileButton.setMinimumSize(new Dimension(40, 27));
+    outfileButton.setNextFocusableComponent(outfileText);
+    outfileButton.setPreferredSize(new Dimension(40, 27));
+    outfileButton.setToolTipText("Set the output files prefex.");
+    outfileButton.setHorizontalTextPosition(SwingConstants.LEFT);
+    outfileButton.setIcon(new ImageIcon(simpplle.gui.SimParam.class.getResource("images/save.gif")));
+    outfileButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        outfileButton_actionPerformed(e);
+      }
+    });
+
+    outfileText.setBackground(Color.white);
+    outfileText.setNextFocusableComponent(allStatesFilePB);
+    outfileText.setEditable(false);
+    outfileText.setSelectionColor(Color.blue);
+    outfileText.setColumns(40);
+
     FlowLayout outfileLayout = new FlowLayout();
     outfileLayout.setAlignment(FlowLayout.LEFT);
     outfileLayout.setHgap(10);
@@ -486,6 +386,16 @@ public class SimParam extends JDialog {
     outfilePanel.add(outfileButton, null);
     outfilePanel.add(outfileText, null);
 
+    /* GIS Update/Spread Files */
+
+    gisUpdateSpreadCB.setEnabled(false);
+    gisUpdateSpreadCB.setText("GIS Update/Spread Files");
+    gisUpdateSpreadCB.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        gisUpdateSpreadCB_actionPerformed(e);
+      }
+    });
+
     FlowLayout outputOptionsLayout = new FlowLayout();
     outputOptionsLayout.setAlignment(FlowLayout.LEFT);
     outputOptionsLayout.setVgap(0);
@@ -495,21 +405,37 @@ public class SimParam extends JDialog {
     outputOptionsCBPanel.add(gisUpdateSpreadCB);
     outputOptionsCBPanel.add(gisUpdateSpreadLabel);
 
-    FlowLayout probReportsLayout = new FlowLayout();
+    /* Write Data to Text Files */
+
+    writeAccessFilesCB.setEnabled(false);
+    writeAccessFilesCB.setSelected(false);
+    writeAccessFilesCB.setText("Write Data to Text Files (Suitable for import into Access or other Programs)");
+
+    FlowLayout probReportsLayout = new FlowLayout(); // TODO: Check if panels can share the same FlowLayout instance
     probReportsLayout.setAlignment(FlowLayout.LEFT);
 
     JPanel writeAccessPanel = new JPanel();
     writeAccessPanel.setLayout(probReportsLayout);
     writeAccessPanel.add(writeAccessFilesCB);
 
-    JPanel panel = new JPanel();
+    JPanel panel = new JPanel(); // TODO: Remove this panel
     panel.setLayout(new GridLayout(2, 0));
     panel.add(outputOptionsCBPanel);
     panel.add(writeAccessPanel);
 
+    /* Write probability reports for multiple simulations */
+
+    writeAreaProbFilesCB.setFont(defaultFont);
+    writeAreaProbFilesCB.setText("Write probability reports for multiple simulations.");
+    writeAreaProbFilesCB.setEnabled(false);
+
     JPanel discardTextPanel = new JPanel();
     discardTextPanel.setLayout(probReportsLayout);
     discardTextPanel.add(writeAreaProbFilesCB);
+
+    /* Results Output Options */
+
+    Border outputBorder   = new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "Results Output Options");
 
     BorderLayout outOptionsLayout = new BorderLayout();
 
@@ -520,6 +446,13 @@ public class SimParam extends JDialog {
     outputOptionsPanel.add(panel, BorderLayout.SOUTH);
     outputOptionsPanel.add(discardTextPanel);
 
+    /* Use Database */
+
+    databaseWriteCB.setEnabled(false);
+    databaseWriteCB.setFont(defaultFont);
+    databaseWriteCB.setToolTipText("This will write simulation data to a database");
+    databaseWriteCB.setText("Use Database (saves memory, slows run)");
+
     FlowLayout databaseWriteLayout = new FlowLayout();
     databaseWriteLayout.setAlignment(FlowLayout.LEFT);
     databaseWriteLayout.setVgap(0);
@@ -528,6 +461,16 @@ public class SimParam extends JDialog {
     databaseWritePanel.setLayout(databaseWriteLayout);
     databaseWritePanel.add(databaseWriteCB, null);
 
+    /* Discard Unnecessary Simulation Data */
+
+    discardDataCB.setFont(defaultFont);
+    discardDataCB.setText("Discard Unnecessary Simulation Data, needed for extremely long term simulations.");
+    discardDataCB.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        discardDataCB_actionPerformed(e);
+      }
+    });
+
     FlowLayout discardDataLayout = new FlowLayout();
     discardDataLayout.setAlignment(FlowLayout.LEFT);
     discardDataLayout.setVgap(0);
@@ -535,6 +478,26 @@ public class SimParam extends JDialog {
     JPanel discardDataPanel = new JPanel();
     discardDataPanel.setLayout(discardDataLayout);
     discardDataPanel.add(discardDataCB);
+
+    /* Time Steps kept in memory */
+
+    tsInMemoryText.setEnabled(false);
+    tsInMemoryText.setText("10");
+    tsInMemoryText.setColumns(4);
+    tsInMemoryText.setNextFocusableComponent(allStatesFilePB);
+    tsInMemoryText.addFocusListener(new FocusAdapter() {
+      public void focusLost(FocusEvent e) {
+        tsInMemoryText_focusLost(e);
+      }
+    });
+    tsInMemoryText.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        tsInMemoryText_actionPerformed(e);
+      }
+    });
+
+    tsInMemoryLabel.setEnabled(false);
+    tsInMemoryLabel.setText("Time Steps kept in memory (minimum 10)");
 
     FlowLayout stepsInMemoryLayout = new FlowLayout();
     stepsInMemoryLayout.setAlignment(FlowLayout.LEFT);
@@ -545,12 +508,20 @@ public class SimParam extends JDialog {
     timeStepsInMemoryPanel.add(tsInMemoryText);
     timeStepsInMemoryPanel.add(tsInMemoryLabel);
 
+    /* Memory Saving Options */
+
+    Border memoryBorder = new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "Memory Saving Options");
+
     JPanel jPanel1 = new JPanel();
     jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
     jPanel1.setBorder(memoryBorder);
     jPanel1.add(databaseWritePanel);
     jPanel1.add(discardDataPanel);
     jPanel1.add(timeStepsInMemoryPanel);
+
+    /* Enable All States Report */
+
+    allStatesCB.setText("Enable All States Report (needed if above discard option is checked or doing multiple runs)");
 
     FlowLayout allStatesLayoutCB = new FlowLayout();
     allStatesLayoutCB.setAlignment(FlowLayout.LEFT);
@@ -559,6 +530,25 @@ public class SimParam extends JDialog {
     JPanel allStatesCBPanel = new JPanel();
     allStatesCBPanel.setLayout(allStatesLayoutCB);
     allStatesCBPanel.add(allStatesCB);
+
+    /* Rules File */
+
+    Border rulesBorder = new TitledBorder(BorderFactory.createEtchedBorder(), "Rules File (optional)");
+
+    allStatesFilePB.setIcon(new ImageIcon(simpplle.gui.SimParam.class.getResource("images/save.gif")));
+    allStatesFilePB.setMinimumSize(new Dimension(40, 27));
+    allStatesFilePB.setNextFocusableComponent(runButton);
+    allStatesFilePB.setPreferredSize(new Dimension(40, 27));
+    allStatesFilePB.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        allStatesFilePB_actionPerformed(e);
+      }
+    });
+
+    allStatesFileText.setEditable(false);
+    allStatesFileText.setBackground(Color.white);
+    allStatesFileText.setSelectionColor(Color.blue);
+    allStatesFileText.setColumns(40);
 
     FlowLayout rulesFileLayout = new FlowLayout();
     rulesFileLayout.setAlignment(FlowLayout.LEFT);
@@ -570,6 +560,10 @@ public class SimParam extends JDialog {
     allStatesRulesFilePanel.add(allStatesFilePB);
     allStatesRulesFilePanel.add(allStatesFileText);
 
+    /* All States Report */
+
+    Border statesBorder   = new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "All States Report");
+
     BorderLayout allStatesLayout = new BorderLayout();
 
     JPanel allStatesPanel = new JPanel();
@@ -578,13 +572,9 @@ public class SimParam extends JDialog {
     allStatesPanel.add(allStatesCBPanel, java.awt.BorderLayout.NORTH);
     allStatesPanel.add(allStatesRulesFilePanel, java.awt.BorderLayout.CENTER);
 
-    FlowLayout trackSpeciesButtonLayout = new FlowLayout();
-    trackSpeciesButtonLayout.setAlignment(FlowLayout.LEFT);
-    trackSpeciesButtonLayout.setVgap(0);
+    /* Generate Tracking Species Report */
 
-    JPanel trackSpeciesCategoryButtonPanel = new JPanel();
-    trackSpeciesCategoryButtonPanel.setLayout(trackSpeciesButtonLayout);
-    trackSpeciesCategoryButtonPanel.add(trackingSpeciesCategoryPB);
+    trackingSpeciesCB.setText("Generate Tracking Species Report (needed if discarding data or multiple runs)");
 
     FlowLayout trackSpeciesCBLayout = new FlowLayout();
     trackSpeciesCBLayout.setAlignment(FlowLayout.LEFT);
@@ -594,6 +584,27 @@ public class SimParam extends JDialog {
     trackSpeciesCBPanel.setLayout(trackSpeciesCBLayout);
     trackSpeciesCBPanel.add(trackingSpeciesCB);
 
+    /* Adjust Categories */
+
+    trackingSpeciesCategoryPB.setText("Adjust Categories");
+    trackingSpeciesCategoryPB.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        trackingSpeciesCategoryPB_actionPerformed(e);
+      }
+    });
+
+    FlowLayout trackSpeciesButtonLayout = new FlowLayout();
+    trackSpeciesButtonLayout.setAlignment(FlowLayout.LEFT);
+    trackSpeciesButtonLayout.setVgap(0);
+
+    JPanel trackSpeciesCategoryButtonPanel = new JPanel();
+    trackSpeciesCategoryButtonPanel.setLayout(trackSpeciesButtonLayout);
+    trackSpeciesCategoryButtonPanel.add(trackingSpeciesCategoryPB);
+
+    /* Tracking Species Report */
+
+    Border trackingBorder = new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "Tracking Species Report");
+
     BorderLayout trackSpeciesLayout = new BorderLayout();
 
     JPanel trackingSpeciesPanel = new JPanel();
@@ -601,6 +612,34 @@ public class SimParam extends JDialog {
     trackingSpeciesPanel.setBorder(trackingBorder);
     trackingSpeciesPanel.add(trackSpeciesCategoryButtonPanel, java.awt.BorderLayout.CENTER);
     trackingSpeciesPanel.add(trackSpeciesCBPanel, java.awt.BorderLayout.NORTH);
+
+    /* Button Panel */
+
+    runButton.setText("Run Simulation");
+    runButton.setNextFocusableComponent(cancelButton);
+    runButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        runButton_actionPerformed(e);
+      }
+    });
+
+    cancelButton.setText("Cancel");
+    cancelButton.setMaximumSize(new Dimension(119, 27));
+    cancelButton.setMinimumSize(new Dimension(119, 27));
+    cancelButton.setPreferredSize(new Dimension(119, 27));
+    cancelButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        cancelButton_actionPerformed(e);
+      }
+    });
+
+    JPanel buttonPanel = new JPanel();
+    buttonPanel.setAlignmentX(0.0f);
+    buttonPanel.setBorder(BorderFactory.createEtchedBorder());
+    buttonPanel.add(runButton, null);
+    buttonPanel.add(cancelButton, null);
+
+    /* Main Panel */
 
     JPanel northPanel = new JPanel();
     northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
