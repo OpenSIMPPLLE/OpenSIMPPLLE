@@ -123,7 +123,6 @@ public class SimParam extends JDialog {
     numSimText.setText("1");
     numSimText.setBackground(Color.white);
     numSimText.setSelectionColor(Color.blue);
-    numSimText.setPreferredSize(new Dimension(100,27));
     numSimText.setNextFocusableComponent(numStepText);
     numSimText.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -136,21 +135,16 @@ public class SimParam extends JDialog {
       }
     });
 
-    System.out.println(numSimText.getPreferredSize());
-
     JLabel numSimLabel = new JLabel();
     numSimLabel.setFont(monospaced);
     numSimLabel.setText("Number of Simulations ");
     numSimLabel.setLabelFor(numSimText);
 
-    FlowLayout numSimLayout = new FlowLayout();
-    numSimLayout.setAlignment(FlowLayout.LEFT);
-    numSimLayout.setHgap(10);
-    numSimLayout.setVgap(1);
-
     JPanel numSimPanel = new JPanel();
-    numSimPanel.setLayout(numSimLayout);
+    numSimPanel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+    numSimPanel.setLayout(new BoxLayout(numSimPanel,BoxLayout.X_AXIS));
     numSimPanel.add(numSimLabel, null);
+    numSimPanel.add(Box.createRigidArea(new Dimension(5,0)));
     numSimPanel.add(numSimText, null);
 
     /* Number of Time Steps */
@@ -504,12 +498,12 @@ public class SimParam extends JDialog {
 
     Border memoryBorder = new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "Memory Saving Options");
 
-    JPanel jPanel1 = new JPanel();
-    jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
-    jPanel1.setBorder(memoryBorder);
-    jPanel1.add(databaseWritePanel);
-    jPanel1.add(discardDataPanel);
-    jPanel1.add(timeStepsInMemoryPanel);
+    JPanel memorySavingOptionsPanel = new JPanel();
+    memorySavingOptionsPanel.setLayout(new BoxLayout(memorySavingOptionsPanel, BoxLayout.Y_AXIS));
+    memorySavingOptionsPanel.setBorder(memoryBorder);
+    memorySavingOptionsPanel.add(databaseWritePanel);
+    memorySavingOptionsPanel.add(discardDataPanel);
+    memorySavingOptionsPanel.add(timeStepsInMemoryPanel);
 
     /* Enable All States Report */
 
@@ -644,7 +638,7 @@ public class SimParam extends JDialog {
     northPanel.add(fireSpreadModelPanel);
     northPanel.add(optionsOuterPanel);
     northPanel.add(outputOptionsPanel);
-    northPanel.add(jPanel1);
+    northPanel.add(memorySavingOptionsPanel);
     northPanel.add(allStatesPanel);
     northPanel.add(trackingSpeciesPanel);
 
@@ -659,6 +653,7 @@ public class SimParam extends JDialog {
     mainLayout.setVgap(5);
 
     JPanel mainPanel = new JPanel();
+    mainPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
     mainPanel.setLayout(mainLayout);
     mainPanel.setAlignmentX(0.0f);
     mainPanel.add(northPanel, BorderLayout.NORTH);
