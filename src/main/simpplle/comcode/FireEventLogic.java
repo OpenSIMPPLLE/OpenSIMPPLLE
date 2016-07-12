@@ -4,7 +4,6 @@ import java.util.*;
 import java.io.*;
 
 /**
- * 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
@@ -12,11 +11,10 @@ import java.io.*;
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
  * <p>This class defines Fire Event Logic, a type of Base Logic.
- * 
- * @author Documentation by Brian Losi
+ *
  * <p>Original source code authorship: Kirk A. Moeller
- *  
  */
+
 public class FireEventLogic extends BaseLogic {
   private static final int version = 2;
 
@@ -50,12 +48,17 @@ public class FireEventLogic extends BaseLogic {
   public static final int PROB_COL          = BaseLogic.LAST_COL+5;
 
   private static FireEventLogic instance;
+
   public static void initialize() {
     instance = new FireEventLogic();
   }
+
   public static FireEventLogic getInstance() { return instance; }
+
   private FireEventLogic() {
+
     super(new String[] { SPREAD_STR, TYPE_STR, FIRE_SPOTTING_STR });
+
     sysKnowKind = SystemKnowledge.Kinds.FIRE_SPREAD_LOGIC;
 
     addColumn(SPREAD_STR,"ORIGIN_PROCESS_COL");
@@ -83,42 +86,48 @@ public class FireEventLogic extends BaseLogic {
 
     addVisibleColumnAll(SPREAD_STR);
     addVisibleColumnAll(TYPE_STR);
+
   }
-
-
 
   public void addRow(int insertPos, String kind) {
+
     AbstractLogicData logicData;
+
     if (kind.equals(Kinds.SPREAD.toString())) {
       logicData = new FireSpreadLogicData();
-    }
-    else if (kind.equals(Kinds.TYPE.toString())) {
+    } else if (kind.equals(Kinds.TYPE.toString())) {
       logicData = new FireTypeLogicData();
-    }
-    else if (kind.equals(FIRE_SPOTTING_STR)) {
+    } else if (kind.equals(FIRE_SPOTTING_STR)) {
       logicData = new FireSpottingLogicData();
+    } else {
+      return;
     }
-    else { return; }
+
     super.addRow(insertPos,kind,logicData);
   }
+
   public void duplicateRow(int row,int insertPos, String kind) {
+
     AbstractLogicData logicData = getData(kind).get(row);
     if (logicData == null) {
       return;
     }
     
     AbstractLogicData newLogicData = logicData.duplicate();
+
     super.addRow(insertPos,kind,newLogicData);
+
   }
+
   public void addLegacyData(FireResistance fireResist,
-                                   SizeClass[] sizeClasses,
-                                   ArrayList<SimpplleType> densities,
-                                   ProcessType[] processes,
-                                   Climate.Season  season,
-                                   ArrayList<ProcessType> originProcesses,
-                                   ArrayList<FireEvent.Position> positions,
-                                   ProcessType     average,
-                                   ProcessType     extreme) {
+                            SizeClass[] sizeClasses,
+                            ArrayList<SimpplleType> densities,
+                            ProcessType[] processes,
+                            Climate.Season season,
+                            ArrayList<ProcessType> originProcesses,
+                            ArrayList<FireEvent.Position> positions,
+                            ProcessType average,
+                            ProcessType extreme) {
 
     FireSpreadLogicData fireData = new FireSpreadLogicData();
 
@@ -149,6 +158,7 @@ public class FireEventLogic extends BaseLogic {
   public Kinds getKindValue(String kindStr) {
     return (Kinds.valueOf(kindStr));
   }
+
   public void combineCompatibleRules(String kind) {
     switch (getKindValue(kind)) {
       case SPREAD: combineCompatibleRulesSpread(); break;
@@ -157,6 +167,7 @@ public class FireEventLogic extends BaseLogic {
     }
 
   }
+
   private void combineCompatibleRulesSpread() {
     FireSpreadLogicData rule1, rule2;
     ArrayList<Integer> deleted = new ArrayList<Integer>();
@@ -175,7 +186,6 @@ public class FireEventLogic extends BaseLogic {
       }
     }
 
-
     ArrayList<AbstractLogicData> oldData = getData(SPREAD_STR);
     clearData(SPREAD_STR);
     for (int i=0; i<oldData.size(); i++) {
@@ -184,18 +194,20 @@ public class FireEventLogic extends BaseLogic {
     }
   }
 
+  // ********************************
   // *** Type of Fire legacy Code ***
   // ********************************
-  public void addLegacyDataTypeOfFire(FireResistance fireResist,
-                                   ArrayList<SimpplleType> sizeClasses,
-                                   Density[]   densities,
-                                   ProcessType[] processes,
-                                   boolean     notTreatment,
-                                   TreatmentType[] treatments,
-                                   Climate.Season  season,
-                                   ProcessType     wetter,
-                                   ProcessType     normal,
-                                   ProcessType     drier) {
+
+  public void addLegacyDataTypeOfFire(FireResistance  fireResist,
+                                      ArrayList<SimpplleType> sizeClasses,
+                                      Density[]       densities,
+                                      ProcessType[]   processes,
+                                      boolean         notTreatment,
+                                      TreatmentType[] treatments,
+                                      Climate.Season  season,
+                                      ProcessType     wetter,
+                                      ProcessType     normal,
+                                      ProcessType     drier) {
 
     FireTypeLogicData fireData = new FireTypeLogicData();
 
@@ -225,20 +237,20 @@ public class FireEventLogic extends BaseLogic {
           }
         }
         fireData.treatmentList.add(TreatmentType.NONE);
-      }
-      else {
+      } else {
         fireData.treatmentList = tmpList;
       }
     }
 
-    fireData.season        = season;
-    fireData.wetter        = wetter;
-    fireData.normal        = normal;
-    fireData.drier         = drier;
+    fireData.season = season;
+    fireData.wetter = wetter;
+    fireData.normal = normal;
+    fireData.drier  = drier;
 
     fireData.sortLists();
 
     addRow(TYPE_STR,fireData);
+
   }
 
   public void combineCompatibleRulesTypeOfFire() {
@@ -259,7 +271,6 @@ public class FireEventLogic extends BaseLogic {
       }
     }
 
-
     ArrayList<AbstractLogicData> oldData = getData(TYPE_STR);
     clearData(TYPE_STR);
     for (int i=0; i<oldData.size(); i++) {
@@ -268,30 +279,32 @@ public class FireEventLogic extends BaseLogic {
     }
   }
 
+  // ************************************
   // *** End Type of Fire Legacy Code ***
   // ************************************
 
 
   public static void save(String kind, ObjectOutputStream os) throws IOException {
+
     boolean includeVisibleCol = FIRE_SPOTTING_STR.equals(kind);
     
     os.writeInt(version);
+
     getInstance().saveData(kind,os,includeVisibleCol);
+
   }
 
-  public static void read(String kind, ObjectInputStream in)
-    throws IOException, ClassNotFoundException
-  {
+  public static void read(String kind, ObjectInputStream in) throws IOException, ClassNotFoundException {
+
     try {
       boolean includeVisibleCol = FIRE_SPOTTING_STR.equals(kind);
-      
       int version = in.readInt();
       getInstance().readData(kind,in,version,includeVisibleCol);
-    }
-    catch (Exception ex) {
+    } catch (Exception ex) {
       ex.printStackTrace();
     }
   }
+
   public int getColumnNumFromName(String name) {
     if (name.equalsIgnoreCase("Origin Processes")) {
       return ORIGIN_PROCESS_COL;
@@ -334,6 +347,7 @@ public class FireEventLogic extends BaseLogic {
       return super.getColumnNumFromName(name);
     }
   }
+
   public String getColumnName(String kindStr, int visibleCol) {
     String colName = visibleColumnsHm.get(kindStr).get(visibleCol);
     int col = getColumnPosition(kindStr,colName);
@@ -349,69 +363,75 @@ public class FireEventLogic extends BaseLogic {
 
   private String getColumnNameSpread(int col) {
     switch (col) {
-      case ORIGIN_PROCESS_COL:   return "Origin Processes";
-      case POSITION_COL: return "Position";
-      case AVERAGE_COL:  return "Average";
-      case EXTREME_COL:  return "Extreme";
+      case ORIGIN_PROCESS_COL: return "Origin Processes";
+      case POSITION_COL:       return "Position";
+      case AVERAGE_COL:        return "Average";
+      case EXTREME_COL:        return "Extreme";
       default: return super.getColumnName(col);
     }
   }
 
   private String getColumnNameType(int col) {
     switch (col) {
-      case WETTER_COL:           return "Wetter";
-      case NORMAL_COL:           return "Normal";
-      case DRIER_COL:            return "Drier";
+      case WETTER_COL: return "Wetter";
+      case NORMAL_COL: return "Normal";
+      case DRIER_COL:  return "Drier";
       default: return super.getColumnName(col);
     }
   }
+
   private String getColumnNameFireSpotting(int col) {
     switch (col) {
-      case FIRE_PROCESS_COL:  return "From Process";
-      case SPREAD_TYPE_COL:   return "Spread Type";
-      case START_DIST_COL:    return "Start Dist (Miles)";
-      case END_DIST_COL:      return "End Dist (Miles)";
-      case PROB_COL:          return "Prob";
+      case FIRE_PROCESS_COL: return "From Process";
+      case SPREAD_TYPE_COL:  return "Spread Type";
+      case START_DIST_COL:   return "Start Dist (Miles)";
+      case END_DIST_COL:     return "End Dist (Miles)";
+      case PROB_COL:         return "Prob";
       default: return super.getColumnName(col);
     }
   }
 
-
+  // ***********************
   // *** Simulation Code ***
   // ***********************
 
   /**
-   * Get the type of fire for Fire Spread.
+   * Returns the type of fire for fire spread and records the applied rule index in the EVU.
    *
-   * @param process ProcessType
+   * @param processType ProcessType
    * @param resistance FireResistance
    * @param fromEvu Evu
    * @param evu Evu
    * @return ProcessType
    */
-  public ProcessType getSpreadingTypeOfFire(ProcessType process,
-                                          FireResistance resistance,
-                                          Evu fromEvu, Evu evu, Lifeform toLifeform) {
-    FireSpreadLogicData logicData;
-    ProcessType fireProcess;
-    for (int i=0; i<getData(SPREAD_STR).size(); i++) {
-      logicData = (FireSpreadLogicData)getData(SPREAD_STR).get(i);
-      fireProcess = logicData.getFireTypeIfMatch(process,resistance, fromEvu, evu,toLifeform);
-      
-      
-      if (fireProcess != null) {        
+  public ProcessType getSpreadingTypeOfFire(ProcessType processType, FireResistance resistance, Evu fromEvu, Evu evu, Lifeform toLifeform) {
+
+    List<AbstractLogicData> logicDataArray = getData(SPREAD_STR);
+
+    for (int i = 0; i < getData(SPREAD_STR).size(); i++) {
+
+      FireSpreadLogicData logicData = (FireSpreadLogicData)logicDataArray.get(i);
+
+      ProcessType fireType = logicData.getFireTypeIfMatch(processType, resistance, fromEvu, evu, toLifeform);
+
+      if (fireType != null) {
+
         if (Simulation.getInstance().isDoSimLoggingFile()) {
           PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
           int ts = Simulation.getCurrentTimeStep();
           logOut.printf("Time: %d, Spread From: %d, To: %d, To Life: %s, Type: %s, Rule#: %d%n",
-              ts, fromEvu.getId(), evu.getId(), toLifeform.toString(), fireProcess.toString(), i);
-
-          VegSimStateData state = evu.getState(toLifeform);
-          state.setFireSpreadRuleIndex(i);
-
+              ts, fromEvu.getId(), evu.getId(), toLifeform.toString(), fireType.toString(), i);
         }
-        if (fireProcess.isFireProcess() == false) { fireProcess = null; } // fireProcess is ProcessType.NONE
-        return fireProcess;
+
+        if (!fireType.isFireProcess()) { // fireProcess is ProcessType.NONE
+          fireType = null;
+        }
+
+        VegSimStateData state = evu.getState(toLifeform);
+        state.setFireSpreadRuleIndex(i);
+
+        return fireType;
+
       }
     }
 
@@ -421,25 +441,35 @@ public class FireEventLogic extends BaseLogic {
       logOut.printf("Time: %d, Spread From: %d, To: %d, To Life: %s, No Matching Rules for Spread%n",
           ts, fromEvu.getId(), evu.getId(), toLifeform.toString());
     }
+
     return null;
+
   }
 
   /**
-   * Get the Fire Event Type of Fire.
-   * @param resistance FireResistance
-   * @param evu Evu
-   * @return ProcessType
+   * Returns a fire type from the first fire type rule that applies to the arguments.
+   *
+   * @param resistance A fire resistance level
+   * @param evu A vegetation unit
+   * @return A process type if there is a matching rule, otherwise null
    */
-  public ProcessType getTypeOfFire(FireResistance resistance, Evu evu,Lifeform lifeform) {
-    FireTypeLogicData logicData;
-    ProcessType process;
-    for (int i=0; i<getData(TYPE_STR).size(); i++) {
-      logicData = (FireTypeLogicData)getData(TYPE_STR).get(i);
-      process = logicData.getFireTypeIfMatch(resistance, evu,lifeform);
-      if (process != null) { return process; }
+  public ProcessType getTypeOfFire(FireResistance resistance, Evu evu, Lifeform lifeform) {
+
+    for (int i = 0; i < getData(TYPE_STR).size(); i++) {
+
+      FireTypeLogicData logicData = (FireTypeLogicData)getData(TYPE_STR).get(i);
+
+      ProcessType processType = logicData.getFireTypeIfMatch(resistance, evu,lifeform);
+
+      if (processType != null) {
+
+        return processType;
+
+      }
     }
 
     return null;
+
   }
 
   public boolean isWithinMaxFireSpottingDistance(Evu fromEvu, Evu toEvu) {
@@ -447,7 +477,6 @@ public class FireEventLogic extends BaseLogic {
   }
   
   /**
-   * 
    * @param fromEvu  Evu Fire is Spotting from
    * @param toEvu    Evu that Fire Spotting may occur
    * @param simFireProcess Process of from Evu

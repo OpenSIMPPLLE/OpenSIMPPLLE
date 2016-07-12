@@ -257,7 +257,7 @@ public final class JSimpplle {
    * 
    * @param args
    * @throws IOException
-   * @see readXmlPropertiesFile()
+   * @see #readXmlPropertiesFile()
    */
 
   //Main method
@@ -275,7 +275,7 @@ public final class JSimpplle {
   }
 /**
  * Method to create and paint the gui interface. 
- * @see showSplashScreen(), determineInstallDirectory(), hideSplashScreen(), readPropertiesFile()
+ * @see #showSplashScreen(), determineInstallDirectory(), hideSplashScreen(), readPropertiesFile()
  */
   private static void createAndShowGUI() {
     showSplashScreen();

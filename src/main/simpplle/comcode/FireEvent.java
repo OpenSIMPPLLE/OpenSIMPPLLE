@@ -1,31 +1,31 @@
 
 package simpplle.comcode;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
-import java.util.zip.*;
 
 /**
- * 
  * The University of Montana owns copyright of the designated documentation contained 
  * within this file as part of the software product designated by Uniform Resource Identifier 
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>This class defines Fire event, a type of Process.
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
- *  
+ * <p> This class defines Fire event, a type of Process.
+ *
+ * <p> Original source code authorship: Kirk A. Moeller
  */
 
 public class FireEvent extends Process {
+
   private static final String printName = "FIRE-EVENT";
+
   private static int[]   fireSeasonData;
   private static boolean extremeDataChanged;
 
-  public static int extremeProb = 0;
+  public  static int extremeProb = 0;
   private static int extremeEventAcres = 1000;
 
   private static boolean useRegenPulse = false;
@@ -54,14 +54,12 @@ public class FireEvent extends Process {
   public static final int HIGH     = 2;
 
   // Ownership
-  public static final int NF_WILDERNESS = 0;
-  public static final int NF_OTHER      = 1;
-  public static final int OTHER         = 2;
+  public  static final int NF_WILDERNESS = 0;
+  public  static final int NF_OTHER      = 1;
+  public  static final int OTHER         = 2;
+  private static final int NUM_OWNER     = 3;
 
-  private static final int NUM_OWNER = 3;
-
-  public static final String allOwnership[] =
-    {"NF-WILDERNESS", "NF-OTHER", "OTHER"};
+  public static final String allOwnership[] = { "NF-WILDERNESS", "NF-OTHER", "OTHER" };
 
   // Structure
   // Must be in this order!
@@ -69,179 +67,276 @@ public class FireEvent extends Process {
   public static final SizeClass.Structure SINGLE_STORY   = SizeClass.SINGLE_STORY;
   public static final SizeClass.Structure MULTIPLE_STORY = SizeClass.MULTIPLE_STORY;
 
-  public static ProcessOccurrenceSpreadingFire currentEvent=null;
+  public static ProcessOccurrenceSpreadingFire currentEvent = null;
 
-  public FireEvent () {
-    super();
-
-    spreading = false;
-    description = "Fire Event";
-    yearlyProcess = false;
-  }
-
-  private static void markFireSeasonDataChanged() {
-    SystemKnowledge.markChanged(SystemKnowledge.FIRE_SEASON);
-  }
   /**
-    *  Getter method for Extreme Fire Probability.
-    */
-  public static int getExtremeProb() { return extremeProb; }
+   * Creates a non-spreading, non-yearly process.
+   */
+  public FireEvent () {
+
+    spreading     = false;
+    description   = "Fire Event";
+    yearlyProcess = false;
+
+  }
+
+  // *************************
+  // *** Extreme Fire Data ***
+  // *************************
+
+  /**
+   * Returns the extreme fire probability, which is shared by all instances.
+   */
+  public static int getExtremeProb() {
+    return extremeProb;
+  }
  
   /**
-   * setter for Extreme Fire Probability, if invoked and not same as current, marks extreme data changed 
-   * @param prob
+   * Sets the extreme fire probability, and marks the data as changed if the value doesn't match the current value.
+   * @param prob A probability in the range 0 - 100
    */
   public static void setExtremeProb(int prob) {
-  
-    if (extremeProb == prob) { return; }
+
+    if (extremeProb != prob) {
+      markExtremeDataChanged();
+    }
+
     extremeProb = prob;
-    markExtremeDataChanged();
+
   }
 
-  public static int getExtremeEventAcres() { return extremeEventAcres; }
+  public static int getExtremeEventAcres() {
+    return extremeEventAcres;
+  }
+
   public static void setExtremeEventAcres(int acres) {
-    if (extremeEventAcres == acres) { return; }
+
+    if (extremeEventAcres != acres) {
+      markExtremeDataChanged();
+    }
+
     extremeEventAcres = acres;
-    markExtremeDataChanged();
+
   }
 
+  /**
+   * @return True if the extreme event probability or acres have been modified.
+   */
   public static boolean hasExtremeDataChanged() {
     return extremeDataChanged;
   }
+
   /**
-   * sets extreme data changed within Fire Event class, also marks the Extreme Fire Data System Knowledge changed for 
+   * Marks the extreme data as having been changed in this class and system knowledge.
    */
   private static void markExtremeDataChanged() {
     setExtremeDataChanged(true);
     SystemKnowledge.markChanged(SystemKnowledge.EXTREME_FIRE_DATA);
   }
-  
+
+  /**
+   * Sets the extreme data changed flag.
+   */
   public static void setExtremeDataChanged(boolean value) {
     extremeDataChanged = value;
+  }
+
+  public static void resetExtremeData() {
+    extremeProb = 0;
+    extremeEventAcres = 1000;
+    setExtremeDataChanged(false);
+  }
+
+  /**
+   * Reads a line containing two comma-delimited values; the probability of extreme fire and the number of extreme
+   * event acres.
+   * @param fin A buffered file reader
+   * @throws ParseError Thrown when there is not enough data or the values are not integers
+   */
+  public static void readExtremeData(BufferedReader fin) throws ParseError {
+
+    String line = null;
+
+    try {
+
+      line = fin.readLine();
+      if (line == null) {
+        throw new ParseError("No data found");
+      }
+
+      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
+      if (strTok.countTokens() != 2) {
+        throw new ParseError("Incorrect Number of fields");
+      }
+
+      int value = strTok.getIntToken();
+      if (value == -1) { throw new ParseError("Invalid Probability found"); }
+      extremeProb = value;
+
+      value = strTok.getIntToken();
+      if (value == -1) { throw new ParseError("Invalid Event Acres found"); }
+      extremeEventAcres = value;
+
+    } catch (ParseError err) {
+      throw new ParseError("While reading Extreme Fire Data in line: " + line + err.msg);
+    } catch (IOException err) {
+      throw new ParseError("Error trying to read Extreme Fire Data file");
+    }
+  }
+
+  /**
+   * Writes the extreme probability, a comma, and the number of acres.
+   * @param fout A print writer
+   */
+  public static void saveExtremeData(PrintWriter fout) {
+    fout.println(getExtremeProb() + "," + getExtremeEventAcres());
   }
 
   // ************************
   // *** Fire Season Data ***
   // ************************
-/**
- * sets the fire season data for each season - indexed into fire season data changed by ordinal of Climate Season enum, and marks Fire season data changed
- * @param spring = 0
- * @param summer =1
- * @param fall = 2
- * @param winter =3
- */
+
+  /**
+   * Sets the probability of fire in each season. These probabilities are shared by all fire event instances.
+   */
   public static void setFireSeasonData(int spring, int summer, int fall, int winter) {
+
     fireSeasonData[Climate.Season.SPRING.ordinal()] = spring;
     fireSeasonData[Climate.Season.SUMMER.ordinal()] = summer;
     fireSeasonData[Climate.Season.FALL.ordinal()]   = fall;
-    fireSeasonData[Climate.Season.WINTER.ordinal()]   = winter;
+    fireSeasonData[Climate.Season.WINTER.ordinal()] = winter;
+
     markFireSeasonDataChanged();
+
   }
-/**
- * gets fire season data according to 
- * @param kind this is a season, not system knowledge kind - spring, summer, fall, winter
- * @return -1 if not a season, this might happen with YEAR, else returns the integer value in the fire season data array indexed by season ordinal
- */
-  public static int getFireSeasonData(Climate.Season kind) {
-    if (kind != Climate.Season.SPRING && kind != Climate.Season.SUMMER &&
-        kind != Climate.Season.FALL && kind != Climate.Season.WINTER) {
+
+  /**
+   * Returns the probability of a fire season occurring in the given season.
+   * @param season One of four seasons; spring, summer, fall, or winter
+   * @return The probability that fire occurs in this season, or -1 if not a season (like YEAR)
+   */
+  public static int getFireSeasonData(Climate.Season season) {
+
+    if (season != Climate.Season.SPRING &&
+        season != Climate.Season.SUMMER &&
+        season != Climate.Season.FALL &&
+        season != Climate.Season.WINTER) {
+
       return -1;
+
+    } else {
+
+      return fireSeasonData[season.ordinal()];
+
     }
-    else { return fireSeasonData[kind.ordinal()]; }
   }
-/**
- * reads fire season data from fire season data file.  this is a comma separated value file (csv) file, has method to directly read spring, summer, fall 
- * and winter fire data, plus can calculate winter data if only spring, summer, and fall present.  marks System Knowledge fire season data not changed 
- * @param fin the buffered reader
- * @throws SimpplleError catches parseerror, IOException, and Exception for invalid number of items, read problems, or missing data respectively.  SimpplleError will be caught in gui, 
- */
+
+  private static void markFireSeasonDataChanged() {
+    SystemKnowledge.markChanged(SystemKnowledge.FIRE_SEASON);
+  }
+
+  /**
+   * Reads fire season probabilities from a comma-separated value (CSV) file. The file contains a single row containing
+   * an integer probability (0-100) for spring, summer, fall, and optionally winter. The probabilities must total 100%,
+   * so if winter is not available, then its value is implied to equal 100 - (spring + summer + fall).
+   * @param fin A file reader
+   * @throws SimpplleError Thrown if the file is unable to be read or there is missing data
+   */
   public static void readFireSeasonData(BufferedReader fin) throws SimpplleError {
-    String              line;
-    StringTokenizerPlus strTok;
 
     try {
-      line   = fin.readLine();
+
+      String line = fin.readLine();
+
       if (line == null) {
         throw new ParseError("Fire Season Data file is empty.");
       }
+
       fireSeasonData = new int[4];
 
-      strTok = new StringTokenizerPlus(line,",");
+      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
+
       int count = strTok.countTokens();
       if (count != 3 && count != 4) {
         throw new ParseError("Invalid file! Incorrect number of items");
       }
+
       fireSeasonData[Climate.Season.SPRING.ordinal()] = strTok.getIntToken();
       fireSeasonData[Climate.Season.SUMMER.ordinal()] = strTok.getIntToken();
       fireSeasonData[Climate.Season.FALL.ordinal()]   = strTok.getIntToken();
+
       if (count == 3) {
-        fireSeasonData[Climate.Season.WINTER.ordinal()] = 100 -
-            (fireSeasonData[Climate.Season.SPRING.ordinal()] +
-             fireSeasonData[Climate.Season.SUMMER.ordinal()] +
-             fireSeasonData[Climate.Season.FALL.ordinal()]);
-      }
-      else {
+
+        fireSeasonData[Climate.Season.WINTER.ordinal()] = 100 - ( fireSeasonData[Climate.Season.SPRING.ordinal()] +
+                                                                  fireSeasonData[Climate.Season.SUMMER.ordinal()] +
+                                                                  fireSeasonData[Climate.Season.FALL.ordinal()] );
+
+      } else {
+
         fireSeasonData[Climate.Season.WINTER.ordinal()] = strTok.getIntToken();
+
       }
 
       SystemKnowledge.setHasChanged(SystemKnowledge.FIRE_SEASON,false);
-    }
-    catch (ParseError pe) {
+
+    } catch (ParseError pe) {
       throw new SimpplleError(pe.msg,pe);
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       throw new SimpplleError("Problems read from fire season data file.");
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       throw new SimpplleError("Invalid or missing data in Fire Season Data File.");
     }
   }
-/**
- * Saves fire season data in CSF for use in excel.  Saves the fires season data for each of the seasons based indexed by their enum ordinal.  
- * Spring =0, summer = 1, fall = 2, winter = 3
- * @param fout
- */
+
+  /**
+   * Writes a line of comma-delimited probabilities for spring, summer, fall, and winter respectively.
+   * @param fout A file writer
+   */
   public static void saveFireSeasonData(PrintWriter fout) {
-    fout.println(fireSeasonData[Climate.Season.SPRING.ordinal()] + "," +
-                 fireSeasonData[Climate.Season.SUMMER.ordinal()] + "," +
-                 fireSeasonData[Climate.Season.FALL.ordinal()] + "," +
-                 fireSeasonData[Climate.Season.WINTER.ordinal()]);
+
+    fout.println( fireSeasonData[Climate.Season.SPRING.ordinal()] + "," +
+                  fireSeasonData[Climate.Season.SUMMER.ordinal()] + "," +
+                  fireSeasonData[Climate.Season.FALL.ordinal()]   + "," +
+                  fireSeasonData[Climate.Season.WINTER.ordinal()] );
+
     SystemKnowledge.setHasChanged(SystemKnowledge.FIRE_SEASON,false);
+
   }
 
   // ***************************
   // *** Probability Methods ***
   // ***************************
-/**
- * Does common probability, 
- * @param zone the regional zone 
- * @param evu evaluated vegetative unit to have probability of fire calculated
- * @return rational probability 
- */
-  private int doProbabilityCommon (RegionalZone zone, Evu evu) {
-    double prob;
-    Fmz   fmz;
 
-    fmz  = evu.getFmz();
-    prob = fmz.calculateProbability(Area.getFloatAcres(evu.getAcres()));
+  /**
+   * Computes the probability of a fire in an existing vegetation unit (EVU). The probability equals the number of
+   * acres in the EVU * the number of fires per acre * 100 * 10 ^ probability precision.
+   * @param zone A regional zone
+   * @param evu An existing vegetation unit
+   * @return A probability
+   */
+  public int doProbability (RegionalZone zone, Evu evu) {
+
+    Fmz fmz = evu.getFmz();
+
+    double prob = fmz.calculateProbability(Area.getFloatAcres(evu.getAcres()));
 
     // polygons with a large number of acres
     // can result in prob > 100 so set make
     // the max probability of fire 25%.
-    if (prob > 25.0f) { prob = 25.0f; }
+
+    if (prob > 25.0) prob = 25.0;
 
     if (Area.multipleLifeformsEnabled()) {
       Simulation.setProbPrecision(4);
     }
 
     int rationalProb = Simulation.getRationalProbability(prob);
+
     Simulation.setDefaultProbPrecision();
 
     return rationalProb;
-  }
-  public int doProbability (RegionalZone zone, Evu evu) {
-    return doProbabilityCommon(zone,evu);
+
   }
 
 //  public static boolean isExtremeEvent(Evu evu) {
@@ -252,100 +347,107 @@ public class FireEvent extends Process {
 //  }
 
   /**
-   * This particular number needs to be 1 - 10000.
-   *This is due to the fact that the user can change
-   * the value of extremeProb.
-   * @return
+   * Returns true if the fire spread is classified as extreme. This is determined stochastically.
    */
   public static boolean isExtremeSpread() {
-    int    randNum, bound;
 
-    randNum = Simulation.getInstance().random() + 1;
-    bound   = 10000 - (extremeProb * 100);
+    int randNum = Simulation.getInstance().random() + 1;
 
     // Should not be possible, but just in case.
-    if (randNum > 10000) { randNum = 10000; }
+
+    if (randNum > 10000) {
+      randNum = 10000;
+    }
+
+    int bound = 10000 - (extremeProb * 100);
 
     if (randNum > bound) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
-/**
- * calculates which fire season 
- * @return season  - spring, summer, fall, or winter
- */
+
+  /**
+   * Returns the fire season. This is determined stochastically.
+   * @return A season; spring, summer, fall, or winter
+   */
   public static Climate.Season getFireSeason() {
-    int randNum, spring, summer, fall, winter, springEnd, summerEnd, fallEnd;
 
-    randNum     = Simulation.getInstance().random();
-    spring      = fireSeasonData[Climate.Season.SPRING.ordinal()] * 100;
-    summer      = fireSeasonData[Climate.Season.SUMMER.ordinal()] * 100;
-    fall        = fireSeasonData[Climate.Season.FALL.ordinal()] * 100;
-    winter      = fireSeasonData[Climate.Season.WINTER.ordinal()] * 100;
-    springEnd   = spring - 1;
-    summerEnd   = spring + summer - 1;
-    fallEnd     = spring + summer + fall - 1;
+    int randNum = Simulation.getInstance().random();
 
-    if ((spring > 0) && (randNum <= springEnd)) { return Climate.Season.SPRING; }
-    else if ((summer > 0) && (randNum <= summerEnd)) { return Climate.Season.SUMMER; }
-    else if ((fall > 0) && (randNum <= fallEnd)) { return Climate.Season.FALL; }
-    else { return Climate.Season.WINTER; }
+    int spring = fireSeasonData[Climate.Season.SPRING.ordinal()] * 100;
+    int summer = fireSeasonData[Climate.Season.SUMMER.ordinal()] * 100;
+    int fall   = fireSeasonData[Climate.Season.FALL.ordinal()]   * 100;
+    int winter = fireSeasonData[Climate.Season.WINTER.ordinal()] * 100;
+
+    int springEnd = spring - 1;
+    int summerEnd = spring + summer - 1;
+    int fallEnd   = spring + summer + fall - 1;
+
+    if ((spring > 0) && (randNum <= springEnd)) {
+      return Climate.Season.SPRING;
+    } else if ((summer > 0) && (randNum <= summerEnd)) {
+      return Climate.Season.SUMMER;
+    } else if ((fall > 0) && (randNum <= fallEnd)) {
+      return Climate.Season.FALL;
+    } else {
+      return Climate.Season.WINTER;
+    }
   }
-/**
- * outputs "FIRE-EVENT"
- */
-  public String toString () {
-    return printName;
-  }
-/**
- * does fire spread calculation based on regional zone, process choosen, and two evu's - the originator and destination evu's 
- * @param zone
- * @param p 
- * @param fromEvu the evu where fire is coming from  
- * @param evu destination evu.  
- * @return true if fireType is not null 
- */
-  public static boolean doFireSpread(RegionalZone zone, Process p,
-                                     Evu fromEvu, Evu evu) {
+
+  /**
+   * Spreads a fire from one unit to another. This is entirely controlled by fire spreading logic rules. If a matching
+   * rule is found, state in the 'to' unit is updated and this method returns true.
+   *
+   * @param zone The regional zone containing the EVU
+   * @param process The spreading process
+   * @param fromEvu The EVU where the fire is coming from
+   * @param toEvu The EVU that the fire may spread to
+   *
+   * @return True if fireType is not null
+   */
+  public static boolean doFireSpread(RegionalZone zone, Process process, Evu fromEvu, Evu toEvu) {
 
     Lifeform toLifeform = Area.currentLifeform;
-    FireResistance resistance = getSpeciesResistance(zone, evu, toLifeform);
-    ProcessType fireType =
-      FireEventLogic.getInstance().getSpreadingTypeOfFire(p.getType(),resistance,fromEvu,evu,toLifeform);
+    FireResistance resistance = getSpeciesResistance(zone, toEvu, toLifeform);
+    ProcessType fireType = FireEventLogic.getInstance().getSpreadingTypeOfFire(process.getType(),resistance,fromEvu,toEvu,toLifeform);
 
     return (fireType != null);
+
   }
-/**
- * gets the fire resistence based on zone, evu, and lifeform then gets type of fire based on resistence, evu, and lifeform
- * if firetype is null has default fire types based on wyoming region = SRF or all others LSF
- * @param zone
- * @param evu
- * @param lifeform
- * @return
- */
+
+  /**
+   * Returns a fire process type from the first matching fire type logic rule. If no rules apply to the unit, then
+   * a light severity fire is returned, unless the current zone is in Wyoming, which results in a stand replacing fire.
+   *
+   * @param zone Unused
+   * @param evu A vegetation unit
+   * @param lifeform A life form
+   * @return A process type
+   */
   public static ProcessType getTypeOfFire(RegionalZone zone, Evu evu, Lifeform lifeform) {
+
     FireResistance resistance = getSpeciesResistance(zone,evu,lifeform);
 
     ProcessType fireType = FireEventLogic.getInstance().getTypeOfFire(resistance,evu,lifeform);
 
-    boolean isWyoming = RegionalZone.isWyoming();
-
     if (fireType == null) {
-      fireType = isWyoming ? ProcessType.SRF : ProcessType.LSF;
+
+      fireType = RegionalZone.isWyoming() ? ProcessType.SRF : ProcessType.LSF;
+
     }
 
     return fireType;
+
   }
 
-/**
- * finds current state, vegetative type, lifeform, and time step of evu then returns suppresion boolean based on these, 
- * @param zone regionalzone being evaluated
- * @param evu ecological vegetative unit being evaluated 
- * @return true if do suppression
- */
+  /**
+   * finds current state, vegetative type, lifeform, and time step of evu then returns suppresion boolean based on these,
+   * @param zone regionalzone being evaluated
+   * @param evu ecological vegetative unit being evaluated
+   * @return true if do suppression
+   */
   public static boolean doSuppression(RegionalZone zone, Evu evu) {
 //    int prob    = FireSuppressionData.getProbability(zone,evu);
 //    int randNum = Simulation.getInstance().random();
@@ -368,8 +470,11 @@ public class FireEvent extends Process {
     if (suppress) {
       evu.suppressFire();
     }
+
     return suppress;
+
   }
+
 /**
  * calculates if a weather event can suppress fire
  * @param zone
@@ -1035,24 +1140,46 @@ public class FireEvent extends Process {
     }
     return newState;
   }
-/**
- * method to get the current life form of an area based on the evu and pass to overloaded getSpeciesResistence.  default resistence is LOW
- * @param zone regional zone being evaluated 
- * @param evu ecological vegetative unit being evaluated
- * @return result returned from overloaded getSpeciesResistence chooses are low, moderate, high, or conditional 
- */
+
+  /**
+   * Returns the fire resistance of the vegetation unit. The result depends on the area's current life form and the
+   * current simulation time step.
+   *
+   * @param zone A regional zone
+   * @param evu An ecological vegetative unit being evaluated
+   * @return A fire resistance; low, moderate, or high
+   */
   public static FireResistance getSpeciesResistance(RegionalZone zone, Evu evu) {
     return getSpeciesResistance(zone,evu,Area.getCurrentLifeform(evu));
   }
-  public static FireResistance getSpeciesResistance(RegionalZone zone, Evu evu, Lifeform lifeform) {
-    VegSimStateData state = evu.getState(lifeform);
-    if (state == null) { return FireResistance.LOW; }
 
-    Species        species = state.getVeg().getSpecies();
+  /**
+   * Determines the fire resistance of the species in a vegetation unit's life form at the current time step. If a
+   * species has conditional resistance, then the resistance is based on the habitat type group of the unit.
+   *
+   * @todo Remove the regional zone parameter. This class previously read fire resistance from hard-coded zone types.
+   *
+   * @param zone Ignore -- unused
+   * @param evu An vegetation unit
+   * @param lifeform A life form
+   * @return A fire resistance; low, moderate, or high
+   */
+  public static FireResistance getSpeciesResistance(RegionalZone zone, Evu evu, Lifeform lifeform) {
+
+    VegSimStateData state = evu.getState(lifeform);
+
+    if (state == null) {
+      return FireResistance.LOW;
+    }
+
+    Species species = state.getVeg().getSpecies();
     FireResistance resistance = species.getFireResistance();
 
     if (resistance == FireResistance.CONDITIONAL) {
-      ArrayList groups = species.getResistanceGroups(FireResistance.LOW);
+
+      ArrayList groups;
+
+      groups = species.getResistanceGroups(FireResistance.LOW);
       if (groups != null && groups.contains(evu.getHabitatTypeGroup().getType())) {
         return FireResistance.LOW;
       }
@@ -1067,45 +1194,25 @@ public class FireEvent extends Process {
         return FireResistance.HIGH;
       }
 
-      // Default has traditionally been LOW
       return FireResistance.LOW;
+
+    } else if (resistance == FireResistance.UNKNOWN) {
+
+      return FireResistance.LOW;
+
     }
-    // Should not be possible as we don't allow FireEvents to occur
-    // with this Resistance.
-//    else if (resistance == FireResistance.UNKNOWN) {
-//      return FireResistance.LOW;
-//    }
 
     return resistance;
 
-//    int zoneId = zone.getId();
-//
-//    if (zoneId == ValidZones.SIERRA_NEVADA) {
-//      return getSpeciesResistanceSierraNevada(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.SOUTHERN_CALIFORNIA) {
-//      return getSpeciesResistanceSouthernCalifornia(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.SOUTH_CENTRAL_ALASKA) {
-//      return getSpeciesResistanceAlaska(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.GILA) {
-//      return getSpeciesResistanceGila(zone, evu);
-//    }
-//    else if (zoneId == ValidZones.SOUTHWEST_UTAH) {
-//      return getSpeciesResistanceUtah(zone, evu);
-//    }
-//    else {
-//      return getSpeciesResistanceCommon(zone, evu);
-//    }
   }
-/**
- * calculates common species resistance based on habitat group type and evu species
- *  <p> note species is from an list data structure requiring a cast to Species object
- * @param zone
- * @param evu
- * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
- */
+
+  /**
+   * calculates common species resistance based on habitat group type and evu species
+   *  <p> note species is from an list data structure requiring a cast to Species object
+   * @param zone
+   * @param evu
+   * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2
+   */
   private static int getSpeciesResistanceCommon(RegionalZone zone, Evu evu) {
     Species              species   = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
@@ -1207,13 +1314,14 @@ public class FireEvent extends Process {
       return LOW;
     }
   }
-/**
- * fire resistence for species in the specific region of SierraNevada.  this does not use the habitat group type as the common method did.  goes solely off species
- * <p> note species is from an list data structure requiring a cast to a Species object
- * @param zone
- * @param evu
- * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
- */
+
+  /**
+   * fire resistence for species in the specific region of SierraNevada.  this does not use the habitat group type as the common method did.  goes solely off species
+   * <p> note species is from an list data structure requiring a cast to a Species object
+   * @param zone
+   * @param evu
+   * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2
+   */
   private static int getSpeciesResistanceSierraNevada(RegionalZone zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
@@ -1246,15 +1354,14 @@ public class FireEvent extends Process {
       return LOW;
     }
   }
-/**
- * 
- * fire resistence for species in the specific region of Southern California.  this does not use the habitat group type as the common method did.  goes solely off species
- * <p> note species is from an list data structure requiring a cast to a Species object
 
- * @param zone
- * @param evu
- * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
- */
+  /**
+   * fire resistence for species in the specific region of Southern California.  this does not use the habitat group type as the common method did.  goes solely off species
+   * <p> note species is from an list data structure requiring a cast to a Species object
+   * @param zone
+   * @param evu
+   * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2
+   */
   private static int getSpeciesResistanceSouthernCalifornia(RegionalZone zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
@@ -1287,13 +1394,14 @@ public class FireEvent extends Process {
       return LOW;
     }
   }
-/**
- * fire resistence for species in the specific region of Gila.  this does not use the habitat group type as the common method did.  goes solely off species
- * <p> note species is from an list data structure requiring a cast to a Species object
- * @param zone
- * @param evu
- * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
- */
+
+  /**
+   * fire resistence for species in the specific region of Gila.  this does not use the habitat group type as the common method did.  goes solely off species
+   * <p> note species is from an list data structure requiring a cast to a Species object
+   * @param zone
+   * @param evu
+   * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2
+   */
   private static int getSpeciesResistanceGila(RegionalZone zone, Evu evu) {
     Species species   = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
@@ -1482,6 +1590,7 @@ public class FireEvent extends Process {
   }
 
   public static void setUseRegenPulse(boolean value) { useRegenPulse = value; }
+
   public static boolean useRegenPulse() { return useRegenPulse; }
 
   public static void setRegenPulse() {
@@ -1491,82 +1600,42 @@ public class FireEvent extends Process {
     prob *= 100;
     doRegenPulse = (randNum < prob);
   }
+
   public static boolean isRegenPulse() { return doRegenPulse; }
 
-  public static void resetExtremeData() {
-    extremeProb = 0;
-    extremeEventAcres = 1000;
-    setExtremeDataChanged(false);
-  }
   /**
-   * method to read the Extreme Fire Data 
-   * @param fin
-   * @throws ParseError catches ParseError's for invalid probability, invalid event acres and in-line parsing error, plus an IOException for inability to read Extreme Fire Data File
-   * <p> These will be caught in the gui
+   * Converts an ownership name string to an enumeration constant.
+   * @param ownership An ownership string
+   * @return An ownership constant if the string matches, or OTHER.
    */
-  public static void readExtremeData(BufferedReader fin) throws ParseError {
-    String              line=null;
-    StringTokenizerPlus strTok;
-    int                 value;
-
-    try {
-      line = fin.readLine();
-      if (line == null) {
-        throw new ParseError("No data found");
-      }
-      strTok = new StringTokenizerPlus(line,",");
-      if (strTok.countTokens() != 2) {
-        throw new ParseError("Incorrect Number of fields");
-      }
-      value = strTok.getIntToken();
-      if (value == -1) { throw new ParseError("Invalid Probability found"); }
-      extremeProb = value;
-
-      value = strTok.getIntToken();
-      if (value == -1) { throw new ParseError("Invalid Event Acres found"); }
-      extremeEventAcres = value;
-    }
-    catch (ParseError err) {
-      throw new ParseError("While reading Extreme Fire Data in line: " + line + err.msg);
-    }
-    catch (IOException err) {
-      throw new ParseError("Error trying to read Extreme Fire Data file");
+  public static int findOwnership(String ownership) {
+    if (ownership.equals(allOwnership[NF_WILDERNESS])) {
+      return NF_WILDERNESS;
+    } else if (ownership.equals(allOwnership[NF_OTHER])) {
+      return NF_OTHER;
+    } else if (ownership.equals(allOwnership[OTHER])) {
+      return OTHER;
+    } else {
+      return OTHER;
     }
   }
 
-  public static void saveExtremeData(PrintWriter fout) {
-    fout.println(getExtremeProb() + "," + getExtremeEventAcres());
-  }
+  /**
+   * @return The number of defined ownership constants.
+   */
+  public static int getNumOwnership() { return NUM_OWNER; }
 
   public static String getOwnershipName(int ownership) {
     if (ownership < 0 || (ownership >= allOwnership.length)) {
       return allOwnership[OTHER];
-    }
-    else {
+    } else {
       return allOwnership[ownership];
     }
   }
-/**
- * gets the ownership.  
- * @param ownership
- * @return owner.  choices are national forest wilderness, national forest other, or other.  By default this is other
- */
-  public static int findOwnership(String ownership) {
-    if (ownership.equals(allOwnership[NF_WILDERNESS])) {
-      return NF_WILDERNESS;
-    }
-    else if (ownership.equals(allOwnership[NF_OTHER])) {
-      return NF_OTHER;
-    }
-    else if (ownership.equals(allOwnership[OTHER])) {
-      return OTHER;
-    }
-    else {
-      return OTHER;
-    }
-  }
 
-  public static int getNumOwnership() { return NUM_OWNER; }
+  public String toString () {
+    return printName;
+  }
 
 //  public static boolean doFireSpottingOld(RegionalZone zone, Evu fromEvu,
 //                                       boolean[] origin, boolean[] newOrigin) {

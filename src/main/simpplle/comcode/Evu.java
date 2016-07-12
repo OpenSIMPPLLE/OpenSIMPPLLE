@@ -124,8 +124,6 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   /**
    * creates a Trail Unit Data class with two variables for trail and evu.
-   *
-   *
    */
   public static class TrailUnitData {
     public Trails trail;
@@ -2615,6 +2613,10 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
+   *    TREATMENT METHODS
+   */
+
+  /**
    * Gets the Treatment that was last applied to this unit (if any).
    * @return a Treatment or null.
    */
@@ -2757,6 +2759,10 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
+   *    ADJACENT METHODS
+   */
+
+  /**
    * Sets the data for adjacent Evu
    * @param newAdjData the adjacent data array being set
    */
@@ -2771,7 +2777,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public AdjacentData[] getAdjacentData() { return adjacentData; }
 
   /**
-   * Loops through adjacent evu's in an area, counts them and checks their ID's validity.
+   * Loops through adjacent evus in an area, counts them and checks their ID's validity.
    * If the count of their Id's validity is same as adjacent data array length returns , else will create a new adjacent evu array limited in size
    * to only valid count and transfer adjacent evu data to it.
    */
@@ -2781,7 +2787,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     int            i, j=0, validCount=0;
 
     for (i=0; i<adjacentData.length; i++) {
-      if (area.isValidUnitId(adjacentData[i].evu.getId())) {
+      if (area.isValidUnitId(adjacentData[i].getEvu().getId())) {
         validCount++;
       }
     }
@@ -2790,7 +2796,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     newData = new AdjacentData[validCount];
 
     for (i=0; i<adjacentData.length; i++) {
-      if (area.isValidUnitId(adjacentData[i].evu.getId())) {
+      if (area.isValidUnitId(adjacentData[i].getEvu().getId())) {
         newData[j] = adjacentData[i];
         j++;
       }
@@ -2806,7 +2812,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public boolean isNeighbor(Evu unit) {
     for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].evu.getId() == unit.id) {
+      if (adjacentData[i].getEvu().getId() == unit.id) {
         return true;
       }
     }
@@ -2822,11 +2828,52 @@ public final class Evu extends NaturalElement implements Externalizable {
     int adjId = adj.getId();
 
     for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].evu.getId() == adjId) {
+      if (adjacentData[i].getEvu().getId() == adjId) {
         return Simpplle.getCurrentArea().calcRelativePosition(this, adjacentData[i]);
       }
     }
     return NEXT_TO;
+  }
+
+  /**
+   * Function to get n units along a direction x.
+   * <b>Only to be used when Keane spatial data has been loaded.</b>
+   *
+   * @param directionAzimuth given direction from the current Evu to the adjacent Evu.
+   * @param n number of neighbors in a given direction. Note that for neighbor
+   *          <i>n</i>, the array index, <i>i</i> will always be n-1.
+   * @return Array size n of adjacent evus in the given direction
+   */
+  public ArrayList<Evu> getNeighborsAlongDirection(double directionAzimuth, int n){
+    ArrayList<Evu> evus = new ArrayList<>(n);
+    Evu current = this;
+    int i = 0;
+    while (i < n){
+      Evu next = current.getNeighborInDirection(directionAzimuth);
+      if (next == null) // No more neighbors in that direction
+        break;
+      else
+        evus.add(next);  // add neighbor to result
+      current = next;     // move down the line
+      i++;
+    }
+    return evus;
+  }
+
+  /**
+   * Potentially returns erroneous values if proper adjacent data (Keane) has not been loaded.
+   * @param degreesAzimuth given direction from the current Evu to the adjacent Evu.
+   * @return Evu neighbor in a given direction, if exists.
+   */
+  public Evu getNeighborInDirection(double degreesAzimuth) {
+    double tolerance = 1;  // angle threshold for matching a direction
+    for (AdjacentData n : adjacentData){
+      double direction = n.getSpread();
+      if (Math.abs(direction - degreesAzimuth) <= tolerance)
+        return n.evu;
+    }
+    // no result found
+    return null;
   }
 
   /**
@@ -2838,8 +2885,8 @@ public final class Evu extends NaturalElement implements Externalizable {
     int adjId = adj.getId();
 
     for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].evu.getId() == adjId) {
-        return (adjacentData[i].wind == DOWNWIND);
+      if (adjacentData[i].getEvu().getId() == adjId) {
+        return (adjacentData[i].getWind() == DOWNWIND);
       }
     }
     return false;
@@ -2862,9 +2909,9 @@ public final class Evu extends NaturalElement implements Externalizable {
         case 'B': pos = "Below";   break;
         default:  pos = "Unknown"; break;
       }
-      wind = (isAdjDownwind(adjacentData[i].evu)) ? "Downwind" : "No wind";
+      wind = (isAdjDownwind(adjacentData[i].getEvu())) ? "Downwind" : "No wind";
 
-      strList[i] = Integer.toString(adjacentData[i].evu.getId()) +
+      strList[i] = Integer.toString(adjacentData[i].getEvu().getId()) +
                               " (" + pos + ", " + wind + ")";
     }
     return strList;
@@ -3281,21 +3328,26 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the dominant life form and uses that as the upper limit for loop to go through life forms.  Then checks to make sure the current state process
-   * is a fire process
-   * @return an array of life dominant fire process life forms
+   * @return A dominant fire life form, or null if none exists
    */
   public Lifeform getDominantLifeformFire() {
-    Lifeform[] lives = Lifeform.getAllValues();
-    for (int i=dominantLifeform.getId(); i<lives.length; i++) {
-      if (hasLifeform(lives[i]) == false) { continue; }
 
-      VegSimStateData state = getState(Simulation.getCurrentTimeStep(),lives[i]);
+    Lifeform[] lifeforms = Lifeform.getAllValues();
+
+    for (int i = dominantLifeform.getId(); i < lifeforms.length; i++) {
+
+      Lifeform lifeform = lifeforms[i];
+
+      if (!hasLifeform(lifeform)) continue;
+
+      VegSimStateData state = getState(Simulation.getCurrentTimeStep(),lifeform);
       if (state != null && state.getProcess().isFireProcess()) {
-        return lives[i];
+        return lifeform;
       }
     }
+
     return null;
+
   }
 
   /**
@@ -4998,115 +5050,137 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * This method will determine if an event spread from fromEvu in the param
-   * list to this unit.
-   * This method is static and synchronized in order to be certain that the
-   * fields we need in the fromEvu and toEvu are not modified by another
-   * thread while this method is executing.  There is probably a non-static
-   * way of doing this.
-   * @todo make this method non-static and less restricted (if possible).
+   * Attempts to spread a process to another vegetation unit. Spreading a non-fire process requires that the
+   * destination unit has the same life form, does not have a lock-in process, and has a succession process type.
+   * Spreading a fire process results in a call to doFireSpread.
+   * <p>
+   * This method is static and synchronized in order to be certain that the fields we need in the fromEvu and toEvu are
+   * not modified by another thread while this method is executing. There is probably a non-static way of doing this.
    *
-   * @param fromEvu The Evu we are trying to spread from.
-   * @param toEvu   The Evu we are trying to spread to.
-   * @return boolean true if spread was successfull
+   * @todo Make this method non-static and less restricted if possible.
+   *
+   * @param fromEvu The veg unit we are trying to spread from
+   * @param toEvu The veg unit we are trying to spread to
+   * @param fromLifeform The life form containing the process being spread
+   * @return True if spread was successful
    */
   public static synchronized boolean doSpread(Evu fromEvu, Evu toEvu, Lifeform fromLifeform) {
-    ProcessType  fromProcess   = fromEvu.getState(fromLifeform).getProcess();
+
+    ProcessType fromProcess = fromEvu.getState(fromLifeform).getProcess();
+
     if (fromProcess.isFireProcess()) {
       return doFireSpread(fromEvu,toEvu,fromLifeform);
     }
 
+    boolean spread = false;
+
     Area.currentLifeform = fromLifeform;
 
-    Process processInst;
-    ProcessType  toProcess;
+    if (toEvu.hasLifeform(fromLifeform)) {
 
-    if (toEvu.hasLifeform(fromLifeform) == false) {
-      Area.currentLifeform = null;
-      return false;
-    }
-    else {
-      toProcess = toEvu.getState(fromLifeform).getProcess();
-      if (toEvu.getState(fromLifeform).getProb() == L) {
-        Area.currentLifeform = null;
-        return false;
-      }
-    }
+      VegSimStateData state = toEvu.getState(fromLifeform);
 
-    if (toProcess.equals(ProcessType.SUCCESSION)) {
-      processInst = Process.findInstance(fromProcess);
-      if (processInst.doSpread(Simpplle.getCurrentZone(), fromEvu, toEvu)) {
-        Area.currentLifeform = null;
-        return true;
+      if (state.getProb() != L) {
+
+        ProcessType toProcess = toEvu.getState(fromLifeform).getProcess();
+
+        if (toProcess.equals(ProcessType.SUCCESSION)) {
+
+          Process processInst = Process.findInstance(fromProcess);
+
+          if (processInst.doSpread(Simpplle.getCurrentZone(), fromEvu, toEvu)) {
+
+            spread = true;
+
+          }
+        }
       }
     }
 
     Area.currentLifeform = null;
-    return false;
+
+    return spread;
+
   }
 
   /**
-
-
-   * This method will determine if an fire event spread from fromEvu in the param
-   * list to this unit.
+   * Determines if a fire will spread from one EVU into another EVU.
+   *
    * This method is static and synchronized in order to be certain that the
    * fields we need in the fromEvu and toEvu are not modified by another
    * thread while this method is executing.  There is probably a non-static
    * way of doing this.
+   *
    * @todo make this method non-static and less restricted (if possible).
    *
    * @param fromEvu The Evu we are trying to spread from.
    * @param toEvu   The Evu we are trying to spread to.
-   * @return boolean true if spread was successfull
+   * @return True if spread was successful
    */
-
   public static synchronized boolean doFireSpread(Evu fromEvu, Evu toEvu, Lifeform fromLifeform) {
+
     // Don't spread into a unit that has fire or a lock-in process.
-    if (toEvu.hasFireAnyLifeform()) { return false; }
-    if (toEvu.hasLockinProcessAnyLifeform()) { return false; }
-    if (toEvu.isSuppressed()) { return false; }
 
-    ProcessType fromProcess   = fromEvu.getState(fromLifeform).getProcess();
-    ProcessType fireProcess=null;
-    int         fireProb=S;
-    boolean  fireStarted=false;
+    if (toEvu.hasFireAnyLifeform() ||
+        toEvu.hasLockinProcessAnyLifeform() ||
+        toEvu.isSuppressed()) {
 
+      return false;
+
+    }
+
+    ProcessType fromProcess = fromEvu.getState(fromLifeform).getProcess();
+    ProcessType fireProcess = null;
+    int fireProb = S;
+    boolean fireStarted = false;
 
     Climate.Season currentSeason = Simulation.getInstance().getCurrentSeason();
 
     Lifeform[] lives = Lifeform.getAllValues();
-    for (int i=0; i<lives.length; i++) {
+
+    for (int i = 0; i < lives.length; i++) {
+
       Lifeform toLifeform = lives[i];
       Area.currentLifeform = toLifeform;
-      if (toEvu.hasLifeform(toLifeform) == false) { continue; }
+
+      if (!toEvu.hasLifeform(toLifeform)) continue;
 
       Process processInst = Process.findInstance(fromProcess);
 
       if (fireStarted) {
-        ProcessType p =
-            FireEvent.getTypeOfFire(Simpplle.getCurrentZone(),toEvu,toLifeform);
+
+        ProcessType p = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(),toEvu,toLifeform);
+
         if (p != null && p.isFireProcess()) {
+
           if (p.isFireLessIntense(fireProcess)) {
             p = fireProcess;
           }
+
           toEvu.lastFireTimeStep = Simulation.getCurrentTimeStep();
           toEvu.updateCurrentProcess(toLifeform, p, currentSeason);
           toEvu.updateCurrentProb(toLifeform, fireProb);
           toEvu.updateFireSeason(currentSeason);
+
         }
-      }
-      else if (processInst.doSpread(Simpplle.getCurrentZone(),fromEvu,toEvu)) {
+      } else if (processInst.doSpread(Simpplle.getCurrentZone(),fromEvu,toEvu)) {
+
         toEvu.lastFireTimeStep = Simulation.getCurrentTimeStep();
+
         fireStarted = true;
         fireProcess = toEvu.getState(toLifeform).getProcess();
         fireProb    = toEvu.getState(toLifeform).getProb();
+
       }
 
     }
+
     Area.currentLifeform = null;
+
     return fireStarted;
+
   }
+
 /**
  * Method to calculate treatment thinning state.  This is based on current simulation vegetative state and time steps, treatment, original size class,
  * current size class, fire event if any, and species.
@@ -7229,16 +7303,16 @@ public final class Evu extends NaturalElement implements Externalizable {
     for (int i=0; i<adjacentData.length; i++) {
       fout.print(getId());
       fout.print(COMMA);
-      fout.print(adjacentData[i].evu.getId());
+      fout.print(adjacentData[i].getEvu().getId());
       fout.print(COMMA);
       if (isElevationValid()) {
         fout.print(getElevation());
       }
       else {
-        fout.print(adjacentData[i].position);
+        fout.print(adjacentData[i].getPosition());
       }
       fout.print(COMMA);
-      fout.print(adjacentData[i].wind);
+      fout.print(adjacentData[i].getWind());
       fout.println();
     }
   }
@@ -7370,16 +7444,22 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     fout.println();
   }
-/**
- * Method to compare acreage of Evu's neighbors.
- * @return true if the neightbors have the same acreage
- */
+
+  /**
+   * @return True if this has the same number of acres as the neighbors
+   */
   public boolean hasSameSizeNeighbors() {
-    for (int i=0; i<adjacentData.length; i++) {
-      if (acres != adjacentData[i].evu.acres) { return false; }
+
+    for (AdjacentData adjacent : adjacentData) {
+      if (acres != adjacent.getEvu().acres) {
+        return false;
+      }
     }
+
     return true;
+
   }
+
   public String toString() {
     VegSimStateData state = getState();
     String stateStr = (state != null ? state.getVeg().toString() : "Unknown");
@@ -7891,18 +7971,18 @@ public final class Evu extends NaturalElement implements Externalizable {
     adjacentData = new AdjacentData[in.readInt()];
     for (int i=0; i<adjacentData.length; i++) {
       adjacentData[i] = new AdjacentData();
-      adjacentData[i].evu      = area.getEvu(in.readInt());
-      adjacentData[i].position = in.readChar();
-      adjacentData[i].wind     = in.readChar();
+      adjacentData[i].setEvu(area.getEvu(in.readInt()));
+      adjacentData[i].setPosition(in.readChar());
+      adjacentData[i].setWind(in.readChar());
     }
   }
   public void writeExternalAdjacentData(ObjectOutput out) throws IOException {
     out.writeInt(version);
     out.writeInt(adjacentData.length);
     for (int i=0; i<adjacentData.length; i++) {
-      out.writeInt(adjacentData[i].evu.getId());
-      out.writeChar(adjacentData[i].position);
-      out.writeChar(adjacentData[i].wind);
+      out.writeInt(adjacentData[i].getEvu().getId());
+      out.writeChar(adjacentData[i].getPosition());
+      out.writeChar(adjacentData[i].getWind());
     }
   }
 
@@ -8511,22 +8591,32 @@ public final class Evu extends NaturalElement implements Externalizable {
       Simpplle.getAreaSummary().updateSuppressedFires(this);
     }
   }
-/**
- * Uses the life forms to get vegetative state, then checks if Evu has life form and whether the vegetative state probability
- * equals suppression.
- * @return null if state is null, true if probability = suppression
- */
+
+  /**
+   * Determines if the fire is suppressed by looking for life forms that have a vegetative state with a 'suppressed'
+   * probability, in which case this whole vegetation unit will be reported as being suppressed.
+   *
+   * @return True if fire is suppressed
+   */
   public boolean isSuppressed() {
-    Lifeform[] allLives = Lifeform.getAllValues();
-    for (int i=0; i<allLives.length; i++) {
-      Lifeform lifeform = allLives[i];
+
+    Lifeform[] lifeforms = Lifeform.getAllValues();
+
+    for (Lifeform lifeform : lifeforms) {
+
       VegSimStateData state = getState(lifeform);
-      if (state == null) { continue; }
-      if (hasLifeform(lifeform) && state.getProb() == SUPP) {
+
+      if (state != null &&
+          hasLifeform(lifeform) &&
+          state.getProb() == SUPP) {
+
         return true;
+
       }
     }
+
     return false;
+
   }
 
   /**
@@ -8588,6 +8678,29 @@ public final class Evu extends NaturalElement implements Externalizable {
     MultiKey key = LifeformSeasonKeys.getKey(dominantLifeform,Season.YEAR);
 
     initialState.put(key,state);
+  }
+
+  /**
+   * Helper Method - get the degree difference between two azimuth angles
+   *
+   * @param a angle <= 360
+   * @param b angle 2 <= 360
+   * @return UNSIGNED Angle difference between given angles
+   */
+  public double getAzimuthDifference(double a, double b) {
+    double diff = Math.abs(a - b);
+    return (diff < 180) ? diff : 360 - diff;
+  }
+
+  /**
+   * Determine if neighbor should be classified as downwind
+   * @param spread angle of adjacency
+   * @param windDirection degrees azimuth
+   */
+  public char isDownwind(double spread, double windDirection){
+    int threshold = 90;
+    if (getAzimuthDifference(spread, windDirection) <= threshold) return 'D';
+    else return 'N';
   }
 }
 

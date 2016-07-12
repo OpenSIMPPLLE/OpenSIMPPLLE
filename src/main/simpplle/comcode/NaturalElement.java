@@ -37,6 +37,9 @@ public abstract class NaturalElement implements Externalizable {
 
   protected int    id;
   protected int    acres;
+  /**
+   *  Elevation is recorded in Meters
+   */
   protected int    elevation;
   protected String aspectName;
   protected double aspect;
@@ -103,6 +106,13 @@ public abstract class NaturalElement implements Externalizable {
    * @return elevation of natural element
    */
   public int getElevation() { return elevation; }
+
+  /**
+   * @return elevation of element converted to feet
+   */
+  public double getElevationFeet(){
+    return elevation * 3.28084;
+  }
 
   public void setElevation(int value) { elevation = value; }
 
