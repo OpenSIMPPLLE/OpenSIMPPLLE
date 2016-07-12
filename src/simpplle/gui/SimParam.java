@@ -614,13 +614,7 @@ public class SimParam extends JDialog {
   public void refresh() {
     update(getGraphics());
   }
-/**
- * If 'cancel' button is pressed, disposes the simulation parameter dialog.  
- */
-  private void cancel () {
-    setVisible(false);
-    dispose();
-  }
+
 /**
  * Runs the simulation (if 'Run Simulation' button is pushed).  Basically it
  * parses in the user set parameters and calls the runSimulation method
@@ -745,7 +739,8 @@ public class SimParam extends JDialog {
  * @param e
  */
   void cancelButton_actionPerformed(ActionEvent e) {
-    cancel();
+    setVisible(false);
+    dispose();
   }
 /**
  * Handles the losing of focus from the 'Number of Simulations" text field.  It parses the number of simulations.  
