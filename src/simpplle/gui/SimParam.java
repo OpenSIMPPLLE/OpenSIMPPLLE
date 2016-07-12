@@ -57,35 +57,6 @@ public class SimParam extends JDialog {
    */
   private Vector<String> fireSpreadModels;
 
-  // Layouts
-  private BorderLayout mainLayout  = new BorderLayout();
-  private BorderLayout southLayout = new BorderLayout();
-  private BorderLayout yearlyStepLayout = new BorderLayout();
-  private BorderLayout ownershipLayout = new BorderLayout();
-  private BorderLayout discountLayout = new BorderLayout();
-  private BorderLayout spAreaPanel = new BorderLayout();
-  private BorderLayout fireSuppLayout = new BorderLayout();
-  private BorderLayout allStatesLayout = new BorderLayout();
-  private BorderLayout outOptionsLayout = new BorderLayout();
-  private BorderLayout trackSpeciesLayout = new BorderLayout();
-  private FlowLayout outfileLayout = new FlowLayout();
-  private FlowLayout methodLayout = new FlowLayout();
-  private FlowLayout numSimLayout = new FlowLayout();
-  private FlowLayout numStepLayout = new FlowLayout();
-  private FlowLayout invasiveSpeciesLayout = new FlowLayout();
-  private FlowLayout fireSpreadModelLayout = new FlowLayout();
-  private FlowLayout discardDataLayout = new FlowLayout();
-  private FlowLayout rulesFileLayout = new FlowLayout();
-  private FlowLayout stepsInMemoryLayout = new FlowLayout();
-  private FlowLayout allStatesLayoutCB = new FlowLayout();
-  private FlowLayout outputOptionsLayout = new FlowLayout();
-  private FlowLayout outerOptionsLayout = new FlowLayout();
-  private FlowLayout databaseWriteLayout = new FlowLayout();
-  private FlowLayout trackSpeciesCBLayout = new FlowLayout();
-  private FlowLayout trackSpeciesButtonLayout = new FlowLayout();
-  private FlowLayout probReportsLayout = new FlowLayout();
-  private GridLayout optionsLayout = new GridLayout();
-
   // Panels
   private JPanel mainPanel        = new JPanel();
   private JPanel buttonPanel      = new JPanel();
@@ -204,45 +175,90 @@ public class SimParam extends JDialog {
     Border statesBorder   = new TitledBorder(lineBorder, "All States Report");
 
     // layout options
+
+    BorderLayout southLayout = new BorderLayout();
+    BorderLayout yearlyStepLayout = new BorderLayout();
+    BorderLayout ownershipLayout = new BorderLayout();
+    BorderLayout discountLayout = new BorderLayout();
+    BorderLayout spAreaPanel = new BorderLayout();
+    BorderLayout fireSuppLayout = new BorderLayout();
+    BorderLayout allStatesLayout = new BorderLayout();
+    BorderLayout outOptionsLayout = new BorderLayout();
+    BorderLayout trackSpeciesLayout = new BorderLayout();
+    FlowLayout outputOptionsLayout = new FlowLayout();
+
+    BorderLayout mainLayout = new BorderLayout();
     mainLayout.setHgap(5);
     mainLayout.setVgap(5);
+
+    FlowLayout outfileLayout = new FlowLayout();
     outfileLayout.setAlignment(FlowLayout.LEFT);
     outfileLayout.setHgap(10);
     outfileLayout.setVgap(1);
+
+    FlowLayout probReportsLayout = new FlowLayout();
     probReportsLayout.setAlignment(FlowLayout.LEFT);
+
+    FlowLayout methodLayout = new FlowLayout();
     methodLayout.setAlignment(FlowLayout.LEFT);
     methodLayout.setHgap(10);
     methodLayout.setVgap(1);
+
+    FlowLayout numSimLayout = new FlowLayout();
     numSimLayout.setAlignment(FlowLayout.LEFT);
     numSimLayout.setHgap(10);
     numSimLayout.setVgap(1);
+
+    FlowLayout numStepLayout = new FlowLayout();
     numStepLayout.setAlignment(FlowLayout.LEFT);
     numStepLayout.setHgap(10);
     numStepLayout.setVgap(1);
+
+    FlowLayout invasiveSpeciesLayout = new FlowLayout();
     invasiveSpeciesLayout.setAlignment(FlowLayout.LEFT);
     invasiveSpeciesLayout.setHgap(10);
     invasiveSpeciesLayout.setVgap(1);
+
+    FlowLayout fireSpreadModelLayout = new FlowLayout();
     fireSpreadModelLayout.setAlignment(FlowLayout.LEFT);
     fireSpreadModelLayout.setHgap(10);
     fireSpreadModelLayout.setVgap(1);
+
+    FlowLayout discardDataLayout = new FlowLayout();
     discardDataLayout.setAlignment(FlowLayout.LEFT);
     discardDataLayout.setVgap(0);
+
+    FlowLayout rulesFileLayout = new FlowLayout();
     rulesFileLayout.setAlignment(FlowLayout.LEFT);
     rulesFileLayout.setHgap(10);
+
+    FlowLayout stepsInMemoryLayout = new FlowLayout();
     stepsInMemoryLayout.setAlignment(FlowLayout.LEFT);
     stepsInMemoryLayout.setVgap(0);
+
+    GridLayout optionsLayout = new GridLayout();
     optionsLayout.setColumns(2);
     optionsLayout.setHgap(10);
     optionsLayout.setRows(3);
+
+    FlowLayout outerOptionsLayout = new FlowLayout();
     outerOptionsLayout.setAlignment(FlowLayout.LEFT);
     outerOptionsLayout.setHgap(0);
     outerOptionsLayout.setVgap(0);
+
+    FlowLayout databaseWriteLayout = new FlowLayout();
     databaseWriteLayout.setAlignment(FlowLayout.LEFT);
     databaseWriteLayout.setVgap(0);
+
+    FlowLayout trackSpeciesButtonLayout = new FlowLayout();
     trackSpeciesButtonLayout.setAlignment(FlowLayout.LEFT);
     trackSpeciesButtonLayout.setVgap(0);
+
+    FlowLayout trackSpeciesCBLayout = new FlowLayout();
     trackSpeciesCBLayout.setAlignment(FlowLayout.LEFT);
     trackSpeciesCBLayout.setVgap(0);
+
+    FlowLayout allStatesLayoutCB = new FlowLayout();
     allStatesLayoutCB.setAlignment(FlowLayout.LEFT);
     allStatesLayoutCB.setVgap(0);
 
