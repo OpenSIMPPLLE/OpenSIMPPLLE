@@ -188,22 +188,20 @@ public class SimParam extends JDialog {
   void jbInit() throws Exception {
 
     // default font
+
     Font defaultFont = new java.awt.Font("Monospaced", Font.PLAIN, 14);
 
     // build borders
-    Border border3 = BorderFactory.createLineBorder(SystemColor.
-            controlText, 2);
-    Border memoryBorder = new TitledBorder(border3, "Memory Saving Options");
-    Border trackingBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 2),
-            "Tracking Species Report");
-    Border optionsBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 2),
-            "Options");
-    Border outputBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 2),
-            "Results Output Options");
-    Border rulesBorder = new TitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.
-            RAISED, Color.white, new Color(148, 145, 140)), "Rules File (optional)");
-    Border statesBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black, 2),
-            "All States Report");
+
+    Border lineBorder = BorderFactory.createLineBorder(Color.BLACK, 2);
+    Border etchBorder = BorderFactory.createEtchedBorder();
+
+    Border memoryBorder   = new TitledBorder(lineBorder, "Memory Saving Options");
+    Border trackingBorder = new TitledBorder(lineBorder, "Tracking Species Report");
+    Border optionsBorder  = new TitledBorder(lineBorder, "Options");
+    Border outputBorder   = new TitledBorder(lineBorder, "Results Output Options");
+    Border rulesBorder    = new TitledBorder(etchBorder, "Rules File (optional)");
+    Border statesBorder   = new TitledBorder(lineBorder, "All States Report");
 
     // layout options
     mainLayout.setHgap(5);
@@ -303,7 +301,7 @@ public class SimParam extends JDialog {
       }
     });
     buttonPanel.setAlignmentX((float) 0.0);
-    buttonPanel.setBorder(BorderFactory.createEtchedBorder());
+    buttonPanel.setBorder(etchBorder);
     numSimText.setBackground(Color.white);
     numSimText.setNextFocusableComponent(numStepText);
     numSimText.setSelectionColor(Color.blue);
