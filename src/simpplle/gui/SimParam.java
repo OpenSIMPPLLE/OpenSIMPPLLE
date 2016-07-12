@@ -57,16 +57,9 @@ public class SimParam extends JDialog {
    */
   private Vector<String> fireSpreadModels;
 
-   // Labels
-  private JLabel numStepLabel   = new JLabel();
-  private JLabel numSimLabel    = new JLabel();
-  private JLabel simMethodLabel = new JLabel();
+  // Elements
   private JLabel tsInMemoryLabel = new JLabel();
   private JLabel gisUpdateSpreadLabel = new JLabel();
-  private JLabel invasiveSpeciesLabel = new JLabel();
-  private JLabel fireSpreadModelLabel = new JLabel();
-
-  // Elements
   private JButton runButton       = new JButton();
   private JButton cancelButton    = new JButton();
   private JButton outfileButton   = new JButton();
@@ -378,14 +371,21 @@ public class SimParam extends JDialog {
         numStepText_focusLost(e);
       }
     });
+
+    JLabel numSimLabel = new JLabel();
     numSimLabel.setFont(defaultFont);
     numSimLabel.setLabelFor(numSimText);
     numSimLabel.setText("Number of Simulations ");
+
+    JLabel numStepLabel = new JLabel();
     numStepLabel.setFont(defaultFont);
     numStepLabel.setLabelFor(numStepText);
     numStepLabel.setText("Number of Time Steps  ");
+
     mainPanel.setAlignmentX((float) 0.0);
+
     this.setTitle("Set Simulation Parameters");
+
     fireSuppCB.setFont(defaultFont);
     fireSuppCB.setNextFocusableComponent(discountCB);
     fireSuppCB.setText("Fire Suppression");
@@ -394,6 +394,7 @@ public class SimParam extends JDialog {
         fireSuppCB_itemStateChanged(e);
       }
     });
+
     discountCB.setEnabled(false);
     discountCB.setFont(defaultFont);
     discountCB.setNextFocusableComponent(discountText);
@@ -452,8 +453,11 @@ public class SimParam extends JDialog {
         yearlyStepCB_itemStateChanged(e);
       }
     });
+
+    JLabel simMethodLabel = new JLabel();
     simMethodLabel.setFont(defaultFont);
     simMethodLabel.setText("Simulation Method     ");
+
     databaseWriteCB.setEnabled(false);
     databaseWriteCB.setFont(defaultFont);
     databaseWriteCB.setToolTipText("This will write simulation data to a database");
@@ -501,18 +505,29 @@ public class SimParam extends JDialog {
         tsInMemoryText_actionPerformed(e);
       }
     });
+
     tsInMemoryLabel.setEnabled(false);
     tsInMemoryLabel.setText("Time Steps kept in memory (minimum 10)");
+
     jPanel1.setBorder(memoryBorder);
+
     allStatesCB.setText(
       "Enable All States Report (needed if above discard option is checked or doing multiple runs)");
+
     allStatesPanel.setBorder(statesBorder);
+
     outputOptionsPanel.setBorder(outputBorder);
+
+    JLabel invasiveSpeciesLabel = new JLabel();
     invasiveSpeciesLabel.setFont(defaultFont);
     invasiveSpeciesLabel.setText("Invasive Species Logic");
+
+    JLabel fireSpreadModelLabel = new JLabel();
     fireSpreadModelLabel.setFont(defaultFont);
     fireSpreadModelLabel.setText("Fire Spread Model     ");
+
     optionsOuterPanel.setBorder(optionsBorder);
+
     trackingSpeciesCB.setText(
       "Generate Tracking Species Report (needed if discarding data or multiple " +
       "runs)");
@@ -522,6 +537,7 @@ public class SimParam extends JDialog {
         trackingSpeciesCategoryPB_actionPerformed(e);
       }
     });
+
     trackingSpeciesPanel.setBorder(trackingBorder);
     buttonPanel.add(runButton, null);
     buttonPanel.add(cancelButton, null);
@@ -567,6 +583,7 @@ public class SimParam extends JDialog {
       }
     });
     panel.add(outputOptionsCBPanel);
+
     outputOptionsLayout.setAlignment(FlowLayout.LEFT);
     outputOptionsLayout.setVgap(0);
     outputOptionsCBPanel.add(gisUpdateSpreadCB);
