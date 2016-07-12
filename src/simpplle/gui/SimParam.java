@@ -57,40 +57,6 @@ public class SimParam extends JDialog {
    */
   private Vector<String> fireSpreadModels;
 
-  // Panels
-  private JPanel mainPanel        = new JPanel();
-  private JPanel buttonPanel      = new JPanel();
-  private JPanel northPanel       = new JPanel();
-  private JPanel southPanel       = new JPanel();
-  private JPanel discountPanel    = new JPanel();
-  private JPanel fireSuppCBPanel  = new JPanel();
-  private JPanel specialAreaPanel = new JPanel();
-  private JPanel ownershipPanel   = new JPanel();
-  private JPanel outfilePanel     = new JPanel();
-  private JPanel numSimPanel      = new JPanel();
-  private JPanel numStepPanel     = new JPanel();
-  private JPanel discardDataPanel = new JPanel();
-  private JPanel discardTextPanel = new JPanel();
-  private JPanel simMethodPanel   = new JPanel();
-  private JPanel yearlyStepPanel  = new JPanel();
-  private JPanel jPanel1          = new JPanel();
-  private JPanel allStatesPanel   = new JPanel();
-  private JPanel allStatesCBPanel = new JPanel();
-  private JPanel optionsPanel     = new JPanel();
-  private JPanel optionsOuterPanel = new JPanel();
-  private JPanel databaseWritePanel = new JPanel();
-  private JPanel outputOptionsPanel = new JPanel();
-  private JPanel trackSpeciesCBPanel = new JPanel();
-  private JPanel invasiveSpeciesPanel = new JPanel();
-  private JPanel fireSpreadModelPanel = new JPanel();
-  private JPanel outputOptionsCBPanel = new JPanel();
-  private JPanel trackingSpeciesPanel = new JPanel();
-  private JPanel timeStepsInMemoryPanel = new JPanel();
-  private JPanel allStatesRulesFilePanel = new JPanel();
-  private JPanel trackSpeciesCategoryButtonPanel = new JPanel();
-  private JPanel panel = new JPanel();
-  private JPanel writeAccessPanel = new JPanel();
-
    // Labels
   private JLabel numStepLabel   = new JLabel();
   private JLabel numSimLabel    = new JLabel();
@@ -263,37 +229,101 @@ public class SimParam extends JDialog {
     allStatesLayoutCB.setVgap(0);
 
     // Set layouts
+
+    JPanel mainPanel = new JPanel();
     mainPanel.setLayout(mainLayout);
+
+    JPanel southPanel = new JPanel();
     southPanel.setLayout(southLayout);
+
+    JPanel northPanel = new JPanel();
     northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+
+    JPanel discountPanel = new JPanel();
     discountPanel.setLayout(discountLayout);
+
+    JPanel fireSuppCBPanel = new JPanel();
     fireSuppCBPanel.setLayout(fireSuppLayout);
+
+    JPanel ownershipPanel = new JPanel();
     ownershipPanel.setLayout(ownershipLayout);
+
+    JPanel specialAreaPanel = new JPanel();
     specialAreaPanel.setLayout(spAreaPanel);
+
+    JPanel outfilePanel = new JPanel();
     outfilePanel.setLayout(outfileLayout);
+
+    JPanel yearlyStepPanel = new JPanel();
     yearlyStepPanel.setLayout(yearlyStepLayout);
+
+    JPanel simMethodPanel = new JPanel();
     simMethodPanel.setLayout(methodLayout);
+
+    JPanel numSimPanel = new JPanel();
     numSimPanel.setLayout(numSimLayout);
+
+    JPanel numStepPanel = new JPanel();
     numStepPanel.setLayout(numStepLayout);
+
+    JPanel invasiveSpeciesPanel = new JPanel();
     invasiveSpeciesPanel.setLayout(invasiveSpeciesLayout);
+
+    JPanel fireSpreadModelPanel = new JPanel();
     fireSpreadModelPanel.setLayout(fireSpreadModelLayout);
+
+    JPanel discardDataPanel = new JPanel();
     discardDataPanel.setLayout(discardDataLayout);
+
+    JPanel allStatesRulesFilePanel = new JPanel();
     allStatesRulesFilePanel.setLayout(rulesFileLayout);
+
+    JPanel timeStepsInMemoryPanel = new JPanel();
     timeStepsInMemoryPanel.setLayout(stepsInMemoryLayout);
+
+    JPanel jPanel1 = new JPanel();
     jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+
+    JPanel allStatesPanel = new JPanel();
     allStatesPanel.setLayout(allStatesLayout);
+
+    JPanel allStatesCBPanel = new JPanel();
     allStatesCBPanel.setLayout(allStatesLayoutCB);
+
+    JPanel outputOptionsPanel = new JPanel();
     outputOptionsPanel.setLayout(outOptionsLayout);
+
+    JPanel optionsPanel = new JPanel();
     optionsPanel.setLayout(optionsLayout);
+
+    JPanel optionsOuterPanel = new JPanel();
     optionsOuterPanel.setLayout(outerOptionsLayout);
+
+    JPanel databaseWritePanel = new JPanel();
     databaseWritePanel.setLayout(databaseWriteLayout);
+
+    JPanel trackingSpeciesPanel = new JPanel();
     trackingSpeciesPanel.setLayout(trackSpeciesLayout);
+
+    JPanel trackSpeciesCBPanel = new JPanel();
     trackSpeciesCBPanel.setLayout(trackSpeciesCBLayout);
+
+    JPanel trackSpeciesCategoryButtonPanel = new JPanel();
     trackSpeciesCategoryButtonPanel.setLayout(trackSpeciesButtonLayout);
+
+    JPanel outputOptionsCBPanel = new JPanel();
     outputOptionsCBPanel.setLayout(outputOptionsLayout);
+
+    JPanel panel = new JPanel();
     panel.setLayout(new GridLayout(2, 0));
+
+    JPanel writeAccessPanel = new JPanel();
     writeAccessPanel.setLayout(probReportsLayout);
+
+    JPanel discardTextPanel = new JPanel();
     discardTextPanel.setLayout(probReportsLayout);
+
+    JPanel buttonPanel = new JPanel();
 
     // Initialize
     fireSpreadModelCB = new JComboBox(fireSpreadModels);
