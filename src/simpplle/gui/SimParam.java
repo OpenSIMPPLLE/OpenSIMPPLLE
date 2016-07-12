@@ -391,11 +391,8 @@ public class SimParam extends JDialog {
     writeAreaProbFilesCB.setText("Write probability reports for multiple simulations.");
     writeAreaProbFilesCB.setEnabled(false);
 
-    FlowLayout probReportsLayout = new FlowLayout(); // TODO: Check if panels can share the same FlowLayout instance
-    probReportsLayout.setAlignment(FlowLayout.LEFT);
-
     JPanel discardTextPanel = new JPanel();
-    discardTextPanel.setLayout(probReportsLayout);
+    discardTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
     discardTextPanel.add(writeAreaProbFilesCB);
 
     /* GIS Update/Spread Files */
@@ -423,7 +420,7 @@ public class SimParam extends JDialog {
     writeAccessFilesCB.setEnabled(false);
 
     JPanel writeAccessPanel = new JPanel();
-    writeAccessPanel.setLayout(probReportsLayout);
+    writeAccessPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
     writeAccessPanel.add(writeAccessFilesCB);
 
     /* Results Output Options */
