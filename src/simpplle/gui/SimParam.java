@@ -360,7 +360,7 @@ public class SimParam extends JDialog {
     outfileButton.setMinimumSize(new Dimension(40, 27));
     outfileButton.setNextFocusableComponent(outfileText);
     outfileButton.setPreferredSize(new Dimension(40, 27));
-    outfileButton.setToolTipText("Set the output files prefex.");
+    outfileButton.setToolTipText("Set the output files prefix");
     outfileButton.setHorizontalTextPosition(SwingConstants.LEFT);
     outfileButton.setIcon(new ImageIcon(simpplle.gui.SimParam.class.getResource("images/save.gif")));
     outfileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -387,7 +387,8 @@ public class SimParam extends JDialog {
 
     /* Write probability reports for multiple simulations */
 
-    writeAreaProbFilesCB.setText("Write probability reports for multiple simulations.");
+    writeAreaProbFilesCB.setText("Probability Reports");
+    writeAreaProbFilesCB.setToolTipText("Writes probability reports for multiple simulations");
     writeAreaProbFilesCB.setEnabled(false);
 
     JPanel discardTextPanel = new JPanel();
@@ -396,7 +397,7 @@ public class SimParam extends JDialog {
 
     /* GIS Update/Spread Files */
 
-    gisUpdateSpreadCB.setText("GIS Update/Spread Files");
+    gisUpdateSpreadCB.setText("GIS Update and Spread Files");
     gisUpdateSpreadCB.setEnabled(false);
     gisUpdateSpreadCB.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -414,7 +415,7 @@ public class SimParam extends JDialog {
 
     /* Write Data to Text Files */
 
-    writeAccessFilesCB.setText("Write Data to Text Files (Suitable for import into Access or other Programs)");
+    writeAccessFilesCB.setText("Text Files");
     writeAccessFilesCB.setEnabled(false);
 
     JPanel writeAccessPanel = new JPanel();
@@ -434,8 +435,8 @@ public class SimParam extends JDialog {
     /* Use Database */
 
     databaseWriteCB.setEnabled(false);
-    databaseWriteCB.setToolTipText("This will write simulation data to a database");
-    databaseWriteCB.setText("Use Database (saves memory, slows run)");
+    databaseWriteCB.setText("Write time steps to database");
+    databaseWriteCB.setToolTipText("Decreases memory usage but increases simulation run time");
 
     FlowLayout databaseWriteLayout = new FlowLayout();
     databaseWriteLayout.setAlignment(FlowLayout.LEFT);
@@ -447,7 +448,8 @@ public class SimParam extends JDialog {
 
     /* Discard Unnecessary Simulation Data */
 
-    discardDataCB.setText("Discard Unnecessary Simulation Data, needed for extremely long term simulations.");
+    discardDataCB.setText("Limit time steps kept in memory");
+    discardDataCB.setToolTipText("Decreases memory usage for extremely long term simulations");
     discardDataCB.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         discardDataCB_actionPerformed(e);
@@ -480,7 +482,7 @@ public class SimParam extends JDialog {
     });
 
     tsInMemoryLabel.setEnabled(false);
-    tsInMemoryLabel.setText("Time Steps kept in memory (minimum 10)");
+    tsInMemoryLabel.setText("Time steps kept in memory (minimum 10)");
 
     FlowLayout stepsInMemoryLayout = new FlowLayout();
     stepsInMemoryLayout.setAlignment(FlowLayout.LEFT);
@@ -504,7 +506,8 @@ public class SimParam extends JDialog {
 
     /* Enable All States Report */
 
-    allStatesCB.setText("Enable All States Report (needed if above discard option is checked or doing multiple runs)");
+    allStatesCB.setText("Enable All States Report");
+    allStatesCB.setToolTipText("Required if limiting time steps or doing multiple runs");
 
     FlowLayout allStatesLayoutCB = new FlowLayout();
     allStatesLayoutCB.setAlignment(FlowLayout.LEFT);
@@ -557,7 +560,8 @@ public class SimParam extends JDialog {
 
     /* Generate Tracking Species Report */
 
-    trackingSpeciesCB.setText("Generate Tracking Species Report (needed if discarding data or multiple runs)");
+    trackingSpeciesCB.setText("Generate Tracking Species Report");
+    trackingSpeciesCB.setToolTipText("Required if discarding data or performing multiple runs");
 
     FlowLayout trackSpeciesCBLayout = new FlowLayout();
     trackSpeciesCBLayout.setAlignment(FlowLayout.LEFT);
