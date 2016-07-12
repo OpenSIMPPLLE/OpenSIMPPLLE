@@ -59,7 +59,6 @@ public class SimParam extends JDialog {
 
   // Elements
   private JLabel tsInMemoryLabel = new JLabel();
-  private JLabel gisUpdateSpreadLabel = new JLabel();
   private JButton runButton       = new JButton();
   private JButton cancelButton    = new JButton();
   private JButton outfileButton   = new JButton();
@@ -412,7 +411,6 @@ public class SimParam extends JDialog {
     JPanel outputOptionsCBPanel = new JPanel();
     outputOptionsCBPanel.setLayout(outputOptionsLayout);
     outputOptionsCBPanel.add(gisUpdateSpreadCB);
-    outputOptionsCBPanel.add(gisUpdateSpreadLabel);
 
     /* Write Data to Text Files */
 
@@ -854,11 +852,6 @@ public class SimParam extends JDialog {
       if (numSims < 1 || numSims > 100) {
         throw new NumberFormatException();
       }
-
-      if (outputFile != null && gisUpdateSpreadCB.isSelected()) {
-        String nFiles = Integer.toString(numSims * numSteps * 2);
-        gisUpdateSpreadLabel.setText("(# of Files " + nFiles + ")");
-      }
     }
     catch (NumberFormatException nfe) {
       focusLost = true;
@@ -897,11 +890,6 @@ public class SimParam extends JDialog {
       numSteps = Integer.parseInt(numStepText.getText());
       if (numSteps < 1 || numSteps > maxTimeSteps) {
         throw new NumberFormatException();
-      }
-
-      if (outputFile != null && gisUpdateSpreadCB.isSelected()) {
-        String nFiles = Integer.toString(numSims * numSteps * 2);
-        gisUpdateSpreadLabel.setText("(# of Files " + nFiles + ")");
       }
     }
     catch (NumberFormatException nfe) {
@@ -1010,10 +998,6 @@ public class SimParam extends JDialog {
       gisUpdateSpreadCB.setEnabled(true);
       gisUpdateSpreadCB.setSelected(true);
 
-      if (gisUpdateSpreadCB.isSelected()) {
-        String nFiles = Integer.toString(numSims * numSteps * 2);
-        gisUpdateSpreadLabel.setText("(# of Files " + nFiles + ")");
-      }
       writeAccessFilesCB.setEnabled(true);
       writeAccessFilesCB.setSelected(false);
       writeAreaProbFilesCB.setEnabled(true);
@@ -1025,7 +1009,6 @@ public class SimParam extends JDialog {
       databaseWriteCB.setSelected(false);
       gisUpdateSpreadCB.setEnabled(false);
       gisUpdateSpreadCB.setSelected(false);
-      gisUpdateSpreadLabel.setText("");
       writeAccessFilesCB.setEnabled(false);
       writeAccessFilesCB.setSelected(false);
 //      writeProbFilesCB.setEnabled(false);
@@ -1090,13 +1073,6 @@ public class SimParam extends JDialog {
   }
 
   public void gisUpdateSpreadCB_actionPerformed(ActionEvent e) {
-    if (outputFile != null && gisUpdateSpreadCB.isSelected()) {
-      String nFiles = Integer.toString(numSims * numSteps * 2);
-      gisUpdateSpreadLabel.setText("(# of Files " + nFiles + ")");
-    }
-    else {
-      gisUpdateSpreadLabel.setText("");
-    }
 
   }
 /**
