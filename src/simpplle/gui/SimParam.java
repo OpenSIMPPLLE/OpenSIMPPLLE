@@ -161,19 +161,28 @@ public class SimParam extends JDialog {
   // This need to be down here so designer will work correctly.
   private SimpplleMain simpplleMain;
 
-  // Overloaded Constructor
+  /**
+   * Creates a modal simulation parameters dialog.
+   *
+   * @param frame A parent frame
+   * @param fireSpreadModels A vector of fire spread model names
+   */
   public SimParam(SimpplleMain frame, Vector<String> fireSpreadModels) {
+
     super(frame, "Simulation Parameters", true);
+
+    this.simpplleMain = frame;
     this.fireSpreadModels = fireSpreadModels;
+
     try  {
       jbInit();
       pack();
-    }
-    catch(Exception ex) {
+    } catch(Exception ex) {
       ex.printStackTrace();
     }
-    simpplleMain = frame;
+
     initialize();
+
   }
 
   void jbInit() throws Exception {
