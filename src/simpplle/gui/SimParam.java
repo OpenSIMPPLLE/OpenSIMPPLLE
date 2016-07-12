@@ -117,7 +117,7 @@ public class SimParam extends JDialog {
 
   void jbInit() throws Exception {
 
-    Font defaultFont = new java.awt.Font("Monospaced", Font.PLAIN, 14);
+    Font monospaced = new java.awt.Font("Monospaced", Font.PLAIN, 14);
 
     /* Number of Simulations */
 
@@ -138,7 +138,7 @@ public class SimParam extends JDialog {
     });
 
     JLabel numSimLabel = new JLabel();
-    numSimLabel.setFont(defaultFont);
+    numSimLabel.setFont(monospaced);
     numSimLabel.setLabelFor(numSimText);
     numSimLabel.setText("Number of Simulations ");
 
@@ -171,7 +171,7 @@ public class SimParam extends JDialog {
     });
 
     JLabel numStepLabel = new JLabel();
-    numStepLabel.setFont(defaultFont);
+    numStepLabel.setFont(monospaced);
     numStepLabel.setLabelFor(numStepText);
     numStepLabel.setText("Number of Time Steps  ");
 
@@ -188,7 +188,7 @@ public class SimParam extends JDialog {
     /* Simulation Method */
 
     JLabel simMethodLabel = new JLabel();
-    simMethodLabel.setFont(defaultFont);
+    simMethodLabel.setFont(monospaced);
     simMethodLabel.setText("Simulation Method     ");
 
     FlowLayout methodLayout = new FlowLayout();
@@ -204,7 +204,7 @@ public class SimParam extends JDialog {
     /* Invasive Species Logic */
 
     JLabel invasiveSpeciesLabel = new JLabel();
-    invasiveSpeciesLabel.setFont(defaultFont);
+    invasiveSpeciesLabel.setFont(monospaced);
     invasiveSpeciesLabel.setText("Invasive Species Logic");
 
     FlowLayout invasiveSpeciesLayout = new FlowLayout();
@@ -220,7 +220,7 @@ public class SimParam extends JDialog {
     /* Fire Spread Model */
 
     JLabel fireSpreadModelLabel = new JLabel();
-    fireSpreadModelLabel.setFont(defaultFont);
+    fireSpreadModelLabel.setFont(monospaced);
     fireSpreadModelLabel.setText("Fire Spread Model     ");
 
     fireSpreadModelCB = new JComboBox(fireSpreadModels);
@@ -237,7 +237,7 @@ public class SimParam extends JDialog {
 
     /* Yearly Time Steps */
 
-    yearlyStepCB.setFont(defaultFont);
+    yearlyStepCB.setFont(monospaced);
     yearlyStepCB.setText("Yearly Time Steps");
     yearlyStepCB.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(ItemEvent e) {
@@ -254,7 +254,7 @@ public class SimParam extends JDialog {
     /* Track Ownership */
 
     ownershipCB.setText("Track Ownership");
-    ownershipCB.setFont(defaultFont);
+    ownershipCB.setFont(monospaced);
     ownershipCB.setEnabled(false);
     ownershipCB.setNextFocusableComponent(specialAreaCB);
     ownershipCB.addItemListener(new java.awt.event.ItemListener() {
@@ -272,7 +272,7 @@ public class SimParam extends JDialog {
     /* Fire Suppression */
 
     fireSuppCB.setText("Fire Suppression");
-    fireSuppCB.setFont(defaultFont);
+    fireSuppCB.setFont(monospaced);
     fireSuppCB.setNextFocusableComponent(discountCB);
     fireSuppCB.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(ItemEvent e) {
@@ -289,7 +289,7 @@ public class SimParam extends JDialog {
     /* Track Special Area */
 
     specialAreaCB.setText("Track Special Area");
-    specialAreaCB.setFont(defaultFont);
+    specialAreaCB.setFont(monospaced);
     specialAreaCB.setEnabled(false);
     specialAreaCB.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(ItemEvent e) {
@@ -313,7 +313,7 @@ public class SimParam extends JDialog {
     discountText.setColumns(4);
 
     discountCB.setText("Discounted Cost");
-    discountCB.setFont(defaultFont);
+    discountCB.setFont(monospaced);
     discountCB.setEnabled(false);
     discountCB.setNextFocusableComponent(discountText);
     discountCB.addItemListener(new java.awt.event.ItemListener() {
@@ -386,10 +386,22 @@ public class SimParam extends JDialog {
     outfilePanel.add(outfileButton, null);
     outfilePanel.add(outfileText, null);
 
+    /* Write probability reports for multiple simulations */
+
+    writeAreaProbFilesCB.setText("Write probability reports for multiple simulations.");
+    writeAreaProbFilesCB.setEnabled(false);
+
+    FlowLayout probReportsLayout = new FlowLayout(); // TODO: Check if panels can share the same FlowLayout instance
+    probReportsLayout.setAlignment(FlowLayout.LEFT);
+
+    JPanel discardTextPanel = new JPanel();
+    discardTextPanel.setLayout(probReportsLayout);
+    discardTextPanel.add(writeAreaProbFilesCB);
+
     /* GIS Update/Spread Files */
 
-    gisUpdateSpreadCB.setEnabled(false);
     gisUpdateSpreadCB.setText("GIS Update/Spread Files");
+    gisUpdateSpreadCB.setEnabled(false);
     gisUpdateSpreadCB.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         gisUpdateSpreadCB_actionPerformed(e);
@@ -407,49 +419,26 @@ public class SimParam extends JDialog {
 
     /* Write Data to Text Files */
 
-    writeAccessFilesCB.setEnabled(false);
-    writeAccessFilesCB.setSelected(false);
     writeAccessFilesCB.setText("Write Data to Text Files (Suitable for import into Access or other Programs)");
-
-    FlowLayout probReportsLayout = new FlowLayout(); // TODO: Check if panels can share the same FlowLayout instance
-    probReportsLayout.setAlignment(FlowLayout.LEFT);
+    writeAccessFilesCB.setEnabled(false);
 
     JPanel writeAccessPanel = new JPanel();
     writeAccessPanel.setLayout(probReportsLayout);
     writeAccessPanel.add(writeAccessFilesCB);
 
-    JPanel panel = new JPanel(); // TODO: Remove this panel
-    panel.setLayout(new GridLayout(2, 0));
-    panel.add(outputOptionsCBPanel);
-    panel.add(writeAccessPanel);
-
-    /* Write probability reports for multiple simulations */
-
-    writeAreaProbFilesCB.setFont(defaultFont);
-    writeAreaProbFilesCB.setText("Write probability reports for multiple simulations.");
-    writeAreaProbFilesCB.setEnabled(false);
-
-    JPanel discardTextPanel = new JPanel();
-    discardTextPanel.setLayout(probReportsLayout);
-    discardTextPanel.add(writeAreaProbFilesCB);
-
     /* Results Output Options */
 
-    Border outputBorder   = new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "Results Output Options");
-
-    BorderLayout outOptionsLayout = new BorderLayout();
-
     JPanel outputOptionsPanel = new JPanel();
-    outputOptionsPanel.setLayout(outOptionsLayout);
-    outputOptionsPanel.setBorder(outputBorder);
-    outputOptionsPanel.add(outfilePanel, java.awt.BorderLayout.NORTH);
-    outputOptionsPanel.add(panel, BorderLayout.SOUTH);
+    outputOptionsPanel.setBorder(new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "Results Output Options"));
+    outputOptionsPanel.setLayout(new BoxLayout(outputOptionsPanel,BoxLayout.Y_AXIS));
+    outputOptionsPanel.add(outfilePanel);
     outputOptionsPanel.add(discardTextPanel);
+    outputOptionsPanel.add(outputOptionsCBPanel);
+    outputOptionsPanel.add(writeAccessPanel);
 
     /* Use Database */
 
     databaseWriteCB.setEnabled(false);
-    databaseWriteCB.setFont(defaultFont);
     databaseWriteCB.setToolTipText("This will write simulation data to a database");
     databaseWriteCB.setText("Use Database (saves memory, slows run)");
 
@@ -463,7 +452,6 @@ public class SimParam extends JDialog {
 
     /* Discard Unnecessary Simulation Data */
 
-    discardDataCB.setFont(defaultFont);
     discardDataCB.setText("Discard Unnecessary Simulation Data, needed for extremely long term simulations.");
     discardDataCB.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
