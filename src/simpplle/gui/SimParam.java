@@ -566,68 +566,90 @@ public class SimParam extends JDialog {
 
     /* Main Panel */
 
-    mainPanel.add(northPanel, BorderLayout.NORTH);
-    mainPanel.add(southPanel, BorderLayout.SOUTH);
-    southPanel.add(buttonPanel, BorderLayout.NORTH);
     numSimPanel.add(numSimLabel, null);
     numSimPanel.add(numSimText, null);
-    northPanel.add(numSimPanel, null);
-    northPanel.add(numStepPanel, null);
+
     numStepPanel.add(numStepLabel, null);
     numStepPanel.add(numStepText, null);
-    northPanel.add(simMethodPanel, null);
+
     simMethodPanel.add(simMethodLabel, null);
     simMethodPanel.add(simMethodCB, null);
-    northPanel.add(invasiveSpeciesPanel);
+
     invasiveSpeciesPanel.add(invasiveSpeciesLabel);
     invasiveSpeciesPanel.add(invasiveSpeciesCB);
-    northPanel.add(fireSpreadModelPanel);
+
     fireSpreadModelPanel.add(fireSpreadModelLabel,null);
     fireSpreadModelPanel.add(fireSpreadModelCB,null);
-    northPanel.add(optionsOuterPanel);
-    optionsOuterPanel.add(optionsPanel);
-    optionsPanel.add(yearlyStepPanel);
+
     yearlyStepPanel.add(yearlyStepCB);
-    optionsPanel.add(ownershipPanel);
     ownershipPanel.add(ownershipCB);
-    optionsPanel.add(fireSuppCBPanel);
     fireSuppCBPanel.add(fireSuppCB);
-    optionsPanel.add(specialAreaPanel);
     specialAreaPanel.add(specialAreaCB);
+    discountPanel.add(discountText, java.awt.BorderLayout.CENTER);
+    discountPanel.add(discountCB, java.awt.BorderLayout.WEST);
+
+    optionsPanel.add(yearlyStepPanel);
+    optionsPanel.add(ownershipPanel);
+    optionsPanel.add(fireSuppCBPanel);
+    optionsPanel.add(specialAreaPanel);
     optionsPanel.add(discountPanel);
-    northPanel.add(outputOptionsPanel);
-    outputOptionsPanel.add(outfilePanel, java.awt.BorderLayout.NORTH);
+
+    optionsOuterPanel.add(optionsPanel);
+
     outfilePanel.add(outfileButton, null);
     outfilePanel.add(outfileText, null);
-    outputOptionsPanel.add(panel, BorderLayout.SOUTH);
-    panel.add(outputOptionsCBPanel);
+
     outputOptionsCBPanel.add(gisUpdateSpreadCB);
     outputOptionsCBPanel.add(gisUpdateSpreadLabel);
-    panel.add(writeAccessPanel);
+
     writeAccessPanel.add(writeAccessFilesCB);
+
+    panel.add(outputOptionsCBPanel);
+    panel.add(writeAccessPanel);
+
     discardTextPanel.add(writeAreaProbFilesCB);
+
+    outputOptionsPanel.add(outfilePanel, java.awt.BorderLayout.NORTH);
+    outputOptionsPanel.add(panel, BorderLayout.SOUTH);
     outputOptionsPanel.add(discardTextPanel);
-    northPanel.add(jPanel1);
-    jPanel1.add(databaseWritePanel);
+
     databaseWritePanel.add(databaseWriteCB, null);
     discardDataPanel.add(discardDataCB);
-    jPanel1.add(discardDataPanel);
-    jPanel1.add(timeStepsInMemoryPanel);
     timeStepsInMemoryPanel.add(tsInMemoryText);
     timeStepsInMemoryPanel.add(tsInMemoryLabel);
-    northPanel.add(allStatesPanel);
-    northPanel.add(trackingSpeciesPanel);
-    trackSpeciesCBPanel.add(trackingSpeciesCB);
-    trackSpeciesCategoryButtonPanel.add(trackingSpeciesCategoryPB);
+
+    jPanel1.add(databaseWritePanel);
+    jPanel1.add(discardDataPanel);
+    jPanel1.add(timeStepsInMemoryPanel);
+
+    allStatesCBPanel.add(allStatesCB);
     allStatesRulesFilePanel.add(allStatesFilePB);
     allStatesRulesFilePanel.add(allStatesFileText);
     allStatesPanel.add(allStatesCBPanel, java.awt.BorderLayout.NORTH);
-    allStatesCBPanel.add(allStatesCB);
     allStatesPanel.add(allStatesRulesFilePanel, java.awt.BorderLayout.CENTER);
-    discountPanel.add(discountText, java.awt.BorderLayout.CENTER);
-    discountPanel.add(discountCB, java.awt.BorderLayout.WEST);
+
+    trackSpeciesCategoryButtonPanel.add(trackingSpeciesCategoryPB);
+
+    trackSpeciesCBPanel.add(trackingSpeciesCB);
+
     trackingSpeciesPanel.add(trackSpeciesCategoryButtonPanel, java.awt.BorderLayout.CENTER);
     trackingSpeciesPanel.add(trackSpeciesCBPanel, java.awt.BorderLayout.NORTH);
+
+    northPanel.add(numSimPanel, null);
+    northPanel.add(numStepPanel, null);
+    northPanel.add(simMethodPanel, null);
+    northPanel.add(invasiveSpeciesPanel);
+    northPanel.add(fireSpreadModelPanel);
+    northPanel.add(optionsOuterPanel);
+    northPanel.add(outputOptionsPanel);
+    northPanel.add(jPanel1);
+    northPanel.add(allStatesPanel);
+    northPanel.add(trackingSpeciesPanel);
+
+    southPanel.add(buttonPanel, BorderLayout.NORTH);
+
+    mainPanel.add(northPanel, BorderLayout.NORTH);
+    mainPanel.add(southPanel, BorderLayout.SOUTH);
 
     getContentPane().add(mainPanel, java.awt.BorderLayout.WEST);
 
