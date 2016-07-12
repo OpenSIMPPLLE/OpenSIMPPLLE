@@ -1,6 +1,5 @@
 package simpplle.gui;
 
-import com.mchange.v1.util.ArrayUtils;
 import org.hsqldb.util.DatabaseManagerSwing;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
@@ -13,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowEvent;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -210,6 +208,7 @@ public class SimpplleMain extends JFrame {
   private final JMenuItem menuUtilityElevRelPos = new JMenuItem();
   private final JMenuItem menuUtilitySwapRowCol = new JMenuItem();
   private final JMenuItem menuSysKnowFireSuppEvent = new JMenuItem();
+
   /**
    * This is the SimpplleMain constructor.  
    */
@@ -308,7 +307,7 @@ public class SimpplleMain extends JFrame {
     newZone.addActionListener(new java.awt.event.ActionListener() {
 
       public void actionPerformed(ActionEvent e) {
-        newZone_actionPerformed(e);
+        newZone_actionPerformed();
       }
     });
     newArea.setEnabled(false);
@@ -1342,7 +1341,8 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 /**
- * Enables the smulation controls by getting the current simulation and setting the simulation JMenu items to enabled
+ * Enables the simulation controls by getting the current simulation and
+ * setting the simulation JMenu items to enabled
  */
   public void enableSimulationControls() {
     Simulation simulation = Simpplle.getCurrentSimulation();
@@ -1691,14 +1691,14 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
   }
 /**
- * Allows the user to select a zone.  Then enables zone controls, and disables area contols.    
- * @param e
+ * Allows the user to select a zone, then enables zone controls, and disables
+ * area controls.
  */
-  void newZone_actionPerformed(ActionEvent e) {
+  void newZone_actionPerformed() {
     String str;
     simpplle.comcode.RegionalZone zone;
 
-    NewZone   dlg = new NewZone(this,true);
+    NewZoneDialog dlg = new NewZoneDialog(this,true);
     setDialogLocation(dlg);
     dlg.setVisible(true);
     if (Simpplle.getCurrentZone() != null && dlg.isNewZone()) {
@@ -3710,6 +3710,10 @@ public class SimpplleMain extends JFrame {
       if (fireSpreadModels.contains("KEANE"))
         fireSpreadModels.remove("KEANE");
     }
+  }
+
+  public JLabel getStatusBar(){
+    return statusBar;
   }
 
 }

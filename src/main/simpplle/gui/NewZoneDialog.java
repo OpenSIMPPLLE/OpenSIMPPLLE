@@ -17,12 +17,12 @@ import java.awt.event.MouseEvent;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p> A NewZone dialog prompts the user for a regional zone.
+ * <p> A NewZoneDialog dialog prompts the user for a regional zone.
  *
  * <p>Original source code authorship: Kirk A. Moeller  
  */
 
-public class NewZone extends JDialog {
+public class NewZoneDialog extends JDialog {
 
   private boolean historic = false;
   private boolean newZone  = false;
@@ -44,7 +44,7 @@ public class NewZone extends JDialog {
   /**
    * Creates a new zone dialog with no owner and not modal.
    */
-  public NewZone() {
+  public NewZoneDialog() {
 
     this(null, false);
 
@@ -55,7 +55,7 @@ public class NewZone extends JDialog {
    * @param frame Owner of the dialog
    * @param modal If true, blocks input to other windows
    */
-  public NewZone(SimpplleMain frame, boolean modal) {
+  public NewZoneDialog(SimpplleMain frame, boolean modal) {
 
     super(frame, "Select a Zone", modal);
 

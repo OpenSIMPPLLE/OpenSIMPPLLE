@@ -1,7 +1,5 @@
-import static org.junit.Assert.*;
 import org.junit.Test;
-import simpplle.JSimpplle;
-import simpplle.gui.SimpplleMain;
+import simpplle.gui.NewZoneDialog;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained
@@ -9,20 +7,12 @@ import simpplle.gui.SimpplleMain;
  * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
  * Open Source License Contract pertaining to this documentation and agrees to abide by all
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * @author Michael Kinsey
- *
+ * <p>
+ * <p> Contains tests pertaining to the NewZoneDialog class
  */
-public class JSimpplleTest {
-    @Test
-    public void setsStatusMessage(){
-        JSimpplle j = new JSimpplle();
-        assertEquals(1,1);
-    }
+public class NewZoneDialogTest {
 
-    @Test
-    public void getsGui(){
-        JSimpplle j = new JSimpplle();
-        assertEquals(JSimpplle.getSimpplleMain().getClass(), SimpplleMain.class);
-    }
+  @Test
+  public void loadZone(){
+  }
 }

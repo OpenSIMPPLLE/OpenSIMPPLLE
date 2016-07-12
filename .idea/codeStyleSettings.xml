@@ -3,6 +3,8 @@
   <component name="ProjectCodeStyleSettingsManager">
     <option name="PER_PROJECT_SETTINGS">
       <value>
+        <option name="RIGHT_MARGIN" value="80" />
+        <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
         <MultiMarkdownCodeStyleSettings>
           <option name="RIGHT_MARGIN" value="72" />
         </MultiMarkdownCodeStyleSettings>
@@ -19,6 +21,5 @@
       </value>
     </option>
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
-    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
   </component>
 </project>
