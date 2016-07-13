@@ -1,6 +1,10 @@
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+import simpplle.comcode.AdjacentData;
 import simpplle.comcode.Area;
 import simpplle.comcode.Evu;
+
 
 /**
  * The University of Montana owns copyright of the designated documentation contained
@@ -16,6 +20,22 @@ public class AreaTest {
   @Test
   public void calculatesSlope(){
     Area area = new Area();
+
+    // Set up to evu
     Evu evu = new Evu();
+    evu.setAcres((float)22.950);  // should result in 1000 ft sides
+    evu.setElevation(305);  // about 1000 ft
+
+    // Set up adjacent data
+    Evu neighborEvu = new Evu();
+    neighborEvu.setElevation(274); // about 900
+    AdjacentData adjacentData = new AdjacentData(neighborEvu, 'E', 'N', 270,
+        4, 270);
+
+    assertEquals(-.101, area.calcSlope(evu, adjacentData), .001);
+
+    adjacentData.setSpread(315);
+
+    assertEquals(-.0719, area.calcSlope(evu, adjacentData), .001);
   }
 }

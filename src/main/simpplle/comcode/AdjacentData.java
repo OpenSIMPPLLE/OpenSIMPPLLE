@@ -65,7 +65,8 @@ public class AdjacentData implements Externalizable {
   /**
    * Overloaded constructor for Keane spatial relations.
    */
-  public AdjacentData(Evu evu, char position, char wind, double spread, double windSpeed, double windDirection) {
+  public AdjacentData(Evu evu, char position, char wind, double spread,
+    double windSpeed, double windDirection) {
     this.evu = evu;
     this.position = position;
     this.wind = wind;
