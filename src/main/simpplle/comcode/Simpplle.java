@@ -105,6 +105,12 @@ public final class Simpplle {
   }
 
   /**
+   * @param zone Regional Zone
+   */
+  public static void setCurrentZone(RegionalZone zone) {
+    currentZone = zone;
+  }
+  /**
     * Gets a climate instance.  
     * @return Climate instance
     * @see simpplle.comcode.Climate

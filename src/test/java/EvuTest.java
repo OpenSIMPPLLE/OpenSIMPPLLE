@@ -1,7 +1,9 @@
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import simpplle.comcode.Evu;
+import org.junit.Test;
+import simpplle.comcode.Simpplle;
+import simpplle.comcode.WestsideRegionOne;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained
@@ -16,7 +18,10 @@ public class EvuTest {
 
   @Test
   public void getsAzimuthDifference(){
+    // evu expects the current zone to be set
+    Simpplle.setCurrentZone(new WestsideRegionOne());
     Evu evu = new Evu();
+
     assertEquals(91.0,  evu.getAzimuthDifference(270.0, 1.0), 0);
     assertEquals(89.0,  evu.getAzimuthDifference(90.0,  1.0), 0);
     assertEquals(180.0, evu.getAzimuthDifference(181.0, 1.0), 0);
@@ -25,7 +30,10 @@ public class EvuTest {
 
   @Test
   public void isActuallyDownwind(){
+    // evu expects the current zone to be set
+    Simpplle.setCurrentZone(new WestsideRegionOne());
     Evu evu = new Evu();
+
     assertEquals('D', evu.isDownwind(0,0));
     assertEquals('D', evu.isDownwind(0,90));
     assertEquals('N', evu.isDownwind(0,91));

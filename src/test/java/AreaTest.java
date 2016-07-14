@@ -1,9 +1,7 @@
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import simpplle.comcode.AdjacentData;
-import simpplle.comcode.Area;
-import simpplle.comcode.Evu;
+import org.junit.Test;
+import simpplle.comcode.*;
 
 
 /**
@@ -19,6 +17,8 @@ public class AreaTest {
 
   @Test
   public void calculatesSlope(){
+    // evu expects the current zone to be set
+    Simpplle.setCurrentZone(new WestsideRegionOne());
     Area area = new Area();
 
     // Set up to evu
@@ -32,10 +32,11 @@ public class AreaTest {
     AdjacentData adjacentData = new AdjacentData(neighborEvu, 'E', 'N', 270,
         4, 270);
 
+    // Check right angle adjacency
     assertEquals(-.101, area.calcSlope(evu, adjacentData), .001);
 
+    // Check corner adjacency
     adjacentData.setSpread(315);
-
     assertEquals(-.0719, area.calcSlope(evu, adjacentData), .001);
   }
 }
