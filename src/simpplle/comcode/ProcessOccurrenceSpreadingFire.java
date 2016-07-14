@@ -545,7 +545,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
             if (!toUnitWasBurning) {
 
-              toUnits.add(neighbor);
+              toUnits.add(neighbor.evu);
 
             }
 
