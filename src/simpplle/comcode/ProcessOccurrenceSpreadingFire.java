@@ -467,16 +467,18 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         windSpeed += keaneWindSpeedOffset;
 
         // Use wind multiplier for extreme fires
+
         if (isExtreme) windSpeed *= keaneExtremeWindMultiplier;
 
         // Limit wind to 30mph max
+
         windSpeed = Math.min(30, windSpeed);
 
-        windDirection = (windDirection + keaneWindDirectionOffset) % 360; // Wrap around if greater than 360 degrees
+        // Offset the wind direction and truncate angle within 360 degrees
+
+        windDirection = (windDirection + keaneWindDirectionOffset) % 360;
 
         double windSpread;
-
-        adjacent.setWind(fromUnit.isDownwind(spreadDirection, windDirection)); // update wind direction to reflect offsets
 
         if (windSpeed > 0.5) {
 
@@ -516,7 +518,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         double spix = windSpread + slopeSpread;
 
-        // compensate for longer distances on corners
+        // Compensate for longer distances on corners
+
         if (spreadDirection == 45.0  ||
             spreadDirection == 135.0 ||
             spreadDirection == 225.0 ||
@@ -526,18 +529,19 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         }
 
-        List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
+        List<AdjacentData> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
 
         Evu prevUnit = fromUnit;
 
+        for (AdjacentData neighbor : neighbors) {
 
-        for (Evu neighbor : neighbors) {
+          if (lineSuppUnits.contains(neighbor.evu.getId())) break;
 
-          if (lineSuppUnits.contains(neighbor.getId())) break;
+          neighbor.setWind(prevUnit.isDownwind(spreadDirection, windDirection));
 
-          boolean toUnitWasBurning = neighbor.hasFireAnyLifeform();
+          boolean toUnitWasBurning = neighbor.evu.hasFireAnyLifeform();
 
-          if (Evu.doSpread(prevUnit, neighbor, prevUnit.getDominantLifeformFire())) {
+          if (Evu.doSpread(prevUnit, neighbor.evu, prevUnit.getDominantLifeformFire())) {
 
             if (!toUnitWasBurning) {
 
@@ -551,7 +555,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
           }
 
-          prevUnit = neighbor;
+          prevUnit = neighbor.evu;
 
         }
       }
