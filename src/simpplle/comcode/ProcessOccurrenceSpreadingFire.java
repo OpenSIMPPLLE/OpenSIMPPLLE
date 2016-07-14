@@ -421,7 +421,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @param fromUnit A burning vegetation unit
    * @param toUnits A list to store units that have been spread to
    */
-  private void doSimpplleSpread(Evu fromUnit, ArrayList toUnits) {
+  private void doSimpplleSpread(Evu fromUnit, ArrayList<Evu> toUnits) {
 
     AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
 
@@ -451,7 +451,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @param fromUnit A burning vegetation unit
    * @param toUnits A list to store units that have been spread to
    */
-  private void doKeaneSpread(Evu fromUnit, ArrayList toUnits) {
+  private void doKeaneSpread(Evu fromUnit, ArrayList<Evu> toUnits) {
 
     AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
 
