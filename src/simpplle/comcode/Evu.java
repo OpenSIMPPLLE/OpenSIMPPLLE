@@ -2875,19 +2875,25 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Determines if the adjacent unit is downwind relative to this Evu.
-   * @param adj the Adjacent Evu ID.
-   * @return true if downwind.
+   * Determines if the other unit is downwind relative to this unit. A unit is downwind if this unit contains adjacent
+   * data for the provided unit and the wind attribute of that adjacent data indicates that the unit is downwind.
+   *
+   * @param other A vegetated unit
+   * @return True if downwind
    */
-  public boolean isAdjDownwind(Evu adj) {
-    int adjId = adj.getId();
+  public boolean isAdjDownwind(Evu other) {
 
-    for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].getEvu().getId() == adjId) {
-        return (adjacentData[i].getWind() == DOWNWIND);
+    for (AdjacentData data : adjacentData) {
+
+      if (data.evu.getId() == other.getId()) {
+
+        return data.getWind() == DOWNWIND;
+
       }
     }
+
     return false;
+
   }
 
   /**
