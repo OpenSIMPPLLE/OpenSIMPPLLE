@@ -467,15 +467,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         windSpeed += keaneWindSpeedOffset;
 
         // Use wind multiplier for extreme fires
-
         if (isExtreme) windSpeed *= keaneExtremeWindMultiplier;
 
         // Limit wind to 30mph max
-
         windSpeed = Math.min(30, windSpeed);
 
         // Offset the wind direction and truncate angle within 360 degrees
-
         windDirection = (windDirection + keaneWindDirectionOffset) % 360;
 
         double windSpread;
@@ -483,19 +480,15 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         if (windSpeed > 0.5) {
 
           // Compute a coefficient that reflects wind direction
-
           double coeff = Math.toRadians(fromUnit.getAzimuthDifference(spreadDirection, windDirection));
 
           // Compute the length:width ratio from Andrews (1986)
-
           double lwr = 1.0 + (0.125 * windSpeed);
 
           // Scale the coefficient between 0 and 1
-
           coeff = (Math.cos(coeff) + 1.0) / 2.0;
 
           // Scale the function based on wind speed between 1 and 10
-
           windSpread = lwr * Math.pow(coeff, Math.pow(windSpeed,0.6));
 
         } else {
@@ -519,7 +512,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         double spix = windSpread + slopeSpread;
 
         // Compensate for longer distances on corners
-
         if (spreadDirection == 45.0  ||
             spreadDirection == 135.0 ||
             spreadDirection == 225.0 ||
