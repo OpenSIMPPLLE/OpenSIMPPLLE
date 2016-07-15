@@ -45,9 +45,7 @@ public class NewZoneDialog extends JDialog {
    * Creates a new zone dialog with no owner and not modal.
    */
   public NewZoneDialog() {
-
     this(null, false);
-
   }
 
   /**
@@ -204,10 +202,8 @@ public class NewZoneDialog extends JDialog {
    * Disposes of the dialog without loading a zone.
    */
   private void selectCancel() {
-
     setVisible(false);
     dispose();
-
   }
 
   /**
