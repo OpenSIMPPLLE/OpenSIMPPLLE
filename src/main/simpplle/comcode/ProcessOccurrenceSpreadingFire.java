@@ -421,7 +421,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @param fromUnit A burning vegetation unit
    * @param toUnits A list to store units that have been spread to
    */
-  private void doSimpplleSpread(Evu fromUnit, ArrayList toUnits) {
+  private void doSimpplleSpread(Evu fromUnit, ArrayList<Evu> toUnits) {
 
     AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
 
@@ -451,7 +451,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @param fromUnit A burning vegetation unit
    * @param toUnits A list to store units that have been spread to
    */
-  private void doKeaneSpread(Evu fromUnit, ArrayList toUnits) {
+  private void doKeaneSpread(Evu fromUnit, ArrayList<Evu> toUnits) {
 
     AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
 
@@ -472,28 +472,23 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         // Limit wind to 30mph max
         windSpeed = Math.min(30, windSpeed);
 
-        windDirection = (windDirection + keaneWindDirectionOffset) % 360; // Wrap around if greater than 360 degrees
+        // Offset the wind direction and truncate angle within 360 degrees
+        windDirection = (windDirection + keaneWindDirectionOffset) % 360;
 
         double windSpread;
-
-        adjacent.setWind(fromUnit.isDownwind(spreadDirection, windDirection)); // update wind direction to reflect offsets
 
         if (windSpeed > 0.5) {
 
           // Compute a coefficient that reflects wind direction
-
           double coeff = Math.toRadians(fromUnit.getAzimuthDifference(spreadDirection, windDirection));
 
           // Compute the length:width ratio from Andrews (1986)
-
           double lwr = 1.0 + (0.125 * windSpeed);
 
           // Scale the coefficient between 0 and 1
-
           coeff = (Math.cos(coeff) + 1.0) / 2.0;
 
           // Scale the function based on wind speed between 1 and 10
-
           windSpread = lwr * Math.pow(coeff, Math.pow(windSpeed,0.6));
 
         } else {
@@ -516,7 +511,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         double spix = windSpread + slopeSpread;
 
-        // compensate for longer distances on corners
+        // Compensate for longer distances on corners
         if (spreadDirection == 45.0  ||
             spreadDirection == 135.0 ||
             spreadDirection == 225.0 ||
@@ -526,22 +521,23 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         }
 
-        List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
+        List<AdjacentData> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
 
         Evu prevUnit = fromUnit;
 
+        for (AdjacentData neighbor : neighbors) {
 
-        for (Evu neighbor : neighbors) {
+          if (lineSuppUnits.contains(neighbor.evu.getId())) break;
 
-          if (lineSuppUnits.contains(neighbor.getId())) break;
+          neighbor.setWind(prevUnit.isDownwind(spreadDirection, windDirection));
 
-          boolean toUnitWasBurning = neighbor.hasFireAnyLifeform();
+          boolean toUnitWasBurning = neighbor.evu.hasFireAnyLifeform();
 
-          if (Evu.doSpread(prevUnit, neighbor, prevUnit.getDominantLifeformFire())) {
+          if (Evu.doSpread(prevUnit, neighbor.evu, prevUnit.getDominantLifeformFire())) {
 
             if (!toUnitWasBurning) {
 
-              toUnits.add(neighbor);
+              toUnits.add(neighbor.evu);
 
             }
 
@@ -551,7 +547,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
           }
 
-          prevUnit = neighbor;
+          prevUnit = neighbor.evu;
 
         }
       }

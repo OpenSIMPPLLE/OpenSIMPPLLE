@@ -2836,60 +2836,64 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Function to get n units along a direction x.
-   * <b>Only to be used when Keane spatial data has been loaded.</b>
+   * Returns an array of 'n' adjacencies along a spread direction. This method expects each adjacent data instance to
+   * contain a valid spread direction. Currently this means that a Keane spatial relate file must be loaded.
    *
-   * @param directionAzimuth given direction from the current Evu to the adjacent Evu.
-   * @param n number of neighbors in a given direction. Note that for neighbor
-   *          <i>n</i>, the array index, <i>i</i> will always be n-1.
-   * @return Array size n of adjacent evus in the given direction
+   * @param directionAzimuth A direction from the current Evu to the neighboring Evu
+   * @param n A requested number of neighbors in a given direction
+   * @return An array of at most 'n' adjacencies
    */
-  public ArrayList<Evu> getNeighborsAlongDirection(double directionAzimuth, int n){
-    ArrayList<Evu> evus = new ArrayList<>(n);
+  public ArrayList<AdjacentData> getNeighborsAlongDirection(double directionAzimuth, int n){
+    ArrayList<AdjacentData> adjacencies = new ArrayList<>(n);
     Evu current = this;
-    int i = 0;
-    while (i < n){
-      Evu next = current.getNeighborInDirection(directionAzimuth);
-      if (next == null) // No more neighbors in that direction
+    for (int i = 0; i < n; i++) {
+      AdjacentData next = current.getNeighborInDirection(directionAzimuth);
+      if (next == null)
         break;
       else
-        evus.add(next);  // add neighbor to result
-      current = next;     // move down the line
-      i++;
+        adjacencies.add(next);
+      current = next.evu;
     }
-    return evus;
+    return adjacencies;
   }
 
   /**
-   * Potentially returns erroneous values if proper adjacent data (Keane) has not been loaded.
-   * @param degreesAzimuth given direction from the current Evu to the adjacent Evu.
-   * @return Evu neighbor in a given direction, if exists.
+   * Returns adjacent data for a neighbor along a spread direction. This method expects each adjacent data instance to
+   * contain a valid spread direction. Currently this means that a Keane spatial relate file must be loaded.
+   *
+   * @param degreesAzimuth A direction from the current Evu to the neighboring Evu
+   * @return Adjacent data for a neighbor in a given direction, null if there is not a neighbor in that direction
    */
-  public Evu getNeighborInDirection(double degreesAzimuth) {
+  public AdjacentData getNeighborInDirection(double degreesAzimuth) {
     double tolerance = 1;  // angle threshold for matching a direction
-    for (AdjacentData n : adjacentData){
-      double direction = n.getSpread();
+    for (AdjacentData data : adjacentData){
+      double direction = data.getSpread();
       if (Math.abs(direction - degreesAzimuth) <= tolerance)
-        return n.evu;
+        return data;
     }
-    // no result found
     return null;
   }
 
   /**
-   * Determines if the adjacent unit is downwind relative to this Evu.
-   * @param adj the Adjacent Evu ID.
-   * @return true if downwind.
+   * Determines if the other unit is downwind relative to this unit. A unit is downwind if this unit contains adjacent
+   * data for the provided unit and the wind attribute of that adjacent data indicates that the unit is downwind.
+   *
+   * @param other A vegetated unit
+   * @return True if downwind
    */
-  public boolean isAdjDownwind(Evu adj) {
-    int adjId = adj.getId();
+  public boolean isAdjDownwind(Evu other) {
 
-    for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].getEvu().getId() == adjId) {
-        return (adjacentData[i].getWind() == DOWNWIND);
+    for (AdjacentData data : adjacentData) {
+
+      if (data.evu.getId() == other.getId()) {
+
+        return data.getWind() == DOWNWIND;
+
       }
     }
+
     return false;
+
   }
 
   /**
