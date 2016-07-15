@@ -3,6 +3,9 @@ import simpplle.JSimpplle;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.Simpplle;
 import simpplle.comcode.SimpplleError;
+import simpplle.gui.NewZoneDialog;
+
+import static junit.framework.TestCase.assertEquals;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained
@@ -15,18 +18,37 @@ import simpplle.comcode.SimpplleError;
  */
 public class SimpplleTest {
 
+  /**
+   * This test simply checks that all the available zones are loaded without returning and error,
+   * or null.
+   *
+   * It must increment indexes >= 8 as the result of a hack from early OpenSIMPPLLE.
+   * @see NewZoneDialog#loadZone()
+   *
+   * @throws SimpplleError
+   */
   @Test
   public void loadsAllZones() throws SimpplleError {
+    boolean isSuccess = true;
     JSimpplle jSimpplle = new JSimpplle();
     for (int i = 0; i < RegionalZone.availableZones().length; i++){
-      if (i >= 8) loadZone(i+2);
-      else loadZone(i);
+      if (i >= 8) {
+       if(!loadZone(i+2)){
+         isSuccess = false;
+       }
+      }
+      else {
+        if(!loadZone(i)){
+          isSuccess = false;
+        }
+      }
     }
+    assertEquals(true, isSuccess);
   }
 
   private boolean loadZone(int index) throws SimpplleError {
-    JSimpplle jSimpplle = new JSimpplle();
-    jSimpplle.getComcode().loadZone(index);
+    Simpplle simpplle = new Simpplle();
+    simpplle.loadZone(index);
     return (Simpplle.getCurrentZone() != null);
   }
 }
