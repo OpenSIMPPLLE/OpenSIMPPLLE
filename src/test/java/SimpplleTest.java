@@ -30,14 +30,15 @@ public class SimpplleTest {
   @Test
   public void loadsAllZones() throws SimpplleError {
     boolean isSuccess = true;
+    // Need to call JSimpplle constructor to instantiate static members
     JSimpplle jSimpplle = new JSimpplle();
+
     for (int i = 0; i < RegionalZone.availableZones().length; i++){
       if (i >= 8) {
        if(!loadZone(i+2)){
          isSuccess = false;
        }
-      }
-      else {
+      } else {
         if(!loadZone(i)){
           isSuccess = false;
         }
