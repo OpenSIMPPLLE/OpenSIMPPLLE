@@ -362,16 +362,13 @@ public final class Simpplle {
    * This method will load a user defined area.
    * @param file of type File is the input area data file.
    */
-//  public void loadArea(File file, boolean skipAccumData,
-//                       boolean saveSkippedAccumData) throws SimpplleError {
   public void loadArea(File file) throws SimpplleError {
     clearSimulation();
     setStatusMessage("Loading Area ...");
 
     boolean newAreaFile = isNewAreaFile(file);
-//    boolean newAreaFile = true;
 
-    if (newAreaFile == false) {
+    if (!newAreaFile) {
       currentArea = new Area(file, Area.USER);
     }
     try {
