@@ -768,11 +768,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
       for (Evu fromAdj : spotFrom) {
 
-        adjacentData = fromAdj.getAdjacentData();
+        for (AdjacentData data : fromAdj.getAdjacentData()) {
 
-        for(int k = 0; k < adjacentData.length; k++) {
-
-          Evu adj = adjacentData[k].evu;
+          Evu adj = data.evu;
           if (adj == null) continue;
           
           if (visited.contains(adj)) continue;
