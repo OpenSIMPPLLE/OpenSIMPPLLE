@@ -766,7 +766,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     boolean uniformPoly = Simpplle.getCurrentArea().hasUniformSizePolygons();
     
     int levelsOut = 0;
-    while (spotFrom != null && spotFrom.size() > 0) {
+    while (spotFrom.size() > 0) {
       levelsOut++;
       
       for(int j = 0; j < spotFrom.size(); j++) {
