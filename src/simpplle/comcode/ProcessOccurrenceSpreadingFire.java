@@ -784,7 +784,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
           
           if (!uniformPoly && levelsOut > 3) {
             continue;
-          } else if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromUnit, adj)) {
+          }
+
+          if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromUnit, adj)) {
             continue;
           }
           
