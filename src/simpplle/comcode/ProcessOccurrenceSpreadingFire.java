@@ -740,7 +740,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @param fromUnit A burning vegetation unit
    * @param toUnits A list to store units that have been ignited
    */
-  @SuppressWarnings("unchecked")
   private void doFireSpotting(Evu fromUnit, ArrayList<Evu> toUnits) {
 
     AdjacentData[] adjacentData;
