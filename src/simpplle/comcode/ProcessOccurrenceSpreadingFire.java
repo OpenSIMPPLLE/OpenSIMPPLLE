@@ -1,10 +1,7 @@
 package simpplle.comcode;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -752,7 +749,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     List<Evu> spotFrom    = new ArrayList<>();
     List<Evu> newSpotFrom = new ArrayList<>();
-    List<Evu> visited     = new ArrayList<>();
+    Set<Evu> visited = new HashSet<>();
 
     visited.add(fromUnit);
     for (int i = 0; i < adjacentData.length; i++) {
