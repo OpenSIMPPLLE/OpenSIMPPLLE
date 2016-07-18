@@ -53,8 +53,6 @@ public class FireSpottingLogicData extends LogicData implements Externalizable {
     ratStartDist = 0;
     endDist   = 0.0;
     ratEndDist = 0;
-    maxDist = -1.0;
-    ratMaxDist = -1;
     prob      = 0;
     
     sysKnowKind = SystemKnowledge.Kinds.FIRE_SPOTTING_LOGIC;
