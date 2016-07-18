@@ -385,7 +385,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     }
 
-    doFireSpotting(fromUnit);
+    doFireSpotting(fromUnit,tmpToUnits);
 
     addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
 
@@ -737,33 +737,34 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * fire spotting distance are tested for spot fires. Spot fires start based on a fire spotting rules entered in the
    * 'Fire Event Logic' dialog. If a fire starts, the type of the fire is determined by rules in the same dialog.
    *
-   * @param fromEvu The unit we are trying to spot a fire from
+   * @param fromUnit A burning vegetation unit
+   * @param toUnits A list to store units that have been ignited
    */
   @SuppressWarnings("unchecked")
-  private void doFireSpotting(Evu fromEvu) {
+  private void doFireSpotting(Evu fromUnit, ArrayList<Evu> toUnits) {
 
     AdjacentData[] adjacentData;
     Evu            adj, fromAdj;
     ArrayList<Evu> spotFrom, newSpotFrom, tmpList, unitsTried;
     int            i, j, k;
 
-    VegSimStateData state = fromEvu.getState();
+    VegSimStateData state = fromUnit.getState();
     if (state == null || Utility.getFireSpotting() == false) {
       return;
     }
 
-    adjacentData = fromEvu.getAdjacentData();
+    adjacentData = fromUnit.getAdjacentData();
     if (adjacentData == null) return;
 
     spotFrom    = new ArrayList<Evu>();
     newSpotFrom = new ArrayList<Evu>();
     unitsTried  = new ArrayList<Evu>();
 
-    unitsTried.add(fromEvu);
+    unitsTried.add(fromUnit);
     for (i = 0; i < adjacentData.length; i++) {
       adj = adjacentData[i].evu;
       unitsTried.add(adj);
-      if (fromEvu.isAdjDownwind(adj) &&
+      if (fromUnit.isAdjDownwind(adj) &&
           spotFrom.contains(adj) != true) {
         spotFrom.add(adj);
       }
@@ -789,14 +790,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
           
           if (!uniformPoly && levelsOut > 3) {
             continue;
-          } else if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromEvu, adj)) {
+          } else if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromUnit, adj)) {
             continue;
           }
           
           if (fromAdj.isAdjDownwind(adj) && newSpotFrom.contains(adj) != true) {
             newSpotFrom.add(adj);
-            if (determineSpotFire(fromEvu,adj)) {
-              tmpToUnits.add(adj);
+            if (determineSpotFire(fromUnit,adj)) {
+              toUnits.add(adj);
             }
           }
         }
