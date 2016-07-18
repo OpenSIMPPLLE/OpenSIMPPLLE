@@ -28,7 +28,7 @@ import simpplle.comcode.Climate.*;
 public final class Evu extends NaturalElement implements Externalizable {
 
   static final long serialVersionUID        = -4593527729379592789L;
-  static final int  version                 = 8;
+  static final int  version                 = 9;
   static final int  accumDataVersion        = 1;
   static final int  spatialRelationsVersion = 1;
 
@@ -7963,10 +7963,10 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * In these read/write methods for AdjacentData I have written out
-   * the arrays explicitily to make things faster.  Although writing out the
+   * In these read/write methods for AdjacentData this method writes
+   * the arrays explicitly to make things faster.  Although writing out the
    * actual array worked it nearly tripled the time to read/write the file.
-   * In addition I am writing the Evu.id instead of the actual instance because
+   * In addition, I am writing the Evu.id instead of the actual instance because
    * I suspect that was what was causing the delay.
    */
   public void readExternalAdjacentData(ObjectInput in, Area area) throws IOException, ClassNotFoundException {
@@ -7978,15 +7978,26 @@ public final class Evu extends NaturalElement implements Externalizable {
       adjacentData[i].setEvu(area.getEvu(in.readInt()));
       adjacentData[i].setPosition(in.readChar());
       adjacentData[i].setWind(in.readChar());
+      if (version >= 9){
+        adjacentData[i].setSpread(in.readDouble());
+        adjacentData[i].setWindSpeed(in.readDouble());
+        adjacentData[i].setWindDirection(in.readDouble());
+        adjacentData[i].setSlope(in.readDouble());
+      }
     }
   }
   public void writeExternalAdjacentData(ObjectOutput out) throws IOException {
     out.writeInt(version);
     out.writeInt(adjacentData.length);
-    for (int i=0; i<adjacentData.length; i++) {
-      out.writeInt(adjacentData[i].getEvu().getId());
-      out.writeChar(adjacentData[i].getPosition());
-      out.writeChar(adjacentData[i].getWind());
+
+    for (AdjacentData anAdjacentData : adjacentData) {
+      out.writeInt(anAdjacentData.getEvu().getId());
+      out.writeChar(anAdjacentData.getPosition());
+      out.writeChar(anAdjacentData.getWind());
+      out.writeDouble(anAdjacentData.getSpread());
+      out.writeDouble(anAdjacentData.getWindSpeed());
+      out.writeDouble(anAdjacentData.getWindDirection());
+      out.writeDouble(anAdjacentData.getSlope());
     }
   }
 

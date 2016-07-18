@@ -4363,6 +4363,13 @@ public final class Area implements Externalizable {
     else {
       elevationRelativePosition = hasUniformSizePolygons() ? 10 : 100;
     }
+
+    if (version >= 9){
+      /**
+       * Keane attributes are read in the Evu.readExternalAdjacentData method.
+       */
+      hasKeaneAttributes = true;
+    }
   }
   public void initPolygonWidth() {
     if (hasUniformSizePolygons()) {
