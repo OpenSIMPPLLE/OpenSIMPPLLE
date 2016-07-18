@@ -5,7 +5,6 @@ import simpplle.JSimpplle;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -28,15 +27,14 @@ public class NewArea extends JDialog {
   public static final int PREVIOUS     =  2;
   public static final int PREVIOUS_OLD =  3;
 
-  private JButton      okButton      = new JButton("Ok");
   private JButton      cancelButton  = new JButton("Cancel");
-  private JRadioButton sampleAreaRB  = new JRadioButton("Select Sample Area");
-  private JRadioButton prevAreaRB    = new JRadioButton("Load Previously Simulated Area (.simdata files)");
-  private JRadioButton prevAreaOldRB = new JRadioButton("Load (old format) Simulated Area (.area files)");
-  private JRadioButton userAreaRB    = new JRadioButton("Load User Defined Area");
+  private JButton sampleArea = new JButton("Select Sample Area");
+  private JButton userArea = new JButton("Load User Defined Area");
+  private JButton prevArea = new JButton("Load .simdata files");
+  private JButton prevAreaOld = new JButton("Load .area files");
   private JPanel       mainPanel     = new JPanel();
   private JPanel       buttonPanel   = new JPanel();
-  private JPanel       radioPanel    = new JPanel();
+  private JPanel       selectionPanel    = new JPanel();
   private GridLayout   gridLayout    = new GridLayout(4,1);
   private FlowLayout   flowLayout    = new FlowLayout();
   private BorderLayout borderLayout  = new BorderLayout();
@@ -74,39 +72,33 @@ public class NewArea extends JDialog {
    */
   void jbInit() throws Exception {
 
-    okButton.setMinimumSize(new Dimension(73, 27));
-    okButton.setMaximumSize(new Dimension(73, 27));
-    okButton.setPreferredSize(new Dimension(73, 27));
-    okButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        selectOkButton();
-      }
-    });
+    sampleArea.setToolTipText("Click to select a sample area.");
+    sampleArea.addActionListener(e1 -> makeSelection(SAMPLE));
+    userArea.setToolTipText("Click to select a user defined area.");
+    userArea.addActionListener(e1 -> makeSelection(USER_DEFINED));
+    prevArea.setToolTipText("Load previously simulated Area files.");
+    prevArea.addActionListener(e1 -> makeSelection(PREVIOUS));
+    prevAreaOld.setToolTipText("Load old format simulated Area files.");
+    prevAreaOld.addActionListener(e1 -> makeSelection(PREVIOUS_OLD));
 
-    cancelButton.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        selectCancelButton();
-      }
-    });
-
+    cancelButton.addActionListener(e -> selectCancelButton());
     buttonPanel.setBorder(BorderFactory.createEtchedBorder());
     buttonPanel.setLayout(flowLayout);
-    buttonPanel.add(okButton, null);
     buttonPanel.add(cancelButton, null);
 
     gridLayout.setColumns(1);
     gridLayout.setRows(4);
 
-    radioPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-    radioPanel.setLayout(gridLayout);
-    radioPanel.add(sampleAreaRB, null);
-    radioPanel.add(userAreaRB, null);
-    radioPanel.add(prevAreaRB, null);
-    radioPanel.add(prevAreaOldRB, null);
+    selectionPanel.setBorder(BorderFactory.createEmptyBorder(10,40,10,40));
+    selectionPanel.setLayout(gridLayout);
+    selectionPanel.add(sampleArea, null);
+    selectionPanel.add(userArea, null);
+    selectionPanel.add(prevArea, null);
+    selectionPanel.add(prevAreaOld, null);
 
     mainPanel.setLayout(borderLayout);
     mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-    mainPanel.add(radioPanel, BorderLayout.NORTH);
+    mainPanel.add(selectionPanel, BorderLayout.NORTH);
 
     getContentPane().add(mainPanel);
 
@@ -121,17 +113,21 @@ public class NewArea extends JDialog {
     choice = NONE;
 
     if (JSimpplle.getComcode().getSampleAreas() == null) {
-      sampleAreaRB.setEnabled(false);
-      userAreaRB.setSelected(true);
+      sampleArea.setEnabled(false);
+      userArea.setSelected(true);
     } else {
-      sampleAreaRB.setEnabled(true);
-      sampleAreaRB.setSelected(true);
+      sampleArea.setEnabled(true);
+      sampleArea.setSelected(true);
     }
   }
 
   /**
-   * Returns the chosen area source as a numeric value. Possible values are -1 (NONE), 0 (SAMPLE), 1 (USER_DEFINED),
-   * 2 (PREVIOUS), and 3 (PREVIOUS_OLD).
+   * Returns the chosen area source as a numeric value. Possible values are
+   * -1 (NONE),
+   *  0 (SAMPLE),
+   *  1 (USER_DEFINED),
+   *  2 (PREVIOUS),
+   *  3 (PREVIOUS_OLD).
    * @return The chosen area source
    */
   public int getChoice() {
@@ -141,34 +137,17 @@ public class NewArea extends JDialog {
   /**
    * Records the selected option and dispose of the dialog.
    */
-  private void selectOkButton() {
-
-    if (sampleAreaRB.isSelected()) {
-      choice = SAMPLE;
-    } else if (userAreaRB.isSelected()) {
-      choice = USER_DEFINED;
-    } else if (prevAreaRB.isSelected()) {
-      choice = PREVIOUS;
-    } else if (prevAreaOldRB.isSelected()) {
-      choice = PREVIOUS_OLD;
-    } else {
-      choice = NONE;
-    }
-
+  private void makeSelection(int selection){
+    choice = selection;
     setVisible(false);
     dispose();
-
   }
 
   /**
    * Records that no choice was made and dispose of the dialog.
    */
   private void selectCancelButton() {
-
-    choice = NONE;
-
     setVisible(false);
     dispose();
-
   }
 }
