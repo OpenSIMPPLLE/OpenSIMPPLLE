@@ -745,7 +745,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     AdjacentData[] adjacentData;
     Evu            adj, fromAdj;
     ArrayList<Evu> spotFrom, newSpotFrom, tmpList, unitsTried;
-    int            i, j, k;
 
     VegSimStateData state = fromUnit.getState();
     if (state == null || Utility.getFireSpotting() == false) {
@@ -760,7 +759,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     unitsTried  = new ArrayList<Evu>();
 
     unitsTried.add(fromUnit);
-    for (i = 0; i < adjacentData.length; i++) {
+    for (int i = 0; i < adjacentData.length; i++) {
       adj = adjacentData[i].evu;
       unitsTried.add(adj);
       if (fromUnit.isAdjDownwind(adj) &&
@@ -775,11 +774,11 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     while (spotFrom != null && spotFrom.size() > 0) {
       levelsOut++;
       
-      for(j = 0; j < spotFrom.size(); j++) {
+      for(int j = 0; j < spotFrom.size(); j++) {
         fromAdj = (Evu) spotFrom.get(j);
         adjacentData = fromAdj.getAdjacentData();
 
-        for(k = 0; k < adjacentData.length; k++) {
+        for(int k = 0; k < adjacentData.length; k++) {
 
           adj = adjacentData[k].evu;
           if (adj == null) continue;
