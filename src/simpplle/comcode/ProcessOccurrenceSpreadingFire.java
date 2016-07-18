@@ -758,8 +758,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     for (int i = 0; i < adjacentData.length; i++) {
       Evu adj = adjacentData[i].evu;
       visited.add(adj);
-      if (fromUnit.isAdjDownwind(adj) &&
-          spotFrom.contains(adj) != true) {
+      if (fromUnit.isAdjDownwind(adj) && !spotFrom.contains(adj)) {
         spotFrom.add(adj);
       }
     }
@@ -790,7 +789,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
             continue;
           }
           
-          if (fromAdj.isAdjDownwind(adj) && newSpotFrom.contains(adj) != true) {
+          if (fromAdj.isAdjDownwind(adj) && !newSpotFrom.contains(adj)) {
             newSpotFrom.add(adj);
             if (determineSpotFire(fromUnit,adj)) {
               toUnits.add(adj);
