@@ -752,12 +752,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     List<Evu> spotFrom    = new ArrayList<>();
     List<Evu> newSpotFrom = new ArrayList<>();
-    List<Evu> unitsTried  = new ArrayList<>();
+    List<Evu> visited     = new ArrayList<>();
 
-    unitsTried.add(fromUnit);
+    visited.add(fromUnit);
     for (int i = 0; i < adjacentData.length; i++) {
       Evu adj = adjacentData[i].evu;
-      unitsTried.add(adj);
+      visited.add(adj);
       if (fromUnit.isAdjDownwind(adj) &&
           spotFrom.contains(adj) != true) {
         spotFrom.add(adj);
@@ -779,8 +779,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
           Evu adj = adjacentData[k].evu;
           if (adj == null) continue;
           
-          if (unitsTried.contains(adj)) continue;
-          unitsTried.add(adj);
+          if (visited.contains(adj)) continue;
+          visited.add(adj);
           
           if (!uniformPoly && levelsOut > 3) {
             continue;
