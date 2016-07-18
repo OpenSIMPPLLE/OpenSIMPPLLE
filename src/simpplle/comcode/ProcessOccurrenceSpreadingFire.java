@@ -734,11 +734,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
   /**
    * Creates spot fires from blowing embers. All vegetation units in the area that are downwind and within the maximum
-   * fire spotting distance are tested for spot fires. Spot fires start based on a fire spotting probability entered
-   * in the 'Fire Event Logic' dialog.
-   *
-   * 7/??/04  Removed restriction that said adjacent units had to be above the from unit in order to start a spot fire.
-   * 8/23/04  Modified spotting so it can only start from a stand replacing fire. Previously there was no restriction.
+   * fire spotting distance are tested for spot fires. Spot fires start based on a fire spotting rules entered in the
+   * 'Fire Event Logic' dialog. If a fire starts, the type of the fire is determined by rules in the same dialog.
    *
    * @param fromEvu The unit we are trying to spot a fire from
    */
