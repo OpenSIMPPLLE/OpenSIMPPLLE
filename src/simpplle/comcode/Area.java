@@ -230,8 +230,8 @@ public final class Area implements Externalizable {
     this.kind = kind;
   }
 /**
- * Overloaded constructor for Area.  Calls the default constructor and sets the file path variable by invoking the File.get file method
- * and the kind for this area to parameter kind.
+ * Overloaded constructor for Area.  Calls the default constructor and sets the file path variable
+ * by invoking the File.get file method and the kind for this area to parameter kind.
  * @param file
  * @param kind is an int, (SIMULATED, USER, or SAMPLE)
  */

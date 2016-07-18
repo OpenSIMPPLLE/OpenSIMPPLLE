@@ -1,8 +1,6 @@
-
 package simpplle.gui;
 
 import simpplle.JSimpplle;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,7 +13,6 @@ import java.awt.*;
  *
  * <p> A NewArea dialog prompts the user to select a type of area to load.
  *
- * <p> Original source code authorship: Kirk A. Moeller
  */
 public class NewArea extends JDialog {
 
@@ -27,17 +24,22 @@ public class NewArea extends JDialog {
   public static final int PREVIOUS     =  2;
   public static final int PREVIOUS_OLD =  3;
 
-  private JButton      cancelButton  = new JButton("Cancel");
-  private JButton sampleArea = new JButton("Select Sample Area");
-  private JButton userArea = new JButton("Load User Defined Area");
-  private JButton prevArea = new JButton("Load .simdata files");
-  private JButton prevAreaOld = new JButton("Load .area files");
-  private JPanel       mainPanel     = new JPanel();
-  private JPanel       buttonPanel   = new JPanel();
-  private JPanel       selectionPanel    = new JPanel();
+  private JButton cancelButton  = new JButton("Cancel");
+  private JButton sampleArea    = new JButton("Select Sample Area");
+  private JButton userArea      = new JButton("Load User Defined Area");
+  private JButton prevArea      = new JButton("Load .simdata files");
+  private JButton prevAreaOld   = new JButton("Load .area files");
+  private JPanel mainPanel      = new JPanel();
+  private JPanel buttonPanel    = new JPanel();
+  private JPanel selectionPanel = new JPanel();
   private GridLayout   gridLayout    = new GridLayout(4,1);
   private FlowLayout   flowLayout    = new FlowLayout();
   private BorderLayout borderLayout  = new BorderLayout();
+
+  /**
+   * Provides spacing between the button's label and border, used for the area selection buttons.
+   */
+  private Insets buttonMargin = new Insets(2,5,2,5);
 
   /**
    * Creates an area dialog with no owner and not modal.
@@ -67,27 +69,36 @@ public class NewArea extends JDialog {
   }
 
   /**
-   * Initializes the dialog with buttons, radio boxes, panels, and layouts.
+   * Initializes the dialog with buttons, panels, and layouts.
    * @throws Exception
    */
   void jbInit() throws Exception {
 
+    sampleArea.setMargin(buttonMargin);
     sampleArea.setToolTipText("Click to select a sample area.");
     sampleArea.addActionListener(e1 -> makeSelection(SAMPLE));
+
+    userArea.setMargin(buttonMargin);
     userArea.setToolTipText("Click to select a user defined area.");
     userArea.addActionListener(e1 -> makeSelection(USER_DEFINED));
+
+    prevArea.setMargin(buttonMargin);
     prevArea.setToolTipText("Load previously simulated Area files.");
     prevArea.addActionListener(e1 -> makeSelection(PREVIOUS));
+
+    prevAreaOld.setMargin(buttonMargin);
     prevAreaOld.setToolTipText("Load old format simulated Area files.");
     prevAreaOld.addActionListener(e1 -> makeSelection(PREVIOUS_OLD));
 
     cancelButton.addActionListener(e -> selectCancelButton());
+
     buttonPanel.setBorder(BorderFactory.createEtchedBorder());
     buttonPanel.setLayout(flowLayout);
     buttonPanel.add(cancelButton, null);
 
     gridLayout.setColumns(1);
     gridLayout.setRows(4);
+    gridLayout.setVgap(4);
 
     selectionPanel.setBorder(BorderFactory.createEmptyBorder(10,40,10,40));
     selectionPanel.setLayout(gridLayout);
@@ -105,7 +116,7 @@ public class NewArea extends JDialog {
   }
 
   /**
-   * Initializes the new area dialog. The sample area radio button is enabled and selected if comcode has sample
+   * Initializes the new area dialog. The sample area button is enabled and selected if comcode has sample
    * areas. Otherwise the sample area button is disabled and the user area button is selected.
    */
   private void initialize() {
