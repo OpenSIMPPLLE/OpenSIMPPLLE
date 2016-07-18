@@ -742,10 +742,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   private void doFireSpotting(Evu fromUnit, ArrayList<Evu> toUnits) {
 
+    if (!Utility.getFireSpotting()) return;
+
     VegSimStateData state = fromUnit.getState();
-    if (state == null || Utility.getFireSpotting() == false) {
-      return;
-    }
+    if (state == null) return;
 
     AdjacentData[] adjacentData = fromUnit.getAdjacentData();
     if (adjacentData == null) return;
