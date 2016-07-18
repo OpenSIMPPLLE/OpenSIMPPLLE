@@ -58,6 +58,15 @@ public class FireSpottingLogicData extends LogicData implements Externalizable {
     sysKnowKind = SystemKnowledge.Kinds.FIRE_SPOTTING_LOGIC;
   }
 
+  /**
+   * Resets the maximum fire spotting distance to zero.
+   */
+  public static void clearMaxDistance() {
+
+    maxDist = 0.0;
+    ratMaxDist = 0;
+
+  }
 
     /**
      * Makes a duplicate of this Fire Spotting Logic Data.
