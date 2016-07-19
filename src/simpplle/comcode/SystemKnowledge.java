@@ -469,7 +469,9 @@ public class SystemKnowledge {
   }
 
   /**
-   * Copies Interchange files by passing to copyGISExtrasFiles from the e00.zip directory to a destination file.
+   * Copies Interchange files by passing to copyGISExtrasFiles from the e00.zip directory to a
+   * destination file.
+   *
    * @param destDir File where the data will be copied to
    * @throws SimpplleError
    */
@@ -537,7 +539,8 @@ public class SystemKnowledge {
   /**
    * Copies gis files from the gis directory to a destination directory.  
    * @param destDir directory where file to be copied is kept
-   * @param gisDir the suffix which will be appended at the end of the file to tell what type of GIS file it is.  
+   * @param gisDir the suffix which will be appended at the end of the file to tell what type of
+   *               GIS file it is.
    * @throws SimpplleError caught if could not copy one or more files
    */
   private static void copyGisFiles(File destDir, String gisDir) throws SimpplleError {
@@ -675,7 +678,8 @@ public class SystemKnowledge {
   }
   
   /**
-   * method to determine and load the directory path for files based on HabitatTypeGroupType name and system knowledge kind
+   * method to determine and load the directory path for files based on HabitatTypeGroupType name
+   * and system knowledge kind
    * @param htGrpName
    * @param kind
    * @throws SimpplleError
@@ -793,7 +797,7 @@ public class SystemKnowledge {
   }
 
   /**
-   * loop thru all of the jar entries until a entry is found that matches
+   * loop through all of the jar entries until a entry is found that matches
    * the given stream.  If a match is found true is returned, otherwise false.
    * @param jarIn A JarInputStream
    * @param entryName a partial or full entry name to search for.
@@ -825,7 +829,8 @@ public class SystemKnowledge {
    * @param filename File to be read
    * @param entryName
    * @return BufferedReader
-   * @throws SimpplleError caught exception if not able to find an entry or could not read the System Knowledge File.
+   * @throws SimpplleError caught exception if not able to find an entry or could not read the
+   * System Knowledge File.
    */
   public static BufferedReader getEntryStream(File filename, String entryName)
     throws SimpplleError
@@ -837,7 +842,7 @@ public class SystemKnowledge {
       jarIn = new JarInputStream(new FileInputStream(filename));
       fin   = new BufferedReader(new InputStreamReader(jarIn));
 
-      if (findEntry(jarIn,entryName) == false) {
+      if (!findEntry(jarIn, entryName)) {
         throw new SimpplleError("Unable to find entry: " + entryName);
       }
       return fin;
@@ -915,6 +920,7 @@ public class SystemKnowledge {
     else if (name.equals(FIRE_SUPP_EVENT_LOGIC_ENTRY))            return FIRE_SUPP_EVENT_LOGIC;
     else if (name.equals(FIRE_SUPP_BEYOND_CLASS_A_ENTRY))         return FIRE_SUPP_BEYOND_CLASS_A;
     else if (name.equals(FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY)) return FIRE_SUPP_WEATHER_BEYOND_CLASS_A;
+    else if (name.equals(KEANE_PARAMETERS))                       return KEANE_PARAMETERS;
     else if (name.startsWith(WILDLIFE_ENTRY))                     return null;
     else if (name.equals(EMISSIONS_ENTRY))                        return null;
 
@@ -987,8 +993,8 @@ public class SystemKnowledge {
   }
 
   /**
-   * Overloaded readInputFile passes to readInputFile the file name, false for zoneFile, true for readAll, and false
-   * for isIndividualFile.
+   * Overloaded readInputFile passes to readInputFile the file name, false for zoneFile, true for
+   * readAll, and false for isIndividualFile.
    * 
    * @param filename File to be read
    * @param zoneFile true if it is a zone file, false otherwise
@@ -1016,8 +1022,8 @@ public class SystemKnowledge {
    * @param isIndividualFile true if this is an individual file
    * @throws SimpplleError caught if could not read SystemKnowledge file
    */
-  public static void readInputFile(File filename, boolean zoneFile, boolean readAll, boolean isIndividualFile)
-    throws SimpplleError
+  public static void readInputFile(File filename, boolean zoneFile, boolean readAll,
+                                   boolean isIndividualFile) throws SimpplleError
   {
     RegionalZone    zone = Simpplle.getCurrentZone();
     JarInputStream  jarIn=null;

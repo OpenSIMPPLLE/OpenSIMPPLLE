@@ -136,14 +136,14 @@ public class SystemKnowledgeLoadSave extends JDialog {
     fireKnowledgeColA.add(fireSeasonCB, null);
     fireKnowledgeColA.add(fireSpottingCB);
     fireKnowledgeColA.add(fireSpreadCB, null);
-    fireKnowledgeColA.add(keaneParametersCB, null);
+    fireKnowledgeColA.add(fireSuppBeyondClassACB, null);
 
     Box fireKnowledgeColB = new Box(BoxLayout.Y_AXIS);
-    fireKnowledgeColB.add(fireSuppBeyondClassACB, null);
     fireKnowledgeColB.add(fireSuppWeatherBeyondClassACB, null);
     fireKnowledgeColB.add(fireSuppEventProb, null);
     fireKnowledgeColB.add(fireSuppProductionRateCB, null);
     fireKnowledgeColB.add(fireSuppSpreadRateCB, null);
+    fireKnowledgeColB.add(keaneParametersCB, null);
     fireKnowledgeColB.add(speciesCB, null);
     fireKnowledgeColB.add(fireTypeLogicCB, null);
 
