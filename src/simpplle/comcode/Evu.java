@@ -7963,11 +7963,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * In these read/write methods for AdjacentData this method writes
-   * the arrays explicitly to make things faster.  Although writing out the
-   * actual array worked it nearly tripled the time to read/write the file.
-   * In addition, I am writing the Evu.id instead of the actual instance because
-   * I suspect that was what was causing the delay.
+   * This method reads the arrays explicitly to make things faster.
+   * @see #writeExternalAdjacentData(ObjectOutput)
    */
   public void readExternalAdjacentData(ObjectInput in, Area area) throws IOException, ClassNotFoundException {
     int version = in.readInt();
@@ -7986,6 +7983,12 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
   }
+
+  /**
+   * This method writes the arrays explicitly to make things faster. Although writing out the actual
+   * array worked, it nearly tripled the time to read/write the file. In addition, it writes the
+   * Evu.id instead of the actual instance because it is suspected that was causing the delay.
+   */
   public void writeExternalAdjacentData(ObjectOutput out) throws IOException {
     out.writeInt(version);
     out.writeInt(adjacentData.length);
