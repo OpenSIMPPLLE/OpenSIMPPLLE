@@ -431,9 +431,9 @@ public class SimParam extends JDialog {
     outputOptionsPanel.setBorder(new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "Results Output Options"));
     outputOptionsPanel.setLayout(new BoxLayout(outputOptionsPanel,BoxLayout.Y_AXIS));
     outputOptionsPanel.add(outfilePanel);
+    outputOptionsPanel.add(writeAccessPanel);
     outputOptionsPanel.add(discardTextPanel);
     outputOptionsPanel.add(outputOptionsCBPanel);
-    outputOptionsPanel.add(writeAccessPanel);
 
     /* Use Database */
 
@@ -510,7 +510,7 @@ public class SimParam extends JDialog {
     /* Enable All States Report */
 
     allStatesCB.setText("Enable All States Report");
-    allStatesCB.setToolTipText("Required if limiting time steps or doing multiple runs");
+    allStatesCB.setToolTipText("Required if discarding data or performing multiple runs");
 
     FlowLayout allStatesLayoutCB = new FlowLayout();
     allStatesLayoutCB.setAlignment(FlowLayout.LEFT);
