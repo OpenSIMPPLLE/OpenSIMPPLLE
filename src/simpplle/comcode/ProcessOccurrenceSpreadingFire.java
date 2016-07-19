@@ -804,15 +804,15 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private boolean determineSpotFire(Evu fromEvu, Evu toEvu) {
 
     Lifeform fromLifeform = fromEvu.getDominantLifeform();
+    Lifeform toLifeform = toEvu.getDominantLifeform();
 
     VegSimStateData state = fromEvu.getState(fromLifeform);
     if (state == null) return false;
 
-    ProcessType processType = state.getProcess();
-    
-    Lifeform toLifeform = toEvu.getDominantLifeform();
     VegSimStateData toState = toEvu.getState(toLifeform);
     if (toState == null) return false;
+
+    ProcessType processType = state.getProcess();
 
     ProcessType toProcessType = toState.getProcess();
     if (toProcessType.isFireProcess()) return false;
