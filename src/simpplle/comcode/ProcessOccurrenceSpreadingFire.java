@@ -747,9 +747,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     AdjacentData[] adjacentData = fromUnit.getAdjacentData();
     if (adjacentData == null) return;
 
-    List<Evu> spotFrom    = new ArrayList<>();
-    List<Evu> newSpotFrom = new ArrayList<>();
     Set<Evu> visited = new HashSet<>();
+    Set<Evu> spotFrom = new HashSet<>();
+    Set<Evu> newSpotFrom = new HashSet<>();
 
     visited.add(fromUnit);
     spotFrom.add(fromUnit);
@@ -785,10 +785,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         }
       }
 
-      // Swap.
-      List<Evu> tmpList = spotFrom;
-      spotFrom    = newSpotFrom;
-      newSpotFrom = tmpList;
+      Set<Evu> swap = spotFrom;
+      spotFrom = newSpotFrom;
+      newSpotFrom = swap;
+
       newSpotFrom.clear();
 
       levelsOut++;
