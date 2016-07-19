@@ -757,26 +757,26 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     while (checkNow.size() > 0) {
       for (Evu fromEvu : checkNow) {
-        for (AdjacentData data : fromEvu.getAdjacentData()) {
+        for (AdjacentData toAdj : fromEvu.getAdjacentData()) {
 
-          Evu adj = data.evu;
-          if (adj == null) continue;
+          Evu toEvu = toAdj.evu;
+          if (toEvu == null) continue;
           
-          if (visited.contains(adj)) continue;
-          visited.add(adj);
+          if (visited.contains(toEvu)) continue;
+          visited.add(toEvu);
           
           if (!uniformPoly && levelsOut > 3) {
             continue;
           }
 
-          if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromUnit, adj)) {
+          if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromUnit, toEvu)) {
             continue;
           }
           
-          if (fromEvu.isAdjDownwind(adj) && !checkLater.contains(adj)) {
-            checkLater.add(adj);
-            if (determineSpotFire(fromUnit,adj)) {
-              toUnits.add(adj);
+          if (fromEvu.isAdjDownwind(toEvu) && !checkLater.contains(toEvu)) {
+            checkLater.add(toEvu);
+            if (determineSpotFire(fromUnit,toEvu)) {
+              toUnits.add(toEvu);
             }
           }
         }
