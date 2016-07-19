@@ -741,9 +741,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     if (!Utility.getFireSpotting()) return;
 
-    AdjacentData[] adjacentData = fromUnit.getAdjacentData();
-    if (adjacentData == null) return;
-
     Set<Evu> visited = new HashSet<>();
     Set<Evu> checkNow = new HashSet<>();
     Set<Evu> checkLater = new HashSet<>();
@@ -757,9 +754,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     while (checkNow.size() > 0) {
       for (Evu fromEvu : checkNow) {
-        for (AdjacentData toAdj : fromEvu.getAdjacentData()) {
 
-          Evu toEvu = toAdj.evu;
+        AdjacentData[] adjacencies = fromEvu.getAdjacentData();
+        if (adjacencies == null) continue;
+
+        for (AdjacentData adjacent : adjacencies) {
+
+          Evu toEvu = adjacent.evu;
           if (toEvu == null) continue;
           
           if (visited.contains(toEvu)) continue;
