@@ -28,7 +28,7 @@ import simpplle.comcode.Climate.*;
 public final class Evu extends NaturalElement implements Externalizable {
 
   static final long serialVersionUID        = -4593527729379592789L;
-  static final int  version                 = 8;
+  static final int  version                 = 9;
   static final int  accumDataVersion        = 1;
   static final int  spatialRelationsVersion = 1;
 
@@ -2836,60 +2836,64 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Function to get n units along a direction x.
-   * <b>Only to be used when Keane spatial data has been loaded.</b>
+   * Returns an array of 'n' adjacencies along a spread direction. This method expects each adjacent data instance to
+   * contain a valid spread direction. Currently this means that a Keane spatial relate file must be loaded.
    *
-   * @param directionAzimuth given direction from the current Evu to the adjacent Evu.
-   * @param n number of neighbors in a given direction. Note that for neighbor
-   *          <i>n</i>, the array index, <i>i</i> will always be n-1.
-   * @return Array size n of adjacent evus in the given direction
+   * @param directionAzimuth A direction from the current Evu to the neighboring Evu
+   * @param n A requested number of neighbors in a given direction
+   * @return An array of at most 'n' adjacencies
    */
-  public ArrayList<Evu> getNeighborsAlongDirection(double directionAzimuth, int n){
-    ArrayList<Evu> evus = new ArrayList<>(n);
+  public ArrayList<AdjacentData> getNeighborsAlongDirection(double directionAzimuth, int n){
+    ArrayList<AdjacentData> adjacencies = new ArrayList<>(n);
     Evu current = this;
-    int i = 0;
-    while (i < n){
-      Evu next = current.getNeighborInDirection(directionAzimuth);
-      if (next == null) // No more neighbors in that direction
+    for (int i = 0; i < n; i++) {
+      AdjacentData next = current.getNeighborInDirection(directionAzimuth);
+      if (next == null)
         break;
       else
-        evus.add(next);  // add neighbor to result
-      current = next;     // move down the line
-      i++;
+        adjacencies.add(next);
+      current = next.evu;
     }
-    return evus;
+    return adjacencies;
   }
 
   /**
-   * Potentially returns erroneous values if proper adjacent data (Keane) has not been loaded.
-   * @param degreesAzimuth given direction from the current Evu to the adjacent Evu.
-   * @return Evu neighbor in a given direction, if exists.
+   * Returns adjacent data for a neighbor along a spread direction. This method expects each adjacent data instance to
+   * contain a valid spread direction. Currently this means that a Keane spatial relate file must be loaded.
+   *
+   * @param degreesAzimuth A direction from the current Evu to the neighboring Evu
+   * @return Adjacent data for a neighbor in a given direction, null if there is not a neighbor in that direction
    */
-  public Evu getNeighborInDirection(double degreesAzimuth) {
+  public AdjacentData getNeighborInDirection(double degreesAzimuth) {
     double tolerance = 1;  // angle threshold for matching a direction
-    for (AdjacentData n : adjacentData){
-      double direction = n.getSpread();
+    for (AdjacentData data : adjacentData){
+      double direction = data.getSpread();
       if (Math.abs(direction - degreesAzimuth) <= tolerance)
-        return n.evu;
+        return data;
     }
-    // no result found
     return null;
   }
 
   /**
-   * Determines if the adjacent unit is downwind relative to this Evu.
-   * @param adj the Adjacent Evu ID.
-   * @return true if downwind.
+   * Determines if the other unit is downwind relative to this unit. A unit is downwind if this unit contains adjacent
+   * data for the provided unit and the wind attribute of that adjacent data indicates that the unit is downwind.
+   *
+   * @param other A vegetated unit
+   * @return True if downwind
    */
-  public boolean isAdjDownwind(Evu adj) {
-    int adjId = adj.getId();
+  public boolean isAdjDownwind(Evu other) {
 
-    for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].getEvu().getId() == adjId) {
-        return (adjacentData[i].getWind() == DOWNWIND);
+    for (AdjacentData data : adjacentData) {
+
+      if (data.evu.getId() == other.getId()) {
+
+        return data.getWind() == DOWNWIND;
+
       }
     }
+
     return false;
+
   }
 
   /**
@@ -7959,11 +7963,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * In these read/write methods for AdjacentData I have written out
-   * the arrays explicitily to make things faster.  Although writing out the
-   * actual array worked it nearly tripled the time to read/write the file.
-   * In addition I am writing the Evu.id instead of the actual instance because
-   * I suspect that was what was causing the delay.
+   * This method reads the arrays explicitly to make things faster.
+   * @see #writeExternalAdjacentData(ObjectOutput)
    */
   public void readExternalAdjacentData(ObjectInput in, Area area) throws IOException, ClassNotFoundException {
     int version = in.readInt();
@@ -7974,15 +7975,32 @@ public final class Evu extends NaturalElement implements Externalizable {
       adjacentData[i].setEvu(area.getEvu(in.readInt()));
       adjacentData[i].setPosition(in.readChar());
       adjacentData[i].setWind(in.readChar());
+      if (version >= 9){
+        adjacentData[i].setSpread(in.readDouble());
+        adjacentData[i].setWindSpeed(in.readDouble());
+        adjacentData[i].setWindDirection(in.readDouble());
+        adjacentData[i].setSlope(in.readDouble());
+      }
     }
   }
+
+  /**
+   * This method writes the arrays explicitly to make things faster. Although writing out the actual
+   * array worked, it nearly tripled the time to read/write the file. In addition, it writes the
+   * Evu.id instead of the actual instance because it is suspected that was causing the delay.
+   */
   public void writeExternalAdjacentData(ObjectOutput out) throws IOException {
     out.writeInt(version);
     out.writeInt(adjacentData.length);
-    for (int i=0; i<adjacentData.length; i++) {
-      out.writeInt(adjacentData[i].getEvu().getId());
-      out.writeChar(adjacentData[i].getPosition());
-      out.writeChar(adjacentData[i].getWind());
+
+    for (AdjacentData anAdjacentData : adjacentData) {
+      out.writeInt(anAdjacentData.getEvu().getId());
+      out.writeChar(anAdjacentData.getPosition());
+      out.writeChar(anAdjacentData.getWind());
+      out.writeDouble(anAdjacentData.getSpread());
+      out.writeDouble(anAdjacentData.getWindSpeed());
+      out.writeDouble(anAdjacentData.getWindDirection());
+      out.writeDouble(anAdjacentData.getSlope());
     }
   }
 

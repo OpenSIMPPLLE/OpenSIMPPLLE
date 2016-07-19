@@ -230,8 +230,8 @@ public final class Area implements Externalizable {
     this.kind = kind;
   }
 /**
- * Overloaded constructor for Area.  Calls the default constructor and sets the file path variable by invoking the File.get file method
- * and the kind for this area to parameter kind.
+ * Overloaded constructor for Area.  Calls the default constructor and sets the file path variable
+ * by invoking the File.get file method and the kind for this area to parameter kind.
  * @param file
  * @param kind is an int, (SIMULATED, USER, or SAMPLE)
  */
@@ -4363,6 +4363,13 @@ public final class Area implements Externalizable {
     else {
       elevationRelativePosition = hasUniformSizePolygons() ? 10 : 100;
     }
+
+    if (version >= 9){
+      /**
+       * Keane attributes are read in the Evu.readExternalAdjacentData method.
+       */
+      hasKeaneAttributes = in.readBoolean();
+    }
   }
   public void initPolygonWidth() {
     if (hasUniformSizePolygons()) {
@@ -4455,6 +4462,7 @@ public final class Area implements Externalizable {
       evu.writeSpatialRelations(out);
     }
     out.writeInt(elevationRelativePosition);
+    out.writeBoolean(hasKeaneAttributes);
   }
 
   public void readExternalSimData(ObjectInput in, int run) throws IOException, ClassNotFoundException {

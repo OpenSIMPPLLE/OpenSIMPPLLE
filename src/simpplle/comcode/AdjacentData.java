@@ -154,7 +154,7 @@ public class AdjacentData implements Externalizable {
     return windSpeed;
   }
 
-  public void setWindSpeed(int windSpeed) {
+  public void setWindSpeed(double windSpeed) {
     this.windSpeed = windSpeed;
   }
 
@@ -162,7 +162,7 @@ public class AdjacentData implements Externalizable {
     return windDirection;
   }
 
-  public void setWindDirection(int windDirection) {
+  public void setWindDirection(double windDirection) {
     this.windDirection = windDirection;
   }
 
@@ -170,7 +170,7 @@ public class AdjacentData implements Externalizable {
     return spread;
   }
 
-  public void setSpread(int spread) {
+  public void setSpread(double spread) {
     this.spread = spread;
   }
 

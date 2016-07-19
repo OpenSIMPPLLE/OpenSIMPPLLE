@@ -1021,6 +1021,8 @@ public class SystemKnowledge {
       FireEvent.resetExtremeData();
     }
 
+    FireSpottingLogicData.clearMaxDistance();
+
     try {
       jarIn = new JarInputStream(new FileInputStream(filename));
       fin   = new BufferedReader(new InputStreamReader(jarIn));

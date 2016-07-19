@@ -1,10 +1,7 @@
 package simpplle.comcode;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * The University of Montana owns copyright of the designated documentation contained 
@@ -385,7 +382,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     }
 
-    doFireSpotting(fromUnit);
+    doFireSpotting(fromUnit,tmpToUnits);
 
     addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
 
@@ -421,7 +418,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @param fromUnit A burning vegetation unit
    * @param toUnits A list to store units that have been spread to
    */
-  private void doSimpplleSpread(Evu fromUnit, ArrayList toUnits) {
+  private void doSimpplleSpread(Evu fromUnit, ArrayList<Evu> toUnits) {
 
     AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
 
@@ -451,7 +448,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @param fromUnit A burning vegetation unit
    * @param toUnits A list to store units that have been spread to
    */
-  private void doKeaneSpread(Evu fromUnit, ArrayList toUnits) {
+  private void doKeaneSpread(Evu fromUnit, ArrayList<Evu> toUnits) {
 
     AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
 
@@ -472,28 +469,23 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         // Limit wind to 30mph max
         windSpeed = Math.min(30, windSpeed);
 
-        windDirection = (windDirection + keaneWindDirectionOffset) % 360; // Wrap around if greater than 360 degrees
+        // Offset the wind direction and truncate angle within 360 degrees
+        windDirection = (windDirection + keaneWindDirectionOffset) % 360;
 
         double windSpread;
-
-        adjacent.setWind(fromUnit.isDownwind(spreadDirection, windDirection)); // update wind direction to reflect offsets
 
         if (windSpeed > 0.5) {
 
           // Compute a coefficient that reflects wind direction
-
           double coeff = Math.toRadians(fromUnit.getAzimuthDifference(spreadDirection, windDirection));
 
           // Compute the length:width ratio from Andrews (1986)
-
           double lwr = 1.0 + (0.125 * windSpeed);
 
           // Scale the coefficient between 0 and 1
-
           coeff = (Math.cos(coeff) + 1.0) / 2.0;
 
           // Scale the function based on wind speed between 1 and 10
-
           windSpread = lwr * Math.pow(coeff, Math.pow(windSpeed,0.6));
 
         } else {
@@ -516,7 +508,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         double spix = windSpread + slopeSpread;
 
-        // compensate for longer distances on corners
+        // Compensate for longer distances on corners
         if (spreadDirection == 45.0  ||
             spreadDirection == 135.0 ||
             spreadDirection == 225.0 ||
@@ -526,22 +518,23 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         }
 
-        List<Evu> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
+        List<AdjacentData> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
 
         Evu prevUnit = fromUnit;
 
+        for (AdjacentData neighbor : neighbors) {
 
-        for (Evu neighbor : neighbors) {
+          if (lineSuppUnits.contains(neighbor.evu.getId())) break;
 
-          if (lineSuppUnits.contains(neighbor.getId())) break;
+          neighbor.setWind(prevUnit.isDownwind(spreadDirection, windDirection));
 
-          boolean toUnitWasBurning = neighbor.hasFireAnyLifeform();
+          boolean toUnitWasBurning = neighbor.evu.hasFireAnyLifeform();
 
-          if (Evu.doSpread(prevUnit, neighbor, prevUnit.getDominantLifeformFire())) {
+          if (Evu.doSpread(prevUnit, neighbor.evu, prevUnit.getDominantLifeformFire())) {
 
             if (!toUnitWasBurning) {
 
-              toUnits.add(neighbor);
+              toUnits.add(neighbor.evu);
 
             }
 
@@ -551,7 +544,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
           }
 
-          prevUnit = neighbor;
+          prevUnit = neighbor.evu;
 
         }
       }
@@ -738,82 +731,65 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
   /**
    * Creates spot fires from blowing embers. All vegetation units in the area that are downwind and within the maximum
-   * fire spotting distance are tested for spot fires. Spot fires start based on a fire spotting probability entered
-   * in the 'Fire Event Logic' dialog.
+   * fire spotting distance are tested for spot fires. Spot fires start based on a fire spotting rules entered in the
+   * 'Fire Event Logic' dialog. If a fire starts, the type of the fire is determined by rules in the same dialog.
    *
-   * 7/??/04  Removed restriction that said adjacent units had to be above the from unit in order to start a spot fire.
-   * 8/23/04  Modified spotting so it can only start from a stand replacing fire. Previously there was no restriction.
-   *
-   * @param fromEvu The unit we are trying to spot a fire from
+   * @param fromUnit A burning vegetation unit
+   * @param toUnits A list to store units that have been ignited
    */
-  @SuppressWarnings("unchecked")
-  private void doFireSpotting(Evu fromEvu) {
+  private void doFireSpotting(Evu fromUnit, ArrayList<Evu> toUnits) {
 
-    AdjacentData[] adjacentData;
-    Evu            adj, fromAdj;
-    ArrayList<Evu> spotFrom, newSpotFrom, tmpList, unitsTried;
-    int            i, j, k;
+    if (!Utility.getFireSpotting()) return;
 
-    VegSimStateData state = fromEvu.getState();
-    if (state == null || Utility.getFireSpotting() == false) {
-      return;
-    }
+    Set<Evu> visited = new HashSet<>();
+    Set<Evu> checkNow = new HashSet<>();
+    Set<Evu> checkLater = new HashSet<>();
 
-    adjacentData = fromEvu.getAdjacentData();
-    if (adjacentData == null) return;
-
-    spotFrom    = new ArrayList<Evu>();
-    newSpotFrom = new ArrayList<Evu>();
-    unitsTried  = new ArrayList<Evu>();
-
-    unitsTried.add(fromEvu);
-    for (i = 0; i < adjacentData.length; i++) {
-      adj = adjacentData[i].evu;
-      unitsTried.add(adj);
-      if (fromEvu.isAdjDownwind(adj) &&
-          spotFrom.contains(adj) != true) {
-        spotFrom.add(adj);
-      }
-    }
+    visited.add(fromUnit);
+    checkNow.add(fromUnit);
 
     boolean uniformPoly = Simpplle.getCurrentArea().hasUniformSizePolygons();
     
     int levelsOut = 0;
-    while (spotFrom != null && spotFrom.size() > 0) {
-      levelsOut++;
-      
-      for(j = 0; j < spotFrom.size(); j++) {
-        fromAdj = (Evu) spotFrom.get(j);
-        adjacentData = fromAdj.getAdjacentData();
 
-        for(k = 0; k < adjacentData.length; k++) {
+    while (checkNow.size() > 0) {
+      for (Evu fromEvu : checkNow) {
 
-          adj = adjacentData[k].evu;
-          if (adj == null) continue;
+        AdjacentData[] adjacencies = fromEvu.getAdjacentData();
+        if (adjacencies == null) continue;
+
+        for (AdjacentData adjacent : adjacencies) {
+
+          Evu toEvu = adjacent.evu;
+          if (toEvu == null) continue;
           
-          if (unitsTried.contains(adj)) continue;
-          unitsTried.add(adj);
+          if (visited.contains(toEvu)) continue;
+          visited.add(toEvu);
           
           if (!uniformPoly && levelsOut > 3) {
             continue;
-          } else if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromEvu, adj)) {
+          }
+
+          if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromUnit, toEvu)) {
             continue;
           }
           
-          if (fromAdj.isAdjDownwind(adj) && newSpotFrom.contains(adj) != true) {
-            newSpotFrom.add(adj);
-            if (determineSpotFire(fromEvu,adj)) {
-              tmpToUnits.add(adj);
+          if (fromEvu.isAdjDownwind(toEvu) && !checkLater.contains(toEvu)) {
+            checkLater.add(toEvu);
+            if (determineSpotFire(fromUnit,toEvu)) {
+              toUnits.add(toEvu);
             }
           }
         }
       }
 
-      // Swap.
-      tmpList     = spotFrom;
-      spotFrom    = newSpotFrom;
-      newSpotFrom = tmpList;
-      newSpotFrom.clear();
+      Set<Evu> swap = checkNow;
+      checkNow = checkLater;
+      checkLater = swap;
+
+      checkLater.clear();
+
+      levelsOut++;
 
     }
   }
@@ -828,31 +804,26 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private boolean determineSpotFire(Evu fromEvu, Evu toEvu) {
 
     Lifeform fromLifeform = fromEvu.getDominantLifeform();
-
-    VegSimStateData state = fromEvu.getState(fromLifeform);
-    if (state == null) return false;
-
-    ProcessType processType = state.getProcess();
-    
     Lifeform toLifeform = toEvu.getDominantLifeform();
+
+    VegSimStateData fromState = fromEvu.getState(fromLifeform);
+    if (fromState == null) return false;
+
     VegSimStateData toState = toEvu.getState(toLifeform);
     if (toState == null) return false;
 
-    ProcessType toProcessType = toState.getProcess();
-    if (toProcessType.isFireProcess()) return false;
+    ProcessType fromProcess = fromState.getProcess();
+    ProcessType toProcess = toState.getProcess();
+    if (toProcess.isFireProcess()) return false;
 
-    int prob = FireEventLogic.getInstance().getFireSpottingProbability(fromEvu, toEvu, processType, isExtreme);
-    prob *= 100;
-
+    int prob = FireEventLogic.getInstance().getFireSpottingProbability(fromEvu, toEvu, fromProcess, isExtreme);
     int rand = Simulation.getInstance().random();
 
-    boolean isSpot = (rand < prob);
-
-    ProcessType fireType;
+    boolean isSpot = rand < (prob * 100);
 
     if (isSpot) {
 
-      fireType = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(), toEvu, toLifeform);
+      ProcessType fireType = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(), toEvu, toLifeform);
       if (fireType == ProcessType.NONE) return false;
 
       if (Area.multipleLifeformsEnabled()) {
