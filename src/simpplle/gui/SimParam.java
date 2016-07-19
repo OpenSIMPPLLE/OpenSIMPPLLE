@@ -123,6 +123,7 @@ public class SimParam extends JDialog {
     numSimText.setText("1");
     numSimText.setBackground(Color.white);
     numSimText.setSelectionColor(Color.blue);
+    numSimText.setPreferredSize(new Dimension(100,27));
     numSimText.setNextFocusableComponent(numStepText);
     numSimText.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -138,13 +139,15 @@ public class SimParam extends JDialog {
     JLabel numSimLabel = new JLabel();
     numSimLabel.setFont(monospaced);
     numSimLabel.setText("Number of Simulations ");
-    numSimLabel.setLabelFor(numSimText);
+
+    FlowLayout numSimLayout = new FlowLayout();
+    numSimLayout.setAlignment(FlowLayout.LEFT);
+    numSimLayout.setHgap(10);
+    numSimLayout.setVgap(1);
 
     JPanel numSimPanel = new JPanel();
-    numSimPanel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-    numSimPanel.setLayout(new BoxLayout(numSimPanel,BoxLayout.X_AXIS));
+    numSimPanel.setLayout(numSimLayout);
     numSimPanel.add(numSimLabel, null);
-    numSimPanel.add(Box.createRigidArea(new Dimension(5,0)));
     numSimPanel.add(numSimText, null);
 
     /* Number of Time Steps */
@@ -167,7 +170,6 @@ public class SimParam extends JDialog {
 
     JLabel numStepLabel = new JLabel();
     numStepLabel.setFont(monospaced);
-    numStepLabel.setLabelFor(numStepText);
     numStepLabel.setText("Number of Time Steps  ");
 
     FlowLayout numStepLayout = new FlowLayout();
@@ -631,9 +633,9 @@ public class SimParam extends JDialog {
 
     JPanel northPanel = new JPanel();
     northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
-    northPanel.add(numSimPanel, null);
-    northPanel.add(numStepPanel, null);
-    northPanel.add(simMethodPanel, null);
+    northPanel.add(numSimPanel);
+    northPanel.add(numStepPanel);
+    northPanel.add(simMethodPanel);
     northPanel.add(invasiveSpeciesPanel);
     northPanel.add(fireSpreadModelPanel);
     northPanel.add(optionsOuterPanel);
