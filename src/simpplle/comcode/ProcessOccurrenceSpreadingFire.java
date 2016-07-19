@@ -817,11 +817,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     if (toProcess.isFireProcess()) return false;
 
     int prob = FireEventLogic.getInstance().getFireSpottingProbability(fromEvu, toEvu, fromProcess, isExtreme);
-    prob *= 100;
-
     int rand = Simulation.getInstance().random();
 
-    boolean isSpot = (rand < prob);
+    boolean isSpot = rand < (prob * 100);
 
     ProcessType fireType;
 
