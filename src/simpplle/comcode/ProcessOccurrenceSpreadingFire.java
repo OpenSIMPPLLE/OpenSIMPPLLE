@@ -752,22 +752,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     Set<Evu> visited = new HashSet<>();
 
     visited.add(fromUnit);
-    for (int i = 0; i < adjacentData.length; i++) {
-      Evu adj = adjacentData[i].evu;
-      visited.add(adj);
-      if (fromUnit.isAdjDownwind(adj) && !spotFrom.contains(adj)) {
-        spotFrom.add(adj);
-      }
-    }
+    spotFrom.add(fromUnit);
 
     boolean uniformPoly = Simpplle.getCurrentArea().hasUniformSizePolygons();
     
     int levelsOut = 0;
+
     while (spotFrom.size() > 0) {
-      levelsOut++;
-
       for (Evu fromAdj : spotFrom) {
-
         for (AdjacentData data : fromAdj.getAdjacentData()) {
 
           Evu adj = data.evu;
@@ -798,6 +790,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       spotFrom    = newSpotFrom;
       newSpotFrom = tmpList;
       newSpotFrom.clear();
+
+      levelsOut++;
 
     }
   }
