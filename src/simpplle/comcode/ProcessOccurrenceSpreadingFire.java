@@ -821,11 +821,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     boolean isSpot = rand < (prob * 100);
 
-    ProcessType fireType;
-
     if (isSpot) {
 
-      fireType = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(), toEvu, toLifeform);
+      ProcessType fireType = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(), toEvu, toLifeform);
       if (fireType == ProcessType.NONE) return false;
 
       if (Area.multipleLifeformsEnabled()) {
