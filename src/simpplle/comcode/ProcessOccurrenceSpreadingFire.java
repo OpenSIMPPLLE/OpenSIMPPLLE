@@ -806,13 +806,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     Lifeform fromLifeform = fromEvu.getDominantLifeform();
     Lifeform toLifeform = toEvu.getDominantLifeform();
 
-    VegSimStateData state = fromEvu.getState(fromLifeform);
-    if (state == null) return false;
+    VegSimStateData fromState = fromEvu.getState(fromLifeform);
+    if (fromState == null) return false;
 
     VegSimStateData toState = toEvu.getState(toLifeform);
     if (toState == null) return false;
 
-    ProcessType processType = state.getProcess();
+    ProcessType processType = fromState.getProcess();
 
     ProcessType toProcessType = toState.getProcess();
     if (toProcessType.isFireProcess()) return false;
