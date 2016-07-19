@@ -4368,7 +4368,7 @@ public final class Area implements Externalizable {
       /**
        * Keane attributes are read in the Evu.readExternalAdjacentData method.
        */
-      hasKeaneAttributes = true;
+      hasKeaneAttributes = in.readBoolean();
     }
   }
   public void initPolygonWidth() {
@@ -4462,6 +4462,7 @@ public final class Area implements Externalizable {
       evu.writeSpatialRelations(out);
     }
     out.writeInt(elevationRelativePosition);
+    out.writeBoolean(hasKeaneAttributes);
   }
 
   public void readExternalSimData(ObjectInput in, int run) throws IOException, ClassNotFoundException {
