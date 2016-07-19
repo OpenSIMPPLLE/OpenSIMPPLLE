@@ -756,8 +756,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     int levelsOut = 0;
 
     while (checkNow.size() > 0) {
-      for (Evu fromAdj : checkNow) {
-        for (AdjacentData data : fromAdj.getAdjacentData()) {
+      for (Evu fromEvu : checkNow) {
+        for (AdjacentData data : fromEvu.getAdjacentData()) {
 
           Evu adj = data.evu;
           if (adj == null) continue;
@@ -773,7 +773,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
             continue;
           }
           
-          if (fromAdj.isAdjDownwind(adj) && !checkLater.contains(adj)) {
+          if (fromEvu.isAdjDownwind(adj) && !checkLater.contains(adj)) {
             checkLater.add(adj);
             if (determineSpotFire(fromUnit,adj)) {
               toUnits.add(adj);
