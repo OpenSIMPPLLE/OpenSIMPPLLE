@@ -745,18 +745,18 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     if (adjacentData == null) return;
 
     Set<Evu> visited = new HashSet<>();
-    Set<Evu> spotFrom = new HashSet<>();
-    Set<Evu> newSpotFrom = new HashSet<>();
+    Set<Evu> checkNow = new HashSet<>();
+    Set<Evu> checkLater = new HashSet<>();
 
     visited.add(fromUnit);
-    spotFrom.add(fromUnit);
+    checkNow.add(fromUnit);
 
     boolean uniformPoly = Simpplle.getCurrentArea().hasUniformSizePolygons();
     
     int levelsOut = 0;
 
-    while (spotFrom.size() > 0) {
-      for (Evu fromAdj : spotFrom) {
+    while (checkNow.size() > 0) {
+      for (Evu fromAdj : checkNow) {
         for (AdjacentData data : fromAdj.getAdjacentData()) {
 
           Evu adj = data.evu;
@@ -773,8 +773,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
             continue;
           }
           
-          if (fromAdj.isAdjDownwind(adj) && !newSpotFrom.contains(adj)) {
-            newSpotFrom.add(adj);
+          if (fromAdj.isAdjDownwind(adj) && !checkLater.contains(adj)) {
+            checkLater.add(adj);
             if (determineSpotFire(fromUnit,adj)) {
               toUnits.add(adj);
             }
@@ -782,11 +782,11 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
         }
       }
 
-      Set<Evu> swap = spotFrom;
-      spotFrom = newSpotFrom;
-      newSpotFrom = swap;
+      Set<Evu> swap = checkNow;
+      checkNow = checkLater;
+      checkLater = swap;
 
-      newSpotFrom.clear();
+      checkLater.clear();
 
       levelsOut++;
 
