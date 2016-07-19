@@ -812,12 +812,11 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     VegSimStateData toState = toEvu.getState(toLifeform);
     if (toState == null) return false;
 
-    ProcessType processType = fromState.getProcess();
+    ProcessType fromProcess = fromState.getProcess();
+    ProcessType toProcess = toState.getProcess();
+    if (toProcess.isFireProcess()) return false;
 
-    ProcessType toProcessType = toState.getProcess();
-    if (toProcessType.isFireProcess()) return false;
-
-    int prob = FireEventLogic.getInstance().getFireSpottingProbability(fromEvu, toEvu, processType, isExtreme);
+    int prob = FireEventLogic.getInstance().getFireSpottingProbability(fromEvu, toEvu, fromProcess, isExtreme);
     prob *= 100;
 
     int rand = Simulation.getInstance().random();
