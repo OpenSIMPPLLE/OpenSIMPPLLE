@@ -317,7 +317,7 @@ public class SimpplleMain extends JFrame {
     newArea.addActionListener(new java.awt.event.ActionListener() {
 
       public void actionPerformed(ActionEvent e) {
-        newArea_actionPerformed(e);
+        newArea_actionPerformed();
       }
     });
     runSimulation.setEnabled(false);
@@ -1729,10 +1729,10 @@ public class SimpplleMain extends JFrame {
     return dlg.getFiles();
   }
   /**
-   * Gets the area to be used depending on user input.  CHoices are Sample, user defined, previous, previous old, or none (if nothing selected)
-   * @param e
+   * Gets the area to be used depending on user input.  Choices are Sample, user defined,
+   * previous, previous old, or none (if nothing selected)
    */
-  void newArea_actionPerformed(ActionEvent e) {
+  void newArea_actionPerformed() {
     int           choice;
     File          outfile;
     NewArea       dlg = new NewArea(this,true);
@@ -1812,13 +1812,15 @@ public class SimpplleMain extends JFrame {
       // Some areas seem to have been created incorrectly so we need
       // to make sure that if they only have one lifeform in all units
       // that we make sure that lifeform is marked as NA.
-      if (area.multipleLifeformsEnabled() == false &&
+      if (!area.multipleLifeformsEnabled() &&
           choice != NewArea.PREVIOUS &&
           choice != NewArea.PREVIOUS_OLD) {
         // Need to change Evu's to be single lifeform;
         Evu[] evus = area.getAllEvu();
-        for (int i=0; i<evus.length; i++) {
-          if (evus[i] != null) { evus[i].makeSingleLife(); }
+        for (Evu evu : evus) {
+          if (evu != null) {
+            evu.makeSingleLife();
+          }
         }
       }
       TrackingSpeciesReportData.getInstance().initialize();
