@@ -21,11 +21,7 @@ import java.util.HashMap;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
- *
+ * <p> GUI for saving and loading User knowledge files (.sysknowledge).
  */
 
 @SuppressWarnings("serial")
@@ -37,11 +33,16 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
   private HashMap<SystemKnowledge.Kinds,JCheckBox> checkBoxes = new HashMap<SystemKnowledge.Kinds,JCheckBox>();
 
+  private JScrollPane CBScroll = new JScrollPane();
+  private JTextField outputFileText = new JTextField();
+  private TitledBorder mainTitleBorder;
+
   private JButton cancelPB = new JButton();
   private JButton loadSavePB = new JButton();
   private JButton pickFilePB = new JButton();
   private JButton selectAllPB = new JButton();
   private JButton selectNonePB = new JButton();
+
   private JCheckBox aquaticPathwaysCB = new JCheckBox();
   private JCheckBox climateCB = new JCheckBox();
   private JCheckBox lifeformCompLogicCB = new JCheckBox();
@@ -74,9 +75,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
   private JCheckBox treatmentScheduleCB = new JCheckBox();
   private JCheckBox vegetationPathwaysCB = new JCheckBox();
   private JCheckBox vegUnitFireTypeLogicLogicCB = new JCheckBox();
-  private JScrollPane CBScroll = new JScrollPane();
-  private JTextField outputFileText = new JTextField();
-  private TitledBorder mainTitleBorder;
+  private JCheckBox keaneParametersCB = new JCheckBox();
 
   public SystemKnowledgeLoadSave(Frame frame, String title, boolean modal, boolean save) {
 
@@ -127,6 +126,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     speciesCB.setText("Species Settings (e.g. Fire Resistance)");
     fireTypeLogicCB.setText("Type of Fire Logic");
     fireTypeLogicCB.setActionCommand("Type of Fire Logic");
+    keaneParametersCB.setText("Keane Cell Percolation Parameters");
 
     Box fireKnowledgeColA = new Box(BoxLayout.Y_AXIS);
     fireKnowledgeColA.add(fireSuppClassACB, null);
@@ -136,6 +136,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     fireKnowledgeColA.add(fireSeasonCB, null);
     fireKnowledgeColA.add(fireSpottingCB);
     fireKnowledgeColA.add(fireSpreadCB, null);
+    fireKnowledgeColA.add(keaneParametersCB, null);
 
     Box fireKnowledgeColB = new Box(BoxLayout.Y_AXIS);
     fireKnowledgeColB.add(fireSuppBeyondClassACB, null);
@@ -335,6 +336,8 @@ public class SystemKnowledgeLoadSave extends JDialog {
     checkBoxes.put(SystemKnowledge.INVASIVE_SPECIES_LOGIC_MSU, invasiveSpeciesLogicMsuCB);
     checkBoxes.put(SystemKnowledge.PRODUCING_SEED_LOGIC,producingSeedLogicCB);
     checkBoxes.put(SystemKnowledge.VEG_UNIT_FIRE_TYPE_LOGIC,vegUnitFireTypeLogicLogicCB);
+    // TODO: add keane
+    checkBoxes.put(SystemKnowledge.KEANE_PARAMETERS, keaneParametersCB);
 
     if (save) {
 
@@ -440,7 +443,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   void loadSavePB_actionPerformed(ActionEvent e) {
-    if (save && (isAnythingSelected() == false)) {
+    if (save && (!isAnythingSelected())) {
       JOptionPane.showMessageDialog(this, "No items Checked!",
                                     "Nothing Selected",
                                     JOptionPane.WARNING_MESSAGE);

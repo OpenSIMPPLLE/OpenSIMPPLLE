@@ -15,8 +15,8 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
  * Open Source License Contract pertaining to this documentation and agrees to abide by all 
  * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>This class provides for the ability to load a file which has information on files that need to be loaded
- * that modify system knowledge.  
+ * <p>This class provides for the ability to load a file which has information on files that need
+ * to be loaded that modify system knowledge.
  * <p>Files such as:
  * fmz data, fire spread data, fire type data,
  * insect-disease data, treatments, and lock-in processes.
@@ -75,7 +75,8 @@ public class SystemKnowledge {
     ROOT_DISEASE,
     SPRUCE_BEETLE,
     DF_BEETLE,
-    WILDLIFE
+    WILDLIFE,
+    KEANE_PARAMETERS
   }
 
   public static final Kinds FMZ                              = Kinds.FMZ;
@@ -124,6 +125,7 @@ public class SystemKnowledge {
   public static final Kinds SPRUCE_BEETLE                    = Kinds.SPRUCE_BEETLE;
   public static final Kinds DF_BEETLE                        = Kinds.DF_BEETLE;
   public static final Kinds WILDLIFE                         = Kinds.WILDLIFE;
+  public static final Kinds KEANE_PARAMETERS                 = Kinds.KEANE_PARAMETERS;
 
   public static final int NUMID = Kinds.values().length;
 
@@ -249,7 +251,7 @@ public class SystemKnowledge {
   }
 
   /**
-   * Puts the passed boolean into the loadSaveMe boolean array at a particular system knownledge kinds ordinal into kind enumeration.  
+   * Puts the passed boolean into the loadSaveMe boolean array at a particular system knowledge kinds ordinal into kind enumeration.
    * This is used to check if there is a particular type of system knowledge file
    * @param which the system knowledge kind.  Its ordinal is used as array index. 
    * @param bool true if has system knowledge of the kind at particular index.  
@@ -864,9 +866,12 @@ public class SystemKnowledge {
   }
 
   /**
-   * Method first takes off the directory path name, then in a series of conditionals to find ordinal of SystemKnowledgeKind which it calls EntryID.
-   * @param name
-   * @return int of ordinal location of SystemKnowledge kind in SystemKnowledge Kind enumeration.  Ordinal is now called EntryID.
+   * Method first takes off the directory path name, then in a series of conditionals to find
+   * ordinal of SystemKnowledgeKind which it calls EntryID.
+   * @param name directory path name
+   * @return int of ordinal location of SystemKnowledge kind in SystemKnowledge Kind enumeration.
+   * Ordinal is now called EntryID.
+   *
    * Note: if name is null or name starts with WILDLIFE_ENTRY OR EMISSIONS_ENTRY returns null
    */
   private static Kinds getKnowledgeEntryId(String name) {
@@ -918,7 +923,8 @@ public class SystemKnowledge {
   }
 
   /**
-   * If entryID is Vegetation pathway or Aquatic pathways uses SystemKnowledge PathwayFile() else it reads in the SystemKnowledgeFile.
+   * If entryID is Vegetation pathway or Aquatic pathways uses SystemKnowledge PathwayFile() else it
+   * reads in the SystemKnowledgeFile.
    * @param entryId ordinal of SystemKnowledge kind in SystemKnowledge kind enumeration
    * @throws SimpplleError - not caught
    */
@@ -933,8 +939,10 @@ public class SystemKnowledge {
   }
   
   /**
-   * Sends to main input reader class: readInputFile with the file name, true for zoneFile, false for readAll and false for individual file.  
-   * Also creates the loadSaveMe boolean array which is used to tell if there is a file of a particular System Knowledge kind to be loaded or saved.  
+   * Sends to main input reader class: readInputFile with the file name, true for zoneFile, false
+   * for readAll and false for individual file. Also creates the loadSaveMe boolean array which is
+   * used to tell if there is a file of a particular System Knowledge kind to be loaded or saved.
+   *
    * @param filename File to be read
    * @param entryId ordinal of SystemKnowledge kind in SystemKnowledge kind enumeration
    * @throws SimpplleError not caught
@@ -950,8 +958,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * method to read individual files.  Different from most input files which contain many files of data.  
-   * Sends to the overloaded readInputFile() the file name, false for zone file, false for readAll, and true for individual file
+   * method to read individual files. Different from most input files which contain many files of
+   * data. Sends to the overloaded readInputFile() the file name, false for zone file, false for
+   * readAll, and true for individual file.
+   *
    * @param filename File to be read
    * @param entryId
    * @throws SimpplleError
@@ -968,7 +978,7 @@ public class SystemKnowledge {
   }
 
   /**
-   * Overloaded readInputFile passes to readInputFile the file name and false for zonefile
+   * Overloaded readInputFile passes to readInputFile the file name and false for zone file
    * @param filename File to be read
    * @throws SimpplleError not caught
    */
@@ -991,11 +1001,15 @@ public class SystemKnowledge {
   }
 
   /**
-   * Overloaded readInputFile. This is the main input file reader.  If zoneFile and readAll are true loops through the
-   * loadSaveMe boolean array and sets to indexes in its length. The method then uses conditionals to decide how to
-   * read input files, whether to clear the file previously present. Note: uses XStream to serialize to XML and back.
+   * Overloaded readInputFile. This is the main input file reader.  If zoneFile and readAll are true
+   * loops through the loadSaveMe boolean array and sets to indexes in its length. The method then
+   * uses conditionals to decide how to read input files, whether to clear the file previously
+   * present.
+   *
+   * Note: uses XStream to serialize to XML and back.
    * For more information on XStream
    * @link http://xstream.codehaus.org/
+   *
    * @param filename File to be read
    * @param zoneFile true if file is a zone file, false otherwise
    * @param readAll true if readAll, false otherwise
@@ -1110,8 +1124,8 @@ public class SystemKnowledge {
         // Since there are two sets of pathways we need to make sure we
         // load the correct ones.
         if (entryId == VEGETATION_PATHWAYS && loadSaveMe[VEGETATION_PATHWAYS.ordinal()]) {
-          if ((zoneFile == false && name.startsWith(PATHWAYS_ENTRY)) ||
-              ((name.startsWith(PATHWAYS_ENTRY) && zone.isHistoric() == false) ||
+          if ((!zoneFile && name.startsWith(PATHWAYS_ENTRY)) ||
+              ((name.startsWith(PATHWAYS_ENTRY) && !zone.isHistoric()) ||
                (name.startsWith(HISTORIC_PATHWAYS_ENTRY) && zone.isHistoric()))) {
             Simpplle.setStatusMessage(msg);
             lastPathwayLoaded = zone.loadPathway(fin);
@@ -1173,12 +1187,12 @@ public class SystemKnowledge {
 
           String line = fin.readLine();
           // For some reason some files start with blank lines.
-          while (line.indexOf("object-stream") == -1) {
+          while (!line.contains("object-stream")) {
             line = fin.readLine();
           }
           StringBuffer strBuf = new StringBuffer(line);
           line="";
-          while (line.indexOf("object-stream") == -1) {
+          while (!line.contains("object-stream")) {
             line = fin.readLine();
             strBuf.append(Simpplle.endl);
             strBuf.append(line);
@@ -1289,8 +1303,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * Method processes System Knowledge files and creates an boolean array called loadSaveMe to indicate whether there is a system knowledge file of a particular kind. 
-   * pertaining to Fire Type, Fire Logic, and Fire Spread 
+   * Method processes System Knowledge files and creates an boolean array called loadSaveMe to
+   * indicate whether there is a system knowledge file of a particular kind pertaining to Fire
+   * Type, Fire Logic, and Fire Spread.
+   *
    * @param filename File to be processed.  
    * @throws SimpplleError caught if could not read file
    */
@@ -1434,7 +1450,8 @@ public class SystemKnowledge {
   }
 
   /**
-   * Saves a particular system knowledge file.  This long method goes through all the types of system knowledge kinds and
+   * Saves a particular system knowledge file.
+   *
    * @param filename
    * @param fileExt
    * @param doZoneDef
@@ -1827,8 +1844,10 @@ public class SystemKnowledge {
 
   /**
    * Gets the system knowledge file extension based on system knowledge kind.
+   *
    * @param kind system knowledge kind
-   * @return file extension.  example for System Knowledge TREATMENT_SCHEDULE will return "sk_treatsched";
+   * @return file extension - example: for System Knowledge TREATMENT_SCHEDULE will return
+   * "sk_treatsched";
    */
   public static String getKnowledgeFileExtension(Kinds kind) {
     // old Fire Spread files .firespread
@@ -1879,7 +1898,7 @@ public class SystemKnowledge {
   }
 
   /**
-   * Gets the string descrpition of the file for a particular system knowledge kind.  
+   * Gets the string description of the file for a particular system knowledge kind.
    * Example for system knowledge TREATMENT_SCHEDULE will return "Treatment Schedule"
    * @param kind System Knowledge kind 
    * @return a string with the System Knowledge file formatted for readability by user.  
@@ -1925,6 +1944,7 @@ public class SystemKnowledge {
       case FIRE_SUPP_SPREAD_RATE_LOGIC:      return ("Fire Supp Spread Rate Logic");
       case FIRE_SUPP_WEATHER_CLASS_A_LOGIC:  return ("Fire Supp Weather Class A Logic");
       case TRACKING_SPECIES_REPORT:          return ("Tracking Species Report");
+      case KEANE_PARAMETERS:                 return ("Keane Fire Spread Parameters");
       default:                               return ("");
       // Extreme fire doesn't have its own file.
       // Wildlife doesn't have its own file.
@@ -1933,8 +1953,8 @@ public class SystemKnowledge {
 
   /**
    * Gets the system knowledge
-   * @param kind
-   * @return the System Knowledge file kind as a
+   * @param kind System Knowledge kind
+   * @return the System Knowledge file kind as a String
    */
   public static String getKnowledgeFileTitle(Kinds kind) {
     // old Fire Spread files .firespread
@@ -1977,14 +1997,17 @@ public class SystemKnowledge {
       case FIRE_SUPP_SPREAD_RATE_LOGIC:      return ("Fire Supp Spread Rate Logic");
       case FIRE_SUPP_WEATHER_CLASS_A_LOGIC:  return ("Fire Supp Weather Class A Logic");
       case TRACKING_SPECIES_REPORT:          return ("Tracking Species Report");
+      case KEANE_PARAMETERS:                 return ("Keane Cell Percolation Parameters");
       default:                               return ("");
       // Extreme fire doesn't have its own file.
       // Wildlife doesn't have its own file.
     }
   }
+
   // ********************************
   // *** Knowledge Source Methods ***
   // ********************************
+
   public static String getSource(Kinds kind) {
     if (kind == WILDLIFE) {
       return "Documented in draft GTR, Carattia, Chew and Samson";
@@ -2320,7 +2343,7 @@ public class SystemKnowledge {
     StringBuffer strBuf = new StringBuffer("");
     String line = fin.readLine();
     String nl = System.getProperty("line.separator");
-    while (line != null && line.equals("END-KNOWLEDGE-SOURCE") == false) {
+    while (line != null && !line.equals("END-KNOWLEDGE-SOURCE")) {
       strBuf.append(line);
       strBuf.append(nl);
       line = fin.readLine();
@@ -2396,7 +2419,3 @@ public class SystemKnowledge {
 //    xs.alias("InvasiveSpeciesSimpplleTypeCoeffData",simpplle.comcode.InvasiveSpeciesSimpplleTypeCoeffData.class);
   }
 }
-
-
-
-
