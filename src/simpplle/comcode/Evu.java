@@ -5123,11 +5123,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public static synchronized boolean doFireSpread(Evu fromEvu, Evu toEvu, Lifeform fromLifeform) {
 
-    if (toEvu.hasLockinProcessAnyLifeform() || toEvu.isSuppressed()) {
-
-      return false;
-
-    }
+    if (toEvu.hasLockinProcessAnyLifeform() || toEvu.isSuppressed()) return false;
 
     ProcessType fromProcess = fromEvu.getState(fromLifeform).getProcess();
     ProcessType fireProcess = null;
@@ -5136,11 +5132,8 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     Climate.Season currentSeason = Simulation.getInstance().getCurrentSeason();
 
-    Lifeform[] lives = Lifeform.getAllValues();
+    for (Lifeform toLifeform : Lifeform.getAllValues()) {
 
-    for (int i = 0; i < lives.length; i++) {
-
-      Lifeform toLifeform = lives[i];
       Area.currentLifeform = toLifeform;
 
       if (!toEvu.hasLifeform(toLifeform)) continue;
@@ -5172,7 +5165,6 @@ public final class Evu extends NaturalElement implements Externalizable {
         fireProb    = toEvu.getState(toLifeform).getProb();
 
       }
-
     }
 
     Area.currentLifeform = null;
