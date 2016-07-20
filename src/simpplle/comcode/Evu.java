@@ -5108,17 +5108,17 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Determines if a fire will spread from one EVU into another EVU.
-   *
-   * This method is static and synchronized in order to be certain that the
-   * fields we need in the fromEvu and toEvu are not modified by another
-   * thread while this method is executing.  There is probably a non-static
-   * way of doing this.
+   * Attempts to spread a fire between two vegetated units using fire spreading rules. If the fire
+   * spreads to a life form, then the remaining life forms are spread to using fire type rules.
+   * <p>
+   * This method is static and synchronized in order to be certain that the fields we need in the
+   * fromEvu and toEvu are not modified by another thread while this method is executing.  There is
+   * probably a non-static way of doing this.
    *
    * @todo make this method non-static and less restricted (if possible).
    *
-   * @param fromEvu The Evu we are trying to spread from.
-   * @param toEvu   The Evu we are trying to spread to.
+   * @param fromEvu The unit we are trying to spread from
+   * @param toEvu The unit we are trying to spread to
    * @return True if spread was successful
    */
   public static synchronized boolean doFireSpread(Evu fromEvu, Evu toEvu, Lifeform fromLifeform) {
