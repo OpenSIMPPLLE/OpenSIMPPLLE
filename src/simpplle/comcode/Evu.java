@@ -5123,11 +5123,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public static synchronized boolean doFireSpread(Evu fromEvu, Evu toEvu, Lifeform fromLifeform) {
 
-    // Don't spread into a unit that has fire or a lock-in process.
-
-    if (toEvu.hasFireAnyLifeform() ||
-        toEvu.hasLockinProcessAnyLifeform() ||
-        toEvu.isSuppressed()) {
+    if (toEvu.hasLockinProcessAnyLifeform() || toEvu.isSuppressed()) {
 
       return false;
 
