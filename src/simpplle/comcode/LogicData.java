@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.IOException;
@@ -11,21 +19,14 @@ import java.util.*;
 import simpplle.comcode.Climate.*;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- *  <p>This is an abstract class for LogicData, itself an extension of AbstractLogicData.  
- *  It provides many of the methods used in the logic data classes throughout OpenSimpplle.  
- *  While it cannot be instantiated directly, it is subclassed by many other classes.  
+ * This is an abstract class for LogicData, itself an extension of AbstractLogicData.
+ * It provides many of the methods used in the logic data classes throughout OpenSimpplle.
+ * While it cannot be instantiated directly, it is subclassed by many other classes.
  *  
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
- *
  */
+
 public abstract class LogicData extends AbstractLogicData implements Externalizable {
   static final long serialVersionUID = -2751426285950107341L;
   static final int  version          = 12;

@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.awt.*;
@@ -7,22 +15,14 @@ import org.apache.commons.collections.map.*;
 import org.apache.commons.collections.*;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- *<p> This class has fields which hold Vegetative pathway state
+ * This class has fields which hold Vegetative pathway state
  * information.  There are also a number of methods primarily
  * dealing with reading pathway information from a file as well
  * as accessor methods.
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- * 
  */
-
 public final class VegetativeType implements Comparable, Externalizable {
   public static final long badSerialVersionUID = -5936001845626671540L;
   static final long serialVersionUID = 590817789717342164L;

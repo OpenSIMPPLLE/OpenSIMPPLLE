@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import java.awt.BorderLayout;
@@ -22,20 +30,14 @@ import javax.swing.event.ListSelectionListener;
 import simpplle.comcode.InclusionRuleSpecies;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * 
- * <p>This class allows users to edit an inclusion rule.  
+ * This class allows users to edit an inclusion rule.
  * Inclusion rules consist of Inclusion Rule Species name, lower percent range, and upper percent range.  
  * This class allows users to create, add, or delete an inclusion rule by species name.  Much of this can be done using the Action JMenu.
  *  
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
+
 public class PathwayInclusionRulesEditDialog extends JDialog {
   PathwayInclusionRulesDataModel dataModel = new PathwayInclusionRulesDataModel();
   HabitatTypeGroup group;

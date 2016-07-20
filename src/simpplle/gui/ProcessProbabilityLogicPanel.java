@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import simpplle.comcode.BaseLogic;
@@ -6,19 +14,14 @@ import simpplle.comcode.ProcessProbLogic;
 import simpplle.comcode.SystemKnowledge.Kinds;
 import javax.swing.table.*;
 import java.awt.*;
-/** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class creates the Process Probability Logic Panel, a type of VegLogicPanel, itself a type of JPanel.
+
+/**
+ * This class creates the Process Probability Logic Panel, a type of VegLogicPanel, itself a type of JPanel.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *   
  */
+
 public class ProcessProbabilityLogicPanel extends VegLogicPanel {
 	/**
 	 * Constructor for Process Probabilty Logic Panel

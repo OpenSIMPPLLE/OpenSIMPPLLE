@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import java.awt.*;
@@ -28,22 +36,12 @@ import simpplle.comcode.*;
 import simpplle.comcode.SystemKnowledge.Kinds;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class creates the Regeneration Delay Fire Table.  Regeneration depends on spatially explicit information.  It does not 
- * happen automatically.  Regeneration logic is applied under either succession or fire regeneration logic.  
- * 
- * <p>This class is for fire regeneration.   The five components used to determine how a plant community can regenerate are 
+ * This class is for fire regeneration.   The five components used to determine how a plant community can regenerate are
  * if the species resprots in-place, resprouts from adjacent communities, seed is produced by the burned plants, seed is provided from adjacent communities
  * or seed is transported from communities within the landscape.  
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *   
  */
 
 public class RegenerationLogicFireTable extends VegLogicPanel {

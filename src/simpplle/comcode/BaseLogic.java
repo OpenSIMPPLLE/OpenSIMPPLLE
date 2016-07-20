@@ -1,14 +1,15 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
-
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This is an abstract class which contains the enumeration for columns and a string array containing they System Knowledge kinds. 
+ * This is an abstract class which contains the enumeration for columns and a string array containing they System Knowledge kinds.
  * Columns are built by adding to the calling the AbstractBaseLogic variable LAST_COL.  
  * By default this is set to the first column if there is not already one in there.
  * The columns for Base Logic are ROW_COL,ECO_GROUP_COL,SPECIES_COL,SIZE_CLASS_COL,DENSITY_COL,PROCESS_COL,
@@ -17,10 +18,8 @@ package simpplle.comcode;
  *
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller
- * 
  *
  * @see simpplle.comcode.AbstractBaseLogic
- * 
  */
 
 public abstract class BaseLogic extends AbstractBaseLogic {

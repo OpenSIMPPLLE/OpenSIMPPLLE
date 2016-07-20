@@ -1,22 +1,24 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.util.ArrayList;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains methods for a Producing Seed Logic, a type of Base Logic.
+ * This class contains methods for a Producing Seed Logic, a type of Base Logic.
  * All default probabilities for this are either 0 or 100.  Logic for producing seed incorporates the species, size class, regeneration type, 
  * and whether a disturbance process has occured in a past time step.   
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
+
 public class ProducingSeedLogic extends BaseLogic {
   static final int  version = 1;
 
