@@ -11,19 +11,12 @@ package simpplle.gui;
 import javax.swing.table.TableColumn;
 import simpplle.comcode.Climate.Season;
 import simpplle.comcode.*;
-/** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class sets up Vegetative Logic Panel, a type of Base Logic Panel, which inherits directly from JPanel. 
+
+/**
+ * This class sets up Vegetative Logic Panel, a type of Base Logic Panel, which inherits directly from JPanel.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
- *
  */
 public class VegLogicPanel extends BaseLogicPanel {
 /**

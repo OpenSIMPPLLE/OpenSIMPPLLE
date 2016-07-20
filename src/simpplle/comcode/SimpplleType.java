@@ -14,13 +14,7 @@ import java.util.jar.JarInputStream;
 import java.util.jar.JarOutputStream;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p> SimpplleType is the base class for fundamental data types in OpenSIMPPLLE. The primary purpose of this class
+ * SimpplleType is the base class for fundamental data types in OpenSIMPPLLE. The primary purpose of this class
  * is to reuse instances of subclasses.
  *
  * <p> Original source code authorship: Kirk A. Moeller

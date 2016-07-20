@@ -8,8 +8,6 @@
 
 package simpplle.gui;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -23,20 +21,13 @@ import simpplle.comcode.FireReports;
 import simpplle.comcode.SimpplleType;
 import static simpplle.comcode.SimpplleType.*;
 import simpplle.comcode.*;
-/** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class creates a dialog to display the vegetative summary report.  
+
+/**
+ * This class creates a dialog to display the vegetative summary report.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
-
 public class VegSummary extends JDialog {
   private SimpplleType.Types state;  // will have one of the above values.
   private boolean combineLifeforms;

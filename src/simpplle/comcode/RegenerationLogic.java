@@ -15,21 +15,15 @@ import java.util.jar.JarOutputStream;
 import java.util.jar.JarInputStream;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains methods for a Regeneration Logic. Regeneration is highly variable.  
+ * This class contains methods for a Regeneration Logic. Regeneration is highly variable.
  * It is dependent on spatial arrangement of plant communities, regeneration mechanisms of species, and spatial arrangement of 
  * adjacent plant communities.  
  * <p>Regeneration logic is applied under either succession or fire regeneration logic.  This class covers both.  
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- * 
  */
+
 public abstract class RegenerationLogic {
   private static final int version = 2;
 
@@ -37,8 +31,6 @@ public abstract class RegenerationLogic {
       new HashMap<HabitatTypeGroupType,BaseLogic>();
   private static HashMap<HabitatTypeGroupType,BaseLogic> succData =
       new HashMap<HabitatTypeGroupType,BaseLogic>();
-
-
 
   public enum DataKinds { FIRE, SUCCESSION };
   public static final DataKinds FIRE       = DataKinds.FIRE;

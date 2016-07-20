@@ -19,20 +19,12 @@ import javax.swing.border.*;
 import java.awt.event.*;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class creates a Simpplle Type Chooser, which allows users to make selections of the simpplle types.  
+ * This class creates a Simpplle Type Chooser, which allows users to make selections of the simpplle types.
  * Choices of these are SPECIES, SIZE_CLASS, DENSITY, PROCESS, TREATMENT, GROUP.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- * 
  */
-
 public class SimpplleTypeChooser extends JDialog {
   private static final String sizeClassPrototype   = "CLOSED-TALL-SHRUB    ";
   private DefaultListModel sourceListModel;

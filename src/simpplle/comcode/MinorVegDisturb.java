@@ -9,14 +9,7 @@
 package simpplle.comcode;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains methods for Minor Vegetation Disturbance, a type of Process.  This can happen in all regions, 
+ * This class contains methods for Minor Vegetation Disturbance, a type of Process.  This can happen in all regions,
  * therefore it has overloaded doProbability and doSpread methods for all zones, as well as doProbabilityCommon and doSpreadCommon for the evu
  * 
  * @author Documentation by Brian Losi
@@ -24,7 +17,6 @@ package simpplle.comcode;
  *
  * @see simpplle.comcode.Process
  */
-
 
 public class MinorVegDisturb extends Process {
   private static final String printName = "MINOR-VEG-DISTURB";

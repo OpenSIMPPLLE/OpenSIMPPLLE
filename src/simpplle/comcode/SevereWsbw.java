@@ -6,18 +6,10 @@
  * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
  */
 
-
 package simpplle.comcode;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class defines Severe Western Spruce Budworm, a type of process.  
+ * This class defines Severe Western Spruce Budworm, a type of process.
  * <p>There is no Severe Western Spruce Budworm in Gila, South Central Alaska, Sierra Nevada, or Southern California.  No methods 
  * are given for those regions probability (as opposed to normal 0 probability return methods.  doSpread still returns false for those 
  * regions though. 
@@ -26,8 +18,8 @@ package simpplle.comcode;
  * <p>Original source code authorship: Kirk A. Moeller
  *
  *@see simpplle.comcode.Process
- *
  */
+
 public class SevereWsbw extends Process {
   private static final String printName = "SEVERE-WSBW_OLD";
   /**

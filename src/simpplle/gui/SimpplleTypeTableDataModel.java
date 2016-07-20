@@ -22,20 +22,12 @@ import simpplle.comcode.ProcessProbLogicData;
 import simpplle.comcode.*;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This abstract class creates the Simpplle Type Table Data Model, a type of Abstract Table Model.
+ * This abstract class creates the Simpplle Type Table Data Model, a type of Abstract Table Model.
  * Table models are used throughout the simple GUI and will be subclassed often.  
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *   
  */
-
 public abstract class SimpplleTypeTableDataModel extends AbstractTableModel {
   public static final int SELECTED_COL  = 0;
 

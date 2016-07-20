@@ -13,17 +13,12 @@ import java.text.*;
 import java.util.*;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
+ * This class describes an Existing Land Unit (ELU).  This along with EVU and EAU are the Natural Elements in OpenSimpplle.
  *
- *<p> This class describes an Existing Land Unit (ELU).  This along with EVU and EAU are the Natural Elements in OpenSimpplle.  
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ExistingLandUnit extends NaturalElement implements Externalizable {
   static final long serialVersionUID = 7582130807609896827L;
   static final int  version          = 4;

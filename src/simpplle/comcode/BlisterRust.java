@@ -6,19 +6,12 @@
  * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
  */
 
-
 package simpplle.comcode;
 
 import java.awt.Color;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class has methods for Blister Rust, a type of process.  Blister rust is so common that it is included within the 
+ * This class has methods for Blister Rust, a type of process.  Blister rust is so common that it is included within the
  * succession pathways
  * 
  * @author Documentation by Brian Losi
@@ -26,9 +19,7 @@ import java.awt.Color;
  * @see simpplle.comcode.Process
  */
 
-
-// Does not occur in Eastside.
-public class BlisterRust extends Process {
+public class BlisterRust extends Process { // Does not occur in Eastside.
   private static final String printName = "BLISTER-RUST";
   
   /**

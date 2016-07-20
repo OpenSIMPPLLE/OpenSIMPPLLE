@@ -8,24 +8,14 @@
 
 package simpplle.comcode;
 
-
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * 
- * <p>This is a class with methods to handle Emission Data
- *  This class is used to create a hash table key for
+ * This is a class with methods to handle Emission Data
+ * This class is used to create a hash table key for
  * looking up particulate matter-10 (pm10) emissions values.
  *  
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
- *
  */
-
 
 public class EmissionData {
   private int    crbId;

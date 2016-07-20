@@ -6,19 +6,10 @@
  * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
  */
 
-
 package simpplle.comcode;
 
-
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class defines the Mountain Pine Beetle in White Pine, a type of Process.  The logic for this is based on 
+ * This class defines the Mountain Pine Beetle in White Pine, a type of Process.  The logic for this is based on
  * the degree of white pine in the community, the size-class/structure, density and past fire processes.
  * 
  * @author Documentation by Brian Losi
@@ -27,7 +18,6 @@ package simpplle.comcode;
  *  
  * @see simpplle.comcode.Process
  */
-
 public class WpMpb extends Process {
   private static final String printName = "WP-MPB";
   /**

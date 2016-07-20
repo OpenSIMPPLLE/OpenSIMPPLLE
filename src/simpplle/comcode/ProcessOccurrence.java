@@ -16,15 +16,7 @@ import org.hibernate.Session;
 import simpplle.comcode.Climate.Season;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- *
- * <p>This class is the base class for ProcessOccurrenceSpreading and ProcessOccurrenceSpreadingFire.   
+ * This class is the base class for ProcessOccurrenceSpreading and ProcessOccurrenceSpreadingFire.
  *
  * <p>It is necessary to know all the units in an event, and that can be achieved
  * via a simply ArrayList.
@@ -69,10 +61,7 @@ import simpplle.comcode.Climate.Season;
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
-
-
 
 public class ProcessOccurrence implements Externalizable {
   static final long serialVersionUID = 5069102844547741053L;

@@ -19,19 +19,12 @@ import java.util.Vector;
 
 import simpplle.gui.SimpplleMain;
 
-/** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
-*
+/**
+ * This class sets up Wildlife Habitat.  Many of the methods in this class are called from Wildlife Habitat dialogs in the GUi
+ *
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
- *
- * <p>This class sets up Wildlife Habitat.  Many of the methods in this class are called from Wildlife Habitat dialogs in the GUi   
  */
-
 public abstract class WildlifeHabitat {
   public static final int MAMMALS    = 0;
   public static final int BIRDS      = 1;

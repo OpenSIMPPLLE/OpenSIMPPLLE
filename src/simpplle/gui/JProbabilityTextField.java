@@ -12,22 +12,12 @@ import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class creates JProbabilityTextField, a type JDataTextField, which itself is a type of JTextField.
+ * This class creates JProbabilityTextField, a type JDataTextField, which itself is a type of JTextField.
  * Note: Probability is taken in as a an int in this class.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
- *   
- *     
  */
-
 public class JProbabilityTextField extends JDataTextField {
   int probability=0;
   /**

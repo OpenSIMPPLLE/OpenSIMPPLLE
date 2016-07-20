@@ -6,7 +6,6 @@
  * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
  */
 
-
 package simpplle.gui;
 
 import simpplle.JSimpplle;
@@ -18,21 +17,12 @@ import javax.swing.*;
 import java.awt.event.*;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>List selection dialogs are used to allow users to select from a series of values.  An example would be selecting a habitat type group from the 
+ * List selection dialogs are used to allow users to select from a series of values.  An example would be selecting a habitat type group from the
  * array of habitat type groups available for a specific region.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
- *
  */
-
 public class ListSelectionDialog extends JDialog {
   private Object   selection;
   private Object[] selections;

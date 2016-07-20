@@ -13,19 +13,12 @@ import java.util.*;
 import java.util.zip.*;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained
- * within this file as part of the software product designated by Uniform Resource Identifier
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- *This class has the methods for making simulations.  Many of these are input by user in Simulation Parameter Dialog.  The order of making a simulation for an existing
- *landscape file is - select a working directory, select a regional zone, load a landscape, set simulation parameters, and run simulation.
+ * This class has the methods for making simulations.  Many of these are input by user in Simulation Parameter Dialog.  The order of making a simulation for an existing
+ * landscape file is - select a working directory, select a regional zone, load a landscape, set simulation parameters, and run simulation.
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
-
 
 public final class Simulation implements SimulationTypes, Externalizable {
 

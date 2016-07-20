@@ -11,13 +11,7 @@ package simpplle.comcode;
 import java.util.*;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class is one of the OpenSIMPPLLE's aquatic types, these are a type of SimpplleType.  
+ * This class is one of the OpenSIMPPLLE's aquatic types, these are a type of SimpplleType.
  * It was developed as a prototype and is not currently supported.  
  * <p>Aquatic classes were based on Rosgen types assigned to the stream unit.  
  * Choices for these are: A1, A2, A3, A4, B2, B3, B4, C4, D4, E4, G3, G4.  
@@ -26,7 +20,6 @@ import java.util.*;
  * 
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller
- *
  */
 
 public class AquaticClass extends SimpplleType {

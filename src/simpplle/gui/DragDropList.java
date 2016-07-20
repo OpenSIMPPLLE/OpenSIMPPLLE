@@ -8,8 +8,6 @@
 
 package simpplle.gui;
 
-
-
 import java.io.*;
 import java.util.Iterator;
 
@@ -21,21 +19,13 @@ import javax.swing.*;
 import java.util.Vector;
 
 /**
-*
-* The University of Montana owns copyright of the designated documentation contained 
-* within this file as part of the software product designated by Uniform Resource Identifier 
-* UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
-* Open Source License Contract pertaining to this documentation and agrees to abide by all 
-* restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
-*
-* <p>Creates a drag drop list, a type of JList.
-* 
-* @author Documentation by Brian Losi
-* <p>Original source code authorship: Kirk A. Moeller 
-*   
-* @see javax.swing.JList
-*/
-
+ * Creates a drag drop list, a type of JList.
+ *
+ * @author Documentation by Brian Losi
+ * <p>Original source code authorship: Kirk A. Moeller
+ *
+ * @see javax.swing.JList
+ */
 public class DragDropList extends JList  implements DropTargetListener,DragSourceListener,
              DragGestureListener, MouseListener, KeyListener
   {

@@ -6,7 +6,6 @@
  * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
  */
 
-
 package simpplle.gui;
 
 import java.awt.AWTEvent;
@@ -41,21 +40,12 @@ import simpplle.comcode.Process;
 import simpplle.comcode.ProcessType;
 import simpplle.comcode.SimpplleType;
 
-
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class defines the Logic Rule Basic Panel, a type of Jpanel
+ * This class defines the Logic Rule Basic Panel, a type of Jpanel
  * This handles many of the methods from the Logic Rule class in comcode.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
- * 
  */
 public class LogicRuleBasicPanel extends JPanel {
   private List rules;

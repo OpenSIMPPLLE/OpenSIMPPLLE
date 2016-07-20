@@ -11,20 +11,15 @@ package simpplle.comcode;
 import java.awt.Color;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains methods for Debris Event, a type of Process.  
+ * This class contains methods for Debris Event, a type of Process.
  * This process occurs in all regions therefore none of the doProbability or doSpread methods are default set to 0 and false respectively. 
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  *
- *@see simpplle.comcode.Process
+ * @see simpplle.comcode.Process
  */
+
 public class DebrisEvent extends Process {
   private static final String printName = "DEBRIS-EVENT";
 

@@ -20,20 +20,12 @@ import javax.swing.border.*;
 import java.awt.event.*;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * 
- * <p>This class sets up Wildlife Habitat Dialog, a type of JDialog.  This class sets up a dialog of possible mammals, birds, amphibians, reptiles, 
+ * This class sets up Wildlife Habitat Dialog, a type of JDialog.  This class sets up a dialog of possible mammals, birds, amphibians, reptiles,
  * It gives user the choice of a report for entire group or individuals members of it. It is available for the two Region 1 zones.  
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
-
 public class WildlifeHabitat extends JDialog {
   private static final int ENTIRE_GROUP       = 0;
   private static final int INDIVIDUAL_SPECIES = 1;

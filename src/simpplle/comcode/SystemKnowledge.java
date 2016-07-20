@@ -17,13 +17,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamDriver;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class provides for the ability to load a file which has information on files that need to be loaded
+ * This class provides for the ability to load a file which has information on files that need to be loaded
  * that modify system knowledge.  
  * <p>Files such as:
  * fmz data, fire spread data, fire type data,

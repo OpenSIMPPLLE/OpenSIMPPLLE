@@ -9,13 +9,7 @@
 package simpplle.comcode;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains methods for Ten Year Flood, a type of process.  
+ * This class contains methods for Ten Year Flood, a type of process.
  * Since this method like many of the flood processes can occur in any zone, there 
  * are methods for all regional zones. 
  * 
@@ -25,7 +19,6 @@ package simpplle.comcode;
  * 
  * @see simpplle.comcode.Process
  */
-
 public class TenYearFlood extends Process {
   private static final String printName = "TEN-YEAR-FLOOD";
 /**

@@ -6,7 +6,6 @@
  * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
  */
 
-
 package simpplle.gui;
 
 import simpplle.JSimpplle;
@@ -19,20 +18,11 @@ import javax.swing.*;
 import java.awt.event.*;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- *<p> This class creates the New Treatment dialog, a type of JDialog.  This allows the user to select a new treatment from the comcode.    
+ * This class creates the New Treatment dialog, a type of JDialog.  This allows the user to select a new treatment from the comcode.
  *
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller
- *  *     
  */
-
 public class NewTreatment extends JDialog {
   String treatmentName;
   private String protoCellValue = "ECOSYSTEM-MANAGEMENT-THIN-AND-UNDERBURN      ";

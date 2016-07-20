@@ -22,21 +22,12 @@ import javax.swing.border.*;
 import java.awt.event.*;
 
 /**
- *
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>Class that creates a dialog for choosing the directory and copying GIS, ArcView, ArcGis, coverage, geodatabase files.  
+ * Class that creates a dialog for choosing the directory and copying GIS, ArcView, ArcGis, coverage, geodatabase files.
  * The three choices for sample area are no longer available.
  * 
  * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller 
- *   
+ * <p>Original source code authorship: Kirk A. Moeller
  */
-
 public class CopyGis extends JDialog {
   private File destDir;
 

@@ -10,19 +10,12 @@ package simpplle.gui;
 
 import simpplle.comcode.ProcessType;
 import simpplle.comcode.SimpplleType;
+
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class defines Process Logic Table Data Model, a type of SimpplleTypeTableDataModel, itself a type of javax AbstractTableModel.
+ * This class defines Process Logic Table Data Model, a type of SimpplleTypeTableDataModel, itself a type of javax AbstractTableModel.
  *
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
- *
  */
 public class LogicProcessTableDataModel extends SimpplleTypeTableDataModel {
   public static final int PROCESS_COL = 1;

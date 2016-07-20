@@ -17,22 +17,15 @@ import java.io.File;
 import java.util.*;
 
 /**
-
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class has methods to create a database.  It was originally designed to work with Microsoft Access, and much of the commented code is there
+ * This class has methods to create a database.  It was originally designed to work with Microsoft Access, and much of the commented code is there
  * in case a request is made to go back to that method.  Current versions support Hibernate ORM software libraries.  
  * for more information on Hibernate see link below.
  * 
  * @link http://www.hibernate.org/
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
+
 public abstract class DatabaseCreator {
   public static final String USERNAME = "sa";
   public static final String PASSWORD = "";

@@ -22,21 +22,12 @@ import java.awt.event.ComponentEvent;
 import java.io.File;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>Abstract Logic Dialog class. This is not an abstract class despite its title.  Therefore it can be referenced directly.  
+ * Abstract Logic Dialog class. This is not an abstract class despite its title.  Therefore it can be referenced directly.
  * It's main purpose it to set up the base for all Logic Dialogs.  
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- * 
- *
  */
-
 public class AbstractLogicDialog extends JDialog {
   protected String[]              panelKinds;
   protected String                currentPanelKind;

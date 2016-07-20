@@ -9,13 +9,7 @@
 package simpplle.comcode;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p> MixedGrassPrairie was developed along with the GreatPlainsSteppe and WesternGreatPlainsSteppe. The initial
+ * MixedGrassPrairie was developed along with the GreatPlainsSteppe and WesternGreatPlainsSteppe. The initial
  * use of this zone was to assist in developing a representation of historical conditions, so an emphasis was placed
  * on bison grazing. The use of NCRS soil ecosystems as ecological stratification is common in all three areas.
  *

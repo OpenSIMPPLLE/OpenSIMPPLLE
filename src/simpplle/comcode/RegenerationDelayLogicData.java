@@ -15,20 +15,14 @@ import java.util.ArrayList;
 import java.io.Externalizable;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains methods for a Regeneration Delay Logic Data, a type of Logic Data. As with all the logic data classes
+ * This class contains methods for a Regeneration Delay Logic Data, a type of Logic Data. As with all the logic data classes
  * it provides methods to match logic data and logic, getters and setters, and methods to read and write the objects used by this class 
  * to and from external sources
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- * 
  */
+
 public class RegenerationDelayLogicData extends LogicData implements Externalizable {
   static final long serialVersionUID = -8400707058472182663L;
   static final int  version          = 1;

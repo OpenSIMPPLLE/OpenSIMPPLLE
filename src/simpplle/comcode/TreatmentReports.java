@@ -12,20 +12,12 @@ import java.io.*;
 import java.util.*;
 import java.text.NumberFormat;
 
-/** The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
-*
+/**
+ * This class creates treatment reports, a type of Report.  These are called from the GUI.  For an example of this see simpplle.gui.VegSummary.java
+ *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
- * <p>This class creates treatment reports, a type of Report.  These are called from the GUI.  For an example of this see simpplle.gui.VegSummary.java  
- *
  */
-
-
 public final class TreatmentReports extends Reports {
   // simulation, currentZone, currentArea, timeSteps are inherited.
 

@@ -14,22 +14,14 @@ import java.util.HashMap;
 import java.util.Collection;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- *
- * <p>This class contains methods for Inclusion Rule species, a Simpplle Type.
+ * This class contains methods for Inclusion Rule species, a Simpplle Type.
  * 
  * @author Documentation by Brian Losi
  * <p>Original authorship: Kirk A. Moeller
- * 
- *  
+ *
  * @see simpplle.comcode.SimpplleType
  */
+
 public class InclusionRuleSpecies extends SimpplleType implements Externalizable {
   static final long serialVersionUID = -3763669945717049504L;
   static final int  version          = 1;

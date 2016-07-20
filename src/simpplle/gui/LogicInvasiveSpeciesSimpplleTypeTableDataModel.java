@@ -14,22 +14,12 @@ import simpplle.comcode.InvasiveSpeciesLogicDataMSU;
 import simpplle.comcode.*;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains methods to handle Invasive Species Simpplle Type Data Model, a type of SimpplleTypeTableDataModel, itself a type of 
+ * This class contains methods to handle Invasive Species Simpplle Type Data Model, a type of SimpplleTypeTableDataModel, itself a type of
  * Abstract Table Model.  This allows users to pick the invasive species.  
  * 
  * @author Documentation by Brian Losi
  * <p>Original authorship: Kirk A. Moeller
- * 
- *
  */
-
 public class LogicInvasiveSpeciesSimpplleTypeTableDataModel extends SimpplleTypeTableDataModel {
   public static final int SIMPPLLE_TYPE_COL = 1;
   public static final int COEFF_COL         = 2;

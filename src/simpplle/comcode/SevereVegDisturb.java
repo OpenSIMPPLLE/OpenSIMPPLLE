@@ -9,14 +9,7 @@
 package simpplle.comcode;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class defines Severe Vegetative Disturbance, a type of process.  
+ * This class defines Severe Vegetative Disturbance, a type of process.
  * This can occur in all zones and therefore has methods for all.  BUT Probability for this is not applicable.  
  * <p>A severe disturbance is an unpredicted event. 
  * Therefore the doProbability common which all zones refer to returns 0.  Also a severe vegetative disturbance is not going to spread.  
@@ -25,8 +18,7 @@ package simpplle.comcode;
  * @author Documentation by Brian Losi
  * <p>Original authorship: Kirk A. Moeller
  *
- *@see simpplle.comcode.Process
- *
+ * @see simpplle.comcode.Process
  */
 
 public class SevereVegDisturb extends Process {

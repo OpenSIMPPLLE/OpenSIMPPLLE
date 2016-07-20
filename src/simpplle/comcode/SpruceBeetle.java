@@ -6,25 +6,15 @@
  * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
  */
 
-
 package simpplle.comcode;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>Defines the SpruceBeetle class, a type of Process.  The logic is based on habitat type groups, degree of presence of 
+ * Defines the SpruceBeetle class, a type of Process.  The logic is based on habitat type groups, degree of presence of
  * susceptible species, size-class and if a past light or mixed severity fire has occurred.  
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
-
 
 public class SpruceBeetle extends Process {
   private static final String printName = "SPRUCE-BEETLE";

@@ -13,20 +13,11 @@ import java.util.*;
 
 import simpplle.gui.ElevationRelativePosition;
 
-
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>The purpose of this class is to read an input file
+ * The purpose of this class is to read an input file
  * that provides information needed to create a new area.
  * <p>This class handles all aspects of creating the new area
  * including verifying and correcting states if necessary.
- *
  */
 
 public class ImportArea {

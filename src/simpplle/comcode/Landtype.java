@@ -16,19 +16,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
+ * This class defines the land types.  It is not used in the current version of OpenSimpplle.
  *
-* <p>This class defines the land types.  It is not used in the current version of OpenSimpplle.
-* 
  * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller 
- * 
+ * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class Landtype implements Comparable, Externalizable {
   private static final long serialVersionUID = 2068463170153588170L;
   static final int  version          = 1;

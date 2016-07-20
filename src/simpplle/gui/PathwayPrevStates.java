@@ -18,20 +18,12 @@ import java.awt.event.*;
 import javax.swing.border.*;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * 
- * <p>This class allows users to create a new vegetative state.  This is used in vegetative Pathways. Vegetative states include species, size class, age, density, and habitat type group.   
+ * This class allows users to create a new vegetative state.  This is used in vegetative Pathways. Vegetative states include species, size class, age, density, and habitat type group.
  * The dialog is titled "Create a New State"
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
-
 public class PathwayPrevStates extends JDialog {
   private String protoCellValue = "RIPARIAN_GRASSES/CLOSED_TALL_SHRUB2/1 -- COLD-INJURY-BARK-BEETLES";
   private VegetativeType selectedState;

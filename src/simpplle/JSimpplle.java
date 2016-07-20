@@ -24,32 +24,22 @@ import java.net.URL;
 import simpplle.gui.SimpplleMain;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
-
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
- * 
- * // Properties that OpenSIMPPLLE uses:
-//   simpplle.fixedrandom=enabled    ;; Read random #'s from file
-//   simpplle.fire.spotting=disabled ;; disable fire spotting
-//   simpplle.lookfeel=mac           ;; use mac look & feel
-//   simpplle.lookfeel=motif         ;; use motif look & feel
-//   simpplle.lookfeel=metal         ;; use metal look & feel
-
  * This is the Main starting point for the JSimpplle application.
  * This will determine whether to start the gui or command-line
  * based on properties.
  * This class also provides some utilities and certain data that
  * needs to be accessed throughout the application.
  *
+ * Properties that OpenSIMPPLLE uses:
+ *   simpplle.fixedrandom=enabled    ;; Read random #'s from file
+ *   simpplle.fire.spotting=disabled ;; disable fire spotting
+ *   simpplle.lookfeel=mac           ;; use mac look & feel
+ *   simpplle.lookfeel=motif         ;; use motif look & feel
+ *   simpplle.lookfeel=metal         ;; use metal look & feel
+ *
+ * @author Documentation by Brian Losi
+ * <p>Original source code authorship: Kirk A. Moeller
  */
-
 public final class JSimpplle {
   private static simpplle.comcode.Simpplle    comcode;
   @SuppressWarnings("unused")

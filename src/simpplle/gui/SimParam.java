@@ -6,7 +6,6 @@
  * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
  */
 
-
 package simpplle.gui;
 
 import simpplle.JSimpplle;
@@ -29,22 +28,13 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.Vector;
 
-
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * 
- * <p>This dialog allows the user to set various parameters that control how the simulation in performed.
+ * This dialog allows the user to set various parameters that control how the simulation in performed.
  * The dialog titled "Set Simulation Parameters" and has methods to input # of simulations, time steps, sim method, invasive species logic, 
  * options such as yearly time steps, fire suppression, output options, discarding unnecessary simulation data, all states reports, and tracking species reports.
- * 
- * 
+ *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
 public class SimParam extends JDialog {
   private simpplle.comcode.Simpplle comcode;

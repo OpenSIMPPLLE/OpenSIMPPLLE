@@ -16,23 +16,16 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 
-
-
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains getters and setters for aquatic  data to be written to database.
+ * This class contains getters and setters for aquatic  data to be written to database.
  * Uses the object-relational mapping open-source library Hibernate.
+ *
  * @author Documentation by Brian Losi
  * <p>Original authorship: Kirk A. Moeller
  *
- * 
  * @link http://www.hibernate.org/ 
  */
+
 public class AccumDataAquatic {
   private long id;
   private int slink;

@@ -14,16 +14,10 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained
- * within this file as part of the software product designated by Uniform Resource Identifier
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * <p>
- * <p> Strategy for parsing spatialrelate files with the "KEANE" designation (version 2). Format:
+ * Strategy for parsing spatialrelate files with the "KEANE" designation (version 2). Format:
  * FROM_POLY, TO_POLY, ELEV, SPREAD_DEG, BASE_WIND_SPEED, BASE_WIND_DIR
- *
  */
+
 public class ParseNewNeighborsKeane implements RelationParser {
 
   /**

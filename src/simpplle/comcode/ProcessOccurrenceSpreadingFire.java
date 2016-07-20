@@ -12,12 +12,6 @@ import java.io.*;
 import java.util.*;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * <p>
  * Represents a spreading fire event. An event starts at an origin unit and gradually spreads to adjacent units until
  * the fire is extinguished due to weather, a fire suppression line, or running out of vegetation units. This class
  * was not named FireEvent as that name is already taken to represent a kind of process.
