@@ -23,6 +23,7 @@ import java.util.Hashtable;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class PathwayGridline {
 	public  static final char	 HORIZONTAL_DIR = 'H';
 	public  static final char	 VERTICAL_DIR = 'V';

@@ -21,6 +21,7 @@ import simpplle.comcode.VegetativeType;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class VegLogicRule {
   private ArrayList speciesList=null;
   private ArrayList sizeClassList=null;

@@ -18,6 +18,7 @@ import java.util.zip.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class Treatment  implements Externalizable {
   static final long serialVersionUID = -3198831755032476583L;
   static final int  version          = 1;

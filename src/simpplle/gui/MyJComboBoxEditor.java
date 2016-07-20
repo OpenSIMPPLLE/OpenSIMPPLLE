@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class MyJComboBoxEditor extends DefaultCellEditor {
   public MyJComboBoxEditor(Object[] items) {
     super(new JComboBox(items));

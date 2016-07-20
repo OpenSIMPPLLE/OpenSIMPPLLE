@@ -20,6 +20,7 @@ import javax.swing.filechooser.FileFilter;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class MyFileFilter extends javax.swing.filechooser.FileFilter {
   private String[] extensions;
   private String   description;

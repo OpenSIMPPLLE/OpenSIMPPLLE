@@ -46,6 +46,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class LogicInvasiveSpeciesChooser extends JDialog {
   LogicInvasiveSpeciesDataModel dataModel = new LogicInvasiveSpeciesDataModel();
   LogicData logicData;

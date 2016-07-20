@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class JProbabilityTextField extends JDataTextField {
   int probability=0;
   /**

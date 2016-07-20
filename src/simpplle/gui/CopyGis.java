@@ -28,6 +28,7 @@ import java.awt.event.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class CopyGis extends JDialog {
   private File destDir;
 

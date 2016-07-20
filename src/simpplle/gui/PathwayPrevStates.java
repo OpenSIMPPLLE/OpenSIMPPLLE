@@ -24,6 +24,7 @@ import javax.swing.border.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class PathwayPrevStates extends JDialog {
   private String protoCellValue = "RIPARIAN_GRASSES/CLOSED_TALL_SHRUB2/1 -- COLD-INJURY-BARK-BEETLES";
   private VegetativeType selectedState;

@@ -33,6 +33,7 @@ import java.awt.Font;
  * @author Documentation by Brian Losi
  * <p>Original soiurce code authorship: Kirk A. Moeller
  */
+
 public class EauAnalysis extends JDialog {
   Area                area;
   ExistingAquaticUnit currentEau;

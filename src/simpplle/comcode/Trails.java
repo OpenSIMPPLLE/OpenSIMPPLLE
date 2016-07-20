@@ -24,6 +24,7 @@ import java.text.NumberFormat;
  *
  * @see simpplle.comcode.ManmadeElement
  */
+
 public class Trails extends ManmadeElement implements Externalizable {
   static final long serialVersionUID = -6495013117293386445L;
   static final int  version          = 1;

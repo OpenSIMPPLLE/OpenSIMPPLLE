@@ -22,6 +22,7 @@ import java.util.Vector;
  * <p>Original source code authorship: Kirk A. Moeller
  * @see javax.swing.JList
  */
+
 public class DragSourceList extends JList
   implements DragSourceListener, DragGestureListener, MouseListener
   {

@@ -32,6 +32,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ListTableChooser extends JDialog {
   ListTableDataModel dataModel = new ListTableDataModel();
   LogicData logicData;

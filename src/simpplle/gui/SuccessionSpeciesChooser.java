@@ -26,6 +26,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class SuccessionSpeciesChooser extends JDialog {
   private DefaultListModel sourceListModel;
   private DefaultListModel targetListModel;

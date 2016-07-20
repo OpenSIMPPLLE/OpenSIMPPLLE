@@ -21,6 +21,7 @@ import javax.swing.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ClimateLogicChooser extends JDialog {
   private Object[] items;
   private ArrayList chosenItems;

@@ -17,6 +17,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class VegUnitFireTypeLogicDlg extends AbstractLogicDialog {
 	/**
 	 * Constructor for Veg Unit Fire Type Logic Dialog.  Passes to superclass the owner frame, title, and modality, then initializes.  

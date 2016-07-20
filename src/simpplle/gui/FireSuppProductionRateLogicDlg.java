@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSuppProductionRateLogicDlg extends VegLogicDialog {
   JMenuItem menuImportOldFile = new JMenuItem();
 

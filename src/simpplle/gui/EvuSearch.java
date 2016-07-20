@@ -42,6 +42,7 @@ import java.util.Arrays;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class EvuSearch extends JDialog {
   String      prototypeCellValue = "117000 - ALTERED-GRASSES/CLOSED-TALL-SHRUB/1";
   EvuAnalysis evuAnalysisDlg;

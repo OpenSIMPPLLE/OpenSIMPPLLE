@@ -35,6 +35,7 @@ import javax.swing.border.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class AquaticPathway extends JDialog {
   private AquaticClass aquaticClass;
   private String       pathwayGroup;

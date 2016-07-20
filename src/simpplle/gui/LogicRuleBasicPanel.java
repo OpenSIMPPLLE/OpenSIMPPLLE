@@ -47,6 +47,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class LogicRuleBasicPanel extends JPanel {
   private List rules;
   private LogicRule selectedRule;

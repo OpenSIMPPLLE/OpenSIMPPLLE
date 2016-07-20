@@ -23,6 +23,7 @@ import javax.swing.table.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSuppBeyondClassALogicPanel extends VegLogicPanel {
 	/**
 	 * Constructor for Fire Suppression Beyond Class A Logic Panel

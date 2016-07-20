@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent;
  *
  * <p> Original source code authorship: Kirk A. Moeller
  */
+
 public class NewSampleArea extends JDialog {
 
   private JList        areaList     = new JList();

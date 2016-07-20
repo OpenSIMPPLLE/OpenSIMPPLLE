@@ -22,6 +22,7 @@ import java.awt.BorderLayout;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class KnowledgeSource extends JDialog {
   String mainText = "";
 

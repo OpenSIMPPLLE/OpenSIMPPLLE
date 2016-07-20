@@ -34,6 +34,7 @@ import simpplle.comcode.WildlifeHabitatData;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class WildlifeSelectSpecies extends JDialog {
   public static final int MT_GAP = simpplle.comcode.WildlifeHabitat.MT_GAP;
   public static final int ID_GAP = simpplle.comcode.WildlifeHabitat.ID_GAP;

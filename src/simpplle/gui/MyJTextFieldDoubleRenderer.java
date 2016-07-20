@@ -21,6 +21,7 @@ import java.text.NumberFormat;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class MyJTextFieldDoubleRenderer implements TableCellRenderer {
   JTextField textField;
 

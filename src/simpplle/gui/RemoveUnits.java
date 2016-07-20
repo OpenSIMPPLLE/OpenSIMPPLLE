@@ -25,6 +25,7 @@ import java.io.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class RemoveUnits extends JDialog {
   private static final String prototypeCellValue = "117000";
 

@@ -20,6 +20,7 @@ import simpplle.comcode.SystemKnowledge;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSuppEventLogicDlg extends VegLogicDialog {
   public FireSuppEventLogicDlg(Frame owner, String title, boolean modal) {
     super(owner, title, modal);

@@ -18,6 +18,7 @@ import simpplle.comcode.AbstractLogicData;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class ListSelectionTableDataModel extends AbstractTableModel {
   public static final int SELECTED_COL  = 0;
   public static final int VALUES_COL    = 1;

@@ -26,6 +26,7 @@ import java.io.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class VegSimStateData implements Externalizable {
 
   static final long serialVersionUID = -159138068111213685L;

@@ -18,6 +18,7 @@ import java.awt.datatransfer.*;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class ListTransferHandler extends StringTransferHandler {
     private int[] indices = null;
     private int addIndex = -1; //Location where items were added

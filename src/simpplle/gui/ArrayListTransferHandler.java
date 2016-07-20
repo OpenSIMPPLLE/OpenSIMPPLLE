@@ -27,6 +27,7 @@ import simpplle.comcode.Evu;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ArrayListTransferHandler extends TransferHandler {
     DataFlavor localArrayListFlavor, serialArrayListFlavor;
     String localArrayListType = DataFlavor.javaJVMLocalObjectMimeType +

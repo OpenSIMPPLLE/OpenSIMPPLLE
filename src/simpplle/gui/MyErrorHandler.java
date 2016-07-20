@@ -17,6 +17,7 @@ import java.io.StringWriter;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class MyErrorHandler {
   /**
    * Constructor for MyErrorHandler.  Does not initialize any variables.  

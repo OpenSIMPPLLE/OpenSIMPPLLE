@@ -43,6 +43,7 @@ import javax.swing.JTabbedPane;
  *
  * @deprecated
  */
+
 public class LogicRuleBuilder extends JDialog {
   private final String groupPrototypeItem = "UPPER-MONTANE  ";
   private final String speciesPrototypeItem = "RIPARIAN_GRASSES  ";

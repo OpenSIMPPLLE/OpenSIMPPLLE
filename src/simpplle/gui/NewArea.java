@@ -15,6 +15,7 @@ import java.awt.*;
 /**
  * A NewArea dialog prompts the user to select a type of area to load.
  */
+
 public class NewArea extends JDialog {
 
   private int choice;

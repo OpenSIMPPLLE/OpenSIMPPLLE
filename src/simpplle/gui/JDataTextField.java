@@ -17,6 +17,7 @@ import javax.swing.JTextField;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class JDataTextField extends JTextField {
   private Object dataSource;
   private int    data;

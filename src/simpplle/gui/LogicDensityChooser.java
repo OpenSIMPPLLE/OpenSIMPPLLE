@@ -32,6 +32,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class LogicDensityChooser extends JDialog {
   FireLogicDensityTableDataModel dataModel =
       new FireLogicDensityTableDataModel(SimpplleType.DENSITY);

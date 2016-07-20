@@ -20,6 +20,7 @@ import javax.swing.JPanel;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class JDataPanel extends JPanel {
   Object sourceData;
 /**

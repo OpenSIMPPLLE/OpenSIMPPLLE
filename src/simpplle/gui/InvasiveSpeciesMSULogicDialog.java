@@ -21,6 +21,7 @@ import simpplle.comcode.SystemKnowledge;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class InvasiveSpeciesMSULogicDialog extends VegLogicDialog {
   public InvasiveSpeciesMSULogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);

@@ -17,6 +17,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSuppWeatherClassALogicDlg extends VegLogicDialog {
    public FireSuppWeatherClassALogicDlg(Frame owner, String title, boolean modal) {
     super(owner, title, modal);

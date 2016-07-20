@@ -20,6 +20,7 @@ import simpplle.comcode.Species;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class WsbwLogicPanel extends JPanel {
   private Species prototypeCellValue = Species.RIPARIAN_GRASSES;
 

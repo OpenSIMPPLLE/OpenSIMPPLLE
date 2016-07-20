@@ -23,6 +23,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class MyJComboBoxRenderer implements TableCellRenderer {
   JComboBox box;
   JTextArea textArea;

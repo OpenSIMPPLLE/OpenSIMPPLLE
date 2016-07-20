@@ -22,6 +22,7 @@ import java.awt.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class MyJTextAreaRenderer implements TableCellRenderer {
   JTextArea textArea = null;
   private boolean species;

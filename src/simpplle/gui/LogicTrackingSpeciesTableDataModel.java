@@ -21,6 +21,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @see javax.swing.table.AbstractTableModel
  */
+
 public class LogicTrackingSpeciesTableDataModel extends AbstractTableModel {
   public static final int SELECTED_COL = 0;
   public static final int SPECIES_COL  = 1;

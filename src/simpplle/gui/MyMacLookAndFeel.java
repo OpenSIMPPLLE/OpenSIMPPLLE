@@ -14,6 +14,7 @@ package simpplle.gui;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller
  */
+
 public class MyMacLookAndFeel /*extends MacLookAndFeel*/ {
   public boolean isSupportedLookAndFeel() { return true; }
 }

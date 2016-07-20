@@ -17,6 +17,7 @@ package simpplle.comcode;
  * @see simpplle.comcode.Process
  *
  */
+
 public class TussockMoth extends Process {
 	/**
 	 * Constructor for tussock moth.  Inherits from process superclass and initializes default visible columns for row_col and probability.  

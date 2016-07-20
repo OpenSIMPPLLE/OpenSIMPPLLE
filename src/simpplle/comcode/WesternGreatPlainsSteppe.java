@@ -15,6 +15,7 @@ package simpplle.comcode;
  *
  * <p>Original authorship: Kirk A. Moeller
  */
+
 public class WesternGreatPlainsSteppe extends RegionalZone {
 
   public WesternGreatPlainsSteppe() {

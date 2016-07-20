@@ -20,6 +20,7 @@ import simpplle.comcode.Species;
  * 
  * @see javax.swing.table.AbstractTableModel
  */
+
 public class BisonGrazingLogicDataModel extends AbstractTableModel {
   protected BisonGrazing.DataKind dataKind;
   private BisonGrazingLogicEditor editor;

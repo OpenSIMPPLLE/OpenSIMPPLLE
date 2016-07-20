@@ -19,6 +19,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class GapProcessLogicPanel extends VegLogicPanel {
 	/**
 	 * Creates the Gap Process Logic Panel.  

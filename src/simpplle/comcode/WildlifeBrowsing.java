@@ -14,6 +14,7 @@ package simpplle.comcode;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class WildlifeBrowsing extends Process {
   private static final String printName = "WILDLIFE-BROWSING";
   public WildlifeBrowsing() {

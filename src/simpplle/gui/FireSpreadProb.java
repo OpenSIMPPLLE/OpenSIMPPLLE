@@ -24,6 +24,7 @@ import javax.swing.border.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSpreadProb extends JDialog {
   private boolean focusLost = false;
   private int prob, extremeEventAcres;

@@ -22,6 +22,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class LogicProcessChooser extends JDialog {
   LogicProcessTableDataModel dataModel =
       new LogicProcessTableDataModel(SimpplleType.PROCESS);

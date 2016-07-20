@@ -23,6 +23,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSuppClassALogicPanel extends VegLogicPanel {
   public FireSuppClassALogicPanel(FireSuppClassALogicDlg dialog,
                                  String kind, BaseLogic logicInst, Kinds sysKnowKind) {

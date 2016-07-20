@@ -19,6 +19,7 @@ import javax.swing.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ClimateDialog extends JDialog {
   ClimateDialogWrapper wrap;
 

@@ -26,6 +26,7 @@ import java.util.Vector;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class RegenerationLogicDialog extends VegLogicDialog {
   JMenuItem menuOptionsAddAllSpecies = new JMenuItem();
   JMenuItem menuFileOldFormat = new JMenuItem();

@@ -22,6 +22,7 @@ import java.awt.*;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class VegUnitFireTypeLogicPanel extends BaseLogicPanel {
   private static Color RESULT_COL_COLOR = new Color(255,255,0);
 /**

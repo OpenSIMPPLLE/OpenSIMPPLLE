@@ -21,6 +21,7 @@ import javax.swing.table.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSuppSpreadRateLogicPanel extends VegLogicPanel {
   public FireSuppSpreadRateLogicPanel(FireSuppSpreadRateLogicDlg dialog,
                                  String kind, BaseLogic logicInst, Kinds sysKnowKind) {

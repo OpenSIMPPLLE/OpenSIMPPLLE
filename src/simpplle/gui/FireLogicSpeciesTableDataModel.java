@@ -18,6 +18,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireLogicSpeciesTableDataModel extends SimpplleTypeTableDataModel {
   public static final int SPECIES_COL    = 1;
   public static final int LIFEFORM_COL   = 2;

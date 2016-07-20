@@ -20,6 +20,7 @@ import java.beans.*;
  *   
  * @see java.beans.SimpleBeanInfo
  */
+
 public class JLabeledNumberTextFieldBeanInfo extends SimpleBeanInfo {
   Class beanClass = JLabeledNumberTextField.class;
   String iconColor16x16Filename;

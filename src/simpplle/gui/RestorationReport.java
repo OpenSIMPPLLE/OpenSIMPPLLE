@@ -24,6 +24,7 @@ import simpplle.comcode.SimpplleError;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class RestorationReport extends JDialog {
   File inputFilePrefix1, inputFilePrefix2;
   File outputFile;

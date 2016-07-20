@@ -20,6 +20,7 @@ import java.util.Vector;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class TreatmentLogic {
   public FeasibilityLogic feasibility;
   public Vector           change;

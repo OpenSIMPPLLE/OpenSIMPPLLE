@@ -20,6 +20,7 @@ import java.io.ObjectOutput;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class VegUnitFireTypeLogicData extends AbstractLogicData implements Externalizable {
   static final long serialVersionUID = 2319729666487038806L;
   static final int  version          = 1;

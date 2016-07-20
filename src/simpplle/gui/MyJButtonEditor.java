@@ -29,6 +29,7 @@ import java.util.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class MyJButtonEditor extends AbstractCellEditor implements TableCellEditor  {
   protected JButton button = null;
   protected boolean multipleValues;

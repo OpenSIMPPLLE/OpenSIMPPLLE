@@ -18,6 +18,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class VegLogicPanel extends BaseLogicPanel {
 /**
  * Constructor for Vegetative Logic Panel.  References Vegetative Logic Panel.  

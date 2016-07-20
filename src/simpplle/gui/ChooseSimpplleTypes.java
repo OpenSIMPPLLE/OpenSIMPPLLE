@@ -18,6 +18,7 @@ import javax.swing.*;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class ChooseSimpplleTypes extends JDialog {
   private String listCellValue   = "--> RIPARIAN_GRASSES   ";
 

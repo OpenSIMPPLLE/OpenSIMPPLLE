@@ -19,6 +19,7 @@ import java.util.Iterator;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class MyDefaultListModel extends DefaultListModel {
   public MyDefaultListModel() {
     super();

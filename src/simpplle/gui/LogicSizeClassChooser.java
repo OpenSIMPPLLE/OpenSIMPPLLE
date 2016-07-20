@@ -38,6 +38,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class LogicSizeClassChooser extends JDialog {
   FireLogicSizeClassTableDataModel dataModel =
       new FireLogicSizeClassTableDataModel(SimpplleType.SIZE_CLASS);

@@ -28,6 +28,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class LogicOriginFireProcessChooser extends JDialog {
   private FireSpreadLogicData logicData;
 

@@ -26,6 +26,7 @@ import simpplle.comcode.AbstractLogicData;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class InvasiveSpeciesMSULogicPanel extends VegLogicPanel {
   public InvasiveSpeciesMSULogicPanel(AbstractLogicDialog dialog,
                                    String kind, BaseLogic logicInst, Kinds sysKnowKind) {

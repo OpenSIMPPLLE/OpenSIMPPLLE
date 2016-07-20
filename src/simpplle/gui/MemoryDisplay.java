@@ -30,6 +30,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller
  */
+
 public class MemoryDisplay extends JFrame implements Runnable  {
   private volatile Thread runner;
 

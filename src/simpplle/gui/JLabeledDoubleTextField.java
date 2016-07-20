@@ -22,6 +22,7 @@ import javax.swing.SwingUtilities;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class JLabeledDoubleTextField extends JPanel {
   private double value;
 

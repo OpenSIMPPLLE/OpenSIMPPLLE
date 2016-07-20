@@ -33,6 +33,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class LogicTrackingSpeciesChooser extends JDialog {
   LogicTrackingSpeciesTableDataModel dataModel =
       new LogicTrackingSpeciesTableDataModel();

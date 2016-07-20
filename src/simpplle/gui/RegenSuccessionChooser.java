@@ -30,6 +30,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class RegenSuccessionChooser extends JDialog {
   private Species          species;
   private DefaultListModel sourceListModel;

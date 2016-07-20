@@ -18,6 +18,7 @@ import java.util.zip.*;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class TreatmentSchedule {
   // 2 is the first file version and add a file version number to the file.
   // 3 (aggregate acres(min/max), not options for attribute lists, multiple special area and ownership

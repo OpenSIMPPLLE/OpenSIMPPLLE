@@ -23,6 +23,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class VegLogicDialog extends AbstractLogicDialog {
   protected boolean              inColumnInit=false;
   protected ArrayList<JMenuItem> colMenuItems = new ArrayList<JMenuItem>();

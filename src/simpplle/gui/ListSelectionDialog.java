@@ -23,6 +23,7 @@ import java.awt.event.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ListSelectionDialog extends JDialog {
   private Object   selection;
   private Object[] selections;

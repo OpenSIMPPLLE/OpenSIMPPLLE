@@ -38,6 +38,7 @@ import simpplle.comcode.Climate.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class EvuEditor extends JDialog {
   private Frame theFrame;
 

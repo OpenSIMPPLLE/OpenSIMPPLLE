@@ -21,6 +21,7 @@ import javax.swing.border.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class WildlifeShowSpecies extends JDialog {
   WildlifeHabitatData modelData;
   String              species;

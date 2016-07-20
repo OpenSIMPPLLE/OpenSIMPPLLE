@@ -19,6 +19,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class RegenDelayLogicDlg extends VegLogicDialog {
 	  /**
 	   * Constructor for Regeneration Delay LogicDlg.  This sets the frame owner, string title and modality.  

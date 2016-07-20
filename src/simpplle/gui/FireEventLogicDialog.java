@@ -33,6 +33,7 @@ import simpplle.comcode.FireTypeDataNewerLegacy;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireEventLogicDialog extends VegLogicDialog {
   JMenuItem menuImportOldFile = new JMenuItem();
 /**

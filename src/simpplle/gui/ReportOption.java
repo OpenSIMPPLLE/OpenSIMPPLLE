@@ -23,6 +23,7 @@ import simpplle.comcode.Simpplle;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ReportOption extends JDialog {
   public static final int NO_SELECTION = -1;
 

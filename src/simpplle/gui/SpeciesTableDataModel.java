@@ -20,6 +20,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class SpeciesTableDataModel extends AbstractTableModel {
   private static final HashMap dummy = new HashMap(1);
 /**

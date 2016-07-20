@@ -22,6 +22,7 @@ import javax.swing.JMenuItem;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSuppSpreadRateLogicDlg extends VegLogicDialog {
   JMenuItem menuImportOldFile = new JMenuItem();
 

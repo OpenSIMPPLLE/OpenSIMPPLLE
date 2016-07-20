@@ -18,6 +18,7 @@ package simpplle.comcode;
  *  
  * @see simpplle.comcode.Process
  */
+
 public class WpMpb extends Process {
   private static final String printName = "WP-MPB";
   /**

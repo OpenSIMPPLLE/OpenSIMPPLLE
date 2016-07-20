@@ -33,6 +33,7 @@ import simpplle.comcode.TreatmentType;
  * @version 2.3
  * @deprecated No longer used
  */
+
 public class FireTypeRuleBuilder extends JDialog {
   private static final String densityPrototype   = "1         ";
   private static final String treatmentPrototype = "ECOSYSTEM-MANAGEMENT-THIN-AND-UNDERBURN    ";

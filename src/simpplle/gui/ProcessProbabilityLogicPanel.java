@@ -21,6 +21,7 @@ import java.awt.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ProcessProbabilityLogicPanel extends VegLogicPanel {
 	/**
 	 * Constructor for Process Probabilty Logic Panel

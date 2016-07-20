@@ -17,6 +17,7 @@ import java.util.Vector;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ListItem {
   public SimpplleType item;
   public boolean      selected;

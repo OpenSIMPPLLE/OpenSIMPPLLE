@@ -21,6 +21,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class EvuGlobalEditor extends JDialog {
   private Frame theFrame;
   private HabitatTypeGroup oldHtGrp;

@@ -34,6 +34,7 @@ import javax.swing.JCheckBox;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class LogicTreatmentChooser extends JDialog {
   FireLogicTreatmentTableDataModel dataModel =
       new FireLogicTreatmentTableDataModel(SimpplleType.TREATMENT);

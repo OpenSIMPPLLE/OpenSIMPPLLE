@@ -20,6 +20,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class GapProcessLogicDlg extends VegLogicDialog {
   /**
    * Constructor for GapProcessLogicDlg.  This sets the frame owner, string title and modality.  

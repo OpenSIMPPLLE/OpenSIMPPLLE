@@ -28,6 +28,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ProcessProbabilityLogicDialog extends VegLogicDialog {
   private JCheckBoxMenuItem menuAdjProcess = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuLpMpbHazard = new JCheckBoxMenuItem();

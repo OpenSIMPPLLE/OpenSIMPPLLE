@@ -21,6 +21,7 @@ import java.util.Vector;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: mdousset
  */
+
 public class StepCounter extends JDialog {
 
         private static final int WIDTH = 380;

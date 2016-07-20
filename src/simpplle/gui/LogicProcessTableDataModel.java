@@ -17,6 +17,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class LogicProcessTableDataModel extends SimpplleTypeTableDataModel {
   public static final int PROCESS_COL = 1;
 /**

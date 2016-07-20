@@ -20,6 +20,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original authorship: Kirk A. Moeller
  */
+
 public class LogicInvasiveSpeciesSimpplleTypeTableDataModel extends SimpplleTypeTableDataModel {
   public static final int SIMPPLLE_TYPE_COL = 1;
   public static final int COEFF_COL         = 2;

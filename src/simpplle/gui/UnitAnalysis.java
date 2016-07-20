@@ -18,6 +18,7 @@ import java.awt.event.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class UnitAnalysis extends JDialog {
   private static UnitAnalysis instance;
   public static boolean isOpen = false;

@@ -20,6 +20,7 @@ import simpplle.comcode.InclusionRuleSpecies;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class PathwaySpeciesChangeDataModel extends AbstractTableModel {
   VegetativeType vt;
   ArrayList data;

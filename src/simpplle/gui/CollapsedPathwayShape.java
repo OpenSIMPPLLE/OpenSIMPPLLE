@@ -24,6 +24,7 @@ import simpplle.comcode.Species;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class CollapsedPathwayShape extends PathwayShape {
 
         private static final Color COLLAPSED_COLOR     = Color.WHITE;

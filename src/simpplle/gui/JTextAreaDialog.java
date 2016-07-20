@@ -17,6 +17,7 @@ import javax.swing.*;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class JTextAreaDialog extends JDialog {
   String mainText = "";
 

@@ -16,6 +16,7 @@ package simpplle.comcode;
  *
  * @see simpplle.comcode.Process
  */
+
 public class Windthrow extends Process {
   private static final String printName = "WINDTHROW";
   /**

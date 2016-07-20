@@ -32,6 +32,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class SpeciesKnowledgeEditor extends JDialog {
   private SpeciesTableDataModel dataModel = new SpeciesTableDataModel();
   private static final int CODE_COL            = Species.CODE_COL;

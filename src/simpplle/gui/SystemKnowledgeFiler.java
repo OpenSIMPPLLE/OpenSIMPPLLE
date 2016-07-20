@@ -22,6 +22,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class SystemKnowledgeFiler {
 /**
  * Opens a particular file.  The kind is used to get the file extension, description and title of the file to be opened.

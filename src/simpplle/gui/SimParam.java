@@ -36,6 +36,7 @@ import java.util.Vector;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class SimParam extends JDialog {
   private simpplle.comcode.Simpplle comcode;
   private int numSteps = 5;

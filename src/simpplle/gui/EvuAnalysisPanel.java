@@ -14,6 +14,7 @@ package simpplle.gui;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class EvuAnalysisPanel extends javax.swing.JPanel {
     
     /** Creates new form EvuAnalysisPanel */

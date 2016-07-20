@@ -37,6 +37,7 @@ import simpplle.comcode.VegetativeType;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class PathwayEditor extends JDialog {
   private Frame theFrame;
   private HabitatTypeGroup pathwayHtGrp;

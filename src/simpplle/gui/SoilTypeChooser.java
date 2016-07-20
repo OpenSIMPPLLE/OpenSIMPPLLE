@@ -40,6 +40,7 @@ import java.io.File;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class SoilTypeChooser extends JDialog {
   SoilTypeDataModel dataModel = new SoilTypeDataModel();
   InvasiveSpeciesLogicData logicData;

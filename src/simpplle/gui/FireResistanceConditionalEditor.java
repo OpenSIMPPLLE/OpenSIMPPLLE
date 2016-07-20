@@ -28,6 +28,7 @@ import javax.swing.event.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireResistanceConditionalEditor extends JDialog {
   private static final String protoTypeCellValue = "ABCDEF  ";
   private HashMap data;

@@ -22,6 +22,7 @@ import simpplle.comcode.Climate;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSeason extends JDialog {
   private int spring=0, summer=0, fall=0, winter=0;
 

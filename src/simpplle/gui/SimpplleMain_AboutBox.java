@@ -21,6 +21,7 @@ import java.awt.event.WindowEvent;
  * <p>Original source code authorship: Kirk A. Moeller
  *   
  */
+
 public class SimpplleMain_AboutBox extends JDialog {
 
   private static final String creditText = "";

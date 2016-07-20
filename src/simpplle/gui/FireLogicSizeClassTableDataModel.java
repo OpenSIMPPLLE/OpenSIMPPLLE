@@ -17,6 +17,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireLogicSizeClassTableDataModel extends SimpplleTypeTableDataModel {
   public static final int SIZECLASS_COL = 1;
   public static final int STRUCTURE_COL = 2;

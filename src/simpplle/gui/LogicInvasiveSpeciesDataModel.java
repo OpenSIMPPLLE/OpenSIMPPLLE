@@ -19,6 +19,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class LogicInvasiveSpeciesDataModel extends AbstractTableModel {
   public static final int INVASIVE_SPECIES_COL = 0;
   public static final int SELECTED_COL         = 1;

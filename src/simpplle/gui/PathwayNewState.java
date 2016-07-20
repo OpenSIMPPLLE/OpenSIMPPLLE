@@ -31,6 +31,7 @@ import javax.swing.border.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class PathwayNewState extends JDialog {
   private String    protoCellValue = "FTH-X     ";
   private String[]  htGrps;

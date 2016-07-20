@@ -35,6 +35,7 @@ import simpplle.comcode.*;
  *
  * @see javax.swing.JDialog
  */
+
 public class AttributeProbabilityCalculator extends JDialog {
   private MultipleRunSummary mrSummary;
   private Area               currentArea;

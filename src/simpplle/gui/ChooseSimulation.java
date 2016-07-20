@@ -23,6 +23,7 @@ import simpplle.comcode.Simulation;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ChooseSimulation extends JDialog {
   private File directory = null;
   private File areaFile = null;

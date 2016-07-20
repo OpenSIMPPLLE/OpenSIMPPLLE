@@ -41,6 +41,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class LogicSpeciesChooser extends JDialog {
   FireLogicSpeciesTableDataModel dataModel =
       new FireLogicSpeciesTableDataModel(SimpplleType.SPECIES);

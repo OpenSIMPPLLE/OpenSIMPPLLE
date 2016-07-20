@@ -19,6 +19,7 @@ import simpplle.comcode.FireSuppWeatherData;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSuppWeatherTableDataModel extends AbstractTableModel {
 
   public FireSuppWeatherTableDataModel() {

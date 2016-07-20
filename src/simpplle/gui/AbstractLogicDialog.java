@@ -28,6 +28,7 @@ import java.io.File;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class AbstractLogicDialog extends JDialog {
   protected String[]              panelKinds;
   protected String                currentPanelKind;

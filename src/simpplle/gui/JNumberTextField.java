@@ -20,6 +20,7 @@ import javax.swing.SwingUtilities;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class JNumberTextField extends JTextField {
   private int value;
 /**

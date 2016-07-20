@@ -31,6 +31,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class EvuAnalysis extends JDialog {
   simpplle.comcode.Area area;
   simpplle.comcode.Evu  currentEvu;

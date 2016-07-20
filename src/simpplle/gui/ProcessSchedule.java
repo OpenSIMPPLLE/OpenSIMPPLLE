@@ -32,6 +32,7 @@ import simpplle.comcode.SystemKnowledge;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ProcessSchedule extends JDialog {
   private simpplle.comcode.ProcessSchedule schedule;
 

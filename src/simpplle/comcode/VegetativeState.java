@@ -25,6 +25,7 @@ import java.io.*;
  * @see Evu
  * @deprecated
  */
+
 public class VegetativeState  implements Externalizable {
   static final long serialVersionUID = 6458806305172458144L;
 

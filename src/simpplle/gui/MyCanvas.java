@@ -41,6 +41,7 @@ import java.awt.geom.Point2D;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class MyCanvas extends JPanel implements MouseListener, MouseMotionListener {
   Hashtable        states;
   PathwayShape     selectedState, changingState;

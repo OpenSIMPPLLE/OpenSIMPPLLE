@@ -28,6 +28,7 @@ import simpplle.comcode.RegionalZone;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSuppWeather extends JDialog {
   private FireSuppWeatherTableDataModel dataModel = new FireSuppWeatherTableDataModel();
 

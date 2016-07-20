@@ -25,6 +25,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSpread extends JDialog {
   private String process;
   private String position;

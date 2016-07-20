@@ -19,6 +19,7 @@ import simpplle.comcode.InclusionRuleSpecies;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class PathwayInclusionRulesDataModel extends AbstractTableModel {
 	/**
 	 * Constructor for Pathway Inclusion Rules Data Model.  Doesn't initialize anything.  

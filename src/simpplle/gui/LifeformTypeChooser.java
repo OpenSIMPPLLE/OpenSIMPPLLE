@@ -25,6 +25,7 @@ import simpplle.comcode.Lifeform;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class LifeformTypeChooser extends JDialog {
   private Lifeform chosenLife;
   private boolean  okPushed=false;

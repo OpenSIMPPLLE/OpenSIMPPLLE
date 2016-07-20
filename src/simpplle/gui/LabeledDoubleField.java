@@ -17,6 +17,7 @@ import java.text.NumberFormat;
 /**
  * LabeledDoubleField is a labeled text field that enforces entry of floating-point values.
  */
+
 public class LabeledDoubleField extends JPanel {
 
     private JFormattedTextField field;

@@ -17,6 +17,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireLogicDensityTableDataModel extends SimpplleTypeTableDataModel {
   public static final int DENSITY_COL = 1;
 /**

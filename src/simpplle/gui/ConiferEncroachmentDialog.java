@@ -22,6 +22,7 @@ import java.io.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ConiferEncroachmentDialog extends JDialog {
   private ConiferEncroachmentPanel coniferEncroachmentPanel = new ConiferEncroachmentPanel();
 

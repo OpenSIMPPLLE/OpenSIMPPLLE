@@ -29,6 +29,7 @@ import simpplle.JSimpplle;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class PathwayChooser extends JDialog {
   private simpplle.comcode.Simpplle comcode;
   private int choice;

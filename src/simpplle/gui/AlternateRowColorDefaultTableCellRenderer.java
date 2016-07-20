@@ -23,6 +23,7 @@ import java.awt.Color;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class AlternateRowColorDefaultTableCellRenderer extends
     DefaultTableCellRenderer {
 

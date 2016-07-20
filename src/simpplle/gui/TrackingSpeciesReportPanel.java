@@ -26,6 +26,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class TrackingSpeciesReportPanel extends JPanel {
   protected TrackingSpeciesReportDlg dialog;
   TrackingSpeciesReportDataModel dataModel = new TrackingSpeciesReportDataModel();

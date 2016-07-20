@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class FireResistanceJButtonEditor extends AbstractCellEditor implements TableCellEditor {
   protected JButton button = null;
   protected HashMap data;

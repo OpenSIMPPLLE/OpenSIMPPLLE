@@ -21,6 +21,7 @@ import java.util.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class Succession extends Process {
   private static final String printName = "SUCCESSION";
 

@@ -19,6 +19,7 @@ import javax.swing.JComboBox;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class JDataComboBox extends JComboBox {
   private Object dataSource;
 /**

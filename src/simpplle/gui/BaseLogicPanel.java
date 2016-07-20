@@ -29,6 +29,7 @@ import java.util.Enumeration;
  * 
  * @see javax.swing.JPanel
  */
+
 public class BaseLogicPanel extends JPanel {
   protected AbstractLogicDialog dialog;
   protected String kind;

@@ -28,6 +28,7 @@ import simpplle.comcode.VegetativeType;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class VegetativeTypeChooser extends JDialog {
   private HabitatTypeGroup htGrp;
   private Species          species;

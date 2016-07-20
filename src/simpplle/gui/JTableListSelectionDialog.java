@@ -23,6 +23,7 @@ import javax.swing.JScrollPane;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class JTableListSelectionDialog extends JDialog {
   private JPanel mainPanel = new JPanel();
   private BorderLayout borderLayout1 = new BorderLayout();

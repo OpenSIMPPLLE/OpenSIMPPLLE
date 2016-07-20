@@ -17,6 +17,7 @@ import javax.swing.JTextField;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class MyJTextFieldEditor extends DefaultCellEditor {
   public MyJTextFieldEditor(String text) {
     super(new JTextField(text));

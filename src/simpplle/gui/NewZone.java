@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent;
  *
  * <p>Original source code authorship: Kirk A. Moeller  
  */
+
 public class NewZone extends JDialog {
 
   private boolean historic = false;

@@ -17,6 +17,7 @@ import java.util.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class StringTokenizerPlus extends StringTokenizer {
   String listDelim = ":";
   char   noData = '?';

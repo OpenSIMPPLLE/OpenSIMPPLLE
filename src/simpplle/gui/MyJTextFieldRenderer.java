@@ -20,6 +20,7 @@ import java.awt.Color;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class MyJTextFieldRenderer implements TableCellRenderer {
   JTextField textField;
 

@@ -36,6 +36,7 @@ import javax.swing.JTable;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class TrackingSpeciesReportDlg extends JDialog {
   protected SystemKnowledge.Kinds sysKnowKind;
 

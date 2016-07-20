@@ -48,6 +48,7 @@ import java.awt.GridLayout;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class TreatmentSchedule extends JDialog {
   private simpplle.comcode.TreatmentSchedule    schedule;
 

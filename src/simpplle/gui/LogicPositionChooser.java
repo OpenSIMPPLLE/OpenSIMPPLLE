@@ -27,6 +27,7 @@ import simpplle.comcode.FireEvent;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class LogicPositionChooser extends JDialog {
   private FireSpreadLogicData logicData;
 

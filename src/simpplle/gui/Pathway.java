@@ -40,6 +40,7 @@ import java.util.List;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class Pathway extends JDialog {
   private Species      species;
   private AquaticClass aquaticClass;

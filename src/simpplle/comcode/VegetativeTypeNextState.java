@@ -14,6 +14,7 @@ package simpplle.comcode;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class VegetativeTypeNextState {
   private Process        process;
   private VegetativeType nextState;

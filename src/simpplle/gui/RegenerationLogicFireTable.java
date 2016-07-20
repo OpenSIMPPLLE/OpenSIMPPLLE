@@ -43,6 +43,7 @@ import simpplle.comcode.SystemKnowledge.Kinds;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class RegenerationLogicFireTable extends VegLogicPanel {
   private static final int SPECIES_CODE_COL       = FireRegenerationData.SPECIES_CODE_COL;
   private static final int RESPROUTING_COL        = FireRegenerationData.RESPROUTING_COL;

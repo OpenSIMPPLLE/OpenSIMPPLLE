@@ -20,6 +20,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class TrackingSpeciesReportDataModel extends AbstractTableModel {
   public static final int SPECIES_COL   = TrackingSpeciesReportData.Columns.SPECIES.ordinal();
   public static final int START_PCT_COL = TrackingSpeciesReportData.Columns.START_PCT.ordinal();

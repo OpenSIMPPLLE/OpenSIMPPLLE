@@ -19,6 +19,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class RegenDelayLogicPanel extends VegLogicPanel {
   public RegenDelayLogicPanel(AbstractLogicDialog dialog,
                                  String kind, BaseLogic logicInst, Kinds sysKnowKind) {

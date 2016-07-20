@@ -18,6 +18,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
+
 public class FireSuppBeyondClassALogicDlg extends VegLogicDialog {
 	/**
 	 * Constructor for Fire Suppression Beyond Class A Logic Dialog

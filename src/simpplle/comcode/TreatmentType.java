@@ -17,6 +17,7 @@ import java.util.Hashtable;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class TreatmentType extends SimpplleType implements Externalizable {
   static final long serialVersionUID = -2478691869570190094L;
   static final int  version          = 1;

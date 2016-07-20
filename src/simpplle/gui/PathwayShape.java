@@ -23,6 +23,7 @@ import simpplle.comcode.VegetativeType;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class PathwayShape {
   VegetativeType state;
   public int     width, height;

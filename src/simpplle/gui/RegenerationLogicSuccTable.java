@@ -40,6 +40,7 @@ import simpplle.comcode.FireRegenerationData;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class RegenerationLogicSuccTable extends VegLogicPanel {
   private static final int SPECIES_CODE_COL       = SuccessionRegenerationData.SPECIES_CODE_COL;
   private static final int SUCCESSION_COL         = SuccessionRegenerationData.SUCCESSION_COL;

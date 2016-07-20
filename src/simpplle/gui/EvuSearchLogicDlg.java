@@ -48,6 +48,7 @@ import simpplle.comcode.ProcessApplication;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class EvuSearchLogicDlg extends VegLogicDialog {
   protected String         prototypeCellValue = "117000 - ALTERED-GRASSES/CLOSED-TALL-SHRUB/1";
   protected EvuAnalysis    evuAnalysisDlg;

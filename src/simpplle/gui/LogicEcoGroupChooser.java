@@ -32,6 +32,7 @@ import simpplle.comcode.SimpplleType;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class LogicEcoGroupChooser extends JDialog {
   EcoGroupTableDataModel dataModel =
       new EcoGroupTableDataModel(SimpplleType.HTGRP);

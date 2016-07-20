@@ -18,6 +18,7 @@ import java.io.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class VegStateArray2D implements Externalizable {
   static final long serialVersionUID = 9009088630929100996L;
   static final int  version          = 1;

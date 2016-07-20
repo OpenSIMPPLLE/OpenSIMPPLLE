@@ -19,6 +19,7 @@ import java.io.File;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class SoilTypeDataModel extends AbstractTableModel {
   public static final int SOIL_TYPE_COL = 0;
   public static final int SELECTED_COL  = 1;

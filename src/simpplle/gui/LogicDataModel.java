@@ -26,6 +26,7 @@ import javax.swing.table.TableColumn;
  *
  * @see  javax.swing.table.AbstractTableModel
  */
+
 public class LogicDataModel extends AbstractTableModel {
   private AbstractBaseLogic logicInst;
   private String    kindStr;

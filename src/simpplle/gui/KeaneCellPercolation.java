@@ -18,6 +18,7 @@ import java.awt.*;
  * Keane, 2006. These parameters are used during simulation when the fire spread model is set to 'Keane'. Details about
  * the algorithm are published in RMRS-GTR-171CD.
  */
+
 public class KeaneCellPercolation extends JDialog {
 
     private JPanel mainPanel   = new JPanel();

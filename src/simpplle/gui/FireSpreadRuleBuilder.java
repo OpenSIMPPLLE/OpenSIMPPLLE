@@ -25,6 +25,7 @@ import simpplle.comcode.Process;
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
  */
+
 public class FireSpreadRuleBuilder extends JDialog {
   private static final String sizeClassPrototype   = "CLOSED-TALL-SHRUB    ";
   private static final String processPrototype   = "COLD-INJURY-BARK-BEETLES    ";

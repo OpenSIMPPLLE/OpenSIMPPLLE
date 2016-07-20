@@ -25,6 +25,7 @@ import java.awt.Font;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class EluAnalysis extends JPanel {
   Area             area;
   ExistingLandUnit currentElu;

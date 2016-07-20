@@ -26,6 +26,7 @@ import java.awt.event.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class WildlifeHabitat extends JDialog {
   private static final int ENTIRE_GROUP       = 0;
   private static final int INDIVIDUAL_SPECIES = 1;

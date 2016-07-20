@@ -19,6 +19,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class DoCompetitionLogicPanel extends VegLogicPanel {
 	/**
 	 * Constructor for Do Competion Logic panel. Creates the doCompetition panel based on passed dialog, kind, logic instance, and system knowledge kind. 

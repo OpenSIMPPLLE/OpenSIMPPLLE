@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class VegUnitFireTypeLogic extends AbstractBaseLogic {
   static final int  version = 1;
 

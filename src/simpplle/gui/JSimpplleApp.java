@@ -24,6 +24,7 @@ import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
  */
+
 public class JSimpplleApp {
   private boolean      packFrame = false;
   private SimpplleMain frame;

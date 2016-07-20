@@ -19,6 +19,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class EvuSearchLogicPanel extends VegLogicPanel {
 /**
  * Constructor for Evu Search Logic Panel.  Passes to Veg Logic Panel the input Evu Search Logic dialog, kind, base logic and system knowledge kind.

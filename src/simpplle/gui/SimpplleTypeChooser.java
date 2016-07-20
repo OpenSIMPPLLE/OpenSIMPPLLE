@@ -25,6 +25,7 @@ import java.awt.event.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class SimpplleTypeChooser extends JDialog {
   private static final String sizeClassPrototype   = "CLOSED-TALL-SHRUB    ";
   private DefaultListModel sourceListModel;

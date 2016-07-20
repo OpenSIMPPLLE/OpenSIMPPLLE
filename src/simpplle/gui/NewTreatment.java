@@ -23,6 +23,7 @@ import java.awt.event.*;
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller
  */
+
 public class NewTreatment extends JDialog {
   String treatmentName;
   private String protoCellValue = "ECOSYSTEM-MANAGEMENT-THIN-AND-UNDERBURN      ";

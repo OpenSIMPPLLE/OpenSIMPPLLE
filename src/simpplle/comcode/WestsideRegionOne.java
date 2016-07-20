@@ -13,6 +13,7 @@ package simpplle.comcode;
  *
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class WestsideRegionOne extends RegionalZone {
 
   public WestsideRegionOne () {

@@ -17,6 +17,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class ProducingSeedLogicDlg extends VegLogicDialog {
 	  /**
 	   * Constructor for Producing Seed LogicDlg.  This sets the frame owner, string title and modality.  

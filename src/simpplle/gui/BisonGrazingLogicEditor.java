@@ -54,6 +54,7 @@ import java.awt.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class BisonGrazingLogicEditor extends JDialog {
   BisonGrazingLogicDataModel speciesProbDataModel = new BisonGrazingLogicDataModel();
   BisonGrazingLogicDataModel initProbDataModel = new BisonGrazingLogicDataModel();

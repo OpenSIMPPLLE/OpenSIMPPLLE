@@ -28,6 +28,7 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class VegSummary extends JDialog {
   private SimpplleType.Types state;  // will have one of the above values.
   private boolean combineLifeforms;

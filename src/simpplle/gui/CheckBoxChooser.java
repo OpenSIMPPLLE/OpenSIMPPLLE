@@ -24,6 +24,7 @@ import javax.swing.JPanel;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class CheckBoxChooser extends JDialog {
   private ArrayList items;
   private ArrayList chosenItems;

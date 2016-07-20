@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class InvasiveSpeciesLogicDialog extends VegLogicDialog {
   public JMenuItem menuActionSoilTypeEditor = new JMenuItem();
 

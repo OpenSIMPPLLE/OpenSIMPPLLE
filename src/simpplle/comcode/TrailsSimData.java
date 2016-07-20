@@ -19,6 +19,7 @@ import java.io.Externalizable;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class TrailsSimData implements Externalizable  {
     static final long serialVersionUID = -6804428826375799553L;
     static final int  version          = 1;

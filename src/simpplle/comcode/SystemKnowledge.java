@@ -26,6 +26,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class SystemKnowledge {
 
   public enum Kinds {
