@@ -5108,30 +5108,22 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Determines if a fire will spread from one EVU into another EVU.
-   *
-   * This method is static and synchronized in order to be certain that the
-   * fields we need in the fromEvu and toEvu are not modified by another
-   * thread while this method is executing.  There is probably a non-static
-   * way of doing this.
+   * Attempts to spread a fire between two vegetated units using fire spreading rules. If the fire
+   * spreads to a life form, then the remaining life forms are spread to using fire type rules.
+   * <p>
+   * This method is static and synchronized in order to be certain that the fields we need in the
+   * fromEvu and toEvu are not modified by another thread while this method is executing.  There is
+   * probably a non-static way of doing this.
    *
    * @todo make this method non-static and less restricted (if possible).
    *
-   * @param fromEvu The Evu we are trying to spread from.
-   * @param toEvu   The Evu we are trying to spread to.
+   * @param fromEvu The unit we are trying to spread from
+   * @param toEvu The unit we are trying to spread to
    * @return True if spread was successful
    */
   public static synchronized boolean doFireSpread(Evu fromEvu, Evu toEvu, Lifeform fromLifeform) {
 
-    // Don't spread into a unit that has fire or a lock-in process.
-
-    if (toEvu.hasFireAnyLifeform() ||
-        toEvu.hasLockinProcessAnyLifeform() ||
-        toEvu.isSuppressed()) {
-
-      return false;
-
-    }
+    if (toEvu.hasLockinProcessAnyLifeform() || toEvu.isSuppressed()) return false;
 
     ProcessType fromProcess = fromEvu.getState(fromLifeform).getProcess();
     ProcessType fireProcess = null;
@@ -5140,11 +5132,8 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     Climate.Season currentSeason = Simulation.getInstance().getCurrentSeason();
 
-    Lifeform[] lives = Lifeform.getAllValues();
+    for (Lifeform toLifeform : Lifeform.getAllValues()) {
 
-    for (int i = 0; i < lives.length; i++) {
-
-      Lifeform toLifeform = lives[i];
       Area.currentLifeform = toLifeform;
 
       if (!toEvu.hasLifeform(toLifeform)) continue;
@@ -5176,7 +5165,6 @@ public final class Evu extends NaturalElement implements Externalizable {
         fireProb    = toEvu.getState(toLifeform).getProb();
 
       }
-
     }
 
     Area.currentLifeform = null;
