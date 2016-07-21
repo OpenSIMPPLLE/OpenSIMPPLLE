@@ -467,12 +467,6 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  private void quit() {
-    dialogCanceled = false;
-    setVisible(false);
-    dispose();
-  }
-
   void cancelPB_actionPerformed(ActionEvent e) {
     dialogCanceled = true;
     setVisible(false);
