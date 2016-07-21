@@ -10,12 +10,14 @@
 package simpplle.comcode;
 
 import java.io.*;
+import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import java.util.HashMap;
 
 /**
  * This class contains methods for Fire Management Zones.
+ * Fire classes: 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
@@ -36,24 +38,21 @@ public class Fmz {
   private static final float DEFAULT_RESPONSE_TIME = 0.5f;
 
   private String name;
-  //private int    id;
-  private float  naturalFires[];
-  private float  manmadeFires[];
-  private float  percentFires[];
-  private float  cost[];
-  private float  totalFires;
-  private float  acres;
-  private float  firesPerAcre;
-  private float  suppressionCost;
 
+  private float acres;
+  private float firesPerAcre;
+  private float suppressionCost;
   private float responseTime;
+  private float totalFires;
+
+  private float[] naturalFires;
+  private float[] manmadeFires;
+  private float[] percentFires;
+  private float[] cost;
 
   private static boolean changed;
 
-  //private static int lastId = 0;
-
-  public static HashMap<Short,Fmz> simIdHm =
-    new HashMap<Short,Fmz>();
+  public static Map<Short,Fmz> simIdHm = new HashMap<>();
   private short simId=-1; // Random Access File ID
   public static short nextSimId=0;
   public short getSimId() {
@@ -71,8 +70,21 @@ public class Fmz {
    */
   public void setSimId(short id) { }
 
+  /**
+   * Searches for a fire management zone by ID.
+   *
+   * @param simId An assigned identifier
+   * @return A fire management zone
+   */
   public static Fmz lookUp(short simId) { return simIdHm.get(simId); }
 
+  /**
+   * Reads a fire management zone from an object input stream.
+   *
+   * @param in An object input stream
+   * @throws IOException
+   * @throws ClassNotFoundException
+   */
   public static void readExternalSimIdHm(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
 
@@ -86,6 +98,13 @@ public class Fmz {
       }
     }
   }
+
+  /**
+   * Writes a fire management zone to an object output stream.
+   *
+   * @param out An object output stream
+   * @throws IOException
+   */
   public static void writeExternalSimIdHm(ObjectOutput out) throws IOException {
     out.writeInt(version);
 
@@ -97,17 +116,19 @@ public class Fmz {
     }
   }
 
-/**
- * Constructor for firemanagement zones.  Makes and initializes naturalfires, manmadefires, percentfires, cost arrays, then 
- * sets the acres, totalFirs, firesperacre, and suppression cost variables for this Fire Management Zone.  
- */
+  /**
+   * Constructor for fire management zones.  Makes and initializes naturalfires, manmadefires, percentfires, cost arrays, then
+   * sets the acres, totalFirs, firesperacre, and suppression cost variables for this Fire Management Zone.
+   */
   public Fmz() {
+
     naturalFires = new float[NUM_CLASSES];
     manmadeFires = new float[NUM_CLASSES];
     percentFires = new float[NUM_CLASSES];
     cost         = new float[NUM_CLASSES];
 
-    for(int i=0;i<NUM_CLASSES;i++) {
+    for (int i = 0; i < NUM_CLASSES; i++) {
+
       acres           = 0.0f;
       totalFires      = 0;
       firesPerAcre    = 0;
@@ -116,28 +137,30 @@ public class Fmz {
       manmadeFires[i] = 0.0f;
       percentFires[i] = 0.0f;
       cost[i]         = 0.0f;
+
     }
-    //id           = 0;
   }
-/**
- * Overloaded fire management zone.  Creates a new Fire management zone object and sets its information. 
- * @param name name of fire management zone
- * @param acres acres array 
- * @param nf natural fires array
- * @param mmf manmade fires array
- * @param cost cost array
- * @param time
- */
+
+  /**
+   * Overloaded fire management zone.  Creates a new Fire management zone object and sets its information.
+   * @param name name of fire management zone
+   * @param acres acres array
+   * @param nf natural fires array
+   * @param mmf manmade fires array
+   * @param cost cost array
+   * @param time
+   */
   public Fmz(String name, float acres, float nf[], float mmf[], float cost[], float time) {
     this();
     setName(name);
     updateFmz(acres,nf,mmf,cost, time);
   }
-/**
- * Overloaded fire management zone constructor.  Used to temporarily create a fmz object for use in creating new areas.  
- * sets the name to parameter names and makes the natural fires, manamade fires, percent fires, and cost arrays null.  
- * @param newName
- */
+
+  /**
+   * Overloaded fire management zone constructor.  Used to temporarily create a fmz object for use in creating new areas.
+   * sets the name to parameter names and makes the natural fires, manamade fires, percent fires, and cost arrays null.
+   * @param newName
+   */
   // Use to temporarily create an fmz for use in creating new areas.
   public Fmz(String newName) {
     naturalFires = null;
@@ -146,12 +169,13 @@ public class Fmz {
     cost         = null;
     name         = newName;
   }
-/**
- * Sets the default fmz for current zone. 
- */
+
+  /**
+   * Sets the default fmz for current zone.
+   */
   public static void makeDefault() {
     String name = Simpplle.getCurrentZone().getDefaultFmzName();
-    Fmz    newFmz = new Fmz();
+    Fmz newFmz = new Fmz();
     newFmz.setName(name);
     Simpplle.getCurrentZone().addFmz(newFmz);
   }
@@ -169,77 +193,83 @@ public class Fmz {
     tmpFmz.updateFmz(acres,naturalFires,manmadeFires,cost,responseTime);
     return tmpFmz;
   }
-/**
- * Gets the fire management zone name.  
- */
+
+  /**
+   * Returns the name of this fire management zone.
+   */
   public String toString() {
     return name;
   }
-/**
- * Checks if this fire management zone object is the current zones default fmz.  
- * @return true if this fire management zone object is the current zones default.  
- */
+
+  /**
+   * Checks if this fire management zone object is the current zones default fmz.
+   * @return True if this fire management zone is default
+   */
   public boolean isDefault() {
     RegionalZone zone = Simpplle.getCurrentZone();
-
     return (name.equals(zone.getDefaultFmzName()));
   }
-/**
- * Gets the number of fire management classes.  This will return 6.  FmClasses are 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
- * @return 6 = number of fire management classes
- */
-  public static int getNumClasses() { return NUM_CLASSES; }
-/**
- * Gets this fire management zone name.  
- * @return name of fmz 
- */
-  public String getName() { return name; }
+
   /**
-   * Sets the name of this fire management zone. 
-   * @param newName the name to be set for this fmz
+   * Returns the number of fire management classes.
    */
-  public void setName(String newName) { name = newName; }
-/**
- * Gets this fire management zones acreage - in float form.  
- * @return acreage of fire management zone. 
- */
-  public float getAcres() { return acres; }
+  public static int getNumClasses() {
+    return NUM_CLASSES;
+  }
+
   /**
-   * Sets this fire management zones acreage - in float form. Then updates the fmz totals and sets marks system knowledge changed.
-   * @param newAcres
+   * Returns the name of this fire management zone.
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Sets the name of this fire management zone.
+   */
+  public void setName(String newName) {
+    name = newName;
+  }
+
+  /**
+   * Returns the number of acres in this fire management zone.
+   */
+  public float getAcres() {
+    return acres;
+  }
+
+  /**
+   * Sets the number of acres in this fire management zone.
    */
   public void setAcres(float newAcres) {
     acres = newAcres;
     updateFmzTotals();
     markChanged();
   }
-/**
- * Gets the natural fires of a particular class.  
- * @param classId Fire Classes are 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
- * @return  the natural fires of a particular fire class
- */
-  public float getNaturalFires(int classId) { return naturalFires[classId]; }
+
   /**
-   * Sets the natural fires float value for a particuar fire class.  Marks the knowledge changed.  
-   * @param classId Fire Classes are 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
-   * @param value float value of natural fires 
+   * Returns natural fires in a particular fire class.
+   */
+  public float getNaturalFires(int classId) { return naturalFires[classId]; }
+
+  /**
+   * Sets natural fires in a particular fire class.
    */
   public void setNaturalFires(int classId, float value) {
     naturalFires[classId] = value;
     updateFmzTotals();
     markChanged();
   }
+
   /**
-   * Gets the manmade fires of a particular class.  
-   * @param classId Fire Classes are 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
-   * @return  the manmade fires of a particular fire class
+   * Returns human caused fires in a particular class.
    */
-  public float getManmadeFires(int classId) { return manmadeFires[classId]; }
+  public float getManmadeFires(int classId) {
+    return manmadeFires[classId];
+  }
   
   /**
-   * Sets the manmade fires float value for a particuar fire class.  Marks the knowledge changed.  
-   * @param classId Fire Classes are 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
-   * @param value float value of manmade fires 
+   * Sets human caused fires in a particular class.
    */ 
   public void setManmadeFires(int classId, float value) {
     manmadeFires[classId] = value;
@@ -247,38 +277,64 @@ public class Fmz {
     markChanged();
   }
 
+  /**
+   * Converts a fixed-point fire suppression cost to floating-point.
+   */
   public static double getFloatCost(long cost, double divisor) {
     return ((double)cost / divisor );
   }
+
+  /**
+   * Converts a floating-point fire suppression cost to fixed-point.
+   */
   public static int getRationalCost(float cost) {
     return Math.round(100.0f * cost);
   }
-  public float getCost(int classId) { return cost[classId]; }
+
+  /**
+   * Returns the fire suppression cost for a fire class.
+   */
+  public float getCost(int classId) {
+    return cost[classId];
+  }
+
+  /**
+   * Sets the fire suppression cost for a fire class.
+   */
   public void setCost(int classId, float value) {
     cost[classId] = value;
     markChanged();
   }
 
-  public static boolean hasChanged() { return changed; }
+  /**
+   * Returns true if values in this fire management zone have changed.
+   */
+  public static boolean hasChanged() {
+    return changed;
+  }
+
+  /**
+   * Flags one or more changes to this fire management zone.
+   */
   private static void markChanged() {
     setChanged(true);
     SystemKnowledge.markChanged(SystemKnowledge.FMZ);
   }
-  private static void setChanged(boolean value) { changed = value; }
 
-  //public int getId() { return id; }
-  //private void setId() {
-  //  id = lastId;
-  //  lastId++;
-  //}
-/**
- * Updates all the variables for this fire management zones  
- * @param acres float representing fmz acreage
- * @param nf natural fires array 
- * @param mmf manmade fires array
- * @param cost cost array
- * @param time response time.  
- */
+  // TODO: Remove this method
+  private static void setChanged(boolean value) {
+    changed = value;
+  }
+
+  /**
+   * Updates all the variables for this fire management zones
+   * @param acres float representing fmz acreage
+   * @param nf natural fires array
+   * @param mmf manmade fires array
+   * @param cost cost array
+   * @param time response time.
+   */
+  // TODO: Remove this method and just use setters
   public void updateFmz(float acres, float nf[], float mmf[], float cost[], float time) {
     this.acres        = acres;
     this.responseTime = time;
@@ -290,50 +346,60 @@ public class Fmz {
     }
     updateFmzTotals();
   }
-/**
- * Updates the fmz totals by adding all the fires together, calculating fires per acre, and calculating a percentage of fires, 
- */
+
+  /**
+   * Updates the fmz totals by adding all the fires together, calculating fires per acre, and calculating a percentage of fires,
+   */
   public void updateFmzTotals() {
-    int i;
 
     totalFires = 0;
-    for(i=0;i<naturalFires.length;i++) {
+    for (int i = 0; i < naturalFires.length; i++) {
       totalFires += naturalFires[i] + manmadeFires[i];
     }
+
     if (acres > 0.0f) {
       firesPerAcre = totalFires / acres;
-    }
-    else {
+    } else {
       firesPerAcre = 0.0f;
     }
 
-    for(i=0;i<naturalFires.length;i++) {
+    for (int i = 0; i < naturalFires.length; i++) {
       if (totalFires > 0.0f) {
         percentFires[i] = (naturalFires[i] + manmadeFires[i]) / totalFires;
         percentFires[i] *= 100;
-      }
-      else {
+      } else {
         percentFires[i] = 0.0f;
-        continue;
       }
     }
   }
 
+  /**
+   *
+   * @param acres
+   * @return
+   */
   public int getRationalSuppressionCost(int acres) {
     int index = getRationalSizeClass(acres);
 
     return Math.round(100.0f * cost[index]);
   }
+
+  /**
+   *
+   * @param acres
+   * @return
+   */
   public float getSuppressionCost(float acres) {
     int index = getSizeClass(acres);
 
     return cost[index];
   }
-/**
- * Calculates the rational size class of a fire.   Fire Classes are 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
- * @param acres
- * @return
- */
+
+  /**
+   * Calculates the rational size class of a fire.
+   * @param acres
+   * @return
+   */
   public static int getRationalSizeClass(int acres) {
     final int ACRES_1    = Area.getRationalAcres(1.0f);
     final int ACRES_10   = Area.getRationalAcres(10.0f);
@@ -349,6 +415,11 @@ public class Fmz {
     else { return F; }  // acres > 1000.0
   }
 
+  /**
+   *
+   * @param acres
+   * @return
+   */
   public static int getSizeClass(float acres) {
     if      (acres < 1.0)                        { return A; }
     else if (acres >=   1.0 && (acres <   10.0)) { return B; }
@@ -358,14 +429,20 @@ public class Fmz {
     else { return F; }  // acres > 1000.0
   }
 
+  /**
+   *
+   * @param unitAcres
+   * @return
+   */
   public double calculateProbability(float unitAcres) {
     return ( (firesPerAcre * unitAcres) * 100.0);
   }
-/**
- * Gets a percentage of fires in a particular fire class. Fire Classes are 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
- * @param fireClass
- * @return
- */
+
+  /**
+   * Gets a percentage of fires in a particular fire class. Fire Classes are 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
+   * @param fireClass
+   * @return
+   */
   public float getPercentFires(int fireClass) {
     return percentFires[fireClass];
   }
@@ -373,45 +450,47 @@ public class Fmz {
   // ** File I/O Related **
   // **********************
 
+  /**
+   *
+   * @param file
+   */
   public static void setFilename(File file) {
     SystemKnowledge.setFile(SystemKnowledge.FMZ,file);
     SystemKnowledge.markChanged(SystemKnowledge.FMZ);
   }
-/**
- * Clears the system knowledge fire managment zone file.  
- */
+
+  /**
+   * Clears the system knowledge fire managment zone file.
+   */
   public static void clearFilename() {
     SystemKnowledge.clearFile(SystemKnowledge.FMZ);
   }
-/**
- * Loads fmz data from file.
- * @param infile
- * @throws SimpplleError
- */
+
+  /**
+   * Loads fmz data from file.
+   * @param infile
+   * @throws SimpplleError
+   */
   public static void loadData (File infile) throws SimpplleError {
-    GZIPInputStream gzip_in;
-    BufferedReader  fin;
-
     try {
-      gzip_in = new GZIPInputStream(new FileInputStream(infile));
-      fin = new BufferedReader(new InputStreamReader(gzip_in));
-
+      GZIPInputStream gzip_in = new GZIPInputStream(new FileInputStream(infile));
+      BufferedReader fin = new BufferedReader(new InputStreamReader(gzip_in));
       readData(fin);
       setFilename(infile);
       fin.close();
       gzip_in.close();
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       String msg = "Problems reading from FMZ data file:" + infile;
       System.out.println(msg);
       throw new SimpplleError(msg);
     }
   }
-/**
- * Loads fmz data from input stream.  
- * @param is
- * @throws SimpplleError
- */
+
+  /**
+   * Loads fmz data from input stream.
+   * @param is
+   * @throws SimpplleError
+   */
   public static void loadData(InputStream is) throws SimpplleError {
     GZIPInputStream gzip_in;
     BufferedReader fin;
@@ -431,18 +510,18 @@ public class Fmz {
       throw new SimpplleError(msg);
     }
   }
-/**
- * 
- * @param fin
- * @throws SimpplleError
- * Each line represents an FMZ.
- * The line is comma delimited the fields are:
- * name, id, acres, natural fires, manmade fires, cost.
- * the last three fields are further subdived using colons.
- * Note: The first line of the input file is the number
- * of lines in the file.
- */
-  
+
+  /**
+   * Each line represents an FMZ.
+   * The line is comma delimited the fields are:
+   * name, id, acres, natural fires, manmade fires, cost.
+   * the last three fields are further subdived using colons.
+   * Note: The first line of the input file is the number
+   * of lines in the file.
+   *
+   * @param fin
+   * @throws SimpplleError
+   */
   public static void readData(BufferedReader fin) throws SimpplleError {
 
     try {
@@ -564,13 +643,18 @@ public class Fmz {
     }
   }
 
+  /**
+   *
+   * @param outfile
+   */
   public static void saveAs(File outfile) {
     setFilename(Utility.makeSuffixedPathname(outfile,"","fmz"));
     save();
   }
-/**
- * Method to save fmz information to a system knowledge file for FMZ.  
- */
+
+  /**
+   * Method to save fmz information to a system knowledge file for FMZ.
+   */
   public static void save() {
     File outfile = SystemKnowledge.getFile(SystemKnowledge.FMZ);
 
@@ -593,6 +677,10 @@ public class Fmz {
     setChanged(false);
   }
 
+  /**
+   *
+   * @param fout
+   */
   public static void save(PrintWriter fout) {
     RegionalZone zone = Simpplle.getCurrentZone();
     Fmz[]        allFmz = zone.getAllFmz();
@@ -610,6 +698,10 @@ public class Fmz {
     }
   }
 
+  /**
+   *
+   * @param fout
+   */
   public void saveData(PrintWriter fout) {
     int i;
 
@@ -636,12 +728,16 @@ public class Fmz {
     fout.print(responseTime);
   }
 
+  /**
+   *
+   */
   public static void closeFile() {
     clearFilename();
     setChanged(false);
   }
 
-  // ** Response time related methods.
+  // Response time related methods.
+
   /**
    * Gets the response time for a particular EVU
    * @param unit evu being evaluated for response time
@@ -650,13 +746,15 @@ public class Fmz {
   public static float getResponseTime(Evu unit) {
     return unit.getFmz().getResponseTime();
   }
-/**
- * Gets the response time for fmz.
- * @return
- */
+
+  /**
+   * Gets the response time for fmz.
+   * @return
+   */
   public float getResponseTime() {
     return responseTime;
   }
+
   /**
    * Sets the response time for fmz 
    * @param newTime
