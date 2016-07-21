@@ -16,11 +16,9 @@ import java.util.zip.GZIPOutputStream;
 import java.util.HashMap;
 
 /**
- * This class contains methods for Fire Management Zones.
- * Fire classes: 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+ * A fire management zone contains statistics about the source of fires that start in a region, how
+ * quickly teams respond to fire, and how much the fire suppression costs. The statistics and costs
+ * are broken down into six different fire size classes, from A through F.
  */
 
 public class Fmz {
@@ -108,17 +106,33 @@ public class Fmz {
   }
 
   /**
-   * Used when loading areas.  If the loaded fmz does not exist,
-   * then create one which has that name but is a copy of the
-   * default fmz.  This way if a user later on loads an fmz data
-   * file the units fmz will get correctly mapped to the newly
-   * loaded version.
+   * Duplicates this fire management zone. This method is used while loading areas to copy the
+   * default fire management zone if one does not exist.
+   *
+   * @param name The name of the duplicate
    */
-  public Fmz duplicate(String newName) {
+  public Fmz duplicate(String name) {
     Fmz tmpFmz = new Fmz();
-    tmpFmz.setName(newName);
+    tmpFmz.setName(name);
     tmpFmz.updateFmz(acres,naturalFires,manmadeFires,cost,responseTime);
     return tmpFmz;
+  }
+
+  /**
+   * Creates a fire management zone with a default name and adds it to the current regional zone.
+   */
+  public static void makeDefault() {
+    Fmz newFmz = new Fmz();
+    newFmz.setName(Simpplle.getCurrentZone().getDefaultFmzName());
+    Simpplle.getCurrentZone().addFmz(newFmz);
+  }
+
+  /**
+   * Returns true if this fire management zone is the default.
+   */
+  public boolean isDefault() {
+    RegionalZone zone = Simpplle.getCurrentZone();
+    return (name.equals(zone.getDefaultFmzName()));
   }
 
   /**
@@ -134,25 +148,7 @@ public class Fmz {
   }
 
   /**
-   * Sets the default fmz for current zone.
-   */
-  public static void makeDefault() {
-    Fmz newFmz = new Fmz();
-    newFmz.setName(Simpplle.getCurrentZone().getDefaultFmzName());
-    Simpplle.getCurrentZone().addFmz(newFmz);
-  }
-
-  /**
-   * Checks if this fire management zone object is the current zones default fmz.
-   * @return True if this fire management zone is default
-   */
-  public boolean isDefault() {
-    RegionalZone zone = Simpplle.getCurrentZone();
-    return (name.equals(zone.getDefaultFmzName()));
-  }
-
-  /**
-   * Returns the number of fire management classes.
+   * Returns the number of fire classes.
    */
   public static int getNumClasses() {
     return NUM_CLASSES;
@@ -191,7 +187,9 @@ public class Fmz {
   /**
    * Returns natural fires in a particular fire class.
    */
-  public float getNaturalFires(int classId) { return naturalFires[classId]; }
+  public float getNaturalFires(int classId) {
+    return naturalFires[classId];
+  }
 
   /**
    * Sets natural fires in a particular fire class.
@@ -234,19 +232,17 @@ public class Fmz {
   }
 
   /**
-   * Gets the response time for fmz.
-   * @return
+   * Returns the response time.
    */
   public float getResponseTime() {
     return responseTime;
   }
 
   /**
-   * Sets the response time for fmz
-   * @param newTime
+   * Sets the response time.
    */
-  public void setResponseTime(float newTime) {
-    responseTime = newTime;
+  public void setResponseTime(float time) {
+    responseTime = time;
     markChanged();
   }
 
@@ -332,74 +328,64 @@ public class Fmz {
   }
 
   /**
-   *
-   * @param acres
-   * @return
-   */
-  public int getRationalSuppressionCost(int acres) {
-    int index = getRationalSizeClass(acres);
-
-    return Math.round(100.0f * cost[index]);
-  }
-
-  /**
-   *
-   * @param acres
-   * @return
-   */
-  public float getSuppressionCost(float acres) {
-    int index = getSizeClass(acres);
-
-    return cost[index];
-  }
-
-  /**
-   * Calculates the rational size class of a fire.
-   * @param acres
-   * @return
+   * Returns the size class of a fire given a rational acreage.
    */
   public static int getRationalSizeClass(int acres) {
+
     final int ACRES_1    = Area.getRationalAcres(1.0f);
     final int ACRES_10   = Area.getRationalAcres(10.0f);
     final int ACRES_100  = Area.getRationalAcres(100.0f);
     final int ACRES_300  = Area.getRationalAcres(300.0f);
     final int ACRES_1000 = Area.getRationalAcres(1000.0f);
 
-    if      (acres < ACRES_1) { return A; }
-    else if (acres >= ACRES_1   && (acres < ACRES_10)) { return B; }
-    else if (acres >= ACRES_10  && (acres < ACRES_100)) { return C; }
-    else if (acres >= ACRES_100 && (acres < ACRES_300)) { return D; }
-    else if (acres >= ACRES_300 && (acres < ACRES_1000)) { return E; }
-    else { return F; }  // acres > 1000.0
+    if      (acres <  ACRES_1)                           return A;
+    else if (acres >= ACRES_1   && (acres < ACRES_10))   return B;
+    else if (acres >= ACRES_10  && (acres < ACRES_100))  return C;
+    else if (acres >= ACRES_100 && (acres < ACRES_300))  return D;
+    else if (acres >= ACRES_300 && (acres < ACRES_1000)) return E;
+    else                                                 return F;
+
   }
 
   /**
-   *
-   * @param acres
-   * @return
+   * Returns the size class of a fire given a floating-point acreage.
    */
   public static int getSizeClass(float acres) {
-    if      (acres < 1.0)                        { return A; }
-    else if (acres >=   1.0 && (acres <   10.0)) { return B; }
-    else if (acres >=  10.0 && (acres <  100.0)) { return C; }
-    else if (acres >= 100.0 && (acres <  300.0)) { return D; }
-    else if (acres >= 300.0 && (acres < 1000.0)) { return E; }
-    else { return F; }  // acres > 1000.0
+
+    if      (acres <    1.0)                      return A;
+    else if (acres >=   1.0 && (acres <   10.0))  return B;
+    else if (acres >=  10.0 && (acres <  100.0))  return C;
+    else if (acres >= 100.0 && (acres <  300.0))  return D;
+    else if (acres >= 300.0 && (acres < 1000.0))  return E;
+    else                                          return F;
+
   }
 
   /**
-   *
-   * @param unitAcres
-   * @return
+   * Returns the suppression cost for a fire given a rational acreage.
+   */
+  public int getRationalSuppressionCost(int acres) {
+    int index = getRationalSizeClass(acres);
+    return Math.round(100.0f * cost[index]);
+  }
+
+  /**
+   * Returns the suppression cost for a fire given a floating-point acreage.
+   */
+  public float getSuppressionCost(float acres) {
+    int index = getSizeClass(acres);
+    return cost[index];
+  }
+
+  /**
+   * Returns the probability that a fire starts in a given number of acres.
    */
   public double calculateProbability(float unitAcres) {
     return ( (firesPerAcre * unitAcres) * 100.0);
   }
 
   /**
-   * Gets a percentage of fires in a particular fire class. Fire Classes are 0 = A, 1 = B, 2 = C ,3 = D, 4 = E, 5 = F
-   * @param fireClass
-   * @return
+   * Returns the percent of fires in a given fire class.
    */
   public float getPercentFires(int fireClass) {
     return percentFires[fireClass];
@@ -447,6 +433,7 @@ public class Fmz {
   }
 
   /**
+   *
    *
    * @param file
    */
@@ -527,9 +514,7 @@ public class Fmz {
         throw new ParseError("FMZ Data file is empty.");
       }
 
-      // Read in the the list of Fmz names contained in this file.
-      // We want to delete all the fmz's in the allFmz
-      // hashtable that are not contained in this file.
+      // TODO: Skip parsing this line.
 
       StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
       int fmzCount = strTok.countTokens();
@@ -537,6 +522,8 @@ public class Fmz {
       for (int i = 0; i < fmzCount; i++) {
         fmzNames[i] = strTok.getToken().toLowerCase();
       }
+
+      // TODO: The FMZs are completely overwritten, so just clear the FMZ list.
 
       RegionalZone zone = Simpplle.getCurrentZone();
       zone.updateAllFmz(fmzNames);
@@ -556,14 +543,14 @@ public class Fmz {
           throw new ParseError(msg);
         }
 
-        String fmzName = strTok.getToken().toLowerCase();
-        float theAcres = strTok.getFloatToken();
+        String name = strTok.getToken().toLowerCase();
+        float acres = strTok.getFloatToken();
 
         // Get the Natural Fires.
         String field = strTok.getToken();
         StringTokenizerPlus fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
-          String msg = "Incorrect number of items in Natural Fires field of FMZ " + fmzName;
+          String msg = "Incorrect number of items in Natural Fires field of FMZ " + name;
           throw new ParseError(msg);
         }
         for (int j = 0; j < NUM_CLASSES; j++) {
@@ -575,7 +562,7 @@ public class Fmz {
         fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
           String msg = "Incorrect number of items in Man Made " +
-                "Fires Field of FMZ " + fmzName;
+                "Fires Field of FMZ " + name;
           throw new ParseError(msg);
         }
         for (int j = 0; j < NUM_CLASSES; j++) {
@@ -587,21 +574,23 @@ public class Fmz {
         fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
           String msg = "Incorrect number of items in Cost " +
-                "Field of FMZ " + fmzName;
+                "Field of FMZ " + name;
           throw new ParseError(msg);
         }
         for(int j = 0; j < NUM_CLASSES; j++) {
           cost[j] = fieldStrTok.getFloatToken();
         }
 
-        float time;
+        float responseTime;
         if (strTok.hasMoreTokens()) {
-          time = strTok.getFloatToken();
+          responseTime = strTok.getFloatToken();
         } else {
-          time = DEFAULT_RESPONSE_TIME;
+          responseTime = DEFAULT_RESPONSE_TIME;
         }
 
-        Fmz fmz = zone.getFmz(fmzName);
+        //TODO: Create the Fmz above and use setters.
+
+        Fmz fmz = zone.getFmz(name);
         boolean newFmz;
         if (fmz == null) {
           fmz = new Fmz();
@@ -609,9 +598,9 @@ public class Fmz {
         } else {
           newFmz = false;
         }
-        fmz.updateFmz(theAcres,naturalFires,manmadeFires,cost,time);
+        fmz.updateFmz(acres,naturalFires,manmadeFires,cost,responseTime);
         if (newFmz) {
-          fmz.setName(fmzName);
+          fmz.setName(name);
           //fmz.setId();
           zone.addFmz(fmz);
         }
