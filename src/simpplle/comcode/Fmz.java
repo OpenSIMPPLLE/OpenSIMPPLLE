@@ -234,15 +234,6 @@ public class Fmz {
   }
 
   /**
-   * Gets the response time for a particular EVU
-   * @param unit evu being evaluated for response time
-   * @return the response time
-   */
-  public static float getResponseTime(Evu unit) {
-    return unit.getFmz().getResponseTime();
-  }
-
-  /**
    * Gets the response time for fmz.
    * @return
    */
