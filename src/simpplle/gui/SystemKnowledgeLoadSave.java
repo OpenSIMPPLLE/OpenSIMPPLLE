@@ -92,10 +92,6 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  public SystemKnowledgeLoadSave() {
-    this(null, "", false,true);
-  }
-
   private void jbInit() throws Exception {
 
     /* Selection */
