@@ -444,21 +444,9 @@ public class Fmz {
  */
   
   public static void readData(BufferedReader fin) throws SimpplleError {
-    String              line, field;
-    StringTokenizerPlus strTok, fieldStrTok;
-    int                 count, i, j;
-    Fmz                 fmz;
-    String              fmzNames[];
-    String              theName;
-    float               theAcres;
-    float               theNaturalFires[], theManMadeFires[], theCost[];
-    RegionalZone        zone = Simpplle.getCurrentZone();
-    String              msg;
-    boolean             newFmz = false;
-    int                 id = 0;
 
     try {
-      line   = fin.readLine();
+      String line = fin.readLine();
       if (line == null) {
         throw new ParseError("FMZ Data file is empty.");
       }
@@ -466,46 +454,49 @@ public class Fmz {
       // Read in the the list of Fmz names contained in this file.
       // We want to delete all the fmz's in the allFmz
       // hashtable that are not contained in this file.
-      strTok = new StringTokenizerPlus(line,",");
-      count  = strTok.countTokens();
-      fmzNames = new String[count];
-      for(i=0;i<count;i++) {
+      StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
+      int count = strTok.countTokens();
+      String[] fmzNames = new String[count];
+      for(int i=0;i<count;i++) {
         fmzNames[i] = strTok.getToken().toLowerCase();
       }
+
+      RegionalZone zone = Simpplle.getCurrentZone();
       zone.updateAllFmz(fmzNames);
 
-      theNaturalFires = new float[NUM_CLASSES];
-      theManMadeFires = new float[NUM_CLASSES];
-      theCost         = new float[NUM_CLASSES];
+      float[] theNaturalFires = new float[NUM_CLASSES];
+      float[] theManMadeFires = new float[NUM_CLASSES];
+      float[] theCost         = new float[NUM_CLASSES];
 
-      for(i=0;i<count;i++) {
+      for(int i=0;i<count;i++) {
         line    = fin.readLine();
         strTok  = new StringTokenizerPlus(line,",");
         if (strTok.countTokens() < 5) {
-          msg = "Incorrect number of fields in the following line:\n"
+          String msg = "Incorrect number of fields in the following line:\n"
                 + line + "\n" + "There should be at least five fields.";
           throw new ParseError(msg);
         }
 
-        theName = strTok.getToken().toLowerCase();
-        fmz     = zone.getFmz(theName);
+        String theName = strTok.getToken().toLowerCase();
+        Fmz fmz = zone.getFmz(theName);
+        boolean newFmz = false;
         if (fmz == null) {
-          fmz    = new Fmz();
+          fmz = new Fmz();
           newFmz = true;
         }
         else { newFmz = false; }
 
-        theAcres = strTok.getFloatToken();
+        float theAcres = strTok.getFloatToken();
 
         // Get the Natural Fires.
-        field       = strTok.getToken();
-        fieldStrTok = new StringTokenizerPlus(field,":");
+        String field = strTok.getToken();
+        StringTokenizerPlus fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
-          msg = "Incorrect number of items in Natural " +
+          String msg = "Incorrect number of items in Natural " +
                 "Fires Field of FMZ " + theName;
           throw new ParseError(msg);
         }
-        for(j=0;j<NUM_CLASSES;j++) {
+        for(int j=0;j<NUM_CLASSES;j++) {
           theNaturalFires[j] = fieldStrTok.getFloatToken();
         }
 
@@ -513,11 +504,11 @@ public class Fmz {
         field       = strTok.getToken();
         fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
-          msg = "Incorrect number of items in Man Made " +
+          String msg = "Incorrect number of items in Man Made " +
                 "Fires Field of FMZ " + theName;
           throw new ParseError(msg);
         }
-        for(j=0;j<NUM_CLASSES;j++) {
+        for(int j=0;j<NUM_CLASSES;j++) {
           theManMadeFires[j] = fieldStrTok.getFloatToken();
         }
 
@@ -525,11 +516,11 @@ public class Fmz {
         field       = strTok.getToken();
         fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
-          msg = "Incorrect number of items in Cost " +
+          String msg = "Incorrect number of items in Cost " +
                 "Field of FMZ " + theName;
           throw new ParseError(msg);
         }
-        for(j=0;j<NUM_CLASSES;j++) {
+        for(int j=0;j<NUM_CLASSES;j++) {
           theCost[j] = fieldStrTok.getFloatToken();
         }
 
@@ -550,7 +541,7 @@ public class Fmz {
       setChanged(false);
     }
     catch (NumberFormatException nfe) {
-      msg = "Invalid numeric value found in Fmz data file.";
+      String msg = "Invalid numeric value found in Fmz data file.";
       System.out.println(msg);
       throw new SimpplleError(msg);
     }
@@ -559,7 +550,7 @@ public class Fmz {
       throw new SimpplleError(pe.msg);
     }
     catch (IOException e) {
-      msg = "Problems read from FMZ data file.";
+      String msg = "Problems read from FMZ data file.";
       System.out.println(msg);
       throw new SimpplleError(msg);
     }
