@@ -57,8 +57,7 @@ public class Fmz {
   public static short nextSimId=0;
 
   /**
-   * Constructor for fire management zones.  Makes and initializes naturalfires, manmadefires, percentfires, cost arrays, then
-   * sets the acres, totalFirs, firesperacre, and suppression cost variables for this Fire Management Zone.
+   * Creates a fire management zone.
    */
   public Fmz() {
 
@@ -82,13 +81,14 @@ public class Fmz {
   }
 
   /**
-   * Overloaded fire management zone.  Creates a new Fire management zone object and sets its information.
-   * @param name name of fire management zone
-   * @param acres acres array
-   * @param nf natural fires array
-   * @param mmf manmade fires array
-   * @param cost cost array
-   * @param time
+   * Creates a named fire management zone with specific values.
+   *
+   * @param name A name
+   * @param acres An array of acres; one per fire class
+   * @param nf An array of natural fires; one per fire class
+   * @param mmf An array of manmade fires; one per fire class
+   * @param cost An array of suppression costs; one per fire class
+   * @param time Response time
    */
   public Fmz(String name, float acres, float nf[], float mmf[], float cost[], float time) {
     this();
@@ -97,16 +97,16 @@ public class Fmz {
   }
 
   /**
-   * Overloaded fire management zone constructor.  Used to temporarily create a fmz object for use in creating new areas.
-   * sets the name to parameter names and makes the natural fires, manamade fires, percent fires, and cost arrays null.
-   * @param newName
+   * Creates a temporary named fire management zone. This is used while creating new areas.
+   *
+   * @param name A name
    */
-  public Fmz(String newName) { // Use to temporarily create an fmz for use in creating new areas.
-    naturalFires = null;
-    manmadeFires = null;
-    percentFires = null;
-    cost         = null;
-    name         = newName;
+  public Fmz(String name) {
+    this.naturalFires = null;
+    this.manmadeFires = null;
+    this.percentFires = null;
+    this.cost         = null;
+    this.name         = name;
   }
 
   /**
