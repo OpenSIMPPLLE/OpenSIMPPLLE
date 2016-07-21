@@ -55,66 +55,6 @@ public class Fmz {
   public static Map<Short,Fmz> simIdHm = new HashMap<>();
   private short simId=-1; // Random Access File ID
   public static short nextSimId=0;
-  public short getSimId() {
-    if (simId == -1) {
-      simId = nextSimId;
-      nextSimId++;
-      simIdHm.put(simId,this);
-    }
-    return simId;
-  }
-
-  /**
-   * Needs to be present for database, does nothing.
-   * @param id short
-   */
-  public void setSimId(short id) { }
-
-  /**
-   * Searches for a fire management zone by ID.
-   *
-   * @param simId An assigned identifier
-   * @return A fire management zone
-   */
-  public static Fmz lookUp(short simId) { return simIdHm.get(simId); }
-
-  /**
-   * Reads a fire management zone from an object input stream.
-   *
-   * @param in An object input stream
-   * @throws IOException
-   * @throws ClassNotFoundException
-   */
-  public static void readExternalSimIdHm(ObjectInput in) throws IOException, ClassNotFoundException {
-    int version = in.readInt();
-
-    int size = in.readInt();
-    for (int i=0; i<size; i++) {
-      short id = in.readShort();
-      Fmz fmz = (Fmz)in.readObject();
-      simIdHm.put(id,fmz);
-      if ( (id+1) > nextSimId) {
-        nextSimId = (short)(id+1);
-      }
-    }
-  }
-
-  /**
-   * Writes a fire management zone to an object output stream.
-   *
-   * @param out An object output stream
-   * @throws IOException
-   */
-  public static void writeExternalSimIdHm(ObjectOutput out) throws IOException {
-    out.writeInt(version);
-
-    out.writeInt(simIdHm.size());
-    for (Short id : simIdHm.keySet()) {
-      out.writeShort(id);
-      Fmz fmz = simIdHm.get(id);
-      out.writeObject(fmz);
-    }
-  }
 
   /**
    * Constructor for fire management zones.  Makes and initializes naturalfires, manmadefires, percentfires, cost arrays, then
@@ -161,8 +101,7 @@ public class Fmz {
    * sets the name to parameter names and makes the natural fires, manamade fires, percent fires, and cost arrays null.
    * @param newName
    */
-  // Use to temporarily create an fmz for use in creating new areas.
-  public Fmz(String newName) {
+  public Fmz(String newName) { // Use to temporarily create an fmz for use in creating new areas.
     naturalFires = null;
     manmadeFires = null;
     percentFires = null;
@@ -171,12 +110,38 @@ public class Fmz {
   }
 
   /**
+   * Returns a unique numeric identifier for this fire management zone.
+   */
+  public short getSimId() {
+    if (simId == -1) {
+      simId = nextSimId;
+      nextSimId++;
+      simIdHm.put(simId,this);
+    }
+    return simId;
+  }
+
+  /**
+   * Needs to be present for database, does nothing.
+   */
+  public void setSimId(short id) { }
+
+  /**
+   * Searches for a fire management zone by ID.
+   *
+   * @param simId An assigned identifier
+   * @return An existing fire management zone
+   */
+  public static Fmz lookUp(short simId) {
+    return simIdHm.get(simId);
+  }
+
+  /**
    * Sets the default fmz for current zone.
    */
   public static void makeDefault() {
-    String name = Simpplle.getCurrentZone().getDefaultFmzName();
     Fmz newFmz = new Fmz();
-    newFmz.setName(name);
+    newFmz.setName(Simpplle.getCurrentZone().getDefaultFmzName());
     Simpplle.getCurrentZone().addFmz(newFmz);
   }
 
@@ -192,13 +157,6 @@ public class Fmz {
     tmpFmz.setName(newName);
     tmpFmz.updateFmz(acres,naturalFires,manmadeFires,cost,responseTime);
     return tmpFmz;
-  }
-
-  /**
-   * Returns the name of this fire management zone.
-   */
-  public String toString() {
-    return name;
   }
 
   /**
@@ -303,6 +261,32 @@ public class Fmz {
    */
   public void setCost(int classId, float value) {
     cost[classId] = value;
+    markChanged();
+  }
+
+  /**
+   * Gets the response time for a particular EVU
+   * @param unit evu being evaluated for response time
+   * @return the response time
+   */
+  public static float getResponseTime(Evu unit) {
+    return unit.getFmz().getResponseTime();
+  }
+
+  /**
+   * Gets the response time for fmz.
+   * @return
+   */
+  public float getResponseTime() {
+    return responseTime;
+  }
+
+  /**
+   * Sets the response time for fmz
+   * @param newTime
+   */
+  public void setResponseTime(float newTime) {
+    responseTime = newTime;
     markChanged();
   }
 
@@ -449,6 +433,44 @@ public class Fmz {
 
   // ** File I/O Related **
   // **********************
+
+  /**
+   * Reads a fire management zone from an object input stream.
+   *
+   * @param in An object input stream
+   * @throws IOException
+   * @throws ClassNotFoundException
+   */
+  public static void readExternalSimIdHm(ObjectInput in) throws IOException, ClassNotFoundException {
+    int version = in.readInt();
+
+    int size = in.readInt();
+    for (int i=0; i<size; i++) {
+      short id = in.readShort();
+      Fmz fmz = (Fmz)in.readObject();
+      simIdHm.put(id,fmz);
+      if ( (id+1) > nextSimId) {
+        nextSimId = (short)(id+1);
+      }
+    }
+  }
+
+  /**
+   * Writes a fire management zone to an object output stream.
+   *
+   * @param out An object output stream
+   * @throws IOException
+   */
+  public static void writeExternalSimIdHm(ObjectOutput out) throws IOException {
+    out.writeInt(version);
+
+    out.writeInt(simIdHm.size());
+    for (Short id : simIdHm.keySet()) {
+      out.writeShort(id);
+      Fmz fmz = simIdHm.get(id);
+      out.writeObject(fmz);
+    }
+  }
 
   /**
    *
@@ -736,32 +758,11 @@ public class Fmz {
     setChanged(false);
   }
 
-  // Response time related methods.
-
   /**
-   * Gets the response time for a particular EVU
-   * @param unit evu being evaluated for response time
-   * @return the response time
+   * Returns the name of this fire management zone.
    */
-  public static float getResponseTime(Evu unit) {
-    return unit.getFmz().getResponseTime();
-  }
-
-  /**
-   * Gets the response time for fmz.
-   * @return
-   */
-  public float getResponseTime() {
-    return responseTime;
-  }
-
-  /**
-   * Sets the response time for fmz 
-   * @param newTime
-   */
-  public void setResponseTime(float newTime) {
-    responseTime = newTime;
-    markChanged();
+  public String toString() {
+    return name;
   }
 
 }
