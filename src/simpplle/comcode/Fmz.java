@@ -108,6 +108,20 @@ public class Fmz {
   }
 
   /**
+   * Used when loading areas.  If the loaded fmz does not exist,
+   * then create one which has that name but is a copy of the
+   * default fmz.  This way if a user later on loads an fmz data
+   * file the units fmz will get correctly mapped to the newly
+   * loaded version.
+   */
+  public Fmz duplicate(String newName) {
+    Fmz tmpFmz = new Fmz();
+    tmpFmz.setName(newName);
+    tmpFmz.updateFmz(acres,naturalFires,manmadeFires,cost,responseTime);
+    return tmpFmz;
+  }
+
+  /**
    * Returns a unique numeric identifier for this fire management zone.
    */
   public short getSimId() {
@@ -126,20 +140,6 @@ public class Fmz {
     Fmz newFmz = new Fmz();
     newFmz.setName(Simpplle.getCurrentZone().getDefaultFmzName());
     Simpplle.getCurrentZone().addFmz(newFmz);
-  }
-
-  /**
-   * Used when loading areas.  If the loaded fmz does not exist,
-   * then create one which has that name but is a copy of the
-   * default fmz.  This way if a user later on loads an fmz data
-   * file the units fmz will get correctly mapped to the newly
-   * loaded version.
-   */
-  public Fmz duplicate(String newName) {
-    Fmz tmpFmz = new Fmz();
-    tmpFmz.setName(newName);
-    tmpFmz.updateFmz(acres,naturalFires,manmadeFires,cost,responseTime);
-    return tmpFmz;
   }
 
   /**
