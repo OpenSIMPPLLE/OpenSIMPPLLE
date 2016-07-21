@@ -219,20 +219,6 @@ public class Fmz {
   }
 
   /**
-   * Converts a fixed-point fire suppression cost to floating-point.
-   */
-  public static double rationalToFloatCost(long cost, double divisor) {
-    return ((double)cost / divisor );
-  }
-
-  /**
-   * Converts a floating-point fire suppression cost to fixed-point.
-   */
-  public static int floatToRationalCost(float cost) {
-    return Math.round(100.0f * cost);
-  }
-
-  /**
    * Returns the fire suppression cost for a fire class.
    */
   public float getCost(int classId) {
@@ -291,6 +277,20 @@ public class Fmz {
   // TODO: Remove this method
   private static void setChanged(boolean value) {
     changed = value;
+  }
+
+  /**
+   * Converts a fixed-point fire suppression cost to floating-point.
+   */
+  public static double rationalToFloatCost(long cost, double divisor) {
+    return ((double)cost / divisor );
+  }
+
+  /**
+   * Converts a floating-point fire suppression cost to fixed-point.
+   */
+  public static int floatToRationalCost(float cost) {
+    return Math.round(100.0f * cost);
   }
 
   /**
