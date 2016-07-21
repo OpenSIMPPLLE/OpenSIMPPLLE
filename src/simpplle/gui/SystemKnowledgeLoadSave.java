@@ -404,9 +404,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   public File getAndSetInputFile() {
-    this.pickFilePB_actionPerformed(null);
-    if (loadSaveFile == null) { return null; }
-
+    pickFilePB_actionPerformed(null);
     return loadSaveFile;
   }
 
