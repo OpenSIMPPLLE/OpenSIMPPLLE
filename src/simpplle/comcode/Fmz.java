@@ -482,15 +482,6 @@ public class Fmz {
         }
 
         String fmzName = strTok.getToken().toLowerCase();
-        Fmz fmz = zone.getFmz(fmzName);
-        boolean newFmz;
-        if (fmz == null) {
-          fmz = new Fmz();
-          newFmz = true;
-        } else {
-          newFmz = false;
-        }
-
         float theAcres = strTok.getFloatToken();
 
         // Get the Natural Fires.
@@ -533,6 +524,15 @@ public class Fmz {
           time = strTok.getFloatToken();
         } else {
           time = DEFAULT_RESPONSE_TIME;
+        }
+
+        Fmz fmz = zone.getFmz(fmzName);
+        boolean newFmz;
+        if (fmz == null) {
+          fmz = new Fmz();
+          newFmz = true;
+        } else {
+          newFmz = false;
         }
         fmz.updateFmz(theAcres,naturalFires,manmadeFires,cost,time);
         if (newFmz) {
