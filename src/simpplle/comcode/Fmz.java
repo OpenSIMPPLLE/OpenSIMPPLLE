@@ -41,7 +41,6 @@ public class Fmz {
 
   private float acres;
   private float firesPerAcre;
-  private float suppressionCost;
   private float responseTime;
   private float totalFires;
 
@@ -71,7 +70,6 @@ public class Fmz {
       acres           = 0.0f;
       totalFires      = 0;
       firesPerAcre    = 0;
-      suppressionCost = 0;
       naturalFires[i] = 0.0f;
       manmadeFires[i] = 0.0f;
       percentFires[i] = 0.0f;
@@ -119,21 +117,6 @@ public class Fmz {
       simIdHm.put(simId,this);
     }
     return simId;
-  }
-
-  /**
-   * Needs to be present for database, does nothing.
-   */
-  public void setSimId(short id) { }
-
-  /**
-   * Searches for a fire management zone by ID.
-   *
-   * @param simId An assigned identifier
-   * @return An existing fire management zone
-   */
-  public static Fmz lookUp(short simId) {
-    return simIdHm.get(simId);
   }
 
   /**
