@@ -221,14 +221,14 @@ public class Fmz {
   /**
    * Converts a fixed-point fire suppression cost to floating-point.
    */
-  public static double getFloatCost(long cost, double divisor) {
+  public static double rationalToFloatCost(long cost, double divisor) {
     return ((double)cost / divisor );
   }
 
   /**
    * Converts a floating-point fire suppression cost to fixed-point.
    */
-  public static int getRationalCost(float cost) {
+  public static int floatToRationalCost(float cost) {
     return Math.round(100.0f * cost);
   }
 
