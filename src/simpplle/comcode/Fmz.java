@@ -633,88 +633,73 @@ public class Fmz {
   }
 
   /**
+   * Saves all fire management zones in the current regional zone to a compressed text file.
    *
-   * @param outfile
+   * @param outfile A writable file
    */
   public static void saveAs(File outfile) {
     setFilename(Utility.makeSuffixedPathname(outfile,"","fmz"));
-    save();
-  }
 
-  /**
-   * Method to save fmz information to a system knowledge file for FMZ.
-   */
-  public static void save() {
-    File outfile = SystemKnowledge.getFile(SystemKnowledge.FMZ);
-
-    GZIPOutputStream out;
-    PrintWriter      fout;
+    PrintWriter fout;
 
     try {
-      out = new GZIPOutputStream(new FileOutputStream(outfile));
-      fout = new PrintWriter(out);
-    }
-    catch (IOException e) {
+      fout = new PrintWriter(new GZIPOutputStream(new FileOutputStream(outfile)));
+    } catch (IOException e) {
       System.out.println("Problems opening output file.");
       return;
     }
 
     save(fout);
+
     fout.flush();
     fout.close();
 
     setChanged(false);
+
   }
 
   /**
+   * Saves all fire management zones in the current regional zone to a text file.
    *
-   * @param fout
+   * @param fout A print writer
    */
   public static void save(PrintWriter fout) {
-    RegionalZone zone = Simpplle.getCurrentZone();
-    Fmz[]        allFmz = zone.getAllFmz();
 
-    int i;
-    for(i=0;i<allFmz.length;i++) {
-      if (i != 0) { fout.print(","); }
+    Fmz[] allFmz = Simpplle.getCurrentZone().getAllFmz();
+
+    for (int i = 0; i < allFmz.length; i++) {
+      if (i != 0) fout.print(",");
       fout.print(allFmz[i].getName());
     }
     fout.println();
 
-    for(i=0;i<allFmz.length;i++) {
-      allFmz[i].saveData(fout);
+    for (Fmz fmz : allFmz) {
+
+      fout.print(fmz.getName() + "," + fmz.getAcres() + ",");
+
+      for (int i = 0; i < NUM_CLASSES; i++) {
+        if (i != 0) { fout.print(":"); }
+        fout.print(fmz.getNaturalFires(i));
+      }
+      fout.print(",");
+
+      for (int i = 0; i < NUM_CLASSES; i++) {
+        if (i != 0) { fout.print(":"); }
+        fout.print(fmz.getManmadeFires(i));
+      }
+      fout.print(",");
+
+      for (int i = 0; i < NUM_CLASSES; i++) {
+        if (i != 0) { fout.print(":"); }
+        fout.print(fmz.getCost(i));
+      }
+      fout.print(",");
+
+      fout.print(fmz.responseTime);
+
       fout.println();
+
     }
-  }
-
-  /**
-   *
-   * @param fout
-   */
-  public void saveData(PrintWriter fout) {
-    int i;
-
-    fout.print(getName() + "," + getAcres() + ",");
-
-    for(i=0;i<NUM_CLASSES;i++) {
-      if (i != 0) { fout.print(":"); }
-      fout.print(getNaturalFires(i));
-    }
-    fout.print(",");
-
-    for(i=0;i<NUM_CLASSES;i++) {
-      if (i != 0) { fout.print(":"); }
-      fout.print(getManmadeFires(i));
-    }
-    fout.print(",");
-
-    for(i=0;i<NUM_CLASSES;i++) {
-      if (i != 0) { fout.print(":"); }
-      fout.print(getCost(i));
-    }
-    fout.print(",");
-
-    fout.print(responseTime);
   }
 
   /**
