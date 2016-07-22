@@ -495,14 +495,13 @@ public class Fmz {
   }
 
   /**
-   * Each line represents an FMZ.
-   * The line is comma delimited the fields are:
-   * name, id, acres, natural fires, manmade fires, cost.
-   * the last three fields are further subdived using colons.
-   * Note: The first line of the input file is the number
-   * of lines in the file.
+   * Loads fire management zones from a text file into the current regional zone. The first line
+   * contains comma-delimited fire management zone names. Each subsequent line contains properties
+   * for a single fire management zone. This includes the name, acres, natural fires, man-made
+   * fires, suppression costs, and optionally a response time. The natural fires, man-made fires,
+   * and suppression costs are colon-delimited.
    *
-   * @param fin
+   * @param fin A buffered reader for a text file
    * @throws SimpplleError
    */
   public static void readData(BufferedReader fin) throws SimpplleError {
@@ -514,16 +513,12 @@ public class Fmz {
         throw new ParseError("FMZ Data file is empty.");
       }
 
-      // TODO: Skip parsing this line.
-
       StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
       int fmzCount = strTok.countTokens();
       String[] fmzNames = new String[fmzCount];
       for (int i = 0; i < fmzCount; i++) {
         fmzNames[i] = strTok.getToken().toLowerCase();
       }
-
-      // TODO: The FMZs are completely overwritten, so just clear the FMZ list.
 
       RegionalZone zone = Simpplle.getCurrentZone();
       zone.updateAllFmz(fmzNames);
@@ -546,7 +541,8 @@ public class Fmz {
         String name = strTok.getToken().toLowerCase();
         float acres = strTok.getFloatToken();
 
-        // Get the Natural Fires.
+        /* Natural Fires */
+
         String field = strTok.getToken();
         StringTokenizerPlus fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
@@ -557,29 +553,31 @@ public class Fmz {
           naturalFires[j] = fieldStrTok.getFloatToken();
         }
 
-        // Get the Man Made Fires.
+        /* Human Made Fires */
+
         field = strTok.getToken();
         fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
-          String msg = "Incorrect number of items in Man Made " +
-                "Fires Field of FMZ " + name;
+          String msg = "Incorrect number of items in Man Made Fires Field of FMZ " + name;
           throw new ParseError(msg);
         }
         for (int j = 0; j < NUM_CLASSES; j++) {
           manmadeFires[j] = fieldStrTok.getFloatToken();
         }
 
-        // Get the Cost.
+        /* Suppression Costs */
+
         field = strTok.getToken();
         fieldStrTok = new StringTokenizerPlus(field,":");
         if (fieldStrTok.countTokens() != NUM_CLASSES) {
-          String msg = "Incorrect number of items in Cost " +
-                "Field of FMZ " + name;
+          String msg = "Incorrect number of items in Cost Field of FMZ " + name;
           throw new ParseError(msg);
         }
         for(int j = 0; j < NUM_CLASSES; j++) {
           cost[j] = fieldStrTok.getFloatToken();
         }
+
+        /* Response Time */
 
         float responseTime;
         if (strTok.hasMoreTokens()) {
@@ -587,8 +585,6 @@ public class Fmz {
         } else {
           responseTime = DEFAULT_RESPONSE_TIME;
         }
-
-        //TODO: Create the Fmz above and use setters.
 
         Fmz fmz = zone.getFmz(name);
         boolean newFmz;
@@ -601,7 +597,6 @@ public class Fmz {
         fmz.updateFmz(acres,naturalFires,manmadeFires,cost,responseTime);
         if (newFmz) {
           fmz.setName(name);
-          //fmz.setId();
           zone.addFmz(fmz);
         }
       }
