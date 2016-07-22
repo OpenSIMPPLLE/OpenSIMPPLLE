@@ -197,6 +197,7 @@ public class SystemKnowledge {
   public static final String TRACKING_SPECIES_REPORT_ENTRY         = "DATA/TRACKING-SPECIES-REPORT.XML";
   public static final String FIRE_SPOTTING_LOGIC_ENTRY             = "DATA/FIRE-SPOTTING-LOGIC.XML";
   public static final String FIRE_SUPP_EVENT_LOGIC_ENTRY           = "DATA/FIRE-SUPP-EVENT-LOGIC.XML";
+  public static final String KEANE_PARAMETERS_ENTRY                = "DATA/KEANE-PARAMETERS-ENTRY";
 
   private static final String SYSKNOW_FILEEXT = "sysknowledge";
 
@@ -1070,6 +1071,7 @@ public class SystemKnowledge {
           Fmz.readData(fin);
           if (!isIndividualFile) { Fmz.clearFilename(); }
         }
+
         if ((name.equals(FIRE_TYPE_DATA_ENTRY) ||
              name.equals(OLD_TYPE_OF_FIRE_ENTRY)) && loadSaveMe[FIRE_TYPE_LOGIC.ordinal()]) {
           FireTypeDataNewerLegacy.readData(fin);
@@ -1088,10 +1090,12 @@ public class SystemKnowledge {
           TreatmentSchedule ts = Area.createTreatmentSchedule();
           ts.read(fin);
         }
+
         if (entryId == TREATMENT_LOGIC && loadSaveMe[TREATMENT_LOGIC.ordinal()]) {
           Treatment.readLogic(fin);
           if (!isIndividualFile) { Treatment.closeLogicFile(); }
         }
+
         if (entryId == PROCESS_SCHEDULE && loadSaveMe[PROCESS_SCHEDULE.ordinal()]) {
           ProcessSchedule ps = Area.createProcessSchedule();
           ps.read(fin);
@@ -1105,28 +1109,39 @@ public class SystemKnowledge {
           lastAquaticPathwayLoaded.setIsUserData((!zoneFile));
         }
 
-
         if (entryId == EXTREME_FIRE_DATA && loadSaveMe[EXTREME_FIRE_DATA.ordinal()]) {
           FireEvent.readExtremeData(fin);
         }
+
         if (entryId == CLIMATE && loadSaveMe[CLIMATE.ordinal()]) {
           Climate climate = Simpplle.getClimate();
           climate.readData(fin);
           if (!isIndividualFile) { climate.clearFilename(); }
         }
+
         if (entryId == FIRE_SEASON && loadSaveMe[FIRE_SEASON.ordinal()]) {
           FireEvent.readFireSeasonData(fin);
           if (!isIndividualFile) { clearFile(FIRE_SEASON); }
         }
+
+        // TODO test loading
+        if (entryId == KEANE_PARAMETERS && loadSaveMe[KEANE_PARAMETERS.ordinal()]){
+          ProcessOccurrenceSpreadingFire.loadKeaneParameters(fin);
+          // TODO individualFile?
+        }
+
         if (entryId == SPECIES && loadSaveMe[SPECIES.ordinal()]) {
           SimpplleType.readData(jarIn,SimpplleType.SPECIES);
         }
+
         if (entryId == CONIFER_ENCROACHMENT && loadSaveMe[CONIFER_ENCROACHMENT.ordinal()]) {
           ConiferEncroachmentLogicData.read(jarIn);
         }
+
         if (name.startsWith(OLD_PROCESS_PROB_LOGIC_ENTRY)) {
           Process.readProbabilityLogic(jarIn);
         }
+
         // Since there are two sets of pathways we need to make sure we
         // load the correct ones.
         if (entryId == VEGETATION_PATHWAYS && loadSaveMe[VEGETATION_PATHWAYS.ordinal()]) {
@@ -1138,28 +1153,34 @@ public class SystemKnowledge {
             lastPathwayLoaded.setIsUserData((!zoneFile));
           }
         }
+
         // These don't have loadSaveMe id's
         if (name.startsWith(WILDLIFE_ENTRY)) {
           Simpplle.setStatusMessage(msg);
           WildlifeHabitat.readDataFiles(name, fin);
         }
+
         if (name.startsWith(EMISSIONS_ENTRY)) {
           Simpplle.setStatusMessage(msg);
           Emissions.readData(fin);
         }
+
         if (name.startsWith(OLD_FIRE_SPREAD_ENTRY)) {
           FireSpreadDataLegacy.readData(fin);
           FireSpreadDataNewerLegacy.clearDataFilename();
           FireSpreadDataNewerLegacy.setFromLegacyData();
         }
+
         if (name.startsWith(OLD_TYPE_OF_FIRE_ENTRY)) {
           FireTypeDataLegacy.readData(fin);
           clearFile(FIRE_TYPE_LOGIC);
           FireTypeDataNewerLegacy.setFromLegacyData();
         }
+
         if (name.startsWith(OLD_FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY)) {
           FireSuppWeatherData.readData(fin);
         }
+
         if (name.startsWith(OLD_REGEN_LOGIC_ENTRY)) {
           RegenerationLogic.readDataLegacy(fin);
           clearFile(REGEN_LOGIC_FIRE);
@@ -1451,8 +1472,8 @@ public class SystemKnowledge {
     saveInputFile(zoneName,"simpplle_zone",true);
   }
 
-  public static void saveInputFile(File fileprefix) throws SimpplleError {
-    saveInputFile(fileprefix,SYSKNOW_FILEEXT,false);
+  public static void saveInputFile(File file) throws SimpplleError {
+    saveInputFile(file,SYSKNOW_FILEEXT,false);
   }
 
   /**
@@ -1475,7 +1496,6 @@ public class SystemKnowledge {
     try {
       outfile = Utility.makeSuffixedPathname(filename,"",fileExt);
       jarOut  = new JarOutputStream(new FileOutputStream(outfile),new Manifest());
-//      bufWriter = new BufferedWriter(new OutputStreamWriter(jarOut));
       pout    = new PrintWriter(new OutputStreamWriter(jarOut));
 
       if (doZoneDef) {
@@ -1577,11 +1597,20 @@ public class SystemKnowledge {
         pout.flush();
       }
 
+      // TODO test loading keane stuff
+      if (loadSaveMe[KEANE_PARAMETERS.ordinal()]) {
+        jarEntry = new JarEntry(KEANE_PARAMETERS_ENTRY);
+        jarOut.putNextEntry(jarEntry);
+        ProcessOccurrenceSpreadingFire.saveKeaneParameters(pout);
+        pout.flush();
+      }
+
       if (loadSaveMe[SPECIES.ordinal()]) {
         jarEntry = new JarEntry(SPECIES_ENTRY);
         jarOut.putNextEntry(jarEntry);
         SimpplleType.saveData(jarOut,SimpplleType.SPECIES);
       }
+
       if (loadSaveMe[CONIFER_ENCROACHMENT.ordinal()]) {
         jarEntry = new JarEntry(CONIFER_ENCROACHMENT_ENTRY);
         jarOut.putNextEntry(jarEntry);
@@ -1593,6 +1622,8 @@ public class SystemKnowledge {
       XStream xs;
       ObjectOutputStream os=null;
 
+      // ** XStream Files ***
+      // ********************
       if (loadSaveMe[FIRE_SUPP_WEATHER_BEYOND_CLASS_A.ordinal()] ||
           loadSaveMe[FIRE_SPREAD_LOGIC.ordinal()] ||
           loadSaveMe[FIRE_TYPE_LOGIC.ordinal()] ||

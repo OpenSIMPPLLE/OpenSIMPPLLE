@@ -375,6 +375,10 @@ public class SystemKnowledgeLoadSave extends JDialog {
     SystemKnowledge.setLoadSaveOption(SystemKnowledge.EVU_SEARCH_LOGIC,false);
   }
 
+  /**
+   * Enable checkboxes in the dialog if present (during loading) or has custom data (during saving).
+   * @see SystemKnowledge#hasChangedOrUserData(SystemKnowledge.Kinds)
+   */
   private void initCheckBoxes() {
     boolean option;
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
