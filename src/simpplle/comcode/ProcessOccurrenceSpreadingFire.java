@@ -119,10 +119,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
+   * Update variable and let SystemKnowledge know it has been updated.
    * @param value An extreme wind multiplier for Keane spreading
    */
   public static void setKeaneExtremeWindMultiplier(double value) {
     keaneExtremeWindMultiplier = value;
+    SystemKnowledge.markChanged(SystemKnowledge.KEANE_PARAMETERS);
   }
 
   /**
@@ -133,10 +135,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
+   * Update variable and let SystemKnowledge know it has been updated.
    * @param value A wind speed variability factor for Keane spreading
    */
   public static void setKeaneWindSpeedVariability(double value) {
     keaneWindSpeedVariability = value;
+    SystemKnowledge.markChanged(SystemKnowledge.KEANE_PARAMETERS);
   }
 
   /**
@@ -147,10 +151,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
+   * Update variable and let SystemKnowledge know it has been updated.
    * @param value A wind direction variability in degrees for Keane spreading
    */
   public static void setKeaneWindDirectionVariability(double value) {
     keaneWindDirectionVariability = value;
+    SystemKnowledge.markChanged(SystemKnowledge.KEANE_PARAMETERS);
   }
 
   /**

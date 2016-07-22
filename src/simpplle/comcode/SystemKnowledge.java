@@ -252,7 +252,8 @@ public class SystemKnowledge {
   }
 
   /**
-   * Puts the passed boolean into the loadSaveMe boolean array at a particular system knowledge kinds ordinal into kind enumeration.
+   * Puts the passed boolean into the loadSaveMe boolean array at a particular system knowledge
+   * kinds ordinal into kind enumeration.
    * This is used to check if there is a particular type of system knowledge file
    * @param which the system knowledge kind.  Its ordinal is used as array index. 
    * @param bool true if has system knowledge of the kind at particular index.  
@@ -272,7 +273,8 @@ public class SystemKnowledge {
   }
 
   /**
-   * Checks the boolean array loadSaveMe at the parameter system knowledge kind ordinal into kind enumeration.   
+   * Checks the boolean array loadSaveMe at the parameter system knowledge kind ordinal into kind
+   * enumeration.
    * @param which
    * @return
    */

@@ -29,8 +29,16 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
   private boolean dialogCanceled;
   private File loadSaveFile;
+
+  /**
+   * Denotes this instance is a saving action
+   */
   private boolean save;
 
+  /**
+   * Collection of this dialog's Checkboxes, with SystemKnowledge.Kind as a Key, and
+   * the Corresponding checkbox as a value.
+   */
   private HashMap<SystemKnowledge.Kinds,JCheckBox> checkBoxes = new HashMap<SystemKnowledge.Kinds,JCheckBox>();
 
   private JScrollPane CBScroll = new JScrollPane();
@@ -304,6 +312,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     Dimension size = CBScroll.getPreferredSize();
     CBScroll.setPreferredSize(new Dimension(size.width+25,560));
 
+    // Add JCheckBoxes to collection, with SystemKnowledge.Kind as a key
     checkBoxes.put(SystemKnowledge.CONIFER_ENCROACHMENT,coniferEncroachLogicCB);
     checkBoxes.put(SystemKnowledge.SPECIES,speciesCB);
     checkBoxes.put(SystemKnowledge.AQUATIC_PATHWAYS,aquaticPathwaysCB);
