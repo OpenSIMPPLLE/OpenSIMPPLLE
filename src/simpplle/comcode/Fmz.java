@@ -433,9 +433,10 @@ public class Fmz {
   }
 
   /**
+   * Stores a reference to a fire management zone file in the system knowledge and marks it as
+   * changed.
    *
-   *
-   * @param file
+   * @param file A file containing FMZ data
    */
   public static void setFilename(File file) {
     SystemKnowledge.setFile(SystemKnowledge.FMZ,file);
@@ -443,44 +444,52 @@ public class Fmz {
   }
 
   /**
-   * Clears the system knowledge fire managment zone file.
+   * Removes the reference to a fire management zone file in the system knowledge.
    */
   public static void clearFilename() {
     SystemKnowledge.clearFile(SystemKnowledge.FMZ);
   }
 
   /**
-   * Loads fmz data from file.
-   * @param infile
+   * Removes a reference to a fire management zone file in the system knowledge and marks it
+   * as unchanged.
+   */
+  public static void closeFile() {
+    clearFilename();
+    setChanged(false);
+  }
+
+  /**
+   * Loads fire management zones from a compressed text file.
+   *
+   * @param zipFile A compressed text file
    * @throws SimpplleError
    */
-  public static void loadData (File infile) throws SimpplleError {
+  public static void loadData (File zipFile) throws SimpplleError {
     try {
-      GZIPInputStream gzip_in = new GZIPInputStream(new FileInputStream(infile));
+      GZIPInputStream gzip_in = new GZIPInputStream(new FileInputStream(zipFile));
       BufferedReader fin = new BufferedReader(new InputStreamReader(gzip_in));
       readData(fin);
-      setFilename(infile);
+      setFilename(zipFile);
       fin.close();
       gzip_in.close();
     } catch (IOException e) {
-      String msg = "Problems reading from FMZ data file:" + infile;
+      String msg = "Problems reading from FMZ data file:" + zipFile;
       System.out.println(msg);
       throw new SimpplleError(msg);
     }
   }
 
   /**
-   * Loads fmz data from input stream.
-   * @param is
+   * Loads fire management zones from a compressed text stream.
+   *
+   * @param zipStream A compressed text stream
    * @throws SimpplleError
    */
-  public static void loadData(InputStream is) throws SimpplleError {
-    GZIPInputStream gzip_in;
-    BufferedReader fin;
-
+  public static void loadData(InputStream zipStream) throws SimpplleError {
     try {
-      gzip_in = new GZIPInputStream(is);
-      fin = new BufferedReader(new InputStreamReader(gzip_in));
+      GZIPInputStream gzip_in = new GZIPInputStream(zipStream);
+      BufferedReader fin = new BufferedReader(new InputStreamReader(gzip_in));
       readData(fin);
       // *** Important ***
       // DO NOT CLOSE THESE STREAMS.
@@ -706,14 +715,6 @@ public class Fmz {
     fout.print(",");
 
     fout.print(responseTime);
-  }
-
-  /**
-   *
-   */
-  public static void closeFile() {
-    clearFilename();
-    setChanged(false);
   }
 
   /**
