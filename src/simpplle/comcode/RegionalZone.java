@@ -11,7 +11,9 @@ package simpplle.comcode;
 import simpplle.JSimpplle;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Vector;
 import java.util.zip.GZIPInputStream;
 
@@ -307,18 +309,26 @@ public abstract class RegionalZone {
    */
   public void updateAllFmz(String keepNames[]) {
 
+    List<String> keysToRemove = new ArrayList<>();
+
     for (String key : allFmz.keySet()) {
 
       boolean keep = false;
 
-      for (int i = 0; i < keepNames.length; i++) {
-        if (key.equals(keepNames[i])) {
+      for (String keepName : keepNames) {
+        if (key.equals(keepName)) {
           keep = true;
           break;
         }
       }
 
-      if (!keep) allFmz.remove(key);
+      if (!keep) keysToRemove.add(key);
+
+    }
+
+    for (String key : keysToRemove) {
+
+      allFmz.remove(key);
 
     }
   }
