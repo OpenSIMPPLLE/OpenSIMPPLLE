@@ -280,7 +280,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
       int ts = Simulation.getCurrentTimeStep();
 
-      double responseTime = Fmz.getResponseTime(root.data.getUnit());
+      double responseTime = root.data.getUnit().getFmz().getResponseTime();
       double spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,fromUnit,ts,lifeform);
       hoursBurning += spreadTime;
 

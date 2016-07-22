@@ -1008,14 +1008,10 @@ public class SystemKnowledge {
   public static void readInputFile(File filename, boolean zoneFile, boolean readAll, boolean isIndividualFile)
     throws SimpplleError
   {
-    RegionalZone    zone = Simpplle.getCurrentZone();
-    JarInputStream  jarIn=null;
-    JarEntry        jarEntry;
-    BufferedReader  fin=null;
-    String          name=null;
-    int             begin, end;
-    Kinds           entryId;
-    String          msg;
+    RegionalZone zone = Simpplle.getCurrentZone();
+    JarInputStream jarIn = null;
+    BufferedReader fin = null;
+    String name = null;
 
     if (zoneFile && readAll) {
       for (int i=0; i<loadSaveMe.length; i++) {
@@ -1030,7 +1026,7 @@ public class SystemKnowledge {
       jarIn = new JarInputStream(new FileInputStream(filename));
       fin   = new BufferedReader(new InputStreamReader(jarIn));
 
-      jarEntry = jarIn.getNextJarEntry();
+      JarEntry jarEntry = jarIn.getNextJarEntry();
       while (jarEntry != null) {
         if (jarEntry.isDirectory()) {
           jarEntry = jarIn.getNextJarEntry();
@@ -1038,14 +1034,12 @@ public class SystemKnowledge {
         }
         name = jarEntry.getName();
         name = stripZoneDir(name);
-        begin = name.indexOf('/');
-        end   = name.lastIndexOf('.');
+        int begin = name.indexOf('/');
+        int end   = name.lastIndexOf('.');
         if (end < 0) { end = name.length(); }
-        msg = "  ---> Loading " +
-              name.substring(0,begin) + " " +
-              name.substring(begin+1,end);
-        name    = name.toUpperCase();
-        entryId = getKnowledgeEntryId(name);
+        String msg = " ---> Loading " + name.substring(0,begin) + " " + name.substring(begin+1,end);
+        name = name.toUpperCase();
+        Kinds entryId = getKnowledgeEntryId(name);
 
         if (entryId != null && entryId != VEGETATION_PATHWAYS) {
           Simpplle.setStatusMessage(msg);

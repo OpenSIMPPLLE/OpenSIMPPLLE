@@ -92,18 +92,14 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  public SystemKnowledgeLoadSave() {
-    this(null, "", false,true);
-  }
-
   private void jbInit() throws Exception {
 
     /* Selection */
 
     selectAllPB.setText("Select All");
-    selectAllPB.addActionListener(new SystemKnowledgeLoadSave_selectAllPB_actionAdapter(this));
+    selectAllPB.addActionListener(this::selectAllPB_actionPerformed);
     selectNonePB.setText("Select None");
-    selectNonePB.addActionListener(new SystemKnowledgeLoadSave_selectNonePB_actionAdapter(this));
+    selectNonePB.addActionListener(this::selectNonePB_actionPerformed);
 
     JPanel selectPanel = new JPanel();
     selectPanel.add(selectAllPB, null);
@@ -247,7 +243,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     fileScrollPanel.add(fileScrollPane, BorderLayout.NORTH);
 
     pickFilePB.setText("Pick");
-    pickFilePB.addActionListener(new SystemKnowledgeLoadSave_pickFilePB_actionAdapter(this));
+    pickFilePB.addActionListener(this::pickFilePB_actionPerformed);
 
     TitledBorder pickFileBorder = new TitledBorder(BorderFactory.createEtchedBorder(Color.white, new Color(148, 145, 140)), "File Name");
 
@@ -258,9 +254,9 @@ public class SystemKnowledgeLoadSave extends JDialog {
     pickFilePanel.add(fileScrollPanel, BorderLayout.CENTER);
 
     loadSavePB.setText("Save");
-    loadSavePB.addActionListener(new SystemKnowledgeLoadSave_loadSavePB_actionAdapter(this));
+    loadSavePB.addActionListener(this::loadSavePB_actionPerformed);
     cancelPB.setText("Cancel");
-    cancelPB.addActionListener(new SystemKnowledgeLoadSave_cancelPB_actionAdapter(this));
+    cancelPB.addActionListener(this::cancelPB_actionPerformed);
 
     JPanel loadSaveCancelPanel = new JPanel();
     loadSaveCancelPanel.add(loadSavePB, null);
@@ -404,9 +400,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   public File getAndSetInputFile() {
-    this.pickFilePB_actionPerformed(null);
-    if (loadSaveFile == null) { return null; }
-
+    pickFilePB_actionPerformed(null);
     return loadSaveFile;
   }
 
@@ -473,12 +467,6 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  private void quit() {
-    dialogCanceled = false;
-    setVisible(false);
-    dispose();
-  }
-
   void cancelPB_actionPerformed(ActionEvent e) {
     dialogCanceled = true;
     setVisible(false);
@@ -499,60 +487,5 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
   public boolean isDialogCanceled() {
     return dialogCanceled;
-  }
-}
-
-class SystemKnowledgeLoadSave_pickFilePB_actionAdapter implements java.awt.event.ActionListener {
-  SystemKnowledgeLoadSave adaptee;
-
-  SystemKnowledgeLoadSave_pickFilePB_actionAdapter(SystemKnowledgeLoadSave adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.pickFilePB_actionPerformed(e);
-  }
-}
-
-class SystemKnowledgeLoadSave_loadSavePB_actionAdapter implements java.awt.event.ActionListener {
-  SystemKnowledgeLoadSave adaptee;
-
-  SystemKnowledgeLoadSave_loadSavePB_actionAdapter(SystemKnowledgeLoadSave adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.loadSavePB_actionPerformed(e);
-  }
-}
-
-class SystemKnowledgeLoadSave_cancelPB_actionAdapter implements java.awt.event.ActionListener {
-  SystemKnowledgeLoadSave adaptee;
-
-  SystemKnowledgeLoadSave_cancelPB_actionAdapter(SystemKnowledgeLoadSave adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.cancelPB_actionPerformed(e);
-  }
-}
-
-class SystemKnowledgeLoadSave_selectAllPB_actionAdapter implements java.awt.event.ActionListener {
-  SystemKnowledgeLoadSave adaptee;
-
-  SystemKnowledgeLoadSave_selectAllPB_actionAdapter(SystemKnowledgeLoadSave adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.selectAllPB_actionPerformed(e);
-  }
-}
-
-class SystemKnowledgeLoadSave_selectNonePB_actionAdapter implements java.awt.event.ActionListener {
-  SystemKnowledgeLoadSave adaptee;
-
-  SystemKnowledgeLoadSave_selectNonePB_actionAdapter(SystemKnowledgeLoadSave adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.selectNonePB_actionPerformed(e);
   }
 }

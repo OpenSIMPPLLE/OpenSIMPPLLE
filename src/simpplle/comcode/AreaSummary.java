@@ -9,12 +9,10 @@
 package simpplle.comcode;
 
 import java.io.*;
-import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.*;
 
 import org.apache.commons.collections.map.MultiKeyMap;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.apache.commons.collections.keyvalue.*;
@@ -447,8 +445,8 @@ public final class AreaSummary implements Externalizable {
       for (int k=0; k<costBySA.length; k++) {
         // determine divisor necessary to convert back to float.
         divisor  = Area.getRationalAcres(1.0f);
-        divisor *= Fmz.getRationalCost(1.0f);
-        costBySAf[k] = Fmz.getFloatCost(costBySA[k],(double)divisor);
+        divisor *= Fmz.floatToRationalCost(1.0f);
+        costBySAf[k] = Fmz.rationalToFloatCost(costBySA[k],(double)divisor);
       }
       fireSuppressionCostSA.put(sa,costBySAf);
     }
@@ -512,8 +510,8 @@ public final class AreaSummary implements Externalizable {
       for (int k=0; k<costByFmz.length; k++) {
         // determine divisor necessary to convert back to float.
         divisor  = Area.getRationalAcres(1.0f);
-        divisor *= Fmz.getRationalCost(1.0f);
-        costByFmzf[k] = Fmz.getFloatCost(costByFmz[k],(double)divisor);
+        divisor *= Fmz.floatToRationalCost(1.0f);
+        costByFmzf[k] = Fmz.rationalToFloatCost(costByFmz[k],(double)divisor);
       }
       fireSuppressionCost.put(fmzName,costByFmzf);
     }
