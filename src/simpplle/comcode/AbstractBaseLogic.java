@@ -206,7 +206,7 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Hides a visible column. This is marked to be recorded with the system knowledge.
+   * Hides a visible column and flags a change.
    *
    * @param kind The name of a logic table
    * @param col The index of a column to hide
