@@ -23,10 +23,26 @@ package simpplle.comcode;
  */
 
 public abstract class BaseLogic extends AbstractBaseLogic {
+
   public enum Columns {
-    ROW_COL,ECO_GROUP_COL,SPECIES_COL,SIZE_CLASS_COL,DENSITY_COL,PROCESS_COL,
-    TREATMENT_COL,SEASON_COL,MOISTURE_COL,TEMP_COL,TRACKING_SPECIES_COL,
-    OWNERSHIP_COL, SPECIAL_AREA_COL, ROAD_STATUS_COL, TRAIL_STATUS_COL, LANDTYPE_COL
+
+    ROW_COL,
+    ECO_GROUP_COL,
+    SPECIES_COL,
+    SIZE_CLASS_COL,
+    DENSITY_COL,
+    PROCESS_COL,
+    TREATMENT_COL,
+    SEASON_COL,
+    MOISTURE_COL,
+    TEMP_COL,
+    TRACKING_SPECIES_COL,
+    OWNERSHIP_COL,
+    SPECIAL_AREA_COL,
+    ROAD_STATUS_COL,
+    TRAIL_STATUS_COL,
+    LANDTYPE_COL
+
   }
 
   public static final int ECO_GROUP_COL        = AbstractBaseLogic.LAST_COL+1;
@@ -44,12 +60,13 @@ public abstract class BaseLogic extends AbstractBaseLogic {
   public static final int ROAD_STATUS_COL      = AbstractBaseLogic.LAST_COL+13;
   public static final int TRAIL_STATUS_COL     = AbstractBaseLogic.LAST_COL+14;
   public static final int LANDTYPE_COL         = AbstractBaseLogic.LAST_COL+15;
-  
-  protected static final int LAST_COL = LANDTYPE_COL;
-/**
- * These form the basic system knowledge processes.  These are placed into a hash map which will be keyed by their string name.  
- * @param kinds
- */
+  public static final int LAST_COL             = LANDTYPE_COL;
+
+  /**
+   * These form the basic system knowledge processes. These are placed into a hash map which will
+   * be keyed by their string name.
+   * @param kinds
+   */
   protected BaseLogic(String[] kinds) {
     super(kinds);
     for (int i=0; i<kinds.length; i++) {
@@ -83,79 +100,79 @@ public abstract class BaseLogic extends AbstractBaseLogic {
    */
   public static String getColumnName(int col) {
     switch (col) {
-      case ECO_GROUP_COL:        return "Eco Group";
-      case SPECIES_COL:          return "Species";
-      case SIZE_CLASS_COL:       return "Size Classes";
-      case DENSITY_COL:          return "Densities";
-      case PROCESS_COL:          return "Processes";
-      case TREATMENT_COL:        return "Treatments";
-      case SEASON_COL:           return "Season";
-      case MOISTURE_COL:         return "Moisture";
-      case TEMP_COL:             return "Temp";
-      case TRACKING_SPECIES_COL: return "Tracking Species";
-      case OWNERSHIP_COL:        return "Ownership";
-      case SPECIAL_AREA_COL:     return "Special Area";
-      case ROAD_STATUS_COL:      return "Roads";
-      case TRAIL_STATUS_COL:     return "Trails";
-      case LANDTYPE_COL:         return "Land Type";
+      case ECO_GROUP_COL:
+        return "Eco Group";
+      case SPECIES_COL:
+        return "Species";
+      case SIZE_CLASS_COL:
+        return "Size Classes";
+      case DENSITY_COL:
+        return "Densities";
+      case PROCESS_COL:
+        return "Processes";
+      case TREATMENT_COL:
+        return "Treatments";
+      case SEASON_COL:
+        return "Season";
+      case MOISTURE_COL:
+        return "Moisture";
+      case TEMP_COL:
+        return "Temp";
+      case TRACKING_SPECIES_COL:
+        return "Tracking Species";
+      case OWNERSHIP_COL:
+        return "Ownership";
+      case SPECIAL_AREA_COL:
+        return "Special Area";
+      case ROAD_STATUS_COL:
+        return "Roads";
+      case TRAIL_STATUS_COL:
+        return "Trails";
+      case LANDTYPE_COL:
+        return "Land Type";
       default:
         return AbstractBaseLogic.getColumnName(col);
     }
   }
+
   /**
    * Returns the static final int of column num from the column name 
    * ROW_COL =0,ECO_GROUP_COL=1,SPECIES_COL=2,SIZE_CLASS_COL=3,DENSITY_COL=4,PROCESS_COL=5,
    * TREATMENT_COL=6,SEASON_COL=7,MOISTURE_COL=8,TEMP_COL=9,TRACKING_SPECIES_COL=10,
    * OWNERSHIP_COL=11, SPECIAL_AREA_COL=12, ROAD_STATUS_COL=13, TRAIL_STATUS_COL=14, LANDTYPE_COL=15
    */
-
   public int getColumnNumFromName(String name) {
     if (name.equalsIgnoreCase("Eco Group")) {
       return ECO_GROUP_COL;
-    }
-    else if (name.equalsIgnoreCase("Species")) {
+    } else if (name.equalsIgnoreCase("Species")) {
       return SPECIES_COL;
-    }
-    else if (name.equalsIgnoreCase("Size Classes")) {
+    } else if (name.equalsIgnoreCase("Size Classes")) {
       return SIZE_CLASS_COL;
-    }
-    else if (name.equalsIgnoreCase("Densities")) {
+    } else if (name.equalsIgnoreCase("Densities")) {
       return DENSITY_COL;
-    }
-    else if (name.equalsIgnoreCase("Processes")) {
+    } else if (name.equalsIgnoreCase("Processes")) {
       return PROCESS_COL;
-    }
-    else if (name.equalsIgnoreCase("Treatments")) {
+    } else if (name.equalsIgnoreCase("Treatments")) {
       return TREATMENT_COL;
-    }
-    else if (name.equalsIgnoreCase("Season")) {
+    } else if (name.equalsIgnoreCase("Season")) {
       return SEASON_COL;
-    }
-    else if (name.equalsIgnoreCase("Moisture")) {
+    } else if (name.equalsIgnoreCase("Moisture")) {
       return MOISTURE_COL;
-    }
-    else if (name.equalsIgnoreCase("Temp")) {
+    } else if (name.equalsIgnoreCase("Temp")) {
       return TEMP_COL;
-    }
-    else if (name.equalsIgnoreCase("Tracking Species")) {
+    } else if (name.equalsIgnoreCase("Tracking Species")) {
       return TRACKING_SPECIES_COL;
-    }
-    else if (name.equalsIgnoreCase("Ownership")) {
+    } else if (name.equalsIgnoreCase("Ownership")) {
       return OWNERSHIP_COL;
-    }
-    else if (name.equalsIgnoreCase("Special Area")) {
+    } else if (name.equalsIgnoreCase("Special Area")) {
       return SPECIAL_AREA_COL;
-    }
-    else if (name.equalsIgnoreCase("Roads")) {
+    } else if (name.equalsIgnoreCase("Roads")) {
       return ROAD_STATUS_COL;
-    }
-    else if (name.equalsIgnoreCase("Trails")) {
+    } else if (name.equalsIgnoreCase("Trails")) {
       return TRAIL_STATUS_COL;
-    }
-    else if (name.equalsIgnoreCase("Land Type")) {
+    } else if (name.equalsIgnoreCase("Land Type")) {
       return LANDTYPE_COL;
-    }
-    else {
+    } else {
       return super.getColumnNumFromName(name);
     }
   }
