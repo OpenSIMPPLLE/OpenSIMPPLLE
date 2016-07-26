@@ -135,7 +135,6 @@ public class SystemKnowledge {
   private static final int VEG     = 0;
   private static final int AQUATIC = 1;
 
-
   private static boolean[] hasChanged  = new boolean[NUMID];
   private static boolean[] loadSaveMe  = new boolean[NUMID];
   private static boolean[] hasUserData = new boolean[NUMID];
@@ -1126,10 +1125,8 @@ public class SystemKnowledge {
           if (!isIndividualFile) { clearFile(FIRE_SEASON); }
         }
 
-        // TODO test loading
         if (entryId == KEANE_PARAMETERS && loadSaveMe[KEANE_PARAMETERS.ordinal()]){
           ProcessOccurrenceSpreadingFire.loadKeaneParameters(fin);
-          // TODO individualFile?
         }
 
         if (entryId == SPECIES && loadSaveMe[SPECIES.ordinal()]) {
