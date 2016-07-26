@@ -118,10 +118,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
+   * Update variable and let SystemKnowledge know it has been updated.
    * @param value An extreme wind multiplier for Keane spreading
    */
   public static void setKeaneExtremeWindMultiplier(double value) {
     keaneExtremeWindMultiplier = value;
+    SystemKnowledge.markChanged(SystemKnowledge.KEANE_PARAMETERS);
   }
 
   /**
@@ -132,10 +134,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
+   * Update variable and let SystemKnowledge know it has been updated.
    * @param value A wind speed variability factor for Keane spreading
    */
   public static void setKeaneWindSpeedVariability(double value) {
     keaneWindSpeedVariability = value;
+    SystemKnowledge.markChanged(SystemKnowledge.KEANE_PARAMETERS);
   }
 
   /**
@@ -146,10 +150,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
+   * Update variable and let SystemKnowledge know it has been updated.
    * @param value A wind direction variability in degrees for Keane spreading
    */
   public static void setKeaneWindDirectionVariability(double value) {
     keaneWindDirectionVariability = value;
+    SystemKnowledge.markChanged(SystemKnowledge.KEANE_PARAMETERS);
   }
 
   /**
@@ -209,6 +215,46 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
     super.writeExternal(out);
+  }
+
+  /**
+   * Writes Keane Parameters, used in System Knowledge save
+   * @param printWriter an open print writer
+   */
+  public static void saveKeaneParameters(PrintWriter printWriter){
+    printWriter.println(keaneExtremeWindMultiplier + ", " + keaneWindSpeedVariability + ", " +
+        keaneWindDirectionVariability);
+  }
+
+  /**
+   * Load Keane Parameters from a saved System Knowledge file
+   * @param bufferedReader open stream
+   */
+  public static void loadKeaneParameters(BufferedReader bufferedReader) throws SimpplleError {
+    try{
+      String line = bufferedReader.readLine();
+      if (line == null) {
+        throw new ParseError("Keane Parameters file is empty");
+      }
+      String[] group = line.split(",");
+      if (group.length > 3){
+        throw new ParseError("Keane Parameters file has too many items.");
+      } else if (group.length < 3){
+        throw new ParseError("Keane Parameters file has too few items.");
+      }
+
+      keaneExtremeWindMultiplier    = Double.parseDouble(group[0]);
+      keaneWindSpeedVariability     = Double.parseDouble(group[1]);
+      keaneWindDirectionVariability = Double.parseDouble(group[2]);
+    }
+    catch (ParseError error){
+      throw new SimpplleError(error.msg, error);
+    } catch (IOException ex){
+      throw new SimpplleError("Problems reading from fire season data file.");
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new SimpplleError("Invalid or missing data in Fire Season Data File.");
+    }
   }
 
   /**

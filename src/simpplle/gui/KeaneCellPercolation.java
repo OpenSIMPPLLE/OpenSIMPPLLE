@@ -92,7 +92,7 @@ public class KeaneCellPercolation extends JDialog {
     }
 
     /**
-     * Hides and disposes of the dialog.
+     * Updates stored values and disposes of the dialog.
      */
     private void selectOk() {
 

@@ -283,7 +283,7 @@ public class FireEvent extends Process {
     } catch (ParseError pe) {
       throw new SimpplleError(pe.msg,pe);
     } catch (IOException e) {
-      throw new SimpplleError("Problems read from fire season data file.");
+      throw new SimpplleError("Problems reading from fire season data file.");
     } catch (Exception e) {
       e.printStackTrace();
       throw new SimpplleError("Invalid or missing data in Fire Season Data File.");
