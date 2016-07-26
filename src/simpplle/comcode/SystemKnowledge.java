@@ -132,6 +132,7 @@ public class SystemKnowledge {
   private static final int VEG     = 0;
   private static final int AQUATIC = 1;
 
+
   private static boolean[] hasChanged  = new boolean[NUMID];
   private static boolean[] loadSaveMe  = new boolean[NUMID];
   private static boolean[] hasUserData = new boolean[NUMID];
@@ -923,7 +924,7 @@ public class SystemKnowledge {
     else if (name.equals(FIRE_SUPP_EVENT_LOGIC_ENTRY))            return FIRE_SUPP_EVENT_LOGIC;
     else if (name.equals(FIRE_SUPP_BEYOND_CLASS_A_ENTRY))         return FIRE_SUPP_BEYOND_CLASS_A;
     else if (name.equals(FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY)) return FIRE_SUPP_WEATHER_BEYOND_CLASS_A;
-    else if (name.equals(KEANE_PARAMETERS))                       return KEANE_PARAMETERS;
+    else if (name.equals(KEANE_PARAMETERS_ENTRY))                 return KEANE_PARAMETERS;
     else if (name.startsWith(WILDLIFE_ENTRY))                     return null;
     else if (name.equals(EMISSIONS_ENTRY))                        return null;
 

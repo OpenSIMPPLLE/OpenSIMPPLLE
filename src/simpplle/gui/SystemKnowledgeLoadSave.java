@@ -407,6 +407,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
         }
         else {
           cb.setSelected(option);
+          // set checkbox to enabled if saving, or if it exists while loading
           cb.setEnabled(save || (!save && option));
         }
       }
