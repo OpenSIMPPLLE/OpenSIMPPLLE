@@ -1,20 +1,24 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import simpplle.JSimpplle;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Vector;
 import java.util.zip.GZIPInputStream;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p> RegionalZone contains methods for loading system knowledge for a zone.
+ * RegionalZone contains methods for loading system knowledge for a zone.
  *
  * <p> Original source code authorship: Kirk A. Moeller
  */
@@ -305,18 +309,26 @@ public abstract class RegionalZone {
    */
   public void updateAllFmz(String keepNames[]) {
 
+    List<String> keysToRemove = new ArrayList<>();
+
     for (String key : allFmz.keySet()) {
 
       boolean keep = false;
 
-      for (int i = 0; i < keepNames.length; i++) {
-        if (key.equals(keepNames[i])) {
+      for (String keepName : keepNames) {
+        if (key.equals(keepName)) {
           keep = true;
           break;
         }
       }
 
-      if (!keep) allFmz.remove(key);
+      if (!keep) keysToRemove.add(key);
+
+    }
+
+    for (String key : keysToRemove) {
+
+      allFmz.remove(key);
 
     }
   }

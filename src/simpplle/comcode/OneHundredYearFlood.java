@@ -1,23 +1,22 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
+ * This class defines the zone for One Hundred Year Flood, a type of Process.
  *
- *<p>This class defines the zone for One Hundred Year Flood, a type of Process.
- *
- *<p>Note: this process can occurr in any region therefore there are doProbabilityCommon and doSpreadCommon methods
- *plus overloaded doProbability and doSpread methods for each region.
+ * <p>Note: this process can occurr in any region therefore there are doProbabilityCommon and doSpreadCommon methods
+ * plus overloaded doProbability and doSpread methods for each region.
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
-
 
 public class OneHundredYearFlood extends Process {
   private static final String printName = "ONE-HUNDRED-YEAR-FLOOD";

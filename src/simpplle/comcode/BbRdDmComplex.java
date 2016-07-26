@@ -1,29 +1,26 @@
-
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
 
 package simpplle.comcode;
 
 import java.awt.Color;
 
-
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class is for Bark Beetle Root Disease in Dwarf Mistletoe Complex, a type of Process.  
+ * This class is for Bark Beetle Root Disease in Dwarf Mistletoe Complex, a type of Process.
  * It is done for the Southern California and Sierra Nevada regional zones.  
  * Probability method is common to both zones, spread is false for both.  
  * All others return default values of 0 for probability and false for spread.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  *  
  * @see simpplle.comcode.Process
  */
-
 
 public class BbRdDmComplex extends Process {
   private static final String printName = "BB-RD-DM-COMPLEX";

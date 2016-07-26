@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.IOException;
@@ -6,29 +14,19 @@ import java.io.ObjectOutput;
 import java.util.ArrayList;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class defines Fire Suppression Class A Logic Data, a type of Logic Data
+ * This class defines Fire Suppression Class A Logic Data, a type of Logic Data
  *
  * Fire Process logic
  * determine all process probabilities for each evu ->use probabilities to select process
  * if selected process is fire event->if fire suppresssion ->determine probability of staying class size A due to weather or fire suppression → if yes change process for evu to succession and record a class A fire with suppression costs
  * if not suppressed at Class A level → determine type of fire and fire spread → at end of simulation calculate fire suppression costs and emissions
- *
  * if selected process is fire and fire suppression is no, determine probability of staying class A size due to weather → if it spreads beyond class A size determine type of firefighter and fire → at end of simulation calculate emissions
- *
  * if stays at class A size due to weather->change process for evu to succession and record class A fire
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  *
  * @see simpplle.comcode.LogicData
- * 
  */
 
 public class FireSuppClassALogicData extends LogicData {

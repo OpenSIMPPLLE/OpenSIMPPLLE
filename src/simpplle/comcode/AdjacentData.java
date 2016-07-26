@@ -1,19 +1,20 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.*;
 
 /**
-
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class creates an AdjacentData object.  
+ * This class creates an AdjacentData object.
  * Adjacent data contains Evu, wind, and position (above, below, or next to)
- *
  */
+
 public class AdjacentData implements Externalizable {
   static final long serialVersionUID = 8588855941181047793L;
   static final int  version          = 2;
@@ -154,7 +155,7 @@ public class AdjacentData implements Externalizable {
     return windSpeed;
   }
 
-  public void setWindSpeed(int windSpeed) {
+  public void setWindSpeed(double windSpeed) {
     this.windSpeed = windSpeed;
   }
 
@@ -162,7 +163,7 @@ public class AdjacentData implements Externalizable {
     return windDirection;
   }
 
-  public void setWindDirection(int windDirection) {
+  public void setWindDirection(double windDirection) {
     this.windDirection = windDirection;
   }
 
@@ -170,7 +171,7 @@ public class AdjacentData implements Externalizable {
     return spread;
   }
 
-  public void setSpread(int spread) {
+  public void setSpread(double spread) {
     this.spread = spread;
   }
 

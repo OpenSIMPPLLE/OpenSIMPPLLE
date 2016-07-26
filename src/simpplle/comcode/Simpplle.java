@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.*;
@@ -9,21 +17,13 @@ import java.util.zip.GZIPOutputStream;
 import java.util.zip.InflaterInputStream;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains several functions which implement user
+ * This class contains several functions which implement user
  * requested actions.  This class also provides static public storage
  * of the Zone, Area, and Simulation instances.  These variables are
  * referenced throughout the package.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
 
 public final class Simpplle {
@@ -362,16 +362,13 @@ public final class Simpplle {
    * This method will load a user defined area.
    * @param file of type File is the input area data file.
    */
-//  public void loadArea(File file, boolean skipAccumData,
-//                       boolean saveSkippedAccumData) throws SimpplleError {
   public void loadArea(File file) throws SimpplleError {
     clearSimulation();
     setStatusMessage("Loading Area ...");
 
     boolean newAreaFile = isNewAreaFile(file);
-//    boolean newAreaFile = true;
 
-    if (newAreaFile == false) {
+    if (!newAreaFile) {
       currentArea = new Area(file, Area.USER);
     }
     try {
@@ -831,29 +828,29 @@ public final class Simpplle {
   public void readSerializedArea(File areafile, File simfile) throws SimpplleError {
     readSerializedArea(areafile,simfile,false,null);
   }
+
   public void readSerializedArea(Area area) throws SimpplleError {
     readSerializedArea(null,null,true,area.getPath());
   }
-  public void readSerializedArea(File areafile, File simfile,
-                                 boolean sampleArea, String path)
-    throws SimpplleError
-  {
+
+  public void readSerializedArea(File areaFile, File simFile, boolean sampleArea, String path)
+      throws SimpplleError {
     try {
       InflaterInputStream stream;
       if (sampleArea) {
         stream = SystemKnowledge.getSampleAreaStream(path);
       }
       else {
-        stream = new GZIPInputStream(new FileInputStream(areafile));
+        stream = new GZIPInputStream(new FileInputStream(areaFile));
       }
 
       readSerializedArea(stream);
       stream.close();
 
-      if (simfile != null && !sampleArea) {
-        stream = new GZIPInputStream(new FileInputStream(simfile));
+      if (simFile != null && !sampleArea) {
+        stream = new GZIPInputStream(new FileInputStream(simFile));
         readSimulationData(stream);
-        getCurrentSimulation().restoreOutfile(simfile);
+        getCurrentSimulation().restoreOutfile(simFile);
         stream.close();
       }
     }
@@ -861,6 +858,7 @@ public final class Simpplle {
       throw new SimpplleError(ex.getMessage());
     }
   }
+
   private void readSerializedArea(InflaterInputStream stream) throws SimpplleError {
     int     size;
     Species species;

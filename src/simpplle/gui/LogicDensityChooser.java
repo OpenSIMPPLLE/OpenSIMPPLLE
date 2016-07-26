@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import java.awt.BorderLayout;
@@ -19,18 +27,10 @@ import java.awt.event.WindowAdapter;
 import simpplle.comcode.SimpplleType;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class creates the Logic Density Chooser dialog. 
+ * This class creates the Logic Density Chooser dialog.
  * 
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
- *
- * 
  */
 
 public class LogicDensityChooser extends JDialog {

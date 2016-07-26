@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import javax.swing.table.AbstractTableModel;
@@ -5,18 +13,10 @@ import java.util.ArrayList;
 import simpplle.comcode.AbstractLogicData;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class defines the JDialog for fire season. 
+ * This class defines the JDialog for fire season.
  * 
  * @author Documentation by Brian Losi
  * Original source code authorship: Kirk A. Moeller
- *
- *
  */
 
 public class ListSelectionTableDataModel extends AbstractTableModel {

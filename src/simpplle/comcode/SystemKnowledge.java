@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.*;
@@ -9,14 +17,8 @@ import com.thoughtworks.xstream.io.HierarchicalStreamDriver;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class provides for the ability to load a file which has information on files that need
- * to be loaded that modify system knowledge.
+ * This class provides for the ability to load a file which has information on files that need to be loaded
+ * that modify system knowledge.  
  * <p>Files such as:
  * fmz data, fire spread data, fire type data,
  * insect-disease data, treatments, and lock-in processes.
@@ -24,6 +26,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 public class SystemKnowledge {
 
   public enum Kinds {
@@ -1029,14 +1032,10 @@ public class SystemKnowledge {
   public static void readInputFile(File filename, boolean zoneFile, boolean readAll,
                                    boolean isIndividualFile) throws SimpplleError
   {
-    RegionalZone    zone = Simpplle.getCurrentZone();
-    JarInputStream  jarIn=null;
-    JarEntry        jarEntry;
-    BufferedReader  fin=null;
-    String          name=null;
-    int             begin, end;
-    Kinds           entryId;
-    String          msg;
+    RegionalZone zone = Simpplle.getCurrentZone();
+    JarInputStream jarIn = null;
+    BufferedReader fin = null;
+    String name = null;
 
     if (zoneFile && readAll) {
       for (int i=0; i<loadSaveMe.length; i++) {
@@ -1045,11 +1044,13 @@ public class SystemKnowledge {
       FireEvent.resetExtremeData();
     }
 
+    FireSpottingLogicData.clearMaxDistance();
+
     try {
       jarIn = new JarInputStream(new FileInputStream(filename));
       fin   = new BufferedReader(new InputStreamReader(jarIn));
 
-      jarEntry = jarIn.getNextJarEntry();
+      JarEntry jarEntry = jarIn.getNextJarEntry();
       while (jarEntry != null) {
         if (jarEntry.isDirectory()) {
           jarEntry = jarIn.getNextJarEntry();
@@ -1057,14 +1058,12 @@ public class SystemKnowledge {
         }
         name = jarEntry.getName();
         name = stripZoneDir(name);
-        begin = name.indexOf('/');
-        end   = name.lastIndexOf('.');
+        int begin = name.indexOf('/');
+        int end   = name.lastIndexOf('.');
         if (end < 0) { end = name.length(); }
-        msg = "  ---> Loading " +
-              name.substring(0,begin) + " " +
-              name.substring(begin+1,end);
-        name    = name.toUpperCase();
-        entryId = getKnowledgeEntryId(name);
+        String msg = " ---> Loading " + name.substring(0,begin) + " " + name.substring(begin+1,end);
+        name = name.toUpperCase();
+        Kinds entryId = getKnowledgeEntryId(name);
 
         if (entryId != null && entryId != VEGETATION_PATHWAYS) {
           Simpplle.setStatusMessage(msg);

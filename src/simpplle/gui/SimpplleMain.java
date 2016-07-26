@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import com.mchange.v1.util.ArrayUtils;
@@ -18,13 +26,7 @@ import java.util.Collections;
 import java.util.Vector;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This is the main screen for the OpenSimpplle gui.  It consists of a menu bar and the following menu items
+ * This is the main screen for the OpenSimpplle gui.  It consists of a menu bar and the following menu items
  * File, System Knowledge, Import, Export, Reports, Intepretations, View Results, Utilities, Help.  Thre are also buttons to create new simulation, and 
  * labels for current zone and area.
  * 
@@ -317,7 +319,7 @@ public class SimpplleMain extends JFrame {
     newArea.addActionListener(new java.awt.event.ActionListener() {
 
       public void actionPerformed(ActionEvent e) {
-        newArea_actionPerformed(e);
+        newArea_actionPerformed();
       }
     });
     runSimulation.setEnabled(false);
@@ -1729,10 +1731,10 @@ public class SimpplleMain extends JFrame {
     return dlg.getFiles();
   }
   /**
-   * Gets the area to be used depending on user input.  CHoices are Sample, user defined, previous, previous old, or none (if nothing selected)
-   * @param e
+   * Gets the area to be used depending on user input.  Choices are Sample, user defined,
+   * previous, previous old, or none (if nothing selected)
    */
-  void newArea_actionPerformed(ActionEvent e) {
+  void newArea_actionPerformed() {
     int           choice;
     File          outfile;
     NewArea       dlg = new NewArea(this,true);
@@ -1812,13 +1814,15 @@ public class SimpplleMain extends JFrame {
       // Some areas seem to have been created incorrectly so we need
       // to make sure that if they only have one lifeform in all units
       // that we make sure that lifeform is marked as NA.
-      if (area.multipleLifeformsEnabled() == false &&
+      if (!area.multipleLifeformsEnabled() &&
           choice != NewArea.PREVIOUS &&
           choice != NewArea.PREVIOUS_OLD) {
         // Need to change Evu's to be single lifeform;
         Evu[] evus = area.getAllEvu();
-        for (int i=0; i<evus.length; i++) {
-          if (evus[i] != null) { evus[i].makeSingleLife(); }
+        for (Evu evu : evus) {
+          if (evu != null) {
+            evu.makeSingleLife();
+          }
         }
       }
       TrackingSpeciesReportData.getInstance().initialize();
@@ -1836,7 +1840,7 @@ public class SimpplleMain extends JFrame {
  * @param e
  */
   void runSimulation_actionPerformed(ActionEvent e) {
-    SimParam  dlg = new SimParam(this, "Set Simulation Parameters", true, fireSpreadModels);
+    SimParam  dlg = new SimParam(this, fireSpreadModels);
     setDialogLocation(dlg);
     dlg.setVisible(true);
   }

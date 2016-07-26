@@ -1,23 +1,24 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
 import simpplle.comcode.SystemKnowledge.Kinds;
 import simpplle.comcode.*;
+
 /**
-*
-* The University of Montana owns copyright of the designated documentation contained 
-* within this file as part of the software product designated by Uniform Resource Identifier 
-* UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
-* Open Source License Contract pertaining to this documentation and agrees to abide by all 
-* restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
-*
-* <p>Class that defines Do Competition Logic Panel a type of vegetative logic panel.
-* Choices are selected column, lifeform, minimum canopy, maximum canopy, density, change lifeforms, and action.
-* 
-* @author Documentation by Brian Losi
-* <p>Original source code authorship: Kirk A. Moeller 
-*     
-*/
+ * Class that defines Do Competition Logic Panel a type of vegetative logic panel.
+ * Choices are selected column, lifeform, minimum canopy, maximum canopy, density, change lifeforms, and action.
+ *
+ * @author Documentation by Brian Losi
+ * <p>Original source code authorship: Kirk A. Moeller
+ */
 
 public class DoCompetitionLogicPanel extends VegLogicPanel {
 	/**
@@ -38,8 +39,7 @@ public class DoCompetitionLogicPanel extends VegLogicPanel {
     }
   }
   /**
-   * Initializes the Do Competion Logic panel by calling superclass initialize base method.  
-   * @see void simpplle.gui.BaseLogicPanel.initializeBase()
+   * Initializes the Do Competion Logic panel by calling superclass initialize base method.
    */
   protected void initialize() {
     initializeBase();

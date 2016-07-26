@@ -1,26 +1,25 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.*;
 import java.util.Vector;
+
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>Originally intended this class to be internal to Treatment.
- *   However, compiler would not allow me to create an instance from
- *   a static context.  Don't really know why, must have something to
- *   do with it be an internal class.
+ * Originally intended this class to be internal to Treatment.
+ * However, compiler would not allow me to create an instance from
+ * a static context.  Don't really know why, must have something to
+ * do with it be an internal class.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
- *   
  */
-
 public abstract class TreatmentLogicData {
   private static final int NUM_EVAL = 6;
 

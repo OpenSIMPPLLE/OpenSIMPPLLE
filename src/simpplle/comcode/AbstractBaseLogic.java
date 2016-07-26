@@ -1,5 +1,12 @@
-package simpplle.comcode;
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
 
+package simpplle.comcode;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,19 +15,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class defines the base logic for the System.  It is an abstract class and therefore cannot be instantiated.  It is subclassed by many other classes.  
+ * This class defines the base logic for the System.  It is an abstract class and therefore cannot be instantiated.  It is subclassed by many other classes.
  * For an understanding of the base logic for the system see BaseLogic.java. 
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- * 
  */
+
 public abstract class AbstractBaseLogic {
   private static final int version = 3;
   protected SystemKnowledge.Kinds sysKnowKind;

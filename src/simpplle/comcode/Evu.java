@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.awt.*;
@@ -14,21 +22,16 @@ import org.hibernate.*;
 import simpplle.comcode.Climate.*;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained
- * within this file as part of the software product designated by Uniform Resource Identifier
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
+ *
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
 
 public final class Evu extends NaturalElement implements Externalizable {
 
   static final long serialVersionUID        = -4593527729379592789L;
-  static final int  version                 = 8;
+  static final int  version                 = 9;
   static final int  accumDataVersion        = 1;
   static final int  spatialRelationsVersion = 1;
 
@@ -5108,30 +5111,22 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Determines if a fire will spread from one EVU into another EVU.
-   *
-   * This method is static and synchronized in order to be certain that the
-   * fields we need in the fromEvu and toEvu are not modified by another
-   * thread while this method is executing.  There is probably a non-static
-   * way of doing this.
+   * Attempts to spread a fire between two vegetated units using fire spreading rules. If the fire
+   * spreads to a life form, then the remaining life forms are spread to using fire type rules.
+   * <p>
+   * This method is static and synchronized in order to be certain that the fields we need in the
+   * fromEvu and toEvu are not modified by another thread while this method is executing.  There is
+   * probably a non-static way of doing this.
    *
    * @todo make this method non-static and less restricted (if possible).
    *
-   * @param fromEvu The Evu we are trying to spread from.
-   * @param toEvu   The Evu we are trying to spread to.
+   * @param fromEvu The unit we are trying to spread from
+   * @param toEvu The unit we are trying to spread to
    * @return True if spread was successful
    */
   public static synchronized boolean doFireSpread(Evu fromEvu, Evu toEvu, Lifeform fromLifeform) {
 
-    // Don't spread into a unit that has fire or a lock-in process.
-
-    if (toEvu.hasFireAnyLifeform() ||
-        toEvu.hasLockinProcessAnyLifeform() ||
-        toEvu.isSuppressed()) {
-
-      return false;
-
-    }
+    if (toEvu.hasLockinProcessAnyLifeform() || toEvu.isSuppressed()) return false;
 
     ProcessType fromProcess = fromEvu.getState(fromLifeform).getProcess();
     ProcessType fireProcess = null;
@@ -5140,11 +5135,8 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     Climate.Season currentSeason = Simulation.getInstance().getCurrentSeason();
 
-    Lifeform[] lives = Lifeform.getAllValues();
+    for (Lifeform toLifeform : Lifeform.getAllValues()) {
 
-    for (int i = 0; i < lives.length; i++) {
-
-      Lifeform toLifeform = lives[i];
       Area.currentLifeform = toLifeform;
 
       if (!toEvu.hasLifeform(toLifeform)) continue;
@@ -5176,7 +5168,6 @@ public final class Evu extends NaturalElement implements Externalizable {
         fireProb    = toEvu.getState(toLifeform).getProb();
 
       }
-
     }
 
     Area.currentLifeform = null;
@@ -7963,11 +7954,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * In these read/write methods for AdjacentData I have written out
-   * the arrays explicitily to make things faster.  Although writing out the
-   * actual array worked it nearly tripled the time to read/write the file.
-   * In addition I am writing the Evu.id instead of the actual instance because
-   * I suspect that was what was causing the delay.
+   * This method reads the arrays explicitly to make things faster.
+   * @see #writeExternalAdjacentData(ObjectOutput)
    */
   public void readExternalAdjacentData(ObjectInput in, Area area) throws IOException, ClassNotFoundException {
     int version = in.readInt();
@@ -7978,15 +7966,32 @@ public final class Evu extends NaturalElement implements Externalizable {
       adjacentData[i].setEvu(area.getEvu(in.readInt()));
       adjacentData[i].setPosition(in.readChar());
       adjacentData[i].setWind(in.readChar());
+      if (version >= 9){
+        adjacentData[i].setSpread(in.readDouble());
+        adjacentData[i].setWindSpeed(in.readDouble());
+        adjacentData[i].setWindDirection(in.readDouble());
+        adjacentData[i].setSlope(in.readDouble());
+      }
     }
   }
+
+  /**
+   * This method writes the arrays explicitly to make things faster. Although writing out the actual
+   * array worked, it nearly tripled the time to read/write the file. In addition, it writes the
+   * Evu.id instead of the actual instance because it is suspected that was causing the delay.
+   */
   public void writeExternalAdjacentData(ObjectOutput out) throws IOException {
     out.writeInt(version);
     out.writeInt(adjacentData.length);
-    for (int i=0; i<adjacentData.length; i++) {
-      out.writeInt(adjacentData[i].getEvu().getId());
-      out.writeChar(adjacentData[i].getPosition());
-      out.writeChar(adjacentData[i].getWind());
+
+    for (AdjacentData anAdjacentData : adjacentData) {
+      out.writeInt(anAdjacentData.getEvu().getId());
+      out.writeChar(anAdjacentData.getPosition());
+      out.writeChar(anAdjacentData.getWind());
+      out.writeDouble(anAdjacentData.getSpread());
+      out.writeDouble(anAdjacentData.getWindSpeed());
+      out.writeDouble(anAdjacentData.getWindDirection());
+      out.writeDouble(anAdjacentData.getSlope());
     }
   }
 

@@ -1,22 +1,25 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import simpplle.comcode.InvasiveSpeciesLogicData;
 import javax.swing.table.AbstractTableModel;
 import simpplle.comcode.SoilType;
 import java.io.File;
-/** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class creates a SoilType Data Model, an extension of the Abstract table model.
+
+/**
+ * This class creates a SoilType Data Model, an extension of the Abstract table model.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
+
 public class SoilTypeDataModel extends AbstractTableModel {
   public static final int SOIL_TYPE_COL = 0;
   public static final int SELECTED_COL  = 1;

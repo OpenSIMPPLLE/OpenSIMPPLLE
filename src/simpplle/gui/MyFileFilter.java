@@ -1,27 +1,26 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
-
-
 
 import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
 
-
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class is an implementation of javax FileFilter (an abstract class).  It creates a customized way to handle files of a certain extension.
+ * This class is an implementation of javax FileFilter (an abstract class).  It creates a customized way to handle files of a certain extension.
  * There is a series of constructors which often pass suffixes, extensions, and descriptions amongst themselves ending depending on the 
  * needs required for the file filter.   
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *   
  */
+
 public class MyFileFilter extends javax.swing.filechooser.FileFilter {
   private String[] extensions;
   private String   description;

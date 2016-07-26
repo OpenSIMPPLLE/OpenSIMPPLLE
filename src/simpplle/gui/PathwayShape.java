@@ -1,3 +1,10 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
 
 package simpplle.gui;
 
@@ -9,20 +16,14 @@ import java.awt.Point;
 import simpplle.comcode.Process;
 import simpplle.comcode.Species;
 import simpplle.comcode.VegetativeType;
-/** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * 
- * <p>This class creates the vegetative pathway diagrams.  
- * 
- * 
+
+/**
+ *This class creates the vegetative pathway diagrams.
+ *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
+
 public class PathwayShape {
   VegetativeType state;
   public int     width, height;
