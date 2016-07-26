@@ -11,104 +11,130 @@ package simpplle.comcode;
 import java.io.*;
 import java.util.ArrayList;
 
-/** 
- * This is the import data location for the AbstractBaseLogic class.
- * It is abstract and cannot be instantiated. 
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+/**
+ * AbstractLogicData is a template for a logic rule.
  */
 
 public abstract class AbstractLogicData implements Externalizable {
   static final long serialVersionUID = -170886324118818854L;
-  static final int  version          = 1;
+  static final int  version = 1;
 
+  /**
+   * The type of system knowledge associated with this rule.
+   */
   protected SystemKnowledge.Kinds sysKnowKind;
+
+  /**
+   * Returns a copy of this logic data.
+   */
   public abstract AbstractLogicData duplicate();
-  
+
+  /**
+   * Copies the system knowledge kind from this into the passed logic data.
+   */
   public void duplicate(AbstractLogicData logicData) {
     sysKnowKind = logicData.sysKnowKind;
   }
-/**
- * Get the object by column Id.
- * @param col column Id
- * @return
- */
-  public abstract Object getValueAt(int col);
-/**
- * Set a parameter object in a column based on column Id.
- * @param col column Id
- * @param value object being set
- */
-  public abstract void setValueAt(int col, Object value);
-/**
- * Abstract method to get the object in list at a particular list index and column Id
- * @param listIndex the index into the list where the object is located
- * @param col column Id
- * @return the object to be returned
- */
-  public abstract Object getListValueAt(int listIndex, int col);
+
   /**
-   * Abstract method to adds an Object to a list at a particular column Id.
-   * @param col column Id.
-   * @param value the object to be added to the list
+   * Returns an object from the specified column index.
+   *
+   * @param col A column index
+   */
+  public abstract Object getValueAt(int col);
+
+  /**
+   * Assigns a value to a specified column index.
+   *
+   * @param col A column index
+   * @param value An object
+   */
+  public abstract void setValueAt(int col, Object value);
+
+  /**
+   * Returns an element from a list from a specified column index.
+   *
+   * @param listIndex An element index
+   * @param col A column index
+   * @return An object
+   */
+  public abstract Object getListValueAt(int listIndex, int col);
+
+  /**
+   * Adds an element to a list at a specified column index.
+   *
+   * @param col A column index
+   * @param value An object to add
    */
   public abstract void addListValueAt(int col, Object value);
+
   /**
-   *Abstract method to remove an object from a list based on column Id.
-   * @param col the column Id.
-   * @param value the object to be removed
+   * Removes a value from a list at a specified column index.
+   *
+   * @param col A column index
+   * @param value An object to remove
    */
   public abstract void removeListValueAt(int col, Object value);
+
   /**
-   * Abstract method to get the list row count of a particular column based on column Id.
-   * @param col the column Id
-   * @return the row count.
+   * Returns the number of elements in a list at a specified column index.
+   *
+   * @param col A column index
+   * @return The total number of elements
    */
   public abstract int getListRowCount(int col);
+
   /**
-   * Abstract method to check whether list has a particular object in it.  
-   * @param col column Id
-   * @param value the object being checked
-   * @return
+   * Determines if a list at a specified column index contains a value.
+   *
+   * @param col A column index
+   * @param value An object to search for
+   * @return True if the object is in the list
    */
   public abstract boolean hasListValue(int col, Object value);
-/**
- * Is match 
- * @return true
- */
-  public boolean isMatch() { return true;}
-/**
- * Abstract method for getting all the possible values at a column Id
- * @param col the column Id
- * @return arraylist of all possible values
- */
+
+  /**
+   * TODO: Look into removing this method
+   *
+   * @return True
+   */
+  public boolean isMatch() {
+    return true;
+  }
+
+  /**
+   * Returns an array of possible values for a specified column.
+   *
+   * @param col A column index
+   * @return An array of legal values
+   */
   public abstract ArrayList getPossibleValues(int col);
-/**
- * Marks the system knowledge changed for a particular type of system knowledge.  
- */
+
+  /**
+   * Flags a change to this rule's system knowledge type.
+   */
   public void markChanged() {
     SystemKnowledge.markChanged(sysKnowKind);
   }
-/**
- * Reads an external object from a source and the system knowledge kind is set with it.
- * Currently version is read in, but nothing is done with it.  Might be deprecated in V1.1
- * @throws IOException, ClassNotFoundException
- */
+
+  /**
+   * Reads an object and stores it as a system knowledge source.
+   *
+   * @throws IOException
+   * @throws ClassNotFoundException
+   */
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
-
     SystemKnowledge.setKnowledgeSource(sysKnowKind,(String)in.readObject());
-
   }
   
   /**
-   * Writes Logic Data to external source.  Writes version #, which is final in this class at 1 
+   * Writes the system knowledge source for this rule's kind of system knowledge.
+   *
    * @throws IOException
    */
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
-
     String knowledge = SystemKnowledge.getKnowledgeSource(sysKnowKind);
     out.writeObject(knowledge);
   }
