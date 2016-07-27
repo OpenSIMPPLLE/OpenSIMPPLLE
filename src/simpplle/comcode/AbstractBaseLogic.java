@@ -15,8 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * AbstractBaseLogic is a template for a type of system knowledge. Each instance contains a
- * collection of logic tables. Each logic table controls one aspect of that knowledge.
+ * AbstractBaseLogic is a template for tabular logic data. It provides methods to query and
+ * manipulate rows, columns, and cells. Multiple kinds of logic can be stored in an implementing
+ * class, each in its own table.
  */
 
 public abstract class AbstractBaseLogic {
@@ -140,9 +141,9 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Returns the index of the first column, 'Priority'.
+   * Returns an index for the column matching the provided name.
    *
-   * @param name A column name
+   * @param name The name to search for
    * @return A column index
    */
   public int getColumnNumFromName(String name) {

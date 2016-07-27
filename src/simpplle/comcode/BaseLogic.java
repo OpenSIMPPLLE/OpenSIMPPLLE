@@ -9,17 +9,7 @@
 package simpplle.comcode;
 
 /**
- * This is an abstract class which contains the enumeration for columns and a string array containing they System Knowledge kinds.
- * Columns are built by adding to the calling the AbstractBaseLogic variable LAST_COL.  
- * By default this is set to the first column if there is not already one in there.
- * The columns for Base Logic are ROW_COL,ECO_GROUP_COL,SPECIES_COL,SIZE_CLASS_COL,DENSITY_COL,PROCESS_COL,
- * TREATMENT_COL,SEASON_COL,MOISTURE_COL,TEMP_COL,TRACKING_SPECIES_COL,
- * OWNERSHIP_COL, SPECIAL_AREA_COL, ROAD_STATUS_COL, TRAIL_STATUS_COL, LANDTYPE_COL
- *
- * @author Documentation by Brian Losi
- * <p>Original source authorship: Kirk A. Moeller
- *
- * @see simpplle.comcode.AbstractBaseLogic
+ * BaseLogic adds default columns to the tabular logic data handled by AbstractBaseLogic.
  */
 
 public abstract class BaseLogic extends AbstractBaseLogic {
@@ -63,13 +53,18 @@ public abstract class BaseLogic extends AbstractBaseLogic {
   public static final int LAST_COL             = LANDTYPE_COL;
 
   /**
-   * These form the basic system knowledge processes. These are placed into a hash map which will
-   * be keyed by their string name.
-   * @param kinds
+   * Adds default columns to each kind of knowledge. The columns are: ecological grouping,
+   * species, size class, density, process, treatment, season, moisture, temperature, tracking
+   * species, ownership, special area, road status, trail status, and land type.
+   *
+   * @param kinds An array of knowledge kinds
    */
   protected BaseLogic(String[] kinds) {
+
     super(kinds);
-    for (int i=0; i<kinds.length; i++) {
+
+    for (int i = 0; i < kinds.length; i++) {
+
       Process process = Process.findInstance(kinds[i]);
       if (process != null && process.isUniqueUI()) { continue; }
 
@@ -88,18 +83,18 @@ public abstract class BaseLogic extends AbstractBaseLogic {
       addColumn(kinds[i],"ROAD_STATUS_COL");
       addColumn(kinds[i],"TRAIL_STATUS_COL");
       addColumn(kinds[i],"LANDTYPE_COL");
-    }
 
+    }
   }
 
   /**
-   * method to get formatted string version of to be displayed in user interactions and reports 
-   * @param col ordinal into the column enumeration
-   * @return name of column "Eco Group", "Species","Size Classes", "Densities", "Processes", "Treatments", "Season",  "Moisture", "Temp",
-   *  "Tracking Species", "Ownership", "Special Area", "Roads", "Trails", "Land Type" or "Priority"(for ROW_COL)
+   * Returns the name of the column at columnIndex.
+   *
+   * @param columnIndex A column index
+   * @return The column name, or an empty string otherwise
    */
-  public static String getColumnName(int col) {
-    switch (col) {
+  public static String getColumnName(int columnIndex) {
+    switch (columnIndex) {
       case ECO_GROUP_COL:
         return "Eco Group";
       case SPECIES_COL:
@@ -131,15 +126,15 @@ public abstract class BaseLogic extends AbstractBaseLogic {
       case LANDTYPE_COL:
         return "Land Type";
       default:
-        return AbstractBaseLogic.getColumnName(col);
+        return AbstractBaseLogic.getColumnName(columnIndex);
     }
   }
 
   /**
-   * Returns the static final int of column num from the column name 
-   * ROW_COL =0,ECO_GROUP_COL=1,SPECIES_COL=2,SIZE_CLASS_COL=3,DENSITY_COL=4,PROCESS_COL=5,
-   * TREATMENT_COL=6,SEASON_COL=7,MOISTURE_COL=8,TEMP_COL=9,TRACKING_SPECIES_COL=10,
-   * OWNERSHIP_COL=11, SPECIAL_AREA_COL=12, ROAD_STATUS_COL=13, TRAIL_STATUS_COL=14, LANDTYPE_COL=15
+   * Returns an index for the column matching the provided name.
+   *
+   * @param name The name to search for
+   * @return A column index
    */
   public int getColumnNumFromName(String name) {
     if (name.equalsIgnoreCase("Eco Group")) {
