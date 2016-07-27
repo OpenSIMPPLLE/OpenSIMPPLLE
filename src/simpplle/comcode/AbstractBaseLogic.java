@@ -17,7 +17,7 @@ import java.util.HashMap;
 /**
  * AbstractBaseLogic is a template for tabular logic data. It provides methods to query and
  * manipulate rows, columns, and cells. Multiple kinds of logic can be stored in an implementing
- * class, each in its own table.
+ * class, each in its own table. The logic collectively represents a kind of system knowledge.
  */
 
 public abstract class AbstractBaseLogic {
@@ -25,22 +25,22 @@ public abstract class AbstractBaseLogic {
   private static final int version = 3;
 
   /**
-   * The type of system knowledge associated with these logic tables.
+   * The kind of system knowledge associated with this logic.
    */
   protected SystemKnowledge.Kinds sysKnowKind;
 
   /**
-   * Maps a logic table name to a list of column names. The property name is misleading.
+   * Maps a kind of logic to a list of column names.
    */
   protected HashMap<String, ArrayList<String>> columns;
 
   /**
-   * Maps a logic table name to a list of visible column names.
+   * Maps a kind of logic to a list of visible column names.
    */
   protected HashMap<String, ArrayList<String>> visibleColumnsHm = new HashMap<>();
 
   /**
-   * Maps a logic table name to columns of logic data.
+   * Maps a kind of logic to rows of logic data.
    */
   public HashMap<String, ArrayList<AbstractLogicData>> data = new HashMap<>();
 
@@ -60,10 +60,9 @@ public abstract class AbstractBaseLogic {
   private static boolean noChangeRead = false;
 
   /**
-   * Creates a logic table for each system knowledge kind with a matching process and adds a
-   * row index column.
+   * Creates a table for each kind of logic with a priority column.
    *
-   * @param kinds An array of logic table names
+   * @param kinds An array of logic kinds
    */
   protected AbstractBaseLogic(String[] kinds) {
     visibleColumnsHm.clear(); //
@@ -77,9 +76,9 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Adds a new column to a logic table.
+   * Adds a new column.
    *
-   * @param kind A logic table name
+   * @param kind A kind of logic
    * @param column The name of the new column
    */
   protected void addColumn(String kind, String column) {
@@ -87,9 +86,9 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Returns the number of columns in a logic table.
+   * Returns a column count.
    *
-   * @param kind A logic table name
+   * @param kind A kind of logic
    * @return The number of columns
    */
   public int getColumnCount(String kind) {
@@ -98,56 +97,59 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Returns the name of a column in a logic table at a specified index.
+   * Returns the name of the column at columnIndex.
    *
-   * @param col A column index
-   * @return A column name
+   * @param kind A kind of logic
+   * @param columnIndex A column index
+   * @return The name of the column
    */
-  public abstract String getColumnName(String kind, int col);
+  public abstract String getColumnName(String kind, int columnIndex);
 
   /**
    * Returns the name of the first column.
    *
-   * @param col A column index
+   * @param columnIndex A column index
    * @return "Priority" if the index is zero, otherwise an empty string
    */
-  public static String getColumnName(int col) {
-    switch (col) {
-      case ROW_COL: return "Priority";
-      default: return "";
+  public static String getColumnName(int columnIndex) {
+    switch (columnIndex) {
+      case ROW_COL:
+        return "Priority";
+      default:
+        return "";
     }
   }
 
   /**
-   * Returns the index of a column for a kind of system knowledge given the column's name.
+   * Returns the index of the column named columnName.
    *
-   * @param kind A logic table name
-   * @param colIdName A column name
-   * @return The index of the column if it exists
+   * @param kind A kind of logic
+   * @param columnName A column name
+   * @return The index of the column
    */
-  public int getColumnPosition(String kind,String colIdName) {
-    return columns.get(kind).indexOf(colIdName);
+  public int getColumnPosition(String kind,String columnName) {
+    return columns.get(kind).indexOf(columnName);
   }
 
   /**
-   * Returns the name of a column for a kind of system knowledge given the column's index.
+   * Returns the name of the column at columnIndex.
    *
-   * @param kind A logic table name
-   * @param col A column index
-   * @return The name of the column if it exists
+   * @param kind A kind of logic
+   * @param columnIndex A column index
+   * @return The name of the column
    */
-  public String getColumnIdName(String kind,int col) {
-    return columns.get(kind).get(col);
+  public String getColumnIdName(String kind,int columnIndex) {
+    return columns.get(kind).get(columnIndex);
   }
 
   /**
-   * Returns an index for the column matching the provided name.
+   * Returns the index of the column named columnName.
    *
-   * @param name The name to search for
-   * @return A column index
+   * @param columnName A column name
+   * @return The index of the column
    */
-  public int getColumnNumFromName(String name) {
-    if (name.equalsIgnoreCase("Priority")) {
+  public int getColumnNumFromName(String columnName) {
+    if (columnName.equalsIgnoreCase("Priority")) {
       return ROW_COL;
     }
     return 0;
@@ -156,7 +158,7 @@ public abstract class AbstractBaseLogic {
   /**
    *
    *
-   * @param kind A logic table name
+   * @param kind A kind of logic
    */
   public void addVisibleColumnAll(String kind) {
     for (int i=0; i<columns.get(kind).size(); i++) {
@@ -167,7 +169,7 @@ public abstract class AbstractBaseLogic {
   /**
    *
    *
-   * @param kind A logic table name
+   * @param kind A kind of logic
    * @param name
    */
   public void addVisibleColumn(String kind, String name) {
@@ -178,7 +180,7 @@ public abstract class AbstractBaseLogic {
   /**
    *
    *
-   * @param kind A logic table name
+   * @param kind A kind of logic
    * @param col
    */
   public void addVisibleColumn(String kind, int col) {
@@ -189,7 +191,7 @@ public abstract class AbstractBaseLogic {
   /**
    *
    *
-   * @param kind A logic table name
+   * @param kind A kind of logic
    * @param col
    * @param name A column name
    */
@@ -209,7 +211,7 @@ public abstract class AbstractBaseLogic {
   /**
    * Hides a visible column and flags a change.
    *
-   * @param kind The name of a logic table
+   * @param kind A kind of logic
    * @param col The index of a column to hide
    */
   public void removeVisibleColumn(String kind, int col) {
@@ -266,7 +268,7 @@ public abstract class AbstractBaseLogic {
   /**
    *
    *
-   * @param kind A logic table name
+   * @param kind A kind of logic
    * @param col
    * @param values An array of column names
    * @return A new column index
@@ -282,29 +284,29 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Adds a row to a logic table.
+   * Creates a row of logic at insertPos.
    *
    * @param insertPos The index of the new row
-   * @param kind A logic table name
+   * @param kind A kind of logic
    */
   public abstract void addRow(int insertPos, String kind);
 
   /**
-   * Adds a row to a logic table.
+   * Appends a row of logic.
    *
-   * @param kind A logic table name
-   * @param logicData A row of data
+   * @param kind A kind of logic
+   * @param logicData The data to be appended
    */
   public void addRow(String kind, AbstractLogicData logicData) {
     addRow(-1,kind,logicData);
   }
 
   /**
-   * Adds a row to a logic table.
+   * Inserts a row of logic.
    *
    * @param insertPos The index of the new row
-   * @param kind A logic table name
-   * @param logicData A row of data
+   * @param kind A kind of logic
+   * @param logicData The data to be added
    */
   public void addRow(int insertPos, String kind, AbstractLogicData logicData) {
     int size = getData(kind,true).size();
@@ -316,20 +318,20 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Removes a row from a logic table.
+   * Removes a row of logic.
    *
-   * @param row A row index
-   * @param kind A logic table name
+   * @param row The index of the row to remove
+   * @param kind A kind of logic
    */
   public void removeRow(int row, String kind) {
     getData(kind).remove(row);
   }
 
   /**
-   * Removes a row from a logic table and flags a change.
+   * Removes a row of logic and flags a change.
    *
-   * @param row A row index
-   * @param kind A logic table name
+   * @param row The index of the row to remove
+   * @param kind A kind of logic
    */
   public void deleteDataRow(int row, String kind) {
     getData(kind).remove(row);
@@ -337,51 +339,55 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Duplicates a row in a logic table.
+   * Duplicates a row of logic.
    *
-   * @param row A row index
+   * @param row The index of the row to duplicate
    * @param insertPos The index of the new row
-   * @param kind A logic table name
+   * @param kind A kind of logic
    */
   public abstract void duplicateRow(int row, int insertPos, String kind);
 
   /**
-   * Moves a row up in a logic table.
+   * Decrements the index of a row.
    *
    * @param row The index of the row to move
-   * @param kind A logic table name
+   * @param kind A kind of logic
    * @return The new row index
    */
   public int moveRowUp(int row, String kind) {
     AbstractLogicData logicData = getValueAt(row,kind);
     removeRow(row,kind);
-    int newRow=row-1;
-    if (newRow < 0) { newRow = getData(kind).size(); }
+    int newRow = row - 1;
+    if (newRow < 0) {
+      newRow = getData(kind).size();
+    }
     getData(kind).add(newRow,logicData);
     return newRow;
   }
 
   /**
-   * Moves a row down in a logic table.
+   * Increments the index of a row.
    *
    * @param row The index of the row to move
-   * @param kind A logic table name
+   * @param kind A kind of logic
    * @return The new row index
    */
   public int moveRowDown(int row, String kind) {
     AbstractLogicData logicData = getValueAt(row,kind);
     removeRow(row,kind);
-    int newRow=row+1;
-    if (row+1 > getData(kind).size()) { newRow = 0; }
+    int newRow = row + 1;
+    if (newRow > getData(kind).size()) {
+      newRow = 0;
+    }
     getData(kind).add(newRow,logicData);
     return newRow;
   }
 
   /**
-   * Returns the index of the last row in a logic table.
+   * Returns the index of the last row.
    *
-   * @param kind A logic table name
-   * @return A row index
+   * @param kind A kind of logic
+   * @return The index of the last row
    */
   public int getLastRowIndex(String kind) {
     return getData(kind).size() - 1;
@@ -389,22 +395,22 @@ public abstract class AbstractBaseLogic {
 
 
   /**
-   * Returns the number of rows in a logic table.
+   * Returns a row count.
    *
-   * @param kind A logic table name
-   * @return A row count
+   * @param kind A kind of logic
+   * @return The number of rows of logic
    */
   public int getRowCount(String kind) {
     return isDataPresent(kind) ? getData(kind).size() : 0;
   }
 
   /**
-   * Assigns a value to a cell in a logic table and flags a change.
+   * Assigns a value to a cell and flags a change.
    *
    * @param value A cell value
    * @param row A row index
    * @param col A column index
-   * @param kind A logic table name
+   * @param kind A kind of logic
    */
   public void setData(Object value, int row, int col, String kind) {
     getData(kind).get(row).setValueAt(col,value);
@@ -412,21 +418,21 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Returns the data for all columns in a logic table.
+   * Returns all of the rows from a kind of logic.
    *
-   * @param kind A logic table name
-   * @return An array containing all logic data
+   * @param kind A kind of logic
+   * @return A list of of row data
    */
   protected ArrayList<AbstractLogicData> getData(String kind) {
     return data.get(kind);
   }
 
   /**
-   * Returns the data for all columns in a logic table. If no data exists, an empty list is returned.
+   * Returns all of the rows from a kind of logic or returns an empty array if none exist.
    *
-   * @param kind A logic table name
+   * @param kind A kind of logic
    * @param addIfNull A flag indicating if an empty list should be returned if there isn't data
-   * @return An array containing all logic data
+   * @return A list of row data
    */
   protected ArrayList<AbstractLogicData> getData(String kind, boolean addIfNull) {
     if (addIfNull && getData(kind) == null) {
@@ -436,12 +442,12 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Returns the value of a cell in a logic table.
+   * Returns the value of a cell.
    *
-   * @param row A row index
-   * @param col A column index
-   * @param kind A logic table name
-   * @return The value in a cell, or null if no data exists
+   * @param row The row index of the cell
+   * @param col The column index of the cell
+   * @param kind A kind of logic
+   * @return The value in a cell, or null if no rows exist
    */
   public Object getValueAt(int row, int col, String kind) {
     if (isDataPresent(kind)) {
@@ -451,11 +457,11 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Returns a row from a logic table.
+   * Returns a row of data.
    *
-   * @param row A row index
-   * @param kind A logic table name
-   * @return Logic data for a single row, or null if no data exists
+   * @param row The index of the row
+   * @param kind A kind of logic
+   * @return A row of data, or null if there are not rows
    */
   public AbstractLogicData getValueAt(int row, String kind) {
     if (isDataPresent(kind)) {
@@ -465,9 +471,9 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Clears data from a logic table.
+   * Removes all of the rows from a kind of logic.
    *
-   * @param kind A logic table name
+   * @param kind A kind of logic
    */
   public void clearData(String kind) {
     if (isDataPresent(kind)) {
@@ -476,17 +482,17 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Determines if data exists for a logic table.
+   * Returns true if there is at least one row of data for a kind of logic.
    *
-   * @param kind A logic table name
-   * @return True if data exists
+   * @param kind A kind of logic
+   * @return True if there is at least one row
    */
   public boolean isDataPresent(String kind) {
     return (getData(kind) != null && getData(kind).size() > 0);
   }
 
   /**
-   * Flags a change to this collection of tables.
+   * Flags a change to this kind of system knowledge.
    */
   public void markChanged() {
     SystemKnowledge.markChanged(sysKnowKind);
@@ -502,8 +508,8 @@ public abstract class AbstractBaseLogic {
   /**
    *
    *
-   * @param kind
-   * @param os
+   * @param kind A kind of logic
+   * @param os An object output stream
    * @throws IOException
    */
   protected void saveData(String kind, ObjectOutputStream os) throws IOException {
@@ -513,9 +519,9 @@ public abstract class AbstractBaseLogic {
   /**
    *
    *
-   * @param kind
-   * @param os
-   * @param includeVisibleCol
+   * @param kind A kind of logic
+   * @param os An object output stream
+   * @param includeVisibleCol Flag indicating if visible columns should be saved
    * @throws IOException
    */
   protected void saveData(String kind, ObjectOutputStream os, boolean includeVisibleCol) throws IOException {
@@ -529,9 +535,9 @@ public abstract class AbstractBaseLogic {
   /**
    *
    *
-   * @param kind
-   * @param in
-   * @param version
+   * @param kind A kind of logic
+   * @param in An object input stream
+   * @param version The version number of the object being read
    * @throws IOException
    * @throws ClassNotFoundException
    */
@@ -544,10 +550,10 @@ public abstract class AbstractBaseLogic {
   /**
    *
    *
-   * @param kind
-   * @param in
-   * @param version
-   * @param includeVisibleCol
+   * @param kind A kind of logic
+   * @param in An object input stream
+   * @param version The version number of the object being read
+   * @param includeVisibleCol Flag indicating if visible columns should be read
    * @throws IOException
    * @throws ClassNotFoundException
    */
@@ -559,9 +565,8 @@ public abstract class AbstractBaseLogic {
         readVisibleColumnInfo(in);
       }
       ArrayList<LogicData> list = (ArrayList<LogicData>)in.readObject();
-      data.put(kind,new ArrayList<AbstractLogicData>(list));
-    }
-    else {
+      data.put(kind, new ArrayList<>(list));
+    } else {
       if (includeVisibleCol) {
         readVisibleColumnInfo(in);
       }
@@ -570,7 +575,7 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Saves the visible columns in this logic table to an object output stream.
+   * Saves the visible columns for each kind of logic to an object output stream.
    *
    * @param os An object output stream
    * @throws IOException
@@ -584,7 +589,7 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Reads visible columns into this logic table from an object input stream.
+   * Reads visible columns for each kind of logic from an object input stream.
    *
    * @param in An object input stream
    * @throws IOException
@@ -609,7 +614,7 @@ public abstract class AbstractBaseLogic {
   }
 
  /**
-  * Saves this logic table to an object output stream.
+  * Saves visible column names and column data for each kind of logic.
   *
   * @param os An object output stream
   * @throws IOException
@@ -626,49 +631,46 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   *
+   * Reads visible column names and column data for each kind of logic. The version is read from
+   * the object input stream.
    *
    * @param in An object input stream
    * @throws IOException
    * @throws ClassNotFoundException
    */
-  public void read(ObjectInputStream in)
-    throws IOException, ClassNotFoundException
-  {
+  public void read(ObjectInputStream in) throws IOException, ClassNotFoundException {
     read(in,-1);
   }
 
   /**
-   *
+   * Reads visible column names and column data for each kind of logic. If version equals -1,
+   * then the version is read from the object input stream.
    *
    * @param in An object input stream
    * @param version A version number
    * @throws IOException
    * @throws ClassNotFoundException
    */
-  public void read(ObjectInputStream in, int version)
-    throws IOException, ClassNotFoundException
-  {
+  public void read(ObjectInputStream in, int version) throws IOException, ClassNotFoundException {
 
-    noChangeRead=true;
+    noChangeRead = true;
     Species.setNoChangeRead(true);
 
     if (version == -1) {
       version = in.readInt();
     }
+
     data.clear();
 
-    {
-      readVisibleColumnInfo(in);
-    }
-    {
-      int size = in.readInt();
-      for (int i = 0; i < size; i++) {
-        readData((String) in.readObject(), in, version);
-      }
+    readVisibleColumnInfo(in);
+
+    int size = in.readInt();
+    for (int i = 0; i < size; i++) {
+      readData((String) in.readObject(), in, version);
     }
 
     noChangeRead = false;
+
   }
 
   /**

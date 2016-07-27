@@ -9,7 +9,7 @@
 package simpplle.comcode;
 
 /**
- * BaseLogic adds default columns to the tabular logic data handled by AbstractBaseLogic.
+ * BaseLogic adds default columns to the tabular logic data in AbstractBaseLogic.
  */
 
 public abstract class BaseLogic extends AbstractBaseLogic {
