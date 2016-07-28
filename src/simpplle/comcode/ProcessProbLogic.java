@@ -208,20 +208,22 @@ public class ProcessProbLogic extends BaseLogic {
 
     super.save(os);
 
-    List<ProcessType> processes = Process.getProbLogicProcesses();
+    List<ProcessType> processTypes = Process.getProbLogicProcesses();
+
     int count = 0;
-    for (int i=0; i<processes.size(); i++) {
-      Process process = Process.findInstance(processes.get(i));
+    for (ProcessType processType : processTypes) {
+      Process process = Process.findInstance(processType);
       if (process.isUniqueUI()) {
         count++;
       }
     }
 
     os.writeInt(count);
-    for (int i=0; i<processes.size(); i++) {
-      Process process = Process.findInstance(processes.get(i));
+
+    for (ProcessType processType : processTypes) {
+      Process process = Process.findInstance(processType);
       if (process.isUniqueUI()) {
-        processes.get(i).writeExternalSimple(os);
+        processType.writeExternalSimple(os);
         process.writeExternalProbabilityLogic(os);
       }
     }
