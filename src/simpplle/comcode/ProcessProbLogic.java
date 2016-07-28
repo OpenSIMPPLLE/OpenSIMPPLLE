@@ -234,20 +234,22 @@ public class ProcessProbLogic extends BaseLogic {
    * are read.
    */
   public void read(ObjectInputStream in) throws IOException, ClassNotFoundException {
+
     int version = in.readInt();
     int subVersion = 1;
     if (version >= 2) {
       subVersion = in.readInt();
     }
+
     super.read(in,version);
-    if (version == 1) { return; }
+
+    if (version == 1) return;
 
     int speciesCount = in.readInt();
 
-    for (int i=0; i<speciesCount; i++) {
-      ProcessType processType = (ProcessType)ProcessType.readExternalSimple(in);
+    for (int i = 0; i < speciesCount; i++) {
+      ProcessType processType = ProcessType.readExternalSimple(in);
       Process process = Process.findInstance(processType);
-
       process.readExternalProbabilityLogic(in);
     }
   }
