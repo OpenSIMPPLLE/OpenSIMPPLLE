@@ -34,6 +34,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -44,7 +45,7 @@ import java.util.ArrayList;
 
 public class InsectDiseaseLogic extends JDialog {
   private LogicRuleBasicPanel[] tabPanels;
-  private ArrayList<ProcessType>         processes;
+  private List<ProcessType> processes;
 
   private javax.swing.JPanel jContentPane = null;
 
