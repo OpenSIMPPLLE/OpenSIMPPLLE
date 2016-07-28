@@ -22,22 +22,30 @@ import java.io.ObjectInputStream;
  */
 
 public class ProcessProbLogic extends BaseLogic {
+
   private static final int version = 2;
 
   public enum Columns {
-    ADJ_PROCESS_COL,MPB_HAZARD_COL,ADJ_MOD_HAZARD_COL,ADJ_HIGH_HAZARD_COL,PROB_COL
+
+    ADJ_PROCESS_COL,
+    MPB_HAZARD_COL,
+    ADJ_MOD_HAZARD_COL,
+    ADJ_HIGH_HAZARD_COL,
+    PROB_COL
+
   }
 
-  public static final int ADJ_PROCESS_COL     = BaseLogic.LAST_COL+1;
-  public static final int MPB_HAZARD_COL      = BaseLogic.LAST_COL+2;
-  public static final int ADJ_MOD_HAZARD_COL  = BaseLogic.LAST_COL+3;
-  public static final int ADJ_HIGH_HAZARD_COL = BaseLogic.LAST_COL+4;
-  public static final int PROB_COL            = BaseLogic.LAST_COL+5;
+  public static final int ADJ_PROCESS_COL     = BaseLogic.LAST_COL + 1;
+  public static final int MPB_HAZARD_COL      = BaseLogic.LAST_COL + 2;
+  public static final int ADJ_MOD_HAZARD_COL  = BaseLogic.LAST_COL + 3;
+  public static final int ADJ_HIGH_HAZARD_COL = BaseLogic.LAST_COL + 4;
+  public static final int PROB_COL            = BaseLogic.LAST_COL + 5;
 
   private static ProcessProbLogic instance;
-/**
- * Initializes the Process Probability logic for the current zone and transfering into 
- */
+
+  /**
+   * Initializes the Process Probability logic for the current zone and transfering into
+   */
   public static void initialize() {
     RegionalZone  zone = Simpplle.getCurrentZone();
     ArrayList<ProcessType> processes = Process.getProbLogicProcesses();
@@ -48,6 +56,7 @@ public class ProcessProbLogic extends BaseLogic {
     }
     instance = new ProcessProbLogic(processes,processNames);
   }
+
   /**
    * Constructor for Process Probability Logic.  Takes in the arraylist of processes, and string array of processnames.  
    * The string array is sent to the BaseLogic superclass, where columns are added.  Then loops through the process arraylist and adds the default 
@@ -56,10 +65,10 @@ public class ProcessProbLogic extends BaseLogic {
    * @param processNames the names of the proceses which are in the process arraylist also passed in parameter
    */
   private ProcessProbLogic(ArrayList<ProcessType> processes, String[] processNames) {
+
     super(processNames);
 
     sysKnowKind = SystemKnowledge.Kinds.PROCESS_PROB_LOGIC;
-
 
     for (int i=0; i<processes.size(); i++) {
       Process process = Process.findInstance(processes.get(i));
@@ -72,10 +81,12 @@ public class ProcessProbLogic extends BaseLogic {
       }
     }
   }
-/**
- * Private method to add adjacent process, mountain pine beetle hazard, adjacent moderate hazard, adjacent high hazard, and probability columns 
- * @param processName
- */
+
+  /**
+   * Private method to add adjacent process, mountain pine beetle hazard, adjacent moderate
+   * hazard, adjacent high hazard, and probability columns
+   * @param processName
+   */
   private void addColumns(String processName) {
     addColumn(processName,"ADJ_PROCESS_COL");
     addColumn(processName,"MPB_HAZARD_COL");
@@ -83,31 +94,37 @@ public class ProcessProbLogic extends BaseLogic {
     addColumn(processName, "ADJ_HIGH_HAZARD_COL");
     addColumn(processName,"PROB_COL");
   }
-/**
- * Gets this instance of ProcessProbLogic
- * @return
- */
-  public static ProcessProbLogic getInstance() { return instance; }
 
-/**
- * Adds a process to the table model, by adding a row.  
- */
+  /**
+   * Gets this instance of ProcessProbLogic
+   * @return
+   */
+  public static ProcessProbLogic getInstance() {
+    return instance;
+  }
+
+  /**
+   * Adds a process to the table model, by adding a row.
+   */
   public void addRow(int insertPos, String processName) {
     super.addRow(insertPos,processName,new ProcessProbLogicData(processName));
   }
-/**
- * Duplicates a row, by creating a new instance of Process probability logic data and getting the value at a row and process name.  
- */
+
+  /**
+   * Duplicates a row, by creating a new instance of Process probability logic data and getting
+   * the value at a row and process name.
+   */
   public void duplicateRow(int row,int insertPos, String processName) {
     ProcessProbLogicData logicData = (ProcessProbLogicData)getValueAt(row,processName);
     AbstractLogicData newLogicData = logicData.duplicate();
     super.addRow(insertPos,processName,newLogicData);
   }
-/**
- * This was added to enable easily copying existing data from the process
- * Root Disease to the three new Root Disease process (Low, Moderate, and High Severity).
- * Added only for the developers use, later disabled.  Left here for possible future use.
- */
+
+  /**
+   * This was added to enable easily copying existing data from the process
+   * Root Disease to the three new Root Disease process (Low, Moderate, and High Severity).
+   * Added only for the developers use, later disabled.  Left here for possible future use.
+   */
 //  public static void fillNewRoots() {
 //    ProcessProbLogic logicInst = ProcessProbLogic.getInstance();
 //
@@ -138,60 +155,66 @@ public class ProcessProbLogic extends BaseLogic {
 //
 //    }
 //  }
-/**
- * takes in a column name and returns the column Id.  These column Id's are taken by adding a constant to the BaseLogic columns (which total 15).  The resulting 
- * column Id's are ADJ_PROCESS_COL = 16, MPB_HAZARD_COL =17, ADJ_MOD_HAZARD_COL = 18, ADJ_HIGH_HAZARD_COL = 19, PROB_COL = 20
- */
+
+  /**
+   * takes in a column name and returns the column Id.  These column Id's are taken by adding a
+   * constant to the BaseLogic columns (which total 15).  The resulting column Id's are
+   * ADJ_PROCESS_COL = 16, MPB_HAZARD_COL =17, ADJ_MOD_HAZARD_COL = 18, ADJ_HIGH_HAZARD_COL = 19,
+   * PROB_COL = 20
+   */
   public int getColumnNumFromName(String name) {
     if (name.equalsIgnoreCase("Adjacent Process")) {
       return ADJ_PROCESS_COL;
-    }
-    else if (name.equalsIgnoreCase("MPB Hazard")) {
+    } else if (name.equalsIgnoreCase("MPB Hazard")) {
       return MPB_HAZARD_COL;
-    }
-    else if (name.equalsIgnoreCase("Adj Moderate Hazard")) {
+    } else if (name.equalsIgnoreCase("Adj Moderate Hazard")) {
       return ADJ_MOD_HAZARD_COL;
-    }
-    else if (name.equalsIgnoreCase("Adj High Hazard")) {
+    } else if (name.equalsIgnoreCase("Adj High Hazard")) {
       return ADJ_HIGH_HAZARD_COL;
-    }
-    else if (name.equalsIgnoreCase("Probability")) {
+    } else if (name.equalsIgnoreCase("Probability")) {
       return PROB_COL;
-    }
-    else {
+    } else {
       return super.getColumnNumFromName(name);
     }
   }
-/**
- * returns a string literal of the columns in process probability.  
- */
-  public String getColumnName(String processName,int visibleCol) {
+
+  /**
+   * returns a string literal of the columns in process probability.
+   */
+  public String getColumnName(String processName, int visibleCol) {
     String colName = visibleColumnsHm.get(processName).get(visibleCol);
     int col = getColumnPosition(processName,colName);
     switch (col) {
-      case ADJ_PROCESS_COL:     return "Adjacent Process";
-      case MPB_HAZARD_COL:    return "MPB Hazard";
-      case ADJ_MOD_HAZARD_COL:  return "Adj Moderate Hazard";
-      case ADJ_HIGH_HAZARD_COL: return "Adj High Hazard";
-      case PROB_COL:            return "Probability";
+      case ADJ_PROCESS_COL:
+        return "Adjacent Process";
+      case MPB_HAZARD_COL:
+        return "MPB Hazard";
+      case ADJ_MOD_HAZARD_COL:
+        return "Adj Moderate Hazard";
+      case ADJ_HIGH_HAZARD_COL:
+        return "Adj High Hazard";
+      case PROB_COL:
+        return "Probability";
       default:
         return super.getColumnName(col);
     }
   }
-/**
- * 
- * @param process process type being evaluated
- * @return true if the instance has probability logic data
- */
+
+  /**
+   *
+   * @param process process type being evaluated
+   * @return true if the instance has probability logic data
+   */
   public static boolean hasLogic(ProcessType process) {
     return getInstance().getData(process.toString(),false) != null;
   }
-/**
- * get the probability for a specified process at a designated ev unit
- * @param process
- * @param evu
- * @return 
- */
+
+  /**
+   * get the probability for a specified process at a designated ev unit
+   * @param process
+   * @param evu
+   * @return
+   */
   public int getProbability(ProcessType process, Evu evu) {
     ProcessProbLogicData logicData;
     Integer prob=null;
@@ -203,12 +226,16 @@ public class ProcessProbLogic extends BaseLogic {
 
     return 0;
   }
-/**
- * method to save process probability logic.  This will save the version, all the current process probability logic
- * instances, a count of processes with unique UI's, the processes with unique UI
- */
+
+  /**
+   * method to save process probability logic.  This will save the version, all the current
+   * process probability logic instances, a count of processes with unique UI's, the processes with
+   * unique UI
+   */
   public void save(ObjectOutputStream os) throws IOException {
+
     os.writeInt(version);
+
     super.save(os);
 
     ArrayList<ProcessType> processes = Process.getProbLogicProcesses();
@@ -228,15 +255,13 @@ public class ProcessProbLogic extends BaseLogic {
         process.writeExternalProbabilityLogic(os);
       }
     }
-
-
   }
-/**
- * reads in process probability logic from a source.  Reads, in order: version, species count, process type, probabilty logic 
- */
-  public void read(ObjectInputStream in)
-    throws IOException, ClassNotFoundException
-  {
+
+  /**
+   * reads in process probability logic from a source.  Reads, in order: version, species count,
+   * process type, probabilty logic
+   */
+  public void read(ObjectInputStream in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
     int subVersion = 1;
     if (version >= 2) {
@@ -254,17 +279,18 @@ public class ProcessProbLogic extends BaseLogic {
       process.readExternalProbabilityLogic(in);
     }
   }
-/**
- * method to get process probability logic from legacy systems
- * @param process
- * @param speciesList
- * @param sizeClassList
- * @param densityList
- * @param processList
- * @param adjProcessList
- * @param tempList
- * @param moistureList
- */
+
+  /**
+   * method to get process probability logic from legacy systems
+   * @param process
+   * @param speciesList
+   * @param sizeClassList
+   * @param densityList
+   * @param processList
+   * @param adjProcessList
+   * @param tempList
+   * @param moistureList
+   */
   public static void addFromLegacy(ProcessType process,
                                    ArrayList<SimpplleType> speciesList,
                                    ArrayList<SimpplleType> sizeClassList,
@@ -303,8 +329,6 @@ public class ProcessProbLogic extends BaseLogic {
 //    dataList.add(logicData);
   }
 
-
-
 //  public static void save(ObjectOutputStream os) {
 //    try {
 //      os.writeInt(version);
@@ -320,7 +344,7 @@ public class ProcessProbLogic extends BaseLogic {
 //    catch (IOException ex) {
 //    }
 //  }
-//
+
 //  public static void read(ObjectInputStream in) {
 //    try {
 //      int version = in.readInt();
