@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import java.awt.BorderLayout;
@@ -10,20 +18,12 @@ import simpplle.comcode.AbstractLogicData;
 import javax.swing.JScrollPane;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>
  * 
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller</p>
- *   
- *     
  */
+
 public class JTableListSelectionDialog extends JDialog {
   private JPanel mainPanel = new JPanel();
   private BorderLayout borderLayout1 = new BorderLayout();

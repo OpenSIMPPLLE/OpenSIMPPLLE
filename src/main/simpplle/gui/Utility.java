@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 
 
 package simpplle.gui;
@@ -13,19 +21,13 @@ import java.util.Enumeration;
 import java.util.Collections;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableCellRenderer;
+
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This Class implements common convience utilities used
+ * This Class implements common convenience utilities used
  * throughout the program.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
 public abstract class Utility {
   public static Cursor getWaitCursor() {

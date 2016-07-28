@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import simpplle.JSimpplle;
@@ -13,35 +21,41 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.HashMap;
 
-
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
  *
- * <p>
- * 
+ * <p> GUI for saving and loading User knowledge files (.sysknowledge).
+ *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
+>>>>>>> origin/master
  */
-
 @SuppressWarnings("serial")
 public class SystemKnowledgeLoadSave extends JDialog {
 
   private boolean dialogCanceled;
   private File loadSaveFile;
+
+  /**
+   * Denotes this instance is a saving action
+   */
   private boolean save;
 
+  /**
+   * Collection of this dialog's Checkboxes, with SystemKnowledge.Kind as a Key, and
+   * the Corresponding checkbox as a value.
+   */
   private HashMap<SystemKnowledge.Kinds,JCheckBox> checkBoxes = new HashMap<SystemKnowledge.Kinds,JCheckBox>();
+
+  private JScrollPane CBScroll = new JScrollPane();
+  private JTextField outputFileText = new JTextField();
+  private TitledBorder mainTitleBorder;
 
   private JButton cancelPB = new JButton();
   private JButton loadSavePB = new JButton();
   private JButton pickFilePB = new JButton();
   private JButton selectAllPB = new JButton();
   private JButton selectNonePB = new JButton();
+
   private JCheckBox aquaticPathwaysCB = new JCheckBox();
   private JCheckBox climateCB = new JCheckBox();
   private JCheckBox lifeformCompLogicCB = new JCheckBox();
@@ -74,9 +88,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
   private JCheckBox treatmentScheduleCB = new JCheckBox();
   private JCheckBox vegetationPathwaysCB = new JCheckBox();
   private JCheckBox vegUnitFireTypeLogicLogicCB = new JCheckBox();
-  private JScrollPane CBScroll = new JScrollPane();
-  private JTextField outputFileText = new JTextField();
-  private TitledBorder mainTitleBorder;
+  private JCheckBox keaneParametersCB = new JCheckBox();
 
   public SystemKnowledgeLoadSave(Frame frame, String title, boolean modal, boolean save) {
 
@@ -93,18 +105,14 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  public SystemKnowledgeLoadSave() {
-    this(null, "", false,true);
-  }
-
   private void jbInit() throws Exception {
 
     /* Selection */
 
     selectAllPB.setText("Select All");
-    selectAllPB.addActionListener(new SystemKnowledgeLoadSave_selectAllPB_actionAdapter(this));
+    selectAllPB.addActionListener(this::selectAllPB_actionPerformed);
     selectNonePB.setText("Select None");
-    selectNonePB.addActionListener(new SystemKnowledgeLoadSave_selectNonePB_actionAdapter(this));
+    selectNonePB.addActionListener(this::selectNonePB_actionPerformed);
 
     JPanel selectPanel = new JPanel();
     selectPanel.add(selectAllPB, null);
@@ -127,6 +135,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     speciesCB.setText("Species Settings (e.g. Fire Resistance)");
     fireTypeLogicCB.setText("Type of Fire Logic");
     fireTypeLogicCB.setActionCommand("Type of Fire Logic");
+    keaneParametersCB.setText("Keane Cell Percolation Parameters");
 
     Box fireKnowledgeColA = new Box(BoxLayout.Y_AXIS);
     fireKnowledgeColA.add(fireSuppClassACB, null);
@@ -136,13 +145,14 @@ public class SystemKnowledgeLoadSave extends JDialog {
     fireKnowledgeColA.add(fireSeasonCB, null);
     fireKnowledgeColA.add(fireSpottingCB);
     fireKnowledgeColA.add(fireSpreadCB, null);
+    fireKnowledgeColA.add(fireSuppBeyondClassACB, null);
 
     Box fireKnowledgeColB = new Box(BoxLayout.Y_AXIS);
-    fireKnowledgeColB.add(fireSuppBeyondClassACB, null);
     fireKnowledgeColB.add(fireSuppWeatherBeyondClassACB, null);
     fireKnowledgeColB.add(fireSuppEventProb, null);
     fireKnowledgeColB.add(fireSuppProductionRateCB, null);
     fireKnowledgeColB.add(fireSuppSpreadRateCB, null);
+    fireKnowledgeColB.add(keaneParametersCB, null);
     fireKnowledgeColB.add(speciesCB, null);
     fireKnowledgeColB.add(fireTypeLogicCB, null);
 
@@ -248,7 +258,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     fileScrollPanel.add(fileScrollPane, BorderLayout.NORTH);
 
     pickFilePB.setText("Pick");
-    pickFilePB.addActionListener(new SystemKnowledgeLoadSave_pickFilePB_actionAdapter(this));
+    pickFilePB.addActionListener(this::pickFilePB_actionPerformed);
 
     TitledBorder pickFileBorder = new TitledBorder(BorderFactory.createEtchedBorder(Color.white, new Color(148, 145, 140)), "File Name");
 
@@ -259,9 +269,9 @@ public class SystemKnowledgeLoadSave extends JDialog {
     pickFilePanel.add(fileScrollPanel, BorderLayout.CENTER);
 
     loadSavePB.setText("Save");
-    loadSavePB.addActionListener(new SystemKnowledgeLoadSave_loadSavePB_actionAdapter(this));
+    loadSavePB.addActionListener(this::loadSavePB_actionPerformed);
     cancelPB.setText("Cancel");
-    cancelPB.addActionListener(new SystemKnowledgeLoadSave_cancelPB_actionAdapter(this));
+    cancelPB.addActionListener(this::cancelPB_actionPerformed);
 
     JPanel loadSaveCancelPanel = new JPanel();
     loadSaveCancelPanel.add(loadSavePB, null);
@@ -303,6 +313,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     Dimension size = CBScroll.getPreferredSize();
     CBScroll.setPreferredSize(new Dimension(size.width+25,560));
 
+    // Add JCheckBoxes to collection, with SystemKnowledge.Kind as a key
     checkBoxes.put(SystemKnowledge.CONIFER_ENCROACHMENT,coniferEncroachLogicCB);
     checkBoxes.put(SystemKnowledge.SPECIES,speciesCB);
     checkBoxes.put(SystemKnowledge.AQUATIC_PATHWAYS,aquaticPathwaysCB);
@@ -335,6 +346,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     checkBoxes.put(SystemKnowledge.INVASIVE_SPECIES_LOGIC_MSU, invasiveSpeciesLogicMsuCB);
     checkBoxes.put(SystemKnowledge.PRODUCING_SEED_LOGIC,producingSeedLogicCB);
     checkBoxes.put(SystemKnowledge.VEG_UNIT_FIRE_TYPE_LOGIC,vegUnitFireTypeLogicLogicCB);
+    checkBoxes.put(SystemKnowledge.KEANE_PARAMETERS, keaneParametersCB);
 
     if (save) {
 
@@ -372,6 +384,10 @@ public class SystemKnowledgeLoadSave extends JDialog {
     SystemKnowledge.setLoadSaveOption(SystemKnowledge.EVU_SEARCH_LOGIC,false);
   }
 
+  /**
+   * Enable checkboxes in the dialog if present (during loading) or has custom data (during saving).
+   * @see SystemKnowledge#hasChangedOrUserData(SystemKnowledge.Kinds)
+   */
   private void initCheckBoxes() {
     boolean option;
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
@@ -391,6 +407,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
         }
         else {
           cb.setSelected(option);
+          // set checkbox to enabled if saving, or if it exists while loading
           cb.setEnabled(save || (!save && option));
         }
       }
@@ -405,9 +422,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   public File getAndSetInputFile() {
-    this.pickFilePB_actionPerformed(null);
-    if (loadSaveFile == null) { return null; }
-
+    pickFilePB_actionPerformed(null);
     return loadSaveFile;
   }
 
@@ -440,7 +455,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   void loadSavePB_actionPerformed(ActionEvent e) {
-    if (save && (isAnythingSelected() == false)) {
+    if (save && (!isAnythingSelected())) {
       JOptionPane.showMessageDialog(this, "No items Checked!",
                                     "Nothing Selected",
                                     JOptionPane.WARNING_MESSAGE);
@@ -474,12 +489,6 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  private void quit() {
-    dialogCanceled = false;
-    setVisible(false);
-    dispose();
-  }
-
   void cancelPB_actionPerformed(ActionEvent e) {
     dialogCanceled = true;
     setVisible(false);
@@ -500,60 +509,5 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
   public boolean isDialogCanceled() {
     return dialogCanceled;
-  }
-}
-
-class SystemKnowledgeLoadSave_pickFilePB_actionAdapter implements java.awt.event.ActionListener {
-  SystemKnowledgeLoadSave adaptee;
-
-  SystemKnowledgeLoadSave_pickFilePB_actionAdapter(SystemKnowledgeLoadSave adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.pickFilePB_actionPerformed(e);
-  }
-}
-
-class SystemKnowledgeLoadSave_loadSavePB_actionAdapter implements java.awt.event.ActionListener {
-  SystemKnowledgeLoadSave adaptee;
-
-  SystemKnowledgeLoadSave_loadSavePB_actionAdapter(SystemKnowledgeLoadSave adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.loadSavePB_actionPerformed(e);
-  }
-}
-
-class SystemKnowledgeLoadSave_cancelPB_actionAdapter implements java.awt.event.ActionListener {
-  SystemKnowledgeLoadSave adaptee;
-
-  SystemKnowledgeLoadSave_cancelPB_actionAdapter(SystemKnowledgeLoadSave adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.cancelPB_actionPerformed(e);
-  }
-}
-
-class SystemKnowledgeLoadSave_selectAllPB_actionAdapter implements java.awt.event.ActionListener {
-  SystemKnowledgeLoadSave adaptee;
-
-  SystemKnowledgeLoadSave_selectAllPB_actionAdapter(SystemKnowledgeLoadSave adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.selectAllPB_actionPerformed(e);
-  }
-}
-
-class SystemKnowledgeLoadSave_selectNonePB_actionAdapter implements java.awt.event.ActionListener {
-  SystemKnowledgeLoadSave adaptee;
-
-  SystemKnowledgeLoadSave_selectNonePB_actionAdapter(SystemKnowledgeLoadSave adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.selectNonePB_actionPerformed(e);
   }
 }

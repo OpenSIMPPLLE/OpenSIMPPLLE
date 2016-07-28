@@ -1,22 +1,21 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
 
 package simpplle.comcode;
 
 import java.awt.Color;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-001.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>Defines the Douglas-Fir Beetle class, a type of Process.  This logic uses a combination of the abundance of Douglas-fir, size class/structure, density
+ * Defines the Douglas-Fir Beetle class, a type of Process.  This logic uses a combination of the abundance of Douglas-fir, size class/structure, density
  * and the occurrence of past light (LSF) or mixed severity fire (MSF).  No spread logic is used.  
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- * 
  */
 
 public final class DfBeetle extends Process {

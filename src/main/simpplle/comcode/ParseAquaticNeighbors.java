@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.BufferedReader;
@@ -8,16 +16,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained
- * within this file as part of the software product designated by Uniform Resource Identifier
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * <p> Reads in the aquatic neighbors of a specified area.
- *
+ * Reads in the aquatic neighbors of a specified area.
  */
-public class ParseAquaticNeighbors implements RelationParser{
 
+public class ParseAquaticNeighbors implements RelationParser{
 
   /**
    * Reads in the aquatic neighbors of a specified area.  Area id, adjacent id, flow (P or S or N = no flow)

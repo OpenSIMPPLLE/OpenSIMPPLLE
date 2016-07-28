@@ -1,3 +1,10 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
 
 package simpplle.gui;
 
@@ -11,18 +18,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.MouseEvent;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p> A NewZoneDialog dialog prompts the user for a regional zone.
+ * A NewZone dialog prompts the user for a regional zone.
  *
  * <p>Original source code authorship: Kirk A. Moeller  
  */
 
-public class NewZoneDialog extends JDialog {
+public class NewZone extends JDialog {
 
   private boolean historic = false;
   private boolean newZone  = false;
@@ -44,8 +45,10 @@ public class NewZoneDialog extends JDialog {
   /**
    * Creates a new zone dialog with no owner and not modal.
    */
-  public NewZoneDialog() {
+  public NewZone() {
+
     this(null, false);
+
   }
 
   /**
@@ -53,7 +56,7 @@ public class NewZoneDialog extends JDialog {
    * @param frame Owner of the dialog
    * @param modal If true, blocks input to other windows
    */
-  public NewZoneDialog(SimpplleMain frame, boolean modal) {
+  public NewZone(SimpplleMain frame, boolean modal) {
 
     super(frame, "Select a Zone", modal);
 
@@ -202,14 +205,16 @@ public class NewZoneDialog extends JDialog {
    * Disposes of the dialog without loading a zone.
    */
   private void selectCancel() {
+
     setVisible(false);
     dispose();
+
   }
 
   /**
    * Loads the selected zone. An error message is displayed if there is an exception.
    */
-  public void loadZone() {
+  private void loadZone() {
 
     //=====================================================================
     // This is a hack from early OpenSIMPPLLE. It skips the index of the
@@ -261,10 +266,6 @@ public class NewZoneDialog extends JDialog {
 
     setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-  }
-
-  public JList getZoneList() {
-    return zoneList;
   }
 }
 

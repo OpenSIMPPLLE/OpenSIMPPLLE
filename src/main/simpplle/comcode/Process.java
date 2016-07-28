@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.*;
@@ -8,14 +16,7 @@ import java.util.*;
 import java.awt.Color;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class is abstract and serves to create a common parent for
+ * This class is abstract and serves to create a common parent for
  * the numerous Process subclasses.  It also allows the instances
  * of the subclasses to be cast to type Process for storage in a
  * data structure such as an array or more commonly an arraylist, because the amount of processes for an EVU 
@@ -24,7 +25,6 @@ import java.awt.Color;
  * 
  * @author Documentation by Brian Losi
  * <p>Original source authorship: Kirk A. Moeller
- *
  */
 
 public abstract class Process {
@@ -690,7 +690,7 @@ public abstract class Process {
   /**
    * @return probability logic processes arraylist
    */
-  public static ArrayList getProbLogicProcesses() {
+  public static List<ProcessType> getProbLogicProcesses() {
     return probLogicProcesses;
   }
 

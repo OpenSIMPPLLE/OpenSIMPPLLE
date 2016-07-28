@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.util.*;
@@ -8,20 +16,14 @@ import java.io.Externalizable;
 import simpplle.comcode.Roads.*;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- *<p>This class manages the search data for EVU, a type of logic data.
+ * This class manages the search data for EVU, a type of logic data.
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  * 
- *@see simpplle.comcode.LogicData
+ * @see simpplle.comcode.LogicData
  */
+
 public class EvuSearchData extends LogicData implements Externalizable {
   static final long serialVersionUID = 274886327198642218L;
   static final int  version          = 3;

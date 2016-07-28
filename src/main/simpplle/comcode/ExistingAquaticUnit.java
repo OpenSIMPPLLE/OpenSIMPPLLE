@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.*;
@@ -8,20 +16,11 @@ import java.sql.SQLException;
 import org.hibernate.*;
 
 /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class contains fields and method relating to Existing Aquatic States.  The class is utilized to provide a water source for bison grazing logic. 
+ * This class contains fields and method relating to Existing Aquatic States.  The class is utilized to provide a water source for bison grazing logic.
  * Eau's must be classified as perennial or intermitent.  
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- * 
- *
  */
 
 public final class ExistingAquaticUnit extends NaturalElement implements Externalizable {

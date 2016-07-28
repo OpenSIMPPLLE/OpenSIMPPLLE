@@ -1,10 +1,14 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
-
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Frame;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -13,30 +17,16 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JButton;
-
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import simpplle.comcode.Area;
 
 /**
-*
-* The University of Montana owns copyright of the designated documentation contained 
-* within this file as part of the software product designated by Uniform Resource Identifier 
-* UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
-* Open Source License Contract pertaining to this documentation and agrees to abide by all 
-* restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
-*
-* <p>This class deals with the Elevation Relative Position.
-* 
-* @author Documentation by Brian Losi
-* <p>Original source code authorship: Kirk A. Moeller 
-*  
-*/
-
+ * This class deals with the Elevation Relative Position.
+ *
+ * @author Documentation by Brian Losi
+ * <p>Original source code authorship: Kirk A. Moeller
+ */
 @SuppressWarnings("serial")
 public class ElevationRelativePosition extends JDialog {
   private Area area;
@@ -51,8 +41,8 @@ public class ElevationRelativePosition extends JDialog {
   private final JNumberTextField irregularPolyValue = new JNumberTextField();
 //  private final JTextField uniformPolyValue = new JTextField(10);
 //  private final JTextField irregularPolyValue = new JTextField();
-  private final JTextArea irregularPolyLabel = new JTextArea();
-  private final JTextArea uniformPolyLabel = new JTextArea();
+  private final JLabel irregularPolyLabel = new JLabel();
+  private final JLabel uniformPolyLabel = new JLabel();
   private final JPanel panel = new JPanel();
   private final JButton continueButton = new JButton();
 
@@ -106,16 +96,13 @@ public class ElevationRelativePosition extends JDialog {
     mainPanel.setLayout(new BorderLayout());
     
     mainPanel.add(uniformPolyPanel, BorderLayout.NORTH);
-    uniformPolyPanel.setLayout(new BorderLayout());
-    
+    uniformPolyPanel.setLayout(new BorderLayout(10, 10));
+    uniformPolyLabel.setPreferredSize(new Dimension(600, 150));
     uniformPolyPanel.add(uniformLabelPanel);
-    
     uniformLabelPanel.add(uniformPolyLabel);
-    uniformPolyLabel.setRows(4);
-    uniformPolyLabel.setWrapStyleWord(true);
-    uniformPolyLabel.setLineWrap(true);
-    uniformPolyLabel.setColumns(40);
-    uniformPolyLabel.setText("Default difference in elevation (in meters) between a vegetation unit and its adjacent vegetation units to determine relative position (above, below, or next-to) is 10 percent.  \nEnter a different value if the default is not desired -- ");
+    uniformPolyLabel.setText("<html><p>Default difference in elevation (in meters) between a vegetation" +
+        "unit and its adjacent vegetation units to determine relative position (above, below, or " +
+        "next-to) is 10 percent. Enter a different value if the default is not desired.</p></html>");
     
     uniformLabelPanel.add(uniformPolyValue);
     uniformPolyValue.addFocusListener(new UniformPolyValueFocusListener());
@@ -130,12 +117,10 @@ public class ElevationRelativePosition extends JDialog {
     irregularLabelPanel.add(irregularPolyLabel);
     irregularPolyLabel.setForeground(Color.BLACK);
     irregularPolyLabel.setBackground(Color.WHITE);
-    irregularPolyLabel.setEditable(false);
-    irregularPolyLabel.setLineWrap(true);
-    irregularPolyLabel.setWrapStyleWord(true);
-    irregularPolyLabel.setRows(3);
-    irregularPolyLabel.setColumns(40);
-    irregularPolyLabel.setText("Default difference in elevation  (in meters) between a vegetation unit and its adjacent vegetation units to determine relative position (above, below, or next-to) is based on an absolute difference in mean elevation.  The default is 100 meters");
+    irregularPolyLabel.setText("<html><p>Default difference in elevation  (in meters) between a " +
+        "vegetation unit and its adjacent vegetation units to determine relative position (above," +
+        " below, or next-to) is based on an absolute difference in mean elevation.  The default " +
+        "is 100 meters.</p></html>");
     
     irregularLabelPanel.add(irregularPolyValue);
     irregularPolyValue.setColumns(10);

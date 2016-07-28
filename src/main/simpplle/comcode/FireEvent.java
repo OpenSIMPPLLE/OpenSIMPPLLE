@@ -1,3 +1,10 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
 
 package simpplle.comcode;
 
@@ -7,13 +14,7 @@ import java.io.PrintWriter;
 import java.util.*;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p> This class defines Fire event, a type of Process.
+ * This class defines Fire event, a type of Process.
  *
  * <p> Original source code authorship: Kirk A. Moeller
  */
@@ -282,7 +283,7 @@ public class FireEvent extends Process {
     } catch (ParseError pe) {
       throw new SimpplleError(pe.msg,pe);
     } catch (IOException e) {
-      throw new SimpplleError("Problems read from fire season data file.");
+      throw new SimpplleError("Problems reading from fire season data file.");
     } catch (Exception e) {
       e.printStackTrace();
       throw new SimpplleError("Invalid or missing data in Fire Season Data File.");

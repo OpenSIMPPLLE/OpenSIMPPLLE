@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import java.awt.Frame;
@@ -13,18 +21,13 @@ import simpplle.comcode.SystemKnowledge;
 import javax.swing.JCheckBoxMenuItem;
 import simpplle.comcode.ProcessProbLogic;
 import java.util.ArrayList;
-/** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class creates the Process Probability Logic Dialog, a type of VegLogicDialog.
+import java.util.List;
+
+/**
+ * This class creates the Process Probability Logic Dialog, a type of VegLogicDialog.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *   
  */
 
 public class ProcessProbabilityLogicDialog extends VegLogicDialog {
@@ -76,7 +79,7 @@ public class ProcessProbabilityLogicDialog extends VegLogicDialog {
 
   private void initialize() {
     sysKnowKind = SystemKnowledge.PROCESS_PROB_LOGIC;
-    ArrayList<ProcessType> processes = simpplle.comcode.Process.getProbLogicProcesses();
+    List<ProcessType> processes = simpplle.comcode.Process.getProbLogicProcesses();
 
     String[] kinds = new String[processes.size()];
     for (int i=0; i<processes.size(); i++) {

@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.util.TreeMap;
@@ -7,30 +15,20 @@ import java.io.*;
 import java.util.*;
 
 /**
- * /**
- * 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
+ * The purpose of this class is to combine Landscape summary files.
+ * These files are generated when doing a multiple run simulation.
+ * The problem that has come up is the data carried by the class
+ * simpplle.comcode.MultipleRunSummary very quickly allocates large
+ * amounts of memory.  These leads to users not being able to do as
+ * many runs as they would like.  This utility allows the user to
+ * combine "-ls" files run simulations into one "-ls" file.  So if
+ * the user did two 5 run simulations the result would be a "-ls"
+ * files with runs numbering 0 - 10.
  *
  * @author Documentation by Brian Losi
  * <p>Original authorship: Kirk A. Moeller
- *
- *
- * <p>Description:
- *      The purpose of this class is to combine Landscape summary files.
- *      These files are generated when doing a multiple run simulation.
- *      The problem that has come up is the data carried by the class
- *      simpplle.comcode.MultipleRunSummary very quickly allocates large
- *      amounts of memory.  These leads to users not being able to do as
- *      many runs as they would like.  This utility allows the user to
- *      combine "-ls" files run simulations into one "-ls" file.  So if
- *      the user did two 5 run simulations the result would be a "-ls"
- *      files with runs numbering 0 - 10.
-
  */
+
 public class LandscapeSummaryFileCombiner {
 
   // PROCESS,SPECIES,SIZECLASS,DENSITY,TREATMENT,SUPPRESSIONCOST,EMISSIONS

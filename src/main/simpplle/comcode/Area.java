@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.*;
@@ -10,19 +18,12 @@ import org.hibernate.*;
 import simpplle.*;
 import simpplle.comcode.Climate.*;
 
-
-/** The University of Montana owns copyright of the designated documentation contained
- * within this file as part of the software product designated by Uniform Resource Identifier
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class defines an Object describing a Forest Landscape.  Hierarchy for landscapes are
+/**
+ * This class defines an Object describing a Forest Landscape.  Hierarchy for landscapes are
  * Regional Zone -> Area -> Natural Element
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
 
 public final class Area implements Externalizable {
@@ -230,8 +231,8 @@ public final class Area implements Externalizable {
     this.kind = kind;
   }
 /**
- * Overloaded constructor for Area.  Calls the default constructor and sets the file path variable by invoking the File.get file method
- * and the kind for this area to parameter kind.
+ * Overloaded constructor for Area.  Calls the default constructor and sets the file path variable
+ * by invoking the File.get file method and the kind for this area to parameter kind.
  * @param file
  * @param kind is an int, (SIMULATED, USER, or SAMPLE)
  */
@@ -4363,6 +4364,13 @@ public final class Area implements Externalizable {
     else {
       elevationRelativePosition = hasUniformSizePolygons() ? 10 : 100;
     }
+
+    if (version >= 9){
+      /**
+       * Keane attributes are read in the Evu.readExternalAdjacentData method.
+       */
+      hasKeaneAttributes = in.readBoolean();
+    }
   }
   public void initPolygonWidth() {
     if (hasUniformSizePolygons()) {
@@ -4455,6 +4463,7 @@ public final class Area implements Externalizable {
       evu.writeSpatialRelations(out);
     }
     out.writeInt(elevationRelativePosition);
+    out.writeBoolean(hasKeaneAttributes);
   }
 
   public void readExternalSimData(ObjectInput in, int run) throws IOException, ClassNotFoundException {

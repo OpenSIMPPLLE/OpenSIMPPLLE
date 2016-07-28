@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.*;
@@ -9,19 +17,12 @@ import org.apache.commons.collections.map.*;
 import simpplle.comcode.Climate.*;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class provides constructors and methods to read and output data constituting the all states reports.
+ * This class provides constructors and methods to read and output data constituting the all states reports.
  * These are designed to provide the capability to track all individual states for species/ size class-structure/density.
  * <p>This can be run through the OpenSimpplle Main under the Reports -> All States Report
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
  */
 
 public class AllStatesReportData implements Externalizable {

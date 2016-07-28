@@ -1,18 +1,17 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.comcode;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-0.9.  By copying this file the user accepts the University of Montana 
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * <p>
  * Represents a spreading fire event. An event starts at an origin unit and gradually spreads to adjacent units until
  * the fire is extinguished due to weather, a fire suppression line, or running out of vegetation units. This class
  * was not named FireEvent as that name is already taken to represent a kind of process.
@@ -119,10 +118,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
+   * Update variable and let SystemKnowledge know it has been updated.
    * @param value An extreme wind multiplier for Keane spreading
    */
   public static void setKeaneExtremeWindMultiplier(double value) {
     keaneExtremeWindMultiplier = value;
+    SystemKnowledge.markChanged(SystemKnowledge.KEANE_PARAMETERS);
   }
 
   /**
@@ -133,10 +134,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
+   * Update variable and let SystemKnowledge know it has been updated.
    * @param value A wind speed variability factor for Keane spreading
    */
   public static void setKeaneWindSpeedVariability(double value) {
     keaneWindSpeedVariability = value;
+    SystemKnowledge.markChanged(SystemKnowledge.KEANE_PARAMETERS);
   }
 
   /**
@@ -147,10 +150,12 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
+   * Update variable and let SystemKnowledge know it has been updated.
    * @param value A wind direction variability in degrees for Keane spreading
    */
   public static void setKeaneWindDirectionVariability(double value) {
     keaneWindDirectionVariability = value;
+    SystemKnowledge.markChanged(SystemKnowledge.KEANE_PARAMETERS);
   }
 
   /**
@@ -210,6 +215,46 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
     super.writeExternal(out);
+  }
+
+  /**
+   * Writes Keane Parameters, used in System Knowledge save
+   * @param printWriter an open print writer
+   */
+  public static void saveKeaneParameters(PrintWriter printWriter){
+    printWriter.println(keaneExtremeWindMultiplier + ", " + keaneWindSpeedVariability + ", " +
+        keaneWindDirectionVariability);
+  }
+
+  /**
+   * Load Keane Parameters from a saved System Knowledge file
+   * @param bufferedReader open stream
+   */
+  public static void loadKeaneParameters(BufferedReader bufferedReader) throws SimpplleError {
+    try{
+      String line = bufferedReader.readLine();
+      if (line == null) {
+        throw new ParseError("Keane Parameters file is empty");
+      }
+      String[] group = line.split(",");
+      if (group.length > 3){
+        throw new ParseError("Keane Parameters file has too many items.");
+      } else if (group.length < 3){
+        throw new ParseError("Keane Parameters file has too few items.");
+      }
+
+      keaneExtremeWindMultiplier    = Double.parseDouble(group[0]);
+      keaneWindSpeedVariability     = Double.parseDouble(group[1]);
+      keaneWindDirectionVariability = Double.parseDouble(group[2]);
+    }
+    catch (ParseError error){
+      throw new SimpplleError(error.msg, error);
+    } catch (IOException ex){
+      throw new SimpplleError("Problems reading from fire season data file.");
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new SimpplleError("Invalid or missing data in Fire Season Data File.");
+    }
   }
 
   /**
@@ -281,7 +326,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
       int ts = Simulation.getCurrentTimeStep();
 
-      double responseTime = Fmz.getResponseTime(root.data.getUnit());
+      double responseTime = root.data.getUnit().getFmz().getResponseTime();
       double spreadTime = FireSuppSpreadRateLogic.getInstance().getRate(vegType,isExtreme,fromUnit,ts,lifeform);
       hoursBurning += spreadTime;
 
@@ -385,7 +430,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     }
 
-    doFireSpotting(fromUnit);
+    doFireSpotting(fromUnit,tmpToUnits);
 
     addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
 
@@ -734,82 +779,65 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
   /**
    * Creates spot fires from blowing embers. All vegetation units in the area that are downwind and within the maximum
-   * fire spotting distance are tested for spot fires. Spot fires start based on a fire spotting probability entered
-   * in the 'Fire Event Logic' dialog.
+   * fire spotting distance are tested for spot fires. Spot fires start based on a fire spotting rules entered in the
+   * 'Fire Event Logic' dialog. If a fire starts, the type of the fire is determined by rules in the same dialog.
    *
-   * 7/??/04  Removed restriction that said adjacent units had to be above the from unit in order to start a spot fire.
-   * 8/23/04  Modified spotting so it can only start from a stand replacing fire. Previously there was no restriction.
-   *
-   * @param fromEvu The unit we are trying to spot a fire from
+   * @param fromUnit A burning vegetation unit
+   * @param toUnits A list to store units that have been ignited
    */
-  @SuppressWarnings("unchecked")
-  private void doFireSpotting(Evu fromEvu) {
+  private void doFireSpotting(Evu fromUnit, ArrayList<Evu> toUnits) {
 
-    AdjacentData[] adjacentData;
-    Evu            adj, fromAdj;
-    ArrayList<Evu> spotFrom, newSpotFrom, tmpList, unitsTried;
-    int            i, j, k;
+    if (!Utility.getFireSpotting()) return;
 
-    VegSimStateData state = fromEvu.getState();
-    if (state == null || Utility.getFireSpotting() == false) {
-      return;
-    }
+    Set<Evu> visited = new HashSet<>();
+    Set<Evu> checkNow = new HashSet<>();
+    Set<Evu> checkLater = new HashSet<>();
 
-    adjacentData = fromEvu.getAdjacentData();
-    if (adjacentData == null) return;
-
-    spotFrom    = new ArrayList<Evu>();
-    newSpotFrom = new ArrayList<Evu>();
-    unitsTried  = new ArrayList<Evu>();
-
-    unitsTried.add(fromEvu);
-    for (i = 0; i < adjacentData.length; i++) {
-      adj = adjacentData[i].evu;
-      unitsTried.add(adj);
-      if (fromEvu.isAdjDownwind(adj) &&
-          spotFrom.contains(adj) != true) {
-        spotFrom.add(adj);
-      }
-    }
+    visited.add(fromUnit);
+    checkNow.add(fromUnit);
 
     boolean uniformPoly = Simpplle.getCurrentArea().hasUniformSizePolygons();
     
     int levelsOut = 0;
-    while (spotFrom != null && spotFrom.size() > 0) {
-      levelsOut++;
-      
-      for(j = 0; j < spotFrom.size(); j++) {
-        fromAdj = (Evu) spotFrom.get(j);
-        adjacentData = fromAdj.getAdjacentData();
 
-        for(k = 0; k < adjacentData.length; k++) {
+    while (checkNow.size() > 0) {
+      for (Evu fromEvu : checkNow) {
 
-          adj = adjacentData[k].evu;
-          if (adj == null) continue;
+        AdjacentData[] adjacencies = fromEvu.getAdjacentData();
+        if (adjacencies == null) continue;
+
+        for (AdjacentData adjacent : adjacencies) {
+
+          Evu toEvu = adjacent.evu;
+          if (toEvu == null) continue;
           
-          if (unitsTried.contains(adj)) continue;
-          unitsTried.add(adj);
+          if (visited.contains(toEvu)) continue;
+          visited.add(toEvu);
           
           if (!uniformPoly && levelsOut > 3) {
             continue;
-          } else if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromEvu, adj)) {
+          }
+
+          if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromUnit, toEvu)) {
             continue;
           }
           
-          if (fromAdj.isAdjDownwind(adj) && newSpotFrom.contains(adj) != true) {
-            newSpotFrom.add(adj);
-            if (determineSpotFire(fromEvu,adj)) {
-              tmpToUnits.add(adj);
+          if (fromEvu.isAdjDownwind(toEvu) && !checkLater.contains(toEvu)) {
+            checkLater.add(toEvu);
+            if (determineSpotFire(fromUnit,toEvu)) {
+              toUnits.add(toEvu);
             }
           }
         }
       }
 
-      // Swap.
-      tmpList     = spotFrom;
-      spotFrom    = newSpotFrom;
-      newSpotFrom = tmpList;
-      newSpotFrom.clear();
+      Set<Evu> swap = checkNow;
+      checkNow = checkLater;
+      checkLater = swap;
+
+      checkLater.clear();
+
+      levelsOut++;
 
     }
   }
@@ -824,31 +852,26 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private boolean determineSpotFire(Evu fromEvu, Evu toEvu) {
 
     Lifeform fromLifeform = fromEvu.getDominantLifeform();
-
-    VegSimStateData state = fromEvu.getState(fromLifeform);
-    if (state == null) return false;
-
-    ProcessType processType = state.getProcess();
-    
     Lifeform toLifeform = toEvu.getDominantLifeform();
+
+    VegSimStateData fromState = fromEvu.getState(fromLifeform);
+    if (fromState == null) return false;
+
     VegSimStateData toState = toEvu.getState(toLifeform);
     if (toState == null) return false;
 
-    ProcessType toProcessType = toState.getProcess();
-    if (toProcessType.isFireProcess()) return false;
+    ProcessType fromProcess = fromState.getProcess();
+    ProcessType toProcess = toState.getProcess();
+    if (toProcess.isFireProcess()) return false;
 
-    int prob = FireEventLogic.getInstance().getFireSpottingProbability(fromEvu, toEvu, processType, isExtreme);
-    prob *= 100;
-
+    int prob = FireEventLogic.getInstance().getFireSpottingProbability(fromEvu, toEvu, fromProcess, isExtreme);
     int rand = Simulation.getInstance().random();
 
-    boolean isSpot = (rand < prob);
-
-    ProcessType fireType;
+    boolean isSpot = rand < (prob * 100);
 
     if (isSpot) {
 
-      fireType = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(), toEvu, toLifeform);
+      ProcessType fireType = FireEvent.getTypeOfFire(Simpplle.getCurrentZone(), toEvu, toLifeform);
       if (fireType == ProcessType.NONE) return false;
 
       if (Area.multipleLifeformsEnabled()) {

@@ -1,3 +1,11 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
 package simpplle.gui;
 
 import javax.swing.table.AbstractTableModel;
@@ -5,20 +13,13 @@ import javax.swing.table.AbstractTableModel;
 import simpplle.comcode.*;
 
 /** 
- * The University of Montana owns copyright of the designated documentation contained 
- * within this file as part of the software product designated by Uniform Resource Identifier 
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all 
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- *
- * <p>This class has methods for Invasive Species Logic Data Model, a type of Abstract Table Model.  
+ * This class has methods for Invasive Species Logic Data Model, a type of Abstract Table Model.
  * Only two regions currently support invasive species logic.  They are Western Region 1 and Teton.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
- *
- *   
  */
+
 public class LogicInvasiveSpeciesDataModel extends AbstractTableModel {
   public static final int INVASIVE_SPECIES_COL = 0;
   public static final int SELECTED_COL         = 1;
