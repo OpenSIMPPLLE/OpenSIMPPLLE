@@ -690,7 +690,7 @@ public abstract class Process {
   /**
    * @return probability logic processes arraylist
    */
-  public static ArrayList getProbLogicProcesses() {
+  public static ArrayList<ProcessType> getProbLogicProcesses() {
     return probLogicProcesses;
   }
 

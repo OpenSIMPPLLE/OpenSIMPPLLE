@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
+import java.util.List;
 
 /**
  * ProcessProbLogic determines the probability that a process occurs in a vegetated unit. This
@@ -45,10 +46,10 @@ public class ProcessProbLogic extends BaseLogic {
   /**
    * Creates a set of probability rules for each process type.
    *
-   * @param processTypes An array of process types
+   * @param processTypes A list of process types
    * @param processNames An array of process names, which must align with the process types
    */
-  private ProcessProbLogic(ArrayList<ProcessType> processTypes, String[] processNames) {
+  private ProcessProbLogic(List<ProcessType> processTypes, String[] processNames) {
 
     super(processNames);
 
@@ -79,14 +80,16 @@ public class ProcessProbLogic extends BaseLogic {
    * contains a list of processes represented by the current regional zone.
    */
   public static void initialize() {
-    RegionalZone  zone = Simpplle.getCurrentZone();
-    ArrayList<ProcessType> processes = Process.getProbLogicProcesses();
-    String[]      processNames = new String[processes.size()];
 
-    for (int i=0; i<processes.size(); i++) {
-      processNames[i] = processes.get(i).toString();
+    ArrayList<ProcessType> processTypes = Process.getProbLogicProcesses();
+    String[] processNames = new String[processTypes.size()];
+
+    for (int i = 0; i < processTypes.size(); i++) {
+      processNames[i] = processTypes.get(i).toString();
     }
-    instance = new ProcessProbLogic(processes,processNames);
+
+    instance = new ProcessProbLogic(processTypes,processNames);
+
   }
 
   /**
