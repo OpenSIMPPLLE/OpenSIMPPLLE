@@ -709,7 +709,7 @@ public class SimParam extends JDialog {
     focusLost          = false;
     fireSuppression    = false;
     discountCost       = false;
-    fixedSeed       = false;
+    fixedSeed          = false;
     trackOwnership     = false;
     trackSpecialArea   = false;
     yearlySteps        = false;
