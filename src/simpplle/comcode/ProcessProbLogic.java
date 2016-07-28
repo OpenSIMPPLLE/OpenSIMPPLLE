@@ -187,15 +187,15 @@ public class ProcessProbLogic extends BaseLogic {
    * @return The probability that the process type occurs in the unit
    */
   public int getProbability(ProcessType process, Evu evu) {
-    ProcessProbLogicData logicData;
-    Integer prob=null;
-    for (int i=0; i<getData(process.toString()).size(); i++) {
-      logicData = (ProcessProbLogicData)getData(process.toString()).get(i);
-      prob = logicData.getProbability(evu);
-      if (prob != null) { return prob; }
+
+    for (int i = 0; i < getData(process.toString()).size(); i++) {
+      ProcessProbLogicData logicData = (ProcessProbLogicData)getData(process.toString()).get(i);
+      Integer prob = logicData.getProbability(evu);
+      if (prob != null) return prob;
     }
 
     return 0;
+
   }
 
   /**
