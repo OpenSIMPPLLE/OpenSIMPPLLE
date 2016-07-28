@@ -81,7 +81,7 @@ public class ProcessProbLogic extends BaseLogic {
    */
   public static void initialize() {
 
-    ArrayList<ProcessType> processTypes = Process.getProbLogicProcesses();
+    List<ProcessType> processTypes = Process.getProbLogicProcesses();
     String[] processNames = new String[processTypes.size()];
 
     for (int i = 0; i < processTypes.size(); i++) {
@@ -208,7 +208,7 @@ public class ProcessProbLogic extends BaseLogic {
 
     super.save(os);
 
-    ArrayList<ProcessType> processes = Process.getProbLogicProcesses();
+    List<ProcessType> processes = Process.getProbLogicProcesses();
     int count = 0;
     for (int i=0; i<processes.size(); i++) {
       Process process = Process.findInstance(processes.get(i));

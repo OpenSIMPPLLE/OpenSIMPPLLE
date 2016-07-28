@@ -21,6 +21,7 @@ import simpplle.comcode.SystemKnowledge;
 import javax.swing.JCheckBoxMenuItem;
 import simpplle.comcode.ProcessProbLogic;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class creates the Process Probability Logic Dialog, a type of VegLogicDialog.
@@ -78,7 +79,7 @@ public class ProcessProbabilityLogicDialog extends VegLogicDialog {
 
   private void initialize() {
     sysKnowKind = SystemKnowledge.PROCESS_PROB_LOGIC;
-    ArrayList<ProcessType> processes = simpplle.comcode.Process.getProbLogicProcesses();
+    List<ProcessType> processes = simpplle.comcode.Process.getProbLogicProcesses();
 
     String[] kinds = new String[processes.size()];
     for (int i=0; i<processes.size(); i++) {
