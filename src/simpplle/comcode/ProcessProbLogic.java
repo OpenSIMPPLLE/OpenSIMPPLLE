@@ -9,7 +9,6 @@
 package simpplle.comcode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
@@ -46,23 +45,31 @@ public class ProcessProbLogic extends BaseLogic {
   /**
    * Creates a set of probability rules for each process type.
    *
-   * @param processes An array of process types
+   * @param processTypes An array of process types
    * @param processNames An array of process names, which must align with the process types
    */
-  private ProcessProbLogic(ArrayList<ProcessType> processes, String[] processNames) {
+  private ProcessProbLogic(ArrayList<ProcessType> processTypes, String[] processNames) {
 
     super(processNames);
 
     sysKnowKind = SystemKnowledge.Kinds.PROCESS_PROB_LOGIC;
 
-    for (int i = 0; i < processes.size(); i++) {
-      Process process = Process.findInstance(processes.get(i));
-      if (process.isUniqueUI()) { continue; }
+    for (ProcessType processType : processTypes) {
 
-      addColumns(processes.get(i).toString());
-      ArrayList<String> columns = process.getDefaultVisibleColumns();
-      for (String column : columns) {
-        addVisibleColumn(processes.get(i).toString(),column);
+      Process process = Process.findInstance(processType);
+      if (process.isUniqueUI()) continue;
+
+      String processName = processType.toString();
+
+      addColumn(processName,"ADJ_PROCESS_COL");
+      addColumn(processName,"MPB_HAZARD_COL");
+      addColumn(processName,"ADJ_MOD_HAZARD_COL");
+      addColumn(processName,"ADJ_HIGH_HAZARD_COL");
+      addColumn(processName,"PROB_COL");
+
+      ArrayList<String> columnNames = process.getDefaultVisibleColumns();
+      for (String columnName : columnNames) {
+        addVisibleColumn(processName,columnName);
       }
     }
   }
@@ -87,17 +94,6 @@ public class ProcessProbLogic extends BaseLogic {
    */
   public static ProcessProbLogic getInstance() {
     return instance;
-  }
-
-  /**
-   * MOVE INTO CONSTRUCTOR
-   */
-  private void addColumns(String processName) {
-    addColumn(processName,"ADJ_PROCESS_COL");
-    addColumn(processName,"MPB_HAZARD_COL");
-    addColumn(processName,"ADJ_MOD_HAZARD_COL");
-    addColumn(processName, "ADJ_HIGH_HAZARD_COL");
-    addColumn(processName,"PROB_COL");
   }
 
   /**
