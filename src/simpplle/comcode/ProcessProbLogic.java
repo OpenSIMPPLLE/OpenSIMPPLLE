@@ -44,20 +44,6 @@ public class ProcessProbLogic extends BaseLogic {
   private static ProcessProbLogic instance;
 
   /**
-   * Initializes the Process Probability logic for the current zone and transfering into
-   */
-  public static void initialize() {
-    RegionalZone  zone = Simpplle.getCurrentZone();
-    ArrayList<ProcessType> processes = Process.getProbLogicProcesses();
-    String[]      processNames = new String[processes.size()];
-
-    for (int i=0; i<processes.size(); i++) {
-      processNames[i] = processes.get(i).toString();
-    }
-    instance = new ProcessProbLogic(processes,processNames);
-  }
-
-  /**
    * Constructor for Process Probability Logic.  Takes in the arraylist of processes, and string array of processnames.  
    * The string array is sent to the BaseLogic superclass, where columns are added.  Then loops through the process arraylist and adds the default 
    * visible columns for each process to the visible columns for this ProcessProbability Logic object.  
@@ -83,16 +69,17 @@ public class ProcessProbLogic extends BaseLogic {
   }
 
   /**
-   * Private method to add adjacent process, mountain pine beetle hazard, adjacent moderate
-   * hazard, adjacent high hazard, and probability columns
-   * @param processName
+   * Initializes the Process Probability logic for the current zone and transfering into
    */
-  private void addColumns(String processName) {
-    addColumn(processName,"ADJ_PROCESS_COL");
-    addColumn(processName,"MPB_HAZARD_COL");
-    addColumn(processName,"ADJ_MOD_HAZARD_COL");
-    addColumn(processName, "ADJ_HIGH_HAZARD_COL");
-    addColumn(processName,"PROB_COL");
+  public static void initialize() {
+    RegionalZone  zone = Simpplle.getCurrentZone();
+    ArrayList<ProcessType> processes = Process.getProbLogicProcesses();
+    String[]      processNames = new String[processes.size()];
+
+    for (int i=0; i<processes.size(); i++) {
+      processNames[i] = processes.get(i).toString();
+    }
+    instance = new ProcessProbLogic(processes,processNames);
   }
 
   /**
@@ -104,57 +91,17 @@ public class ProcessProbLogic extends BaseLogic {
   }
 
   /**
-   * Adds a process to the table model, by adding a row.
+   * Private method to add adjacent process, mountain pine beetle hazard, adjacent moderate
+   * hazard, adjacent high hazard, and probability columns
+   * @param processName
    */
-  public void addRow(int insertPos, String processName) {
-    super.addRow(insertPos,processName,new ProcessProbLogicData(processName));
+  private void addColumns(String processName) {
+    addColumn(processName,"ADJ_PROCESS_COL");
+    addColumn(processName,"MPB_HAZARD_COL");
+    addColumn(processName,"ADJ_MOD_HAZARD_COL");
+    addColumn(processName, "ADJ_HIGH_HAZARD_COL");
+    addColumn(processName,"PROB_COL");
   }
-
-  /**
-   * Duplicates a row, by creating a new instance of Process probability logic data and getting
-   * the value at a row and process name.
-   */
-  public void duplicateRow(int row,int insertPos, String processName) {
-    ProcessProbLogicData logicData = (ProcessProbLogicData)getValueAt(row,processName);
-    AbstractLogicData newLogicData = logicData.duplicate();
-    super.addRow(insertPos,processName,newLogicData);
-  }
-
-  /**
-   * This was added to enable easily copying existing data from the process
-   * Root Disease to the three new Root Disease process (Low, Moderate, and High Severity).
-   * Added only for the developers use, later disabled.  Left here for possible future use.
-   */
-//  public static void fillNewRoots() {
-//    ProcessProbLogic logicInst = ProcessProbLogic.getInstance();
-//
-//    ProcessType process = ProcessType.ROOT_DISEASE;
-//
-//    ProcessProbLogicData logicData, newLogicData;
-//    Integer prob=null;
-//    for (int i=0; i<logicInst.getData(process.toString()).size(); i++) {
-//      logicData = (ProcessProbLogicData)logicInst.getData(process.toString()).get(i);
-//
-//      // Light Severity Root Disease
-//      newLogicData = (ProcessProbLogicData) logicData.duplicate();
-//      newLogicData.process = ProcessType.LS_ROOT_DISEASE;
-//
-//      logicInst.addRow(ProcessType.LS_ROOT_DISEASE.toString(), newLogicData);
-//
-//      // Moderate Severity Root Disease
-//      newLogicData = (ProcessProbLogicData) logicData.duplicate();
-//      newLogicData.process = ProcessType.MS_ROOT_DISEASE;
-//
-//      logicInst.addRow(ProcessType.MS_ROOT_DISEASE.toString(), newLogicData);
-//
-//      // High Severity Root Disease
-//      newLogicData = (ProcessProbLogicData) logicData.duplicate();
-//      newLogicData.process = ProcessType.HS_ROOT_DISEASE;
-//
-//      logicInst.addRow(ProcessType.HS_ROOT_DISEASE.toString(), newLogicData);
-//
-//    }
-//  }
 
   /**
    * takes in a column name and returns the column Id.  These column Id's are taken by adding a
@@ -198,6 +145,23 @@ public class ProcessProbLogic extends BaseLogic {
       default:
         return super.getColumnName(col);
     }
+  }
+
+  /**
+   * Adds a process to the table model, by adding a row.
+   */
+  public void addRow(int insertPos, String processName) {
+    super.addRow(insertPos,processName,new ProcessProbLogicData(processName));
+  }
+
+  /**
+   * Duplicates a row, by creating a new instance of Process probability logic data and getting
+   * the value at a row and process name.
+   */
+  public void duplicateRow(int row,int insertPos, String processName) {
+    ProcessProbLogicData logicData = (ProcessProbLogicData)getValueAt(row,processName);
+    AbstractLogicData newLogicData = logicData.duplicate();
+    super.addRow(insertPos,processName,newLogicData);
   }
 
   /**
@@ -279,6 +243,42 @@ public class ProcessProbLogic extends BaseLogic {
       process.readExternalProbabilityLogic(in);
     }
   }
+
+  /**
+   * This was added to enable easily copying existing data from the process
+   * Root Disease to the three new Root Disease process (Low, Moderate, and High Severity).
+   * Added only for the developers use, later disabled.  Left here for possible future use.
+   */
+//  public static void fillNewRoots() {
+//    ProcessProbLogic logicInst = ProcessProbLogic.getInstance();
+//
+//    ProcessType process = ProcessType.ROOT_DISEASE;
+//
+//    ProcessProbLogicData logicData, newLogicData;
+//    Integer prob=null;
+//    for (int i=0; i<logicInst.getData(process.toString()).size(); i++) {
+//      logicData = (ProcessProbLogicData)logicInst.getData(process.toString()).get(i);
+//
+//      // Light Severity Root Disease
+//      newLogicData = (ProcessProbLogicData) logicData.duplicate();
+//      newLogicData.process = ProcessType.LS_ROOT_DISEASE;
+//
+//      logicInst.addRow(ProcessType.LS_ROOT_DISEASE.toString(), newLogicData);
+//
+//      // Moderate Severity Root Disease
+//      newLogicData = (ProcessProbLogicData) logicData.duplicate();
+//      newLogicData.process = ProcessType.MS_ROOT_DISEASE;
+//
+//      logicInst.addRow(ProcessType.MS_ROOT_DISEASE.toString(), newLogicData);
+//
+//      // High Severity Root Disease
+//      newLogicData = (ProcessProbLogicData) logicData.duplicate();
+//      newLogicData.process = ProcessType.HS_ROOT_DISEASE;
+//
+//      logicInst.addRow(ProcessType.HS_ROOT_DISEASE.toString(), newLogicData);
+//
+//    }
+//  }
 
   /**
    * method to get process probability logic from legacy systems
