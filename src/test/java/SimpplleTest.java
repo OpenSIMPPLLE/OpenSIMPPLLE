@@ -3,7 +3,6 @@ import simpplle.JSimpplle;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.Simpplle;
 import simpplle.comcode.SimpplleError;
-import simpplle.gui.NewZoneDialog;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -23,23 +22,20 @@ public class SimpplleTest {
    * or null.
    *
    * It must increment indexes >= 8 as the result of a hack from early OpenSIMPPLLE.
-   * @see NewZoneDialog#loadZone()
-   *
+   * @see simpplle.gui.NewZoneDialog#loadZone()
    * @throws SimpplleError
    */
   @Test
   public void loadsAllZones() throws SimpplleError {
     boolean isSuccess = true;
     // Need to call JSimpplle constructor to instantiate static members
-    JSimpplle jSimpplle = new JSimpplle();
-
     for (int i = 0; i < RegionalZone.availableZones().length; i++){
       if (i >= 8) {
-       if(!loadZone(i+2)){
+       if(!loadAZone(i+2)){
          isSuccess = false;
        }
       } else {
-        if(!loadZone(i)){
+        if(!loadAZone(i)){
           isSuccess = false;
         }
       }
@@ -47,9 +43,18 @@ public class SimpplleTest {
     assertEquals(true, isSuccess);
   }
 
-  private boolean loadZone(int index) throws SimpplleError {
+  /**
+   * Helper method. Loads an individual zone, and returns true if zone was loaded successfully.
+   * In this instance, success constitutes the currentZone attribute being initialized.
+   *
+   * @param id - Calls the loadZone method with the given id. Zones are loaded by their id in
+   *           the ValidZones class.
+   * @return true if Simpplle.currentZone is instantiated.
+   * @throws SimpplleError
+   */
+  private boolean loadAZone(int id) throws SimpplleError {
     Simpplle simpplle = new Simpplle();
-    simpplle.loadZone(index);
+    simpplle.loadZone(id);
     return (Simpplle.getCurrentZone() != null);
   }
 }

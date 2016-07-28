@@ -347,7 +347,7 @@ public final class Simpplle {
     setStatusMessage("Loading Sample Area: " + area.getName() + "...");
     try {
       InclusionRuleSpecies.clearAllInstances();
-      if (area.getPath().indexOf("SWEATHOUSE.AREA") != -1) {
+      if (area.getPath().contains("SWEATHOUSE.AREA")) {
         currentArea = area;
         SystemKnowledge.loadSampleArea(currentArea);
       }
