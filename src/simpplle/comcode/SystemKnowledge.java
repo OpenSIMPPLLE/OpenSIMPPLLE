@@ -1176,16 +1176,13 @@ public class SystemKnowledge {
    * @return True if an entry with a matching prefix is found
    */
   private static boolean findEntry(JarInputStream stream, String entryName) throws IOException {
-    JarEntry jarEntry;
-    String   name = null;
-
-    jarEntry = stream.getNextJarEntry();
+    JarEntry jarEntry = stream.getNextJarEntry();
     while (jarEntry != null) {
       if (jarEntry.isDirectory()) {
         jarEntry = stream.getNextJarEntry();
         continue;
       }
-      name = jarEntry.getName().toUpperCase();
+      String name = jarEntry.getName().toUpperCase();
       if (name.startsWith(entryName)) {
         return true;
       }
