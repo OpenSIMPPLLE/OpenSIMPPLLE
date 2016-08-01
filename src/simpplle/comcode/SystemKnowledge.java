@@ -2152,6 +2152,7 @@ public class SystemKnowledge {
    * @return Source information
    */
   public static String getSource(Kinds kind) {
+
     if (kind == WILDLIFE) {
       return "Documented in draft GTR, Carattia, Chew and Samson";
     }
@@ -2159,12 +2160,19 @@ public class SystemKnowledge {
     int zoneId = Simpplle.getCurrentZone().getId();
 
     switch(zoneId) {
-      case ValidZones.WESTSIDE_REGION_ONE:      return getWestsideRegionOneSource(kind);
-      case ValidZones.EASTSIDE_REGION_ONE:      return getEastsideRegionOneSource(kind);
-      case ValidZones.TETON:                    return getTetonSource(kind);
-      case ValidZones.NORTHERN_CENTRAL_ROCKIES: return getNorthernCentralRockiesSource(kind);
-      case ValidZones.COLORADO_PLATEAU:         return getColoradoPlateauSource(kind);
-      default:  return "No Knowledge Source Data Available at this time.";
+      case ValidZones.WESTSIDE_REGION_ONE:
+        return getWestsideRegionOneSource(kind);
+      case ValidZones.EASTSIDE_REGION_ONE:
+        return getEastsideRegionOneSource(kind);
+      case ValidZones.TETON:
+        return getTetonSource(kind);
+      case ValidZones.NORTHERN_CENTRAL_ROCKIES:
+        return getNorthernCentralRockiesSource(kind);
+      case ValidZones.COLORADO_PLATEAU:
+        return getColoradoPlateauSource(kind);
+      default:
+        return "No Knowledge Source Data Available at this time.";
+
     }
   }
 
