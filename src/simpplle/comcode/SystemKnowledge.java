@@ -16,7 +16,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamDriver;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 
-/** 
+/**
  * This class provides for the ability to load a file which has information on files that need to be loaded
  * that modify system knowledge.  
  * <p>Files such as:
@@ -30,6 +30,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 public class SystemKnowledge {
 
   public enum Kinds {
+
     FMZ,
     TREATMENT_SCHEDULE,
     TREATMENT_LOGIC,
@@ -66,10 +67,7 @@ public class SystemKnowledge {
     FIRE_SUPP_WEATHER_CLASS_A_LOGIC,
     FIRE_SPOTTING_LOGIC,
     FIRE_SUPP_EVENT_LOGIC,
-
     TRACKING_SPECIES_REPORT,
-
-    // ** Needed for Knowledge Source info.
     LP_MPB,
     PP_MPB,
     WP_MPB,
@@ -80,6 +78,7 @@ public class SystemKnowledge {
     DF_BEETLE,
     WILDLIFE,
     KEANE_PARAMETERS
+
   }
 
   public static final Kinds FMZ                              = Kinds.FMZ;
@@ -135,13 +134,34 @@ public class SystemKnowledge {
   private static final int VEG     = 0;
   private static final int AQUATIC = 1;
 
-  private static boolean[] hasChanged  = new boolean[NUMID];
-  private static boolean[] loadSaveMe  = new boolean[NUMID];
+  /**
+   * Flags indicating if a kind of system knowledge has changed.
+   */
+  private static boolean[] hasChanged = new boolean[NUMID];
+
+  /**
+   * Flags indicating if a kind of system knowledge should be saved and loaded.
+   */
+  private static boolean[] loadSaveMe = new boolean[NUMID];
+
+  /**
+   * Flags indicating if a kind of system knowledge is a substitute the data in a zone.
+   */
   private static boolean[] hasUserData = new boolean[NUMID];
 
+  /**
+   * An array of knowledge files saved individually, outside of a collection of system knowledge.
+   */
   private static File[] files = new File[NUMID];
 
+  /**
+   *
+   */
   private static HabitatTypeGroup lastPathwayLoaded;
+
+  /**
+   *
+   */
   private static LtaValleySegmentGroup lastAquaticPathwayLoaded;
 
   public static final String FMZ_ENTRY                         = "DATA/FMZ.TXT";
@@ -202,6 +222,9 @@ public class SystemKnowledge {
   public static final String FIRE_SUPP_EVENT_LOGIC_ENTRY           = "DATA/FIRE-SUPP-EVENT-LOGIC.XML";
   public static final String KEANE_PARAMETERS_ENTRY                = "DATA/KEANE-PARAMETERS-ENTRY";
 
+  /**
+   * The file extension appended to a file containing a collection of system knowledge.
+   */
   private static final String SYSKNOW_FILEEXT = "sysknowledge";
 
   /**
