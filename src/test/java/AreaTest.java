@@ -1,17 +1,18 @@
-import static org.junit.Assert.assertEquals;
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
 
 import org.junit.Test;
 import simpplle.comcode.*;
 
+import static org.junit.Assert.assertEquals;
 
 /**
- * The University of Montana owns copyright of the designated documentation contained
- * within this file as part of the software product designated by Uniform Resource Identifier
- * UM-OpenSIMPPLLE-1.0.  By copying this file the user accepts the University of Montana
- * Open Source License Contract pertaining to this documentation and agrees to abide by all
- * restrictions, requirements, and assertions contained therein.  All Other Rights Reserved.
- * <p>
- * <p> Contains tests pertaining to the Area class
+ * Contains tests pertaining to the Area class
  */
 public class AreaTest {
 
@@ -29,8 +30,7 @@ public class AreaTest {
     // Set up adjacent data
     Evu neighborEvu = new Evu();
     neighborEvu.setElevation(274); // about 900
-    AdjacentData adjacentData = new AdjacentData(neighborEvu, 'E', 'N', 270,
-        4, 270);
+    AdjacentData adjacentData = new AdjacentData(neighborEvu, 'E', 'N', 270, 4, 270);
 
     // Check right angle adjacency
     assertEquals(-.101, area.calcSlope(evu, adjacentData), .001);
