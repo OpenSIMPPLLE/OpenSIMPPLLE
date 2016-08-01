@@ -2151,20 +2151,6 @@ public class SystemKnowledge {
 
   }
 
-  /**
-   * Reads all kinds of knowledge for the current zone.
-   *
-   * @throws SimpplleError
-   */
-  public static void loadAllDefaults() throws SimpplleError {
-    RegionalZone zone = Simpplle.getCurrentZone();
-
-    zone.loadKnowledge();
-    FireEvent.resetExtremeData();
-  }
-
-
-
   // ********************************
   // *** Knowledge Source Methods ***
   // ********************************

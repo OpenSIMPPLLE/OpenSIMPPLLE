@@ -2526,9 +2526,12 @@ public class SimpplleMain extends JFrame {
     if (choice == JOptionPane.NO_OPTION) { return; }
 
     try {
-      SystemKnowledge.loadAllDefaults();
-    }
-    catch (SimpplleError err) {
+
+      RegionalZone zone = Simpplle.getCurrentZone();
+      zone.loadKnowledge();
+      FireEvent.resetExtremeData();
+
+    } catch (SimpplleError err) {
       JOptionPane.showMessageDialog(this,err.getMessage(),
                                     "Could not Restore defaults",
                                     JOptionPane.ERROR_MESSAGE);
