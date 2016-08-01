@@ -131,6 +131,57 @@ public class SystemKnowledge {
 
   public static final int NUMID = Kinds.values().length;
 
+  public static final String FMZ_ENTRY                                  = "DATA/FMZ.TXT";
+  public static final String TREATMENT_SCHEDULE_ENTRY                   = "DATA/TREATMENT";
+  public static final String TREATMENT_LOGIC_ENTRY                      = "DATA/TREATMENT-LOGIC.TXT";
+  public static final String PROCESS_SCHEDULE_ENTRY                     = "DATA/PROCESS";
+  public static final String INSECT_DISEASE_PROB_ENTRY                  = "DATA/INSECT-DISEASE-PROB.TXT";
+  public static final String OLD_PROCESS_PROB_LOGIC_ENTRY               = "DATA/PROCESS-PROB-LOGIC.SER";
+  public static final String PROCESS_PROB_LOGIC_ENTRY                   = "DATA/PROCESS-PROB-LOGIC.XML";
+  public static final String FIRE_SUPP_CLASS_A_ENTRY                    = "DATA/FIRE-SUPPRESSION-CLASS-A.TXT";
+  public static final String FIRE_SUPP_BEYOND_CLASS_A_ENTRY             = "DATA/FIRE-SUPPRESSION-BEYOND-CLASS-A.TXT";
+  public static final String EXTREME_FIRE_DATA_ENTRY                    = "DATA/EXTREME-FIRE-DATA.TXT";
+  public static final String CLIMATE_ENTRY                              = "DATA/CLIMATE";
+  public static final String WILDLIFE_ENTRY                             = "DATA/WILDLIFE";
+  public static final String EMISSIONS_ENTRY                            = "DATA/EMISSIONS.TXT";
+  public static final String PATHWAYS_ENTRY                             = "PATHWAYS";
+  public static final String PATHWAYS_ENTRY_AQUATIC                     = "AQUATIC-PATHWAYS";
+  public static final String HISTORIC_PATHWAYS_ENTRY                    = "HISTORIC-PATHWAYS";
+  public static final String FIRE_SEASON_ENTRY                          = "DATA/FIRE-SEASON.TXT";
+  public static final String FIRESUPP_PRODUCTION_RATE_ENTRY             = "DATA/FIRESUPP-PRODUCTION-RATE.SER";
+  public static final String FIRESUPP_SPREAD_RATE_ENTRY                 = "DATA/FIRESUPP-SPREAD-RATE.SER";
+  public static final String SPECIES_ENTRY                              = "DATA/SPECIES.SER";
+  public static final String CONIFER_ENCROACHMENT_ENTRY                 = "DATA/CONIFER-ENCROACHMENT.SER";
+  public static final String INVASIVE_SPECIES_LOGIC_ENTRY               = "DATA/INVASIVE-SPECIES-LOGIC.XML";
+  public static final String INVASIVE_SPECIES_LOGIC_MSU_ENTRY           = "DATA/INVASIVE-SPECIES-LOGIC-MSU.XML";
+  public static final String GAP_PROCESS_LOGIC_ENTRY                    = "DATA/GAP-PROCESS-LOGIC.XML";
+  public static final String DOCOMPETITION_LOGIC_ENTRY                  = "DATA/DOCOMPETITION-LOGIC.XML";
+  public static final String REGEN_DELAY_LOGIC_ENTRY                    = "DATA/REGEN-DELAY-LOGIC.XML";
+  public static final String EVU_SEARCH_LOGIC_ENTRY                     = "DATA/EVU-SEARCH-LOGIC.XML";
+  public static final String PRODUCING_SEED_LOGIC_ENTRY                 = "DATA/PRODUCING-SEED-LOGIC.XML";
+  public static final String VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY             = "DATA/VEG-UNIT-FIRE-TYPE-LOGIC.XML";
+  public static final String REGEN_LOGIC_FIRE_ENTRY                     = "DATA/REGENERATION-LOGIC-FIRE.XML";
+  public static final String REGEN_LOGIC_SUCC_ENTRY                     = "DATA/REGENERATION-LOGIC-SUCCESSION.XML";
+  public static final String OLD_REGEN_LOGIC_ENTRY                      = "DATA/REGENERATION-LOGIC.TXT";
+  public static final String FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY     = "DATA/FIRE-SUPPRESSION-WEATHER-BEYOND-CLASS-A.XML";
+  public static final String OLD_FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY = "DATA/FIRE-SUPPRESSION-WEATHER-BEYOND-CLASS-A.TXT";
+  public static final String FIRE_SUPP_WEATHER_CLASS_A_ENTRY            = "DATA/FIRE-SUPPRESSION-WEATHER-CLASS-A.TXT";
+  public static final String OLD_FIRE_SPREAD_ENTRY                      = "DATA/FIRE-SPREAD.TXT";
+  public static final String FIRE_SPREAD_DATA_ENTRY                     = "DATA/FIRE-SPREAD-DATA.TXT";
+  public static final String FIRE_SPREAD_LOGIC_ENTRY                    = "DATA/FIRE-SPREAD-DATA.XML";
+  public static final String FIRE_TYPE_LOGIC_ENTRY                      = "DATA/FIRE-TYPE-DATA.XML";
+  public static final String FIRE_TYPE_DATA_ENTRY                       = "DATA/FIRE-TYPE-DATA.TXT";
+  public static final String OLD_TYPE_OF_FIRE_ENTRY                     = "DATA/TYPE-OF-FIRE.TXT";
+  public static final String FIRE_SUPP_CLASS_A_LOGIC_ENTRY              = "DATA/FIRE-SUPP-CLASS-A-LOGIC.XML";
+  public static final String FIRE_SUPP_BEYOND_CLASS_A_LOGIC_ENTRY       = "DATA/FIRE-SUPP-BEYOND-CLASS-A-LOGIC.XML";
+  public static final String FIRE_SUPP_PRODUCTION_RATE_LOGIC_ENTRY      = "DATA/FIRE-SUPP-PRODUCTION-RATE-LOGIC.XML";
+  public static final String FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY          = "DATA/FIRE-SUPP-SPREAD-RATE-LOGIC.XML";
+  public static final String FIRE_SUPP_WEATHER_CLASS_A_LOGIC_ENTRY      = "DATA/FIRE-SUPP-WEATHER-CLASS-A-LOGIC.XML";
+  public static final String TRACKING_SPECIES_REPORT_ENTRY              = "DATA/TRACKING-SPECIES-REPORT.XML";
+  public static final String FIRE_SPOTTING_LOGIC_ENTRY                  = "DATA/FIRE-SPOTTING-LOGIC.XML";
+  public static final String FIRE_SUPP_EVENT_LOGIC_ENTRY                = "DATA/FIRE-SUPP-EVENT-LOGIC.XML";
+  public static final String KEANE_PARAMETERS_ENTRY                     = "DATA/KEANE-PARAMETERS-ENTRY";
+
   private static final int VEG     = 0;
   private static final int AQUATIC = 1;
 
@@ -163,64 +214,6 @@ public class SystemKnowledge {
    *
    */
   private static LtaValleySegmentGroup lastAquaticPathwayLoaded;
-
-  public static final String FMZ_ENTRY                         = "DATA/FMZ.TXT";
-  public static final String TREATMENT_SCHEDULE_ENTRY          = "DATA/TREATMENT";
-  public static final String TREATMENT_LOGIC_ENTRY             = "DATA/TREATMENT-LOGIC.TXT";
-  public static final String PROCESS_SCHEDULE_ENTRY            = "DATA/PROCESS";
-//  public static final String INSECT_DISEASE_PROB_ENTRY         = "DATA/INSECT-DISEASE-PROB.TXT";
-  public static final String OLD_PROCESS_PROB_LOGIC_ENTRY      = "DATA/PROCESS-PROB-LOGIC.SER";
-  public static final String PROCESS_PROB_LOGIC_ENTRY          = "DATA/PROCESS-PROB-LOGIC.XML";
-  public static final String FIRE_SUPP_CLASS_A_ENTRY           = "DATA/FIRE-SUPPRESSION-CLASS-A.TXT";
-  public static final String FIRE_SUPP_BEYOND_CLASS_A_ENTRY    = "DATA/FIRE-SUPPRESSION-BEYOND-CLASS-A.TXT";
-  public static final String EXTREME_FIRE_DATA_ENTRY           = "DATA/EXTREME-FIRE-DATA.TXT";
-  public static final String CLIMATE_ENTRY                     = "DATA/CLIMATE";
-  public static final String WILDLIFE_ENTRY                    = "DATA/WILDLIFE";
-  public static final String EMISSIONS_ENTRY                   = "DATA/EMISSIONS.TXT";
-  public static final String PATHWAYS_ENTRY                    = "PATHWAYS";
-  public static final String PATHWAYS_ENTRY_AQUATIC            = "AQUATIC-PATHWAYS";
-  public static final String HISTORIC_PATHWAYS_ENTRY           = "HISTORIC-PATHWAYS";
-  public static final String FIRE_SEASON_ENTRY                 = "DATA/FIRE-SEASON.TXT";
-  public static final String FIRESUPP_PRODUCTION_RATE_ENTRY    = "DATA/FIRESUPP-PRODUCTION-RATE.SER";
-  public static final String FIRESUPP_SPREAD_RATE_ENTRY        = "DATA/FIRESUPP-SPREAD-RATE.SER";
-  public static final String SPECIES_ENTRY                     = "DATA/SPECIES.SER";
-  public static final String CONIFER_ENCROACHMENT_ENTRY        = "DATA/CONIFER-ENCROACHMENT.SER";
-  public static final String INVASIVE_SPECIES_LOGIC_ENTRY      = "DATA/INVASIVE-SPECIES-LOGIC.XML";
-  public static final String INVASIVE_SPECIES_LOGIC_MSU_ENTRY  = "DATA/INVASIVE-SPECIES-LOGIC-MSU.XML";
-
-  public static final String GAP_PROCESS_LOGIC_ENTRY           = "DATA/GAP-PROCESS-LOGIC.XML";
-  public static final String DOCOMPETITION_LOGIC_ENTRY         = "DATA/DOCOMPETITION-LOGIC.XML";
-  public static final String REGEN_DELAY_LOGIC_ENTRY           = "DATA/REGEN-DELAY-LOGIC.XML";
-
-  public static final String EVU_SEARCH_LOGIC_ENTRY            = "DATA/EVU-SEARCH-LOGIC.XML";
-  public static final String PRODUCING_SEED_LOGIC_ENTRY        = "DATA/PRODUCING-SEED-LOGIC.XML";
-  public static final String VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY    = "DATA/VEG-UNIT-FIRE-TYPE-LOGIC.XML";
-
-  public static final String REGEN_LOGIC_FIRE_ENTRY            = "DATA/REGENERATION-LOGIC-FIRE.XML";
-  public static final String REGEN_LOGIC_SUCC_ENTRY            = "DATA/REGENERATION-LOGIC-SUCCESSION.XML";
-  public static final String OLD_REGEN_LOGIC_ENTRY             = "DATA/REGENERATION-LOGIC.TXT";
-
-  public static final String FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY     = "DATA/FIRE-SUPPRESSION-WEATHER-BEYOND-CLASS-A.XML";
-  public static final String OLD_FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY = "DATA/FIRE-SUPPRESSION-WEATHER-BEYOND-CLASS-A.TXT";
-  public static final String FIRE_SUPP_WEATHER_CLASS_A_ENTRY            = "DATA/FIRE-SUPPRESSION-WEATHER-CLASS-A.TXT";
-
-  public static final String OLD_FIRE_SPREAD_ENTRY             = "DATA/FIRE-SPREAD.TXT";
-  public static final String FIRE_SPREAD_DATA_ENTRY            = "DATA/FIRE-SPREAD-DATA.TXT";
-  public static final String FIRE_SPREAD_LOGIC_ENTRY           = "DATA/FIRE-SPREAD-DATA.XML";
-
-  public static final String FIRE_TYPE_LOGIC_ENTRY             = "DATA/FIRE-TYPE-DATA.XML";
-  public static final String FIRE_TYPE_DATA_ENTRY              = "DATA/FIRE-TYPE-DATA.TXT";
-  public static final String OLD_TYPE_OF_FIRE_ENTRY            = "DATA/TYPE-OF-FIRE.TXT";
-
-  public static final String FIRE_SUPP_CLASS_A_LOGIC_ENTRY         = "DATA/FIRE-SUPP-CLASS-A-LOGIC.XML";
-  public static final String FIRE_SUPP_BEYOND_CLASS_A_LOGIC_ENTRY  = "DATA/FIRE-SUPP-BEYOND-CLASS-A-LOGIC.XML";
-  public static final String FIRE_SUPP_PRODUCTION_RATE_LOGIC_ENTRY = "DATA/FIRE-SUPP-PRODUCTION-RATE-LOGIC.XML";
-  public static final String FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY     = "DATA/FIRE-SUPP-SPREAD-RATE-LOGIC.XML";
-  public static final String FIRE_SUPP_WEATHER_CLASS_A_LOGIC_ENTRY = "DATA/FIRE-SUPP-WEATHER-CLASS-A-LOGIC.XML";
-  public static final String TRACKING_SPECIES_REPORT_ENTRY         = "DATA/TRACKING-SPECIES-REPORT.XML";
-  public static final String FIRE_SPOTTING_LOGIC_ENTRY             = "DATA/FIRE-SPOTTING-LOGIC.XML";
-  public static final String FIRE_SUPP_EVENT_LOGIC_ENTRY           = "DATA/FIRE-SUPP-EVENT-LOGIC.XML";
-  public static final String KEANE_PARAMETERS_ENTRY                = "DATA/KEANE-PARAMETERS-ENTRY";
 
   /**
    * The file extension appended to a file containing a collection of system knowledge.
