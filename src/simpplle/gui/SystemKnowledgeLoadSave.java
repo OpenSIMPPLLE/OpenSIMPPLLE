@@ -467,7 +467,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     try {
 
       if (save) {
-        SystemKnowledge.saveInputFile(loadSaveFile);
+        SystemKnowledge.saveUserKnowledge(loadSaveFile);
       } else {
         SystemKnowledge.readInputFile(loadSaveFile);
       }

@@ -1752,7 +1752,7 @@ public class SystemKnowledge {
    * @param file An output file
    * @throws SimpplleError
    */
-  public static void saveInputFile(File file) throws SimpplleError { // TODO: RENAME THIS METHOD
+  public static void saveUserKnowledge(File file) throws SimpplleError {
     saveInputFile(file,SYSKNOW_FILEEXT,false);
   }
 
