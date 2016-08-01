@@ -1728,7 +1728,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void saveIndividualInputFile(File file, Kinds kind) throws SimpplleError {
-    for (int i=0; i<loadSaveMe.length; i++) {
+    for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
     }
     loadSaveMe[kind.ordinal()] = true;
@@ -1742,7 +1742,7 @@ public class SystemKnowledge {
    * @param file An output file
    * @throws SimpplleError
    */
-  public static void saveZone(File file) throws SimpplleError { // TODO: RENAME THIS METHOD
+  public static void saveZoneKnowledge(File file) throws SimpplleError {
     saveInputFile(file,"simpplle_zone",true);
   }
 
