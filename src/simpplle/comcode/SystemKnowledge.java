@@ -1060,13 +1060,10 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   private static void loadPathway(String htGrpName, int kind) throws SimpplleError {
-    RegionalZone    zone = Simpplle.getCurrentZone();
-    JarInputStream  jarIn=null;
-    JarEntry        jarEntry;
-    BufferedReader  fin=null;
-    String          name=null;
-    String          groupFileOld = htGrpName;
-    String          groupFileNew = htGrpName + ".txt";
+    RegionalZone zone = Simpplle.getCurrentZone();
+
+    String groupFileOld = htGrpName;
+    String groupFileNew = htGrpName + ".txt";
 
     String pathwayStr;
     if (kind == VEG) {
@@ -1075,18 +1072,18 @@ public class SystemKnowledge {
       pathwayStr = PATHWAYS_ENTRY_AQUATIC;
     }
 
-    File filename = Simpplle.getCurrentZone().getSystemKnowledgePathwayFile();
     try {
-      jarIn = new JarInputStream(new FileInputStream(filename));
-      fin   = new BufferedReader(new InputStreamReader(jarIn));
+      File filename = Simpplle.getCurrentZone().getSystemKnowledgePathwayFile();
+      JarInputStream jarIn = new JarInputStream(new FileInputStream(filename));
+      BufferedReader fin   = new BufferedReader(new InputStreamReader(jarIn));
 
-      jarEntry = jarIn.getNextJarEntry();
+      JarEntry jarEntry = jarIn.getNextJarEntry();
       while (jarEntry != null) {
         if (jarEntry.isDirectory()) {
           jarEntry = jarIn.getNextJarEntry();
           continue;
         }
-        name = jarEntry.getName().toUpperCase();
+        String name = jarEntry.getName().toUpperCase();
         name = stripZoneDir(name);
         if (name.startsWith(pathwayStr) &&
             (name.endsWith(groupFileOld.toUpperCase()) ||
