@@ -1732,7 +1732,7 @@ public class SystemKnowledge {
       loadSaveMe[i] = false;
     }
     loadSaveMe[kind.ordinal()] = true;
-    saveInputFile(file,getKnowledgeFileExtension(kind),false);
+    saveKnowledge(file,getKnowledgeFileExtension(kind),false);
     files[kind.ordinal()] = file;
   }
 
@@ -1743,7 +1743,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void saveZoneKnowledge(File file) throws SimpplleError {
-    saveInputFile(file,"simpplle_zone",true);
+    saveKnowledge(file,"simpplle_zone",true);
   }
 
   /**
@@ -1753,7 +1753,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void saveUserKnowledge(File file) throws SimpplleError {
-    saveInputFile(file,SYSKNOW_FILEEXT,false);
+    saveKnowledge(file,SYSKNOW_FILEEXT,false);
   }
 
   /**
@@ -1764,7 +1764,7 @@ public class SystemKnowledge {
    * @param doZoneDef A flag indicating if a legal description should be saved
    * @throws SimpplleError
    */
-  private static void saveInputFile(File file, String fileExt, boolean doZoneDef)
+  private static void saveKnowledge(File file, String fileExt, boolean doZoneDef)
     throws SimpplleError
   {
     RegionalZone    zone = Simpplle.getCurrentZone();
