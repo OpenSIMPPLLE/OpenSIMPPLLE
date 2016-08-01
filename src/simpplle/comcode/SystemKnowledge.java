@@ -201,6 +201,16 @@ public class SystemKnowledge {
   private static File[] files = new File[NUM_KINDS];
 
   /**
+   * Source information for each kind of knowledge.
+   */
+  private static String[] knowledgeSource = new String[NUM_KINDS];
+
+  /**
+   * Keyword marking the beginning of source information in a file.
+   */
+  public static String KNOWLEDGE_SOURCE_KEYWORD = "KNOWLEDGE-SOURCE";
+
+  /**
    *
    */
   private static HabitatTypeGroup lastPathwayLoaded;
@@ -2355,16 +2365,6 @@ public class SystemKnowledge {
     }
     return strBuf.toString();
   }
-
-  /**
-   *
-   */
-  private static String[] knowledgeSource = new String[NUM_KINDS]; // TODO: Move to top
-
-  /**
-   *
-   */
-  public static String KNOWLEDGE_SOURCE_KEYWORD = "KNOWLEDGE-SOURCE"; // TODO: Move to top
 
   /**
    * Returns source information for a kind of knowledge
