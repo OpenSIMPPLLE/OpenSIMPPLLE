@@ -1008,25 +1008,19 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadSampleArea(Area area) throws SimpplleError {
-    JarInputStream  jarIn=null;
-    JarEntry        jarEntry;
-    BufferedReader  fin=null;
-    String          name=null;
-    String          path = area.getPath();
-
-    File filename = Simpplle.getCurrentZone().getSystemKnowledgeFile();
+    String path = area.getPath();
     try {
-      jarIn = new JarInputStream(new FileInputStream(filename));
-      fin   = new BufferedReader(new InputStreamReader(jarIn));
-
-      jarEntry = jarIn.getNextJarEntry();
+      File filename = Simpplle.getCurrentZone().getSystemKnowledgeFile();
+      JarInputStream jarIn = new JarInputStream(new FileInputStream(filename));
+      BufferedReader fin = new BufferedReader(new InputStreamReader(jarIn));
+      JarEntry jarEntry = jarIn.getNextJarEntry();
       while (jarEntry != null) {
         if (jarEntry.isDirectory()) {
           jarEntry = jarIn.getNextJarEntry();
           continue;
         }
-        name = jarEntry.getName().toUpperCase();
-        if (name.equals(path.toUpperCase())) {
+        String name = jarEntry.getName();
+        if (name.equalsIgnoreCase(path)) {
           area.loadArea(fin);
           break;
         }
