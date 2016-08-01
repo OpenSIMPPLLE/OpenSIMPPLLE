@@ -469,7 +469,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
       if (save) {
         SystemKnowledge.saveUserKnowledge(loadSaveFile);
       } else {
-        SystemKnowledge.readInputFile(loadSaveFile);
+        SystemKnowledge.loadUserKnowledge(loadSaveFile);
       }
 
       String msg = (save) ? "File Saved Successfully" :

@@ -1277,12 +1277,12 @@ public class SystemKnowledge {
   }
 
   /**
-   * Reads a user knowledge file.
+   * Loads a user knowledge file.
    *
    * @param file A knowledge file
    * @throws SimpplleError
    */
-  public static void readInputFile(File file) throws SimpplleError {
+  public static void loadUserKnowledge(File file) throws SimpplleError {
     readInputFile(file,false);
   }
 
