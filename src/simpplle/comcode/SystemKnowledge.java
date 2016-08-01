@@ -631,15 +631,6 @@ public class SystemKnowledge {
   }
 
   /**
-   * Clears a flag indicating that a kind of knowledge replaces zone data.
-   *
-   * @param kind A kind of knowledge
-   */
-  private static void setNotUserData(Kinds kind) {
-    hasUserData[kind.ordinal()] = false;
-  }
-
-  /**
    * Returns true if any kind of knowledge has been changed.
    *
    * @return True if any knowledge changed
