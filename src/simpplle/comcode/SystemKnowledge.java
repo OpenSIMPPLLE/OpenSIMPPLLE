@@ -1200,14 +1200,9 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static BufferedReader getEntryStream(File file, String entryName) throws SimpplleError {
-
-    JarInputStream jarIn;
-    BufferedReader fin;
-
     try {
-      jarIn = new JarInputStream(new FileInputStream(file));
-      fin   = new BufferedReader(new InputStreamReader(jarIn));
-
+      JarInputStream jarIn = new JarInputStream(new FileInputStream(file));
+      BufferedReader fin = new BufferedReader(new InputStreamReader(jarIn));
       if (!findEntry(jarIn, entryName)) {
         throw new SimpplleError("Unable to find entry: " + entryName);
       }
