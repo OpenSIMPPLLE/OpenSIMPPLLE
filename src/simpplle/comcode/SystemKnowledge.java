@@ -728,40 +728,36 @@ public class SystemKnowledge {
    * @param kind A kind of knowledge
    */
   public static void copyDummyDatabaseFile(String destDir, String prefix, String kind) throws SimpplleError {
-    BufferedInputStream  fin=null;
-    BufferedOutputStream fout;
-    String               name=null;
-    String               outfile;
-    File                 tmpDir;
-    int                  data;
 
     File dir;
+    String outfile;
     if (kind.equalsIgnoreCase("mdb")) {
       dir = Simpplle.getCurrentZone().getSystemKnowledgeDummyMDBDir();
-      outfile = Utility.makePathname(destDir, prefix,kind);
-    }
-    else {
+      outfile = Utility.makePathname(destDir, prefix, kind);
+    } else {
       dir = Simpplle.getCurrentZone().getSystemKnowledgeDummyHsqldbDir();
-      String dbPrefix=prefix+"db";
-      File dbDir = new File(destDir,dbPrefix);
+      String dbPrefix = prefix + "db";
+      File dbDir = new File(destDir, dbPrefix);
       dbDir.mkdir();
       outfile = Utility.makePathname(dbDir.toString(),dbPrefix,kind);
     }
-    File filename = new File(dir,"dummy." + kind);
 
     try {
-      fin = new BufferedInputStream(new FileInputStream(filename));
-      fout = new BufferedOutputStream(new FileOutputStream(outfile));
-      data = fin.read();
+
+      BufferedInputStream fin = new BufferedInputStream(new FileInputStream(new File(dir, "dummy." + kind)));
+      BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(outfile));
+
+      int data = fin.read();
       while (data != -1) {
         fout.write(data);
         data = fin.read();
       }
+
       fout.flush();
       fout.close();
       fin.close();
-    }
-    catch (IOException err) {
+
+    } catch (IOException err) {
       err.printStackTrace();
       throw new SimpplleError("Could not copy file.");
     }
