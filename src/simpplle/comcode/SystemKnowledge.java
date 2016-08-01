@@ -13,8 +13,6 @@ import java.util.jar.*;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
-import com.thoughtworks.xstream.io.HierarchicalStreamDriver;
-import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 
 /**
  * This class provides for the ability to load a file which has information on files that need to be loaded
@@ -81,6 +79,8 @@ public class SystemKnowledge {
 
   }
 
+  public static final int NUM_KINDS = Kinds.values().length;
+
   public static final Kinds FMZ                              = Kinds.FMZ;
   public static final Kinds TREATMENT_SCHEDULE               = Kinds.TREATMENT_SCHEDULE;
   public static final Kinds TREATMENT_LOGIC                  = Kinds.TREATMENT_LOGIC;
@@ -128,8 +128,6 @@ public class SystemKnowledge {
   public static final Kinds DF_BEETLE                        = Kinds.DF_BEETLE;
   public static final Kinds WILDLIFE                         = Kinds.WILDLIFE;
   public static final Kinds KEANE_PARAMETERS                 = Kinds.KEANE_PARAMETERS;
-
-  public static final int NUMID = Kinds.values().length;
 
   public static final String FMZ_ENTRY                                  = "DATA/FMZ.TXT";
   public static final String TREATMENT_SCHEDULE_ENTRY                   = "DATA/TREATMENT";
@@ -188,22 +186,22 @@ public class SystemKnowledge {
   /**
    * Flags indicating if a kind of system knowledge has changed.
    */
-  private static boolean[] hasChanged = new boolean[NUMID];
+  private static boolean[] hasChanged = new boolean[NUM_KINDS];
 
   /**
    * Flags indicating if a kind of system knowledge should be saved and loaded.
    */
-  private static boolean[] loadSaveMe = new boolean[NUMID];
+  private static boolean[] loadSaveMe = new boolean[NUM_KINDS];
 
   /**
    * Flags indicating if a kind of system knowledge is a substitute the data in a zone.
    */
-  private static boolean[] hasUserData = new boolean[NUMID];
+  private static boolean[] hasUserData = new boolean[NUM_KINDS];
 
   /**
    * An array of knowledge files saved individually, outside of a collection of system knowledge.
    */
-  private static File[] files = new File[NUMID];
+  private static File[] files = new File[NUM_KINDS];
 
   /**
    *
@@ -2341,7 +2339,7 @@ public class SystemKnowledge {
     return strBuf.toString();
   }
 
-  private static String[] knowledgeSource = new String[NUMID];
+  private static String[] knowledgeSource = new String[NUM_KINDS];
   public static String KNOWLEDGE_SOURCE_KEYWORD="KNOWLEDGE-SOURCE";
 
   /**
