@@ -15,14 +15,11 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 
 /**
- * This class provides for the ability to load a file which has information on files that need to be loaded
- * that modify system knowledge.  
- * <p>Files such as:
- * fmz data, fire spread data, fire type data,
- * insect-disease data, treatments, and lock-in processes.
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+ * System knowledge describes how vegetation change by processes, the probability of processes and
+ * their spread, and the impact of treatments. The knowledge applies to a geographical region,
+ * referred to as a 'zone' in OpenSIMPPLLE. Multiple zones are built into OpenSIMPPLLE. Individual
+ * parts of a zone's knowledge may be modified by users and saved into a user knowledge file.
+ * User knowledge files should only be loaded into the zone that they were derived from.
  */
 
 public class SystemKnowledge {
@@ -184,22 +181,22 @@ public class SystemKnowledge {
   private static final int AQUATIC = 1;
 
   /**
-   * Flags indicating if a kind of system knowledge has changed.
+   * Flags indicating if a kind of knowledge has changed.
    */
   private static boolean[] hasChanged = new boolean[NUM_KINDS];
 
   /**
-   * Flags indicating if a kind of system knowledge should be saved and loaded.
+   * Flags indicating if a kind of knowledge should be saved and loaded.
    */
   private static boolean[] loadSaveMe = new boolean[NUM_KINDS];
 
   /**
-   * Flags indicating if a kind of system knowledge is a substitute the data in a zone.
+   * Flags indicating if a kind of knowledge is a substitute the data in a zone.
    */
   private static boolean[] hasUserData = new boolean[NUM_KINDS];
 
   /**
-   * An array of knowledge files saved individually, outside of a collection of system knowledge.
+   * An array of files saved individually, outside of a collection of knowledge.
    */
   private static File[] files = new File[NUM_KINDS];
 
@@ -214,14 +211,14 @@ public class SystemKnowledge {
   private static LtaValleySegmentGroup lastAquaticPathwayLoaded;
 
   /**
-   * The file extension appended to a file containing a collection of system knowledge.
+   * The file extension appended to a file containing a collection of knowledge.
    */
   private static final String SYSKNOW_FILEEXT = "sysknowledge";
 
   /**
-   * Method to mark system knowledge changed for a particular kind.
-   * This is used often throughout OpenSimpplle
-   * @param kind System Knowledge kind of file.
+   * Flags a change to a kind of knowledge, and flags the replacement of zone knowledge.
+   *
+   * @param kind A kind of knowledge
    */
   public static void markChanged(Kinds kind) {
     hasChanged[kind.ordinal()] = true;
@@ -229,37 +226,48 @@ public class SystemKnowledge {
   }
   
   /**
-   * Method to set whether system knowledge has changed.  
-   * @param kind System Knowledge kind
-   * @param value true if has changed
+   * Sets a flag indicating if a kind of knowledge has changed.
+   *
+   * @param kind A kind of knowledge
+   * @param value Flag indicating if the knowledge changed
    */
-  public static void setHasChanged(Kinds kind,boolean value) { hasChanged[kind.ordinal()] = value; }
+  public static void setHasChanged(Kinds kind, boolean value) {
+    hasChanged[kind.ordinal()] = value;
+  }
 
   /**
-   * Method notifies that system knowledge has changed through file input. This is called from the main input
-   * reader readInputFile()
-   * @param kind System Knowledge kind
-   * @return true if has System Knowledge kind changed
+   * Returns true if the kind of knowledge has changed.
+   *
+   * @param kind A kind of system knowledge
+   * @return True if the knowledge has changed
    */
-  private static boolean hasChanged(Kinds kind) { return hasChanged[kind.ordinal()]; }
+  private static boolean hasChanged(Kinds kind) {
+    return hasChanged[kind.ordinal()];
+  }
 
   /**
-   * Sets that the system knowledge for a particular kind to true to indicate user data has been entered.
-   * @param kind SystemKnowledge kind checked against the boolean array with marking if system has user data.
-   * @param value true if file has user data
+   * Sets a flag indicating if a kind of knowledge is replacing zone data.
+   *
+   * @param kind A kind of knowledge
+   * @param value Flag indicating if the knowledge replaces zone data
    */
-  public static void setHasUserData(Kinds kind, boolean value) { hasUserData[kind.ordinal()] = value; }
+  public static void setHasUserData(Kinds kind, boolean value) {
+    hasUserData[kind.ordinal()] = value;
+  }
 
   /**
-   * Sets the boolan for has system has user data or a particular system knowledge kind.  
-   * These are indexed by the ordinal into system knowledge enumeration.  
-   * @param kind SystemKnowledge kind 
+   * Clears a flag indicating that a kind of knowledge replaces zone data.
+   *
+   * @param kind A kind of knowledge
    */
-  private static void setNotUserData(Kinds kind) { hasUserData[kind.ordinal()] = false; }
+  private static void setNotUserData(Kinds kind) {
+    hasUserData[kind.ordinal()] = false;
+  }
 
   /**
-   * Method notifies that system knowledge has changed through file input.  This is called from the main input reader readInputFile()
-   * @return true if the System Knowledge kind has changed 
+   * Returns true if any kind of knowledge has been changed.
+   *
+   * @return True if any knowledge changed
    */
   public static boolean hasKnowledgeChanged() {
     for (int i=0; i<hasChanged.length; i++) {
@@ -269,86 +277,89 @@ public class SystemKnowledge {
   }
 
   /**
-   * Puts the passed boolean into the loadSaveMe boolean array at a particular system knowledge
-   * kinds ordinal into kind enumeration.
-   * This is used to check if there is a particular type of system knowledge file
-   * @param which the system knowledge kind.  Its ordinal is used as array index. 
-   * @param bool true if has system knowledge of the kind at particular index.  
+   * Returns true if a kind of knowledge has changed and replaces zone data.
+   *
+   * @param kind A kind of knowledge
+   * @return True fi the knowledge has changed or replaces zone data
    */
-  public static void setLoadSaveOption(Kinds which, boolean bool) {
-    loadSaveMe[which.ordinal()] = bool;
+  public static boolean hasChangedOrUserData(Kinds kind) {
+    return (hasChanged[kind.ordinal()] || hasUserData[kind.ordinal()]);
   }
 
   /**
-   * Checks both the hasChanged or hasUserData arrays of a particular system knowledge kind. 
-   * These are indexed by the ordinal into system knowledge enumeration.
-   * @param which system knowledge kind used as index into arrays.  
-   * @return true if hasChanged or hasUserData system knowledge at kind ordinal
+   * Flags a kind of knowledge to be saved or loaded during the next save or load operation.
+   *
+   * @param kind A kind of knowledge
+   * @param loadSave Flag indicating that the knowledge should be saved or loaded
    */
-  public static boolean hasChangedOrUserData(Kinds which) {
-    return (hasChanged[which.ordinal()] || hasUserData[which.ordinal()]);
+  public static void setLoadSaveOption(Kinds kind, boolean loadSave) {
+    loadSaveMe[kind.ordinal()] = loadSave;
   }
 
   /**
-   * Checks the boolean array loadSaveMe at the parameter system knowledge kind ordinal into kind
-   * enumeration.
-   * @param which
-   * @return
+   * Returns true if a kind of knowledge will be saved or loaded.
+   *
+   * @param kind A kind of knowledge
+   * @return True if the knowledge will be saved or loaded
    */
-  public static boolean isPresentInFile(Kinds which) {
-    return (loadSaveMe[which.ordinal()]);
+  public static boolean isPresentInFile(Kinds kind) { // TODO: RENAME THIS METHOD
+    return loadSaveMe[kind.ordinal()];
   }
 
   /**
-   * Gets the file for a particular system knowledge kind.
-   * @param kind
-   * @return
+   * Returns the file associated with a kind of knowledge.
+   *
+   * @param kind A kind of knowledge
+   * @return A file, or null if no file exists
    */
   public static File getFile(Kinds kind) {
     return files[kind.ordinal()];
   }
 
   /**
-   * Puts a system knowledge file into system knowledge file array at the index of its ordinal into kind enumeration. 
-   * declared at beginning of SystemKnowledge class. 
-   * @param kind system knowledge kind
-   * @param file the file 
+   * Assigns a file to a kind of knowledge.
+   *
+   * @param kind A kind of knowledge
+   * @param file A file to associate
    */
   public static void setFile(Kinds kind, File file) {
     files[kind.ordinal()] = file;
   }
 
   /**
-   * Clears a file in the system knowledge file array based on the ordinal into kind enumeration.
-   * @param kind
+   * Unassigns a file from a kind of knowledge.
+   *
+   * @param kind A kind of knowledge
    */
   public static void clearFile(Kinds kind) {
     files[kind.ordinal()] = null;
   }
 
   /**
-   * Gets the Habitat Type Group at the lastPathwayLoaded
-   * @return
+   * Returns the last habitat type group loaded.
+   *
+   * @return A habitat type group
    */
   public static HabitatTypeGroup getLastPathwayLoaded() {
     return lastPathwayLoaded;
   }
 
   /**
-   * Gets the LtaValleySegmentGroup at the last aquatic pathway loaded.
-   * @return
+   * Returns the last LTA valley segment group loaded.
+   *
+   * @return A LTA valley segment group
    */
   public static LtaValleySegmentGroup getLastAquaticPathwayLoaded() {
     return lastAquaticPathwayLoaded;
   }
 
   /**
-   * Method to copy a dummy database for debugging and training purposes. The file with this will be concatenated with the prefix "dummy"  
-   * Checks to see if kind is "mdb" 
-   * @param destDir File directory to copy database to. 
-   * @param prefix 
-   * @param kind System Knowledge kind 
-   * @throws SimpplleError caught error if could not find file 
+   * Copies a dummy database for debugging and training purposes. The output file is prefixed with
+   * "dummy".
+   *
+   * @param destDir The output directory
+   * @param prefix A prefix for the output file
+   * @param kind A kind of knowledge
    */
   public static void copyDummyDatabaseFile(String destDir, String prefix, String kind) throws SimpplleError {
     BufferedInputStream  fin=null;
@@ -391,26 +402,29 @@ public class SystemKnowledge {
   }
 
   /**
-   * Copies ArcviewGIS Files from the gis directory to a destination file.
-   * @param destDir File to be copied to.
-   * @throws SimpplleError not caught
+   * Copies ArcView GIS files from the "gis" directory to a destination directory.
+   *
+   * @param destDir The directory to copy files to
+   * @throws SimpplleError
    */
   public static void copyArcviewGisFiles(File destDir) throws SimpplleError {
     copyGisFiles(destDir,"gis");
   }
 
   /**
-   * Copies ArcGISFiles  files from the arcgis directory to a destination file. 
-   * @param destDir File where the ArcGisFiles willbe copied to 
-   * @throws SimpplleError not caught
+   * Copies ArcGIS files from the "arcgis" directory to a destination directory.
+   *
+   * @param destDir The directory to copy files to
+   * @throws SimpplleError
    */
   public static void copyArcGISFiles(File destDir) throws SimpplleError {
     copyGisFiles(destDir,"arcgis");
   }
 
   /**
-   * Checks if there is a GIS Extras file for current zone.  
-   * @return true if there is a GIS extraFile and it has data in it.  
+   * Checks if there is a GIS Extras file for current zone.
+   *
+   * @return True if the file exists and is not empty
    */
   public static boolean existsGISExtras() {
     File file = Simpplle.getCurrentZone().getSystemKnowledgeGisExtraFile();
@@ -418,9 +432,9 @@ public class SystemKnowledge {
   }
 
   /**
-   * Method to copy GIS coverage data.  If the entry name ends in zip or mdb the jar.  If entry is a directory, a
-   * new directory path is created.
-   * @param destDir
+   * Copies GIS coverage files to a destination directory.
+   *
+   * @param destDir The directory to copy files to
    * @throws SimpplleError
    */
   public static void copyCoverage(File destDir) throws SimpplleError {
@@ -489,10 +503,9 @@ public class SystemKnowledge {
   }
 
   /**
-   * Copies Interchange files by passing to copyGISExtrasFiles from the e00.zip directory to a
-   * destination file.
+   * Copies GIS interchange files.
    *
-   * @param destDir File where the data will be copied to
+   * @param destDir The directory to copy files to
    * @throws SimpplleError
    */
   public static void copyInterchangeFile(File destDir) throws SimpplleError {
@@ -500,18 +513,20 @@ public class SystemKnowledge {
   }
 
   /**
-   * Method to copy Geodatabase files, suffixed with "mdb".  
-   * @param destDir File where the information is to be copied to.  
-   * @throws SimpplleError not caught
+   * Copies GIS geo database files'
+   *
+   * @param destDir The directory to copy files to
+   * @throws SimpplleError
    */
   public static void copyGeodatabase(File destDir) throws SimpplleError {
     copyGisExtraFiles(destDir, "mdb");
   }
 
   /**
-   * Copies gis files from the gis directory to a destination directory. 
-   * @param destDir
-   * @param extension
+   * Copies extra GIS files.
+   *
+   * @param destDir The directory to copy files to
+   * @param extension The extension of the files to copy
    * @throws SimpplleError
    */
   private static void copyGisExtraFiles(File destDir, String extension) throws SimpplleError {
@@ -557,11 +572,11 @@ public class SystemKnowledge {
   }
 
   /**
-   * Copies gis files from the gis directory to a destination directory.  
-   * @param destDir directory where file to be copied is kept
-   * @param gisDir the suffix which will be appended at the end of the file to tell what type of
-   *               GIS file it is.
-   * @throws SimpplleError caught if could not copy one or more files
+   * Copies gis files to a destination directory.
+   *
+   * @param destDir The directory to copy files to
+   * @param gisDir The prefix of the files to copy
+   * @throws SimpplleError
    */
   private static void copyGisFiles(File destDir, String gisDir) throws SimpplleError {
     JarInputStream       jarIn=null;
@@ -608,9 +623,10 @@ public class SystemKnowledge {
   }
 
   /**
+   * Returns an input stream for a sample area in a JAR file.
    *
-   * @param path
-   * @return
+   * @param path The path to a sample area
+   * @return An input stream if the area exists, or null otherwise
    * @throws SimpplleError
    */
   public static JarInputStream getSampleAreaStream(String path) throws SimpplleError {
@@ -642,11 +658,11 @@ public class SystemKnowledge {
   }
 
   /**
-   * Method to load sample area. Uses a JarInputStream to read the FileInputStream  
-   * @param area The Area to be loaded - from Simpplle.comcode.Area
-   * @throws SimpplleError caught if could not read sample area
+   * Loads a sample area from the current zone's system knowledge file.
+   *
+   * @param area The area to be loaded
+   * @throws SimpplleError
    */
-
   public static void loadSampleArea(Area area) throws SimpplleError {
     JarInputStream  jarIn=null;
     JarEntry        jarEntry;
@@ -681,6 +697,7 @@ public class SystemKnowledge {
 
   /**
    * Sets a HabitatTypeGroupType file pathway
+   *
    * @param groupName
    * @throws SimpplleError
    */
@@ -698,10 +715,10 @@ public class SystemKnowledge {
   }
   
   /**
-   * method to determine and load the directory path for files based on HabitatTypeGroupType name
-   * and system knowledge kind
-   * @param htGrpName
-   * @param kind
+   * Loads a vegetative or aquatic pathway for a habitat type group in the current zone.
+   *
+   * @param htGrpName The name of a habitat type group
+   * @param kind The kind of pathway; VEG or AQUATIC
    * @throws SimpplleError
    */
   private static void loadPathway(String htGrpName, int kind) throws SimpplleError {
@@ -753,7 +770,8 @@ public class SystemKnowledge {
   }
 
   /**
-   * Loads all EVU pathways.
+   * Loads all vegetative pathways for the current zone.
+   *
    * @throws SimpplleError
    */
   public static void loadAllPathways() throws SimpplleError {
@@ -761,7 +779,8 @@ public class SystemKnowledge {
   }
 
   /**
-   * Loads all aquatic files. 
+   * Loads all aquatic pathways for the current zone.
+   *
    * @throws SimpplleError
    */
   public static void loadAllAquaticPathways() throws SimpplleError {
@@ -769,8 +788,9 @@ public class SystemKnowledge {
   }
   
   /**
-   * Loads all the pathways of a particular system knowledge kind for the current regional zone.  
-   * @param kind the kind of system knowledge 
+   * Loads all pathways of a certain kind for the current zone.
+   *
+   * @param kind The kind of pathway; VEG or AQUATIC
    * @throws SimpplleError
    */
   private static void loadAllPathways(int kind) throws SimpplleError {
@@ -817,49 +837,46 @@ public class SystemKnowledge {
   }
 
   /**
-   * loop through all of the jar entries until a entry is found that matches
-   * the given stream.  If a match is found true is returned, otherwise false.
-   * @param jarIn A JarInputStream
-   * @param entryName a partial or full entry name to search for.
-   * @return a boolean, true if entry found.
+   * Returns true if an entry exists in a JAR input stream.
+   *
+   * @param stream A JAR input stream
+   * @param entryName An entry name prefix
+   * @return True if an entry with a matching prefix is found
    */
-  private static boolean findEntry(JarInputStream jarIn, String entryName)
-    throws IOException
-  {
+  private static boolean findEntry(JarInputStream stream, String entryName) throws IOException {
     JarEntry jarEntry;
     String   name = null;
 
-    jarEntry = jarIn.getNextJarEntry();
+    jarEntry = stream.getNextJarEntry();
     while (jarEntry != null) {
       if (jarEntry.isDirectory()) {
-        jarEntry = jarIn.getNextJarEntry();
+        jarEntry = stream.getNextJarEntry();
         continue;
       }
       name = jarEntry.getName().toUpperCase();
       if (name.startsWith(entryName)) {
         return true;
       }
-      jarEntry = jarIn.getNextJarEntry();
+      jarEntry = stream.getNextJarEntry();
     }
     return false;
   }
 
   /**
-   * Method to set the BufferedReader to desired input settings.
-   * @param filename File to be read
-   * @param entryName
-   * @return BufferedReader
-   * @throws SimpplleError caught exception if not able to find an entry or could not read the
-   * System Knowledge File.
+   * Returns a reader for an entry in a JAR file.
+   *
+   * @param file A JAR file
+   * @param entryName An entry name prefix
+   * @return A reader for the first entry whose name contains the prefix
+   * @throws SimpplleError
    */
-  public static BufferedReader getEntryStream(File filename, String entryName)
-    throws SimpplleError
-  {
+  public static BufferedReader getEntryStream(File file, String entryName) throws SimpplleError {
+
     JarInputStream jarIn;
     BufferedReader fin;
 
     try {
-      jarIn = new JarInputStream(new FileInputStream(filename));
+      jarIn = new JarInputStream(new FileInputStream(file));
       fin   = new BufferedReader(new InputStreamReader(jarIn));
 
       if (!findEntry(jarIn, entryName)) {
@@ -873,31 +890,29 @@ public class SystemKnowledge {
   }
 
   /**
-   * Method to take off the directory path name.
-   * @param name name of System Knowledge kind.
-   * @return name of System Knowledge kind in uppercase
+   * Removes the current zone directory from a path.
+   *
+   * @param path A path to an entry in a zone directory
+   * @return The path with the zone directory stripped
    */
-  private static String stripZoneDir(String name) {
-    name = name.toUpperCase();
+  private static String stripZoneDir(String path) {
+    path = path.toUpperCase();
     String zoneDir = Simpplle.getCurrentZone().getZoneDir().toUpperCase();
-    int    index = name.indexOf(zoneDir);
+    int    index = path.indexOf(zoneDir);
 
     if (index != -1) {
       // Add 1 for the slash at the end.
-      return name.substring(index + zoneDir.length() + 1);
+      return path.substring(index + zoneDir.length() + 1);
     }
 
-    return name;
+    return path;
   }
 
   /**
-   * Method first takes off the directory path name, then in a series of conditionals to find
-   * ordinal of SystemKnowledgeKind which it calls EntryID.
-   * @param name directory path name
-   * @return int of ordinal location of SystemKnowledge kind in SystemKnowledge Kind enumeration.
-   * Ordinal is now called EntryID.
+   * Returns the kind of knowledge represented by a knowledge file.
    *
-   * Note: if name is null or name starts with WILDLIFE_ENTRY OR EMISSIONS_ENTRY returns null
+   * @param name The name of a knowledge file
+   * @return A knowledge kind, or null if the file isn't a knowledge file
    */
   private static Kinds getKnowledgeEntryId(String name) {
     name = stripZoneDir(name);
@@ -949,108 +964,95 @@ public class SystemKnowledge {
   }
 
   /**
-   * If entryID is Vegetation pathway or Aquatic pathways uses SystemKnowledge PathwayFile() else it
-   * reads in the SystemKnowledgeFile.
-   * @param entryId ordinal of SystemKnowledge kind in SystemKnowledge kind enumeration
-   * @throws SimpplleError - not caught
+   * Reads a kind of knowledge for the current zone.
+   *
+   * @param kind A kind of knowledge to read
+   * @throws SimpplleError
    */
-  public static void readZoneDefault(Kinds entryId)
-    throws SimpplleError
-  {
-    if (entryId == VEGETATION_PATHWAYS || entryId == AQUATIC_PATHWAYS) {
-      readEntry(Simpplle.getCurrentZone().getSystemKnowledgePathwayFile(),entryId);
+  public static void readZoneDefault(Kinds kind) throws SimpplleError {
+    if (kind == VEGETATION_PATHWAYS || kind == AQUATIC_PATHWAYS) {
+      readEntry(Simpplle.getCurrentZone().getSystemKnowledgePathwayFile(),kind);
     } else {
-      readEntry(Simpplle.getCurrentZone().getSystemKnowledgeFile(), entryId);
+      readEntry(Simpplle.getCurrentZone().getSystemKnowledgeFile(), kind);
     }
   }
   
   /**
-   * Sends to main input reader class: readInputFile with the file name, true for zoneFile, false
-   * for readAll and false for individual file. Also creates the loadSaveMe boolean array which is
-   * used to tell if there is a file of a particular System Knowledge kind to be loaded or saved.
+   * Reads an entry from a knowledge file if it has been flagged for reading.
    *
-   * @param filename File to be read
-   * @param entryId ordinal of SystemKnowledge kind in SystemKnowledge kind enumeration
-   * @throws SimpplleError not caught
-   */
-  private static void readEntry(File filename, Kinds entryId)
-    throws SimpplleError
-  {
-    for (int i=0; i<loadSaveMe.length; i++) {
-      loadSaveMe[i] = false;
-    }
-    loadSaveMe[entryId.ordinal()] = true;
-    readInputFile(filename,true,false,false);
-  }
-
-  /**
-   * method to read individual files. Different from most input files which contain many files of
-   * data. Sends to the overloaded readInputFile() the file name, false for zone file, false for
-   * readAll, and true for individual file.
-   *
-   * @param filename File to be read
-   * @param entryId
+   * @param file A JAR file
+   * @param kind A kind of knowledge
    * @throws SimpplleError
    */
-  public static void readIndividualInputFile(File filename, Kinds entryId)
-    throws SimpplleError
-  {
+  private static void readEntry(File file, Kinds kind) throws SimpplleError {
     for (int i=0; i<loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
     }
-    loadSaveMe[entryId.ordinal()] = true;
-    readInputFile(filename,false,false,true);
-    files[entryId.ordinal()] = filename;
+    loadSaveMe[kind.ordinal()] = true;
+    readInputFile(file,true,false,false);
   }
 
   /**
-   * Overloaded readInputFile passes to readInputFile the file name and false for zone file
-   * @param filename File to be read
-   * @throws SimpplleError not caught
+   * Reads an entry external to a knowledge file if it has been flagged for reading and saves a
+   * reference to the external file.
+   *
+   * @param file A knowledge file
+   * @param kind A kind of knowledge
+   * @throws SimpplleError
    */
-  public static void readInputFile(File filename) throws SimpplleError {
-    readInputFile(filename,false);
+  public static void readIndividualInputFile(File file, Kinds kind) throws SimpplleError {
+    for (int i=0; i<loadSaveMe.length; i++) {
+      loadSaveMe[i] = false;
+    }
+    loadSaveMe[kind.ordinal()] = true;
+    readInputFile(file,false,false,true);
+    files[kind.ordinal()] = file;
   }
 
   /**
-   * Overloaded readInputFile passes to readInputFile the file name, false for zoneFile, true for
-   * readAll, and false for isIndividualFile.
+   * Reads a user knowledge file.
+   *
+   * @param file A knowledge file
+   * @throws SimpplleError
+   */
+  public static void readInputFile(File file) throws SimpplleError {
+    readInputFile(file,false);
+  }
+
+  /**
+   * Reads a knowledge file.
    * 
-   * @param filename File to be read
-   * @param zoneFile true if it is a zone file, false otherwise
-   * @throws SimpplleError not caught
+   * @param filename A knowledge file
+   * @param zoneFile A flag indicating if this is zone knowledge
+   * @throws SimpplleError
    */
-  public static void readInputFile(File filename, boolean zoneFile)
-    throws SimpplleError
-  {
+  public static void readInputFile(File filename, boolean zoneFile) throws SimpplleError {
     readInputFile(filename,zoneFile,true,false);
   }
 
   /**
-   * Overloaded readInputFile. This is the main input file reader.  If zoneFile and readAll are true
-   * loops through the loadSaveMe boolean array and sets to indexes in its length. The method then
-   * uses conditionals to decide how to read input files, whether to clear the file previously
-   * present.
-   *
-   * Note: uses XStream to serialize to XML and back.
-   * For more information on XStream
+   * Reads knowledge from a JAR file.
+   * <p>
+   * This method uses the XStream library to deserialize data from XML files.
    * @link http://xstream.codehaus.org/
    *
-   * @param filename File to be read
-   * @param zoneFile true if file is a zone file, false otherwise
-   * @param readAll true if readAll, false otherwise
-   * @param isIndividualFile true if this is an individual file
-   * @throws SimpplleError caught if could not read SystemKnowledge file
+   * @param file A knowledge file
+   * @param isZone A flag indicating if this is zone knowledge
+   * @param readAll A flag indicating if all kinds of knowledge should be read
+   * @param isIndividualFile A flag indicating if files should be recorded
+   * @throws SimpplleError
    */
-  public static void readInputFile(File filename, boolean zoneFile, boolean readAll,
-                                   boolean isIndividualFile) throws SimpplleError
-  {
+  public static void readInputFile(File file,
+                                   boolean isZone,
+                                   boolean readAll,
+                                   boolean isIndividualFile) throws SimpplleError {
+
     RegionalZone zone = Simpplle.getCurrentZone();
     JarInputStream jarIn = null;
     BufferedReader fin = null;
     String name = null;
 
-    if (zoneFile && readAll) {
+    if (isZone && readAll) {
       for (int i=0; i<loadSaveMe.length; i++) {
         loadSaveMe[i] = true;
       }
@@ -1060,7 +1062,7 @@ public class SystemKnowledge {
     FireSpottingLogicData.clearMaxDistance();
 
     try {
-      jarIn = new JarInputStream(new FileInputStream(filename));
+      jarIn = new JarInputStream(new FileInputStream(file));
       fin   = new BufferedReader(new InputStreamReader(jarIn));
 
       JarEntry jarEntry = jarIn.getNextJarEntry();
@@ -1121,7 +1123,7 @@ public class SystemKnowledge {
 //        }
         if (entryId == AQUATIC_PATHWAYS && loadSaveMe[AQUATIC_PATHWAYS.ordinal()]) {
           lastAquaticPathwayLoaded = zone.loadAquaticPathway(fin);
-          lastAquaticPathwayLoaded.setIsUserData((!zoneFile));
+          lastAquaticPathwayLoaded.setIsUserData((!isZone));
         }
 
         if (entryId == EXTREME_FIRE_DATA && loadSaveMe[EXTREME_FIRE_DATA.ordinal()]) {
@@ -1158,12 +1160,12 @@ public class SystemKnowledge {
         // Since there are two sets of pathways we need to make sure we
         // load the correct ones.
         if (entryId == VEGETATION_PATHWAYS && loadSaveMe[VEGETATION_PATHWAYS.ordinal()]) {
-          if ((!zoneFile && name.startsWith(PATHWAYS_ENTRY)) ||
+          if ((!isZone && name.startsWith(PATHWAYS_ENTRY)) ||
               ((name.startsWith(PATHWAYS_ENTRY) && !zone.isHistoric()) ||
                (name.startsWith(HISTORIC_PATHWAYS_ENTRY) && zone.isHistoric()))) {
             Simpplle.setStatusMessage(msg);
             lastPathwayLoaded = zone.loadPathway(fin);
-            lastPathwayLoaded.setIsUserData((!zoneFile));
+            lastPathwayLoaded.setIsUserData((!isZone));
           }
         }
 
@@ -1319,7 +1321,7 @@ public class SystemKnowledge {
 
         if (entryId != null) {
           setHasChanged(entryId, false);
-          setHasUserData(entryId, (!zoneFile));
+          setHasUserData(entryId, (!isZone));
 
           if (!isIndividualFile) { clearFile(entryId); }
         }
@@ -1343,16 +1345,13 @@ public class SystemKnowledge {
   }
 
   /**
-   * Method processes System Knowledge files and creates an boolean array called loadSaveMe to
-   * indicate whether there is a system knowledge file of a particular kind pertaining to Fire
-   * Type, Fire Logic, and Fire Spread.
+   * Updates save and load flags to match the kinds of knowledge present in a JAR file.
    *
-   * @param filename File to be processed.  
-   * @throws SimpplleError caught if could not read file
+   * @param file A knowledge file
+   * @throws SimpplleError
    */
-  public static void processInputFileEntries(File filename)
-    throws SimpplleError
-  {
+  public static void processInputFileEntries(File file) throws SimpplleError {
+
     JarInputStream  jarIn;
     JarEntry        jarEntry;
     String          name=null;
@@ -1363,7 +1362,7 @@ public class SystemKnowledge {
     }
 
     try {
-      jarIn = new JarInputStream(new FileInputStream(filename));
+      jarIn = new JarInputStream(new FileInputStream(file));
 
       jarEntry = jarIn.getNextJarEntry();
       while (jarEntry != null) {
@@ -1401,14 +1400,19 @@ public class SystemKnowledge {
 
   }
 
-  public static void saveIndividualPathwayFile(File filename,
-                                               HabitatTypeGroup group)
-    throws SimpplleError
-  {
+  /**
+   * Saves a vegetative pathway to a file.
+   *
+   * @param file An output file
+   * @param group A habitat type group
+   * @throws SimpplleError
+   */
+  public static void saveIndividualPathwayFile(File file, HabitatTypeGroup group) throws SimpplleError {
+
     String fileExt = getKnowledgeFileExtension(VEGETATION_PATHWAYS);
 
     try {
-      File outfile = Utility.makeSuffixedPathname(filename, "", fileExt);
+      File outfile = Utility.makeSuffixedPathname(file, "", fileExt);
       JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile), new Manifest());
       PrintWriter pout = new PrintWriter(jarOut);
 
@@ -1427,18 +1431,19 @@ public class SystemKnowledge {
   }
 
   /**
-   * Saves an individual aquatic pathway file for a particular LtaValleySegmentGroup group
-   * @param filename
-   * @param group
+   * Saves an aquatic pathway to a file.
+   *
+   * @param file An output file
+   * @param group An LTA valley segment group
    * @throws SimpplleError
    */
-  public static void saveIndividualAquaticPathwayFile(File filename, LtaValleySegmentGroup group)
+  public static void saveIndividualAquaticPathwayFile(File file, LtaValleySegmentGroup group)
     throws SimpplleError
   {
     String fileExt = getKnowledgeFileExtension(AQUATIC_PATHWAYS);
 
     try {
-      File outfile = Utility.makeSuffixedPathname(filename, "", fileExt);
+      File outfile = Utility.makeSuffixedPathname(file, "", fileExt);
       JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile),
           new Manifest());
       PrintWriter pout = new PrintWriter(jarOut);
@@ -1458,46 +1463,50 @@ public class SystemKnowledge {
   }
 
   /**
-   * Saves one particular input file.  
-   * First makes all the loadSaveMe booleans false.  Then changes the boolean at the system knowledge kind ordinal to true and 
-   * passes to save input file.  
-   * @param filename
-   * @param entryId
+   * Saves a kind of knowledge to a file.
+   *
+   * @param file An output file
+   * @param kind A kind of knowledge
    * @throws SimpplleError
    */
-  public static void saveIndividualInputFile(File filename, Kinds entryId)
-    throws SimpplleError
-  {
+  public static void saveIndividualInputFile(File file, Kinds kind) throws SimpplleError {
     for (int i=0; i<loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
     }
-    loadSaveMe[entryId.ordinal()] = true;
-    saveInputFile(filename,getKnowledgeFileExtension(entryId),false);
-    files[entryId.ordinal()] = filename;
+    loadSaveMe[kind.ordinal()] = true;
+    saveInputFile(file,getKnowledgeFileExtension(kind),false);
+    files[kind.ordinal()] = file;
   }
 
   /**
-   * Saves 
-   * @param zoneName
+   * Saves zone knowledge to a file.
+   *
+   * @param file An output file
    * @throws SimpplleError
    */
-  public static void saveZone(File zoneName) throws SimpplleError {
-    saveInputFile(zoneName,"simpplle_zone",true);
+  public static void saveZone(File file) throws SimpplleError { // TODO: RENAME THIS METHOD
+    saveInputFile(file,"simpplle_zone",true);
   }
 
-  public static void saveInputFile(File file) throws SimpplleError {
+  /**
+   * Saves user knowledge to a file.
+   *
+   * @param file An output file
+   * @throws SimpplleError
+   */
+  public static void saveInputFile(File file) throws SimpplleError { // TODO: RENAME THIS METHOD
     saveInputFile(file,SYSKNOW_FILEEXT,false);
   }
 
   /**
    * Saves a particular system knowledge file.
    *
-   * @param filename
-   * @param fileExt
-   * @param doZoneDef
+   * @param file An output file
+   * @param fileExt The file extension for the output file
+   * @param doZoneDef A flag indicating if a legal description should be saved
    * @throws SimpplleError
    */
-  private static void saveInputFile(File filename, String fileExt, boolean doZoneDef)
+  private static void saveInputFile(File file, String fileExt, boolean doZoneDef)
     throws SimpplleError
   {
     RegionalZone    zone = Simpplle.getCurrentZone();
@@ -1507,7 +1516,7 @@ public class SystemKnowledge {
     PrintWriter     pout;
 
     try {
-      outfile = Utility.makeSuffixedPathname(filename,"",fileExt);
+      outfile = Utility.makeSuffixedPathname(file,"",fileExt);
       jarOut  = new JarOutputStream(new FileOutputStream(outfile),new Manifest());
       pout    = new PrintWriter(new OutputStreamWriter(jarOut));
 
@@ -1885,6 +1894,11 @@ public class SystemKnowledge {
 
   }
 
+  /**
+   * Reads all kinds of knowledge for the current zone.
+   *
+   * @throws SimpplleError
+   */
   public static void loadAllDefaults() throws SimpplleError {
     RegionalZone zone = Simpplle.getCurrentZone();
 
@@ -1893,11 +1907,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * Gets the system knowledge file extension based on system knowledge kind.
+   * Returns the file extension associated with a kind of knowledge.
    *
-   * @param kind system knowledge kind
-   * @return file extension - example: for System Knowledge TREATMENT_SCHEDULE will return
-   * "sk_treatsched";
+   * @param kind A kind of knowledge
+   * @return A file extension, or an empty string otherwise
    */
   public static String getKnowledgeFileExtension(Kinds kind) {
     // old Fire Spread files .firespread
@@ -1948,10 +1961,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * Gets the string description of the file for a particular system knowledge kind.
-   * Example for system knowledge TREATMENT_SCHEDULE will return "Treatment Schedule"
-   * @param kind System Knowledge kind 
-   * @return a string with the System Knowledge file formatted for readability by user.  
+   * Returns the name of a kind of knowledge.
+   *
+   * @param kind A kind of knowledge
+   * @return A knowledge name, or an empty string otherwise
    */
   public static String getKnowledgeFileDescription(Kinds kind) {
     // old Fire Spread files .firespread
@@ -2002,9 +2015,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * Gets the system knowledge
-   * @param kind System Knowledge kind
-   * @return the System Knowledge file kind as a String
+   * Returns the name of a kind of knowledge.
+   *
+   * @param kind A kind of knowledge
+   * @return A knowledge name, or an empty string otherwise
    */
   public static String getKnowledgeFileTitle(Kinds kind) {
     // old Fire Spread files .firespread
@@ -2058,6 +2072,12 @@ public class SystemKnowledge {
   // *** Knowledge Source Methods ***
   // ********************************
 
+  /**
+   * Returns the source information for a kind of knowledge.
+   *
+   * @param kind A kind of knowledge
+   * @return Source information
+   */
   public static String getSource(Kinds kind) {
     if (kind == WILDLIFE) {
       return "Documented in draft GTR, Carattia, Chew and Samson";
@@ -2076,11 +2096,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * Gets the historical source information for a particular system knowledge kind in Westside Region 1.
-   * These are string descriptions which will be output in GUI.
-   * Kinds with historical source are: FMZ, LP_MPB, PP_MPB, WSBW, TREATMENT_LOGIC, REGEN_LOGIC_FIRE, REGEN_LOGIC_SUCC
-   * @param kind system knowledge kind.
-   * @return string representing the system knowledge kinds historical source
+   * Returns the source information for knowledge in Westside Region 1.
+   *
+   * @param kind A kind of knowledge
+   * @return Source information
    */
   private static String getWestsideRegionOneSource(Kinds kind) {
     StringBuffer strBuf = new StringBuffer();
@@ -2142,11 +2161,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * Gets the historical source information for a particular system knowledge kind in Eastside Region 1.  
-   * These are string descriptions which will be output in GUI.  
-   * Kinds with historical source are: FMZ, LP_MPB, PP_MPB, WSBW  
-   * @param kind system knowledge kind.  
-   * @return string representing the system knowledge kinds historical source
+   * Returns the source information for knowledge in Eastside Region 1.
+   *
+   * @param kind A kind of knowledge
+   * @return Source information
    */
   private static String getEastsideRegionOneSource(Kinds kind) {
     StringBuffer strBuf = new StringBuffer();
@@ -2196,10 +2214,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * Gets the historical source information for a particular system knowledge kind in Colorado Plateau  
-   * These are string descriptions which will be output in GUI.  
-   * @param kind system knowledge kind.  
-   * @return string representing the system knowledge kinds historical source
+   * Returns the source information for knowledge in the Colorado Plateau.
+   *
+   * @param kind A kind of knowledge
+   * @return Source information
    */
   private static String getColoradoPlateauSource(Kinds kind) {
     StringBuffer strBuf = new StringBuffer();
@@ -2217,10 +2235,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * Gets the history of system knowledge information for the Teton regional zone.
-   * @param kind This will be either FMZ, LP_MPB, PP_MPB, or WSBW.  Used to print out info on the history and sources for information pertaining to these
-   * system processes.
-   * @return a string.  this will be printed in GUI.
+   * Returns the source information for knowledge in Teton.
+   *
+   * @param kind A kind of knowledge
+   * @return Source information
    */
   private static String getTetonSource(Kinds kind) {
     StringBuffer strBuf = new StringBuffer();
@@ -2278,11 +2296,10 @@ public class SystemKnowledge {
   }
 
   /**
-   * Gets the historical source information for a particular system knowledge kind in Westside Region 1.  
-   * These are string descriptions which will be output in GUI.  
-   * Kinds with historical source are: FMZ, LP_MPB, PP_MPB, WSBW 
-   * @param kind system knowledge kind.  
-   * @return string representing the system knowledge kinds historical source
+   * Returns the source information for knowledge in the Northern Central Rockies.
+   *
+   * @param kind A kind of knowledge
+   * @return Source information
    */
   private static String getNorthernCentralRockiesSource(Kinds kind) {
     StringBuffer strBuf = new StringBuffer();
@@ -2339,54 +2356,67 @@ public class SystemKnowledge {
     return strBuf.toString();
   }
 
-  private static String[] knowledgeSource = new String[NUM_KINDS];
-  public static String KNOWLEDGE_SOURCE_KEYWORD="KNOWLEDGE-SOURCE";
+  /**
+   *
+   */
+  private static String[] knowledgeSource = new String[NUM_KINDS]; // TODO: Move to top
 
   /**
-   * Gets the system knowledge source by looking up the system knowledge kind by its ordinal into enumeration. 
-   * @param kind
-   * @return
+   *
+   */
+  public static String KNOWLEDGE_SOURCE_KEYWORD = "KNOWLEDGE-SOURCE"; // TODO: Move to top
+
+  /**
+   * Returns source information for a kind of knowledge
+   *
+   * @param kind A kind of knowledge
+   * @return Source information
    */
   public static String getKnowledgeSource(Kinds kind) {
     return knowledgeSource[kind.ordinal()];
   }
 
   /**
-   * Sets the system knowledge source to parameter at index of a system knowledge kind. 
-   * @param kind
-   * @param source
+   * Sets source information for a kind of knowledge
+   *
+   * @param kind A kind of knowledge
+   * @param source Source information
    */
   public static void setKnowledgeSource(Kinds kind, String source)  {
     knowledgeSource[kind.ordinal()] = source;
   }
 
   /**
-   * Writes the knowledge source, will Knowledge Source, dummy, value, end knowledge source.
-   * @param fout
-   * @param value
+   * Writes knowledge source information.
+   *
+   * @param writer A print writer
+   * @param source Source information
    */
-  public static void writeKnowledgeSource(PrintWriter fout, String value) {
-    if (value != null && value.length() > 0) {
-      fout.print(KNOWLEDGE_SOURCE_KEYWORD);
-      fout.println(" dummy");
-      fout.println(value);
-      fout.println("END-KNOWLEDGE-SOURCE");
+  public static void writeKnowledgeSource(PrintWriter writer, String source) {
+    if (source != null && source.length() > 0) {
+      writer.print(KNOWLEDGE_SOURCE_KEYWORD);
+      writer.println(" dummy");
+      writer.println(source);
+      writer.println("END-KNOWLEDGE-SOURCE");
     }
   }
 
-  public static void writeKnowledgeSource(PrintWriter fout, Kinds kind) {
-    writeKnowledgeSource(fout,knowledgeSource[kind.ordinal()]);
+  /**
+   * Writes knowledge source information for a kind of knowledge.
+   *
+   * @param writer A print writer
+   * @param kind A kind of knowledge
+   */
+  public static void writeKnowledgeSource(PrintWriter writer, Kinds kind) {
+    writeKnowledgeSource(writer,knowledgeSource[kind.ordinal()]);
   }
 
   /**
-   * Reads the KnowledgeSource string from a system knowledge file and returns
-   * the string read.  The returned string is only used in the case of
-   * HabitatTypeGroup's, for the rest of the Knowledge Source for the various
-   * data files is stored in this class.
+   * Reads knowledge source information for a kind of knowledge.
    *
-   * @param fin BufferedReader
-   * @param kind int The id of the data file we are reading, FIRE_SPREAD_DATA, etc.
-   * @return String
+   * @param fin A buffered reader containing source information
+   * @param kind A kind of knowledge
+   * @return Source information
    * @throws IOException
    */
   public static String readKnowledgeSource(BufferedReader fin, Kinds kind) throws IOException {
@@ -2407,10 +2437,12 @@ public class SystemKnowledge {
   }
 
   /**
-   * Sets the aliases used in xstream xml encoding.
-   * @param xs
+   * Sets aliases for classes serialized with the XStream library.
+   *
+   * @param xs An instance of the XStream library
    */
   public static void setupXStreamAliases(XStream xs) {
+
     xs.alias("FireResistance",FireResistance.class);
     xs.alias("FireTypeLogicData",FireTypeLogicData.class);
     xs.alias("HabitatTypeGroupType",HabitatTypeGroupType.class);
