@@ -2159,7 +2159,7 @@ public class SystemKnowledge {
   public static void loadAllDefaults() throws SimpplleError {
     RegionalZone zone = Simpplle.getCurrentZone();
 
-    zone.readZoneSystemKnowledgeFile();
+    zone.loadKnowledge();
     FireEvent.resetExtremeData();
   }
 

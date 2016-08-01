@@ -595,9 +595,9 @@ public abstract class RegionalZone {
   public void setUseHistoricPathways(boolean useHistoricPathways) { historicPathways = useHistoricPathways; }
 
   /**
-   * Reads all data from the regional zone's system knowledge and pathway jar files.
+   * Loads all knowledge for this regional zone.
    */
-  public void readZoneSystemKnowledgeFile() throws SimpplleError {
+  public void loadKnowledge() throws SimpplleError {
 
     // Remove references to currently loaded pathways.
     HabitatTypeGroup.clearGroups();
