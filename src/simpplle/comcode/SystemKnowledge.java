@@ -1423,8 +1423,7 @@ public class SystemKnowledge {
           Process.readProbabilityLogic(jarIn);
         }
 
-        // Since there are two sets of pathways we need to make sure we
-        // load the correct ones.
+        // Since there are two sets of pathways we need to make sure we load the correct ones.
         if (entryId == VEGETATION_PATHWAYS && loadSaveMe[VEGETATION_PATHWAYS.ordinal()]) {
           if ((!isZone && name.startsWith(PATHWAYS_ENTRY)) ||
               ((name.startsWith(PATHWAYS_ENTRY) && !zone.isHistoric()) ||
@@ -1435,7 +1434,7 @@ public class SystemKnowledge {
           }
         }
 
-        // These don't have loadSaveMe id's
+        // These don't have loadSaveMe flags
         if (name.startsWith(WILDLIFE_ENTRY)) {
           Simpplle.setStatusMessage(msg);
           WildlifeHabitat.readDataFiles(name, fin);
@@ -1507,7 +1506,7 @@ public class SystemKnowledge {
           }
           strBuf.append(Simpplle.endl);
           StringReader strRead = new StringReader(strBuf.toString());
-          XStream xs = new XStream(new DomDriver());//xml serializer
+          XStream xs = new XStream(new DomDriver());
           SystemKnowledge.setupXStreamAliases(xs);
           ObjectInputStream in = xs.createObjectInputStream(strRead);
 
@@ -1654,7 +1653,6 @@ public class SystemKnowledge {
       err.printStackTrace();
       throw new SimpplleError("Could not read System Knowledge File");
     }
-
   }
 
   /**
@@ -1763,22 +1761,19 @@ public class SystemKnowledge {
    * @param doZoneDef A flag indicating if a legal description should be saved
    * @throws SimpplleError
    */
-  private static void saveKnowledge(File file, String fileExt, boolean doZoneDef)
-    throws SimpplleError
-  {
-    RegionalZone    zone = Simpplle.getCurrentZone();
-    File            outfile;
-    JarOutputStream jarOut;
-    JarEntry        jarEntry;
-    PrintWriter     pout;
+  private static void saveKnowledge(File file,
+                                    String fileExt,
+                                    boolean doZoneDef) throws SimpplleError {
+
+    RegionalZone zone = Simpplle.getCurrentZone();
 
     try {
-      outfile = Utility.makeSuffixedPathname(file,"",fileExt);
-      jarOut  = new JarOutputStream(new FileOutputStream(outfile),new Manifest());
-      pout    = new PrintWriter(new OutputStreamWriter(jarOut));
+      File outfile = Utility.makeSuffixedPathname(file, "", fileExt);
+      JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile), new Manifest());
+      PrintWriter pout = new PrintWriter(new OutputStreamWriter(jarOut));
 
       if (doZoneDef) {
-        jarEntry = new JarEntry("ZONE/LEGAL-DESCRIPTION.TXT");
+        JarEntry jarEntry = new JarEntry("ZONE/LEGAL-DESCRIPTION.TXT");
         jarOut.putNextEntry(jarEntry);
         zone.writeZoneDefinitionFile(pout);
         for (int i = 0; i < loadSaveMe.length; i++) {
@@ -1787,9 +1782,8 @@ public class SystemKnowledge {
         pout.flush();
       }
 
-      // Do the FMZ file.
       if (loadSaveMe[FMZ.ordinal()]) {
-        jarEntry = new JarEntry(FMZ_ENTRY);
+        JarEntry jarEntry = new JarEntry(FMZ_ENTRY);
         jarOut.putNextEntry(jarEntry);
         Fmz.save(pout);
         pout.flush();
@@ -1797,14 +1791,14 @@ public class SystemKnowledge {
 
       TreatmentSchedule ts = Area.getTreatmentSchedule();
       if (ts != null && ts.hasApplications()) {
-        jarEntry = new JarEntry(TREATMENT_SCHEDULE_ENTRY);
+        JarEntry jarEntry = new JarEntry(TREATMENT_SCHEDULE_ENTRY);
         jarOut.putNextEntry(jarEntry);
         ts.save(pout);
         pout.flush();
       }
 
       if (loadSaveMe[TREATMENT_LOGIC.ordinal()]) {
-        jarEntry = new JarEntry(TREATMENT_LOGIC_ENTRY);
+        JarEntry jarEntry = new JarEntry(TREATMENT_LOGIC_ENTRY);
         jarOut.putNextEntry(jarEntry);
         Treatment.saveLogic(pout);
         pout.flush();
@@ -1812,7 +1806,7 @@ public class SystemKnowledge {
 
       ProcessSchedule ps = Area.getProcessSchedule();
       if (ps != null && ps.getCurrentApplication() != null) {
-        jarEntry = new JarEntry(PROCESS_SCHEDULE_ENTRY);
+        JarEntry jarEntry = new JarEntry(PROCESS_SCHEDULE_ENTRY);
         jarOut.putNextEntry(jarEntry);
         ps.save(pout);
         pout.flush();
@@ -1827,7 +1821,7 @@ public class SystemKnowledge {
           outfile = group.getFilename();
 
           name = PATHWAYS_ENTRY + "/" + group.getName();
-          jarEntry = new JarEntry(name);
+          JarEntry jarEntry = new JarEntry(name);
           jarOut.putNextEntry(jarEntry);
           group.save(pout);
           group.setIsUserData(true);
@@ -1844,7 +1838,7 @@ public class SystemKnowledge {
           outfile = group.getFilename();
 
           name = PATHWAYS_ENTRY_AQUATIC + "/" + group.getName();
-          jarEntry = new JarEntry(name);
+          JarEntry jarEntry = new JarEntry(name);
           jarOut.putNextEntry(jarEntry);
           group.save(pout);
           group.setIsUserData(true);
@@ -1853,53 +1847,49 @@ public class SystemKnowledge {
       }
 
       if (loadSaveMe[EXTREME_FIRE_DATA.ordinal()]) {
-        jarEntry = new JarEntry(EXTREME_FIRE_DATA_ENTRY);
+        JarEntry jarEntry = new JarEntry(EXTREME_FIRE_DATA_ENTRY);
         jarOut.putNextEntry(jarEntry);
         FireEvent.saveExtremeData(pout);
         pout.flush();
       }
 
       Climate climate = Simpplle.getClimate();
-      if (climate != null && loadSaveMe[CLIMATE.ordinal()])
-      {
-        jarEntry = new JarEntry(CLIMATE_ENTRY);
+      if (climate != null && loadSaveMe[CLIMATE.ordinal()]) {
+        JarEntry jarEntry = new JarEntry(CLIMATE_ENTRY);
         jarOut.putNextEntry(jarEntry);
         climate.save(pout);
         pout.flush();
       }
 
-      // Do the Type of Fire Season Data
       if (loadSaveMe[FIRE_SEASON.ordinal()]) {
-        jarEntry = new JarEntry(FIRE_SEASON_ENTRY);
+        JarEntry jarEntry = new JarEntry(FIRE_SEASON_ENTRY);
         jarOut.putNextEntry(jarEntry);
         FireEvent.saveFireSeasonData(pout);
         pout.flush();
       }
 
-      // TODO test loading keane stuff
       if (loadSaveMe[KEANE_PARAMETERS.ordinal()]) {
-        jarEntry = new JarEntry(KEANE_PARAMETERS_ENTRY);
+        JarEntry jarEntry = new JarEntry(KEANE_PARAMETERS_ENTRY);
         jarOut.putNextEntry(jarEntry);
         ProcessOccurrenceSpreadingFire.saveKeaneParameters(pout);
         pout.flush();
       }
 
       if (loadSaveMe[SPECIES.ordinal()]) {
-        jarEntry = new JarEntry(SPECIES_ENTRY);
+        JarEntry jarEntry = new JarEntry(SPECIES_ENTRY);
         jarOut.putNextEntry(jarEntry);
         SimpplleType.saveData(jarOut,SimpplleType.SPECIES);
       }
 
       if (loadSaveMe[CONIFER_ENCROACHMENT.ordinal()]) {
-        jarEntry = new JarEntry(CONIFER_ENCROACHMENT_ENTRY);
+        JarEntry jarEntry = new JarEntry(CONIFER_ENCROACHMENT_ENTRY);
         jarOut.putNextEntry(jarEntry);
         ConiferEncroachmentLogicData.save(jarOut);
       }
 
-      // XStream needs to be setup last as it writes stuff to the stream
-      // immediately upon creation.
+      // XStream needs to be setup last as it writes stuff to the stream immediately upon creation.
       XStream xs;
-      ObjectOutputStream os=null;
+      ObjectOutputStream os;
 
       // ** XStream Files ***
       // ********************
@@ -1925,6 +1915,7 @@ public class SystemKnowledge {
           loadSaveMe[FIRE_SUPP_SPREAD_RATE_LOGIC.ordinal()] ||
           loadSaveMe[FIRE_SUPP_WEATHER_CLASS_A_LOGIC.ordinal()] ||
           loadSaveMe[TRACKING_SPECIES_REPORT.ordinal()]) {
+
         DomDriver d = new DomDriver();
         HierarchicalStreamWriter hw = d.createWriter(pout);
         xs = new XStream(d);
@@ -1935,7 +1926,7 @@ public class SystemKnowledge {
 
         if (loadSaveMe[FIRE_SUPP_WEATHER_BEYOND_CLASS_A.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY);
+          JarEntry jarEntry = new JarEntry(FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY);
           jarOut.putNextEntry(jarEntry);
           FireSuppWeatherData.save(os);
           os.flush();
@@ -1944,7 +1935,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[FIRE_SPREAD_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(FIRE_SPREAD_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(FIRE_SPREAD_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           FireEventLogic.save(FireEventLogic.SPREAD_STR,os);
           os.flush();
@@ -1953,7 +1944,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[FIRE_TYPE_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(FIRE_TYPE_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(FIRE_TYPE_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           FireEventLogic.save(FireEventLogic.TYPE_STR,os);
           os.flush();
@@ -1962,7 +1953,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[FIRE_SPOTTING_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(FIRE_SPOTTING_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(FIRE_SPOTTING_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           FireEventLogic.save(FireEventLogic.FIRE_SPOTTING_STR,os);
           os.flush();
@@ -1972,7 +1963,7 @@ public class SystemKnowledge {
         if (loadSaveMe[REGEN_LOGIC_FIRE.ordinal()] &&
             RegenerationLogic.isDataPresent(RegenerationLogic.FIRE)) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(REGEN_LOGIC_FIRE_ENTRY);
+          JarEntry jarEntry = new JarEntry(REGEN_LOGIC_FIRE_ENTRY);
           jarOut.putNextEntry(jarEntry);
           RegenerationLogic.saveFire(os);
           os.flush();
@@ -1982,7 +1973,7 @@ public class SystemKnowledge {
         if (loadSaveMe[REGEN_LOGIC_SUCC.ordinal()] &&
             RegenerationLogic.isDataPresent(RegenerationLogic.SUCCESSION)) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(REGEN_LOGIC_SUCC_ENTRY);
+          JarEntry jarEntry = new JarEntry(REGEN_LOGIC_SUCC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           RegenerationLogic.saveSuccession(os);
           os.flush();
@@ -1991,7 +1982,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[PROCESS_PROB_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(PROCESS_PROB_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(PROCESS_PROB_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           ProcessProbLogic.getInstance().save(os);
           os.flush();
@@ -2000,7 +1991,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[INVASIVE_SPECIES_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(INVASIVE_SPECIES_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(INVASIVE_SPECIES_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           InvasiveSpeciesLogic.getInstance().save(os);
           os.flush();
@@ -2009,7 +2000,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[INVASIVE_SPECIES_LOGIC_MSU.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(INVASIVE_SPECIES_LOGIC_MSU_ENTRY);
+          JarEntry jarEntry = new JarEntry(INVASIVE_SPECIES_LOGIC_MSU_ENTRY);
           jarOut.putNextEntry(jarEntry);
           InvasiveSpeciesLogicMSU.getInstance().save(os);
           os.flush();
@@ -2018,7 +2009,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[REGEN_DELAY_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(REGEN_DELAY_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(REGEN_DELAY_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           RegenerationDelayLogic.getInstance().save(os);
           os.flush();
@@ -2027,7 +2018,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[GAP_PROCESS_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(GAP_PROCESS_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(GAP_PROCESS_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           GapProcessLogic.getInstance().save(os);
           os.flush();
@@ -2036,7 +2027,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[DOCOMPETITION_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(DOCOMPETITION_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(DOCOMPETITION_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           DoCompetitionLogic.getInstance().save(os);
           os.flush();
@@ -2045,7 +2036,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[EVU_SEARCH_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(EVU_SEARCH_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(EVU_SEARCH_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           EvuSearchLogic.getInstance().save(os);
           os.flush();
@@ -2054,7 +2045,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[PRODUCING_SEED_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(PRODUCING_SEED_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(PRODUCING_SEED_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           ProducingSeedLogic.getInstance().save(os);
           os.flush();
@@ -2063,7 +2054,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[VEG_UNIT_FIRE_TYPE_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           VegUnitFireTypeLogic.getInstance().save(os);
           os.flush();
@@ -2072,7 +2063,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[FIRE_SUPP_CLASS_A_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(FIRE_SUPP_CLASS_A_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(FIRE_SUPP_CLASS_A_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           FireSuppClassALogic.getInstance().save(os);
           os.flush();
@@ -2081,7 +2072,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[FIRE_SUPP_BEYOND_CLASS_A_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(FIRE_SUPP_BEYOND_CLASS_A_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(FIRE_SUPP_BEYOND_CLASS_A_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           FireSuppBeyondClassALogic.getInstance().save(os);
           os.flush();
@@ -2090,7 +2081,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[FIRE_SUPP_PRODUCTION_RATE_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(FIRE_SUPP_PRODUCTION_RATE_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(FIRE_SUPP_PRODUCTION_RATE_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           FireSuppProductionRateLogic.getInstance().save(os);
           os.flush();
@@ -2099,7 +2090,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[FIRE_SUPP_SPREAD_RATE_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           FireSuppSpreadRateLogic.getInstance().save(os);
           os.flush();
@@ -2108,7 +2099,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[FIRE_SUPP_WEATHER_CLASS_A_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(FIRE_SUPP_WEATHER_CLASS_A_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(FIRE_SUPP_WEATHER_CLASS_A_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           FireSuppWeatherClassALogic.getInstance().save(os);
           os.flush();
@@ -2117,7 +2108,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[TRACKING_SPECIES_REPORT.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(TRACKING_SPECIES_REPORT_ENTRY);
+          JarEntry jarEntry = new JarEntry(TRACKING_SPECIES_REPORT_ENTRY);
           jarOut.putNextEntry(jarEntry);
           TrackingSpeciesReportData.getInstance().save(os);
           os.flush();
@@ -2126,7 +2117,7 @@ public class SystemKnowledge {
         }
         if (loadSaveMe[FIRE_SUPP_EVENT_LOGIC.ordinal()]) {
           if (!headerWritten) { hw.startNode(rootNodeName); }
-          jarEntry = new JarEntry(FIRE_SUPP_EVENT_LOGIC_ENTRY);
+          JarEntry jarEntry = new JarEntry(FIRE_SUPP_EVENT_LOGIC_ENTRY);
           jarOut.putNextEntry(jarEntry);
           FireSuppEventLogic.getInstance().save(os);
           os.flush();
@@ -2148,7 +2139,6 @@ public class SystemKnowledge {
     } catch (IOException err) {
       throw new SimpplleError("Problems writing system knowledge file");
     }
-
   }
 
   // ********************************
