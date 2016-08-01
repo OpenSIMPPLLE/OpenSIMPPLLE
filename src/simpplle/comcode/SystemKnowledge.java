@@ -1129,11 +1129,8 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   private static void loadAllPathways(int kind) throws SimpplleError {
-    RegionalZone     zone = Simpplle.getCurrentZone();
-    JarInputStream   jarIn=null;
-    JarEntry         jarEntry;
-    BufferedReader   fin=null;
-    String           name=null;
+
+    RegionalZone zone = Simpplle.getCurrentZone();
 
     String pathwayStr;
     if (kind == VEG) {
@@ -1144,16 +1141,16 @@ public class SystemKnowledge {
 
     File filename = Simpplle.getCurrentZone().getSystemKnowledgePathwayFile();
     try {
-      jarIn = new JarInputStream(new FileInputStream(filename));
-      fin   = new BufferedReader(new InputStreamReader(jarIn));
+      JarInputStream jarIn = new JarInputStream(new FileInputStream(filename));
+      BufferedReader fin   = new BufferedReader(new InputStreamReader(jarIn));
 
-      jarEntry = jarIn.getNextJarEntry();
+      JarEntry jarEntry = jarIn.getNextJarEntry();
       while (jarEntry != null) {
         if (jarEntry.isDirectory()) {
           jarEntry = jarIn.getNextJarEntry();
           continue;
         }
-        name = jarEntry.getName().toUpperCase();
+        String name = jarEntry.getName().toUpperCase();
         name = stripZoneDir(name);
         if (name.startsWith(pathwayStr)) { 
           if (kind == VEG) {
