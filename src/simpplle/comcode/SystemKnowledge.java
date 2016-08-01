@@ -1106,7 +1106,7 @@ public class SystemKnowledge {
    *
    * @throws SimpplleError
    */
-  public static void loadAllPathways() throws SimpplleError {
+  public static void loadAllVegetativePathways() throws SimpplleError {
     loadAllPathways(true);
   }
 

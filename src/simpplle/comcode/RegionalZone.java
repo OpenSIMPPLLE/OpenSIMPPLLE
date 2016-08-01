@@ -544,7 +544,7 @@ public abstract class RegionalZone {
     // Remove references to currently loaded pathways.
     HabitatTypeGroup.clearGroups();
 
-    SystemKnowledge.loadAllPathways();
+    SystemKnowledge.loadAllVegetativePathways();
 
     // Garbage collect before returning.
     System.gc();
