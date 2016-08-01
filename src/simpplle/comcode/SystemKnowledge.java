@@ -229,108 +229,184 @@ public class SystemKnowledge {
    * Returns the kind of knowledge represented by a knowledge file.
    *
    * @param name The name of a knowledge file
-   * @return A knowledge kind, or null if the file isn't a knowledge file
+   * @return A knowledge kind, or null
    */
   private static Kinds getKnowledgeEntryId(String name) {
+
     name = stripZoneDir(name);
 
-    if (name.equals(FMZ_ENTRY))                                   return FMZ;
-    else if (name.equals(FIRE_TYPE_LOGIC_ENTRY))                  return FIRE_TYPE_LOGIC;
-    else if (name.equals(FIRE_SPREAD_LOGIC_ENTRY))                return FIRE_SPREAD_LOGIC;
-    else if (name.equals(TREATMENT_SCHEDULE_ENTRY))               return TREATMENT_SCHEDULE;
-    else if (name.equals(TREATMENT_LOGIC_ENTRY))                  return TREATMENT_LOGIC;
-    else if (name.equals(PROCESS_SCHEDULE_ENTRY))                 return PROCESS_SCHEDULE;
-//    else if (name.equals(INSECT_DISEASE_PROB_ENTRY))            return INSECT_DISEASE_PROB;
-    else if (name.equals(PROCESS_PROB_LOGIC_ENTRY))               return PROCESS_PROB_LOGIC;
-    else if (name.equals(INVASIVE_SPECIES_LOGIC_ENTRY))           return INVASIVE_SPECIES_LOGIC;
-    else if (name.equals(INVASIVE_SPECIES_LOGIC_MSU_ENTRY))       return INVASIVE_SPECIES_LOGIC_MSU;
-    else if (name.startsWith(PATHWAYS_ENTRY))                     return VEGETATION_PATHWAYS;
-    else if (name.startsWith(HISTORIC_PATHWAYS_ENTRY))            return VEGETATION_PATHWAYS;
-    else if (name.startsWith(PATHWAYS_ENTRY_AQUATIC))             return AQUATIC_PATHWAYS;
-    else if (name.equals(EXTREME_FIRE_DATA_ENTRY))                return EXTREME_FIRE_DATA;
-    else if (name.equals(CLIMATE_ENTRY))                          return CLIMATE;
-    else if (name.equals(REGEN_LOGIC_FIRE_ENTRY))                 return REGEN_LOGIC_FIRE;
-    else if (name.equals(REGEN_LOGIC_SUCC_ENTRY))                 return REGEN_LOGIC_SUCC;
-    else if (name.equals(FIRE_SEASON_ENTRY))                      return FIRE_SEASON;
-    else if (name.equals(FIRESUPP_PRODUCTION_RATE_ENTRY))         return FIRESUPP_PRODUCTION_RATE;
-    else if (name.equals(FIRESUPP_SPREAD_RATE_ENTRY))             return FIRESUPP_SPREAD_RATE;
-    else if (name.equals(SPECIES_ENTRY))                          return SPECIES;
-    else if (name.equals(CONIFER_ENCROACHMENT_ENTRY))             return CONIFER_ENCROACHMENT;
-    else if (name.equals(REGEN_DELAY_LOGIC_ENTRY))                return REGEN_DELAY_LOGIC;
-    else if (name.equals(DOCOMPETITION_LOGIC_ENTRY))              return DOCOMPETITION_LOGIC;
-    else if (name.equals(GAP_PROCESS_LOGIC_ENTRY))                return GAP_PROCESS_LOGIC;
-    else if (name.equals(EVU_SEARCH_LOGIC_ENTRY))                 return EVU_SEARCH_LOGIC;
-    else if (name.equals(PRODUCING_SEED_LOGIC_ENTRY))             return PRODUCING_SEED_LOGIC;
-    else if (name.equals(VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY))         return VEG_UNIT_FIRE_TYPE_LOGIC;
-    else if (name.equals(FIRE_SUPP_CLASS_A_LOGIC_ENTRY))          return FIRE_SUPP_CLASS_A_LOGIC;
-    else if (name.equals(FIRE_SUPP_BEYOND_CLASS_A_LOGIC_ENTRY))   return FIRE_SUPP_BEYOND_CLASS_A_LOGIC;
-    else if (name.equals(FIRE_SUPP_PRODUCTION_RATE_LOGIC_ENTRY))  return FIRE_SUPP_PRODUCTION_RATE_LOGIC;
-    else if (name.equals(FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY))      return FIRE_SUPP_SPREAD_RATE_LOGIC;
-    else if (name.equals(FIRE_SUPP_WEATHER_CLASS_A_LOGIC_ENTRY))  return FIRE_SUPP_WEATHER_CLASS_A_LOGIC;
-    else if (name.equals(TRACKING_SPECIES_REPORT_ENTRY))          return TRACKING_SPECIES_REPORT;
-    else if (name.equals(FIRE_SPOTTING_LOGIC_ENTRY))              return FIRE_SPOTTING_LOGIC;
-    else if (name.equals(FIRE_SUPP_EVENT_LOGIC_ENTRY))            return FIRE_SUPP_EVENT_LOGIC;
-    else if (name.equals(FIRE_SUPP_BEYOND_CLASS_A_ENTRY))         return FIRE_SUPP_BEYOND_CLASS_A;
-    else if (name.equals(FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY)) return FIRE_SUPP_WEATHER_BEYOND_CLASS_A;
-    else if (name.equals(KEANE_PARAMETERS_ENTRY))                 return KEANE_PARAMETERS;
-    else if (name.startsWith(WILDLIFE_ENTRY))                     return null;
-    else if (name.equals(EMISSIONS_ENTRY))                        return null;
-
-    return null;
-
+    if (name.equals(FMZ_ENTRY)) {
+      return FMZ;
+    } else if (name.equals(FIRE_TYPE_LOGIC_ENTRY)) {
+      return FIRE_TYPE_LOGIC;
+    } else if (name.equals(FIRE_SPREAD_LOGIC_ENTRY)) {
+      return FIRE_SPREAD_LOGIC;
+    } else if (name.equals(TREATMENT_SCHEDULE_ENTRY)) {
+      return TREATMENT_SCHEDULE;
+    } else if (name.equals(TREATMENT_LOGIC_ENTRY)) {
+      return TREATMENT_LOGIC;
+    } else if (name.equals(PROCESS_SCHEDULE_ENTRY)) {
+      return PROCESS_SCHEDULE;
+//    } else if (name.equals(INSECT_DISEASE_PROB_ENTRY)) {
+//      return INSECT_DISEASE_PROB;
+    } else if (name.equals(PROCESS_PROB_LOGIC_ENTRY)) {
+      return PROCESS_PROB_LOGIC;
+    } else if (name.equals(INVASIVE_SPECIES_LOGIC_ENTRY)) {
+      return INVASIVE_SPECIES_LOGIC;
+    } else if (name.equals(INVASIVE_SPECIES_LOGIC_MSU_ENTRY)) {
+      return INVASIVE_SPECIES_LOGIC_MSU;
+    } else if (name.startsWith(PATHWAYS_ENTRY)) {
+      return VEGETATION_PATHWAYS;
+    } else if (name.startsWith(HISTORIC_PATHWAYS_ENTRY)) {
+      return VEGETATION_PATHWAYS;
+    } else if (name.startsWith(PATHWAYS_ENTRY_AQUATIC)) {
+      return AQUATIC_PATHWAYS;
+    } else if (name.equals(EXTREME_FIRE_DATA_ENTRY)) {
+      return EXTREME_FIRE_DATA;
+    } else if (name.equals(CLIMATE_ENTRY)) {
+      return CLIMATE;
+    } else if (name.equals(REGEN_LOGIC_FIRE_ENTRY)) {
+      return REGEN_LOGIC_FIRE;
+    } else if (name.equals(REGEN_LOGIC_SUCC_ENTRY)) {
+      return REGEN_LOGIC_SUCC;
+    } else if (name.equals(FIRE_SEASON_ENTRY)) {
+      return FIRE_SEASON;
+    } else if (name.equals(FIRESUPP_PRODUCTION_RATE_ENTRY)) {
+      return FIRESUPP_PRODUCTION_RATE;
+    } else if (name.equals(FIRESUPP_SPREAD_RATE_ENTRY)) {
+      return FIRESUPP_SPREAD_RATE;
+    } else if (name.equals(SPECIES_ENTRY)) {
+      return SPECIES;
+    } else if (name.equals(CONIFER_ENCROACHMENT_ENTRY)) {
+      return CONIFER_ENCROACHMENT;
+    } else if (name.equals(REGEN_DELAY_LOGIC_ENTRY)) {
+      return REGEN_DELAY_LOGIC;
+    } else if (name.equals(DOCOMPETITION_LOGIC_ENTRY)) {
+      return DOCOMPETITION_LOGIC;
+    } else if (name.equals(GAP_PROCESS_LOGIC_ENTRY)) {
+      return GAP_PROCESS_LOGIC;
+    } else if (name.equals(EVU_SEARCH_LOGIC_ENTRY)) {
+      return EVU_SEARCH_LOGIC;
+    } else if (name.equals(PRODUCING_SEED_LOGIC_ENTRY)) {
+      return PRODUCING_SEED_LOGIC;
+    } else if (name.equals(VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY)) {
+      return VEG_UNIT_FIRE_TYPE_LOGIC;
+    } else if (name.equals(FIRE_SUPP_CLASS_A_LOGIC_ENTRY)) {
+      return FIRE_SUPP_CLASS_A_LOGIC;
+    } else if (name.equals(FIRE_SUPP_BEYOND_CLASS_A_LOGIC_ENTRY)) {
+      return FIRE_SUPP_BEYOND_CLASS_A_LOGIC;
+    } else if (name.equals(FIRE_SUPP_PRODUCTION_RATE_LOGIC_ENTRY)) {
+      return FIRE_SUPP_PRODUCTION_RATE_LOGIC;
+    } else if (name.equals(FIRE_SUPP_SPREAD_RATE_LOGIC_ENTRY)) {
+      return FIRE_SUPP_SPREAD_RATE_LOGIC;
+    } else if (name.equals(FIRE_SUPP_WEATHER_CLASS_A_LOGIC_ENTRY)) {
+      return FIRE_SUPP_WEATHER_CLASS_A_LOGIC;
+    } else if (name.equals(TRACKING_SPECIES_REPORT_ENTRY)) {
+      return TRACKING_SPECIES_REPORT;
+    } else if (name.equals(FIRE_SPOTTING_LOGIC_ENTRY)) {
+      return FIRE_SPOTTING_LOGIC;
+    } else if (name.equals(FIRE_SUPP_EVENT_LOGIC_ENTRY)) {
+      return FIRE_SUPP_EVENT_LOGIC;
+    } else if (name.equals(FIRE_SUPP_BEYOND_CLASS_A_ENTRY)) {
+      return FIRE_SUPP_BEYOND_CLASS_A;
+    } else if (name.equals(FIRE_SUPP_WEATHER_BEYOND_CLASS_A_ENTRY)) {
+      return FIRE_SUPP_WEATHER_BEYOND_CLASS_A;
+    } else if (name.equals(KEANE_PARAMETERS_ENTRY)) {
+      return KEANE_PARAMETERS;
+    } else if (name.startsWith(WILDLIFE_ENTRY)) {
+      return null;
+    } else if (name.equals(EMISSIONS_ENTRY)) {
+      return null;
+    } else {
+      return null;
+    }
   }
 
   /**
    * Returns the file extension associated with a kind of knowledge.
    *
    * @param kind A kind of knowledge
-   * @return A file extension, or an empty string otherwise
+   * @return A file extension, or an empty string
    */
   public static String getKnowledgeFileExtension(Kinds kind) {
-    // old Fire Spread files .firespread
-    // old Type of Fire files .firetype
-    // old Regeneration Logic .sk_regenlogic
 
     switch (kind) {
-      case FMZ:                              return ("sk_fmz");
-      case TREATMENT_SCHEDULE:               return ("sk_treatsched");
-      case TREATMENT_LOGIC:                  return ("sk_treatlogic");
-      case PROCESS_SCHEDULE:                 return ("sk_processsched");
-//      case INSECT_DISEASE_PROB:              return ("sk_probability");
-      case PROCESS_PROB_LOGIC:               return ("sk_processproblogic");
-      case FIRE_SUPP_BEYOND_CLASS_A:         return ("sk_fire_suppbeyonda");
-      case FIRE_SUPP_WEATHER_BEYOND_CLASS_A: return ("sk_fire_suppweather");
-      case CLIMATE:                          return ("sk_climate");
-      case REGEN_LOGIC_FIRE:                 return ("sk_regenlogicfire");
-      case REGEN_LOGIC_SUCC:                 return ("sk_regenlogicsucc");
-      case FIRE_SEASON:                      return ("sk_fireseason");
-      case FIRE_TYPE_LOGIC:                  return ("sk_firetype");
-      case FIRE_SPREAD_LOGIC:                return ("sk_firespread");
-      case FIRE_SPOTTING_LOGIC:              return ("sk_firespotting");
-      case FIRE_SUPP_EVENT_LOGIC:            return ("sk_firesuppevent");
-      case CONIFER_ENCROACHMENT:             return ("sk_conifer");
-      case SPECIES:                          return ("sk_species");
-      case FIRESUPP_PRODUCTION_RATE:         return ("sk_firesuppprodrate");
-      case FIRESUPP_SPREAD_RATE:             return ("sk_firesuppspreadrate");
-      case VEGETATION_PATHWAYS:              return ("sk_pathway");
-      case AQUATIC_PATHWAYS:                 return ("sk_aquapathway");
-      case INVASIVE_SPECIES_LOGIC:           return ("sk_invasivespecieslogic");
-      case INVASIVE_SPECIES_LOGIC_MSU:       return ("sk_invasivespecieslogicmsu");
-      case REGEN_DELAY_LOGIC:                return ("sk_regendelaylogic");
-      case DOCOMPETITION_LOGIC:              return ("sk_competitionlogic");
-      case GAP_PROCESS_LOGIC:                return ("sk_gapprocesslogic");
-      case EVU_SEARCH_LOGIC:                 return ("sk_evusearchlogic");
-      case PRODUCING_SEED_LOGIC:             return ("sk_producingseedlogic");
-      case VEG_UNIT_FIRE_TYPE_LOGIC:         return ("sk_vegunitfiretypelogic");
-      case FIRE_SUPP_CLASS_A_LOGIC:          return ("sk_firesuppclassalogic");
-      case FIRE_SUPP_BEYOND_CLASS_A_LOGIC:   return ("sk_firesuppbeyondclassalogic");
-      case FIRE_SUPP_PRODUCTION_RATE_LOGIC:  return ("sk_firesuppproductionratelogic");
-      case FIRE_SUPP_SPREAD_RATE_LOGIC:      return ("sk_firesuppspreadratelogic");
-      case FIRE_SUPP_WEATHER_CLASS_A_LOGIC:  return ("sk_firesuppweatherclassalogic");
-      case TRACKING_SPECIES_REPORT:          return ("sk_trackingspeciesreport");
-      default:                               return ("");
-      // Extreme fire doesn't have its own file.
-      // Wildlife doesn't have its own file.
+
+      case FMZ:
+        return "sk_fmz";
+      case TREATMENT_SCHEDULE:
+        return "sk_treatsched";
+      case TREATMENT_LOGIC:
+        return "sk_treatlogic";
+      case PROCESS_SCHEDULE:
+        return "sk_processsched";
+//      case INSECT_DISEASE_PROB:
+//        return "sk_probability";
+      case PROCESS_PROB_LOGIC:
+        return "sk_processproblogic";
+      case FIRE_SUPP_BEYOND_CLASS_A:
+        return "sk_fire_suppbeyonda";
+      case FIRE_SUPP_WEATHER_BEYOND_CLASS_A:
+        return "sk_fire_suppweather";
+      case CLIMATE:
+        return "sk_climate";
+      case REGEN_LOGIC_FIRE:
+        return "sk_regenlogicfire";
+      case REGEN_LOGIC_SUCC:
+        return "sk_regenlogicsucc";
+      case FIRE_SEASON:
+        return "sk_fireseason";
+      case FIRE_TYPE_LOGIC:
+        return "sk_firetype";
+      case FIRE_SPREAD_LOGIC:
+        return "sk_firespread";
+      case FIRE_SPOTTING_LOGIC:
+        return "sk_firespotting";
+      case FIRE_SUPP_EVENT_LOGIC:
+        return "sk_firesuppevent";
+      case CONIFER_ENCROACHMENT:
+        return "sk_conifer";
+      case SPECIES:
+        return "sk_species";
+      case FIRESUPP_PRODUCTION_RATE:
+        return "sk_firesuppprodrate";
+      case FIRESUPP_SPREAD_RATE:
+        return "sk_firesuppspreadrate";
+      case VEGETATION_PATHWAYS:
+        return "sk_pathway";
+      case AQUATIC_PATHWAYS:
+        return "sk_aquapathway";
+      case INVASIVE_SPECIES_LOGIC:
+        return "sk_invasivespecieslogic";
+      case INVASIVE_SPECIES_LOGIC_MSU:
+        return "sk_invasivespecieslogicmsu";
+      case REGEN_DELAY_LOGIC:
+        return "sk_regendelaylogic";
+      case DOCOMPETITION_LOGIC:
+        return "sk_competitionlogic";
+      case GAP_PROCESS_LOGIC:
+        return "sk_gapprocesslogic";
+      case EVU_SEARCH_LOGIC:
+        return "sk_evusearchlogic";
+      case PRODUCING_SEED_LOGIC:
+        return "sk_producingseedlogic";
+      case VEG_UNIT_FIRE_TYPE_LOGIC:
+        return "sk_vegunitfiretypelogic";
+      case FIRE_SUPP_CLASS_A_LOGIC:
+        return "sk_firesuppclassalogic";
+      case FIRE_SUPP_BEYOND_CLASS_A_LOGIC:
+        return "sk_firesuppbeyondclassalogic";
+      case FIRE_SUPP_PRODUCTION_RATE_LOGIC:
+        return "sk_firesuppproductionratelogic";
+      case FIRE_SUPP_SPREAD_RATE_LOGIC:
+        return "sk_firesuppspreadratelogic";
+      case FIRE_SUPP_WEATHER_CLASS_A_LOGIC:
+        return "sk_firesuppweatherclassalogic";
+      case TRACKING_SPECIES_REPORT:
+        return "sk_trackingspeciesreport";
+      default:
+        return "";
+
     }
   }
 
@@ -338,53 +414,89 @@ public class SystemKnowledge {
    * Returns the name of a kind of knowledge.
    *
    * @param kind A kind of knowledge
-   * @return A knowledge name, or an empty string otherwise
+   * @return A knowledge name, or an empty string
    */
   public static String getKnowledgeFileDescription(Kinds kind) {
-    // old Fire Spread files .firespread
-    // old Type of Fire files .firetype
 
     switch (kind) {
-      case FMZ:                              return ("FMZ Data");
-      case TREATMENT_SCHEDULE:               return ("Treatment Schedule");
-      case TREATMENT_LOGIC:                  return ("Treatment Logic");
-      case PROCESS_SCHEDULE:                 return ("Process Schedule");
-//      case INSECT_DISEASE_PROB:              return ("insect/Disease Probability");
-      case PROCESS_PROB_LOGIC:               return ("Process Probability Logic");
-      case FIRE_SUPP_BEYOND_CLASS_A:         return ("Fire Suppression");
-      case FIRE_SUPP_WEATHER_BEYOND_CLASS_A: return ("Fire Suppression");
-      case CLIMATE:                          return ("Climate");
-      case REGEN_LOGIC_FIRE:                 return ("Regeneration Logic Fire");
-      case REGEN_LOGIC_SUCC:                 return ("Regeneration Logic Succession");
-      case FIRE_SEASON:                      return ("Fire Season");
-      case FIRE_TYPE_LOGIC:                  return ("Type of Fire Logic");
-      case FIRE_SPREAD_LOGIC:                return ("Fire Spread Logic");
-      case FIRE_SPOTTING_LOGIC:              return ("Fire Spotting Logic");
-      case FIRE_SUPP_EVENT_LOGIC:            return ("Fire Suppression Event Logic");
-      case CONIFER_ENCROACHMENT:             return ("Conifer Encroachment");
-      case SPECIES:                          return ("Species");
-      case FIRESUPP_PRODUCTION_RATE:         return ("Fire Supp Prod Rate");
-      case FIRESUPP_SPREAD_RATE:             return ("Fire Supp Spread Rate");
-      case VEGETATION_PATHWAYS:              return ("Veg Pathway");
-      case AQUATIC_PATHWAYS:                 return ("Aquatic Pathway");
-      case INVASIVE_SPECIES_LOGIC:           return ("Invasive Species Logic");
-      case INVASIVE_SPECIES_LOGIC_MSU:       return ("Invasive Species Logic MSU");
-      case REGEN_DELAY_LOGIC:                return ("Regeneration Delay Logic");
-      case DOCOMPETITION_LOGIC:              return ("Lifeform Competition Logic");
-      case GAP_PROCESS_LOGIC:                return ("Gap Process Logic");
-      case EVU_SEARCH_LOGIC:                 return ("Evu Search Logic");
-      case PRODUCING_SEED_LOGIC:             return ("Producing Seed Logic");
-      case VEG_UNIT_FIRE_TYPE_LOGIC:         return ("Veg Unit Fire Type Logic");
-      case FIRE_SUPP_CLASS_A_LOGIC:          return ("Fire Supp Class A Logic");
-      case FIRE_SUPP_BEYOND_CLASS_A_LOGIC:   return ("Fire Supp Beyond Class A Logic");
-      case FIRE_SUPP_PRODUCTION_RATE_LOGIC:  return ("Fire Supp Production Rate Logic");
-      case FIRE_SUPP_SPREAD_RATE_LOGIC:      return ("Fire Supp Spread Rate Logic");
-      case FIRE_SUPP_WEATHER_CLASS_A_LOGIC:  return ("Fire Supp Weather Class A Logic");
-      case TRACKING_SPECIES_REPORT:          return ("Tracking Species Report");
-      case KEANE_PARAMETERS:                 return ("Keane Fire Spread Parameters");
-      default:                               return ("");
-      // Extreme fire doesn't have its own file.
-      // Wildlife doesn't have its own file.
+
+      case FMZ:
+        return "FMZ Data";
+      case TREATMENT_SCHEDULE:
+        return "Treatment Schedule";
+      case TREATMENT_LOGIC:
+        return "Treatment Logic";
+      case PROCESS_SCHEDULE:
+        return "Process Schedule";
+//      case INSECT_DISEASE_PROB:
+//        return "insect/Disease Probability";
+      case PROCESS_PROB_LOGIC:
+        return "Process Probability Logic";
+      case FIRE_SUPP_BEYOND_CLASS_A:
+        return "Fire Suppression";
+      case FIRE_SUPP_WEATHER_BEYOND_CLASS_A:
+        return "Fire Suppression";
+      case CLIMATE:
+        return "Climate";
+      case REGEN_LOGIC_FIRE:
+        return "Regeneration Logic Fire";
+      case REGEN_LOGIC_SUCC:
+        return "Regeneration Logic Succession";
+      case FIRE_SEASON:
+        return "Fire Season";
+      case FIRE_TYPE_LOGIC:
+        return "Type of Fire Logic";
+      case FIRE_SPREAD_LOGIC:
+        return "Fire Spread Logic";
+      case FIRE_SPOTTING_LOGIC:
+        return "Fire Spotting Logic";
+      case FIRE_SUPP_EVENT_LOGIC:
+        return "Fire Suppression Event Logic";
+      case CONIFER_ENCROACHMENT:
+        return "Conifer Encroachment";
+      case SPECIES:
+        return "Species";
+      case FIRESUPP_PRODUCTION_RATE:
+        return "Fire Supp Prod Rate";
+      case FIRESUPP_SPREAD_RATE:
+        return "Fire Supp Spread Rate";
+      case VEGETATION_PATHWAYS:
+        return "Veg Pathway";
+      case AQUATIC_PATHWAYS:
+        return "Aquatic Pathway";
+      case INVASIVE_SPECIES_LOGIC:
+        return "Invasive Species Logic";
+      case INVASIVE_SPECIES_LOGIC_MSU:
+        return "Invasive Species Logic MSU";
+      case REGEN_DELAY_LOGIC:
+        return "Regeneration Delay Logic";
+      case DOCOMPETITION_LOGIC:
+        return "Lifeform Competition Logic";
+      case GAP_PROCESS_LOGIC:
+        return "Gap Process Logic";
+      case EVU_SEARCH_LOGIC:
+        return "Evu Search Logic";
+      case PRODUCING_SEED_LOGIC:
+        return "Producing Seed Logic";
+      case VEG_UNIT_FIRE_TYPE_LOGIC:
+        return "Veg Unit Fire Type Logic";
+      case FIRE_SUPP_CLASS_A_LOGIC:
+        return "Fire Supp Class A Logic";
+      case FIRE_SUPP_BEYOND_CLASS_A_LOGIC:
+        return "Fire Supp Beyond Class A Logic";
+      case FIRE_SUPP_PRODUCTION_RATE_LOGIC:
+        return "Fire Supp Production Rate Logic";
+      case FIRE_SUPP_SPREAD_RATE_LOGIC:
+        return "Fire Supp Spread Rate Logic";
+      case FIRE_SUPP_WEATHER_CLASS_A_LOGIC:
+        return "Fire Supp Weather Class A Logic";
+      case TRACKING_SPECIES_REPORT:
+        return "Tracking Species Report";
+      case KEANE_PARAMETERS:
+        return "Keane Fire Spread Parameters";
+      default:
+        return "";
+
     }
   }
 
@@ -392,53 +504,89 @@ public class SystemKnowledge {
    * Returns the name of a kind of knowledge.
    *
    * @param kind A kind of knowledge
-   * @return A knowledge name, or an empty string otherwise
+   * @return A knowledge name, or an empty string
    */
   public static String getKnowledgeFileTitle(Kinds kind) {
-    // old Fire Spread files .firespread
-    // old Type of Fire files .firetype
 
     switch (kind) {
-      case FMZ:                              return ("Fire Management Zone Data");
-      case TREATMENT_SCHEDULE:               return ("Treatment Schedule");
-      case TREATMENT_LOGIC:                  return ("Treatment Logic");
-      case PROCESS_SCHEDULE:                 return ("Process Schedule");
-//      case INSECT_DISEASE_PROB:              return ("insect/Disease Probability");
-      case FIRE_SUPP_BEYOND_CLASS_A:         return ("Fire Suppression (Beyond Class A)");
-      case FIRE_SUPP_WEATHER_BEYOND_CLASS_A: return ("Fire Suppression (Beyond Class A Weather Event)");
-      case CLIMATE:                          return ("Climate");
-      case REGEN_LOGIC_FIRE:                 return ("Regeneration Logic Fire");
-      case REGEN_LOGIC_SUCC:                 return ("Regeneration Logic Succession");
-      case FIRE_SEASON:                      return ("Fire Season");
-      case FIRE_TYPE_LOGIC:                  return ("Type of Fire Logic");
-      case FIRE_SPREAD_LOGIC:                return ("Fire Spread Logic");
-      case FIRE_SPOTTING_LOGIC:              return ("Fire Spotting Logic");
-      case FIRE_SUPP_EVENT_LOGIC:            return ("Fire Suppression Event Logic");
-      case CONIFER_ENCROACHMENT:             return ("Conifer Encroachment");
-      case SPECIES:                          return ("Species Knowledge");
-      case FIRESUPP_PRODUCTION_RATE:         return ("Fire Suppression Production Rate");
-      case FIRESUPP_SPREAD_RATE:             return ("Fire Suppression Spread Rate");
-      case VEGETATION_PATHWAYS:              return ("Vegetation Pathway");
-      case AQUATIC_PATHWAYS:                 return ("Aquatic Pathway");
-      case PROCESS_PROB_LOGIC:               return ("Process Probability Logic");
-      case INVASIVE_SPECIES_LOGIC:           return ("Invasive Species Logic");
-      case INVASIVE_SPECIES_LOGIC_MSU:       return ("Invasive Species Logic MSU");
-      case REGEN_DELAY_LOGIC:                return ("Regeneration Delay Logic");
-      case DOCOMPETITION_LOGIC:              return ("Lifeform Competition Logic");
-      case GAP_PROCESS_LOGIC:                return ("Gap Process Logic");
-      case EVU_SEARCH_LOGIC:                 return ("Evu Search Logic");
-      case PRODUCING_SEED_LOGIC:             return ("Producing Seed Logic");
-      case VEG_UNIT_FIRE_TYPE_LOGIC:         return ("Veg Unit Fire Type Logic");
-      case FIRE_SUPP_CLASS_A_LOGIC:          return ("Fire Supp Class A Logic");
-      case FIRE_SUPP_BEYOND_CLASS_A_LOGIC:   return ("Fire Supp Beyond Class A Logic");
-      case FIRE_SUPP_PRODUCTION_RATE_LOGIC:  return ("Fire Supp Production Rate Logic");
-      case FIRE_SUPP_SPREAD_RATE_LOGIC:      return ("Fire Supp Spread Rate Logic");
-      case FIRE_SUPP_WEATHER_CLASS_A_LOGIC:  return ("Fire Supp Weather Class A Logic");
-      case TRACKING_SPECIES_REPORT:          return ("Tracking Species Report");
-      case KEANE_PARAMETERS:                 return ("Keane Cell Percolation Parameters");
-      default:                               return ("");
-      // Extreme fire doesn't have its own file.
-      // Wildlife doesn't have its own file.
+
+      case FMZ:
+        return "Fire Management Zone Data";
+      case TREATMENT_SCHEDULE:
+        return "Treatment Schedule";
+      case TREATMENT_LOGIC:
+        return "Treatment Logic";
+      case PROCESS_SCHEDULE:
+        return "Process Schedule";
+//      case INSECT_DISEASE_PROB:
+//        return "insect/Disease Probability";
+      case FIRE_SUPP_BEYOND_CLASS_A:
+        return "Fire Suppression (Beyond Class A)";
+      case FIRE_SUPP_WEATHER_BEYOND_CLASS_A:
+        return "Fire Suppression (Beyond Class A Weather Event)";
+      case CLIMATE:
+        return "Climate";
+      case REGEN_LOGIC_FIRE:
+        return "Regeneration Logic Fire";
+      case REGEN_LOGIC_SUCC:
+        return "Regeneration Logic Succession";
+      case FIRE_SEASON:
+        return "Fire Season";
+      case FIRE_TYPE_LOGIC:
+        return "Type of Fire Logic";
+      case FIRE_SPREAD_LOGIC:
+        return "Fire Spread Logic";
+      case FIRE_SPOTTING_LOGIC:
+        return "Fire Spotting Logic";
+      case FIRE_SUPP_EVENT_LOGIC:
+        return "Fire Suppression Event Logic";
+      case CONIFER_ENCROACHMENT:
+        return "Conifer Encroachment";
+      case SPECIES:
+        return "Species Knowledge";
+      case FIRESUPP_PRODUCTION_RATE:
+        return "Fire Suppression Production Rate";
+      case FIRESUPP_SPREAD_RATE:
+        return "Fire Suppression Spread Rate";
+      case VEGETATION_PATHWAYS:
+        return "Vegetation Pathway";
+      case AQUATIC_PATHWAYS:
+        return "Aquatic Pathway";
+      case PROCESS_PROB_LOGIC:
+        return "Process Probability Logic";
+      case INVASIVE_SPECIES_LOGIC:
+        return "Invasive Species Logic";
+      case INVASIVE_SPECIES_LOGIC_MSU:
+        return "Invasive Species Logic MSU";
+      case REGEN_DELAY_LOGIC:
+        return "Regeneration Delay Logic";
+      case DOCOMPETITION_LOGIC:
+        return "Lifeform Competition Logic";
+      case GAP_PROCESS_LOGIC:
+        return "Gap Process Logic";
+      case EVU_SEARCH_LOGIC:
+        return "Evu Search Logic";
+      case PRODUCING_SEED_LOGIC:
+        return "Producing Seed Logic";
+      case VEG_UNIT_FIRE_TYPE_LOGIC:
+        return "Veg Unit Fire Type Logic";
+      case FIRE_SUPP_CLASS_A_LOGIC:
+        return "Fire Supp Class A Logic";
+      case FIRE_SUPP_BEYOND_CLASS_A_LOGIC:
+        return "Fire Supp Beyond Class A Logic";
+      case FIRE_SUPP_PRODUCTION_RATE_LOGIC:
+        return "Fire Supp Production Rate Logic";
+      case FIRE_SUPP_SPREAD_RATE_LOGIC:
+        return "Fire Supp Spread Rate Logic";
+      case FIRE_SUPP_WEATHER_CLASS_A_LOGIC:
+        return "Fire Supp Weather Class A Logic";
+      case TRACKING_SPECIES_REPORT:
+        return "Tracking Species Report";
+      case KEANE_PARAMETERS:
+        return "Keane Cell Percolation Parameters";
+      default:
+        return "";
+
     }
   }
 
