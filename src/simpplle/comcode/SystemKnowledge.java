@@ -800,33 +800,28 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void copyCoverage(File destDir) throws SimpplleError {
-    JarInputStream       jarIn=null;
-    JarEntry             jarEntry;
-    BufferedInputStream  fin=null;
-    BufferedOutputStream fout;
-    String               name=null;
-    File                 tmpDir;
-    int                  data, i=1;
 
-    File filename = Simpplle.getCurrentZone().getSystemKnowledgeGisExtraFile();
     try {
-      tmpDir = new File(destDir.toString(),"SIMPPLLE-gisdata");
+
+      File tmpDir = new File(destDir.toString(),"SIMPPLLE-gisdata");
       tmpDir.mkdir();
       destDir = tmpDir;
       tmpDir = new File(destDir.toString(),"coverage");
+      int index=1;
       while (tmpDir.exists()) {
-        tmpDir = new File(destDir.toString(),("coverage" + Integer.toString(i)));
-        i++;
+        tmpDir = new File(destDir.toString(),("coverage" + Integer.toString(index)));
+        index++;
       }
       tmpDir.mkdir();
       destDir = tmpDir;
 
-      jarIn = new JarInputStream(new FileInputStream(filename));
-      fin   = new BufferedInputStream(jarIn);
+      File filename = Simpplle.getCurrentZone().getSystemKnowledgeGisExtraFile();
+      JarInputStream jarIn = new JarInputStream(new FileInputStream(filename));
+      BufferedInputStream fin = new BufferedInputStream(jarIn);
 
-      jarEntry = jarIn.getNextJarEntry();
+      JarEntry jarEntry = jarIn.getNextJarEntry();
       while (jarEntry != null) {
-        name = jarEntry.getName().toLowerCase();
+        String name = jarEntry.getName().toLowerCase();
         if (name.endsWith("e00.zip") || name.endsWith("mdb")) {
           jarEntry = jarIn.getNextJarEntry();
           continue;
@@ -846,8 +841,8 @@ public class SystemKnowledge {
         }
         File outfile = new File(tmpDir,pathSplit[1]);
 
-        fout    = new BufferedOutputStream(new FileOutputStream(outfile));
-        data = fin.read();
+        BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(outfile));
+        int data = fin.read();
         while(data != -1) {
           fout.write(data);
           data = fin.read();
@@ -856,8 +851,11 @@ public class SystemKnowledge {
         fout.close();
 
         jarEntry = jarIn.getNextJarEntry();
+
       }
+
       fin.close();
+
     } catch (IOException err) {
       err.printStackTrace();
       throw new SimpplleError("Could not copy one or more GIS files.");
