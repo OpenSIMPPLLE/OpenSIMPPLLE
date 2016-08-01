@@ -140,7 +140,7 @@ public class SystemKnowledge {
   public static final String WILDLIFE_ENTRY                             = "DATA/WILDLIFE";
   public static final String EMISSIONS_ENTRY                            = "DATA/EMISSIONS.TXT";
   public static final String PATHWAYS_ENTRY                             = "PATHWAYS";
-  public static final String PATHWAYS_ENTRY_AQUATIC                     = "AQUATIC-PATHWAYS";
+  public static final String PATHWAYS_ENTRY_AQUATIC                     = "AQUATIC_PATHWAY-PATHWAYS";
   public static final String HISTORIC_PATHWAYS_ENTRY                    = "HISTORIC-PATHWAYS";
   public static final String FIRE_SEASON_ENTRY                          = "DATA/FIRE-SEASON.TXT";
   public static final String FIRESUPP_PRODUCTION_RATE_ENTRY             = "DATA/FIRESUPP-PRODUCTION-RATE.SER";
@@ -154,7 +154,7 @@ public class SystemKnowledge {
   public static final String REGEN_DELAY_LOGIC_ENTRY                    = "DATA/REGEN-DELAY-LOGIC.XML";
   public static final String EVU_SEARCH_LOGIC_ENTRY                     = "DATA/EVU-SEARCH-LOGIC.XML";
   public static final String PRODUCING_SEED_LOGIC_ENTRY                 = "DATA/PRODUCING-SEED-LOGIC.XML";
-  public static final String VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY             = "DATA/VEG-UNIT-FIRE-TYPE-LOGIC.XML";
+  public static final String VEG_UNIT_FIRE_TYPE_LOGIC_ENTRY             = "DATA/VEG_PATHWAY-UNIT-FIRE-TYPE-LOGIC.XML";
   public static final String REGEN_LOGIC_FIRE_ENTRY                     = "DATA/REGENERATION-LOGIC-FIRE.XML";
   public static final String REGEN_LOGIC_SUCC_ENTRY                     = "DATA/REGENERATION-LOGIC-SUCCESSION.XML";
   public static final String OLD_REGEN_LOGIC_ENTRY                      = "DATA/REGENERATION-LOGIC.TXT";
@@ -176,9 +176,6 @@ public class SystemKnowledge {
   public static final String FIRE_SPOTTING_LOGIC_ENTRY                  = "DATA/FIRE-SPOTTING-LOGIC.XML";
   public static final String FIRE_SUPP_EVENT_LOGIC_ENTRY                = "DATA/FIRE-SUPP-EVENT-LOGIC.XML";
   public static final String KEANE_PARAMETERS_ENTRY                     = "DATA/KEANE-PARAMETERS-ENTRY";
-
-  private static final int VEG     = 0;
-  private static final int AQUATIC = 1;
 
   /**
    * Flags indicating if a kind of knowledge has changed.
@@ -1040,7 +1037,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadPathway(String groupName) throws SimpplleError {
-    loadPathway(groupName,VEG);
+    loadPathway(groupName, true);
   }
 
   /**
@@ -1049,24 +1046,24 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadAquaticPathway(String groupName) throws SimpplleError {
-    loadPathway(groupName,AQUATIC);
+    loadPathway(groupName, false);
   }
   
   /**
    * Loads a vegetative or aquatic pathway for a habitat type group in the current zone.
    *
    * @param htGrpName The name of a habitat type group
-   * @param kind The kind of pathway; VEG or AQUATIC
+   * @param isVegetative True if the pathway is vegetative, otherwise aquatic
    * @throws SimpplleError
    */
-  private static void loadPathway(String htGrpName, int kind) throws SimpplleError {
+  private static void loadPathway(String htGrpName, boolean isVegetative) throws SimpplleError {
     RegionalZone zone = Simpplle.getCurrentZone();
 
     String groupFileOld = htGrpName;
     String groupFileNew = htGrpName + ".txt";
 
     String pathwayStr;
-    if (kind == VEG) {
+    if (isVegetative) {
       pathwayStr = (zone.isHistoric()) ? HISTORIC_PATHWAYS_ENTRY : PATHWAYS_ENTRY;
     } else {
       pathwayStr = PATHWAYS_ENTRY_AQUATIC;
@@ -1088,7 +1085,7 @@ public class SystemKnowledge {
         if (name.startsWith(pathwayStr) &&
             (name.endsWith(groupFileOld.toUpperCase()) ||
              name.endsWith(groupFileNew.toUpperCase()))) {
-          if (kind == VEG) {
+          if (isVegetative) {
             zone.loadPathway(fin).setIsUserData(false);
           } else {
             zone.loadAquaticPathway(fin).setIsUserData(false);
@@ -1110,7 +1107,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadAllPathways() throws SimpplleError {
-    loadAllPathways(VEG);
+    loadAllPathways(true);
   }
 
   /**
@@ -1119,21 +1116,21 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadAllAquaticPathways() throws SimpplleError {
-    loadAllPathways(AQUATIC);
+    loadAllPathways(false);
   }
   
   /**
-   * Loads all pathways of a certain kind for the current zone.
+   * Loads all vegetative or aquatic pathways for the current zone.
    *
-   * @param kind The kind of pathway; VEG or AQUATIC
+   * @param isVegetative True if the pathway is vegetative, otherwise aquatic
    * @throws SimpplleError
    */
-  private static void loadAllPathways(int kind) throws SimpplleError {
+  private static void loadAllPathways(boolean isVegetative) throws SimpplleError {
 
     RegionalZone zone = Simpplle.getCurrentZone();
 
     String pathwayStr;
-    if (kind == VEG) {
+    if (isVegetative) {
       pathwayStr = (zone.isHistoric()) ? HISTORIC_PATHWAYS_ENTRY : PATHWAYS_ENTRY;
     } else {
       pathwayStr = PATHWAYS_ENTRY_AQUATIC;
@@ -1153,7 +1150,7 @@ public class SystemKnowledge {
         String name = jarEntry.getName().toUpperCase();
         name = stripZoneDir(name);
         if (name.startsWith(pathwayStr)) { 
-          if (kind == VEG) {
+          if (isVegetative) {
             zone.loadPathway(fin).setIsUserData(false);
           } else {
             zone.loadAquaticPathway(fin).setIsUserData(false);
