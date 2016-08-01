@@ -1222,13 +1222,11 @@ public class SystemKnowledge {
   private static String stripZoneDir(String path) {
     path = path.toUpperCase();
     String zoneDir = Simpplle.getCurrentZone().getZoneDir().toUpperCase();
-    int    index = path.indexOf(zoneDir);
-
+    int index = path.indexOf(zoneDir);
     if (index != -1) {
       // Add 1 for the slash at the end.
       return path.substring(index + zoneDir.length() + 1);
     }
-
     return path;
   }
 
@@ -1240,7 +1238,7 @@ public class SystemKnowledge {
    */
   public static void readZoneDefault(Kinds kind) throws SimpplleError {
     if (kind == VEGETATION_PATHWAYS || kind == AQUATIC_PATHWAYS) {
-      readEntry(Simpplle.getCurrentZone().getSystemKnowledgePathwayFile(),kind);
+      readEntry(Simpplle.getCurrentZone().getSystemKnowledgePathwayFile(), kind);
     } else {
       readEntry(Simpplle.getCurrentZone().getSystemKnowledgeFile(), kind);
     }
@@ -1254,7 +1252,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   private static void readEntry(File file, Kinds kind) throws SimpplleError {
-    for (int i=0; i<loadSaveMe.length; i++) {
+    for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
     }
     loadSaveMe[kind.ordinal()] = true;
@@ -1270,7 +1268,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void readIndividualInputFile(File file, Kinds kind) throws SimpplleError {
-    for (int i=0; i<loadSaveMe.length; i++) {
+    for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
     }
     loadSaveMe[kind.ordinal()] = true;
@@ -1621,28 +1619,20 @@ public class SystemKnowledge {
    */
   public static void processInputFileEntries(File file) throws SimpplleError {
 
-    JarInputStream  jarIn;
-    JarEntry        jarEntry;
-    String          name=null;
-    Kinds           entryId;
-
-    for (int i=0; i<loadSaveMe.length; i++) {
+    for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
     }
 
     try {
-      jarIn = new JarInputStream(new FileInputStream(file));
-
-      jarEntry = jarIn.getNextJarEntry();
+      JarInputStream jarIn = new JarInputStream(new FileInputStream(file));
+      JarEntry jarEntry = jarIn.getNextJarEntry();
       while (jarEntry != null) {
         if (jarEntry.isDirectory()) {
           jarEntry = jarIn.getNextJarEntry();
           continue;
         }
-        name = jarEntry.getName();
-        name = name.toUpperCase();
-
-        entryId = getKnowledgeEntryId(name);
+        String name = jarEntry.getName().toUpperCase();
+        Kinds entryId = getKnowledgeEntryId(name);
         name = stripZoneDir(name);
         if (entryId != null) {
           loadSaveMe[entryId.ordinal()] = true;
@@ -1658,7 +1648,6 @@ public class SystemKnowledge {
           loadSaveMe[REGEN_LOGIC_FIRE.ordinal()] = true;
           loadSaveMe[REGEN_LOGIC_SUCC.ordinal()] = true;
         }
-
         jarEntry = jarIn.getNextJarEntry();
       }
       jarIn.close();
