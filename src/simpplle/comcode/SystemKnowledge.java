@@ -1256,7 +1256,7 @@ public class SystemKnowledge {
       loadSaveMe[i] = false;
     }
     loadSaveMe[kind.ordinal()] = true;
-    readInputFile(file,true,false,false);
+    loadKnowledge(file,true,false,false);
   }
 
   /**
@@ -1272,7 +1272,7 @@ public class SystemKnowledge {
       loadSaveMe[i] = false;
     }
     loadSaveMe[kind.ordinal()] = true;
-    readInputFile(file,false,false,true);
+    loadKnowledge(file,false,false,true);
     files[kind.ordinal()] = file;
   }
 
@@ -1283,7 +1283,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadUserKnowledge(File file) throws SimpplleError {
-    readInputFile(file, false, true, false);
+    loadKnowledge(file, false, true, false);
   }
 
   /**
@@ -1293,11 +1293,11 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadZoneKnowledge(File file) throws SimpplleError {
-    readInputFile(file, true, true, false);
+    loadKnowledge(file, true, true, false);
   }
 
   /**
-   * Reads knowledge from a JAR file.
+   * Loads knowledge from a JAR file.
    * <p>
    * This method uses the XStream library to deserialize data from XML files.
    * @link http://xstream.codehaus.org/
@@ -1308,7 +1308,7 @@ public class SystemKnowledge {
    * @param isIndividualFile A flag indicating if files should be recorded
    * @throws SimpplleError
    */
-  public static void readInputFile(File file,
+  public static void loadKnowledge(File file,
                                    boolean isZone,
                                    boolean readAll,
                                    boolean isIndividualFile) throws SimpplleError {
