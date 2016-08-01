@@ -1031,18 +1031,19 @@ public class SystemKnowledge {
   }
 
   /**
-   * Sets a HabitatTypeGroupType file pathway
+   * Loads a vegetative pathway from the current zone.
    *
-   * @param groupName
+   * @param groupName Name of the pathway group
    * @throws SimpplleError
    */
-  public static void loadPathway(String groupName) throws SimpplleError {
+  public static void loadVegetativePathway(String groupName) throws SimpplleError {
     loadPathway(groupName, true);
   }
 
   /**
    * Sets aquatic HabitatTypeGroupType file pathway.
-   * @param groupName
+   *
+   * @param groupName Name of the pathway group
    * @throws SimpplleError
    */
   public static void loadAquaticPathway(String groupName) throws SimpplleError {

@@ -560,7 +560,7 @@ public abstract class RegionalZone {
 
   public void loadPathway(String groupName) throws SimpplleError {
     if (HabitatTypeGroup.findInstance(groupName) == null) return;
-    SystemKnowledge.loadPathway(groupName);
+    SystemKnowledge.loadVegetativePathway(groupName);
   }
 
   public void removeAquaticPathway(String groupName) throws SimpplleError {
@@ -578,7 +578,7 @@ public abstract class RegionalZone {
     if (group == null) { return; }
 
     if (group.isSystemGroup()) {
-      SystemKnowledge.loadPathway(groupName);
+      SystemKnowledge.loadVegetativePathway(groupName);
     } else {
       HabitatTypeGroup.removeGroup(groupName);
     }
