@@ -211,12 +211,12 @@ public class SystemKnowledge {
   public static String KNOWLEDGE_SOURCE_KEYWORD = "KNOWLEDGE-SOURCE";
 
   /**
-   *
+   * The last vegetative pathway loaded from a knowledge file.
    */
   private static HabitatTypeGroup lastPathwayLoaded;
 
   /**
-   *
+   * The last aquatic pathway loaded from a knowledge file.
    */
   private static LtaValleySegmentGroup lastAquaticPathwayLoaded;
 
