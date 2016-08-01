@@ -396,7 +396,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
         option = SystemKnowledge.hasChangedOrUserData(kind);
       }
       else {
-        option = SystemKnowledge.isPresentInFile(kind);
+        option = SystemKnowledge.loadSaveFlagged(kind);
       }
       if (cb != null) {
         if ((kind == SystemKnowledge.PROCESS_SCHEDULE ||

@@ -677,7 +677,7 @@ public class SystemKnowledge {
    * @param kind A kind of knowledge
    * @return True if the knowledge will be saved or loaded
    */
-  public static boolean isPresentInFile(Kinds kind) { // TODO: RENAME THIS METHOD
+  public static boolean loadSaveFlagged(Kinds kind) {
     return loadSaveMe[kind.ordinal()];
   }
 
