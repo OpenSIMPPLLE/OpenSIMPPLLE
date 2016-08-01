@@ -890,30 +890,24 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   private static void copyGisExtraFiles(File destDir, String extension) throws SimpplleError {
-    JarInputStream       jarIn=null;
-    JarEntry             jarEntry;
-    BufferedInputStream  fin=null;
-    BufferedOutputStream fout;
-    String               name=null;
-    File                 tmpDir;
-    int                  data;
 
-    File filename = Simpplle.getCurrentZone().getSystemKnowledgeGisExtraFile();
     try {
-      tmpDir = new File(destDir.toString(),"SIMPPLLE-gisdata");
+
+      File tmpDir = new File(destDir.toString(),"SIMPPLLE-gisdata");
       tmpDir.mkdir();
       destDir = tmpDir;
 
-      jarIn = new JarInputStream(new FileInputStream(filename));
-      fin   = new BufferedInputStream(jarIn);
+      File filename = Simpplle.getCurrentZone().getSystemKnowledgeGisExtraFile();
+      JarInputStream jarIn = new JarInputStream(new FileInputStream(filename));
+      BufferedInputStream fin = new BufferedInputStream(jarIn);
 
-      jarEntry = jarIn.getNextJarEntry();
+      JarEntry jarEntry = jarIn.getNextJarEntry();
       while (jarEntry != null) {
-        name = jarEntry.getName().toLowerCase();
+        String name = jarEntry.getName().toLowerCase();
         if (name.endsWith(extension)) {
           File outfile = new File(destDir,name);
-          fout    = new BufferedOutputStream(new FileOutputStream(outfile));
-          data = fin.read();
+          BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(outfile));
+          int data = fin.read();
           while(data != -1) {
             fout.write(data);
             data = fin.read();
@@ -923,9 +917,10 @@ public class SystemKnowledge {
         }
         jarEntry = jarIn.getNextJarEntry();
       }
+
       fin.close();
-    }
-    catch (IOException err) {
+
+    } catch (IOException err) {
       err.printStackTrace();
       throw new SimpplleError("Could not copy file.");
     }
