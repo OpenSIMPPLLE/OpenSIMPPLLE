@@ -604,10 +604,10 @@ public abstract class RegionalZone {
     LtaValleySegmentGroup.clearGroups();
 
     if (pathwayKnowFile != null) {
-      SystemKnowledge.readInputFile(getSystemKnowledgePathwayFile(),true);
+      SystemKnowledge.loadZoneKnowledge(getSystemKnowledgePathwayFile());
     }
 
-    SystemKnowledge.readInputFile(getSystemKnowledgeFile(),true);
+    SystemKnowledge.loadZoneKnowledge(getSystemKnowledgeFile());
 
     System.gc();
 

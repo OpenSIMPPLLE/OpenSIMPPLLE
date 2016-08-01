@@ -1283,18 +1283,17 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadUserKnowledge(File file) throws SimpplleError {
-    readInputFile(file,false);
+    readInputFile(file, false, true, false);
   }
 
   /**
-   * Reads a knowledge file.
+   * Loads a zone knowledge file.
    * 
-   * @param filename A knowledge file
-   * @param zoneFile A flag indicating if this is zone knowledge
+   * @param file A knowledge file
    * @throws SimpplleError
    */
-  public static void readInputFile(File filename, boolean zoneFile) throws SimpplleError {
-    readInputFile(filename,zoneFile,true,false);
+  public static void loadZoneKnowledge(File file) throws SimpplleError {
+    readInputFile(file, true, true, false);
   }
 
   /**
