@@ -392,6 +392,16 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   /**
+   * Displays a file selection dialog and initializes the checkboxes.
+   *
+   * @return The selected file, or null
+   */
+  public File getAndSetInputFile() {
+    pressedPick(null);
+    return loadSaveFile;
+  }
+
+  /**
    * Returns true if the user cancelled the dialog.
    *
    * @return True if the dialog was cancelled
@@ -453,16 +463,6 @@ public class SystemKnowledgeLoadSave extends JDialog {
       if (cb != null && cb.isSelected()) { return true; }
     }
     return false;
-  }
-
-  /**
-   * Displays a file selection dialog and initializes the checkboxes.
-   *
-   * @return The selected file, or null
-   */
-  public File getAndSetInputFile() {
-    pressedPick(null);
-    return loadSaveFile;
   }
 
   private void pressedPick(ActionEvent e) {
