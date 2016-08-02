@@ -1708,22 +1708,6 @@ public class SystemKnowledge {
   }
 
   /**
-   * Saves a single kind of user knowledge to a file.
-   *
-   * @param file An output file
-   * @param kind A kind of knowledge
-   * @throws SimpplleError
-   */
-  public static void saveUserKnowledge(File file, Kinds kind) throws SimpplleError {
-    for (int i = 0; i < loadSaveMe.length; i++) {
-      loadSaveMe[i] = false;
-    }
-    loadSaveMe[kind.ordinal()] = true;
-    saveKnowledge(file,getKnowledgeFileExtension(kind),false);
-    files[kind.ordinal()] = file;
-  }
-
-  /**
    * Saves zone knowledge to a file.
    *
    * @param file An output file
@@ -1741,6 +1725,22 @@ public class SystemKnowledge {
    */
   public static void saveUserKnowledge(File file) throws SimpplleError {
     saveKnowledge(file,SYSKNOW_FILEEXT,false);
+  }
+
+  /**
+   * Saves a single kind of user knowledge to a file.
+   *
+   * @param file An output file
+   * @param kind A kind of knowledge
+   * @throws SimpplleError
+   */
+  public static void saveUserKnowledge(File file, Kinds kind) throws SimpplleError {
+    for (int i = 0; i < loadSaveMe.length; i++) {
+      loadSaveMe[i] = false;
+    }
+    loadSaveMe[kind.ordinal()] = true;
+    saveKnowledge(file,getKnowledgeFileExtension(kind),false);
+    files[kind.ordinal()] = file;
   }
 
   /**
