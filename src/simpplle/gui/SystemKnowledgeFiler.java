@@ -85,7 +85,7 @@ public class SystemKnowledgeFiler {
         SystemKnowledge.saveAquaticPathway(outfile,(LtaValleySegmentGroup)obj);
       }
       else {
-        SystemKnowledge.saveIndividualInputFile(outfile, kind);
+        SystemKnowledge.saveUserKnowledge(outfile, kind);
       }
       saveMenuItem.setEnabled(true);
       if (closeMenuItem != null) { closeMenuItem.setEnabled(true); }

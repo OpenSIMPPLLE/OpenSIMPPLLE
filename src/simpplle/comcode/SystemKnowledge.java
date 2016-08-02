@@ -1708,13 +1708,13 @@ public class SystemKnowledge {
   }
 
   /**
-   * Saves a kind of knowledge to a file.
+   * Saves a single kind of user knowledge to a file.
    *
    * @param file An output file
    * @param kind A kind of knowledge
    * @throws SimpplleError
    */
-  public static void saveIndividualInputFile(File file, Kinds kind) throws SimpplleError {
+  public static void saveUserKnowledge(File file, Kinds kind) throws SimpplleError {
     for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
     }
