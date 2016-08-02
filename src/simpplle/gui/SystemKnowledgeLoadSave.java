@@ -22,29 +22,31 @@ import java.io.File;
 import java.util.HashMap;
 
 /** 
- *
- * <p> GUI for saving and loading User knowledge files (.sysknowledge).
- *
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
->>>>>>> origin/master
+ * SystemKnowledgeLoadSave is a dialog for selecting the kinds of knowledge to load or save.
  */
+
 @SuppressWarnings("serial")
 public class SystemKnowledgeLoadSave extends JDialog {
 
+  /**
+   * A flag indicating if the user cancelled the dialog.
+   */
   private boolean dialogCanceled;
+
+  /**
+   * The file that will be loaded from or saved to.
+   */
   private File loadSaveFile;
 
   /**
-   * Denotes this instance is a saving action
+   * A flag indicating if this is a save dialog.
    */
   private boolean save;
 
   /**
-   * Collection of this dialog's Checkboxes, with SystemKnowledge.Kind as a Key, and
-   * the Corresponding checkbox as a value.
+   * Maps a kind of knowledge to a checkbox.
    */
-  private HashMap<SystemKnowledge.Kinds,JCheckBox> checkBoxes = new HashMap<SystemKnowledge.Kinds,JCheckBox>();
+  private HashMap<SystemKnowledge.Kinds,JCheckBox> checkBoxes = new HashMap<>();
 
   private JScrollPane CBScroll = new JScrollPane();
   private JTextField outputFileText = new JTextField();
@@ -90,6 +92,14 @@ public class SystemKnowledgeLoadSave extends JDialog {
   private JCheckBox vegUnitFireTypeLogicLogicCB = new JCheckBox();
   private JCheckBox keaneParametersCB = new JCheckBox();
 
+  /**
+   * Creates a new modal dialog
+   *
+   * @param frame The parent frame
+   * @param title The title for this dialog
+   * @param modal Flag indicating if this dialog will block input to the parent
+   * @param save Flag indicating if this is a save dialog
+   */
   public SystemKnowledgeLoadSave(Frame frame, String title, boolean modal, boolean save) {
 
     super(frame, title, modal);
@@ -105,6 +115,11 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
+  /**
+   * Initializes the dialog with controls.
+   *
+   * @throws Exception
+   */
   private void jbInit() throws Exception {
 
     /* Selection */
@@ -308,6 +323,9 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
   }
 
+  /**
+   * Continues initializing the dialog with controls.
+   */
   private void initialize() {
 
     Dimension size = CBScroll.getPreferredSize();
@@ -373,6 +391,18 @@ public class SystemKnowledgeLoadSave extends JDialog {
     update(getGraphics());
   }
 
+  /**
+   * Returns true if the user cancelled the dialog.
+   *
+   * @return True if the dialog was cancelled
+   */
+  public boolean isDialogCanceled() {
+    return dialogCanceled;
+  }
+
+  /**
+   * Flags kinds of knowledge for loading or saving using the state of each checkbox.
+   */
   private void setLoadSaveOptions() {
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
       JCheckBox cb = checkBoxes.get(kind);
@@ -385,6 +415,8 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   /**
+   *
+   *
    * Enable checkboxes in the dialog if present (during loading) or has custom data (during saving).
    * @see SystemKnowledge#hasChangedOrUserData(SystemKnowledge.Kinds)
    */
@@ -414,6 +446,11 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
+  /**
+   * Returns true if at least one checkbox is checked.
+   *
+   * @return True if a checkbox is checked.
+   */
   private boolean isAnythingSelected() {
     for (JCheckBox cb : checkBoxes.values()) {
       if (cb != null && cb.isSelected()) { return true; }
@@ -421,6 +458,11 @@ public class SystemKnowledgeLoadSave extends JDialog {
     return false;
   }
 
+  /**
+   * Displays a file selection dialog and initializes the checkboxes.
+   *
+   * @return The selected file, or null
+   */
   public File getAndSetInputFile() {
     pickFilePB_actionPerformed(null);
     return loadSaveFile;
@@ -507,7 +549,4 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  public boolean isDialogCanceled() {
-    return dialogCanceled;
-  }
 }
