@@ -439,18 +439,6 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  /**
-   * Returns true if at least one checkbox is checked.
-   *
-   * @return True if a checkbox is checked.
-   */
-  private boolean isAnythingSelected() {
-    for (JCheckBox cb : checkBoxes.values()) {
-      if (cb != null && cb.isSelected()) { return true; }
-    }
-    return false;
-  }
-
   private void pressedPick(ActionEvent e) {
 
     MyFileFilter extFilter = new MyFileFilter("sysknowledge", "Sys Knowledge File (*.sysknowledge)");
@@ -479,7 +467,15 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
   private void pressedLoadSave(ActionEvent e) {
 
-    if (save && !isAnythingSelected()) {
+    boolean noSelection = true;
+    for (JCheckBox cb : checkBoxes.values()) {
+      if (cb != null && cb.isSelected()) {
+        noSelection = false;
+        break;
+      }
+    }
+
+    if (save && noSelection) {
       JOptionPane.showMessageDialog(this,
                                     "Nothing is selected.",
                                     "",
