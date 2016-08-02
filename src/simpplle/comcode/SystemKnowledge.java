@@ -1648,36 +1648,6 @@ public class SystemKnowledge {
   }
 
   /**
-   * Saves a vegetative pathway to a file.
-   *
-   * @param file An output file
-   * @param group A habitat type group
-   * @throws SimpplleError
-   */
-  public static void saveVegetativePathway(File file, HabitatTypeGroup group) throws SimpplleError {
-
-    String fileExt = getKnowledgeFileExtension(VEGETATION_PATHWAYS);
-
-    try {
-      File outfile = Utility.makeSuffixedPathname(file, "", fileExt);
-      JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile), new Manifest());
-      PrintWriter pout = new PrintWriter(jarOut);
-
-      JarEntry jarEntry = new JarEntry(PATHWAYS_ENTRY + "/" + group.getName());
-      jarOut.putNextEntry(jarEntry);
-      group.save(pout);
-      group.setFilename(outfile);
-      group.setIsUserData(true);
-
-      pout.flush();
-      pout.close();
-      jarOut.close();
-    } catch (IOException ex) {
-      throw new SimpplleError("Problems writing system knowledge file");
-    }
-  }
-
-  /**
    * Saves an aquatic pathway to a file.
    *
    * @param file An output file
@@ -1694,6 +1664,36 @@ public class SystemKnowledge {
       PrintWriter pout = new PrintWriter(jarOut);
 
       JarEntry jarEntry = new JarEntry(PATHWAYS_ENTRY_AQUATIC + "/" + group.getName());
+      jarOut.putNextEntry(jarEntry);
+      group.save(pout);
+      group.setFilename(outfile);
+      group.setIsUserData(true);
+
+      pout.flush();
+      pout.close();
+      jarOut.close();
+    } catch (IOException ex) {
+      throw new SimpplleError("Problems writing system knowledge file");
+    }
+  }
+
+  /**
+   * Saves a vegetative pathway to a file.
+   *
+   * @param file An output file
+   * @param group A habitat type group
+   * @throws SimpplleError
+   */
+  public static void saveVegetativePathway(File file, HabitatTypeGroup group) throws SimpplleError {
+
+    String fileExt = getKnowledgeFileExtension(VEGETATION_PATHWAYS);
+
+    try {
+      File outfile = Utility.makeSuffixedPathname(file, "", fileExt);
+      JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile), new Manifest());
+      PrintWriter pout = new PrintWriter(jarOut);
+
+      JarEntry jarEntry = new JarEntry(PATHWAYS_ENTRY + "/" + group.getName());
       jarOut.putNextEntry(jarEntry);
       group.save(pout);
       group.setFilename(outfile);
