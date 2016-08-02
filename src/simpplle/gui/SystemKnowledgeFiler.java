@@ -82,7 +82,7 @@ public class SystemKnowledgeFiler {
         SystemKnowledge.saveVegetativePathway(outfile,(HabitatTypeGroup)obj);
       }
       else if (kind == SystemKnowledge.AQUATIC_PATHWAYS) {
-        SystemKnowledge.saveIndividualAquaticPathwayFile(outfile,(LtaValleySegmentGroup)obj);
+        SystemKnowledge.saveAquaticPathway(outfile,(LtaValleySegmentGroup)obj);
       }
       else {
         SystemKnowledge.saveIndividualInputFile(outfile, kind);

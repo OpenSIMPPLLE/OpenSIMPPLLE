@@ -1684,15 +1684,13 @@ public class SystemKnowledge {
    * @param group An LTA valley segment group
    * @throws SimpplleError
    */
-  public static void saveIndividualAquaticPathwayFile(File file, LtaValleySegmentGroup group)
-    throws SimpplleError
-  {
+  public static void saveAquaticPathway(File file, LtaValleySegmentGroup group) throws SimpplleError {
+
     String fileExt = getKnowledgeFileExtension(AQUATIC_PATHWAYS);
 
     try {
       File outfile = Utility.makeSuffixedPathname(file, "", fileExt);
-      JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile),
-          new Manifest());
+      JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile), new Manifest());
       PrintWriter pout = new PrintWriter(jarOut);
 
       JarEntry jarEntry = new JarEntry(PATHWAYS_ENTRY_AQUATIC + "/" + group.getName());
