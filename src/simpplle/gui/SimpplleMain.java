@@ -668,9 +668,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     menuSysKnowOpen.setEnabled(false);
-    menuSysKnowOpen.setToolTipText("Load files specified in the loaded " +
-    "file for the following areas  (Fmz, Fire Spread, Type of Fire, Insect/Disease " +
-    "Probability, Treatments, Lock-in Processes, and Pathways)");
+    menuSysKnowOpen.setToolTipText("Loads knowledge components from a file");
     menuSysKnowOpen.setText("Load User Knowledge");
     menuSysKnowOpen.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -678,9 +676,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     menuSysKnowSave.setEnabled(false);
-    menuSysKnowSave.setToolTipText("Saves a file with information on what user files are currently loaded " +
-    "(Fmz, Fire Spread, Type of Fire, Insect/Disease Probability, Treatments, " +
-    "Lock-in Processes, and Pathways)");
+    menuSysKnowSave.setToolTipText("Saves knowledge components to a file");
     menuSysKnowSave.setText("Save User Knowledge");
     menuSysKnowSave.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
