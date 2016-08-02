@@ -11,13 +11,11 @@ package simpplle.gui;
 import simpplle.JSimpplle;
 import simpplle.comcode.FireSuppWeatherData;
 import simpplle.comcode.Simpplle;
-import simpplle.comcode.SimpplleError;
 import simpplle.comcode.SystemKnowledge;
 
 import java.io.*;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.*;
 import java.awt.event.*;
 import simpplle.comcode.ValidZones;
 import simpplle.comcode.RegionalZone;
@@ -249,7 +247,7 @@ public class FireSuppWeather extends JDialog {
                                              JOptionPane.YES_NO_OPTION,
                                              JOptionPane.QUESTION_MESSAGE);
       if (choice == JOptionPane.YES_OPTION) {
-        SystemKnowledge.readZoneDefault(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
+        SystemKnowledge.loadZoneKnowledge(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
         updateDialog();
       }
     }
@@ -279,7 +277,7 @@ public class FireSuppWeather extends JDialog {
     }
 
     try {
-      SystemKnowledge.readZoneDefault(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
+      SystemKnowledge.loadZoneKnowledge(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
     }
     catch (simpplle.comcode.SimpplleError err) {
       JOptionPane.showMessageDialog(this,err.getError(),"Unable to load file",

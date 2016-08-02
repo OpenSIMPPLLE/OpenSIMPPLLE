@@ -228,7 +228,7 @@ public class AbstractLogicDialog extends JDialog {
   
   /**
    * Loads default logic from System Knowledge class.  
-   * @throws SimpplleError catches the error thrown from SystemKnowledge readZoneDefault
+   * @throws SimpplleError catches the error thrown from SystemKnowledge loadZoneKnowledge
    */
   protected void loadDefaults() {
     try {
@@ -237,7 +237,7 @@ public class AbstractLogicDialog extends JDialog {
       String title = "Load Default Logic";
     
       if (Utility.askYesNoQuestion(this,msg,title)) {
-        SystemKnowledge.readZoneDefault(sysKnowKind);
+        SystemKnowledge.loadZoneKnowledge(sysKnowKind);
         //  This line must be done first!
         currentPanel.dataModel.fireTableStructureChanged();
         currentPanel.updateColumns();

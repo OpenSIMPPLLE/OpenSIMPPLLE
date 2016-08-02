@@ -1195,10 +1195,10 @@ public class SystemKnowledge {
   /**
    * Reads a single kind of knowledge from the current zone's knowledge file.
    *
-   * @param kind A kind of knowledge to read
+   * @param kind A kind of knowledge
    * @throws SimpplleError
    */
-  public static void readZoneDefault(Kinds kind) throws SimpplleError {
+  public static void loadZoneKnowledge(Kinds kind) throws SimpplleError {
 
     for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;

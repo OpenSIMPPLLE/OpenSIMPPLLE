@@ -16,9 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
-import javax.swing.BorderFactory;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
+
 import simpplle.comcode.BisonGrazing;
 import java.awt.Dimension;
 import java.io.File;
@@ -33,7 +31,6 @@ import java.awt.event.WindowAdapter;
 import javax.swing.JOptionPane;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusAdapter;
 import simpplle.comcode.Species;
@@ -450,7 +447,7 @@ public class BisonGrazingLogicEditor extends JDialog {
       String title = "Load Default Bison Grazing Logic";
 
       if (Utility.askYesNoQuestion(this,msg,title)) {
-        SystemKnowledge.readZoneDefault(SystemKnowledge.PROCESS_PROB_LOGIC);
+        SystemKnowledge.loadZoneKnowledge(SystemKnowledge.PROCESS_PROB_LOGIC);
         updateDialog();
         menuFileSave.setEnabled(isSaveNeeded());
         menuFileClose.setEnabled(false);
