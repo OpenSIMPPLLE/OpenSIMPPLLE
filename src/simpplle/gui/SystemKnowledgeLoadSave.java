@@ -415,32 +415,29 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   /**
-   *
-   *
-   * Enable checkboxes in the dialog if present (during loading) or has custom data (during saving).
-   * @see SystemKnowledge#hasChangedOrUserData(SystemKnowledge.Kinds)
+   * Initializes the state of the checkboxes. If this is a save dialog, checkboxes corresponding
+   * to changed or user data are checked and enabled. If this is a load dialog, checkboxes
+   * corresponding to data present in the file are checked and enabled.
    */
   private void initCheckBoxes() {
-    boolean option;
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
-      JCheckBox cb = checkBoxes.get(kind);
-      if (save) {
-        option = SystemKnowledge.hasChangedOrUserData(kind);
-      }
-      else {
-        option = SystemKnowledge.isPresentInFile(kind);
-      }
-      if (cb != null) {
+      JCheckBox checkbox = checkBoxes.get(kind);
+      if (checkbox != null) {
         if ((kind == SystemKnowledge.PROCESS_SCHEDULE ||
              kind == SystemKnowledge.TREATMENT_SCHEDULE) &&
              Simpplle.getCurrentArea() == null) {
-          cb.setSelected(false);
-          cb.setEnabled(false);
-        }
-        else {
-          cb.setSelected(option);
-          // set checkbox to enabled if saving, or if it exists while loading
-          cb.setEnabled(save || (!save && option));
+          checkbox.setSelected(false);
+          checkbox.setEnabled(false);
+        } else {
+          if (save) {
+            boolean option = SystemKnowledge.hasChangedOrUserData(kind);
+            checkbox.setSelected(option);
+            checkbox.setEnabled(true);
+          } else {
+            boolean option = SystemKnowledge.isPresentInFile(kind);
+            checkbox.setSelected(option);
+            checkbox.setEnabled(option);
+          }
         }
       }
     }
