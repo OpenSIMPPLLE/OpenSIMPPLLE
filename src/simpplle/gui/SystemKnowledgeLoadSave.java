@@ -411,20 +411,6 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   /**
-   * Flags kinds of knowledge for loading or saving using the state of each checkbox.
-   */
-  private void setLoadSaveOptions() {
-    for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
-      JCheckBox cb = checkBoxes.get(kind);
-      if (cb != null) {
-        SystemKnowledge.setLoadSaveOption(kind, cb.isSelected());
-      }
-    }
-    SystemKnowledge.setLoadSaveOption(SystemKnowledge.TRACKING_SPECIES_REPORT,false);
-    SystemKnowledge.setLoadSaveOption(SystemKnowledge.EVU_SEARCH_LOGIC,false);
-  }
-
-  /**
    * Initializes the state of the checkboxes. If this is a save dialog, checkboxes corresponding
    * to changed or user data are checked and enabled. If this is a load dialog, checkboxes
    * corresponding to data present in the file are checked and enabled.
@@ -501,7 +487,14 @@ public class SystemKnowledgeLoadSave extends JDialog {
       return;
     }
 
-    setLoadSaveOptions();
+    for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
+      JCheckBox checkbox = checkBoxes.get(kind);
+      if (checkbox != null) {
+        SystemKnowledge.setLoadSaveOption(kind, checkbox.isSelected());
+      }
+    }
+    SystemKnowledge.setLoadSaveOption(SystemKnowledge.TRACKING_SPECIES_REPORT,false);
+    SystemKnowledge.setLoadSaveOption(SystemKnowledge.EVU_SEARCH_LOGIC,false);
 
     try {
 
