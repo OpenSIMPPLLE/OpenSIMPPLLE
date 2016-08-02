@@ -47,7 +47,7 @@ public class SystemKnowledgeFiler {
     try {
       dlg.setCursor(Utility.getWaitCursor());
 
-      SystemKnowledge.readIndividualInputFile(file,kind);
+      SystemKnowledge.loadUserKnowledge(file,kind);
       saveMenuItem.setEnabled(true);
       if (closeMenuItem != null) { closeMenuItem.setEnabled(true); }
 

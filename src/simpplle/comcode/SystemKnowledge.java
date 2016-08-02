@@ -1196,14 +1196,13 @@ public class SystemKnowledge {
   }
 
   /**
-   * Reads an entry external to a knowledge file if it has been flagged for reading and saves a
-   * reference to the external file.
+   * Loads a single kind of knowledge from a user knowledge file.
    *
-   * @param file A knowledge file
+   * @param file A user knowledge file
    * @param kind A kind of knowledge
    * @throws SimpplleError
    */
-  public static void readIndividualInputFile(File file, Kinds kind) throws SimpplleError {
+  public static void loadUserKnowledge(File file, Kinds kind) throws SimpplleError {
     for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
     }
@@ -1215,7 +1214,7 @@ public class SystemKnowledge {
   /**
    * Loads a user knowledge file.
    *
-   * @param file A knowledge file
+   * @param file A user knowledge file
    * @throws SimpplleError
    */
   public static void loadUserKnowledge(File file) throws SimpplleError {
@@ -1225,7 +1224,7 @@ public class SystemKnowledge {
   /**
    * Loads a zone knowledge file.
    * 
-   * @param file A knowledge file
+   * @param file A zone knowledge file
    * @throws SimpplleError
    */
   public static void loadZoneKnowledge(File file) throws SimpplleError {
