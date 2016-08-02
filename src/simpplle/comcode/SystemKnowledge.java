@@ -1167,68 +1167,6 @@ public class SystemKnowledge {
   }
 
   /**
-   * Returns true if an entry exists in a JAR input stream.
-   *
-   * @param stream A JAR input stream
-   * @param entryName An entry name prefix
-   * @return True if an entry with a matching prefix is found
-   */
-  private static boolean findEntry(JarInputStream stream, String entryName) throws IOException {
-    JarEntry jarEntry = stream.getNextJarEntry();
-    while (jarEntry != null) {
-      if (jarEntry.isDirectory()) {
-        jarEntry = stream.getNextJarEntry();
-        continue;
-      }
-      String name = jarEntry.getName().toUpperCase();
-      if (name.startsWith(entryName)) {
-        return true;
-      }
-      jarEntry = stream.getNextJarEntry();
-    }
-    return false;
-  }
-
-  /**
-   * Returns a reader for an entry in a JAR file.
-   *
-   * @param file A JAR file
-   * @param entryName An entry name prefix
-   * @return A reader for the first entry whose name contains the prefix
-   * @throws SimpplleError
-   */
-  public static BufferedReader getEntryStream(File file, String entryName) throws SimpplleError {
-    try {
-      JarInputStream jarIn = new JarInputStream(new FileInputStream(file));
-      BufferedReader fin = new BufferedReader(new InputStreamReader(jarIn));
-      if (!findEntry(jarIn, entryName)) {
-        throw new SimpplleError("Unable to find entry: " + entryName);
-      }
-      return fin;
-    } catch (IOException err) {
-      err.printStackTrace();
-      throw new SimpplleError("Could not read System Knowledge File");
-    }
-  }
-
-  /**
-   * Removes the current zone directory from a path.
-   *
-   * @param path A path to an entry in a zone directory
-   * @return The path with the zone directory stripped
-   */
-  private static String stripZoneDir(String path) {
-    path = path.toUpperCase();
-    String zoneDir = Simpplle.getCurrentZone().getZoneDir().toUpperCase();
-    int index = path.indexOf(zoneDir);
-    if (index != -1) {
-      // Add 1 for the slash at the end.
-      return path.substring(index + zoneDir.length() + 1);
-    }
-    return path;
-  }
-
-  /**
    * Reads a kind of knowledge for the current zone.
    *
    * @param kind A kind of knowledge to read
@@ -1605,6 +1543,68 @@ public class SystemKnowledge {
       Utility.close(fin);
       Utility.close(jarIn);
     }
+  }
+
+  /**
+   * Returns true if an entry exists in a JAR input stream.
+   *
+   * @param stream A JAR input stream
+   * @param entryName An entry name prefix
+   * @return True if an entry with a matching prefix is found
+   */
+  private static boolean findEntry(JarInputStream stream, String entryName) throws IOException {
+    JarEntry jarEntry = stream.getNextJarEntry();
+    while (jarEntry != null) {
+      if (jarEntry.isDirectory()) {
+        jarEntry = stream.getNextJarEntry();
+        continue;
+      }
+      String name = jarEntry.getName().toUpperCase();
+      if (name.startsWith(entryName)) {
+        return true;
+      }
+      jarEntry = stream.getNextJarEntry();
+    }
+    return false;
+  }
+
+  /**
+   * Returns a reader for an entry in a JAR file.
+   *
+   * @param file A JAR file
+   * @param entryName An entry name prefix
+   * @return A reader for the first entry whose name contains the prefix
+   * @throws SimpplleError
+   */
+  public static BufferedReader getEntryStream(File file, String entryName) throws SimpplleError {
+    try {
+      JarInputStream jarIn = new JarInputStream(new FileInputStream(file));
+      BufferedReader fin = new BufferedReader(new InputStreamReader(jarIn));
+      if (!findEntry(jarIn, entryName)) {
+        throw new SimpplleError("Unable to find entry: " + entryName);
+      }
+      return fin;
+    } catch (IOException err) {
+      err.printStackTrace();
+      throw new SimpplleError("Could not read System Knowledge File");
+    }
+  }
+
+  /**
+   * Removes the current zone directory from a path.
+   *
+   * @param path A path to an entry in a zone directory
+   * @return The path with the zone directory stripped
+   */
+  private static String stripZoneDir(String path) {
+    path = path.toUpperCase();
+    String zoneDir = Simpplle.getCurrentZone().getZoneDir().toUpperCase();
+    int index = path.indexOf(zoneDir);
+    if (index != -1) {
+      // Add 1 for the slash at the end.
+      return path.substring(index + zoneDir.length() + 1);
+    }
+    return path;
   }
 
   /**
