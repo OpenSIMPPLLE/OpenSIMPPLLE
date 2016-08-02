@@ -113,7 +113,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   /**
-   * Initializes the dialog with controls.
+   * Populates the dialog with controls.
    *
    * @throws Exception
    */
@@ -308,6 +308,8 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
     CBScroll = new JScrollPane();
     CBScroll.getViewport().add(CBMainPanel, null);
+    Dimension size = CBScroll.getPreferredSize();
+    CBScroll.setPreferredSize(new Dimension(size.width + 25, 560));
 
     JPanel CBPanel = new JPanel();
     CBPanel.setLayout(new BorderLayout());
@@ -324,14 +326,10 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   /**
-   * Continues initializing the dialog with controls.
+   * Initializes the controls in the dialog and populates the checkbox map.
    */
   private void initialize() {
 
-    Dimension size = CBScroll.getPreferredSize();
-    CBScroll.setPreferredSize(new Dimension(size.width+25,560));
-
-    // Add JCheckBoxes to collection, with SystemKnowledge.Kind as a key
     checkBoxes.put(SystemKnowledge.CONIFER_ENCROACHMENT,coniferEncroachLogicCB);
     checkBoxes.put(SystemKnowledge.SPECIES,speciesCB);
     checkBoxes.put(SystemKnowledge.AQUATIC_PATHWAYS,aquaticPathwaysCB);
@@ -389,6 +387,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
     setSize(getPreferredSize());
     update(getGraphics());
+
   }
 
   /**
