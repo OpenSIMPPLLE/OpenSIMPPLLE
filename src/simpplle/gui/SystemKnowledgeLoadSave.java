@@ -468,7 +468,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     return loadSaveFile;
   }
 
-  void pickFilePB_actionPerformed(ActionEvent e) {
+  private void pickFilePB_actionPerformed(ActionEvent e) {
     File         filename;
     MyFileFilter extFilter;
 
@@ -496,7 +496,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     } catch (SimpplleError ex) {}
   }
 
-  void loadSavePB_actionPerformed(ActionEvent e) {
+  private void loadSavePB_actionPerformed(ActionEvent e) {
     if (save && (!isAnythingSelected())) {
       JOptionPane.showMessageDialog(this, "No items Checked!",
                                     "Nothing Selected",
@@ -531,19 +531,19 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  void cancelPB_actionPerformed(ActionEvent e) {
+  private void cancelPB_actionPerformed(ActionEvent e) {
     dialogCanceled = true;
     setVisible(false);
     dispose();
   }
 
-  void selectAllPB_actionPerformed(ActionEvent e) {
+  private void selectAllPB_actionPerformed(ActionEvent e) {
     for (JCheckBox cb : checkBoxes.values()) {
       cb.setSelected(cb.isEnabled());
     }
   }
 
-  void selectNonePB_actionPerformed(ActionEvent e) {
+  private void selectNonePB_actionPerformed(ActionEvent e) {
     for (JCheckBox cb : checkBoxes.values()) {
       cb.setSelected(false);
     }
