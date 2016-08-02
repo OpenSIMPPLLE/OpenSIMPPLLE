@@ -469,31 +469,29 @@ public class SystemKnowledgeLoadSave extends JDialog {
   }
 
   private void pressedPick(ActionEvent e) {
-    File         filename;
-    MyFileFilter extFilter;
 
-    extFilter = new MyFileFilter("sysknowledge",
-                                 "Sys Knowledge File (*.sysknowledge)");
+    MyFileFilter extFilter = new MyFileFilter("sysknowledge", "Sys Knowledge File (*.sysknowledge)");
 
+    File filename;
     if (save) {
-      filename = Utility.getSaveFile(JSimpplle.getSimpplleMain(),
-                                "System Knowledge File", extFilter);
+      filename = Utility.getSaveFile(JSimpplle.getSimpplleMain(), "System Knowledge File", extFilter);
     } else {
-      filename = Utility.getOpenFile(JSimpplle.getSimpplleMain(),
-                                "System Knowledge File", extFilter);
+      filename = Utility.getOpenFile(JSimpplle.getSimpplleMain(), "System Knowledge File", extFilter);
     }
-
-    if (filename == null) { return; }
+    if (filename == null) return;
 
     outputFileText.setText(filename.toString());
     loadSavePB.setEnabled(true);
     loadSaveFile = filename;
+
     try {
       if (!save) {
         SystemKnowledge.processInputFileEntries(loadSaveFile);
         initCheckBoxes();
       }
-    } catch (SimpplleError ex) {}
+    } catch (SimpplleError ex) {
+
+    }
   }
 
   private void pressedSave(ActionEvent e) {
