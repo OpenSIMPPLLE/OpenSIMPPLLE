@@ -1211,6 +1211,15 @@ public class SystemKnowledge {
   }
 
   /**
+   * Loads all aquatic pathways for the current zone.
+   *
+   * @throws SimpplleError
+   */
+  public static void loadAllAquaticPathways() throws SimpplleError {
+    loadAllPathways(false);
+  }
+
+  /**
    * Loads all vegetative pathways for the current zone.
    *
    * @throws SimpplleError
@@ -1219,15 +1228,6 @@ public class SystemKnowledge {
     loadAllPathways(true);
   }
 
-  /**
-   * Loads all aquatic pathways for the current zone.
-   *
-   * @throws SimpplleError
-   */
-  public static void loadAllAquaticPathways() throws SimpplleError {
-    loadAllPathways(false);
-  }
-  
   /**
    * Loads all vegetative or aquatic pathways for the current zone.
    *
