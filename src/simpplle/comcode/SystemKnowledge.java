@@ -655,7 +655,7 @@ public class SystemKnowledge {
    * @param kind A kind of knowledge
    * @param loadSave Flag indicating that the knowledge should be saved or loaded
    */
-  public static void setLoadSaveOption(Kinds kind, boolean loadSave) {
+  public static void setLoadSave(Kinds kind, boolean loadSave) {
     loadSaveMe[kind.ordinal()] = loadSave;
   }
 

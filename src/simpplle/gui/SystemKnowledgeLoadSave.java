@@ -377,11 +377,11 @@ public class SystemKnowledgeLoadSave extends JDialog {
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
       JCheckBox cb = checkBoxes.get(kind);
       if (cb != null) {
-        SystemKnowledge.setLoadSaveOption(kind, cb.isSelected());
+        SystemKnowledge.setLoadSave(kind, cb.isSelected());
       }
     }
-    SystemKnowledge.setLoadSaveOption(SystemKnowledge.TRACKING_SPECIES_REPORT,false);
-    SystemKnowledge.setLoadSaveOption(SystemKnowledge.EVU_SEARCH_LOGIC,false);
+    SystemKnowledge.setLoadSave(SystemKnowledge.TRACKING_SPECIES_REPORT,false);
+    SystemKnowledge.setLoadSave(SystemKnowledge.EVU_SEARCH_LOGIC,false);
   }
 
   /**
