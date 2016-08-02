@@ -727,6 +727,23 @@ public class SystemKnowledge {
   }
 
   /**
+   * Removes the current zone directory from a path.
+   *
+   * @param path A path to an entry in a zone directory
+   * @return The path with the zone directory stripped
+   */
+  private static String stripZoneDir(String path) {
+    path = path.toUpperCase();
+    String zoneDir = Simpplle.getCurrentZone().getZoneDir().toUpperCase();
+    int index = path.indexOf(zoneDir);
+    if (index != -1) {
+      // Add 1 for the slash at the end.
+      return path.substring(index + zoneDir.length() + 1);
+    }
+    return path;
+  }
+
+  /**
    * Copies a dummy database for debugging and training purposes. The output file is prefixed with
    * "dummy".
    *
@@ -970,6 +987,51 @@ public class SystemKnowledge {
   }
 
   /**
+   * Returns true if an entry exists in a JAR input stream.
+   *
+   * @param stream A JAR input stream
+   * @param entryName An entry name prefix
+   * @return True if an entry with a matching prefix is found
+   */
+  private static boolean findEntry(JarInputStream stream, String entryName) throws IOException {
+    JarEntry jarEntry = stream.getNextJarEntry();
+    while (jarEntry != null) {
+      if (jarEntry.isDirectory()) {
+        jarEntry = stream.getNextJarEntry();
+        continue;
+      }
+      String name = jarEntry.getName().toUpperCase();
+      if (name.startsWith(entryName)) {
+        return true;
+      }
+      jarEntry = stream.getNextJarEntry();
+    }
+    return false;
+  }
+
+  /**
+   * Returns a reader for an entry in a JAR file.
+   *
+   * @param file A JAR file
+   * @param entryName An entry name prefix
+   * @return A reader for the first entry whose name contains the prefix
+   * @throws SimpplleError
+   */
+  public static BufferedReader getEntryStream(File file, String entryName) throws SimpplleError {
+    try {
+      JarInputStream jarIn = new JarInputStream(new FileInputStream(file));
+      BufferedReader fin = new BufferedReader(new InputStreamReader(jarIn));
+      if (!findEntry(jarIn, entryName)) {
+        throw new SimpplleError("Unable to find entry: " + entryName);
+      }
+      return fin;
+    } catch (IOException err) {
+      err.printStackTrace();
+      throw new SimpplleError("Could not read System Knowledge File");
+    }
+  }
+
+  /**
    * Returns an input stream for a sample area in a JAR file.
    *
    * @param path The path to a sample area
@@ -995,6 +1057,52 @@ public class SystemKnowledge {
       return null;
     } catch (IOException err) {
       throw new SimpplleError("Could not read Sample Area", err);
+    }
+  }
+
+  /**
+   * Updates save and load flags to match the kinds of knowledge present in a JAR file.
+   *
+   * @param file A knowledge file
+   * @throws SimpplleError
+   */
+  public static void recordExistingKnowledge(File file) throws SimpplleError {
+
+    for (int i = 0; i < loadSaveMe.length; i++) {
+      loadSaveMe[i] = false;
+    }
+
+    try {
+      JarInputStream jarIn = new JarInputStream(new FileInputStream(file));
+      JarEntry jarEntry = jarIn.getNextJarEntry();
+      while (jarEntry != null) {
+        if (jarEntry.isDirectory()) {
+          jarEntry = jarIn.getNextJarEntry();
+          continue;
+        }
+        String name = jarEntry.getName().toUpperCase();
+        Kinds entryId = getKnowledgeEntryId(name);
+        name = stripZoneDir(name);
+        if (entryId != null) {
+          loadSaveMe[entryId.ordinal()] = true;
+        } else if (name.equals(OLD_TYPE_OF_FIRE_ENTRY)) {
+          loadSaveMe[FIRE_TYPE_LOGIC.ordinal()] = true;
+        } else if (name.equals(OLD_FIRE_SPREAD_ENTRY)) {
+          loadSaveMe[FIRE_SPREAD_LOGIC.ordinal()] = true;
+        } else if (name.equals(FIRE_TYPE_DATA_ENTRY)) {
+          loadSaveMe[FIRE_TYPE_LOGIC.ordinal()] = true;
+        } else if (name.equals(FIRE_SPREAD_DATA_ENTRY)) {
+          loadSaveMe[FIRE_SPREAD_LOGIC.ordinal()] = true;
+        } else if (name.equals(OLD_REGEN_LOGIC_ENTRY)) {
+          loadSaveMe[REGEN_LOGIC_FIRE.ordinal()] = true;
+          loadSaveMe[REGEN_LOGIC_SUCC.ordinal()] = true;
+        }
+        jarEntry = jarIn.getNextJarEntry();
+      }
+      jarIn.close();
+    } catch (IOException err) {
+      err.printStackTrace();
+      throw new SimpplleError("Could not read System Knowledge File");
     }
   }
 
@@ -1536,114 +1644,6 @@ public class SystemKnowledge {
     } finally {
       Utility.close(fin);
       Utility.close(jarIn);
-    }
-  }
-
-  /**
-   * Returns true if an entry exists in a JAR input stream.
-   *
-   * @param stream A JAR input stream
-   * @param entryName An entry name prefix
-   * @return True if an entry with a matching prefix is found
-   */
-  private static boolean findEntry(JarInputStream stream, String entryName) throws IOException {
-    JarEntry jarEntry = stream.getNextJarEntry();
-    while (jarEntry != null) {
-      if (jarEntry.isDirectory()) {
-        jarEntry = stream.getNextJarEntry();
-        continue;
-      }
-      String name = jarEntry.getName().toUpperCase();
-      if (name.startsWith(entryName)) {
-        return true;
-      }
-      jarEntry = stream.getNextJarEntry();
-    }
-    return false;
-  }
-
-  /**
-   * Returns a reader for an entry in a JAR file.
-   *
-   * @param file A JAR file
-   * @param entryName An entry name prefix
-   * @return A reader for the first entry whose name contains the prefix
-   * @throws SimpplleError
-   */
-  public static BufferedReader getEntryStream(File file, String entryName) throws SimpplleError {
-    try {
-      JarInputStream jarIn = new JarInputStream(new FileInputStream(file));
-      BufferedReader fin = new BufferedReader(new InputStreamReader(jarIn));
-      if (!findEntry(jarIn, entryName)) {
-        throw new SimpplleError("Unable to find entry: " + entryName);
-      }
-      return fin;
-    } catch (IOException err) {
-      err.printStackTrace();
-      throw new SimpplleError("Could not read System Knowledge File");
-    }
-  }
-
-  /**
-   * Removes the current zone directory from a path.
-   *
-   * @param path A path to an entry in a zone directory
-   * @return The path with the zone directory stripped
-   */
-  private static String stripZoneDir(String path) {
-    path = path.toUpperCase();
-    String zoneDir = Simpplle.getCurrentZone().getZoneDir().toUpperCase();
-    int index = path.indexOf(zoneDir);
-    if (index != -1) {
-      // Add 1 for the slash at the end.
-      return path.substring(index + zoneDir.length() + 1);
-    }
-    return path;
-  }
-
-  /**
-   * Updates save and load flags to match the kinds of knowledge present in a JAR file.
-   *
-   * @param file A knowledge file
-   * @throws SimpplleError
-   */
-  public static void recordExistingKnowledge(File file) throws SimpplleError {
-
-    for (int i = 0; i < loadSaveMe.length; i++) {
-      loadSaveMe[i] = false;
-    }
-
-    try {
-      JarInputStream jarIn = new JarInputStream(new FileInputStream(file));
-      JarEntry jarEntry = jarIn.getNextJarEntry();
-      while (jarEntry != null) {
-        if (jarEntry.isDirectory()) {
-          jarEntry = jarIn.getNextJarEntry();
-          continue;
-        }
-        String name = jarEntry.getName().toUpperCase();
-        Kinds entryId = getKnowledgeEntryId(name);
-        name = stripZoneDir(name);
-        if (entryId != null) {
-          loadSaveMe[entryId.ordinal()] = true;
-        } else if (name.equals(OLD_TYPE_OF_FIRE_ENTRY)) {
-          loadSaveMe[FIRE_TYPE_LOGIC.ordinal()] = true;
-        } else if (name.equals(OLD_FIRE_SPREAD_ENTRY)) {
-          loadSaveMe[FIRE_SPREAD_LOGIC.ordinal()] = true;
-        } else if (name.equals(FIRE_TYPE_DATA_ENTRY)) {
-          loadSaveMe[FIRE_TYPE_LOGIC.ordinal()] = true;
-        } else if (name.equals(FIRE_SPREAD_DATA_ENTRY)) {
-          loadSaveMe[FIRE_SPREAD_LOGIC.ordinal()] = true;
-        } else if (name.equals(OLD_REGEN_LOGIC_ENTRY)) {
-          loadSaveMe[REGEN_LOGIC_FIRE.ordinal()] = true;
-          loadSaveMe[REGEN_LOGIC_SUCC.ordinal()] = true;
-        }
-        jarEntry = jarIn.getNextJarEntry();
-      }
-      jarIn.close();
-    } catch (IOException err) {
-      err.printStackTrace();
-      throw new SimpplleError("Could not read System Knowledge File");
     }
   }
 
