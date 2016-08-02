@@ -717,6 +717,16 @@ public class SystemKnowledge {
   }
 
   /**
+   * Checks if there is a GIS Extras file for current zone.
+   *
+   * @return True if the file exists and is not empty
+   */
+  public static boolean existsGISExtras() {
+    File file = Simpplle.getCurrentZone().getSystemKnowledgeGisExtraFile();
+    return (file.exists() && file.length() > 0);
+  }
+
+  /**
    * Copies a dummy database for debugging and training purposes. The output file is prefixed with
    * "dummy".
    *
@@ -778,16 +788,6 @@ public class SystemKnowledge {
    */
   public static void copyArcGISFiles(File destDir) throws SimpplleError {
     copyGisFiles(destDir,"arcgis");
-  }
-
-  /**
-   * Checks if there is a GIS Extras file for current zone.
-   *
-   * @return True if the file exists and is not empty
-   */
-  public static boolean existsGISExtras() {
-    File file = Simpplle.getCurrentZone().getSystemKnowledgeGisExtraFile();
-    return (file.exists() && file.length() > 0);
   }
 
   /**
