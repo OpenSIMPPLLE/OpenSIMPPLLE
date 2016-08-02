@@ -1167,35 +1167,6 @@ public class SystemKnowledge {
   }
 
   /**
-   * Reads a kind of knowledge for the current zone.
-   *
-   * @param kind A kind of knowledge to read
-   * @throws SimpplleError
-   */
-  public static void readZoneDefault(Kinds kind) throws SimpplleError {
-    if (kind == VEGETATION_PATHWAYS || kind == AQUATIC_PATHWAYS) {
-      readEntry(Simpplle.getCurrentZone().getSystemKnowledgePathwayFile(), kind);
-    } else {
-      readEntry(Simpplle.getCurrentZone().getSystemKnowledgeFile(), kind);
-    }
-  }
-  
-  /**
-   * Reads an entry from a knowledge file if it has been flagged for reading.
-   *
-   * @param file A JAR file
-   * @param kind A kind of knowledge
-   * @throws SimpplleError
-   */
-  private static void readEntry(File file, Kinds kind) throws SimpplleError {
-    for (int i = 0; i < loadSaveMe.length; i++) {
-      loadSaveMe[i] = false;
-    }
-    loadSaveMe[kind.ordinal()] = true;
-    loadKnowledge(file,true,false,false);
-  }
-
-  /**
    * Loads a single kind of knowledge from a user knowledge file.
    *
    * @param file A user knowledge file
@@ -1207,7 +1178,7 @@ public class SystemKnowledge {
       loadSaveMe[i] = false;
     }
     loadSaveMe[kind.ordinal()] = true;
-    loadKnowledge(file,false,false,true);
+    loadKnowledge(file, false, false, true);
     files[kind.ordinal()] = file;
   }
 
@@ -1219,6 +1190,30 @@ public class SystemKnowledge {
    */
   public static void loadUserKnowledge(File file) throws SimpplleError {
     loadKnowledge(file, false, true, false);
+  }
+
+  /**
+   * Reads a single kind of knowledge from the current zone's knowledge file.
+   *
+   * @param kind A kind of knowledge to read
+   * @throws SimpplleError
+   */
+  public static void readZoneDefault(Kinds kind) throws SimpplleError {
+
+    for (int i = 0; i < loadSaveMe.length; i++) {
+      loadSaveMe[i] = false;
+    }
+    loadSaveMe[kind.ordinal()] = true;
+
+    File file;
+    if (kind == VEGETATION_PATHWAYS || kind == AQUATIC_PATHWAYS) {
+      file = Simpplle.getCurrentZone().getSystemKnowledgePathwayFile();
+    } else {
+      file = Simpplle.getCurrentZone().getSystemKnowledgeFile();
+    }
+
+    loadKnowledge(file, true, false, false);
+
   }
 
   /**
