@@ -25,7 +25,6 @@ import java.util.HashMap;
  * SystemKnowledgeLoadSave is a dialog for selecting the kinds of knowledge to load or save.
  */
 
-@SuppressWarnings("serial")
 public class SystemKnowledgeLoadSave extends JDialog {
 
   /**
