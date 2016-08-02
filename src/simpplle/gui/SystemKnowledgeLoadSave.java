@@ -282,7 +282,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     pickFilePanel.add(fileScrollPanel, BorderLayout.CENTER);
 
     loadSavePB = new JButton("Save");
-    loadSavePB.addActionListener(this::pressedSave);
+    loadSavePB.addActionListener(this::pressedLoadSave);
 
     cancelPB = new JButton("Cancel");
     cancelPB.addActionListener(this::pressedCancel);
@@ -494,10 +494,12 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  private void pressedSave(ActionEvent e) {
-    if (save && (!isAnythingSelected())) {
-      JOptionPane.showMessageDialog(this, "No items Checked!",
-                                    "Nothing Selected",
+  private void pressedLoadSave(ActionEvent e) {
+
+    if (save && !isAnythingSelected()) {
+      JOptionPane.showMessageDialog(this,
+                                    "Nothing is selected.",
+                                    "",
                                     JOptionPane.WARNING_MESSAGE);
       return;
     }
@@ -508,21 +510,26 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
       if (save) {
         SystemKnowledge.saveInputFile(loadSaveFile);
+        JOptionPane.showMessageDialog(this,
+                                      "File saved successfully.",
+                                      "",
+                                      JOptionPane.INFORMATION_MESSAGE);
       } else {
         SystemKnowledge.readInputFile(loadSaveFile);
+        JOptionPane.showMessageDialog(this,
+                                      "File loaded successfully.",
+                                      "",
+                                      JOptionPane.INFORMATION_MESSAGE);
       }
 
-      String msg = (save) ? "File Saved Successfully" :
-                            "File Loaded Successfully";
-      JOptionPane.showMessageDialog(this, msg, "Success",
-                                    JOptionPane.INFORMATION_MESSAGE);
       dialogCanceled = false;
       setVisible(false);
       dispose();
 
     } catch (SimpplleError ex) {
 
-      JOptionPane.showMessageDialog(this, ex.getMessage(),
+      JOptionPane.showMessageDialog(this,
+                                    ex.getMessage(),
                                     "Problems processing file",
                                     JOptionPane.ERROR_MESSAGE);
 
