@@ -665,7 +665,7 @@ public class SystemKnowledge {
    * @param kind A kind of knowledge
    * @return True if the knowledge will be saved or loaded
    */
-  public static boolean loadSaveFlagged(Kinds kind) {
+  public static boolean isLoadSave(Kinds kind) {
     return loadSaveMe[kind.ordinal()];
   }
 
@@ -699,21 +699,21 @@ public class SystemKnowledge {
   }
 
   /**
-   * Returns the last habitat type group loaded.
-   *
-   * @return A habitat type group
-   */
-  public static HabitatTypeGroup getLastPathwayLoaded() {
-    return lastPathwayLoaded;
-  }
-
-  /**
-   * Returns the last LTA valley segment group loaded.
+   * Returns the aquatic pathway that was loaded most recently.
    *
    * @return A LTA valley segment group
    */
   public static LtaValleySegmentGroup getLastAquaticPathwayLoaded() {
     return lastAquaticPathwayLoaded;
+  }
+
+  /**
+   * Returns the vegetative pathway that was loaded most recently.
+   *
+   * @return A habitat type group
+   */
+  public static HabitatTypeGroup getLastVegetativePathwayLoaded() {
+    return lastPathwayLoaded;
   }
 
   /**
