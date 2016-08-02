@@ -1139,6 +1139,16 @@ public class SystemKnowledge {
   }
 
   /**
+   * Sets aquatic HabitatTypeGroupType file pathway.
+   *
+   * @param groupName Name of the pathway group
+   * @throws SimpplleError
+   */
+  public static void loadAquaticPathway(String groupName) throws SimpplleError {
+    loadPathway(groupName, false);
+  }
+
+  /**
    * Loads a vegetative pathway from the current zone.
    *
    * @param groupName Name of the pathway group
@@ -1148,16 +1158,6 @@ public class SystemKnowledge {
     loadPathway(groupName, true);
   }
 
-  /**
-   * Sets aquatic HabitatTypeGroupType file pathway.
-   *
-   * @param groupName Name of the pathway group
-   * @throws SimpplleError
-   */
-  public static void loadAquaticPathway(String groupName) throws SimpplleError {
-    loadPathway(groupName, false);
-  }
-  
   /**
    * Loads a vegetative or aquatic pathway for a habitat type group in the current zone.
    *
