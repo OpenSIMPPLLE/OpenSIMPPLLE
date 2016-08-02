@@ -1607,7 +1607,7 @@ public class SystemKnowledge {
    * @param file A knowledge file
    * @throws SimpplleError
    */
-  public static void processInputFileEntries(File file) throws SimpplleError {
+  public static void recordExistingKnowledge(File file) throws SimpplleError {
 
     for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;

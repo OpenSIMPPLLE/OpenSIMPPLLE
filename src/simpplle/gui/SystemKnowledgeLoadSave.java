@@ -448,7 +448,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     loadSaveFile = filename;
     try {
       if (!save) {
-        SystemKnowledge.processInputFileEntries(loadSaveFile);
+        SystemKnowledge.recordExistingKnowledge(loadSaveFile);
         initCheckBoxes();
       }
     } catch (SimpplleError ex) {}
