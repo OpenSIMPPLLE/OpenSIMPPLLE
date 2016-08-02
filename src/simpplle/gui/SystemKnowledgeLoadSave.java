@@ -396,7 +396,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
    *
    * @return The selected file, or null
    */
-  public File getAndSetInputFile() {
+  public File selectFile() {
     pressedPick(null);
     return loadSaveFile;
   }

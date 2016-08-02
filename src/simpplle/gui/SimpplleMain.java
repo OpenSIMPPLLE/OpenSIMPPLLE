@@ -8,7 +8,6 @@
 
 package simpplle.gui;
 
-import com.mchange.v1.util.ArrayUtils;
 import org.hsqldb.util.DatabaseManagerSwing;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
@@ -21,7 +20,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowEvent;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -2473,7 +2471,7 @@ public class SimpplleMain extends JFrame {
 
     setDialogLocation(dlg);
 
-    File sysKnowFile = dlg.getAndSetInputFile();
+    File sysKnowFile = dlg.selectFile();
     if (sysKnowFile != null) {
       dlg.setVisible(true);
     }
