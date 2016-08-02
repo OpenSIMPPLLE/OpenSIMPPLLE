@@ -1654,7 +1654,7 @@ public class SystemKnowledge {
    * @param group A habitat type group
    * @throws SimpplleError
    */
-  public static void saveIndividualPathwayFile(File file, HabitatTypeGroup group) throws SimpplleError {
+  public static void saveVegetativePathway(File file, HabitatTypeGroup group) throws SimpplleError {
 
     String fileExt = getKnowledgeFileExtension(VEGETATION_PATHWAYS);
 
