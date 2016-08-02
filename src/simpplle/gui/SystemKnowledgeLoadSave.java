@@ -122,10 +122,10 @@ public class SystemKnowledgeLoadSave extends JDialog {
     /* Selection */
 
     selectAllPB = new JButton("Select All");
-    selectAllPB.addActionListener(this::selectAllPB_actionPerformed);
+    selectAllPB.addActionListener(this::pressedSelectAll);
 
     selectNonePB = new JButton("Select None");
-    selectNonePB.addActionListener(this::selectNonePB_actionPerformed);
+    selectNonePB.addActionListener(this::pressedSelectNone);
 
     JPanel selectPanel = new JPanel();
     selectPanel.add(selectAllPB, null);
@@ -271,7 +271,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     fileScrollPanel.add(fileScrollPane, BorderLayout.NORTH);
 
     pickFilePB = new JButton("Pick");
-    pickFilePB.addActionListener(this::pickFilePB_actionPerformed);
+    pickFilePB.addActionListener(this::pressedPick);
 
     TitledBorder pickFileBorder = new TitledBorder(BorderFactory.createEtchedBorder(Color.white, new Color(148, 145, 140)), "File Name");
 
@@ -282,10 +282,10 @@ public class SystemKnowledgeLoadSave extends JDialog {
     pickFilePanel.add(fileScrollPanel, BorderLayout.CENTER);
 
     loadSavePB = new JButton("Save");
-    loadSavePB.addActionListener(this::loadSavePB_actionPerformed);
+    loadSavePB.addActionListener(this::pressedSave);
 
     cancelPB = new JButton("Cancel");
-    cancelPB.addActionListener(this::cancelPB_actionPerformed);
+    cancelPB.addActionListener(this::pressedCancel);
 
     JPanel loadSaveCancelPanel = new JPanel();
     loadSaveCancelPanel.add(loadSavePB, null);
@@ -464,11 +464,11 @@ public class SystemKnowledgeLoadSave extends JDialog {
    * @return The selected file, or null
    */
   public File getAndSetInputFile() {
-    pickFilePB_actionPerformed(null);
+    pressedPick(null);
     return loadSaveFile;
   }
 
-  private void pickFilePB_actionPerformed(ActionEvent e) {
+  private void pressedPick(ActionEvent e) {
     File         filename;
     MyFileFilter extFilter;
 
@@ -496,7 +496,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     } catch (SimpplleError ex) {}
   }
 
-  private void loadSavePB_actionPerformed(ActionEvent e) {
+  private void pressedSave(ActionEvent e) {
     if (save && (!isAnythingSelected())) {
       JOptionPane.showMessageDialog(this, "No items Checked!",
                                     "Nothing Selected",
@@ -531,19 +531,19 @@ public class SystemKnowledgeLoadSave extends JDialog {
     }
   }
 
-  private void cancelPB_actionPerformed(ActionEvent e) {
+  private void pressedCancel(ActionEvent e) {
     dialogCanceled = true;
     setVisible(false);
     dispose();
   }
 
-  private void selectAllPB_actionPerformed(ActionEvent e) {
+  private void pressedSelectAll(ActionEvent e) {
     for (JCheckBox cb : checkBoxes.values()) {
       cb.setSelected(cb.isEnabled());
     }
   }
 
-  private void selectNonePB_actionPerformed(ActionEvent e) {
+  private void pressedSelectNone(ActionEvent e) {
     for (JCheckBox cb : checkBoxes.values()) {
       cb.setSelected(false);
     }
