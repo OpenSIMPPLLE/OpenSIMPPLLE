@@ -600,8 +600,8 @@ public abstract class AbstractBaseLogic {
     int size = in.readInt();
     for (int i = 0; i < size; i++) {
       String key = (String) in.readObject();
-      ArrayList<String> list = visibleColumnsHm.get(key);
       visibleColumnsHm.put(key, (ArrayList<String>) in.readObject());
+      ArrayList<String> list = visibleColumnsHm.get(key);
       if (list != null) {
         for (int l = 0; l < list.size(); l++) {
           int col = getColumnPosition(key,list.get(l));
