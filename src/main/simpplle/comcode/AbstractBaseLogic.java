@@ -183,8 +183,7 @@ public abstract class AbstractBaseLogic {
    * @param columnName The name of the column to mark as visible
    */
   public void addVisibleColumn(String kind, String columnName) {
-    int columnIndex = getColumnPosition(kind,columnName);
-    addVisibleColumn(kind,columnIndex,columnName);
+    addVisibleColumn(kind,getColumnPosition(kind,columnName));
   }
 
   /**
@@ -194,33 +193,22 @@ public abstract class AbstractBaseLogic {
    * @param columnIndex The index of the column to mark as visible
    */
   public void addVisibleColumn(String kind, int columnIndex) {
-    String columnName = getColumnIdName(kind,columnIndex);
-    addVisibleColumn(kind,columnIndex,columnName);
-  }
-
-  /**
-   * Marks a column as visible.
-   *
-   * @param kind A kind of logic
-   * @param columnIndex The index of the column to mark as visible
-   * @param columnName The name of the column to mark as visible
-   */
-  public void addVisibleColumn(String kind, int columnIndex, String columnName) {
-    ArrayList<String> values = visibleColumnsHm.get(kind);
-    if (values == null) {
-      values = new ArrayList<>();
-      visibleColumnsHm.put(kind,values);
+    ArrayList<String> visibleColumns = visibleColumnsHm.get(kind);
+    if (visibleColumns == null) {
+      visibleColumns = new ArrayList<>();
+      visibleColumnsHm.put(kind,visibleColumns);
     }
-    if (!values.contains(columnName)) {
-      int insertPos = values.size();
-      for (int i = 0; i < values.size(); i++) {
-        int listCol = getColumnPosition(kind,values.get(i));
+    String columnName = getColumnIdName(kind,columnIndex);
+    if (!visibleColumns.contains(columnName)) {
+      int insertPos = visibleColumns.size();
+      for (int i = 0; i < visibleColumns.size(); i++) {
+        int listCol = getColumnPosition(kind,visibleColumns.get(i));
         if (listCol > columnIndex) {
           insertPos = i;
           break;
         }
       }
-      values.add(insertPos,columnName);
+      visibleColumns.add(insertPos,columnName);
       SystemKnowledge.markChanged(sysKnowKind);
     }
   }
