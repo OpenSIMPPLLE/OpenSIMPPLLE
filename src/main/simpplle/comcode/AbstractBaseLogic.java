@@ -166,61 +166,61 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   *
+   * Marks all columns as visible.
    *
    * @param kind A kind of logic
    */
   public void addVisibleColumnAll(String kind) {
-    for (int i=0; i<columns.get(kind).size(); i++) {
+    for (int i = 0; i < columns.get(kind).size(); i++) {
       addVisibleColumn(kind,i);
     }
   }
 
   /**
-   *
+   * Marks a column as visible.
    *
    * @param kind A kind of logic
-   * @param name
+   * @param columnName The name of the column to mark as visible
    */
-  public void addVisibleColumn(String kind, String name) {
-    int col = getColumnPosition(kind,name);
-    addVisibleColumn(kind,col,name);
+  public void addVisibleColumn(String kind, String columnName) {
+    int columnIndex = getColumnPosition(kind,columnName);
+    addVisibleColumn(kind,columnIndex,columnName);
   }
 
   /**
-   *
+   * Marks a column as visible.
    *
    * @param kind A kind of logic
-   * @param col
+   * @param columnIndex The index of the column to mark as visible
    */
-  public void addVisibleColumn(String kind, int col) {
-    String name = getColumnIdName(kind,col);
-    addVisibleColumn(kind,col,name);
+  public void addVisibleColumn(String kind, int columnIndex) {
+    String columnName = getColumnIdName(kind,columnIndex);
+    addVisibleColumn(kind,columnIndex,columnName);
   }
 
   /**
-   *
+   * Marks a column as visible.
    *
    * @param kind A kind of logic
-   * @param col
-   * @param name A column name
+   * @param columnIndex The index of the column to mark as visible
+   * @param columnName The name of the column to mark as visible
    */
-  public void addVisibleColumn(String kind, int col, String name) {
+  public void addVisibleColumn(String kind, int columnIndex, String columnName) {
     ArrayList<String> values = visibleColumnsHm.get(kind);
     if (values == null) {
       values = new ArrayList<>();
       visibleColumnsHm.put(kind,values);
     }
-    if (!values.contains(name)) {
+    if (!values.contains(columnName)) {
       int insertPos = values.size();
       for (int i = 0; i < values.size(); i++) {
         int listCol = getColumnPosition(kind,values.get(i));
-        if (listCol > col) {
+        if (listCol > columnIndex) {
           insertPos = i;
           break;
         }
       }
-      values.add(insertPos,name);
+      values.add(insertPos,columnName);
       SystemKnowledge.markChanged(sysKnowKind);
     }
   }
