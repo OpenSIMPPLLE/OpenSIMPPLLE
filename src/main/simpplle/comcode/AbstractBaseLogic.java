@@ -246,17 +246,21 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Returns a map of logic table names to names of visible columns.
+   * Returns the name of a visible column.
+   *
+   * @param kind A kind of logic
+   * @param columnIndex The index of the visible column
+   * @return The name of the visible column
    */
-  public HashMap<String,ArrayList<String>> getVisibleColumnsHm() {
-    return visibleColumnsHm;
+  public String getVisibleColumnName(String kind, int columnIndex) {
+    return visibleColumnsHm.get(kind).get(columnIndex);
   }
 
   /**
-   * Determines if a column is visible in a logic table.
+   * Determines if a column is visible.
    *
    * @param kind A kind of logic
-   * @param col The name of a column
+   * @param col The index of the column to check
    * @return True if the column is visible
    */
   public boolean isVisibleColumn(String kind, int col) {

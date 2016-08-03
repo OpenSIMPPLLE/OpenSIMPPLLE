@@ -758,7 +758,7 @@ public abstract class RegenerationLogic {
   public static String getColumnName(DataKinds kind,int visibleCol) {
     BaseLogic logic = getData(kind);
 
-    String colName = logic.getVisibleColumnsHm().get(kind.toString()).get(visibleCol);
+    String colName = logic.getVisibleColumnName(kind.toString(),visibleCol);
     int col = logic.getColumnPosition(kind.toString(),colName);
 
     String name;
