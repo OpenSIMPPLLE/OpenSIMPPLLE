@@ -25,6 +25,12 @@
             <version>3.1</version>
         </dependency>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>3.3.2.GA</version>
@@ -43,12 +49,13 @@
 
     <build>
 
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src/main</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
 
         <resources>
             <resource>
                 <!-- include images directory -->
-                <directory>src/simpplle/resources</directory>
+                <directory>src/main/simpplle/resources</directory>
                 <!-- place in simpplle/gui dir on build-->
                 <targetPath>simpplle/gui</targetPath>
             </resource>

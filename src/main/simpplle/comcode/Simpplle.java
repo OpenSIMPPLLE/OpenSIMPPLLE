@@ -105,6 +105,12 @@ public final class Simpplle {
   }
 
   /**
+   * @param zone Regional Zone
+   */
+  public static void setCurrentZone(RegionalZone zone) {
+    currentZone = zone;
+  }
+  /**
     * Gets a climate instance.  
     * @return Climate instance
     * @see simpplle.comcode.Climate
@@ -341,7 +347,7 @@ public final class Simpplle {
     setStatusMessage("Loading Sample Area: " + area.getName() + "...");
     try {
       InclusionRuleSpecies.clearAllInstances();
-      if (area.getPath().indexOf("SWEATHOUSE.AREA") != -1) {
+      if (area.getPath().contains("SWEATHOUSE.AREA")) {
         currentArea = area;
         SystemKnowledge.loadSampleArea(currentArea);
       }

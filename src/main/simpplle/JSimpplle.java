@@ -64,6 +64,8 @@ public final class JSimpplle {
 
   
   public JSimpplle() {
+    comcode = new simpplle.comcode.Simpplle();
+    simpplleMain = new SimpplleMain();
   }
 /**
  * Sets whether the user wishes to edit an regional zone ("zone edit mode").  
@@ -261,10 +263,10 @@ public final class JSimpplle {
   //Main method
   public static void main(String[] args) throws IOException {
     System.setProperty("sun.awt.exception.handler","simpplle.gui.MyErrorHandler");
+    comcode = new simpplle.comcode.Simpplle();
 
     readXmlPropertiesFile();
 
-    
     javax.swing.SwingUtilities.invokeLater(new Runnable() {
       public void run() {
         createAndShowGUI();
@@ -278,9 +280,6 @@ public final class JSimpplle {
   private static void createAndShowGUI() {
     showSplashScreen();
     determineInstallDirectory();
-
-    comcode = new simpplle.comcode.Simpplle();
-
     readPropertiesFile();
 
     simpplle.gui.JSimpplleApp.initialize();
