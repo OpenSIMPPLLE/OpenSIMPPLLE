@@ -125,10 +125,15 @@ public abstract class AbstractBaseLogic {
    *
    * @param kind A kind of logic
    * @param columnName A column name
-   * @return The index of the column
+   * @return The index of the column, or -1 if it does not exist
    */
   public int getColumnPosition(String kind,String columnName) {
-    return columns.get(kind).indexOf(columnName);
+    ArrayList<String> columnNames = columns.get(kind);
+    if (columnNames != null) {
+      return columnNames.indexOf(columnName);
+    } else {
+      return -1;
+    }
   }
 
   /**
