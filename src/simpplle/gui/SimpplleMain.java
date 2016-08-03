@@ -8,7 +8,6 @@
 
 package simpplle.gui;
 
-import com.mchange.v1.util.ArrayUtils;
 import org.hsqldb.util.DatabaseManagerSwing;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
@@ -21,7 +20,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowEvent;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -2528,9 +2526,12 @@ public class SimpplleMain extends JFrame {
     if (choice == JOptionPane.NO_OPTION) { return; }
 
     try {
-      SystemKnowledge.loadAllDefaults();
-    }
-    catch (SimpplleError err) {
+
+      RegionalZone zone = Simpplle.getCurrentZone();
+      zone.loadKnowledge();
+      FireEvent.resetExtremeData();
+
+    } catch (SimpplleError err) {
       JOptionPane.showMessageDialog(this,err.getMessage(),
                                     "Could not Restore defaults",
                                     JOptionPane.ERROR_MESSAGE);
@@ -3484,7 +3485,7 @@ public class SimpplleMain extends JFrame {
     if (zoneName == null) { return; }
 
     try {
-      SystemKnowledge.saveZone(zoneName);
+      SystemKnowledge.saveZoneKnowledge(zoneName);
     }
     catch (SimpplleError ex) {
       JOptionPane.showMessageDialog(this, ex.getMessage(), "Problems saving",

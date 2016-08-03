@@ -858,7 +858,7 @@ public class FmzEditor extends JDialog {
         return;
       }
       
-      SystemKnowledge.readZoneDefault(SystemKnowledge.FMZ);
+      SystemKnowledge.loadZoneKnowledge(SystemKnowledge.FMZ);
 
       allFmzPos = 0;
       allFmz = currentZone.getAllFmzNames();

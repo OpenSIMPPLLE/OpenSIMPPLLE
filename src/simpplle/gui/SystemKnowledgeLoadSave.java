@@ -377,11 +377,11 @@ public class SystemKnowledgeLoadSave extends JDialog {
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
       JCheckBox cb = checkBoxes.get(kind);
       if (cb != null) {
-        SystemKnowledge.setLoadSaveOption(kind, cb.isSelected());
+        SystemKnowledge.setLoadSave(kind, cb.isSelected());
       }
     }
-    SystemKnowledge.setLoadSaveOption(SystemKnowledge.TRACKING_SPECIES_REPORT,false);
-    SystemKnowledge.setLoadSaveOption(SystemKnowledge.EVU_SEARCH_LOGIC,false);
+    SystemKnowledge.setLoadSave(SystemKnowledge.TRACKING_SPECIES_REPORT,false);
+    SystemKnowledge.setLoadSave(SystemKnowledge.EVU_SEARCH_LOGIC,false);
   }
 
   /**
@@ -396,7 +396,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
         option = SystemKnowledge.hasChangedOrUserData(kind);
       }
       else {
-        option = SystemKnowledge.isPresentInFile(kind);
+        option = SystemKnowledge.isLoadSave(kind);
       }
       if (cb != null) {
         if ((kind == SystemKnowledge.PROCESS_SCHEDULE ||
@@ -448,7 +448,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
     loadSaveFile = filename;
     try {
       if (!save) {
-        SystemKnowledge.processInputFileEntries(loadSaveFile);
+        SystemKnowledge.recordExistingKnowledge(loadSaveFile);
         initCheckBoxes();
       }
     } catch (SimpplleError ex) {}
@@ -467,9 +467,9 @@ public class SystemKnowledgeLoadSave extends JDialog {
     try {
 
       if (save) {
-        SystemKnowledge.saveInputFile(loadSaveFile);
+        SystemKnowledge.saveUserKnowledge(loadSaveFile);
       } else {
-        SystemKnowledge.readInputFile(loadSaveFile);
+        SystemKnowledge.loadUserKnowledge(loadSaveFile);
       }
 
       String msg = (save) ? "File Saved Successfully" :

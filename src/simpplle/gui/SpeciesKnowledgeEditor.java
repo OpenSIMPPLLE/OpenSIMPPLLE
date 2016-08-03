@@ -21,7 +21,6 @@ import java.util.Enumeration;
 import java.awt.event.*;
 import simpplle.comcode.SystemKnowledge;
 import java.io.*;
-import simpplle.comcode.Simpplle;
 import java.util.Vector;
 import simpplle.comcode.*;
 import java.util.ArrayList;
@@ -262,7 +261,7 @@ public class SpeciesKnowledgeEditor extends JDialog {
       String title = "Load Default Species Data";
 
       if (Utility.askYesNoQuestion(this,msg,title)) {
-        SystemKnowledge.readZoneDefault(SystemKnowledge.SPECIES);
+        SystemKnowledge.loadZoneKnowledge(SystemKnowledge.SPECIES);
       }
     }
     catch (simpplle.comcode.SimpplleError err) {

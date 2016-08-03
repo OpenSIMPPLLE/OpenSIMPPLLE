@@ -81,7 +81,7 @@ public class FireSuppProductionRateLogicDlg extends VegLogicDialog {
 
     if (inputFile != null) {
       try {
-        SystemKnowledge.readIndividualInputFile(inputFile,SystemKnowledge.FIRESUPP_PRODUCTION_RATE);
+        SystemKnowledge.loadUserKnowledge(inputFile,SystemKnowledge.FIRESUPP_PRODUCTION_RATE);
         updateDialog();
       }
       catch (SimpplleError err) {

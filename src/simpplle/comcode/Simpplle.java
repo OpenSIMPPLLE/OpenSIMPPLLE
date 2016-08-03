@@ -302,7 +302,7 @@ public final class Simpplle {
 
       zone.setUseHistoricPathways(historic);
 
-      zone.readZoneSystemKnowledgeFile();
+      zone.loadKnowledge();
 
       SimpplleType.initializeSizeClassList();
       SimpplleType.initializeDensityList();

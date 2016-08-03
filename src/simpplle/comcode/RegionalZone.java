@@ -544,7 +544,7 @@ public abstract class RegionalZone {
     // Remove references to currently loaded pathways.
     HabitatTypeGroup.clearGroups();
 
-    SystemKnowledge.loadAllPathways();
+    SystemKnowledge.loadAllVegetativePathways();
 
     // Garbage collect before returning.
     System.gc();
@@ -560,7 +560,7 @@ public abstract class RegionalZone {
 
   public void loadPathway(String groupName) throws SimpplleError {
     if (HabitatTypeGroup.findInstance(groupName) == null) return;
-    SystemKnowledge.loadPathway(groupName);
+    SystemKnowledge.loadVegetativePathway(groupName);
   }
 
   public void removeAquaticPathway(String groupName) throws SimpplleError {
@@ -578,7 +578,7 @@ public abstract class RegionalZone {
     if (group == null) { return; }
 
     if (group.isSystemGroup()) {
-      SystemKnowledge.loadPathway(groupName);
+      SystemKnowledge.loadVegetativePathway(groupName);
     } else {
       HabitatTypeGroup.removeGroup(groupName);
     }
@@ -595,19 +595,19 @@ public abstract class RegionalZone {
   public void setUseHistoricPathways(boolean useHistoricPathways) { historicPathways = useHistoricPathways; }
 
   /**
-   * Reads all data from the regional zone's system knowledge and pathway jar files.
+   * Loads all knowledge for this regional zone.
    */
-  public void readZoneSystemKnowledgeFile() throws SimpplleError {
+  public void loadKnowledge() throws SimpplleError {
 
     // Remove references to currently loaded pathways.
     HabitatTypeGroup.clearGroups();
     LtaValleySegmentGroup.clearGroups();
 
     if (pathwayKnowFile != null) {
-      SystemKnowledge.readInputFile(getSystemKnowledgePathwayFile(),true);
+      SystemKnowledge.loadZoneKnowledge(getSystemKnowledgePathwayFile());
     }
 
-    SystemKnowledge.readInputFile(getSystemKnowledgeFile(),true);
+    SystemKnowledge.loadZoneKnowledge(getSystemKnowledgeFile());
 
     System.gc();
 
