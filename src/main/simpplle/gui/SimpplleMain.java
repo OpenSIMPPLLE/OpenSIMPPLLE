@@ -669,20 +669,16 @@ public class SimpplleMain extends JFrame {
       }
     });
     menuSysKnowOpen.setEnabled(false);
-    menuSysKnowOpen.setToolTipText("Load files specified in the loaded " +
-    "file for the following areas  (Fmz, Fire Spread, Type of Fire, Insect/Disease " +
-    "Probability, Treatments, Lock-in Processes, and Pathways)");
-    menuSysKnowOpen.setText("Open User Knowledge File");
+    menuSysKnowOpen.setToolTipText("Loads knowledge components from a file");
+    menuSysKnowOpen.setText("Load User Knowledge");
     menuSysKnowOpen.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuSysKnowOpen_actionPerformed(e);
       }
     });
     menuSysKnowSave.setEnabled(false);
-    menuSysKnowSave.setToolTipText("Saves a file with information on what user files are currently loaded " +
-    "(Fmz, Fire Spread, Type of Fire, Insect/Disease Probability, Treatments, " +
-    "Lock-in Processes, and Pathways)");
-    menuSysKnowSave.setText("Save User Knowledge File");
+    menuSysKnowSave.setToolTipText("Saves knowledge components to a file");
+    menuSysKnowSave.setText("Save User Knowledge");
     menuSysKnowSave.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuSysKnowSave_actionPerformed(e);
@@ -2468,12 +2464,10 @@ public class SimpplleMain extends JFrame {
       if (deleteSimulationCheck()) { return; }
     }
 
-    SystemKnowledgeLoadSave dlg =
-        new SystemKnowledgeLoadSave(this,"Load System Knowledge File",true,false);
-
+    SystemKnowledgeLoadSave dlg = new SystemKnowledgeLoadSave(this,"Load User Knowledge",true,false);
     setDialogLocation(dlg);
 
-    File sysKnowFile = dlg.getAndSetInputFile();
+    File sysKnowFile = dlg.selectFile();
     if (sysKnowFile != null) {
       dlg.setVisible(true);
     }
@@ -2501,9 +2495,7 @@ public class SimpplleMain extends JFrame {
   }
 
   void menuSysKnowSave_actionPerformed(ActionEvent e) {
-    SystemKnowledgeLoadSave dlg =
-        new SystemKnowledgeLoadSave(this,"Save System Knowledge",true,true);
-
+    SystemKnowledgeLoadSave dlg = new SystemKnowledgeLoadSave(this,"Save User Knowledge",true,true);
     setDialogLocation(dlg);
     dlg.setVisible(true);
   }
