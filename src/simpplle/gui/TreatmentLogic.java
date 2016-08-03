@@ -2874,7 +2874,7 @@ public class TreatmentLogic extends JDialog {
   }
   void menuFileDefaultAll_actionPerformed(ActionEvent e) {
     try {
-      SystemKnowledge.readZoneDefault(SystemKnowledge.TREATMENT_LOGIC);
+      SystemKnowledge.loadZoneKnowledge(SystemKnowledge.TREATMENT_LOGIC);
       updateComboBoxValues(treatmentCB,Simpplle.getCurrentZone().getLegalTreatments());
       newTreatment();
       updateDialog();

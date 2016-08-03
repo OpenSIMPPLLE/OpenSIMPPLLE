@@ -594,7 +594,7 @@ public class Pathway extends JDialog {
     }
 
     if (SystemKnowledgeFiler.openFile(this,SystemKnowledge.VEGETATION_PATHWAYS,menuFileSave, null)) {
-      HabitatTypeGroup newGroup = SystemKnowledge.getLastPathwayLoaded();
+      HabitatTypeGroup newGroup = SystemKnowledge.getLastVegetativePathwayLoaded();
       pathwayGroupCB.setSelectedItem(newGroup.getName());
 
       updateDialog();

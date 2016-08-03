@@ -190,7 +190,7 @@ public class ConiferEncroachmentDialog extends JDialog {
       String title = "Load Default Conifer Encroachment Data";
 
       if (Utility.askYesNoQuestion(this,msg,title)) {
-        SystemKnowledge.readZoneDefault(SystemKnowledge.CONIFER_ENCROACHMENT);
+        SystemKnowledge.loadZoneKnowledge(SystemKnowledge.CONIFER_ENCROACHMENT);
       }
     }
     catch (simpplle.comcode.SimpplleError err) {

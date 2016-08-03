@@ -20,7 +20,6 @@ import simpplle.JSimpplle;
 import simpplle.comcode.LogicRule;
 import simpplle.comcode.Process;
 import simpplle.comcode.ProcessType;
-import simpplle.comcode.Simpplle;
 import simpplle.comcode.SystemKnowledge;
 
 import java.awt.BorderLayout;
@@ -33,7 +32,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -293,7 +291,7 @@ public class InsectDiseaseLogic extends JDialog {
       String title = "Load Default Insect/Disease Logic";
 
       if (Utility.askYesNoQuestion(this,msg,title)) {
-        SystemKnowledge.readZoneDefault(SystemKnowledge.PROCESS_PROB_LOGIC);
+        SystemKnowledge.loadZoneKnowledge(SystemKnowledge.PROCESS_PROB_LOGIC);
         updatePanels();
         menuFileSave.setEnabled(isSaveNeeded());
         menuFileClose.setEnabled(false);

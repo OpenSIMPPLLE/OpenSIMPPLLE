@@ -47,7 +47,7 @@ public class SystemKnowledgeFiler {
     try {
       dlg.setCursor(Utility.getWaitCursor());
 
-      SystemKnowledge.readIndividualInputFile(file,kind);
+      SystemKnowledge.loadUserKnowledge(file,kind);
       saveMenuItem.setEnabled(true);
       if (closeMenuItem != null) { closeMenuItem.setEnabled(true); }
 
@@ -79,13 +79,13 @@ public class SystemKnowledgeFiler {
       }
 
       if (kind == SystemKnowledge.VEGETATION_PATHWAYS) {
-        SystemKnowledge.saveIndividualPathwayFile(outfile,(HabitatTypeGroup)obj);
+        SystemKnowledge.saveVegetativePathway(outfile,(HabitatTypeGroup)obj);
       }
       else if (kind == SystemKnowledge.AQUATIC_PATHWAYS) {
-        SystemKnowledge.saveIndividualAquaticPathwayFile(outfile,(LtaValleySegmentGroup)obj);
+        SystemKnowledge.saveAquaticPathway(outfile,(LtaValleySegmentGroup)obj);
       }
       else {
-        SystemKnowledge.saveIndividualInputFile(outfile, kind);
+        SystemKnowledge.saveUserKnowledge(outfile, kind);
       }
       saveMenuItem.setEnabled(true);
       if (closeMenuItem != null) { closeMenuItem.setEnabled(true); }

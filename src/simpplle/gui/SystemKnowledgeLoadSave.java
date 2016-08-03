@@ -428,7 +428,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
             checkbox.setSelected(option);
             checkbox.setEnabled(true);
           } else {
-            boolean option = SystemKnowledge.isPresentInFile(kind);
+            boolean option = SystemKnowledge.isLoadSave(kind);
             checkbox.setSelected(option);
             checkbox.setEnabled(option);
           }
@@ -455,7 +455,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
     try {
       if (!save) {
-        SystemKnowledge.processInputFileEntries(loadSaveFile);
+        SystemKnowledge.recordExistingKnowledge(loadSaveFile);
         initCheckBoxes();
       }
     } catch (SimpplleError ex) {
@@ -484,22 +484,22 @@ public class SystemKnowledgeLoadSave extends JDialog {
     for (SystemKnowledge.Kinds kind : checkBoxes.keySet()) {
       JCheckBox checkbox = checkBoxes.get(kind);
       if (checkbox != null) {
-        SystemKnowledge.setLoadSaveOption(kind, checkbox.isSelected());
+        SystemKnowledge.setLoadSave(kind, checkbox.isSelected());
       }
     }
-    SystemKnowledge.setLoadSaveOption(SystemKnowledge.TRACKING_SPECIES_REPORT,false);
-    SystemKnowledge.setLoadSaveOption(SystemKnowledge.EVU_SEARCH_LOGIC,false);
+    SystemKnowledge.setLoadSave(SystemKnowledge.TRACKING_SPECIES_REPORT,false);
+    SystemKnowledge.setLoadSave(SystemKnowledge.EVU_SEARCH_LOGIC,false);
 
     try {
 
       if (save) {
-        SystemKnowledge.saveInputFile(loadSaveFile);
+        SystemKnowledge.saveUserKnowledge(loadSaveFile);
         JOptionPane.showMessageDialog(this,
                                       "File saved successfully.",
                                       "",
                                       JOptionPane.INFORMATION_MESSAGE);
       } else {
-        SystemKnowledge.readInputFile(loadSaveFile);
+        SystemKnowledge.loadUserKnowledge(loadSaveFile);
         JOptionPane.showMessageDialog(this,
                                       "File loaded successfully.",
                                       "",
