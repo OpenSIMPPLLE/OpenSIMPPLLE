@@ -7,6 +7,7 @@
  */
 
 import org.junit.Test;
+import simpplle.JSimpplle;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.Simpplle;
 import simpplle.comcode.SimpplleError;
@@ -30,6 +31,7 @@ public class SimpplleTest {
   public void loadsAllZones() throws SimpplleError {
     boolean isSuccess = true;
     // Need to call JSimpplle constructor to instantiate static members
+    JSimpplle jSimpplle = new JSimpplle();
     for (int i = 0; i < RegionalZone.availableZones().length; i++){
       if (i >= 8) {
        if(!loadAZone(i+2)){
