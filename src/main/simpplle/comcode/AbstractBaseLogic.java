@@ -212,7 +212,14 @@ public abstract class AbstractBaseLogic {
       visibleColumnsHm.put(kind,values);
     }
     if (!values.contains(name)) {
-      int insertPos = findVisibleColumnInsertPosition(kind,col,values);
+      int insertPos = values.size();
+      for (int i = 0; i < values.size(); i++) {
+        int listCol = getColumnPosition(kind,values.get(i));
+        if (listCol > col) {
+          insertPos = i;
+          break;
+        }
+      }
       values.add(insertPos,name);
       SystemKnowledge.markChanged(sysKnowKind);
     }
@@ -273,24 +280,6 @@ public abstract class AbstractBaseLogic {
     }
     int index = visibleColumns.indexOf(name);
     return (index != -1);
-  }
-
-  /**
-   *
-   *
-   * @param kind A kind of logic
-   * @param col
-   * @param values An array of column names
-   * @return A new column index
-   */
-  protected int findVisibleColumnInsertPosition(String kind, int col, ArrayList<String> values) {
-    int i=0;
-    for (String name : values) {
-      int listCol = getColumnPosition(kind,name);
-      if (listCol > col) { return i; }
-      i++;
-    }
-    return values.size();
   }
 
   /**
