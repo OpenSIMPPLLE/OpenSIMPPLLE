@@ -231,19 +231,18 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Returns an array of visible column indices from a logic table.
+   * Returns an array of visible column indices.
    *
    * @param kind A kind of logic
-   * @return An array of column indices
+   * @return Indices of visible columns
    */
   public int[] getVisibleColumns(String kind) {
      ArrayList<String> visibleColumns = visibleColumnsHm.get(kind);
-
-     int[] cols = new int[visibleColumns.size()];
-     for (int i=0; i<cols.length; i++) {
-       cols[i] = getColumnPosition(kind,visibleColumns.get(i));
+     int[] indices = new int[visibleColumns.size()];
+     for (int i = 0; i < indices.length; i++) {
+       indices[i] = getColumnPosition(kind,visibleColumns.get(i));
      }
-     return cols;
+     return indices;
   }
 
   /**
