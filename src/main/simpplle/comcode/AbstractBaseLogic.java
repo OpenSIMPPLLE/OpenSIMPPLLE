@@ -214,19 +214,19 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Hides a visible column and flags a change.
+   * Hides a visible column.
    *
    * @param kind A kind of logic
-   * @param col The index of a column to hide
+   * @param columnIndex The index of a column to hide
    */
-  public void removeVisibleColumn(String kind, int col) {
-    String name = getColumnIdName(kind,col);
-    ArrayList<String> values = visibleColumnsHm.get(kind);
-    if (values == null) { return; }
-
-    if (values.contains(name)) {
-      values.remove(name);
-      SystemKnowledge.markChanged(sysKnowKind);
+  public void removeVisibleColumn(String kind, int columnIndex) {
+    String columnName = getColumnIdName(kind,columnIndex);
+    ArrayList<String> visibleColumns = visibleColumnsHm.get(kind);
+    if (visibleColumns != null) {
+      if (visibleColumns.contains(columnName)) {
+        visibleColumns.remove(columnName);
+        SystemKnowledge.markChanged(sysKnowKind);
+      }
     }
   }
 
