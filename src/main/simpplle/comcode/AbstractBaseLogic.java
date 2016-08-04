@@ -579,24 +579,27 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Reads visible columns for each kind of logic from an object input stream.
+   * Reads visible columns from an object input stream.
    *
    * @param in An object input stream
    * @throws IOException
    * @throws ClassNotFoundException
    */
-  private void readVisibleColumnInfo(ObjectInputStream in) throws IOException, ClassNotFoundException
-  {
-    int size = in.readInt();
-    for (int i = 0; i < size; i++) {
-      String key = (String) in.readObject();
-      visibleColumnsHm.put(key, (ArrayList<String>) in.readObject());
-      ArrayList<String> list = visibleColumnsHm.get(key);
-      if (list != null) {
-        for (int l = 0; l < list.size(); l++) {
-          int col = getColumnPosition(key,list.get(l));
-          if (col > BaseLogic.LAST_COL) {
-            addVisibleColumn(key,list.get(l));
+  private void readVisibleColumnInfo(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    int numKinds = in.readInt();
+    for (int i = 0; i < numKinds; i++) {
+      String kind = (String) in.readObject();
+      visibleColumnsHm.put(kind, (ArrayList<String>) in.readObject());
+      ArrayList<String> columnNames = visibleColumnsHm.get(kind);
+      if (columnNames != null) {
+        for (String name : columnNames) {
+          int index = getColumnPosition(kind,name);
+          if (index > BaseLogic.LAST_COL) {
+            addVisibleColumn(kind,name);
+          } else if (index < 0) {
+            // column does not exist
+          } else {
+            // column is a default column from BaseLogic
           }
         }
       }
