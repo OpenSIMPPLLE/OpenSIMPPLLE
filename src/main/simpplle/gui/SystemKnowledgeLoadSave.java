@@ -495,15 +495,24 @@ public class SystemKnowledgeLoadSave extends JDialog {
       if (save) {
         SystemKnowledge.saveUserKnowledge(loadSaveFile);
         JOptionPane.showMessageDialog(this,
-                                      "File saved successfully.",
+                                      "Successfully saved user knowledge.",
                                       "",
                                       JOptionPane.INFORMATION_MESSAGE);
       } else {
         SystemKnowledge.loadUserKnowledge(loadSaveFile);
-        JOptionPane.showMessageDialog(this,
-                                      "File loaded successfully.",
-                                      "",
-                                      JOptionPane.INFORMATION_MESSAGE);
+        java.util.List<String> errors = SystemKnowledge.getUnhandledErrorMessages();
+        if (errors.size() == 0) {
+          JOptionPane.showMessageDialog(this,
+                                        "Successfully loaded user knowledge.",
+                                        "",
+                                        JOptionPane.INFORMATION_MESSAGE);
+        } else {
+          String message = "The file was loaded with errors:";
+          for (String error : errors) {
+            message += "\n • " + error;
+          }
+          JOptionPane.showMessageDialog(this,message,"",JOptionPane.ERROR_MESSAGE);
+        }
       }
 
       dialogCanceled = false;

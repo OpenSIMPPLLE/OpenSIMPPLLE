@@ -589,17 +589,16 @@ public abstract class AbstractBaseLogic {
     int numKinds = in.readInt();
     for (int i = 0; i < numKinds; i++) {
       String kind = (String) in.readObject();
+      if (!columns.containsKey(kind)) {
+        SystemKnowledge.addUnhandledErrorMessage(kind + " is not a legal process and has been ignored");
+      }
       visibleColumnsHm.put(kind, (ArrayList<String>) in.readObject());
       ArrayList<String> columnNames = visibleColumnsHm.get(kind);
       if (columnNames != null) {
         for (String name : columnNames) {
           int index = getColumnPosition(kind,name);
           if (index > BaseLogic.LAST_COL) {
-            addVisibleColumn(kind,name);
-          } else if (index < 0) {
-            // column does not exist
-          } else {
-            // column is a default column from BaseLogic
+            addVisibleColumn(kind, name);
           }
         }
       }

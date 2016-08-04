@@ -9,6 +9,8 @@
 package simpplle.comcode;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.jar.*;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -221,6 +223,11 @@ public class SystemKnowledge {
    * The file extension appended to a file containing a collection of knowledge.
    */
   private static final String SYSKNOW_FILEEXT = "sysknowledge";
+
+  /**
+   * An array of unhandled error messages reported during the last load.
+   */
+  private static List<String> unhandledErrorMessages = new ArrayList<>();
 
   /**
    * Returns the kind of knowledge represented by a knowledge file.
@@ -699,6 +706,24 @@ public class SystemKnowledge {
   }
 
   /**
+   * Adds an unhandled error message.
+   *
+   * @param message An error message
+   */
+  public static void addUnhandledErrorMessage(String message) {
+    unhandledErrorMessages.add(message);
+  }
+
+  /**
+   * Returns a list of unhandled errors from the last load routine.
+   *
+   * @return A list of messages
+   */
+  public static List<String> getUnhandledErrorMessages() {
+    return unhandledErrorMessages;
+  }
+
+  /**
    * Returns the aquatic pathway that was loaded most recently.
    *
    * @return A LTA valley segment group
@@ -1113,6 +1138,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadSampleArea(Area area) throws SimpplleError {
+    unhandledErrorMessages.clear();
     String path = area.getPath();
     try {
       File filename = Simpplle.getCurrentZone().getSystemKnowledgeFile();
@@ -1145,6 +1171,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadAquaticPathway(String groupName) throws SimpplleError {
+    unhandledErrorMessages.clear();
     loadPathway(groupName, false);
   }
 
@@ -1155,6 +1182,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadVegetativePathway(String groupName) throws SimpplleError {
+    unhandledErrorMessages.clear();
     loadPathway(groupName, true);
   }
 
@@ -1166,6 +1194,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   private static void loadPathway(String htGrpName, boolean isVegetative) throws SimpplleError {
+
     RegionalZone zone = Simpplle.getCurrentZone();
 
     String groupFileOld = htGrpName;
@@ -1216,6 +1245,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadAllAquaticPathways() throws SimpplleError {
+    unhandledErrorMessages.clear();
     loadAllPathways(false);
   }
 
@@ -1225,6 +1255,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadAllVegetativePathways() throws SimpplleError {
+    unhandledErrorMessages.clear();
     loadAllPathways(true);
   }
 
@@ -1282,6 +1313,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadUserKnowledge(File file, Kinds kind) throws SimpplleError {
+    unhandledErrorMessages.clear();
     for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
     }
@@ -1297,6 +1329,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadUserKnowledge(File file) throws SimpplleError {
+    unhandledErrorMessages.clear();
     loadKnowledge(file, false, true, false);
   }
 
@@ -1307,6 +1340,8 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadZoneKnowledge(Kinds kind) throws SimpplleError {
+
+    unhandledErrorMessages.clear();
 
     for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
@@ -1331,6 +1366,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadZoneKnowledge(File file) throws SimpplleError {
+    unhandledErrorMessages.clear();
     loadKnowledge(file, true, true, false);
   }
 
