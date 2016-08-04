@@ -1,4 +1,4 @@
-# OpenSIMPPLLE #
+# OpenSIMPPLLE
 
 OpenSIMPPLLE is a spatially explicit, landscape level, dynamic simulation
 system that is designed as a management tool to facilitate the use of landscape 
@@ -33,7 +33,7 @@ Double Click OpenSIMPPLLE.jar
 
 Run `java -jar OpenSIMPPLLE.jar` from the command line in the proper directory.
 
-#### Ubuntu 
+### Ubuntu
 
 Right-click OpenSIMPPLLE.jar, go to "Open With", and select "Oracle Java Runtime". If this is 
 not an option select "Other Application", "Show Other Applications", then select 
