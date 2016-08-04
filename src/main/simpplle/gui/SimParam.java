@@ -1003,10 +1003,10 @@ public class SimParam extends JDialog {
       outfileText.setText(outputFile.getPath());
       databaseWriteCB.setEnabled(true);
       gisUpdateSpreadCB.setEnabled(true);
-      gisUpdateSpreadCB.setSelected(true);
+      gisUpdateSpreadCB.setSelected(false);
 
       writeAccessFilesCB.setEnabled(true);
-      writeAccessFilesCB.setSelected(false);
+      writeAccessFilesCB.setSelected(true);
       writeAreaProbFilesCB.setEnabled(true);
     }
     else {
