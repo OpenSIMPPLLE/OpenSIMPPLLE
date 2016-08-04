@@ -125,10 +125,15 @@ public abstract class AbstractBaseLogic {
    *
    * @param kind A kind of logic
    * @param columnName A column name
-   * @return The index of the column
+   * @return The index of the column, or -1 if it does not exist
    */
-  public int getColumnPosition(String kind,String columnName) {
-    return columns.get(kind).indexOf(columnName);
+  public int getColumnPosition(String kind, String columnName) {
+    ArrayList<String> columnNames = columns.get(kind);
+    if (columnNames != null) {
+      return columnNames.indexOf(columnName);
+    } else {
+      return -1;
+    }
   }
 
   /**
@@ -136,10 +141,15 @@ public abstract class AbstractBaseLogic {
    *
    * @param kind A kind of logic
    * @param columnIndex A column index
-   * @return The name of the column
+   * @return The name of the column, or an empty string if it does not exist
    */
-  public String getColumnIdName(String kind,int columnIndex) {
-    return columns.get(kind).get(columnIndex);
+  public String getColumnIdName(String kind, int columnIndex) {
+    ArrayList<String> columnNames = columns.get(kind);
+    if (columnNames != null) {
+      return columnNames.get(columnIndex);
+    } else {
+      return "";
+    }
   }
 
   /**
@@ -156,103 +166,101 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   *
+   * Marks all columns as visible.
    *
    * @param kind A kind of logic
    */
   public void addVisibleColumnAll(String kind) {
-    for (int i=0; i<columns.get(kind).size(); i++) {
+    for (int i = 0; i < columns.get(kind).size(); i++) {
       addVisibleColumn(kind,i);
     }
   }
 
   /**
-   *
+   * Marks a column as visible.
    *
    * @param kind A kind of logic
-   * @param name
+   * @param columnName The name of the column to mark as visible
    */
-  public void addVisibleColumn(String kind, String name) {
-    int col = getColumnPosition(kind,name);
-    addVisibleColumn(kind,col,name);
+  public void addVisibleColumn(String kind, String columnName) {
+    addVisibleColumn(kind,getColumnPosition(kind,columnName));
   }
 
   /**
-   *
-   *
-   * @param kind A kind of logic
-   * @param col
-   */
-  public void addVisibleColumn(String kind, int col) {
-    String name = getColumnIdName(kind,col);
-    addVisibleColumn(kind,col,name);
-  }
-
-  /**
-   *
+   * Marks a column as visible.
    *
    * @param kind A kind of logic
-   * @param col
-   * @param name A column name
+   * @param columnIndex The index of the column to mark as visible
    */
-  public void addVisibleColumn(String kind, int col, String name) {
-    ArrayList<String> values = visibleColumnsHm.get(kind);
-    if (values == null) {
-      values = new ArrayList<>();
-      visibleColumnsHm.put(kind,values);
+  public void addVisibleColumn(String kind, int columnIndex) {
+    ArrayList<String> visibleColumns = visibleColumnsHm.get(kind);
+    if (visibleColumns == null) {
+      visibleColumns = new ArrayList<>();
+      visibleColumnsHm.put(kind,visibleColumns);
     }
-    if (!values.contains(name)) {
-      int insertPos = findVisibleColumnInsertPosition(kind,col,values);
-      values.add(insertPos,name);
+    String columnName = getColumnIdName(kind,columnIndex);
+    if (!visibleColumns.contains(columnName)) {
+      int insertPos = visibleColumns.size();
+      for (int i = 0; i < visibleColumns.size(); i++) {
+        int listCol = getColumnPosition(kind,visibleColumns.get(i));
+        if (listCol > columnIndex) {
+          insertPos = i;
+          break;
+        }
+      }
+      visibleColumns.add(insertPos,columnName);
       SystemKnowledge.markChanged(sysKnowKind);
     }
   }
 
   /**
-   * Hides a visible column and flags a change.
+   * Hides a visible column.
    *
    * @param kind A kind of logic
-   * @param col The index of a column to hide
+   * @param columnIndex The index of a column to hide
    */
-  public void removeVisibleColumn(String kind, int col) {
-    String name = getColumnIdName(kind,col);
-    ArrayList<String> values = visibleColumnsHm.get(kind);
-    if (values == null) { return; }
-
-    if (values.contains(name)) {
-      values.remove(name);
-      SystemKnowledge.markChanged(sysKnowKind);
+  public void removeVisibleColumn(String kind, int columnIndex) {
+    String columnName = getColumnIdName(kind,columnIndex);
+    ArrayList<String> visibleColumns = visibleColumnsHm.get(kind);
+    if (visibleColumns != null) {
+      if (visibleColumns.contains(columnName)) {
+        visibleColumns.remove(columnName);
+        SystemKnowledge.markChanged(sysKnowKind);
+      }
     }
   }
 
   /**
-   * Returns an array of visible column indices from a logic table.
+   * Returns an array of visible column indices.
    *
    * @param kind A kind of logic
-   * @return An array of column indices
+   * @return Indices of visible columns
    */
   public int[] getVisibleColumns(String kind) {
      ArrayList<String> visibleColumns = visibleColumnsHm.get(kind);
-
-     int[] cols = new int[visibleColumns.size()];
-     for (int i=0; i<cols.length; i++) {
-       cols[i] = getColumnPosition(kind,visibleColumns.get(i));
+     int[] indices = new int[visibleColumns.size()];
+     for (int i = 0; i < indices.length; i++) {
+       indices[i] = getColumnPosition(kind,visibleColumns.get(i));
      }
-     return cols;
+     return indices;
   }
 
   /**
-   * Returns a map of logic table names to names of visible columns.
-   */
-  public HashMap<String,ArrayList<String>> getVisibleColumnsHm() {
-    return visibleColumnsHm;
-  }
-
-  /**
-   * Determines if a column is visible in a logic table.
+   * Returns the name of a visible column.
    *
    * @param kind A kind of logic
-   * @param col The name of a column
+   * @param columnIndex The index of the visible column
+   * @return The name of the visible column
+   */
+  public String getVisibleColumnName(String kind, int columnIndex) {
+    return visibleColumnsHm.get(kind).get(columnIndex);
+  }
+
+  /**
+   * Determines if a column is visible.
+   *
+   * @param kind A kind of logic
+   * @param col The index of the column to check
    * @return True if the column is visible
    */
   public boolean isVisibleColumn(String kind, int col) {
@@ -263,24 +271,6 @@ public abstract class AbstractBaseLogic {
     }
     int index = visibleColumns.indexOf(name);
     return (index != -1);
-  }
-
-  /**
-   *
-   *
-   * @param kind A kind of logic
-   * @param col
-   * @param values An array of column names
-   * @return A new column index
-   */
-  protected int findVisibleColumnInsertPosition(String kind, int col, ArrayList<String> values) {
-    int i=0;
-    for (String name : values) {
-      int listCol = getColumnPosition(kind,name);
-      if (listCol > col) { return i; }
-      i++;
-    }
-    return values.size();
   }
 
   /**
@@ -589,24 +579,26 @@ public abstract class AbstractBaseLogic {
   }
 
   /**
-   * Reads visible columns for each kind of logic from an object input stream.
+   * Reads visible columns from an object input stream.
    *
    * @param in An object input stream
    * @throws IOException
    * @throws ClassNotFoundException
    */
-  private void readVisibleColumnInfo(ObjectInputStream in) throws IOException, ClassNotFoundException
-  {
-    int size = in.readInt();
-    for (int i = 0; i < size; i++) {
-      String key = (String) in.readObject();
-      ArrayList<String> list = visibleColumnsHm.get(key);
-      visibleColumnsHm.put(key, (ArrayList<String>) in.readObject());
-      if (list != null) {
-        for (int l = 0; l < list.size(); l++) {
-          int col = getColumnPosition(key,list.get(l));
-          if (col > BaseLogic.LAST_COL) {
-            addVisibleColumn(key,list.get(l));
+  private void readVisibleColumnInfo(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    int numKinds = in.readInt();
+    for (int i = 0; i < numKinds; i++) {
+      String kind = (String) in.readObject();
+      if (!columns.containsKey(kind)) {
+        SystemKnowledge.addUnhandledErrorMessage(kind + " is not a legal process and has been ignored");
+      }
+      visibleColumnsHm.put(kind, (ArrayList<String>) in.readObject());
+      ArrayList<String> columnNames = visibleColumnsHm.get(kind);
+      if (columnNames != null) {
+        for (String name : columnNames) {
+          int index = getColumnPosition(kind,name);
+          if (index > BaseLogic.LAST_COL) {
+            addVisibleColumn(kind, name);
           }
         }
       }
