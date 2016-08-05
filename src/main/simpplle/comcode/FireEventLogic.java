@@ -104,21 +104,18 @@ public class FireEventLogic extends BaseLogic {
     } else {
       return;
     }
-
     super.addRow(insertPos,kind,logicData);
   }
 
   public void duplicateRow(int row,int insertPos, String kind) {
 
     AbstractLogicData logicData = getData(kind).get(row);
+
     if (logicData == null) {
       return;
     }
-    
     AbstractLogicData newLogicData = logicData.duplicate();
-
     super.addRow(insertPos,kind,newLogicData);
-
   }
 
   public void addLegacyData(FireResistance fireResist,
@@ -413,7 +410,6 @@ public class FireEventLogic extends BaseLogic {
     for (int i = 0; i < getData(SPREAD_STR).size(); i++) {
 
       FireSpreadLogicData logicData = (FireSpreadLogicData)logicDataArray.get(i);
-
       ProcessType fireType = logicData.getFireTypeIfMatch(processType, resistance, fromEvu, evu, toLifeform);
 
       if (fireType != null) {
@@ -428,18 +424,13 @@ public class FireEventLogic extends BaseLogic {
 
         VegSimStateData state = evu.getState(toLifeform);
         state.setFireSpreadRuleIndex(i);
-
         return fireType;
-
       }
     }
-
     if (Simulation.getInstance().isDoSimLoggingFile()) {
       logSpread(evu, fromEvu, toLifeform.toString(), "No Matching Rules for Spread", -1);
     }
-
     return null;
-
   }
 
   /**
@@ -469,18 +460,13 @@ public class FireEventLogic extends BaseLogic {
     for (int i = 0; i < getData(TYPE_STR).size(); i++) {
 
       FireTypeLogicData logicData = (FireTypeLogicData)getData(TYPE_STR).get(i);
-
       ProcessType processType = logicData.getFireTypeIfMatch(resistance, evu,lifeform);
 
       if (processType != null) {
-
         return processType;
-
       }
     }
-
     return null;
-
   }
 
   public boolean isWithinMaxFireSpottingDistance(Evu fromEvu, Evu toEvu) {
@@ -506,6 +492,3 @@ public class FireEventLogic extends BaseLogic {
     return -1;
   }
 }
-
-
-

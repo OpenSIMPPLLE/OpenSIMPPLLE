@@ -359,21 +359,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
             eventStopReason = EventStop.LINE;
 
             if (Simulation.getInstance().isDoSimLoggingFile()) {
-
-              PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-
-              int originUnitId = root.data.getUnit().getId();
-
-              logOut.printf("Time: %d, Origin Unit: %d Event stopped due to line production exceeding perimeter size %n",
-                  Simulation.getCurrentTimeStep(),originUnitId);
-
-              logOut.printf("Time: %d, Origin Unit: %d, Line Produced: %d, Event Perimeter: %d %n",
-                  ts,originUnitId,totalLineProduced,firePerimeter);
-
+              logFireLineStop(ts, firePerimeter);
             }
-
             return;
-
           }
 
           int sideLength = root.data.getUnit().getSideLength();
@@ -386,9 +374,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
             theUnit.suppressFire(false);
 
             if (Simulation.getInstance().isDoSimLoggingFile()) {
-              PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-              logOut.printf("Time: %d, Origin Unit %d further spread from Unit %d suppressed due to line production: %n",
-                  Simulation.getCurrentTimeStep(), root.data.getUnit().getId(), theUnit.getId());
+              logFireLineSuppression(theUnit);
             }
 
             double extraLine = newLine - sideLength;
@@ -402,9 +388,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
               lineSuppUnits.add(lowAdj.getId());
 
               if (Simulation.getInstance().isDoSimLoggingFile()) {
-                PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-                logOut.printf("Time: %d, Origin Unit %d spread into Unit %d suppressed due to line production: %n",
-                    Simulation.getCurrentTimeStep(), root.data.getUnit().getId(), lowAdj.getId());
+                logFireLineSuppression(lowAdj);
               }
             }
           } else {
@@ -415,23 +399,18 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     }
 
     FireEvent.currentEvent = this;
-
     tmpToUnits.clear();
 
     switch (spreadModel) {
-
       case SIMPPLLE:
         doSimpplleSpread(fromUnit,tmpToUnits);
         break;
-
       case KEANE:
         doKeaneSpread(fromUnit,tmpToUnits);
         break;
-
     }
 
     doFireSpotting(fromUnit,tmpToUnits);
-
     addSpreadEvent(spreadingNode,tmpToUnits,lifeform);
 
     if (spreadQueue.size() == 0) {
@@ -440,23 +419,39 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       eventStopReason = EventStop.OTHER;
 
       if (Simulation.getInstance().isDoSimLoggingFile()) {
-
-        PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-        int originUnitId = root.data.getUnit().getId();
-        int firePerimeter = calculateApproxPerimeter();
-
-        logOut.printf("Time: %d, Origin Unit: %d, Nowhere left to Spread, Line Produced: %d, Event Perimeter: %d %n",
-            Simulation.getCurrentTimeStep(),originUnitId,totalLineProduced,firePerimeter);
-
+        logFireEnd(Simulation.getCurrentTimeStep());
       }
-
       return;
-
     }
 
     FireEvent.currentEvent = null;
     Area.currentLifeform = null;
+  }
 
+  private void logFireEnd(int timeStep){
+    PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
+    int originUnitId = root.data.getUnit().getId();
+    int firePerimeter = calculateApproxPerimeter();
+    logOut.printf("Time: %d, Origin Unit: %d, Nowhere left to Spread, Line Produced: %d, Event Perimeter: %d %n",
+        timeStep, originUnitId, totalLineProduced, firePerimeter);
+  }
+
+  private void logFireLineSuppression(Evu lowAdj){
+    PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
+    logOut.printf("Time: %d, Origin Unit %d spread into Unit %d suppressed due to line production: %n",
+        Simulation.getCurrentTimeStep(), root.data.getUnit().getId(), lowAdj.getId());
+    //TODO: use same message for both?
+//    logOut.printf("Time: %d, Origin Unit %d further spread from Unit %d suppressed due to line production: %n",
+//        Simulation.getCurrentTimeStep(), root.data.getUnit().getId(), theUnit.getId());
+  }
+
+  private void logFireLineStop(int timeStep, int firePerimeter){
+    PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
+    int originUnitId = root.data.getUnit().getId();
+    logOut.printf("Time: %d, Origin Unit: %d Event stopped due to line production exceeding perimeter size %n",
+        Simulation.getCurrentTimeStep(),originUnitId);
+    logOut.printf("Time: %d, Origin Unit: %d, Line Produced: %d, Event Perimeter: %d %n",
+        timeStep, originUnitId, totalLineProduced, firePerimeter);
   }
 
   /**

@@ -132,7 +132,7 @@ public final class JSimpplle {
 
   /**
    * Operating system check to ensure current operating system .equals user-entered operating system.  
-   * @param osname String with operating system name choosen by software user.  
+   * @param osname String with operating system name chosen by software user.
    * @return True if current operating system and operating system name are same, false otherwise.  
    *@link http://docs.oracle.com/javase/7/docs/api/java/lang/System.html#setProperties(java.util.Properties)
    */
@@ -141,12 +141,11 @@ public final class JSimpplle {
   }
 
   /** 
-   * Returns true if the operating system key is Windows.
-   * @return True if index of windows does not equal -1.  
+   * @return true if the operating system key is Windows.
    * @link 
    */
   public static boolean isWindowsOS() {
-    return (System.getProperty("os.name").indexOf("Windows") != -1);
+    return (System.getProperty("os.name").contains("Windows"));
   }
 
   /**
