@@ -35,8 +35,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private Random       random;
   private File         outputFile;
   private float        discount;
-  private long         randomSeed;
-  private boolean      fixedRandom;
+  private long         seed;
+  private boolean      fixedSeed;
   private boolean      trackSpecialArea;
   private boolean      trackOwnership;
   private boolean      yearlySteps;
@@ -102,7 +102,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     random                = null;
     outputFile            = null;
     discount              = 1.0f;
-    fixedRandom           = false;
+    fixedSeed             = false;
     trackSpecialArea      = false;
     trackOwnership        = false;
     yearlySteps           = false; // means decade time steps are the default
@@ -113,13 +113,15 @@ public final class Simulation implements SimulationTypes, Externalizable {
     inSimulation          = false;
     invasiveSpeciesKind   = InvasiveKind.NONE;
 
+    /* Uncomment if we want to use the System Property for a Fixed Seed
     String value = System.getProperty("simpplle.fixedRandom");
     if (value != null && value.equalsIgnoreCase("enabled")) {
-      fixedRandom = true;
-      randomSeed = 42;
+      fixedSeed = true;
+      seed = 42;
     } else {
-      fixedRandom = false;
+      fixedSeed = false;
     }
+    */
   }
 
   public static void setProbPrecision(int digits) {
@@ -167,7 +169,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
                      boolean doProbArcFiles,
                      boolean doAllStatesSummary,
                      boolean doTrackingSpeciesReport,
-                     boolean doGisFiles) {
+                     boolean doGisFiles,
+                     boolean fixedSeed,
+                     long seed) {
 
     this();
 
@@ -188,6 +192,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
     this.doAllStatesSummary      = doAllStatesSummary;
     this.doTrackingSpeciesReport = doTrackingSpeciesReport;
     this.doGisFiles              = doGisFiles;
+    this.fixedSeed               = fixedSeed;
+    this.seed                    = seed;
 
     if (simMethod.toUpperCase().equals("STOCHASTIC")) {
       simulationMethod = STOCHASTIC;
@@ -1049,8 +1055,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
    */
   private void doFuture() throws SimpplleError {
 
-    if (fixedRandom) {
-      random = new Random(randomSeed);
+    //Use of Fixed Seed
+    if (fixedSeed) {
+      random = new Random(seed);
     } else {
       random = new Random();
     }
