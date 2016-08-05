@@ -102,7 +102,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     random                = null;
     outputFile            = null;
     discount              = 1.0f;
-    fixedSeed           = false;
+    fixedSeed             = false;
     trackSpecialArea      = false;
     trackOwnership        = false;
     yearlySteps           = false; // means decade time steps are the default
@@ -113,13 +113,13 @@ public final class Simulation implements SimulationTypes, Externalizable {
     inSimulation          = false;
     invasiveSpeciesKind   = InvasiveKind.NONE;
 
-    /*
+    /* Uncomment if we want to use the System Property for a Fixed Seed
     String value = System.getProperty("simpplle.fixedRandom");
     if (value != null && value.equalsIgnoreCase("enabled")) {
-      fixedRandom = true;
-      randomSeed = 42;
+      fixedSeed = true;
+      seed = 42;
     } else {
-      fixedRandom = false;
+      fixedSeed = false;
     }
     */
   }
@@ -1057,9 +1057,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     //Use of Fixed Seed
     if (fixedSeed) {
-      if(seed != -1) {
-        random = new Random(seed);
-      }
+      random = new Random(seed);
     } else {
       random = new Random();
     }

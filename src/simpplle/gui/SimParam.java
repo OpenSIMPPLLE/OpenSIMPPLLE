@@ -127,7 +127,6 @@ public class SimParam extends JDialog {
     numSimText.setBackground(Color.white);
     numSimText.setSelectionColor(Color.blue);
     numSimText.setPreferredSize(new Dimension(100,27));
-    numSimText.setNextFocusableComponent(numStepText);
     numSimText.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         numSimText_actionPerformed(e);
@@ -159,7 +158,6 @@ public class SimParam extends JDialog {
     numStepText.setBackground(Color.white);
     numStepText.setSelectionColor(Color.blue);
     numStepText.setPreferredSize(new Dimension(100,27));
-    numStepText.setNextFocusableComponent(fireSuppCB);
     numStepText.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         numStepText_actionPerformed(e);
@@ -261,7 +259,6 @@ public class SimParam extends JDialog {
     ownershipCB.setText("Track Ownership");
     ownershipCB.setFont(monospaced);
     ownershipCB.setEnabled(false);
-    ownershipCB.setNextFocusableComponent(specialAreaCB);
     ownershipCB.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(ItemEvent e) {
         ownershipCB_itemStateChanged(e);
@@ -278,7 +275,6 @@ public class SimParam extends JDialog {
 
     fireSuppCB.setText("Fire Suppression");
     fireSuppCB.setFont(monospaced);
-    fireSuppCB.setNextFocusableComponent(discountCB);
     fireSuppCB.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(ItemEvent e) {
         fireSuppCB_itemStateChanged(e);
@@ -313,14 +309,12 @@ public class SimParam extends JDialog {
     discountText.setText("1.04");
     discountText.setEnabled(false);
     discountText.setBackground(Color.white);
-    discountText.setNextFocusableComponent(ownershipCB);
     discountText.setSelectionColor(Color.blue);
     discountText.setColumns(4);
 
     discountCB.setText("Discounted Cost");
     discountCB.setFont(monospaced);
     discountCB.setEnabled(false);
-    discountCB.setNextFocusableComponent(discountText);
     discountCB.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(ItemEvent e) {
         discountCB_itemStateChanged(e);
@@ -339,14 +333,12 @@ public class SimParam extends JDialog {
     fixedSeedText.setText("0");
     fixedSeedText.setEnabled(false);
     fixedSeedText.setBackground(Color.white);
-    fixedSeedText.setNextFocusableComponent(ownershipCB);
     fixedSeedText.setSelectionColor(Color.blue);
     fixedSeedText.setColumns(4);
 
     fixedSeedCB.setText("Fixed Seed");
     fixedSeedCB.setFont(monospaced);
     fixedSeedCB.setEnabled(true);
-    fixedSeedCB.setNextFocusableComponent(discountText);
     fixedSeedCB.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(ItemEvent e) {
         fixedSeedCB_itemStateChanged(e);
@@ -392,7 +384,6 @@ public class SimParam extends JDialog {
     /* Results Output File Chooser */
 
     outfileButton.setMinimumSize(new Dimension(40, 27));
-    outfileButton.setNextFocusableComponent(outfileText);
     outfileButton.setPreferredSize(new Dimension(40, 27));
     outfileButton.setToolTipText("Set the output files prefix");
     outfileButton.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -404,7 +395,6 @@ public class SimParam extends JDialog {
     });
 
     outfileText.setBackground(Color.white);
-    outfileText.setNextFocusableComponent(allStatesFilePB);
     outfileText.setEditable(false);
     outfileText.setSelectionColor(Color.blue);
     outfileText.setColumns(40);
@@ -503,7 +493,6 @@ public class SimParam extends JDialog {
     tsInMemoryText.setEnabled(false);
     tsInMemoryText.setText("10");
     tsInMemoryText.setColumns(4);
-    tsInMemoryText.setNextFocusableComponent(allStatesFilePB);
     tsInMemoryText.addFocusListener(new FocusAdapter() {
       public void focusLost(FocusEvent e) {
         tsInMemoryText_focusLost(e);
@@ -557,7 +546,6 @@ public class SimParam extends JDialog {
 
     allStatesFilePB.setIcon(new ImageIcon(simpplle.gui.SimParam.class.getResource("images/save.gif")));
     allStatesFilePB.setMinimumSize(new Dimension(40, 27));
-    allStatesFilePB.setNextFocusableComponent(runButton);
     allStatesFilePB.setPreferredSize(new Dimension(40, 27));
     allStatesFilePB.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -637,7 +625,6 @@ public class SimParam extends JDialog {
     /* Button Panel */
 
     runButton.setText("Run Simulation");
-    runButton.setNextFocusableComponent(cancelButton);
     runButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         runButton_actionPerformed(e);
@@ -790,7 +777,8 @@ public class SimParam extends JDialog {
                    JSimpplle.endl +
                    "  - Number of Simulations" + JSimpplle.endl +
                    "  - Number of Time Steps" + JSimpplle.endl +
-                   "  - Fire Suppression Cost Discount.";
+                   "  - Fire Suppression Cost Discount."+ JSimpplle.endl +
+                   "  - Fixed Seed.";
       JOptionPane.showMessageDialog(this,msg,"Invalid value",
                                     JOptionPane.ERROR_MESSAGE);
       return false;
