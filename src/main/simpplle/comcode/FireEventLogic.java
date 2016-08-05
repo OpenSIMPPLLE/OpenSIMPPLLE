@@ -419,10 +419,7 @@ public class FireEventLogic extends BaseLogic {
       if (fireType != null) {
 
         if (Simulation.getInstance().isDoSimLoggingFile()) {
-          PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-          int ts = Simulation.getCurrentTimeStep();
-          logOut.printf("Time: %d, Spread From: %d, To: %d, To Life: %s, Type: %s, Rule#: %d%n",
-              ts, fromEvu.getId(), evu.getId(), toLifeform.toString(), fireType.toString(), i);
+          logSpread(evu, fromEvu, toLifeform.toString(), fireType.toString(), i);
         }
 
         if (!fireType.isFireProcess()) { // fireProcess is ProcessType.NONE
@@ -438,14 +435,26 @@ public class FireEventLogic extends BaseLogic {
     }
 
     if (Simulation.getInstance().isDoSimLoggingFile()) {
-      PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-      int ts = Simulation.getCurrentTimeStep();
-      logOut.printf("Time: %d, Spread From: %d, To: %d, To Life: %s, No Matching Rules for Spread%n",
-          ts, fromEvu.getId(), evu.getId(), toLifeform.toString());
+      logSpread(evu, fromEvu, toLifeform.toString(), "No Matching Rules for Spread", -1);
     }
 
     return null;
 
+  }
+
+  /**
+   * Helper method, log fire type data to simulation log
+   * @param evu Evu
+   * @param fromEvu Evu that fire is spreading from
+   * @param toLifeformStr LifeForm in String form
+   * @param fireTypeStr Process Type in string form, will be a warming message if no rule is found
+   * @param index
+   */
+  private void logSpread(Evu evu, Evu fromEvu, String toLifeformStr, String fireTypeStr, int index){
+    PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
+    int ts = Simulation.getCurrentTimeStep();
+    logOut.println(ts + "," + fromEvu.getId() + "," + evu.getId() + "," + toLifeformStr + "," + fireTypeStr
+        + "," + index);
   }
 
   /**
