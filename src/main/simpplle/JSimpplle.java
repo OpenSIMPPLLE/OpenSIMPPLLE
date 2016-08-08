@@ -48,6 +48,7 @@ public final class JSimpplle {
 
   private static File homeDirectory;
   private static String argHomeDirectory;
+  private static final String userPropertiesFile = "opensimpplle.properties";
 
   public static final String MAC_OS_X = "Mac OS X";
 
@@ -336,7 +337,7 @@ public final class JSimpplle {
   
   public static void readPropertiesFile() {
     String homeDir = System.getProperty("user.home");
-    File   file = new File(homeDir,"opensimpplle.properties");
+    File   file = new File(homeDir, userPropertiesFile);
     BufferedReader fin;
 
     setWorkingDir(new File(homeDir));
@@ -414,7 +415,7 @@ public final class JSimpplle {
    */
   public static void writePropertiesFile() {
     String dir = System.getProperty("user.home");
-    File   file = new File(dir,"opensimpplle.properties");
+    File   file = new File(dir, userPropertiesFile);
     PrintWriter fout;
 
     try {
