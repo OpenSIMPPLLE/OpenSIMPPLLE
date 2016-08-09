@@ -432,13 +432,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
     int originUnitId = root.data.getUnit().getId();
     int firePerimeter = calculateApproxPerimeter();
-    logOut.printf("Time: %d, Origin Unit: %d, Nowhere left to Spread, Line Produced: %d, Event Perimeter: %d %n",
+    logOut.printf("%d,%d, Nowhere left to Spread, Line Produced: %d, Event Perimeter: %d %n",
         timeStep, originUnitId, totalLineProduced, firePerimeter);
   }
 
   private void logFireLineSuppression(Evu lowAdj){
     PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-    logOut.printf("Time: %d, Origin Unit %d spread into Unit %d suppressed due to line production: %n",
+    logOut.printf("%d,%d, Spread into Unit %d suppressed due to line production: %n",
         Simulation.getCurrentTimeStep(), root.data.getUnit().getId(), lowAdj.getId());
     //TODO: use same message for both?
 //    logOut.printf("Time: %d, Origin Unit %d further spread from Unit %d suppressed due to line production: %n",
@@ -448,9 +448,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private void logFireLineStop(int timeStep, int firePerimeter){
     PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
     int originUnitId = root.data.getUnit().getId();
-    logOut.printf("Time: %d, Origin Unit: %d Event stopped due to line production exceeding perimeter size %n",
+    logOut.printf("%d,%d, Event stopped due to line production exceeding perimeter size %n",
         Simulation.getCurrentTimeStep(),originUnitId);
-    logOut.printf("Time: %d, Origin Unit: %d, Line Produced: %d, Event Perimeter: %d %n",
+    logOut.printf("%d,%d, Line Produced: %d, Event Perimeter: %d %n",
         timeStep, originUnitId, totalLineProduced, firePerimeter);
   }
 
