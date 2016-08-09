@@ -71,6 +71,7 @@ public class SimpplleMain extends JFrame {
   JMenu menuViewResult = new JMenu();
   JMenu menuHelp = new JMenu();
   JMenuItem menuFileWorkDir = new JMenuItem();
+  JMenuItem menuSettings = new JMenuItem();
   JMenu menuUtility = new JMenu();
   JMenuItem menuUtilityReset = new JMenuItem();
   JMenuItem menuFileSave = new JMenuItem();
@@ -339,12 +340,10 @@ public class SimpplleMain extends JFrame {
     menuHelp.setText("Help");
     menuFileWorkDir.setText("Set Working Directory ...");
     menuFileWorkDir.setActionCommand("Set Working Directory");
-    menuFileWorkDir.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        menuFileWorkDir_actionPerformed(e);
-      }
-    });
+    menuFileWorkDir.addActionListener(e -> menuFileWorkDir_actionPerformed(e));
+    menuSettings.setText("Preferences");
+    menuSettings.setActionCommand("Preferences");
+    menuSettings.addActionListener(e -> actionMenuSettings(e));
     menuUtility.setText("Utilities");
     menuUtilityReset.setEnabled(false);
     menuUtilityReset.setToolTipText("Removes Simulation and restores Area to initial conditions");
@@ -1124,6 +1123,7 @@ public class SimpplleMain extends JFrame {
     menuFile.addSeparator();
     menuFile.add(menuFileSaveZone);
     menuFile.addSeparator();
+    menuFile.add(menuSettings);
     menuFile.addSeparator();
     menuFile.add(menuFileWorkDir);
     menuFile.addSeparator();
@@ -1858,6 +1858,15 @@ public class SimpplleMain extends JFrame {
       JSimpplle.setWorkingDir(workingDir);
     }
     refresh();
+  }
+
+  void actionMenuSettings(ActionEvent e){
+    String title = "User Preferences";
+    UserPreferencesEditor dlg = new UserPreferencesEditor(this,title,true);
+
+    dlg.initialize();
+    setDialogLocation(dlg);
+    dlg.setVisible(true);
   }
 /**
  * Resizes a component.  
