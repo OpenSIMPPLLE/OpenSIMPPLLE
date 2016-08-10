@@ -21,6 +21,8 @@ import java.net.URLDecoder;
 import java.security.ProtectionDomain;
 import java.security.CodeSource;
 import java.net.URL;
+
+import simpplle.comcode.Properties;
 import simpplle.gui.SimpplleMain;
 
 /** 
@@ -36,27 +38,22 @@ import simpplle.gui.SimpplleMain;
  *   simpplle.lookfeel=mac           ;; use mac look & feel
  *   simpplle.lookfeel=motif         ;; use motif look & feel
  *   simpplle.lookfeel=metal         ;; use metal look & feel
- *
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
  */
 public final class JSimpplle {
   private static simpplle.comcode.Simpplle    comcode;
   @SuppressWarnings("unused")
   private static simpplle.gui.JSimpplleApp    jSimpplleApp;
   private static simpplle.gui.SimpplleMain    simpplleMain;
+  private static simpplle.comcode.Properties  properties;
 
   private static File homeDirectory;
   private static String argHomeDirectory;
-  private static final String userPropertiesFile = "opensimpplle.properties";
 
   public static final String MAC_OS_X = "Mac OS X";
 
-  private static boolean debug = false;
   private static boolean zoneEdit = false;
 
   private static JWindow splashScreen;
-  private static File   workingDirectory;
   public  static final String endl=simpplle.comcode.Simpplle.endl;
 
   private static PrintStream          systemOut;
@@ -105,31 +102,35 @@ public final class JSimpplle {
   }
 
   /**
-   * 
-   * @return comcode from OpenSimpplle.Comcode package.  This will give access to all the classes in the comcode, which is the main engine for OpenSimpplle
+   * This will give access to all the classes in the comcode,
+   * which is the main engine for OpenSimpplle
+   * @return comcode from OpenSimpplle.Comcode package.
    */
   public static simpplle.comcode.Simpplle getComcode() {
     return comcode;
   }
-/**
- * 
- * @return gui for OpenSimpplle interface
- */
+
+  /**
+   *
+   * @return gui for OpenSimpplle interface
+   */
   public static simpplle.gui.SimpplleMain getSimpplleMain() {
     return simpplleMain;
   }
 
   /**
    * Gets the current working directory
-   * @return working directory file in current working directory. 
+   * @return working directory file in current working directory.
    */
-  public static File getWorkingDir() { return workingDirectory; }
+  public static File getWorkingDir() { return properties.getWorkingDir(); }
 
-  /**  
+  /**
    * Sets the working directory file for Simpplle main.
-   * @param dir File of current working directory.  
+   * @param dir File of current working directory.
    */
-  public static void setWorkingDir(File dir) { workingDirectory = dir; }
+  public static void setWorkingDir(File dir) {
+    properties.setWorkingDir(dir);
+  }
 
   /**
    * Operating system check to ensure current operating system .equals user-entered operating system.  
@@ -196,6 +197,7 @@ public final class JSimpplle {
     String developer = System.getProperty("simpplle.development");
     return (developer != null && developer.equals("true"));
   }
+
   /**  
    * Sets System to logging simulation mode.
    * @return true if logfile is not null and logfile is this current file directory.  
@@ -204,12 +206,11 @@ public final class JSimpplle {
     String logfile = System.getProperty("simpplle.simulationlogging");
     return (logfile != null && logfile.equals("true"));
   }
-  
-/**Sets system to invasive species Montana State University Problem File.  
- * 
- * @return true if Montana State University Problem file exists and is the current file.  
- */
-  
+
+  /**Sets system to invasive species Montana State University Problem File.
+   *
+   * @return true if Montana State University Problem file exists and is the current file.
+   */
   public static boolean invasiveSpeciesMSUProbFile() {
     String msuProbFile = System.getProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile");
     return (msuProbFile != null && msuProbFile.equals("true"));
@@ -218,7 +219,6 @@ public final class JSimpplle {
   /**Determines the install directory for Simpplle software package.  The code source is set at JSimpplle protection domain.  
    * Sets code source location and URl to decode the URL file in UTF-8.  If home directory is null sets to the file  
    * command line arguments.  If Simpplle is not in development mode the home directory is at the home directory parent.  
-   *@throws UnsupportedEncodingException
    */
   private static void determineInstallDirectory() {
     String developer = System.getProperty("simpplle.development");
@@ -245,7 +245,7 @@ public final class JSimpplle {
     }
     else {
       homeDirectory = (new File(homeClass)).getParentFile();
-      if (developer == null || developer.equals("true") == false) {
+      if (developer == null || !developer.equals("true")) {
         homeDirectory = homeDirectory;
       }
     }
@@ -259,11 +259,10 @@ public final class JSimpplle {
    * @throws IOException
    * @see #readXmlPropertiesFile()
    */
-
-  //Main method
   public static void main(String[] args) throws IOException {
     System.setProperty("sun.awt.exception.handler","simpplle.gui.MyErrorHandler");
     comcode = new simpplle.comcode.Simpplle();
+    properties = new Properties();
 
     readXmlPropertiesFile();
 
@@ -273,14 +272,15 @@ public final class JSimpplle {
       }
     });
   }
-/**
- * Method to create and paint the gui interface. 
- * @see #showSplashScreen(), determineInstallDirectory(), hideSplashScreen(), readPropertiesFile()
- */
+
+  /**
+   * Method to create and paint the gui interface.
+   * @see #showSplashScreen(), determineInstallDirectory(), hideSplashScreen(), readPropertiesFile()
+   */
   private static void createAndShowGUI() {
     showSplashScreen();
     determineInstallDirectory();
-    readPropertiesFile();
+    properties.readPropertiesFile();
 
     simpplle.gui.JSimpplleApp.initialize();
     simpplleMain = new SimpplleMain();
@@ -293,7 +293,7 @@ public final class JSimpplle {
    * <li> System.getProperty at "user.home"
    * <li> file at key of home directory and default value "properties.xml"
    * <li> directory designated for installation
-   * <li> file seperation
+   * <li> file separation
    * <li> EOF
    * @throws Exception
    */
@@ -303,8 +303,7 @@ public final class JSimpplle {
     BufferedReader fin;
 
     try {
-      if (file.exists() == false) { return; }
-      else {
+      if(file.exists()) {
         fin = new BufferedReader(new FileReader(file));
         String line = fin.readLine();
         
@@ -334,61 +333,6 @@ public final class JSimpplle {
     catch (Exception e) { return; }
   }
   
-  
-  public static void readPropertiesFile() {
-    String homeDir = System.getProperty("user.home");
-    File   file = new File(homeDir, userPropertiesFile);
-    BufferedReader fin;
-
-    setWorkingDir(new File(homeDir));
-    debug = false;
-    try {
-      if (!file.exists()) { return; }
-      else {
-        fin = new BufferedReader(new FileReader(file));
-        String line = fin.readLine();
-        StringTokenizer strTok;
-        String property;
-        while (line != null) {
-          strTok = new StringTokenizer(line, ",");
-          property = strTok.nextToken();
-          if (property == null) {
-            fin.close();
-            return;
-          }
-          property = property.trim();
-
-          if (property.equals("WORKING_DIRECTORY")) {
-            String dir = strTok.nextToken();
-            if (dir.equalsIgnoreCase("DEFAULT")) {
-              dir = homeDir;
-            }
-            file = new File(dir);
-            if (file.exists()) {
-              setWorkingDir(file);
-            }
-          }
-          else if (property.equalsIgnoreCase("DEBUG")) {
-            debug = true;
-          }
-          else if (property.equalsIgnoreCase("SIMULATION_LOGGING")) {
-            String value = strTok.nextToken();
-            System.setProperty("simpplle.simulationlogging", value);
-          }
-          else if (property.equalsIgnoreCase("InvasiveSpeciesLogicDataMSU_probFile")) {
-            String value = strTok.nextToken();
-            System.setProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile", value);
-          }
-          
-          
-          line = fin.readLine();
-        }
-        fin.close();
-      }
-    }
-    catch (Exception e) { return; }
-  }
-
   /**
    * 
    * @param filename String
@@ -411,41 +355,10 @@ public final class JSimpplle {
   }
   
   /**
-   * 
-   */
-  public static void writePropertiesFile() {
-    String dir = System.getProperty("user.home");
-    File   file = new File(dir, userPropertiesFile);
-    PrintWriter fout;
-
-    try {
-      fout = new PrintWriter(new FileWriter(file));
-      fout.println("WORKING_DIRECTORY," + getWorkingDir());
-      if (debug) {
-        fout.println("DEBUG");
-      }
-      {
-        String value = System.getProperty("simpplle.simulationlogging");
-        if (value == null) { value = "false";}
-        fout.println("SIMULATION_LOGGING," + value);
-      }
-      {
-        String value = System.getProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile");
-        if (value == null) { value = "false"; }
-        fout.println("InvasiveSpeciesLogicDataMSU_probFile," + value);
-      }
-
-      fout.flush();
-      fout.close();
-    }
-    catch (Exception e) { return; }
-  }
-
-  /**
    * Debug mode check.  
    * @return boolean if in debug mode
    */
-  public static boolean debug() { return debug; }
+  public static boolean debug() { return properties.isDebug(); }
   
   public static void showSplashScreen() {
     URL p = simpplle.JSimpplle.class.getResource("gui/images/splash.jpg");
@@ -458,7 +371,6 @@ public final class JSimpplle {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     splashScreen.setLocation(screenSize.width/2 - splashScreen.getSize().width/2,
                              screenSize.height/2 - splashScreen.getSize().height/2);
-
     splashScreen.setVisible(true);
   }
 
@@ -470,4 +382,7 @@ public final class JSimpplle {
     splashScreen = null;
   }
 
+  public static Properties getProperties() {
+    return properties;
+  }
 }

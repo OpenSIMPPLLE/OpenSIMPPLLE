@@ -1662,7 +1662,7 @@ public class SimpplleMain extends JFrame {
    * @param e
    */
   public void fileExit_actionPerformed(ActionEvent e) {
-    JSimpplle.writePropertiesFile();
+    JSimpplle.getProperties().writePropertiesFile();
     try {
       simpplle.comcode.DatabaseCreator.closeHibernate();
     }
