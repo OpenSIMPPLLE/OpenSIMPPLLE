@@ -3953,6 +3953,7 @@ public final class Area implements Externalizable {
       double spread, windSpeed, windDir;
       char pos, wind;
       AdjacentData[] adjData = new AdjacentData[numAdj];
+      int adjIndex = 0;
       for (int i = 0; i < v.size(); i++) {
         double[] data = (double[])v.elementAt(i);
         int dataLength = data.length;
@@ -3968,17 +3969,19 @@ public final class Area implements Externalizable {
         }
         wind = (char) data[2]; // ascii value back to char
 
-        // Legacy spatial relation
         if (dataLength < 4) {
-          adjData[i] = new AdjacentData(adjEvu, pos, wind);
+          // Legacy spatial relation
+          adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind);
+        } else {
+          // Keane spatial relation, more attributes available
+          spread    = data[3];
+          windSpeed = data[4];
+          windDir   = data[5];
+          adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir);
         }
-        // Keane spatial relation, more attributes available
-        else {
-          spread     = data[3];
-          windSpeed  = data[4];
-          windDir    = data[5];
-          adjData[i] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir);
-        }
+
+        adjIndex++;
+
       }
       evu.setAdjacentData(adjData);
     }
