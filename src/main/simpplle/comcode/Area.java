@@ -3940,7 +3940,6 @@ public final class Area implements Externalizable {
       if (numAdj == 0) {
         evu.setAdjacentData(null);
         if (logFile != null) {
-          System.out.println("Evu-" + evu.getId());
           logFile.println("Evu-" + evu.getId() +
                           " does not have any valid adjacent units.");
           logFile.println("At least one valid adjacent unit is required.");
