@@ -56,13 +56,17 @@ public class ParseNewNeighbors implements RelationParser {
       StringTokenizerPlus strTok = new StringTokenizerPlus(line, ",");
 
       int id = strTok.getIntToken();
-      int adjId = strTok.getIntToken();
-      if (id == -1 || adjId == -1) {
-        log.println(line + "\n  One of the id's in above line is invalid.\n");
+      if (id < 0) {
+        log.println(line + "\n " + id + " is an invalid id.\n");
         return false;
       }
-
       maxEvuId = Math.max(maxEvuId,id);
+
+      int adjId = strTok.getIntToken();
+      if (adjId < 0) {
+        log.println(line + "\n " + adjId + " is an invalid adjacent id.\n");
+        return false;
+      }
       maxEvuId = Math.max(maxEvuId,adjId);
 
       String str = strTok.getToken();
