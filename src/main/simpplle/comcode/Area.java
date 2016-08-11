@@ -3918,25 +3918,27 @@ public final class Area implements Externalizable {
   public void finishAddingAdjacentData() {
     finishAddingAdjacentData(null);
   }
+
+  /**
+   * Go through the temp storage for adjacent data and put the data
+   * in the appropriate Evu's.  This had to wait until all instances
+   * of Evu were created, so that the AdjacentData.evu could be filled in.
+   * This method also has the side effect of eliminating any invalid
+   * adjacent units.
+   */
   public void finishAddingAdjacentData(PrintWriter logFile) {
-    Evu            evu, adjEvu;
-    Vector         v;
-    int            i;
-    double[]          data;
-    Enumeration    keys;
-    AdjacentData[] adjData;
-    int            numAdj;
-    keys = tmpAdjacentData.keys();
+
+    Enumeration keys = tmpAdjacentData.keys();
     // For each evu:
     while (keys.hasMoreElements()) {
-      evu = (Evu)keys.nextElement();
-      v   = tmpAdjacentData.get(evu);
+      Evu evu = (Evu)keys.nextElement();
+      Vector v = tmpAdjacentData.get(evu);
 
       // Count the number valid adjacent units.
-      numAdj = 0;
-      for (i=0; i<v.size(); i++) {
-        data = (double[])v.elementAt(i);
-        adjEvu = getEvu((int)data[0]);
+      int numAdj = 0;
+      for (int i = 0; i < v.size(); i++) {
+        double[] data = (double[])v.elementAt(i);
+        Evu adjEvu = getEvu((int)data[0]);
         if (adjEvu != null) { numAdj++; }
       }
 
@@ -3956,11 +3958,11 @@ public final class Area implements Externalizable {
 
       double spread, windSpeed, windDir;
       char pos, wind;
-      adjData = new AdjacentData[numAdj];
-      for (i=0; i<v.size(); i++) {
-        data = (double[])v.elementAt(i);
+      AdjacentData[] adjData = new AdjacentData[numAdj];
+      for (int i = 0; i < v.size(); i++) {
+        double[] data = (double[])v.elementAt(i);
         int dataLength = data.length;
-        adjEvu = getEvu((int)data[0]);
+        Evu adjEvu = getEvu((int)data[0]);
         // skip null Evus
         if (adjEvu == null) { continue; }
 
