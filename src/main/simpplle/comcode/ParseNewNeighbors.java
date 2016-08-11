@@ -61,12 +61,9 @@ public class ParseNewNeighbors implements RelationParser {
         log.println(line + "\n  One of the id's in above line is invalid.\n");
         return false;
       }
-      if (id > maxEvuId) {
-        maxEvuId = id;
-      }
-      if (adjId > maxEvuId) {
-        maxEvuId = adjId;
-      }
+
+      maxEvuId = Math.max(maxEvuId,id);
+      maxEvuId = Math.max(maxEvuId,adjId);
 
       String str = strTok.getToken();
       int elevation;
