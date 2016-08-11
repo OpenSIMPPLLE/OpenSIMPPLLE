@@ -3909,22 +3909,18 @@ public final class Area implements Externalizable {
   }
 
   /**
-   * Go through the temp storage for adjacent data and put the data
-   * in the appropriate Evu's.  This had to wait until all instances
-   * of Evu were created, so that the AdjacentData.evu could be filled in.
-   * This method also has the side effect of eliminating any invalid
-   * adjacent units.
+   * Go through the temp storage for adjacent data and put the data in the appropriate Evu's. This
+   * had to wait until all instances of Evu were created, so that the AdjacentData.evu could be
+   * filled in. This method also has the side effect of eliminating any invalid adjacent units.
    */
   public void finishAddingAdjacentData() {
     finishAddingAdjacentData(null);
   }
 
   /**
-   * Go through the temp storage for adjacent data and put the data
-   * in the appropriate Evu's.  This had to wait until all instances
-   * of Evu were created, so that the AdjacentData.evu could be filled in.
-   * This method also has the side effect of eliminating any invalid
-   * adjacent units.
+   * Go through the temp storage for adjacent data and put the data in the appropriate Evu's. This
+   * had to wait until all instances of Evu were created, so that the AdjacentData.evu could be
+   * filled in. This method also has the side effect of eliminating any invalid adjacent units.
    */
   public void finishAddingAdjacentData(PrintWriter logFile) {
 
