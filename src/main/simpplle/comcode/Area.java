@@ -3928,10 +3928,8 @@ public final class Area implements Externalizable {
    */
   public void finishAddingAdjacentData(PrintWriter logFile) {
 
-    Enumeration keys = tmpAdjacentData.keys();
-    // For each evu:
-    while (keys.hasMoreElements()) {
-      Evu evu = (Evu)keys.nextElement();
+    for (Evu evu : tmpAdjacentData.keySet()) {
+
       Vector v = tmpAdjacentData.get(evu);
 
       // Count the number valid adjacent units.
