@@ -38,31 +38,25 @@ public class ParseNewNeighbors implements RelationParser {
   @Override
   public boolean readSection(Area area, BufferedReader in, PrintWriter log) throws ParseError, IOException {
 
-    String line, str;
-    StringTokenizerPlus strTok;
-    HashMap<Integer, Evu> unitHm = new HashMap<>();
-    Evu[] allEvu;
-    int maxEvuId = -1, id, adjId, index;
-    String windStr;
-    char pos = 'N', wind;
-    int elevation;
-
-    line = in.readLine();
+    String line = in.readLine();
     if (line == null) {
       log.println("Invalid New Area File (file is empty)");
       log.println();
       return false;
     }
 
+    HashMap<Integer, Evu> unitHm = new HashMap<>();
+    int maxEvuId = -1;
+
     while (line != null && !line.trim().equals("END")) {
       if (line.trim().length() == 0) {
         line = in.readLine();
         continue;
       }
-      strTok = new StringTokenizerPlus(line, ",");
+      StringTokenizerPlus strTok = new StringTokenizerPlus(line, ",");
 
-      id = strTok.getIntToken();
-      adjId = strTok.getIntToken();
+      int id = strTok.getIntToken();
+      int adjId = strTok.getIntToken();
       if (id == -1 || adjId == -1) {
         log.println(line + "\n  One of the id's in above line is invalid.\n");
         return false;
@@ -74,17 +68,19 @@ public class ParseNewNeighbors implements RelationParser {
         maxEvuId = adjId;
       }
 
-      str = strTok.getToken();
+      String str = strTok.getToken();
+      int elevation;
       try {
         elevation = Integer.parseInt(str);
       } catch (NumberFormatException ex) {
         elevation = NaturalElement.INVALID_ELEV;
       }
 
+      char pos = 'N';
       if (elevation == NaturalElement.INVALID_ELEV) {
         String posStr = str;
         if (posStr.length() > 1) {
-          index = posStr.lastIndexOf('\'');
+          int index = posStr.lastIndexOf('\'');
           if (index == -1) {
             index = posStr.length() - 1;
           }
@@ -106,9 +102,9 @@ public class ParseNewNeighbors implements RelationParser {
         }
       }
 
-      windStr = strTok.getToken();
+      String windStr = strTok.getToken();
       if (windStr.length() > 1) {
-        index = windStr.lastIndexOf('\'');
+        int index = windStr.lastIndexOf('\'');
         if (index == -1) {
           index = windStr.length() - 1;
         }
@@ -122,7 +118,7 @@ public class ParseNewNeighbors implements RelationParser {
       } else if (windStr.length() == 0) {
         windStr = "N";
       }
-      wind = windStr.charAt(0);
+      char wind = windStr.charAt(0);
 
       if (wind != Evu.DOWNWIND && wind != Evu.NO_WIND) {
         log.println(line);
@@ -146,10 +142,10 @@ public class ParseNewNeighbors implements RelationParser {
       line = in.readLine();
     }
 
-    allEvu = new Evu[maxEvuId + 1];
+    Evu[] allEvu = new Evu[maxEvuId + 1];
 
     for (Evu evu : unitHm.values()) {
-      id = evu.getId();
+      int id = evu.getId();
       allEvu[id] = evu;
     }
 
