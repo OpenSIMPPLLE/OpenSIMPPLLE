@@ -7,7 +7,7 @@
     <!-- Global Properties -->
 
     <property name="libraryDirectory" location="lib" />
-    <property name="sourceDirectory"  location="src" />
+    <property name="sourceDirectory"  location="src/main" />
     <property name="buildDirectory"   location="tmp" />
     <property name="dataDirectory"    location="data" />
     <property name="jarDirectory"     location="." />
