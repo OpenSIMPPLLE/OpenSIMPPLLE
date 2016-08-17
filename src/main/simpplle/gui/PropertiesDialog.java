@@ -85,7 +85,7 @@ public class PropertiesDialog extends JDialog {
     simulationLoggingCB.addActionListener(e -> simulationLoggingAction());
 
     invasiveMSUCB.setSelected(JSimpplle.getProperties().isInvasiveMSU());
-    invasiveMSUCB.setText("Use MSU Invasive Species Logic");
+    invasiveMSUCB.setText("Use MSU Invasive Species Problem File");
     invasiveMSUCB.addActionListener(e -> invasiveMSUAction());
 
     choicesMainPanel.setLayout(borderLayout2);
