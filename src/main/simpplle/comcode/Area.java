@@ -3909,34 +3909,30 @@ public final class Area implements Externalizable {
   }
 
   /**
-   * Go through the temp storage for adjacent data and put the data
-   * in the appropriate Evu's.  This had to wait until all instances
-   * of Evu were created, so that the AdjacentData.evu could be filled in.
-   * This method also has the side effect of eliminating any invalid
-   * adjacent units.
+   * Go through the temp storage for adjacent data and put the data in the appropriate Evu's. This
+   * had to wait until all instances of Evu were created, so that the AdjacentData.evu could be
+   * filled in. This method also has the side effect of eliminating any invalid adjacent units.
    */
   public void finishAddingAdjacentData() {
     finishAddingAdjacentData(null);
   }
+
+  /**
+   * Go through the temp storage for adjacent data and put the data in the appropriate Evu's. This
+   * had to wait until all instances of Evu were created, so that the AdjacentData.evu could be
+   * filled in. This method also has the side effect of eliminating any invalid adjacent units.
+   */
   public void finishAddingAdjacentData(PrintWriter logFile) {
-    Evu            evu, adjEvu;
-    Vector         v;
-    int            i;
-    double[]          data;
-    Enumeration    keys;
-    AdjacentData[] adjData;
-    int            numAdj;
-    keys = tmpAdjacentData.keys();
-    // For each evu:
-    while (keys.hasMoreElements()) {
-      evu = (Evu)keys.nextElement();
-      v   = tmpAdjacentData.get(evu);
+
+    for (Evu evu : tmpAdjacentData.keySet()) {
+
+      Vector v = tmpAdjacentData.get(evu);
 
       // Count the number valid adjacent units.
-      numAdj = 0;
-      for (i=0; i<v.size(); i++) {
-        data = (double[])v.elementAt(i);
-        adjEvu = getEvu((int)data[0]);
+      int numAdj = 0;
+      for (int i = 0; i < v.size(); i++) {
+        double[] data = (double[])v.elementAt(i);
+        Evu adjEvu = getEvu((int)data[0]);
         if (adjEvu != null) { numAdj++; }
       }
 
@@ -3944,7 +3940,6 @@ public final class Area implements Externalizable {
       if (numAdj == 0) {
         evu.setAdjacentData(null);
         if (logFile != null) {
-          System.out.println("Evu-" + evu.getId());
           logFile.println("Evu-" + evu.getId() +
                           " does not have any valid adjacent units.");
           logFile.println("At least one valid adjacent unit is required.");
@@ -3956,11 +3951,12 @@ public final class Area implements Externalizable {
 
       double spread, windSpeed, windDir;
       char pos, wind;
-      adjData = new AdjacentData[numAdj];
-      for (i=0; i<v.size(); i++) {
-        data = (double[])v.elementAt(i);
+      AdjacentData[] adjData = new AdjacentData[numAdj];
+      int adjIndex = 0;
+      for (int i = 0; i < v.size(); i++) {
+        double[] data = (double[])v.elementAt(i);
         int dataLength = data.length;
-        adjEvu = getEvu((int)data[0]);
+        Evu adjEvu = getEvu((int)data[0]);
         // skip null Evus
         if (adjEvu == null) { continue; }
 
@@ -3972,17 +3968,19 @@ public final class Area implements Externalizable {
         }
         wind = (char) data[2]; // ascii value back to char
 
-        // Legacy spatial relation
         if (dataLength < 4) {
-          adjData[i] = new AdjacentData(adjEvu, pos, wind);
+          // Legacy spatial relation
+          adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind);
+        } else {
+          // Keane spatial relation, more attributes available
+          spread    = data[3];
+          windSpeed = data[4];
+          windDir   = data[5];
+          adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir);
         }
-        // Keane spatial relation, more attributes available
-        else {
-          spread     = data[3];
-          windSpeed  = data[4];
-          windDir    = data[5];
-          adjData[i] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir);
-        }
+
+        adjIndex++;
+
       }
       evu.setAdjacentData(adjData);
     }

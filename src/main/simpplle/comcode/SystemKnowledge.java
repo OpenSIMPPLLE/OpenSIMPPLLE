@@ -142,7 +142,7 @@ public class SystemKnowledge {
   public static final String WILDLIFE_ENTRY                             = "DATA/WILDLIFE";
   public static final String EMISSIONS_ENTRY                            = "DATA/EMISSIONS.TXT";
   public static final String PATHWAYS_ENTRY                             = "PATHWAYS";
-  public static final String PATHWAYS_ENTRY_AQUATIC                     = "AQUATIC_PATHWAY-PATHWAYS";
+  public static final String PATHWAYS_ENTRY_AQUATIC                     = "AQUATIC-PATHWAYS";
   public static final String HISTORIC_PATHWAYS_ENTRY                    = "HISTORIC-PATHWAYS";
   public static final String FIRE_SEASON_ENTRY                          = "DATA/FIRE-SEASON.TXT";
   public static final String FIRESUPP_PRODUCTION_RATE_ENTRY             = "DATA/FIRESUPP-PRODUCTION-RATE.SER";
