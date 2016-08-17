@@ -941,7 +941,7 @@ public class LogicRuleBuilder extends JDialog {
   public boolean updated() { return updated; }
 
         /**
-         * This method initializes cancelPB
+         * This method initializes closeBtn
          *
          * @return javax.swing.JButton
          */

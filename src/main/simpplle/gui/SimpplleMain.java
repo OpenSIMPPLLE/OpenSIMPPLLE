@@ -70,7 +70,7 @@ public class SimpplleMain extends JFrame {
   JMenu menuInterpretations = new JMenu();
   JMenu menuViewResult = new JMenu();
   JMenu menuHelp = new JMenu();
-  JMenuItem menuFileWorkDir = new JMenuItem();
+  JMenuItem menuSettings = new JMenuItem();
   JMenu menuUtility = new JMenu();
   JMenuItem menuUtilityReset = new JMenuItem();
   JMenuItem menuFileSave = new JMenuItem();
@@ -337,14 +337,9 @@ public class SimpplleMain extends JFrame {
     menuInterpretations.setText("Interpretations");
     menuViewResult.setText("View Results");
     menuHelp.setText("Help");
-    menuFileWorkDir.setText("Set Working Directory ...");
-    menuFileWorkDir.setActionCommand("Set Working Directory");
-    menuFileWorkDir.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        menuFileWorkDir_actionPerformed(e);
-      }
-    });
+    menuSettings.setText("Preferences");
+    menuSettings.setActionCommand("Preferences");
+    menuSettings.addActionListener(e -> actionMenuSettings(e));
     menuUtility.setText("Utilities");
     menuUtilityReset.setEnabled(false);
     menuUtilityReset.setToolTipText("Removes Simulation and restores Area to initial conditions");
@@ -1120,12 +1115,11 @@ public class SimpplleMain extends JFrame {
         menuUtilityCombineLSFiles_actionPerformed(e);
       }
     });
+    menuFile.add(menuSettings);
+    menuFile.addSeparator();
     menuFile.add(menuFileSave);
     menuFile.addSeparator();
     menuFile.add(menuFileSaveZone);
-    menuFile.addSeparator();
-    menuFile.addSeparator();
-    menuFile.add(menuFileWorkDir);
     menuFile.addSeparator();
     menuFile.add(menuFileQuit);
     menuBar1.add(menuFile);
@@ -1662,7 +1656,7 @@ public class SimpplleMain extends JFrame {
    * @param e
    */
   public void fileExit_actionPerformed(ActionEvent e) {
-    JSimpplle.writePropertiesFile();
+    JSimpplle.getProperties().writePropertiesFile();
     try {
       simpplle.comcode.DatabaseCreator.closeHibernate();
     }
@@ -1840,23 +1834,12 @@ public class SimpplleMain extends JFrame {
     setDialogLocation(dlg);
     dlg.setVisible(true);
   }
-/**
- * Allows a user to select a working directory which is then set in a JFileChooser.  
- * @param e
- */
-  void menuFileWorkDir_actionPerformed(ActionEvent e) {
-    File         workingDir;
-    JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
-    String       msg = "Select the new working diretory and press Ok.";
 
-    chooser.setDialogTitle(msg);
-    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-    chooser.setApproveButtonToolTipText(msg);
-    int returnVal = chooser.showDialog(this,"Ok");
-    if(returnVal == JFileChooser.APPROVE_OPTION) {
-      workingDir = chooser.getSelectedFile();
-      JSimpplle.setWorkingDir(workingDir);
-    }
+  void actionMenuSettings(ActionEvent e){
+    String title = "User Preferences";
+    PropertiesDialog dlg = new PropertiesDialog(this, title, true);
+    setDialogLocation(dlg);
+    dlg.setVisible(true);
     refresh();
   }
 /**

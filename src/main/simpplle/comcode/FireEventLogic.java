@@ -104,21 +104,18 @@ public class FireEventLogic extends BaseLogic {
     } else {
       return;
     }
-
     super.addRow(insertPos,kind,logicData);
   }
 
   public void duplicateRow(int row,int insertPos, String kind) {
 
     AbstractLogicData logicData = getData(kind).get(row);
+
     if (logicData == null) {
       return;
     }
-    
     AbstractLogicData newLogicData = logicData.duplicate();
-
     super.addRow(insertPos,kind,newLogicData);
-
   }
 
   public void addLegacyData(FireResistance fireResist,
@@ -413,16 +410,12 @@ public class FireEventLogic extends BaseLogic {
     for (int i = 0; i < getData(SPREAD_STR).size(); i++) {
 
       FireSpreadLogicData logicData = (FireSpreadLogicData)logicDataArray.get(i);
-
       ProcessType fireType = logicData.getFireTypeIfMatch(processType, resistance, fromEvu, evu, toLifeform);
 
       if (fireType != null) {
 
         if (Simulation.getInstance().isDoSimLoggingFile()) {
-          PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-          int ts = Simulation.getCurrentTimeStep();
-          logOut.printf("Time: %d, Spread From: %d, To: %d, To Life: %s, Type: %s, Rule#: %d%n",
-              ts, fromEvu.getId(), evu.getId(), toLifeform.toString(), fireType.toString(), i);
+          logSpread(evu, fromEvu, toLifeform.toString(), fireType.toString(), i);
         }
 
         if (!fireType.isFireProcess()) { // fireProcess is ProcessType.NONE
@@ -431,21 +424,28 @@ public class FireEventLogic extends BaseLogic {
 
         VegSimStateData state = evu.getState(toLifeform);
         state.setFireSpreadRuleIndex(i);
-
         return fireType;
-
       }
     }
-
     if (Simulation.getInstance().isDoSimLoggingFile()) {
-      PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
-      int ts = Simulation.getCurrentTimeStep();
-      logOut.printf("Time: %d, Spread From: %d, To: %d, To Life: %s, No Matching Rules for Spread%n",
-          ts, fromEvu.getId(), evu.getId(), toLifeform.toString());
+      logSpread(evu, fromEvu, toLifeform.toString(), "No Matching Rules for Spread", -1);
     }
-
     return null;
+  }
 
+  /**
+   * Helper method, log fire type data to simulation log
+   * @param evu Evu
+   * @param fromEvu Evu that fire is spreading from
+   * @param toLifeformStr LifeForm in String form
+   * @param fireTypeStr Process Type in string form, will be a warming message if no rule is found
+   * @param index
+   */
+  private void logSpread(Evu evu, Evu fromEvu, String toLifeformStr, String fireTypeStr, int index){
+    PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
+    int ts = Simulation.getCurrentTimeStep();
+    logOut.println(ts + "," + fromEvu.getId() + "," + evu.getId() + "," + toLifeformStr + "," + fireTypeStr
+        + "," + index);
   }
 
   /**
@@ -460,18 +460,13 @@ public class FireEventLogic extends BaseLogic {
     for (int i = 0; i < getData(TYPE_STR).size(); i++) {
 
       FireTypeLogicData logicData = (FireTypeLogicData)getData(TYPE_STR).get(i);
-
       ProcessType processType = logicData.getFireTypeIfMatch(resistance, evu,lifeform);
 
       if (processType != null) {
-
         return processType;
-
       }
     }
-
     return null;
-
   }
 
   public boolean isWithinMaxFireSpottingDistance(Evu fromEvu, Evu toEvu) {
@@ -497,6 +492,3 @@ public class FireEventLogic extends BaseLogic {
     return -1;
   }
 }
-
-
-

@@ -57,9 +57,7 @@ public class NewZoneDialog extends JDialog {
    * @param modal If true, blocks input to other windows
    */
   public NewZoneDialog(SimpplleMain frame, boolean modal) {
-
     super(frame, "Select a Zone", modal);
-
     try  {
       jbInit();
       pack();

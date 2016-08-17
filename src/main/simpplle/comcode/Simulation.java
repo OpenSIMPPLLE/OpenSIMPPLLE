@@ -470,8 +470,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
           logOut = new PrintWriter(new FileOutputStream(logFile));
 
           if (doSimLoggingFile) {
-            File tmpFile = Utility.makeSuffixedPathname(outputFile, "-detaillog", "txt");
-            simLoggingWriter = new PrintWriter(new FileOutputStream(tmpFile));
+            initSimLogging();
           }
 
         } catch (Exception ex) {
@@ -586,6 +585,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
     } finally {
       inSimulation = false;
     }
+  }
+
+  private void initSimLogging() throws FileNotFoundException {
+    File log = Utility.makeSuffixedPathname(outputFile, "-detaillog", "txt");
+    simLoggingWriter = new PrintWriter(new FileOutputStream(log));
+    simLoggingWriter.println("Time,Spread_From,Spread_To,To_Life_Form,Fire_Type,Rule");
   }
 
   void writeAccessSlinkMetrics() {
