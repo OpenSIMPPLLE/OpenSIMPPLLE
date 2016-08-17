@@ -19,6 +19,8 @@ public class Properties {
 
   private final String propertiesFileName = "opensimpplle.properties";
   private boolean debug;
+  // Sets system to invasive species Montana State University Problem File.
+  private boolean invasiveMSU;
   private boolean simulationLogging;
   private static File   workingDirectory;
 
@@ -61,10 +63,12 @@ public class Properties {
           else if (property.equalsIgnoreCase("SIMULATION_LOGGING")) {
             String value = strTok.nextToken();
             System.setProperty("simpplle.simulationlogging", value);
+            simulationLogging = Boolean.parseBoolean(value);
           }
           else if (property.equalsIgnoreCase("InvasiveSpeciesLogicDataMSU_probFile")) {
             String value = strTok.nextToken();
             System.setProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile", value);
+            invasiveMSU = Boolean.parseBoolean(value);
           }
           line = fin.readLine();
         }
@@ -122,4 +126,24 @@ public class Properties {
    * @param dir File of current working directory.
    */
   public void setWorkingDir(File dir) { workingDirectory = dir; }
+
+  public boolean isSimulationLogging() {
+    return simulationLogging;
+    // previously: return (logfile != null && logfile.equals("true"));
+  }
+
+  public void setSimulationLogging(boolean simulationLogging) {
+    this.simulationLogging = simulationLogging;
+    System.setProperty("simpplle.simulationlogging", String.valueOf(simulationLogging));
+  }
+
+  public boolean isInvasiveMSU() {
+    return invasiveMSU;
+    // previously: return (msuProbFile != null && msuProbFile.equals("true"));
+  }
+
+  public void setInvasiveMSU(boolean invasiveMSU) {
+    this.invasiveMSU = invasiveMSU;
+    System.setProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile", String.valueOf(invasiveMSU));
+  }
 }

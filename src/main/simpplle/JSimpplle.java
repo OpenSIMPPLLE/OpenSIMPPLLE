@@ -198,25 +198,16 @@ public final class JSimpplle {
     return (developer != null && developer.equals("true"));
   }
 
-  /**  
-   * Sets System to logging simulation mode.
-   * @return true if logfile is not null and logfile is this current file directory.  
-   */
   public static boolean simLoggingFile() {
-    String logfile = System.getProperty("simpplle.simulationlogging");
-    return (logfile != null && logfile.equals("true"));
+    return properties.isSimulationLogging();
   }
 
-  /**Sets system to invasive species Montana State University Problem File.
-   *
-   * @return true if Montana State University Problem file exists and is the current file.
-   */
   public static boolean invasiveSpeciesMSUProbFile() {
-    String msuProbFile = System.getProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile");
-    return (msuProbFile != null && msuProbFile.equals("true"));
+    return properties.isInvasiveMSU();
   }
 
-  /**Determines the install directory for Simpplle software package.  The code source is set at JSimpplle protection domain.  
+  /**
+   * Determines the install directory for Simpplle software package.  The code source is set at JSimpplle protection domain.
    * Sets code source location and URl to decode the URL file in UTF-8.  If home directory is null sets to the file  
    * command line arguments.  If Simpplle is not in development mode the home directory is at the home directory parent.  
    */
