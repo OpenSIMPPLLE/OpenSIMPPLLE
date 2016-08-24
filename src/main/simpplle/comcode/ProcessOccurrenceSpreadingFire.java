@@ -71,7 +71,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private ArrayList<Integer> lineSuppUnits = new ArrayList<>();
 
   /**
-   * Creates a spreading fire event with an origin unit.
+   * Constructs a spreading fire event. This is required for deserializing .simdata files.
+   */
+  public ProcessOccurrenceSpreadingFire() {
+    super();
+  }
+
+  /**
+   * Constructs a spreading fire event with an origin unit.
    *
    * @param evu A vegetation unit
    * @param lifeform A life form
