@@ -473,10 +473,11 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         if (lineSuppUnits.contains(toUnit.getId())) continue;
 
+        boolean alreadyBurning = toUnit.hasFireAnyLifeform();
         if (Evu.doSpread(fromUnit, toUnit, fromUnit.getDominantLifeformFire())) {
-
-          toUnits.add(toUnit);
-
+          if (!alreadyBurning){
+            toUnits.add(toUnit);
+          }
         }
       }
     }
