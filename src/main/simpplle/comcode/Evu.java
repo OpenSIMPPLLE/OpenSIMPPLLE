@@ -5083,7 +5083,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     Area.currentLifeform = fromLifeform;
 
-    if (toEvu.hasLifeform(fromLifeform)) {
+    if (fromLifeform != null && toEvu.hasLifeform(fromLifeform)) {
 
       VegSimStateData state = toEvu.getState(fromLifeform);
 
