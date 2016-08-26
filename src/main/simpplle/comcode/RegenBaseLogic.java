@@ -18,9 +18,13 @@ import simpplle.comcode.RegenerationLogic.DataKinds;
  */
 
 public class RegenBaseLogic extends BaseLogic {
+
   private DataKinds kind;
+
   /**
-   * Constructor for Regeneration Base Logic.  Inherits from Base Logic superclass and initializes some variables like fire and succession
+   * Constructor for Regeneration Base Logic.  Inherits from Base Logic superclass and initializes
+   * some variables like fire and succession
+   *
    * @param kind
    */
   public RegenBaseLogic(DataKinds kind) {
@@ -67,13 +71,17 @@ public class RegenBaseLogic extends BaseLogic {
   /**
    * duplicateRow
    *
-   * @param row int
-   * @param insertPos int
-   * @param kind String
-   * TODO Implement this simpplle.comcode.BaseLogic method
+   * @param row index of the row to be duplicated
+   * @param insertPos index new row is to be placed in
+   * @param kind Type of logic, acts as a key in the data hash map
    */
   public void duplicateRow(int row, int insertPos, String kind) {
-    RegenerationLogic.duplicateRow(row,insertPos,DataKinds.valueOf(kind));
+
+    AbstractLogicData newRow = getData(kind).get(row);
+    if (newRow == null){
+      return;
+    }
+    super.addRow(insertPos, kind, newRow.duplicate());
   }
 
   /**
@@ -87,9 +95,11 @@ public class RegenBaseLogic extends BaseLogic {
   public String getColumnName(String kind, int col) {
     return RegenerationLogic.getColumnName(DataKinds.valueOf(kind),col);
   }
-/**
- * Gets the column id based on regeneration kind (choices are FIRE, SUCCESSION) and parameter string name.    
- */
+
+  /**
+   * Gets the column id based on regeneration kind (choices are FIRE, SUCCESSION) and parameter
+   * string name.
+   */
   public int getColumnNumFromName(String name) {
     int col = RegenerationLogic.getColumnNumFromName(kind,name);
     if (col == -1) {
