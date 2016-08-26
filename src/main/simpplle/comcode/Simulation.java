@@ -255,8 +255,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
 
   /**
-   * Initializes some class variables. 1-5 time steps are considered short term simulations. Greater than 5 time
-   * steps are long term simulations.
+   * Constructs a simulation with a single run covering five years.
    */
   public Simulation () {
 
@@ -301,9 +300,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
 
   /**
-   * Calls the default constructor as well as
-   * initializing some class variables with the
-   * provided parameters.  Most of these are set by the user in GUI Simulation Parameter dialog.
+   * Constructs a simulation with user-defined properties.
    */
   public Simulation (int numSimulations,
                      int numTimeSteps,
