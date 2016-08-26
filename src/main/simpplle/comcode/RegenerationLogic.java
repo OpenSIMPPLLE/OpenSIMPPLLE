@@ -16,9 +16,10 @@ import java.util.jar.JarInputStream;
 
 /**
  * This class contains methods for a Regeneration Logic. Regeneration is highly variable.
- * It is dependent on spatial arrangement of plant communities, regeneration mechanisms of species, and spatial arrangement of 
- * adjacent plant communities.  
- * <p>Regeneration logic is applied under either succession or fire regeneration logic.  This class covers both.  
+ * It is dependent on spatial arrangement of plant communities, regeneration mechanisms of species,
+ * and spatial arrangement of adjacent plant communities.
+ * <p>Regeneration logic is applied under either succession or fire regeneration logic.  This class
+ * covers both.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller

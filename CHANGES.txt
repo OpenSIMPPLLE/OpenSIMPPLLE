@@ -1,9 +1,11 @@
+Version 1.3.4
+    - Fixed Duplicate Rule Function in Fire Regeneration Dialog
+
 
 Version 1.3.3 : August 24, 2016
 
     - Fixed double counting bug in SIMPPLLE spreading algorithm
     - Fixed missing constructor error while loading simdata files
-
 
 Version 1.3.2 : August 17, 2016
 
