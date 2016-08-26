@@ -13,22 +13,13 @@ import java.util.*;
 import java.util.zip.*;
 
 /**
- * This class has the methods for making simulations.  Many of these are input by user in Simulation Parameter Dialog.  The order of making a simulation for an existing
- * landscape file is - select a working directory, select a regional zone, load a landscape, set simulation parameters, and run simulation.
- *
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
- *
- * Returns true if time steps are in one-year increments. Some of the interactions between
- * processes such as fire and insects or response of grasses to yearly moisture changes make
- * more sense if run yearly. This is the default in grassland zones, like Wyoming.
- *
- * Returns true if time steps are in ten-year increments. This is typical for most zones, which
- * mostly focus on vegetative change in landscapes over long periods of time.
- *
- * Returns true if this is the last season. If the simulation method is stand development, then
- * the last season is spring. Otherwise the last season is winter. Seasonal variation is
- * important to grasslands, like Wyoming.
+ * Simulation projects changes to an area from disturbance processes and succession. Projections
+ * are created at discrete time steps by applying system knowledge to vegetation units in the
+ * current area. The length of the time step depends on the processes being simulated. Interaction
+ * between processes such as fire and insects or response of grasses to yearly moisture changes
+ * make more sense if run yearly. This is the default in grassland zones, like Wyoming. Decade
+ * time steps are typical for most zones, which focus on vegetative change in landscapes over long
+ * periods of time.
  */
 
 public final class Simulation implements SimulationTypes, Externalizable {
