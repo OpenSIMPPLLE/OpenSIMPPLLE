@@ -97,7 +97,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   /**
    * The index of the current run, which starts at one.
    */
-  private int currentRun = 0;
+  private int currentRun;
 
   /**
    * The index of the current time step, which starts at zero.
@@ -122,7 +122,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   /**
    * A flag indicating if the number of time steps in memory is capped.
    */
-  private boolean discardData=false;
+  private boolean discardData;
 
   /**
    * A flag indicating if fires use suppression.
@@ -152,27 +152,27 @@ public final class Simulation implements SimulationTypes, Externalizable {
   /**
    *
    */
-  private boolean doAllStatesSummary=true;
+  private boolean doAllStatesSummary;
 
   /**
    *
    */
-  private boolean doGisFiles=false;
+  private boolean doGisFiles;
 
   /**
    *
    */
-  private boolean doProbArcFiles = false;
+  private boolean doProbArcFiles;
 
   /**
    *
    */
-  private boolean doSimLoggingFile=false;
+  private boolean doSimLoggingFile;
 
   /**
    *
    */
-  private boolean doTrackingSpeciesReport=false;
+  private boolean doTrackingSpeciesReport;
 
   /**
    * A flag indicating if ownership is tracked during multiple runs.
@@ -187,22 +187,22 @@ public final class Simulation implements SimulationTypes, Externalizable {
   /**
    * A flag indicating if access files are written.
    */
-  private boolean writeAccess=false;
+  private boolean writeAccess;
 
   /**
    * A flag indicating if a database is written to.
    */
-  private boolean writeDatabase=false;
+  private boolean writeDatabase;
 
   /**
    * A flag indicating if probability files are written.
    */
-  private boolean writeProbFiles=false;
+  private boolean writeProbFiles;
 
   /**
    * The type of invasive species logic applied.
    */
-  private InvasiveKind invasiveSpeciesKind=InvasiveKind.NONE;
+  private InvasiveKind invasiveSpeciesKind;
 
   /**
    * A path prefix for simulation output.
@@ -260,24 +260,44 @@ public final class Simulation implements SimulationTypes, Externalizable {
    */
   public Simulation () {
 
-    numSimulations        = 1;
-    numTimeSteps          = 5;
-    pastTimeStepsInMemory = 10;
-    fireSuppression       = false;
-    simulationMethod      = STOCHASTIC;
-    random                = null;
-    outputFile            = null;
-    discount              = 1.0f;
-    fixedSeed             = false;
-    trackSpecialArea      = false;
-    trackOwnership        = false;
-    yearlySteps           = false; // means decade time steps are the default
-    writeDatabase         = false;
-    writeAccess           = false;
-    writeProbFiles        = false;
-    currentTimeStep       = -1;
-    inSimulation          = false;
-    invasiveSpeciesKind   = InvasiveKind.NONE;
+    invasiveSpeciesKind      = InvasiveKind.NONE;
+    simulationMethod         = STOCHASTIC;
+    inSimulation             = false;
+    numSimulations           = 1;
+    numTimeSteps             = 5;
+    currentRun               = 0;
+    currentTimeStep          = -1;
+    currentSeason            = Climate.Season.YEAR;
+    yearlySteps              = false;
+    pastTimeStepsInMemory    = 10;
+    discardData              = false;
+    fireSuppression          = false;
+    discount                 = 1.0f;
+    random                   = null;
+    fixedSeed                = false;
+    outputFile               = null;
+    doAllStatesSummary       = true;
+    doGisFiles               = false;
+    doProbArcFiles           = false;
+    doSimLoggingFile         = false;
+    doTrackingSpeciesReport  = false;
+    trackOwnership           = false;
+    trackSpecialArea         = false;
+    writeAccess              = false;
+    writeDatabase            = false;
+    writeProbFiles           = false;
+    accessProcessList        = new TreeMap<>();
+    accessSpeciesList        = new TreeMap<>();
+    accessSizeClassList      = new TreeMap<>();
+    accessDensityList        = new TreeMap<>();
+    accessEcoGroupList       = new TreeMap<>();
+    accessFmzList            = new TreeMap<>();
+    accessIncRuleSpeciesList = new TreeMap<>();
+    accessLifeformList       = new TreeMap<>();
+    accessOnwershipList      = new TreeMap<>();
+    accessSpecialAreaList    = new TreeMap<>();
+    accessTreatmentTypeList  = new TreeMap<>();
+
 
     /* Uncomment if we want to use the System Property for a Fixed Seed
     String value = System.getProperty("simpplle.fixedRandom");
