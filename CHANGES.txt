@@ -1,4 +1,11 @@
+Version 1.3.4
     - Fixed Duplicate Rule Function in Fire Regeneration Dialog
+
+
+Version 1.3.3 : August 24, 2016
+
+    - Fixed double counting bug in SIMPPLLE spreading algorithm
+    - Fixed missing constructor error while loading simdata files
 
 Version 1.3.2 : August 17, 2016
 
@@ -8,34 +15,33 @@ Version 1.3.2 : August 17, 2016
     - Fixed exception during first simulation time step
     - Added a simulation option to specify a random seed
 
+
 Version 1.3.1 : August 4, 2016
 
-    -Simulation now defaults to text output without GIS/spread files
-    -Fixed hang while loading user knowledge with illegal process probabilities
-    -Fixed ConcurrentModificationException while loading EastSide Region One
-    -Fixed bug that limited fire spotting distance
-    -Replaced radio buttons in new area dialog with regular buttons
-    -Replaced description textfield with label in relative position dialog
-    -Relative wind position now calculated properly during Keane spreading
-    -Keane Spread Logic Parameters are now stored in System Knowledge files
+    - Simulation now defaults to text output without GIS/spread files
+    - Fixed hang while loading user knowledge with illegal process probabilities
+    - Fixed ConcurrentModificationException while loading EastSide Region One
+    - Fixed bug that limited fire spotting distance
+    - Replaced radio buttons in new area dialog with regular buttons
+    - Replaced description textfield with label in relative position dialog
+    - Relative wind position now calculated properly during Keane spreading
+    - Keane Spread Logic Parameters are now stored in System Knowledge files
 
 
 Version 1.3.0 : July 11, 2016
 
-    -Added additional Keane fire spread model
-
-        Added 'Keane Cell Percolation' dialog
-        Added 'Spread Model' combobox to simulation parameters
-        Extended spatial relation file format
-
-    -Reverted to old EVU_SIM_DATA output format
-    -Removed ECOGROUP output file
-    -Removed FMZ output file
+    - Added additional Keane fire spread model
+    - Added 'Keane Cell Percolation' dialog
+    - Added 'Spread Model' combobox to simulation parameters
+    - Extended spatial relation file format
+    - Reverted to old EVU_SIM_DATA output format
+    - Removed ECOGROUP output file
+    - Removed FMZ output file
 
 
 Version 1.2.4 : May 27, 2016
 
-    -Modified EVU_SIM_DATA columns
+    - Modified EVU_SIM_DATA columns
 
         Removed ACRES
         Removed OWNERSHIP_ID
@@ -45,26 +51,26 @@ Version 1.2.4 : May 27, 2016
         Added PROCESS_RULE
         Added REGENERATION_RULE (Not populated with values)
 
-    -Fixed excessive flickering after resizing rule dialogs
-    -EVU_SIM_DATA is now saved without compression
-    -Added SLINKMETRICS to simulation output
-    -Removed AREASUMMARY from simulation output
-    -Refactor to remove jbcl library
+    - Fixed excessive flickering after resizing rule dialogs
+    - EVU_SIM_DATA is now saved without compression
+    - Added SLINKMETRICS to simulation output
+    - Removed AREASUMMARY from simulation output
+    - Refactor to remove jbcl library
 
 
 Version 1.2.3 : April 12, 2016
 
-    -Duplicated rules now inserted under selection
-    -Alphabetized save/load system knowledge dialog
-    -Added "Fire Suppression Event Probability" to save/load sys knowledge
+    - Duplicated rules now inserted under selection
+    - Alphabetized save/load system knowledge dialog
+    - Added "Fire Suppression Event Probability" to save/load sys knowledge
 
 
 Version 1.2.2 : March 1, 2016
 
-    -Ecological Grouping names alphabetized
-    -Ecological Group dropdown removed
-    -Western Spruce Budworm Logic menu item hidden
-    -Disable Western Spruce Budworm menu item hidden
-    -Western Spruce Budworm logic disabled by default
-    -Created LightWsbw2 and SevereWsbw2 processes
-    -Added the new processes to the Westside Region 1 zone
+    - Ecological Grouping names alphabetized
+    - Ecological Group dropdown removed
+    - Western Spruce Budworm Logic menu item hidden
+    - Disable Western Spruce Budworm menu item hidden
+    - Western Spruce Budworm logic disabled by default
+    - Created LightWsbw2 and SevereWsbw2 processes
+    - Added the new processes to the Westside Region 1 zone
