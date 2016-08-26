@@ -298,16 +298,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessSpecialAreaList    = new TreeMap<>();
     accessTreatmentTypeList  = new TreeMap<>();
 
-
-    /* Uncomment if we want to use the System Property for a Fixed Seed
-    String value = System.getProperty("simpplle.fixedRandom");
-    if (value != null && value.equalsIgnoreCase("enabled")) {
-      fixedSeed = true;
-      seed = 42;
-    } else {
-      fixedSeed = false;
-    }
-    */
   }
 
   public static void setProbPrecision(int digits) {
