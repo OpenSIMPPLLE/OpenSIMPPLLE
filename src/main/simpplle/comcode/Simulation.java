@@ -22,38 +22,208 @@ import java.util.zip.*;
 
 public final class Simulation implements SimulationTypes, Externalizable {
 
+  /**
+   * Enumerates kinds of invasive species logic.
+   */
+  public enum InvasiveKind {
+
+    R1,
+    MSU,
+    MESA_VERDE_NP,
+    NONE
+
+  }
+
+  /**
+   * The serialization ID for this class, which is required by the Externalizable interface.
+   */
   static final long serialVersionUID = -6185381763708611851L;
-  static final int  version          = 6;
 
-  public enum InvasiveKind { R1, MSU, MESA_VERDE_NP, NONE};
+  /**
+   * The version number for this class's serialized representation.
+   */
+  static final int version = 6;
 
-  private int          numSimulations;
-  private int          numTimeSteps;
-  private int          pastTimeStepsInMemory;
-  private boolean      fireSuppression;
-  private int          simulationMethod;
-  private Random       random;
-  private File         outputFile;
-  private float        discount;
-  private long         seed;
-  private boolean      fixedSeed;
-  private boolean      trackSpecialArea;
-  private boolean      trackOwnership;
-  private boolean      yearlySteps;
-  private boolean      writeDatabase=false;
-  private boolean      writeAccess=false;
-  private boolean      writeProbFiles=false;
+  /**
+   * The maximum number of runs in a simulation.
+   */
+  public static final int MAX_SIMULATIONS = 100;
+
+  /**
+   * The maximum number of time steps in a run.
+   */
+  public static final int MAX_TIME_STEPS = 10000;
+
+  /**
+   * The default number of fixed-point decimal places in generated random numbers.
+   */
+  private static final int DEFAULT_PROB_PRECISION = 2;
+
+  /**
+   * The number of fixed-point decimal places in generated random numbers.
+   */
+  private static int probPrecision = DEFAULT_PROB_PRECISION;
+
+  /**
+   * The maximum value of a random number.
+   */
+  private static int maxProbability = 10000; // 100 with a fixed-point precision of two.
+
+  /**
+   * A shared simulation instance.
+   */
+  public static Simulation instance;
+
+  /**
+   * A flag indicating if the simulation is running.
+   */
+  private boolean inSimulation;
+
+  /**
+   * Defines how disturbance processes are applied.
+   */
+  private int simulationMethod;
+
+  /**
+   * The number of times to run the simulation.
+   */
+  private int numSimulations;
+
+  /**
+   * The number of time steps in a run.
+   */
+  private int numTimeSteps;
+
+  /**
+   * The index of the current run, which starts at one.
+   */
+  private int currentRun = 0;
+
+  /**
+   * The index of the current time step, which starts at zero.
+   */
+  private int currentTimeStep;
+
+  /**
+   * The current season, which is used with yearly time steps.
+   */
+  private Climate.Season currentSeason;
+
+  /**
+   * A flag indicating if time increments in years. Otherwise it increments in decades.
+   */
+  private boolean yearlySteps;
+
+  /**
+   * The number of time steps to keep in memory.
+   */
+  private int pastTimeStepsInMemory;
+
+  /**
+   * A flag indicating if the number of time steps in memory is capped.
+   */
+  private boolean discardData=false;
+
+  /**
+   * A flag indicating if fires use suppression.
+   */
+  private boolean fireSuppression;
+
+  /**
+   * The discount rate for fire suppression costs.
+   */
+  private float discount;
+
+  /**
+   * A per-simulation pseudo-random number generator.
+   */
+  private Random random;
+
+  /**
+   * A number that initializes the pseudo-random number generator.
+   */
+  private long seed;
+
+  /**
+   * A flag indicating if the generator is initialized with a fixed seed.
+   */
+  private boolean fixedSeed;
+
+  /**
+   *
+   */
+  private boolean doAllStatesSummary=true;
+
+  /**
+   *
+   */
+  private boolean doGisFiles=false;
+
+  /**
+   *
+   */
+  private boolean doProbArcFiles = false;
+
+  /**
+   *
+   */
+  private boolean doSimLoggingFile=false;
+
+  /**
+   *
+   */
+  private boolean doTrackingSpeciesReport=false;
+
+  /**
+   * A flag indicating if ownership is tracked during multiple runs.
+   */
+  private boolean trackOwnership;
+
+  /**
+   * A flag indicating if special area is tracked during multiple runs.
+   */
+  private boolean trackSpecialArea;
+
+  /**
+   * A flag indicating if access files are written.
+   */
+  private boolean writeAccess=false;
+
+  /**
+   * A flag indicating if a database is written to.
+   */
+  private boolean writeDatabase=false;
+
+  /**
+   * A flag indicating if probability files are written.
+   */
+  private boolean writeProbFiles=false;
+
+  /**
+   * The type of invasive species logic applied.
+   */
   private InvasiveKind invasiveSpeciesKind=InvasiveKind.NONE;
-  private boolean      discardData=false;
-  private boolean      doProbArcFiles = false;
-  private boolean      doAllStatesSummary=true;
-  private boolean      doTrackingSpeciesReport=false;
-  private boolean      doGisFiles=false;
-  private boolean      doSimLoggingFile=false;
-  private File         allStatesRulesFile;
-  private boolean      inSimulation;
-  private AreaSummary        areaSummary;
+
+  /**
+   * A path prefix for simulation output.
+   */
+  private File outputFile;
+
+  /**
+   *
+   */
+  private File allStatesRulesFile;
+
+  /**
+   *
+   */
+  private AreaSummary areaSummary;
+
+  /**
+   *
+   */
   private MultipleRunSummary multipleRunSummary;
+
   private PrintWriter   simLoggingWriter;
   private PrintWriter   invasiveSpeciesMSUProbOut;
   private PrintWriter[] accessEvuSimDataOut;
@@ -72,16 +242,17 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private PrintWriter   accessSlinkMetricsOut;
   private PrintWriter   accessTreatmentOut;
 
-  public static final int MAX_TIME_STEPS = 10000;
-  public static final int MAX_SIMULATIONS = 100;
-
-  private static final int DEFAULT_PROB_PRECISION = 2;
-  private static int probPrecision = DEFAULT_PROB_PRECISION;
-  private static int maxProbability = 10000;
-
-  private int            currentTimeStep;
-  private int            currentRun = 0;
-  private Climate.Season currentSeason;
+  private TreeMap<Short,String> accessProcessList        = new TreeMap<>();
+  private TreeMap<Short,String> accessSpeciesList        = new TreeMap<>();
+  private TreeMap<Short,String> accessSizeClassList      = new TreeMap<>();
+  private TreeMap<Short,String> accessDensityList        = new TreeMap<>();
+  private TreeMap<Short,String> accessEcoGroupList       = new TreeMap<>();
+  private TreeMap<Short,String> accessFmzList            = new TreeMap<>();
+  private TreeMap<Short,String> accessIncRuleSpeciesList = new TreeMap<>();
+  private TreeMap<Short,String> accessLifeformList       = new TreeMap<>();
+  private TreeMap<Short,String> accessOnwershipList      = new TreeMap<>();
+  private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<>();
+  private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
 
   private static final String COMMA         = ",";
   private static final String COLON         = ":";
@@ -212,8 +383,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     //accessAreaSummaryOut = new PrintWriter[numSimulations];
 
   }
-
-  public static Simulation instance;
 
   /**
    * Sets the current simulation instance.
@@ -614,18 +783,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     }
   }
-
-  private TreeMap<Short,String> accessProcessList        = new TreeMap<>();
-  private TreeMap<Short,String> accessSpeciesList        = new TreeMap<>();
-  private TreeMap<Short,String> accessSizeClassList      = new TreeMap<>();
-  private TreeMap<Short,String> accessDensityList        = new TreeMap<>();
-  private TreeMap<Short,String> accessEcoGroupList       = new TreeMap<>();
-  private TreeMap<Short,String> accessFmzList            = new TreeMap<>();
-  private TreeMap<Short,String> accessIncRuleSpeciesList = new TreeMap<>();
-  private TreeMap<Short,String> accessLifeformList       = new TreeMap<>();
-  private TreeMap<Short,String> accessOnwershipList      = new TreeMap<>();
-  private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<>();
-  private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
 
   private void initAccessTreeMaps() {
 
