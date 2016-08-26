@@ -304,24 +304,21 @@ public final class Simulation implements SimulationTypes, Externalizable {
    * Calls the default constructor as well as
    * initializing some class variables with the
    * provided parameters.  Most of these are set by the user in GUI Simulation Parameter dialog.
-   * @param nSims The number of simulations.
-   * @param nSteps The number of time steps.
-   * @param suppression True if fire Suppression is enabled.
    */
-  public Simulation (int nSims,
-                     int nSteps,
-                     boolean suppression,
-                     File outfile,
+  public Simulation (int numSimulations,
+                     int numTimeSteps,
+                     boolean fireSuppression,
+                     File outputFile,
                      float discount,
-                     boolean spArea,
-                     boolean owner,
+                     boolean trackSpecialArea,
+                     boolean trackOwnership,
                      boolean yearlySteps,
-                     String simMethod,
+                     String simulationMethod,
                      boolean writeDatabase,
                      boolean writeAccess,
                      boolean writeProbFiles,
-                     InvasiveKind invasiveKind,
-                     int nStepsInMemory,
+                     InvasiveKind invasiveSpeciesKind,
+                     int pastTimeStepsInMemory,
                      File allStatesRulesFile,
                      boolean discardData,
                      boolean doProbArcFiles,
@@ -333,18 +330,18 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     this();
 
-    this.numSimulations          = nSims;
-    this.numTimeSteps            = nSteps;
-    this.pastTimeStepsInMemory   = nStepsInMemory;
-    this.fireSuppression         = suppression;
-    this.outputFile              = outfile;
+    this.numSimulations          = numSimulations;
+    this.numTimeSteps            = numTimeSteps;
+    this.pastTimeStepsInMemory   = pastTimeStepsInMemory;
+    this.fireSuppression         = fireSuppression;
+    this.outputFile              = outputFile;
     this.allStatesRulesFile      = allStatesRulesFile;
     this.discount                = discount;
     this.yearlySteps             = yearlySteps;
     this.writeDatabase           = writeDatabase;
     this.writeAccess             = writeAccess;
     this.writeProbFiles          = writeProbFiles;
-    this.invasiveSpeciesKind     = invasiveKind;
+    this.invasiveSpeciesKind     = invasiveSpeciesKind;
     this.discardData             = discardData;
     this.doProbArcFiles          = doProbArcFiles;
     this.doAllStatesSummary      = doAllStatesSummary;
@@ -353,20 +350,20 @@ public final class Simulation implements SimulationTypes, Externalizable {
     this.fixedSeed               = fixedSeed;
     this.seed                    = seed;
 
-    if (simMethod.toUpperCase().equals("STOCHASTIC")) {
-      simulationMethod = STOCHASTIC;
-    } else if (simMethod.toUpperCase().equals("STAND DEVELOPMENT")) {
-      simulationMethod = STAND_DEVELOPMENT;
-    } else if (simMethod.toUpperCase().equals("HIGHEST")) {
-      simulationMethod = HIGHEST;
+    if (simulationMethod.toUpperCase().equals("STOCHASTIC")) {
+      this.simulationMethod = STOCHASTIC;
+    } else if (simulationMethod.toUpperCase().equals("STAND DEVELOPMENT")) {
+      this.simulationMethod = STAND_DEVELOPMENT;
+    } else if (simulationMethod.toUpperCase().equals("HIGHEST")) {
+      this.simulationMethod = HIGHEST;
     }
 
-    if (nSims > 1) {
-      trackSpecialArea = spArea;
-      trackOwnership   = owner;
+    if (numSimulations > 1) {
+      this.trackSpecialArea = trackSpecialArea;
+      this.trackOwnership = trackOwnership;
     }
 
-    accessEvuSimDataOut  = new PrintWriter[numSimulations];
+    accessEvuSimDataOut  = new PrintWriter[this.numSimulations];
     //accessAreaSummaryOut = new PrintWriter[numSimulations];
 
   }
