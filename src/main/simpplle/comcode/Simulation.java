@@ -300,24 +300,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   }
 
-  public static void setProbPrecision(int digits) {
-    probPrecision = digits;
-    maxProbability = getRationalProbability(100);
-  }
-
-  public static void setDefaultProbPrecision() {
-    probPrecision = DEFAULT_PROB_PRECISION;
-    maxProbability = getRationalProbability(100);
-  }
-
-  public static int getRationalProbability(double prob) {
-    return (int)Math.round(prob * Math.pow(10,probPrecision));
-  }
-
-  public static double getFloatProbability(int ratProb) {
-    return (ratProb / Math.pow(10,probPrecision));
-  }
-
   /**
    * Calls the default constructor as well as
    * initializing some class variables with the
@@ -387,6 +369,24 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessEvuSimDataOut  = new PrintWriter[numSimulations];
     //accessAreaSummaryOut = new PrintWriter[numSimulations];
 
+  }
+
+  public static void setProbPrecision(int digits) {
+    probPrecision = digits;
+    maxProbability = getRationalProbability(100);
+  }
+
+  public static void setDefaultProbPrecision() {
+    probPrecision = DEFAULT_PROB_PRECISION;
+    maxProbability = getRationalProbability(100);
+  }
+
+  public static int getRationalProbability(double prob) {
+    return (int)Math.round(prob * Math.pow(10,probPrecision));
+  }
+
+  public static double getFloatProbability(int ratProb) {
+    return (ratProb / Math.pow(10,probPrecision));
   }
 
   /**
