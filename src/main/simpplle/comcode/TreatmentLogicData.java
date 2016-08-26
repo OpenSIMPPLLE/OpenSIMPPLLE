@@ -369,7 +369,12 @@ public abstract class TreatmentLogicData {
     if (v != null) {
       for(i=0; i<v.size(); i++) {
         str = (String)v.elementAt(i);
-        addHtGrp(HabitatTypeGroupType.get(str));
+        HabitatTypeGroupType htGrpType = HabitatTypeGroupType.get(str);
+        if (htGrpType == null) {
+          HabitatTypeGroup htGrp = new HabitatTypeGroup(str);
+          htGrpType = htGrp.getType();
+        }
+        addHtGrp(htGrpType);
       }
     }
 
