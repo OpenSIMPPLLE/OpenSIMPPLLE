@@ -254,11 +254,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<>();
   private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
 
-  private static final String COMMA         = ",";
-  private static final String COLON         = ":";
-  private static final String SEMICOLON     = ";";
-  private static final String QUESTION_MARK = "?";
-
   /**
    * Initializes some class variables. 1-5 time steps are considered short term simulations. Greater than 5 time
    * steps are long term simulations.
@@ -1558,19 +1553,19 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     fout.println("CLASS SIMULATION");
     fout.print(nRuns);
-    fout.print(COMMA);
+    fout.print(",");
     fout.print(numTimeSteps);
-    fout.print(COMMA);
+    fout.print(",");
 
     fout.print(discount);
-    fout.print(COMMA);
+    fout.print(",");
     num = fireSuppression ? 1 : 0;
     fout.print(num);
-    fout.print(COMMA);
+    fout.print(",");
 
     num = trackSpecialArea ? 1 : 0;
     fout.print(num);
-    fout.print(COMMA);
+    fout.print(",");
 
     num = trackOwnership ? 1 : 0;
     fout.print(num);
