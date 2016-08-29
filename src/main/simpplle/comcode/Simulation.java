@@ -794,20 +794,20 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
 
   private void doMultipleRun() throws SimpplleError {
-    Area currentArea = Simpplle.currentArea;
-    String msg;
 
     currentRun = 0;
 
     multipleRunSummary = new MultipleRunSummary(this);
+
+    Area currentArea = Simpplle.currentArea;
     currentArea.initMultipleSimulation();
 
-    for(int i=0;i<numSimulations;i++) {
+    for (int i = 0; i < numSimulations; i++) {
 
-      msg = Simpplle.endl + "Performing Simulation #" + (i+1) + Simpplle.endl + Simpplle.endl;
+      String msg = "Performing Simulation #" + (i + 1);
       Simpplle.setStatusMessage(msg);
 
-      doFuture();  // Run a simulation.
+      doFuture();
 
       // Update Area Summary data.
       if (fireSuppression()) {
@@ -816,8 +816,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
       currentArea.updateSummaries(multipleRunSummary);
       multipleRunSummary.finishEmissionsSummary();
       multipleRunSummary.computeFrequencies();
+
       save();
+
       currentRun++;
+
     }
 
     // Compute Statistical Information.
