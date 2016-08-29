@@ -750,15 +750,15 @@ public final class Simulation implements SimulationTypes, Externalizable {
         openAccessTextFiles();
       }
 
-      Area area = Simpplle.getCurrentArea();
-      if ((area.hasRoads() || area.hasTrails()) && needNearestRoadTrailInfo()) {
+      if (needNearestRoadTrailInfo()) {
         Simpplle.setStatusMessage("Calculating Nearest Roads/Trails");
-      }
-      if (area.hasRoads()) {
-        Evu.findRoadUnits();
-      }
-      if (area.hasTrails()) {
-        Evu.findTrailUnits();
+        Area area = Simpplle.getCurrentArea();
+        if (area.hasRoads()) {
+          Evu.findRoadUnits();
+        }
+        if (area.hasTrails()) {
+          Evu.findTrailUnits();
+        }
       }
 
       if (simpplle.JSimpplle.invasiveSpeciesMSUProbFile() && outputFile != null) {
