@@ -851,19 +851,17 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   private void doFuture() throws SimpplleError {
 
-    //Use of Fixed Seed
     if (fixedSeed) {
       random = new Random(seed);
     } else {
       random = new Random();
     }
 
-    Area currentArea = Simpplle.currentArea;
-    // 1. Create a landscape.
-    // 2. Initialize spread to slots.
-
     currentTimeStep = 0;
+
+    Area currentArea = Simpplle.currentArea;
     currentArea.initSimulation();
+
     areaSummary = new AreaSummary();
 
     if (needNearestRoadTrailInfo()) {
@@ -901,7 +899,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     try {
       for(int i = 0; i < numTimeSteps; i++) {
-        currentTimeStep++;
+
+        currentTimeStep++; // How is this different from i?
         if (currentTimeStep > 1) {
           areaSummary.doBeginTimeStepInitialize();
         }
@@ -940,11 +939,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
         if (doAllStatesSummary) {
           areaSummary.updateAllStatesReportSummary();
         }
-
         if (doTrackingSpeciesReport) {
           areaSummary.updateTrackingSpeciesReportSummary();
         }
-
         if (outputFile != null) {
           areaSummary.fireSpreadReportUpdate(getFireSpreadReportPath());
         }
@@ -967,23 +964,19 @@ public final class Simulation implements SimulationTypes, Externalizable {
       }
 
       if (outputFile != null) {
+
         areaSummary.fireSpreadReportFinish(getFireSpreadReportPath());
-      }
-      if (outputFile != null && !isMultipleRun()) {
-        saveSimData();
-      }
-      if (doAllStatesSummary) {
-        if (outputFile != null) {
+
+        if (!isMultipleRun()) {
+          saveSimData();
+        }
+        if (doAllStatesSummary) {
           Reports.generateAllStatesReport(getOutputFile());
         }
-      }
-
-      if (doTrackingSpeciesReport) {
-        if (outputFile != null) {
+        if (doTrackingSpeciesReport) {
           Reports.generateTrackingSpeciesReport(getOutputFile());
         }
       }
-
     } catch (SimpplleError err) {
       currentArea.resetTreatmentSchedule();
       Simpplle.clearStatusMessage();
@@ -992,8 +985,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     currentArea.resetTreatmentSchedule();
 
-    // Manually clean things up until simpplle in made more efficient.
-    if (currentArea.doManualGC() == false) { System.gc(); }
+    // Manually clean things up until simpplle is made more efficient.
+    if (!currentArea.doManualGC()) { System.gc(); }
 
   }
 
