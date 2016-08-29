@@ -694,19 +694,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     return random.nextInt(maxProbability);
   }
 
-  public static String getMemoryString() {
-
-    long freeMem = Runtime.getRuntime().freeMemory();
-    long totMem  = Runtime.getRuntime().totalMemory();
-    long maxMem  = Runtime.getRuntime().maxMemory();
-    long usedMem = ((totMem-freeMem) / 1024) / 1024;
-
-    maxMem = (maxMem / 1024) / 1024;
-
-    return usedMem + "MB/" + maxMem;
-
-  }
-
   public void runSimulation () throws SimpplleError {
 
     inSimulation = true;
@@ -907,16 +894,27 @@ public final class Simulation implements SimulationTypes, Externalizable {
       }
     }
 
-    // ~~~~~~~~~~ Write time step zero before this comment ~~~~~~~~~
+    // TODO: Write initial states to detail log here
 
     try {
-      for(int i=0;i<numTimeSteps;i++) {
+      for(int i = 0; i < numTimeSteps; i++) {
         currentTimeStep++;
         if (currentTimeStep > 1) {
           areaSummary.doBeginTimeStepInitialize();
         }
-        String msg = "Project Area for Time Step: " + (i+1) + " Run #" + (currentRun+1) + " Mem: " + getMemoryString();
+
+        long freeMem = Runtime.getRuntime().freeMemory();
+        long totMem  = Runtime.getRuntime().totalMemory();
+        long maxMem  = Runtime.getRuntime().maxMemory();
+        long usedMem = ((totMem - freeMem) / 1024) / 1024;
+        maxMem = maxMem / 1024 / 1024;
+
+        String msg = "Project Area for Time Step: " + (i + 1)
+                   + " Run #" + (currentRun + 1)
+                   + " Mem: " + usedMem + "MB/" + maxMem;
+
         Simpplle.setStatusMessage(msg);
+
         if (FireEvent.useRegenPulse()) { FireEvent.setRegenPulse(); }
 
         if (RegionalZone.isWyoming()) {
