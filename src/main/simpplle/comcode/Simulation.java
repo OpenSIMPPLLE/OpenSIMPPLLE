@@ -895,7 +895,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
       }
     }
 
-    // TODO: Write initial states to detail log here
+    // TODO: Write initial simulation states here
 
     try {
       for(int i = 0; i < numTimeSteps; i++) {
