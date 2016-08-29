@@ -13,47 +13,219 @@ import java.util.*;
 import java.util.zip.*;
 
 /**
- * This class has the methods for making simulations.  Many of these are input by user in Simulation Parameter Dialog.  The order of making a simulation for an existing
- * landscape file is - select a working directory, select a regional zone, load a landscape, set simulation parameters, and run simulation.
- *
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+ * Simulation projects changes to an area from disturbance processes and succession. Projections
+ * are created at discrete time steps by applying system knowledge to vegetation units in the
+ * current area. The length of the time step depends on the processes being simulated. Interaction
+ * between processes such as fire and insects or response of grasses to yearly moisture changes
+ * make more sense if run yearly. This is the default in grassland zones, like Wyoming. Decade
+ * time steps are typical for most zones, which focus on vegetative change in landscapes over long
+ * periods of time.
  */
 
 public final class Simulation implements SimulationTypes, Externalizable {
 
+  /**
+   * Enumerates kinds of invasive species logic.
+   */
+  public enum InvasiveKind {
+
+    R1,
+    MSU,
+    MESA_VERDE_NP,
+    NONE
+
+  }
+
+  /**
+   * The serialization ID for this class, which is required by the Externalizable interface.
+   */
   static final long serialVersionUID = -6185381763708611851L;
-  static final int  version          = 6;
 
-  public enum InvasiveKind { R1, MSU, MESA_VERDE_NP, NONE};
+  /**
+   * The version number for this class's serialized representation.
+   */
+  static final int version = 6;
 
-  private int          numSimulations;
-  private int          numTimeSteps;
-  private int          pastTimeStepsInMemory;
-  private boolean      fireSuppression;
-  private int          simulationMethod;
-  private Random       random;
-  private File         outputFile;
-  private float        discount;
-  private long         seed;
-  private boolean      fixedSeed;
-  private boolean      trackSpecialArea;
-  private boolean      trackOwnership;
-  private boolean      yearlySteps;
-  private boolean      writeDatabase=false;
-  private boolean      writeAccess=false;
-  private boolean      writeProbFiles=false;
-  private InvasiveKind invasiveSpeciesKind=InvasiveKind.NONE;
-  private boolean      discardData=false;
-  private boolean      doProbArcFiles = false;
-  private boolean      doAllStatesSummary=true;
-  private boolean      doTrackingSpeciesReport=false;
-  private boolean      doGisFiles=false;
-  private boolean      doSimLoggingFile=false;
-  private File         allStatesRulesFile;
-  private boolean      inSimulation;
-  private AreaSummary        areaSummary;
+  /**
+   * The maximum number of runs in a simulation.
+   */
+  public static final int MAX_SIMULATIONS = 100;
+
+  /**
+   * The maximum number of time steps in a run.
+   */
+  public static final int MAX_TIME_STEPS = 10000;
+
+  /**
+   * The default number of fixed-point decimal places in generated random numbers.
+   */
+  private static final int DEFAULT_PROB_PRECISION = 2;
+
+  /**
+   * The number of fixed-point decimal places in generated random numbers.
+   */
+  private static int probPrecision = DEFAULT_PROB_PRECISION;
+
+  /**
+   * The maximum value of a random number.
+   */
+  private static int maxProbability = 10000; // 100 with a fixed-point precision of two.
+
+  /**
+   * A shared simulation instance.
+   */
+  public static Simulation instance;
+
+  /**
+   * A flag indicating if the simulation is running.
+   */
+  private boolean inSimulation;
+
+  /**
+   * Defines how disturbance processes are applied.
+   */
+  private int simulationMethod;
+
+  /**
+   * The number of times to run the simulation.
+   */
+  private int numSimulations;
+
+  /**
+   * The number of time steps in a run.
+   */
+  private int numTimeSteps;
+
+  /**
+   * The index of the current run, which starts at one.
+   */
+  private int currentRun;
+
+  /**
+   * The index of the current time step, which starts at zero.
+   */
+  private int currentTimeStep;
+
+  /**
+   * The current season, which is used with yearly time steps.
+   */
+  private Climate.Season currentSeason;
+
+  /**
+   * A flag indicating if time increments in years. Otherwise it increments in decades.
+   */
+  private boolean yearlySteps;
+
+  /**
+   * The number of time steps to keep in memory.
+   */
+  private int pastTimeStepsInMemory;
+
+  /**
+   * A flag indicating if the number of time steps in memory is capped.
+   */
+  private boolean discardData;
+
+  /**
+   * A flag indicating if fires use suppression.
+   */
+  private boolean fireSuppression;
+
+  /**
+   * The discount rate for fire suppression costs.
+   */
+  private float discount;
+
+  /**
+   * A per-simulation pseudo-random number generator.
+   */
+  private Random random;
+
+  /**
+   * A number that initializes the pseudo-random number generator.
+   */
+  private long seed;
+
+  /**
+   * A flag indicating if the generator is initialized with a fixed seed.
+   */
+  private boolean fixedSeed;
+
+  /**
+   *
+   */
+  private boolean doAllStatesSummary;
+
+  /**
+   *
+   */
+  private boolean doGisFiles;
+
+  /**
+   *
+   */
+  private boolean doProbArcFiles;
+
+  /**
+   *
+   */
+  private boolean doSimLoggingFile;
+
+  /**
+   *
+   */
+  private boolean doTrackingSpeciesReport;
+
+  /**
+   * A flag indicating if ownership is tracked during multiple runs.
+   */
+  private boolean trackOwnership;
+
+  /**
+   * A flag indicating if special area is tracked during multiple runs.
+   */
+  private boolean trackSpecialArea;
+
+  /**
+   * A flag indicating if access files are written.
+   */
+  private boolean writeAccess;
+
+  /**
+   * A flag indicating if a database is written to.
+   */
+  private boolean writeDatabase;
+
+  /**
+   * A flag indicating if probability files are written.
+   */
+  private boolean writeProbFiles;
+
+  /**
+   * The type of invasive species logic applied.
+   */
+  private InvasiveKind invasiveSpeciesKind;
+
+  /**
+   * A path prefix for simulation output.
+   */
+  private File outputFile;
+
+  /**
+   *
+   */
+  private File allStatesRulesFile;
+
+  /**
+   *
+   */
+  private AreaSummary areaSummary;
+
+  /**
+   *
+   */
   private MultipleRunSummary multipleRunSummary;
+
   private PrintWriter   simLoggingWriter;
   private PrintWriter   invasiveSpeciesMSUProbOut;
   private PrintWriter[] accessEvuSimDataOut;
@@ -72,56 +244,149 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private PrintWriter   accessSlinkMetricsOut;
   private PrintWriter   accessTreatmentOut;
 
-  public static final int MAX_TIME_STEPS = 10000;
-  public static final int MAX_SIMULATIONS = 100;
-
-  private static final int DEFAULT_PROB_PRECISION = 2;
-  private static int probPrecision = DEFAULT_PROB_PRECISION;
-  private static int maxProbability = 10000;
-
-  private int            currentTimeStep;
-  private int            currentRun = 0;
-  private Climate.Season currentSeason;
-
-  private static final String COMMA         = ",";
-  private static final String COLON         = ":";
-  private static final String SEMICOLON     = ";";
-  private static final String QUESTION_MARK = "?";
+  private TreeMap<Short,String> accessProcessList        = new TreeMap<>();
+  private TreeMap<Short,String> accessSpeciesList        = new TreeMap<>();
+  private TreeMap<Short,String> accessSizeClassList      = new TreeMap<>();
+  private TreeMap<Short,String> accessDensityList        = new TreeMap<>();
+  private TreeMap<Short,String> accessEcoGroupList       = new TreeMap<>();
+  private TreeMap<Short,String> accessFmzList            = new TreeMap<>();
+  private TreeMap<Short,String> accessIncRuleSpeciesList = new TreeMap<>();
+  private TreeMap<Short,String> accessLifeformList       = new TreeMap<>();
+  private TreeMap<Short,String> accessOwnershipList      = new TreeMap<>();
+  private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<>();
+  private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
 
   /**
-   * Initializes some class variables. 1-5 time steps are considered short term simulations. Greater than 5 time
-   * steps are long term simulations.
+   * Constructs a simulation with a single run covering five years.
    */
   public Simulation () {
+
+    invasiveSpeciesKind      = InvasiveKind.NONE;
+    simulationMethod         = STOCHASTIC;
+    inSimulation             = false;
+    numSimulations           = 1;
+    numTimeSteps             = 5;
+    currentRun               = 0;
+    currentTimeStep          = -1;
+    currentSeason            = Climate.Season.YEAR;
+    yearlySteps              = false;
+    pastTimeStepsInMemory    = 10;
+    discardData              = false;
+    fireSuppression          = false;
+    discount                 = 1.0f;
+    random                   = null;
+    fixedSeed                = false;
+    outputFile               = null;
+    doAllStatesSummary       = true;
+    doGisFiles               = false;
+    doProbArcFiles           = false;
+    doSimLoggingFile         = false;
+    doTrackingSpeciesReport  = false;
+    trackOwnership           = false;
+    trackSpecialArea         = false;
+    writeAccess              = false;
+    writeDatabase            = false;
+    writeProbFiles           = false;
+    accessProcessList        = new TreeMap<>();
+    accessSpeciesList        = new TreeMap<>();
+    accessSizeClassList      = new TreeMap<>();
+    accessDensityList        = new TreeMap<>();
+    accessEcoGroupList       = new TreeMap<>();
+    accessFmzList            = new TreeMap<>();
+    accessIncRuleSpeciesList = new TreeMap<>();
+    accessLifeformList       = new TreeMap<>();
+    accessOwnershipList      = new TreeMap<>();
+    accessSpecialAreaList    = new TreeMap<>();
+    accessTreatmentTypeList  = new TreeMap<>();
+
+  }
+
+  /**
+   * Constructs a simulation with user-defined properties.
+   */
+  public Simulation (int numSimulations,
+                     int numTimeSteps,
+                     boolean fireSuppression,
+                     File outputFile,
+                     float discount,
+                     boolean trackSpecialArea,
+                     boolean trackOwnership,
+                     boolean yearlySteps,
+                     String simulationMethod,
+                     boolean writeDatabase,
+                     boolean writeAccess,
+                     boolean writeProbFiles,
+                     InvasiveKind invasiveSpeciesKind,
+                     int pastTimeStepsInMemory,
+                     File allStatesRulesFile,
+                     boolean discardData,
+                     boolean doProbArcFiles,
+                     boolean doAllStatesSummary,
+                     boolean doTrackingSpeciesReport,
+                     boolean doGisFiles,
+                     boolean fixedSeed,
+                     long seed) {
+
+    this();
+
+    this.numSimulations          = numSimulations;
+    this.numTimeSteps            = numTimeSteps;
+    this.pastTimeStepsInMemory   = pastTimeStepsInMemory;
+    this.fireSuppression         = fireSuppression;
+    this.outputFile              = outputFile;
+    this.allStatesRulesFile      = allStatesRulesFile;
+    this.discount                = discount;
+    this.yearlySteps             = yearlySteps;
+    this.writeDatabase           = writeDatabase;
+    this.writeAccess             = writeAccess;
+    this.writeProbFiles          = writeProbFiles;
+    this.invasiveSpeciesKind     = invasiveSpeciesKind;
+    this.discardData             = discardData;
+    this.doProbArcFiles          = doProbArcFiles;
+    this.doAllStatesSummary      = doAllStatesSummary;
+    this.doTrackingSpeciesReport = doTrackingSpeciesReport;
+    this.doGisFiles              = doGisFiles;
+    this.fixedSeed               = fixedSeed;
+    this.seed                    = seed;
+
+    if (simulationMethod.toUpperCase().equals("STOCHASTIC")) {
+      this.simulationMethod = STOCHASTIC;
+    } else if (simulationMethod.toUpperCase().equals("STAND DEVELOPMENT")) {
+      this.simulationMethod = STAND_DEVELOPMENT;
+    } else if (simulationMethod.toUpperCase().equals("HIGHEST")) {
+      this.simulationMethod = HIGHEST;
+    }
+
+    if (numSimulations > 1) {
+      this.trackSpecialArea = trackSpecialArea;
+      this.trackOwnership = trackOwnership;
+    }
+
+    accessEvuSimDataOut  = new PrintWriter[this.numSimulations];
+    //accessAreaSummaryOut = new PrintWriter[numSimulations];
+
+  }
+
+  public void reset() {
 
     numSimulations        = 1;
     numTimeSteps          = 5;
     pastTimeStepsInMemory = 10;
     fireSuppression       = false;
     simulationMethod      = STOCHASTIC;
-    random                = null;
-    outputFile            = null;
-    discount              = 1.0f;
-    fixedSeed             = false;
-    trackSpecialArea      = false;
-    trackOwnership        = false;
-    yearlySteps           = false; // means decade time steps are the default
-    writeDatabase         = false;
-    writeAccess           = false;
-    writeProbFiles        = false;
-    currentTimeStep       = -1;
-    inSimulation          = false;
-    invasiveSpeciesKind   = InvasiveKind.NONE;
 
-    /* Uncomment if we want to use the System Property for a Fixed Seed
-    String value = System.getProperty("simpplle.fixedRandom");
-    if (value != null && value.equalsIgnoreCase("enabled")) {
-      fixedSeed = true;
-      seed = 42;
-    } else {
-      fixedSeed = false;
-    }
-    */
+  }
+
+  public static Simulation getInstance() {
+    return instance;
+  }
+
+  public static void setInstance(Simulation simulation) {
+    instance = simulation;
+  }
+
+  public static void clearInstance() {
+    instance = null;
   }
 
   public static void setProbPrecision(int digits) {
@@ -142,313 +407,293 @@ public final class Simulation implements SimulationTypes, Externalizable {
     return (ratProb / Math.pow(10,probPrecision));
   }
 
-  /**
-   * Calls the default constructor as well as
-   * initializing some class variables with the
-   * provided parameters.  Most of these are set by the user in GUI Simulation Parameter dialog.
-   * @param nSims The number of simulations.
-   * @param nSteps The number of time steps.
-   * @param suppression True if fire Suppression is enabled.
-   */
-  public Simulation (int nSims,
-                     int nSteps,
-                     boolean suppression,
-                     File outfile,
-                     float discount,
-                     boolean spArea,
-                     boolean owner,
-                     boolean yearlySteps,
-                     String simMethod,
-                     boolean writeDatabase,
-                     boolean writeAccess,
-                     boolean writeProbFiles,
-                     InvasiveKind invasiveKind,
-                     int nStepsInMemory,
-                     File allStatesRulesFile,
-                     boolean discardData,
-                     boolean doProbArcFiles,
-                     boolean doAllStatesSummary,
-                     boolean doTrackingSpeciesReport,
-                     boolean doGisFiles,
-                     boolean fixedSeed,
-                     long seed) {
-
-    this();
-
-    this.numSimulations          = nSims;
-    this.numTimeSteps            = nSteps;
-    this.pastTimeStepsInMemory   = nStepsInMemory;
-    this.fireSuppression         = suppression;
-    this.outputFile              = outfile;
-    this.allStatesRulesFile      = allStatesRulesFile;
-    this.discount                = discount;
-    this.yearlySteps             = yearlySteps;
-    this.writeDatabase           = writeDatabase;
-    this.writeAccess             = writeAccess;
-    this.writeProbFiles          = writeProbFiles;
-    this.invasiveSpeciesKind     = invasiveKind;
-    this.discardData             = discardData;
-    this.doProbArcFiles          = doProbArcFiles;
-    this.doAllStatesSummary      = doAllStatesSummary;
-    this.doTrackingSpeciesReport = doTrackingSpeciesReport;
-    this.doGisFiles              = doGisFiles;
-    this.fixedSeed               = fixedSeed;
-    this.seed                    = seed;
-
-    if (simMethod.toUpperCase().equals("STOCHASTIC")) {
-      simulationMethod = STOCHASTIC;
-    } else if (simMethod.toUpperCase().equals("STAND DEVELOPMENT")) {
-      simulationMethod = STAND_DEVELOPMENT;
-    } else if (simMethod.toUpperCase().equals("HIGHEST")) {
-      simulationMethod = HIGHEST;
+  public static int getCurrentRun() { // TODO: Make non-static, access 'this' directly
+    if (instance == null) {
+      return 1;
+    } else {
+      return instance.currentRun;
     }
+  }
 
-    if (nSims > 1) {
-      trackSpecialArea = spArea;
-      trackOwnership   = owner;
+  public static int getCurrentTimeStep() { // TODO: Make non-static, access 'this' directly
+    if (instance == null) {
+      return 0;
+    } else {
+      return instance.currentTimeStep;
     }
-
-    accessEvuSimDataOut  = new PrintWriter[numSimulations];
-    //accessAreaSummaryOut = new PrintWriter[numSimulations];
-
   }
 
-  public static Simulation instance;
-
-  /**
-   * Sets the current simulation instance.
-   * @param simulation
-   */
-  public static void setInstance(Simulation simulation) {
-    instance = simulation;
+  public Climate.Season getCurrentSeason() {
+    return currentSeason;
   }
 
-  /**
-   * Boolean to see if data will be discarded.  This helps in memory management.
-   * @param discardData true if data can be discarded.
-   */
-  public void setDiscardData(boolean discardData) {
-    this.discardData = discardData;
-  }
-
-  /**
-   * Method to get the current simulation instance.
-   * @return current simulation instance
-   */
-  public static Simulation getInstance() {
-    return instance;
-  }
-
-  /**
-   * Sets the reference to the simulation instance to null.
-   */
-  public static void clearInstance() {
-    instance = null;
-  }
-
-  /**
-   * If yearly time steps is to be used.  The default is decade, except in Wyoming grassland regional zone. Some of the
-   * interactions between processes such as fire and insects or response of grasses to yearly moisture changes make
-   * more sense if run yearly.
-   * @return
-   */
-  public boolean isYearlyTimeSteps() { return yearlySteps; }
-
-  /**
-   * Chooses decade time steps by making yearlySteps boolean false.  This is the default of OpenSimpplle - which mostly
-   * focuses on vegetative change in landscapes over longer periods of time, except for grassland areas (Wyoming) where
-   * yearly is the default.
-   * @return
-   */
-  public boolean isDecadeTimeSteps() { return (yearlySteps == false); }
-
-  /**
-   * If running yearly time steps, returns true if a decade has passed.
-   * @return
-   */
-  public boolean isDecadeStep() {
-    if (yearlySteps == false) return true;
-    return ((getCurrentTimeStep() % 10) == 0);
-  }
-
-  public float getDiscount() { return discount; }
-
-  /**
-   * Gets the simulation's output file.
-   * @return a File
-   */
-  public File getOutputFile() { return outputFile; }
-
-  /**
-   * @return an AreaSummary, the Area Summary Instance.
-   * @see simpplle.comcode.AreaSummary
-   */
-  public AreaSummary getAreaSummary() {
-    return areaSummary;
-  }
-
-  /**
-   * @return an MultipleRunSummary, the Multiple Run Summary instance.
-   * @see simpplle.comcode.MultipleRunSummary
-   */
-  public MultipleRunSummary getMultipleRunSummary() {
-    return multipleRunSummary;
-  }
-
-  /**
-   * Gets the current run number.
-   * @return the run number.
-   */
-  public static int getCurrentRun() {
-    if (getInstance() == null) { return 1; }
-    return getInstance().currentRun;
-  }
-
-  /**
-   * Gets the current time step number.
-   * @return the time step number.
-   */
-  public static int getCurrentTimeStep() {
-    if (getInstance() == null) { return 0; }
-    return getInstance().currentTimeStep;
-  }
-
-  /**
-   * Gets the number of simulations.  This must be between 1-100.
-   * @return the number of simulations.
-   */
   public int getNumSimulations () {
     return numSimulations;
   }
 
-  /**
-   * Returns true if the number of simulations more than one.
-   * @return a boolean.
-   */
-  public boolean isMultipleRun () {
-    return (numSimulations > 1);
-  }
-
-  /**
-    * @return true if multiple run summary exists
-    */
-  public boolean existsMultipleRunSummary() {
-    return (multipleRunSummary != null);
-  }
-
-  /**
-   * Gets the number of time steps.
-   * @return the number of time steps.
-   */
   public int getNumTimeSteps () {
     return numTimeSteps;
   }
 
-  /**
-   * Gets the past time steps stored in memory.  Minimum is 10.
-   * @return
-   */
+  public int getSimulationMethod() {
+    return simulationMethod;
+  }
+
+  private String printSimulationMethod () {
+    switch(simulationMethod) {
+      case STOCHASTIC:
+        return "STOCHASTIC";
+      case HIGHEST:
+        return "HIGHEST";
+      case STAND_DEVELOPMENT:
+        return "STAND DEVELOPMENT";
+      default:
+        return "";
+    }
+  }
+
+  public boolean isHighestProbability() {
+    return simulationMethod == HIGHEST;
+  }
+
+  public boolean isStandDevelopment() {
+    return simulationMethod == STAND_DEVELOPMENT;
+  }
+
+  public boolean isStochastic() {
+    return simulationMethod == STOCHASTIC;
+  }
+
+  public boolean isSimulationRunning() {
+    return inSimulation;
+  }
+
+  public boolean isMultipleRun () {
+    return numSimulations > 1;
+  }
+
+  public boolean isYearlyTimeSteps() {
+    return yearlySteps;
+  }
+
+  public boolean isDecadeTimeSteps() {
+    return !yearlySteps;
+  }
+
+  public boolean isDecadeStep() {
+    if (yearlySteps) {
+      return (getCurrentTimeStep() % 10) == 0; // WARNING: Uses shared instance, yearlySteps doesn't
+    } else {
+      return true;
+    }
+  }
+
+  public boolean isLastSeason() {
+    if (RegionalZone.isWyoming()) {
+      if (isStandDevelopment()) {
+        return currentSeason == Climate.Season.SPRING;
+      } else {
+        return currentSeason == Climate.Season.WINTER;
+      }
+    }
+    return true;
+  }
+
+  public void setDiscardData(boolean discardData) {
+    this.discardData = discardData;
+  }
+
+  public boolean isDiscardData() {
+    return discardData;
+  }
+
   public int getPastTimeStepsInMemory() {
     return pastTimeStepsInMemory;
   }
 
-  /**
-   * Returns current value for fire suppression, true or false.
-   * True indicates fire suppression is turned on.
-   * @return a boolean indiciating current value of fire suppression.
-   */
-  public boolean fireSuppression() { return fireSuppression;}
+  public float getDiscount() {
+    return discount;
+  }
 
-  /**
-   * Returns true if we are tracking data by Special Area, false otherwise.
-   * @return a boolean.
-   */
-  public boolean trackSpecialArea() { return trackSpecialArea; }
+  public boolean fireSuppression() {
+    return fireSuppression;
+  }
 
-  /**
-   * Returns true if we are tracking data by Ownership, false otherwise.
-   * @return a boolean.
-   */
-  public boolean trackOwnership() { return trackOwnership; }
-
-  /**
-    * Returns the current simulation method.
-    * Possible values are:
-    *   STOCHASTIC
-    *   HIGHEST
-    *   STAND_DEVELOPMENT (succession)
-    */
-  public int getSimulationMethod() { return simulationMethod;}
-
-  public Climate.Season getCurrentSeason() {
-    return currentSeason;
+  public InvasiveKind getInvasiveSpeciesKind() {
+    return invasiveSpeciesKind;
   }
 
   public boolean isDoInvasiveSpecies() {
     return invasiveSpeciesKind != InvasiveKind.NONE;
   }
 
-  /**
-   * Simulation probability= stand development (succession). One of the three possible types of simulation probabilities.
-   * @return true if simulation prob is stand development (succession).
-   */
-  public boolean isStandDevelopment() {
-    return (simulationMethod == STAND_DEVELOPMENT);
-  }
-
-  /**
-   * Simulation probability= stochastic. One of the three possible types of simulation probabilities.
-   * @return true if simulation prob is stochastic.
-   */
-  public boolean isStochastic() {
-    return (simulationMethod == STOCHASTIC);
-  }
-
-  /**
-   * Simulation probability= highest probability. One of the three possible types of simulation probabilities.
-   * @return true if simulation prob is highest.
-   */
-  public boolean isHighestProbability() {
-    return (simulationMethod == HIGHEST);
-  }
-
-  /**
-   * Converts the value of simulationMethod to a string description.  Choices are stochastic, highest and stand development (succession).
-   */
-  private String printSimulationMethod () {
-    switch(simulationMethod) {
-      case STOCHASTIC:        return "STOCHASTIC";
-      case HIGHEST:           return "HIGHEST";
-      case STAND_DEVELOPMENT: return "STAND DEVELOPMENT";
-      default:                return "";
-    }
-  }
-
-  /**
-   * Resets simulation data to defaults. Called before running a new simulation.
-   */
-  public void reset() {
-    numSimulations        = 1;
-    numTimeSteps          = 5;
-    pastTimeStepsInMemory = 10;
-    fireSuppression       = false;
-    simulationMethod      = STOCHASTIC;
-  }
-
-  public boolean isSimulationRunning() { return inSimulation; }
-
-  /**
-   * Invasive species predictions require the nearest distance to each road and trail.
-   * @return True if there is an invasive species
-   */
   public boolean needNearestRoadTrailInfo() {
     return invasiveSpeciesKind != InvasiveKind.NONE;
   }
 
+  public boolean trackOwnership() {
+    return trackOwnership;
+  }
+
+  public boolean trackSpecialArea() {
+    return trackSpecialArea;
+  }
+
+  public File getOutputFile() {
+    return outputFile;
+  }
+
+  public AreaSummary getAreaSummary() {
+    return areaSummary;
+  }
+
+  public MultipleRunSummary getMultipleRunSummary() {
+    return multipleRunSummary;
+  }
+
+  public boolean existsMultipleRunSummary() {
+    return multipleRunSummary != null;
+  }
+
+  public PrintWriter getAccessEvuSimDataOut() {
+    return accessEvuSimDataOut[currentRun];
+  }
+
+  public PrintWriter getAccessTrackingSpeciesOut() {
+    return accessTrackingSpeciesOut;
+  }
+
+  public PrintWriter getAccessSlinkMetricsOut() {
+    return accessSlinkMetricsOut;
+  }
+
+  public PrintWriter getInvasiveSpeciesMSUPrintWriter() {
+    if (outputFile != null) {
+      return invasiveSpeciesMSUProbOut;
+    } else {
+      return null;
+    }
+  }
+
+  public void makeAccessFilesDir() throws SimpplleError {
+    File outputDir = new File(outputFile.getParent(),"textdata");
+    if (!outputDir.mkdir()) {
+      throw new SimpplleError("Unable to create output directory at " + outputDir);
+    }
+  }
+
+  public File getAccessFilesPath() throws SimpplleError {
+    File path = new File(outputFile.getParent(),"textdata");
+    return path;
+  }
+
+//  public File getAllStatesFilePath() {
+//    File path = new File(outputFile+"-allstates-"+Integer.toString(currentRun+1)+".txt");
+//    File path = new File(outputFile+"-allstates.txt");
+//    return path;
+//  }
+
+  public File getDatabasePath() {
+    File newDir = new File(outputFile+"db");
+    File path = new File(newDir,outputFile.getName()+"db");
+    return path;
+  }
+
+  public File getFireSpreadReportPath() {
+    File path = new File(outputFile+"-firespread-"+Integer.toString(currentRun+1)+".txt");
+    return path;
+  }
+
+  public File getSimFilePath() {
+    File path = new File(outputFile+".simdata_bin");
+    return path;
+  }
+
+  public boolean getWriteAccess() {
+    return writeAccess;
+  }
+
+  public boolean getWriteDatabase() {
+    return writeDatabase;
+  }
+
+  public boolean isAllStatesRulesFile() {
+    return allStatesRulesFile != null;
+  }
+
+  public boolean isDoAllStatesSummary() {
+    return doAllStatesSummary;
+  }
+
+  public boolean isDoProbArcFiles() {
+    return doProbArcFiles;
+  }
+
+  public boolean isDoSimLoggingFile() {
+    return doSimLoggingFile;
+  }
+
+  public boolean isDoTrackingSpeciesReport() {
+    return doTrackingSpeciesReport;
+  }
+
+  public PrintWriter getSimLoggingWriter() {
+    return simLoggingWriter;
+  }
+
+  public void addAccessDensity(Density density) {
+    accessDensityList.put(density.getSimId(), density.toString());
+  }
+
+  public void addAccessEcoGroup(HabitatTypeGroupType ecoGroup) {
+    accessEcoGroupList.put(ecoGroup.getSimId(), ecoGroup.toString());
+  }
+
+  public void addAccessFmz(Fmz fmz) {
+    accessFmzList.put(fmz.getSimId(), fmz.toString());
+  }
+
+  public void addAccessIncRuleSpecies(InclusionRuleSpecies species) {
+    accessIncRuleSpeciesList.put(species.getSimId(), species.toString());
+  }
+
+  public void addAccessLifeform(Lifeform lifeform) {
+    accessLifeformList.put(lifeform.getSimId(), lifeform.toString());
+  }
+
+  public void addAccessOwnership(Ownership ownership) {
+    accessOwnershipList.put(ownership.getSimId(), ownership.toString());
+  }
+
+  public void addAccessProcess(ProcessType process) {
+    accessProcessList.put(process.getSimId(), process.toString());
+  }
+
+  public void addAccessSizeClass(SizeClass sizeClass) {
+    accessSizeClassList.put(sizeClass.getSimId(), sizeClass.toString());
+  }
+
+  public void addAccessSpecialArea(SpecialArea specialArea) {
+    accessSpecialAreaList.put(specialArea.getSimId(), specialArea.toString());
+  }
+
+  public void addAccessSpecies(Species species) {
+    accessSpeciesList.put(species.getSimId(), species.toString());
+  }
+
+  public void addAccessTreatment(TreatmentType treatmentType) {
+    accessTreatmentTypeList.put(treatmentType.getSimId(),treatmentType.toString());
+  }
+
   /**
-   * This method starts a simulation running.
-   * @throws SimpplleError caught in GUI
+   * Generates a fixed-point random number in the range [0,100).
+   *
+   * @return A generated number
    */
+  public int random() {
+    return random.nextInt(maxProbability);
+  }
+
   public void runSimulation () throws SimpplleError {
 
     inSimulation = true;
@@ -457,92 +702,49 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
       if (outputFile != null) {
 
-        if (simpplle.JSimpplle.simLoggingFile()) {
-          this.doSimLoggingFile=true;
-        }
-
-        File logFile = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
-
-        PrintWriter logOut;
-
         try {
-
-          logOut = new PrintWriter(new FileOutputStream(logFile));
-
-          if (doSimLoggingFile) {
-            initSimLogging();
-          }
-
-        } catch (Exception ex) {
-
+          writeLog();
+        } catch (IOException ex) {
           throw new SimpplleError(ex.getMessage(),ex);
-
         }
 
-        logOut.println("SIMPPLLE Simulation Log File");
-        logOut.println();
-        logOut.println("Date : " + Simpplle.currentDate());
-        logOut.println("Time : " + Simpplle.currentTime());
-        logOut.println();
-        logOut.println("Current Zone : " + Simpplle.getCurrentZone().toString());
-        logOut.println("Current Area : " + Simpplle.getCurrentArea().toString());
-        logOut.println();
-        logOut.println("Number of Simulations : " + numSimulations);
-        logOut.print("Number of Time Steps  : " + numTimeSteps);
-        String str = (yearlySteps) ? " (Yearly)" : " (Decade)";
-        logOut.println(str);
-        logOut.println();
-        logOut.println("Fire Suppression      : " + fireSuppression);
-        if (fireSuppression && (getDiscount() > 1.0f)) {
-          logOut.println("Fire Cost Discount    : " + getDiscount());
+        if (simpplle.JSimpplle.simLoggingFile()) {
+          doSimLoggingFile = true;
+          try {
+            File log = Utility.makeSuffixedPathname(outputFile, "-detaillog", "txt");
+            simLoggingWriter = new PrintWriter(new FileOutputStream(log));
+            simLoggingWriter.println("Time,Spread_From,Spread_To,To_Life_Form,Fire_Type,Rule");
+          } catch (IOException ex) {
+            throw new SimpplleError(ex.getMessage(),ex);
+          }
         }
-        logOut.println("Simulation Method     : " + printSimulationMethod());
-        logOut.println();
 
-        logOut.println("Data files:");
-
-        File dataFile = SystemKnowledge.getFile(SystemKnowledge.FMZ);
-        str = (dataFile == null) ? "Default" : dataFile.toString();
-        logOut.println("  Fire Management Zones : " + str);
-
-        dataFile = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
-        str = (dataFile == null) ? "Default" : dataFile.toString();
-        logOut.println("  Fire Spread           : " + str);
-
-        dataFile = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
-        str = (dataFile == null) ? "Default" : dataFile.toString();
-        logOut.println("  Type of Fire          : " + str);
-
-        logOut.flush();
-        logOut.close();
-
-        Simpplle.setStatusMessage(Simpplle.endl + "Writing initial Simulation Data Files" + Simpplle.endl);
+        Simpplle.setStatusMessage("Writing initial Simulation Data Files");
 
         writeInitialAreaFile();
 
+        if (writeDatabase) {
+          Simpplle.setStatusMessage("Creating Database");
+          DatabaseCreator.initHibernate(true, getDatabasePath());
+          writeDatabaseManagerBatFile();
+          writeOpenOfficeBaseInstructions();
+        }
+
+        if (writeAccess) {
+          initAccessTreeMaps();
+          openAccessTextFiles();
+        }
       }
 
-      if (outputFile != null && writeDatabase) {
-        Simpplle.setStatusMessage("Creating Database");
-        DatabaseCreator.initHibernate(true, getDatabasePath());
-        writeDatabaseManagerBatFile();
-        writeOpenOfficeBaseInstructions();
-      }
-
-      if (outputFile != null && writeAccess) {
-        initAccessTreeMaps();
-        openAccessTextFiles();
-      }
-
-      Area area = Simpplle.getCurrentArea();
-      if ((area.hasRoads() || area.hasTrails()) && needNearestRoadTrailInfo()) {
+      if (needNearestRoadTrailInfo()) {
         Simpplle.setStatusMessage("Calculating Nearest Roads/Trails");
-      }
-      if (area.hasRoads()) {
-        Evu.findRoadUnits();
-      }
-      if (area.hasTrails()) {
-        Evu.findTrailUnits();
+        Area area = Simpplle.getCurrentArea();
+        if (area.hasRoads()) {
+          Evu.findRoadUnits();
+        }
+        if (area.hasTrails()) {
+          Evu.findTrailUnits();
+        }
       }
 
       if (simpplle.JSimpplle.invasiveSpeciesMSUProbFile() && outputFile != null) {
@@ -562,23 +764,27 @@ public final class Simulation implements SimulationTypes, Externalizable {
         }
       }
 
-      if (outputFile != null && writeDatabase) {
-        DatabaseCreator.closeHibernate();
-      }
-      if (outputFile != null && writeAccess) {
-        writeAccessSlinkMetrics();
-        writeAccessTreeMaps();
-        closeAccessTextFiles();
-      }
+      if (outputFile != null) {
 
-      if (simpplle.JSimpplle.invasiveSpeciesMSUProbFile() && outputFile != null) {
-        invasiveSpeciesMSUProbOut.flush();
-        invasiveSpeciesMSUProbOut.close();
-      }
+        if (writeDatabase) {
+          DatabaseCreator.closeHibernate();
+        }
 
-      if (doSimLoggingFile) {
-        simLoggingWriter.flush();
-        simLoggingWriter.close();
+        if (writeAccess) {
+          writeAccessSlinkMetrics();
+          writeAccessTreeMaps();
+          closeAccessTextFiles();
+        }
+
+        if (simpplle.JSimpplle.invasiveSpeciesMSUProbFile()) {
+          invasiveSpeciesMSUProbOut.flush();
+          invasiveSpeciesMSUProbOut.close();
+        }
+
+        if (doSimLoggingFile) {
+          simLoggingWriter.flush();
+          simLoggingWriter.close();
+        }
       }
     } catch (Exception err) {
       throw new SimpplleError("The following Runtime Exception occurred:\n" + err.getMessage(),err);
@@ -587,10 +793,257 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void initSimLogging() throws FileNotFoundException {
-    File log = Utility.makeSuffixedPathname(outputFile, "-detaillog", "txt");
-    simLoggingWriter = new PrintWriter(new FileOutputStream(log));
-    simLoggingWriter.println("Time,Spread_From,Spread_To,To_Life_Form,Fire_Type,Rule");
+  private void doMultipleRun() throws SimpplleError {
+
+    currentRun = 0;
+
+    multipleRunSummary = new MultipleRunSummary(this);
+
+    Area currentArea = Simpplle.currentArea;
+    currentArea.initMultipleSimulation();
+
+    for (int i = 0; i < numSimulations; i++) {
+
+      String msg = "Performing Simulation #" + (i + 1);
+      Simpplle.setStatusMessage(msg);
+
+      doFuture();
+
+      // Update Area Summary data.
+      if (fireSuppression()) {
+        multipleRunSummary.updateFireSuppressionCostSummary(discount);
+      }
+      currentArea.updateSummaries(multipleRunSummary);
+      multipleRunSummary.finishEmissionsSummary();
+      multipleRunSummary.computeFrequencies();
+
+      saveSimData();
+
+      currentRun++;
+
+    }
+
+    // Compute Statistical Information.
+    currentArea.initializeSpecialLists(this,multipleRunSummary);
+    multipleRunSummary.calculateStatistics();
+
+    // Output the Automatically generated reports.
+    multipleRunSummary.asciiSummaryReport(outputFile);
+    if (trackSpecialArea()) {
+      multipleRunSummary.asciiSpecialAreaSummaryReport(outputFile);
+    }
+    if (trackOwnership()) {
+      multipleRunSummary.asciiOwnershipSummaryReport(outputFile);
+    }
+
+//    if (writeProbFiles) {
+//      multipleRunSummary.calculateFrequency();
+//    }
+
+    if (writeProbFiles && doProbArcFiles) {
+      currentArea.produceDecadeProbabilityArcFiles(outputFile);
+      currentArea.produceProbabilityArcFiles(outputFile);
+    }
+
+    saveWithMrSummary();
+//    DatabaseCreator.closeHibernate();
+  }
+
+  private void doFuture() throws SimpplleError {
+
+    if (fixedSeed) {
+      random = new Random(seed);
+    } else {
+      random = new Random();
+    }
+
+    currentTimeStep = 0;
+
+    Area currentArea = Simpplle.currentArea;
+    currentArea.initSimulation();
+
+    areaSummary = new AreaSummary();
+
+    if (needNearestRoadTrailInfo()) {
+      currentArea.findNearestRoadsTrails();
+    }
+
+    // Note this method will handle the case of null.
+    if (doAllStatesSummary) {
+      if (currentRun == 0) {
+        areaSummary.initializeAllStateReportSummary(allStatesRulesFile);
+      }
+      areaSummary.clearAllStatesReportSummaryData();
+      areaSummary.updateAllStatesReportSummary(0);
+    }
+
+    if (doTrackingSpeciesReport) {
+      areaSummary.clearTrackingSpeciesReportSummaryData();
+      areaSummary.updateTrackingSpeciesReportSummary(0);
+    }
+
+    areaSummary.updateEvuSummaryData();
+
+    if (outputFile != null) {
+      areaSummary.fireSpreadReportHeader(getFireSpreadReportPath());
+      if (doGisFiles) {
+        // Note this will also make the call to write the sinfo files.
+        currentArea.produceArcFiles(outputFile);
+        if (isMultipleRun()) {
+          writePrefixFileSingleRun();
+        }
+      }
+    }
+
+    // TODO: Write initial simulation states here
+
+    try {
+      for(int i = 0; i < numTimeSteps; i++) {
+
+        currentTimeStep++; // How is this different from i?
+        if (currentTimeStep > 1) {
+          areaSummary.doBeginTimeStepInitialize();
+        }
+
+        long freeMem = Runtime.getRuntime().freeMemory();
+        long totMem  = Runtime.getRuntime().totalMemory();
+        long maxMem  = Runtime.getRuntime().maxMemory();
+        long usedMem = ((totMem - freeMem) / 1024) / 1024;
+        maxMem = maxMem / 1024 / 1024;
+
+        String msg = "Project Area for Time Step: " + (i + 1)
+                   + " Run #" + (currentRun + 1)
+                   + " Mem: " + usedMem + "MB/" + maxMem;
+
+        Simpplle.setStatusMessage(msg);
+
+        if (FireEvent.useRegenPulse()) { FireEvent.setRegenPulse(); }
+
+        if (RegionalZone.isWyoming()) {
+          Climate.Season lastSeason = isStandDevelopment() ? Climate.Season.SPRING : Climate.Season.WINTER;
+          for (Climate.Season s : Climate.allSeasons) {
+            currentSeason = s;
+            currentArea.doFuture();
+            if (s == lastSeason) { break; }
+          }
+        } else {
+          currentSeason = Climate.Season.YEAR;
+          currentArea.doFuture();
+        }
+
+        areaSummary.updateEvuSummaryData();
+        areaSummary.updateTotalFireEventAcres();
+        areaSummary.doFireEventSummary(currentTimeStep);
+        areaSummary.cleanup();
+
+        if (doAllStatesSummary) {
+          areaSummary.updateAllStatesReportSummary();
+        }
+        if (doTrackingSpeciesReport) {
+          areaSummary.updateTrackingSpeciesReportSummary();
+        }
+        if (outputFile != null) {
+          areaSummary.fireSpreadReportUpdate(getFireSpreadReportPath());
+        }
+        if (outputFile != null && writeDatabase) {
+          Simpplle.setStatusMessage("Writing Area Summary Data to database");
+          areaSummary.writeDatabase();
+          Simpplle.clearStatusMessage();
+        }
+        if (fireSuppression()) {
+          areaSummary.doSuppressionCosts(currentTimeStep);
+        }
+        if (outputFile != null && doGisFiles) {
+          currentArea.produceSpreadArcFiles(outputFile,false);
+          currentArea.produceArcFiles(outputFile);
+        }
+      }
+
+      if (fireSuppression()) {
+        areaSummary.doSuppressionCostsFinal();
+      }
+
+      if (outputFile != null) {
+
+        areaSummary.fireSpreadReportFinish(getFireSpreadReportPath());
+
+        if (!isMultipleRun()) {
+          saveSimData();
+        }
+        if (doAllStatesSummary) {
+          Reports.generateAllStatesReport(getOutputFile());
+        }
+        if (doTrackingSpeciesReport) {
+          Reports.generateTrackingSpeciesReport(getOutputFile());
+        }
+      }
+    } catch (SimpplleError err) {
+      currentArea.resetTreatmentSchedule();
+      Simpplle.clearStatusMessage();
+      throw err;
+    }
+
+    currentArea.resetTreatmentSchedule();
+
+    // Manually clean things up until simpplle is made more efficient.
+    if (!currentArea.doManualGC()) { System.gc(); }
+
+  }
+
+  /**
+   * Writes a log to the output directory containing simulation parameters.
+   *
+   * @throws IOException
+   */
+  public void writeLog() throws IOException {
+
+    File file = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
+    PrintWriter writer = new PrintWriter(new FileOutputStream(file));
+
+    File fmzFile    = SystemKnowledge.getFile(SystemKnowledge.FMZ);
+    File spreadFile = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
+    File typeFile   = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
+
+    try {
+      writer.write("SIMPPLLE Simulation Log File\n"
+                 + "\n"
+                 + "Date : " + Simpplle.currentDate() + "\n"
+                 + "Time : " + Simpplle.currentTime() + "\n"
+                 + "\n"
+                 + "Current Zone : " + Simpplle.getCurrentZone().toString() + "\n"
+                 + "Current Area : " + Simpplle.getCurrentArea().toString() + "\n"
+                 + "\n"
+                 + "Number of Simulations : " + numSimulations + "\n"
+                 + "Number of Time Steps  : " + numTimeSteps + (yearlySteps ? " (Yearly)\n" : " (Decade)\n")
+                 + "\n"
+                 + "Fire Suppression      : " + fireSuppression + "\n"
+                 + "Fire Cost Discount    : " + getDiscount() + "\n"
+                 + "Simulation Method     : " + printSimulationMethod() + "\n"
+                 + "\n"
+                 + "Data Files\n"
+                 + "\n"
+                 + "Fire Management Zones : " + ((fmzFile    == null) ? "Default" : fmzFile.toString()) + "\n"
+                 + "Fire Spread           : " + ((spreadFile == null) ? "Default" : spreadFile.toString()) + "\n"
+                 + "Type of Fire          : " + ((typeFile   == null) ? "Default" : typeFile.toString()) + "\n");
+    } finally {
+      writer.close();
+    }
+  }
+
+  private void initAccessTreeMaps() {
+
+    accessProcessList.clear();
+    accessSpeciesList.clear();
+    accessSizeClassList.clear();
+    accessDensityList.clear();
+    accessEcoGroupList.clear();
+    accessFmzList.clear();
+    accessIncRuleSpeciesList.clear();
+    accessLifeformList.clear();
+    accessOwnershipList.clear();
+    accessSpecialAreaList.clear();
+    accessTreatmentTypeList.clear();
+
   }
 
   void writeAccessSlinkMetrics() {
@@ -615,34 +1068,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private TreeMap<Short,String> accessProcessList        = new TreeMap<>();
-  private TreeMap<Short,String> accessSpeciesList        = new TreeMap<>();
-  private TreeMap<Short,String> accessSizeClassList      = new TreeMap<>();
-  private TreeMap<Short,String> accessDensityList        = new TreeMap<>();
-  private TreeMap<Short,String> accessEcoGroupList       = new TreeMap<>();
-  private TreeMap<Short,String> accessFmzList            = new TreeMap<>();
-  private TreeMap<Short,String> accessIncRuleSpeciesList = new TreeMap<>();
-  private TreeMap<Short,String> accessLifeformList       = new TreeMap<>();
-  private TreeMap<Short,String> accessOnwershipList      = new TreeMap<>();
-  private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<>();
-  private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
-
-  private void initAccessTreeMaps() {
-
-    accessProcessList.clear();
-    accessSpeciesList.clear();
-    accessSizeClassList.clear();
-    accessDensityList.clear();
-    accessEcoGroupList.clear();
-    accessFmzList.clear();
-    accessIncRuleSpeciesList.clear();
-    accessLifeformList.clear();
-    accessOnwershipList.clear();
-    accessSpecialAreaList.clear();
-    accessTreatmentTypeList.clear();
-
-  }
-
   private void writeAccessTreeMaps() throws IOException {
 
     writeAccessTreeMap(accessProcessOut,accessProcessList);
@@ -653,7 +1078,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     //writeAccessTreeMap(accessFmzOut,accessFmzList);
     writeAccessTreeMap(accessTrackingSpeciesOut,accessIncRuleSpeciesList);
     writeAccessTreeMap(accessLifeformOut,accessLifeformList);
-    writeAccessTreeMap(accessOwnershipOut,accessOnwershipList);
+    writeAccessTreeMap(accessOwnershipOut, accessOwnershipList);
     writeAccessTreeMap(accessSpecialAreaOut,accessSpecialAreaList);
     writeAccessTreeMap(accessTreatmentOut, accessTreatmentTypeList);
 
@@ -662,66 +1087,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private void writeAccessTreeMap(PrintWriter fout, TreeMap<Short,String> map) throws IOException {
     for (Short id : map.keySet()) {
       String value = map.get(id);
-
       fout.printf("%d,%s%n", id, value);
     }
     fout.flush();
-  }
-
-  public void addAccessProcess(ProcessType process) {
-    accessProcessList.put(process.getSimId(), process.toString());
-  }
-
-  public void addAccessSpecies(Species species) {
-    accessSpeciesList.put(species.getSimId(), species.toString());
-  }
-
-  public void addAccessSizeClass(SizeClass sizeClass) {
-    accessSizeClassList.put(sizeClass.getSimId(), sizeClass.toString());
-  }
-
-  public void addAccessDensity(Density density) {
-    accessDensityList.put(density.getSimId(), density.toString());
-  }
-
-  public void addAccessEcoGroup(HabitatTypeGroupType ecoGroup) {
-    accessEcoGroupList.put(ecoGroup.getSimId(), ecoGroup.toString());
-  }
-
-  public void addAccessFmz(Fmz fmz) {
-    accessFmzList.put(fmz.getSimId(), fmz.toString());
-  }
-
-  public void addAccessIncRuleSpecies(InclusionRuleSpecies species) {
-    accessIncRuleSpeciesList.put(species.getSimId(), species.toString());
-  }
-
-  public void addAccessLifeform(Lifeform lifeform) {
-    accessLifeformList.put(lifeform.getSimId(), lifeform.toString());
-  }
-
-  public void addAccessOwnership(Ownership ownership) {
-    accessOnwershipList.put(ownership.getSimId(), ownership.toString());
-  }
-
-  public void addAccessSpecialArea(SpecialArea specialArea) {
-    accessSpecialAreaList.put(specialArea.getSimId(), specialArea.toString());
-  }
-
-  public void addAccessTreatment(TreatmentType treatmentType) {
-    accessTreatmentTypeList.put(treatmentType.getSimId(),treatmentType.toString());
-  }
-
-  public PrintWriter getAccessEvuSimDataOut() {
-    return accessEvuSimDataOut[currentRun];
-  }
-
-  public PrintWriter getAccessTrackingSpeciesOut() {
-    return accessTrackingSpeciesOut;
-  }
-
-  public PrintWriter getAccessSlinkMetricsOut() {
-    return accessSlinkMetricsOut;
   }
 
   private void openAccessTextFiles() throws SimpplleError, IOException {
@@ -850,73 +1218,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   }
 
-  public PrintWriter getInvasiveSpeciesMSUPrintWriter() {
-    if (outputFile == null) {
-      return null;
-    }
-    return invasiveSpeciesMSUProbOut;
-  }
-
-  private void writePrefixFileMultipleRun() throws SimpplleError {
-    RegionalZone zone = Simpplle.getCurrentZone();
-    File         prefixFile=null;
-    PrintWriter  fout;
-
-    try {
-      prefixFile = Utility.makeSuffixedPathname(outputFile,"","minfo");
-      fout = new PrintWriter(new FileWriter(prefixFile));
-    } catch (IOException err) {
-      throw new SimpplleError("Problem writing " + prefixFile + " file.");
-    }
-
-    fout.println("PREFIX," + "\"" + outputFile.getName() + "\"");
-
-    String dir = System.getProperty("user.dir");
-    File   file = new File(dir,zone.getArcviewDir());
-    fout.println("LEGEND_DIR," + "\"" + file.toString() + "\"");
-
-    fout.println("PROBABILITY");
-    fout.println("  NAME,\"PROBABILITY\"");
-    fout.println("  TIMESTEPS,0," + getNumTimeSteps());
-    fout.println("  ALL_PROB_TIMESTEP," + Area.ALL_PROB_STEP);
-    fout.println("  TYPES,sim_species,sim_size,sim_canopy,sim_process");
-
-    String[] typeNames = new String[SimpplleType.MAX];
-    int[]    types = new int[] {SimpplleType.SPECIES.ordinal(), SimpplleType.SIZE_CLASS.ordinal(),
-                                SimpplleType.DENSITY.ordinal(), SimpplleType.PROCESS.ordinal()};
-
-    typeNames[SimpplleType.SPECIES.ordinal()]    = "species";
-    typeNames[SimpplleType.SIZE_CLASS.ordinal()] = "size";
-    typeNames[SimpplleType.DENSITY.ordinal()]    = "canopy";
-    typeNames[SimpplleType.PROCESS.ordinal()]    = "process";
-
-    int i,j;
-    Area area = Simpplle.getCurrentArea();
-    SimpplleType[][] allAttributes = getMultipleRunSummary().getAllAttributes();
-
-    for(i=0; i<types.length; i++) {
-      fout.println("  " + typeNames[types[i]]);
-      fout.println("    FILE_SUFFIX,\"-#-" + typeNames[types[i]] + "\"");
-      fout.println("    FILE_EXT,\"txt\"");
-      fout.println("    DATA_START,2");
-      fout.print("    FIELDS,Slink");
-      for(j=0; j<allAttributes[types[i]].length; j++) {
-        fout.print("," + allAttributes[types[i]][j].getGISPrintName());
-      }
-      fout.println();
-      fout.print("    FIELD_TYPES,LONG");
-      for(j=0; j<allAttributes[types[i]].length; j++) {
-        fout.print(",INTEGER");
-      }
-      fout.println();
-      fout.println("  END");
-    }
-    fout.println("END");
-
-    fout.flush();
-    fout.close();
-  }
-
   private void writePrefixFileSingleRun() throws SimpplleError {
     File tmpOutputFile = outputFile;
     if (Simulation.getInstance().isMultipleRun()) {
@@ -996,43 +1297,64 @@ public final class Simulation implements SimulationTypes, Externalizable {
     fout.close();
   }
 
-  /**
-   * Will generate a random number between 0 and 10000 (exclusive).  This is of extreme importance in simulation methodologies.
-   * @return the random number
-   */
-  public int random() {
-    return random.nextInt(maxProbability);
-  }
+  private void writePrefixFileMultipleRun() throws SimpplleError {
+    RegionalZone zone = Simpplle.getCurrentZone();
+    File         prefixFile=null;
+    PrintWriter  fout;
 
-  /**
-   * Since wyoming uses yearly time steps, seasonal variation are important.  If it is succession probability, spring is the last season, otherwise winter is used.
-   * @return
-   */
-  public boolean isLastSeason() {
-    if (RegionalZone.isWyoming()) {
-      Climate.Season lastSeason = isStandDevelopment() ?
-                                  Climate.Season.SPRING : Climate.Season.WINTER;
-
-      return currentSeason == lastSeason;
+    try {
+      prefixFile = Utility.makeSuffixedPathname(outputFile,"","minfo");
+      fout = new PrintWriter(new FileWriter(prefixFile));
+    } catch (IOException err) {
+      throw new SimpplleError("Problem writing " + prefixFile + " file.");
     }
-    return true;
-  }
 
-  /**
-   * Calculates free memory
-   * @return
-   */
-  public static String getMemoryString() {
+    fout.println("PREFIX," + "\"" + outputFile.getName() + "\"");
 
-    long freeMem = Runtime.getRuntime().freeMemory();
-    long totMem  = Runtime.getRuntime().totalMemory();
-    long maxMem  = Runtime.getRuntime().maxMemory();
-    long usedMem = ((totMem-freeMem) / 1024) / 1024;
+    String dir = System.getProperty("user.dir");
+    File   file = new File(dir,zone.getArcviewDir());
+    fout.println("LEGEND_DIR," + "\"" + file.toString() + "\"");
 
-    maxMem = (maxMem / 1024) / 1024;
+    fout.println("PROBABILITY");
+    fout.println("  NAME,\"PROBABILITY\"");
+    fout.println("  TIMESTEPS,0," + getNumTimeSteps());
+    fout.println("  ALL_PROB_TIMESTEP," + Area.ALL_PROB_STEP);
+    fout.println("  TYPES,sim_species,sim_size,sim_canopy,sim_process");
 
-    return usedMem + "MB/" + maxMem;
+    String[] typeNames = new String[SimpplleType.MAX];
+    int[]    types = new int[] {SimpplleType.SPECIES.ordinal(), SimpplleType.SIZE_CLASS.ordinal(),
+                                SimpplleType.DENSITY.ordinal(), SimpplleType.PROCESS.ordinal()};
 
+    typeNames[SimpplleType.SPECIES.ordinal()]    = "species";
+    typeNames[SimpplleType.SIZE_CLASS.ordinal()] = "size";
+    typeNames[SimpplleType.DENSITY.ordinal()]    = "canopy";
+    typeNames[SimpplleType.PROCESS.ordinal()]    = "process";
+
+    int i,j;
+    Area area = Simpplle.getCurrentArea();
+    SimpplleType[][] allAttributes = getMultipleRunSummary().getAllAttributes();
+
+    for(i=0; i<types.length; i++) {
+      fout.println("  " + typeNames[types[i]]);
+      fout.println("    FILE_SUFFIX,\"-#-" + typeNames[types[i]] + "\"");
+      fout.println("    FILE_EXT,\"txt\"");
+      fout.println("    DATA_START,2");
+      fout.print("    FIELDS,Slink");
+      for(j=0; j<allAttributes[types[i]].length; j++) {
+        fout.print("," + allAttributes[types[i]][j].getGISPrintName());
+      }
+      fout.println();
+      fout.print("    FIELD_TYPES,LONG");
+      for(j=0; j<allAttributes[types[i]].length; j++) {
+        fout.print(",INTEGER");
+      }
+      fout.println();
+      fout.println("  END");
+    }
+    fout.println("END");
+
+    fout.flush();
+    fout.close();
   }
 
   public void doAllStatesSummaryAllTimeSteps(File rulesFile) throws SimpplleError {
@@ -1054,247 +1376,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  /**
-   * Called by runSimulation. Used to simulate
-   * the current area into the future.
-   */
-  private void doFuture() throws SimpplleError {
-
-    //Use of Fixed Seed
-    if (fixedSeed) {
-      random = new Random(seed);
-    } else {
-      random = new Random();
-    }
-
-    Area currentArea = Simpplle.currentArea;
-    // 1. Create a landscape.
-    // 2. Initialize spread to slots.
-
-    currentTimeStep = 0;
-    currentArea.initSimulation();
-    areaSummary = new AreaSummary();
-
-    if (needNearestRoadTrailInfo()) {
-      currentArea.findNearestRoadsTrails();
-    }
-
-    // Note this method will handle the case of null.
-    if (doAllStatesSummary) {
-      if (currentRun == 0) {
-        areaSummary.initializeAllStateReportSummary(allStatesRulesFile);
-      }
-      areaSummary.clearAllStatesReportSummaryData();
-      areaSummary.updateAllStatesReportSummary(0);
-    }
-
-    if (doTrackingSpeciesReport) {
-      areaSummary.clearTrackingSpeciesReportSummaryData();
-      areaSummary.updateTrackingSpeciesReportSummary(0);
-    }
-
-    areaSummary.updateEvuSummaryData();
-
-    if (outputFile != null) {
-      areaSummary.fireSpreadReportHeader(getFireSpreadReportPath());
-      if (doGisFiles) {
-        // Note this will also make the call to write the sinfo files.
-        currentArea.produceArcFiles(outputFile);
-        if (isMultipleRun()) {
-          writePrefixFileSingleRun();
-        }
-      }
-    }
-
-    // ~~~~~~~~~~ Write time step zero before this comment ~~~~~~~~~
-
-    try {
-      for(int i=0;i<numTimeSteps;i++) {
-        currentTimeStep++;
-        if (currentTimeStep > 1) {
-          areaSummary.doBeginTimeStepInitialize();
-        }
-        String msg = "Project Area for Time Step: " + (i+1) + " Run #" + (currentRun+1) + " Mem: " + getMemoryString();
-        Simpplle.setStatusMessage(msg);
-        if (FireEvent.useRegenPulse()) { FireEvent.setRegenPulse(); }
-
-        if (RegionalZone.isWyoming()) {
-          Climate.Season lastSeason = isStandDevelopment() ? Climate.Season.SPRING : Climate.Season.WINTER;
-          for (Climate.Season s : Climate.allSeasons) {
-            currentSeason = s;
-            currentArea.doFuture();
-            if (s == lastSeason) { break; }
-          }
-        } else {
-          currentSeason = Climate.Season.YEAR;
-          currentArea.doFuture();
-        }
-
-        areaSummary.updateEvuSummaryData();
-        areaSummary.updateTotalFireEventAcres();
-        areaSummary.doFireEventSummary(currentTimeStep);
-        areaSummary.cleanup();
-
-        if (doAllStatesSummary) {
-          areaSummary.updateAllStatesReportSummary();
-        }
-
-        if (doTrackingSpeciesReport) {
-          areaSummary.updateTrackingSpeciesReportSummary();
-        }
-
-        if (outputFile != null) {
-          areaSummary.fireSpreadReportUpdate(getFireSpreadReportPath());
-        }
-        if (outputFile != null && writeDatabase) {
-          Simpplle.setStatusMessage("Writing Area Summary Data to database");
-          areaSummary.writeDatabase();
-          Simpplle.clearStatusMessage();
-        }
-        if (fireSuppression()) {
-          areaSummary.doSuppressionCosts(currentTimeStep);
-        }
-        if (outputFile != null && doGisFiles) {
-          currentArea.produceSpreadArcFiles(outputFile,false);
-          currentArea.produceArcFiles(outputFile);
-        }
-      }
-
-      if (fireSuppression()) {
-        areaSummary.doSuppressionCostsFinal();
-      }
-
-      if (outputFile != null) {
-        areaSummary.fireSpreadReportFinish(getFireSpreadReportPath());
-      }
-      if (outputFile != null && !isMultipleRun()) {
-        save();
-      }
-      if (doAllStatesSummary) {
-        if (outputFile != null) {
-          Reports.generateAllStatesReport(getOutputFile());
-        }
-      }
-
-      if (doTrackingSpeciesReport) {
-        if (outputFile != null) {
-          Reports.generateTrackingSpeciesReport(getOutputFile());
-        }
-      }
-
-    } catch (SimpplleError err) {
-      currentArea.resetTreatmentSchedule();
-      Simpplle.clearStatusMessage();
-      throw err;
-    }
-
-    currentArea.resetTreatmentSchedule();
-
-    // Manually clean things up until simpplle in made more efficient.
-    if (currentArea.doManualGC() == false) { System.gc(); }
-
+  private void saveSimData() throws SimpplleError {
+    saveSimData(outputFile);
   }
 
-  public File getDatabasePath() {
-    File newDir = new File(outputFile+"db");
-    File path = new File(newDir,outputFile.getName()+"db");
-    return path;
-  }
-
-  public File getSimFilePath() {
-    File path = new File(outputFile+".simdata_bin");
-    return path;
-  }
-
-//  public File getAllStatesFilePath() {
-//    File path = new File(outputFile+"-allstates-"+Integer.toString(currentRun+1)+".txt");
-//    File path = new File(outputFile+"-allstates.txt");
-//    return path;
-//  }
-
-  /**
-   * Gets the fire spread report filepath.  This is a .txt file.
-   * @return
-   */
-  public File getFireSpreadReportPath() {
-    File path = new File(outputFile+"-firespread-"+Integer.toString(currentRun+1)+".txt");
-    return path;
-  }
-
-  public File getAccessFilesPath() throws SimpplleError {
-    File path = new File(outputFile.getParent(),"textdata");
-    return path;
-  }
-
-  public void makeAccessFilesDir() throws SimpplleError {
-    File outputDir = new File(outputFile.getParent(),"textdata");
-    if (!outputDir.mkdir()) {
-      throw new SimpplleError("Unable to create necessary output directory" + outputDir);
-    }
-  }
-
-  /**
-   * Does a multiple runs simulation.
-   * @throws SimpplleError
-   */
-  private void doMultipleRun() throws SimpplleError {
-    Area currentArea = Simpplle.currentArea;
-    String msg;
-
-    currentRun = 0;
-
-    multipleRunSummary = new MultipleRunSummary(this);
-    currentArea.initMultipleSimulation();
-
-    for(int i=0;i<numSimulations;i++) {
-
-      msg = Simpplle.endl + "Performing Simulation #" + (i+1) + Simpplle.endl + Simpplle.endl;
-      Simpplle.setStatusMessage(msg);
-
-      doFuture();  // Run a simulation.
-
-      // Update Area Summary data.
-      if (fireSuppression()) {
-        multipleRunSummary.updateFireSuppressionCostSummary(discount);
-      }
-      currentArea.updateSummaries(multipleRunSummary);
-      multipleRunSummary.finishEmissionsSummary();
-      multipleRunSummary.computeFrequencies();
-      save();
-      currentRun++;
-    }
-
-    // Compute Statistical Information.
-    currentArea.initializeSpecialLists(this,multipleRunSummary);
-    multipleRunSummary.calculateStatistics();
-
-    // Output the Automatically generated reports.
-    multipleRunSummary.asciiSummaryReport(outputFile);
-    if (trackSpecialArea()) {
-      multipleRunSummary.asciiSpecialAreaSummaryReport(outputFile);
-    }
-    if (trackOwnership()) {
-      multipleRunSummary.asciiOwnershipSummaryReport(outputFile);
-    }
-
-//    if (writeProbFiles) {
-//      multipleRunSummary.calculateFrequency();
-//    }
-
-    if (writeProbFiles && doProbArcFiles) {
-      currentArea.produceDecadeProbabilityArcFiles(outputFile);
-      currentArea.produceProbabilityArcFiles(outputFile);
-    }
-
-    saveWithMrSummary();
-//    DatabaseCreator.closeHibernate();
-  }
-
-  private void save() throws SimpplleError {
-    save(outputFile);
-  }
-
-  private void save(File outfile) throws SimpplleError {
+  private void saveSimData(File outfile) throws SimpplleError {
     File newFile;
     int cRun = getCurrentRun();
 
@@ -1309,21 +1395,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void saveWithMrSummary() throws SimpplleError {
-    File newFile;
-    try {
-      Simpplle.setStatusMessage("Saving Multiple Run Summary Data ...");
-      newFile = Utility.makeSuffixedPathname(Utility.stripExtension(outputFile),
-                                             "-end","simdata");
-      simpplle.JSimpplle.getComcode().saveSimulation(newFile,-1);
-      Simpplle.clearStatusMessage();
-    } catch (SimpplleError ex) {
-      throw ex;
-    }
-  }
-
 /*
-  private void save(File outfile) throws SimpplleError {
+  private void saveSimData(File outfile) throws SimpplleError {
     GZIPOutputStream out;
     PrintWriter      fout;
     String           dir, name, msg;
@@ -1388,10 +1461,20 @@ public final class Simulation implements SimulationTypes, Externalizable {
 //    }
   }
 */
-  /**
-   * Saves the simulation.
-   * @param fout
-   */
+
+  private void saveWithMrSummary() throws SimpplleError {
+    File newFile;
+    try {
+      Simpplle.setStatusMessage("Saving Multiple Run Summary Data ...");
+      newFile = Utility.makeSuffixedPathname(Utility.stripExtension(outputFile),
+                                             "-end","simdata");
+      simpplle.JSimpplle.getComcode().saveSimulation(newFile,-1);
+      Simpplle.clearStatusMessage();
+    } catch (SimpplleError ex) {
+      throw ex;
+    }
+  }
+
   public void saveSimulation(PrintWriter fout) {
     saveSimulation(fout,numSimulations);
   }
@@ -1401,29 +1484,54 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     fout.println("CLASS SIMULATION");
     fout.print(nRuns);
-    fout.print(COMMA);
+    fout.print(",");
     fout.print(numTimeSteps);
-    fout.print(COMMA);
+    fout.print(",");
 
     fout.print(discount);
-    fout.print(COMMA);
+    fout.print(",");
     num = fireSuppression ? 1 : 0;
     fout.print(num);
-    fout.print(COMMA);
+    fout.print(",");
 
     num = trackSpecialArea ? 1 : 0;
     fout.print(num);
-    fout.print(COMMA);
+    fout.print(",");
 
     num = trackOwnership ? 1 : 0;
     fout.print(num);
     fout.println();
   }
 
-  /**
-   * Reads in simulation data.  This includes number of simulations, current run, num time steps, fire suppression discounted cost, booleans for
-   * fire suppression, tracking special area and ownership, boolean for yearly or decade time steps, and area summary.
-   */
+  public void readSimulation(BufferedReader fin) throws ParseError, IOException {
+    String              line;
+    StringTokenizerPlus strTok;
+    int                 count, val;
+
+    line = fin.readLine();
+    strTok = new StringTokenizerPlus(line,",");
+    count  = strTok.countTokens();
+
+    if (count != 6) {
+      throw new ParseError("Invalid Class Simluation data");
+    }
+
+    numSimulations = strTok.getIntToken();
+    numTimeSteps  = strTok.getIntToken();
+    discount      = strTok.getFloatToken();
+
+    val             = strTok.getIntToken();
+    fireSuppression = (val == 1) ? true : false;
+
+    val              = strTok.getIntToken();
+    trackSpecialArea = (val == 1) ? true : false;
+
+    val            = strTok.getIntToken();
+    trackOwnership = (val == 1) ? true : false;
+
+    areaSummary   = new AreaSummary(this);
+  }
+
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 
     int version = in.readInt();
@@ -1468,10 +1576,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     currentTimeStep = numTimeSteps;
   }
 
-  /**
-   * Writes simulation data.  This includes number of simulations, current run, num time steps, fire suppression discounted cost, booleans for
-   * fire suppression, tracking special area and ownership, boolean for yearly or decade time steps, and area summary.
-   */
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
     out.writeInt(currentRun);
@@ -1492,41 +1596,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     out.writeBoolean(doAllStatesSummary);
     out.writeBoolean(doTrackingSpeciesReport);
     out.writeBoolean(doProbArcFiles);
-  }
-
-  /**
-   * Reads and parses simulation data.
-   * @param fin
-   * @throws ParseError
-   * @throws IOException
-   */
-  public void readSimulation(BufferedReader fin) throws ParseError, IOException {
-    String              line;
-    StringTokenizerPlus strTok;
-    int                 count, val;
-
-    line = fin.readLine();
-    strTok = new StringTokenizerPlus(line,",");
-    count  = strTok.countTokens();
-
-    if (count != 6) {
-      throw new ParseError("Invalid Class Simluation data");
-    }
-
-    numSimulations = strTok.getIntToken();
-    numTimeSteps  = strTok.getIntToken();
-    discount      = strTok.getFloatToken();
-
-    val             = strTok.getIntToken();
-    fireSuppression = (val == 1) ? true : false;
-
-    val              = strTok.getIntToken();
-    trackSpecialArea = (val == 1) ? true : false;
-
-    val            = strTok.getIntToken();
-    trackOwnership = (val == 1) ? true : false;
-
-    areaSummary   = new AreaSummary(this);
   }
 
   /**
@@ -1611,7 +1680,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     File outputDir = new File(dir,name + "-simulation");
     if (!outputDir.mkdir()) {
-      throw new SimpplleError("Unable to create necessary output directory" + outputDir);
+      throw new SimpplleError("Unable to create necessary output directory " + outputDir);
     }
 
     outputFile = new File(Utility.makePathname(outputDir.toString(), name));
@@ -1824,49 +1893,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     multipleRunSummary = (MultipleRunSummary) s.readObject();
   }
 
-  public boolean getWriteDatabase() {
-    return writeDatabase;
-  }
-
-  public boolean getWriteAccess() {
-    return writeAccess;
-  }
-
-  public boolean isDiscardData() {
-    return discardData;
-  }
-
-  public boolean isDoProbArcFiles() {
-    return doProbArcFiles;
-  }
-
-  public boolean isDoAllStatesSummary() {
-    return doAllStatesSummary;
-  }
-
-  /**
-   *  Gets the boolean for tracking species report
-   * @return true if simulation is to do tracking species report.
-   */
-  public boolean isDoTrackingSpeciesReport() {
-    return doTrackingSpeciesReport;
-  }
-
-  public simpplle.comcode.Simulation.InvasiveKind getInvasiveSpeciesKind() {
-    return invasiveSpeciesKind;
-  }
-
-  public boolean isAllStatesRulesFile() {
-    return allStatesRulesFile != null;
-  }
-
-  public PrintWriter getSimLoggingWriter() {
-    return simLoggingWriter;
-  }
-
-  public boolean isDoSimLoggingFile() {
-    return doSimLoggingFile;
-  }
 }
 
 
