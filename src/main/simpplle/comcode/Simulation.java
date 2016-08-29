@@ -718,8 +718,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
         if (simpplle.JSimpplle.simLoggingFile()) {
           doSimLoggingFile = true;
           try {
-            initSimLogging();
-          } catch (Exception ex) {
+            File log = Utility.makeSuffixedPathname(outputFile, "-detaillog", "txt");
+            simLoggingWriter = new PrintWriter(new FileOutputStream(log));
+            simLoggingWriter.println("Time,Spread_From,Spread_To,To_Life_Form,Fire_Type,Rule");
+          } catch (IOException ex) {
             throw new SimpplleError(ex.getMessage(),ex);
           }
         }
@@ -1045,12 +1047,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessSpecialAreaList.clear();
     accessTreatmentTypeList.clear();
 
-  }
-
-  private void initSimLogging() throws FileNotFoundException {
-    File log = Utility.makeSuffixedPathname(outputFile, "-detaillog", "txt");
-    simLoggingWriter = new PrintWriter(new FileOutputStream(log));
-    simLoggingWriter.println("Time,Spread_From,Spread_To,To_Life_Form,Fire_Type,Rule");
   }
 
   void writeAccessSlinkMetrics() {
