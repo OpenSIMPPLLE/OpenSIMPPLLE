@@ -252,7 +252,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private TreeMap<Short,String> accessFmzList            = new TreeMap<>();
   private TreeMap<Short,String> accessIncRuleSpeciesList = new TreeMap<>();
   private TreeMap<Short,String> accessLifeformList       = new TreeMap<>();
-  private TreeMap<Short,String> accessOnwershipList      = new TreeMap<>();
+  private TreeMap<Short,String> accessOwnershipList      = new TreeMap<>();
   private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<>();
   private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
 
@@ -295,7 +295,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessFmzList            = new TreeMap<>();
     accessIncRuleSpeciesList = new TreeMap<>();
     accessLifeformList       = new TreeMap<>();
-    accessOnwershipList      = new TreeMap<>();
+    accessOwnershipList      = new TreeMap<>();
     accessSpecialAreaList    = new TreeMap<>();
     accessTreatmentTypeList  = new TreeMap<>();
 
@@ -662,7 +662,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
 
   public void addAccessOwnership(Ownership ownership) {
-    accessOnwershipList.put(ownership.getSimId(), ownership.toString());
+    accessOwnershipList.put(ownership.getSimId(), ownership.toString());
   }
 
   public void addAccessProcess(ProcessType process) {
@@ -1044,7 +1044,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessFmzList.clear();
     accessIncRuleSpeciesList.clear();
     accessLifeformList.clear();
-    accessOnwershipList.clear();
+    accessOwnershipList.clear();
     accessSpecialAreaList.clear();
     accessTreatmentTypeList.clear();
 
@@ -1082,7 +1082,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     //writeAccessTreeMap(accessFmzOut,accessFmzList);
     writeAccessTreeMap(accessTrackingSpeciesOut,accessIncRuleSpeciesList);
     writeAccessTreeMap(accessLifeformOut,accessLifeformList);
-    writeAccessTreeMap(accessOwnershipOut,accessOnwershipList);
+    writeAccessTreeMap(accessOwnershipOut, accessOwnershipList);
     writeAccessTreeMap(accessSpecialAreaOut,accessSpecialAreaList);
     writeAccessTreeMap(accessTreatmentOut, accessTreatmentTypeList);
 
