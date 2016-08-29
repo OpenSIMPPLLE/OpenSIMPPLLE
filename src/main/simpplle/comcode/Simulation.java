@@ -732,7 +732,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
           throw new SimpplleError(ex.getMessage(),ex);
         }
 
-        Simpplle.setStatusMessage(Simpplle.endl + "Writing initial Simulation Data Files" + Simpplle.endl);
+        Simpplle.setStatusMessage("Writing initial Simulation Data Files");
 
         writeInitialAreaFile();
 
