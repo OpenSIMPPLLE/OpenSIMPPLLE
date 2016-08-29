@@ -736,18 +736,17 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
         writeInitialAreaFile();
 
-      }
+        if (writeDatabase) {
+          Simpplle.setStatusMessage("Creating Database");
+          DatabaseCreator.initHibernate(true, getDatabasePath());
+          writeDatabaseManagerBatFile();
+          writeOpenOfficeBaseInstructions();
+        }
 
-      if (outputFile != null && writeDatabase) {
-        Simpplle.setStatusMessage("Creating Database");
-        DatabaseCreator.initHibernate(true, getDatabasePath());
-        writeDatabaseManagerBatFile();
-        writeOpenOfficeBaseInstructions();
-      }
-
-      if (outputFile != null && writeAccess) {
-        initAccessTreeMaps();
-        openAccessTextFiles();
+        if (writeAccess) {
+          initAccessTreeMaps();
+          openAccessTextFiles();
+        }
       }
 
       if (needNearestRoadTrailInfo()) {
