@@ -777,23 +777,27 @@ public final class Simulation implements SimulationTypes, Externalizable {
         }
       }
 
-      if (outputFile != null && writeDatabase) {
-        DatabaseCreator.closeHibernate();
-      }
-      if (outputFile != null && writeAccess) {
-        writeAccessSlinkMetrics();
-        writeAccessTreeMaps();
-        closeAccessTextFiles();
-      }
+      if (outputFile != null) {
 
-      if (simpplle.JSimpplle.invasiveSpeciesMSUProbFile() && outputFile != null) {
-        invasiveSpeciesMSUProbOut.flush();
-        invasiveSpeciesMSUProbOut.close();
-      }
+        if (writeDatabase) {
+          DatabaseCreator.closeHibernate();
+        }
 
-      if (doSimLoggingFile) {
-        simLoggingWriter.flush();
-        simLoggingWriter.close();
+        if (writeAccess) {
+          writeAccessSlinkMetrics();
+          writeAccessTreeMaps();
+          closeAccessTextFiles();
+        }
+
+        if (simpplle.JSimpplle.invasiveSpeciesMSUProbFile()) {
+          invasiveSpeciesMSUProbOut.flush();
+          invasiveSpeciesMSUProbOut.close();
+        }
+
+        if (doSimLoggingFile) {
+          simLoggingWriter.flush();
+          simLoggingWriter.close();
+        }
       }
     } catch (Exception err) {
       throw new SimpplleError("The following Runtime Exception occurred:\n" + err.getMessage(),err);
