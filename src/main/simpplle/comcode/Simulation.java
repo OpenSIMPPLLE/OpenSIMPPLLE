@@ -702,6 +702,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
       if (outputFile != null) {
 
+        try {
+          writeLog();
+        } catch (IOException ex) {
+          throw new SimpplleError(ex.getMessage(),ex);
+        }
+
         if (simpplle.JSimpplle.simLoggingFile()) {
           doSimLoggingFile = true;
           try {
@@ -711,12 +717,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
           } catch (IOException ex) {
             throw new SimpplleError(ex.getMessage(),ex);
           }
-        }
-
-        try {
-          writeLog();
-        } catch (IOException ex) {
-          throw new SimpplleError(ex.getMessage(),ex);
         }
 
         Simpplle.setStatusMessage("Writing initial Simulation Data Files");
