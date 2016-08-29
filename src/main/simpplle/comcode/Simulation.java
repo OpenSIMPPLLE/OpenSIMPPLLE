@@ -817,7 +817,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
       multipleRunSummary.finishEmissionsSummary();
       multipleRunSummary.computeFrequencies();
 
-      save();
+      saveSimData();
 
       currentRun++;
 
@@ -970,7 +970,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
         areaSummary.fireSpreadReportFinish(getFireSpreadReportPath());
       }
       if (outputFile != null && !isMultipleRun()) {
-        save();
+        saveSimData();
       }
       if (doAllStatesSummary) {
         if (outputFile != null) {
@@ -1383,11 +1383,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void save() throws SimpplleError {
-    save(outputFile);
+  private void saveSimData() throws SimpplleError {
+    saveSimData(outputFile);
   }
 
-  private void save(File outfile) throws SimpplleError {
+  private void saveSimData(File outfile) throws SimpplleError {
     File newFile;
     int cRun = getCurrentRun();
 
@@ -1403,7 +1403,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
 
 /*
-  private void save(File outfile) throws SimpplleError {
+  private void saveSimData(File outfile) throws SimpplleError {
     GZIPOutputStream out;
     PrintWriter      fout;
     String           dir, name, msg;
@@ -1687,7 +1687,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     File outputDir = new File(dir,name + "-simulation");
     if (!outputDir.mkdir()) {
-      throw new SimpplleError("Unable to create necessary output directory" + outputDir);
+      throw new SimpplleError("Unable to create necessary output directory " + outputDir);
     }
 
     outputFile = new File(Utility.makePathname(outputDir.toString(), name));
