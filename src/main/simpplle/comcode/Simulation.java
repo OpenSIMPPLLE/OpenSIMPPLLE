@@ -716,63 +716,19 @@ public final class Simulation implements SimulationTypes, Externalizable {
       if (outputFile != null) {
 
         if (simpplle.JSimpplle.simLoggingFile()) {
-          this.doSimLoggingFile=true;
+          doSimLoggingFile = true;
+          try {
+            initSimLogging();
+          } catch (Exception ex) {
+            throw new SimpplleError(ex.getMessage(),ex);
+          }
         }
-
-        File logFile = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
-
-        PrintWriter logOut;
 
         try {
-
-          logOut = new PrintWriter(new FileOutputStream(logFile));
-
-          if (doSimLoggingFile) {
-            initSimLogging();
-          }
-
-        } catch (Exception ex) {
-
+          writeLog();
+        } catch (IOException ex) {
           throw new SimpplleError(ex.getMessage(),ex);
-
         }
-
-        logOut.println("SIMPPLLE Simulation Log File");
-        logOut.println();
-        logOut.println("Date : " + Simpplle.currentDate());
-        logOut.println("Time : " + Simpplle.currentTime());
-        logOut.println();
-        logOut.println("Current Zone : " + Simpplle.getCurrentZone().toString());
-        logOut.println("Current Area : " + Simpplle.getCurrentArea().toString());
-        logOut.println();
-        logOut.println("Number of Simulations : " + numSimulations);
-        logOut.print("Number of Time Steps  : " + numTimeSteps);
-        String str = (yearlySteps) ? " (Yearly)" : " (Decade)";
-        logOut.println(str);
-        logOut.println();
-        logOut.println("Fire Suppression      : " + fireSuppression);
-        if (fireSuppression && (getDiscount() > 1.0f)) {
-          logOut.println("Fire Cost Discount    : " + getDiscount());
-        }
-        logOut.println("Simulation Method     : " + printSimulationMethod());
-        logOut.println();
-
-        logOut.println("Data files:");
-
-        File dataFile = SystemKnowledge.getFile(SystemKnowledge.FMZ);
-        str = (dataFile == null) ? "Default" : dataFile.toString();
-        logOut.println("  Fire Management Zones : " + str);
-
-        dataFile = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
-        str = (dataFile == null) ? "Default" : dataFile.toString();
-        logOut.println("  Fire Spread           : " + str);
-
-        dataFile = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
-        str = (dataFile == null) ? "Default" : dataFile.toString();
-        logOut.println("  Type of Fire          : " + str);
-
-        logOut.flush();
-        logOut.close();
 
         Simpplle.setStatusMessage(Simpplle.endl + "Writing initial Simulation Data Files" + Simpplle.endl);
 
@@ -1033,6 +989,46 @@ public final class Simulation implements SimulationTypes, Externalizable {
     // Manually clean things up until simpplle in made more efficient.
     if (currentArea.doManualGC() == false) { System.gc(); }
 
+  }
+
+  /**
+   * Writes a log to the output directory containing simulation parameters.
+   *
+   * @throws IOException
+   */
+  public void writeLog() throws IOException {
+
+    File file = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
+    PrintWriter writer = new PrintWriter(new FileOutputStream(file));
+
+    File fmzFile    = SystemKnowledge.getFile(SystemKnowledge.FMZ);
+    File spreadFile = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
+    File typeFile   = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
+
+    try {
+      writer.write("SIMPPLLE Simulation Log File\n"
+                 + "\n"
+                 + "Date : " + Simpplle.currentDate() + "\n"
+                 + "Time : " + Simpplle.currentTime() + "\n"
+                 + "\n"
+                 + "Current Zone : " + Simpplle.getCurrentZone().toString() + "\n"
+                 + "Current Area : " + Simpplle.getCurrentArea().toString() + "\n"
+                 + "\n"
+                 + "Number of Simulations : " + numSimulations + "\n"
+                 + "Number of Time Steps  : " + numTimeSteps + (yearlySteps ? " (Yearly)\n" : " (Decade)\n")
+                 + "\n"
+                 + "Fire Suppression      : " + fireSuppression + "\n"
+                 + "Fire Cost Discount    : " + getDiscount() + "\n"
+                 + "Simulation Method     : " + printSimulationMethod() + "\n"
+                 + "\n"
+                 + "Data Files\n"
+                 + "\n"
+                 + "Fire Management Zones : " + ((fmzFile    == null) ? "Default" : fmzFile.toString()) + "\n"
+                 + "Fire Spread           : " + ((spreadFile == null) ? "Default" : spreadFile.toString()) + "\n"
+                 + "Type of Fire          : " + ((typeFile   == null) ? "Default" : typeFile.toString()) + "\n");
+    } finally {
+      writer.close();
+    }
   }
 
   private void initAccessTreeMaps() {
