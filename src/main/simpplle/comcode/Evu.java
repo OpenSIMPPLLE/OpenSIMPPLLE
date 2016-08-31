@@ -7293,6 +7293,10 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void cleanup() {
   }
 
+  /**
+   * Write adjacent data. Called when writing .spatialrelate files.
+   * @param fout Open PrintWriter for .spatialrelate files
+   */
   public void exportNeighbors(PrintWriter fout) {
     // unit, adj, elev, downwind
     for (int i=0; i<adjacentData.length; i++) {
@@ -7308,6 +7312,34 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
       fout.print(COMMA);
       fout.print(adjacentData[i].getWind());
+      fout.println();
+    }
+  }
+
+  /**
+   * Write adjacent data. Called when writing .spatialrelate files.
+   * Currently this method requires that a Keane spatial relate file must be loaded.
+   * @param fout Open PrintWriter for .spatialrelate files
+   */
+  public void exportNeighborsKeane(PrintWriter fout){
+    // unit, adj, elev, spread, wind speed, wind direction
+    for (int i=0; i<adjacentData.length; i++) {
+      fout.print(getId());
+      fout.print(COMMA);
+      fout.print(adjacentData[i].getEvu().getId());
+      fout.print(COMMA);
+      if (isElevationValid()) {
+        fout.print(getElevation());
+      }
+      else {
+        fout.print(adjacentData[i].getPosition());
+      }
+      fout.print(COMMA);
+      fout.print(adjacentData[i].getSpread());
+      fout.print(COMMA);
+      fout.print(adjacentData[i].getWindSpeed());
+      fout.print(COMMA);
+      fout.print(adjacentData[i].getWindDirection());
       fout.println();
     }
   }

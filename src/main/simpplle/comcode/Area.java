@@ -3672,24 +3672,37 @@ public final class Area implements Externalizable {
       throw new SimpplleError("unable to write to output file");
     }
   }
+
   private void exportNeighbors(PrintWriter fout) {
-    fout.println("BEGIN VEGETATION-VEGETATION");
-    for(int i=0; i<allEvu.length; i++) {
-      if (allEvu[i] == null) { continue; }
-
-      allEvu[i].exportNeighbors(fout);
+    if (hasKeaneAttributes){
+      fout.println("BEGIN VEGETATION-VEGETATION-KEANE");
+      for (Evu anAllEvu : allEvu) {
+        if (anAllEvu == null) {
+          continue;
+        }
+        anAllEvu.exportNeighborsKeane(fout);
+      }
+      fout.println("END");
+      fout.println();
+    } else {
+      fout.println("BEGIN VEGETATION-VEGETATION");
+      for (Evu anAllEvu : allEvu) {
+        if (anAllEvu == null) {
+          continue;
+        }
+        anAllEvu.exportNeighbors(fout);
+      }
+      fout.println("END");
+      fout.println();
     }
-    fout.println("END");
-    fout.println();
-
     if (allEau != null) {
       fout.println("BEGIN AQUATIC-AQUATIC");
-      for (int i = 0; i < allEau.length; i++) {
-        if (allEau[i] == null) {
+      for (ExistingAquaticUnit anAllEau : allEau) {
+        if (anAllEau == null) {
           continue;
         }
 
-        allEau[i].exportNeighbors(fout);
+        anAllEau.exportNeighbors(fout);
       }
       fout.println("END");
       fout.println();
@@ -3697,12 +3710,12 @@ public final class Area implements Externalizable {
 
     if (allEau != null) {
       fout.println("BEGIN VEGETATION-AQUATIC");
-      for (int i = 0; i < allEau.length; i++) {
-        if (allEau[i] == null) {
+      for (ExistingAquaticUnit anAllEau : allEau) {
+        if (anAllEau == null) {
           continue;
         }
 
-        allEau[i].exportNeighborsVegetation(fout);
+        anAllEau.exportNeighborsVegetation(fout);
       }
       fout.println("END");
       fout.println();
@@ -3710,12 +3723,12 @@ public final class Area implements Externalizable {
 
     if (allElu != null) {
       fout.println("BEGIN LANDFORM-LANDFORM");
-      for (int i = 0; i < allElu.length; i++) {
-        if (allElu[i] == null) {
+      for (ExistingLandUnit anAllElu : allElu) {
+        if (anAllElu == null) {
           continue;
         }
 
-        allElu[i].exportNeighbors(fout);
+        anAllElu.exportNeighbors(fout);
       }
       fout.println("END");
       fout.println();
@@ -3723,12 +3736,12 @@ public final class Area implements Externalizable {
 
     if (allElu != null) {
       fout.println("BEGIN VEGETATION-LANDFORM");
-      for (int i = 0; i < allElu.length; i++) {
-        if (allElu[i] == null) {
+      for (ExistingLandUnit anAllElu : allElu) {
+        if (anAllElu == null) {
           continue;
         }
 
-        allElu[i].exportNeighborsVegetation(fout);
+        anAllElu.exportNeighborsVegetation(fout);
       }
       fout.println("END");
     }
@@ -3737,12 +3750,12 @@ public final class Area implements Externalizable {
 
     if (allRoads != null) {
       fout.println("BEGIN ROADS-ROADS");
-      for (int i = 0; i < allRoads.length; i++) {
-        if (allRoads[i] == null) {
+      for (Roads allRoad : allRoads) {
+        if (allRoad == null) {
           continue;
         }
 
-        allRoads[i].exportNeighbors(fout);
+        allRoad.exportNeighbors(fout);
       }
       fout.println("END");
       fout.println();
@@ -3750,27 +3763,26 @@ public final class Area implements Externalizable {
 
     if (allRoads != null) {
       fout.println("BEGIN VEGETATION-ROADS");
-      for (int i = 0; i < allRoads.length; i++) {
-        if (allRoads[i] == null) {
+      for (Roads allRoad : allRoads) {
+        if (allRoad == null) {
           continue;
         }
 
-        allRoads[i].exportNeighborsVegetation(fout);
+        allRoad.exportNeighborsVegetation(fout);
       }
       fout.println("END");
     }
-    // *************
 
     // *** Trails ***
 
     if (allTrails != null) {
       fout.println("BEGIN TRAILS-TRAILS");
-      for (int i = 0; i < allTrails.length; i++) {
-        if (allTrails[i] == null) {
+      for (Trails allTrail : allTrails) {
+        if (allTrail == null) {
           continue;
         }
 
-        allTrails[i].exportNeighbors(fout);
+        allTrail.exportNeighbors(fout);
       }
       fout.println("END");
       fout.println();
@@ -3778,17 +3790,18 @@ public final class Area implements Externalizable {
 
     if (allTrails != null) {
       fout.println("BEGIN VEGETATION-TRAILS");
-      for (int i = 0; i < allTrails.length; i++) {
-        if (allTrails[i] == null) {
+      for (Trails allTrail : allTrails) {
+        if (allTrail == null) {
           continue;
         }
 
-        allTrails[i].exportNeighborsVegetation(fout);
+        allTrail.exportNeighborsVegetation(fout);
       }
       fout.println("END");
     }
     // *************
   }
+  
   private void exportAttributes(PrintWriter fout) {
     fout.println("BEGIN VEGETATION");
     for(int i=0; i<allEvu.length; i++) {
