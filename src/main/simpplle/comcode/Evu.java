@@ -34,6 +34,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   static final int  version                 = 9;
   static final int  accumDataVersion        = 1;
   static final int  spatialRelationsVersion = 1;
+  private final int downwindThreshold = 45;
 
   private ArrayList<ExistingLandUnit>    assocLandUnits;
   private ArrayList<ExistingAquaticUnit> assocAquaticUnits;
@@ -8739,8 +8740,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param windDirection degrees azimuth
    */
   public char isDownwind(double spread, double windDirection){
-    int threshold = 90;
-    if (getAzimuthDifference(spread, windDirection) <= threshold) return 'D';
+    if (getAzimuthDifference(spread, windDirection) <= downwindThreshold) return 'D';
     else return 'N';
   }
 }
