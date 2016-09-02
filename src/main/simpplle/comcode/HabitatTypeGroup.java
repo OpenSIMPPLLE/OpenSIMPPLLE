@@ -14,12 +14,7 @@ import java.awt.Point;
 import org.apache.commons.collections.map.Flat3Map;
 
 /**
- * This class manages Habitat Type Group information,
- * as well as storing all of the Vegetative Types associated with
- * a particular HabitatTypeGroup.
- * 
- * @author Documentation by Brian Losi
- * <p> Original source code authorship: Kirk A. Moeller
+ * A habitat type group defines an ecological grouping, which stratifies vegetation pathways.
  */
 
 public final class HabitatTypeGroup {
