@@ -133,9 +133,6 @@ public final class HabitatTypeGroup {
   private static final int YEARLY_PATHWAY_LIVES = 11;
   private static final int EOF                  = 12;
 
-  /**
-   * Constructs a Habitat Type Group.
-   */
   public HabitatTypeGroup () {
 
     groupType          = null;
@@ -153,9 +150,6 @@ public final class HabitatTypeGroup {
 
   }
 
-  /**
-   * Constructs a Habitat Type Group and stores the instance.
-   */
   public HabitatTypeGroup (String name) {
 
     super();
@@ -168,78 +162,51 @@ public final class HabitatTypeGroup {
 
   }
 
-/**
- * Gets a particular HabitatTypeGroup object by its HabitatTypeGroupType from the <HabitatTypeGroupType, HabitatTypeGroup> hashmap, if one exists.
- * @param groupName HabitatTypeGroupType name
- * @return HabitatTypeGroup object
- */
   public static HabitatTypeGroup findInstance(String groupName) {
     HabitatTypeGroupType ht = HabitatTypeGroupType.get(groupName);
     if (ht == null) { return null; }
     return findInstance(ht);
   }
-  /**
-   * Uses a HabitatTypeGroupType to get a HabitatTypeGroup <HabitatTypeGroupType, HabitatTypeGroup> hashmap, if one exists
-   * @param groupType
-   * @return
-   */
+
   public static HabitatTypeGroup findInstance(HabitatTypeGroupType groupType) {
-    return (HabitatTypeGroup)groups.get(groupType);
+    return groups.get(groupType);
   }
-/**
- * Checks if habitat type group is valid by seeing if it has a vegetative type.  
- * @return true if has a vegetative type.  
- */
-  public boolean isValid() { return vegTypes != null; }
+
+  public boolean isValid() {
+    return vegTypes != null;
+  }
 
   public boolean isSystemGroup() {
-    return ( (groupType.isUserCreated() == false) || (!isUserData));
+    return !groupType.isUserCreated() || !isUserData;
   }
-  /**
-   * Gets the  HabitatTypeGroupType of this HabitatTypeGroup
-   * @return
-   */
-  public HabitatTypeGroupType getType() { return groupType; }
-/**
- * Clears the hashmap which holds all the habitat type groups.  
- */
+
+  public HabitatTypeGroupType getType() {
+    return groupType;
+  }
+
   public static void clearGroups() {
     groups.clear();
   }
-  /**
-   * Removes a habitat type group from the hashmap which holds all the habitat type groups.  This hashmap is keyed by 
-   * the habitat type group types, with the value being a habitat type group.  
-   * @param group the habitat type group to be removed from the hashmap which holds all the habitat type groups
-   */
+
   public static void removeGroup(HabitatTypeGroup group) {
     if (group != null) {
       groups.remove(group.getType());
       group.markChanged();
     }
   }
-  /**
-   * Removes a habitat type group from the hashmap <HabitatTypeGroupType, HabitatTypeGroup> 
-   * @param groupName
-   */
+
   public static void removeGroup(String groupName) {
     HabitatTypeGroup group = findInstance(groupName);
     if (group != null) {
       groups.remove(group.getType());
     }
   }
-/**
- * Creates a vector of HabitatTypeGroups from the hashmap <HabitatTypeGroupType, HabitatTypeGroup> 
- * @return
- */
+
   public static Vector getLoadedGroups() {
     if (groups.size() == 0) { return null; }
     return new Vector(groups.values());
   }
-  /**
-   * Creates a vector of HabitatTypeGroupTypes from the hashmap <HabitatTypeGroupType, HabitatTypeGroup> 
-   * @return
-   */
-  //Edited to sort Eco Groups
+
   public static Vector getAllLoadedTypes() {
     if (groups.size() == 0) { return null; }
     
@@ -247,19 +214,11 @@ public final class HabitatTypeGroup {
     Collections.sort(dummy);
     return dummy;
   }
-  /**
-   * 
-   * @return
-   */
+
   public static ArrayList<HabitatTypeGroupType> getAllLoadedTypesNew() {
     return getAllLoadedTypesNew(false);
   }
-  /**
-   * Creates an ArrayList of HabitatTypeGroupTypes from the keys of the hashmap <HabitatTypeGroupType, HabitatTypeGroup>, sorts it and then includes 
-   * ANY if required to.  
-   * @param includeAny if true add HabitatTypeGroupType.ANY to index 0
-   * @return ArrayList of HabitatTypeGroupTypes
-   */
+
   public static ArrayList<HabitatTypeGroupType> getAllLoadedTypesNew(boolean includeAny) {
     ArrayList<HabitatTypeGroupType> values =
         new ArrayList<HabitatTypeGroupType>(groups.keySet());
@@ -269,27 +228,16 @@ public final class HabitatTypeGroup {
     }
     return values;
   }
-  /**
-   * Creates both an array of HabitatTypeGroup with size of hashmap <HabitatTypeGroupType, HabitatTypeGroup> and then 
-   * creates a new arraylist of the HabitatTypeGroup values.
-   * @return arraylist of the HabitatTypeGroup values
-   */
+
   public static ArrayList getAllLoadedGroups() {
     if (groups == null || groups.size() == 0) { return null; }
-
-    HabitatTypeGroup[] items = new HabitatTypeGroup[groups.size()];
-
     return new ArrayList(groups.values());
   }
-  /**
-   * Gets a string array of all the HabitatTypeGroup names. 
-   * @return
-   */
+
   public static String[] getLoadedGroupNames() {
     if (groups.size() == 0) { return null; }
-
     String[] names = new String[groups.size()];
-    int      i=0;
+    int i=0;
     for (HabitatTypeGroup group : groups.values()) {
       names[i] = group.getName();
       i++;
@@ -297,11 +245,7 @@ public final class HabitatTypeGroup {
     Arrays.sort(names);
     return names;
   }
-/**
- * Checks if a habitat type group is a forested type.  
- * @param group
- * @return
- */
+
   public static boolean isForested(HabitatTypeGroup group) {
     HabitatTypeGroupType groupType = group.getType();
 
@@ -322,63 +266,62 @@ public final class HabitatTypeGroup {
             groupType.equals(HabitatTypeGroupType.G1) ||
             groupType.equals(HabitatTypeGroupType.G2));
   }
-/**
- * Checks if a habitat type group is nonforested by negating the results of isForested method.  
- * @param group
- * @return
- */
+
   public static boolean isNonForested(HabitatTypeGroup group) {
     return (!isForested(group));
   }
-/**
- * Closes the file containing habitat type group.
- */
+
   public void closeFile() {
     clearFilename();
     setChanged(false);
   }
 
-  public File getFilename() { return inputFile; }
-  public void setFilename(File file) { inputFile = file; }
-  public void clearFilename() { inputFile = null; }
+  public File getFilename() {
+    return inputFile;
+  }
 
-  public boolean hasChanged() { return changed; }
-  /**
-   * Marks the system knowledge change for vegetation pathways.  
-   */
+  public void setFilename(File file) {
+    inputFile = file;
+  }
+
+  public void clearFilename() {
+    inputFile = null;
+  }
+
+  public boolean hasChanged() {
+    return changed;
+  }
+
   public void markChanged() {
     setChanged(true);
     setIsUserData(true);
     SystemKnowledge.markChanged(SystemKnowledge.VEGETATION_PATHWAYS);
   }
-  /**
-   * Sets the changed boolean to input boolean.  
-   * @param value
-   */
-  public void setChanged(boolean value) { changed = value; }
-/**
- * checks if Habitat type group contains user data. 
- * @return
- */
-  public boolean isUserData() { return isUserData; }
-  public void setIsUserData(boolean value) { isUserData = value; }
 
-  /**
-   * Gets the print name of the Habitat Type Group.
-   * @return a String.
-   */
-  public String getName () { return groupType.toString(); }
-/**
- * Gets teh knowledge source for this habitat type group.
- * @return
- */
-  public String getKnowledgeSource() { return knowledgeSource; }
-  public void setKnowledgeSource(String source) { knowledgeSource = source; }
-/**
- * Checks if 
- * @param life
- * @return
- */
+  public void setChanged(boolean value) {
+    changed = value;
+  }
+
+  public boolean isUserData() {
+    return isUserData;
+  }
+
+  public void setIsUserData(boolean value) {
+    isUserData = value;
+  }
+
+  public String getName () {
+    return groupType.toString();
+  }
+
+  public String getKnowledgeSource() {
+    return knowledgeSource;
+  }
+
+  public void setKnowledgeSource(String source) {
+    knowledgeSource = source;
+  }
+
   public boolean isYearlyPathwayLifeform(Lifeform life) {
     if (yearlyPathwayLives == null) { return false; }
 
@@ -387,17 +330,19 @@ public final class HabitatTypeGroup {
     }
     return false;
   }
+
   public Lifeform[] getYearlyPathwayLifeforms() {
     return yearlyPathwayLives;
   }
+
   public void setYearlyPathwayLifeforms(ArrayList<Lifeform> values) {
     if (values == null || values.size() == 0) {
       yearlyPathwayLives = null;
-    }
-    else {
+    } else {
       yearlyPathwayLives = (Lifeform[]) values.toArray(new Lifeform[values.size()]);
     }
   }
+
   /**
    * Finds a VegetativeType given its species, size class, and density.
    * Note: age defaults to 1.
@@ -439,11 +384,12 @@ public final class HabitatTypeGroup {
 
     return getVegetativeType(buf.toString());
   }
-/**
- * Finds the vegetative type with the lowest density, by creating a veg type with density.One.  Then checks if it is greater than Density.TWO and Density.Three.  
- * @param vt
- * @return
- */
+
+  /**
+   * Finds the vegetative type with the lowest density, by creating a veg type with density.One.  Then checks if it is greater than Density.TWO and Density.Three.
+   * @param vt
+   * @return
+   */
   public VegetativeType findLowestDensityVegetativeType(VegetativeType vt) {
     Species species = vt.getSpecies();
     SizeClass sizeClass = vt.getSizeClass();
@@ -466,6 +412,7 @@ public final class HabitatTypeGroup {
     return findLowerDensityVegetativeType(vt.getSpecies(),vt.getSizeClass(),
                                          vt.getAge(),vt.getDensity());
   }
+
   private VegetativeType findLowerDensityVegetativeType(Species species, SizeClass sizeClass,
                                                         int age, Density density) {
     Density newDensity = Density.getLowerDensity(density);
@@ -479,6 +426,7 @@ public final class HabitatTypeGroup {
     return findHigherDensityVegetativeType(vt.getSpecies(),vt.getSizeClass(),
                                            vt.getAge(),vt.getDensity());
   }
+
   private VegetativeType findHigherDensityVegetativeType(Species species, SizeClass sizeClass,
                                                          int age, Density density) {
     Density  newDensity = Density.getHigherDensity(density);
@@ -492,6 +440,7 @@ public final class HabitatTypeGroup {
     return findNextYoungerVegetativeType(vt.getSpecies(),vt.getSizeClass(),
                                          vt.getAge(),vt.getDensity());
   }
+
   public VegetativeType findNextYoungerVegetativeType(Species species, SizeClass sizeClass,
                                                       int age, Density density) {
     String         str;
@@ -563,15 +512,8 @@ public final class HabitatTypeGroup {
     return null;
   }
 
-  /**
-   * Go thru all of the ht groups and check to see if it
-   * has the veg type.  Return the first we find.
-   * @param vegTypeStr
-   * @return
-   */
   public static VegetativeType getVegType(String vegTypeStr) {
     if (vegTypeStr == null) { return null;}
-
     VegetativeType vt;
     for (HabitatTypeGroup group : groups.values()) {
       vt = group.getVegetativeType(vegTypeStr);
@@ -580,11 +522,14 @@ public final class HabitatTypeGroup {
     return null;
   }
 
-  public int getStatesCount() { return vegTypes.size(); }
+  public int getStatesCount() {
+    return vegTypes.size();
+  }
 
   public Hashtable getAllSpeciesHt() {
     return getAllSpeciesHt(new Hashtable());
   }
+
   public Hashtable getAllSpeciesHt(Hashtable ht) {
     Iterator    keys = vegTypes.keySet().iterator();
     String         key;
@@ -601,13 +546,11 @@ public final class HabitatTypeGroup {
     }
     return ht;
   }
-/**
- * Gets the array containing all the species objects in a habitat type group.  
- * @return
- */
+
   public Species[] getAllSpecies() {
     return HabitatTypeGroup.getAllSpecies(getAllSpeciesHt());
   }
+
   public static Species[] getAllSpecies(Hashtable ht) {
     Species[]   allSpecies = new Species[ht.size()];
     Enumeration e = ht.keys();
@@ -622,29 +565,20 @@ public final class HabitatTypeGroup {
     Arrays.sort(allSpecies);
     return allSpecies;
   }
-/**
- * Makes a vector of the valid species in habitat type group from the hash table of habitat type groups.  
- * @return
- */
-  public static Vector getValidSpecies() {
-    Hashtable    ht = new Hashtable();
 
+  public static Vector getValidSpecies() {
+    Hashtable ht = new Hashtable();
     for (HabitatTypeGroup group : groups.values()) {
       group.getAllSpeciesHt(ht);
     }
-
     Species[] allSpecies = HabitatTypeGroup.getAllSpecies(ht);
-    Vector    v = new Vector();
-    for(int i=0; i<allSpecies.length; i++) {
+    Vector v = new Vector();
+    for(int i = 0; i < allSpecies.length; i++) {
       v.addElement(allSpecies[i]);
     }
     return v;
   }
-/**
- * Checks if a habitat type group has a particular species.  
- * @param species the species being evaluated for existence in habitat type group.
- * @return
- */
+
   public static boolean hasSpecies(Species species) {
     for (HabitatTypeGroup group : groups.values()) {
       for (VegetativeType vt : group.vegTypes.values()) {
@@ -653,16 +587,11 @@ public final class HabitatTypeGroup {
         }
       }
     }
-
     return false;
   }
 
-  /**
-   * Gets an arraylist of all the ages for all the habitat type groups.  
-   * @return
-   */
   public static ArrayList<Integer> getAllAge() {
-    ArrayList<Integer> values = new ArrayList<Integer>();
+    ArrayList<Integer> values = new ArrayList<>();
 
     for (HabitatTypeGroup group : groups.values()) {
       group.updateAllAgeList(values);
@@ -670,6 +599,7 @@ public final class HabitatTypeGroup {
 
     return values;
   }
+
   private void updateAllAgeList(ArrayList<Integer> allAge) {
     for (VegetativeType vt : vegTypes.values()) {
       Integer age = vt.getAge();
@@ -677,21 +607,10 @@ public final class HabitatTypeGroup {
     }
   }
 
-  // *************
-/**
- * Gets the hashtable containing all the size classes in a particular vegetative type.  The new hash table is required, because it will 
- * be loaded up with size classes (as both key and value) from a the vegetative types hash map.  
- * @return hashtable containing all the size classes in a particular vegetative type.  
- */
   public Hashtable getAllSizeClassHt() {
     return getAllSizeClassHt(new Hashtable());
   }
-  /**
-   * Returns a hashtable of all the size classes in a particular parameter hashtable by iterating through all the keys
-   * in the vegetative types hashmap (Key = string name, value = vegetative type) 
-   * @param ht the paramether hash table that the size classes will be put into.   
-   * @return hash table of all they size classes in the vegetative types hashmap.  both key and value will be the size class
-   */
+
   public Hashtable getAllSizeClassHt(Hashtable ht) {
     Iterator    keys = vegTypes.keySet().iterator();
     String         key;
@@ -708,20 +627,11 @@ public final class HabitatTypeGroup {
     }
     return ht;
   }
-/**
- * Creates an array of all the size classes from the all size classes hashtable, which in turn creates the hash table from 
- * the vegetative types hash map.
- * @return an array of all the size classes in a habitat type group.
- */
+
   public SizeClass[] getAllSizeClass() {
     return HabitatTypeGroup.getAllSizeClass(getAllSizeClassHt());
   }
-  /**
-   * Makes an array of all the size classes in this habitat type group from the habitat type hashtable.  
-   * The size classes are the keys into the habitat type group hash table.  
-   * @param ht
-   * @return
-   */
+
   public static SizeClass[] getAllSizeClass(Hashtable ht) {
     SizeClass[] allSizeClass = new SizeClass[ht.size()];
     Enumeration e = ht.keys();
@@ -736,13 +646,7 @@ public final class HabitatTypeGroup {
     Arrays.sort(allSizeClass);
     return allSizeClass;
   }
-/**
- * Makes a vector with all valid size classes, from the array containing all size classes.  
- * This array is constructed by first going through all the HabitatTypeGroups in the arraylist keyed by habitat type group type and getting all the size classes
- * 
- * from the keys of the hash table all size class array.  
- * @return
- */
+
   public static Vector getValidSizeClass() {
     Hashtable    ht = new Hashtable();
 
@@ -757,10 +661,7 @@ public final class HabitatTypeGroup {
     }
     return v;
   }
-/**
- * Gets all the density 
- * @return
- */
+
   public Hashtable getAllDensityHt() {
     return getAllDensityHt(new Hashtable());
   }
@@ -784,6 +685,7 @@ public final class HabitatTypeGroup {
   public Density[] getAllDensity() {
     return HabitatTypeGroup.getAllDensity(getAllDensityHt());
   }
+
   public static Density[] getAllDensity(Hashtable ht) {
     Density[]    allDensity = new Density[ht.size()];
     Enumeration e = ht.keys();
@@ -814,11 +716,6 @@ public final class HabitatTypeGroup {
     return v;
   }
 
-  /**
-    * Find Processes that have a next state in
-    * those VegetativeTypes that match the given species.
-    * This is used primarily in the pathways dialog.
-    */
   public String[] getAllProcesses(Species species) {
     Hashtable      ht = new Hashtable();
     Iterator    keys = vegTypes.keySet().iterator();
@@ -852,12 +749,6 @@ public final class HabitatTypeGroup {
     return allProcesses;
   }
 
-
-  /**
-    * Returns a vector of all vegetative types which match
-    * the given species.  Among those it adds any types which
-    * are the result of the provided process
-    */
   public Hashtable findMatchingSpeciesTypes(Species species, Process process) {
     Iterator    keys = vegTypes.keySet().iterator();
     VegetativeType vt;
@@ -946,12 +837,6 @@ public final class HabitatTypeGroup {
     return result;
   }
 
-  /**
-   * Find's the seedling sapling VegetativeType that matches
-   * the given species, if any.
-   * @param an Species, the species.
-   * @return a VegetativeType or null.
-   */
   public VegetativeType getSeedSapState(Species species) {
     return seedSapStates.get(species);
   }
@@ -983,7 +868,6 @@ public final class HabitatTypeGroup {
       throw new ParseError("Unknown Keyword: " + value);
     }
   }
-
 
   private void readHtGrp (BufferedReader fin) throws ParseError, IOException {
     int                 key = EOF;
@@ -1059,6 +943,7 @@ public final class HabitatTypeGroup {
       yearlyPathwayLives[i] = Lifeform.get((String)v.get(i));
     }
   }
+
   private void readVegTypes(BufferedReader fin) throws ParseError {
     VegetativeType vegData;
     String         line;
@@ -1233,11 +1118,12 @@ public final class HabitatTypeGroup {
       throw new ParseError("Problems reading species change file");
     }
   }
-/**
- * Imports the inclusion rules filefor a particular habitat type group.  This is used in creating vegetative pathways.  
- * @param infile
- * @throws SimpplleError
- */
+
+  /**
+   * Imports the inclusion rules filefor a particular habitat type group.  This is used in creating vegetative pathways.
+   * @param infile
+   * @throws SimpplleError
+   */
   public static void importInclusionFile(File infile) throws SimpplleError {
     try {
       BufferedReader fin = new BufferedReader(new FileReader(infile));
@@ -1638,11 +1524,6 @@ public final class HabitatTypeGroup {
     }
   }
 
-  /**
-   * Change the next stateis in the VegetativeType's
-   * from String's to VegetativeType references.
-   * Also find seedling sapling states.
-   */
   private void fixNextStates (File logFile) throws ParseError {
     Iterator    keys = vegTypes.keySet().iterator();
     String         state;
@@ -1718,12 +1599,6 @@ public final class HabitatTypeGroup {
     }
   }
 
-  /**
-   * This method is called by fixNextStates with the maximum
-   * seedling sapling state density found.  This method puts
-   * VegetativeType's in the seedSapStates Hashtable if their
-   * density match's the maximum density.
-   */
   private void findSeedSapStates() {
     Iterator    keys = vegTypes.keySet().iterator();
     String         state;
@@ -1852,10 +1727,6 @@ public final class HabitatTypeGroup {
     return result;
   }
 
-  /**
-   * Gets the print name of the Habitat Type Group.
-   * @return a String.
-   */
   public String toString() {
     return getName();
   }
@@ -2277,9 +2148,3 @@ public final class HabitatTypeGroup {
   }
 
 }
-
-
-
-
-
-
