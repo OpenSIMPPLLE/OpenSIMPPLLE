@@ -18,48 +18,56 @@ import org.apache.commons.collections.map.Flat3Map;
  */
 
 public final class HabitatTypeGroup {
+
   public static final String FILE_EXT = "pathway";
+
+  private static HashMap<HabitatTypeGroupType,HabitatTypeGroup> groups = new HashMap<>();
 
   private HabitatTypeGroupType groupType;
   private HashMap<String,VegetativeType> vegTypes;
   private Vector               habitatTypes;
   private Vector               climaxSpecies;
   private Vector               seralSpecies;
-//  private boolean              systemGroup;
+  private Hashtable            seedSapStates;
+  private Hashtable            regenStates;
+  private Lifeform[]           yearlyPathwayLives;
+  private Density              maxSeedSapDensity;
+  private String               knowledgeSource;
   private File                 inputFile;
   private boolean              changed = false;
   private boolean              isUserData = false;
-  private Hashtable            seedSapStates;
-  private Hashtable            regenStates;
-  private Density              maxSeedSapDensity;
   private Hashtable            allLines = new Hashtable();
-  private String               knowledgeSource;
-  private Lifeform[]           yearlyPathwayLives;
 
-  private static HashMap<HabitatTypeGroupType,HabitatTypeGroup> groups
-      = new HashMap<HabitatTypeGroupType,HabitatTypeGroup>();
+  private static String KEYWORD[] = {
 
-  private static String KEYWORD[] = {"CLASS","END", "NAME", "HABITAT-TYPES",
-                                     "CLIMAX-SPECIES", "SERAL-SPECIES",  "SYSTEM",
-                                     "HABITAT-TYPE-GROUP", "ALL-VEG-TYPES",
-                                     "VEGETATIVE-TYPE", SystemKnowledge.KNOWLEDGE_SOURCE_KEYWORD,
-                                     "YEARLY-PATHWAY-LIVES"};
+      "CLASS",
+      "END",
+      "NAME",
+      "HABITAT-TYPES",
+      "CLIMAX-SPECIES",
+      "SERAL-SPECIES",
+      "SYSTEM",
+      "HABITAT-TYPE-GROUP",
+      "ALL-VEG-TYPES",
+      "VEGETATIVE-TYPE",
+      SystemKnowledge.KNOWLEDGE_SOURCE_KEYWORD,
+      "YEARLY-PATHWAY-LIVES"
 
-  private static final int CLASS           = 0;
-  private static final int END             = 1;
-  private static final int NAME            = 2;
-  private static final int HABITAT_TYPES   = 3;
-  private static final int CLIMAX_SPECIES  = 4;
-  private static final int SERAL_SPECIES   = 5;
-  private static final int SYSTEM          = 6;
+  };
 
-  private static final int HTGRP           = 7;
-  private static final int ALL_VEG_TYPES   = 8;
-  private static final int VEGETATIVE_TYPE = 9;
-  private static final int KNOWLEDGE_SOURCE = 10;
+  private static final int CLASS                = 0;
+  private static final int END                  = 1;
+  private static final int NAME                 = 2;
+  private static final int HABITAT_TYPES        = 3;
+  private static final int CLIMAX_SPECIES       = 4;
+  private static final int SERAL_SPECIES        = 5;
+  private static final int SYSTEM               = 6;
+  private static final int HTGRP                = 7;
+  private static final int ALL_VEG_TYPES        = 8;
+  private static final int VEGETATIVE_TYPE      = 9;
+  private static final int KNOWLEDGE_SOURCE     = 10;
   private static final int YEARLY_PATHWAY_LIVES = 11;
-
-  private static final int EOF             = 12;
+  private static final int EOF                  = 12;
 
   /**
    * Constructor for Habitat Type Group.  Initializes the object with group type, vegetative types, habitat types, climax species, 
