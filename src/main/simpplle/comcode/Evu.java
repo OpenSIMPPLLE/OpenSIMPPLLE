@@ -7003,7 +7003,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     // Case 3A.
     if (speciesType == Lifeform.TREES &&
-        HabitatTypeGroup.isForested(getHabitatTypeGroup())) {
+        getHabitatTypeGroup().isForested()) {
       newSpecies = Species.fixOrder(species);
 
       if (newSpecies == null) {
@@ -7032,7 +7032,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     // Case 3B.
     if (newState == null && speciesType == Lifeform.TREES &&
-        HabitatTypeGroup.isNonForested(getHabitatTypeGroup())) {
+        getHabitatTypeGroup().isNonForested()) {
       if (species == Species.LP || species == Species.WB) {
         newState = htGrp.getVegetativeType(Species.PF,sizeClass,age,density);
       }
@@ -7091,7 +7091,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     // Case 3E
     if (newState == null && species == Species.EARLY_SERAL &&
-        HabitatTypeGroup.isForested(getHabitatTypeGroup())) {
+        getHabitatTypeGroup().isForested()) {
 
       if (groupType.equals(HabitatTypeGroupType.A1) ||
           groupType.equals(HabitatTypeGroupType.A2) ||
@@ -7128,7 +7128,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     // Case 3F
     if (newState == null && species == Species.LATE_SERAL &&
-        HabitatTypeGroup.isForested(getHabitatTypeGroup())) {
+        getHabitatTypeGroup().isForested()) {
 
       if (groupType.equals(HabitatTypeGroupType.A1) ||
           groupType.equals(HabitatTypeGroupType.A2) ||
@@ -7162,7 +7162,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     // Case 3G
     if (newState == null &&
         (species == Species.EARLY_SERAL || species == Species.LATE_SERAL) &
-        HabitatTypeGroup.isNonForested(getHabitatTypeGroup())) {
+            getHabitatTypeGroup().isNonForested()) {
       fixInvalidCaseOne();
       return;
     }

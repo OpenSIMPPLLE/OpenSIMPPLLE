@@ -246,9 +246,7 @@ public final class HabitatTypeGroup {
     return names;
   }
 
-  public static boolean isForested(HabitatTypeGroup group) {
-    HabitatTypeGroupType groupType = group.getType();
-
+  public boolean isForested() {
     return (groupType.equals(HabitatTypeGroupType.A1) ||
             groupType.equals(HabitatTypeGroupType.A2) ||
             groupType.equals(HabitatTypeGroupType.B1) ||
@@ -267,8 +265,8 @@ public final class HabitatTypeGroup {
             groupType.equals(HabitatTypeGroupType.G2));
   }
 
-  public static boolean isNonForested(HabitatTypeGroup group) {
-    return (!isForested(group));
+  public boolean isNonForested() {
+    return !isForested();
   }
 
   public void closeFile() {
