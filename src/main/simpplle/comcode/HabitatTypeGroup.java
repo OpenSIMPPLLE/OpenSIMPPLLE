@@ -42,27 +42,27 @@ public final class HabitatTypeGroup {
   /**
    * An array of habitat type codes.
    */
-  private Vector habitatTypes;
+  private Vector<Integer> habitatTypes;
 
   /**
    * An array of species that are in equilibrium.
    */
-  private Vector climaxSpecies;
+  private Vector<String> climaxSpecies;
 
   /**
    * An array of species advancing towards equilibrium.
    */
-  private Vector seralSpecies;
+  private Vector<String> seralSpecies;
 
   /**
    * Maps species to their seed sapling states.
    */
-  private Hashtable seedSapStates;
+  private Hashtable<Species,VegetativeType> seedSapStates;
 
   /**
    * A collection of unique regeneration states. (Abuses hash table to prevent duplication)
    */
-  private Hashtable regenStates;
+  private Hashtable<VegetativeType,VegetativeType> regenStates;
 
   /**
    * An array of yearly pathway life forms.
@@ -144,8 +144,8 @@ public final class HabitatTypeGroup {
     habitatTypes       = null;
     climaxSpecies      = null;
     seralSpecies       = null;
-    seedSapStates      = new Hashtable();
-    regenStates        = new Hashtable();
+    seedSapStates      = new Hashtable<>();
+    regenStates        = new Hashtable<>();
     knowledgeSource    = "";
     yearlyPathwayLives = null;
     changed            = false;
@@ -962,7 +962,7 @@ public final class HabitatTypeGroup {
    * @return a VegetativeType or null.
    */
   public VegetativeType getSeedSapState(Species species) {
-    return (VegetativeType) seedSapStates.get(species);
+    return seedSapStates.get(species);
   }
 
   // ** Parsing Stuff **
@@ -1598,7 +1598,7 @@ public final class HabitatTypeGroup {
       fout.print("CLIMAX-SPECIES ");
       for(i=0; i<climaxSpecies.size(); i++) {
         if (i > 0) { fout.print(":"); }
-        fout.print((String)climaxSpecies.elementAt(i));
+        fout.print(climaxSpecies.elementAt(i));
       }
       fout.println();
     }
@@ -1607,7 +1607,7 @@ public final class HabitatTypeGroup {
       fout.print("SERAL-SPECIES ");
       for(i=0; i<seralSpecies.size(); i++) {
         if (i > 0) { fout.print(":"); }
-        fout.print((String)seralSpecies.elementAt(i));
+        fout.print(seralSpecies.elementAt(i));
       }
       fout.println();
     }
@@ -1824,12 +1824,12 @@ public final class HabitatTypeGroup {
 
   public static VegetativeType[] getAllRegenerationStates() {
 
-    Hashtable        ht = new Hashtable();
-    VegetativeType   vt;
-    Enumeration      e;
+    Hashtable<VegetativeType,VegetativeType> ht = new Hashtable<>();
+    VegetativeType vt;
+    Enumeration e;
 
     for (HabitatTypeGroup group : groups.values()) {
-      e     = group.regenStates.elements();
+      e = group.regenStates.elements();
       while (e.hasMoreElements()) {
         vt = (VegetativeType)e.nextElement();
         ht.put(vt,vt); // using ht to eliminate duplicates
@@ -1930,7 +1930,7 @@ public final class HabitatTypeGroup {
     if (habitatTypes != null) {
       fout.print("  " + KEYWORD[HABITAT_TYPES] + " ");
       for(i=0; i<habitatTypes.size(); i++) {
-        fout.print(" " + (Integer)habitatTypes.elementAt(i));
+        fout.print(" " + habitatTypes.elementAt(i));
       }
       fout.println();
     }
@@ -1938,7 +1938,7 @@ public final class HabitatTypeGroup {
     if (climaxSpecies != null) {
       fout.print("  " + KEYWORD[CLIMAX_SPECIES]);
       for(i=0; i<climaxSpecies.size(); i++) {
-        fout.print(" " + (String)climaxSpecies.elementAt(i));
+        fout.print(" " + climaxSpecies.elementAt(i));
       }
       fout.println();
     }
@@ -1946,7 +1946,7 @@ public final class HabitatTypeGroup {
     if (seralSpecies != null) {
       fout.print("  " + KEYWORD[SERAL_SPECIES] + " ");
       for(i=0; i<seralSpecies.size(); i++) {
-        fout.print(" " + (String)seralSpecies.elementAt(i));
+        fout.print(" " + (seralSpecies.elementAt(i)));
       }
       fout.println();
       fout.println();
