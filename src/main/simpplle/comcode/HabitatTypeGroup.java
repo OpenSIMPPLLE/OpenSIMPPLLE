@@ -162,6 +162,168 @@ public final class HabitatTypeGroup {
 
   }
 
+  //// Instance Methods ////
+
+
+
+  //// Class Methods ////
+
+  public static ArrayList<Integer> getAllAge() {
+    ArrayList<Integer> values = new ArrayList<>();
+    for (HabitatTypeGroup group : groups.values()) {
+      group.updateAllAgeList(values);
+    }
+    return values;
+  }
+
+  public static Density[] getAllDensity(Hashtable ht) {
+    Density[] allDensity = new Density[ht.size()];
+    Enumeration e = ht.keys();
+    int i = 0;
+    while (e.hasMoreElements()) {
+      allDensity[i] = (Density) e.nextElement();
+      i++;
+    }
+    Arrays.sort(allDensity);
+    return allDensity;
+  }
+
+  public static SizeClass[] getAllSizeClass(Hashtable ht) {
+    SizeClass[] allSizeClass = new SizeClass[ht.size()];
+    Enumeration e = ht.keys();
+    int i = 0;
+    while (e.hasMoreElements()) {
+      allSizeClass[i] = (SizeClass) e.nextElement();
+      i++;
+    }
+    Arrays.sort(allSizeClass);
+    return allSizeClass;
+  }
+
+  public static Species[] getAllSpecies(Hashtable ht) {
+    Species[] allSpecies = new Species[ht.size()];
+    Enumeration e = ht.keys();
+    int i = 0;
+    while (e.hasMoreElements()) {
+      allSpecies[i] = (Species) e.nextElement();
+      i++;
+    }
+    Arrays.sort(allSpecies);
+    return allSpecies;
+  }
+
+  public static VegetativeType[] getAllRegenerationStates() {
+    Hashtable<VegetativeType,VegetativeType> ht = new Hashtable<>();
+    VegetativeType vt;
+    Enumeration e;
+    for (HabitatTypeGroup group : groups.values()) {
+      e = group.regenStates.elements();
+      while (e.hasMoreElements()) {
+        vt = (VegetativeType)e.nextElement();
+        ht.put(vt,vt); // using ht to eliminate duplicates
+      }
+    }
+    VegetativeType[] states = new VegetativeType[ht.size()];
+    e = ht.elements();
+    int j=0;
+    while (e.hasMoreElements()) {
+      states[j] = (VegetativeType)e.nextElement();
+      j++;
+    }
+    Arrays.sort(states);
+    return states;
+  }
+
+  public static Vector getAllRegenerationStatesWithSpecies(Species species) {
+    VegetativeType[] states = getAllRegenerationStates();
+    Vector result = new Vector(states.length);
+    Species tmpSpecies;
+    for (int i = 0; i < states.length; i++) {
+      tmpSpecies = states[i].getSpecies();
+      if (tmpSpecies.contains(species)) {
+        result.addElement(new RegenerationSuccessionInfo(species,states[i]));
+      }
+    }
+    return result;
+  }
+
+  public static String[] getAllSortedMatchingSpeciesTypes(Species species) {
+    Hashtable ht = new Hashtable();
+    String[] tmpTypes;
+    String[] result;
+    int j;
+    for (HabitatTypeGroup group : groups.values()) {
+      tmpTypes = group.getMatchingSpeciesTypes(species);
+      for(j=0; j<tmpTypes.length; j++) {
+        ht.put(tmpTypes[j],tmpTypes[j]);
+      }
+    }
+    result = new String[ht.size()];
+    ht.values().toArray(result);
+    Utility.sort(result);
+    return result;
+  }
+
+  public static Vector getValidDensity() {
+    Hashtable ht = new Hashtable();
+    for (HabitatTypeGroup group : groups.values()) {
+      group.getAllDensityHt(ht);
+    }
+    Density[] allDensity = HabitatTypeGroup.getAllDensity(ht);
+    Vector v = new Vector();
+    for(int i = 0; i < allDensity.length; i++) {
+      v.addElement(allDensity[i]);
+    }
+    return v;
+  }
+
+  public static Vector getValidSizeClass() {
+    Hashtable ht = new Hashtable();
+    for (HabitatTypeGroup group : groups.values()) {
+      group.getAllSizeClassHt(ht);
+    }
+    SizeClass[] allSizeClass = HabitatTypeGroup.getAllSizeClass(ht);
+    Vector v = new Vector();
+    for(int i = 0; i < allSizeClass.length; i++) {
+      v.addElement(allSizeClass[i]);
+    }
+    return v;
+  }
+
+  public static Vector getValidSpecies() {
+    Hashtable ht = new Hashtable();
+    for (HabitatTypeGroup group : groups.values()) {
+      group.getAllSpeciesHt(ht);
+    }
+    Species[] allSpecies = HabitatTypeGroup.getAllSpecies(ht);
+    Vector v = new Vector();
+    for(int i = 0; i < allSpecies.length; i++) {
+      v.addElement(allSpecies[i]);
+    }
+    return v;
+  }
+
+  public static VegetativeType getVegType(String vegTypeStr) {
+    if (vegTypeStr == null) { return null;}
+    VegetativeType vt;
+    for (HabitatTypeGroup group : groups.values()) {
+      vt = group.getVegetativeType(vegTypeStr);
+      if (vt != null) { return vt; }
+    }
+    return null;
+  }
+
+  public static boolean hasSpecies(Species species) {
+    for (HabitatTypeGroup group : groups.values()) {
+      for (VegetativeType vt : group.vegTypes.values()) {
+        if (vt.getSpecies().equals(species)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   public static HabitatTypeGroup findInstance(String groupName) {
     HabitatTypeGroupType ht = HabitatTypeGroupType.get(groupName);
     if (ht == null) { return null; }
@@ -172,20 +334,12 @@ public final class HabitatTypeGroup {
     return groups.get(groupType);
   }
 
-  public boolean isValid() {
-    return vegTypes != null;
-  }
-
-  public boolean isSystemGroup() {
-    return !groupType.isUserCreated() || !isUserData;
-  }
-
-  public HabitatTypeGroupType getType() {
-    return groupType;
-  }
-
-  public static void clearGroups() {
-    groups.clear();
+  public static void findAllRegenerationStates() {
+    ArrayList allGroups = getAllLoadedGroups();
+    if (allGroups == null) { return; }
+    for (int i = 0; i < allGroups.size(); i++) {
+      ((HabitatTypeGroup)allGroups.get(i)).findGroupRegenerationStates();
+    }
   }
 
   public static void removeGroup(HabitatTypeGroup group) {
@@ -202,14 +356,35 @@ public final class HabitatTypeGroup {
     }
   }
 
+  public static void clearGroups() {
+    groups.clear();
+  }
+
   public static Vector getLoadedGroups() {
     if (groups.size() == 0) { return null; }
     return new Vector(groups.values());
   }
 
+  public static ArrayList getAllLoadedGroups() {
+    if (groups == null || groups.size() == 0) { return null; }
+    return new ArrayList(groups.values());
+  }
+
+  public static String[] getLoadedGroupNames() {
+    if (groups.size() == 0) { return null; }
+    String[] names = new String[groups.size()];
+    int i=0;
+    for (HabitatTypeGroup group : groups.values()) {
+      names[i] = group.getName();
+      i++;
+    }
+    Arrays.sort(names);
+    return names;
+  }
+
   public static Vector getAllLoadedTypes() {
     if (groups.size() == 0) { return null; }
-    
+
     Vector dummy = new Vector(groups.keySet());
     Collections.sort(dummy);
     return dummy;
@@ -229,21 +404,16 @@ public final class HabitatTypeGroup {
     return values;
   }
 
-  public static ArrayList getAllLoadedGroups() {
-    if (groups == null || groups.size() == 0) { return null; }
-    return new ArrayList(groups.values());
+  public boolean isValid() {
+    return vegTypes != null;
   }
 
-  public static String[] getLoadedGroupNames() {
-    if (groups.size() == 0) { return null; }
-    String[] names = new String[groups.size()];
-    int i=0;
-    for (HabitatTypeGroup group : groups.values()) {
-      names[i] = group.getName();
-      i++;
-    }
-    Arrays.sort(names);
-    return names;
+  public boolean isSystemGroup() {
+    return !groupType.isUserCreated() || !isUserData;
+  }
+
+  public HabitatTypeGroupType getType() {
+    return groupType;
   }
 
   public boolean isForested() {
@@ -510,16 +680,6 @@ public final class HabitatTypeGroup {
     return null;
   }
 
-  public static VegetativeType getVegType(String vegTypeStr) {
-    if (vegTypeStr == null) { return null;}
-    VegetativeType vt;
-    for (HabitatTypeGroup group : groups.values()) {
-      vt = group.getVegetativeType(vegTypeStr);
-      if (vt != null) { return vt; }
-    }
-    return null;
-  }
-
   public int getStatesCount() {
     return vegTypes.size();
   }
@@ -547,55 +707,6 @@ public final class HabitatTypeGroup {
 
   public Species[] getAllSpecies() {
     return HabitatTypeGroup.getAllSpecies(getAllSpeciesHt());
-  }
-
-  public static Species[] getAllSpecies(Hashtable ht) {
-    Species[]   allSpecies = new Species[ht.size()];
-    Enumeration e = ht.keys();
-    int         i = 0;
-
-    while (e.hasMoreElements()) {
-      allSpecies[i] = (Species) e.nextElement();
-      i++;
-    }
-    ht = null;
-
-    Arrays.sort(allSpecies);
-    return allSpecies;
-  }
-
-  public static Vector getValidSpecies() {
-    Hashtable ht = new Hashtable();
-    for (HabitatTypeGroup group : groups.values()) {
-      group.getAllSpeciesHt(ht);
-    }
-    Species[] allSpecies = HabitatTypeGroup.getAllSpecies(ht);
-    Vector v = new Vector();
-    for(int i = 0; i < allSpecies.length; i++) {
-      v.addElement(allSpecies[i]);
-    }
-    return v;
-  }
-
-  public static boolean hasSpecies(Species species) {
-    for (HabitatTypeGroup group : groups.values()) {
-      for (VegetativeType vt : group.vegTypes.values()) {
-        if (vt.getSpecies().equals(species)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  public static ArrayList<Integer> getAllAge() {
-    ArrayList<Integer> values = new ArrayList<>();
-
-    for (HabitatTypeGroup group : groups.values()) {
-      group.updateAllAgeList(values);
-    }
-
-    return values;
   }
 
   private void updateAllAgeList(ArrayList<Integer> allAge) {
@@ -630,36 +741,6 @@ public final class HabitatTypeGroup {
     return HabitatTypeGroup.getAllSizeClass(getAllSizeClassHt());
   }
 
-  public static SizeClass[] getAllSizeClass(Hashtable ht) {
-    SizeClass[] allSizeClass = new SizeClass[ht.size()];
-    Enumeration e = ht.keys();
-    int         i = 0;
-
-    while (e.hasMoreElements()) {
-      allSizeClass[i] = (SizeClass) e.nextElement();
-      i++;
-    }
-    ht = null;
-
-    Arrays.sort(allSizeClass);
-    return allSizeClass;
-  }
-
-  public static Vector getValidSizeClass() {
-    Hashtable    ht = new Hashtable();
-
-    for (HabitatTypeGroup group : groups.values()) {
-      group.getAllSizeClassHt(ht);
-    }
-
-    SizeClass[] allSizeClass = HabitatTypeGroup.getAllSizeClass(ht);
-    Vector      v = new Vector();
-    for(int i=0; i<allSizeClass.length; i++) {
-      v.addElement(allSizeClass[i]);
-    }
-    return v;
-  }
-
   public Hashtable getAllDensityHt() {
     return getAllDensityHt(new Hashtable());
   }
@@ -682,36 +763,6 @@ public final class HabitatTypeGroup {
 
   public Density[] getAllDensity() {
     return HabitatTypeGroup.getAllDensity(getAllDensityHt());
-  }
-
-  public static Density[] getAllDensity(Hashtable ht) {
-    Density[]    allDensity = new Density[ht.size()];
-    Enumeration e = ht.keys();
-    int         i = 0;
-
-    while (e.hasMoreElements()) {
-      allDensity[i] = (Density) e.nextElement();
-      i++;
-    }
-    ht = null;
-
-    Arrays.sort(allDensity);
-    return allDensity;
-  }
-
-  public static Vector getValidDensity() {
-    Hashtable    ht = new Hashtable();
-
-    for (HabitatTypeGroup group : groups.values()) {
-      group.getAllDensityHt(ht);
-    }
-
-    Density[] allDensity = HabitatTypeGroup.getAllDensity(ht);
-    Vector    v = new Vector();
-    for(int i=0; i<allDensity.length; i++) {
-      v.addElement(allDensity[i]);
-    }
-    return v;
   }
 
   public String[] getAllProcesses(Species species) {
@@ -785,24 +836,6 @@ public final class HabitatTypeGroup {
 
   public String[] getSortedMatchingSpeciesTypes(Species species) {
     String[] result = getMatchingSpeciesTypes(species);
-    Utility.sort(result);
-    return result;
-  }
-
-  public static String[] getAllSortedMatchingSpeciesTypes(Species species) {
-    Hashtable ht = new Hashtable();
-    String[]  tmpTypes;
-    String[]  result;
-    int       j;
-
-    for (HabitatTypeGroup group : groups.values()) {
-      tmpTypes = group.getMatchingSpeciesTypes(species);
-      for(j=0; j<tmpTypes.length; j++) {
-        ht.put(tmpTypes[j],tmpTypes[j]);
-      }
-    }
-    result = new String[ht.size()];
-    ht.values().toArray(result);
     Utility.sort(result);
     return result;
   }
@@ -1648,13 +1681,6 @@ public final class HabitatTypeGroup {
     return getVegetativeType(veg.getSpecies(),veg.getSizeClass(),age,veg.getDensity());
   }
 
-  public static void findAllRegenerationStates() {
-    ArrayList allGroups = getAllLoadedGroups();
-    if (allGroups == null) { return; }
-    for (int i=0; i<allGroups.size(); i++) {
-      ((HabitatTypeGroup)allGroups.get(i)).findGroupRegenerationStates();
-    }
-  }
   private void findGroupRegenerationStates() {
     final RegionalZone   zone = Simpplle.getCurrentZone();
     final SizeClass E = SizeClass.get("E");
@@ -1684,45 +1710,6 @@ public final class HabitatTypeGroup {
         regenStates.put(tmpVeg, tmpVeg);
       }
     }
-  }
-
-  public static VegetativeType[] getAllRegenerationStates() {
-
-    Hashtable<VegetativeType,VegetativeType> ht = new Hashtable<>();
-    VegetativeType vt;
-    Enumeration e;
-
-    for (HabitatTypeGroup group : groups.values()) {
-      e = group.regenStates.elements();
-      while (e.hasMoreElements()) {
-        vt = (VegetativeType)e.nextElement();
-        ht.put(vt,vt); // using ht to eliminate duplicates
-      }
-    }
-    VegetativeType[] states = new VegetativeType[ht.size()];
-    e = ht.elements();
-    int j=0;
-    while (e.hasMoreElements()) {
-      states[j] = (VegetativeType)e.nextElement();
-      j++;
-    }
-    Arrays.sort(states);
-    return states;
-  }
-
-  public static Vector getAllRegenerationStatesWithSpecies(Species species) {
-    VegetativeType[] states = getAllRegenerationStates();
-    Vector           result = new Vector(states.length);
-    Species          tmpSpecies;
-
-    for (int i=0; i<states.length; i++) {
-      tmpSpecies = states[i].getSpecies();
-      if (tmpSpecies.contains(species)) {
-        result.addElement(new RegenerationSuccessionInfo(species,states[i]));
-      }
-    }
-
-    return result;
   }
 
   public String toString() {
