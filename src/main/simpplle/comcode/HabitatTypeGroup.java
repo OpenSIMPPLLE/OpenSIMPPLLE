@@ -164,7 +164,473 @@ public final class HabitatTypeGroup {
 
   //// Instance Methods ////
 
+  public String getName () {
+    return groupType.toString();
+  }
 
+  public int getStatesCount() {
+    return vegTypes.size();
+  }
+
+  public HabitatTypeGroupType getType() {
+    return groupType;
+  }
+
+  public boolean isValid() {
+    return vegTypes != null;
+  }
+
+  public boolean isSystemGroup() {
+    return !groupType.isUserCreated() || !isUserData;
+  }
+
+  public boolean isForested() {
+    return (groupType.equals(HabitatTypeGroupType.A1) ||
+        groupType.equals(HabitatTypeGroupType.A2) ||
+        groupType.equals(HabitatTypeGroupType.B1) ||
+        groupType.equals(HabitatTypeGroupType.B2) ||
+        groupType.equals(HabitatTypeGroupType.B3) ||
+        groupType.equals(HabitatTypeGroupType.C1) ||
+        groupType.equals(HabitatTypeGroupType.C2) ||
+        groupType.equals(HabitatTypeGroupType.D1) ||
+        groupType.equals(HabitatTypeGroupType.D2) ||
+        groupType.equals(HabitatTypeGroupType.D3) ||
+        groupType.equals(HabitatTypeGroupType.E1) ||
+        groupType.equals(HabitatTypeGroupType.E2) ||
+        groupType.equals(HabitatTypeGroupType.F1) ||
+        groupType.equals(HabitatTypeGroupType.F2) ||
+        groupType.equals(HabitatTypeGroupType.G1) ||
+        groupType.equals(HabitatTypeGroupType.G2));
+  }
+
+  public boolean isNonForested() {
+    return !isForested();
+  }
+
+  public void setChanged(boolean value) {
+    changed = value;
+  }
+
+  public boolean hasChanged() {
+    return changed;
+  }
+
+  public void markChanged() {
+    setChanged(true);
+    setIsUserData(true);
+    SystemKnowledge.markChanged(SystemKnowledge.VEGETATION_PATHWAYS);
+  }
+
+  public void closeFile() {
+    clearFilename();
+    setChanged(false);
+  }
+
+  public void clearFilename() {
+    inputFile = null;
+  }
+
+  public File getFilename() {
+    return inputFile;
+  }
+
+  public void setFilename(File file) {
+    inputFile = file;
+  }
+
+  public String getKnowledgeSource() {
+    return knowledgeSource;
+  }
+
+  public void setKnowledgeSource(String source) {
+    knowledgeSource = source;
+  }
+
+  public boolean isUserData() {
+    return isUserData;
+  }
+
+  public void setIsUserData(boolean value) {
+    isUserData = value;
+  }
+
+  public Lifeform[] getYearlyPathwayLifeforms() {
+    return yearlyPathwayLives;
+  }
+
+  public void setYearlyPathwayLifeforms(ArrayList<Lifeform> values) {
+    if (values == null || values.size() == 0) {
+      yearlyPathwayLives = null;
+    } else {
+      yearlyPathwayLives = (Lifeform[]) values.toArray(new Lifeform[values.size()]);
+    }
+  }
+
+  public boolean isYearlyPathwayLifeform(Lifeform life) {
+    if (yearlyPathwayLives == null) { return false; }
+
+    for (int i=0; i<yearlyPathwayLives.length; i++) {
+      if (yearlyPathwayLives[i] == life) { return true; }
+    }
+    return false;
+  }
+
+  /**
+   * Finds a VegetativeType given its species, size class, and density.
+   * Note: age defaults to 1.
+   * @param species is a String.
+   * @param sizeClass is a String.
+   * @param density is an int.
+   * @return a VegetativeType.
+   */
+  public VegetativeType getVegetativeType(Species species, SizeClass sizeClass,
+                                          Density density) {
+    return getVegetativeType(species,sizeClass,1,density);
+  }
+
+  /**
+   * Finds a VegetativeType given its descriptive state string.
+   * @param vegTypeStr is a string, (e.g. "DF/LARGE/1")
+   * @return a VegetativeType.
+   */
+  public VegetativeType getVegetativeType (String vegTypeStr) {
+    if (vegTypeStr == null || vegTypes == null) { return null;}
+
+    return ( (VegetativeType) vegTypes.get(vegTypeStr));
+  }
+
+  public VegetativeType getVegetativeType (Species species, Density density) {
+    ArrayList values = new ArrayList(vegTypes.values());
+    for (int i=0; i<values.size(); i++) {
+      VegetativeType vt = (VegetativeType)values.get(i);
+      if (vt.getSpecies() == species && vt.getDensity() == density) {
+        return vt;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Finds a VegetativeType given its species, size class, age, and density.
+   * @param species is a Species.
+   * @param sizeClass is a SizeClass.
+   * @param age is an int.
+   * @param density is an Density.
+   * @return a VegetativeType.
+   */
+  public VegetativeType getVegetativeType (Species species, SizeClass sizeClass,
+                                           int age, Density density) {
+
+    String speciesStr = species.toString();
+    String sizeClassStr = sizeClass.toString();
+    String ageStr       = (age == 1 ? "" : IntToString.get(age));
+    String densityStr   = density.toString();
+
+    StringBuffer buf =
+        new StringBuffer(speciesStr.length()+sizeClassStr.length()+ageStr.length()+densityStr.length()+4);
+
+    buf.append(speciesStr);
+    buf.append("/");
+    buf.append(sizeClassStr);
+    buf.append(ageStr);
+    buf.append("/");
+    buf.append(densityStr);
+
+    return getVegetativeType(buf.toString());
+  }
+
+  /**
+   * Finds the vegetative type with the lowest density, by creating a veg type with density.One.  Then checks if it is greater than Density.TWO and Density.Three.
+   * @param vt
+   * @return
+   */
+  public VegetativeType findLowestDensityVegetativeType(VegetativeType vt) {
+    Species species = vt.getSpecies();
+    SizeClass sizeClass = vt.getSizeClass();
+    int       age       = vt.getAge();
+    Density   density   = vt.getDensity();
+
+    VegetativeType veg = getVegetativeType(species,sizeClass,age,Density.ONE);
+    if (veg == null && density.getValue() > Density.TWO.getValue()) {
+      veg = getVegetativeType(species,sizeClass,age,Density.TWO);
+    }
+    if (veg == null && density.getValue() > Density.THREE.getValue()) {
+      veg = getVegetativeType(species,sizeClass,age,Density.THREE);
+    }
+    if (veg == null) { veg = vt; }
+
+    return veg;
+  }
+
+  public VegetativeType findLowerDensityVegetativeType(VegetativeType vt) {
+    return findLowerDensityVegetativeType(vt.getSpecies(),vt.getSizeClass(),
+        vt.getAge(),vt.getDensity());
+  }
+
+  private VegetativeType findLowerDensityVegetativeType(Species species, SizeClass sizeClass,
+                                                        int age, Density density) {
+    Density newDensity = Density.getLowerDensity(density);
+
+    if (newDensity == null) { return null; }
+
+    return getVegetativeType(species,sizeClass,age,newDensity);
+  }
+
+  public VegetativeType findHigherDensityVegetativeType(VegetativeType vt) {
+    return findHigherDensityVegetativeType(vt.getSpecies(),vt.getSizeClass(),
+        vt.getAge(),vt.getDensity());
+  }
+
+  private VegetativeType findHigherDensityVegetativeType(Species species, SizeClass sizeClass,
+                                                         int age, Density density) {
+    Density  newDensity = Density.getHigherDensity(density);
+
+    if (newDensity == null) { return null; }
+
+    return getVegetativeType(species,sizeClass,age,newDensity);
+  }
+
+  public VegetativeType findNextYoungerVegetativeType(VegetativeType vt) {
+    return findNextYoungerVegetativeType(vt.getSpecies(),vt.getSizeClass(),
+        vt.getAge(),vt.getDensity());
+  }
+
+  public VegetativeType findNextYoungerVegetativeType(Species species, SizeClass sizeClass,
+                                                      int age, Density density) {
+    String         str;
+    VegetativeType vt;
+    int            newAge = age-1;
+
+    if (newAge == 0) { return null; }
+
+    if (age == 1) {
+      vt  = getVegetativeType(species,sizeClass,density);
+    }
+    else {
+      vt  = getVegetativeType(species,sizeClass,newAge,density);
+      if (vt == null) {
+        return findNextYoungerVegetativeType(species,sizeClass,newAge,density);
+      }
+    }
+
+    return vt;
+  }
+
+  public VegetativeType findOldestVegetativeType(Species species, SizeClass sizeClass,
+                                                 Density density)
+  {
+    Iterator    keys = vegTypes.keySet().iterator();
+    VegetativeType vt;
+    String         key;
+    int            maxAge = 1;
+    Species        vtSpecies;
+    SizeClass      vtSizeClass;
+    Density        vtDensity;
+    int            vtAge;
+
+    while (keys.hasNext()) {
+      key = (String) keys.next();
+      vt  = (VegetativeType) vegTypes.get(key);
+
+      vtSpecies   = vt.getSpecies();
+      vtSizeClass = vt.getSizeClass();
+      vtDensity   = vt.getDensity();
+
+      if (vtSpecies == species && vtSizeClass == sizeClass && vtDensity == density) {
+        vtAge = vt.getAge();
+        if (vtAge > maxAge) { maxAge = vtAge; }
+      }
+    }
+    return getVegetativeType(species,sizeClass,maxAge,density);
+  }
+
+  public Hashtable getAllSpeciesHt() {
+    return getAllSpeciesHt(new Hashtable());
+  }
+
+  public Hashtable getAllSpeciesHt(Hashtable ht) {
+    Iterator    keys = vegTypes.keySet().iterator();
+    String         key;
+    Species        species;
+    VegetativeType vt;
+    int            i;
+
+    while (keys.hasNext()) {
+      key = (String) keys.next();
+      vt  = (VegetativeType) vegTypes.get(key);
+      species = vt.getSpecies();
+      ht.put(species,species);
+      vt = null;
+    }
+    return ht;
+  }
+
+  public Species[] getAllSpecies() {
+    return HabitatTypeGroup.getAllSpecies(getAllSpeciesHt());
+  }
+
+  private void updateAllAgeList(ArrayList<Integer> allAge) {
+    for (VegetativeType vt : vegTypes.values()) {
+      Integer age = vt.getAge();
+      if (allAge.contains(age) == false) { allAge.add(age); }
+    }
+  }
+
+  public Hashtable getAllSizeClassHt() {
+    return getAllSizeClassHt(new Hashtable());
+  }
+
+  public Hashtable getAllSizeClassHt(Hashtable ht) {
+    Iterator    keys = vegTypes.keySet().iterator();
+    String         key;
+    SizeClass      sizeClass;
+    VegetativeType vt;
+    int            i;
+
+    while (keys.hasNext()) {
+      key = (String) keys.next();
+      vt  = (VegetativeType) vegTypes.get(key);
+      sizeClass = vt.getSizeClass();
+      ht.put(sizeClass,sizeClass);
+      vt = null;
+    }
+    return ht;
+  }
+
+  public SizeClass[] getAllSizeClass() {
+    return HabitatTypeGroup.getAllSizeClass(getAllSizeClassHt());
+  }
+
+  public Hashtable getAllDensityHt() {
+    return getAllDensityHt(new Hashtable());
+  }
+  public Hashtable getAllDensityHt(Hashtable ht) {
+    Iterator    keys = vegTypes.keySet().iterator();
+    String         key;
+    Density        density;
+    VegetativeType vt;
+    int            i;
+
+    while (keys.hasNext()) {
+      key = (String) keys.next();
+      vt  = (VegetativeType) vegTypes.get(key);
+      density = vt.getDensity();
+      ht.put(density,density);
+      vt = null;
+    }
+    return ht;
+  }
+
+  public Density[] getAllDensity() {
+    return HabitatTypeGroup.getAllDensity(getAllDensityHt());
+  }
+
+  public String[] getAllProcesses(Species species) {
+    Hashtable      ht = new Hashtable();
+    Iterator    keys = vegTypes.keySet().iterator();
+    String[]       allProcesses;
+    Process[]      processes;
+    String         key;
+    VegetativeType vt;
+    int            i;
+
+    while (keys.hasNext()) {
+      key = (String) keys.next();
+      vt  = (VegetativeType) vegTypes.get(key);
+      if (species == vt.getSpecies()) {
+        processes = vt.getProcesses();
+        for(i=0;i<processes.length;i++) {
+          ht.put(processes[i].toString(),processes[i].toString());
+        }
+      }
+      vt = null;
+    }
+
+    allProcesses = new String[ht.size()];
+    keys = ht.keySet().iterator();
+    i            = 0;
+    while (keys.hasNext()) {
+      allProcesses[i] = (String)keys.next();
+      i++;
+    }
+    ht = null;
+
+    return allProcesses;
+  }
+
+  public Hashtable findMatchingSpeciesTypes(Species species, Process process) {
+    Iterator    keys = vegTypes.keySet().iterator();
+    VegetativeType vt;
+    String         key;
+    Hashtable      matches = new Hashtable();
+
+    while (keys.hasNext()) {
+      key = (String) keys.next();
+      vt  = (VegetativeType) vegTypes.get(key);
+      if (species == vt.getSpecies()) {
+        matches.put(key,vt);
+        vt = vt.getProcessNextState(process);
+        if (vt != null) { matches.put(vt.toString(),vt); }
+      }
+    }
+    return matches;
+  }
+
+  private String[] getMatchingSpeciesTypes(Species species) {
+    Iterator    keys = vegTypes.keySet().iterator();
+    VegetativeType vt;
+    Vector         matches = new Vector();
+    String[]       result;
+
+    while (keys.hasNext()) {
+      vt  = (VegetativeType) vegTypes.get((String) keys.next());
+      if (species == vt.getSpecies()) {
+        matches.addElement(vt.toString());
+      }
+    }
+    result = new String[matches.size()];
+    matches.copyInto(result);
+
+    return result;
+  }
+
+  public String[] getSortedMatchingSpeciesTypes(Species species) {
+    String[] result = getMatchingSpeciesTypes(species);
+    Utility.sort(result);
+    return result;
+  }
+
+  public boolean isMemberSpecies(Species species) {
+    VegetativeType vt;
+    Iterator    keys = vegTypes.keySet().iterator();
+    while (keys.hasNext()) {
+      vt = (VegetativeType) vegTypes.get((String)keys.next());
+      if (species == vt.getSpecies()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public Vector findPreviousStates(VegetativeType vegType) {
+    Vector         result = new Vector();
+    VegetativeType vt;
+    Process        p;
+    Iterator    keys = vegTypes.keySet().iterator();
+
+    while (keys.hasNext()) {
+      vt = (VegetativeType) vegTypes.get((String)keys.next());
+      p = vt.getNextStateProcess(vegType);
+      if (p != null) {
+        result.addElement(new VegetativeTypeNextState(p,vt,0));
+      }
+    }
+    return result;
+  }
+
+  public VegetativeType getSeedSapState(Species species) {
+    return seedSapStates.get(species);
+  }
 
   //// Class Methods ////
 
@@ -402,474 +868,6 @@ public final class HabitatTypeGroup {
       values.add(0, HabitatTypeGroupType.ANY);
     }
     return values;
-  }
-
-  public boolean isValid() {
-    return vegTypes != null;
-  }
-
-  public boolean isSystemGroup() {
-    return !groupType.isUserCreated() || !isUserData;
-  }
-
-  public HabitatTypeGroupType getType() {
-    return groupType;
-  }
-
-  public boolean isForested() {
-    return (groupType.equals(HabitatTypeGroupType.A1) ||
-            groupType.equals(HabitatTypeGroupType.A2) ||
-            groupType.equals(HabitatTypeGroupType.B1) ||
-            groupType.equals(HabitatTypeGroupType.B2) ||
-            groupType.equals(HabitatTypeGroupType.B3) ||
-            groupType.equals(HabitatTypeGroupType.C1) ||
-            groupType.equals(HabitatTypeGroupType.C2) ||
-            groupType.equals(HabitatTypeGroupType.D1) ||
-            groupType.equals(HabitatTypeGroupType.D2) ||
-            groupType.equals(HabitatTypeGroupType.D3) ||
-            groupType.equals(HabitatTypeGroupType.E1) ||
-            groupType.equals(HabitatTypeGroupType.E2) ||
-            groupType.equals(HabitatTypeGroupType.F1) ||
-            groupType.equals(HabitatTypeGroupType.F2) ||
-            groupType.equals(HabitatTypeGroupType.G1) ||
-            groupType.equals(HabitatTypeGroupType.G2));
-  }
-
-  public boolean isNonForested() {
-    return !isForested();
-  }
-
-  public void closeFile() {
-    clearFilename();
-    setChanged(false);
-  }
-
-  public File getFilename() {
-    return inputFile;
-  }
-
-  public void setFilename(File file) {
-    inputFile = file;
-  }
-
-  public void clearFilename() {
-    inputFile = null;
-  }
-
-  public boolean hasChanged() {
-    return changed;
-  }
-
-  public void markChanged() {
-    setChanged(true);
-    setIsUserData(true);
-    SystemKnowledge.markChanged(SystemKnowledge.VEGETATION_PATHWAYS);
-  }
-
-  public void setChanged(boolean value) {
-    changed = value;
-  }
-
-  public boolean isUserData() {
-    return isUserData;
-  }
-
-  public void setIsUserData(boolean value) {
-    isUserData = value;
-  }
-
-  public String getName () {
-    return groupType.toString();
-  }
-
-  public String getKnowledgeSource() {
-    return knowledgeSource;
-  }
-
-  public void setKnowledgeSource(String source) {
-    knowledgeSource = source;
-  }
-
-  public boolean isYearlyPathwayLifeform(Lifeform life) {
-    if (yearlyPathwayLives == null) { return false; }
-
-    for (int i=0; i<yearlyPathwayLives.length; i++) {
-      if (yearlyPathwayLives[i] == life) { return true; }
-    }
-    return false;
-  }
-
-  public Lifeform[] getYearlyPathwayLifeforms() {
-    return yearlyPathwayLives;
-  }
-
-  public void setYearlyPathwayLifeforms(ArrayList<Lifeform> values) {
-    if (values == null || values.size() == 0) {
-      yearlyPathwayLives = null;
-    } else {
-      yearlyPathwayLives = (Lifeform[]) values.toArray(new Lifeform[values.size()]);
-    }
-  }
-
-  /**
-   * Finds a VegetativeType given its species, size class, and density.
-   * Note: age defaults to 1.
-   * @param species is a String.
-   * @param sizeClass is a String.
-   * @param density is an int.
-   * @return a VegetativeType.
-   */
-  public VegetativeType getVegetativeType(Species species, SizeClass sizeClass,
-                                          Density density) {
-    return getVegetativeType(species,sizeClass,1,density);
-  }
-
-  /**
-   * Finds a VegetativeType given its species, size class, age, and density.
-   * @param species is a Species.
-   * @param sizeClass is a SizeClass.
-   * @param age is an int.
-   * @param density is an Density.
-   * @return a VegetativeType.
-   */
-  public VegetativeType getVegetativeType (Species species, SizeClass sizeClass,
-                                           int age, Density density) {
-
-    String speciesStr = species.toString();
-    String sizeClassStr = sizeClass.toString();
-    String ageStr       = (age == 1 ? "" : IntToString.get(age));
-    String densityStr   = density.toString();
-
-    StringBuffer buf =
-      new StringBuffer(speciesStr.length()+sizeClassStr.length()+ageStr.length()+densityStr.length()+4);
-
-    buf.append(speciesStr);
-    buf.append("/");
-    buf.append(sizeClassStr);
-    buf.append(ageStr);
-    buf.append("/");
-    buf.append(densityStr);
-
-    return getVegetativeType(buf.toString());
-  }
-
-  /**
-   * Finds the vegetative type with the lowest density, by creating a veg type with density.One.  Then checks if it is greater than Density.TWO and Density.Three.
-   * @param vt
-   * @return
-   */
-  public VegetativeType findLowestDensityVegetativeType(VegetativeType vt) {
-    Species species = vt.getSpecies();
-    SizeClass sizeClass = vt.getSizeClass();
-    int       age       = vt.getAge();
-    Density   density   = vt.getDensity();
-
-    VegetativeType veg = getVegetativeType(species,sizeClass,age,Density.ONE);
-    if (veg == null && density.getValue() > Density.TWO.getValue()) {
-      veg = getVegetativeType(species,sizeClass,age,Density.TWO);
-    }
-    if (veg == null && density.getValue() > Density.THREE.getValue()) {
-      veg = getVegetativeType(species,sizeClass,age,Density.THREE);
-    }
-    if (veg == null) { veg = vt; }
-
-    return veg;
-  }
-
-  public VegetativeType findLowerDensityVegetativeType(VegetativeType vt) {
-    return findLowerDensityVegetativeType(vt.getSpecies(),vt.getSizeClass(),
-                                         vt.getAge(),vt.getDensity());
-  }
-
-  private VegetativeType findLowerDensityVegetativeType(Species species, SizeClass sizeClass,
-                                                        int age, Density density) {
-    Density newDensity = Density.getLowerDensity(density);
-
-    if (newDensity == null) { return null; }
-
-    return getVegetativeType(species,sizeClass,age,newDensity);
-  }
-
-  public VegetativeType findHigherDensityVegetativeType(VegetativeType vt) {
-    return findHigherDensityVegetativeType(vt.getSpecies(),vt.getSizeClass(),
-                                           vt.getAge(),vt.getDensity());
-  }
-
-  private VegetativeType findHigherDensityVegetativeType(Species species, SizeClass sizeClass,
-                                                         int age, Density density) {
-    Density  newDensity = Density.getHigherDensity(density);
-
-    if (newDensity == null) { return null; }
-
-    return getVegetativeType(species,sizeClass,age,newDensity);
-  }
-
-  public VegetativeType findNextYoungerVegetativeType(VegetativeType vt) {
-    return findNextYoungerVegetativeType(vt.getSpecies(),vt.getSizeClass(),
-                                         vt.getAge(),vt.getDensity());
-  }
-
-  public VegetativeType findNextYoungerVegetativeType(Species species, SizeClass sizeClass,
-                                                      int age, Density density) {
-    String         str;
-    VegetativeType vt;
-    int            newAge = age-1;
-
-    if (newAge == 0) { return null; }
-
-    if (age == 1) {
-      vt  = getVegetativeType(species,sizeClass,density);
-    }
-    else {
-      vt  = getVegetativeType(species,sizeClass,newAge,density);
-      if (vt == null) {
-        return findNextYoungerVegetativeType(species,sizeClass,newAge,density);
-      }
-    }
-
-    return vt;
-  }
-
-  public VegetativeType findOldestVegetativeType(Species species, SizeClass sizeClass,
-                                                 Density density)
-  {
-    Iterator    keys = vegTypes.keySet().iterator();
-    VegetativeType vt;
-    String         key;
-    int            maxAge = 1;
-    Species        vtSpecies;
-    SizeClass      vtSizeClass;
-    Density        vtDensity;
-    int            vtAge;
-
-    while (keys.hasNext()) {
-      key = (String) keys.next();
-      vt  = (VegetativeType) vegTypes.get(key);
-
-      vtSpecies   = vt.getSpecies();
-      vtSizeClass = vt.getSizeClass();
-      vtDensity   = vt.getDensity();
-
-      if (vtSpecies == species && vtSizeClass == sizeClass && vtDensity == density) {
-        vtAge = vt.getAge();
-        if (vtAge > maxAge) { maxAge = vtAge; }
-      }
-    }
-    return getVegetativeType(species,sizeClass,maxAge,density);
-  }
-
-  /**
-   * Finds a VegetativeType given its descriptive state string.
-   * @param vegTypeStr is a string, (e.g. "DF/LARGE/1")
-   * @return a VegetativeType.
-   */
-  public VegetativeType getVegetativeType (String vegTypeStr) {
-    if (vegTypeStr == null || vegTypes == null) { return null;}
-
-    return ( (VegetativeType) vegTypes.get(vegTypeStr));
-  }
-
-  public VegetativeType getVegetativeType (Species species, Density density) {
-    ArrayList values = new ArrayList(vegTypes.values());
-    for (int i=0; i<values.size(); i++) {
-      VegetativeType vt = (VegetativeType)values.get(i);
-      if (vt.getSpecies() == species && vt.getDensity() == density) {
-        return vt;
-      }
-    }
-    return null;
-  }
-
-  public int getStatesCount() {
-    return vegTypes.size();
-  }
-
-  public Hashtable getAllSpeciesHt() {
-    return getAllSpeciesHt(new Hashtable());
-  }
-
-  public Hashtable getAllSpeciesHt(Hashtable ht) {
-    Iterator    keys = vegTypes.keySet().iterator();
-    String         key;
-    Species        species;
-    VegetativeType vt;
-    int            i;
-
-    while (keys.hasNext()) {
-      key = (String) keys.next();
-      vt  = (VegetativeType) vegTypes.get(key);
-      species = vt.getSpecies();
-      ht.put(species,species);
-      vt = null;
-    }
-    return ht;
-  }
-
-  public Species[] getAllSpecies() {
-    return HabitatTypeGroup.getAllSpecies(getAllSpeciesHt());
-  }
-
-  private void updateAllAgeList(ArrayList<Integer> allAge) {
-    for (VegetativeType vt : vegTypes.values()) {
-      Integer age = vt.getAge();
-      if (allAge.contains(age) == false) { allAge.add(age); }
-    }
-  }
-
-  public Hashtable getAllSizeClassHt() {
-    return getAllSizeClassHt(new Hashtable());
-  }
-
-  public Hashtable getAllSizeClassHt(Hashtable ht) {
-    Iterator    keys = vegTypes.keySet().iterator();
-    String         key;
-    SizeClass      sizeClass;
-    VegetativeType vt;
-    int            i;
-
-    while (keys.hasNext()) {
-      key = (String) keys.next();
-      vt  = (VegetativeType) vegTypes.get(key);
-      sizeClass = vt.getSizeClass();
-      ht.put(sizeClass,sizeClass);
-      vt = null;
-    }
-    return ht;
-  }
-
-  public SizeClass[] getAllSizeClass() {
-    return HabitatTypeGroup.getAllSizeClass(getAllSizeClassHt());
-  }
-
-  public Hashtable getAllDensityHt() {
-    return getAllDensityHt(new Hashtable());
-  }
-  public Hashtable getAllDensityHt(Hashtable ht) {
-    Iterator    keys = vegTypes.keySet().iterator();
-    String         key;
-    Density        density;
-    VegetativeType vt;
-    int            i;
-
-    while (keys.hasNext()) {
-      key = (String) keys.next();
-      vt  = (VegetativeType) vegTypes.get(key);
-      density = vt.getDensity();
-      ht.put(density,density);
-      vt = null;
-    }
-    return ht;
-  }
-
-  public Density[] getAllDensity() {
-    return HabitatTypeGroup.getAllDensity(getAllDensityHt());
-  }
-
-  public String[] getAllProcesses(Species species) {
-    Hashtable      ht = new Hashtable();
-    Iterator    keys = vegTypes.keySet().iterator();
-    String[]       allProcesses;
-    Process[]      processes;
-    String         key;
-    VegetativeType vt;
-    int            i;
-
-    while (keys.hasNext()) {
-      key = (String) keys.next();
-      vt  = (VegetativeType) vegTypes.get(key);
-      if (species == vt.getSpecies()) {
-        processes = vt.getProcesses();
-        for(i=0;i<processes.length;i++) {
-          ht.put(processes[i].toString(),processes[i].toString());
-        }
-      }
-      vt = null;
-    }
-
-    allProcesses = new String[ht.size()];
-    keys = ht.keySet().iterator();
-    i            = 0;
-    while (keys.hasNext()) {
-      allProcesses[i] = (String)keys.next();
-      i++;
-    }
-    ht = null;
-
-    return allProcesses;
-  }
-
-  public Hashtable findMatchingSpeciesTypes(Species species, Process process) {
-    Iterator    keys = vegTypes.keySet().iterator();
-    VegetativeType vt;
-    String         key;
-    Hashtable      matches = new Hashtable();
-
-    while (keys.hasNext()) {
-      key = (String) keys.next();
-      vt  = (VegetativeType) vegTypes.get(key);
-      if (species == vt.getSpecies()) {
-        matches.put(key,vt);
-        vt = vt.getProcessNextState(process);
-        if (vt != null) { matches.put(vt.toString(),vt); }
-      }
-    }
-    return matches;
-  }
-
-  private String[] getMatchingSpeciesTypes(Species species) {
-    Iterator    keys = vegTypes.keySet().iterator();
-    VegetativeType vt;
-    Vector         matches = new Vector();
-    String[]       result;
-
-    while (keys.hasNext()) {
-      vt  = (VegetativeType) vegTypes.get((String) keys.next());
-      if (species == vt.getSpecies()) {
-        matches.addElement(vt.toString());
-      }
-    }
-    result = new String[matches.size()];
-    matches.copyInto(result);
-
-    return result;
-  }
-
-  public String[] getSortedMatchingSpeciesTypes(Species species) {
-    String[] result = getMatchingSpeciesTypes(species);
-    Utility.sort(result);
-    return result;
-  }
-
-  public boolean isMemberSpecies(Species species) {
-    VegetativeType vt;
-    Iterator    keys = vegTypes.keySet().iterator();
-    while (keys.hasNext()) {
-      vt = (VegetativeType) vegTypes.get((String)keys.next());
-      if (species == vt.getSpecies()) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  public Vector findPreviousStates(VegetativeType vegType) {
-    Vector         result = new Vector();
-    VegetativeType vt;
-    Process        p;
-    Iterator    keys = vegTypes.keySet().iterator();
-
-    while (keys.hasNext()) {
-      vt = (VegetativeType) vegTypes.get((String)keys.next());
-      p = vt.getNextStateProcess(vegType);
-      if (p != null) {
-        result.addElement(new VegetativeTypeNextState(p,vt,0));
-      }
-    }
-    return result;
-  }
-
-  public VegetativeType getSeedSapState(Species species) {
-    return seedSapStates.get(species);
   }
 
   // ** Parsing Stuff **
