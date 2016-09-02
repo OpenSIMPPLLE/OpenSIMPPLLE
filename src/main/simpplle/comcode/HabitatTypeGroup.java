@@ -134,8 +134,7 @@ public final class HabitatTypeGroup {
   private static final int EOF                  = 12;
 
   /**
-   * Constructor for Habitat Type Group.  Initializes the object with group type, vegetative types, habitat types, climax species, 
-   * seral species, knowledge source, and yearly pathway lives. Also creates new hash tables for seed sap states, and regeneration states.  Initializes some fields.
+   * Constructs a Habitat Type Group.
    */
   public HabitatTypeGroup () {
 
@@ -154,27 +153,19 @@ public final class HabitatTypeGroup {
 
   }
 
-/**
- * Overloaded constructor.  Used when creating a new area.  
- * Used when creating a new area.  If the group does not exist
- * we need to create one to store in the evu so that it can be
- * corrected the user later on.
- */
-  
-  public HabitatTypeGroup (String newName) {
-    groupType = HabitatTypeGroupType.get(newName);
-    if (groupType == null) {
-      groupType = new HabitatTypeGroupType(newName);
-    }
-    groups.put(groupType,this);
+  /**
+   * Constructs a Habitat Type Group and stores the instance.
+   */
+  public HabitatTypeGroup (String name) {
 
-    vegTypes      = null;
-    habitatTypes  = null;
-    climaxSpecies = null;
-    seralSpecies  = null;
-    seedSapStates = null;
-    knowledgeSource = "";
-    yearlyPathwayLives = null;
+    super();
+
+    groupType = HabitatTypeGroupType.get(name);
+    if (groupType == null) {
+      groupType = new HabitatTypeGroupType(name);
+    }
+    groups.put(groupType,this); // WARNING: Replaces instance if already exists.
+
   }
 
 /**
