@@ -87,17 +87,17 @@ public final class HabitatTypeGroup {
   /**
    * A flag indicating if any state has changed.
    */
-  private boolean changed = false;
+  private boolean changed;
 
   /**
    * A flag indicating if this contains user-defined knowledge.
    */
-  private boolean isUserData = false;
+  private boolean isUserData;
 
   /**
    * Holds pathway grid lines, which are drawn in the user interface.
    */
-  private Hashtable allLines = new Hashtable();
+  private Hashtable allLines;
 
   /**
    * Keywords used in files containing a habitat type group.
@@ -138,17 +138,22 @@ public final class HabitatTypeGroup {
    * seral species, knowledge source, and yearly pathway lives. Also creates new hash tables for seed sap states, and regeneration states.  Initializes some fields.
    */
   public HabitatTypeGroup () {
-    groupType       = null;
-    vegTypes        = null;
-    habitatTypes    = null;
-    climaxSpecies   = null;
-    seralSpecies    = null;
-    seedSapStates   = new Hashtable();
-    regenStates     = new Hashtable();
-    knowledgeSource = "";
+
+    groupType          = null;
+    vegTypes           = null;
+    habitatTypes       = null;
+    climaxSpecies      = null;
+    seralSpecies       = null;
+    seedSapStates      = new Hashtable();
+    regenStates        = new Hashtable();
+    knowledgeSource    = "";
     yearlyPathwayLives = null;
-//    systemGroup   = false;
+    changed            = false;
+    isUserData         = false;
+    allLines           = new Hashtable();
+
   }
+
 /**
  * Overloaded constructor.  Used when creating a new area.  
  * Used when creating a new area.  If the group does not exist
