@@ -19,25 +19,89 @@ import org.apache.commons.collections.map.Flat3Map;
 
 public final class HabitatTypeGroup {
 
+  /**
+   * The extension used for files containing a habitat type group.
+   */
   public static final String FILE_EXT = "pathway";
 
+  /**
+   * A collection of all created ecological groupings.
+   */
   private static HashMap<HabitatTypeGroupType,HabitatTypeGroup> groups = new HashMap<>();
 
+  /**
+   * The type of ecological stratification that this represents.
+   */
   private HabitatTypeGroupType groupType;
-  private HashMap<String,VegetativeType> vegTypes;
-  private Vector               habitatTypes;
-  private Vector               climaxSpecies;
-  private Vector               seralSpecies;
-  private Hashtable            seedSapStates;
-  private Hashtable            regenStates;
-  private Lifeform[]           yearlyPathwayLives;
-  private Density              maxSeedSapDensity;
-  private String               knowledgeSource;
-  private File                 inputFile;
-  private boolean              changed = false;
-  private boolean              isUserData = false;
-  private Hashtable            allLines = new Hashtable();
 
+  /**
+   * Maps vegetative type names to vegetative types.
+   */
+  private HashMap<String,VegetativeType> vegTypes;
+
+  /**
+   * An array of habitat type codes.
+   */
+  private Vector habitatTypes;
+
+  /**
+   * An array of species that are in equilibrium.
+   */
+  private Vector climaxSpecies;
+
+  /**
+   * An array of species advancing towards equilibrium.
+   */
+  private Vector seralSpecies;
+
+  /**
+   * Maps species to their seed sapling states.
+   */
+  private Hashtable seedSapStates;
+
+  /**
+   * A collection of unique regeneration states. (Abuses hash table to prevent duplication)
+   */
+  private Hashtable regenStates;
+
+  /**
+   * An array of yearly pathway life forms.
+   */
+  private Lifeform[] yearlyPathwayLives;
+
+  /**
+   * The maximum seed sapling density of the existing states.
+   */
+  private Density maxSeedSapDensity;
+
+  /**
+   * A textual description of the source of knowledge for this vegetative pathway.
+   */
+  private String knowledgeSource;
+
+  /**
+   * The file that this group has been loaded from and/or will be saved to.
+   */
+  private File inputFile;
+
+  /**
+   * A flag indicating if any state has changed.
+   */
+  private boolean changed = false;
+
+  /**
+   * A flag indicating if this contains user-defined knowledge.
+   */
+  private boolean isUserData = false;
+
+  /**
+   * Holds pathway grid lines, which are drawn in the user interface.
+   */
+  private Hashtable allLines = new Hashtable();
+
+  /**
+   * Keywords used in files containing a habitat type group.
+   */
   private static String KEYWORD[] = {
 
       "CLASS",
