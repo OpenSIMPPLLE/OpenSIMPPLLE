@@ -275,75 +275,52 @@ public final class HabitatTypeGroup {
     return false;
   }
 
-  /**
-   * Finds a VegetativeType given its species, size class, and density.
-   * Note: age defaults to 1.
-   * @param species is a String.
-   * @param sizeClass is a String.
-   * @param density is an int.
-   * @return a VegetativeType.
-   */
-  public VegetativeType getVegetativeType(Species species, SizeClass sizeClass,
-                                          Density density) {
-    return getVegetativeType(species,sizeClass,1,density);
+  public VegetativeType getVegetativeType (String name) {
+    if (name == null || vegTypes == null) {
+      return null;
+    } else {
+      return vegTypes.get(name);
+    }
   }
 
-  /**
-   * Finds a VegetativeType given its descriptive state string.
-   * @param vegTypeStr is a string, (e.g. "DF/LARGE/1")
-   * @return a VegetativeType.
-   */
-  public VegetativeType getVegetativeType (String vegTypeStr) {
-    if (vegTypeStr == null || vegTypes == null) { return null;}
+  public VegetativeType getVegetativeType (Species species,
+                                           Density density) {
 
-    return ( (VegetativeType) vegTypes.get(vegTypeStr));
-  }
-
-  public VegetativeType getVegetativeType (Species species, Density density) {
-    ArrayList values = new ArrayList(vegTypes.values());
-    for (int i=0; i<values.size(); i++) {
-      VegetativeType vt = (VegetativeType)values.get(i);
-      if (vt.getSpecies() == species && vt.getDensity() == density) {
-        return vt;
+    for (VegetativeType vegType : vegTypes.values()) {
+      if (vegType.getSpecies() == species &&
+          vegType.getDensity() == density) {
+        return vegType;
       }
     }
+
     return null;
+
   }
 
-  /**
-   * Finds a VegetativeType given its species, size class, age, and density.
-   * @param species is a Species.
-   * @param sizeClass is a SizeClass.
-   * @param age is an int.
-   * @param density is an Density.
-   * @return a VegetativeType.
-   */
-  public VegetativeType getVegetativeType (Species species, SizeClass sizeClass,
-                                           int age, Density density) {
+  public VegetativeType getVegetativeType(Species species,
+                                          SizeClass sizeClass,
+                                          Density density) {
 
-    String speciesStr = species.toString();
-    String sizeClassStr = sizeClass.toString();
-    String ageStr       = (age == 1 ? "" : IntToString.get(age));
-    String densityStr   = density.toString();
+    String printName = species.toString() + "/"
+                     + sizeClass.toString() + "/"
+                     + density.toString();
 
-    StringBuffer buf =
-        new StringBuffer(speciesStr.length()+sizeClassStr.length()+ageStr.length()+densityStr.length()+4);
+    return getVegetativeType(printName);
 
-    buf.append(speciesStr);
-    buf.append("/");
-    buf.append(sizeClassStr);
-    buf.append(ageStr);
-    buf.append("/");
-    buf.append(densityStr);
-
-    return getVegetativeType(buf.toString());
   }
 
-  /**
-   * Finds the vegetative type with the lowest density, by creating a veg type with density.One.  Then checks if it is greater than Density.TWO and Density.Three.
-   * @param vt
-   * @return
-   */
+  public VegetativeType getVegetativeType (Species species,
+                                           SizeClass sizeClass,
+                                           int age,
+                                           Density density) {
+
+    String printName = species.toString() + "/"
+                     + sizeClass.toString() + (age == 1 ? "" : Integer.toString(age)) + "/"
+                     + density.toString();
+
+    return getVegetativeType(printName);
+  }
+
   public VegetativeType findLowestDensityVegetativeType(VegetativeType vt) {
     Species species = vt.getSpecies();
     SizeClass sizeClass = vt.getSizeClass();
