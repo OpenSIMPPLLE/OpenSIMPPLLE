@@ -511,7 +511,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
                          + "and have been ignored. They will be excluded the next\n"
                          + "time that user knowledge is saved.\n";
           for (String processName : processNames) {
-            message += "\n • " + processName;
+            message += "\n    •    " + processName;
           }
           JOptionPane.showMessageDialog(this,message,"Warning",JOptionPane.WARNING_MESSAGE);
         }
