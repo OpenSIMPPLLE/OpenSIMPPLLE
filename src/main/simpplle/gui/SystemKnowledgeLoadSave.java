@@ -500,7 +500,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
                                       JOptionPane.INFORMATION_MESSAGE);
       } else {
         SystemKnowledge.loadUserKnowledge(loadSaveFile);
-        java.util.List<String> errors = SystemKnowledge.getUnhandledErrorMessages();
+        java.util.List<String> errors = SystemKnowledge.getSkippedInvalidProcesses();
         if (errors.size() == 0) {
           JOptionPane.showMessageDialog(this,
                                         "Successfully loaded user knowledge.",

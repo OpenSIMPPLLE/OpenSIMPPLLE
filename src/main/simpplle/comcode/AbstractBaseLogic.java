@@ -591,7 +591,7 @@ public abstract class AbstractBaseLogic {
       String kind = (String) in.readObject();
       ArrayList<String> columnNames = (ArrayList<String>) in.readObject();
       if (!columns.containsKey(kind)) {
-        SystemKnowledge.addUnhandledErrorMessage(kind + " is not a legal process and has been ignored");
+        SystemKnowledge.addSkippedInvalidProcesses(kind + " is not a legal process and has been ignored");
         continue;
       }
       visibleColumnsHm.put(kind, columnNames);
