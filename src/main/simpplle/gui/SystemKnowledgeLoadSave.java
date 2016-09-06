@@ -513,6 +513,7 @@ public class SystemKnowledgeLoadSave extends JDialog {
           for (String processName : processNames) {
             message += "\n    •    " + processName;
           }
+          message += "\n\n";
           JOptionPane.showMessageDialog(this,message,"Warning",JOptionPane.WARNING_MESSAGE);
         }
       }
