@@ -132,27 +132,6 @@ public final class VegetativeType implements Comparable, Externalizable {
   private static final int INIT_X = 40;
   private static final int INIT_Y = 40;
 
-  // These avoid creation of temp Strings for age when writing out files during simulations.
-  private static final String TWO       = "2";
-  private static final String THREE     = "3";
-  private static final String FOUR      = "4";
-  private static final String FIVE      = "5";
-  private static final String SIX       = "6";
-  private static final String SEVEN     = "7";
-  private static final String EIGHT     = "8";
-  private static final String NINE      = "9";
-  private static final String TEN       = "10";
-  private static final String ELEVEN    = "11";
-  private static final String TWELVE    = "12";
-  private static final String THIRTEEN  = "13";
-  private static final String FOURTEEN  = "14";
-  private static final String FIFTEEN   = "15";
-  private static final String SIXTEEN   = "16";
-  private static final String SEVENTEEN = "17";
-  private static final String EIGHTEEN  = "18";
-  private static final String NINETEEN  = "19";
-  private static final String TWENTY    = "20";
-
   /**
    * Constructs an instance without next states or positions.
    */
@@ -469,38 +448,12 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     printName = printName.intern();
   }
-/**
- * Print the age of vegetative state.  
- * @param fout
- */
-  public void printAge(PrintWriter fout) {
-    switch (age) {
-      case 2:  fout.print(TWO);       break;
-      case 3:  fout.print(THREE);     break;
-      case 4:  fout.print(FOUR);      break;
-      case 5:  fout.print(FIVE);      break;
-      case 6:  fout.print(SIX);       break;
-      case 7:  fout.print(SEVEN);     break;
-      case 8:  fout.print(EIGHT);     break;
-      case 9:  fout.print(NINE);      break;
-      case 10: fout.print(TEN);       break;
-      case 11: fout.print(ELEVEN);    break;
-      case 12: fout.print(TWELVE);    break;
-      case 13: fout.print(THIRTEEN);  break;
-      case 14: fout.print(FOURTEEN);  break;
-      case 15: fout.print(FIFTEEN);   break;
-      case 16: fout.print(SIXTEEN);   break;
-      case 17: fout.print(SEVENTEEN); break;
-      case 18: fout.print(EIGHTEEN);  break;
-      case 19: fout.print(NINETEEN);  break;
-      case 20: fout.print(TWENTY);    break;
-    }
-  }
+
   public void printCurrentState(PrintWriter fout) {
     fout.print(species);
     fout.print(SLASH);
     fout.print(sizeClass);
-    printAge(fout);
+    fout.print(age);
     fout.print(SLASH);
     fout.print(density.toString());
   }
