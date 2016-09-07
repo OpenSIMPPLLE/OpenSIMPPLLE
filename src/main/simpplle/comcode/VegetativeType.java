@@ -227,15 +227,17 @@ public final class VegetativeType implements Comparable, Externalizable {
 
   }
 
-  /**
-   * Method to compare this vegetative type and another by their species, size class, density and age.
-   */
   public boolean equals(Object obj) {
-    if (this == obj) { return true; }
+    if (this == obj) {
+      return true;
+    }
     if (obj instanceof VegetativeType) {
-      if (species == null || sizeClass == null || density == null || age == -1 ||
-          obj == null) { return false; }
-
+      if (species == null ||
+          sizeClass == null ||
+          density == null ||
+          age == -1) {
+        return false;
+      }
       VegetativeType vt = (VegetativeType)obj;
       return (species.equals(vt.getSpecies()) &&
               sizeClass.equals(vt.getSizeClass()) &&
@@ -244,22 +246,18 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     return false;
   }
-/**
- * Gets the hash code for a particular Vegetative Type by its name.  
- */
-  public int hashCode() {
-    return printName.hashCode();
-  }
-/**
- * Requisite compareTo method.  Compares two vegetative type objects by their toStrings.
- */
+
   public int compareTo(Object o) {
-    if (o == null) { return -1; }
     if (o instanceof VegetativeType) {
       return toString().compareTo(o.toString());
     }
     return -1;
   }
+
+  public int hashCode() {
+    return printName.hashCode();
+  }
+
 /**
  * Used in the Pathway shape GUI.  Gets the coordinates of parameter species. Default is (10,10 - the default for pathway shape) if null, otherwise will return the species x,y coordinate
  * @param tmpSpecies the species at sought position
