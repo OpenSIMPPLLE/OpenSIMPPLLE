@@ -39,6 +39,16 @@ public final class VegetativeType implements Comparable, Externalizable {
   static final int version = 2;
 
   /**
+   * The initial horizontal position of the state in the user interface.
+   */
+  private static final int INIT_X = 40;
+
+  /**
+   * The initial vertical position of the state in the user interface.
+   */
+  private static final int INIT_Y = 40;
+
+  /**
    * The ecological grouping that this state belongs to.
    */
   private HabitatTypeGroup htGrp;
@@ -128,9 +138,6 @@ public final class VegetativeType implements Comparable, Externalizable {
   private static final String VEGETATIVE_TYPE = "VEGETATIVE-TYPE";
   private static final String SPECIES_CHANGE  = "SPECIES-CHANGE";
   private static final String SPECIES_RANGE   = "INCLUSION-RULE";
-
-  private static final int INIT_X = 40;
-  private static final int INIT_Y = 40;
 
   /**
    * Constructs an instance without next states or positions.
