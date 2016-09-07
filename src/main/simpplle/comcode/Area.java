@@ -28,7 +28,7 @@ import simpplle.comcode.Climate.*;
 
 public final class Area implements Externalizable {
   static final long serialVersionUID = 338559481281909130L;
-  static final int  version          = 7;
+  static final int  version          = 8;
   static final int  simDataVersion   = 7;
 
   public static final int EVU = 0;
@@ -251,14 +251,11 @@ public final class Area implements Externalizable {
   }
 
   public boolean doManualGC() { return manualGC; }
-/**
- * Gets the file version
- * @return
- */
+
   public int getFileVersion() { return fileVersion; }
+
 /**
  * Checks if multiple lifeforms are enabled, by negating the disable multiple lifeform boolean.
- * @return
  */
   public static boolean multipleLifeformsEnabled() { return !disableMultipleLifeforms; }
 
@@ -4376,7 +4373,7 @@ public final class Area implements Externalizable {
       elevationRelativePosition = hasUniformSizePolygons() ? 10 : 100;
     }
 
-    if (version >= 9){
+    if (version >= 8){
       /**
        * Keane attributes are read in the Evu.readExternalAdjacentData method.
        */
