@@ -228,49 +228,64 @@ public final class VegetativeType implements Comparable, Externalizable {
 
   }
 
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj instanceof VegetativeType) {
-      if (species == null ||
-          sizeClass == null ||
-          density == null ||
-          age == -1) {
-        return false;
-      }
-      VegetativeType vt = (VegetativeType)obj;
-      return (species.equals(vt.getSpecies()) &&
-              sizeClass.equals(vt.getSizeClass()) &&
-              density.equals(vt.getDensity()) &&
-              age == vt.getAge());
-    }
-    return false;
+  public HabitatTypeGroup getHtGrp() {
+    return htGrp;
   }
 
-  public int compareTo(Object o) {
-    if (o instanceof VegetativeType) {
-      return toString().compareTo(o.toString());
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public Density getDensity() {
+    return density;
+  }
+
+  public void setDensity(Density density) {
+    this.density = density;
+  }
+
+  public String getPrintName() {
+    return printName;
+  }
+
+  public void setPrintName(String printName) {
+    this.printName = printName;
+  }
+
+  public SizeClass getSizeClass() {
+    return sizeClass;
+  }
+
+  public void setSizeClass(SizeClass sizeClass) {
+    this.sizeClass = sizeClass;
+  }
+
+  public void setSpecies(Species species) {
+    this.species = species;
+  }
+
+  public Species getSpecies() {
+    return species;
+  }
+
+  public String getCurrentState() {
+    return printName;
+  }
+
+  public Process[] getProcesses() {
+    Enumeration e = nextState.keys();
+    Process[]   processes = new Process[nextState.size()];
+
+    int i=0;
+    while (e.hasMoreElements()) {
+      processes[i] = (Process)e.nextElement();
+      i++;
     }
-    return -1;
-  }
-
-  public int hashCode() {
-    return printName.hashCode();
-  }
-
-  public Point getSpeciesPosition(Species tmpSpecies) {
-    Point tmp = (Point) positions.get(tmpSpecies);
-
-    if (tmp == null) {
-      tmp = new Point(10,10);
-    }
-    return tmp;
-  }
-
-  public void setSpeciesPosition(Species tmpSpecies, Point newPosition) {
-    positions.put(tmpSpecies, newPosition);
-    htGrp.markChanged();
+    return processes;
   }
 
   public int getProcessProbability(Process p) {
@@ -283,36 +298,6 @@ public final class VegetativeType implements Comparable, Externalizable {
     else {
       return prob.intValue();
     }
-  }
-
-  public int calculateTimeToState(VegetativeType vt, String process) {
-    return calculateTimeToState(vt, Process.findInstance(process));
-  }
-
-  /**
-   * Calculates the number of states until a destination state is reached for a process. -1 is
-   * returned if the state will never be reached.
-   *
-   * @param vt The destination state
-   * @param process The process affecting the change
-   * @return The number of state changes, or -1 otherwise
-   */
-  public int calculateTimeToState(VegetativeType vt, Process process) {
-    if (equals(vt)) {
-      return 0;
-    }
-
-    int t = 0;
-
-    VegetativeType current = this; //t=0
-    VegetativeType next = getProcessNextState(process);
-    t++;//next state = t + 1
-    while (vt.equals(next) == false && current.equals(next) == false) {
-      current = next;
-      next = next.getProcessNextState(process);
-      t++;
-    }
-    return (vt.equals(next) ? t : -1);
   }
 
   public VegetativeType getProcessNextState(Process p) {
@@ -355,141 +340,6 @@ public final class VegetativeType implements Comparable, Externalizable {
     return null;
   }
 
-  public Vector findPreviousStates() {
-    return htGrp.findPreviousStates(this);
-  }
-
-  public Process[] getProcesses() {
-    Enumeration e = nextState.keys();
-    Process[]   processes = new Process[nextState.size()];
-
-    int i=0;
-    while (e.hasMoreElements()) {
-      processes[i] = (Process)e.nextElement();
-      i++;
-    }
-    return processes;
-  }
-
-  public HabitatTypeGroup getHtGrp() {
-    return htGrp;
-  }
-
-  public String getCurrentState() {
-    return printName;
-  }
-
-  private void makePrintName() {
-    if (age == 1) {
-      printName = species + "/" + sizeClass + "/" + density.toString();
-    }
-    else {
-      printName = species + "/" + sizeClass + age + "/" + density.toString();
-    }
-    printName = printName.intern();
-  }
-
-  public void printCurrentState(PrintWriter fout) {
-    fout.print(species);
-    fout.print("/");
-    fout.print(sizeClass);
-    fout.print(age);
-    fout.print("/");
-    fout.print(density.toString());
-  }
-
-  public Species getSpecies() {
-    return species;
-  }
-
-  public SizeClass getSizeClass() {
-    return sizeClass;
-  }
-
-  public Density getDensity() {
-    return density;
-  }
-
-  public int getAge() {
-    return age;
-  }
-
-  public String getPrintName() {
-    return printName;
-  }
-
-  /**
-   * Assigns a species, size class, age, and density to this vegetative type present in a
-   * vegetative type string. The vegetative type name follows the same format as printName.
-   *
-   * @param vegTypeStr A vegetative type string
-   * @throws ParseError The string is improperly formatted
-   */
-  private void parseVegetativeTypeString(String vegTypeStr)
-    throws ParseError
-  {
-    StringTokenizerPlus strTok = new StringTokenizerPlus(vegTypeStr,"/");
-    RegionalZone zone = Simpplle.getCurrentZone();
-
-    if (strTok.countTokens() != 3) {
-      throw new ParseError(vegTypeStr + " is not a valid Vegetative Type");
-    }
-
-    String speciesStr = strTok.nextToken();
-    species   = Species.get(speciesStr);
-    if (species == null) {
-      species = new Species(speciesStr,true);
-    }
-    parseSizeClass(strTok.nextToken());
-    String str = strTok.getToken();
-    density = Density.get(str);
-
-    if (density == null) {
-      density = new Density(str,true);
-    }
-  }
-
-  /**
-   * Parses a size class from a vegetative type string.
-   */
-  private void parseSizeClass(String str)
-    throws ParseError
-  {
-    boolean      foundNumber = false;
-
-    int i = 0;
-    while (i < str.length() && foundNumber == false) {
-      foundNumber = Character.isDigit(str.charAt(i));
-      i++;
-    }
-
-    if (i == 1 && foundNumber) {
-      throw new ParseError("Invalid Size Class in " + str);
-    }
-
-    if (foundNumber) {
-      i--;
-      try {
-        age       = Integer.parseInt(str.substring(i));
-        sizeClass = SizeClass.get(str.substring(0,i));
-        if (sizeClass == null) {
-          sizeClass = new SizeClass(str.substring(0,i),true);
-        }
-      }
-      catch (NumberFormatException e) {
-        throw new ParseError("Invalid Age in " + str);
-      }
-    }
-    else {
-      age       = 1;
-      sizeClass = SizeClass.get(str);
-      if (sizeClass == null) {
-        sizeClass = new SizeClass(str,true);
-      }
-    }
-
-  }
-
   // Change the value in the nextState hashtable
   // from a String to a VegetativeType object.
   /**
@@ -524,8 +374,8 @@ public final class VegetativeType implements Comparable, Externalizable {
       newState = htGrp.getVegetativeType(state);
       if (newState == null) {
         log.append("Invalid Process Next State: " + "VEGETATIVE-TYPE " +
-                   getCurrentState() + "   " + process + " " + state +
-                   Simpplle.endl);
+            getCurrentState() + "   " + process + " " + state +
+            Simpplle.endl);
         errorsFound = true;
         continue;
       }
@@ -534,12 +384,386 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     if (errorsFound) {
       throw new ParseError("VEGETATIVE-TYPE " + getCurrentState() +
-                           " has errors.  See log for details");
+          " has errors.  See log for details");
     }
   }
 
-  // ** Start Parser Stuff **
-  // ------------------------
+  public Vector findPreviousStates() {
+    return htGrp.findPreviousStates(this);
+  }
+
+  public void printCurrentState(PrintWriter fout) {
+    fout.print(species);
+    fout.print("/");
+    fout.print(sizeClass);
+    fout.print(age); // Shouldn't this be skipped when age equals one?
+    fout.print("/");
+    fout.print(density.toString());
+  }
+
+  public int calculateTimeToState(VegetativeType vt, String process) {
+    return calculateTimeToState(vt, Process.findInstance(process));
+  }
+
+  /**
+   * Calculates the number of states until a destination state is reached for a process. -1 is
+   * returned if the state will never be reached.
+   *
+   * @param vt The destination state
+   * @param process The process affecting the change
+   * @return The number of state changes, or -1 otherwise
+   */
+  public int calculateTimeToState(VegetativeType vt, Process process) {
+    if (equals(vt)) {
+      return 0;
+    }
+
+    int t = 0;
+
+    VegetativeType current = this; //t=0
+    VegetativeType next = getProcessNextState(process);
+    t++;//next state = t + 1
+    while (vt.equals(next) == false && current.equals(next) == false) {
+      current = next;
+      next = next.getProcessNextState(process);
+      t++;
+    }
+    return (vt.equals(next) ? t : -1);
+  }
+
+  public Point getSpeciesPosition(Species tmpSpecies) {
+    Point tmp = (Point) positions.get(tmpSpecies);
+
+    if (tmp == null) {
+      tmp = new Point(10,10);
+    }
+    return tmp;
+  }
+
+  public void setSpeciesPosition(Species tmpSpecies, Point newPosition) {
+    positions.put(tmpSpecies, newPosition);
+    htGrp.markChanged();
+  }
+
+  private void makePrintName() {
+    if (age == 1) {
+      printName = species + "/" + sizeClass + "/" + density.toString();
+    }
+    else {
+      printName = species + "/" + sizeClass + age + "/" + density.toString();
+    }
+    printName = printName.intern();
+  }
+
+  /**
+   * Assigns a species, size class, age, and density to this vegetative type present in a
+   * vegetative type string. The vegetative type name follows the same format as printName.
+   *
+   * @param vegTypeStr A vegetative type string
+   * @throws ParseError The string is improperly formatted
+   */
+  private void parseVegetativeTypeString(String vegTypeStr)
+      throws ParseError
+  {
+    StringTokenizerPlus strTok = new StringTokenizerPlus(vegTypeStr,"/");
+    RegionalZone zone = Simpplle.getCurrentZone();
+
+    if (strTok.countTokens() != 3) {
+      throw new ParseError(vegTypeStr + " is not a valid Vegetative Type");
+    }
+
+    String speciesStr = strTok.nextToken();
+    species   = Species.get(speciesStr);
+    if (species == null) {
+      species = new Species(speciesStr,true);
+    }
+    parseSizeClass(strTok.nextToken());
+    String str = strTok.getToken();
+    density = Density.get(str);
+
+    if (density == null) {
+      density = new Density(str,true);
+    }
+  }
+
+  /**
+   * Parses a size class from a vegetative type string.
+   */
+  private void parseSizeClass(String str)
+      throws ParseError
+  {
+    boolean      foundNumber = false;
+
+    int i = 0;
+    while (i < str.length() && foundNumber == false) {
+      foundNumber = Character.isDigit(str.charAt(i));
+      i++;
+    }
+
+    if (i == 1 && foundNumber) {
+      throw new ParseError("Invalid Size Class in " + str);
+    }
+
+    if (foundNumber) {
+      i--;
+      try {
+        age       = Integer.parseInt(str.substring(i));
+        sizeClass = SizeClass.get(str.substring(0,i));
+        if (sizeClass == null) {
+          sizeClass = new SizeClass(str.substring(0,i),true);
+        }
+      }
+      catch (NumberFormatException e) {
+        throw new ParseError("Invalid Age in " + str);
+      }
+    }
+    else {
+      age       = 1;
+      sizeClass = SizeClass.get(str);
+      if (sizeClass == null) {
+        sizeClass = new SizeClass(str,true);
+      }
+    }
+  }
+
+  public Range getSpeciesRange(InclusionRuleSpecies sp) {
+    if (speciesRange == null) { return null; }
+
+    Range range = speciesRange.get(sp);
+    if (range != null) {
+      return range;
+    }
+    return null;
+  }
+
+  public void clearSpeciesRange() {
+    speciesRange = null;
+  }
+
+  public void addSpeciesRange(InclusionRuleSpecies species, int lower, int upper) {
+    if (speciesRange == null) {
+      speciesRange = new HashMap<InclusionRuleSpecies,Range>(3);
+    }
+    speciesRange.put(species,new Range(lower,upper));
+  }
+
+  public boolean validSpeciesFit(Flat3Map trkSpecies) {
+    Range   range;
+    if (speciesRange == null) { return false; }
+
+    MapIterator it = trkSpecies.mapIterator();
+    while (it.hasNext()) {
+      InclusionRuleSpecies sp = (InclusionRuleSpecies)it.next();
+      Float pct = (Float)it.getValue();
+      if (pct == null) { continue; }
+
+      range = speciesRange.get(sp);
+      if (range == null) { continue; }
+
+      if (range.inRange(pct) == false) { return false; }
+    }
+    return true;
+  }
+
+  public static int getColumnCount() {
+    return COUNT;
+  }
+
+  /**
+   * Makes an inclusion rules arraylist containing a column data array from the speciesRange hashmap.
+   * The arraylist will have have the arrays with three indexes - 0=species, 1 = lower range, 2 = upper range.
+   * @return the arraylist with inclusion rules.
+   */
+  public ArrayList makeInclusionRulesArray() {
+    if (speciesRange == null || speciesRange.size() == 0) { return null; }
+    ArrayList rows = new ArrayList();
+    Object[] colData;
+
+    for (InclusionRuleSpecies sp : speciesRange.keySet()) {
+      colData = new Object[3];
+      colData[0] = sp;
+      Range range = speciesRange.get(sp);
+      colData[1] = range.getLower();
+      colData[2] = range.getUpper();
+      rows.add(colData);
+    }
+    return rows;
+  }
+
+  public void setInclusionRule(InclusionRuleSpecies species, Integer lower, Integer upper) {
+    speciesRange.put(species,new Range(lower,upper));
+  }
+
+  public void addInclusionRule(InclusionRuleSpecies species) {
+    if (speciesRange == null) { speciesRange = new HashMap<InclusionRuleSpecies,Range>(); }
+    speciesRange.put(species,new Range(0,0));
+  }
+
+  public boolean removeInclusionRule(InclusionRuleSpecies species) {
+    if (speciesRange.remove(species) == null) {
+      return false;
+    }
+    return true;
+  }
+
+  public static int getInclusionRulesColumnCount() {
+    return INCLUSION_RULES_COLUMN_COUNT;
+  }
+
+  public int getInclusionRulesRowCount() {
+    return (speciesRange != null) ? speciesRange.size() : 0;
+  }
+
+  public ArrayList makeSpeciesChangeArray() {
+    if (speciesChange == null || speciesChange.size() == 0) { return null; }
+    ArrayList rows = new ArrayList();
+    Object[] colData;
+
+    for (ProcessType process : speciesChange.keySet()) {
+      HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(process);
+      for (InclusionRuleSpecies sp : hm.keySet()) {
+        colData = new Object[3];
+        colData[0] = process;
+        colData[1] = sp;
+        colData[2] = hm.get(sp);
+        rows.add(colData);
+      }
+    }
+    return rows;
+  }
+
+  public void addSpeciesChange(ProcessType process, InclusionRuleSpecies species) {
+    if (speciesChange == null) {
+      speciesChange = new HashMap<ProcessType,
+          HashMap<InclusionRuleSpecies, Float>>();
+    }
+    HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(process);
+    if (hm == null) {
+      hm = new HashMap<InclusionRuleSpecies,Float>();
+      speciesChange.put(process,hm);
+    }
+    hm.put(species,0.0f);
+  }
+
+  public float getSpeciesChange(ProcessType process, Climate.Season season, InclusionRuleSpecies sp) {
+    if (speciesChange == null) { return 0; }
+
+    if (process == ProcessType.SRF) {
+      switch (season) {
+        case SPRING: process = ProcessType.SRF_SPRING; break;
+        case SUMMER: process = ProcessType.SRF_SUMMER; break;
+        case FALL:   process = ProcessType.SRF_FALL;   break;
+        case WINTER: process = ProcessType.SRF_WINTER; break;
+      }
+    }
+    if (process == ProcessType.SUCCESSION) {
+      if (Simpplle.getClimate().isWetSuccession()) {
+        process = ProcessType.WET_SUCCESSION;
+      }
+      else if (Simpplle.getClimate().isDrySuccession()) {
+        process = ProcessType.DRY_SUCCESSION;
+      }
+    }
+
+    HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(process);
+    if (hm == null) { return 0; }
+
+    Float ch = hm.get(sp);
+    if (ch != null) {
+      return ch.floatValue();
+    }
+
+    return 0.0f;
+  }
+
+  public boolean removeSpeciesChange(ProcessType process, InclusionRuleSpecies species) {
+    HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(process);
+    if (hm == null) { return false; }
+    if (hm.remove(species) == null) {
+      return false;
+    }
+    return true;
+  }
+
+  public void setSpeciesChange(ProcessType process, InclusionRuleSpecies species, Float value) {
+    HashMap<InclusionRuleSpecies, Float> hm = speciesChange.get(process);
+    if (hm == null) { return; }
+
+    hm.put(species,value);
+  }
+
+  public static String getSpeciesChangeColumnName(int col) {
+    switch (col) {
+      case 0:  return "Process";
+      case 1:  return "Inclusion Rule Tracking Species";
+      case 2:  return "Percent Change";
+      default: return null;
+    }
+  }
+
+  public static String getInclusionRulesColumnName(int col) {
+    switch (col) {
+      case 0:  return "Inclusion Rule Species";
+      case 1:  return "Lower";
+      case 2:  return "Upper";
+      default: return null;
+    }
+  }
+
+  public int getSpeciesChangeRowCount() {
+    return (speciesChange != null) ? speciesChange.size() : 0;
+  }
+
+  public Set<InclusionRuleSpecies> getTrackingSpecies() {
+    if (speciesChange == null) { return null; }
+    for (ProcessType p : speciesChange.keySet()) {
+      return speciesChange.get(p).keySet();
+    }
+    return null;
+  }
+
+  public boolean isTrackingSpecies(InclusionRuleSpecies sp) {
+    if (speciesChange == null) { return false; }
+
+    HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(ProcessType.SUCCESSION);
+    return hm.containsKey(sp);
+  }
+
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj instanceof VegetativeType) {
+      if (species == null ||
+          sizeClass == null ||
+          density == null ||
+          age == -1) {
+        return false;
+      }
+      VegetativeType vt = (VegetativeType)obj;
+      return (species.equals(vt.getSpecies()) &&
+              sizeClass.equals(vt.getSizeClass()) &&
+              density.equals(vt.getDensity()) &&
+              age == vt.getAge());
+    }
+    return false;
+  }
+
+  public int compareTo(Object o) {
+    if (o instanceof VegetativeType) {
+      return toString().compareTo(o.toString());
+    }
+    return -1;
+  }
+
+  public int hashCode() {
+    return printName.hashCode();
+  }
+
+  public String toString() {
+    return getCurrentState();
+  }
+
   public void importSpeciesChangeNew(StringTokenizerPlus strTok) throws ParseError, IOException {
     String errMsg = "VEGETATIVE-TYPE " + getCurrentState() +
                     " has errors in the SPECIES-CHANGE section";
@@ -1041,13 +1265,6 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
   }
 
-  // ** End Parser Stuff **
-  // ----------------------
-
-  public String toString() {
-    return getCurrentState();
-  }
-
   public void export(PrintWriter fout) {
     fout.println("VEGETATIVE-TYPE " + getCurrentState());
 
@@ -1247,227 +1464,6 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     out.writeBoolean(limitedSerialization);
     if (limitedSerialization) { return; }
-  }
-
-  public float getSpeciesChange(ProcessType process, Climate.Season season, InclusionRuleSpecies sp) {
-    if (speciesChange == null) { return 0; }
-
-    if (process == ProcessType.SRF) {
-      switch (season) {
-        case SPRING: process = ProcessType.SRF_SPRING; break;
-        case SUMMER: process = ProcessType.SRF_SUMMER; break;
-        case FALL:   process = ProcessType.SRF_FALL;   break;
-        case WINTER: process = ProcessType.SRF_WINTER; break;
-      }
-    }
-    if (process == ProcessType.SUCCESSION) {
-      if (Simpplle.getClimate().isWetSuccession()) {
-        process = ProcessType.WET_SUCCESSION;
-      }
-      else if (Simpplle.getClimate().isDrySuccession()) {
-        process = ProcessType.DRY_SUCCESSION;
-      }
-    }
-
-    HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(process);
-    if (hm == null) { return 0; }
-
-    Float ch = hm.get(sp);
-    if (ch != null) {
-      return ch.floatValue();
-    }
-
-    return 0.0f;
-  }
-
-  public Range getSpeciesRange(InclusionRuleSpecies sp) {
-    if (speciesRange == null) { return null; }
-
-    Range range = speciesRange.get(sp);
-    if (range != null) {
-      return range;
-    }
-    return null;
-  }
-
-  public void clearSpeciesRange() {
-    speciesRange = null;
-  }
-
-  public void addSpeciesRange(InclusionRuleSpecies species, int lower, int upper) {
-    if (speciesRange == null) {
-      speciesRange = new HashMap<InclusionRuleSpecies,Range>(3);
-    }
-    speciesRange.put(species,new Range(lower,upper));
-  }
-
-  public boolean validSpeciesFit(Flat3Map trkSpecies) {
-    Range   range;
-    if (speciesRange == null) { return false; }
-
-    MapIterator it = trkSpecies.mapIterator();
-    while (it.hasNext()) {
-      InclusionRuleSpecies sp = (InclusionRuleSpecies)it.next();
-      Float pct = (Float)it.getValue();
-      if (pct == null) { continue; }
-
-      range = speciesRange.get(sp);
-      if (range == null) { continue; }
-
-      if (range.inRange(pct) == false) { return false; }
-    }
-    return true;
-  }
-
-  public void setSpecies(Species species) {
-    this.species = species;
-  }
-
-  public void setSizeClass(SizeClass sizeClass) {
-    this.sizeClass = sizeClass;
-  }
-
-  public void setDensity(Density density) {
-    this.density = density;
-  }
-
-  public void setAge(int age) {
-    this.age = age;
-  }
-
-  public void setPrintName(String printName) {
-    this.printName = printName;
-  }
-
-  public static int getColumnCount() {
-    return COUNT;
-  }
-
-  public static int getInclusionRulesColumnCount() {
-    return INCLUSION_RULES_COLUMN_COUNT;
-  }
-
-  public int getSpeciesChangeRowCount() {
-    return (speciesChange != null) ? speciesChange.size() : 0;
-  }
-  public int getInclusionRulesRowCount() {
-    return (speciesRange != null) ? speciesRange.size() : 0;
-  }
-
-  public ArrayList makeSpeciesChangeArray() {
-    if (speciesChange == null || speciesChange.size() == 0) { return null; }
-    ArrayList rows = new ArrayList();
-    Object[] colData;
-
-    for (ProcessType process : speciesChange.keySet()) {
-      HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(process);
-      for (InclusionRuleSpecies sp : hm.keySet()) {
-        colData = new Object[3];
-        colData[0] = process;
-        colData[1] = sp;
-        colData[2] = hm.get(sp);
-        rows.add(colData);
-      }
-    }
-    return rows;
-  }
-
-  /**
-   * Makes an inclusion rules arraylist containing a column data array from the speciesRange hashmap.  
-   * The arraylist will have have the arrays with three indexes - 0=species, 1 = lower range, 2 = upper range.  
-   * @return the arraylist with inclusion rules.  
-   */
-  public ArrayList makeInclusionRulesArray() {
-    if (speciesRange == null || speciesRange.size() == 0) { return null; }
-    ArrayList rows = new ArrayList();
-    Object[] colData;
-
-    for (InclusionRuleSpecies sp : speciesRange.keySet()) {
-      colData = new Object[3];
-      colData[0] = sp;
-      Range range = speciesRange.get(sp);
-      colData[1] = range.getLower();
-      colData[2] = range.getUpper();
-      rows.add(colData);
-    }
-    return rows;
-  }
-
-  public static String getSpeciesChangeColumnName(int col) {
-    switch (col) {
-      case 0:  return "Process";
-      case 1:  return "Inclusion Rule Tracking Species";
-      case 2:  return "Percent Change";
-      default: return null;
-    }
-  }
-
-  public static String getInclusionRulesColumnName(int col) {
-    switch (col) {
-      case 0:  return "Inclusion Rule Species";
-      case 1:  return "Lower";
-      case 2:  return "Upper";
-      default: return null;
-    }
-  }
-
-  public void addSpeciesChange(ProcessType process, InclusionRuleSpecies species) {
-    if (speciesChange == null) {
-      speciesChange = new HashMap<ProcessType,
-                                  HashMap<InclusionRuleSpecies, Float>>();
-    }
-    HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(process);
-    if (hm == null) {
-      hm = new HashMap<InclusionRuleSpecies,Float>();
-      speciesChange.put(process,hm);
-    }
-    hm.put(species,0.0f);
-  }
-
-  public void addInclusionRule(InclusionRuleSpecies species) {
-    if (speciesRange == null) { speciesRange = new HashMap<InclusionRuleSpecies,Range>(); }
-    speciesRange.put(species,new Range(0,0));
-  }
-
-  public boolean removeSpeciesChange(ProcessType process, InclusionRuleSpecies species) {
-    HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(process);
-    if (hm == null) { return false; }
-    if (hm.remove(species) == null) {
-      return false;
-    }
-    return true;
-  }
-
-  public boolean removeInclusionRule(InclusionRuleSpecies species) {
-    if (speciesRange.remove(species) == null) {
-      return false;
-    }
-    return true;
-  }
-
-  public void setSpeciesChange(ProcessType process, InclusionRuleSpecies species, Float value) {
-    HashMap<InclusionRuleSpecies, Float> hm = speciesChange.get(process);
-    if (hm == null) { return; }
-
-    hm.put(species,value);
-  }
-  public void setInclusionRule(InclusionRuleSpecies species, Integer lower, Integer upper) {
-    speciesRange.put(species,new Range(lower,upper));
-  }
-
-  public Set<InclusionRuleSpecies> getTrackingSpecies() {
-    if (speciesChange == null) { return null; }
-    for (ProcessType p : speciesChange.keySet()) {
-      return speciesChange.get(p).keySet();
-    }
-    return null;
-  }
-
-  public boolean isTrackingSpecies(InclusionRuleSpecies sp) {
-    if (speciesChange == null) { return false; }
-
-    HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(ProcessType.SUCCESSION);
-    return hm.containsKey(sp);
   }
 }
 
