@@ -500,18 +500,21 @@ public class SystemKnowledgeLoadSave extends JDialog {
                                       JOptionPane.INFORMATION_MESSAGE);
       } else {
         SystemKnowledge.loadUserKnowledge(loadSaveFile);
-        java.util.List<String> errors = SystemKnowledge.getUnhandledErrorMessages();
-        if (errors.size() == 0) {
+        java.util.List<String> processNames = SystemKnowledge.getSkippedInvalidProcesses();
+        if (processNames.size() == 0) {
           JOptionPane.showMessageDialog(this,
                                         "Successfully loaded user knowledge.",
                                         "",
                                         JOptionPane.INFORMATION_MESSAGE);
         } else {
-          String message = "The file was loaded with errors:";
-          for (String error : errors) {
-            message += "\n • " + error;
+          String message = "The following processes are invalid in the current zone\n"
+                         + "and have been ignored. They will be excluded the next\n"
+                         + "time that user knowledge is saved.\n";
+          for (String processName : processNames) {
+            message += "\n    •    " + processName;
           }
-          JOptionPane.showMessageDialog(this,message,"",JOptionPane.ERROR_MESSAGE);
+          message += "\n\n";
+          JOptionPane.showMessageDialog(this,message,"Warning",JOptionPane.WARNING_MESSAGE);
         }
       }
 

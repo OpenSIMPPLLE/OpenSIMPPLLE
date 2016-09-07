@@ -225,9 +225,9 @@ public class SystemKnowledge {
   private static final String SYSKNOW_FILEEXT = "sysknowledge";
 
   /**
-   * An array of unhandled error messages reported during the last load.
+   * An array of invalid process names skipped while loading the last knowledge file.
    */
-  private static List<String> unhandledErrorMessages = new ArrayList<>();
+  private static List<String> skippedInvalidProcesses = new ArrayList<>();
 
   /**
    * Returns the kind of knowledge represented by a knowledge file.
@@ -706,21 +706,21 @@ public class SystemKnowledge {
   }
 
   /**
-   * Adds an unhandled error message.
+   * Adds a process name that is invalid in the current zone.
    *
-   * @param message An error message
+   * @param processName The name of an invalid process
    */
-  public static void addUnhandledErrorMessage(String message) {
-    unhandledErrorMessages.add(message);
+  public static void addSkippedInvalidProcesses(String processName) {
+    skippedInvalidProcesses.add(processName);
   }
 
   /**
-   * Returns a list of unhandled errors from the last load routine.
+   * Returns a list of invalid process names from the last load routine.
    *
-   * @return A list of messages
+   * @return A list of invalid process names
    */
-  public static List<String> getUnhandledErrorMessages() {
-    return unhandledErrorMessages;
+  public static List<String> getSkippedInvalidProcesses() {
+    return skippedInvalidProcesses;
   }
 
   /**
@@ -1138,7 +1138,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadSampleArea(Area area) throws SimpplleError {
-    unhandledErrorMessages.clear();
+    skippedInvalidProcesses.clear();
     String path = area.getPath();
     try {
       File filename = Simpplle.getCurrentZone().getSystemKnowledgeFile();
@@ -1171,7 +1171,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadAquaticPathway(String groupName) throws SimpplleError {
-    unhandledErrorMessages.clear();
+    skippedInvalidProcesses.clear();
     loadPathway(groupName, false);
   }
 
@@ -1182,7 +1182,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadVegetativePathway(String groupName) throws SimpplleError {
-    unhandledErrorMessages.clear();
+    skippedInvalidProcesses.clear();
     loadPathway(groupName, true);
   }
 
@@ -1245,7 +1245,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadAllAquaticPathways() throws SimpplleError {
-    unhandledErrorMessages.clear();
+    skippedInvalidProcesses.clear();
     loadAllPathways(false);
   }
 
@@ -1255,7 +1255,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadAllVegetativePathways() throws SimpplleError {
-    unhandledErrorMessages.clear();
+    skippedInvalidProcesses.clear();
     loadAllPathways(true);
   }
 
@@ -1313,7 +1313,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadUserKnowledge(File file, Kinds kind) throws SimpplleError {
-    unhandledErrorMessages.clear();
+    skippedInvalidProcesses.clear();
     for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
     }
@@ -1329,7 +1329,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadUserKnowledge(File file) throws SimpplleError {
-    unhandledErrorMessages.clear();
+    skippedInvalidProcesses.clear();
     loadKnowledge(file, false, true, false);
   }
 
@@ -1341,7 +1341,7 @@ public class SystemKnowledge {
    */
   public static void loadZoneKnowledge(Kinds kind) throws SimpplleError {
 
-    unhandledErrorMessages.clear();
+    skippedInvalidProcesses.clear();
 
     for (int i = 0; i < loadSaveMe.length; i++) {
       loadSaveMe[i] = false;
@@ -1366,7 +1366,7 @@ public class SystemKnowledge {
    * @throws SimpplleError
    */
   public static void loadZoneKnowledge(File file) throws SimpplleError {
-    unhandledErrorMessages.clear();
+    skippedInvalidProcesses.clear();
     loadKnowledge(file, true, true, false);
   }
 
