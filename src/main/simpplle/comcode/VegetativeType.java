@@ -64,7 +64,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   private SizeClass sizeClass;
 
   /**
-   * The density of this vegetation state.
+   * The canopy cover (density) of this vegetation state.
    */
   private Density density;
 
@@ -74,7 +74,8 @@ public final class VegetativeType implements Comparable, Externalizable {
   private int age;
 
   /**
-   * The name of this vegetation state.
+   * The name of this vegetation state. The name is formatted as species / sizeClass age / density
+   * without spaces. The age is excluded if it equals one.
    */
   private String printName;
 
@@ -258,11 +259,6 @@ public final class VegetativeType implements Comparable, Externalizable {
     return printName.hashCode();
   }
 
-/**
- * Used in the Pathway shape GUI.  Gets the coordinates of parameter species. Default is (10,10 - the default for pathway shape) if null, otherwise will return the species x,y coordinate
- * @param tmpSpecies the species at sought position
- * @return x,y coordinate of species
- */
   public Point getSpeciesPosition(Species tmpSpecies) {
     Point tmp = (Point) positions.get(tmpSpecies);
 
@@ -271,22 +267,12 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     return tmp;
   }
-/**
- * Used in the pathway shape GUI.  Sets the position of a species within the positions hashtable to a parameter position.  This hashtable is keyed by the species, with position as the value.  
- * @param tmpSpecies species whose position will be set (key into hashtable)
- * @param newPosition the position of the species (value in hashtable)
- */
+
   public void setSpeciesPosition(Species tmpSpecies, Point newPosition) {
     positions.put(tmpSpecies, newPosition);
     htGrp.markChanged();
   }
 
-  /**
-   * Gets the next state probability associated with the given
-   * Process argument.
-   * @param p is a Process.
-   * @return an int, the next state probability for Process p.
-   */
   public int getProcessProbability(Process p) {
     Integer prob;
 
@@ -302,12 +288,15 @@ public final class VegetativeType implements Comparable, Externalizable {
   public int calculateTimeToState(VegetativeType vt, String process) {
     return calculateTimeToState(vt, Process.findInstance(process));
   }
-/**
- * Calculates the time from this vegetative type to parameter vegetative state.  Vegetative type state - current veg state = time to state.   
- * @param vt the vegetative type marking the end of differce 
- * @param process
- * @return
- */
+
+  /**
+   * Calculates the number of states until a destination state is reached for a process. -1 is
+   * returned if the state will never be reached.
+   *
+   * @param vt The destination state
+   * @param process The process affecting the change
+   * @return The number of state changes, or -1 otherwise
+   */
   public int calculateTimeToState(VegetativeType vt, Process process) {
     if (equals(vt)) {
       return 0;
@@ -326,34 +315,19 @@ public final class VegetativeType implements Comparable, Externalizable {
     return (vt.equals(next) ? t : -1);
   }
 
-
-
-  /**
-   * Gets the next state (a VegetativeType) associated with
-   * Process p.
-   * @param p is a Process.
-   * @return a VegetativeType, the next state for Process p.
-   */
   public VegetativeType getProcessNextState(Process p) {
     return (VegetativeType) nextState.get(p);
   }
+
   public VegetativeType getProcessNextState(ProcessType p) {
     return getProcessNextState(Process.findInstance(p));
   }
-/**
- * Add a process to the vegetative states next state.   
- * @param p the process  to be added
- * @param newNextState the next state.  
- */
+
   public void addProcessNextState(Process p, VegetativeType newNextState) {
     probability.put(p,new Integer(0));
     setProcessNextState(p,newNextState);
   }
-/**
- * Sets a state within the vegetative type next state.  Marks the habitat type group changed.    
- * @param p
- * @param newNextState
- */
+
   public void setProcessNextState(Process p, VegetativeType newNextState) {
     if (probability.get(p) == null) {
       probability.put(p,new Integer(0));
@@ -362,19 +336,12 @@ public final class VegetativeType implements Comparable, Externalizable {
     nextState.put(p, newNextState);
     htGrp.markChanged();
   }
-/**
- * Removes a process from the next state hashtable.  Marks the habitat gropu changed. 
- * @param p
- */
+
   public void removeProcessNextState(Process p) {
     nextState.remove(p);
     htGrp.markChanged();
   }
-/**
- * Gets a process within the next state of a vegetative type.  
- * @param vt
- * @return
- */
+
   public Process getNextStateProcess(VegetativeType vt) {
     VegetativeType ns;
     Enumeration    keys = nextState.keys();
@@ -387,17 +354,11 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     return null;
   }
-/**
- * Finds the previous states of a habitat group.  
- * @return vector with the previous states of this vegetative type.  
- */
+
   public Vector findPreviousStates() {
     return htGrp.findPreviousStates(this);
   }
-/**
- * Gets an array of the processes in the next state.  
- * @return
- */
+
   public Process[] getProcesses() {
     Enumeration e = nextState.keys();
     Process[]   processes = new Process[nextState.size()];
@@ -410,29 +371,14 @@ public final class VegetativeType implements Comparable, Externalizable {
     return processes;
   }
 
-  /**
-   * Gets the HabitatTypeGroup of which this VegetativeType
-   * is a member.
-   * @return a HabitatTypeGroup.
-   */
   public HabitatTypeGroup getHtGrp() {
     return htGrp;
   }
 
-  /**
-   * Creates a current state from the species, size class,
-   * age, and density of the VegetativeType and return it
-   * as a string.
-   * @return a String, the print representation of this
-   *         VegetativeType.
-   */
   public String getCurrentState() {
     return printName;
   }
-/**
- * Method to form the print name of a vegetative type. If age is 1 this will be name '/' size class '/' density (canopy cover).
- * If greater than 1 this will be species '/' size class age '/' density (canopy cover)
- */
+
   private void makePrintName() {
     if (age == 1) {
       printName = species + "/" + sizeClass + "/" + density.toString();
@@ -452,53 +398,33 @@ public final class VegetativeType implements Comparable, Externalizable {
     fout.print(density.toString());
   }
 
-  /**
-   * Gets the Species. 
-   * @return a Species, the Species.
-   */
   public Species getSpecies() {
     return species;
   }
 
-  /**
-   * Gets the Size Class.
-   * @return a SizeClass, the Size Class.
-   */
   public SizeClass getSizeClass() {
     return sizeClass;
   }
 
-  /**
-   * Gets the Canopy Coverage (Density).
-   * @return an int, the Density.
-   */
   public Density getDensity() {
     return density;
   }
 
-  /**
-   * Gets the Age.
-   * @return an int, the Age.
-   */
   public int getAge() {
     return age;
   }
-/**
- * Gets string literal name of the vegetative type.  This will be a string of species / sizeClass  age / density.toString() for those above age = 1.  
- * If in first year does not include age.  
- * @return
- */
+
   public String getPrintName() {
     return printName;
   }
-/**
- * This function is used when importing user created text files containing vegetative types.  
- * Takes in the print name in form species + SLASH + sizeClass + age + SLASH + density.toString() parses, checks to make sure there are three tokens, or strings split 
- * by delimiter SLASH.  IF not throws an error, if it is 3 then gets the species (if species is null, creates a user created species, then parses the size class
- * the size class which above age = 1 will include an age.   
- * @param vegTypeStr above age = 1 in form species + SLASH + sizeClass + age + SLASH + density.toString(), else excludes age
- * @throws ParseError - if not a valid veg type (strings split by SLASH token !=3) 
- */
+
+  /**
+   * Assigns a species, size class, age, and density to this vegetative type present in a
+   * vegetative type string. The vegetative type name follows the same format as printName.
+   *
+   * @param vegTypeStr A vegetative type string
+   * @throws ParseError The string is improperly formatted
+   */
   private void parseVegetativeTypeString(String vegTypeStr)
     throws ParseError
   {
@@ -524,11 +450,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   }
 
   /**
-   * Separate the size class from the age in the given
-   * string.  Then set the class members with the extracted
-   * values.  This function used to parse the size class
-   * portion of the current state when importing user created
-   * text files containing vegetative types.
+   * Parses a size class from a vegetative type string.
    */
   private void parseSizeClass(String str)
     throws ParseError
@@ -645,6 +567,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     hm.put(sp,pct);
 
   }
+
   public void importSpeciesRange(StringTokenizerPlus strTok) throws ParseError, IOException {
     String errMsg = "VEGETATIVE-TYPE " + getCurrentState() +
                     " has errors in the INCLUSION-RULE section";
@@ -664,7 +587,6 @@ public final class VegetativeType implements Comparable, Externalizable {
     speciesRange.put(sp,new Range(lower,upper));
   }
 
-
   public void importSpeciesChange(BufferedReader fin) throws ParseError, IOException {
     String line;
 
@@ -677,6 +599,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     StringTokenizerPlus strTok = new StringTokenizerPlus(line);
     importSpeciesChange(fin,strTok);
   }
+
   public boolean importSpeciesChange(BufferedReader fin, StringTokenizerPlus strTok) throws ParseError, IOException {
     int count = strTok.countTokens();
     if (count == 0) {
@@ -903,6 +826,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       speciesChange.put(process,hm);
     }
   }
+
   private void readSpeciesRange(StringTokenizerPlus mainTok) throws ParseError {
     String str = mainTok.getToken();
     int    count;
@@ -1120,10 +1044,6 @@ public final class VegetativeType implements Comparable, Externalizable {
   // ** End Parser Stuff **
   // ----------------------
 
-  /**
-   * Creates a current state from the species, size class, age, and density of the VegetativeType and return it as a string.
-   * @return a String.
-   */
   public String toString() {
     return getCurrentState();
   }
@@ -1149,8 +1069,6 @@ public final class VegetativeType implements Comparable, Externalizable {
       }
       fout.println();
     }
-
-
 
 //    Enumeration    keys = nextState.keys();
 //    while (keys.hasMoreElements()) {
@@ -1230,8 +1148,13 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
   }
 
-  public static void setLimitedSerialization() { limitedSerialization = true; }
-  public static void clearLimitedSerialization() { limitedSerialization = false; }
+  public static void setLimitedSerialization() {
+    limitedSerialization = true;
+  }
+
+  public static void clearLimitedSerialization() {
+    limitedSerialization = false;
+  }
 
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
@@ -1265,6 +1188,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     // Check to see if we need to read anything else.
     if (in.readBoolean()) { return; }
   }
+
   private Object readResolve () throws java.io.ObjectStreamException
   {
     try {
@@ -1305,12 +1229,13 @@ public final class VegetativeType implements Comparable, Externalizable {
       return null;
     }
   }
-/**
- * Write to an external source this vegetative type objects information.  Writes the print name which will be in form (if age is 1) 
- * species '/' size class '/' density (canopy cover).
- * If greater than 1 this will be species '/' size class age '/' density (canopy cover)
- * 
- */
+
+  /**
+   * Write to an external source this vegetative type objects information.  Writes the print name which will be in form (if age is 1)
+   * species '/' size class '/' density (canopy cover).
+   * If greater than 1 this will be species '/' size class age '/' density (canopy cover)
+   *
+   */
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
 
@@ -1323,14 +1248,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     out.writeBoolean(limitedSerialization);
     if (limitedSerialization) { return; }
   }
-/**
- * Calculates the species change based on process (succession: wet succession, dry succession) and if process is Stand replacing fire in spring, summer, fall, winter - YEAR not included 
- * in calculation)  
- * @param process the process type: (succession: wet succession, dry succession)
- * @param season
- * @param sp
- * @return
- */
+
   public float getSpeciesChange(ProcessType process, Climate.Season season, InclusionRuleSpecies sp) {
     if (speciesChange == null) { return 0; }
 
@@ -1361,9 +1279,7 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     return 0.0f;
   }
-/**
- *  Gets the range for a particular species.  
- */
+
   public Range getSpeciesRange(InclusionRuleSpecies sp) {
     if (speciesRange == null) { return null; }
 
@@ -1373,12 +1289,11 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     return null;
   }
-/**
- * Clears the species range hashmap.  
- */
+
   public void clearSpeciesRange() {
     speciesRange = null;
   }
+
   public void addSpeciesRange(InclusionRuleSpecies species, int lower, int upper) {
     if (speciesRange == null) {
       speciesRange = new HashMap<InclusionRuleSpecies,Range>(3);
@@ -1403,17 +1318,11 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     return true;
   }
-/**
- * Sets the species for this vegetative type.
- * @param species 
- */
+
   public void setSpecies(Species species) {
     this.species = species;
   }
-/**
- * Sets the size class for this vegetative type.  
- * @param sizeClass
- */
+
   public void setSizeClass(SizeClass sizeClass) {
     this.sizeClass = sizeClass;
   }
@@ -1429,17 +1338,11 @@ public final class VegetativeType implements Comparable, Externalizable {
   public void setPrintName(String printName) {
     this.printName = printName;
   }
-/**
- * Gets the column count for vegetative type.  This is a static final variable and returns 3
- * @return 3
- */
+
   public static int getColumnCount() {
     return COUNT;
   }
-  /**
-   * Gets the inclusion rules column count.  This is a static final variable and returns 3
-   * @return 3
-   */
+
   public static int getInclusionRulesColumnCount() {
     return INCLUSION_RULES_COLUMN_COUNT;
   }
@@ -1468,6 +1371,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     return rows;
   }
+
   /**
    * Makes an inclusion rules arraylist containing a column data array from the speciesRange hashmap.  
    * The arraylist will have have the arrays with three indexes - 0=species, 1 = lower range, 2 = upper range.  
@@ -1489,11 +1393,6 @@ public final class VegetativeType implements Comparable, Externalizable {
     return rows;
   }
 
-/**
- * Used in GUI table models.  Gets the species change name  by column Id.
- * @param col
- * @return Choices are "Process", "Inclusion Rule Tracking Species", "Percent Change", or null.
- */
   public static String getSpeciesChangeColumnName(int col) {
     switch (col) {
       case 0:  return "Process";
@@ -1502,10 +1401,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       default: return null;
     }
   }
-  /**
-   * Used in GUI table models.  Gets the inclusion rules by column Id.  
-   * Choices for this are "Inclusion Rule Species",  "Lower",  "Upper" or null
-   */
+
   public static String getInclusionRulesColumnName(int col) {
     switch (col) {
       case 0:  return "Inclusion Rule Species";
@@ -1527,15 +1423,11 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     hm.put(species,0.0f);
   }
-  /**
-   * Adds an inclusion rules species by making a new hashmap with species as key and range as value.  
-   * @param species inclusion rule species to be added to the species range hashmap.  
-   */
+
   public void addInclusionRule(InclusionRuleSpecies species) {
     if (speciesRange == null) { speciesRange = new HashMap<InclusionRuleSpecies,Range>(); }
     speciesRange.put(species,new Range(0,0));
   }
-
 
   public boolean removeSpeciesChange(ProcessType process, InclusionRuleSpecies species) {
     HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(process);
@@ -1545,23 +1437,14 @@ public final class VegetativeType implements Comparable, Externalizable {
     }
     return true;
   }
-  /**
-   * Checks if an inclusion rule exists for a species and therefore can be removed using species from the speciesRange (inclusion rules) hashmap.  This is keyed by the species, with range being the value.  
-   * @param species the species checked for an inclusion rule
-   * @return true if there is a inclusion rule for a particular species.  
-   */
+
   public boolean removeInclusionRule(InclusionRuleSpecies species) {
     if (speciesRange.remove(species) == null) {
       return false;
     }
     return true;
   }
-/**
- * Changes an inclusion rule for species 
- * @param process
- * @param species
- * @param value
- */
+
   public void setSpeciesChange(ProcessType process, InclusionRuleSpecies species, Float value) {
     HashMap<InclusionRuleSpecies, Float> hm = speciesChange.get(process);
     if (hm == null) { return; }
@@ -1571,10 +1454,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   public void setInclusionRule(InclusionRuleSpecies species, Integer lower, Integer upper) {
     speciesRange.put(species,new Range(lower,upper));
   }
-/**
- * Gets a set of all tracking species with an inclusion rule.  
- * @return
- */
+
   public Set<InclusionRuleSpecies> getTrackingSpecies() {
     if (speciesChange == null) { return null; }
     for (ProcessType p : speciesChange.keySet()) {
