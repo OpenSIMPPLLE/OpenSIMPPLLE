@@ -154,93 +154,107 @@ public final class VegetativeType implements Comparable, Externalizable {
   private static final String TWENTY    = "20";
 
   /**
-   * This is the default constructor, it initializes some fields.
+   * Constructs an instance without next states or positions.
    */
   public VegetativeType() {
+
     species   = null;
     sizeClass = null;
     density   = null;
     age       = -1;
-  }
 
-  /*
-   * This constructor takes a HabitatTypeGroup as an argument,
-   * which is stored in a class field, it also calls the default
-   * constructor.
-   * @param htGrp is a HabitatTypeGroup instance.
-   */
-  public VegetativeType(HabitatTypeGroup htGrp) {
-    this();
-    nextState   = new Hashtable(20);
-    probability = new Hashtable(20);
-    positions   = new Hashtable(10);
-    this.htGrp = htGrp;
   }
 
   /**
-   * This constructor is used when importing text files containing
-   * Vegetative Type information.
-   * @param htGrp is a HabitatTypeGroup instance
-   * @param vegTypeStr is a String representation of a Vegetative Type.
+   * Constructs an instance that contains next states and positions.
    */
-  public VegetativeType(HabitatTypeGroup htGrp, String vegTypeStr)
-    throws ParseError
-  {
+  public VegetativeType(HabitatTypeGroup htGrp) {
+
     this();
-    nextState   = new Hashtable(20);
-    probability = new Hashtable(20);
-    positions   = new Hashtable(10);
-    this.htGrp = htGrp;
+
+    this.htGrp       = htGrp;
+    this.nextState   = new Hashtable(20);
+    this.probability = new Hashtable(20);
+    this.positions   = new Hashtable(10);
+
+  }
+
+  /**
+   * Constructs an instance from a specially formatted vegetative type string.
+   */
+  public VegetativeType(HabitatTypeGroup htGrp, String vegTypeStr) throws ParseError {
+
+    this(htGrp);
+
     parseVegetativeTypeString(vegTypeStr);
     printName = vegTypeStr;
     printName = printName.intern();
-  }
-/**
- * This constructor is used to create a temporary instance to store in an Evu after import of an invalid state. The invalid state needs to 
- * be stored so it can be corrected later.  
- * @param newSpecies 
- * @param newSizeClass
- * @param newAge
- * @param newDensity
- */
 
-  public VegetativeType(Species newSpecies, SizeClass newSizeClass,
-                        int newAge, Density newDensity) {
-    species     = newSpecies;
-    sizeClass   = newSizeClass;
-    density     = newDensity;
-    age         = newAge;
+  }
+
+  /**
+   * Constructs a temporary instance to store in an Evu after importing an invalid state.
+   */
+  public VegetativeType(Species newSpecies,
+                        SizeClass newSizeClass,
+                        int newAge,
+                        Density newDensity) {
+
+    this.species     = newSpecies;
+    this.sizeClass   = newSizeClass;
+    this.density     = newDensity;
+    this.age         = newAge;
+
     makePrintName();
 
-    htGrp       = null;
-    nextState   = null;
-    probability = null;
-    positions   = null;
+    this.htGrp       = null;
+    this.nextState   = null;
+    this.probability = null;
+    this.positions   = null;
+
   }
 
-  public VegetativeType(Species newSpecies, SizeClass newSizeClass, Density newDensity) {
+  /**
+   * Constructs an instance with a default age of one.
+   */
+  public VegetativeType(Species newSpecies,
+                        SizeClass newSizeClass,
+                        Density newDensity) {
+
     this(newSpecies,newSizeClass,1,newDensity);
+
   }
 
-  public VegetativeType(HabitatTypeGroup htGrp, Species newSpecies,
-                        SizeClass newSizeClass, int newAge, Density newDensity)
-  {
+  /**
+   * Constructs an instance that ends a vegetation pathway with itself.
+   */
+  public VegetativeType(HabitatTypeGroup htGrp,
+                        Species newSpecies,
+                        SizeClass newSizeClass,
+                        int newAge,
+                        Density newDensity) {
+
     this(htGrp);
-    species     = newSpecies;
-    sizeClass   = newSizeClass;
-    density     = newDensity;
-    age         = newAge;
+
+    this.species   = newSpecies;
+    this.sizeClass = newSizeClass;
+    this.density   = newDensity;
+    this.age       = newAge;
+
     makePrintName();
 
     addProcessNextState(Process.findInstance(ProcessType.SUCCESSION),this);
     addProcessNextState(Process.findInstance(ProcessType.STAND_REPLACING_FIRE),this);
     addProcessNextState(Process.findInstance(ProcessType.MIXED_SEVERITY_FIRE),this);
     addProcessNextState(Process.findInstance(ProcessType.LIGHT_SEVERITY_FIRE),this);
+
     setSpeciesPosition(species,new Point(INIT_X,INIT_Y));
+
   }
-/**
- * Method to compare this vegetative type and another by their species, size class, density and age.  
- */
+
+  /**
+   * Method to compare this vegetative type and another by their species, size class, density and age.
+   */
   public boolean equals(Object obj) {
     if (this == obj) { return true; }
     if (obj instanceof VegetativeType) {
