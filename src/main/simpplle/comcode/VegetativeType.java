@@ -128,17 +128,6 @@ public final class VegetativeType implements Comparable, Externalizable {
    */
   public static VegetativeType ND = new VegetativeType(Species.ND, SizeClass.ND, 1, Density.ONE);
 
-
-  private static final String DELIM     = ",";
-  public static final String LISTDELIM = ":";
-  private static final char   NODATA    = '?';
-  public static final String SLASH     = "/";
-
-  private static final String XY_COORDINATE   = "XY-COORDINATE";
-  private static final String VEGETATIVE_TYPE = "VEGETATIVE-TYPE";
-  private static final String SPECIES_CHANGE  = "SPECIES-CHANGE";
-  private static final String SPECIES_RANGE   = "INCLUSION-RULE";
-
   /**
    * Constructs an instance without next states or positions.
    */
@@ -448,20 +437,20 @@ public final class VegetativeType implements Comparable, Externalizable {
  */
   private void makePrintName() {
     if (age == 1) {
-      printName = species + SLASH + sizeClass + SLASH + density.toString();
+      printName = species + "/" + sizeClass + "/" + density.toString();
     }
     else {
-      printName = species + SLASH + sizeClass + age + SLASH + density.toString();
+      printName = species + "/" + sizeClass + age + "/" + density.toString();
     }
     printName = printName.intern();
   }
 
   public void printCurrentState(PrintWriter fout) {
     fout.print(species);
-    fout.print(SLASH);
+    fout.print("/");
     fout.print(sizeClass);
     fout.print(age);
-    fout.print(SLASH);
+    fout.print("/");
     fout.print(density.toString());
   }
 
@@ -515,7 +504,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   private void parseVegetativeTypeString(String vegTypeStr)
     throws ParseError
   {
-    StringTokenizerPlus strTok = new StringTokenizerPlus(vegTypeStr,SLASH);
+    StringTokenizerPlus strTok = new StringTokenizerPlus(vegTypeStr,"/");
     RegionalZone zone = Simpplle.getCurrentZone();
 
     if (strTok.countTokens() != 3) {
@@ -633,7 +622,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   // ------------------------
   public void importSpeciesChangeNew(StringTokenizerPlus strTok) throws ParseError, IOException {
     String errMsg = "VEGETATIVE-TYPE " + getCurrentState() +
-                    " has errors in the " + SPECIES_CHANGE + " section";
+                    " has errors in the SPECIES-CHANGE section";
 
     String str = strTok.getToken();
     if (str == null) { throw new ParseError(errMsg); }
@@ -660,7 +649,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   }
   public void importSpeciesRange(StringTokenizerPlus strTok) throws ParseError, IOException {
     String errMsg = "VEGETATIVE-TYPE " + getCurrentState() +
-                    " has errors in the " + SPECIES_RANGE + " section";
+                    " has errors in the INCLUSION-RULE section";
 
     String str = strTok.getToken();
     if (str == null) { throw new ParseError(errMsg); }
@@ -761,16 +750,16 @@ public final class VegetativeType implements Comparable, Externalizable {
         count  = strTok.countTokens();
         firstValue = strTok.nextToken().toUpperCase();
 
-        if (count == 2 && firstValue.equals(VEGETATIVE_TYPE)) {
+        if (count == 2 && firstValue.equals("VEGETATIVE-TYPE")) {
           return line;
         }
-        else if (count == 3 && firstValue.equals(XY_COORDINATE)) {
+        else if (count == 3 && firstValue.equals("XY-COORDINATE")) {
           importPositions(strTok);
         }
-        else if (count == 4 && firstValue.equals(SPECIES_CHANGE)) {
+        else if (count == 4 && firstValue.equals("SPECIES-CHANGE")) {
           importSpeciesChangeNew(strTok);
         }
-        else if (count == 4 && firstValue.equals(SPECIES_RANGE)) {
+        else if (count == 4 && firstValue.equals("INCLUSION-RULE")) {
           importSpeciesRange(strTok);
         }
         else {
@@ -861,7 +850,7 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     try {
       value = strTok.getToken();
-      listStrTok = new StringTokenizerPlus(value,LISTDELIM);
+      listStrTok = new StringTokenizerPlus(value,":");
 
       count = listStrTok.countTokens();
 
@@ -905,7 +894,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     HashMap<InclusionRuleSpecies,Float> hm;
 
     for (int i=0; i<processCount; i++) {
-      strTok = new StringTokenizerPlus(mainTok.getToken(),LISTDELIM);
+      strTok = new StringTokenizerPlus(mainTok.getToken(),":");
       process = ProcessType.get(strTok.getToken());
       int speciesCount = strTok.getIntToken();
       hm = new HashMap<InclusionRuleSpecies,Float>(speciesCount);
@@ -930,7 +919,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     Range                range;
 
     for (int i=0; i<count; i++) {
-      strTok = new StringTokenizerPlus(mainTok.getToken(),LISTDELIM);
+      strTok = new StringTokenizerPlus(mainTok.getToken(),":");
       sp = InclusionRuleSpecies.get(strTok.getToken(),true);
       range = new Range(strTok.getIntToken(),strTok.getIntToken());
 
@@ -959,7 +948,7 @@ public final class VegetativeType implements Comparable, Externalizable {
         return;
       }
 
-      listStrTok = new StringTokenizerPlus(value,LISTDELIM);
+      listStrTok = new StringTokenizerPlus(value,":");
 
       count = listStrTok.countTokens();
 
@@ -1012,7 +1001,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       // look for age.  This due to a bug that incorrectly parsed input
       // files and thus generated incorrect output pathway files which now
       // have to be supported.
-      strTok = new StringTokenizerPlus(line,DELIM);
+      strTok = new StringTokenizerPlus(line,",");
       int tmpAge = 1;
 
       String str = strTok.getToken();
@@ -1079,7 +1068,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   private void savePositions(PrintWriter fout) {
     fout.print(",");
     if (positions == null || positions.size() == 0) {
-      fout.print(NODATA);
+      fout.print('?');
       return;
     }
 
@@ -1097,7 +1086,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   private void saveSpeciesChange(PrintWriter fout) {
     fout.print(",");
     if (speciesChange == null || speciesChange.size() == 0) {
-      fout.print(NODATA);
+      fout.print('?');
       return;
     }
 
@@ -1118,7 +1107,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   private void saveSpeciesRange(PrintWriter fout) {
     fout.print(",");
     if (speciesRange == null || speciesRange.size() == 0) {
-      fout.print(NODATA);
+      fout.print('?');
       return;
     }
 
@@ -1142,7 +1131,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   }
 
   public void export(PrintWriter fout) {
-    fout.println(VEGETATIVE_TYPE + " " + getCurrentState());
+    fout.println("VEGETATIVE-TYPE " + getCurrentState());
 
     Process        process;
     VegetativeType state;
@@ -1182,7 +1171,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       posSpecies = (Species) keys.nextElement();
       p          = (Point) positions.get(posSpecies);
 
-      fout.println("  " + XY_COORDINATE + " " + posSpecies + " " + p.x + "," + p.y);
+      fout.println("  XY-COORDINATE " + posSpecies + " " + p.x + "," + p.y);
     }
 
     if (speciesChange != null) {
@@ -1192,7 +1181,7 @@ public final class VegetativeType implements Comparable, Externalizable {
           Formatter formatter = new Formatter(fout, Locale.US);
 
           Float pct = hm.get(sp);
-          formatter.format("  %s %s %s %3.2f", SPECIES_CHANGE, proc, sp, pct);
+          formatter.format("  SPECIES-CHANGE %s %s %3.2f", proc, sp, pct);
           fout.println();
         }
       }
@@ -1203,8 +1192,7 @@ public final class VegetativeType implements Comparable, Externalizable {
         Formatter formatter = new Formatter(fout, Locale.US);
 
         Range range = speciesRange.get(sp);
-        formatter.format("  %s %s %d %d", SPECIES_RANGE, sp, range.lower,
-                         range.upper);
+        formatter.format("  INCLUSION-RULE %s %d %d", sp, range.lower, range.upper);
         fout.println();
       }
     }

@@ -153,9 +153,9 @@ public class CollapsedPathwayShape extends PathwayShape {
  * Gets the name of vegetative state within this shape.  This will be a string with state species +" /" + age + ":" + max age +"/" + density
  */
         public String getStateName() {
-          return state.getSpecies() + VegetativeType.SLASH + state.getSizeClass() +
-                                   state.getAge() + VegetativeType.LISTDELIM + Integer.toString(getMaxAge()) +
-                                         VegetativeType.SLASH + state.getDensity();
+          return state.getSpecies() + "/" +
+              state.getSizeClass() + state.getAge() + ":" +
+              Integer.toString(getMaxAge()) + "/" + state.getDensity();
         }
 /**
  * Calculates max age of states in the detailed shapes hash table.  
