@@ -589,11 +589,12 @@ public abstract class AbstractBaseLogic {
     int numKinds = in.readInt();
     for (int i = 0; i < numKinds; i++) {
       String kind = (String) in.readObject();
+      ArrayList<String> columnNames = (ArrayList<String>) in.readObject();
       if (!columns.containsKey(kind)) {
-        SystemKnowledge.addUnhandledErrorMessage(kind + " is not a legal process and has been ignored");
+        SystemKnowledge.addSkippedInvalidProcesses(kind);
+        continue;
       }
-      visibleColumnsHm.put(kind, (ArrayList<String>) in.readObject());
-      ArrayList<String> columnNames = visibleColumnsHm.get(kind);
+      visibleColumnsHm.put(kind, columnNames);
       if (columnNames != null) {
         for (String name : columnNames) {
           int index = getColumnPosition(kind,name);
