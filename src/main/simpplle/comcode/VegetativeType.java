@@ -15,31 +15,109 @@ import org.apache.commons.collections.map.*;
 import org.apache.commons.collections.*;
 
 /**
- * A vegetative type represents a single state in a vegetation pathway.
+ * A vegetative type represents a single state in a vegetation pathway. Each state contains a map
+ * of processes and the corresponding next state of each. The next state in a pathway is selected
+ * using process probabilities stored in the current state.
  */
 
 public final class VegetativeType implements Comparable, Externalizable {
-  public static final long badSerialVersionUID = -5936001845626671540L;
+
+  /**
+   * Below is the serial version UID used in a previous version, when the value was not
+   * explicitly set. Serialized objects with this UID belong to this class type.
+   */
+  static final long badSerialVersionUID = -5936001845626671540L;
+
+  /**
+   * The serialization ID for this class, which is required by the Externalizable interface.
+   */
   static final long serialVersionUID = 590817789717342164L;
-  static final int  version          = 2;
 
+  /**
+   * The version number for this class's serialized representation.
+   */
+  static final int version = 2;
+
+  /**
+   * The ecological grouping that this state belongs to.
+   */
   private HabitatTypeGroup htGrp;
-  private Species          species;
-  private SizeClass        sizeClass;
-  private Density          density;
-  private int              age;
-  private String           printName;
 
-  private Hashtable        nextState;
-  private Hashtable        probability;
-  private Hashtable        positions;
+  /**
+   * The species of this vegetation state.
+   */
+  private Species species;
+
+  /**
+   * The size class of this vegetation state.
+   */
+  private SizeClass sizeClass;
+
+  /**
+   * The density of this vegetation state.
+   */
+  private Density density;
+
+  /**
+   * The age of this vegetation state.
+   */
+  private int age;
+
+  /**
+   * The name of this vegetation state.
+   */
+  private String printName;
+
+  /**
+   * Maps a process to a resulting vegetation state.
+   */
+  private Hashtable nextState;
+
+  /**
+   * Maps a process to the probability that the process occurs.
+   */
+  private Hashtable probability;
+
+  /**
+   * Maps a species to a two-dimensional position in the pathway.
+   */
+  private Hashtable positions;
+
+  /**
+   *
+   */
   private HashMap<ProcessType,HashMap<InclusionRuleSpecies,Float>> speciesChange;
+
+  /**
+   *
+   */
   private HashMap<InclusionRuleSpecies,Range> speciesRange;
 
+  /**
+   *
+   */
+  private static boolean limitedSerialization = false;
+
+  /**
+   *
+   */
   private static final int COUNT = 3;
+
+  /**
+   *
+   */
   private static final int INCLUSION_RULES_COLUMN_COUNT = 3;  // aka species range
 
-  private static boolean limitedSerialization = false;
+  /**
+   * An unknown vegetative type.
+   */
+  public static VegetativeType UNKNOWN = new VegetativeType(Species.UNKNOWN, SizeClass.UNKNOWN, 1, Density.UNKNOWN);
+
+  /**
+   * An undeclared vegetative type.
+   */
+  public static VegetativeType ND = new VegetativeType(Species.ND, SizeClass.ND, 1, Density.ONE);
+
 
   private static final String DELIM     = ",";
   public static final String LISTDELIM = ":";
@@ -54,14 +132,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   private static final int INIT_X = 40;
   private static final int INIT_Y = 40;
 
-  public static VegetativeType UNKNOWN = new VegetativeType(Species.UNKNOWN,
-      SizeClass.UNKNOWN, 1, Density.UNKNOWN);
-
-  public static VegetativeType ND = new VegetativeType(Species.ND,
-      SizeClass.ND, 1, Density.ONE);
-
-  // These avoid creation of temp Strings for age when writing out files
-  // during simulations.
+  // These avoid creation of temp Strings for age when writing out files during simulations.
   private static final String TWO       = "2";
   private static final String THREE     = "3";
   private static final String FOUR      = "4";
@@ -81,7 +152,6 @@ public final class VegetativeType implements Comparable, Externalizable {
   private static final String EIGHTEEN  = "18";
   private static final String NINETEEN  = "19";
   private static final String TWENTY    = "20";
-
 
   /**
    * This is the default constructor, it initializes some fields.
