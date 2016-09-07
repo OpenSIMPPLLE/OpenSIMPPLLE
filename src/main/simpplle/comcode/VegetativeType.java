@@ -278,9 +278,8 @@ public final class VegetativeType implements Comparable, Externalizable {
 
   public Process[] getProcesses() {
     Enumeration e = nextState.keys();
-    Process[]   processes = new Process[nextState.size()];
-
-    int i=0;
+    Process[] processes = new Process[nextState.size()];
+    int i = 0;
     while (e.hasMoreElements()) {
       processes[i] = (Process)e.nextElement();
       i++;
@@ -289,13 +288,10 @@ public final class VegetativeType implements Comparable, Externalizable {
   }
 
   public int getProcessProbability(Process p) {
-    Integer prob;
-
-    prob = (Integer) probability.get(p);
+    Integer prob = (Integer) probability.get(p);
     if (prob == null) {
       return 0;
-    }
-    else {
+    } else {
       return prob.intValue();
     }
   }
@@ -317,7 +313,6 @@ public final class VegetativeType implements Comparable, Externalizable {
     if (probability.get(p) == null) {
       probability.put(p,new Integer(0));
     }
-
     nextState.put(p, newNextState);
     htGrp.markChanged();
   }
@@ -328,11 +323,10 @@ public final class VegetativeType implements Comparable, Externalizable {
   }
 
   public Process getNextStateProcess(VegetativeType vt) {
-    VegetativeType ns;
-    Enumeration    keys = nextState.keys();
+    Enumeration keys = nextState.keys();
     while (keys.hasMoreElements()) {
       Process p = (Process) keys.nextElement();
-      ns = (VegetativeType) nextState.get(p);
+      VegetativeType ns = (VegetativeType) nextState.get(p);
       if (ns == vt) {
         return p;
       }
@@ -361,10 +355,10 @@ public final class VegetativeType implements Comparable, Externalizable {
    */
   public void fixNextState(StringBuffer log) throws ParseError {
     Enumeration e;
-    Process        process;
-    String         state;
+    Process process;
+    String state;
     VegetativeType newState;
-    boolean        errorsFound = false;
+    boolean errorsFound = false;
 
     e = nextState.keys();
     while (e.hasMoreElements()) {
@@ -423,21 +417,20 @@ public final class VegetativeType implements Comparable, Externalizable {
     VegetativeType current = this; //t=0
     VegetativeType next = getProcessNextState(process);
     t++;//next state = t + 1
-    while (vt.equals(next) == false && current.equals(next) == false) {
+    while (!vt.equals(next) && !current.equals(next)) {
       current = next;
       next = next.getProcessNextState(process);
       t++;
     }
-    return (vt.equals(next) ? t : -1);
+    return vt.equals(next) ? t : -1;
   }
 
   public Point getSpeciesPosition(Species tmpSpecies) {
-    Point tmp = (Point) positions.get(tmpSpecies);
-
-    if (tmp == null) {
-      tmp = new Point(10,10);
+    Point point = (Point) positions.get(tmpSpecies);
+    if (point == null) {
+      point = new Point(10,10);
     }
-    return tmp;
+    return point;
   }
 
   public void setSpeciesPosition(Species tmpSpecies, Point newPosition) {
@@ -448,11 +441,10 @@ public final class VegetativeType implements Comparable, Externalizable {
   private void makePrintName() {
     if (age == 1) {
       printName = species + "/" + sizeClass + "/" + density.toString();
-    }
-    else {
+    } else {
       printName = species + "/" + sizeClass + age + "/" + density.toString();
     }
-    printName = printName.intern();
+    printName = printName.intern(); // This allows strings to be compared quickly with ==
   }
 
   /**
@@ -466,14 +458,13 @@ public final class VegetativeType implements Comparable, Externalizable {
       throws ParseError
   {
     StringTokenizerPlus strTok = new StringTokenizerPlus(vegTypeStr,"/");
-    RegionalZone zone = Simpplle.getCurrentZone();
 
     if (strTok.countTokens() != 3) {
       throw new ParseError(vegTypeStr + " is not a valid Vegetative Type");
     }
 
     String speciesStr = strTok.nextToken();
-    species   = Species.get(speciesStr);
+    species = Species.get(speciesStr);
     if (species == null) {
       species = new Species(speciesStr,true);
     }
@@ -492,8 +483,7 @@ public final class VegetativeType implements Comparable, Externalizable {
   private void parseSizeClass(String str)
       throws ParseError
   {
-    boolean      foundNumber = false;
-
+    boolean foundNumber = false;
     int i = 0;
     while (i < str.length() && foundNumber == false) {
       foundNumber = Character.isDigit(str.charAt(i));
@@ -507,18 +497,16 @@ public final class VegetativeType implements Comparable, Externalizable {
     if (foundNumber) {
       i--;
       try {
-        age       = Integer.parseInt(str.substring(i));
+        age = Integer.parseInt(str.substring(i));
         sizeClass = SizeClass.get(str.substring(0,i));
         if (sizeClass == null) {
           sizeClass = new SizeClass(str.substring(0,i),true);
         }
-      }
-      catch (NumberFormatException e) {
+      } catch (NumberFormatException e) {
         throw new ParseError("Invalid Age in " + str);
       }
-    }
-    else {
-      age       = 1;
+    } else {
+      age = 1;
       sizeClass = SizeClass.get(str);
       if (sizeClass == null) {
         sizeClass = new SizeClass(str,true);
@@ -548,18 +536,14 @@ public final class VegetativeType implements Comparable, Externalizable {
   }
 
   public boolean validSpeciesFit(Flat3Map trkSpecies) {
-    Range   range;
     if (speciesRange == null) { return false; }
-
     MapIterator it = trkSpecies.mapIterator();
     while (it.hasNext()) {
       InclusionRuleSpecies sp = (InclusionRuleSpecies)it.next();
       Float pct = (Float)it.getValue();
       if (pct == null) { continue; }
-
-      range = speciesRange.get(sp);
+      Range range = speciesRange.get(sp);
       if (range == null) { continue; }
-
       if (range.inRange(pct) == false) { return false; }
     }
     return true;
@@ -634,12 +618,11 @@ public final class VegetativeType implements Comparable, Externalizable {
 
   public void addSpeciesChange(ProcessType process, InclusionRuleSpecies species) {
     if (speciesChange == null) {
-      speciesChange = new HashMap<ProcessType,
-          HashMap<InclusionRuleSpecies, Float>>();
+      speciesChange = new HashMap<>();
     }
     HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(process);
     if (hm == null) {
-      hm = new HashMap<InclusionRuleSpecies,Float>();
+      hm = new HashMap<>();
       speciesChange.put(process,hm);
     }
     hm.put(species,0.0f);
@@ -650,17 +633,24 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     if (process == ProcessType.SRF) {
       switch (season) {
-        case SPRING: process = ProcessType.SRF_SPRING; break;
-        case SUMMER: process = ProcessType.SRF_SUMMER; break;
-        case FALL:   process = ProcessType.SRF_FALL;   break;
-        case WINTER: process = ProcessType.SRF_WINTER; break;
+        case SPRING:
+          process = ProcessType.SRF_SPRING;
+          break;
+        case SUMMER:
+          process = ProcessType.SRF_SUMMER;
+          break;
+        case FALL:
+          process = ProcessType.SRF_FALL;
+          break;
+        case WINTER:
+          process = ProcessType.SRF_WINTER;
+          break;
       }
     }
     if (process == ProcessType.SUCCESSION) {
       if (Simpplle.getClimate().isWetSuccession()) {
         process = ProcessType.WET_SUCCESSION;
-      }
-      else if (Simpplle.getClimate().isDrySuccession()) {
+      } else if (Simpplle.getClimate().isDrySuccession()) {
         process = ProcessType.DRY_SUCCESSION;
       }
     }
@@ -688,25 +678,32 @@ public final class VegetativeType implements Comparable, Externalizable {
   public void setSpeciesChange(ProcessType process, InclusionRuleSpecies species, Float value) {
     HashMap<InclusionRuleSpecies, Float> hm = speciesChange.get(process);
     if (hm == null) { return; }
-
     hm.put(species,value);
   }
 
   public static String getSpeciesChangeColumnName(int col) {
     switch (col) {
-      case 0:  return "Process";
-      case 1:  return "Inclusion Rule Tracking Species";
-      case 2:  return "Percent Change";
-      default: return null;
+      case 0:
+        return "Process";
+      case 1:
+        return "Inclusion Rule Tracking Species";
+      case 2:
+        return "Percent Change";
+      default:
+        return null;
     }
   }
 
   public static String getInclusionRulesColumnName(int col) {
     switch (col) {
-      case 0:  return "Inclusion Rule Species";
-      case 1:  return "Lower";
-      case 2:  return "Upper";
-      default: return null;
+      case 0:
+        return "Inclusion Rule Species";
+      case 1:
+        return "Lower";
+      case 2:
+        return "Upper";
+      default:
+        return null;
     }
   }
 
@@ -724,7 +721,6 @@ public final class VegetativeType implements Comparable, Externalizable {
 
   public boolean isTrackingSpecies(InclusionRuleSpecies sp) {
     if (speciesChange == null) { return false; }
-
     HashMap<InclusionRuleSpecies,Float> hm = speciesChange.get(ProcessType.SUCCESSION);
     return hm.containsKey(sp);
   }
