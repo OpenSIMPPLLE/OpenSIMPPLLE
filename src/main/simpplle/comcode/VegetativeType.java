@@ -14,15 +14,10 @@ import java.util.*;
 import org.apache.commons.collections.map.*;
 import org.apache.commons.collections.*;
 
-/** 
- * This class has fields which hold Vegetative pathway state
- * information.  There are also a number of methods primarily
- * dealing with reading pathway information from a file as well
- * as accessor methods.
- *
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+/**
+ * A vegetative type represents a single state in a vegetation pathway.
  */
+
 public final class VegetativeType implements Comparable, Externalizable {
   public static final long badSerialVersionUID = -5936001845626671540L;
   static final long serialVersionUID = 590817789717342164L;
