@@ -1019,14 +1019,9 @@ public final class HabitatTypeGroup {
   }
 
   private void readData(BufferedReader fin) {
-    int                 key = EOF, i;
-    String              value, line;
-    StringTokenizerPlus strTok;
 
-    // Create a log file name
     String dir  = System.getProperty("user.dir");
     String name = "Pathways";
-
     File logFile = new File(dir,name + ".log");
     int n = 1;
     while (logFile.exists()) {
@@ -1034,38 +1029,43 @@ public final class HabitatTypeGroup {
     }
 
     try {
-      do {
-        line   = fin.readLine();
-        if (line == null) { key = EOF; continue;}
 
-        strTok = new StringTokenizerPlus(line," ");
-        if (strTok.hasMoreTokens() == false) {continue;}
+      int key = EOF;
+      String value;
+
+      do {
+        String line = fin.readLine();
+        if (line == null) {
+          key = EOF;
+          continue;
+        }
+
+        StringTokenizerPlus strTok = new StringTokenizerPlus(line," ");
+        if (!strTok.hasMoreTokens()) continue;
 
         key = getKeyword(strTok);
-        if (strTok.hasMoreTokens() == false) {
+        if (!strTok.hasMoreTokens()) {
           throw new ParseError("Keyword: " + KEYWORD[key] + " has no value.");
         }
 
         if (key == CLASS) {
           value = strTok.nextToken();
-        }
-        else {
+        } else {
           throw new ParseError("Invalid record, first keyword must be CLASS");
         }
 
         if (keyMatch(value,HTGRP)) {
           readHtGrp(fin);
-        }
-        else if (keyMatch(value,ALL_VEG_TYPES)) {
+        } else if (keyMatch(value,ALL_VEG_TYPES)) {
           readVegTypes(fin);
-        }
-        else {
+        } else {
           throw new ParseError ("Invalid Class Specified:" + value);
         }
-      }
-      while (key != EOF);
+      } while (key != EOF);
+
       fixNextStates(logFile);  /* also builds the SS states hashtable */
       setChanged(false);
+
     }
     catch (ParseError PX) {
       System.out.println("Input file processing problem:");
