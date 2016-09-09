@@ -157,6 +157,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private boolean doAllStatesSummary;
 
   /**
+   *  A flag indicating if area summary files should be written
+   */
+  private boolean doAreaSummary;
+
+  /**
    *
    */
   private boolean doGisFiles;
@@ -234,7 +239,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private PrintWriter   accessSizeClassOut;
   private PrintWriter   accessDensityOut;
   //private PrintWriter   accessEcoGroupOut;
-  //private PrintWriter[] accessAreaSummaryOut;
+  private PrintWriter[] accessAreaSummaryOut;
   //private PrintWriter   accessFmzOut;
   private PrintWriter   accessInclusionRuleSpecies;
   private PrintWriter   accessLifeformOut;
@@ -325,7 +330,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
                      boolean doTrackingSpeciesReport,
                      boolean doGisFiles,
                      boolean fixedSeed,
-                     long seed) {
+                     long seed,
+                     boolean doAreaSummary) {
 
     this();
 
@@ -348,6 +354,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     this.doGisFiles              = doGisFiles;
     this.fixedSeed               = fixedSeed;
     this.seed                    = seed;
+    this.doAreaSummary           = doAreaSummary;
 
     if (simulationMethod.toUpperCase().equals("STOCHASTIC")) {
       this.simulationMethod = STOCHASTIC;
@@ -363,7 +370,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
 
     accessEvuSimDataOut  = new PrintWriter[this.numSimulations];
-    //accessAreaSummaryOut = new PrintWriter[numSimulations];
+    accessAreaSummaryOut = new PrintWriter[numSimulations];
 
   }
 
@@ -950,6 +957,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
           areaSummary.writeDatabase();
           Simpplle.clearStatusMessage();
         }
+        if (outputFile != null && writeAccess && doAreaSummary) {
+          Simpplle.setStatusMessage("Writing Area Summary Data to text file");
+          areaSummary.writeAccessFiles(accessAreaSummaryOut[currentRun]);
+        }
         if (fireSuppression()) {
           areaSummary.doSuppressionCosts(currentTimeStep);
         }
@@ -1125,11 +1136,14 @@ public final class Simulation implements SimulationTypes, Externalizable {
     //accessEcoGroupOut = new PrintWriter(new FileWriter(path, true));
     //accessEcoGroupOut.println("ID,ECOGROUP");
 
-    //for (int run=0; run<numSimulations; run++) {
-    //  path = new File (getAccessFilesPath(),"AREASUMMARY" + Integer.toString(run+1) + ".txt");
-    //  accessAreaSummaryOut[run] = new PrintWriter(new FileWriter(path, true));
-    //  accessAreaSummaryOut[run].println("RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID");
-    //}
+    if(doAreaSummary) {
+      // Open an area summary file for each simulation
+      for (int run = 0; run < numSimulations; run++) {
+        path = new File(getAccessFilesPath(), "AREASUMMARY" + Integer.toString(run + 1) + ".txt");
+        accessAreaSummaryOut[run] = new PrintWriter(new FileWriter(path, true));
+        accessAreaSummaryOut[run].println("RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID");
+      }
+    }
 
     //path = new File (getAccessFilesPath(),"FMZ.txt");
     //accessFmzOut = new PrintWriter(new FileWriter(path, true));
@@ -1187,10 +1201,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
     //accessEcoGroupOut.flush();
     //accessEcoGroupOut.close();
 
-    //for (int run=0; run<numSimulations; run++) {
-    //  accessAreaSummaryOut[run].flush();
-    //  accessAreaSummaryOut[run].close();
-    //}
+    if(doAreaSummary){
+      for (int run=0; run<numSimulations; run++) {
+        accessAreaSummaryOut[run].flush();
+        accessAreaSummaryOut[run].close();
+      }
+    }
 
     //accessFmzOut.flush();
     //accessFmzOut.close();

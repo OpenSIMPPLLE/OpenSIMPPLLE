@@ -568,7 +568,8 @@ public final class Simpplle {
                             File allStatesRulesFile, boolean discardData,
                             boolean disableReporting, boolean doAllStatesSummary,
                             boolean doTrackingSpeciesReport,
-                            boolean doGisFiles, boolean fixedSeed, long seed)
+                            boolean doGisFiles, boolean fixedSeed,
+                            long seed, boolean doAreaSummary)
     throws SimpplleError {
     Simulation.setInstance(
       new Simulation(numSimulations,
@@ -592,7 +593,8 @@ public final class Simpplle {
               doTrackingSpeciesReport,
               doGisFiles,
               fixedSeed,
-              seed));
+              seed,
+              doAreaSummary));
     getCurrentSimulation().runSimulation();
   }
 
