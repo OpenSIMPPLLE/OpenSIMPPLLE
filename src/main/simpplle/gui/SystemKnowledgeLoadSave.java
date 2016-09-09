@@ -524,6 +524,8 @@ public class SystemKnowledgeLoadSave extends JDialog {
 
     } catch (SimpplleError ex) {
 
+      ex.printStackTrace();
+
       JOptionPane.showMessageDialog(this,
                                     ex.getMessage(),
                                     "Problems processing file",

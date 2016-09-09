@@ -1012,68 +1012,58 @@ public final class HabitatTypeGroup {
    * @param fin is a BufferedReader
    * @return the new HabitatTypeGroup
    */
-  public static HabitatTypeGroup read(BufferedReader fin) {
+  public static HabitatTypeGroup read(BufferedReader fin) throws ParseError, IOException {
     HabitatTypeGroup newGroup = new HabitatTypeGroup();
     newGroup.readData(fin);
     return newGroup;
   }
 
-  private void readData(BufferedReader fin) {
-    int                 key = EOF, i;
-    String              value, line;
-    StringTokenizerPlus strTok;
+  private void readData(BufferedReader fin) throws ParseError, IOException {
 
-    // Create a log file name
     String dir  = System.getProperty("user.dir");
     String name = "Pathways";
-
     File logFile = new File(dir,name + ".log");
     int n = 1;
     while (logFile.exists()) {
       logFile = new File(dir,name + "-" + n++ + ".log");
     }
 
-    try {
-      do {
-        line   = fin.readLine();
-        if (line == null) { key = EOF; continue;}
+    int key = EOF;
+    String value;
 
-        strTok = new StringTokenizerPlus(line," ");
-        if (strTok.hasMoreTokens() == false) {continue;}
-
-        key = getKeyword(strTok);
-        if (strTok.hasMoreTokens() == false) {
-          throw new ParseError("Keyword: " + KEYWORD[key] + " has no value.");
-        }
-
-        if (key == CLASS) {
-          value = strTok.nextToken();
-        }
-        else {
-          throw new ParseError("Invalid record, first keyword must be CLASS");
-        }
-
-        if (keyMatch(value,HTGRP)) {
-          readHtGrp(fin);
-        }
-        else if (keyMatch(value,ALL_VEG_TYPES)) {
-          readVegTypes(fin);
-        }
-        else {
-          throw new ParseError ("Invalid Class Specified:" + value);
-        }
+    do {
+      String line = fin.readLine();
+      if (line == null) {
+        key = EOF;
+        continue;
       }
-      while (key != EOF);
-      fixNextStates(logFile);  /* also builds the SS states hashtable */
-      setChanged(false);
-    }
-    catch (ParseError PX) {
-      System.out.println("Input file processing problem:");
-      System.out.println(PX.msg);
-    }
-    catch (IOException IOE) {
-      System.out.println("Problems while trying to read input file.");
-    }
+
+      StringTokenizerPlus strTok = new StringTokenizerPlus(line," ");
+      if (!strTok.hasMoreTokens()) continue;
+
+      key = getKeyword(strTok);
+      if (!strTok.hasMoreTokens()) {
+        throw new ParseError("Keyword: " + KEYWORD[key] + " has no value.");
+      }
+
+      if (key == CLASS) {
+        value = strTok.nextToken();
+      } else {
+        throw new ParseError("Invalid record, first keyword must be CLASS");
+      }
+
+      if (keyMatch(value,HTGRP)) {
+        readHtGrp(fin);
+      } else if (keyMatch(value,ALL_VEG_TYPES)) {
+        readVegTypes(fin);
+      } else {
+        throw new ParseError ("Invalid Class Specified:" + value);
+      }
+    } while (key != EOF);
+
+    fixNextStates(logFile);  /* also builds the SS states hashtable */
+    setChanged(false);
+
   }
 
   public static void importSpeciesChangeFile(BufferedReader fin) throws ParseError {

@@ -469,8 +469,12 @@ public abstract class RegionalZone {
     }
   }
 
-  public HabitatTypeGroup loadPathway(BufferedReader fin) {
-    return HabitatTypeGroup.read(fin);
+  public HabitatTypeGroup loadPathway(BufferedReader fin) throws SimpplleError {
+    try {
+      return HabitatTypeGroup.read(fin);
+    } catch (IOException | ParseError e) {
+      throw new SimpplleError(e.getMessage());
+    }
   }
 
   public void loadAquaticPathway (File path) throws SimpplleError {

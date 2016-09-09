@@ -7808,8 +7808,9 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
 /**
- * Writes to an external source attributes in following order: habitat type group, EVU ID, ownership, road status, ignizion probability,
- * fire management zone, special area, source, associated land type, location, and initial treatment.
+ * Writes to an external source attributes in following order: habitat type group, EVU ID,
+ * ownership, road status, ignition probability,fire management zone, special area, source,
+ * associated land type, location, and initial treatment.
  */
   public void writeExternal(ObjectOutput out) throws IOException {
     VegetativeType.setLimitedSerialization();
@@ -7901,7 +7902,8 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   }
   /**
-   * Method to output the spatial relations.  These are stored in file as associated Elu ID's, Eau ID's, road ID, Trail, Id
+   * Method to output the spatial relations. These are stored in file as associated Elu ID's,
+   * Eau ID's, road ID, Trail, Id
    * @param out
    * @throws IOException
    */
