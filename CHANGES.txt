@@ -4,6 +4,7 @@ Version 1.3.5
     - Changed downwind calculation from 180 degrees to 90 degrees
     - Invalid process probability logic no longer saved with user knowledge
     - Reworded invalid process warning displayed when user knowledge loaded
+    - Loading user knowledge incompatible with current zone now displays error
     - Re-enable Area Summary Files
     - Area Summary Files are now an optional simulation parameter
 
