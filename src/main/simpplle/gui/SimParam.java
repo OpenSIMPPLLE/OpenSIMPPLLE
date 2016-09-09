@@ -89,6 +89,8 @@ public class SimParam extends JDialog {
   private JTextField fixedSeedText = new JTextField();
   //  Option to disable writing probability Arc Files. Currently, this information is not used in output processing.
   private JCheckBox writeAreaProbFilesCB = new JCheckBox();
+  // Option to write area summary file.
+  private JCheckBox writeAreaSummaryCB = new JCheckBox();
 
   // This need to be down here so designer will work correctly.
   private SimpplleMain simpplleMain;
@@ -119,7 +121,7 @@ public class SimParam extends JDialog {
 
   void jbInit() throws Exception {
 
-    Font monospaced = new java.awt.Font("Monospaced", Font.PLAIN, 14);
+    Font monospaced = new Font("Monospaced", Font.PLAIN, 14);
 
     /* Number of Simulations */
 
@@ -127,12 +129,12 @@ public class SimParam extends JDialog {
     numSimText.setBackground(Color.white);
     numSimText.setSelectionColor(Color.blue);
     numSimText.setPreferredSize(new Dimension(100,27));
-    numSimText.addActionListener(new java.awt.event.ActionListener() {
+    numSimText.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         numSimText_actionPerformed(e);
       }
     });
-    numSimText.addFocusListener(new java.awt.event.FocusAdapter() {
+    numSimText.addFocusListener(new FocusAdapter() {
       public void focusLost(FocusEvent e) {
         numSimText_focusLost(e);
       }
@@ -158,12 +160,12 @@ public class SimParam extends JDialog {
     numStepText.setBackground(Color.white);
     numStepText.setSelectionColor(Color.blue);
     numStepText.setPreferredSize(new Dimension(100,27));
-    numStepText.addActionListener(new java.awt.event.ActionListener() {
+    numStepText.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         numStepText_actionPerformed(e);
       }
     });
-    numStepText.addFocusListener(new java.awt.event.FocusAdapter() {
+    numStepText.addFocusListener(new FocusAdapter() {
       public void focusLost(FocusEvent e) {
         numStepText_focusLost(e);
       }
@@ -242,7 +244,7 @@ public class SimParam extends JDialog {
 
     yearlyStepCB.setFont(monospaced);
     yearlyStepCB.setText("Yearly Time Steps");
-    yearlyStepCB.addItemListener(new java.awt.event.ItemListener() {
+    yearlyStepCB.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent e) {
         yearlyStepCB_itemStateChanged(e);
       }
@@ -259,7 +261,7 @@ public class SimParam extends JDialog {
     ownershipCB.setText("Track Ownership");
     ownershipCB.setFont(monospaced);
     ownershipCB.setEnabled(false);
-    ownershipCB.addItemListener(new java.awt.event.ItemListener() {
+    ownershipCB.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent e) {
         ownershipCB_itemStateChanged(e);
       }
@@ -275,7 +277,7 @@ public class SimParam extends JDialog {
 
     fireSuppCB.setText("Fire Suppression");
     fireSuppCB.setFont(monospaced);
-    fireSuppCB.addItemListener(new java.awt.event.ItemListener() {
+    fireSuppCB.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent e) {
         fireSuppCB_itemStateChanged(e);
       }
@@ -292,7 +294,7 @@ public class SimParam extends JDialog {
     specialAreaCB.setText("Track Special Area");
     specialAreaCB.setFont(monospaced);
     specialAreaCB.setEnabled(false);
-    specialAreaCB.addItemListener(new java.awt.event.ItemListener() {
+    specialAreaCB.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent e) {
         specialAreaCB_itemStateChanged(e);
       }
@@ -315,7 +317,7 @@ public class SimParam extends JDialog {
     discountCB.setText("Discounted Cost");
     discountCB.setFont(monospaced);
     discountCB.setEnabled(false);
-    discountCB.addItemListener(new java.awt.event.ItemListener() {
+    discountCB.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent e) {
         discountCB_itemStateChanged(e);
       }
@@ -325,8 +327,8 @@ public class SimParam extends JDialog {
 
     JPanel discountPanel = new JPanel();
     discountPanel.setLayout(discountLayout);
-    discountPanel.add(discountText, java.awt.BorderLayout.CENTER);
-    discountPanel.add(discountCB, java.awt.BorderLayout.WEST);
+    discountPanel.add(discountText, BorderLayout.CENTER);
+    discountPanel.add(discountCB, BorderLayout.WEST);
 
     /* Fixed Seed */
 
@@ -339,7 +341,7 @@ public class SimParam extends JDialog {
     fixedSeedCB.setText("Fixed Seed");
     fixedSeedCB.setFont(monospaced);
     fixedSeedCB.setEnabled(true);
-    fixedSeedCB.addItemListener(new java.awt.event.ItemListener() {
+    fixedSeedCB.addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent e) {
         fixedSeedCB_itemStateChanged(e);
       }
@@ -349,10 +351,12 @@ public class SimParam extends JDialog {
 
     JPanel fixedSeedPanel = new JPanel();
     fixedSeedPanel.setLayout(fixedSeedLayout);
-    fixedSeedPanel.add(fixedSeedText, java.awt.BorderLayout.CENTER);
-    fixedSeedPanel.add(fixedSeedCB, java.awt.BorderLayout.WEST);
+    fixedSeedPanel.add(fixedSeedText, BorderLayout.CENTER);
+    fixedSeedPanel.add(fixedSeedCB, BorderLayout.WEST);
 
-    /* Options */
+    /*
+     *    Options Section
+     */
 
     Border optionsBorder  = new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "Options");
 
@@ -368,8 +372,16 @@ public class SimParam extends JDialog {
     optionsPanel.add(fireSuppCBPanel);
     optionsPanel.add(specialAreaPanel);
     optionsPanel.add(discountPanel);
-    //Adds Fixed Seed Panel
     optionsPanel.add(fixedSeedPanel);
+
+    GridLayout outputLayout = new GridLayout();
+    outputLayout.setColumns(2);
+    outputLayout.setHgap(10);
+    outputLayout.setRows(2);
+
+    JPanel outputPanel = new JPanel();
+    outputPanel.setLayout(outputLayout);
+
 
     FlowLayout outerOptionsLayout = new FlowLayout();
     outerOptionsLayout.setAlignment(FlowLayout.LEFT);
@@ -387,8 +399,8 @@ public class SimParam extends JDialog {
     outfileButton.setPreferredSize(new Dimension(40, 27));
     outfileButton.setToolTipText("Set the output files prefix");
     outfileButton.setHorizontalTextPosition(SwingConstants.LEFT);
-    outfileButton.setIcon(new ImageIcon(simpplle.gui.SimParam.class.getResource("images/save.gif")));
-    outfileButton.addActionListener(new java.awt.event.ActionListener() {
+    outfileButton.setIcon(new ImageIcon(SimParam.class.getResource("images/save.gif")));
+    outfileButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         outfileButton_actionPerformed(e);
       }
@@ -409,15 +421,25 @@ public class SimParam extends JDialog {
     outfilePanel.add(outfileButton, null);
     outfilePanel.add(outfileText, null);
 
+    /* Write Data to Text Files */
+
+    writeAccessFilesCB.setText("Text Files");
+    writeAccessFilesCB.setEnabled(false);
+    outputPanel.add(writeAccessFilesCB);
+
     /* Write probability reports for multiple simulations */
 
     writeAreaProbFilesCB.setText("Probability Reports");
     writeAreaProbFilesCB.setToolTipText("Writes probability reports for multiple simulations");
     writeAreaProbFilesCB.setEnabled(false);
+    outputPanel.add(writeAreaProbFilesCB);
 
-    JPanel discardTextPanel = new JPanel();
-    discardTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-    discardTextPanel.add(writeAreaProbFilesCB);
+    /* Write Area Summary */
+
+    writeAreaSummaryCB.setText("Area Summary");
+    writeAreaSummaryCB.setEnabled(false);
+    outputPanel.add(writeAreaSummaryCB);
+
 
     /* GIS Update/Spread Files */
 
@@ -433,18 +455,7 @@ public class SimParam extends JDialog {
     outputOptionsLayout.setAlignment(FlowLayout.LEFT);
     outputOptionsLayout.setVgap(0);
 
-    JPanel outputOptionsCBPanel = new JPanel();
-    outputOptionsCBPanel.setLayout(outputOptionsLayout);
-    outputOptionsCBPanel.add(gisUpdateSpreadCB);
-
-    /* Write Data to Text Files */
-
-    writeAccessFilesCB.setText("Text Files");
-    writeAccessFilesCB.setEnabled(false);
-
-    JPanel writeAccessPanel = new JPanel();
-    writeAccessPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-    writeAccessPanel.add(writeAccessFilesCB);
+    outputPanel.add(gisUpdateSpreadCB);
 
     /* Results Output Options */
 
@@ -452,9 +463,9 @@ public class SimParam extends JDialog {
     outputOptionsPanel.setBorder(new TitledBorder(BorderFactory.createLineBorder(Color.BLACK, 2), "Results Output Options"));
     outputOptionsPanel.setLayout(new BoxLayout(outputOptionsPanel,BoxLayout.Y_AXIS));
     outputOptionsPanel.add(outfilePanel);
-    outputOptionsPanel.add(writeAccessPanel);
-    outputOptionsPanel.add(discardTextPanel);
-    outputOptionsPanel.add(outputOptionsCBPanel);
+
+    // add Grid of Checkboxes to Options Panel
+    outputOptionsPanel.add(outputPanel);
 
     /* Use Database */
 
@@ -544,7 +555,7 @@ public class SimParam extends JDialog {
 
     Border rulesBorder = new TitledBorder(BorderFactory.createEtchedBorder(), "Rules File (optional)");
 
-    allStatesFilePB.setIcon(new ImageIcon(simpplle.gui.SimParam.class.getResource("images/save.gif")));
+    allStatesFilePB.setIcon(new ImageIcon(SimParam.class.getResource("images/save.gif")));
     allStatesFilePB.setMinimumSize(new Dimension(40, 27));
     allStatesFilePB.setPreferredSize(new Dimension(40, 27));
     allStatesFilePB.addActionListener(new ActionListener() {
@@ -577,8 +588,8 @@ public class SimParam extends JDialog {
     JPanel allStatesPanel = new JPanel();
     allStatesPanel.setLayout(allStatesLayout);
     allStatesPanel.setBorder(statesBorder);
-    allStatesPanel.add(allStatesCBPanel, java.awt.BorderLayout.NORTH);
-    allStatesPanel.add(allStatesRulesFilePanel, java.awt.BorderLayout.CENTER);
+    allStatesPanel.add(allStatesCBPanel, BorderLayout.NORTH);
+    allStatesPanel.add(allStatesRulesFilePanel, BorderLayout.CENTER);
 
     /* Generate Tracking Species Report */
 
@@ -619,13 +630,13 @@ public class SimParam extends JDialog {
     JPanel trackingSpeciesPanel = new JPanel();
     trackingSpeciesPanel.setLayout(trackSpeciesLayout);
     trackingSpeciesPanel.setBorder(trackingBorder);
-    trackingSpeciesPanel.add(trackSpeciesCategoryButtonPanel, java.awt.BorderLayout.CENTER);
-    trackingSpeciesPanel.add(trackSpeciesCBPanel, java.awt.BorderLayout.NORTH);
+    trackingSpeciesPanel.add(trackSpeciesCategoryButtonPanel, BorderLayout.CENTER);
+    trackingSpeciesPanel.add(trackSpeciesCBPanel, BorderLayout.NORTH);
 
     /* Button Panel */
 
     runButton.setText("Run Simulation");
-    runButton.addActionListener(new java.awt.event.ActionListener() {
+    runButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         runButton_actionPerformed(e);
       }
@@ -635,7 +646,7 @@ public class SimParam extends JDialog {
     cancelButton.setMaximumSize(new Dimension(119, 27));
     cancelButton.setMinimumSize(new Dimension(119, 27));
     cancelButton.setPreferredSize(new Dimension(119, 27));
-    cancelButton.addActionListener(new java.awt.event.ActionListener() {
+    cancelButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         cancelButton_actionPerformed(e);
       }
@@ -679,7 +690,7 @@ public class SimParam extends JDialog {
     mainPanel.add(northPanel, BorderLayout.NORTH);
     mainPanel.add(southPanel, BorderLayout.SOUTH);
 
-    getContentPane().add(mainPanel, java.awt.BorderLayout.WEST);
+    getContentPane().add(mainPanel, BorderLayout.WEST);
 
   }
 
@@ -812,7 +823,10 @@ public class SimParam extends JDialog {
             writeAreaProbFilesCB.isSelected(),
             allStatesCB.isSelected(),
             trackingSpeciesCB.isSelected(),
-            gisUpdateSpreadCB.isSelected(), fixedSeed, seed);
+            gisUpdateSpreadCB.isSelected(),
+            fixedSeed,
+            seed,
+            writeAreaSummaryCB.isSelected());
       } catch (simpplle.comcode.SimpplleError e) {
         JOptionPane.showMessageDialog(this, e.getError(), "Simulation Failed",
             JOptionPane.ERROR_MESSAGE);
@@ -1044,6 +1058,7 @@ public class SimParam extends JDialog {
       writeAccessFilesCB.setEnabled(true);
       writeAccessFilesCB.setSelected(true);
       writeAreaProbFilesCB.setEnabled(true);
+      writeAreaSummaryCB.setEnabled(true);
     }
     else {
       outputFile = null;
