@@ -1169,15 +1169,10 @@ public final class VegetativeType implements Comparable, Externalizable {
       if (strTok.hasMoreTokens()) {
         readSpeciesRange(strTok);
       }
-    }
-    catch (ParseError PE) {
-      throw new ParseError ("Error reading Vegetative Type " +
-                            getCurrentState() + " " +
-                            PE.msg);
-    }
-    catch (IOException IOX) {
-      throw new ParseError ("Could not read a line in Vegetative Type "
-                            + getCurrentState());
+    } catch (ParseError PE) {
+      throw new ParseError("Error reading vegetative type " + getCurrentState() + ".\n" + PE.msg);
+    } catch (IOException IOX) {
+      throw new ParseError("Could not read a line in vegetative type " + getCurrentState());
     }
   }
 
