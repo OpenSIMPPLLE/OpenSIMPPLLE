@@ -2954,7 +2954,9 @@ public class SimpplleMain extends JFrame {
     MyFileFilter  extFilter = new MyFileFilter("data",
                                                "Simpplle Simulation Database Files (*.data)");
     File outfile = Utility.getOpenFile(this,"User Defined Area File?",extFilter);
-    outfile = simpplle.comcode.Utility.stripExtension(outfile);
+    if(outfile != null){
+      outfile = simpplle.comcode.Utility.stripExtension(outfile);
+    }
 
     String url = "jdbc:hsqldb:file:" + outfile;
     DatabaseManagerSwing.main(new String[] {"-url", url});
