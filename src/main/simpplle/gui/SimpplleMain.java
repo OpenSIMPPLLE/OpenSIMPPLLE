@@ -1152,10 +1152,12 @@ public class SimpplleMain extends JFrame {
     menuUtility.add(menuUtilityElevRelPos);
     menuUtilityElevRelPos.addActionListener(new MenuUtilityElevRelPosActionListener());
     menuUtilityElevRelPos.setText("Elevation Relative Position ...");
+    menuUtilityElevRelPos.setEnabled(false);
     
     menuUtility.add(menuUtilitySwapRowCol);
     menuUtilitySwapRowCol.addActionListener(new MenuUtilitySwapRowColActionListener());
     menuUtilitySwapRowCol.setText("Swap ROW/COL");
+    menuUtilitySwapRowCol.setEnabled(false);
     menuUtility.addSeparator();
     menuUtility.add(menuUtilityCombineLSFiles);
     menuUtility.addSeparator();
@@ -1423,6 +1425,8 @@ public class SimpplleMain extends JFrame {
     menuUtilitySimReady.setEnabled(true);
     menuUtilityDeleteUnits.setEnabled(true);
     menuUtilityReset.setEnabled(true);
+    menuUtilityElevRelPos.setEnabled(true);
+    menuUtilitySwapRowCol.setEnabled(true);
 
     menuFileSave.setEnabled(true);
     menuImportFixStates.setEnabled(false);
@@ -2950,7 +2954,9 @@ public class SimpplleMain extends JFrame {
     MyFileFilter  extFilter = new MyFileFilter("data",
                                                "Simpplle Simulation Database Files (*.data)");
     File outfile = Utility.getOpenFile(this,"User Defined Area File?",extFilter);
-    outfile = simpplle.comcode.Utility.stripExtension(outfile);
+    if(outfile != null){
+      outfile = simpplle.comcode.Utility.stripExtension(outfile);
+    }
 
     String url = "jdbc:hsqldb:file:" + outfile;
     DatabaseManagerSwing.main(new String[] {"-url", url});
