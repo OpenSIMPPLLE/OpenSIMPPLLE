@@ -26,15 +26,17 @@ import org.apache.commons.collections.keyvalue.*;
 
 public final class AreaSummary implements Externalizable {
   static final long serialVersionUID = -1016876609810906198L;
-  static final int  version          = 5;
+  static final int  version          = 6;
 
-  // First dimension is time step, second is evu id.
-  // time step dimension: n=currentStep, n-1=currentStep-1, etc)
-  // Size time step dimension:  Simulation.pastTimeStepsInMemory + 1;
+  /*
+   First dimension is time step, second is evu id.
+   Time step dimension:       n=currentStep, n-1=currentStep-1, etc)
+   Size time step dimension:  Simulation.pastTimeStepsInMemory + 1;
 
-  // Type is either ProcessOccurrence or array of ProcessOccurrence
-  // This is because fire can overtake other processes so on some occassions
-  // you can have units with 2 process events.
+   Type is either ProcessOccurrence or array of ProcessOccurrence
+   This is because fire can overtake other processes so on some occasions
+   you can have units with 2 process events.
+    */
   private Object[][]   processEvents;
 //  private ArrayList[]  spreadProcesses;
 //  private ArrayList[]  fireSpreadProcesses;
@@ -663,7 +665,6 @@ public final class AreaSummary implements Externalizable {
    * This method find the event in which a unit was a member (if any)
    *
    * @param unit The unit we are searching for.
-   * @param tStep The time step the event occurred in.
    * @param process is the processType we are searching for.
    * @return an ArrayList of the ProcessOccurrence's (if any)
    */
@@ -756,8 +757,8 @@ public final class AreaSummary implements Externalizable {
       setProcessEvents(tStep,evuId,event);
     }
   }
-  public void updateProcessOriginatedIn(Evu evu, Lifeform lifeform,
-                                        ProcessProbability processData, int timeStep) {
+  public void updateProcessOriginatedIn(Evu evu, Lifeform lifeform, ProcessProbability processData,
+                                        int timeStep) {
     ProcessOccurrence event;
 
     if (processData.processType.equals(ProcessType.NONE)) { return; }
