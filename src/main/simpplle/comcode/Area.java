@@ -2066,32 +2066,30 @@ public final class Area implements Externalizable {
 
 
     int cStep = Simulation.getCurrentTimeStep();
-    for (Evu anAllEvu : allEvu) {
-      if (anAllEvu == null) {
+    for (Evu anEvu : allEvu) {
+      if (anEvu == null) {
         continue;
       }
-
       if (allRoads != null && simulation.needNearestRoadTrailInfo()) {
-        anAllEvu.updateNearestRoad();
+        anEvu.updateNearestRoad();
       }
       if (allTrails != null && simulation.needNearestRoadTrailInfo()) {
-        anAllEvu.updateNearestTrail();
+        anEvu.updateNearestTrail();
       }
-
       if (isWyoming) {
-        anAllEvu.determineFireSeason();
+        anEvu.determineFireSeason();
       }
       if (!simulation.isStandDevelopment()) {
-        anAllEvu.doProbability();
+        anEvu.doProbability();
       }
-      anAllEvu.doGetProcess();
+      anEvu.doGetProcess();
       if (!Area.multipleLifeformsEnabled()) {
-        VegSimStateData state = anAllEvu.getState(cStep);
+        VegSimStateData state = anEvu.getState(cStep);
         ProcessProbability processData =
             new ProcessProbability(state.getProcess(), state.getProb());
 
-        areaSummary.updateProcessOriginatedIn(anAllEvu, Lifeform.NA,
-            processData, cStep);
+          areaSummary.updateProcessOriginatedIn(anEvu, Lifeform.NA,
+              processData, cStep);
       }
     }
 
