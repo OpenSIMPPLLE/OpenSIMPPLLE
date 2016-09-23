@@ -1109,26 +1109,26 @@ public final class Simulation implements SimulationTypes, Externalizable {
     File path;
 
     for (int run=0; run<numSimulations; run++) {
-      path = new File (getAccessFilesPath(),"EVU_SIM_DATA" + Integer.toString(run+1) + ".txt");
+      path = new File (getAccessFilesPath(),"EVU_SIM_DATA" + Integer.toString(run+1) + ".csv");
       //GZIPOutputStream out = new GZIPOutputStream(new FileOutputStream(path));
       //accessEvuSimDataOut[run] = new PrintWriter(out);
       accessEvuSimDataOut[run] = new PrintWriter(new FileWriter(path, true));
       accessEvuSimDataOut[run].println("RUN,TIMESTEP,SEASON_ID,SLINK,ACRES,LIFEFORM_ID,SPECIES_ID,SIZECLASS_ID,AGE,DENSITY_ID,PROCESS_ID,PROB,PROBSTR,OWNERSHIP_ID,SPECIAL_AREA_ID");
     }
 
-    path = new File (getAccessFilesPath(),"PROCESS.txt");
+    path = new File (getAccessFilesPath(),"PROCESS.csv");
     accessProcessOut = new PrintWriter(new FileWriter(path, true));
     accessProcessOut.println("ID,PROCESS");
 
-    path = new File (getAccessFilesPath(),"SPECIES.txt");
+    path = new File (getAccessFilesPath(),"SPECIES.csv");
     accessSpeciesOut = new PrintWriter(new FileWriter(path, true));
     accessSpeciesOut.println("ID,SPECIES");
 
-    path = new File (getAccessFilesPath(),"SIZECLASS.txt");
+    path = new File (getAccessFilesPath(),"SIZECLASS.csv");
     accessSizeClassOut = new PrintWriter(new FileWriter(path, true));
     accessSizeClassOut.println("ID,SIZECLASS");
 
-    path = new File (getAccessFilesPath(),"DENSITY.txt");
+    path = new File (getAccessFilesPath(),"DENSITY.csv");
     accessDensityOut = new PrintWriter(new FileWriter(path, true));
     accessDensityOut.println("ID,DENSITY");
 
@@ -1139,7 +1139,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     if(doAreaSummary) {
       // Open an area summary file for each simulation
       for (int run = 0; run < numSimulations; run++) {
-        path = new File(getAccessFilesPath(), "AREASUMMARY" + Integer.toString(run + 1) + ".txt");
+        path = new File(getAccessFilesPath(), "AREASUMMARY" + Integer.toString(run + 1) + ".csv");
         accessAreaSummaryOut[run] = new PrintWriter(new FileWriter(path, true));
         accessAreaSummaryOut[run].println("RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID");
       }
@@ -1149,31 +1149,31 @@ public final class Simulation implements SimulationTypes, Externalizable {
     //accessFmzOut = new PrintWriter(new FileWriter(path, true));
     //accessFmzOut.println("ID,FMZNAME");
 
-    path = new File (getAccessFilesPath(),"TRACKSPECIES.txt");
+    path = new File (getAccessFilesPath(),"TRACKSPECIES.csv");
     accessInclusionRuleSpecies = new PrintWriter(new FileWriter(path, true));
     accessInclusionRuleSpecies.println("ID,INCSPECIES");
 
-    path = new File (getAccessFilesPath(),"LIFEFORM.txt");
+    path = new File (getAccessFilesPath(),"LIFEFORM.csv");
     accessLifeformOut = new PrintWriter(new FileWriter(path, true));
     accessLifeformOut.println("ID,LIFEFORM");
 
-    path = new File (getAccessFilesPath(),"OWNERSHIP.txt");
+    path = new File (getAccessFilesPath(),"OWNERSHIP.csv");
     accessOwnershipOut = new PrintWriter(new FileWriter(path, true));
     accessOwnershipOut.println("ID,OWNERSHIP");
 
-    path = new File (getAccessFilesPath(),"SPECIALAREA.txt");
+    path = new File (getAccessFilesPath(),"SPECIALAREA.csv");
     accessSpecialAreaOut = new PrintWriter(new FileWriter(path, true));
     accessSpecialAreaOut.println("ID,SPCAREA");
 
-    path = new File (getAccessFilesPath(),"TRACKINGSPECIESPCT.txt");
+    path = new File (getAccessFilesPath(),"TRACKINGSPECIESPCT.csv");
     accessTrackingSpeciesOut = new PrintWriter(new FileWriter(path, true));
     accessTrackingSpeciesOut.println("RUN,TIMESTEP,SLINK,LIFEFORM_ID,SPECIES_ID,PCT");
 
-    path = new File (getAccessFilesPath(),"SLINKMETRICS.txt");
+    path = new File (getAccessFilesPath(),"SLINKMETRICS.csv");
     accessSlinkMetricsOut = new PrintWriter(new FileWriter(path, true));
     accessSlinkMetricsOut.println("SLINK,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
 
-    path = new File (getAccessFilesPath(),"TREATMENT.txt");
+    path = new File (getAccessFilesPath(),"TREATMENT.csv");
     accessTreatmentOut = new PrintWriter(new FileWriter(path,true));
     accessTreatmentOut.println("ID,TREATMENT");
 
