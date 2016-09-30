@@ -175,7 +175,7 @@ public class PathwayShape {
         tmpY >= y       && tmpY < (y+10));
   }
 
-  public boolean isInside(int tmpX, int tmpY) {
+  public boolean isInsideShape(int tmpX, int tmpY) {
     return (tmpX >= x && tmpX < (width + x) &&
             tmpY >= y && tmpY < (height + y));
   }

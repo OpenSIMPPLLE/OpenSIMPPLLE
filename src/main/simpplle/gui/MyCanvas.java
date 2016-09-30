@@ -586,7 +586,7 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
     while (keys.hasMoreElements()) {
       key = (String) keys.nextElement();
       shape = (PathwayShape) states.get(key);
-      if (shape.isInside(x,y)) {
+      if (shape.isInsideShape(x,y)) {
         shape.select();
         if (selectedState != null) { selectedState.unSelect(); }
         selectedState = shape;
@@ -662,7 +662,7 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
     while (keys.hasMoreElements()) {
       key   = (String) keys.nextElement();
       shape = (PathwayShape) states.get(key);
-      if (shape.isInside(x,y)) {
+      if (shape.isInsideShape(x,y)) {
         pathwayDlg.saveArrowChange(changingState.getState(), process,
                                    changingState.getNextState(process));
         changingState.setNextState(process,shape.getState());
