@@ -192,35 +192,39 @@ public class PathwayShape {
     }
   }
 
-  public void paint(Graphics g) {
-    Font old, f;
+  public void paint(Graphics graphics) {
 
     if (selected) {
-      g.setColor(TEXT_COLOR);
-      old = g.getFont();
-      f   = new Font("Dialog",Font.BOLD,16);
-      g.setFont(f);
-      g.drawString(getStateName(),x,y);
-      g.setFont(old);
+      Font old = graphics.getFont();
+      graphics.setColor(TEXT_COLOR);
+      graphics.setFont(new Font("Dialog", Font.BOLD, 16));
+      graphics.drawString(getStateName(), x, y);
+      graphics.setFont(old);
+    } else {
+      if (showLabel) {
+        Font old = graphics.getFont();
+        graphics.setColor(TEXT_COLOR);
+        graphics.setFont(new Font("Dialog", Font.BOLD, 10));
+        graphics.drawString(getStateName(), x + (int)(width * 0.75), y);
+        graphics.setFont(old);
+      }
     }
 
-    if (!selected && showLabel) {
-      g.setColor(TEXT_COLOR);
-      old = g.getFont();
-      f   = new Font("Dialog",Font.BOLD,10);
-      g.setFont(f);
-      g.drawString(getStateName(),x+(int)(width*0.75),y);
-      g.setFont(old);
-    }
+    // Filled state box
 
-    g.setColor(color);
-    g.fillRect(x,y,width,height);
+    graphics.setColor(color);
+    graphics.fillRect(x, y, width, height);
 
-    g.setColor(NODE_COLOR);
-    Point p = getCenterPoint();
-    g.fillRect((p.x-5),y,10,10);
+    // Filled node box
 
-    g.setColor(Color.black);
-    g.drawRect(x,y,width,height);
+    Point center = getCenterPoint();
+    graphics.setColor(NODE_COLOR);
+    graphics.fillRect(center.x - 5, y, 10, 10);
+
+    // Black outline
+
+    graphics.setColor(Color.black);
+    graphics.drawRect(x, y, width, height);
+
   }
 }
