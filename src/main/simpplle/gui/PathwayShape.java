@@ -104,32 +104,62 @@ public class PathwayShape {
     this.showLabel   = false;
   }
 
-  public VegetativeType getState() { return state; }
+  public Point getCenterPosition() {
+    return new Point(x + (width / 2), y + (height / 2));
+  }
+
+  public boolean isChangingNextState() {
+    return changingNextState;
+  }
+
+  public void setChangingNextState() {
+    changingNextState = true;
+  }
+
+  public VegetativeType getProcessNextState(Process p) {
+    return state.getProcessNextState(p);
+  }
 
   public void setNextState(Process p, VegetativeType nextState) {
     state.setProcessNextState(p,nextState);
     changingNextState = false;
   }
 
-  public boolean nonSpeciesMatch() { return (normalColor == NON_SPECIES_COLOR); }
-
-  public Point getCenterPosition() {
-    return new Point((x + (width/2)), (y + (height/2)));
+  public void setPosition(Point point) {
+    x = point.x;
+    y = point.y;
   }
 
-  public void setPosition(Point pt) {
-    x = pt.x;
-    y = pt.y;
+  public void setPosition(Species species) {
+    if (species == state.getSpecies()) {
+      normalColor = SPECIES_COLOR;
+    } else {
+      normalColor = NON_SPECIES_COLOR;
+    }
+    setPosition(state.getSpeciesPosition(species));
   }
 
   public void setPosition(int newX, int newY, Species species) {
     x = newX;
     y = newY;
-
     state.setSpeciesPosition(species, new Point(x,y));
   }
 
-  public void setShowLabel(boolean value) { showLabel = value; }
+  public void setShowLabel(boolean value) {
+    showLabel = value;
+  }
+
+  public VegetativeType getState() {
+    return state;
+  }
+
+  public String getStateName() {
+    return state.toString();
+  }
+
+  public boolean nonSpeciesMatch() {
+    return normalColor == NON_SPECIES_COLOR;
+  }
 
   public void checkFixPosition(Species species) {
     if (x < 0 || y < 0) {
@@ -139,30 +169,16 @@ public class PathwayShape {
     }
   }
 
-  public void setPosition(Species species) {
-    if (species == state.getSpecies()) {
-      normalColor = SPECIES_COLOR;
-    }
-    else {
-      normalColor = NON_SPECIES_COLOR;
-    }
-
-    setPosition(state.getSpeciesPosition(species));
+  public boolean isAtNode(int tmpX, int tmpY) {
+    Point p = getCenterPosition();
+    return (tmpX >= (p.x-5) && tmpX < (p.x+5) &&
+        tmpY >= y       && tmpY < (y+10));
   }
 
   public boolean isInside(int tmpX, int tmpY) {
     return (tmpX >= x && tmpX < (width + x) &&
             tmpY >= y && tmpY < (height + y));
   }
-
-  public boolean isAtNode(int tmpX, int tmpY) {
-    Point p = getCenterPosition();
-    return (tmpX >= (p.x-5) && tmpX < (p.x+5) &&
-            tmpY >= y       && tmpY < (y+10));
-  }
-
-  public void setChangingNextState() { changingNextState = true; }
-  public boolean isChangingNextState() { return changingNextState; }
 
   public void select() {
     color = SELECTED_COLOR;
@@ -205,13 +221,5 @@ public class PathwayShape {
 
     g.setColor(Color.black);
     g.drawRect(x,y,width,height);
-  }
-
-  public String getStateName() {
-    return state.toString();
-  }
-
-  public VegetativeType getProcessNextState(Process p) {
-  	return state.getProcessNextState(p);
   }
 }
