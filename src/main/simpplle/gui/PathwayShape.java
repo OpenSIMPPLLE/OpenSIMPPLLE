@@ -175,9 +175,9 @@ public class PathwayShape {
         tmpY >= y       && tmpY < (y+10));
   }
 
-  public boolean isInsideShape(int tmpX, int tmpY) {
-    return (tmpX >= x && tmpX < (width + x) &&
-            tmpY >= y && tmpY < (height + y));
+  public boolean isInsideShape(int x, int y) {
+    return (x >= this.x && x < (width  + this.x) &&
+            y >= this.y && y < (height + this.y));
   }
 
   public void select() {
