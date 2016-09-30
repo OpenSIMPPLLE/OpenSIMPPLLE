@@ -169,7 +169,7 @@ public class PathwayShape {
     }
   }
 
-  public boolean isAtNode(int tmpX, int tmpY) {
+  public boolean isInsideNode(int tmpX, int tmpY) {
     Point p = getCenterPoint();
     return (tmpX >= (p.x-5) && tmpX < (p.x+5) &&
         tmpY >= y       && tmpY < (y+10));

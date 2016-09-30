@@ -535,7 +535,7 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
 
     if (SwingUtilities.isLeftMouseButton(e) == false) { return; }
 
-    if (selectedState != null && selectedState.isAtNode(e.getX(),e.getY()) &&
+    if (selectedState != null && selectedState.isInsideNode(e.getX(),e.getY()) &&
         species == selectedState.getState().getSpecies() &&
         movingShape == false) {
       changingState = selectedState;
