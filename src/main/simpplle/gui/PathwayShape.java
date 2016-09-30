@@ -104,7 +104,7 @@ public class PathwayShape {
     this.showLabel   = false;
   }
 
-  public Point getCenterPosition() {
+  public Point getCenterPoint() {
     return new Point(x + (width / 2), y + (height / 2));
   }
 
@@ -170,7 +170,7 @@ public class PathwayShape {
   }
 
   public boolean isAtNode(int tmpX, int tmpY) {
-    Point p = getCenterPosition();
+    Point p = getCenterPoint();
     return (tmpX >= (p.x-5) && tmpX < (p.x+5) &&
         tmpY >= y       && tmpY < (y+10));
   }
@@ -216,7 +216,7 @@ public class PathwayShape {
     g.fillRect(x,y,width,height);
 
     g.setColor(NODE_COLOR);
-    Point p = getCenterPosition();
+    Point p = getCenterPoint();
     g.fillRect((p.x-5),y,10,10);
 
     g.setColor(Color.black);
