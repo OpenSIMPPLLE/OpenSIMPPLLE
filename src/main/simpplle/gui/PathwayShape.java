@@ -116,7 +116,7 @@ public class PathwayShape {
     changingNextState = true;
   }
 
-  public VegetativeType getProcessNextState(Process p) {
+  public VegetativeType getNextState(Process p) {
     return state.getProcessNextState(p);
   }
 

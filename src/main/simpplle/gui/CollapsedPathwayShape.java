@@ -131,7 +131,7 @@ public class CollapsedPathwayShape extends PathwayShape {
 /**
  * Gets the next vegetative state for a process within this shape.  
  */
-        public VegetativeType getProcessNextState(Process p) {
+        public VegetativeType getNextState(Process p) {
                 VegetativeType curState = state;
                 VegetativeType nextState = curState.getProcessNextState(p);
                 Hashtable statesAlreadyViewed = new Hashtable();

@@ -378,7 +378,7 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
       shape = (PathwayShape) states.get(key);
       if (shape.nonSpeciesMatch()) { continue; }
 
-      nextState = shape.getProcessNextState(process);
+      nextState = shape.getNextState(process);
       if (nextState == null) { continue; }
       from      = shape.getCenterPoint();
       shape     = (PathwayShape) states.get(nextState.toString());
@@ -664,7 +664,7 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
       shape = (PathwayShape) states.get(key);
       if (shape.isInside(x,y)) {
         pathwayDlg.saveArrowChange(changingState.getState(), process,
-                                   changingState.getProcessNextState(process));
+                                   changingState.getNextState(process));
         changingState.setNextState(process,shape.getState());
         refreshDiagram();  // get rid of unused non-species states.
         changingState.unSelect();
