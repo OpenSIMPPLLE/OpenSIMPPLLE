@@ -104,59 +104,33 @@ public class PathwayShape {
     this.showLabel   = false;
   }
 
-/**
- * Gets the vegetative state
- * @return vegetative type.  
- */
   public VegetativeType getState() { return state; }
-/**
- * Sets the next state from a process and vegetative type next state.  
- * @param p
- * @param nextState
- */
+
   public void setNextState(Process p, VegetativeType nextState) {
     state.setProcessNextState(p,nextState);
     changingNextState = false;
   }
 
   public boolean nonSpeciesMatch() { return (normalColor == NON_SPECIES_COLOR); }
-/**
- * Calculates the center position (x,y).  
- * @return
- */
+
   public Point getCenterPosition() {
     return new Point((x + (width/2)), (y + (height/2)));
   }
-/**
- * Sets the x,y position of the pathway shape from a parameter point.  
- * @param pt
- */
+
   public void setPosition(Point pt) {
     x = pt.x;
     y = pt.y;
   }
-/**
- * Sets the x,y position of this pathway and the species position for this vegetative type.  This is stored in a hashtable keyed by species with 
- * value of position.
- * @param newX x coordinate of species
- * @param newY y coordinate of species
- * @param species the species to be set at a particular position.  
- */
+
   public void setPosition(int newX, int newY, Species species) {
     x = newX;
     y = newY;
 
     state.setSpeciesPosition(species, new Point(x,y));
   }
-  /**
-   * Checks if show label should be set.  
-   * @param value
-   */
+
   public void setShowLabel(boolean value) { showLabel = value; }
-/**
- * Checks the fix position of a species if x or y coordinate is below 0.  
- * @param species
- */
+
   public void checkFixPosition(Species species) {
     if (x < 0 || y < 0) {
       if (x < 0) { x = 1; }
@@ -164,10 +138,7 @@ public class PathwayShape {
       setPosition(x,y,species);
     }
   }
-/**
- * Sets the position for a particular species.  
- * @param species
- */
+
   public void setPosition(Species species) {
     if (species == state.getSpecies()) {
       normalColor = SPECIES_COLOR;
@@ -178,12 +149,7 @@ public class PathwayShape {
 
     setPosition(state.getSpeciesPosition(species));
   }
-/**
- * Method to calculate if parameter x,y coordinates are inside the x square representing a vegetative type.  
- * @param tmpX
- * @param tmpY
- * @return
- */
+
   public boolean isInside(int tmpX, int tmpY) {
     return (tmpX >= x && tmpX < (width + x) &&
             tmpY >= y && tmpY < (height + y));
@@ -208,10 +174,7 @@ public class PathwayShape {
     color = normalColor;
     selected = false;
   }
-/**
- * Paint method.  
- * @param g
- */
+
   public void paint(Graphics g) {
     Font old, f;
 
@@ -243,20 +206,12 @@ public class PathwayShape {
     g.setColor(Color.black);
     g.drawRect(x,y,width,height);
   }
-/**
- * Vegetative type toString containing species, size class, age, and density.
- * @return
- */
+
   public String getStateName() {
     return state.toString();
   }
-  /**
-   * Gets the next vegetative type state.  
-   * @param p
-   * @return
-   */
+
   public VegetativeType getProcessNextState(Process p) {
   	return state.getProcessNextState(p);
   }
-
 }
