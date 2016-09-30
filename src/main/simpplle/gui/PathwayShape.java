@@ -18,10 +18,10 @@ import simpplle.comcode.Species;
 import simpplle.comcode.VegetativeType;
 
 /**
- *This class creates the vegetative pathway diagrams.
- *
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+ * A pathway shape is a visual representation of a vegetative type in a pathway. Each pathway shape
+ * is drawn as a rectangle which can be selected to display the name of the state. At the top of
+ * each rectangle is a small 'node' box. Clicking and dragging from the node box allows a user to
+ * connect the shape to the next state in the pathway.
  */
 
 public class PathwayShape {
