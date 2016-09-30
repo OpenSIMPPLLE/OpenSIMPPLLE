@@ -84,39 +84,26 @@ public class PathwayShape {
    */
   private boolean showLabel;
 
-/**
- * Constructor for pathway shape.  Starts the pathway at (10,10).  
- */
   public PathwayShape() {
-    x               = 10;
-    y               = 10;
-    width           = DEFAULT_SIZE;
-    height          = DEFAULT_SIZE;
-    normalColor     = SPECIES_COLOR;
-    color           = normalColor;
-    selected        = false;
-    showLabel       = false;
+    this(null,DEFAULT_SIZE,DEFAULT_SIZE);
   }
-/**
- * Overloaded constructor which sets the vegetative state 
- * @param state
- */
+
   public PathwayShape(VegetativeType state) {
-    this();
-    this.state    = state;
+    this(state,DEFAULT_SIZE,DEFAULT_SIZE);
   }
-/**
- * Overloaded constructor for pathway shape.  sets the state, width, and height to parameter arguments.  
- * @param state
- * @param width
- * @param height
- */
+
   public PathwayShape(VegetativeType state, int width, int height) {
-    this();
-    this.state  = state;
-    this.width  = width;
-    this.height = height;
+    this.state       = state;
+    this.x           = 10;
+    this.y           = 10;
+    this.width       = width;
+    this.height      = height;
+    this.normalColor = SPECIES_COLOR;
+    this.color       = normalColor;
+    this.selected    = false;
+    this.showLabel   = false;
   }
+
 /**
  * Gets the vegetative state
  * @return vegetative type.  
