@@ -25,19 +25,65 @@ import simpplle.comcode.VegetativeType;
  */
 
 public class PathwayShape {
-  VegetativeType state;
-  public int     width, height;
-  int     x, y;
-  Color   color, normalColor;
-  boolean selected, changingNextState;
-  boolean showLabel=false;
 
+  private static final int DEFAULT_SIZE = 30;
+
+  private static final Color NODE_COLOR        = Color.blue;
+  private static final Color TEXT_COLOR        = Color.black;
+  private static final Color SELECTED_COLOR    = Color.orange;
   private static final Color SPECIES_COLOR     = Color.yellow;
   private static final Color NON_SPECIES_COLOR = new Color(160,170,160);
-  private static final Color SELECTED_COLOR    = Color.orange;
-  private static final Color TEXT_COLOR        = Color.black;
-  private static final Color NODE_COLOR        = Color.blue;
-  private static final int   DEFAULT_SIZE			 = 30;
+
+  /**
+   * The vegetative type that this shape represents
+   */
+  VegetativeType state;
+
+  /**
+   * The width of the rectangle
+   */
+  public int width;
+
+  /**
+   * The height of the rectangle
+   */
+  public int height;
+
+  /**
+   * The horizontal position of the rectangle
+   */
+  protected int x;
+
+  /**
+   * The vertical position of the rectangle
+   */
+  protected int y;
+
+  /**
+   * The current color of the shape
+   */
+  protected Color color;
+
+  /**
+   * The color of the shape when it is not selected
+   */
+  protected Color normalColor;
+
+  /**
+   * A flag indicating if the shape is selected
+   */
+  boolean selected;
+
+  /**
+   * A flag indicating that the user is connecting the node to a new next state
+   */
+  private boolean changingNextState;
+
+  /**
+   * A flag indicating if the label is drawn even when deselected
+   */
+  private boolean showLabel;
+
 /**
  * Constructor for pathway shape.  Starts the pathway at (10,10).  
  */
@@ -49,6 +95,7 @@ public class PathwayShape {
     normalColor     = SPECIES_COLOR;
     color           = normalColor;
     selected        = false;
+    showLabel       = false;
   }
 /**
  * Overloaded constructor which sets the vegetative state 
