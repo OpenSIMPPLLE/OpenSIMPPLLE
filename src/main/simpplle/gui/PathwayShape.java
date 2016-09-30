@@ -162,11 +162,9 @@ public class PathwayShape {
   }
 
   public void checkFixPosition(Species species) {
-    if (x < 0 || y < 0) {
-      if (x < 0) { x = 1; }
-      if (y < 0) { y = 15; }
-      setPosition(x,y,species);
-    }
+    if (x < 0) x = 1;
+    if (y < 0) y = 15;
+    setPosition(x,y,species);
   }
 
   public boolean isInsideNode(int x, int y) {
