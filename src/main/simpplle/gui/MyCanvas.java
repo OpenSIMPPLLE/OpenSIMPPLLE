@@ -588,11 +588,11 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
       shape = (PathwayShape) states.get(key);
       if (shape.isInsideShape(x,y)) {
         shape.select();
-        if (selectedState != null) { selectedState.unSelect(); }
+        if (selectedState != null) { selectedState.deselect(); }
         selectedState = shape;
       }
       else {
-        shape.unSelect();
+        shape.deselect();
       }
     }
 
@@ -638,7 +638,7 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
         species != selectedState.getState().getSpecies()) {
       selectedDoubleClicked = true;
       VegetativeType veg = selectedState.getState();
-      selectedState.unSelect();
+      selectedState.deselect();
       selectedState = null;
       getPathwayDlg().setSpecies(veg);
       selectedDoubleClicked = false;
@@ -667,7 +667,7 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
                                    changingState.getNextState(process));
         changingState.setNextState(process,shape.getState());
         refreshDiagram();  // get rid of unused non-species states.
-        changingState.unSelect();
+        changingState.deselect();
         changingState = null;
         break;
       }

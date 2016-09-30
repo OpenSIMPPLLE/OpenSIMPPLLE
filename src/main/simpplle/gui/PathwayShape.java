@@ -184,11 +184,12 @@ public class PathwayShape {
     color = SELECTED_COLOR;
     selected = true;
   }
-  public void unSelect() {
-    if (changingNextState) { return; }
 
-    color = normalColor;
-    selected = false;
+  public void deselect() {
+    if (!changingNextState) {
+      color = normalColor;
+      selected = false;
+    }
   }
 
   public void paint(Graphics g) {
