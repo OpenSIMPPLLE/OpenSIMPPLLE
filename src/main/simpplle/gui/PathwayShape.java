@@ -169,10 +169,12 @@ public class PathwayShape {
     }
   }
 
-  public boolean isInsideNode(int tmpX, int tmpY) {
-    Point p = getCenterPoint();
-    return (tmpX >= (p.x-5) && tmpX < (p.x+5) &&
-        tmpY >= y       && tmpY < (y+10));
+  public boolean isInsideNode(int x, int y) {
+    Point center = getCenterPoint();
+    return (x >= (center.x - 5) &&
+            x <  (center.x + 5) &&
+            y >= this.y &&
+            y < (this.y + 10));
   }
 
   public boolean isInsideShape(int x, int y) {
