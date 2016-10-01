@@ -220,12 +220,19 @@ public class ProcessOccurrence implements Externalizable {
       AreaSummaryDataNew.writeDatabase(session,data);
       // ** End Work **
   }
+
+  /**
+   * Write process events to a file.
+   * <p> Fields:
+   * <ul>"RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID"</ul>
+   * </p>
+   * @param fout Print writer open to file
+   * @param run int
+   * @param timeStep int
+   */
   public void writeEventAccessFiles(PrintWriter fout, int run, int timeStep)
   throws SimpplleError
   {
-    //Fields
-    //              ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID
-    //"RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID"
     Simulation sim = Simulation.getInstance();
     
     sim.addAccessEcoGroup(unit.getHabitatTypeGroup().getType());
@@ -237,6 +244,12 @@ public class ProcessOccurrence implements Externalizable {
     int rootId    = unit.getId();
     int toId      = -1;
     int processId = process.getSimId();
+
+    // skip printing of succession to reduce file size
+    if(process == ProcessType.SUCCESSION){
+      return;
+    }
+
     int seasonId  = season.ordinal();
     int groupId   = unit.getHabitatTypeGroup().getType().getSimId();
     int ownerId   = Ownership.get(unit.getOwnership(),true).getSimId();
