@@ -2601,12 +2601,14 @@ public final class AreaSummary implements Externalizable {
                                                  Object event, int cRun, int cTime)
     throws SimpplleError
   {
-    // Only log spreading processes
     if (event instanceof ProcessOccurrenceSpreading) {
       ProcessOccurrenceSpreading spreadEvent = (ProcessOccurrenceSpreading)event;
       if (spreadEvent.isOriginUnit(id)) {
         spreadEvent.writeEventAccessFiles(fout,cRun,cTime);
       }
+    }
+    else if (event instanceof ProcessOccurrence) {
+      ((ProcessOccurrence)event).writeEventAccessFiles(fout,cRun,cTime);
     }
   }
 
