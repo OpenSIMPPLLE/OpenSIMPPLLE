@@ -378,12 +378,12 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
       shape = (PathwayShape) states.get(key);
       if (shape.nonSpeciesMatch()) { continue; }
 
-      nextState = shape.getProcessNextState(process);
+      nextState = shape.getNextState(process);
       if (nextState == null) { continue; }
-      from      = shape.getCenterPosition();
+      from      = shape.getCenterPoint();
       shape     = (PathwayShape) states.get(nextState.toString());
                 if (shape == null) { continue; }
-      to = shape.getCenterPosition();
+      to = shape.getCenterPoint();
       g.setColor(process.getColor());
       if (key.equals(nextState.toString())) {
         g.drawOval((from.x-15),from.y-10,45,45);
@@ -403,7 +403,7 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
 
     if (changingState != null) {
       changingState.paint(g);
-      from = changingState.getCenterPosition();
+      from = changingState.getCenterPoint();
 //      g.setColor(LINE_END_COLOR);
       g.drawLine(from.x,from.y-10,changingStateLineEnd.x,changingStateLineEnd.y);
 //      drawArrowhead((Graphics2D)g,from.x,from.y-10,changingStateLineEnd.x,changingStateLineEnd.y);
@@ -535,7 +535,7 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
 
     if (SwingUtilities.isLeftMouseButton(e) == false) { return; }
 
-    if (selectedState != null && selectedState.isAtNode(e.getX(),e.getY()) &&
+    if (selectedState != null && selectedState.isInsideNode(e.getX(),e.getY()) &&
         species == selectedState.getState().getSpecies() &&
         movingShape == false) {
       changingState = selectedState;
@@ -586,13 +586,13 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
     while (keys.hasMoreElements()) {
       key = (String) keys.nextElement();
       shape = (PathwayShape) states.get(key);
-      if (shape.isInside(x,y)) {
+      if (shape.isInsideShape(x,y)) {
         shape.select();
-        if (selectedState != null) { selectedState.unSelect(); }
+        if (selectedState != null) { selectedState.deselect(); }
         selectedState = shape;
       }
       else {
-        shape.unSelect();
+        shape.deselect();
       }
     }
 
@@ -638,7 +638,7 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
         species != selectedState.getState().getSpecies()) {
       selectedDoubleClicked = true;
       VegetativeType veg = selectedState.getState();
-      selectedState.unSelect();
+      selectedState.deselect();
       selectedState = null;
       getPathwayDlg().setSpecies(veg);
       selectedDoubleClicked = false;
@@ -662,12 +662,12 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
     while (keys.hasMoreElements()) {
       key   = (String) keys.nextElement();
       shape = (PathwayShape) states.get(key);
-      if (shape.isInside(x,y)) {
+      if (shape.isInsideShape(x,y)) {
         pathwayDlg.saveArrowChange(changingState.getState(), process,
-                                   changingState.getProcessNextState(process));
+                                   changingState.getNextState(process));
         changingState.setNextState(process,shape.getState());
         refreshDiagram();  // get rid of unused non-species states.
-        changingState.unSelect();
+        changingState.deselect();
         changingState = null;
         break;
       }
