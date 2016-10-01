@@ -1,6 +1,6 @@
 Version 1.3.6 : [Date]
 
-    - Remove generic process occurrence events from area summary file.
+    - Remove succession processes from area summary file.
     - Changed extension of text data files to .csv.
 
 Version 1.3.5 : September 9, 2016
