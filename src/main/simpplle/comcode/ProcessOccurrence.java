@@ -220,32 +220,46 @@ public class ProcessOccurrence implements Externalizable {
       AreaSummaryDataNew.writeDatabase(session,data);
       // ** End Work **
   }
+
+  /**
+   * Write process events to a file.
+   * <p> Fields:
+   * <ul>"RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID"</ul>
+   * </p>
+   * @param fout Print writer open to file
+   * @param run int
+   * @param timeStep int
+   */
   public void writeEventAccessFiles(PrintWriter fout, int run, int timeStep)
   throws SimpplleError
   {
-    //Fields
-    //              ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID
-    //"RUN,TIMESTEP,ORIGINUNITID,UNITID,TOUNITID,PROCESS_ID,PROB,ACRES,SEASON_ID,GROUP_ID,OWNERSHIP_ID,SPECIAL_AREA_ID,FMZ_ID"
     Simulation sim = Simulation.getInstance();
-    
+
+    // Add attributes to lookup files
     sim.addAccessEcoGroup(unit.getHabitatTypeGroup().getType());
     sim.addAccessOwnership(Ownership.get(unit.getOwnership(),true));
     sim.addAccessSpecialArea(SpecialArea.get(unit.getSpecialArea(),true));
     sim.addAccessFmz(unit.getFmz());
     sim.addAccessProcess(process);
 
+    int processId = process.getSimId();
+    // skip printing of succession to reduce file size
+    if(process == ProcessType.SUCCESSION){
+      return;
+    }
+
+    // get ids for all attributes
     int rootId    = unit.getId();
     int toId      = -1;
-    int processId = process.getSimId();
     int seasonId  = season.ordinal();
     int groupId   = unit.getHabitatTypeGroup().getType().getSimId();
     int ownerId   = Ownership.get(unit.getOwnership(),true).getSimId();
     int specialId = SpecialArea.get(unit.getSpecialArea(),true).getSimId();
     int fmzId     = unit.getFmz().getSimId();
     float acres   = unit.getFloatAcres();
-
     float fProb    = (processProb < 0) ? processProb : ( (float)processProb / (float)Utility.pow(10,Area.getAcresPrecision()) );
-    
+
+    // print to file
     fout.printf("%d,%d,%d,%d,%d,",run,timeStep,rootId,rootId,toId);        
     fout.printf("%d,%.1f,%.1f,%d,%d,%d,%d,%d%n", processId,fProb,acres,seasonId,groupId,ownerId,specialId,fmzId);
   }

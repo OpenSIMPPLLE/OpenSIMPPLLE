@@ -2019,38 +2019,37 @@ public final class Area implements Externalizable {
 
     FireSuppEventLogic.getInstance().clearSuppressed();
 
-    for(int i=0;i<allEvu.length;i++) {
-      if (allEvu[i] != null) {
-        allEvu[i].setBeginTimeStepState();
+    for (Evu anAllEvu1 : allEvu) {
+      if (anAllEvu1 != null) {
+        anAllEvu1.setBeginTimeStepState();
       }
     }
 
-    for(int i=0;i<allEvu.length;i++) {
-      if (allEvu[i] != null) {
-        allEvu[i].reset();
-        allEvu[i].doHazard();
+    for (Evu anAllEvu1 : allEvu) {
+      if (anAllEvu1 != null) {
+        anAllEvu1.reset();
+        anAllEvu1.doHazard();
       }
     }
 
     if (hasRoads()) {
-      for (int i = 0; i < allRoads.length; i++) {
-        if (allRoads[i] != null) {
-          allRoads[i].doBeginTimeStep();
+      for (Roads allRoad : allRoads) {
+        if (allRoad != null) {
+          allRoad.doBeginTimeStep();
         }
       }
     }
 
     if (hasTrails()) {
-      for (int i = 0; i < allTrails.length; i++) {
-        if (allTrails[i] != null) {
-          allTrails[i].doBeginTimeStep();
+      for (Trails allTrail : allTrails) {
+        if (allTrail != null) {
+          allTrail.doBeginTimeStep();
         }
       }
     }
 
     boolean isWyoming = RegionalZone.isWyoming();
-    if (!isWyoming ||
-        (isWyoming && Simulation.getInstance().getCurrentSeason() == Season.SPRING)) {
+    if (!isWyoming || Simulation.getInstance().getCurrentSeason() == Season.SPRING) {
       doTreatments();
     }
     doLockInProcesses();
@@ -2058,7 +2057,7 @@ public final class Area implements Externalizable {
     Simulation  simulation = Simpplle.getCurrentSimulation();
     AreaSummary areaSummary = Simpplle.getAreaSummary();
 
-    // Proceses and Probabilities
+    // Processes and Probabilities
     RegionalZone zone = Simpplle.getCurrentZone();
 
     if (isWyoming) {
@@ -2066,34 +2065,35 @@ public final class Area implements Externalizable {
     }
 
 
-    int cStep = simulation.getCurrentTimeStep();
-      for (int i = 0; i < allEvu.length; i++) {
-        if (allEvu[i] == null) { continue; }
-
-        if (allRoads != null && simulation.needNearestRoadTrailInfo()) {
-          allEvu[i].updateNearestRoad();
-        }
-        if (allTrails != null && simulation.needNearestRoadTrailInfo()) {
-          allEvu[i].updateNearestTrail();
-        }
-
-        if (isWyoming) {
-          allEvu[i].determineFireSeason();
-        }
-        if (simulation.isStandDevelopment() == false) {
-          allEvu[i].doProbability();
-        }
-        allEvu[i].doGetProcess();
-        if (Area.multipleLifeformsEnabled() == false) {
-          VegSimStateData state = allEvu[i].getState(cStep);
-          ProcessProbability processData =
-            new ProcessProbability(state.getProcess(), state.getProb());
-          areaSummary.updateProcessOriginatedIn(allEvu[i], Lifeform.NA,
-                                                processData, cStep);
-        }
+    int cStep = Simulation.getCurrentTimeStep();
+    for (Evu anEvu : allEvu) {
+      if (anEvu == null) {
+        continue;
       }
+      if (allRoads != null && simulation.needNearestRoadTrailInfo()) {
+        anEvu.updateNearestRoad();
+      }
+      if (allTrails != null && simulation.needNearestRoadTrailInfo()) {
+        anEvu.updateNearestTrail();
+      }
+      if (isWyoming) {
+        anEvu.determineFireSeason();
+      }
+      if (!simulation.isStandDevelopment()) {
+        anEvu.doProbability();
+      }
+      anEvu.doGetProcess();
+      if (!Area.multipleLifeformsEnabled()) {
+        VegSimStateData state = anEvu.getState(cStep);
+        ProcessProbability processData =
+            new ProcessProbability(state.getProcess(), state.getProb());
 
-    if (simulation.isStandDevelopment() == false) {
+          areaSummary.updateProcessOriginatedIn(anEvu, Lifeform.NA,
+              processData, cStep);
+      }
+    }
+
+    if (!simulation.isStandDevelopment()) {
       doEvuSpread();
     }
 
@@ -2147,14 +2147,14 @@ public final class Area implements Externalizable {
     }
 
     MultipleRunSummary mrSummary = simulation.getMultipleRunSummary();
-    for (int i = 0; i < allEvu.length; i++) {
-      if (allEvu[i] == null) {
+    for (Evu anAllEvu : allEvu) {
+      if (anAllEvu == null) {
         continue;
       }
-  //      areaSummary.updateProcessData(allEvu[i]);
-      areaSummary.updateEmissions(allEvu[i]);
+      //      areaSummary.updateProcessData(allEvu[i]);
+      areaSummary.updateEmissions(anAllEvu);
       if (mrSummary != null) {
-        mrSummary.updateSummaries(allEvu[i]);
+        mrSummary.updateSummaries(anAllEvu);
       }
 
     }
