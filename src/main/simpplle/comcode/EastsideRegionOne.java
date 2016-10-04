@@ -47,7 +47,9 @@ public class EastsideRegionOne extends RegionalZone {
       ProcessType.MS_ROOT_DISEASE,
       ProcessType.HS_ROOT_DISEASE,
       ProcessType.SPRUCE_BEETLE,
-      ProcessType.WBP_MPB
+      ProcessType.WBP_MPB,
+      ProcessType.LIGHT_WSBW,
+      ProcessType.SEVERE_WSBW
     };
 
     sampleAreas = new Area[1];
