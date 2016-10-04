@@ -115,7 +115,7 @@ public class ProcessType extends SimpplleType implements Externalizable {
   // *** Eastside, Westside and Gila Zones ***
    // *****************************************
   public static final ProcessType LIGHT_WSBW               = new ProcessType("LIGHT-WSBW","LightWsbw",true);
-  public static final ProcessType SEVERE_WSBW              = new ProcessType("SEVERE-WSBW","SevereWsbw2",true);
+  public static final ProcessType SEVERE_WSBW              = new ProcessType("SEVERE-WSBW","SevereWsbw",true);
   public static final ProcessType LIGHT_LP_MPB             = new ProcessType("LIGHT-LP-MPB","LightLpMpb",true);
   public static final ProcessType SEVERE_LP_MPB            = new ProcessType("SEVERE-LP-MPB","SevereLpMpb",true);
   public static final ProcessType PP_MPB                   = new ProcessType("PP-MPB","PpMpb",true);
