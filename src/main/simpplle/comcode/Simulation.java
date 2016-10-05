@@ -248,6 +248,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private PrintWriter   accessTrackingSpeciesOut;
   private PrintWriter   accessSlinkMetricsOut;
   private PrintWriter   accessTreatmentOut;
+  private PrintWriter   accessProbabilityOut;
 
   private TreeMap<Short,String> accessProcessList        = new TreeMap<>();
   private TreeMap<Short,String> accessSpeciesList        = new TreeMap<>();
@@ -260,6 +261,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private TreeMap<Short,String> accessOwnershipList      = new TreeMap<>();
   private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<>();
   private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
+  private TreeMap<String,String> accessProbabilityList  = new TreeMap<>();
+
 
   /**
    * Constructs a simulation with a single run covering five years.
@@ -297,6 +300,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessSizeClassList      = new TreeMap<>();
     accessDensityList        = new TreeMap<>();
     accessEcoGroupList       = new TreeMap<>();
+    accessProbabilityList     = new TreeMap<>();
     accessFmzList            = new TreeMap<>();
     accessIncRuleSpeciesList = new TreeMap<>();
     accessLifeformList       = new TreeMap<>();
@@ -1055,9 +1059,33 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessSpecialAreaList.clear();
     accessTreatmentTypeList.clear();
 
+    buildProbabilityMap(accessProbabilityList);
+
   }
 
-  void writeAccessSlinkMetrics() {
+  private void buildProbabilityMap(TreeMap m){
+    m.put("D", "Process no next state");
+    m.put("L", "Locked in process");
+    m.put("S", "Spreading process");
+    m.put("SUPP", "Suppressed Process");
+    m.put("SE", "Extreme fire spread");
+    m.put("SFS", "Fire spotting spread");
+    m.put("COMP", "Competition");
+    m.put("GAP", "Gap process");
+  }
+
+  /**
+   * Write probability map to an open print writer, requires a string, string map signature
+   */
+  private void writeAccessProbabilityMap(PrintWriter fout, TreeMap<String,String> map) throws IOException {
+    for (String id : map.keySet()) {
+      String value = map.get(id);
+      fout.printf("%s,%s%n", id, value);
+    }
+    fout.flush();
+  }
+
+  private void writeAccessSlinkMetrics() {
 
     PrintWriter out = Simulation.getInstance().getAccessSlinkMetricsOut();
 
@@ -1079,6 +1107,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
+  /**
+   * Write all Tree Maps to their respective outputs. These files are often referred to as lookup
+   * table files.
+   *
+   * @throws IOException caught in runSimulation()
+   */
   private void writeAccessTreeMaps() throws IOException {
 
     writeAccessTreeMap(accessProcessOut,accessProcessList);
@@ -1092,6 +1126,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
     writeAccessTreeMap(accessOwnershipOut, accessOwnershipList);
     writeAccessTreeMap(accessSpecialAreaOut,accessSpecialAreaList);
     writeAccessTreeMap(accessTreatmentOut, accessTreatmentTypeList);
+
+    // becuase accessProbabilityList has a key string, it requires a different method
+    writeAccessProbabilityMap(accessProbabilityOut, accessProbabilityList);
 
   }
 
@@ -1116,25 +1153,29 @@ public final class Simulation implements SimulationTypes, Externalizable {
       accessEvuSimDataOut[run].println("RUN,TIMESTEP,SEASON_ID,SLINK,ACRES,LIFEFORM_ID,SPECIES_ID,SIZECLASS_ID,AGE,DENSITY_ID,PROCESS_ID,PROB,PROBSTR,OWNERSHIP_ID,SPECIAL_AREA_ID");
     }
 
-    path = new File (getAccessFilesPath(),"PROCESS.csv");
+    path = new File (getAccessFilesPath(), "PROCESS.csv");
     accessProcessOut = new PrintWriter(new FileWriter(path, true));
     accessProcessOut.println("ID,PROCESS");
 
-    path = new File (getAccessFilesPath(),"SPECIES.csv");
+    path = new File (getAccessFilesPath(), "SPECIES.csv");
     accessSpeciesOut = new PrintWriter(new FileWriter(path, true));
     accessSpeciesOut.println("ID,SPECIES");
 
-    path = new File (getAccessFilesPath(),"SIZECLASS.csv");
+    path = new File (getAccessFilesPath(), "SIZECLASS.csv");
     accessSizeClassOut = new PrintWriter(new FileWriter(path, true));
     accessSizeClassOut.println("ID,SIZECLASS");
 
-    path = new File (getAccessFilesPath(),"DENSITY.csv");
+    path = new File (getAccessFilesPath(), "DENSITY.csv");
     accessDensityOut = new PrintWriter(new FileWriter(path, true));
     accessDensityOut.println("ID,DENSITY");
 
     //path = new File (getAccessFilesPath(),"ECOGROUP.txt");
     //accessEcoGroupOut = new PrintWriter(new FileWriter(path, true));
     //accessEcoGroupOut.println("ID,ECOGROUP");
+
+    path = new File (getAccessFilesPath(), "PROBSTR.csv");
+    accessProbabilityOut = new PrintWriter(new FileWriter(path,true));
+    accessProbabilityOut.println("ID,DESCRIPTION");
 
     if(doAreaSummary) {
       // Open an area summary file for each simulation
@@ -1200,6 +1241,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     //accessEcoGroupOut.flush();
     //accessEcoGroupOut.close();
+
+    accessProbabilityOut.flush();
+    accessProbabilityOut.close();
 
     if(doAreaSummary){
       for (int run=0; run<numSimulations; run++) {
