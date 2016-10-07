@@ -248,6 +248,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private PrintWriter   accessTrackingSpeciesOut;
   private PrintWriter   accessSlinkMetricsOut;
   private PrintWriter   accessTreatmentOut;
+  private PrintWriter   accessProbabilityOut;
 
   private TreeMap<Short,String> accessProcessList        = new TreeMap<>();
   private TreeMap<Short,String> accessSpeciesList        = new TreeMap<>();
@@ -780,6 +781,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
         if (writeAccess) {
           writeAccessSlinkMetrics();
           writeAccessTreeMaps();
+          buildProbabilityMap(accessProbabilityOut);
           closeAccessTextFiles();
         }
 
@@ -1042,7 +1044,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
 
   private void initAccessTreeMaps() {
-
     accessProcessList.clear();
     accessSpeciesList.clear();
     accessSizeClassList.clear();
@@ -1054,10 +1055,24 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessOwnershipList.clear();
     accessSpecialAreaList.clear();
     accessTreatmentTypeList.clear();
-
   }
 
-  void writeAccessSlinkMetrics() {
+  /**
+   * Probability string lookup values, taken from the SIMPPLLE 2.5 User Manual
+   * @param f an open file writer
+   */
+  private void buildProbabilityMap(PrintWriter f){
+    f.println("D,Process no next state");
+    f.println("L,Locked in process");
+    f.println("S,Spreading process");
+    f.println("SUPP,Suppressed Process");
+    f.println("SE,Extreme fire spread");
+    f.println("SFS,Fire spotting spread");
+    f.println("COMP,Competition");
+    f.println("GAP,Gap process");
+  }
+
+  private void writeAccessSlinkMetrics() {
 
     PrintWriter out = Simulation.getInstance().getAccessSlinkMetricsOut();
 
@@ -1079,6 +1094,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
+  /**
+   * Write all Tree Maps to their respective outputs. These files are often referred to as lookup
+   * table files.
+   *
+   * @throws IOException caught in runSimulation()
+   */
   private void writeAccessTreeMaps() throws IOException {
 
     writeAccessTreeMap(accessProcessOut,accessProcessList);
@@ -1092,7 +1113,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     writeAccessTreeMap(accessOwnershipOut, accessOwnershipList);
     writeAccessTreeMap(accessSpecialAreaOut,accessSpecialAreaList);
     writeAccessTreeMap(accessTreatmentOut, accessTreatmentTypeList);
-
   }
 
   private void writeAccessTreeMap(PrintWriter fout, TreeMap<Short,String> map) throws IOException {
@@ -1116,25 +1136,29 @@ public final class Simulation implements SimulationTypes, Externalizable {
       accessEvuSimDataOut[run].println("RUN,TIMESTEP,SEASON_ID,SLINK,ACRES,LIFEFORM_ID,SPECIES_ID,SIZECLASS_ID,AGE,DENSITY_ID,PROCESS_ID,PROB,PROBSTR,OWNERSHIP_ID,SPECIAL_AREA_ID");
     }
 
-    path = new File (getAccessFilesPath(),"PROCESS.csv");
+    path = new File (getAccessFilesPath(), "PROCESS.csv");
     accessProcessOut = new PrintWriter(new FileWriter(path, true));
     accessProcessOut.println("ID,PROCESS");
 
-    path = new File (getAccessFilesPath(),"SPECIES.csv");
+    path = new File (getAccessFilesPath(), "SPECIES.csv");
     accessSpeciesOut = new PrintWriter(new FileWriter(path, true));
     accessSpeciesOut.println("ID,SPECIES");
 
-    path = new File (getAccessFilesPath(),"SIZECLASS.csv");
+    path = new File (getAccessFilesPath(), "SIZECLASS.csv");
     accessSizeClassOut = new PrintWriter(new FileWriter(path, true));
     accessSizeClassOut.println("ID,SIZECLASS");
 
-    path = new File (getAccessFilesPath(),"DENSITY.csv");
+    path = new File (getAccessFilesPath(), "DENSITY.csv");
     accessDensityOut = new PrintWriter(new FileWriter(path, true));
     accessDensityOut.println("ID,DENSITY");
 
     //path = new File (getAccessFilesPath(),"ECOGROUP.txt");
     //accessEcoGroupOut = new PrintWriter(new FileWriter(path, true));
     //accessEcoGroupOut.println("ID,ECOGROUP");
+
+    path = new File (getAccessFilesPath(), "PROBSTR.csv");
+    accessProbabilityOut = new PrintWriter(new FileWriter(path,true));
+    accessProbabilityOut.println("ID,DESCRIPTION");
 
     if(doAreaSummary) {
       // Open an area summary file for each simulation
@@ -1200,6 +1224,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     //accessEcoGroupOut.flush();
     //accessEcoGroupOut.close();
+
+    accessProbabilityOut.flush();
+    accessProbabilityOut.close();
 
     if(doAreaSummary){
       for (int run=0; run<numSimulations; run++) {
