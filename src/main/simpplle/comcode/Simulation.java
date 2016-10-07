@@ -261,8 +261,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private TreeMap<Short,String> accessOwnershipList      = new TreeMap<>();
   private TreeMap<Short,String> accessSpecialAreaList    = new TreeMap<>();
   private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
-  private TreeMap<String,String> accessProbabilityList  = new TreeMap<>();
-
 
   /**
    * Constructs a simulation with a single run covering five years.
@@ -300,7 +298,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessSizeClassList      = new TreeMap<>();
     accessDensityList        = new TreeMap<>();
     accessEcoGroupList       = new TreeMap<>();
-    accessProbabilityList     = new TreeMap<>();
     accessFmzList            = new TreeMap<>();
     accessIncRuleSpeciesList = new TreeMap<>();
     accessLifeformList       = new TreeMap<>();
@@ -784,6 +781,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
         if (writeAccess) {
           writeAccessSlinkMetrics();
           writeAccessTreeMaps();
+          buildProbabilityMap(accessProbabilityOut);
           closeAccessTextFiles();
         }
 
@@ -1046,7 +1044,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
 
   private void initAccessTreeMaps() {
-
     accessProcessList.clear();
     accessSpeciesList.clear();
     accessSizeClassList.clear();
@@ -1058,31 +1055,21 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessOwnershipList.clear();
     accessSpecialAreaList.clear();
     accessTreatmentTypeList.clear();
-
-    buildProbabilityMap(accessProbabilityList);
-
-  }
-
-  private void buildProbabilityMap(TreeMap m){
-    m.put("D", "Process no next state");
-    m.put("L", "Locked in process");
-    m.put("S", "Spreading process");
-    m.put("SUPP", "Suppressed Process");
-    m.put("SE", "Extreme fire spread");
-    m.put("SFS", "Fire spotting spread");
-    m.put("COMP", "Competition");
-    m.put("GAP", "Gap process");
   }
 
   /**
-   * Write probability map to an open print writer, requires a string, string map signature
+   * Probability string lookup values, taken from the SIMPPLLE 2.5 User Manual
+   * @param f an open file writer
    */
-  private void writeAccessProbabilityMap(PrintWriter fout, TreeMap<String,String> map) throws IOException {
-    for (String id : map.keySet()) {
-      String value = map.get(id);
-      fout.printf("%s,%s%n", id, value);
-    }
-    fout.flush();
+  private void buildProbabilityMap(PrintWriter f){
+    f.println("D,Process no next state");
+    f.println("L,Locked in process");
+    f.println("S,Spreading process");
+    f.println("SUPP,Suppressed Process");
+    f.println("SE,Extreme fire spread");
+    f.println("SFS,Fire spotting spread");
+    f.println("COMP,Competition");
+    f.println("GAP,Gap process");
   }
 
   private void writeAccessSlinkMetrics() {
@@ -1126,10 +1113,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     writeAccessTreeMap(accessOwnershipOut, accessOwnershipList);
     writeAccessTreeMap(accessSpecialAreaOut,accessSpecialAreaList);
     writeAccessTreeMap(accessTreatmentOut, accessTreatmentTypeList);
-
-    // becuase accessProbabilityList has a key string, it requires a different method
-    writeAccessProbabilityMap(accessProbabilityOut, accessProbabilityList);
-
   }
 
   private void writeAccessTreeMap(PrintWriter fout, TreeMap<Short,String> map) throws IOException {
