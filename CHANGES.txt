@@ -1,10 +1,11 @@
-Version 1.3.6 : [Date]
+Version 1.3.6 : October 11, 2016
 
-    - Remove succession processes from area summary file.
-    - Changed extension of text data files to .csv.
-    - Added Probability String lookup file.
-    - Added LIGHT/SEVERE_WSBW processes to East Side Region One
-    - Corrected _OLD wsbw process names showing up in pathways editor
+    - Removed succession processes from area summary file
+    - Changed extension of text data files to .csv
+    - Added probability string lookup file
+    - Fixed bug causing invalid LIGHT/SEVERE_WSBW_OLD processes to be saved with pathways
+    - Fixed LIGHT/SEVERE_WSBW process names showing up in pathways editor
+    - Added LIGHT/SEVERE_WSBW to eastside process probability logic dialog
 
 Version 1.3.5 : September 9, 2016
 
