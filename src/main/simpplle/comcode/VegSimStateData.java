@@ -608,12 +608,12 @@ public class VegSimStateData implements Externalizable {
     sim.addAccessOwnership(Ownership.get(evu.getOwnership(),true));
     sim.addAccessSpecialArea(SpecialArea.get(evu.getSpecialArea(),true));
 
-    //Treatment treatment = evu.getTreatment(ts);
-    //int treatmentId = -1;
-    //if (treatment != null) {
-    //  sim.addAccessTreatment(treatment.getType());
-    //  treatmentId = treatment.getType().getSimId();
-    //}
+    Treatment treatment = evu.getTreatment(ts);
+    int treatmentId = -1;
+    if (treatment != null) {
+      sim.addAccessTreatment(treatment.getType());
+      treatmentId = treatment.getType().getSimId();
+    }
 
     float acres     = evu.getFloatAcres();
     int   lifeId    = state.lifeform.getSimId();
@@ -625,8 +625,6 @@ public class VegSimStateData implements Externalizable {
     int   seasonId  = state.season.ordinal();
     int   prob      = state.getProb();
     float fProb     = state.getFloatProb();
-    int   ownerId   = Ownership.get(evu.getOwnership(),true).getSimId();
-    int   specialId = SpecialArea.get(evu.getSpecialArea(),true).getSimId();
 
     String probStr = "n/a";
     if (prob < 0) {
@@ -634,13 +632,15 @@ public class VegSimStateData implements Externalizable {
       probStr = state.getProbString();
     }
 
-    //Evu originUnit = evu.getOriginUnit();
-    //int originUnitId = -1;
-    //if (originUnit != null) {
-    //  originUnitId = originUnit.getId();
-    //}
-
-    fout.printf("%d,%d,%d,%d,%.1f,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d%n",run,ts,seasonId,state.slink,acres,lifeId,speciesId,sizeId,age,densityId,processId,fProb,probStr,ownerId,specialId);
+    Evu originUnit = evu.getOriginUnit();
+    int originUnitId = -1;
+    if (originUnit != null) {
+      originUnitId = originUnit.getId();
+    }
+    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d,%d%n",
+        run ,ts, seasonId, state.slink, lifeId, speciesId, sizeId, age, densityId, processId, fProb,
+        probStr, treatmentId, originUnitId, state.fireSpreadRuleIndex,
+        state.fireRegenerationRuleIndex);
 
     if (state.trackingSpecies != null) {
 
