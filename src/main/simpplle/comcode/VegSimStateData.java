@@ -637,10 +637,9 @@ public class VegSimStateData implements Externalizable {
     if (originUnit != null) {
       originUnitId = originUnit.getId();
     }
-    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d,%d%n",
+    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d%n",
         run ,ts, seasonId, state.slink, lifeId, speciesId, sizeId, age, densityId, processId, fProb,
-        probStr, treatmentId, originUnitId, state.fireSpreadRuleIndex,
-        state.fireRegenerationRuleIndex);
+        probStr, treatmentId, originUnitId, state.fireSpreadRuleIndex);
 
     if (state.trackingSpecies != null) {
 
