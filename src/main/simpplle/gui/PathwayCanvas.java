@@ -241,16 +241,24 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
   }
 
-/**
- * Method to switch between showing all labels and not showing all labels.  
- */
-  public void toggleShowAllLabels() { showAllLabels = !showAllLabels; }
-/**
- * Sets the file pathway dialog to parameter Pathway dlg
- * @param dlg
- */
-  public void setPathwayDlg(Pathway dlg) { pathwayDlg = dlg; }
-  public Pathway getPathwayDlg() { return pathwayDlg; }
+  /**
+   * Method to switch between showing all labels and not showing all labels.
+   */
+  public void toggleShowAllLabels() {
+    showAllLabels = !showAllLabels;
+  }
+
+  /**
+   * Sets the file pathway dialog to parameter Pathway dlg
+   * @param dlg
+   */
+  public void setPathwayDlg(Pathway dlg) {
+    pathwayDlg = dlg;
+  }
+
+  public Pathway getPathwayDlg() {
+    return pathwayDlg;
+  }
 
   public void editShape(ActionEvent e) {
     PathwayEditor dlg = new PathwayEditor(JSimpplle.getSimpplleMain(),
@@ -260,9 +268,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     getPathwayDlg().updateDialog();
     refreshDiagram();
   }
-/**
- * Sets the prevDialogOpen boolean to false, and enables the previous states 
- */
+
+  /**
+   * Sets the prevDialogOpen boolean to false, and enables the previous states
+   */
   public void setPrevDialogClosed() {
     prevDialogOpen = false;
     menuItemPrevStates.setEnabled(true);
@@ -347,13 +356,13 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
       JOptionPane.showMessageDialog(this,msg,"Invalid units found",
                                     JOptionPane.INFORMATION_MESSAGE);
       JSimpplle.getSimpplleMain().markAreaInvalid();
-    }
-    else {
+    } else {
       JSimpplle.getSimpplleMain().markAreaValid();
     }
   }
 
   public void menuPopupRepFiaPlots(ActionEvent e) {
+
   }
 
   public void menuPopupSpeciesChange(ActionEvent e) {
@@ -369,6 +378,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 //    refreshDiagram();
 
   }
+
   public void menuPopupInclusionRules(ActionEvent e) {
     VegetativeType state = selectedState.getState();
     String title =
@@ -383,29 +393,27 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
   }
 
-
   public void menuPopupPictures(ActionEvent e) {
   }
 
-        public void menuPopupCollapse(ActionEvent e) {
-                CollapsedPathwayShape.collapse(selectedState, states);
-                repaint();
-        }
+  public void menuPopupCollapse(ActionEvent e) {
+    CollapsedPathwayShape.collapse(selectedState, states);
+    repaint();
+  }
 
-        public void menuPopupUncollapse(ActionEvent e) {
-                if(selectedState instanceof CollapsedPathwayShape)
-                {
-                        CollapsedPathwayShape curShape = (CollapsedPathwayShape)selectedState;
-                        states.remove(curShape.getState().getCurrentState());
-                        states.putAll(curShape.getDetailedShapes());
-                        repaint();
-                }
-        }
+  public void menuPopupUncollapse(ActionEvent e) {
+    if(selectedState instanceof CollapsedPathwayShape) {
+      CollapsedPathwayShape curShape = (CollapsedPathwayShape)selectedState;
+      states.remove(curShape.getState().getCurrentState());
+      states.putAll(curShape.getDetailedShapes());
+      repaint();
+    }
+  }
 
   public void menuAddLine(ActionEvent e, char dir) {
-        PathwayGridline newLine = new PathwayGridline(dir, mouseClickPosition, this);
-        lines.put(newLine.getKey(), newLine);
-        repaint();
+    PathwayGridline newLine = new PathwayGridline(dir, mouseClickPosition, this);
+    lines.put(newLine.getKey(), newLine);
+    repaint();
   }
 
   public Dimension getPreferredSize() {
@@ -558,7 +566,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     }
   }
 
-  public String getProcess() { return process.toString(); }
+  public String getProcess() {
+    return process.toString();
+  }
+
   public void setProcess(String processName) {
     if (processName == null || processName.length() == 0) { return; }
 
@@ -566,7 +577,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     refreshDiagram();
   }
 
-  public Species getSpecies() { return species; }
+  public Species getSpecies() {
+    return species;
+  }
+
   public void setSpecies(Species newSpecies) {
     if (newSpecies == null) { return; }
 
@@ -575,7 +589,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     //refreshDiagram();
   }
 
-  public String getHtGrp() { return htGrp.toString(); }
+  public String getHtGrp() {
+    return htGrp.toString();
+  }
+
   public void setHtGrp(String newHtGrp) {
     if (newHtGrp == null || newHtGrp.length() == 0) { return; }
 
@@ -591,7 +608,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   public void mouseDragged(MouseEvent e) {
-        boolean repaint = false;
+    boolean repaint = false;
 
     if (SwingUtilities.isLeftMouseButton(e) == false) { return; }
 
@@ -618,18 +635,19 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
       changingStateLineEnd.setLocation(e.getX(),e.getY());
     }
 
-                if(selectedLine!=null)
-                {
-                        PathwayGridline curLine = (PathwayGridline)lines.get(selectedLine);
-                        lines.remove(selectedLine);
-                        selectedLine = curLine.moveLine(e.getPoint());
-                        if(selectedLine!=null)
-                                lines.put(selectedLine, curLine);
-                        repaint = true;
-                }
+    if(selectedLine!=null) {
+      PathwayGridline curLine = (PathwayGridline)lines.get(selectedLine);
+      lines.remove(selectedLine);
+      selectedLine = curLine.moveLine(e.getPoint());
+      if(selectedLine!=null) {
+        lines.put(selectedLine, curLine);
+      }
+      repaint = true;
+    }
 
-                if(repaint)
-                        repaint();
+    if (repaint) {
+      repaint();
+    }
   }
 
   public void mouseMoved(MouseEvent e) {
@@ -665,25 +683,29 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     if (searchLine != null) {
       selectedLine = searchLine.getKey();
       setCursor(searchLine.getSelectedCursor());
-    }
-    else
+    } else {
       setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
 
     repaint();
   }
 
   public void maybePopupMenu(MouseEvent e) {
     if (e.isPopupTrigger()) {
-                        mouseClickPosition = e.getPoint();
-      if(selectedState != null && changingState == null && species == selectedState.getState().getSpecies())
-      {
-                                if(selectedState instanceof CollapsedPathwayShape)
-                                        menuUncollapse.show(e.getComponent(),e.getX(),e.getY());
-                                else
-                                        menuOptions.show(e.getComponent(),e.getX(),e.getY());
-      }
-      else
+
+      mouseClickPosition = e.getPoint();
+
+      if (selectedState != null &&
+          changingState == null &&
+          species == selectedState.getState().getSpecies()) {
+
+        if(selectedState instanceof CollapsedPathwayShape)
+          menuUncollapse.show(e.getComponent(),e.getX(),e.getY());
+        else
+          menuOptions.show(e.getComponent(),e.getX(),e.getY());
+      } else {
         menuLine.show(e.getComponent(), e.getX(), e.getY());
+      }
     }
   }
 
@@ -691,8 +713,14 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     maybePopupMenu(e);
   }
 
-  public void mouseEntered(MouseEvent e) {}
-  public void mouseExited(MouseEvent e) {}
+  public void mouseEntered(MouseEvent e) {
+
+  }
+
+  public void mouseExited(MouseEvent e) {
+
+  }
+
   public void mouseClicked(MouseEvent e) {
     if (selectedState != null && e.getClickCount() == 2 &&
         species != selectedState.getState().getSpecies()) {
@@ -707,6 +735,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
     maybePopupMenu(e);
   }
+
   public void mouseReleased(MouseEvent e) {
     maybePopupMenu(e);
 
