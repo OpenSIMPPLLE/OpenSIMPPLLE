@@ -67,11 +67,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   /**
    *
    */
-  RegionalZone zone;
-
-  /**
-   *
-   */
   Process process;
 
   /**
@@ -144,125 +139,108 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
    */
   Point mouseClickPosition;
 
-  JPopupMenu popupMenu = new JPopupMenu("Options");
-  JMenuItem  edit = new JMenuItem("Edit");
-  JMenuItem  prevStates = new JMenuItem("Previous States");
-  JMenuItem  menuPopupDelete = new JMenuItem("Delete...");
-  JMenuItem  menuPopupRepFiaPlots = new JMenuItem("Representative FIA Plots");
-  JMenuItem  menuPopupPictures = new JMenuItem("Pictures");
-  JMenuItem	 menuPopupCollapse = new JMenuItem("Collapse");
-  JPopupMenu popupMenu3 = new JPopupMenu("Uncollapse");
-  JMenuItem	 menuPopupUncollapse = new JMenuItem("Details");
-  JPopupMenu popupMenu2 = new JPopupMenu("Line Management");
-  JMenuItem	 menuAddVerticalLine = new JMenuItem("Add Vertical Line");
-  JMenuItem	 menuAddHorizontalLine = new JMenuItem("Add Horizontal Line");
-  JMenuItem menuPopupSpeciesChange = new JMenuItem("Species Change");
-  JMenuItem menuPopupInclusionRules = new JMenuItem("Inclusion Rules");
+  /**
+   * The background color of the canvas.
+   */
+  private static final Color CANVAS_COLOR = new Color(212, 208, 200);
 
-  private static final Color CANVAS_COLOR   = new Color(212,208,200);
-  private static final Color LINE_COLOR     = Color.green;
+  /**
+   *
+   */
+  private static final Color LINE_COLOR = Color.green;
+
+  /**
+   *
+   */
   private static final Color LINE_END_COLOR = Color.red;
 
-/**
- * Constructor for PathwayCanvas.  Sets the JMenus, mouse listeners, colors, and variables.
- */
-  public PathwayCanvas() {
-    super();
-//    this.pathwayDlg = pathwayDlg;
+  private JPopupMenu menuOptions;
+  private JPopupMenu menuLine;
+  private JPopupMenu menuUncollapse;
 
+  private JMenuItem menuItemEdit;
+  private JMenuItem menuItemPrevStates;
+  private JMenuItem menuItemDeleteShape;
+  private JMenuItem menuItemRepFIAPlots;
+  private JMenuItem menuItemSpeciesChange;
+  private JMenuItem menuItemInclusionRules;
+  private JMenuItem menuItemPictures;
+  private JMenuItem menuItemCollapse;
+  private JMenuItem menuItemAddVertical;
+  private JMenuItem menuItemAddHorizontal;
+  private JMenuItem menuItemDetails;
+
+  /**
+   * Creates a canvas for drawing pathways.
+   */
+  public PathwayCanvas() {
+
+    super();
+
+    states        = new Hashtable(10);
+    process       = Process.findInstance(ProcessType.SUCCESSION);
+    movingShape   = false;
     showAllLabels = false;
-    states      = new Hashtable(10);
-    movingShape = false;
-    zone        = Simpplle.getCurrentZone();
-    if (zone != null) {
-      process = Process.findInstance(ProcessType.SUCCESSION);
-    }
+
+    menuItemEdit = new JMenuItem("Edit");
+    menuItemEdit.addActionListener(this::editShape);
+
+    menuItemPrevStates = new JMenuItem("Previous States");
+    menuItemPrevStates.addActionListener(this::prevStates);
+
+    menuItemDeleteShape = new JMenuItem("Delete...");
+    menuItemDeleteShape.addActionListener(this::menuPopupDelete);
+
+    menuItemRepFIAPlots = new JMenuItem("Representative FIA Plots");
+    menuItemRepFIAPlots.addActionListener(this::menuPopupRepFiaPlots);
+    menuItemRepFIAPlots.setEnabled(false);
+
+    menuItemSpeciesChange = new JMenuItem("Species Change");
+    menuItemSpeciesChange.addActionListener(this::menuPopupSpeciesChange);
+
+    menuItemInclusionRules = new JMenuItem("Inclusion Rules");
+    menuItemInclusionRules.addActionListener(this::menuPopupInclusionRules);
+
+    menuItemPictures = new JMenuItem("Pictures");
+    menuItemPictures.addActionListener(this::menuPopupPictures);
+    menuItemPictures.setEnabled(false);
+
+    menuItemCollapse = new JMenuItem("Collapse");
+    menuItemCollapse.addActionListener(this::menuPopupCollapse);
+
+    menuOptions = new JPopupMenu("Options");
+    menuOptions.add(menuItemEdit);
+    menuOptions.add(menuItemPrevStates);
+    menuOptions.add(menuItemDeleteShape);
+    menuOptions.add(menuItemRepFIAPlots);
+    menuOptions.add(menuItemSpeciesChange);
+    menuOptions.add(menuItemInclusionRules);
+    menuOptions.add(menuItemPictures);
+    menuOptions.add(menuItemCollapse);
+
+    menuItemAddVertical = new JMenuItem("Add Vertical Line");
+    menuItemAddVertical.addActionListener(event -> menuAddLine(event, PathwayGridline.VERTICAL_DIR));
+
+    menuItemAddHorizontal = new JMenuItem("Add Horizontal Line");
+    menuItemAddHorizontal.addActionListener(event -> menuAddLine(event, PathwayGridline.HORIZONTAL_DIR));
+
+    menuLine = new JPopupMenu("Line Management");
+    menuLine.add(menuItemAddVertical);
+    menuLine.add(menuItemAddHorizontal);
+
+    menuItemDetails = new JMenuItem("Details");
+    menuItemDetails.addActionListener(this::menuPopupUncollapse);
+
+    menuUncollapse = new JPopupMenu("Uncollapse");
+    menuUncollapse.add(menuItemDetails);
 
     addMouseListener(this);
     addMouseMotionListener(this);
+
     setBackground(CANVAS_COLOR);
 
-    // Setup the right-click menu;
-    edit.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        editShape(e);
-      }
-    });
-    popupMenu.add(edit);
-
-    prevStates.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        prevStates(e);
-      }
-    });
-    popupMenu.add(prevStates);
-
-    menuPopupDelete.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuPopupDelete(e);
-      }
-    });
-    popupMenu.add(menuPopupDelete);
-
-    menuPopupRepFiaPlots.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuPopupRepFiaPlots(e);
-      }
-    });
-    popupMenu.add(menuPopupRepFiaPlots);
-    menuPopupRepFiaPlots.setEnabled(false);
-
-
-    menuPopupSpeciesChange.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuPopupSpeciesChange(e);
-      }
-    });
-    popupMenu.add(menuPopupSpeciesChange);
-
-    menuPopupInclusionRules.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuPopupInclusionRules(e);
-      }
-    });
-    popupMenu.add(menuPopupInclusionRules);
-
-    menuPopupPictures.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuPopupPictures(e);
-      }
-    });
-    popupMenu.add(menuPopupPictures);
-    menuPopupPictures.setEnabled(false);
-
-                menuPopupCollapse.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(ActionEvent e) {
-                                menuPopupCollapse(e);
-                  }
-                });
-                popupMenu.add(menuPopupCollapse);
-
-                menuPopupUncollapse.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(ActionEvent e) {
-                                menuPopupUncollapse(e);
-                  }
-                });
-                popupMenu3.add(menuPopupUncollapse);
-
-                menuAddVerticalLine.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(ActionEvent e) {
-                                menuAddLine(e, PathwayGridline.VERTICAL_DIR);
-                  }
-                });
-                popupMenu2.add(menuAddVerticalLine);
-
-                menuAddHorizontalLine.addActionListener(new java.awt.event.ActionListener() {
-                  public void actionPerformed(ActionEvent e) {
-                                menuAddLine(e, PathwayGridline.HORIZONTAL_DIR);
-                  }
-                });
-                popupMenu2.add(menuAddHorizontalLine);
   }
+
 /**
  * Method to switch between showing all labels and not showing all labels.  
  */
@@ -287,8 +265,8 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
  */
   public void setPrevDialogClosed() {
     prevDialogOpen = false;
-    prevStates.setEnabled(true);
-    menuPopupDelete.setEnabled(true);
+    menuItemPrevStates.setEnabled(true);
+    menuItemDeleteShape.setEnabled(true);
   }
 
   public void prevStates(ActionEvent e) {
@@ -300,7 +278,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
                                                   process);
     dlg.setVisible(true);
     prevDialogOpen = true;
-    prevStates.setEnabled(false);
+    menuItemPrevStates.setEnabled(false);
   }
 
   public void menuPopupDelete(ActionEvent e) {
@@ -322,7 +300,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
       JOptionPane.showMessageDialog(this,msg,"Deletion not Allowed",
                                     JOptionPane.INFORMATION_MESSAGE);
-      menuPopupDelete.setEnabled(false);
+      menuItemDeleteShape.setEnabled(false);
       prevStates(e);
     }
     else if (htGrp.getStatesCount() == 1) {
@@ -655,7 +633,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   public void mouseMoved(MouseEvent e) {
-    if (states.isEmpty() || popupMenu.isVisible() || selectedDoubleClicked) { return; }
+    if (states.isEmpty() || menuOptions.isVisible() || selectedDoubleClicked) { return; }
 
     int x = e.getX();
     int y = e.getY();
@@ -700,12 +678,12 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
       if(selectedState != null && changingState == null && species == selectedState.getState().getSpecies())
       {
                                 if(selectedState instanceof CollapsedPathwayShape)
-                                        popupMenu3.show(e.getComponent(),e.getX(),e.getY());
+                                        menuUncollapse.show(e.getComponent(),e.getX(),e.getY());
                                 else
-                                        popupMenu.show(e.getComponent(),e.getX(),e.getY());
+                                        menuOptions.show(e.getComponent(),e.getX(),e.getY());
       }
       else
-        popupMenu2.show(e.getComponent(), e.getX(), e.getY());
+        menuLine.show(e.getComponent(), e.getX(), e.getY());
     }
   }
 
