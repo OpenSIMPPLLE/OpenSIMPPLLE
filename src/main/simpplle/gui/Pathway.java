@@ -57,7 +57,7 @@ public class Pathway extends JDialog {
   JMenu menuFile = new JMenu();
   JMenuItem menuFileOpen = new JMenuItem();
   JMenuItem menuFileQuit = new JMenuItem();
-  MyCanvas canvas = new MyCanvas();
+  PathwayCanvas canvas = new PathwayCanvas();
   JScrollPane jScrollPane1 = new JScrollPane();
   JMenu menuPathways = new JMenu();
   JMenuItem menuLoadAllPathway = new JMenuItem();
@@ -409,7 +409,7 @@ public class Pathway extends JDialog {
     jMenu1.add(menuEditUndoArrow);
   }
 /**
- * Initializes the Pathway dialog.  Sets the MyCanvas pathway dialog to this one, clears out the species, aquatic class, pathway group and process.
+ * Initializes the Pathway dialog.  Sets the PathwayCanvas pathway dialog to this one, clears out the species, aquatic class, pathway group and process.
  * Aquatics pathways are only available for LTA Valley Segment Group (pathway group = LTA Valley Segment Group, Species = aquatic class).  
  * Otherwise it is a vegetative pathway (pathway group = Ecological grouping, Species = species).     
  */

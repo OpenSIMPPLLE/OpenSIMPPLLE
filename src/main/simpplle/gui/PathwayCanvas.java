@@ -42,7 +42,7 @@ import java.awt.geom.Point2D;
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
 
-public class MyCanvas extends JPanel implements MouseListener, MouseMotionListener {
+public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionListener {
   Hashtable        states;
   PathwayShape     selectedState, changingState;
   Point            changingStateLineEnd;
@@ -82,9 +82,9 @@ public class MyCanvas extends JPanel implements MouseListener, MouseMotionListen
   private static final Color LINE_COLOR     = Color.green;
   private static final Color LINE_END_COLOR = Color.red;
 /**
- * Constructor for MyCanvas.  Sets the JMenus, mouse listeners, colors, and variables.  
+ * Constructor for PathwayCanvas.  Sets the JMenus, mouse listeners, colors, and variables.
  */
-  public MyCanvas() {
+  public PathwayCanvas() {
     super();
 //    this.pathwayDlg = pathwayDlg;
 

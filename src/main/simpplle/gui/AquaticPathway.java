@@ -9,7 +9,6 @@
 package simpplle.gui;
 
 import simpplle.JSimpplle;
-import simpplle.comcode.Evu;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.LtaValleySegmentGroup;
 import simpplle.comcode.Simpplle;
@@ -48,7 +47,7 @@ public class AquaticPathway extends JDialog {
   JMenu menuFile = new JMenu();
   JMenuItem menuFileOpen = new JMenuItem();
   JMenuItem menuFileQuit = new JMenuItem();
-  MyCanvas canvas = new MyCanvas();
+  PathwayCanvas canvas = new PathwayCanvas();
   JScrollPane jScrollPane1 = new JScrollPane();
   JMenu menuPathways = new JMenu();
   JMenuItem menuLoadAllPathway = new JMenuItem();

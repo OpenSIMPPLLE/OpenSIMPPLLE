@@ -30,7 +30,7 @@ public class StepCounter extends JDialog {
         private static final byte DEST_SELECT = 1;
         private static final byte COUNT = 2;
 
-        private MyCanvas canvas;
+        private PathwayCanvas canvas;
         private HistoryTableModel history;
         private byte select = ORIGIN_SELECT;
         private JTextField[] txtFields = new JTextField[3];
