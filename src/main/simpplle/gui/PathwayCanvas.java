@@ -43,44 +43,126 @@ import java.awt.geom.Point2D;
  */
 
 public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionListener {
-  Hashtable        states;
-  PathwayShape     selectedState, changingState;
-  Point            changingStateLineEnd;
-  RegionalZone     zone;
-  Process          process;
-  HabitatTypeGroup htGrp;
-  Species          species;
-  boolean          movingShape;
-  boolean          isPopupVisible = false;
-  boolean          prevDialogOpen = false;
-  boolean          selectedDoubleClicked = false;
-  boolean          showAllLabels=false;
-  boolean	   showGridLines=false;
-  Dimension        preferredSize = new Dimension(3000,3525);
 
-  JPopupMenu       popupMenu = new JPopupMenu("Options");
-  JMenuItem        edit = new JMenuItem("Edit");
-  JMenuItem        prevStates = new JMenuItem("Previous States");
-  JMenuItem        menuPopupDelete = new JMenuItem("Delete...");
-  JMenuItem        menuPopupRepFiaPlots = new JMenuItem("Representative FIA Plots");
-  JMenuItem        menuPopupPictures = new JMenuItem("Pictures");
-        JMenuItem				 menuPopupCollapse = new JMenuItem("Collapse");
-        JPopupMenu			 popupMenu3 = new JPopupMenu("Uncollapse");
-        JMenuItem				 menuPopupUncollapse = new JMenuItem("Details");
-  JPopupMenu			 popupMenu2 = new JPopupMenu("Line Management");
-  JMenuItem				 menuAddVerticalLine = new JMenuItem("Add Vertical Line");
-  JMenuItem				 menuAddHorizontalLine = new JMenuItem("Add Horizontal Line");
-  Pathway          pathwayDlg;
-  Hashtable				 allLines = new Hashtable();
-  Hashtable				 lines = new Hashtable();
-  String					 selectedLine;
-  Point						 mouseClickPosition;
+  /**
+   * Maps vegetative type names to pathway shapes.
+   */
+  Hashtable states;
+
+  /**
+   *
+   */
+  PathwayShape selectedState;
+
+  /**
+   *
+   */
+  PathwayShape changingState;
+
+  /**
+   *
+   */
+  Point changingStateLineEnd;
+
+  /**
+   *
+   */
+  RegionalZone zone;
+
+  /**
+   *
+   */
+  Process process;
+
+  /**
+   *
+   */
+  HabitatTypeGroup htGrp;
+
+  /**
+   *
+   */
+  Species species;
+
+  /**
+   *
+   */
+  boolean movingShape;
+
+  /**
+   *
+   */
+  boolean isPopupVisible = false;
+
+  /**
+   *
+   */
+  boolean prevDialogOpen = false;
+
+  /**
+   *
+   */
+  boolean selectedDoubleClicked = false;
+
+  /**
+   *
+   */
+  boolean showAllLabels = false;
+
+  /**
+   *
+   */
+  boolean showGridLines = false;
+
+  /**
+   *
+   */
+  Dimension preferredSize = new Dimension(3000, 3525);
+
+  /**
+   *
+   */
+  Pathway pathwayDlg;
+
+  /**
+   *
+   */
+  Hashtable allLines = new Hashtable();
+
+  /**
+   *
+   */
+  Hashtable lines = new Hashtable();
+
+  /**
+   *
+   */
+  String selectedLine;
+
+  /**
+   *
+   */
+  Point mouseClickPosition;
+
+  JPopupMenu popupMenu = new JPopupMenu("Options");
+  JMenuItem  edit = new JMenuItem("Edit");
+  JMenuItem  prevStates = new JMenuItem("Previous States");
+  JMenuItem  menuPopupDelete = new JMenuItem("Delete...");
+  JMenuItem  menuPopupRepFiaPlots = new JMenuItem("Representative FIA Plots");
+  JMenuItem  menuPopupPictures = new JMenuItem("Pictures");
+  JMenuItem	 menuPopupCollapse = new JMenuItem("Collapse");
+  JPopupMenu popupMenu3 = new JPopupMenu("Uncollapse");
+  JMenuItem	 menuPopupUncollapse = new JMenuItem("Details");
+  JPopupMenu popupMenu2 = new JPopupMenu("Line Management");
+  JMenuItem	 menuAddVerticalLine = new JMenuItem("Add Vertical Line");
+  JMenuItem	 menuAddHorizontalLine = new JMenuItem("Add Horizontal Line");
   JMenuItem menuPopupSpeciesChange = new JMenuItem("Species Change");
   JMenuItem menuPopupInclusionRules = new JMenuItem("Inclusion Rules");
 
   private static final Color CANVAS_COLOR   = new Color(212,208,200);
   private static final Color LINE_COLOR     = Color.green;
   private static final Color LINE_END_COLOR = Color.red;
+
 /**
  * Constructor for PathwayCanvas.  Sets the JMenus, mouse listeners, colors, and variables.
  */
