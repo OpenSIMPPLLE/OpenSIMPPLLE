@@ -343,35 +343,47 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     }
   }
 
-  private void drawArrowhead(Graphics2D g, double x1, double y1, double x2,
-                             double y2) {
+  /**
+   * Draws an arrow on the head of a line.
+   *
+   * @param g the graphics context to paint to
+   * @param x1 the x-coordinate of the tail
+   * @param y1 the y-coordinate of the tail
+   * @param x2 the x-coordinate of the head
+   * @param y2 the y-coordinate of the head
+   */
+  private void drawArrowhead(Graphics2D g, double x1, double y1, double x2, double y2) {
+
+    // Length of arrow head
     double al = 7;
+
+    // Width of arrow head
     double aw = 4;
-    double x, y, length;
-    Point2D start = new Point2D.Double(x1, y1);
-    Point2D end = new Point2D.Double(x2, y2);
-    Point2D base = new Point2D.Double();
-    Point2D back_top = new Point2D.Double();
-    Point2D back_bottom = new Point2D.Double();
 
-    //   Compute length of line
-    length = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    // Compute difference between components
+    double dx = x2 - x1;
+    double dy = y2 - y1;
 
-    //   Compute normalized line vector
-    x = (x2 - x1) / length;
-    y = (y2 - y1) / length;
+    // Compute length of line
+    double length = Math.sqrt(dx * dx + dy * dy);
 
-    //   Compute points for arrow head
-    base.setLocation(x2 - x * al, y2 - y * al);
-    back_top.setLocation(base.getX() - aw * y, base.getY() + aw * x);
-    back_bottom.setLocation(base.getX() + aw * y, base.getY() - aw * x);
+    // Compute normalized line vector
+    double x = dx / length;
+    double y = dy / length;
 
+    // Compute points for arrow head
+    Point2D tip = new Point2D.Double(x2, y2);
+    Point2D base = new Point2D.Double(x2 - x * al, y2 - y * al);
+    Point2D back_top = new Point2D.Double(base.getX() - aw * y, base.getY() + aw * x);
+    Point2D back_bottom = new Point2D.Double(base.getX() + aw * y, base.getY() - aw * x);
+
+    // Create and fill polygon
     Polygon p = new Polygon();
-    p.addPoint((int) end.getX(), (int) end.getY());
+    p.addPoint((int) tip.getX(), (int) tip.getY());
     p.addPoint((int) back_bottom.getX(), (int) back_bottom.getY());
     p.addPoint((int) back_top.getX(), (int) back_top.getY());
     g.fillPolygon(p);
-    p = null;
+
   }
 
   public void refreshDiagram() {
