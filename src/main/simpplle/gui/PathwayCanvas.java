@@ -47,7 +47,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   /**
    * Maps vegetative type names to pathway shapes.
    */
-  Hashtable states;
+  Hashtable<String,PathwayShape> states;
 
   /**
    *
@@ -175,7 +175,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
     super();
 
-    states        = new Hashtable(10);
+    states        = new Hashtable<>();
     process       = Process.findInstance(ProcessType.SUCCESSION);
     movingShape   = false;
     showAllLabels = false;
