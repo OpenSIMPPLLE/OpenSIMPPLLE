@@ -286,71 +286,61 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     showAllLabels = !showAllLabels;
   }
 
+  @Override
   public void paintComponent(Graphics g) {
+
     super.paintComponent(g);
+
     if (states.isEmpty()) { return; }
 
-    PathwayShape   shape;
-    String         key;
-    Enumeration    e = states.keys();
-    while (e.hasMoreElements()) {
-      key   = (String) e.nextElement();
-      shape = (PathwayShape) states.get(key);
-      if (species != null) { shape.checkFixPosition(species); }
+    // Draw Shapes
+    for (PathwayShape shape : states.values()) {
+      if (species != null) {
+        shape.checkFixPosition(species);
+      }
       shape.setShowLabel(showAllLabels);
       shape.paint(g);
     }
 
-    VegetativeType nextState;
-    Point          from, to;
-//    Graphics2D     g2 = (Graphics2D)g;
-//    Polygon triangle = new Polygon();
-
-    e = states.keys();
-    while (e.hasMoreElements()) {
-      key   = (String) e.nextElement();
-      shape = (PathwayShape) states.get(key);
-      if (shape.nonSpeciesMatch()) { continue; }
-
-      nextState = shape.getNextState(process);
-      if (nextState == null) { continue; }
-      from      = shape.getCenterPoint();
-      shape     = (PathwayShape) states.get(nextState.toString());
-      if (shape == null) { continue; }
-      to = shape.getCenterPoint();
+    // Draw Circles and Arrows
+    for (String key : states.keySet()) {
+      PathwayShape shape = states.get(key);
+      if (shape.nonSpeciesMatch()) continue;
+      VegetativeType nextState = shape.getNextState(process);
+      if (nextState == null) continue;
+      PathwayShape toShape = states.get(nextState.getPrintName());
+      if (toShape == null) continue;
+      Point from = shape.getCenterPoint();
+      Point to = toShape.getCenterPoint();
       g.setColor(process.getColor());
-      if (key.equals(nextState.toString())) {
-        g.drawOval((from.x-15),from.y-10,45,45);
+      if (key.equals(nextState.getPrintName())) {
+        g.drawOval(from.x - 15, from.y - 10, 45, 45);
+      } else {
+        g.fillOval(from.x - 1, from.y - 11, 3, 3);
+        g.drawLine(from.x, from.y - 10, to.x, to.y);
+        drawArrowhead((Graphics2D)g, from.x, from.y - 10, to.x, to.y);
       }
-      else {
-        g.fillOval(from.x-1,from.y-11,3,3);
-        g.drawLine(from.x,from.y-10,to.x,to.y);
-        drawArrowhead((Graphics2D)g,from.x,from.y-10,to.x,to.y);
-      }
-//      g.setColor(LINE_END_COLOR);
-//      g.fillOval(to.x,to.y,4,4);
     }
-    // make sure selected state is on top.
+
+    // Draw Selection Above Lines
     if (selectedState != null) {
       selectedState.paint(g);
     }
 
+    // Draw Changing State Line
     if (changingState != null) {
       changingState.paint(g);
-      from = changingState.getCenterPoint();
-//      g.setColor(LINE_END_COLOR);
-      g.drawLine(from.x,from.y-10,changingStateLineEnd.x,changingStateLineEnd.y);
-//      drawArrowhead((Graphics2D)g,from.x,from.y-10,changingStateLineEnd.x,changingStateLineEnd.y);
+      Point from = changingState.getCenterPoint();
+      g.setColor(process.getColor());
+      g.drawLine(from.x, from.y - 10, changingStateLineEnd.x, changingStateLineEnd.y);
     }
 
+    // Draw Grid Lines
     if (showGridLines) {
-      e = lines.keys();
-      while (e.hasMoreElements()) {
-        key = (String) e.nextElement();
-        ((PathwayGridline) lines.get(key)).paint(g);
+      for (PathwayGridline line : lines.values()) {
+        line.paint(g);
       }
     }
-
   }
 
   private void drawArrowhead(Graphics2D g, double x1, double y1, double x2,
