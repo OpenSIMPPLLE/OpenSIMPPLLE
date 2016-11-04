@@ -650,35 +650,27 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   public void mouseMoved(MouseEvent e) {
-    if (states.isEmpty() || menuOptions.isVisible() || selectedDoubleClicked) { return; }
 
-    int x = e.getX();
-    int y = e.getY();
+    if (states.isEmpty() || menuOptions.isVisible() || selectedDoubleClicked) return;
 
-    PathwayShape shape;
-    String       key;
-    Enumeration  keys = states.keys();
     selectedState = null;
-
-    while (keys.hasMoreElements()) {
-      key = (String) keys.nextElement();
-      shape = (PathwayShape) states.get(key);
-      if (shape.isInsideShape(x,y)) {
+    for (PathwayShape shape : states.values()) {
+      if (shape.isInsideShape(e.getX(), e.getY())) {
         shape.select();
-        if (selectedState != null) { selectedState.deselect(); }
+        if (selectedState != null) {
+          selectedState.deselect();
+        }
         selectedState = shape;
-      }
-      else {
+      } else {
         shape.deselect();
       }
     }
 
     selectedLine = null;
-    PathwayGridline searchLine = PathwayGridline.grabLine(lines,
-        PathwayGridline.HORIZONTAL_DIR, e.getPoint());
-    if (searchLine == null)
-      searchLine = PathwayGridline.grabLine(lines, PathwayGridline.VERTICAL_DIR,
-          e.getPoint());
+    PathwayGridline searchLine = PathwayGridline.grabLine(lines, PathwayGridline.HORIZONTAL_DIR, e.getPoint());
+    if (searchLine == null) {
+      searchLine = PathwayGridline.grabLine(lines, PathwayGridline.VERTICAL_DIR, e.getPoint());
+    }
     if (searchLine != null) {
       selectedLine = searchLine.getKey();
       setCursor(searchLine.getSelectedCursor());
@@ -687,6 +679,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     }
 
     repaint();
+
   }
 
   public void mousePressed(MouseEvent e) {
@@ -694,6 +687,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   public void mouseReleased(MouseEvent e) {
+
     displayPopupMenu(e);
 
     if (!SwingUtilities.isLeftMouseButton(e)) return;
