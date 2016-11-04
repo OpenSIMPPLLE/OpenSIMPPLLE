@@ -36,10 +36,11 @@ import simpplle.comcode.Process;
 import java.awt.geom.Point2D;
 
 /**
- * This is the My Canvas class which has methods for drawing for the pathways seen in OpenSimpplle.
- *  
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller</p>
+ * A pathway canvas provides users with an interface for interacting with pathway states. The
+ * pathway is displayed as a directed graph containing states from the current habitat type group.
+ * Each arrow in the canvas represents a process. The originating state lies at the tail of the
+ * arrow, and the resulting state lies at the arrow head. Users may manipulate states and grid
+ * lines via mouse dragging and sub-menus.
  */
 
 public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionListener {
@@ -466,10 +467,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     if (v.size() > 1 ||
         (v.size() == 1 && (selectedState.getState() != vegState.getNextState()))) {
       String msg = "The selected states has previous states.\n" +
-          "It cannot be deleted until there are no previous states\n" +
-          "Please use the following dialog to assist in changing the\n" +
-          "previous states to point elsewhere.n" +
-          "When finished try deleting again.";
+                   "It cannot be deleted until there are no previous states\n" +
+                   "Please use the following dialog to assist in changing the\n" +
+                   "previous states to point elsewhere.n" +
+                   "When finished try deleting again.";
 
       JOptionPane.showMessageDialog(this,msg,"Deletion not Allowed",
           JOptionPane.INFORMATION_MESSAGE);
@@ -477,8 +478,8 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
       displayPreviousStates(e);
     } else if (htGrp.getStatesCount() == 1) {
       String msg = "The selected state is the only one in this Ecological Grouping\n" +
-          "Deletion is not allowed.\n" +
-          "The Group must have at least one state.";
+                   "Deletion is not allowed.\n" +
+                   "The Group must have at least one state.";
       JOptionPane.showMessageDialog(this,msg,"Previous states exist",
           JOptionPane.INFORMATION_MESSAGE);
     } else {
