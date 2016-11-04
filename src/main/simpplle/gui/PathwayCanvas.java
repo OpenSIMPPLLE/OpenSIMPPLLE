@@ -186,27 +186,27 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     menuItemEdit.addActionListener(this::editShape);
 
     menuItemPrevStates = new JMenuItem("Previous States");
-    menuItemPrevStates.addActionListener(this::prevStates);
+    menuItemPrevStates.addActionListener(this::displayPreviousStates);
 
     menuItemDeleteShape = new JMenuItem("Delete...");
-    menuItemDeleteShape.addActionListener(this::menuPopupDelete);
+    menuItemDeleteShape.addActionListener(this::deleteShape);
 
     menuItemRepFIAPlots = new JMenuItem("Representative FIA Plots");
-    menuItemRepFIAPlots.addActionListener(this::menuPopupRepFiaPlots);
+    menuItemRepFIAPlots.addActionListener(this::editRepFiaPlots);
     menuItemRepFIAPlots.setEnabled(false);
 
     menuItemSpeciesChange = new JMenuItem("Species Change");
-    menuItemSpeciesChange.addActionListener(this::menuPopupSpeciesChange);
+    menuItemSpeciesChange.addActionListener(this::editSpeciesChange);
 
     menuItemInclusionRules = new JMenuItem("Inclusion Rules");
-    menuItemInclusionRules.addActionListener(this::menuPopupInclusionRules);
+    menuItemInclusionRules.addActionListener(this::editInclusionRules);
 
     menuItemPictures = new JMenuItem("Pictures");
     menuItemPictures.addActionListener(this::menuPopupPictures);
     menuItemPictures.setEnabled(false);
 
     menuItemCollapse = new JMenuItem("Collapse");
-    menuItemCollapse.addActionListener(this::menuPopupCollapse);
+    menuItemCollapse.addActionListener(this::collapseShape);
 
     menuOptions = new JPopupMenu("Options");
     menuOptions.add(menuItemEdit);
@@ -219,17 +219,17 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     menuOptions.add(menuItemCollapse);
 
     menuItemAddVertical = new JMenuItem("Add Vertical Line");
-    menuItemAddVertical.addActionListener(event -> menuAddLine(event, PathwayGridline.VERTICAL_DIR));
+    menuItemAddVertical.addActionListener(event -> addLine(event, PathwayGridline.VERTICAL_DIR));
 
     menuItemAddHorizontal = new JMenuItem("Add Horizontal Line");
-    menuItemAddHorizontal.addActionListener(event -> menuAddLine(event, PathwayGridline.HORIZONTAL_DIR));
+    menuItemAddHorizontal.addActionListener(event -> addLine(event, PathwayGridline.HORIZONTAL_DIR));
 
     menuLine = new JPopupMenu("Line Management");
     menuLine.add(menuItemAddVertical);
     menuLine.add(menuItemAddHorizontal);
 
     menuItemDetails = new JMenuItem("Details");
-    menuItemDetails.addActionListener(this::menuPopupUncollapse);
+    menuItemDetails.addActionListener(this::uncollapseShape);
 
     menuUncollapse = new JPopupMenu("Uncollapse");
     menuUncollapse.add(menuItemDetails);
@@ -241,183 +241,66 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
   }
 
-  /**
-   * Method to switch between showing all labels and not showing all labels.
-   */
-  public void toggleShowAllLabels() {
-    showAllLabels = !showAllLabels;
+  public void setHtGrp(HabitatTypeGroup group) {
+    if (group != null) {
+      htGrp = group;
+      species = null;
+      states.clear();
+    }
   }
 
-  /**
-   * Sets the file pathway dialog to parameter Pathway dlg
-   * @param dlg
-   */
-  public void setPathwayDlg(Pathway dlg) {
-    pathwayDlg = dlg;
+  public void setHtGrp(String name) {
+    if (name != null) {
+      setHtGrp(HabitatTypeGroup.findInstance(name));
+    }
+  }
+
+  public String getHtGrp() {
+    return htGrp.toString();
+  }
+
+  public void setPathwayDlg(Pathway pathway) {
+    pathwayDlg = pathway;
   }
 
   public Pathway getPathwayDlg() {
     return pathwayDlg;
   }
 
-  public void editShape(ActionEvent e) {
-    PathwayEditor dlg = new PathwayEditor(JSimpplle.getSimpplleMain(),
-                                          "Pathway Editor", true,
-                                          selectedState.getState());
-    dlg.setVisible(true);
-    getPathwayDlg().updateDialog();
-    refreshDiagram();
+  public void setProcess(String name) {
+    if (name != null) {
+      process = Process.findInstance(name);
+      refreshDiagram();
+    }
   }
 
-  /**
-   * Sets the prevDialogOpen boolean to false, and enables the previous states
-   */
+  public String getProcess() {
+    return process.toString();
+  }
+
+  public void setSpecies(Species species) {
+    if (species != null) {
+      this.species = species;
+      setProcess("SUCCESSION");
+    }
+  }
+
+  public Species getSpecies() {
+    return species;
+  }
+
+  public Dimension getPreferredSize() {
+    return preferredSize;
+  }
+
   public void setPrevDialogClosed() {
     prevDialogOpen = false;
     menuItemPrevStates.setEnabled(true);
     menuItemDeleteShape.setEnabled(true);
   }
 
-  public void prevStates(ActionEvent e) {
-    if (prevDialogOpen) { return; }
-
-    PathwayPrevStates dlg = new PathwayPrevStates(JSimpplle.getSimpplleMain(),
-                                                  "Previous States", false,
-                                                  this,selectedState.getState(),
-                                                  process);
-    dlg.setVisible(true);
-    prevDialogOpen = true;
-    menuItemPrevStates.setEnabled(false);
-  }
-
-  public void menuPopupDelete(ActionEvent e) {
-    if (prevDialogOpen) { return; }
-
-    Vector v = selectedState.getState().findPreviousStates();
-    VegetativeTypeNextState vegState = null;
-    if (v.size() == 1) {
-      vegState = (VegetativeTypeNextState) v.elementAt(0);
-    }
-
-    if (v.size() > 1 ||
-        (v.size() == 1 && (selectedState.getState() != vegState.getNextState()))) {
-      String msg = "The selected states has previous states.\n" +
-                   "It cannot be deleted until there are no previous states\n" +
-                   "Please use the following dialog to assist in changing the\n" +
-                   "previous states to point elsewhere.n" +
-                   "When finished try deleting again.";
-
-      JOptionPane.showMessageDialog(this,msg,"Deletion not Allowed",
-                                    JOptionPane.INFORMATION_MESSAGE);
-      menuItemDeleteShape.setEnabled(false);
-      prevStates(e);
-    }
-    else if (htGrp.getStatesCount() == 1) {
-      String msg = "The selected state is the only one in this Ecological Grouping\n" +
-                   "Deletion is not allowed.\n" +
-                   "The Group must have at least one state.";
-      JOptionPane.showMessageDialog(this,msg,"Previous states exist",
-                                    JOptionPane.INFORMATION_MESSAGE);
-    }
-    else {
-      String msg = "Delete the selected state?\n\n" + "Are you sure?";
-      int result = JOptionPane.showConfirmDialog(this,msg,
-                                                 "Delete Selected State",
-                                                 JOptionPane.YES_NO_OPTION,
-                                                 JOptionPane.QUESTION_MESSAGE);
-      if (result == JOptionPane.YES_OPTION) {
-        VegetativeType veg = selectedState.getState();
-        veg.getHtGrp().deleteVegetativeType(veg);
-        veg = null;
-        getPathwayDlg().updateDialog();
-        refreshDiagram();
-        // Update the units and check for invalid ones.
-        Area area = Simpplle.getCurrentArea();
-        if (area != null) {
-         area.updatePathwayData();
-         doInvalidAreaCheck();
-        }
-      }
-    }
-  }
-
-  private void doInvalidAreaCheck() {
-    Area area = Simpplle.getCurrentArea();
-
-    if (area.existAnyInvalidVegUnits()) {
-      String msg =
-        "Invalid states were created as a result of deleting a state\n" +
-        "In addition any simulation data that may have existed has\n" +
-        "been erased from memory\n" +
-        "The area can be made valid again by either running the Unit Editor\n" +
-        "found under the Utilities menu of the main application window, or\n" +
-        "by recreating the state.\n";
-
-      JOptionPane.showMessageDialog(this,msg,"Invalid units found",
-                                    JOptionPane.INFORMATION_MESSAGE);
-      JSimpplle.getSimpplleMain().markAreaInvalid();
-    } else {
-      JSimpplle.getSimpplleMain().markAreaValid();
-    }
-  }
-
-  public void menuPopupRepFiaPlots(ActionEvent e) {
-
-  }
-
-  public void menuPopupSpeciesChange(ActionEvent e) {
-    VegetativeType state = selectedState.getState();
-    String title =
-      "Species Change Editor -- " +
-      htGrp.toString() + " " + state.getPrintName();
-
-    PathwaySpeciesChangeEditDialog dlg =
-      new PathwaySpeciesChangeEditDialog(JSimpplle.getSimpplleMain(),title,true);
-     dlg.initialize(state,htGrp);
-    dlg.setVisible(true);
-//    refreshDiagram();
-
-  }
-
-  public void menuPopupInclusionRules(ActionEvent e) {
-    VegetativeType state = selectedState.getState();
-    String title =
-      "Inclusion Rules Editor -- " +
-      htGrp.toString() + " " + state.getPrintName();
-
-    PathwayInclusionRulesEditDialog dlg =
-      new PathwayInclusionRulesEditDialog(JSimpplle.getSimpplleMain(),title,true);
-     dlg.initialize(selectedState.getState(),htGrp);
-    dlg.setVisible(true);
-//    refreshDiagram();
-
-  }
-
-  public void menuPopupPictures(ActionEvent e) {
-  }
-
-  public void menuPopupCollapse(ActionEvent e) {
-    CollapsedPathwayShape.collapse(selectedState, states);
-    repaint();
-  }
-
-  public void menuPopupUncollapse(ActionEvent e) {
-    if(selectedState instanceof CollapsedPathwayShape) {
-      CollapsedPathwayShape curShape = (CollapsedPathwayShape)selectedState;
-      states.remove(curShape.getState().getCurrentState());
-      states.putAll(curShape.getDetailedShapes());
-      repaint();
-    }
-  }
-
-  public void menuAddLine(ActionEvent e, char dir) {
-    PathwayGridline newLine = new PathwayGridline(dir, mouseClickPosition, this);
-    lines.put(newLine.getKey(), newLine);
-    repaint();
-  }
-
-  public Dimension getPreferredSize() {
-    return preferredSize;
+  public void toggleShowAllLabels() {
+    showAllLabels = !showAllLabels;
   }
 
   public void paintComponent(Graphics g) {
@@ -450,7 +333,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
       if (nextState == null) { continue; }
       from      = shape.getCenterPoint();
       shape     = (PathwayShape) states.get(nextState.toString());
-                if (shape == null) { continue; }
+      if (shape == null) { continue; }
       to = shape.getCenterPoint();
       g.setColor(process.getColor());
       if (key.equals(nextState.toString())) {
@@ -544,7 +427,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   // Identifies related states and draw lines around
-  public void refreshGridLines() {
+  private void refreshGridLines() {
     lines = htGrp.getLines(species, process.getType());
     if (lines == null) {
       Hashtable tempTable = new Hashtable(states);
@@ -566,45 +449,185 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     }
   }
 
-  public String getProcess() {
-    return process.toString();
+  private void doInvalidAreaCheck() {
+    Area area = Simpplle.getCurrentArea();
+
+    if (area.existAnyInvalidVegUnits()) {
+      String msg =
+          "Invalid states were created as a result of deleting a state\n" +
+              "In addition any simulation data that may have existed has\n" +
+              "been erased from memory\n" +
+              "The area can be made valid again by either running the Unit Editor\n" +
+              "found under the Utilities menu of the main application window, or\n" +
+              "by recreating the state.\n";
+
+      JOptionPane.showMessageDialog(this,msg,"Invalid units found",
+          JOptionPane.INFORMATION_MESSAGE);
+      JSimpplle.getSimpplleMain().markAreaInvalid();
+    } else {
+      JSimpplle.getSimpplleMain().markAreaValid();
+    }
   }
 
-  public void setProcess(String processName) {
-    if (processName == null || processName.length() == 0) { return; }
-
-    process = Process.findInstance(processName);
+  private void editShape(ActionEvent e) {
+    PathwayEditor editor = new PathwayEditor(JSimpplle.getSimpplleMain(),
+                                             "Pathway Editor",
+                                             true,
+                                             selectedState.getState());
+    editor.setVisible(true);
+    getPathwayDlg().updateDialog();
     refreshDiagram();
   }
 
-  public Species getSpecies() {
-    return species;
+  private void deleteShape(ActionEvent e) {
+    if (prevDialogOpen) { return; }
+
+    Vector v = selectedState.getState().findPreviousStates();
+    VegetativeTypeNextState vegState = null;
+    if (v.size() == 1) {
+      vegState = (VegetativeTypeNextState) v.elementAt(0);
+    }
+
+    if (v.size() > 1 ||
+        (v.size() == 1 && (selectedState.getState() != vegState.getNextState()))) {
+      String msg = "The selected states has previous states.\n" +
+          "It cannot be deleted until there are no previous states\n" +
+          "Please use the following dialog to assist in changing the\n" +
+          "previous states to point elsewhere.n" +
+          "When finished try deleting again.";
+
+      JOptionPane.showMessageDialog(this,msg,"Deletion not Allowed",
+          JOptionPane.INFORMATION_MESSAGE);
+      menuItemDeleteShape.setEnabled(false);
+      displayPreviousStates(e);
+    } else if (htGrp.getStatesCount() == 1) {
+      String msg = "The selected state is the only one in this Ecological Grouping\n" +
+          "Deletion is not allowed.\n" +
+          "The Group must have at least one state.";
+      JOptionPane.showMessageDialog(this,msg,"Previous states exist",
+          JOptionPane.INFORMATION_MESSAGE);
+    } else {
+      String msg = "Delete the selected state?\n\n" + "Are you sure?";
+      int result = JOptionPane.showConfirmDialog(this,msg,
+          "Delete Selected State",
+          JOptionPane.YES_NO_OPTION,
+          JOptionPane.QUESTION_MESSAGE);
+      if (result == JOptionPane.YES_OPTION) {
+        VegetativeType veg = selectedState.getState();
+        veg.getHtGrp().deleteVegetativeType(veg);
+        veg = null;
+        getPathwayDlg().updateDialog();
+        refreshDiagram();
+        // Update the units and check for invalid ones.
+        Area area = Simpplle.getCurrentArea();
+        if (area != null) {
+          area.updatePathwayData();
+          doInvalidAreaCheck();
+        }
+      }
+    }
   }
 
-  public void setSpecies(Species newSpecies) {
-    if (newSpecies == null) { return; }
-
-    species = newSpecies;
-    setProcess("SUCCESSION");
-    //refreshDiagram();
+  public void displayPreviousStates(ActionEvent e) {
+    if (prevDialogOpen) { return; }
+    PathwayPrevStates dlg = new PathwayPrevStates(JSimpplle.getSimpplleMain(),
+                                                  "Previous States",
+                                                  false,
+                                                  this,
+                                                  selectedState.getState(),
+                                                  process);
+    dlg.setVisible(true);
+    prevDialogOpen = true;
+    menuItemPrevStates.setEnabled(false);
   }
 
-  public String getHtGrp() {
-    return htGrp.toString();
+  public void editRepFiaPlots(ActionEvent e) {
+
   }
 
-  public void setHtGrp(String newHtGrp) {
-    if (newHtGrp == null || newHtGrp.length() == 0) { return; }
+  public void editSpeciesChange(ActionEvent e) {
+    VegetativeType state = selectedState.getState();
+    String title =
+      "Species Change Editor -- " +
+      htGrp.toString() + " " + state.getPrintName();
 
-    setHtGrp(HabitatTypeGroup.findInstance(newHtGrp));
+    PathwaySpeciesChangeEditDialog dlg =
+      new PathwaySpeciesChangeEditDialog(JSimpplle.getSimpplleMain(),title,true);
+     dlg.initialize(state,htGrp);
+    dlg.setVisible(true);
+//    refreshDiagram();
+
   }
 
-  public void setHtGrp(HabitatTypeGroup newHtGrp) {
-    if (newHtGrp == null) { return; }
+  public void editInclusionRules(ActionEvent e) {
+    VegetativeType state = selectedState.getState();
+    String title =
+      "Inclusion Rules Editor -- " +
+      htGrp.toString() + " " + state.getPrintName();
 
-    htGrp = newHtGrp;
-    species = null;
-    states.clear();
+    PathwayInclusionRulesEditDialog dlg =
+      new PathwayInclusionRulesEditDialog(JSimpplle.getSimpplleMain(),title,true);
+     dlg.initialize(selectedState.getState(),htGrp);
+    dlg.setVisible(true);
+//    refreshDiagram();
+
+  }
+
+  public void menuPopupPictures(ActionEvent e) {
+  }
+
+  public void collapseShape(ActionEvent e) {
+    CollapsedPathwayShape.collapse(selectedState, states);
+    repaint();
+  }
+
+  public void uncollapseShape(ActionEvent e) {
+    if(selectedState instanceof CollapsedPathwayShape) {
+      CollapsedPathwayShape curShape = (CollapsedPathwayShape)selectedState;
+      states.remove(curShape.getState().getCurrentState());
+      states.putAll(curShape.getDetailedShapes());
+      repaint();
+    }
+  }
+
+  public void addLine(ActionEvent e, char dir) {
+    PathwayGridline newLine = new PathwayGridline(dir, mouseClickPosition, this);
+    lines.put(newLine.getKey(), newLine);
+    repaint();
+  }
+
+  public void displayPopupMenu(MouseEvent e) {
+    if (e.isPopupTrigger()) {
+
+      mouseClickPosition = e.getPoint();
+
+      if (selectedState != null &&
+          changingState == null &&
+          species == selectedState.getState().getSpecies()) {
+
+        if(selectedState instanceof CollapsedPathwayShape)
+          menuUncollapse.show(e.getComponent(),e.getX(),e.getY());
+        else
+          menuOptions.show(e.getComponent(),e.getX(),e.getY());
+      } else {
+        menuLine.show(e.getComponent(), e.getX(), e.getY());
+      }
+    }
+  }
+
+  public void mouseClicked(MouseEvent e) {
+    if (selectedState != null && e.getClickCount() == 2 &&
+        species != selectedState.getState().getSpecies()) {
+      selectedDoubleClicked = true;
+      VegetativeType veg = selectedState.getState();
+      selectedState.deselect();
+      selectedState = null;
+      getPathwayDlg().setSpecies(veg);
+      selectedDoubleClicked = false;
+      return;
+    }
+
+    displayPopupMenu(e);
   }
 
   public void mouseDragged(MouseEvent e) {
@@ -650,6 +673,14 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     }
   }
 
+  public void mouseEntered(MouseEvent e) {
+
+  }
+
+  public void mouseExited(MouseEvent e) {
+
+  }
+
   public void mouseMoved(MouseEvent e) {
     if (states.isEmpty() || menuOptions.isVisible() || selectedDoubleClicked) { return; }
 
@@ -679,7 +710,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
         PathwayGridline.HORIZONTAL_DIR, e.getPoint());
     if (searchLine == null)
       searchLine = PathwayGridline.grabLine(lines, PathwayGridline.VERTICAL_DIR,
-                                            e.getPoint());
+          e.getPoint());
     if (searchLine != null) {
       selectedLine = searchLine.getKey();
       setCursor(searchLine.getSelectedCursor());
@@ -690,54 +721,12 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     repaint();
   }
 
-  public void maybePopupMenu(MouseEvent e) {
-    if (e.isPopupTrigger()) {
-
-      mouseClickPosition = e.getPoint();
-
-      if (selectedState != null &&
-          changingState == null &&
-          species == selectedState.getState().getSpecies()) {
-
-        if(selectedState instanceof CollapsedPathwayShape)
-          menuUncollapse.show(e.getComponent(),e.getX(),e.getY());
-        else
-          menuOptions.show(e.getComponent(),e.getX(),e.getY());
-      } else {
-        menuLine.show(e.getComponent(), e.getX(), e.getY());
-      }
-    }
-  }
-
   public void mousePressed(MouseEvent e) {
-    maybePopupMenu(e);
-  }
-
-  public void mouseEntered(MouseEvent e) {
-
-  }
-
-  public void mouseExited(MouseEvent e) {
-
-  }
-
-  public void mouseClicked(MouseEvent e) {
-    if (selectedState != null && e.getClickCount() == 2 &&
-        species != selectedState.getState().getSpecies()) {
-      selectedDoubleClicked = true;
-      VegetativeType veg = selectedState.getState();
-      selectedState.deselect();
-      selectedState = null;
-      getPathwayDlg().setSpecies(veg);
-      selectedDoubleClicked = false;
-      return;
-    }
-
-    maybePopupMenu(e);
+    displayPopupMenu(e);
   }
 
   public void mouseReleased(MouseEvent e) {
-    maybePopupMenu(e);
+    displayPopupMenu(e);
 
     if (SwingUtilities.isLeftMouseButton(e) == false) { return; }
     if (selectedState != null) { movingShape = false; }
