@@ -52,10 +52,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   /**
    * Maps textual descriptions of lines to pathway grid lines.
    */
-  Hashtable<String,PathwayGridline> lines = new Hashtable<>();
+  Hashtable<String,PathwayGridline> lines;
 
   /**
-   *
+   * The selected pathway shape.
    */
   PathwayShape selectedState;
 
@@ -70,17 +70,17 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   Point changingStateLineEnd;
 
   /**
-   *
+   * The current process.
    */
   Process process;
 
   /**
-   *
+   * The current habitat type group.
    */
   HabitatTypeGroup htGrp;
 
   /**
-   *
+   * The current species.
    */
   Species species;
 
@@ -92,45 +92,40 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   /**
    *
    */
-  boolean isPopupVisible = false;
+  boolean prevDialogOpen;
 
   /**
    *
    */
-  boolean prevDialogOpen = false;
+  boolean selectedDoubleClicked;
 
   /**
-   *
+   * A flag indicating if labels are visible.
    */
-  boolean selectedDoubleClicked = false;
+  boolean showAllLabels;
 
   /**
-   *
+   * A flag indicating if grid lines are visible.
    */
-  boolean showAllLabels = false;
+  boolean showGridLines;
 
   /**
-   *
-   */
-  boolean showGridLines = false;
-
-  /**
-   *
+   * The preferred size of the panel.
    */
   Dimension preferredSize = new Dimension(3000, 3525);
 
   /**
-   *
+   * The pathway dialog that owns this panel.
    */
   Pathway pathwayDlg;
 
   /**
-   *
+   * The name of the currently selected line.
    */
   String selectedLine;
 
   /**
-   *
+   * The position of the last mouse click.
    */
   Point mouseClickPosition;
 
@@ -138,16 +133,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
    * The background color of the canvas.
    */
   private static final Color CANVAS_COLOR = new Color(212, 208, 200);
-
-  /**
-   *
-   */
-  private static final Color LINE_COLOR = Color.green;
-
-  /**
-   *
-   */
-  private static final Color LINE_END_COLOR = Color.red;
 
   private JPopupMenu menuOptions;
   private JPopupMenu menuLine;
@@ -170,10 +155,14 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
     super();
 
-    states        = new Hashtable<>();
-    process       = Process.findInstance(ProcessType.SUCCESSION);
-    movingShape   = false;
-    showAllLabels = false;
+    states                = new Hashtable<>();
+    lines                 = new Hashtable<>();
+    process               = Process.findInstance(ProcessType.SUCCESSION);
+    movingShape           = false;
+    prevDialogOpen        = false;
+    selectedDoubleClicked = false;
+    showAllLabels         = false;
+    showGridLines         = false;
 
     menuItemEdit = new JMenuItem("Edit");
     menuItemEdit.addActionListener(this::editShape);
@@ -272,10 +261,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     return species;
   }
 
-  public Dimension getPreferredSize() {
-    return preferredSize;
-  }
-
   public void setPrevDialogClosed() {
     prevDialogOpen = false;
     menuItemPrevStates.setEnabled(true);
@@ -284,6 +269,11 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
   public void toggleShowAllLabels() {
     showAllLabels = !showAllLabels;
+  }
+
+  @Override
+  public Dimension getPreferredSize() {
+    return preferredSize;
   }
 
   @Override
