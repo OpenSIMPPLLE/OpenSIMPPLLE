@@ -164,7 +164,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   private JMenuItem menuItemRepFIAPlots;
   private JMenuItem menuItemSpeciesChange;
   private JMenuItem menuItemInclusionRules;
-  private JMenuItem menuItemPictures;
   private JMenuItem menuItemCollapse;
   private JMenuItem menuItemAddVertical;
   private JMenuItem menuItemAddHorizontal;
@@ -201,10 +200,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     menuItemInclusionRules = new JMenuItem("Inclusion Rules");
     menuItemInclusionRules.addActionListener(this::editInclusionRules);
 
-    menuItemPictures = new JMenuItem("Pictures");
-    menuItemPictures.addActionListener(this::menuPopupPictures);
-    menuItemPictures.setEnabled(false);
-
     menuItemCollapse = new JMenuItem("Collapse");
     menuItemCollapse.addActionListener(this::collapseShape);
 
@@ -215,7 +210,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     menuOptions.add(menuItemRepFIAPlots);
     menuOptions.add(menuItemSpeciesChange);
     menuOptions.add(menuItemInclusionRules);
-    menuOptions.add(menuItemPictures);
     menuOptions.add(menuItemCollapse);
 
     menuItemAddVertical = new JMenuItem("Add Vertical Line");
@@ -571,9 +565,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     dlg.setVisible(true);
 //    refreshDiagram();
 
-  }
-
-  public void menuPopupPictures(ActionEvent e) {
   }
 
   public void collapseShape(ActionEvent e) {
