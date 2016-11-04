@@ -161,7 +161,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   private JMenuItem menuItemEdit;
   private JMenuItem menuItemPrevStates;
   private JMenuItem menuItemDeleteShape;
-  private JMenuItem menuItemRepFIAPlots;
   private JMenuItem menuItemSpeciesChange;
   private JMenuItem menuItemInclusionRules;
   private JMenuItem menuItemCollapse;
@@ -190,10 +189,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     menuItemDeleteShape = new JMenuItem("Delete...");
     menuItemDeleteShape.addActionListener(this::deleteShape);
 
-    menuItemRepFIAPlots = new JMenuItem("Representative FIA Plots");
-    menuItemRepFIAPlots.addActionListener(this::editRepFiaPlots);
-    menuItemRepFIAPlots.setEnabled(false);
-
     menuItemSpeciesChange = new JMenuItem("Species Change");
     menuItemSpeciesChange.addActionListener(this::editSpeciesChange);
 
@@ -207,7 +202,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     menuOptions.add(menuItemEdit);
     menuOptions.add(menuItemPrevStates);
     menuOptions.add(menuItemDeleteShape);
-    menuOptions.add(menuItemRepFIAPlots);
     menuOptions.add(menuItemSpeciesChange);
     menuOptions.add(menuItemInclusionRules);
     menuOptions.add(menuItemCollapse);
@@ -533,10 +527,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     dlg.setVisible(true);
     prevDialogOpen = true;
     menuItemPrevStates.setEnabled(false);
-  }
-
-  public void editRepFiaPlots(ActionEvent e) {
-
   }
 
   public void editSpeciesChange(ActionEvent e) {
