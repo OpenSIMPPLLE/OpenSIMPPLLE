@@ -50,6 +50,11 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   Hashtable<String,PathwayShape> states;
 
   /**
+   * Maps textual descriptions of lines to pathway grid lines.
+   */
+  Hashtable<String,PathwayGridline> lines = new Hashtable<>();
+
+  /**
    *
    */
   PathwayShape selectedState;
@@ -118,16 +123,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
    *
    */
   Pathway pathwayDlg;
-
-  /**
-   *
-   */
-  Hashtable allLines = new Hashtable();
-
-  /**
-   *
-   */
-  Hashtable lines = new Hashtable();
 
   /**
    *
