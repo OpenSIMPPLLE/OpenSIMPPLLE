@@ -696,30 +696,28 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   public void mouseReleased(MouseEvent e) {
     displayPopupMenu(e);
 
-    if (SwingUtilities.isLeftMouseButton(e) == false) { return; }
-    if (selectedState != null) { movingShape = false; }
-    if (changingState == null) { return; }
+    if (!SwingUtilities.isLeftMouseButton(e)) return;
 
-    Enumeration  keys = states.keys();
-    String       key;
-    PathwayShape shape;
-    int          x = e.getX(), y = e.getY();
-
-    while (keys.hasMoreElements()) {
-      key   = (String) keys.nextElement();
-      shape = (PathwayShape) states.get(key);
-      if (shape.isInsideShape(x,y)) {
-        pathwayDlg.saveArrowChange(changingState.getState(), process,
-                                   changingState.getNextState(process));
-        changingState.setNextState(process,shape.getState());
-        refreshDiagram();  // get rid of unused non-species states.
-        changingState.deselect();
-        changingState = null;
-        break;
-      }
+    if (selectedState != null) {
+      movingShape = false;
     }
-    changingState = null;
-    repaint();
+
+    if (changingState != null) {
+      for (PathwayShape shape : states.values()) {
+        if (shape.isInsideShape(e.getX(), e.getY())) {
+          pathwayDlg.saveArrowChange(changingState.getState(),
+                                     process,
+                                     changingState.getNextState(process));
+          changingState.setNextState(process, shape.getState());
+          refreshDiagram();  // get rid of unused non-species states.
+          changingState.deselect();
+          changingState = null;
+          break;
+        }
+      }
+      changingState = null;
+      repaint();
+    }
   }
 }
 
