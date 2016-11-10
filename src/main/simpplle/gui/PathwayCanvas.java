@@ -61,12 +61,12 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   PathwayShape selectedState;
 
   /**
-   *
+   * The selected pathway shape whose next state arrow is being moved by a user.
    */
   PathwayShape changingState;
 
   /**
-   *
+   * The current end point of the arrow being moved by a user.
    */
   Point changingStateLineEnd;
 
@@ -86,22 +86,22 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   Species species;
 
   /**
-   *
+   * A flag indicating if a state is being moved by a user.
    */
   boolean movingShape;
 
   /**
-   *
+   * A flag indicating that the previous states dialog is open.
    */
   boolean prevDialogOpen;
 
   /**
-   *
+   * A flag indicating that a state was selected with a double click.
    */
   boolean selectedDoubleClicked;
 
   /**
-   * A flag indicating if labels are visible.
+   * A flag indicating if labels are visible next to states.
    */
   boolean showAllLabels;
 
