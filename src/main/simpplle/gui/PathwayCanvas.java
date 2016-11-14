@@ -377,12 +377,21 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
   }
 
+  /**
+   * Clears and re-creates pathway shapes and grid lines.
+   */
   public void refreshDiagram() {
+    refreshStates();
+    refreshGridLines();
+    revalidate();
+  }
 
+  /**
+   * Clears existing pathway shapes and creates one shape per vegetative type.
+   */
+  private void refreshStates() {
     if (htGrp == null || species == null) { return; }
-
     Hashtable<String,VegetativeType> vegTypes = htGrp.findMatchingSpeciesTypes(species,process);
-
     states.clear();
     for (String key : vegTypes.keySet()) {
       VegetativeType vegType = vegTypes.get(key);
@@ -390,14 +399,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
       shape.setPosition(species);
       states.put(key,shape);
     }
-
-    refreshGridLines();
-
-    revalidate();
   }
 
   /**
-   * Creates a new set of grid lines around related states.
+   * Clears existing grid lines and creates grid lines around related states.
    */
   private void refreshGridLines() {
     lines = htGrp.getLines(species, process.getType());
