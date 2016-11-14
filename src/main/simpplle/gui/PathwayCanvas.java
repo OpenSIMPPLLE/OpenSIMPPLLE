@@ -447,6 +447,13 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     }
   }
 
+  /**
+   * An event handler that displays a pathway editor. The pathway editor allows a user to add,
+   * remove, and modify the next state for a particular process. After closing the dialog, the
+   * diagram is refreshed.
+   *
+   * @param e an action event
+   */
   private void editShape(ActionEvent e) {
     PathwayEditor editor = new PathwayEditor(JSimpplle.getSimpplleMain(),
                                              "Pathway Editor",
