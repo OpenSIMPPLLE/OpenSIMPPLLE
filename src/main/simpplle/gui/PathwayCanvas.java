@@ -464,43 +464,53 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     refreshDiagram();
   }
 
+  /**
+   * An event handler that deletes a shape. Deletion is prevented if the state is referenced by
+   * other states or if the state is the last state in a habitat type group. When deletion is
+   * allowed, the state is deleted, the diagram is refreshed, and invalid areas are checked.
+   *
+   * @param e an action event
+   */
   private void deleteShape(ActionEvent e) {
     if (prevDialogOpen) { return; }
 
-    Vector v = selectedState.getState().findPreviousStates();
+    Vector<VegetativeTypeNextState> previousStates = selectedState.getState().findPreviousStates();
     VegetativeTypeNextState vegState = null;
-    if (v.size() == 1) {
-      vegState = (VegetativeTypeNextState) v.elementAt(0);
+    if (previousStates.size() == 1) {
+      vegState = previousStates.elementAt(0);
     }
 
-    if (v.size() > 1 ||
-        (v.size() == 1 && (selectedState.getState() != vegState.getNextState()))) {
+    if (previousStates.size() > 1 ||
+        (previousStates.size() == 1 &&
+         (selectedState.getState() != vegState.getNextState()))) {
       String msg = "The selected states has previous states.\n" +
                    "It cannot be deleted until there are no previous states\n" +
                    "Please use the following dialog to assist in changing the\n" +
-                   "previous states to point elsewhere.n" +
+                   "previous states to point elsewhere.\n" +
                    "When finished try deleting again.";
-
-      JOptionPane.showMessageDialog(this,msg,"Deletion not Allowed",
-          JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+                                    msg,
+                                    "Deletion not Allowed",
+                                    JOptionPane.INFORMATION_MESSAGE);
       menuItemDeleteShape.setEnabled(false);
       displayPreviousStates(e);
     } else if (htGrp.getStatesCount() == 1) {
-      String msg = "The selected state is the only one in this Ecological Grouping\n" +
+      String msg = "The selected state is the only one in this Ecological Grouping.\n" +
                    "Deletion is not allowed.\n" +
-                   "The Group must have at least one state.";
-      JOptionPane.showMessageDialog(this,msg,"Previous states exist",
-          JOptionPane.INFORMATION_MESSAGE);
+                   "The group must have at least one state.";
+      JOptionPane.showMessageDialog(this,
+                                    msg,
+                                    "Previous states exist",
+                                    JOptionPane.INFORMATION_MESSAGE);
     } else {
       String msg = "Delete the selected state?\n\n" + "Are you sure?";
       int result = JOptionPane.showConfirmDialog(this,msg,
-          "Delete Selected State",
-          JOptionPane.YES_NO_OPTION,
-          JOptionPane.QUESTION_MESSAGE);
+                                                 "Delete Selected State",
+                                                 JOptionPane.YES_NO_OPTION,
+                                                 JOptionPane.QUESTION_MESSAGE);
       if (result == JOptionPane.YES_OPTION) {
         VegetativeType veg = selectedState.getState();
         veg.getHtGrp().deleteVegetativeType(veg);
-        veg = null;
         getPathwayDlg().updateDialog();
         refreshDiagram();
         // Update the units and check for invalid ones.
