@@ -2156,10 +2156,10 @@ public class SimpplleMain extends JFrame {
   }
 
   void menuExportAttributes_actionPerformed(ActionEvent e) {
-    String msg = "This will export two files (*.spatialrelate and *.attributesall)" +
-                 " which are needed to create an area using the import function\n" +
-                 "In the following dialog please provide a filename prefix.\n" +
-                 "** Existing files will be overwritten **";
+    String msg = "This will export two files, *.spatialrelate and *.attributesall.\n" +
+                 "These files are needed to create an area using the import function.\n" +
+                 "In the following dialog please provide a filename prefix.\n\n" +
+                 "**Existing files will be overwritten.**";
     JOptionPane.showMessageDialog(this,msg,"Information",JOptionPane.INFORMATION_MESSAGE);
 
 
@@ -2172,6 +2172,10 @@ public class SimpplleMain extends JFrame {
       setWaitState("Exporting Area Creation Files ...");
       try {
         Simpplle.getCurrentArea().exportCreationFiles(outfile);
+
+        // Error was not generated, provide feedback for success
+        JOptionPane.showMessageDialog(this,"Export area creation files complete.",
+            "Export Finished", JOptionPane.INFORMATION_MESSAGE);
       }
       catch (SimpplleError err) {
         JOptionPane.showMessageDialog(this,err.getMessage(),"Error writing file",
