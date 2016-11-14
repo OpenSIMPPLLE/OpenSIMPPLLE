@@ -423,20 +423,24 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     }
   }
 
+  /**
+   * Searches for invalid vegetative units and displays a warning dialog if any are found.
+   */
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
-
     if (area.existAnyInvalidVegUnits()) {
-      String msg =
-          "Invalid states were created as a result of deleting a state\n" +
-              "In addition any simulation data that may have existed has\n" +
-              "been erased from memory\n" +
-              "The area can be made valid again by either running the Unit Editor\n" +
-              "found under the Utilities menu of the main application window, or\n" +
-              "by recreating the state.\n";
+      String msg = "Invalid states were created as a result of deleting a state\n" +
+                   "In addition any simulation data that may have existed has\n" +
+                   "been erased from memory\n" +
+                   "The area can be made valid again by either running the Unit Editor\n" +
+                   "found under the Utilities menu of the main application window, or\n" +
+                   "by recreating the state.\n";
 
-      JOptionPane.showMessageDialog(this,msg,"Invalid units found",
-          JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+                                    msg,
+                                    "Invalid units found",
+                                    JOptionPane.INFORMATION_MESSAGE);
+
       JSimpplle.getSimpplleMain().markAreaInvalid();
     } else {
       JSimpplle.getSimpplleMain().markAreaValid();
