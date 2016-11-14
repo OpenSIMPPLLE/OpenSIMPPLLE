@@ -1083,13 +1083,15 @@ public final class Simulation implements SimulationTypes, Externalizable {
       if (evu == null) continue;
 
       int    slink       = evu.getId();
+      int    row         = evu.getLocationY();
+      int    column      = evu.getLocationX();
       float  acres       = evu.getFloatAcres();
       String ecoGroup    = evu.getHabitatTypeGroup().getName();
       String ownership   = evu.getOwnership();
       String specialArea = evu.getSpecialArea();
       String fmz         = evu.getFmz().getName();
 
-      out.printf("%d,%f,%s,%s,%s,%s%n",slink,acres,ecoGroup,ownership,specialArea,fmz);
+      out.printf("%d,%d,%d,%f,%s,%s,%s,%s%n",slink,row,column,acres,ecoGroup,ownership,specialArea,fmz);
 
     }
   }
@@ -1195,7 +1197,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     path = new File (getAccessFilesPath(),"SLINKMETRICS.csv");
     accessSlinkMetricsOut = new PrintWriter(new FileWriter(path, true));
-    accessSlinkMetricsOut.println("SLINK,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
+    accessSlinkMetricsOut.println("SLINK,ROW,COLUMN,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
 
     path = new File (getAccessFilesPath(),"TREATMENT.csv");
     accessTreatmentOut = new PrintWriter(new FileWriter(path,true));
