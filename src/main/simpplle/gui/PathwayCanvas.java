@@ -523,6 +523,11 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     }
   }
 
+  /**
+   * An event handler that displays a dialog for editing previous states.
+   *
+   * @param e an action event
+   */
   public void displayPreviousStates(ActionEvent e) {
     if (prevDialogOpen) { return; }
     PathwayPrevStates dlg = new PathwayPrevStates(JSimpplle.getSimpplleMain(),
