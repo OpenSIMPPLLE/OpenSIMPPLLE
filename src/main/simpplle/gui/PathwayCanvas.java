@@ -396,21 +396,20 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     revalidate();
   }
 
-  // Identifies related states and draw lines around
+  /**
+   * Creates a new set of grid lines around related states.
+   */
   private void refreshGridLines() {
     lines = htGrp.getLines(species, process.getType());
     if (lines == null) {
-      Hashtable tempTable = new Hashtable(states);
-      CollapsedPathwayShape.collapseAll(tempTable);
-      Rectangle[] rectangles = new Rectangle[tempTable.size()];
-      Enumeration e = tempTable.keys();
-      String key;
-      CollapsedPathwayShape shape;
-      int counter = 0;
+      Hashtable<String,PathwayShape> tmpStates = new Hashtable<>(states);
+      // Note: collapseAll should probably return a hash table of collapsed shapes
+      CollapsedPathwayShape.collapseAll(tmpStates);
+      Rectangle[] rectangles = new Rectangle[tmpStates.size()];
 
-      while (e.hasMoreElements()) {
-        key = (String) e.nextElement();
-        shape = (CollapsedPathwayShape) tempTable.get(key);
+      int counter = 0;
+      for (String key : tmpStates.keySet()) {
+        CollapsedPathwayShape shape = (CollapsedPathwayShape) tmpStates.get(key);
         rectangles[counter] = shape.getCorners();
         counter++;
       }
