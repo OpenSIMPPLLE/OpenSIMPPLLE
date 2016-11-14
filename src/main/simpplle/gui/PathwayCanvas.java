@@ -378,21 +378,15 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   public void refreshDiagram() {
+
     if (htGrp == null || species == null) { return; }
 
-    Hashtable    vegTypes;
-    PathwayShape shape;
-    String       key;
-    VegetativeType vt;
+    Hashtable<String,VegetativeType> vegTypes = htGrp.findMatchingSpeciesTypes(species,process);
 
-    vegTypes = htGrp.findMatchingSpeciesTypes(species,process);
     states.clear();
-
-    Enumeration e = vegTypes.keys();
-    while (e.hasMoreElements()) {
-      key   = (String) e.nextElement();
-      vt    = (VegetativeType) vegTypes.get(key);
-      shape = new PathwayShape((VegetativeType)vegTypes.get(key));
+    for (String key : vegTypes.keySet()) {
+      VegetativeType vegType = vegTypes.get(key);
+      PathwayShape shape = new PathwayShape(vegType);
       shape.setPosition(species);
       states.put(key,shape);
     }
