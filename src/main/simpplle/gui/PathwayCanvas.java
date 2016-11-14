@@ -565,25 +565,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     repaint();
   }
 
-  public void displayPopupMenu(MouseEvent e) {
-    if (e.isPopupTrigger()) {
-
-      mouseClickPosition = e.getPoint();
-
-      if (selectedState != null &&
-          changingState == null &&
-          species == selectedState.getState().getSpecies()) {
-
-        if(selectedState instanceof CollapsedPathwayShape)
-          menuUncollapse.show(e.getComponent(),e.getX(),e.getY());
-        else
-          menuOptions.show(e.getComponent(),e.getX(),e.getY());
-      } else {
-        menuLine.show(e.getComponent(), e.getX(), e.getY());
-      }
-    }
-  }
-
   public void mouseClicked(MouseEvent e) {
     if (selectedState != null && e.getClickCount() == 2 &&
         species != selectedState.getState().getSpecies()) {
@@ -595,8 +576,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
       selectedDoubleClicked = false;
       return;
     }
-
-    displayPopupMenu(e);
   }
 
   public void mouseDragged(MouseEvent e) {
@@ -684,12 +663,23 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   public void mousePressed(MouseEvent e) {
-    displayPopupMenu(e);
+    if (e.isPopupTrigger()) {
+      mouseClickPosition = e.getPoint();
+      if (selectedState != null &&
+          changingState == null &&
+          species == selectedState.getState().getSpecies()) {
+        if(selectedState instanceof CollapsedPathwayShape) {
+          menuUncollapse.show(e.getComponent(), e.getX(), e.getY());
+        } else {
+          menuOptions.show(e.getComponent(), e.getX(), e.getY());
+        }
+      } else {
+        menuLine.show(e.getComponent(), e.getX(), e.getY());
+      }
+    }
   }
 
   public void mouseReleased(MouseEvent e) {
-
-    displayPopupMenu(e);
 
     if (!SwingUtilities.isLeftMouseButton(e)) return;
 
