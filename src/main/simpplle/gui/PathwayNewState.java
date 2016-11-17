@@ -25,7 +25,7 @@ import java.awt.event.*;
 import javax.swing.border.*;
 
 /** 
- * This class allows users to create a new vegetative state.  This is used in vegetative Pathways. Vegetative shapes include species, size class, age, density, and habitat type group.
+ * This class allows users to create a new vegetative state.  This is used in vegetative Pathways. Vegetative states include species, size class, age, density, and habitat type group.
  * The dialog is titled "Create a New State"
  * 
  * @author Documentation by Brian Losi

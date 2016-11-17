@@ -211,7 +211,7 @@ public class VegSummary extends JDialog {
     this.setJMenuBar(menuBar);
   }
   /**
-   * If process radio button selected, calls to doStateReport to produce the vegetative shapes size class report.
+   * If process radio button selected, calls to doStateReport to produce the vegetative states size class report. 
    * This calls the comcodes processReports class and produces a string version of the report.
    * his calls the comcode's state reports method to produce this report 
    * @param e 'Size Class'
@@ -230,7 +230,7 @@ public class VegSummary extends JDialog {
     }
   }
   /**
-   * If species radio button selected, calls to doStateReport to produce the vegetative shapes species report.
+   * If species radio button selected, calls to doStateReport to produce the vegetative states species report. 
    * This calls the comcode's state reports method to produce this report 
    * @param e 'Species'
    */
@@ -242,7 +242,7 @@ public class VegSummary extends JDialog {
     }
   }
   /**
-   * If size class radio button selected, calls to doStateReport to produce the vegetative shapes size class report.
+   * If size class radio button selected, calls to doStateReport to produce the vegetative states size class report.
    * This calls the comcode's state reports method to produce this report 
    * @param e 'Size Class'
    */
@@ -254,7 +254,7 @@ public class VegSummary extends JDialog {
     }
   }
   /**
-   * If density radio button selected, calls to doStateReport to produce the vegetative shapes density report.
+   * If density radio button selected, calls to doStateReport to produce the vegetative states density report. 
    * This calls the comcode's state reports method to produce this report.  
    *  
    * @see  simpplle.comcode.StateReports  

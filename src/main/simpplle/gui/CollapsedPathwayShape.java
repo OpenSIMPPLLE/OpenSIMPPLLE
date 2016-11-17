@@ -19,7 +19,7 @@ import simpplle.comcode.Process;
 import simpplle.comcode.Species;
 
 /** 
- * This class implements the Pathway shape for collapsed shapes, a type of PathwayShape
+ * This class implements the Pathway shape for collapsed states, a type of PathwayShape
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
@@ -158,7 +158,7 @@ public class CollapsedPathwayShape extends PathwayShape {
               Integer.toString(getMaxAge()) + "/" + state.getDensity();
         }
 /**
- * Calculates max age of shapes in the detailed shapes hash table.
+ * Calculates max age of states in the detailed shapes hash table.  
  * @return the maximum age of vegetative state within the detailed shape.  
  */
         private int getMaxAge() {
@@ -177,7 +177,7 @@ public class CollapsedPathwayShape extends PathwayShape {
                 return retval;
         }
 /**
- * Collapses all the shapes in current shape into a Collapsed Pathway Shape.
+ * Collapses all the states in current shape into a Collapsed Pathway Shape.  
  * @param inStates
  */
         public static void collapseAll(Hashtable inStates) {
@@ -202,7 +202,7 @@ public class CollapsedPathwayShape extends PathwayShape {
                 }
         }
 /**
- * Takes a hash table of all the shapes in shape and puts all the detailed shapes into it.
+ * Takes a hash table of all the states in shape and puts all the detailed shapes into it.
  * @param inStates
  */
         public static void detailAll(Hashtable inStates) {
@@ -221,7 +221,7 @@ public class CollapsedPathwayShape extends PathwayShape {
           }
         }
 /**
- * Makes a collapsed pathway shape from the current shape and any shapes that are in it.
+ * Makes a collapsed pathway shape from the current shape and any states that are in it.   
  * @param curShape
  * @param inStates
  * @return

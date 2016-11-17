@@ -397,12 +397,12 @@ public class AquaticPathway extends JDialog {
 
     if (area.existAnyInvalidVegUnits()) {
       String msg =
-        "Invalid shapes were created as a result of loading the new pathway\n" +
+        "Invalid states were created as a result of loading the new pathway\n" +
         "file.  In addition any simulation data that may have existed has\n" +
         "been erased from memory\n" +
         "The area can be made valid again by either running the Unit Editor\n" +
         "found under the Utilities menu of the main application window, or\n" +
-        "by loading a pathway file that contains the missing shapes\n";
+        "by loading a pathway file that contains the missing states\n";
 
       JOptionPane.showMessageDialog(this,msg,"Invalid units found",
                                     JOptionPane.INFORMATION_MESSAGE);
@@ -756,7 +756,7 @@ public class AquaticPathway extends JDialog {
 
   void autoPositionStates_actionPerformed(ActionEvent e) {
 //    HabitatTypeGroup group;
-//    String msg = "This will position currently shown shapes.\n\n" + "Continue?";
+//    String msg = "This will position currently shown states.\n\n" + "Continue?";
 //    int choice = JOptionPane.showConfirmDialog(this,msg,
 //                                           "Auto Position States",
 //                                           JOptionPane.YES_NO_OPTION,

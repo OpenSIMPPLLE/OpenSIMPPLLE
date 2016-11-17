@@ -35,10 +35,10 @@ import simpplle.comcode.Process;
 import java.awt.geom.Point2D;
 
 /**
- * A pathway canvas provides users with an interface for interacting with pathway shapes. The
- * pathway is displayed as a directed graph containing shapes from the current habitat type group.
+ * A pathway canvas provides users with an interface for interacting with pathway states. The
+ * pathway is displayed as a directed graph containing states from the current habitat type group.
  * Each arrow in the canvas represents a process. The originating state lies at the tail of the
- * arrow, and the resulting state lies at the arrow head. Users may manipulate shapes and grid
+ * arrow, and the resulting state lies at the arrow head. Users may manipulate states and grid
  * lines via mouse dragging and sub-menus.
  */
 
@@ -95,7 +95,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   private boolean movingShape;
 
   /**
-   * A flag indicating that the previous shapes dialog is open.
+   * A flag indicating that the previous states dialog is open.
    */
   private boolean prevDialogOpen;
 
@@ -416,7 +416,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   /**
-   * Clears existing grid lines and creates grid lines around related shapes.
+   * Clears existing grid lines and creates grid lines around related states.
    */
   private void refreshGridLines() {
     lines = htGrp.getLines(species, process.getType());
@@ -443,7 +443,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
     if (area.existAnyInvalidVegUnits()) {
-      String msg = "Invalid shapes were created as a result of deleting a state\n" +
+      String msg = "Invalid states were created as a result of deleting a state\n" +
                    "In addition any simulation data that may have existed has\n" +
                    "been erased from memory\n" +
                    "The area can be made valid again by either running the Unit Editor\n" +
@@ -480,7 +480,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
   /**
    * An event handler that deletes a shape. Deletion is prevented if the state is referenced by
-   * other shapes or if the state is the last state in a habitat type group. When deletion is
+   * other states or if the state is the last state in a habitat type group. When deletion is
    * allowed, the state is deleted, the diagram is refreshed, and invalid areas are checked.
    *
    * @param e an action event
@@ -497,10 +497,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     if (previousStates.size() > 1 ||
         (previousStates.size() == 1 &&
          (selectedShape.getState() != vegState.getNextState()))) {
-      String msg = "The selected shapes has previous shapes.\n" +
-                   "It cannot be deleted until there are no previous shapes\n" +
+      String msg = "The selected states has previous states.\n" +
+                   "It cannot be deleted until there are no previous states\n" +
                    "Please use the following dialog to assist in changing the\n" +
-                   "previous shapes to point elsewhere.\n" +
+                   "previous states to point elsewhere.\n" +
                    "When finished try deleting again.";
       JOptionPane.showMessageDialog(this,
                                     msg,
@@ -514,7 +514,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
                    "The group must have at least one state.";
       JOptionPane.showMessageDialog(this,
                                     msg,
-                                    "Previous shapes exist",
+                                    "Previous states exist",
                                     JOptionPane.INFORMATION_MESSAGE);
     } else {
       String msg = "Delete the selected state?\n\n" + "Are you sure?";
@@ -538,7 +538,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   /**
-   * An event handler that displays a dialog for editing previous shapes.
+   * An event handler that displays a dialog for editing previous states.
    *
    * @param e an action event
    */

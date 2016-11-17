@@ -375,9 +375,9 @@ public class PathwayEditor extends JDialog {
     ageText.setText(Integer.toString(pathwayState.getAge()));
   }
 /**
- * Gets all the processes in the vegetative type, and creates a list item array of all the processes.  Then gets the next shapes of the processes
+ * Gets all the processes in the vegetative type, and creates a list item array of all the processes.  Then gets the next states of the processes
  * and creates a listItem array of those
- * Pathway shapes are required to hava at least one process next state.  Therefore the processes list will never be empty.
+ * Pathway states are required to hava at least one process next state.  Therefore the processes list will never be empty.  
  */
   private void fillNextStateList() {
 

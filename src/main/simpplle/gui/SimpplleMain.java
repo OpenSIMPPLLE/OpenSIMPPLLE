@@ -1451,7 +1451,7 @@ public class SimpplleMain extends JFrame {
     menuUtilitySwapRowCol.setEnabled(true);
    }
 /**
- * Disables Jmenu items by first checking if there is an invalid units and enabling or disabling Jmenu items to fix the shapes.
+ * Disables Jmenu items by first checking if there is an invalid units and enabling or disabling Jmenu items to fix the states.  
  * THen calls the  disableAreaControls() which sets the enabled methods of all area JMenu items to false.  
  * @param invalidUnits
  */
@@ -1492,7 +1492,7 @@ public class SimpplleMain extends JFrame {
   }
 /**
  * Gets the current area and checks if there are any invalid vegetative units.  
- * If there are invalid Evu's  enables or Jmenu items to fix the shapes and lets the user know there are invalid Evu
+ * If there are invalid Evu's  enables or Jmenu items to fix the states and lets the user know there are invalid Evu
  * Then calls the  disableAreaControls() which sets the enabled methods of all area JMenu items to false.  
  * If there are it 
  */
@@ -2660,7 +2660,7 @@ public class SimpplleMain extends JFrame {
             "The import menu has three options that will help " +
             "to fix problems.\n" +
             "  1. Fix Incorrect States\n" +
-            "       Attempt to fix incorrect shapes.\n" +
+            "       Attempt to fix incorrect states.\n" +
             "  2. Edit Units\n" +
             "       Allows editing of unit attribute data.\n\n" +
             "  3. Import Attribute Data\n" +
@@ -2692,7 +2692,7 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 /**
- * Marks an area invalid and allows users to import fix shapes, edit units, or
+ * Marks an area invalid and allows users to import fix states, edit units, or
  * print invalid report.
  */
   public void markAreaInvalid() {
@@ -2753,7 +2753,7 @@ public class SimpplleMain extends JFrame {
                        "The import menu has two options that will help " +
                        "to fix problems.\n" +
                        "  1. Fix Incorrect States\n" +
-                       "       Attempt to fix incorrect shapes.\n" +
+                       "       Attempt to fix incorrect states.\n" +
                        "  2. Edit Units\n" +
                        "       Allows editing of unit attribute data.\n\n" +
                        "Please note save of the area will not be allowed\n" +
@@ -2796,7 +2796,7 @@ public class SimpplleMain extends JFrame {
       return;
     }
     else {
-      setWaitState("Attempting to fix incorrect shapes ...");
+      setWaitState("Attempting to fix incorrect states ...");
       Simpplle.getCurrentArea().fixIncorrectStates();
       setNormalState();
     }
@@ -2804,7 +2804,7 @@ public class SimpplleMain extends JFrame {
 
     if (area.existAnyInvalidVegUnits()) {
       String msg =
-        "Fix of incorrect shapes was only partially successful.\n" +
+        "Fix of incorrect states was only partially successful.\n" +
         "Remaining errors can be fixed by using the \"Edit Units\"\n" +
         "menu item under the Import Menu, or by using the \"Unit Editor\"\n" +
         "menu item under the Utilities Menu";
@@ -2813,7 +2813,7 @@ public class SimpplleMain extends JFrame {
     }
     else {
       String msg =
-        "Fixing of incorrect shapes was completely successful.\n" +
+        "Fixing of incorrect states was completely successful.\n" +
         "Remember to name the new area by using \"Change Area Name\"\n" +
         "under the Utility Menu.  Then save the area using \"Save Area\"\n" +
         "under the File Menu.";

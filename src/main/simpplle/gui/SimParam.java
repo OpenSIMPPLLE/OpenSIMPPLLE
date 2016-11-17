@@ -31,7 +31,7 @@ import java.util.Vector;
 /**
  * This dialog allows the user to set various parameters that control how the simulation in performed.
  * The dialog titled "Set Simulation Parameters" and has methods to input # of simulations, time steps, sim method, invasive species logic, 
- * options such as yearly time steps, fire suppression, output options, discarding unnecessary simulation data, all shapes reports, and tracking species reports.
+ * options such as yearly time steps, fire suppression, output options, discarding unnecessary simulation data, all states reports, and tracking species reports.
  *
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
