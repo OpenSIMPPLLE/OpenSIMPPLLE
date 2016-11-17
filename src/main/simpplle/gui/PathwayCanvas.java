@@ -18,7 +18,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Vector;
 
 import java.awt.Graphics2D;
@@ -155,7 +157,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
     super();
 
-    shapes = new Hashtable<>();
+    shapes                = new Hashtable<>();
     lines                 = new Hashtable<>();
     process               = Process.findInstance(ProcessType.SUCCESSION);
     movingShape           = false;
@@ -252,6 +254,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
   public PathwayShape getSelectedShape() {
     return selectedShape;
+  }
+
+  public Hashtable<String,PathwayShape> getShapeHashtable() {
+    return shapes;
   }
 
   public void setSpecies(Species species) {

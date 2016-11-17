@@ -1034,12 +1034,12 @@ public class Pathway extends JDialog {
   }
 
   void menuPathwayCollapseAll_actionPerformed(ActionEvent e) {
-                CollapsedPathwayShape.collapseAll(canvas.shapes);
+                CollapsedPathwayShape.collapseAll(canvas.getShapeHashtable());
                 update(getGraphics());
   }
 
   void menuPathwayDetailAll_actionPerformed(ActionEvent e) {
-                CollapsedPathwayShape.detailAll(canvas.shapes);
+                CollapsedPathwayShape.detailAll(canvas.getShapeHashtable());
   }
   void menuPathwayStepCounter_actionPerformed(ActionEvent e) {
           if(stepCounterDialog==null)
