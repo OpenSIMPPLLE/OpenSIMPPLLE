@@ -18,9 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Map;
 import java.util.Vector;
 
 import java.awt.Graphics2D;
@@ -47,94 +45,94 @@ import java.awt.geom.Point2D;
 public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionListener {
 
   /**
+   * The background color of the canvas.
+   */
+  private static final Color CANVAS_COLOR = new Color(212, 208, 200);
+
+  /**
    * Maps vegetative type names to pathway shapes.
    */
-  Hashtable<String,PathwayShape> shapes;
+  private Hashtable<String,PathwayShape> shapes;
 
   /**
    * Maps textual descriptions of lines to pathway grid lines.
    */
-  Hashtable<String,PathwayGridline> lines;
+  private Hashtable<String,PathwayGridline> lines;
 
   /**
    * The selected pathway shape.
    */
-  PathwayShape selectedShape;
+  private PathwayShape selectedShape;
 
   /**
    * The selected pathway shape whose next state arrow is being moved by a user.
    */
-  PathwayShape changingShape;
+  private PathwayShape changingShape;
 
   /**
    * The current end point of the arrow being moved by a user.
    */
-  Point changingLineEnd;
+  private Point changingLineEnd;
 
   /**
    * The current process.
    */
-  Process process;
+  private Process process;
 
   /**
    * The current habitat type group.
    */
-  HabitatTypeGroup htGrp;
+  private HabitatTypeGroup htGrp;
 
   /**
    * The current species.
    */
-  Species species;
+  private Species species;
 
   /**
    * A flag indicating if a state is being moved by a user.
    */
-  boolean movingShape;
+  private boolean movingShape;
 
   /**
    * A flag indicating that the previous shapes dialog is open.
    */
-  boolean prevDialogOpen;
+  private boolean prevDialogOpen;
 
   /**
    * A flag indicating that a state was selected with a double click.
    */
-  boolean selectedDoubleClicked;
+  private boolean selectedDoubleClicked;
 
   /**
    * A flag indicating if labels are visible next to shapes.
    */
-  boolean showAllLabels;
+  private boolean showAllLabels;
 
   /**
    * A flag indicating if grid lines are visible.
    */
-  boolean showGridLines;
+  private boolean showGridLines;
 
   /**
    * The preferred size of the panel.
    */
-  Dimension preferredSize = new Dimension(3000, 3525);
+  private Dimension preferredSize;
 
   /**
    * The pathway dialog that owns this panel.
    */
-  Pathway pathwayDlg;
+  private Pathway pathwayDlg;
 
   /**
    * The name of the currently selected line.
    */
-  String selectedLine;
+  private String selectedLine;
 
   /**
    * The position of the last mouse click.
    */
-  Point mouseClickPosition;
-
-  /**
-   * The background color of the canvas.
-   */
-  private static final Color CANVAS_COLOR = new Color(212, 208, 200);
+  private Point mouseClickPosition;
 
   private JPopupMenu menuOptions;
   private JPopupMenu menuLine;
@@ -165,6 +163,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     selectedDoubleClicked = false;
     showAllLabels         = false;
     showGridLines         = false;
+    preferredSize         = new Dimension(3000, 3525);
 
     menuItemEdit = new JMenuItem("Edit");
     menuItemEdit.addActionListener(this::editShape);
