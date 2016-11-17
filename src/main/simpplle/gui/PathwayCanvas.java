@@ -243,7 +243,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   public void setProcess(String name) {
     if (name != null) {
       process = Process.findInstance(name);
-      refreshDiagram();
     }
   }
 

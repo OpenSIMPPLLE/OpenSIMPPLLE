@@ -519,6 +519,7 @@ public class Pathway extends JDialog {
     canvas.setHtGrp(pathwayGroup);
     canvas.setSpecies(species);
     canvas.setProcess(process);
+    canvas.refreshDiagram();
 
     savedArrowState     = null;
     savedArrowProcess   = null;
