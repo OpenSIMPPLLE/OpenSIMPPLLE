@@ -9,7 +9,7 @@
     <property name="destdir" value="data/zones"/>
     <property name="zonedir" value="simpplle/comcode/knowledge/zones"/>
     <property name="copysrc" value="data"/>
-    <property name="copydst" value="out/production/data/"/>
+    <property name="copydst" value="target/data"/>
 
     <!-- Build Targets -->
 
