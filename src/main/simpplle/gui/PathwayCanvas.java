@@ -278,6 +278,14 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     showAllLabels = !showAllLabels;
   }
 
+  public void hideGridLines() {
+    showGridLines = false;
+  }
+
+  public void showGridLines() {
+    showGridLines = true;
+  }
+
   @Override
   public Dimension getPreferredSize() {
     return preferredSize;

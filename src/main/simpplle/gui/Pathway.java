@@ -1049,7 +1049,11 @@ public class Pathway extends JDialog {
   }
 
   void menuPathwayGridLines_actionPerformed(ActionEvent e) {
-          canvas.showGridLines = menuPathwayGridLines.getState();
+          if (menuPathwayGridLines.getState()) {
+            canvas.showGridLines();
+          } else {
+            canvas.hideGridLines();
+          }
           canvas.repaint();
   }
 
