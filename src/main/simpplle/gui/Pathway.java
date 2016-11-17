@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * This class creates the Pathway dialog.  It allows users to open, create, and edit vegetative pathways.
  * The title of this dialog is "Vegetative Pathways".
- * Pathways are constructed as Trees have changes based on a decade time between states, and shrubs and herbaceous have yearly time changes.  
+ * Pathways are constructed as Trees have changes based on a decade time between shapes, and shrubs and herbaceous have yearly time changes.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
@@ -559,19 +559,19 @@ public class Pathway extends JDialog {
   }
 /**
  * Checks if an invalid state was created as a result of loading a new pathway.  If one is invalid will mark the OpenSimpplle main frame invalid, 
- * and allow user to import fix states, edit units, or print invalid report.  
+ * and allow user to import fix shapes, edit units, or print invalid report.
  */
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
 
     if (area.existAnyInvalidVegUnits()) {
       String msg =
-        "Invalid states were created as a result of loading the new pathway\n" +
+        "Invalid shapes were created as a result of loading the new pathway\n" +
         "file.  In addition any simulation data that may have existed has\n" +
         "been erased from memory\n" +
         "The area can be made valid again by either running the Unit Editor\n" +
         "found under the Utilities menu of the main application window, or\n" +
-        "by loading a pathway file that contains the missing states\n";
+        "by loading a pathway file that contains the missing shapes\n";
 
       JOptionPane.showMessageDialog(this,msg,"Invalid units found",
                                     JOptionPane.INFORMATION_MESSAGE);
@@ -961,7 +961,7 @@ public class Pathway extends JDialog {
 
   void autoPositionStates_actionPerformed(ActionEvent e) {
     HabitatTypeGroup group;
-    String msg = "This will position currently shown states.\n\n" + "Continue?";
+    String msg = "This will position currently shown shapes.\n\n" + "Continue?";
     int choice = JOptionPane.showConfirmDialog(this,msg,
                                            "Auto Position States",
                                            JOptionPane.YES_NO_OPTION,
@@ -975,7 +975,7 @@ public class Pathway extends JDialog {
   }
   void autoPositionAllStates_actionPerformed(ActionEvent e) {
     HabitatTypeGroup group;
-    String msg = "This will position All states in the current Ecological Grouping.\n\n" +
+    String msg = "This will position All shapes in the current Ecological Grouping.\n\n" +
                  "Continue?";
     int choice = JOptionPane.showConfirmDialog(this,msg,
                                            "Auto Position All States",
@@ -1034,12 +1034,12 @@ public class Pathway extends JDialog {
   }
 
   void menuPathwayCollapseAll_actionPerformed(ActionEvent e) {
-                CollapsedPathwayShape.collapseAll(canvas.states);
+                CollapsedPathwayShape.collapseAll(canvas.shapes);
                 update(getGraphics());
   }
 
   void menuPathwayDetailAll_actionPerformed(ActionEvent e) {
-                CollapsedPathwayShape.detailAll(canvas.states);
+                CollapsedPathwayShape.detailAll(canvas.shapes);
   }
   void menuPathwayStepCounter_actionPerformed(ActionEvent e) {
           if(stepCounterDialog==null)

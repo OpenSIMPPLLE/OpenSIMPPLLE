@@ -18,7 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -36,10 +35,10 @@ import simpplle.comcode.Process;
 import java.awt.geom.Point2D;
 
 /**
- * A pathway canvas provides users with an interface for interacting with pathway states. The
- * pathway is displayed as a directed graph containing states from the current habitat type group.
+ * A pathway canvas provides users with an interface for interacting with pathway shapes. The
+ * pathway is displayed as a directed graph containing shapes from the current habitat type group.
  * Each arrow in the canvas represents a process. The originating state lies at the tail of the
- * arrow, and the resulting state lies at the arrow head. Users may manipulate states and grid
+ * arrow, and the resulting state lies at the arrow head. Users may manipulate shapes and grid
  * lines via mouse dragging and sub-menus.
  */
 
@@ -48,7 +47,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   /**
    * Maps vegetative type names to pathway shapes.
    */
-  Hashtable<String,PathwayShape> states;
+  Hashtable<String,PathwayShape> shapes;
 
   /**
    * Maps textual descriptions of lines to pathway grid lines.
@@ -58,17 +57,17 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   /**
    * The selected pathway shape.
    */
-  PathwayShape selectedState;
+  PathwayShape selectedShape;
 
   /**
    * The selected pathway shape whose next state arrow is being moved by a user.
    */
-  PathwayShape changingState;
+  PathwayShape changingShape;
 
   /**
    * The current end point of the arrow being moved by a user.
    */
-  Point changingStateLineEnd;
+  Point changingLineEnd;
 
   /**
    * The current process.
@@ -91,7 +90,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   boolean movingShape;
 
   /**
-   * A flag indicating that the previous states dialog is open.
+   * A flag indicating that the previous shapes dialog is open.
    */
   boolean prevDialogOpen;
 
@@ -101,7 +100,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   boolean selectedDoubleClicked;
 
   /**
-   * A flag indicating if labels are visible next to states.
+   * A flag indicating if labels are visible next to shapes.
    */
   boolean showAllLabels;
 
@@ -156,7 +155,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
     super();
 
-    states                = new Hashtable<>();
+    shapes = new Hashtable<>();
     lines                 = new Hashtable<>();
     process               = Process.findInstance(ProcessType.SUCCESSION);
     movingShape           = false;
@@ -218,7 +217,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     if (group != null) {
       htGrp = group;
       species = null;
-      states.clear();
+      shapes.clear();
     }
   }
 
@@ -282,10 +281,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
     super.paintComponent(g);
 
-    if (states.isEmpty()) { return; }
+    if (shapes.isEmpty()) { return; }
 
     // Draw Shapes
-    for (PathwayShape shape : states.values()) {
+    for (PathwayShape shape : shapes.values()) {
       if (species != null) {
         shape.checkFixPosition(species);
       }
@@ -294,12 +293,12 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     }
 
     // Draw Circles and Arrows
-    for (String key : states.keySet()) {
-      PathwayShape shape = states.get(key);
+    for (String key : shapes.keySet()) {
+      PathwayShape shape = shapes.get(key);
       if (shape.nonSpeciesMatch()) continue;
       VegetativeType nextState = shape.getNextState(process);
       if (nextState == null) continue;
-      PathwayShape toShape = states.get(nextState.getPrintName());
+      PathwayShape toShape = shapes.get(nextState.getPrintName());
       if (toShape == null) continue;
       Point from = shape.getCenterPoint();
       Point to = toShape.getCenterPoint();
@@ -314,16 +313,16 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     }
 
     // Draw Selection Above Lines
-    if (selectedState != null) {
-      selectedState.paint(g);
+    if (selectedShape != null) {
+      selectedShape.paint(g);
     }
 
     // Draw Changing State Line
-    if (changingState != null) {
-      changingState.paint(g);
-      Point from = changingState.getCenterPoint();
+    if (changingShape != null) {
+      changingShape.paint(g);
+      Point from = changingShape.getCenterPoint();
       g.setColor(process.getColor());
-      g.drawLine(from.x, from.y - 10, changingStateLineEnd.x, changingStateLineEnd.y);
+      g.drawLine(from.x, from.y - 10, changingLineEnd.x, changingLineEnd.y);
     }
 
     // Draw Grid Lines
@@ -392,22 +391,22 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   private void refreshStates() {
     if (htGrp == null || species == null) { return; }
     Hashtable<String,VegetativeType> vegTypes = htGrp.findMatchingSpeciesTypes(species,process);
-    states.clear();
+    shapes.clear();
     for (String key : vegTypes.keySet()) {
       VegetativeType vegType = vegTypes.get(key);
       PathwayShape shape = new PathwayShape(vegType);
       shape.setPosition(species);
-      states.put(key,shape);
+      shapes.put(key,shape);
     }
   }
 
   /**
-   * Clears existing grid lines and creates grid lines around related states.
+   * Clears existing grid lines and creates grid lines around related shapes.
    */
   private void refreshGridLines() {
     lines = htGrp.getLines(species, process.getType());
     if (lines == null) {
-      Hashtable<String,PathwayShape> tmpStates = new Hashtable<>(states);
+      Hashtable<String,PathwayShape> tmpStates = new Hashtable<>(shapes);
       // Note: collapseAll should probably return a hash table of collapsed shapes
       CollapsedPathwayShape.collapseAll(tmpStates);
       Rectangle[] rectangles = new Rectangle[tmpStates.size()];
@@ -429,7 +428,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
     if (area.existAnyInvalidVegUnits()) {
-      String msg = "Invalid states were created as a result of deleting a state\n" +
+      String msg = "Invalid shapes were created as a result of deleting a state\n" +
                    "In addition any simulation data that may have existed has\n" +
                    "been erased from memory\n" +
                    "The area can be made valid again by either running the Unit Editor\n" +
@@ -458,7 +457,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     PathwayEditor editor = new PathwayEditor(JSimpplle.getSimpplleMain(),
                                              "Pathway Editor",
                                              true,
-                                             selectedState.getState());
+                                             selectedShape.getState());
     editor.setVisible(true);
     getPathwayDlg().updateDialog();
     refreshDiagram();
@@ -466,7 +465,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
   /**
    * An event handler that deletes a shape. Deletion is prevented if the state is referenced by
-   * other states or if the state is the last state in a habitat type group. When deletion is
+   * other shapes or if the state is the last state in a habitat type group. When deletion is
    * allowed, the state is deleted, the diagram is refreshed, and invalid areas are checked.
    *
    * @param e an action event
@@ -474,7 +473,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   private void deleteShape(ActionEvent e) {
     if (prevDialogOpen) { return; }
 
-    Vector<VegetativeTypeNextState> previousStates = selectedState.getState().findPreviousStates();
+    Vector<VegetativeTypeNextState> previousStates = selectedShape.getState().findPreviousStates();
     VegetativeTypeNextState vegState = null;
     if (previousStates.size() == 1) {
       vegState = previousStates.elementAt(0);
@@ -482,11 +481,11 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
     if (previousStates.size() > 1 ||
         (previousStates.size() == 1 &&
-         (selectedState.getState() != vegState.getNextState()))) {
-      String msg = "The selected states has previous states.\n" +
-                   "It cannot be deleted until there are no previous states\n" +
+         (selectedShape.getState() != vegState.getNextState()))) {
+      String msg = "The selected shapes has previous shapes.\n" +
+                   "It cannot be deleted until there are no previous shapes\n" +
                    "Please use the following dialog to assist in changing the\n" +
-                   "previous states to point elsewhere.\n" +
+                   "previous shapes to point elsewhere.\n" +
                    "When finished try deleting again.";
       JOptionPane.showMessageDialog(this,
                                     msg,
@@ -500,7 +499,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
                    "The group must have at least one state.";
       JOptionPane.showMessageDialog(this,
                                     msg,
-                                    "Previous states exist",
+                                    "Previous shapes exist",
                                     JOptionPane.INFORMATION_MESSAGE);
     } else {
       String msg = "Delete the selected state?\n\n" + "Are you sure?";
@@ -509,7 +508,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
                                                  JOptionPane.YES_NO_OPTION,
                                                  JOptionPane.QUESTION_MESSAGE);
       if (result == JOptionPane.YES_OPTION) {
-        VegetativeType veg = selectedState.getState();
+        VegetativeType veg = selectedShape.getState();
         veg.getHtGrp().deleteVegetativeType(veg);
         getPathwayDlg().updateDialog();
         refreshDiagram();
@@ -524,7 +523,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   /**
-   * An event handler that displays a dialog for editing previous states.
+   * An event handler that displays a dialog for editing previous shapes.
    *
    * @param e an action event
    */
@@ -534,7 +533,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
                                                   "Previous States",
                                                   false,
                                                   this,
-                                                  selectedState.getState(),
+                                                  selectedShape.getState(),
                                                   process);
     dlg.setVisible(true);
     prevDialogOpen = true;
@@ -542,7 +541,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   public void editSpeciesChange(ActionEvent e) {
-    VegetativeType state = selectedState.getState();
+    VegetativeType state = selectedShape.getState();
     String title =
       "Species Change Editor -- " +
       htGrp.toString() + " " + state.getPrintName();
@@ -556,29 +555,29 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   public void editInclusionRules(ActionEvent e) {
-    VegetativeType state = selectedState.getState();
+    VegetativeType state = selectedShape.getState();
     String title =
       "Inclusion Rules Editor -- " +
       htGrp.toString() + " " + state.getPrintName();
 
     PathwayInclusionRulesEditDialog dlg =
       new PathwayInclusionRulesEditDialog(JSimpplle.getSimpplleMain(),title,true);
-     dlg.initialize(selectedState.getState(),htGrp);
+     dlg.initialize(selectedShape.getState(),htGrp);
     dlg.setVisible(true);
 //    refreshDiagram();
 
   }
 
   public void collapseShape(ActionEvent e) {
-    CollapsedPathwayShape.collapse(selectedState, states);
+    CollapsedPathwayShape.collapse(selectedShape, shapes);
     repaint();
   }
 
   public void uncollapseShape(ActionEvent e) {
-    if(selectedState instanceof CollapsedPathwayShape) {
-      CollapsedPathwayShape curShape = (CollapsedPathwayShape)selectedState;
-      states.remove(curShape.getState().getCurrentState());
-      states.putAll(curShape.getDetailedShapes());
+    if(selectedShape instanceof CollapsedPathwayShape) {
+      CollapsedPathwayShape curShape = (CollapsedPathwayShape) selectedShape;
+      shapes.remove(curShape.getState().getCurrentState());
+      shapes.putAll(curShape.getDetailedShapes());
       repaint();
     }
   }
@@ -590,12 +589,12 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   }
 
   public void mouseClicked(MouseEvent e) {
-    if (selectedState != null && e.getClickCount() == 2 &&
-        species != selectedState.getState().getSpecies()) {
+    if (selectedShape != null && e.getClickCount() == 2 &&
+        species != selectedShape.getState().getSpecies()) {
       selectedDoubleClicked = true;
-      VegetativeType veg = selectedState.getState();
-      selectedState.deselect();
-      selectedState = null;
+      VegetativeType veg = selectedShape.getState();
+      selectedShape.deselect();
+      selectedShape = null;
       getPathwayDlg().setSpecies(veg);
       selectedDoubleClicked = false;
       return;
@@ -607,27 +606,27 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
     if (SwingUtilities.isLeftMouseButton(e) == false) { return; }
 
-    if (selectedState != null && selectedState.isInsideNode(e.getX(),e.getY()) &&
-        species == selectedState.getState().getSpecies() &&
+    if (selectedShape != null && selectedShape.isInsideNode(e.getX(),e.getY()) &&
+        species == selectedShape.getState().getSpecies() &&
         movingShape == false) {
-      changingState = selectedState;
-      changingStateLineEnd = new Point(e.getX(),e.getY());
-      selectedState.setChangingNextState();
+      changingShape = selectedShape;
+      changingLineEnd = new Point(e.getX(),e.getY());
+      selectedShape.setChangingNextState();
     }
-    else if (selectedState != null) {
+    else if (selectedShape != null) {
       movingShape = true;
     }
 
-    if (changingState == null && selectedState != null && movingShape == true &&
-        (e.getX() > 0 && (e.getX() < (getWidth() - selectedState.width))) &&
-        (e.getY() > 15 && (e.getY() < (getHeight() - selectedState.height)))) {
-      selectedState.setPosition(e.getX(),e.getY(),species);
+    if (changingShape == null && selectedShape != null && movingShape == true &&
+        (e.getX() > 0 && (e.getX() < (getWidth() - selectedShape.width))) &&
+        (e.getY() > 15 && (e.getY() < (getHeight() - selectedShape.height)))) {
+      selectedShape.setPosition(e.getX(),e.getY(),species);
       repaint = true;
     }
 
-    if (changingState != null) {
+    if (changingShape != null) {
       mouseMoved(e);
-      changingStateLineEnd.setLocation(e.getX(),e.getY());
+      changingLineEnd.setLocation(e.getX(),e.getY());
     }
 
     if(selectedLine!=null) {
@@ -655,16 +654,16 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
   public void mouseMoved(MouseEvent e) {
 
-    if (states.isEmpty() || menuOptions.isVisible() || selectedDoubleClicked) return;
+    if (shapes.isEmpty() || menuOptions.isVisible() || selectedDoubleClicked) return;
 
-    selectedState = null;
-    for (PathwayShape shape : states.values()) {
+    selectedShape = null;
+    for (PathwayShape shape : shapes.values()) {
       if (shape.isInsideShape(e.getX(), e.getY())) {
         shape.select();
-        if (selectedState != null) {
-          selectedState.deselect();
+        if (selectedShape != null) {
+          selectedShape.deselect();
         }
-        selectedState = shape;
+        selectedShape = shape;
       } else {
         shape.deselect();
       }
@@ -689,10 +688,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   public void mousePressed(MouseEvent e) {
     if (e.isPopupTrigger()) {
       mouseClickPosition = e.getPoint();
-      if (selectedState != null &&
-          changingState == null &&
-          species == selectedState.getState().getSpecies()) {
-        if(selectedState instanceof CollapsedPathwayShape) {
+      if (selectedShape != null &&
+          changingShape == null &&
+          species == selectedShape.getState().getSpecies()) {
+        if(selectedShape instanceof CollapsedPathwayShape) {
           menuUncollapse.show(e.getComponent(), e.getX(), e.getY());
         } else {
           menuOptions.show(e.getComponent(), e.getX(), e.getY());
@@ -707,24 +706,24 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
     if (!SwingUtilities.isLeftMouseButton(e)) return;
 
-    if (selectedState != null) {
+    if (selectedShape != null) {
       movingShape = false;
     }
 
-    if (changingState != null) {
-      for (PathwayShape shape : states.values()) {
+    if (changingShape != null) {
+      for (PathwayShape shape : shapes.values()) {
         if (shape.isInsideShape(e.getX(), e.getY())) {
-          pathwayDlg.saveArrowChange(changingState.getState(),
+          pathwayDlg.saveArrowChange(changingShape.getState(),
                                      process,
-                                     changingState.getNextState(process));
-          changingState.setNextState(process, shape.getState());
-          refreshDiagram();  // get rid of unused non-species states.
-          changingState.deselect();
-          changingState = null;
+                                     changingShape.getNextState(process));
+          changingShape.setNextState(process, shape.getState());
+          refreshDiagram();  // get rid of unused non-species shapes.
+          changingShape.deselect();
+          changingShape = null;
           break;
         }
       }
-      changingState = null;
+      changingShape = null;
       repaint();
     }
   }

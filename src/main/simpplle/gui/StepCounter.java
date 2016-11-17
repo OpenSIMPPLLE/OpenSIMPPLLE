@@ -121,8 +121,8 @@ public class StepCounter extends JDialog {
                 // Set mouse adapter on canvas
                 canvas.addMouseListener(new MouseAdapter(){
                         public void mouseClicked(MouseEvent e){
-                                if (select>=0 && canvas.selectedState != null) {
-                                        vegTypes[select] = canvas.selectedState.getState();
+                                if (select>=0 && canvas.selectedShape != null) {
+                                        vegTypes[select] = canvas.selectedShape.getState();
                                         txtFields[select].setText(vegTypes[select].toString());
                                         if(vegTypes[ORIGIN_SELECT]!=null && vegTypes[DEST_SELECT]!=null){
                                                 txtFields[COUNT].setText(Integer.toString(vegTypes[ORIGIN_SELECT].calculateTimeToState(vegTypes[DEST_SELECT], canvas.getProcess())));

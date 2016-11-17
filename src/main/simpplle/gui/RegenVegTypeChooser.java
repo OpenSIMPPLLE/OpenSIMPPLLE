@@ -113,9 +113,9 @@ public class RegenVegTypeChooser extends JDialog {
     this.setModal(true);
     jPanel2.setLayout(new BoxLayout(jPanel2, BoxLayout.Y_AXIS));
     infoLabel2.setFont(new java.awt.Font("Monospaced", 1, 12));
-    infoLabel2.setText("Use mouse to order states as desired.");
+    infoLabel2.setText("Use mouse to order shapes as desired.");
     infoLabel1.setFont(new java.awt.Font("Monospaced", 1, 12));
-    infoLabel1.setText("Drag states to chosen list on right.");
+    infoLabel1.setText("Drag shapes to chosen list on right.");
     infoLabel3.setFont(new java.awt.Font("Monospaced", 1, 12));
     infoLabel3.setText("Most preferred state is first in list.");
     jPanel2.setBorder(BorderFactory.createLoweredBevelBorder());
