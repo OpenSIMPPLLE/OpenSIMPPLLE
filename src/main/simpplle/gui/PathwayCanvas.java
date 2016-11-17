@@ -262,7 +262,6 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
   public void setSpecies(Species species) {
     if (species != null) {
       this.species = species;
-      setProcess("SUCCESSION");
     }
   }
 
