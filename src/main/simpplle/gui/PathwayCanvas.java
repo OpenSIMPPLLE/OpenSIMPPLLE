@@ -250,6 +250,10 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
     return process.toString();
   }
 
+  public PathwayShape getSelectedShape() {
+    return selectedShape;
+  }
+
   public void setSpecies(Species species) {
     if (species != null) {
       this.species = species;
