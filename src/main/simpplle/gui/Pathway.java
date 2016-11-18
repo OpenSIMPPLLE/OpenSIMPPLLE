@@ -729,33 +729,37 @@ public class Pathway extends JDialog {
   }
 
   private void menuFileImport_actionPerformed(ActionEvent e) {
+
     setCursor(Utility.getWaitCursor());
 
-    Area             area    = Simpplle.getCurrentArea();
-    File[]           infiles = Utility.getOpenFiles(this,"Pathway Text File(s)");
-    HabitatTypeGroup newGroup;
-    if (infiles != null && infiles.length > 0) {
-      try {
-        for (int i=0; i<infiles.length; i++) {
-          newGroup = Simpplle.getCurrentZone().importPathway(infiles[i]);
-          pathwayGroupCB.setSelectedItem(newGroup.getName());
+    JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
+    chooser.setAcceptAllFileFilterUsed(true);
+    chooser.setMultiSelectionEnabled(true);
+    chooser.setDialogTitle("Select Pathway Files");
+
+    int choice = chooser.showOpenDialog(this);
+    if (choice == JFileChooser.APPROVE_OPTION) {
+      for (File file : chooser.getSelectedFiles()) {
+        try {
+          HabitatTypeGroup group = Simpplle.getCurrentZone().importPathway(file);
+          pathwayGroupCB.setSelectedItem(group.getName());
+          updateDialog();
+          Area area = Simpplle.getCurrentArea();
+          if (area != null) {
+            area.updatePathwayData();
+            doInvalidAreaCheck();
+          }
+        } catch (SimpplleError error) {
+          JOptionPane.showMessageDialog(this,
+                                        error.getError(),
+                                        "Error Importing Files",
+                                        JOptionPane.ERROR_MESSAGE);
         }
-        updateDialog();
-      }
-      catch (SimpplleError err) {
-        JOptionPane.showMessageDialog(this,err.getMessage(),"Error loading files",
-                                      JOptionPane.ERROR_MESSAGE);
-        updateDialog();
-        setCursor(Utility.getNormalCursor());
-        return;
-      }
-      // Update the units and check for invalid ones.
-      if (area != null) {
-        area.updatePathwayData();
-        doInvalidAreaCheck();
       }
     }
+
     setCursor(Utility.getNormalCursor());
+
   }
 
   private void menuFileExport_actionPerformed(ActionEvent e) {
