@@ -905,36 +905,36 @@ public class Pathway extends JDialog {
   }
 
   private void menuLoadAllPathway_actionPerformed(ActionEvent e) {
-    RegionalZone        zone = Simpplle.getCurrentZone();
-    Area                area = Simpplle.getCurrentArea();
-    Frame               theFrame = JSimpplle.getSimpplleMain();
-    ListSelectionDialog dlg;
-    String              result;
 
+    Area area = Simpplle.getCurrentArea();
     if (area != null && Simpplle.getCurrentSimulation() != null) {
-      if (deleteSimulationCheck()) { return; }
+      if (deleteSimulationCheck()) return;
     }
 
     setCursor(Utility.getWaitCursor());
+
     try {
+      RegionalZone zone = Simpplle.getCurrentZone();
       zone.loadAllPathways();
-    }
-    catch (SimpplleError err) {
-      JOptionPane.showMessageDialog(this,err.getError(),"Error loading pathways",
+    } catch (SimpplleError err) {
+      JOptionPane.showMessageDialog(this,err.getError(),
+                                    "Error Loading Pathways",
                                     JOptionPane.ERROR_MESSAGE);
     }
+
     setCursor(Utility.getNormalCursor());
 
-    pathwayGroup   = null;
+    pathwayGroup = null;
     species = null;
     process = null;
-    updateDialog();
 
-    // Update the units and check for invalid ones.
     if (area != null) {
       area.updatePathwayData();
       doInvalidAreaCheck();
     }
+
+    updateDialog();
+
   }
 
   private void quit () {
