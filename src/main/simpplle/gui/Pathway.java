@@ -641,42 +641,41 @@ public class Pathway extends JDialog {
   }
 
   private void menuFileOldFormat_actionPerformed(ActionEvent e) {
+
     Area area = Simpplle.getCurrentArea();
-    File         inputFile;
-    MyFileFilter extFilter;
-    String       title = "Select a Pathway Data File";
-
-    extFilter = new MyFileFilter("pathway",
-                                 "pathway Data Files (*.pathway)");
-
     if (area != null && Simpplle.getCurrentSimulation() != null) {
       if (deleteSimulationCheck()) { return; }
     }
 
-    // Ask user for file
-    HabitatTypeGroup newGroup;
-
     setCursor(Utility.getWaitCursor());
-    inputFile = Utility.getOpenFile(this,title,extFilter);
-    if (inputFile != null) {
+
+    JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
+    chooser.setFileFilter(new MyFileFilter("pathway","Pathway Data Files (*.pathway)"));
+    chooser.setAcceptAllFileFilterUsed(false);
+    chooser.setDialogTitle("Select a Pathway Data File");
+
+    int choice = chooser.showOpenDialog(this);
+    if (choice == JFileChooser.APPROVE_OPTION) {
+      HabitatTypeGroup group;
       try {
-        newGroup = Simpplle.getCurrentZone().loadPathway(inputFile);
-        pathwayGroupCB.setSelectedItem(newGroup.getName());
+        group = Simpplle.getCurrentZone().loadPathway(chooser.getSelectedFile());
+        pathwayGroupCB.setSelectedItem(group.getName());
         updateDialog();
-     }
-      catch (SimpplleError err) {
-        JOptionPane.showMessageDialog(this,err.getError(),"Error loading file",
+        update(getGraphics());
+        if (area != null) {
+          area.updatePathwayData();
+          doInvalidAreaCheck();
+        }
+      } catch (SimpplleError error) {
+        JOptionPane.showMessageDialog(this,
+                                      error.getError(),
+                                      "Error Loading File",
                                       JOptionPane.ERROR_MESSAGE);
       }
     }
-    setCursor(Utility.getNormalCursor());
-    update(getGraphics());
 
-    // Update the units and check for invalid ones.
-    if (area != null) {
-      area.updatePathwayData();
-      doInvalidAreaCheck();
-    }
+    setCursor(Utility.getNormalCursor());
+
   }
 
   private void menuFileSpeciesChange_actionPerformed(ActionEvent e) {
