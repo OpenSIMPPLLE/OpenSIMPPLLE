@@ -849,8 +849,7 @@ public class Pathway extends JDialog {
 
   private void menuFileSave_actionPerformed(ActionEvent e) {
     HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
-    File             outfile = group.getFilename();
-
+    File outfile = group.getFilename();
     SystemKnowledgeFiler.saveFile(this, outfile,
                                   SystemKnowledge.VEGETATION_PATHWAYS,
                                   menuFileSave,null,group);
@@ -859,49 +858,50 @@ public class Pathway extends JDialog {
 
   private void menuFileSaveAs_actionPerformed(ActionEvent e) {
     HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
-
     SystemKnowledgeFiler.saveFile(this, SystemKnowledge.VEGETATION_PATHWAYS,
                                   menuFileSave, null, group);
     update(getGraphics());
   }
 
   private void menuLoadPathway_actionPerformed(ActionEvent e) {
-    RegionalZone        zone = Simpplle.getCurrentZone();
-    Area                area = Simpplle.getCurrentArea();
-    Frame               theFrame = JSimpplle.getSimpplleMain();
-    ListSelectionDialog dlg;
-    String              result;
 
+    Area area = Simpplle.getCurrentArea();
     if (area != null && Simpplle.getCurrentSimulation() != null) {
       if (deleteSimulationCheck()) { return; }
     }
 
-    dlg = new ListSelectionDialog(theFrame,"Select a Ecological Grouping",true,
-                                  HabitatTypeGroup.getLoadedGroupNames());
-
+    ListSelectionDialog dlg = new ListSelectionDialog(JSimpplle.getSimpplleMain(),
+                                                      "Select an Ecological Grouping",
+                                                      true,
+                                                      HabitatTypeGroup.getLoadedGroupNames());
     dlg.setLocation(getLocation());
     dlg.setVisible(true);
-    result = (String)dlg.getSelection();
-    if (result != null) {
+
+    String groupName = (String) dlg.getSelection();
+    if (groupName != null) {
       try {
-        zone.loadPathway(result);
-        pathwayGroupCB.setSelectedItem(result);
-      }
-      catch (SimpplleError err) {
-        JOptionPane.showMessageDialog(this,err.getError(),"Error loading pathway",
+        RegionalZone zone = Simpplle.getCurrentZone();
+        zone.loadPathway(groupName);
+        pathwayGroupCB.setSelectedItem(groupName);
+      } catch (SimpplleError err) {
+        JOptionPane.showMessageDialog(this,err.getError(),
+                                      "Error Loading Pathway",
                                       JOptionPane.ERROR_MESSAGE);
       }
-      if (result.equals(pathwayGroup)) {
+
+      if (groupName.equals(pathwayGroup)) {
         species = null;
         process = null;
       }
-      // Update the units and check for invalid ones.
+
       if (area != null) {
         area.updatePathwayData();
         doInvalidAreaCheck();
       }
     }
+
     updateDialog();
+
   }
 
   private void menuLoadAllPathway_actionPerformed(ActionEvent e) {
