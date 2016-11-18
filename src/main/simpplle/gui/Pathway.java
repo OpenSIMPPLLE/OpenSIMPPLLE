@@ -667,8 +667,7 @@ public class Pathway extends JDialog {
           doInvalidAreaCheck();
         }
       } catch (SimpplleError error) {
-        JOptionPane.showMessageDialog(this,
-                                      error.getError(),
+        JOptionPane.showMessageDialog(this, error.getError(),
                                       "Error Loading File",
                                       JOptionPane.ERROR_MESSAGE);
       }
@@ -692,8 +691,7 @@ public class Pathway extends JDialog {
         HabitatTypeGroup.importSpeciesChangeFile(chooser.getSelectedFile());
       } catch (Exception ex) {
         ex.printStackTrace();
-        JOptionPane.showMessageDialog(this,
-                                      ex.getMessage(),
+        JOptionPane.showMessageDialog(this, ex.getMessage(),
                                       "Error Loading File",
                                       JOptionPane.ERROR_MESSAGE);
       }
@@ -717,8 +715,7 @@ public class Pathway extends JDialog {
         HabitatTypeGroup.importInclusionFile(chooser.getSelectedFile());
       } catch (Exception ex) {
         ex.printStackTrace();
-        JOptionPane.showMessageDialog(this,
-                                      ex.getMessage(),
+        JOptionPane.showMessageDialog(this, ex.getMessage(),
                                       "Error Loading File",
                                       JOptionPane.ERROR_MESSAGE);
       }
@@ -750,8 +747,7 @@ public class Pathway extends JDialog {
             doInvalidAreaCheck();
           }
         } catch (SimpplleError error) {
-          JOptionPane.showMessageDialog(this,
-                                        error.getError(),
+          JOptionPane.showMessageDialog(this, error.getError(),
                                         "Error Importing Files",
                                         JOptionPane.ERROR_MESSAGE);
         }
@@ -809,41 +805,42 @@ public class Pathway extends JDialog {
   }
 
   private void menuFileUnloadPathway_actionPerformed(ActionEvent e) {
-    RegionalZone zone = Simpplle.getCurrentZone();
-    Area         area = Simpplle.getCurrentArea();
-    Frame               theFrame = JSimpplle.getSimpplleMain();
-    ListSelectionDialog dlg;
-    String              result;
 
+    Area area = Simpplle.getCurrentArea();
     if (area != null && Simpplle.getCurrentSimulation() != null) {
-      if (deleteSimulationCheck()) { return; }
+      if (deleteSimulationCheck()) return;
     }
 
-    dlg = new ListSelectionDialog(theFrame,"Select a Ecological Grouping",true,
-                                  HabitatTypeGroup.getLoadedGroupNames());
-
+    ListSelectionDialog dlg = new ListSelectionDialog(JSimpplle.getSimpplleMain(),
+                                                      "Select an Ecological Grouping",
+                                                      true,
+                                                      HabitatTypeGroup.getLoadedGroupNames());
     dlg.setLocation(getLocation());
     dlg.setVisible(true);
-    result = (String)dlg.getSelection();
-    if (result == null) { return; }
+
+    String result = (String) dlg.getSelection();
+    if (result == null) return;
 
     setCursor(Utility.getWaitCursor());
+
     try {
+      RegionalZone zone = Simpplle.getCurrentZone();
       zone.removePathway(result);
-    }
-    catch (SimpplleError err) {
+    } catch (SimpplleError err) {
       JOptionPane.showMessageDialog(this,err.getMessage(),
-                                    "Error unloading pathway",
+                                    "Error Unloading Pathway",
                                     JOptionPane.ERROR_MESSAGE);
     }
+
     setCursor(Utility.getNormalCursor());
+
+    pathwayGroup = null;
     species = null;
-    pathwayGroup   = null;
     process = null;
+
     updateDialog();
     update(getGraphics());
 
-    // Update the units and check for invalid ones.
     if (area != null) {
       area.updatePathwayData();
       doInvalidAreaCheck();
