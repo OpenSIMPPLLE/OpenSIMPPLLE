@@ -30,7 +30,7 @@ public class StepCounter extends JDialog {
         private static final byte DEST_SELECT = 1;
         private static final byte COUNT = 2;
 
-        private MyCanvas canvas;
+        private PathwayCanvas canvas;
         private HistoryTableModel history;
         private byte select = ORIGIN_SELECT;
         private JTextField[] txtFields = new JTextField[3];
@@ -121,8 +121,8 @@ public class StepCounter extends JDialog {
                 // Set mouse adapter on canvas
                 canvas.addMouseListener(new MouseAdapter(){
                         public void mouseClicked(MouseEvent e){
-                                if (select>=0 && canvas.selectedState != null) {
-                                        vegTypes[select] = canvas.selectedState.getState();
+                                if (select>=0 && canvas.getSelectedShape() != null) {
+                                        vegTypes[select] = canvas.getSelectedShape().getState();
                                         txtFields[select].setText(vegTypes[select].toString());
                                         if(vegTypes[ORIGIN_SELECT]!=null && vegTypes[DEST_SELECT]!=null){
                                                 txtFields[COUNT].setText(Integer.toString(vegTypes[ORIGIN_SELECT].calculateTimeToState(vegTypes[DEST_SELECT], canvas.getProcess())));

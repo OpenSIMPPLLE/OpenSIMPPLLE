@@ -29,7 +29,7 @@ public class PathwayPrevStates extends JDialog {
   private String protoCellValue = "RIPARIAN_GRASSES/CLOSED_TALL_SHRUB2/1 -- COLD-INJURY-BARK-BEETLES";
   private VegetativeType selectedState;
   private Process        selectedProcess;
-  private MyCanvas       parentDlg;
+  private PathwayCanvas parentDlg;
 
   JPanel mainPanel = new JPanel();
   BorderLayout borderLayout1 = new BorderLayout();
@@ -57,7 +57,7 @@ public class PathwayPrevStates extends JDialog {
   TitledBorder titledBorder1;
 
   public PathwayPrevStates(Frame frame, String title, boolean modal,
-                           MyCanvas parentDlg, VegetativeType selectedState,
+                           PathwayCanvas parentDlg, VegetativeType selectedState,
                            Process selectedProcess)
   {
     super(frame, title, modal);

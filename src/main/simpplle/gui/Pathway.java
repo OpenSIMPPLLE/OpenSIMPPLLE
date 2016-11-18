@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * This class creates the Pathway dialog.  It allows users to open, create, and edit vegetative pathways.
  * The title of this dialog is "Vegetative Pathways".
- * Pathways are constructed as Trees have changes based on a decade time between states, and shrubs and herbaceous have yearly time changes.  
+ * Pathways are constructed as Trees have changes based on a decade time between states, and shrubs and herbaceous have yearly time changes.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
@@ -57,7 +57,7 @@ public class Pathway extends JDialog {
   JMenu menuFile = new JMenu();
   JMenuItem menuFileOpen = new JMenuItem();
   JMenuItem menuFileQuit = new JMenuItem();
-  MyCanvas canvas = new MyCanvas();
+  PathwayCanvas canvas = new PathwayCanvas();
   JScrollPane jScrollPane1 = new JScrollPane();
   JMenu menuPathways = new JMenu();
   JMenuItem menuLoadAllPathway = new JMenuItem();
@@ -409,7 +409,7 @@ public class Pathway extends JDialog {
     jMenu1.add(menuEditUndoArrow);
   }
 /**
- * Initializes the Pathway dialog.  Sets the MyCanvas pathway dialog to this one, clears out the species, aquatic class, pathway group and process.
+ * Initializes the Pathway dialog.  Sets the PathwayCanvas pathway dialog to this one, clears out the species, aquatic class, pathway group and process.
  * Aquatics pathways are only available for LTA Valley Segment Group (pathway group = LTA Valley Segment Group, Species = aquatic class).  
  * Otherwise it is a vegetative pathway (pathway group = Ecological grouping, Species = species).     
  */
@@ -519,6 +519,7 @@ public class Pathway extends JDialog {
     canvas.setHtGrp(pathwayGroup);
     canvas.setSpecies(species);
     canvas.setProcess(process);
+    canvas.refreshDiagram();
 
     savedArrowState     = null;
     savedArrowProcess   = null;
@@ -559,7 +560,7 @@ public class Pathway extends JDialog {
   }
 /**
  * Checks if an invalid state was created as a result of loading a new pathway.  If one is invalid will mark the OpenSimpplle main frame invalid, 
- * and allow user to import fix states, edit units, or print invalid report.  
+ * and allow user to import fix states, edit units, or print invalid report.
  */
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
@@ -1034,12 +1035,12 @@ public class Pathway extends JDialog {
   }
 
   void menuPathwayCollapseAll_actionPerformed(ActionEvent e) {
-                CollapsedPathwayShape.collapseAll(canvas.states);
+                CollapsedPathwayShape.collapseAll(canvas.getShapeHashtable());
                 update(getGraphics());
   }
 
   void menuPathwayDetailAll_actionPerformed(ActionEvent e) {
-                CollapsedPathwayShape.detailAll(canvas.states);
+                CollapsedPathwayShape.detailAll(canvas.getShapeHashtable());
   }
   void menuPathwayStepCounter_actionPerformed(ActionEvent e) {
           if(stepCounterDialog==null)
@@ -1048,7 +1049,11 @@ public class Pathway extends JDialog {
   }
 
   void menuPathwayGridLines_actionPerformed(ActionEvent e) {
-          canvas.showGridLines = menuPathwayGridLines.getState();
+          if (menuPathwayGridLines.getState()) {
+            canvas.showGridLines();
+          } else {
+            canvas.hideGridLines();
+          }
           canvas.repaint();
   }
 
