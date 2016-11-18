@@ -173,10 +173,6 @@ public class Pathway extends JDialog {
     this(frame,title,modal,false);
   }
 
-  public Pathway() {
-    this(null, "", false);
-    initialize();
-  }
 /**
  * Inits the dialog with components, borders, title, colors, and borders.  
  * 
