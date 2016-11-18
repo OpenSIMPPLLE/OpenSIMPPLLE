@@ -704,16 +704,26 @@ public class Pathway extends JDialog {
   }
 
   private void menuFileSpeciesInclusion_actionPerformed(ActionEvent e) {
+
     setCursor(Utility.getWaitCursor());
 
-    File infile = Utility.getOpenFile(this,"Species Inclusion File");
-    try {
-      HabitatTypeGroup.importInclusionFile(infile);
+    JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
+    chooser.setAcceptAllFileFilterUsed(true);
+    chooser.setDialogTitle("Select a Species Inclusion File");
+
+    int choice = chooser.showOpenDialog(this);
+    if (choice == JFileChooser.APPROVE_OPTION) {
+      try {
+        HabitatTypeGroup.importInclusionFile(chooser.getSelectedFile());
+      } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this,
+                                      ex.getMessage(),
+                                      "Error Loading File",
+                                      JOptionPane.ERROR_MESSAGE);
+      }
     }
-    catch (Exception ex) {
-      ex.printStackTrace();
-      System.out.println(ex.getMessage());
-    }
+
     setCursor(Utility.getNormalCursor());
 
   }
