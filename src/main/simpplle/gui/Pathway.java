@@ -981,30 +981,33 @@ public class Pathway extends JDialog {
   }
 
   private void pathwayGroupCB_actionPerformed(ActionEvent e) {
-    if (inInit) { return; }
-    String result = (String)pathwayGroupCB.getSelectedItem();
-    if (result != null) {
-      pathwayGroup = result;
+    if (!inInit) {
+      String result = (String) pathwayGroupCB.getSelectedItem();
+      if (result != null) {
+        pathwayGroup = result;
+      }
+      updateDialog();
     }
-    updateDialog();
   }
 
   private void speciesCB_actionPerformed(ActionEvent e) {
-    if (inInit) { return; }
-    Species result = (Species) speciesCB.getSelectedItem();
-    if (result != null) {
-      species = result;
+    if (!inInit) {
+      Species result = (Species) speciesCB.getSelectedItem();
+      if (result != null) {
+        species = result;
+      }
+      updateDialog();
     }
-    updateDialog();
   }
 
   private void processCB_actionPerformed(ActionEvent e) {
-    if (inInit) { return; }
-    String result = (String) processCB.getSelectedItem();
-    if (result != null) {
-      process = result;
+    if (!inInit) {
+      String result = (String) processCB.getSelectedItem();
+      if (result != null) {
+        process = result;
+      }
+      updateDialog();
     }
-    updateDialog();
   }
 
   private void autoPositionStates_actionPerformed(ActionEvent e) {
