@@ -19,7 +19,6 @@ import simpplle.comcode.VegetativeType;
 import simpplle.comcode.ProcessType;
 import simpplle.comcode.Process;
 import simpplle.comcode.Species;
-import simpplle.comcode.AquaticClass;
 import simpplle.comcode.SystemKnowledge;
 
 import java.io.*;
@@ -144,33 +143,28 @@ public class Pathway extends JDialog {
   private JMenuItem menuFileSpeciesInclusion = new JMenuItem();
   private JMenuItem menuPathwaySetLifeformYearlyStatus = new JMenuItem();
   private JMenu menuGroup = new JMenu();
-/**
- * Constructor for Vegetative Pathways dialog.  
- * @param frame owner of Pathway dialog
- * @param title
- * @param modal specifies whether dialog blocks user input to other top-level windows when shown
- * @param aquaticsMode
- */
-  public Pathway(Frame frame, String title, boolean modal, boolean aquaticsMode) {
-    super(frame, title, modal);
+
+  /**
+   * Creates a non-modal dialog for editing either aquatic or vegetative pathways.
+   *
+   * @param frame the owner dialog from which the dialog is displayed
+   * @param aquatic true if editing aquatic pathways
+   */
+  public Pathway(Frame frame, boolean aquatic) {
+
+    super(frame, "Pathways", false);
+
     try  {
       jbInit();
       pack();
-    }
-    catch(Exception ex) {
+    } catch(Exception ex) {
       ex.printStackTrace();
     }
-    this.aquaticsMode = aquaticsMode;
+
+    this.aquaticsMode = aquatic;
+
     initialize();
-  }
-  /**
-   * Overloaded constructor for Vegetative pathways
-   * @param frame owner of Pathways dialog
-   * @param title title of pathway dialog
-   * @param modal specifies whether dialog blocks user input to other top-level windows when shown
-   */
-  public Pathway(Frame frame, String title, boolean modal) {
-    this(frame,title,modal,false);
+
   }
 
 /**

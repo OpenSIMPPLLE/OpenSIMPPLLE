@@ -2370,7 +2370,7 @@ public class SimpplleMain extends JFrame {
   void menuSysKnowPathVeg_actionPerformed(ActionEvent e) {
     if (isVegPathwayDlgOpen()) { return; }
 
-    Pathway dlg = new Pathway(this,"Pathways",false);
+    Pathway dlg = new Pathway(this,false);
 
     setDialogLocation(dlg);
     setVegPathwayDlgOpen();
