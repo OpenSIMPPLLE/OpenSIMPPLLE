@@ -1076,45 +1076,44 @@ public class Pathway extends JDialog {
   }
 
   private void menuPathwayCollapseAll_actionPerformed(ActionEvent e) {
-                CollapsedPathwayShape.collapseAll(canvas.getShapeHashtable());
-                update(getGraphics());
+    CollapsedPathwayShape.collapseAll(canvas.getShapeHashtable());
+    update(getGraphics());
   }
 
   private void menuPathwayDetailAll_actionPerformed(ActionEvent e) {
-                CollapsedPathwayShape.detailAll(canvas.getShapeHashtable());
+    CollapsedPathwayShape.detailAll(canvas.getShapeHashtable());
   }
 
   private void menuPathwayStepCounter_actionPerformed(ActionEvent e) {
-          if(stepCounterDialog==null)
-                  stepCounterDialog = new StepCounter(this);
-          stepCounterDialog.setVisible(true);
+    if (stepCounterDialog == null) {
+      stepCounterDialog = new StepCounter(this);
+    }
+    stepCounterDialog.setVisible(true);
   }
 
   private void menuPathwayGridLines_actionPerformed(ActionEvent e) {
-          if (menuPathwayGridLines.getState()) {
-            canvas.showGridLines();
-          } else {
-            canvas.hideGridLines();
-          }
-          canvas.repaint();
+    if (menuPathwayGridLines.getState()) {
+      canvas.showGridLines();
+    } else {
+      canvas.hideGridLines();
+    }
+    canvas.repaint();
   }
 
   private void menuEditUndoArrow_actionPerformed(ActionEvent e) {
-    if (savedArrowState == null || savedArrowProcess == null ||
-        savedArrowNextState == null) {
+    if (savedArrowState == null || savedArrowProcess == null || savedArrowNextState == null) {
       return;
     }
-
     savedArrowState.setProcessNextState(savedArrowProcess,savedArrowNextState);
-    savedArrowState     = null;
-    savedArrowProcess   = null;
+    savedArrowState = null;
+    savedArrowProcess = null;
     savedArrowNextState = null;
     menuEditUndoArrow.setEnabled(false);
   }
 
   public void saveArrowChange(VegetativeType state, Process p, VegetativeType nextState) {
-    savedArrowState     = state;
-    savedArrowProcess   = p;
+    savedArrowState = state;
+    savedArrowProcess = p;
     savedArrowNextState = nextState;
     menuEditUndoArrow.setEnabled(true);
   }
