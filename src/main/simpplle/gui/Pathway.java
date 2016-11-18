@@ -1039,41 +1039,35 @@ public class Pathway extends JDialog {
 
   private void menuKnowledgeSourceDisplay_actionPerformed(ActionEvent e) {
     HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
-    if (group == null) { return; }
-
-    String str = group.getKnowledgeSource();
-    String title = "Knowledge Source for " + group.toString();
-
-    KnowledgeSource dlg = new KnowledgeSource(JSimpplle.getSimpplleMain(),title,true,str);
-    dlg.setVisible(true);
-
-    String newKnowledge = dlg.getText();
-    if (newKnowledge != null) {
-      group.setKnowledgeSource(newKnowledge);
+    if (group != null) {
+      String str = group.getKnowledgeSource();
+      String title = "Knowledge Source for " + group.toString();
+      KnowledgeSource dlg = new KnowledgeSource(JSimpplle.getSimpplleMain(),title,true,str);
+      dlg.setVisible(true);
+      String newKnowledge = dlg.getText();
+      if (newKnowledge != null) {
+        group.setKnowledgeSource(newKnowledge);
+      }
     }
   }
 
   private void menuPathwaySetLifeformYearlyStatus_actionPerformed(ActionEvent e) {
-    ArrayList<Lifeform> lives = new ArrayList<Lifeform>(Arrays.asList(Lifeform.getAllValues()));
 
     HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
     Lifeform[] values = group.getYearlyPathwayLifeforms();
     ArrayList<Lifeform> yearlyLives;
-
     if (values != null) {
-      yearlyLives = new ArrayList<Lifeform>(Arrays.asList(values));
-    }
-    else {
-      yearlyLives = new ArrayList<Lifeform>();
+      yearlyLives = new ArrayList<>(Arrays.asList(values));
+    } else {
+      yearlyLives = new ArrayList<>();
     }
 
     String title = "Yearly Pathway Lifeforms";
-
-    CheckBoxChooser dlg =
-      new CheckBoxChooser(this,title,true,lives,yearlyLives);
+    ArrayList<Lifeform> lives = new ArrayList<>(Arrays.asList(Lifeform.getAllValues()));
+    CheckBoxChooser dlg = new CheckBoxChooser(this,title,true,lives,yearlyLives);
     dlg.setVisible(true);
-
     group.setYearlyPathwayLifeforms(dlg.getChosenItems());
+
   }
 
   private void menuPathwayShowAllLabels_actionPerformed(ActionEvent e) {
