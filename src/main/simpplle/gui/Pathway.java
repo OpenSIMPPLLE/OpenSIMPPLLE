@@ -969,13 +969,15 @@ public class Pathway extends JDialog {
   }
 
   private void menuPathwaysNewState_actionPerformed(ActionEvent e) {
-    String title = "Create a New State";
-    Frame  theFrame = JSimpplle.getSimpplleMain();
-    PathwayNewState dlg = new PathwayNewState(theFrame,title,true,pathwayGroup,species);
 
+    PathwayNewState dlg = new PathwayNewState(JSimpplle.getSimpplleMain(),
+                                              "Create a New State",
+                                              true, pathwayGroup, species);
     dlg.setLocation(getLocation());
     dlg.setVisible(true);
+
     updateDialog();
+
   }
 
   private void pathwayGroupCB_actionPerformed(ActionEvent e) {
