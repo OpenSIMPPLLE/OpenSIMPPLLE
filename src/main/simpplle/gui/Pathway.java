@@ -458,19 +458,24 @@ public class Pathway extends JDialog {
     return canvas;
   }
 
-/**
- * Updates the dialog.  
- */
+  /**
+   * Updates the dialog by toggling visibility of menu items, updating combo box contents, clearing
+   * undo history, setting the canvas view based on the combo box selection, and painting the
+   * dialog.
+   */
   public void updateDialog() {
-    int i;
-    RegionalZone zone = Simpplle.getCurrentZone();
 
     inInit = true;
-    String[] groups = (aquaticsMode) ? LtaValleySegmentGroup.getLoadedGroupNames() :
-                                       HabitatTypeGroup.getLoadedGroupNames();
 
-    // **new code**
+    String[] groups;
+    if (aquaticsMode) {
+      groups = LtaValleySegmentGroup.getLoadedGroupNames();
+    } else {
+      groups = HabitatTypeGroup.getLoadedGroupNames();
+    }
+
     if (groups == null) {
+
       pathwayGroupCB.removeAllItems();
       speciesCB.removeAllItems();
       processCB.removeAllItems();
@@ -487,9 +492,11 @@ public class Pathway extends JDialog {
       menuPathwaysNewState.setEnabled(false);
       autoPositionAllStates.setEnabled(false);
       autoPositionStates.setEnabled(false);
+
       return;
-    }
-    else {
+
+    } else {
+
       pathwayGroupCB.setEnabled(true);
       speciesCB.setEnabled(true);
       processCB.setEnabled(true);
@@ -501,25 +508,29 @@ public class Pathway extends JDialog {
       menuPathwaysNewState.setEnabled(true);
       autoPositionAllStates.setEnabled(true);
       autoPositionStates.setEnabled(true);
+
     }
-    // *** end new code ***
-    Arrays.sort(groups); // Sort array of groups
-    if (pathwayGroup == null) { pathwayGroup = groups[0]; }
+
+    Arrays.sort(groups);
+
+    if (pathwayGroup == null) {
+      pathwayGroup = groups[0];
+    }
     pathwayGroupCB.removeAllItems();
-    for(i=0; i<groups.length; i++) {
-      pathwayGroupCB.addItem(groups[i]);
+    for (String group : groups) {
+      pathwayGroupCB.addItem(group);
     }
     pathwayGroupCB.setSelectedItem(pathwayGroup);
 
     speciesCB.removeAllItems();
-    Species[] allSpecies     = HabitatTypeGroup.findInstance(pathwayGroup).getAllSpecies();
-    Species   currentSpecies = species;
+    Species[] allSpecies = HabitatTypeGroup.findInstance(pathwayGroup).getAllSpecies();
+    Species currentSpecies = species;
     species = allSpecies[0];
-    for(i=0; i<allSpecies.length; i++) {
-      if (allSpecies[i] == currentSpecies) {
-        species = allSpecies[i];
+    for (Species s : allSpecies) {
+      if (s == currentSpecies) {
+        species = s;
       }
-      speciesCB.addItem(allSpecies[i]);
+      speciesCB.addItem(s);
     }
     speciesCB.setSelectedItem(species);
 
@@ -527,13 +538,14 @@ public class Pathway extends JDialog {
     String[] allProcess = HabitatTypeGroup.findInstance(pathwayGroup).getAllProcesses(species);
     String currentProcess = process;
     process = ProcessType.SUCCESSION.toString();
-    for(i=0; i<allProcess.length; i++) {
-      if (allProcess[i].equals(currentProcess)) {
-        process = allProcess[i];
+    for (String p : allProcess) {
+      if (p.equals(currentProcess)) {
+        process = p;
       }
-      processCB.addItem(allProcess[i]);
+      processCB.addItem(p);
     }
     processCB.setSelectedItem(process);
+
     inInit = false;
 
     canvas.setHtGrp(pathwayGroup);
@@ -547,11 +559,16 @@ public class Pathway extends JDialog {
     menuEditUndoArrow.setEnabled(false);
 
     HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
-    menuFileSave.setEnabled( ((group != null) &&
-                             (group.getFilename() != null) &&
-                             group.hasChanged()) );
+    if (group != null && group.getFilename() != null && group.hasChanged()) {
+      menuFileSave.setEnabled(true);
+    } else {
+      menuFileSave.setEnabled(false);
+    }
+
     update(getGraphics());
+
   }
+
 /**
  * Allows the user to delete previous simulation data.  
  * @return
