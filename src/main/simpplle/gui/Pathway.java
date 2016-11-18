@@ -689,8 +689,7 @@ public class Pathway extends JDialog {
     int choice = chooser.showOpenDialog(this);
     if (choice == JFileChooser.APPROVE_OPTION) {
       try {
-        BufferedReader reader = new BufferedReader(new FileReader(chooser.getSelectedFile()));
-        HabitatTypeGroup.importSpeciesChangeFile(reader);
+        HabitatTypeGroup.importSpeciesChangeFile(chooser.getSelectedFile());
       } catch (Exception ex) {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(this,
