@@ -763,45 +763,49 @@ public class Pathway extends JDialog {
   }
 
   private void menuFileExport_actionPerformed(ActionEvent e) {
-    RegionalZone zone = Simpplle.getCurrentZone();
-    Area         area = Simpplle.getCurrentArea();
-    Frame               theFrame = JSimpplle.getSimpplleMain();
-    ListSelectionDialog dlg;
-    List<String> results = new ArrayList<>();
 
-    dlg = new ListSelectionDialog(theFrame,"Select Ecological Grouping(s)",true,
-            HabitatTypeGroup.getLoadedGroupNames(), true);
+    ListSelectionDialog selectDlg = new ListSelectionDialog(JSimpplle.getSimpplleMain(),
+                                                            "Select Ecological Groupings",
+                                                            true,
+                                                            HabitatTypeGroup.getLoadedGroupNames(),
+                                                            true);
+    selectDlg.setLocation(getLocation());
+    selectDlg.setVisible(true);
+    Object[] objects = selectDlg.getSelections();
 
-    dlg.setLocation(getLocation());
-    dlg.setVisible(true);
-    // get selections back in generic objects
-    Object[] objs = dlg.getSelections();
-    for(Object o: objs){
-      results.add((String)o);
+    List<String> names = new ArrayList<>();
+    for (Object object : objects) {
+      names.add((String) object);
     }
-//    Object a = dlg.getSelections();
-    if (results.isEmpty()) { return; }
+    if (names.isEmpty()) return;
 
-    // get directory
-    File dir = Utility.getSaveDir(this,"Select a Directory to Export to");
-    if (dir == null) { return; }
+    JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
+    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    chooser.setAcceptAllFileFilterUsed(false);
+    chooser.setDialogTitle("Select Output Directory");
 
-    setCursor(Utility.getWaitCursor());
-    for (String habitat: results){
+    int choice = chooser.showOpenDialog(this);
+    if (choice == JFileChooser.APPROVE_OPTION) {
+      File directory = chooser.getSelectedFile();
+      if (directory == null) return;
 
-      try {
-        HabitatTypeGroup pathwayGroupInst = HabitatTypeGroup.findInstance(habitat);
-        System.out.println(habitat);
-        File outfile = new File(dir.getAbsolutePath()+File.separatorChar+habitat+".txt");
-        pathwayGroupInst.export(outfile);
+      setCursor(Utility.getWaitCursor());
+
+      for (String name : names) {
+        try {
+          HabitatTypeGroup group = HabitatTypeGroup.findInstance(name);
+          File file = new File(directory.getAbsolutePath() + File.separatorChar + name + ".txt");
+          group.export(file);
+        } catch (SimpplleError error) {
+          JOptionPane.showMessageDialog(this, error.getMessage(),
+                                        "Error Exporting Pathway",
+                                        JOptionPane.ERROR_MESSAGE);
+        }
       }
-      catch (SimpplleError err) {
-        JOptionPane.showMessageDialog(this, err.getMessage(),
-                "Error exporting pathway",
-                JOptionPane.ERROR_MESSAGE);
-      }
+
+      setCursor(Utility.getNormalCursor());
+
     }
-    setCursor(Utility.getNormalCursor());
   }
 
   private void menuFileUnloadPathway_actionPerformed(ActionEvent e) {
