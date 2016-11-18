@@ -618,12 +618,7 @@ public class Pathway extends JDialog {
     }
   }
 
-/**
- * If user elects to open a file in the File JMenu, opens a file with SystemKnowledgeFiler for Vegetative Pathways, then loads the habitat type group 
- * to last pathway loaded and updates all the vegetative pathways.  
- * @param e
- */
-  void menuFileOpen_actionPerformed(ActionEvent e) {
+  private void menuFileOpen_actionPerformed(ActionEvent e) {
     Area area = Simpplle.getCurrentArea();
 
     if (area != null && Simpplle.getCurrentSimulation() != null) {
@@ -644,7 +639,8 @@ public class Pathway extends JDialog {
       }
     }
   }
-  void menuFileOldFormat_actionPerformed(ActionEvent e) {
+
+  private void menuFileOldFormat_actionPerformed(ActionEvent e) {
     Area area = Simpplle.getCurrentArea();
     File         inputFile;
     MyFileFilter extFilter;
@@ -682,7 +678,8 @@ public class Pathway extends JDialog {
       doInvalidAreaCheck();
     }
   }
-  public void menuFileSpeciesChange_actionPerformed(ActionEvent e) {
+
+  private void menuFileSpeciesChange_actionPerformed(ActionEvent e) {
     setCursor(Utility.getWaitCursor());
 
     File infile = Utility.getOpenFile(this,"Species Change File");
@@ -697,11 +694,8 @@ public class Pathway extends JDialog {
     setCursor(Utility.getNormalCursor());
 
   }
-  /**
-   * 
-   * @param e
-   */
-  public void menuFileSpeciesInclusion_actionPerformed(ActionEvent e) {
+
+  private void menuFileSpeciesInclusion_actionPerformed(ActionEvent e) {
     setCursor(Utility.getWaitCursor());
 
     File infile = Utility.getOpenFile(this,"Species Inclusion File");
@@ -716,7 +710,7 @@ public class Pathway extends JDialog {
 
   }
 
-  void menuFileImport_actionPerformed(ActionEvent e) {
+  private void menuFileImport_actionPerformed(ActionEvent e) {
     setCursor(Utility.getWaitCursor());
 
     Area             area    = Simpplle.getCurrentArea();
@@ -746,7 +740,7 @@ public class Pathway extends JDialog {
     setCursor(Utility.getNormalCursor());
   }
 
-  void menuFileExport_actionPerformed(ActionEvent e) {
+  private void menuFileExport_actionPerformed(ActionEvent e) {
     RegionalZone zone = Simpplle.getCurrentZone();
     Area         area = Simpplle.getCurrentArea();
     Frame               theFrame = JSimpplle.getSimpplleMain();
@@ -787,7 +781,8 @@ public class Pathway extends JDialog {
     }
     setCursor(Utility.getNormalCursor());
   }
-  void menuFileUnloadPathway_actionPerformed(ActionEvent e) {
+
+  private void menuFileUnloadPathway_actionPerformed(ActionEvent e) {
     RegionalZone zone = Simpplle.getCurrentZone();
     Area         area = Simpplle.getCurrentArea();
     Frame               theFrame = JSimpplle.getSimpplleMain();
@@ -828,11 +823,8 @@ public class Pathway extends JDialog {
       doInvalidAreaCheck();
     }
   }
-/**
- * If user selects JMenu item save, uses the system filer to save the vegetation pathways file.  
- * @param e
- */
-  void menuFileSave_actionPerformed(ActionEvent e) {
+
+  private void menuFileSave_actionPerformed(ActionEvent e) {
     HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
     File             outfile = group.getFilename();
 
@@ -841,22 +833,16 @@ public class Pathway extends JDialog {
                                   menuFileSave,null,group);
     update(getGraphics());
   }
-  /**
-   * If user selects JMenu item Save As, uses the system filer to save the vegetation pathways file.  
-   * @param e
-   */
-  void menuFileSaveAs_actionPerformed(ActionEvent e) {
+
+  private void menuFileSaveAs_actionPerformed(ActionEvent e) {
     HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
 
     SystemKnowledgeFiler.saveFile(this, SystemKnowledge.VEGETATION_PATHWAYS,
                                   menuFileSave, null, group);
     update(getGraphics());
   }
-/**
- * Loads vegetative pathway for current zone and area.  It creates a new ListSelectionDialog which allows users to select an ecological grouping.  
- * @param e
- */
-  void menuLoadPathway_actionPerformed(ActionEvent e) {
+
+  private void menuLoadPathway_actionPerformed(ActionEvent e) {
     RegionalZone        zone = Simpplle.getCurrentZone();
     Area                area = Simpplle.getCurrentArea();
     Frame               theFrame = JSimpplle.getSimpplleMain();
@@ -895,7 +881,7 @@ public class Pathway extends JDialog {
     updateDialog();
   }
 
-  void menuLoadAllPathway_actionPerformed(ActionEvent e) {
+  private void menuLoadAllPathway_actionPerformed(ActionEvent e) {
     RegionalZone        zone = Simpplle.getCurrentZone();
     Area                area = Simpplle.getCurrentArea();
     Frame               theFrame = JSimpplle.getSimpplleMain();
@@ -940,11 +926,11 @@ public class Pathway extends JDialog {
     }
   }
 
-  void menuFileQuit_actionPerformed(ActionEvent e) {
+  private void menuFileQuit_actionPerformed(ActionEvent e) {
     quit();
   }
 
-  void this_windowClosing(WindowEvent e) {
+  private void this_windowClosing(WindowEvent e) {
     quit();
   }
 
@@ -959,7 +945,7 @@ public class Pathway extends JDialog {
     updateDialog();
   }
 
-  void menuPathwaysNewState_actionPerformed(ActionEvent e) {
+  private void menuPathwaysNewState_actionPerformed(ActionEvent e) {
     String title = "Create a New State";
     Frame  theFrame = JSimpplle.getSimpplleMain();
     PathwayNewState dlg = new PathwayNewState(theFrame,title,true,pathwayGroup,species);
@@ -969,7 +955,7 @@ public class Pathway extends JDialog {
     updateDialog();
   }
 
-  void pathwayGroupCB_actionPerformed(ActionEvent e) {
+  private void pathwayGroupCB_actionPerformed(ActionEvent e) {
     if (inInit) { return; }
     String result = (String)pathwayGroupCB.getSelectedItem();
     if (result != null) {
@@ -978,7 +964,7 @@ public class Pathway extends JDialog {
     updateDialog();
   }
 
-  void speciesCB_actionPerformed(ActionEvent e) {
+  private void speciesCB_actionPerformed(ActionEvent e) {
     if (inInit) { return; }
     Species result = (Species) speciesCB.getSelectedItem();
     if (result != null) {
@@ -987,7 +973,7 @@ public class Pathway extends JDialog {
     updateDialog();
   }
 
-  void processCB_actionPerformed(ActionEvent e) {
+  private void processCB_actionPerformed(ActionEvent e) {
     if (inInit) { return; }
     String result = (String) processCB.getSelectedItem();
     if (result != null) {
@@ -996,7 +982,7 @@ public class Pathway extends JDialog {
     updateDialog();
   }
 
-  void autoPositionStates_actionPerformed(ActionEvent e) {
+  private void autoPositionStates_actionPerformed(ActionEvent e) {
     HabitatTypeGroup group;
     String msg = "This will position currently shown states.\n\n" + "Continue?";
     int choice = JOptionPane.showConfirmDialog(this,msg,
@@ -1010,7 +996,8 @@ public class Pathway extends JDialog {
       updateDialog();
     }
   }
-  void autoPositionAllStates_actionPerformed(ActionEvent e) {
+
+  private void autoPositionAllStates_actionPerformed(ActionEvent e) {
     HabitatTypeGroup group;
     String msg = "This will position All states in the current Ecological Grouping.\n\n" +
                  "Continue?";
@@ -1026,7 +1013,7 @@ public class Pathway extends JDialog {
     }
   }
 
-  void menuKnowledgeSourceDisplay_actionPerformed(ActionEvent e) {
+  private void menuKnowledgeSourceDisplay_actionPerformed(ActionEvent e) {
     HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
     if (group == null) { return; }
 
@@ -1042,7 +1029,7 @@ public class Pathway extends JDialog {
     }
   }
 
-  void menuPathwaySetLifeformYearlyStatus_actionPerformed(ActionEvent e) {
+  private void menuPathwaySetLifeformYearlyStatus_actionPerformed(ActionEvent e) {
     ArrayList<Lifeform> lives = new ArrayList<Lifeform>(Arrays.asList(Lifeform.getAllValues()));
 
     HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
@@ -1065,26 +1052,27 @@ public class Pathway extends JDialog {
     group.setYearlyPathwayLifeforms(dlg.getChosenItems());
   }
 
-  void menuPathwayShowAllLabels_actionPerformed(ActionEvent e) {
+  private void menuPathwayShowAllLabels_actionPerformed(ActionEvent e) {
     canvas.toggleShowAllLabels();
     canvas.refreshDiagram();
   }
 
-  void menuPathwayCollapseAll_actionPerformed(ActionEvent e) {
+  private void menuPathwayCollapseAll_actionPerformed(ActionEvent e) {
                 CollapsedPathwayShape.collapseAll(canvas.getShapeHashtable());
                 update(getGraphics());
   }
 
-  void menuPathwayDetailAll_actionPerformed(ActionEvent e) {
+  private void menuPathwayDetailAll_actionPerformed(ActionEvent e) {
                 CollapsedPathwayShape.detailAll(canvas.getShapeHashtable());
   }
-  void menuPathwayStepCounter_actionPerformed(ActionEvent e) {
+
+  private void menuPathwayStepCounter_actionPerformed(ActionEvent e) {
           if(stepCounterDialog==null)
                   stepCounterDialog = new StepCounter(this);
           stepCounterDialog.setVisible(true);
   }
 
-  void menuPathwayGridLines_actionPerformed(ActionEvent e) {
+  private void menuPathwayGridLines_actionPerformed(ActionEvent e) {
           if (menuPathwayGridLines.getState()) {
             canvas.showGridLines();
           } else {
@@ -1093,7 +1081,7 @@ public class Pathway extends JDialog {
           canvas.repaint();
   }
 
-  void menuEditUndoArrow_actionPerformed(ActionEvent e) {
+  private void menuEditUndoArrow_actionPerformed(ActionEvent e) {
     if (savedArrowState == null || savedArrowProcess == null ||
         savedArrowNextState == null) {
       return;
