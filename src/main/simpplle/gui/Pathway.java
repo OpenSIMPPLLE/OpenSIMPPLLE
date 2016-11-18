@@ -570,31 +570,32 @@ public class Pathway extends JDialog {
   }
 
 /**
- * Allows the user to delete previous simulation data.  
- * @return
+ * Prompts the user to decide if simulation data should be deleted.
+ *
+ * @return true if the user doesn't need the data
  */
   private boolean deleteSimulationCheck() {
-    String msg =
-      "An area is loaded that has simulation data.\n" +
-      "If an invalid Vegetative state or Ecological Grouping is created \n" +
-      "as a result of loading a new pathway file,\n" +
-      "then the state will be marked as invalid, and a result the area as well.\n" +
-      "** In addition all simulation data will be removed from memory. **\n\n" +
-      "Do you wish to continue?\n";
+
+    String msg = "An area is loaded that has simulation data.\n" +
+                 "If an invalid vegetative state or ecological grouping is created \n" +
+                 "as a result of loading a new pathway file,\n" +
+                 "then the state will be marked as invalid, and a result the area as well.\n" +
+                 "** In addition all simulation data will be removed from memory. **\n\n" +
+                 "Do you wish to continue?\n";
 
     int choice = JOptionPane.showConfirmDialog(this,msg,
-                                           "Warning: Simlation Data exists.",
-                                           JOptionPane.YES_NO_OPTION,
-                                           JOptionPane.WARNING_MESSAGE);
+                                               "Warning: Simulation Data Exists",
+                                               JOptionPane.YES_NO_OPTION,
+                                               JOptionPane.WARNING_MESSAGE);
 
     if (choice == JOptionPane.NO_OPTION) {
       return true;
-    }
-    else {
+    } else {
       Simpplle.resetSimulation();
       return false;
     }
   }
+
 /**
  * Checks if an invalid state was created as a result of loading a new pathway.  If one is invalid will mark the OpenSimpplle main frame invalid, 
  * and allow user to import fix states, edit units, or print invalid report.
