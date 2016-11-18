@@ -679,17 +679,27 @@ public class Pathway extends JDialog {
   }
 
   private void menuFileSpeciesChange_actionPerformed(ActionEvent e) {
+
     setCursor(Utility.getWaitCursor());
 
-    File infile = Utility.getOpenFile(this,"Species Change File");
-    try {
-      BufferedReader fin = new BufferedReader(new FileReader(infile));
-      HabitatTypeGroup.importSpeciesChangeFile(fin);
+    JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
+    chooser.setAcceptAllFileFilterUsed(true);
+    chooser.setDialogTitle("Select a Species Change File");
+
+    int choice = chooser.showOpenDialog(this);
+    if (choice == JFileChooser.APPROVE_OPTION) {
+      try {
+        BufferedReader reader = new BufferedReader(new FileReader(chooser.getSelectedFile()));
+        HabitatTypeGroup.importSpeciesChangeFile(reader);
+      } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this,
+                                      ex.getMessage(),
+                                      "Error Loading File",
+                                      JOptionPane.ERROR_MESSAGE);
+      }
     }
-    catch (Exception ex) {
-      ex.printStackTrace();
-      System.out.println(ex.getMessage());
-    }
+
     setCursor(Utility.getNormalCursor());
 
   }
