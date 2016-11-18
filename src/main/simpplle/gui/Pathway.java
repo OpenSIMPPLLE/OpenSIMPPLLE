@@ -42,14 +42,46 @@ import java.util.List;
  */
 
 public class Pathway extends JDialog {
-  private Species      species;
-  private AquaticClass aquaticClass;
-  private String       pathwayGroup;
-  private String       process;
-  private boolean      inInit = true;
-  private boolean      aquaticsMode = false;
-  private Process          savedArrowProcess;
-  private VegetativeType   savedArrowNextState, savedArrowState;
+
+  /**
+   * The current ecological grouping
+   */
+  private String pathwayGroup;
+
+  /**
+   * The current species
+   */
+  private Species species;
+
+  /**
+   * The current process
+   */
+  private String process;
+
+  /**
+   * Blocks the eco group, species, and process combo boxes from responding to changes
+   */
+  private boolean inInit = true;
+
+  /**
+   * Flag indicating if the pathways are for aquatic states
+   */
+  private boolean aquaticsMode = false;
+
+  /**
+   * The process that the last modified arrow represented
+   */
+  private Process savedArrowProcess;
+
+  /**
+   * The state that the last modified arrow pointed to
+   */
+  private VegetativeType savedArrowNextState;
+
+  /**
+   * The state that the last modified arrow pointed from
+   */
+  private VegetativeType savedArrowState;
 
   private PathwayCanvas canvas = new PathwayCanvas();
   private JPanel mainPanel = new JPanel();
@@ -419,7 +451,6 @@ public class Pathway extends JDialog {
 
     canvas.setPathwayDlg(this);
     species      = null;
-    aquaticClass = null;
     pathwayGroup = null;
     process      = null;
 
