@@ -425,19 +425,18 @@ public class Pathway extends JDialog {
     jMenu1.add(menuEditUndoArrow);
   }
 
-/**
- * Initializes the Pathway dialog.  Sets the PathwayCanvas pathway dialog to this one, clears out the species, aquatic class, pathway group and process.
- * Aquatics pathways are only available for LTA Valley Segment Group (pathway group = LTA Valley Segment Group, Species = aquatic class).  
- * Otherwise it is a vegetative pathway (pathway group = Ecological grouping, Species = species).     
- */
+  /**
+   * Initializes the user interface. Initialization involves clearing the current eco group,
+   * species, and process, displaying the zone name, and adjusting the names of the combo boxes
+   * based on the type of pathway being edited.
+   */
   private void initialize() {
-//    menuFileSpeciesChange.setVisible(JSimpplle.developerMode());
-//    menuFileSpeciesInclusion.setVisible(JSimpplle.developerMode());
 
-    canvas.setPathwayDlg(this);
     species      = null;
     pathwayGroup = null;
     process      = null;
+
+    canvas.setPathwayDlg(this);
 
     zoneText.setText(Simpplle.getCurrentZone().getName());
 
@@ -445,14 +444,14 @@ public class Pathway extends JDialog {
       pathwayGroupBorder.setTitle("LTA Valley Segment Group");
       speciesBorder.setTitle("Aquatic Class");
       menuPathwaySetLifeformYearlyStatus.setVisible(false);
-    }
-    else {
+    } else {
       pathwayGroupBorder.setTitle("Ecological Grouping");
       speciesBorder.setTitle("Species");
       menuPathwaySetLifeformYearlyStatus.setVisible(true);
     }
 
     updateDialog();
+
   }
 
   public PathwayCanvas getPathwayCanvas() {
