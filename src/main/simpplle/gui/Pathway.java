@@ -596,30 +596,28 @@ public class Pathway extends JDialog {
     }
   }
 
-/**
- * Checks if an invalid state was created as a result of loading a new pathway.  If one is invalid will mark the OpenSimpplle main frame invalid, 
- * and allow user to import fix states, edit units, or print invalid report.
- */
+  /**
+   * Marks the current area as invalid if any vegetation units are invalid. If this is the case, a
+   * message is displayed to the user describing how to fix the units.
+   */
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
-
     if (area.existAnyInvalidVegUnits()) {
-      String msg =
-        "Invalid states were created as a result of loading the new pathway\n" +
-        "file.  In addition any simulation data that may have existed has\n" +
-        "been erased from memory\n" +
-        "The area can be made valid again by either running the Unit Editor\n" +
-        "found under the Utilities menu of the main application window, or\n" +
-        "by loading a pathway file that contains the missing states\n";
-
-      JOptionPane.showMessageDialog(this,msg,"Invalid units found",
+      String msg = "Invalid states were created as a result of loading the new pathway\n" +
+                   "file. In addition any simulation data that may have existed has\n" +
+                   "been erased from memory.\n" +
+                   "The area can be made valid again by either running the Unit Editor\n" +
+                   "found under the Utilities menu of the main application window, or\n" +
+                   "by loading a pathway file that contains the missing states.\n";
+      JOptionPane.showMessageDialog(this,msg,
+                                    "Invalid units found",
                                     JOptionPane.INFORMATION_MESSAGE);
       JSimpplle.getSimpplleMain().markAreaInvalid();
-    }
-    else {
+    } else {
       JSimpplle.getSimpplleMain().markAreaValid();
     }
   }
+
 /**
  * If user elects to open a file in the File JMenu, opens a file with SystemKnowledgeFiler for Vegetative Pathways, then loads the habitat type group 
  * to last pathway loaded and updates all the vegetative pathways.  
