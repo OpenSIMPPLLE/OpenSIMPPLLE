@@ -1011,15 +1011,13 @@ public class Pathway extends JDialog {
   }
 
   private void autoPositionStates_actionPerformed(ActionEvent e) {
-    HabitatTypeGroup group;
-    String msg = "This will position currently shown states.\n\n" + "Continue?";
-    int choice = JOptionPane.showConfirmDialog(this,msg,
-                                           "Auto Position States",
-                                           JOptionPane.YES_NO_OPTION,
-                                           JOptionPane.QUESTION_MESSAGE);
-
+    String msg = "This will position all visible states.\n\nContinue?";
+    int choice = JOptionPane.showConfirmDialog(this, msg,
+                                               "Auto Position States",
+                                               JOptionPane.YES_NO_OPTION,
+                                               JOptionPane.QUESTION_MESSAGE);
     if (choice == JOptionPane.YES_OPTION) {
-      group = HabitatTypeGroup.findInstance(pathwayGroup);
+      HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
       group.autoPositionSpecies(species);
       updateDialog();
     }
