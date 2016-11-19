@@ -87,7 +87,7 @@ public class Pathway extends JDialog {
   private JMenu menuFile = new JMenu();
   private JMenu menuKnowledgeSource = new JMenu();
   private JMenu menuPathways = new JMenu();
-  private JMenu jMenu1 = new JMenu();
+  private JMenu menuEdit = new JMenu();
   private JMenu menuGroup = new JMenu();
   private JMenuItem autoPositionStates = new JMenuItem();
   private JMenuItem autoPositionAllStates = new JMenuItem();
@@ -347,7 +347,7 @@ public class Pathway extends JDialog {
         menuFileOldFormat_actionPerformed(e);
       }
     });
-    jMenu1.setText("Edit");
+    menuEdit.setText("Edit");
     menuEditUndoArrow.setEnabled(false);
     menuEditUndoArrow.setText("Undo Last Arrow Move");
     menuEditUndoArrow.addActionListener(new java.awt.event.ActionListener() {
@@ -369,7 +369,7 @@ public class Pathway extends JDialog {
     });
     getContentPane().add(mainPanel);
     jMenuBar1.add(menuFile);
-    jMenuBar1.add(jMenu1);
+    jMenuBar1.add(menuEdit);
     jMenuBar1.add(menuPathways);
     jMenuBar1.add(menuGroup);
     jMenuBar1.add(menuKnowledgeSource);
@@ -416,7 +416,7 @@ public class Pathway extends JDialog {
     menuPathways.add(menuPathwayGridLines);
     menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
     menuGroup.add(menuPathwaySetLifeformYearlyStatus);
-    jMenu1.add(menuEditUndoArrow);
+    menuEdit.add(menuEditUndoArrow);
   }
 
   /**
