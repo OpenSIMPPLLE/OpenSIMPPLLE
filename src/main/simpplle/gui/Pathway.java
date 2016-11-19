@@ -347,10 +347,6 @@ public class Pathway extends JDialog {
 
   }
 
-  public PathwayCanvas getPathwayCanvas() {
-    return canvas;
-  }
-
   /**
    * Updates the dialog by toggling visibility of menu items, updating combo box contents, clearing
    * undo history, setting the canvas view based on the combo box selection, and painting the
@@ -462,11 +458,11 @@ public class Pathway extends JDialog {
 
   }
 
-/**
- * Prompts the user to decide if simulation data should be deleted.
- *
- * @return true if the user doesn't need the data
- */
+  /**
+   * Prompts the user to decide if simulation data should be deleted.
+   *
+   * @return true if the user doesn't need the data
+   */
   private boolean deleteSimulationCheck() {
 
     String msg = "An area is loaded that has simulation data.\n" +
@@ -508,6 +504,39 @@ public class Pathway extends JDialog {
       JSimpplle.getSimpplleMain().markAreaInvalid();
     } else {
       JSimpplle.getSimpplleMain().markAreaValid();
+    }
+  }
+
+  public PathwayCanvas getPathwayCanvas() {
+    return canvas;
+  }
+
+  public void setSpecies(VegetativeType veg) {
+    species = veg.getSpecies();
+    updateDialog();
+  }
+
+  public void setSpeciesAndProcess(VegetativeType veg, Process p) {
+    species = veg.getSpecies();
+    process = p.toString();
+    updateDialog();
+  }
+
+  public void saveArrowChange(VegetativeType state, Process p, VegetativeType nextState) {
+    savedArrowState = state;
+    savedArrowProcess = p;
+    savedArrowNextState = nextState;
+    menuEditUndoArrow.setEnabled(true);
+  }
+
+  private void quit () {
+    JSimpplle.getSimpplleMain().setVegPathwayDlgClosed();
+    setVisible(false);
+    try {
+      dispose();
+    } catch (NullPointerException ex) {
+      // For some reason this exception is getting thrown on dispose.
+      // I don't know why.  Just ignore it.
     }
   }
 
@@ -756,6 +785,10 @@ public class Pathway extends JDialog {
     update(getGraphics());
   }
 
+  private void menuFileQuit_actionPerformed(ActionEvent e) {
+    quit();
+  }
+
   private void menuLoadPathway_actionPerformed(ActionEvent e) {
 
     Area area = Simpplle.getCurrentArea();
@@ -830,35 +863,15 @@ public class Pathway extends JDialog {
 
   }
 
-  private void quit () {
-    JSimpplle.getSimpplleMain().setVegPathwayDlgClosed();
-    setVisible(false);
-    try {
-      dispose();
+  private void menuEditUndoArrow_actionPerformed(ActionEvent e) {
+    if (savedArrowState == null || savedArrowProcess == null || savedArrowNextState == null) {
+      return;
     }
-    // For some reason this exception is getting thrown on dispose.
-    // I don't know why.  Just ignore it.
-    catch (NullPointerException ex) {
-    }
-  }
-
-  private void menuFileQuit_actionPerformed(ActionEvent e) {
-    quit();
-  }
-
-  private void this_windowClosing(WindowEvent e) {
-    quit();
-  }
-
-  public void setSpecies(VegetativeType veg) {
-    species = veg.getSpecies();
-    updateDialog();
-  }
-
-  public void setSpeciesAndProcess(VegetativeType veg, Process p) {
-    species = veg.getSpecies();
-    process = p.toString();
-    updateDialog();
+    savedArrowState.setProcessNextState(savedArrowProcess,savedArrowNextState);
+    savedArrowState = null;
+    savedArrowProcess = null;
+    savedArrowNextState = null;
+    menuEditUndoArrow.setEnabled(false);
   }
 
   private void menuPathwaysNewState_actionPerformed(ActionEvent e) {
@@ -871,77 +884,6 @@ public class Pathway extends JDialog {
 
     updateDialog();
 
-  }
-
-  private void pathwayGroupCB_actionPerformed(ActionEvent e) {
-    if (!inInit) {
-      String result = (String) pathwayGroupCB.getSelectedItem();
-      if (result != null) {
-        pathwayGroup = result;
-      }
-      updateDialog();
-    }
-  }
-
-  private void speciesCB_actionPerformed(ActionEvent e) {
-    if (!inInit) {
-      Species result = (Species) speciesCB.getSelectedItem();
-      if (result != null) {
-        species = result;
-      }
-      updateDialog();
-    }
-  }
-
-  private void processCB_actionPerformed(ActionEvent e) {
-    if (!inInit) {
-      String result = (String) processCB.getSelectedItem();
-      if (result != null) {
-        process = result;
-      }
-      updateDialog();
-    }
-  }
-
-  private void autoPositionStates_actionPerformed(ActionEvent e) {
-    String msg = "This will position all visible states.\n\nContinue?";
-    int choice = JOptionPane.showConfirmDialog(this, msg,
-                                               "Auto Position States",
-                                               JOptionPane.YES_NO_OPTION,
-                                               JOptionPane.QUESTION_MESSAGE);
-    if (choice == JOptionPane.YES_OPTION) {
-      HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
-      group.autoPositionSpecies(species);
-      updateDialog();
-    }
-  }
-
-  private void autoPositionAllStates_actionPerformed(ActionEvent e) {
-    String msg = "This will position all states in the current ecological grouping.\n\nContinue?";
-    int choice = JOptionPane.showConfirmDialog(this,msg,
-                                               "Auto Position All States",
-                                               JOptionPane.YES_NO_OPTION,
-                                               JOptionPane.QUESTION_MESSAGE);
-
-    if (choice == JOptionPane.YES_OPTION) {
-      HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
-      group.autoPositionAllSpecies();
-      updateDialog();
-    }
-  }
-
-  private void menuKnowledgeSourceDisplay_actionPerformed(ActionEvent e) {
-    HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
-    if (group != null) {
-      String str = group.getKnowledgeSource();
-      String title = "Knowledge Source for " + group.toString();
-      KnowledgeSource dlg = new KnowledgeSource(JSimpplle.getSimpplleMain(),title,true,str);
-      dlg.setVisible(true);
-      String newKnowledge = dlg.getText();
-      if (newKnowledge != null) {
-        group.setKnowledgeSource(newKnowledge);
-      }
-    }
   }
 
   private void menuPathwaySetLifeformYearlyStatus_actionPerformed(ActionEvent e) {
@@ -993,22 +935,79 @@ public class Pathway extends JDialog {
     canvas.repaint();
   }
 
-  private void menuEditUndoArrow_actionPerformed(ActionEvent e) {
-    if (savedArrowState == null || savedArrowProcess == null || savedArrowNextState == null) {
-      return;
+  private void menuKnowledgeSourceDisplay_actionPerformed(ActionEvent e) {
+    HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
+    if (group != null) {
+      String str = group.getKnowledgeSource();
+      String title = "Knowledge Source for " + group.toString();
+      KnowledgeSource dlg = new KnowledgeSource(JSimpplle.getSimpplleMain(),title,true,str);
+      dlg.setVisible(true);
+      String newKnowledge = dlg.getText();
+      if (newKnowledge != null) {
+        group.setKnowledgeSource(newKnowledge);
+      }
     }
-    savedArrowState.setProcessNextState(savedArrowProcess,savedArrowNextState);
-    savedArrowState = null;
-    savedArrowProcess = null;
-    savedArrowNextState = null;
-    menuEditUndoArrow.setEnabled(false);
   }
 
-  public void saveArrowChange(VegetativeType state, Process p, VegetativeType nextState) {
-    savedArrowState = state;
-    savedArrowProcess = p;
-    savedArrowNextState = nextState;
-    menuEditUndoArrow.setEnabled(true);
+  private void autoPositionAllStates_actionPerformed(ActionEvent e) {
+    String msg = "This will position all states in the current ecological grouping.\n\nContinue?";
+    int choice = JOptionPane.showConfirmDialog(this,msg,
+        "Auto Position All States",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE);
+
+    if (choice == JOptionPane.YES_OPTION) {
+      HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
+      group.autoPositionAllSpecies();
+      updateDialog();
+    }
+  }
+
+  private void pathwayGroupCB_actionPerformed(ActionEvent e) {
+    if (!inInit) {
+      String result = (String) pathwayGroupCB.getSelectedItem();
+      if (result != null) {
+        pathwayGroup = result;
+      }
+      updateDialog();
+    }
+  }
+
+  private void speciesCB_actionPerformed(ActionEvent e) {
+    if (!inInit) {
+      Species result = (Species) speciesCB.getSelectedItem();
+      if (result != null) {
+        species = result;
+      }
+      updateDialog();
+    }
+  }
+
+  private void processCB_actionPerformed(ActionEvent e) {
+    if (!inInit) {
+      String result = (String) processCB.getSelectedItem();
+      if (result != null) {
+        process = result;
+      }
+      updateDialog();
+    }
+  }
+
+  private void autoPositionStates_actionPerformed(ActionEvent e) {
+    String msg = "This will position all visible states.\n\nContinue?";
+    int choice = JOptionPane.showConfirmDialog(this, msg,
+                                               "Auto Position States",
+                                               JOptionPane.YES_NO_OPTION,
+                                               JOptionPane.QUESTION_MESSAGE);
+    if (choice == JOptionPane.YES_OPTION) {
+      HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
+      group.autoPositionSpecies(species);
+      updateDialog();
+    }
+  }
+
+  private void this_windowClosing(WindowEvent e) {
+    quit();
   }
 }
 
