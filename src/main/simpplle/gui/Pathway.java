@@ -28,22 +28,20 @@ import java.awt.event.*;
 import javax.swing.border.*;
 import simpplle.comcode.*;
 import java.util.*;
-import java.util.Arrays; //Added to sort the string array for ecological grouping (pathwayGroupCB)
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * This class creates the Pathway dialog.  It allows users to open, create, and edit vegetative pathways.
- * The title of this dialog is "Vegetative Pathways".
- * Pathways are constructed as Trees have changes based on a decade time between states, and shrubs and herbaceous have yearly time changes.
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+ * The pathway dialog allows users to edit pathways. Each pathway group is in individual pathway
+ * containing multiple states. Changes between these states occur over time based on the current
+ * process applied to the species or aquatic class. This dialog enables users to load, save, edit,
+ * and analyze pathways.
  */
 
 public class Pathway extends JDialog {
 
   /**
-   * The current ecological grouping
+   * The current grouping
    */
   private String pathwayGroup;
 
