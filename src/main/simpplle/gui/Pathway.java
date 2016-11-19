@@ -175,108 +175,37 @@ public class Pathway extends JDialog {
     processBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black,1),"Process");
     mainPanel.setLayout(borderLayout1);
     mainPanel.setMinimumSize(new Dimension(200, 200));
-    menuFile.setText("File");
     menuFileOpen.setText("Open");
-    menuFileOpen.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileOpen_actionPerformed(e);
-      }
-    });
+    menuFileOpen.addActionListener(this::menuFileOpen_actionPerformed);
     menuFileQuit.setText("Close Dialog");
-    menuFileQuit.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileQuit_actionPerformed(e);
-      }
-    });
-    this.setTitle("Vegetative Pathways");
-    this.addWindowListener(new java.awt.event.WindowAdapter() {
-      public void windowClosing(WindowEvent e) {
-        this_windowClosing(e);
-      }
-    });
-    this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-    this.setJMenuBar(menuBar);
-    menuPathways.setText("Pathways");
-    menuGroup.setText("Group");
+    menuFileQuit.addActionListener(this::menuFileQuit_actionPerformed);
     jScrollPane1.setPreferredSize(new Dimension(800, 500));
     menuFileUnloadPathway.setText("Unload Pathway ...");
-    menuFileUnloadPathway.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileUnloadPathway_actionPerformed(e);
-      }
-    });
+    menuFileUnloadPathway.addActionListener(this::menuFileUnloadPathway_actionPerformed);
     menuFileSave.setText("Save");
-    menuFileSave.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileSave_actionPerformed(e);
-      }
-    });
+    menuFileSave.addActionListener(this::menuFileSave_actionPerformed);
     menuFileSaveAs.setText("SaveAs");
-    menuFileSaveAs.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileSaveAs_actionPerformed(e);
-      }
-    });
+    menuFileSaveAs.addActionListener(this::menuFileSaveAs_actionPerformed);
     menuLoadPathway.setText("Load Default Pathway ...");
-    menuLoadPathway.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuLoadPathway_actionPerformed(e);
-      }
-    });
+    menuLoadPathway.addActionListener(this::menuLoadPathway_actionPerformed);
     menuLoadAllPathway.setText("Load All Default Pathways");
-    menuLoadAllPathway.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuLoadAllPathway_actionPerformed(e);
-      }
-    });
+    menuLoadAllPathway.addActionListener(this::menuLoadAllPathway_actionPerformed);
     menuFileImport.setText("Import Pathway Text File");
-    menuFileImport.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileImport_actionPerformed(e);
-      }
-    });
+    menuFileImport.addActionListener(this::menuFileImport_actionPerformed);
     menuFileExport.setText("Export Pathway(s) to Text File ...");
-    menuFileExport.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileExport_actionPerformed(e);
-      }
-    });
+    menuFileExport.addActionListener(this::menuFileExport_actionPerformed);
     menuPathwaysNewState.setText("New State ...");
-    menuPathwaysNewState.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuPathwaysNewState_actionPerformed(e);
-      }
-    });
+    menuPathwaysNewState.addActionListener(this::menuPathwaysNewState_actionPerformed);
     menuPathwayCollapseAll.setText("Collapse All");
-    menuPathwayCollapseAll.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-                    menuPathwayCollapseAll_actionPerformed(e);
-      }
-    });
+    menuPathwayCollapseAll.addActionListener(this::menuPathwayCollapseAll_actionPerformed);
     menuPathwayDetailAll.setText("Detail All");
-    menuPathwayDetailAll.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-                    menuPathwayDetailAll_actionPerformed(e);
-      }
-    });
+    menuPathwayDetailAll.addActionListener(this::menuPathwayDetailAll_actionPerformed);
     menuPathwayStepCounter.setText("Step Counter");
-    menuPathwayStepCounter.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-                    menuPathwayStepCounter_actionPerformed(e);
-      }
-    });
+    menuPathwayStepCounter.addActionListener(this::menuPathwayStepCounter_actionPerformed);
     menuPathwayGridLines.setText("Grid Lines");
-    menuPathwayGridLines.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-                    menuPathwayGridLines_actionPerformed(e);
-      }
-    });
+    menuPathwayGridLines.addActionListener(this::menuPathwayGridLines_actionPerformed);
     menuPathwaySetLifeformYearlyStatus.setText("Set Yearly Lifeforms");
-    menuPathwaySetLifeformYearlyStatus.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuPathwaySetLifeformYearlyStatus_actionPerformed(e);
-      }
-    });
+    menuPathwaySetLifeformYearlyStatus.addActionListener(this::menuPathwaySetLifeformYearlyStatus_actionPerformed);
     northPanel.setLayout(borderLayout2);
     zoneLabel.setHorizontalAlignment(SwingConstants.RIGHT);
     zoneLabel.setText("Current Zone");
@@ -301,73 +230,31 @@ public class Pathway extends JDialog {
     processPanel.setBorder(processBorder);
     processPanel.setLayout(flowLayout5);
     processBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 12));
-    pathwayGroupCB.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        pathwayGroupCB_actionPerformed(e);
-      }
-    });
-    speciesCB.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        speciesCB_actionPerformed(e);
-      }
-    });
-    processCB.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        processCB_actionPerformed(e);
-      }
-    });
+    pathwayGroupCB.addActionListener(this::pathwayGroupCB_actionPerformed);
+    speciesCB.addActionListener(this::speciesCB_actionPerformed);
+    processCB.addActionListener(this::processCB_actionPerformed);
     autoPositionStates.setText("Auto Position States ...");
-    autoPositionStates.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        autoPositionStates_actionPerformed(e);
-      }
-    });
-    menuKnowledgeSource.setText("Knowledge Source");
+    autoPositionStates.addActionListener(this::autoPositionStates_actionPerformed);
     menuKnowledgeSourceDisplay.setText("Display");
-    menuKnowledgeSourceDisplay.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuKnowledgeSourceDisplay_actionPerformed(e);
-      }
-    });
+    menuKnowledgeSourceDisplay.addActionListener(this::menuKnowledgeSourceDisplay_actionPerformed);
     autoPositionAllStates.setText("Auto Position All States ...");
-    autoPositionAllStates.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        autoPositionAllStates_actionPerformed(e);
-      }
-    });
+    autoPositionAllStates.addActionListener(this::autoPositionAllStates_actionPerformed);
     menuPathwayShowAllLabels.setText("Show All Labels");
-    menuPathwayShowAllLabels.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuPathwayShowAllLabels_actionPerformed(e);
-      }
-    });
+    menuPathwayShowAllLabels.addActionListener(this::menuPathwayShowAllLabels_actionPerformed);
     menuFileOldFormat.setText("Open Old Format File");
-    menuFileOldFormat.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileOldFormat_actionPerformed(e);
-      }
-    });
-    menuEdit.setText("Edit");
+    menuFileOldFormat.addActionListener(this::menuFileOldFormat_actionPerformed);
     menuEditUndoArrow.setEnabled(false);
     menuEditUndoArrow.setText("Undo Last Arrow Move");
-    menuEditUndoArrow.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuEditUndoArrow_actionPerformed(e);
-      }
-    });
+    menuEditUndoArrow.addActionListener(this::menuEditUndoArrow_actionPerformed);
     menuFileSpeciesChange.setText("Import Species Change File");
-    menuFileSpeciesChange.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileSpeciesChange_actionPerformed(e);
-      }
-    });
+    menuFileSpeciesChange.addActionListener(this::menuFileSpeciesChange_actionPerformed);
     menuFileSpeciesInclusion.setText("Import Species Inclusion File");
-    menuFileSpeciesInclusion.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileSpeciesInclusion_actionPerformed(e);
-      }
-    });
-    getContentPane().add(mainPanel);
+    menuFileSpeciesInclusion.addActionListener(this::menuFileSpeciesInclusion_actionPerformed);
+    menuFile.setText("File");
+    menuEdit.setText("Edit");
+    menuGroup.setText("Group");
+    menuPathways.setText("Pathways");
+    menuKnowledgeSource.setText("Knowledge Source");
     menuBar.add(menuFile);
     menuBar.add(menuEdit);
     menuBar.add(menuPathways);
@@ -390,6 +277,18 @@ public class Pathway extends JDialog {
     menuFile.add(menuLoadAllPathway);
     menuFile.addSeparator();
     menuFile.add(menuFileQuit);
+    menuEdit.add(menuEditUndoArrow);
+    menuPathways.add(menuPathwaysNewState);
+    menuPathways.add(autoPositionStates);
+    menuPathways.add(autoPositionAllStates);
+    menuPathways.addSeparator();
+    menuPathways.add(menuPathwayShowAllLabels);
+    menuPathways.add(menuPathwayCollapseAll);
+    menuPathways.add(menuPathwayDetailAll);
+    menuPathways.add(menuPathwayStepCounter);
+    menuPathways.add(menuPathwayGridLines);
+    menuGroup.add(menuPathwaySetLifeformYearlyStatus);
+    menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
     mainPanel.add(jScrollPane1, BorderLayout.CENTER);
     mainPanel.add(northPanel, BorderLayout.NORTH);
     northPanel.add(infoPanel, BorderLayout.NORTH);
@@ -405,18 +304,18 @@ public class Pathway extends JDialog {
     selectionPanel.add(processPanel, null);
     processPanel.add(processCB, null);
     jScrollPane1.getViewport().add(canvas, null);
-    menuPathways.add(menuPathwaysNewState);
-    menuPathways.add(autoPositionStates);
-    menuPathways.add(autoPositionAllStates);
-    menuPathways.addSeparator();
-    menuPathways.add(menuPathwayShowAllLabels);
-    menuPathways.add(menuPathwayCollapseAll);
-    menuPathways.add(menuPathwayDetailAll);
-    menuPathways.add(menuPathwayStepCounter);
-    menuPathways.add(menuPathwayGridLines);
-    menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
-    menuGroup.add(menuPathwaySetLifeformYearlyStatus);
-    menuEdit.add(menuEditUndoArrow);
+
+    setTitle("Vegetative Pathways");
+    setJMenuBar(menuBar);
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+    getContentPane().add(mainPanel);
+
+    addWindowListener(new java.awt.event.WindowAdapter() {
+      public void windowClosing(WindowEvent e) {
+        this_windowClosing(e);
+      }
+    });
   }
 
   /**
