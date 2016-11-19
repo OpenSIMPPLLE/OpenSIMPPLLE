@@ -83,7 +83,7 @@ public class Pathway extends JDialog {
   private VegetativeType savedArrowState;
 
   private PathwayCanvas canvas = new PathwayCanvas();
-  private JMenuBar jMenuBar1 = new JMenuBar();
+  private JMenuBar menuBar = new JMenuBar();
   private JMenu menuFile = new JMenu();
   private JMenu menuKnowledgeSource = new JMenu();
   private JMenu menuPathways = new JMenu();
@@ -195,7 +195,7 @@ public class Pathway extends JDialog {
       }
     });
     this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-    this.setJMenuBar(jMenuBar1);
+    this.setJMenuBar(menuBar);
     menuPathways.setText("Pathways");
     menuGroup.setText("Group");
     jScrollPane1.setPreferredSize(new Dimension(800, 500));
@@ -368,11 +368,11 @@ public class Pathway extends JDialog {
       }
     });
     getContentPane().add(mainPanel);
-    jMenuBar1.add(menuFile);
-    jMenuBar1.add(menuEdit);
-    jMenuBar1.add(menuPathways);
-    jMenuBar1.add(menuGroup);
-    jMenuBar1.add(menuKnowledgeSource);
+    menuBar.add(menuFile);
+    menuBar.add(menuEdit);
+    menuBar.add(menuPathways);
+    menuBar.add(menuGroup);
+    menuBar.add(menuKnowledgeSource);
     menuFile.add(menuFileOpen);
     menuFile.add(menuFileUnloadPathway);
     menuFile.addSeparator();
