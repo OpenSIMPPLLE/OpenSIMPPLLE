@@ -363,19 +363,25 @@ public class Pathway extends JDialog {
 
     if (groups == null) {
 
+      // Remove all combo box items
       pathwayGroupCB.removeAllItems();
       speciesCB.removeAllItems();
       processCB.removeAllItems();
 
+      // Disable the combo boxes
       pathwayGroupCB.setEnabled(false);
       speciesCB.setEnabled(false);
       processCB.setEnabled(false);
+
+      // Disable saving and loading
       menuFileSave.setEnabled(false);
       menuFileSaveAs.setEnabled(false);
+      menuFileExport.setEnabled(false);
       menuFileUnloadPathway.setEnabled(false);
       menuLoadAllPathway.setEnabled(false);
       menuLoadPathway.setEnabled(false);
-      menuFileExport.setEnabled(false);
+
+      // Disable state manipulation
       menuPathwaysNewState.setEnabled(false);
       autoPositionAllStates.setEnabled(false);
       autoPositionStates.setEnabled(false);
@@ -384,14 +390,19 @@ public class Pathway extends JDialog {
 
     } else {
 
+      // Enable the combo boxes
       pathwayGroupCB.setEnabled(true);
       speciesCB.setEnabled(true);
       processCB.setEnabled(true);
+
+      // Enable saving and loading
       menuFileSaveAs.setEnabled(true);
+      menuFileExport.setEnabled(true);
       menuFileUnloadPathway.setEnabled(true);
       menuLoadAllPathway.setEnabled(true);
       menuLoadPathway.setEnabled(true);
-      menuFileExport.setEnabled(true);
+
+      // Enable state manipulation
       menuPathwaysNewState.setEnabled(true);
       autoPositionAllStates.setEnabled(true);
       autoPositionStates.setEnabled(true);
@@ -409,10 +420,10 @@ public class Pathway extends JDialog {
     }
     pathwayGroupCB.setSelectedItem(pathwayGroup);
 
-    speciesCB.removeAllItems();
-    Species[] allSpecies = HabitatTypeGroup.findInstance(pathwayGroup).getAllSpecies();
     Species currentSpecies = species;
+    Species[] allSpecies = HabitatTypeGroup.findInstance(pathwayGroup).getAllSpecies();
     species = allSpecies[0];
+    speciesCB.removeAllItems();
     for (Species s : allSpecies) {
       if (s == currentSpecies) {
         species = s;
@@ -421,10 +432,10 @@ public class Pathway extends JDialog {
     }
     speciesCB.setSelectedItem(species);
 
-    processCB.removeAllItems();
-    String[] allProcess = HabitatTypeGroup.findInstance(pathwayGroup).getAllProcesses(species);
     String currentProcess = process;
+    String[] allProcess = HabitatTypeGroup.findInstance(pathwayGroup).getAllProcesses(species);
     process = ProcessType.SUCCESSION.toString();
+    processCB.removeAllItems();
     for (String p : allProcess) {
       if (p.equals(currentProcess)) {
         process = p;
@@ -440,8 +451,8 @@ public class Pathway extends JDialog {
     canvas.setProcess(process);
     canvas.refreshDiagram();
 
-    savedArrowState     = null;
-    savedArrowProcess   = null;
+    savedArrowState = null;
+    savedArrowProcess = null;
     savedArrowNextState = null;
     menuEditUndoArrow.setEnabled(false);
 
