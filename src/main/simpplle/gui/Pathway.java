@@ -231,10 +231,10 @@ public class Pathway extends JDialog {
     pathwayGroupCB.addActionListener(this::pathwayGroupCB_actionPerformed);
     speciesCB.addActionListener(this::speciesCB_actionPerformed);
     processCB.addActionListener(this::processCB_actionPerformed);
-    autoPositionStates.setText("Auto Position States ...");
-    autoPositionStates.addActionListener(this::autoPositionStates_actionPerformed);
     menuKnowledgeSourceDisplay.setText("Display");
     menuKnowledgeSourceDisplay.addActionListener(this::menuKnowledgeSourceDisplay_actionPerformed);
+    autoPositionStates.setText("Auto Position States ...");
+    autoPositionStates.addActionListener(this::autoPositionStates_actionPerformed);
     autoPositionAllStates.setText("Auto Position All States ...");
     autoPositionAllStates.addActionListener(this::autoPositionAllStates_actionPerformed);
     menuPathwayShowAllLabels.setText("Show All Labels");
@@ -958,17 +958,31 @@ public class Pathway extends JDialog {
     }
   }
 
+  private void autoPositionStates_actionPerformed(ActionEvent e) {
+    String msg = "This will position all visible states.\n\nContinue?";
+    int choice = JOptionPane.showConfirmDialog(this, msg,
+                                               "Auto Position States",
+                                               JOptionPane.YES_NO_OPTION,
+                                               JOptionPane.QUESTION_MESSAGE);
+    if (choice == JOptionPane.YES_OPTION) {
+      HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
+      group.autoPositionSpecies(species);
+      canvas.refreshDiagram();
+      update(getGraphics());
+    }
+  }
+
   private void autoPositionAllStates_actionPerformed(ActionEvent e) {
     String msg = "This will position all states in the current ecological grouping.\n\nContinue?";
-    int choice = JOptionPane.showConfirmDialog(this,msg,
-        "Auto Position All States",
-        JOptionPane.YES_NO_OPTION,
-        JOptionPane.QUESTION_MESSAGE);
-
+    int choice = JOptionPane.showConfirmDialog(this, msg,
+                                               "Auto Position All States",
+                                               JOptionPane.YES_NO_OPTION,
+                                               JOptionPane.QUESTION_MESSAGE);
     if (choice == JOptionPane.YES_OPTION) {
       HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
       group.autoPositionAllSpecies();
-      updateDialog();
+      canvas.refreshDiagram();
+      update(getGraphics());
     }
   }
 
@@ -998,19 +1012,6 @@ public class Pathway extends JDialog {
       if (result != null) {
         process = result;
       }
-      updateDialog();
-    }
-  }
-
-  private void autoPositionStates_actionPerformed(ActionEvent e) {
-    String msg = "This will position all visible states.\n\nContinue?";
-    int choice = JOptionPane.showConfirmDialog(this, msg,
-                                               "Auto Position States",
-                                               JOptionPane.YES_NO_OPTION,
-                                               JOptionPane.QUESTION_MESSAGE);
-    if (choice == JOptionPane.YES_OPTION) {
-      HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
-      group.autoPositionSpecies(species);
       updateDialog();
     }
   }
