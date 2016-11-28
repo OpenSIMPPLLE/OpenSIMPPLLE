@@ -22,9 +22,8 @@ import org.hibernate.*;
 import simpplle.comcode.Climate.*;
 
 /**
+ *  Existing Vegetative unit
  *
- *
- * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
 
@@ -51,15 +50,21 @@ public final class Evu extends NaturalElement implements Externalizable {
   // one element for each lifeform, lifeform can be determine from species.
   // private HashMap<Lifeform,ArrayList<VegSimStateData>> vegStateNew;
 
-  // Index: n=currentStep, n-1=currentStep-1, etc)
-  // Size:  Simulation.pastTimeStepsInMemory + 1;
-  // Key 1: Lifeform, Key 2: Season
-  // Value: VegSimStateData
+  /**
+   *  Uses a Map data structure that is optimized for size less than 3.
+   *  MultiKey - Key 1: Lifeform, Key 2: Season
+   *  Index: n = currentStep, n-1 = currentStep - 1, etc)
+   *  Size:  Simulation.pastTimeStepsInMemory + 1;
+   *  Value: VegSimStateData
+   */
   private Flat3Map[] simData;
 
-  // Key 1: Lifeform, Key 2: Season
-  // We could end up with initial conditions with Season,
-  // by running seasonally and using simulation results as new initial Conditions.
+  /**
+   * Uses a Map data structure that is optimized for size less than 3.
+   * MultiKey - Key 1: Lifeform, Key 2: Season
+  *  We could end up with initial conditions with Season,
+  *  by running seasonally and using simulation results as new initial Conditions.
+  */
   private Flat3Map initialState;
 
   private Lifeform dominantLifeform;
@@ -8083,12 +8088,14 @@ public final class Evu extends NaturalElement implements Externalizable {
     Season[]   seasons = Climate.allSeasons;
 
     VegSimStateData.clearWriteCount();
-    for (int l=0; l<lives.length; l++) {
-      for (int i = 0; i < seasons.length; i++) {
-        VegSimStateData state = getState(ts, lives[l], seasons[i]);
-        if (state == null) { continue; }
+    for (Lifeform life : lives) {
+      for (Season season : seasons) {
+        VegSimStateData state = getState(ts, life, season);
 
-        VegSimStateData.writeAccessFiles(fout,trackOut,this,state);
+        if (state == null) {
+          continue;
+        }
+        VegSimStateData.writeAccessFiles(fout, trackOut, this, state);
       }
     }
   }
