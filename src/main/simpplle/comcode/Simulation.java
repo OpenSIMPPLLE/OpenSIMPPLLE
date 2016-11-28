@@ -904,7 +904,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
       }
     }
 
-    // TODO: Write initial simulation states here
+    // write initial states to files (time step 0)
+    if (writeAccess) {
+      currentArea.writeSimulationAccessFiles(accessEvuSimDataOut[currentRun], accessTrackingSpeciesOut);
+    }
 
     try {
       for(int i = 0; i < numTimeSteps; i++) {
@@ -916,13 +919,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
         long freeMem = Runtime.getRuntime().freeMemory();
         long totMem  = Runtime.getRuntime().totalMemory();
-        long maxMem  = Runtime.getRuntime().maxMemory();
-        long usedMem = ((totMem - freeMem) / 1024) / 1024;
-        maxMem = maxMem / 1024 / 1024;
+        long maxMemMB  = Runtime.getRuntime().maxMemory() / 1024 / 1024;;
+        long usedMemMB = ((totMem - freeMem) / 1024) / 1024;
 
         String msg = "Project Area for Time Step: " + (i + 1)
                    + " Run #" + (currentRun + 1)
-                   + " Mem: " + usedMem + "MB/" + maxMem;
+                   + " Mem: " + usedMemMB + "MB/" + maxMemMB;
 
         Simpplle.setStatusMessage(msg);
 
