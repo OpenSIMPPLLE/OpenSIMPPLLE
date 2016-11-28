@@ -1066,9 +1066,10 @@ public final class HabitatTypeGroup {
 
   }
 
-  public static void importSpeciesChangeFile(BufferedReader fin) throws ParseError {
+  public static void importSpeciesChangeFile(File file) throws ParseError {
     String line="";
     try {
+      BufferedReader fin = new BufferedReader(new FileReader(file));
       line = fin.readLine();
       while (line != null) {
         line = line.trim();

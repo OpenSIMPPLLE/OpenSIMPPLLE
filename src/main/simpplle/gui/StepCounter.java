@@ -47,7 +47,7 @@ public class StepCounter extends JDialog {
                 GridBagConstraints gbc = new GridBagConstraints();
 
                 // Set components
-                canvas = owner.canvas;
+                canvas = owner.getPathwayCanvas();
                 setLocation(loc.x+owner.getSize().width-WIDTH, loc.y);
                 setSize(WIDTH, HEIGHT);
                 thePane.setLayout(new GridLayout(1,2));
