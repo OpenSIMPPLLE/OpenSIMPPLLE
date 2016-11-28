@@ -543,9 +543,9 @@ public class Pathway extends JDialog {
     setVisible(false);
     try {
       dispose();
+      System.out.println("Console print");
     } catch (NullPointerException ex) {
-      // For some reason this exception is getting thrown on dispose.
-      // I don't know why.  Just ignore it.
+      System.out.print(ex.getStackTrace());
     }
   }
 
