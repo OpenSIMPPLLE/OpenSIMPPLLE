@@ -2676,15 +2676,21 @@ public class SimpplleMain extends JFrame {
     }
     // Import was successful.
     else {
+      String fn2 = inputFile.getName();
+      int index = fn2.lastIndexOf(".");
+      String fn = fn2.substring(0,index);
       msg = "Creation of the Area was successful.\n" +
-           "Please give the area a name using the \"Change Area Name\"" +
-           " function under the utility menu.\n\n" +
-           "*** Do not to forget to save the area (File Menu) ***";
-      JOptionPane.showMessageDialog(this,msg,"Area Import Succeeded",
+           " For: " + fn;
+           //Please give the area a name using the \"Change Area Name\"" +
+           //" function under the utility menu.\n\n" +
+           //"*** Do not to forget to save the area (File Menu) ***";
+                JOptionPane.showMessageDialog(this,msg,"Area Import Succeeded",
                                     JOptionPane.INFORMATION_MESSAGE);
-      area.setName("No Name (to change use Utility-->Change Area Name)");
-      String str = Simpplle.getCurrentArea().getName();
+
+      area.setName(fn);
+      String str = area.getName();
       areaValueLabel.setText(str);
+      //area.setName("No Name (to change use Utility-->Change Area Name)");
       updateSpreadModels(area.getHasKeaneAttributes());
       markAreaValid();
       disableSimulationControls();
