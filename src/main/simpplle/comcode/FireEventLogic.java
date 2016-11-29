@@ -410,9 +410,26 @@ public class FireEventLogic extends BaseLogic {
     for (int i = 0; i < getData(SPREAD_STR).size(); i++) {
 
       FireSpreadLogicData logicData = (FireSpreadLogicData)logicDataArray.get(i);
+      /**
+       * Get the process currently associated with the cell
+       */
+      VegSimStateData state2 = evu.getState();
+      ProcessType currentProcess = state2.getProcess();
+      /**
+       * Get the fire process of a matching rule if you can find a matching rule
+       */
       ProcessType fireType = logicData.getFireTypeIfMatch(processType, resistance, fromEvu, evu, toLifeform);
 
       if (fireType != null) {
+        /**
+         * check to see if this is the same process that has been identified before
+         */
+        if (fireType == currentProcess) {
+          if (!fireType.isFireProcess()) { // fireProcess is ProcessType.NONE
+            fireType = null;
+          }
+          return fireType;
+        }
 
         if (Simulation.getInstance().isDoSimLoggingFile()) {
           logSpread(evu, fromEvu, toLifeform.toString(), fireType.toString(), i);
