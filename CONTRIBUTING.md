@@ -26,7 +26,7 @@ the left, and *master* on the right.
 * Allow a teammate or two to read over the Pull Request adding comments if
   necessary.
 
-* Merge the Pull Request and enjoy your successful contribution!
+* Have a teammate merge the Pull Request and enjoy your successful contribution!
 
 This process is explained in more detail by the [Bitbucket Documentation](https://confluence.atlassian.com/bitbucket/work-with-pull-requests-223220593.html). 
 
