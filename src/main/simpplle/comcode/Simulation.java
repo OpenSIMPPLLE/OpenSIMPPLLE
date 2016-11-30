@@ -8,6 +8,8 @@
 
 package simpplle.comcode;
 
+import simpplle.gui.SystemKnowledgeLoadSave;
+
 import java.io.*;
 import java.util.*;
 import java.util.zip.*;
@@ -1016,6 +1018,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
     File fmzFile    = SystemKnowledge.getFile(SystemKnowledge.FMZ);
     File spreadFile = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
     File typeFile   = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
+    String syskFile = SystemKnowledge.BASE_NAME;
+    //String syskFile = SystemKnowledgeLoadSave.getWindows();
 
     try {
       writer.write("SIMPPLLE Simulation Log File\n"
@@ -1035,6 +1039,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "\n"
                  + "Data Files\n"
                  + "\n"
+                 + "SystemKnowledge File  : " + ((syskFile   == null) ? "Default" : syskFile.toString()) + "\n"
                  + "Fire Management Zones : " + ((fmzFile    == null) ? "Default" : fmzFile.toString()) + "\n"
                  + "Fire Spread           : " + ((spreadFile == null) ? "Default" : spreadFile.toString()) + "\n"
                  + "Type of Fire          : " + ((typeFile   == null) ? "Default" : typeFile.toString()) + "\n");

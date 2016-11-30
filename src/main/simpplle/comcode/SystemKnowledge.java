@@ -74,7 +74,8 @@ public class SystemKnowledge {
     SPRUCE_BEETLE,
     DF_BEETLE,
     WILDLIFE,
-    KEANE_PARAMETERS
+    KEANE_PARAMETERS,
+    //BASE_NAME
 
   }
 
@@ -128,6 +129,7 @@ public class SystemKnowledge {
   public static final Kinds WILDLIFE                         = Kinds.WILDLIFE;
   public static final Kinds KEANE_PARAMETERS                 = Kinds.KEANE_PARAMETERS;
 
+
   public static final String FMZ_ENTRY                                  = "DATA/FMZ.TXT";
   public static final String TREATMENT_SCHEDULE_ENTRY                   = "DATA/TREATMENT";
   public static final String TREATMENT_LOGIC_ENTRY                      = "DATA/TREATMENT-LOGIC.TXT";
@@ -178,6 +180,8 @@ public class SystemKnowledge {
   public static final String FIRE_SPOTTING_LOGIC_ENTRY                  = "DATA/FIRE-SPOTTING-LOGIC.XML";
   public static final String FIRE_SUPP_EVENT_LOGIC_ENTRY                = "DATA/FIRE-SUPP-EVENT-LOGIC.XML";
   public static final String KEANE_PARAMETERS_ENTRY                     = "DATA/KEANE-PARAMETERS-ENTRY";
+
+  public static String BASE_NAME;
 
   /**
    * Flags indicating if a kind of knowledge has changed.
