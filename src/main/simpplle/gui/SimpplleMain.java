@@ -2455,6 +2455,7 @@ public class SimpplleMain extends JFrame {
     setDialogLocation(dlg);
 
     File sysKnowFile = dlg.selectFile();
+    SystemKnowledge.BASE_NAME = sysKnowFile.toString();
     if (sysKnowFile != null) {
       dlg.setVisible(true);
     }

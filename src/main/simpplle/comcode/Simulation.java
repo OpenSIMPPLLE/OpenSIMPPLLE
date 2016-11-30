@@ -8,7 +8,6 @@
 
 package simpplle.comcode;
 
-import simpplle.gui.SystemKnowledgeLoadSave;
 
 import java.io.*;
 import java.util.*;
@@ -1019,7 +1018,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     File spreadFile = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
     File typeFile   = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
     String syskFile = SystemKnowledge.BASE_NAME;
-    //String syskFile = SystemKnowledgeLoadSave.getWindows();
 
     try {
       writer.write("SIMPPLLE Simulation Log File\n"

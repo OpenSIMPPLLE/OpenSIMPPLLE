@@ -74,8 +74,7 @@ public class SystemKnowledge {
     SPRUCE_BEETLE,
     DF_BEETLE,
     WILDLIFE,
-    KEANE_PARAMETERS,
-    //BASE_NAME
+    KEANE_PARAMETERS
 
   }
 
@@ -128,7 +127,6 @@ public class SystemKnowledge {
   public static final Kinds DF_BEETLE                        = Kinds.DF_BEETLE;
   public static final Kinds WILDLIFE                         = Kinds.WILDLIFE;
   public static final Kinds KEANE_PARAMETERS                 = Kinds.KEANE_PARAMETERS;
-
 
   public static final String FMZ_ENTRY                                  = "DATA/FMZ.TXT";
   public static final String TREATMENT_SCHEDULE_ENTRY                   = "DATA/TREATMENT";
