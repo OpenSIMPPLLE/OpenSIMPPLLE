@@ -2673,30 +2673,23 @@ public class SimpplleMain extends JFrame {
       String str = Simpplle.getCurrentArea().getName();
       areaValueLabel.setText(str);
       markAreaInvalid();
-    }
-    // Import was successful.
-    else {
-      String fn2 = inputFile.getName();
-      int index = fn2.lastIndexOf(".");
-      String fn = fn2.substring(0,index);
-      msg = "Creation of the Area was successful.\n" +
-           " For: " + fn;
-           //Please give the area a name using the \"Change Area Name\"" +
-           //" function under the utility menu.\n\n" +
-           //"*** Do not to forget to save the area (File Menu) ***";
-                JOptionPane.showMessageDialog(this,msg,"Area Import Succeeded",
+    } else {
+      String fileName = inputFile.getName();
+      String areaName = fileName.substring(0, fileName.lastIndexOf("."));
+      JOptionPane.showMessageDialog(this,
+                                    "Creation of the area was successful.\nFor: " + areaName,
+                                    "Area Import Succeeded",
                                     JOptionPane.INFORMATION_MESSAGE);
 
-      area.setName(fn);
-      String str = area.getName();
-      areaValueLabel.setText(str);
-      //area.setName("No Name (to change use Utility-->Change Area Name)");
+      area.setName(areaName);
+      areaValueLabel.setText(areaName);
       updateSpreadModels(area.getHasKeaneAttributes());
       markAreaValid();
       disableSimulationControls();
     }
     refresh();
   }
+
 /**
  * Marks an area invalid and allows users to import fix states, edit units, or
  * print invalid report.
