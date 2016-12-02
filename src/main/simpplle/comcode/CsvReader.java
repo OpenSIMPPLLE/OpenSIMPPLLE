@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * Records are accessed one at a time in sequential order. This reduces memory usage so arbitrarily
  * large tables can be read. Fields within the current record are accessed by name. Empty non-array
- * fields return null. Empty array fields return an array with zero elements.
+ * fields return null. Empty array fields return an array with a single null value.
  */
 public class CsvReader implements Closeable {
 
