@@ -1015,6 +1015,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     PrintWriter writer = new PrintWriter(new FileOutputStream(file));
 
     String syskFile       = SystemKnowledge.BASE_NAME;
+    String saveName       = SystemKnowledge.SAVE_NAME;
     File fmzFile          = SystemKnowledge.getFile(SystemKnowledge.FMZ);
     File spreadFile       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
     File typeFile         = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
@@ -1033,6 +1034,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
     File ProdSeed         = SystemKnowledge.getFile(SystemKnowledge.PRODUCING_SEED_LOGIC);
     File RegenFire        = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_FIRE);
     File RegenSucc        = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_SUCC);
+
+    //ProcessOccurrenceSpreadingFire.SpreadModel selectedModel = ProcessOccurrenceSpreadingFire.SpreadModel.values();
+
      //public static final Kinds KEANE_PARAMETERS                 = Kinds.KEANE_PARAMETERS;
 
     try {
@@ -1054,6 +1058,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Data Files\n"
                  + "\n"
                  + "SystemKnowledge File  : " + ((syskFile         == null) ? "Default" : syskFile.toString()) + "\n"
+                 + "Saved SysKnow File    : " + ((saveName         == null) ? "Default" : saveName.toString()) + "\n"
                  + "Fire Management Zones : " + ((fmzFile          == null) ? "Default" : fmzFile.toString()) + "\n"
                  + "Fire Spread           : " + ((spreadFile       == null) ? "Default" : spreadFile.toString()) + "\n"
                  + "Fire Type             : " + ((typeFile         == null) ? "Default" : typeFile.toString()) + "\n"

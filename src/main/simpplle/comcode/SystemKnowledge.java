@@ -179,7 +179,8 @@ public class SystemKnowledge {
   public static final String FIRE_SUPP_EVENT_LOGIC_ENTRY                = "DATA/FIRE-SUPP-EVENT-LOGIC.XML";
   public static final String KEANE_PARAMETERS_ENTRY                     = "DATA/KEANE-PARAMETERS-ENTRY";
 
-  public static String BASE_NAME;
+  public static String BASE_NAME; //if loading a .systemknowledge file for the simulation, this is the name
+  public static String SAVE_NAME; // if saving a .systemknowledge file before a simulation, this is the name
 
   /**
    * Flags indicating if a kind of knowledge has changed.
