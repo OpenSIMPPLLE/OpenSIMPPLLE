@@ -94,7 +94,7 @@ public class CsvReader implements Closeable {
   }
 
   public Integer[] getIntegerArray(String column, String delimiter) throws NumberFormatException {
-    String[] tokens = values.get(column).split(delimiter);
+    String[] tokens = values.get(column).split(delimiter, -1);
     Integer[] array = new Integer[tokens.length];
     for (int i = 0; i < tokens.length; i++) {
       array[i] = parseInteger(tokens[i]);
@@ -103,7 +103,7 @@ public class CsvReader implements Closeable {
   }
 
   public Long[] getLongArray(String column, String delimiter) throws NumberFormatException {
-    String[] tokens = values.get(column).split(delimiter);
+    String[] tokens = values.get(column).split(delimiter, -1);
     Long[] array = new Long[tokens.length];
     for (int i = 0; i < tokens.length; i++) {
       array[i] = parseLong(tokens[i]);
@@ -112,7 +112,7 @@ public class CsvReader implements Closeable {
   }
 
   public Float[] getFloatArray(String column, String delimiter) throws NumberFormatException {
-    String[] tokens = values.get(column).split(delimiter);
+    String[] tokens = values.get(column).split(delimiter, -1);
     Float[] array = new Float[tokens.length];
     for (int i = 0; i < tokens.length; i++) {
       array[i] = parseFloat(tokens[i]);
@@ -121,7 +121,7 @@ public class CsvReader implements Closeable {
   }
 
   public Double[] getDoubleArray(String column, String delimiter) throws NumberFormatException {
-    String[] tokens = values.get(column).split(delimiter);
+    String[] tokens = values.get(column).split(delimiter, -1);
     Double[] array = new Double[tokens.length];
     for (int i = 0; i < tokens.length; i++) {
       array[i] = parseDouble(tokens[i]);
@@ -130,7 +130,7 @@ public class CsvReader implements Closeable {
   }
 
   public Boolean[] getBooleanArray(String column, String delimiter) {
-    String[] tokens = values.get(column).split(delimiter);
+    String[] tokens = values.get(column).split(delimiter, -1);
     Boolean[] array = new Boolean[tokens.length];
     for (int i = 0; i < tokens.length; i++) {
       array[i] = parseBoolean(tokens[i]);
@@ -139,7 +139,7 @@ public class CsvReader implements Closeable {
   }
 
   public String[] getStringArray(String column, String delimiter) {
-    String[] tokens = values.get(column).split(delimiter);
+    String[] tokens = values.get(column).split(delimiter, -1);
     String[] array = new String[tokens.length];
     for (int i = 0; i < tokens.length; i++) {
       array[i] = parseString(tokens[i]);
