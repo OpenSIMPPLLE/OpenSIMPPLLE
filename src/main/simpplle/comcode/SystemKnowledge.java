@@ -1798,6 +1798,7 @@ public class SystemKnowledge {
 
     try {
       File outfile = Utility.makeSuffixedPathname(file, "", fileExt);
+      SystemKnowledge.SAVE_NAME = outfile.toString();
       JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile), new Manifest());
       PrintWriter pout = new PrintWriter(new OutputStreamWriter(jarOut));
 
