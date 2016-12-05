@@ -1016,6 +1016,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     String syskFile       = SystemKnowledge.BASE_NAME;
     String saveName       = SystemKnowledge.SAVE_NAME;
+    String spreadMod      = SystemKnowledge.SPREAD_MODEL;
     File fmzFile          = SystemKnowledge.getFile(SystemKnowledge.FMZ);
     File spreadFile       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
     File typeFile         = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
@@ -1058,7 +1059,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Data Files\n"
                  + "\n"
                  + "SystemKnowledge File  : " + ((syskFile         == null) ? "Default" : syskFile.toString()) + "\n"
-                 + "Saved SysKnow File    : " + ((saveName         == null) ? "Default" : saveName.toString()) + "\n"
+                 + "Saved SysKnow File    : " + ((saveName         == null) ? "Not Saved" : saveName.toString()) + "\n"
+                 + "Fire Spread Model     : " + ((spreadMod        == null) ? "Default" : spreadMod.toString()) + "\n"
                  + "Fire Management Zones : " + ((fmzFile          == null) ? "Default" : fmzFile.toString()) + "\n"
                  + "Fire Spread           : " + ((spreadFile       == null) ? "Default" : spreadFile.toString()) + "\n"
                  + "Fire Type             : " + ((typeFile         == null) ? "Default" : typeFile.toString()) + "\n"

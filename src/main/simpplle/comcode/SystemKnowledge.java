@@ -181,6 +181,7 @@ public class SystemKnowledge {
 
   public static String BASE_NAME; //if loading a .systemknowledge file for the simulation, this is the name
   public static String SAVE_NAME; // if saving a .systemknowledge file before a simulation, this is the name
+  public static String SPREAD_MODEL; //recoreds "SIMPPLLE" or "KEANE"
 
   /**
    * Flags indicating if a kind of knowledge has changed.

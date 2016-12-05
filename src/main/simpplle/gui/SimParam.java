@@ -858,10 +858,12 @@ public class SimParam extends JDialog {
     if (selectedModel.equals("KEANE")) {
 
       ProcessOccurrenceSpreadingFire.setSpreadModel(ProcessOccurrenceSpreadingFire.SpreadModel.KEANE);
+      SystemKnowledge.SPREAD_MODEL  = "KEANE";
 
     } else {
 
       ProcessOccurrenceSpreadingFire.setSpreadModel(ProcessOccurrenceSpreadingFire.SpreadModel.SIMPPLLE);
+      SystemKnowledge.SPREAD_MODEL = "SIMPPLLE";
 
     }
 
