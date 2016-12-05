@@ -35,8 +35,8 @@ public class EvuTest {
     Evu evu = new Evu();
 
     assertEquals('D', evu.isDownwind(0,0));
-    assertEquals('D', evu.isDownwind(0,90));
-    assertEquals('N', evu.isDownwind(0,91));
+    assertEquals('D', evu.isDownwind(0,45));
+    assertEquals('N', evu.isDownwind(0,46));
   }
 
   @Test
