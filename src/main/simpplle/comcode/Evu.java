@@ -989,7 +989,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param season season to query
    * @return initial vegetative state
    */
-  private VegSimStateData getInitialVegState(Lifeform lifeform, Season season) {
+  public VegSimStateData getInitialVegState(Lifeform lifeform, Season season) {
     if (initialState == null) return null;
     // Changed getKey from Season.Year to season variable, for writing initial conditions.
     MultiKey key = LifeformSeasonKeys.getKey(lifeform, season);

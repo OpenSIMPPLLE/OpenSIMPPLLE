@@ -7,9 +7,7 @@
  */
 
 import org.junit.Test;
-import simpplle.comcode.Evu;
-import simpplle.comcode.Simpplle;
-import simpplle.comcode.WestsideRegionOne;
+import simpplle.comcode.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -40,4 +38,49 @@ public class EvuTest {
     assertEquals('D', evu.isDownwind(0,90));
     assertEquals('N', evu.isDownwind(0,91));
   }
+
+  @Test
+  public void getsInitialVegState(){
+
+    // evu expects the current zone to be set
+    Simpplle.setCurrentZone(new WestsideRegionOne());
+    Evu evu = new Evu();
+
+    VegSimStateData fallState = new VegSimStateData();
+    fallState.setLifeform(Lifeform.TREES);
+    evu.setState(fallState, Climate.Season.FALL);
+
+    VegSimStateData wrongState = new VegSimStateData();
+    wrongState.setLifeform(Lifeform.TREES);
+    evu.setState(wrongState, Climate.Season.YEAR);
+
+
+    // getInitialState should use the proper season, rather than Season.YEAR
+    assertEquals(fallState, evu.getInitialVegState(Lifeform.TREES, Climate.Season.FALL));
+  }
+
+  /**
+   * Evu.getState() is specially configured to look up Season.YEAR rather than the given season when
+   * the time step is zero. This was pre-existing functionality, so Evu.getInitialVegState was created
+   * to avoid changing the assumption made by Evu.getState().
+   */
+  @Test
+  public void getsYearStateAtTimeZero(){
+
+    // evu expects the current zone to be set
+    Simpplle.setCurrentZone(new WestsideRegionOne());
+    Evu evu = new Evu();
+
+    VegSimStateData yearState = new VegSimStateData();
+    yearState.setLifeform(Lifeform.TREES);
+    evu.setState(yearState, Climate.Season.YEAR);
+
+    VegSimStateData fallState = new VegSimStateData();
+    fallState.setLifeform(Lifeform.TREES);
+    evu.setState(fallState, Climate.Season.FALL);
+
+    // Despite sending Season.FALL, the year state should be returned
+    assertEquals(yearState, evu.getState(0, Lifeform.TREES, Climate.Season.FALL));
+  }
+
 }
