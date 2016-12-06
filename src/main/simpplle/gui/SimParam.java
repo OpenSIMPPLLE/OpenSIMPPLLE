@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
 import java.awt.event.*;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -858,10 +857,12 @@ public class SimParam extends JDialog {
     if (selectedModel.equals("KEANE")) {
 
       ProcessOccurrenceSpreadingFire.setSpreadModel(ProcessOccurrenceSpreadingFire.SpreadModel.KEANE);
+      SystemKnowledge.spreadModel = "KEANE";
 
     } else {
 
       ProcessOccurrenceSpreadingFire.setSpreadModel(ProcessOccurrenceSpreadingFire.SpreadModel.SIMPPLLE);
+      SystemKnowledge.spreadModel = "SIMPPLLE";
 
     }
 

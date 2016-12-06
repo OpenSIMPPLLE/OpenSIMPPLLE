@@ -8,6 +8,7 @@
 
 package simpplle.comcode;
 
+
 import java.io.*;
 import java.util.*;
 import java.util.zip.*;
@@ -1013,9 +1014,31 @@ public final class Simulation implements SimulationTypes, Externalizable {
     File file = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
     PrintWriter writer = new PrintWriter(new FileOutputStream(file));
 
-    File fmzFile    = SystemKnowledge.getFile(SystemKnowledge.FMZ);
-    File spreadFile = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
-    File typeFile   = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
+    String syskFile       = SystemKnowledge.baseName;
+    String saveName       = SystemKnowledge.saveName;
+    String spreadMod      = SystemKnowledge.spreadModel;
+    File fmzFile          = SystemKnowledge.getFile(SystemKnowledge.FMZ);
+    File spreadFile       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
+    File typeFile         = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
+    File fireSpot         = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPOTTING_LOGIC);
+    File trtSched         = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_SCHEDULE);
+    File trtLogic         = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_LOGIC);
+    File processProbLogic = SystemKnowledge.getFile(SystemKnowledge.PROCESS_PROB_LOGIC);
+    File fireSuppEv       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_EVENT_LOGIC);
+    File fireSuppClA      = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_CLASS_A_LOGIC);
+    File fireSuppBClA     = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_BEYOND_CLASS_A_LOGIC);
+    File fsProdRate       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_PRODUCTION_RATE_LOGIC);
+    File fsSpreadRate     = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_SPREAD_RATE_LOGIC);
+    File climateStr       = SystemKnowledge.getFile(SystemKnowledge.CLIMATE);
+    File fireSuppWthrClA  = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_CLASS_A_LOGIC);
+    File fireSuppWthrBClA = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
+    File prodSeed         = SystemKnowledge.getFile(SystemKnowledge.PRODUCING_SEED_LOGIC);
+    File regenFire        = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_FIRE);
+    File regenSucc        = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_SUCC);
+
+    //ProcessOccurrenceSpreadingFire.SpreadModel selectedModel = ProcessOccurrenceSpreadingFire.SpreadModel.values();
+
+     //public static final Kinds KEANE_PARAMETERS                 = Kinds.KEANE_PARAMETERS;
 
     try {
       writer.write("SIMPPLLE Simulation Log File\n"
@@ -1035,9 +1058,28 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "\n"
                  + "Data Files\n"
                  + "\n"
-                 + "Fire Management Zones : " + ((fmzFile    == null) ? "Default" : fmzFile.toString()) + "\n"
-                 + "Fire Spread           : " + ((spreadFile == null) ? "Default" : spreadFile.toString()) + "\n"
-                 + "Type of Fire          : " + ((typeFile   == null) ? "Default" : typeFile.toString()) + "\n");
+                 + "SystemKnowledge File  : " + ((syskFile         == null) ? "Default" : syskFile.toString()) + "\n"
+                 + "Saved SysKnow File    : " + ((saveName         == null) ? "Not Saved" : saveName.toString()) + "\n"
+                 + "Fire Spread Model     : " + ((spreadMod        == null) ? "Default" : spreadMod.toString()) + "\n"
+                 + "Fire Management Zones : " + ((fmzFile          == null) ? "Default" : fmzFile.toString()) + "\n"
+                 + "Fire Spread           : " + ((spreadFile       == null) ? "Default" : spreadFile.toString()) + "\n"
+                 + "Fire Type             : " + ((typeFile         == null) ? "Default" : typeFile.toString()) + "\n"
+                 + "Fire Spotting         : " + ((fireSpot         == null) ? "Default" : fireSpot.toString()) + "\n"
+                 + "Climate               : " + ((climateStr       == null) ? "Default" : climateStr.toString()) + "\n"
+                 + "Treatment Schedule    : " + ((trtSched         == null) ? "Default" : trtSched.toString()) + "\n"
+                 + "Treatment Logic       : " + ((trtLogic         == null) ? "Default" : trtLogic.toString()) + "\n"
+                 + "Process Prob Logic    : " + ((processProbLogic == null) ? "Default" : processProbLogic.toString()) + "\n"
+                 + "Fire Supp Event       : " + ((fireSuppEv       == null) ? "Default" : fireSuppEv.toString()) + "\n"
+                 + "Fire Supp Cls A       : " + ((fireSuppClA      == null) ? "Default" : fireSuppClA.toString()) + "\n"
+                 + "Fire Supp Beyond Cls A: " + ((fireSuppBClA     == null) ? "Default" : fireSuppBClA.toString()) + "\n"
+                 + "Fire Production Rate  : " + ((fsProdRate       == null) ? "Default" : fsProdRate.toString()) + "\n"
+                 + "Fire Spread Rate      : " + ((fsSpreadRate     == null) ? "Default" : fsSpreadRate.toString()) + "\n"
+                 + "FireWthrSupp Cls A    : " + ((fireSuppWthrClA  == null) ? "Default" : fireSuppWthrClA.toString()) + "\n"
+                 + "FireWthrSupp Bey Cls A: " + ((fireSuppWthrBClA == null) ? "Default" : fireSuppWthrBClA.toString()) + "\n"
+                 + "Producing Seed        : " + ((prodSeed         == null) ? "Default" : prodSeed.toString()) + "\n"
+                 + "Regeneration - Fire   : " + ((regenFire        == null) ? "Default" : regenFire.toString()) + "\n"
+                 + "Regeneration - Succ   : " + ((regenSucc        == null) ? "Default" : regenSucc.toString()) + "\n");
+
     } finally {
       writer.close();
     }

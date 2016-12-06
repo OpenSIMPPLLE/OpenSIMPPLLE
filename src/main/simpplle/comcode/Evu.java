@@ -7366,9 +7366,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     int x = getLocationX();
     int y = getLocationY();
     if (x != -1 && y != -1) {
-      fout.print(x);
-      fout.print(COMMA);
       fout.print(y);
+      fout.print(COMMA);
+      fout.print(x);
       fout.print(COMMA);
     }
     fout.print(getUnitNumber());
