@@ -179,9 +179,9 @@ public class SystemKnowledge {
   public static final String FIRE_SUPP_EVENT_LOGIC_ENTRY                = "DATA/FIRE-SUPP-EVENT-LOGIC.XML";
   public static final String KEANE_PARAMETERS_ENTRY                     = "DATA/KEANE-PARAMETERS-ENTRY";
 
-  public static String BASE_NAME; //if loading a .systemknowledge file for the simulation, this is the name
-  public static String SAVE_NAME; // if saving a .systemknowledge file before a simulation, this is the name
-  public static String SPREAD_MODEL; //recoreds "SIMPPLLE" or "KEANE"
+  public static String baseName; //if loading a .systemknowledge file for the simulation, this is the name
+  public static String saveName; // if saving a .systemknowledge file before a simulation, this is the name
+  public static String spreadModel; //records "SIMPPLLE" or "KEANE"
 
   /**
    * Flags indicating if a kind of knowledge has changed.
@@ -1799,7 +1799,7 @@ public class SystemKnowledge {
 
     try {
       File outfile = Utility.makeSuffixedPathname(file, "", fileExt);
-      SystemKnowledge.SAVE_NAME = outfile.toString();
+      SystemKnowledge.saveName = outfile.toString();
       JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile), new Manifest());
       PrintWriter pout = new PrintWriter(new OutputStreamWriter(jarOut));
 

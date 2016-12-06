@@ -348,9 +348,11 @@ public class FireSpreadLogicData extends LogicData implements Externalizable {
 
     if (fireProcessType.isFireLessIntense(currentProcess)) {
 
-     // modified - was return null before which resulted in search for next rule.
-     // returning the currentProcess will indicate a matching rule was found, it was just less
-     // intense than the other rule that set currentProcess
+     /*
+      * modified - was return null before which resulted in search for next rule.
+      * returning the currentProcess will indicate a matching rule was found, it was just less
+      * intense than the other rule that set currentProcess
+      */
      return currentProcess;
 
     }

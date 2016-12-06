@@ -2455,7 +2455,7 @@ public class SimpplleMain extends JFrame {
     setDialogLocation(dlg);
 
     File sysKnowFile = dlg.selectFile();
-    SystemKnowledge.BASE_NAME = sysKnowFile.toString();
+    SystemKnowledge.baseName = sysKnowFile.toString();
     if (sysKnowFile != null) {
       dlg.setVisible(true);
     }
@@ -2488,7 +2488,7 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
 
     //File sysKnowFile = dlg.sel;
-    //SystemKnowledge.SAVE_NAME = sysKnowFile.toString();
+    //SystemKnowledge.saveName = sysKnowFile.toString();
   }
 
   void menuSysKnowRestoreDefaults_actionPerformed(ActionEvent e) {
