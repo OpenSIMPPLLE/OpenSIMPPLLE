@@ -905,7 +905,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
       }
     }
 
-    // TODO: Write initial simulation states here
+    // write initial states to files (time step 0)
+    if (writeAccess) {
+      currentArea.writeSimulationAccessFiles(accessEvuSimDataOut[currentRun], accessTrackingSpeciesOut);
+    }
 
     try {
       for(int i = 0; i < numTimeSteps; i++) {
@@ -917,13 +920,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
         long freeMem = Runtime.getRuntime().freeMemory();
         long totMem  = Runtime.getRuntime().totalMemory();
-        long maxMem  = Runtime.getRuntime().maxMemory();
-        long usedMem = ((totMem - freeMem) / 1024) / 1024;
-        maxMem = maxMem / 1024 / 1024;
+        long maxMemMB  = Runtime.getRuntime().maxMemory() / 1024 / 1024;;
+        long usedMemMB = ((totMem - freeMem) / 1024) / 1024;
 
         String msg = "Project Area for Time Step: " + (i + 1)
                    + " Run #" + (currentRun + 1)
-                   + " Mem: " + usedMem + "MB/" + maxMem;
+                   + " Mem: " + usedMemMB + "MB/" + maxMemMB;
 
         Simpplle.setStatusMessage(msg);
 
@@ -1125,13 +1127,15 @@ public final class Simulation implements SimulationTypes, Externalizable {
       if (evu == null) continue;
 
       int    slink       = evu.getId();
+      int    row         = evu.getLocationY();
+      int    column      = evu.getLocationX();
       float  acres       = evu.getFloatAcres();
       String ecoGroup    = evu.getHabitatTypeGroup().getName();
       String ownership   = evu.getOwnership();
       String specialArea = evu.getSpecialArea();
       String fmz         = evu.getFmz().getName();
 
-      out.printf("%d,%f,%s,%s,%s,%s%n",slink,acres,ecoGroup,ownership,specialArea,fmz);
+      out.printf("%d,%d,%d,%f,%s,%s,%s,%s%n",slink,row,column,acres,ecoGroup,ownership,specialArea,fmz);
 
     }
   }
@@ -1237,7 +1241,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     path = new File (getAccessFilesPath(),"SLINKMETRICS.csv");
     accessSlinkMetricsOut = new PrintWriter(new FileWriter(path, true));
-    accessSlinkMetricsOut.println("SLINK,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
+    accessSlinkMetricsOut.println("SLINK,ROW,COLUMN,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
 
     path = new File (getAccessFilesPath(),"TREATMENT.csv");
     accessTreatmentOut = new PrintWriter(new FileWriter(path,true));

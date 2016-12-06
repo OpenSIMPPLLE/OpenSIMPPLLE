@@ -4709,7 +4709,6 @@ public final class Area implements Externalizable {
     }
   }
   public void writeSimulationAccessFiles(PrintWriter fout, PrintWriter trackOut) throws SimpplleError {
-    int doneCount = 0, pctFinish;
 
     int ts = Simulation.getCurrentTimeStep();
 
@@ -4729,19 +4728,18 @@ public final class Area implements Externalizable {
 //      }
       evu.writeSimulationAccessFiles(fout,trackOut);
 
-      doneCount++;
     }
   }
 
-    public void setMultipleLifeformStatus() {
-        for (int i=0; i<allEvu.length; i++) {
-            if (allEvu[i] != null && allEvu[i].hasMultipleLifeforms()) {
-                disableMultipleLifeforms = false;
-                return;
-            }
-        }
-        disableMultipleLifeforms = true;
+  public void setMultipleLifeformStatus() {
+    for (int i=0; i<allEvu.length; i++) {
+      if (allEvu[i] != null && allEvu[i].hasMultipleLifeforms()) {
+        disableMultipleLifeforms = false;
+        return;
+      }
     }
+    disableMultipleLifeforms = true;
+  }
 
   public void makeMultipleLifeforms() {
     for (int i=0; i<allEvu.length; i++) {
