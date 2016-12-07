@@ -774,6 +774,24 @@ public class Pathway extends JDialog {
 
   private void importCoordinateTable(ActionEvent e) {
 
+    JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
+    chooser.setFileFilter(new FileNameExtensionFilter("CSV Tables","csv"));
+    chooser.setDialogTitle("Import Coordinate Table");
+
+    int option = chooser.showOpenDialog(this);
+    if (option == JFileChooser.APPROVE_OPTION) {
+      setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+      try {
+        HabitatTypeGroup.importCoordinateTable(chooser.getSelectedFile());
+        canvas.refreshDiagram();
+      } catch (SimpplleError error) {
+        JOptionPane.showMessageDialog(this,
+                                      error.getMessage(),
+                                      "Error importing coordinates",
+                                      JOptionPane.ERROR_MESSAGE);
+      }
+      setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
   }
 
   private void importHabitatTypeGroupTable(ActionEvent e) {

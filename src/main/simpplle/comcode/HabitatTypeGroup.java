@@ -1845,6 +1845,87 @@ public final class HabitatTypeGroup {
     }
   }
 
+  /**
+   * Imports state coordinates from a CSV file. Missing habitat type groups, vegetative types, or
+   * species result in an exception. Missing coordinates are replaced with zero.
+   *
+   * @param file a reference to a CSV file
+   * @throws SimpplleError if there is a parsing error
+   */
+  public static void importCoordinateTable(File file) throws SimpplleError {
+
+    try (CsvReader reader = new CsvReader(file,",")) {
+
+      if (!reader.hasField("HabitatTypeGroup")) {
+        throw new SimpplleError("Missing column 'HabitatTypeGroup'");
+      }
+      if (!reader.hasField("Species")) {
+        throw new SimpplleError("Missing column 'Species'");
+      }
+      if (!reader.hasField("Size")) {
+        throw new SimpplleError("Missing column 'Size'");
+      }
+      if (!reader.hasField("Age")) {
+        throw new SimpplleError("Missing column 'Age'");
+      }
+      if (!reader.hasField("Density")) {
+        throw new SimpplleError("Missing column 'Density'");
+      }
+      if (!reader.hasField("View")) {
+        throw new SimpplleError("Missing column 'View'");
+      }
+      if (!reader.hasField("X")) {
+        throw new SimpplleError("Missing column 'X'");
+      }
+      if (!reader.hasField("Y")) {
+        throw new SimpplleError("Missing column 'Y'");
+      }
+
+      while (reader.nextRecord()) {
+
+        String groupName = reader.getString("HabitatTypeGroup");
+        HabitatTypeGroupType groupType = HabitatTypeGroupType.get(groupName);
+        if (groupType == null)  {
+          throw new SimpplleError("Missing habitat type group type " + groupName);
+        }
+
+        HabitatTypeGroup group = groups.get(groupType);
+        if (group == null) {
+          throw new SimpplleError("Missing habitat type group " + groupName);
+        }
+
+        String species = reader.getString("Species");
+        String size    = reader.getString("Size");
+        String age     = reader.getString("Age");
+        String density = reader.getString("Density");
+        String vegName = species + "/" + size + (age.equals("1") ? "" : age) + "/" + density;
+        VegetativeType type = group.getVegetativeType(vegName);
+        if (type == null) {
+          throw new SimpplleError("Missing vegetative type " + vegName);
+        }
+
+        String viewName = reader.getString("View");
+        Species view = Species.get(viewName);
+        if (view == null) {
+          throw new SimpplleError("Missing species " + viewName);
+        }
+
+        Integer x = reader.getInteger("X");
+        if (x == null) x = 0;
+
+        Integer y = reader.getInteger("Y");
+        if (y == null) y = 0;
+
+        type.setSpeciesPosition(view,new Point(x,y));
+
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    } catch (NumberFormatException e) {
+      throw new SimpplleError("Exception parsing field " + e.getMessage());
+    }
+  }
+
   private void printMagisAllVegTypes(PrintWriter fout) {
     Iterator    keys = vegTypes.keySet().iterator();
     VegetativeType vt;
