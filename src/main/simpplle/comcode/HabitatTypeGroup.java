@@ -176,6 +176,34 @@ public final class HabitatTypeGroup {
     return groupType;
   }
 
+  public Vector<Integer> getHabitatTypes() {
+    return habitatTypes;
+  }
+
+  public void setHabitatTypes(Vector<Integer> habitatTypes) {
+    this.habitatTypes = habitatTypes;
+  }
+
+  public Vector<String> getClimaxSpecies() {
+    return climaxSpecies;
+  }
+
+  public void setClimaxSpecies(Vector<String> climaxSpecies) {
+    this.climaxSpecies = climaxSpecies;
+  }
+
+  public Vector<String> getSeralSpecies() {
+    return seralSpecies;
+  }
+
+  public void setSeralSpecies(Vector<String> seralSpecies) {
+    this.seralSpecies = seralSpecies;
+  }
+
+  public Collection<VegetativeType> getVegTypes() {
+    return vegTypes.values();
+  }
+
   public boolean isValid() {
     return vegTypes != null;
   }
