@@ -106,8 +106,8 @@ public class Pathway extends JDialog {
   private JMenuItem menuPathwayDetailAll;
   private JMenuItem menuPathwayStepCounter;
   private JMenuItem menuPathwaysNewState;
-  private JCheckBoxMenuItem menuPathwayGridLines;
-  private JCheckBoxMenuItem menuPathwayShowAllLabels = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuPathwayShowGridLines;
+  private JCheckBoxMenuItem menuPathwayShowAllLabels;
   private JMenuItem menuGroupSetYearlyLifeforms;
   private JMenuItem menuKnowledgeSourceDisplay;
   private JPanel infoPanel = new JPanel();
@@ -226,6 +226,18 @@ public class Pathway extends JDialog {
     menuPathwaysNewState = new JMenuItem("Set State…");
     menuPathwaysNewState.addActionListener(this::menuPathwaysNewState_actionPerformed);
 
+    menuPathwayPosition = new JMenuItem("Auto Position States…");
+    menuPathwayPosition.addActionListener(this::autoPositionStates_actionPerformed);
+
+    menuPathwayPositionAll = new JMenuItem("Auto Position All States…");
+    menuPathwayPositionAll.addActionListener(this::autoPositionAllStates_actionPerformed);
+
+    menuPathwayShowAllLabels = new JCheckBoxMenuItem("Show All Labels");
+    menuPathwayShowAllLabels.addActionListener(this::menuPathwayShowAllLabels_actionPerformed);
+
+    menuPathwayShowGridLines = new JCheckBoxMenuItem("Show Grid Lines");
+    menuPathwayShowGridLines.addActionListener(this::menuPathwayGridLines_actionPerformed);
+
     menuPathwayCollapseAll = new JMenuItem("Collapse All");
     menuPathwayCollapseAll.addActionListener(this::menuPathwayCollapseAll_actionPerformed);
 
@@ -237,18 +249,6 @@ public class Pathway extends JDialog {
 
     menuGroupSetYearlyLifeforms = new JMenuItem("Set Yearly Lifeforms");
     menuGroupSetYearlyLifeforms.addActionListener(this::menuPathwaySetLifeformYearlyStatus_actionPerformed);
-
-    menuPathwayPosition = new JMenuItem("Auto Position States…");
-    menuPathwayPosition.addActionListener(this::autoPositionStates_actionPerformed);
-
-    menuPathwayPositionAll = new JMenuItem("Auto Position All States…");
-    menuPathwayPositionAll.addActionListener(this::autoPositionAllStates_actionPerformed);
-
-    menuPathwayGridLines = new JCheckBoxMenuItem("Grid Lines");
-    menuPathwayGridLines.addActionListener(this::menuPathwayGridLines_actionPerformed);
-
-    menuPathwayShowAllLabels = new JCheckBoxMenuItem("Show All Labels");
-    menuPathwayShowAllLabels.addActionListener(this::menuPathwayShowAllLabels_actionPerformed);
 
     menuEditUndoArrow = new JMenuItem("Undo Last Arrow Move");
     menuEditUndoArrow.addActionListener(this::menuEditUndoArrow_actionPerformed);
@@ -296,11 +296,13 @@ public class Pathway extends JDialog {
     menuPathways.add(menuPathwayPosition);
     menuPathways.add(menuPathwayPositionAll);
     menuPathways.addSeparator();
-    menuPathways.add(menuPathwayShowAllLabels);
     menuPathways.add(menuPathwayCollapseAll);
     menuPathways.add(menuPathwayDetailAll);
+    menuPathways.addSeparator();
+    menuPathways.add(menuPathwayShowAllLabels);
+    menuPathways.add(menuPathwayShowGridLines);
+    menuPathways.addSeparator();
     menuPathways.add(menuPathwayStepCounter);
-    menuPathways.add(menuPathwayGridLines);
 
     JMenu menuGroup = new JMenu("Group");
     menuGroup.add(menuGroupSetYearlyLifeforms);
@@ -1015,7 +1017,7 @@ public class Pathway extends JDialog {
   }
 
   private void menuPathwayGridLines_actionPerformed(ActionEvent e) {
-    if (menuPathwayGridLines.getState()) {
+    if (menuPathwayShowGridLines.getState()) {
       canvas.showGridLines();
     } else {
       canvas.hideGridLines();
