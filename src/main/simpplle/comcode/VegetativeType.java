@@ -425,6 +425,10 @@ public final class VegetativeType implements Comparable, Externalizable {
     return vt.equals(next) ? t : -1;
   }
 
+  public Set<Species> getSpeciesWithPositions() {
+    return positions.keySet();
+  }
+
   public Point getSpeciesPosition(Species tmpSpecies) {
     Point point = (Point) positions.get(tmpSpecies);
     if (point == null) {

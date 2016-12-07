@@ -26,6 +26,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.border.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import simpplle.comcode.*;
 import java.util.*;
 import java.util.Arrays;
@@ -830,6 +832,27 @@ public class Pathway extends JDialog {
 
   private void exportCoordinateTable(ActionEvent e) {
 
+    JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
+    chooser.setFileFilter(new FileNameExtensionFilter("CSV Tables","csv"));
+    chooser.setDialogTitle("Export Coordinate Table");
+
+    int option = chooser.showSaveDialog(this);
+    if (option == JFileChooser.APPROVE_OPTION) {
+      setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+      try {
+        File file = chooser.getSelectedFile();
+        if (!file.getAbsolutePath().toLowerCase().endsWith(".csv")) {
+          file = new File(file.getAbsolutePath() + ".csv");
+        }
+        HabitatTypeGroup.exportCoordinateTable(file);
+      } catch (SimpplleError error) {
+        JOptionPane.showMessageDialog(this,
+                                      error.getMessage(),
+                                      "Error exporting coordinates",
+                                      JOptionPane.ERROR_MESSAGE);
+      }
+      setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
   }
 
   private void exportHabitatTypeGroupTable(ActionEvent e) {

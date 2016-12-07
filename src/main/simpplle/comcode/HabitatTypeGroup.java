@@ -1812,6 +1812,39 @@ public final class HabitatTypeGroup {
     fout.close();
   }
 
+  public static void exportCoordinateTable(File file) throws SimpplleError {
+
+    try (PrintWriter writer = new PrintWriter(file)) {
+
+      writer.write("HabitatTypeGroup,"
+                 + "Species,"
+                 + "Size,"
+                 + "Age,"
+                 + "Density,"
+                 + "View,"
+                 + "X,"
+                 + "Y\n");
+
+      for (HabitatTypeGroup group : groups.values()) {
+        for (VegetativeType type : group.getVegTypes()) {
+          for (Species species : type.getSpeciesWithPositions()) {
+            Point point = type.getSpeciesPosition(species);
+            writer.format("%s,", group.getType().getName());
+            writer.format("%s,", type.getSpecies());
+            writer.format("%s,", type.getSizeClass());
+            writer.format("%d,", type.getAge());
+            writer.format("%s,", type.getDensity());
+            writer.format("%s,", species);
+            writer.format("%d,", point.x);
+            writer.format("%d\n", point.y);
+          }
+        }
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    }
+  }
+
   private void printMagisAllVegTypes(PrintWriter fout) {
     Iterator    keys = vegTypes.keySet().iterator();
     VegetativeType vt;
