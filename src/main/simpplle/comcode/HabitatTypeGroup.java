@@ -1926,6 +1926,49 @@ public final class HabitatTypeGroup {
     }
   }
 
+  public static void exportHabitatTypeGroupTable(File file) throws SimpplleError {
+
+    try (PrintWriter writer = new PrintWriter(file)) {
+
+      writer.write("HabitatTypeGroup,"
+                 + "HabitatTypes,"
+                 + "ClimaxSpecies,"
+                 + "SeralSpecies\n");
+
+      for (HabitatTypeGroup group : groups.values()) {
+
+        writer.format("%s,",group.getType().getName());
+
+        Vector<Integer> habitatTypes = group.getHabitatTypes();
+        for (int i = 0; i < habitatTypes.size(); i++) {
+          writer.write(Integer.toString(habitatTypes.get(i)));
+          if (i < habitatTypes.size() - 1) {
+            writer.write(":");
+          }
+        }
+        writer.write(",");
+        Vector<String> climaxSpecies = group.getClimaxSpecies();
+        for (int i = 0; i < climaxSpecies.size(); i++) {
+          writer.write(climaxSpecies.get(i));
+          if (i < climaxSpecies.size() - 1) {
+            writer.write(":");
+          }
+        }
+        writer.write(",");
+        Vector<String> seralSpecies = group.getSeralSpecies();
+        for (int i = 0; i < seralSpecies.size(); i++) {
+          writer.write(seralSpecies.get(i));
+          if (i < seralSpecies.size() - 1) {
+            writer.write(":");
+          }
+        }
+        writer.write("\n");
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    }
+  }
+
   private void printMagisAllVegTypes(PrintWriter fout) {
     Iterator    keys = vegTypes.keySet().iterator();
     VegetativeType vt;

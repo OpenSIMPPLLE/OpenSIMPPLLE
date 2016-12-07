@@ -875,6 +875,27 @@ public class Pathway extends JDialog {
 
   private void exportHabitatTypeGroupTable(ActionEvent e) {
 
+    JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
+    chooser.setFileFilter(new FileNameExtensionFilter("CSV Tables","csv"));
+    chooser.setDialogTitle("Export Habitat Type Group Table");
+
+    int option = chooser.showSaveDialog(this);
+    if (option == JFileChooser.APPROVE_OPTION) {
+      setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+      try {
+        File file = chooser.getSelectedFile();
+        if (!file.getAbsolutePath().toLowerCase().endsWith(".csv")) {
+          file = new File(file.getAbsolutePath() + ".csv");
+        }
+        HabitatTypeGroup.exportHabitatTypeGroupTable(file);
+      } catch (SimpplleError error) {
+        JOptionPane.showMessageDialog(this,
+                                      error.getMessage(),
+                                      "Error exporting ecological groupings",
+                                      JOptionPane.ERROR_MESSAGE);
+      }
+      setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
   }
 
   private void exportVegetativeTypeTable(ActionEvent e) {
