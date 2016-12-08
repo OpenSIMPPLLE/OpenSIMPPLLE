@@ -778,24 +778,63 @@ public class Pathway extends JDialog {
     chooser.setFileFilter(new FileNameExtensionFilter("CSV Tables","csv"));
     chooser.setDialogTitle("Import Coordinate Table");
 
-    int option = chooser.showOpenDialog(this);
-    if (option == JFileChooser.APPROVE_OPTION) {
+    if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+
       setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
       try {
         HabitatTypeGroup.importCoordinateTable(chooser.getSelectedFile());
-        canvas.refreshDiagram();
       } catch (SimpplleError error) {
         JOptionPane.showMessageDialog(this,
                                       error.getMessage(),
-                                      "Error importing coordinates",
+                                      "Error Importing Coordinates",
                                       JOptionPane.ERROR_MESSAGE);
       }
+
+      canvas.refreshDiagram();
+
       setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
     }
   }
 
   private void importHabitatTypeGroupTable(ActionEvent e) {
 
+    int clear = JOptionPane.showConfirmDialog(this,
+                                              "Existing pathways will be cleared. Continue?",
+                                              "Clear Existing Pathways",
+                                              JOptionPane.YES_NO_OPTION,
+                                              JOptionPane.INFORMATION_MESSAGE);
+
+    if (clear == JOptionPane.YES_OPTION) {
+
+      JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
+      chooser.setFileFilter(new FileNameExtensionFilter("CSV Tables","csv"));
+      chooser.setDialogTitle("Import Habitat Type Group Table");
+
+      if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+        HabitatTypeGroup.clearGroups();
+
+        try {
+          HabitatTypeGroup.importHabitatTypeGroupTable(chooser.getSelectedFile());
+        } catch (SimpplleError error) {
+          JOptionPane.showMessageDialog(this,
+                                        error.getMessage(),
+                                        "Error Importing Habitat Type Groups",
+                                        JOptionPane.ERROR_MESSAGE);
+        }
+
+        updateDialog();
+
+        canvas.refreshDiagram();
+
+        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+      }
+    }
   }
 
   private void importVegetativeTypeTable(ActionEvent e) {

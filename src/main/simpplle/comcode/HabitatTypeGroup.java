@@ -1969,6 +1969,55 @@ public final class HabitatTypeGroup {
     }
   }
 
+  /**
+   * Imports habitat type groups from a CSV file containing the columns HabitatTypeGroup,
+   * HabitatTypes, ClimaxSpecies, and SeralSpecies delimited by a comma character. The new habitat
+   * type groups are stored in the HabitatTypeGroup class.
+   *
+   * @param file a reference to a CSV file
+   * @throws SimpplleError if there is a parsing error
+   */
+  public static void importHabitatTypeGroupTable(File file) throws SimpplleError {
+
+    try (CsvReader reader = new CsvReader(file,",")) {
+
+      if (!reader.hasField("HabitatTypeGroup")) {
+        throw new SimpplleError("Missing column 'HabitatTypeGroup'");
+      }
+      if (!reader.hasField("HabitatTypes")) {
+        throw new SimpplleError("Missing column 'HabitatTypes'");
+      }
+      if (!reader.hasField("ClimaxSpecies")) {
+        throw new SimpplleError("Missing column 'ClimaxSpecies'");
+      }
+      if (!reader.hasField("SeralSpecies")) {
+        throw new SimpplleError("Missing column 'SeralSpecies'");
+      }
+
+      while (reader.nextRecord()) {
+
+        String name = reader.getString("HabitatTypeGroup");
+        HabitatTypeGroup group = new HabitatTypeGroup(name);
+
+        Integer[] habitatTypes = reader.getIntegerArray("HabitatTypes",":");
+        group.setHabitatTypes(new Vector<>(Arrays.asList(habitatTypes)));
+
+        String[] climaxSpecies = reader.getStringArray("ClimaxSpecies",":");
+        group.setClimaxSpecies(new Vector<>(Arrays.asList(climaxSpecies)));
+
+        String[] seralSpecies = reader.getStringArray("SeralSpecies",":");
+        group.setSeralSpecies(new Vector<>(Arrays.asList(seralSpecies)));
+
+        groups.put(group.getType(), group);
+
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    } catch (NumberFormatException e) {
+      throw new SimpplleError("Exception parsing field " + e.getMessage());
+    }
+  }
+
   private void printMagisAllVegTypes(PrintWriter fout) {
     Iterator    keys = vegTypes.keySet().iterator();
     VegetativeType vt;
