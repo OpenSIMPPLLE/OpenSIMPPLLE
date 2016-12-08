@@ -1015,20 +1015,46 @@ public final class HabitatTypeGroup {
     markChanged();
   }
 
-  public void deleteVegetativeType(VegetativeType veg) {
-    RegionalZone zone = Simpplle.getCurrentZone();
-    String       state = veg.getCurrentState();
-    SizeClass    sizeClass = veg.getSizeClass();
+  /**
+   * Removes a vegetative type from this habitat type group. If the size class equals SS, then the
+   * max seed sap density, seed sap states, and group regeneration states are updated.
+   *
+   * @param veg a vegetative type to remove
+   */
+  public void removeVegetativeType(VegetativeType veg) {
 
-    vegTypes.remove(state);
+    // Remove the vegetative type from this group
+    vegTypes.remove(veg.getPrintName());
+
+    // Update derived attributes if the size class is SS
+    SizeClass sizeClass = veg.getSizeClass();
     if (sizeClass == SizeClass.SS) {
-      // If state is SS then we need to run these again
-      // to make sure we are accurate.
       findMaxSeedSapDensity();
       findSeedSapStates();
       findGroupRegenerationStates();
     }
+
+    // Flag the user modification
     markChanged();
+
+  }
+
+  /**
+   * Removes all vegetative types from this habitat type group.
+   */
+  public void removeAllVegetativeTypes() {
+
+    // Remove all vegetative types
+    vegTypes.clear();
+
+    // Update derived attributes
+    findMaxSeedSapDensity();
+    findSeedSapStates();
+    findGroupRegenerationStates();
+
+    // Flag the user modification
+    markChanged();
+
   }
 
   /**
