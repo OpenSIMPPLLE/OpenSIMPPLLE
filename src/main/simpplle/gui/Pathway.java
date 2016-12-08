@@ -326,8 +326,6 @@ public class Pathway extends JDialog {
     pathwayGroupBorder = new TitledBorder(BorderFactory.createLineBorder(Color.black,1),"Ecological Grouping");
     pathwayGroupBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 12));
     pathwayGroupPanel.setBorder(pathwayGroupBorder);
-    pathwayGroupPanel.setMinimumSize(new Dimension(146, 58));
-    pathwayGroupPanel.setPreferredSize(new Dimension(146, 58));
     pathwayGroupPanel.setLayout(flowLayout3);
     pathwayGroupPanel.add(pathwayGroupCB, null);
 
@@ -344,6 +342,12 @@ public class Pathway extends JDialog {
     processPanel.setBorder(processBorder);
     processPanel.setLayout(flowLayout5);
     processPanel.add(processCB, null);
+
+    Dimension d = pathwayGroupCB.getPreferredSize();
+    d.width = 200;
+    pathwayGroupCB.setPreferredSize(d);
+    speciesCB.setPreferredSize(d);
+    processCB.setPreferredSize(d);
 
     selectionPanel.setLayout(flowLayout2);
     selectionPanel.add(pathwayGroupPanel, null);
