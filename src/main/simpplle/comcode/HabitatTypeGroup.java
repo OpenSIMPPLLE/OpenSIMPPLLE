@@ -2081,6 +2081,110 @@ public final class HabitatTypeGroup {
     }
   }
 
+  /**
+   * Imports pathway states from a CSV file. New pathway states are added to an existing habitat
+   * type group. Next states are assigned to each from vegetative type for the corresponding
+   * process.
+   *
+   * @param file a reference to a CSV file
+   * @throws SimpplleError if there is a parsing error
+   */
+  public static void importVegetativeTypeTable(File file) throws SimpplleError {
+
+    try (CsvReader reader = new CsvReader(file,",")) {
+
+      if (!reader.hasField("HabitatTypeGroup")) {
+        throw new SimpplleError("Missing column 'HabitatTypeGroup'");
+      }
+      if (!reader.hasField("FromSpecies")) {
+        throw new SimpplleError("Missing column 'FromSpecies'");
+      }
+      if (!reader.hasField("FromSize")) {
+        throw new SimpplleError("Missing column 'FromSize'");
+      }
+      if (!reader.hasField("FromAge")) {
+        throw new SimpplleError("Missing column 'FromAge'");
+      }
+      if (!reader.hasField("FromDensity")) {
+        throw new SimpplleError("Missing column 'FromDensity'");
+      }
+      if (!reader.hasField("Process")) {
+        throw new SimpplleError("Missing column 'Process'");
+      }
+      if (!reader.hasField("ToSpecies")) {
+        throw new SimpplleError("Missing column 'ToSpecies'");
+      }
+      if (!reader.hasField("ToSize")) {
+        throw new SimpplleError("Missing column 'ToSize'");
+      }
+      if (!reader.hasField("ToAge")) {
+        throw new SimpplleError("Missing column 'ToAge'");
+      }
+      if (!reader.hasField("ToDensity")) {
+        throw new SimpplleError("Missing column 'ToDensity'");
+      }
+
+      for (HabitatTypeGroup group : groups.values()) {
+        group.removeAllVegetativeTypes();
+      }
+
+      while (reader.nextRecord()) {
+
+        String name = reader.getString("HabitatTypeGroup");
+        HabitatTypeGroup group = groups.get(HabitatTypeGroupType.get(name));
+
+        if (group == null) {
+          group = new HabitatTypeGroup(name);
+        }
+
+        String fromSpecies = reader.getString("FromSpecies");
+        String fromSize    = reader.getString("FromSize");
+        String fromAge     = reader.getString("FromAge");
+        String fromDensity = reader.getString("FromDensity");
+        String fromName    = fromSpecies + "/" + fromSize + (fromAge.equals("1") ? "" : fromAge) + "/" + fromDensity;
+
+        VegetativeType fromType;
+        try {
+          fromType = group.getVegetativeType(fromName);
+          if (fromType == null) {
+            fromType = new VegetativeType(group, fromName);
+          }
+        } catch (ParseError e) {
+          throw new SimpplleError("Invalid source vegetative type " + e.getMessage());
+        }
+
+        String toSpecies = reader.getString("ToSpecies");
+        String toSize    = reader.getString("ToSize");
+        String toAge     = reader.getString("ToAge");
+        String toDensity = reader.getString("ToDensity");
+        String toName    = toSpecies + "/" + toSize + (toAge.equals("1") ? "" : toAge) + "/" + toDensity;
+
+        VegetativeType toType;
+        try {
+          toType = group.getVegetativeType(toName);
+          if (toType == null) {
+            toType = new VegetativeType(group, toName);
+          }
+        } catch (ParseError e) {
+          throw new SimpplleError("Invalid destination vegetative type " + e.getMessage());
+        }
+
+        String processName = reader.getString("Process");
+        Process process = Process.findInstance(processName);
+
+        if (process != null) {
+          fromType.addProcessNextState(process,toType);
+          group.addVegetativeType(fromType);
+          group.addVegetativeType(toType);
+        } else {
+          throw new SimpplleError("Unable to find process " + processName);
+        }
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    }
+  }
+
   private void printMagisAllVegTypes(PrintWriter fout) {
     Iterator    keys = vegTypes.keySet().iterator();
     VegetativeType vt;

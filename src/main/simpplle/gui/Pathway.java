@@ -856,6 +856,39 @@ public class Pathway extends JDialog {
 
   private void importVegetativeTypeTable(ActionEvent e) {
 
+    int clear = JOptionPane.showConfirmDialog(this,
+                                              "Existing pathways will be cleared. Continue?",
+                                              "Clear Existing Pathways",
+                                              JOptionPane.YES_NO_OPTION,
+                                              JOptionPane.INFORMATION_MESSAGE);
+
+    if (clear == JOptionPane.YES_OPTION) {
+
+      JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
+      chooser.setFileFilter(new FileNameExtensionFilter("CSV Tables", "csv"));
+      chooser.setDialogTitle("Import Vegetative Type Table");
+
+      int option = chooser.showOpenDialog(this);
+      if (option == JFileChooser.APPROVE_OPTION) {
+
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+        try {
+          HabitatTypeGroup.importVegetativeTypeTable(chooser.getSelectedFile());
+          canvas.refreshDiagram();
+        } catch (SimpplleError error) {
+          JOptionPane.showMessageDialog(this,
+                                        error.getMessage(),
+                                        "Error Importing Vegetative Types",
+                                        JOptionPane.ERROR_MESSAGE);
+        }
+
+        updateDialog();
+
+        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+      }
+    }
   }
 
   private void exportPathway(ActionEvent e) {
