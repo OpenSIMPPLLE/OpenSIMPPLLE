@@ -136,7 +136,7 @@ public final class HabitatTypeGroup {
   public HabitatTypeGroup () {
 
     groupType          = null;
-    vegTypes           = null;
+    vegTypes           = new HashMap<>();
     habitatTypes       = null;
     climaxSpecies      = null;
     seralSpecies       = null;
@@ -152,7 +152,7 @@ public final class HabitatTypeGroup {
 
   public HabitatTypeGroup (String name) {
 
-    super();
+    this();
 
     groupType = HabitatTypeGroupType.get(name);
     if (groupType == null) {
@@ -205,7 +205,7 @@ public final class HabitatTypeGroup {
   }
 
   public boolean isValid() {
-    return vegTypes != null;
+    return !vegTypes.isEmpty();
   }
 
   public boolean isSystemGroup() {
@@ -304,11 +304,7 @@ public final class HabitatTypeGroup {
   }
 
   public VegetativeType getVegetativeType (String name) {
-    if (name == null || vegTypes == null) {
-      return null;
-    } else {
-      return vegTypes.get(name);
-    }
+    return vegTypes.get(name);
   }
 
   public VegetativeType getVegetativeType (Species species,
@@ -993,7 +989,8 @@ public final class HabitatTypeGroup {
     catch (IOException IOX) {
       throw new ParseError("Problems reading Pathway records.");
     }
-    vegTypes = new HashMap(numVegTypes);
+
+    vegTypes.clear();
 
     for(int i=0;i<numVegTypes;i++) {
       vegData = new VegetativeType(this);
@@ -1282,7 +1279,8 @@ public final class HabitatTypeGroup {
 
     try {
       fin      = new BufferedReader(new FileReader(infile));
-      vegTypes = new HashMap();
+
+      vegTypes.clear();
 
       line = fin.readLine();
       do {
@@ -1326,7 +1324,7 @@ public final class HabitatTypeGroup {
       markChanged();
     }
     catch (Exception err) {
-      vegTypes = null;
+      vegTypes.clear();
       if (groupType != null) {
         if (oldGroup != null) {
           groups.put(groupType, oldGroup);

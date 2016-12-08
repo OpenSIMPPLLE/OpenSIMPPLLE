@@ -431,6 +431,7 @@ public class Pathway extends JDialog {
 
     inInit = true;
 
+    // Get the names of loaded groups
     String[] groups;
     if (aquaticsMode) {
       groups = LtaValleySegmentGroup.getLoadedGroupNames();
@@ -492,29 +493,37 @@ public class Pathway extends JDialog {
 
     }
 
+    // Sort the groups alphabetically
     Arrays.sort(groups);
 
-    if (pathwayGroup == null) {
-      pathwayGroup = groups[0];
-    }
+    // Populate combo box with groups
+    String currentGroup = pathwayGroup;
+    pathwayGroup = groups[0];
     pathwayGroupCB.removeAllItems();
     for (String group : groups) {
+      if (group.equals(currentGroup)) {
+        pathwayGroup = currentGroup;
+      }
       pathwayGroupCB.addItem(group);
     }
     pathwayGroupCB.setSelectedItem(pathwayGroup);
 
+    // Populate combo box with species
     Species currentSpecies = species;
     Species[] allSpecies = HabitatTypeGroup.findInstance(pathwayGroup).getAllSpecies();
-    species = allSpecies[0];
     speciesCB.removeAllItems();
-    for (Species s : allSpecies) {
-      if (s == currentSpecies) {
-        species = s;
+    if (allSpecies.length > 0) {
+      species = allSpecies[0];
+      for (Species s : allSpecies) {
+        if (s == currentSpecies) {
+          species = s;
+        }
+        speciesCB.addItem(s);
       }
-      speciesCB.addItem(s);
+      speciesCB.setSelectedItem(species);
     }
-    speciesCB.setSelectedItem(species);
 
+    // Populate combo box with processes
     String currentProcess = process;
     String[] allProcess = HabitatTypeGroup.findInstance(pathwayGroup).getAllProcesses(species);
     process = ProcessType.SUCCESSION.toString();
@@ -529,16 +538,19 @@ public class Pathway extends JDialog {
 
     inInit = false;
 
+    // Update the canvas
     canvas.setHtGrp(pathwayGroup);
     canvas.setSpecies(species);
     canvas.setProcess(process);
     canvas.refreshDiagram();
 
+    // Clear the undo history
     savedArrowState = null;
     savedArrowProcess = null;
     savedArrowNextState = null;
     menuEditUndoArrow.setEnabled(false);
 
+    // Enable saving if the group has changed and has an associated file
     HabitatTypeGroup group = HabitatTypeGroup.findInstance(pathwayGroup);
     if (group != null && group.getFilename() != null && group.hasChanged()) {
       menuFileSave.setEnabled(true);
@@ -546,6 +558,7 @@ public class Pathway extends JDialog {
       menuFileSave.setEnabled(false);
     }
 
+    // Redraw the dialog
     update(getGraphics());
 
   }
