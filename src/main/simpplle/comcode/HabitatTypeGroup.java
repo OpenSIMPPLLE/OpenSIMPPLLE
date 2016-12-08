@@ -2016,6 +2016,45 @@ public final class HabitatTypeGroup {
     }
   }
 
+  public static void exportVegetativeTypeTable(File file) throws SimpplleError {
+
+    try (PrintWriter writer = new PrintWriter(file)) {
+
+      writer.write("HabitatTypeGroup,"
+                 + "FromSpecies,"
+                 + "FromSize,"
+                 + "FromAge,"
+                 + "FromDensity,"
+                 + "Process,"
+                 + "ToSpecies,"
+                 + "ToSize,"
+                 + "ToAge,"
+                 + "ToDensity\n");
+
+      for (HabitatTypeGroup group : groups.values()) {
+        for (VegetativeType type : group.getVegTypes()) {
+          for (Process process : type.getProcesses()) {
+            VegetativeType next = type.getProcessNextState(process);
+            if (next != null) {
+              writer.format("%s,", group.getType().getName());
+              writer.format("%s,", type.getSpecies());
+              writer.format("%s,", type.getSizeClass());
+              writer.format("%d,", type.getAge());
+              writer.format("%s,", type.getDensity());
+              writer.format("%s,", process);
+              writer.format("%s,", next.getSpecies());
+              writer.format("%s,", next.getSizeClass());
+              writer.format("%d,", next.getAge());
+              writer.format("%s\n", next.getDensity());
+            }
+          }
+        }
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    }
+  }
+
   private void printMagisAllVegTypes(PrintWriter fout) {
     Iterator    keys = vegTypes.keySet().iterator();
     VegetativeType vt;
