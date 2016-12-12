@@ -261,17 +261,20 @@ public class Pathway extends JDialog {
 
     JMenu menuImport = new JMenu("Import");
     menuImport.add(menuImportPathway);
-    menuImport.add(menuImportSpeciesChange);
-    menuImport.add(menuImportSpeciesInclusion);
-    menuImport.add(menuImportCoordinates);
+    menuImport.addSeparator();
     menuImport.add(menuImportHabitatTypeGroups);
     menuImport.add(menuImportVegetativeTypes);
+    menuImport.add(menuImportCoordinates);
+    menuImport.addSeparator();
+    menuImport.add(menuImportSpeciesChange);
+    menuImport.add(menuImportSpeciesInclusion);
 
     JMenu menuExport = new JMenu("Export");
     menuExport.add(menuExportPathway);
-    menuExport.add(menuExportCoordinates);
+    menuExport.addSeparator();
     menuExport.add(menuExportHabitatTypeGroups);
     menuExport.add(menuExportVegetativeTypes);
+    menuExport.add(menuExportCoordinates);
 
     JMenu menuFile = new JMenu("File");
     menuFile.add(menuFileOpen);
