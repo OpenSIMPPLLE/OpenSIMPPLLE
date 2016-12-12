@@ -643,7 +643,6 @@ public class Pathway extends JDialog {
     setVisible(false);
     try {
       dispose();
-      System.out.println("Console print");
     } catch (NullPointerException ex) {
       System.out.print(ex.getStackTrace());
     }
