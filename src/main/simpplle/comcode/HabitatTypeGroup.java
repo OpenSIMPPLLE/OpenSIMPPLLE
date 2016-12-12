@@ -2132,8 +2132,7 @@ public final class HabitatTypeGroup {
       while (reader.nextRecord()) {
 
         String name = reader.getString("HabitatTypeGroup");
-        HabitatTypeGroup group = groups.get(HabitatTypeGroupType.get(name));
-
+        HabitatTypeGroup group = groups.get(name);
         if (group == null) {
           group = new HabitatTypeGroup(name);
         }

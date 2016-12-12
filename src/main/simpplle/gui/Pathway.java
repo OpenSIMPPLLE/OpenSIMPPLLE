@@ -856,7 +856,7 @@ public class Pathway extends JDialog {
   private void importVegetativeTypeTable(ActionEvent e) {
 
     int clear = JOptionPane.showConfirmDialog(this,
-                                              "Existing pathways will be cleared. Continue?",
+                                              "All existing pathways will be cleared. Continue?",
                                               "Clear Existing Pathways",
                                               JOptionPane.YES_NO_OPTION,
                                               JOptionPane.INFORMATION_MESSAGE);
