@@ -900,6 +900,7 @@ public class Pathway extends JDialog {
     selectDlg.setLocation(getLocation());
     selectDlg.setVisible(true);
     Object[] objects = selectDlg.getSelections();
+    if (objects == null) return; // Dialog cancelled
 
     List<String> names = new ArrayList<>();
     for (Object object : objects) {
