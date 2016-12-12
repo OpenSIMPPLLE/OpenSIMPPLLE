@@ -1995,8 +1995,8 @@ public final class HabitatTypeGroup {
 
   /**
    * Imports habitat type groups from a CSV file containing the columns HabitatTypeGroup,
-   * HabitatTypes, ClimaxSpecies, and SeralSpecies delimited by a comma character. The new habitat
-   * type groups are stored in the HabitatTypeGroup class.
+   * HabitatTypes, ClimaxSpecies, and SeralSpecies delimited by a comma character. Habitat type
+   * groups overwrite existing or adds new groups.
    *
    * @param file a reference to a CSV file
    * @throws SimpplleError if there is a parsing error
@@ -2021,7 +2021,10 @@ public final class HabitatTypeGroup {
       while (reader.nextRecord()) {
 
         String name = reader.getString("HabitatTypeGroup");
-        HabitatTypeGroup group = new HabitatTypeGroup(name);
+        HabitatTypeGroup group = findInstance(name);
+        if (group == null) {
+          group = new HabitatTypeGroup(name);
+        }
 
         Integer[] habitatTypes = reader.getIntegerArray("HabitatTypes",":");
         group.setHabitatTypes(new Vector<>(Arrays.asList(habitatTypes)));
@@ -2031,8 +2034,6 @@ public final class HabitatTypeGroup {
 
         String[] seralSpecies = reader.getStringArray("SeralSpecies",":");
         group.setSeralSpecies(new Vector<>(Arrays.asList(seralSpecies)));
-
-        groups.put(group.getType(), group);
 
       }
     } catch (IOException e) {

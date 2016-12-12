@@ -818,8 +818,10 @@ public class Pathway extends JDialog {
   private void importHabitatTypeGroupTable(ActionEvent e) {
 
     int clear = JOptionPane.showConfirmDialog(this,
-                                              "Existing pathways will be cleared. Continue?",
-                                              "Clear Existing Pathways",
+                                              "Habitat type, climax species, and seral species\n"
+                                            + "information may be overwritten in existing habitat\n"
+                                            + "type groups. Continue?",
+                                              "Overwrite Habitat Type Groups",
                                               JOptionPane.YES_NO_OPTION,
                                               JOptionPane.INFORMATION_MESSAGE);
 
@@ -832,8 +834,6 @@ public class Pathway extends JDialog {
       if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
-        HabitatTypeGroup.clearGroups();
 
         try {
           HabitatTypeGroup.importHabitatTypeGroupTable(chooser.getSelectedFile());
