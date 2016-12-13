@@ -91,16 +91,16 @@ public class Pathway extends JDialog {
   private JMenuItem menuFileLoadPathway;
   private JMenuItem menuFileLoadAllPathway;
   private JMenuItem menuFileQuit;
-  private JMenuItem menuExportPathway;
-  private JMenuItem menuExportCoordinates;
-  private JMenuItem menuExportHabitatTypeGroups;
-  private JMenuItem menuExportVegetativeTypes;
-  private JMenuItem menuImportPathway;
+  private JMenuItem menuExportPathwayFile;
+  private JMenuItem menuExportHabitatTypeGroupTable;
+  private JMenuItem menuExportPathwayTable;
+  private JMenuItem menuExportCoordinateTable;
+  private JMenuItem menuImportPathwayFile;
   private JMenuItem menuImportSpeciesChange;
   private JMenuItem menuImportSpeciesInclusion;
-  private JMenuItem menuImportCoordinates;
-  private JMenuItem menuImportHabitatTypeGroups;
-  private JMenuItem menuImportVegetativeTypes;
+  private JMenuItem menuImportHabitatTypeGroupTable;
+  private JMenuItem menuImportPathwayTable;
+  private JMenuItem menuImportCoordinateTable;
   private JMenuItem menuEditUndoArrow;
   private JMenuItem menuPathwayPosition;
   private JMenuItem menuPathwayPositionAll;
@@ -195,20 +195,20 @@ public class Pathway extends JDialog {
     menuFileQuit = new JMenuItem("Close");
     menuFileQuit.addActionListener(this::closeDialog);
 
-    menuExportPathway = new JMenuItem("Pathway Text File");
-    menuExportPathway.addActionListener(this::exportPathway);
+    menuExportPathwayFile = new JMenuItem("Pathway Text File");
+    menuExportPathwayFile.addActionListener(this::exportPathwayFile);
 
-    menuExportCoordinates = new JMenuItem("Coordinate Table");
-    menuExportCoordinates.addActionListener(this::exportCoordinateTable);
+    menuExportCoordinateTable = new JMenuItem("Coordinate Table");
+    menuExportCoordinateTable.addActionListener(this::exportCoordinateTable);
 
-    menuExportHabitatTypeGroups = new JMenuItem("Habitat Type Group Table");
-    menuExportHabitatTypeGroups.addActionListener(this::exportHabitatTypeGroupTable);
+    menuExportHabitatTypeGroupTable = new JMenuItem("Habitat Type Group Table");
+    menuExportHabitatTypeGroupTable.addActionListener(this::exportHabitatTypeGroupTable);
 
-    menuExportVegetativeTypes = new JMenuItem("Vegetative Type Table");
-    menuExportVegetativeTypes.addActionListener(this::exportVegetativeTypeTable);
+    menuExportPathwayTable = new JMenuItem("Pathway Table");
+    menuExportPathwayTable.addActionListener(this::exportPathwayTable);
 
-    menuImportPathway = new JMenuItem("Pathway Text File");
-    menuImportPathway.addActionListener(this::importPathway);
+    menuImportPathwayFile = new JMenuItem("Pathway Text File");
+    menuImportPathwayFile.addActionListener(this::importPathwayFile);
 
     menuImportSpeciesChange = new JMenuItem("Species Change");
     menuImportSpeciesChange.addActionListener(this::importSpeciesChange);
@@ -216,14 +216,14 @@ public class Pathway extends JDialog {
     menuImportSpeciesInclusion = new JMenuItem("Species Inclusion");
     menuImportSpeciesInclusion.addActionListener(this::importSpeciesInclusion);
 
-    menuImportCoordinates = new JMenuItem("Coordinate Table");
-    menuImportCoordinates.addActionListener(this::importCoordinateTable);
+    menuImportCoordinateTable = new JMenuItem("Coordinate Table");
+    menuImportCoordinateTable.addActionListener(this::importCoordinateTable);
 
-    menuImportHabitatTypeGroups = new JMenuItem("Habitat Type Group Table");
-    menuImportHabitatTypeGroups.addActionListener(this::importHabitatTypeGroupTable);
+    menuImportHabitatTypeGroupTable = new JMenuItem("Habitat Type Group Table");
+    menuImportHabitatTypeGroupTable.addActionListener(this::importHabitatTypeGroupTable);
 
-    menuImportVegetativeTypes = new JMenuItem("Vegetative Type Table");
-    menuImportVegetativeTypes.addActionListener(this::importVegetativeTypeTable);
+    menuImportPathwayTable = new JMenuItem("Pathway Table");
+    menuImportPathwayTable.addActionListener(this::importPathwayTable);
 
     menuPathwaysNewState = new JMenuItem("New State…");
     menuPathwaysNewState.addActionListener(this::newState);
@@ -260,21 +260,21 @@ public class Pathway extends JDialog {
     menuKnowledgeSourceDisplay.addActionListener(this::displayKnowledgeSource);
 
     JMenu menuImport = new JMenu("Import");
-    menuImport.add(menuImportPathway);
+    menuImport.add(menuImportPathwayFile);
     menuImport.addSeparator();
-    menuImport.add(menuImportHabitatTypeGroups);
-    menuImport.add(menuImportVegetativeTypes);
-    menuImport.add(menuImportCoordinates);
+    menuImport.add(menuImportHabitatTypeGroupTable);
+    menuImport.add(menuImportPathwayTable);
+    menuImport.add(menuImportCoordinateTable);
     menuImport.addSeparator();
     menuImport.add(menuImportSpeciesChange);
     menuImport.add(menuImportSpeciesInclusion);
 
     JMenu menuExport = new JMenu("Export");
-    menuExport.add(menuExportPathway);
+    menuExport.add(menuExportPathwayFile);
     menuExport.addSeparator();
-    menuExport.add(menuExportHabitatTypeGroups);
-    menuExport.add(menuExportVegetativeTypes);
-    menuExport.add(menuExportCoordinates);
+    menuExport.add(menuExportHabitatTypeGroupTable);
+    menuExport.add(menuExportPathwayTable);
+    menuExport.add(menuExportCoordinateTable);
 
     JMenu menuFile = new JMenu("File");
     menuFile.add(menuFileOpen);
@@ -464,10 +464,10 @@ public class Pathway extends JDialog {
       menuFileUnloadPathway.setEnabled(false);
       menuFileLoadAllPathway.setEnabled(false);
       menuFileLoadPathway.setEnabled(false);
-      menuExportPathway.setEnabled(false);
-      menuExportCoordinates.setEnabled(false);
-      menuExportHabitatTypeGroups.setEnabled(false);
-      menuExportVegetativeTypes.setEnabled(false);
+      menuExportPathwayFile.setEnabled(false);
+      menuExportCoordinateTable.setEnabled(false);
+      menuExportHabitatTypeGroupTable.setEnabled(false);
+      menuExportPathwayTable.setEnabled(false);
 
       // Disable state manipulation
       menuPathwaysNewState.setEnabled(false);
@@ -488,10 +488,10 @@ public class Pathway extends JDialog {
       menuFileUnloadPathway.setEnabled(true);
       menuFileLoadAllPathway.setEnabled(true);
       menuFileLoadPathway.setEnabled(true);
-      menuExportPathway.setEnabled(true);
-      menuExportCoordinates.setEnabled(true);
-      menuExportHabitatTypeGroups.setEnabled(true);
-      menuExportVegetativeTypes.setEnabled(true);
+      menuExportPathwayFile.setEnabled(true);
+      menuExportCoordinateTable.setEnabled(true);
+      menuExportHabitatTypeGroupTable.setEnabled(true);
+      menuExportPathwayTable.setEnabled(true);
 
       // Enable state manipulation
       menuPathwaysNewState.setEnabled(true);
@@ -710,7 +710,7 @@ public class Pathway extends JDialog {
 
   }
 
-  private void importPathway(ActionEvent e) {
+  private void importPathwayFile(ActionEvent e) {
 
     setCursor(Utility.getWaitCursor());
 
@@ -733,8 +733,8 @@ public class Pathway extends JDialog {
           }
         } catch (SimpplleError error) {
           JOptionPane.showMessageDialog(this, error.getError(),
-              "Error Importing Files",
-              JOptionPane.ERROR_MESSAGE);
+                                        "Error Importing Pathway",
+                                        JOptionPane.ERROR_MESSAGE);
         }
       }
     }
@@ -806,7 +806,7 @@ public class Pathway extends JDialog {
       } catch (SimpplleError error) {
         JOptionPane.showMessageDialog(this,
                                       error.getMessage(),
-                                      "Error Importing Coordinates",
+                                      "Error Importing Coordinate",
                                       JOptionPane.ERROR_MESSAGE);
       }
 
@@ -842,7 +842,7 @@ public class Pathway extends JDialog {
         } catch (SimpplleError error) {
           JOptionPane.showMessageDialog(this,
                                         error.getMessage(),
-                                        "Error Importing Habitat Type Groups",
+                                        "Error Importing Habitat Type Group",
                                         JOptionPane.ERROR_MESSAGE);
         }
 
@@ -856,7 +856,7 @@ public class Pathway extends JDialog {
     }
   }
 
-  private void importVegetativeTypeTable(ActionEvent e) {
+  private void importPathwayTable(ActionEvent e) {
 
     int clear = JOptionPane.showConfirmDialog(this,
                                               "All existing pathways will be cleared. Continue?",
@@ -868,7 +868,7 @@ public class Pathway extends JDialog {
 
       JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
       chooser.setFileFilter(new FileNameExtensionFilter("CSV Tables", "csv"));
-      chooser.setDialogTitle("Import Vegetative Type Table");
+      chooser.setDialogTitle("Import Pathway Table");
 
       int option = chooser.showOpenDialog(this);
       if (option == JFileChooser.APPROVE_OPTION) {
@@ -876,12 +876,12 @@ public class Pathway extends JDialog {
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
         try {
-          HabitatTypeGroup.importVegetativeTypeTable(chooser.getSelectedFile());
+          HabitatTypeGroup.importPathwayTable(chooser.getSelectedFile());
           canvas.refreshDiagram();
         } catch (SimpplleError error) {
           JOptionPane.showMessageDialog(this,
                                         error.getMessage(),
-                                        "Error Importing Vegetative Types",
+                                        "Error Importing Pathway",
                                         JOptionPane.ERROR_MESSAGE);
         }
 
@@ -893,7 +893,7 @@ public class Pathway extends JDialog {
     }
   }
 
-  private void exportPathway(ActionEvent e) {
+  private void exportPathwayFile(ActionEvent e) {
 
     ListSelectionDialog selectDlg = new ListSelectionDialog(JSimpplle.getSimpplleMain(),
                                                             "Select Ecological Groupings",
@@ -958,7 +958,7 @@ public class Pathway extends JDialog {
       } catch (SimpplleError error) {
         JOptionPane.showMessageDialog(this,
                                       error.getMessage(),
-                                      "Error exporting coordinates",
+                                      "Error Exporting Coordinates",
                                       JOptionPane.ERROR_MESSAGE);
       }
       setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -990,11 +990,11 @@ public class Pathway extends JDialog {
     }
   }
 
-  private void exportVegetativeTypeTable(ActionEvent e) {
+  private void exportPathwayTable(ActionEvent e) {
 
     JFileChooser chooser = new JFileChooser(JSimpplle.getWorkingDir());
     chooser.setFileFilter(new FileNameExtensionFilter("CSV Tables","csv"));
-    chooser.setDialogTitle("Export Vegetative Type Table");
+    chooser.setDialogTitle("Export Pathway Table");
 
     int option = chooser.showSaveDialog(this);
     if (option == JFileChooser.APPROVE_OPTION) {
@@ -1004,11 +1004,11 @@ public class Pathway extends JDialog {
         if (!file.getAbsolutePath().toLowerCase().endsWith(".csv")) {
           file = new File(file.getAbsolutePath() + ".csv");
         }
-        HabitatTypeGroup.exportVegetativeTypeTable(file);
+        HabitatTypeGroup.exportPathwayTable(file);
       } catch (SimpplleError error) {
         JOptionPane.showMessageDialog(this,
                                       error.getMessage(),
-                                      "Error Exporting Vegetative Types",
+                                      "Error Exporting Pathways",
                                       JOptionPane.ERROR_MESSAGE);
       }
       setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

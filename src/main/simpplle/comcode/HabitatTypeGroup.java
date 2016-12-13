@@ -2043,7 +2043,7 @@ public final class HabitatTypeGroup {
     }
   }
 
-  public static void exportVegetativeTypeTable(File file) throws SimpplleError {
+  public static void exportPathwayTable(File file) throws SimpplleError {
 
     try (PrintWriter writer = new PrintWriter(file)) {
 
@@ -2090,7 +2090,7 @@ public final class HabitatTypeGroup {
    * @param file a reference to a CSV file
    * @throws SimpplleError if there is a parsing error
    */
-  public static void importVegetativeTypeTable(File file) throws SimpplleError {
+  public static void importPathwayTable(File file) throws SimpplleError {
 
     try (CsvReader reader = new CsvReader(file,",")) {
 
