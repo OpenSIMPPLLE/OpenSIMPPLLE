@@ -225,7 +225,7 @@ public class Pathway extends JDialog {
     menuImportVegetativeTypes = new JMenuItem("Vegetative Type Table");
     menuImportVegetativeTypes.addActionListener(this::importVegetativeTypeTable);
 
-    menuPathwaysNewState = new JMenuItem("Set State…");
+    menuPathwaysNewState = new JMenuItem("New State…");
     menuPathwaysNewState.addActionListener(this::newState);
 
     menuPathwayPosition = new JMenuItem("Auto Position States…");
