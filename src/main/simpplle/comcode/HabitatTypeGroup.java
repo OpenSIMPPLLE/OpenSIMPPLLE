@@ -136,7 +136,7 @@ public final class HabitatTypeGroup {
   public HabitatTypeGroup () {
 
     groupType          = null;
-    vegTypes           = null;
+    vegTypes           = new HashMap<>();
     habitatTypes       = null;
     climaxSpecies      = null;
     seralSpecies       = null;
@@ -152,7 +152,7 @@ public final class HabitatTypeGroup {
 
   public HabitatTypeGroup (String name) {
 
-    super();
+    this();
 
     groupType = HabitatTypeGroupType.get(name);
     if (groupType == null) {
@@ -176,8 +176,36 @@ public final class HabitatTypeGroup {
     return groupType;
   }
 
+  public Vector<Integer> getHabitatTypes() {
+    return habitatTypes;
+  }
+
+  public void setHabitatTypes(Vector<Integer> habitatTypes) {
+    this.habitatTypes = habitatTypes;
+  }
+
+  public Vector<String> getClimaxSpecies() {
+    return climaxSpecies;
+  }
+
+  public void setClimaxSpecies(Vector<String> climaxSpecies) {
+    this.climaxSpecies = climaxSpecies;
+  }
+
+  public Vector<String> getSeralSpecies() {
+    return seralSpecies;
+  }
+
+  public void setSeralSpecies(Vector<String> seralSpecies) {
+    this.seralSpecies = seralSpecies;
+  }
+
+  public Collection<VegetativeType> getVegTypes() {
+    return vegTypes.values();
+  }
+
   public boolean isValid() {
-    return vegTypes != null;
+    return !vegTypes.isEmpty();
   }
 
   public boolean isSystemGroup() {
@@ -276,11 +304,7 @@ public final class HabitatTypeGroup {
   }
 
   public VegetativeType getVegetativeType (String name) {
-    if (name == null || vegTypes == null) {
-      return null;
-    } else {
-      return vegTypes.get(name);
-    }
+    return vegTypes.get(name);
   }
 
   public VegetativeType getVegetativeType (Species species,
@@ -965,7 +989,8 @@ public final class HabitatTypeGroup {
     catch (IOException IOX) {
       throw new ParseError("Problems reading Pathway records.");
     }
-    vegTypes = new HashMap(numVegTypes);
+
+    vegTypes.clear();
 
     for(int i=0;i<numVegTypes;i++) {
       vegData = new VegetativeType(this);
@@ -990,20 +1015,46 @@ public final class HabitatTypeGroup {
     markChanged();
   }
 
-  public void deleteVegetativeType(VegetativeType veg) {
-    RegionalZone zone = Simpplle.getCurrentZone();
-    String       state = veg.getCurrentState();
-    SizeClass    sizeClass = veg.getSizeClass();
+  /**
+   * Removes a vegetative type from this habitat type group. If the size class equals SS, then the
+   * max seed sap density, seed sap states, and group regeneration states are updated.
+   *
+   * @param veg a vegetative type to remove
+   */
+  public void removeVegetativeType(VegetativeType veg) {
 
-    vegTypes.remove(state);
+    // Remove the vegetative type from this group
+    vegTypes.remove(veg.getPrintName());
+
+    // Update derived attributes if the size class is SS
+    SizeClass sizeClass = veg.getSizeClass();
     if (sizeClass == SizeClass.SS) {
-      // If state is SS then we need to run these again
-      // to make sure we are accurate.
       findMaxSeedSapDensity();
       findSeedSapStates();
       findGroupRegenerationStates();
     }
+
+    // Flag the user modification
     markChanged();
+
+  }
+
+  /**
+   * Removes all vegetative types from this habitat type group.
+   */
+  public void removeAllVegetativeTypes() {
+
+    // Remove all vegetative types
+    vegTypes.clear();
+
+    // Update derived attributes
+    findMaxSeedSapDensity();
+    findSeedSapStates();
+    findGroupRegenerationStates();
+
+    // Flag the user modification
+    markChanged();
+
   }
 
   /**
@@ -1254,7 +1305,8 @@ public final class HabitatTypeGroup {
 
     try {
       fin      = new BufferedReader(new FileReader(infile));
-      vegTypes = new HashMap();
+
+      vegTypes.clear();
 
       line = fin.readLine();
       do {
@@ -1298,7 +1350,7 @@ public final class HabitatTypeGroup {
       markChanged();
     }
     catch (Exception err) {
-      vegTypes = null;
+      vegTypes.clear();
       if (groupType != null) {
         if (oldGroup != null) {
           groups.put(groupType, oldGroup);
@@ -1782,6 +1834,355 @@ public final class HabitatTypeGroup {
     }
     fout.flush();
     fout.close();
+  }
+
+  public static void exportCoordinateTable(File file) throws SimpplleError {
+
+    try (PrintWriter writer = new PrintWriter(file)) {
+
+      writer.write("HabitatTypeGroup,"
+                 + "Species,"
+                 + "Size,"
+                 + "Age,"
+                 + "Density,"
+                 + "View,"
+                 + "X,"
+                 + "Y\n");
+
+      for (HabitatTypeGroup group : groups.values()) {
+        for (VegetativeType type : group.getVegTypes()) {
+          for (Species species : type.getSpeciesWithPositions()) {
+            Point point = type.getSpeciesPosition(species);
+            writer.format("%s,", group.getType().getName());
+            writer.format("%s,", type.getSpecies());
+            writer.format("%s,", type.getSizeClass());
+            writer.format("%d,", type.getAge());
+            writer.format("%s,", type.getDensity());
+            writer.format("%s,", species);
+            writer.format("%d,", point.x);
+            writer.format("%d\n", point.y);
+          }
+        }
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    }
+  }
+
+  /**
+   * Imports state coordinates from a CSV file. Missing habitat type groups, vegetative types, or
+   * species result in an exception. Missing coordinates are replaced with zero.
+   *
+   * @param file a reference to a CSV file
+   * @throws SimpplleError if there is a parsing error
+   */
+  public static void importCoordinateTable(File file) throws SimpplleError {
+
+    try (CsvReader reader = new CsvReader(file,",")) {
+
+      if (!reader.hasField("HabitatTypeGroup")) {
+        throw new SimpplleError("Missing column 'HabitatTypeGroup'");
+      }
+      if (!reader.hasField("Species")) {
+        throw new SimpplleError("Missing column 'Species'");
+      }
+      if (!reader.hasField("Size")) {
+        throw new SimpplleError("Missing column 'Size'");
+      }
+      if (!reader.hasField("Age")) {
+        throw new SimpplleError("Missing column 'Age'");
+      }
+      if (!reader.hasField("Density")) {
+        throw new SimpplleError("Missing column 'Density'");
+      }
+      if (!reader.hasField("View")) {
+        throw new SimpplleError("Missing column 'View'");
+      }
+      if (!reader.hasField("X")) {
+        throw new SimpplleError("Missing column 'X'");
+      }
+      if (!reader.hasField("Y")) {
+        throw new SimpplleError("Missing column 'Y'");
+      }
+
+      while (reader.nextRecord()) {
+
+        String groupName = reader.getString("HabitatTypeGroup");
+        HabitatTypeGroupType groupType = HabitatTypeGroupType.get(groupName);
+        if (groupType == null)  {
+          throw new SimpplleError("Missing habitat type group type " + groupName);
+        }
+
+        HabitatTypeGroup group = groups.get(groupType);
+        if (group == null) {
+          throw new SimpplleError("Missing habitat type group " + groupName);
+        }
+
+        String species = reader.getString("Species");
+        String size    = reader.getString("Size");
+        String age     = reader.getString("Age");
+        String density = reader.getString("Density");
+        String vegName = species + "/" + size + (age.equals("1") ? "" : age) + "/" + density;
+        VegetativeType type = group.getVegetativeType(vegName);
+        if (type == null) {
+          throw new SimpplleError("Missing vegetative type " + vegName);
+        }
+
+        String viewName = reader.getString("View");
+        Species view = Species.get(viewName);
+        if (view == null) {
+          throw new SimpplleError("Missing species " + viewName);
+        }
+
+        Integer x = reader.getInteger("X");
+        if (x == null) x = 0;
+
+        Integer y = reader.getInteger("Y");
+        if (y == null) y = 0;
+
+        type.setSpeciesPosition(view,new Point(x,y));
+
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    } catch (NumberFormatException e) {
+      throw new SimpplleError("Exception parsing field " + e.getMessage());
+    }
+  }
+
+  public static void exportHabitatTypeGroupTable(File file) throws SimpplleError {
+
+    try (PrintWriter writer = new PrintWriter(file)) {
+
+      writer.write("HabitatTypeGroup,"
+                 + "HabitatTypes,"
+                 + "ClimaxSpecies,"
+                 + "SeralSpecies\n");
+
+      for (HabitatTypeGroup group : groups.values()) {
+
+        writer.format("%s,",group.getType().getName());
+
+        Vector<Integer> habitatTypes = group.getHabitatTypes();
+        for (int i = 0; i < habitatTypes.size(); i++) {
+          writer.write(Integer.toString(habitatTypes.get(i)));
+          if (i < habitatTypes.size() - 1) {
+            writer.write(":");
+          }
+        }
+        writer.write(",");
+        Vector<String> climaxSpecies = group.getClimaxSpecies();
+        for (int i = 0; i < climaxSpecies.size(); i++) {
+          writer.write(climaxSpecies.get(i));
+          if (i < climaxSpecies.size() - 1) {
+            writer.write(":");
+          }
+        }
+        writer.write(",");
+        Vector<String> seralSpecies = group.getSeralSpecies();
+        for (int i = 0; i < seralSpecies.size(); i++) {
+          writer.write(seralSpecies.get(i));
+          if (i < seralSpecies.size() - 1) {
+            writer.write(":");
+          }
+        }
+        writer.write("\n");
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    }
+  }
+
+  /**
+   * Imports habitat type groups from a CSV file containing the columns HabitatTypeGroup,
+   * HabitatTypes, ClimaxSpecies, and SeralSpecies delimited by a comma character. Habitat type
+   * groups overwrite existing or adds new groups.
+   *
+   * @param file a reference to a CSV file
+   * @throws SimpplleError if there is a parsing error
+   */
+  public static void importHabitatTypeGroupTable(File file) throws SimpplleError {
+
+    try (CsvReader reader = new CsvReader(file,",")) {
+
+      if (!reader.hasField("HabitatTypeGroup")) {
+        throw new SimpplleError("Missing column 'HabitatTypeGroup'");
+      }
+      if (!reader.hasField("HabitatTypes")) {
+        throw new SimpplleError("Missing column 'HabitatTypes'");
+      }
+      if (!reader.hasField("ClimaxSpecies")) {
+        throw new SimpplleError("Missing column 'ClimaxSpecies'");
+      }
+      if (!reader.hasField("SeralSpecies")) {
+        throw new SimpplleError("Missing column 'SeralSpecies'");
+      }
+
+      while (reader.nextRecord()) {
+
+        String name = reader.getString("HabitatTypeGroup");
+        HabitatTypeGroup group = findInstance(name);
+        if (group == null) {
+          group = new HabitatTypeGroup(name);
+        }
+
+        Integer[] habitatTypes = reader.getIntegerArray("HabitatTypes",":");
+        group.setHabitatTypes(new Vector<>(Arrays.asList(habitatTypes)));
+
+        String[] climaxSpecies = reader.getStringArray("ClimaxSpecies",":");
+        group.setClimaxSpecies(new Vector<>(Arrays.asList(climaxSpecies)));
+
+        String[] seralSpecies = reader.getStringArray("SeralSpecies",":");
+        group.setSeralSpecies(new Vector<>(Arrays.asList(seralSpecies)));
+
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    } catch (NumberFormatException e) {
+      throw new SimpplleError("Exception parsing field " + e.getMessage());
+    }
+  }
+
+  public static void exportPathwayTable(File file) throws SimpplleError {
+
+    try (PrintWriter writer = new PrintWriter(file)) {
+
+      writer.write("HabitatTypeGroup,"
+                 + "FromSpecies,"
+                 + "FromSize,"
+                 + "FromAge,"
+                 + "FromDensity,"
+                 + "Process,"
+                 + "ToSpecies,"
+                 + "ToSize,"
+                 + "ToAge,"
+                 + "ToDensity\n");
+
+      for (HabitatTypeGroup group : groups.values()) {
+        for (VegetativeType type : group.getVegTypes()) {
+          for (Process process : type.getProcesses()) {
+            VegetativeType next = type.getProcessNextState(process);
+            if (next != null) {
+              writer.format("%s,", group.getType().getName());
+              writer.format("%s,", type.getSpecies());
+              writer.format("%s,", type.getSizeClass());
+              writer.format("%d,", type.getAge());
+              writer.format("%s,", type.getDensity());
+              writer.format("%s,", process);
+              writer.format("%s,", next.getSpecies());
+              writer.format("%s,", next.getSizeClass());
+              writer.format("%d,", next.getAge());
+              writer.format("%s\n", next.getDensity());
+            }
+          }
+        }
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    }
+  }
+
+  /**
+   * Imports pathway states from a CSV file. New pathway states are added to an existing habitat
+   * type group. Next states are assigned to each from vegetative type for the corresponding
+   * process.
+   *
+   * @param file a reference to a CSV file
+   * @throws SimpplleError if there is a parsing error
+   */
+  public static void importPathwayTable(File file) throws SimpplleError {
+
+    try (CsvReader reader = new CsvReader(file,",")) {
+
+      if (!reader.hasField("HabitatTypeGroup")) {
+        throw new SimpplleError("Missing column 'HabitatTypeGroup'");
+      }
+      if (!reader.hasField("FromSpecies")) {
+        throw new SimpplleError("Missing column 'FromSpecies'");
+      }
+      if (!reader.hasField("FromSize")) {
+        throw new SimpplleError("Missing column 'FromSize'");
+      }
+      if (!reader.hasField("FromAge")) {
+        throw new SimpplleError("Missing column 'FromAge'");
+      }
+      if (!reader.hasField("FromDensity")) {
+        throw new SimpplleError("Missing column 'FromDensity'");
+      }
+      if (!reader.hasField("Process")) {
+        throw new SimpplleError("Missing column 'Process'");
+      }
+      if (!reader.hasField("ToSpecies")) {
+        throw new SimpplleError("Missing column 'ToSpecies'");
+      }
+      if (!reader.hasField("ToSize")) {
+        throw new SimpplleError("Missing column 'ToSize'");
+      }
+      if (!reader.hasField("ToAge")) {
+        throw new SimpplleError("Missing column 'ToAge'");
+      }
+      if (!reader.hasField("ToDensity")) {
+        throw new SimpplleError("Missing column 'ToDensity'");
+      }
+
+      for (HabitatTypeGroup group : groups.values()) {
+        group.removeAllVegetativeTypes();
+      }
+
+      while (reader.nextRecord()) {
+
+        String name = reader.getString("HabitatTypeGroup");
+        HabitatTypeGroup group = groups.get(name);
+        if (group == null) {
+          group = new HabitatTypeGroup(name);
+        }
+
+        String fromSpecies = reader.getString("FromSpecies");
+        String fromSize    = reader.getString("FromSize");
+        String fromAge     = reader.getString("FromAge");
+        String fromDensity = reader.getString("FromDensity");
+        String fromName    = fromSpecies + "/" + fromSize + (fromAge.equals("1") ? "" : fromAge) + "/" + fromDensity;
+
+        VegetativeType fromType;
+        try {
+          fromType = group.getVegetativeType(fromName);
+          if (fromType == null) {
+            fromType = new VegetativeType(group, fromName);
+          }
+        } catch (ParseError e) {
+          throw new SimpplleError("Invalid source vegetative type " + e.getMessage());
+        }
+
+        String toSpecies = reader.getString("ToSpecies");
+        String toSize    = reader.getString("ToSize");
+        String toAge     = reader.getString("ToAge");
+        String toDensity = reader.getString("ToDensity");
+        String toName    = toSpecies + "/" + toSize + (toAge.equals("1") ? "" : toAge) + "/" + toDensity;
+
+        VegetativeType toType;
+        try {
+          toType = group.getVegetativeType(toName);
+          if (toType == null) {
+            toType = new VegetativeType(group, toName);
+          }
+        } catch (ParseError e) {
+          throw new SimpplleError("Invalid destination vegetative type " + e.getMessage());
+        }
+
+        String processName = reader.getString("Process");
+        Process process = Process.findInstance(processName);
+
+        if (process != null) {
+          fromType.addProcessNextState(process,toType);
+          group.addVegetativeType(fromType);
+          group.addVegetativeType(toType);
+        } else {
+          throw new SimpplleError("Unable to find process " + processName);
+        }
+      }
+    } catch (IOException e) {
+      throw new SimpplleError(e.getMessage());
+    }
   }
 
   private void printMagisAllVegTypes(PrintWriter fout) {

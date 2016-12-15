@@ -524,7 +524,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
                                                  JOptionPane.QUESTION_MESSAGE);
       if (result == JOptionPane.YES_OPTION) {
         VegetativeType veg = selectedShape.getState();
-        veg.getHtGrp().deleteVegetativeType(veg);
+        veg.getHtGrp().removeVegetativeType(veg);
         getPathwayDlg().updateDialog();
         refreshDiagram();
         // Update the units and check for invalid ones.
