@@ -1030,26 +1030,20 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     File file = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
 
-    Area area = Simpplle.getCurrentArea();
-    File attributesAll = null;
-    File spatialRelate = null;
-    if (area != null) {
-      attributesAll = area.getAttributesAllFile();
-      spatialRelate = area.getSpatialRelateFile();
-    }
-
+    File areaAttributesAll   = null;
+    File areaSpatialRelate   = null;
     File climateSchedule     = SystemKnowledge.getFile(SystemKnowledge.CLIMATE);
     File fireManagementZone  = SystemKnowledge.getFile(SystemKnowledge.FMZ);
-    File fireSpread          = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
-    File fireType            = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
-    File fireSpotting        = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPOTTING_LOGIC);
     File fireProductionRate  = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_PRODUCTION_RATE_LOGIC);
+    File fireSpotting        = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPOTTING_LOGIC);
+    File fireSpread          = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
     File fireSpreadRate      = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_SPREAD_RATE_LOGIC);
     File fireSuppEvent       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_EVENT_LOGIC);
-    File fireSuppClsA        = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_CLASS_A_LOGIC);
     File fireSuppBeyondClsA  = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_BEYOND_CLASS_A_LOGIC);
-    File fireSuppWthrClsA    = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_CLASS_A_LOGIC);
+    File fireSuppClsA        = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_CLASS_A_LOGIC);
     File fireSuppWthrBeyClsA = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
+    File fireSuppWthrClsA    = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_CLASS_A_LOGIC);
+    File fireType            = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
     File processProbability  = SystemKnowledge.getFile(SystemKnowledge.PROCESS_PROB_LOGIC);
     File producingSeed       = SystemKnowledge.getFile(SystemKnowledge.PRODUCING_SEED_LOGIC);
     File regenerationFire    = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_FIRE);
@@ -1058,6 +1052,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
     File treatmentSchedule   = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_SCHEDULE);
     File systemKnowledge     = SystemKnowledge.loadedFile;
     File systemKnowledgeSave = SystemKnowledge.savedFile;
+
+    Area area = Simpplle.getCurrentArea();
+    if (area != null) {
+      areaAttributesAll = area.getAttributesAllFile();
+      areaSpatialRelate = area.getSpatialRelateFile();
+    }
 
     try (PrintWriter writer = new PrintWriter(new FileOutputStream(file))) {
 
@@ -1081,26 +1081,26 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "\n"
                  + "Data Files\n"
                  + "\n"
-                 + "Area Spatial Relations   : " + ((spatialRelate       == null) ? "Not Loaded" : spatialRelate) + "\n"
-                 + "Area Unit Attributes     : " + ((attributesAll       == null) ? "Not Loaded" : attributesAll) + "\n"
+                 + "Area Spatial Relations   : " + ((areaSpatialRelate   == null) ? "Not Loaded" : areaSpatialRelate) + "\n"
+                 + "Area Unit Attributes     : " + ((areaAttributesAll   == null) ? "Not Loaded" : areaAttributesAll) + "\n"
                  + "Climate Schedule         : " + ((climateSchedule     == null) ? "Default" : climateSchedule) + "\n"
                  + "Fire Management Zones    : " + ((fireManagementZone  == null) ? "Default" : fireManagementZone) + "\n"
-                 + "Fire Spread              : " + ((fireSpread          == null) ? "Default" : fireSpread) + "\n"
-                 + "Fire Spotting            : " + ((fireSpotting        == null) ? "Default" : fireSpotting) + "\n"
-                 + "Fire Supp Event          : " + ((fireSuppEvent       == null) ? "Default" : fireSuppEvent) + "\n"
-                 + "Fire Supp Cls A          : " + ((fireSuppClsA        == null) ? "Default" : fireSuppClsA) + "\n"
-                 + "Fire Supp Beyond Cls A   : " + ((fireSuppBeyondClsA  == null) ? "Default" : fireSuppBeyondClsA) + "\n"
                  + "Fire Production Rate     : " + ((fireProductionRate  == null) ? "Default" : fireProductionRate) + "\n"
+                 + "Fire Spotting            : " + ((fireSpotting        == null) ? "Default" : fireSpotting) + "\n"
+                 + "Fire Spread              : " + ((fireSpread          == null) ? "Default" : fireSpread) + "\n"
                  + "Fire Spread Rate         : " + ((fireSpreadRate      == null) ? "Default" : fireSpreadRate) + "\n"
+                 + "Fire Supp Beyond Cls A   : " + ((fireSuppBeyondClsA  == null) ? "Default" : fireSuppBeyondClsA) + "\n"
+                 + "Fire Supp Cls A          : " + ((fireSuppClsA        == null) ? "Default" : fireSuppClsA) + "\n"
+                 + "Fire Supp Event          : " + ((fireSuppEvent       == null) ? "Default" : fireSuppEvent) + "\n"
                  + "Fire Type                : " + ((fireType            == null) ? "Default" : fireType) + "\n"
-                 + "Fire Wthr Supp Cls A     : " + ((fireSuppWthrClsA    == null) ? "Default" : fireSuppWthrClsA) + "\n"
                  + "Fire Wthr Supp Bey Cls A : " + ((fireSuppWthrBeyClsA == null) ? "Default" : fireSuppWthrBeyClsA) + "\n"
+                 + "Fire Wthr Supp Cls A     : " + ((fireSuppWthrClsA    == null) ? "Default" : fireSuppWthrClsA) + "\n"
                  + "Process Probability      : " + ((processProbability  == null) ? "Default" : processProbability) + "\n"
                  + "Producing Seed           : " + ((producingSeed       == null) ? "Default" : producingSeed) + "\n"
                  + "Regeneration - Fire      : " + ((regenerationFire    == null) ? "Default" : regenerationFire) + "\n"
                  + "Regeneration - Succ      : " + ((regenerationSucc    == null) ? "Default" : regenerationSucc) + "\n"
                  + "System Knowledge         : " + ((systemKnowledge     == null) ? "Default" : systemKnowledge) + "\n"
-                 + "System Knowledge Save    : " + ((systemKnowledgeSave            == null) ? "Not Saved" : systemKnowledgeSave) + "\n"
+                 + "System Knowledge Save    : " + ((systemKnowledgeSave == null) ? "Not Saved" : systemKnowledgeSave) + "\n"
                  + "Treatment Logic          : " + ((treatmentLogic      == null) ? "Default" : treatmentLogic) + "\n"
                  + "Treatment Schedule       : " + ((treatmentSchedule   == null) ? "Default" : treatmentSchedule));
 
