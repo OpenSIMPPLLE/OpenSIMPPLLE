@@ -1038,8 +1038,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
       spatialRelate = area.getSpatialRelateFile();
     }
 
-    String syskFile       = SystemKnowledge.baseName;
-    String saveName       = SystemKnowledge.saveName;
+    String saveName       = SystemKnowledge.savedFile;
     String spreadModel    = SystemKnowledge.spreadModel;
 
     File climateSchedule     = SystemKnowledge.getFile(SystemKnowledge.CLIMATE);
@@ -1060,6 +1059,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     File regenerationSucc    = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_SUCC);
     File treatmentLogic      = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_LOGIC);
     File treatmentSchedule   = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_SCHEDULE);
+    File systemKnowledge     = SystemKnowledge.loadedFile;
 
     try (PrintWriter writer = new PrintWriter(new FileOutputStream(file))) {
 
@@ -1101,7 +1101,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Producing Seed           : " + ((producingSeed       == null) ? "Default" : producingSeed) + "\n"
                  + "Regeneration - Fire      : " + ((regenerationFire    == null) ? "Default" : regenerationFire) + "\n"
                  + "Regeneration - Succ      : " + ((regenerationSucc    == null) ? "Default" : regenerationSucc) + "\n"
-                 + "System Knowledge         : " + ((syskFile            == null) ? "Default" : syskFile) + "\n"
+                 + "System Knowledge         : " + ((systemKnowledge     == null) ? "Default" : systemKnowledge) + "\n"
                  + "System Knowledge Save    : " + ((saveName            == null) ? "Not Saved" : saveName) + "\n"
                  + "Treatment Logic          : " + ((treatmentLogic      == null) ? "Default" : treatmentLogic) + "\n"
                  + "Treatment Schedule       : " + ((treatmentSchedule   == null) ? "Default" : treatmentSchedule));
