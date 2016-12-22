@@ -532,6 +532,21 @@ public final class Simulation implements SimulationTypes, Externalizable {
     return invasiveSpeciesKind;
   }
 
+  public String getInvasiveSpeciesKindName() {
+    switch(invasiveSpeciesKind) {
+      case R1:
+        return "R1";
+      case MSU:
+        return "MSU";
+      case MESA_VERDE_NP:
+        return "MESA_VERDE_NP";
+      case NONE:
+        return "NONE";
+      default:
+        return "";
+    }
+  }
+
   public boolean isDoInvasiveSpecies() {
     return invasiveSpeciesKind != InvasiveKind.NONE;
   }
@@ -1068,6 +1083,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Fire Spread Model      : " + spreadModel + "\n"
                  + "Fire Suppression       : " + fireSuppression + "\n"
                  + "Fire Cost Discount     : " + getDiscount() + "\n"
+                 + "Invasive Species Logic : " + getInvasiveSpeciesKindName() + "\n"
                  + "\n"
                  + "Area Files\n"
                  + "\n"
