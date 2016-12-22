@@ -1084,6 +1084,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Fire Suppression       : " + fireSuppression + "\n"
                  + "Fire Cost Discount     : " + getDiscount() + "\n"
                  + "Invasive Species Logic : " + getInvasiveSpeciesKindName() + "\n"
+                 + "Random Number Seed     : " + (fixedSeed ? seed : "Auto-generated") + "\n"
                  + "\n"
                  + "Area Files\n"
                  + "\n"
