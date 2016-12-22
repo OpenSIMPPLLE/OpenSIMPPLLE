@@ -1029,7 +1029,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
   public void writeLog() throws IOException {
 
     File file = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
-    PrintWriter writer = new PrintWriter(new FileOutputStream(file));
 
     File attributesAll = null;
     File spatialRelate = null;
@@ -1063,11 +1062,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
     File regenFire        = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_FIRE);
     File regenSucc        = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_SUCC);
 
-    //ProcessOccurrenceSpreadingFire.SpreadModel selectedModel = ProcessOccurrenceSpreadingFire.SpreadModel.values();
+    try (PrintWriter writer = new PrintWriter(new FileOutputStream(file))) {
 
-     //public static final Kinds KEANE_PARAMETERS                 = Kinds.KEANE_PARAMETERS;
-
-    try {
       writer.write("SIMPPLLE Simulation Log File\n"
                  + "\n"
                  + "Date : " + Simpplle.currentDate() + "\n"
@@ -1114,8 +1110,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Regeneration - Fire    : " + ((regenFire        == null) ? "Default" : regenFire.toString()) + "\n"
                  + "Regeneration - Succ    : " + ((regenSucc        == null) ? "Default" : regenSucc.toString()));
 
-    } finally {
-      writer.close();
     }
   }
 
