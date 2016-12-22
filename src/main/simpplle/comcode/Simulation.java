@@ -1030,10 +1030,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     File file = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
 
+    Area area = Simpplle.getCurrentArea();
     File attributesAll = null;
     File spatialRelate = null;
-
-    Area area = Simpplle.getCurrentArea();
     if (area != null) {
       attributesAll = area.getAttributesAllFile();
       spatialRelate = area.getSpatialRelateFile();
@@ -1072,25 +1071,22 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Current Zone : " + Simpplle.getCurrentZone().toString() + "\n"
                  + "Current Area : " + Simpplle.getCurrentArea().toString() + "\n"
                  + "\n"
-                 + "Number of Simulations  : " + numSimulations + "\n"
-                 + "Number of Time Steps   : " + numTimeSteps + (yearlySteps ? " (Yearly)\n" : " (Decade)\n")
+                 + "Number of Simulations : " + numSimulations + "\n"
+                 + "Number of Time Steps  : " + numTimeSteps + (yearlySteps ? " (Years)" : " (Decades)") + "\n"
                  + "\n"
                  + "Simulation Method      : " + getSimulationMethodName() + "\n"
                  + "Fire Spread Model      : " + spreadModel + "\n"
                  + "Fire Suppression       : " + fireSuppression + "\n"
                  + "Fire Cost Discount     : " + getDiscount() + "\n"
                  + "Invasive Species Logic : " + getInvasiveSpeciesKindName() + "\n"
-                 + "Random Number Seed     : " + (fixedSeed ? seed : "Auto-generated") + "\n"
+                 + "Random Number Seed     : " + (fixedSeed ? seed : "Auto") + "\n"
                  + "\n"
-                 + "Area Files\n"
+                 + "Data Files\n"
                  + "\n"
-                 + "Unit Attributes        : " + ((attributesAll == null) ? "Not Loaded" : attributesAll.toString()) + "\n"
-                 + "Spatial Relationships  : " + ((spatialRelate == null) ? "Not Loaded" : spatialRelate.toString()) + "\n"
-                 + "\n"
-                 + "Knowledge Files\n"
-                 + "\n"
-                 + "System Knowledge       : " + ((syskFile         == null) ? "Default" : syskFile.toString()) + "\n"
-                 + "Saved System Knowledge : " + ((saveName         == null) ? "Not Saved" : saveName.toString()) + "\n"
+                 + "Unit Attributes        : " + ((attributesAll    == null) ? "Not Loaded" : attributesAll.toString()) + "\n"
+                 + "Spatial Relationships  : " + ((spatialRelate    == null) ? "Not Loaded" : spatialRelate.toString()) + "\n"
+                 + "System Knowledge       : " + ((syskFile         == null) ? "Default" : syskFile) + "\n"
+                 + "Saved System Knowledge : " + ((saveName         == null) ? "Not Saved" : saveName) + "\n"
                  + "Fire Management Zones  : " + ((fmzFile          == null) ? "Default" : fmzFile.toString()) + "\n"
                  + "Fire Spread            : " + ((spreadFile       == null) ? "Default" : spreadFile.toString()) + "\n"
                  + "Fire Type              : " + ((typeFile         == null) ? "Default" : typeFile.toString()) + "\n"
