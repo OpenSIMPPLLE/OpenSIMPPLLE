@@ -1027,7 +1027,8 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     String syskFile       = SystemKnowledge.baseName;
     String saveName       = SystemKnowledge.saveName;
-    String spreadMod      = SystemKnowledge.spreadModel;
+    String spreadModel    = SystemKnowledge.spreadModel;
+
     File fmzFile          = SystemKnowledge.getFile(SystemKnowledge.FMZ);
     File spreadFile       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
     File typeFile         = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
@@ -1063,15 +1064,20 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Number of Simulations : " + numSimulations + "\n"
                  + "Number of Time Steps  : " + numTimeSteps + (yearlySteps ? " (Yearly)\n" : " (Decade)\n")
                  + "\n"
+                 + "Simulation Method     : " + printSimulationMethod() + "\n"
+                 + "Fire Spread Model     : " + spreadModel + "\n"
                  + "Fire Suppression      : " + fireSuppression + "\n"
                  + "Fire Cost Discount    : " + getDiscount() + "\n"
-                 + "Simulation Method     : " + printSimulationMethod() + "\n"
                  + "\n"
-                 + "Data Files\n"
+                 + "Area Files"
+                 + "\n"
+                 + "Unit Attributes       : " + ((attributesAll == null) ? "Not Loaded" : attributesAll.toString()) + "\n"
+                 + "Spatial Relationships : " + ((spatialRelate == null) ? "Not Loaded" : spatialRelate.toString()) + "\n"
+                 + "\n"
+                 + "Knowledge Files\n"
                  + "\n"
                  + "SystemKnowledge File  : " + ((syskFile         == null) ? "Default" : syskFile.toString()) + "\n"
                  + "Saved SysKnow File    : " + ((saveName         == null) ? "Not Saved" : saveName.toString()) + "\n"
-                 + "Fire Spread Model     : " + ((spreadMod        == null) ? "Default" : spreadMod.toString()) + "\n"
                  + "Fire Management Zones : " + ((fmzFile          == null) ? "Default" : fmzFile.toString()) + "\n"
                  + "Fire Spread           : " + ((spreadFile       == null) ? "Default" : spreadFile.toString()) + "\n"
                  + "Fire Type             : " + ((typeFile         == null) ? "Default" : typeFile.toString()) + "\n"
@@ -1089,9 +1095,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "FireWthrSupp Bey Cls A: " + ((fireSuppWthrBClA == null) ? "Default" : fireSuppWthrBClA.toString()) + "\n"
                  + "Producing Seed        : " + ((prodSeed         == null) ? "Default" : prodSeed.toString()) + "\n"
                  + "Regeneration - Fire   : " + ((regenFire        == null) ? "Default" : regenFire.toString()) + "\n"
-                 + "Regeneration - Succ   : " + ((regenSucc        == null) ? "Default" : regenSucc.toString()) + "\n"
-                 + "Area .attributesall   : " + ((attributesAll    == null) ? "Not Loaded" : attributesAll.toString()) + "\n"
-                 + "Area .spatialrelate   : " + ((spatialRelate    == null) ? "Not Loaded" : spatialRelate.toString()));
+                 + "Regeneration - Succ   : " + ((regenSucc        == null) ? "Default" : regenSucc.toString()));
 
     } finally {
       writer.close();
