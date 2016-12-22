@@ -1487,6 +1487,8 @@ public class ImportArea {
       log = new PrintWriter(new FileWriter(logFile));
       fin = new BufferedReader(new FileReader(filename));
 
+      area.setAttributesAllFile(filename);
+
       String line = fin.readLine();
       while (line != null) {
         while (line != null && line.trim().length() == 0) {
