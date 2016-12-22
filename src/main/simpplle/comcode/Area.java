@@ -64,6 +64,9 @@ public final class Area implements Externalizable {
   private static TreatmentSchedule treatmentSchedule;
   private static ProcessSchedule   processSchedule;
 
+  private File attributesAllFile;
+  private File spatialRelateFile;
+
   private int elevationRelativePosition = 100; // Added with file version 7
 
   private int polygonWidth;
@@ -248,6 +251,22 @@ public final class Area implements Externalizable {
   public Area(int kind) {
     this();
     this.kind = kind;
+  }
+
+  public File getAttributesAllFile() {
+    return attributesAllFile;
+  }
+
+  public void setAttributesAllFile(File attributesAllFile) {
+    this.attributesAllFile = attributesAllFile;
+  }
+
+  public File getSpatialRelateFile() {
+    return spatialRelateFile;
+  }
+
+  public void setSpatialRelateFile(File spatialRelateFile) {
+    this.spatialRelateFile = spatialRelateFile;
   }
 
   public boolean doManualGC() { return manualGC; }
