@@ -1016,6 +1016,15 @@ public final class Simulation implements SimulationTypes, Externalizable {
     File file = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
     PrintWriter writer = new PrintWriter(new FileOutputStream(file));
 
+    File attributesAll = null;
+    File spatialRelate = null;
+
+    Area area = Simpplle.getCurrentArea();
+    if (area != null) {
+      attributesAll = area.getAttributesAllFile();
+      spatialRelate = area.getSpatialRelateFile();
+    }
+
     String syskFile       = SystemKnowledge.baseName;
     String saveName       = SystemKnowledge.saveName;
     String spreadMod      = SystemKnowledge.spreadModel;
@@ -1080,7 +1089,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "FireWthrSupp Bey Cls A: " + ((fireSuppWthrBClA == null) ? "Default" : fireSuppWthrBClA.toString()) + "\n"
                  + "Producing Seed        : " + ((prodSeed         == null) ? "Default" : prodSeed.toString()) + "\n"
                  + "Regeneration - Fire   : " + ((regenFire        == null) ? "Default" : regenFire.toString()) + "\n"
-                 + "Regeneration - Succ   : " + ((regenSucc        == null) ? "Default" : regenSucc.toString()) + "\n");
+                 + "Regeneration - Succ   : " + ((regenSucc        == null) ? "Default" : regenSucc.toString()) + "\n"
+                 + "Area .attributesall   : " + ((attributesAll    == null) ? "Not Loaded" : attributesAll.toString()) + "\n"
+                 + "Area .spatialrelate   : " + ((spatialRelate    == null) ? "Not Loaded" : spatialRelate.toString()));
 
     } finally {
       writer.close();
