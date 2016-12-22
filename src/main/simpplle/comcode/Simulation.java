@@ -1038,9 +1038,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
       spatialRelate = area.getSpatialRelateFile();
     }
 
-    String saveName       = SystemKnowledge.savedFile;
-    String spreadModel    = SystemKnowledge.spreadModel;
-
     File climateSchedule     = SystemKnowledge.getFile(SystemKnowledge.CLIMATE);
     File fireManagementZone  = SystemKnowledge.getFile(SystemKnowledge.FMZ);
     File fireSpread          = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
@@ -1060,6 +1057,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     File treatmentLogic      = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_LOGIC);
     File treatmentSchedule   = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_SCHEDULE);
     File systemKnowledge     = SystemKnowledge.loadedFile;
+    File systemKnowledgeSave = SystemKnowledge.savedFile;
 
     try (PrintWriter writer = new PrintWriter(new FileOutputStream(file))) {
 
@@ -1075,7 +1073,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Number of Time Steps  : " + numTimeSteps + (yearlySteps ? " (Years)" : " (Decades)") + "\n"
                  + "\n"
                  + "Simulation Method      : " + getSimulationMethodName() + "\n"
-                 + "Fire Spread Model      : " + spreadModel + "\n"
+                 + "Fire Spread Model      : " + SystemKnowledge.spreadModel + "\n"
                  + "Fire Suppression       : " + fireSuppression + "\n"
                  + "Fire Cost Discount     : " + getDiscount() + "\n"
                  + "Invasive Species Logic : " + getInvasiveSpeciesKindName() + "\n"
@@ -1102,7 +1100,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Regeneration - Fire      : " + ((regenerationFire    == null) ? "Default" : regenerationFire) + "\n"
                  + "Regeneration - Succ      : " + ((regenerationSucc    == null) ? "Default" : regenerationSucc) + "\n"
                  + "System Knowledge         : " + ((systemKnowledge     == null) ? "Default" : systemKnowledge) + "\n"
-                 + "System Knowledge Save    : " + ((saveName            == null) ? "Not Saved" : saveName) + "\n"
+                 + "System Knowledge Save    : " + ((systemKnowledgeSave            == null) ? "Not Saved" : systemKnowledgeSave) + "\n"
                  + "Treatment Logic          : " + ((treatmentLogic      == null) ? "Default" : treatmentLogic) + "\n"
                  + "Treatment Schedule       : " + ((treatmentSchedule   == null) ? "Default" : treatmentSchedule));
 

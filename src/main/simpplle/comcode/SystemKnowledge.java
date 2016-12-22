@@ -180,7 +180,8 @@ public class SystemKnowledge {
   public static final String KEANE_PARAMETERS_ENTRY                     = "DATA/KEANE-PARAMETERS-ENTRY";
 
   public static File loadedFile;
-  public static String savedFile;
+  public static File savedFile;
+
   public static String spreadModel; //records "SIMPPLLE" or "KEANE"
 
   /**
@@ -1799,7 +1800,7 @@ public class SystemKnowledge {
 
     try {
       File outfile = Utility.makeSuffixedPathname(file, "", fileExt);
-      SystemKnowledge.savedFile = outfile.toString();
+      SystemKnowledge.savedFile = outfile;
       JarOutputStream jarOut = new JarOutputStream(new FileOutputStream(outfile), new Manifest());
       PrintWriter pout = new PrintWriter(new OutputStreamWriter(jarOut));
 
