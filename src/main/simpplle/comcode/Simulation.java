@@ -448,7 +448,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     return simulationMethod;
   }
 
-  private String printSimulationMethod () {
+  private String getSimulationMethodName() {
     switch(simulationMethod) {
       case STOCHASTIC:
         return "STOCHASTIC";
@@ -1064,7 +1064,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Number of Simulations  : " + numSimulations + "\n"
                  + "Number of Time Steps   : " + numTimeSteps + (yearlySteps ? " (Yearly)\n" : " (Decade)\n")
                  + "\n"
-                 + "Simulation Method      : " + printSimulationMethod() + "\n"
+                 + "Simulation Method      : " + getSimulationMethodName() + "\n"
                  + "Fire Spread Model      : " + spreadModel + "\n"
                  + "Fire Suppression       : " + fireSuppression + "\n"
                  + "Fire Cost Discount     : " + getDiscount() + "\n"
