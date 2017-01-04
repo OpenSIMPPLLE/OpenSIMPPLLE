@@ -702,22 +702,15 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
 
   public void mousePressed(MouseEvent e) {
     if (e.isPopupTrigger()) {
-      mouseClickPosition = e.getPoint();
-      if (selectedShape != null &&
-          changingShape == null &&
-          species == selectedShape.getState().getSpecies()) {
-        if(selectedShape instanceof CollapsedPathwayShape) {
-          menuUncollapse.show(e.getComponent(), e.getX(), e.getY());
-        } else {
-          menuOptions.show(e.getComponent(), e.getX(), e.getY());
-        }
-      } else {
-        menuLine.show(e.getComponent(), e.getX(), e.getY());
-      }
+      displayPopup(e);
     }
   }
 
   public void mouseReleased(MouseEvent e) {
+
+    if (e.isPopupTrigger()) {
+      displayPopup(e);
+    }
 
     if (!SwingUtilities.isLeftMouseButton(e)) return;
 
@@ -740,6 +733,21 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
       }
       changingShape = null;
       repaint();
+    }
+  }
+
+  private void displayPopup(MouseEvent e) {
+    mouseClickPosition = e.getPoint();
+    if (selectedShape != null &&
+        changingShape == null &&
+        species == selectedShape.getState().getSpecies()) {
+      if (selectedShape instanceof CollapsedPathwayShape) {
+        menuUncollapse.show(e.getComponent(), e.getX(), e.getY());
+      } else {
+        menuOptions.show(e.getComponent(), e.getX(), e.getY());
+      }
+    } else {
+      menuLine.show(e.getComponent(), e.getX(), e.getY());
     }
   }
 }
