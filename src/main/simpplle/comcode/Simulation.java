@@ -448,7 +448,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     return simulationMethod;
   }
 
-  private String printSimulationMethod () {
+  private String getSimulationMethodName() {
     switch(simulationMethod) {
       case STOCHASTIC:
         return "STOCHASTIC";
@@ -530,6 +530,21 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   public InvasiveKind getInvasiveSpeciesKind() {
     return invasiveSpeciesKind;
+  }
+
+  public String getInvasiveSpeciesKindName() {
+    switch(invasiveSpeciesKind) {
+      case R1:
+        return "R1";
+      case MSU:
+        return "MSU";
+      case MESA_VERDE_NP:
+        return "MESA_VERDE_NP";
+      case NONE:
+        return "NONE";
+      default:
+        return "";
+    }
   }
 
   public boolean isDoInvasiveSpecies() {
@@ -1014,76 +1029,81 @@ public final class Simulation implements SimulationTypes, Externalizable {
   public void writeLog() throws IOException {
 
     File file = Utility.makeSuffixedPathname(outputFile, "-log", "txt");
-    PrintWriter writer = new PrintWriter(new FileOutputStream(file));
 
-    String syskFile       = SystemKnowledge.baseName;
-    String saveName       = SystemKnowledge.saveName;
-    String spreadMod      = SystemKnowledge.spreadModel;
-    File fmzFile          = SystemKnowledge.getFile(SystemKnowledge.FMZ);
-    File spreadFile       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
-    File typeFile         = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
-    File fireSpot         = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPOTTING_LOGIC);
-    File trtSched         = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_SCHEDULE);
-    File trtLogic         = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_LOGIC);
-    File processProbLogic = SystemKnowledge.getFile(SystemKnowledge.PROCESS_PROB_LOGIC);
-    File fireSuppEv       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_EVENT_LOGIC);
-    File fireSuppClA      = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_CLASS_A_LOGIC);
-    File fireSuppBClA     = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_BEYOND_CLASS_A_LOGIC);
-    File fsProdRate       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_PRODUCTION_RATE_LOGIC);
-    File fsSpreadRate     = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_SPREAD_RATE_LOGIC);
-    File climateStr       = SystemKnowledge.getFile(SystemKnowledge.CLIMATE);
-    File fireSuppWthrClA  = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_CLASS_A_LOGIC);
-    File fireSuppWthrBClA = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
-    File prodSeed         = SystemKnowledge.getFile(SystemKnowledge.PRODUCING_SEED_LOGIC);
-    File regenFire        = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_FIRE);
-    File regenSucc        = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_SUCC);
+    File areaAttributesAll    = null;
+    File areaSpatialRelate    = null;
+    File climateSchedule      = SystemKnowledge.getFile(SystemKnowledge.CLIMATE);
+    File fireManagementZone   = SystemKnowledge.getFile(SystemKnowledge.FMZ);
+    File fireSpotting         = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPOTTING_LOGIC);
+    File fireSpread           = SystemKnowledge.getFile(SystemKnowledge.FIRE_SPREAD_LOGIC);
+    File fireSuppSpreadRate       = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_SPREAD_RATE_LOGIC);
+    File fireSuppBeyondClsA   = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_BEYOND_CLASS_A_LOGIC);
+    File fireSuppClsA         = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_CLASS_A_LOGIC);
+    File fireSuppEvent        = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_EVENT_LOGIC);
+    File fireSuppLineProdRate = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_PRODUCTION_RATE_LOGIC);
+    File fireSuppWthrBeyClsA  = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
+    File fireSuppWthrClsA     = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_CLASS_A_LOGIC);
+    File fireType             = SystemKnowledge.getFile(SystemKnowledge.FIRE_TYPE_LOGIC);
+    File processProbability   = SystemKnowledge.getFile(SystemKnowledge.PROCESS_PROB_LOGIC);
+    File producingSeed        = SystemKnowledge.getFile(SystemKnowledge.PRODUCING_SEED_LOGIC);
+    File regenerationFire     = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_FIRE);
+    File regenerationSucc     = SystemKnowledge.getFile(SystemKnowledge.REGEN_LOGIC_SUCC);
+    File treatmentLogic       = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_LOGIC);
+    File treatmentSchedule    = SystemKnowledge.getFile(SystemKnowledge.TREATMENT_SCHEDULE);
+    File systemKnowledge      = SystemKnowledge.loadedFile;
+    File systemKnowledgeSave  = SystemKnowledge.savedFile;
 
-    //ProcessOccurrenceSpreadingFire.SpreadModel selectedModel = ProcessOccurrenceSpreadingFire.SpreadModel.values();
+    Area area = Simpplle.getCurrentArea();
+    if (area != null) {
+      areaAttributesAll = area.getAttributesAllFile();
+      areaSpatialRelate = area.getSpatialRelateFile();
+    }
 
-     //public static final Kinds KEANE_PARAMETERS                 = Kinds.KEANE_PARAMETERS;
+    try (PrintWriter writer = new PrintWriter(new FileOutputStream(file))) {
 
-    try {
       writer.write("SIMPPLLE Simulation Log File\n"
                  + "\n"
                  + "Date : " + Simpplle.currentDate() + "\n"
                  + "Time : " + Simpplle.currentTime() + "\n"
                  + "\n"
-                 + "Current Zone : " + Simpplle.getCurrentZone().toString() + "\n"
-                 + "Current Area : " + Simpplle.getCurrentArea().toString() + "\n"
+                 + "Current Zone : " + Simpplle.getCurrentZone() + "\n"
+                 + "Current Area : " + Simpplle.getCurrentArea() + "\n"
                  + "\n"
                  + "Number of Simulations : " + numSimulations + "\n"
-                 + "Number of Time Steps  : " + numTimeSteps + (yearlySteps ? " (Yearly)\n" : " (Decade)\n")
+                 + "Number of Time Steps  : " + numTimeSteps + (yearlySteps ? " (Years)" : " (Decades)") + "\n"
                  + "\n"
-                 + "Fire Suppression      : " + fireSuppression + "\n"
-                 + "Fire Cost Discount    : " + getDiscount() + "\n"
-                 + "Simulation Method     : " + printSimulationMethod() + "\n"
+                 + "Simulation Method      : " + getSimulationMethodName() + "\n"
+                 + "Fire Spread Model      : " + SystemKnowledge.spreadModel + "\n"
+                 + "Fire Suppression       : " + fireSuppression + "\n"
+                 + "Fire Cost Discount     : " + getDiscount() + "\n"
+                 + "Invasive Species Logic : " + getInvasiveSpeciesKindName() + "\n"
+                 + "Random Number Seed     : " + (fixedSeed ? seed : "Auto") + "\n"
                  + "\n"
                  + "Data Files\n"
                  + "\n"
-                 + "SystemKnowledge File  : " + ((syskFile         == null) ? "Default" : syskFile.toString()) + "\n"
-                 + "Saved SysKnow File    : " + ((saveName         == null) ? "Not Saved" : saveName.toString()) + "\n"
-                 + "Fire Spread Model     : " + ((spreadMod        == null) ? "Default" : spreadMod.toString()) + "\n"
-                 + "Fire Management Zones : " + ((fmzFile          == null) ? "Default" : fmzFile.toString()) + "\n"
-                 + "Fire Spread           : " + ((spreadFile       == null) ? "Default" : spreadFile.toString()) + "\n"
-                 + "Fire Type             : " + ((typeFile         == null) ? "Default" : typeFile.toString()) + "\n"
-                 + "Fire Spotting         : " + ((fireSpot         == null) ? "Default" : fireSpot.toString()) + "\n"
-                 + "Climate               : " + ((climateStr       == null) ? "Default" : climateStr.toString()) + "\n"
-                 + "Treatment Schedule    : " + ((trtSched         == null) ? "Default" : trtSched.toString()) + "\n"
-                 + "Treatment Logic       : " + ((trtLogic         == null) ? "Default" : trtLogic.toString()) + "\n"
-                 + "Process Prob Logic    : " + ((processProbLogic == null) ? "Default" : processProbLogic.toString()) + "\n"
-                 + "Fire Supp Event       : " + ((fireSuppEv       == null) ? "Default" : fireSuppEv.toString()) + "\n"
-                 + "Fire Supp Cls A       : " + ((fireSuppClA      == null) ? "Default" : fireSuppClA.toString()) + "\n"
-                 + "Fire Supp Beyond Cls A: " + ((fireSuppBClA     == null) ? "Default" : fireSuppBClA.toString()) + "\n"
-                 + "Fire Production Rate  : " + ((fsProdRate       == null) ? "Default" : fsProdRate.toString()) + "\n"
-                 + "Fire Spread Rate      : " + ((fsSpreadRate     == null) ? "Default" : fsSpreadRate.toString()) + "\n"
-                 + "FireWthrSupp Cls A    : " + ((fireSuppWthrClA  == null) ? "Default" : fireSuppWthrClA.toString()) + "\n"
-                 + "FireWthrSupp Bey Cls A: " + ((fireSuppWthrBClA == null) ? "Default" : fireSuppWthrBClA.toString()) + "\n"
-                 + "Producing Seed        : " + ((prodSeed         == null) ? "Default" : prodSeed.toString()) + "\n"
-                 + "Regeneration - Fire   : " + ((regenFire        == null) ? "Default" : regenFire.toString()) + "\n"
-                 + "Regeneration - Succ   : " + ((regenSucc        == null) ? "Default" : regenSucc.toString()) + "\n");
+                 + "Area Spatial Relations   : " + ((areaSpatialRelate    == null) ? "Not Loaded" : areaSpatialRelate) + "\n"
+                 + "Area Unit Attributes     : " + ((areaAttributesAll    == null) ? "Not Loaded" : areaAttributesAll) + "\n"
+                 + "Climate Schedule         : " + ((climateSchedule      == null) ? "Default" : climateSchedule) + "\n"
+                 + "Fire Management Zones    : " + ((fireManagementZone   == null) ? "Default" : fireManagementZone) + "\n"
+                 + "Fire Spotting            : " + ((fireSpotting         == null) ? "Default" : fireSpotting) + "\n"
+                 + "Fire Spread              : " + ((fireSpread           == null) ? "Default" : fireSpread) + "\n"
+                 + "Fire Supp Bey Cls A      : " + ((fireSuppBeyondClsA   == null) ? "Default" : fireSuppBeyondClsA) + "\n"
+                 + "Fire Supp Bey Cls A Wthr : " + ((fireSuppWthrBeyClsA  == null) ? "Default" : fireSuppWthrBeyClsA) + "\n"
+                 + "Fire Supp Cls A          : " + ((fireSuppClsA         == null) ? "Default" : fireSuppClsA) + "\n"
+                 + "Fire Supp Cls A Wthr     : " + ((fireSuppWthrClsA     == null) ? "Default" : fireSuppWthrClsA) + "\n"
+                 + "Fire Supp Event          : " + ((fireSuppEvent        == null) ? "Default" : fireSuppEvent) + "\n"
+                 + "Fire Supp Line Prod Rate : " + ((fireSuppLineProdRate == null) ? "Default" : fireSuppLineProdRate) + "\n"
+                 + "Fire Supp Spread Rate    : " + ((fireSuppSpreadRate   == null) ? "Default" : fireSuppSpreadRate) + "\n"
+                 + "Fire Type                : " + ((fireType             == null) ? "Default" : fireType) + "\n"
+                 + "Process Probability      : " + ((processProbability   == null) ? "Default" : processProbability) + "\n"
+                 + "Producing Seed           : " + ((producingSeed        == null) ? "Default" : producingSeed) + "\n"
+                 + "Regeneration - Fire      : " + ((regenerationFire     == null) ? "Default" : regenerationFire) + "\n"
+                 + "Regeneration - Succ      : " + ((regenerationSucc     == null) ? "Default" : regenerationSucc) + "\n"
+                 + "System Knowledge         : " + ((systemKnowledge      == null) ? "Default" : systemKnowledge) + "\n"
+                 + "System Knowledge Save    : " + ((systemKnowledgeSave  == null) ? "Not Saved" : systemKnowledgeSave) + "\n"
+                 + "Treatment Logic          : " + ((treatmentLogic       == null) ? "Default" : treatmentLogic) + "\n"
+                 + "Treatment Schedule       : " + ((treatmentSchedule    == null) ? "Default" : treatmentSchedule));
 
-    } finally {
-      writer.close();
     }
   }
 

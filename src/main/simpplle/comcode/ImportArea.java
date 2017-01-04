@@ -1385,12 +1385,17 @@ public class ImportArea {
     RelationParser parser;
     File           prefix = Utility.stripExtension(file);
     File           logFile = Utility.makeUniqueLogFile(prefix,"");
+
     Area newArea = new Area(Area.USER);
     Boolean success = false;
 
     try {
+
       log = new PrintWriter(new FileWriter(logFile));
       fin = new BufferedReader(new FileReader(file));
+
+      newArea.setSpatialRelateFile(file);
+
       String line = fin.readLine();
       while (line != null){
         StringTokenizer strTok = new StringTokenizer(line.trim());
@@ -1481,6 +1486,8 @@ public class ImportArea {
     try {
       log = new PrintWriter(new FileWriter(logFile));
       fin = new BufferedReader(new FileReader(filename));
+
+      area.setAttributesAllFile(filename);
 
       String line = fin.readLine();
       while (line != null) {

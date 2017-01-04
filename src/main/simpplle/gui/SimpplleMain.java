@@ -2457,13 +2457,11 @@ public class SimpplleMain extends JFrame {
 
     SystemKnowledgeLoadSave dlg = new SystemKnowledgeLoadSave(this,"Load User Knowledge",true,false);
     setDialogLocation(dlg);
-
-    File sysKnowFile = dlg.selectFile();
-    SystemKnowledge.baseName = sysKnowFile.toString();
-    if (sysKnowFile != null) {
+    File file = dlg.selectFile();
+    SystemKnowledge.loadedFile = file;
+    if (file != null) {
       dlg.setVisible(true);
-    }
-    else {
+    } else {
       return;
     }
 
@@ -2492,7 +2490,7 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
 
     //File sysKnowFile = dlg.sel;
-    //SystemKnowledge.saveName = sysKnowFile.toString();
+    //SystemKnowledge.savedFile = sysKnowFile.toString();
   }
 
   void menuSysKnowRestoreDefaults_actionPerformed(ActionEvent e) {
