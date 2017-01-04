@@ -216,11 +216,13 @@ public final class AreaSummary implements Externalizable {
       }
     }
   }
-/**
- * Gets the current simulation instance and its current time step, subtracts the parameter teme step from current time step and then subtracts that from the process events length to get the index of data.
- * @param timeStep
- * @return
- */
+
+  /**
+   *
+   * Gets the current simulation instance and its current time step, subtracts the parameter teme step from current time step and then subtracts that from the process events length to get the index of data.
+   * @param timeStep
+   * @return
+   */
   private int getDataIndex(int timeStep) {
     Simulation simulation = Simulation.getInstance();
     if (simulation == null ||
@@ -245,10 +247,30 @@ public final class AreaSummary implements Externalizable {
     return processEvents[index].length;
   }
 
+  /**
+   * Gets a single process occurrence or an array of process occurrences. Process occurrences are
+   * recorded for each evu at each time step.
+   *
+   * @param timeStep a time step index
+   * @param evuId a unique EVU number
+   * @return ProcessOccurrence, ProcessOccurrence[], or null
+   */
   private Object getProcessEvents(int timeStep, int evuId) {
     int index = getDataIndex(timeStep);
-    return processEvents[index][evuId];
+    if (index > -1) {
+      return processEvents[index][evuId];
+    } else {
+      return null;
+    }
   }
+
+  /**
+   * Records a single process occurrence of an array of process occurrences.
+   *
+   * @param timeStep a time step index
+   * @param evuId a unique EVU number
+   * @param events a ProcessOccurrence or ProcessOccurrence[]
+   */
   private void setProcessEvents(int timeStep, int evuId, Object events) {
     int index = getDataIndex(timeStep);
     processEvents[index][evuId] = events;
