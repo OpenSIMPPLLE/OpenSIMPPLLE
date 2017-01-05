@@ -60,17 +60,18 @@ public class KnowledgeSource extends JDialog {
     editorScrollPane.setPreferredSize(new Dimension(650, 350));
     jPanel1.setLayout(borderLayout2);
     jPanel2.setLayout(flowLayout1);
-    cancelPB.setText("Cancel");
+    cancelPB.setText("Close");
     cancelPB.addActionListener(new KnowledgeSource_cancelPB_actionAdapter(this));
-    okPB.setText("Ok");
+    okPB.setText("Save and Close");
     okPB.addActionListener(new KnowledgeSource_okPB_actionAdapter(this));
     this.addWindowListener(new KnowledgeSource_this_windowAdapter(this));
     getContentPane().add(mainPanel);
     jPanel2.add(okPB);
     jPanel2.add(cancelPB);
+    jPanel1.add(editorScrollPane, java.awt.BorderLayout.CENTER);
+    jPanel1.setBorder(BorderFactory.createEmptyBorder(7,7,7,7));
     mainPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
     mainPanel.add(jPanel2, java.awt.BorderLayout.SOUTH);
-    jPanel1.add(editorScrollPane, java.awt.BorderLayout.CENTER);
   }
 /**
  * Initializes the knowledge source editor text.
