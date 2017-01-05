@@ -384,7 +384,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     menuSysKnowFireEventLogic.setEnabled(false);
-    menuSysKnowFireEventLogic.setText("Fire Event Logic");
+    menuSysKnowFireEventLogic.setText("Fire Spread, Type, and Spotting");
     menuSysKnowFireEventLogic.addActionListener(new java.awt.event.ActionListener() {
 
       public void actionPerformed(ActionEvent e) {
@@ -2250,7 +2250,7 @@ public class SimpplleMain extends JFrame {
   }
 
   void menuSysKnowFireEventLogic_actionPerformed(ActionEvent e) {
-    FireEventLogicDialog dlg = new FireEventLogicDialog(this,"Fire Event Logic",true);
+    FireEventLogicDialog dlg = new FireEventLogicDialog(this,"Fire Spread, Type, and Spotting",true);
     setDialogLocation(dlg);
     dlg.setVisible(true);
     refresh();
