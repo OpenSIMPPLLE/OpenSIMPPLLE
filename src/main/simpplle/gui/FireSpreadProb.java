@@ -79,7 +79,7 @@ public class FireSpreadProb extends JDialog {
  * @throws Exception
  */
   void jbInit() throws Exception {
-    titledBorder1 = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(142, 142, 142)),"Extreme Fire Spread Probability");
+    titledBorder1 = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(142, 142, 142)));
     mainPanel.setLayout(borderLayout1);
     northPanel.setLayout(flowLayout1);
     flowLayout1.setAlignment(FlowLayout.LEFT);
@@ -123,6 +123,7 @@ public class FireSpreadProb extends JDialog {
     gridLayout1.setRows(2);
     fireSizeText.setText("1000");
     fireSizeText.setColumns(10);
+    fireSizeText.setHorizontalAlignment(SwingConstants.RIGHT);
     fireSizeText.addFocusListener(new java.awt.event.FocusAdapter() {
       public void focusLost(FocusEvent e) {
         fireSizeText_focusLost(e);
