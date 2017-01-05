@@ -10,10 +10,7 @@ package simpplle.gui;
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowAdapter;
+import java.awt.event.*;
 import java.awt.BorderLayout;
 
 /**
@@ -28,14 +25,14 @@ public class KnowledgeSource extends JDialog {
 
   JPanel mainPanel = new JPanel();
   BorderLayout borderLayout1 = new BorderLayout();
-  private JEditorPane editor = new JEditorPane();
+  private JTextArea editor = new JTextArea();
+  private JScrollPane editorScrollPane = new JScrollPane(editor);
   private JPanel jPanel1 = new JPanel();
   private JPanel jPanel2 = new JPanel();
   private BorderLayout borderLayout2 = new BorderLayout();
   private FlowLayout flowLayout1 = new FlowLayout();
   private JButton cancelPB = new JButton();
   private JButton okPB = new JButton();
-  private JScrollPane editorScrollPane = new JScrollPane();
   public KnowledgeSource(Frame frame, String title, boolean modal, String text) {
     super(frame, title, modal);
     try {
@@ -55,10 +52,12 @@ public class KnowledgeSource extends JDialog {
   void jbInit() throws Exception {
     mainPanel.setLayout(borderLayout1);
     editor.setFont(new java.awt.Font("Dialog", Font.PLAIN, 14));
-    editor.setMinimumSize(new Dimension(650, 300));
-    editor.setPreferredSize(new Dimension(650, 300));
+    editor.setLineWrap(true);
+    editor.setWrapStyleWord(true);
     editor.setCaretPosition(0);
     editor.setText("01234567890123456789012345678901234567890123456789012345678901234567890123456789");
+    editorScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+    editorScrollPane.setPreferredSize(new Dimension(650, 350));
     jPanel1.setLayout(borderLayout2);
     jPanel2.setLayout(flowLayout1);
     cancelPB.setText("Cancel");
@@ -72,10 +71,9 @@ public class KnowledgeSource extends JDialog {
     mainPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
     mainPanel.add(jPanel2, java.awt.BorderLayout.SOUTH);
     jPanel1.add(editorScrollPane, java.awt.BorderLayout.CENTER);
-    editorScrollPane.getViewport().add(editor);
   }
 /**
- * Initializes the knowledge source editer text.  
+ * Initializes the knowledge source editor text.
  */
   private void initialize() {
     editor.setText(mainText);
