@@ -88,7 +88,7 @@ public final class Area implements Externalizable {
   }
   /**
    * Temporary storage for adjacent data upon loading or creating an area.
-   The key is Evu and the Value is Vector of int[]
+   * The key is Evu and the Value is Vector of int[]
   */
 
   private Hashtable<Evu, Vector> tmpAdjacentData;
@@ -201,7 +201,7 @@ public final class Area implements Externalizable {
     date             = Simpplle.currentDate();
     fileVersion      = CURRENT_FILE_VERSION;
     manualGC         = false;
-    tmpAdjacentData  = null;
+    tmpAdjacentData  = new Hashtable<>();
     processSchedule = null;
     treatmentSchedule = null;
   }
@@ -3921,14 +3921,13 @@ public final class Area implements Externalizable {
   }
 
   /**
-   * Helper method for the overloaded addAdjacentData methods (reduce code duplication).
+   * Helper method for the overloaded addAdjacentData methods
+   * Get vector given Evu, create a new vector if none exists.
+   *
    * @param evu The instance Evu
    * @return vector for the given evu
    */
   public Vector<double[]> addAdjacentHelper(Evu evu){
-    if (tmpAdjacentData == null) {
-      tmpAdjacentData = new Hashtable<>();
-    }
     Vector v = tmpAdjacentData.get(evu);
     if (v == null) {
       v = new Vector<double[]>();
@@ -4013,7 +4012,8 @@ public final class Area implements Externalizable {
       }
       evu.setAdjacentData(adjData);
     }
-    tmpAdjacentData = null;
+    // Clear tmpAdjacentData
+    tmpAdjacentData = new Hashtable<>();
   }
 
   public void calcRelativeSlopes(){
