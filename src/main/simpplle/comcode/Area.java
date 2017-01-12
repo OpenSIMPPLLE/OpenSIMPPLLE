@@ -3937,18 +3937,18 @@ public final class Area implements Externalizable {
   }
 
   /**
-   * Go through the temp storage for adjacent data and put the data in the appropriate Evu's. This
+   * Go through the temp storage for adjacent data and put the data in the appropriate Evus. This
    * had to wait until all instances of Evu were created, so that the AdjacentData.evu could be
-   * filled in. This method also has the side effect of eliminating any invalid adjacent units.
+   * filled in.
    */
   public void finishAddingAdjacentData() {
     finishAddingAdjacentData(null);
   }
 
   /**
-   * Go through the temp storage for adjacent data and put the data in the appropriate Evu's. This
+   * Go through the temp storage for adjacent data and put the data in the appropriate Evus. This
    * had to wait until all instances of Evu were created, so that the AdjacentData.evu could be
-   * filled in. This method also has the side effect of eliminating any invalid adjacent units.
+   * filled in.
    */
   public void finishAddingAdjacentData(PrintWriter logFile) {
 
@@ -3956,64 +3956,133 @@ public final class Area implements Externalizable {
 
       Vector v = tmpAdjacentData.get(evu);
 
-      // Count the number valid adjacent units.
-      int numAdj = 0;
-      for (int i = 0; i < v.size(); i++) {
-        double[] data = (double[])v.elementAt(i);
-        Evu adjEvu = getEvu((int)data[0]);
-        if (adjEvu != null) { numAdj++; }
-      }
+      if (!removeInvalidUnit(logFile, evu, v)){  // unit must be valid to be added
 
-      // if no adjacent units then eliminate this evu.
-      if (numAdj == 0) {
-        evu.setAdjacentData(null);
-        if (logFile != null) {
-          logFile.println("Evu-" + evu.getId() +
-                          " does not have any valid adjacent units.");
-          logFile.println("At least one valid adjacent unit is required.");
-          logFile.println("This evu has been deleted");
+        int numAdj = evu.getNUM_NEIGHBORS();
+
+        double spread, windSpeed, windDir;
+        char pos, wind;
+        AdjacentData[] adjData = new AdjacentData[numAdj];
+        int adjIndex = 0;
+
+        for (int i = 0; i < v.size(); i++) {
+          double[] neighbor = (double[])v.elementAt(i);
+          int dataLength = neighbor.length;
+          Evu adjEvu = getEvu((int)neighbor[0]);
+
+          // skip null EVUs
+          if (adjEvu == null) { continue; }
+
+          // Find or calculate position
+          if (!evu.isElevationValid() || !adjEvu.isElevationValid()) {
+            pos = (char)neighbor[1]; // ascii value back to char
+          } else {
+            pos = 'E'; // Means use elevation
+          }
+          wind = (char) neighbor[2]; // ascii value back to char
+
+          if (dataLength < 4) {
+            // Legacy spatial relation
+            adjIndex = getAdjIndexRowCol(evu, adjEvu);
+            adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind);
+          } else {
+            // Keane spatial relation, more attributes available
+            spread    = neighbor[3];
+            windSpeed = neighbor[4];
+            windDir   = neighbor[5];
+
+            // calculate index based on spread
+            adjIndex = evu.getNeighborIndex(spread);
+
+            adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir);
+          }
         }
-        allEvu[evu.getId()] = null;
-        continue;
+        evu.setAdjacentData(adjData);
       }
-
-      double spread, windSpeed, windDir;
-      char pos, wind;
-      AdjacentData[] adjData = new AdjacentData[numAdj];
-      int adjIndex = 0;
-      for (int i = 0; i < v.size(); i++) {
-        double[] data = (double[])v.elementAt(i);
-        int dataLength = data.length;
-        Evu adjEvu = getEvu((int)data[0]);
-        // skip null Evus
-        if (adjEvu == null) { continue; }
-
-        // Find or calculate position
-        if (!evu.isElevationValid() || !adjEvu.isElevationValid()) {
-          pos = (char)data[1]; // ascii value back to char
-        } else {
-          pos = 'E'; // Means use elevation
-        }
-        wind = (char) data[2]; // ascii value back to char
-
-        if (dataLength < 4) {
-          // Legacy spatial relation
-          adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind);
-        } else {
-          // Keane spatial relation, more attributes available
-          spread    = data[3];
-          windSpeed = data[4];
-          windDir   = data[5];
-          adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir);
-        }
-
-        adjIndex++;
-
-      }
-      evu.setAdjacentData(adjData);
     }
     // Clear tmpAdjacentData
     tmpAdjacentData = new Hashtable<>();
+  }
+
+  /**
+   * Checks the number of adjacencies and removes evu from allEvu if there are no adjacencies
+   *
+   * @param logFile open print writer to optionally log the invalid unit. Can be null
+   * @param evu some unit from tmpAdjacentData
+   * @return true if the unit was removed
+   */
+  private boolean removeInvalidUnit(PrintWriter logFile, Evu evu, Vector v){
+
+    // Count the number valid adjacent units.
+    int numAdj = 0;
+    for (int i = 0; i < v.size(); i++) {
+      double[] data = (double[])v.elementAt(i);
+      Evu adjEvu = getEvu((int)data[0]);
+      if (adjEvu != null) { numAdj++; }
+    }
+
+    // if no adjacent units then eliminate this evu.
+    if (numAdj == 0) {
+      evu.setAdjacentData(null);
+      if (logFile != null) {
+        logFile.println("Evu-" + evu.getId() +
+            " does not have any valid adjacent units.");
+        logFile.println("At least one valid adjacent unit is required.");
+        logFile.println("This evu has been deleted");
+      }
+      allEvu[evu.getId()] = null;
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Find neighbor index based on row and column information in two adjacent EVUs
+   * Note: X and Y represent columns and rows respectively, and start at the top left of a grid.
+   *
+   * @param evu
+   * @param adjEvu
+   * @return index to be used in evu.AdjacentData
+   */
+  private int getAdjIndexRowCol(Evu evu, Evu adjEvu){
+    int index = 0;
+    int dX = evu.getLocationX() - adjEvu.getLocationX();
+    int dY = evu.getLocationY() - adjEvu.getLocationY();
+
+    if (dY == 1) {
+      switch (dX) {
+        case -1:
+          index = 1; // 45 degrees
+          break;
+        case 0:
+          index = 2; // 90 degrees
+          break;
+        case 1:
+          index = 3;  // 135 degrees
+          break;
+      }
+    } else if (dY == 0) {
+      switch (dX){
+      case -1:
+        index = 0; // 0 or 360 degrees
+        break;
+      case 1:
+        index = 4;  // 180 degrees
+        break;
+      }
+    } else if (dY == -1) {
+      switch (dX) {
+        case -1:
+          index = 7; // 315 degrees
+          break;
+        case 0:
+          index = 6; // 270 degrees
+          break;
+        case 1:
+          index = 5; // 225 degrees
+      }
+    }
+    return index;
   }
 
   public void calcRelativeSlopes(){

@@ -70,6 +70,17 @@ public final class Evu extends NaturalElement implements Externalizable {
   private Lifeform dominantLifeform;
 
   private String           unitNumber;
+
+  /**
+   * Determines the size of adjacentData array
+   * Because units are stored in a standard grid, the maximum number of adjacencies is 8
+   */
+  private final int NUM_NEIGHBORS = 8;
+
+  /**
+   * Neighboring units are stored in a fixed order, determined by their adjacency angle.
+   * A missing adjacency in a given direction will be null
+   */
   private AdjacentData[]   adjacentData;
 
   private static ProcessProbability[] tempProcessProb;
@@ -303,7 +314,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     initialState        = null;
     simData             = null;
     unitNumber          = null;
-    adjacentData        = null;
+    adjacentData        = new AdjacentData[NUM_NEIGHBORS];
     acres               = 0;
 
     ownership           = null;
@@ -2917,6 +2928,16 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return false;
 
+  }
+
+  /**
+   * Get a neighbor's index based on it's angle. Uses %360 to protect from angles larger than 360.
+   *
+   * @param adjacencyAngle degrees azimuth from this unit to the adjacent one
+   * @return index between 0-7 that corresponds to the angle
+   */
+  public int getNeighborIndex(double adjacencyAngle){
+    return (int)Math.floor((adjacencyAngle%360)/ 45);
   }
 
   /**
@@ -8771,8 +8792,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (getAzimuthDifference(spread, windDirection) <= downwindThreshold) return 'D';
     else return 'N';
   }
-}
 
+  public int getNUM_NEIGHBORS() {
+    return NUM_NEIGHBORS;
+  }
+}
 
 
 
