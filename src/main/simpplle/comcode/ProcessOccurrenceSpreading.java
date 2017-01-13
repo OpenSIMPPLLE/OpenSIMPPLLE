@@ -475,13 +475,17 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 
     adjData = fromUnit.getNeighborhood();
     if (adjData != null) {
-      for (int i = 0; i < adjData.length; i++) {
-        toUnit = adjData[i].evu;
-        if (toUnit.hasLifeform(lifeform) == false) { continue; }
-        if (Evu.doSpread(fromUnit, toUnit, lifeform)) {
+      for (AdjacentData neighbor : adjData) {
+        if (neighbor != null) {
+          toUnit = neighbor.evu;
+          if (toUnit.hasLifeform(lifeform) == false) {
+            continue;
+          }
+          if (Evu.doSpread(fromUnit, toUnit, lifeform)) {
 
 //          addSpreadEvent(fromUnit, toUnit);
 //          spreadQueue.add( (Node) nodeLookup.get(toUnit));
+          }
         }
       }
       addSpreadEvent(spreadingNode,tmpToUnits,lifeform);

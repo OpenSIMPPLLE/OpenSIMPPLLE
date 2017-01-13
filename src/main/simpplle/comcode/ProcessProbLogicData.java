@@ -292,13 +292,17 @@ public class ProcessProbLogicData
 
     if (adjProcessListHasData()) {
       aMatch = false;
-      for (int i = 0; i < adjData.length; i++) {
-        VegSimStateData adjState = adjData[i].evu.getState(cTime - adjProcessTSteps);
-        if (adjState == null) { continue; }
-        ProcessType adjProcess = adjState.getProcess();
-        if (adjProcessList.contains(adjProcess)) {
-          aMatch = true;
-          break;
+      for (AdjacentData neighbor : adjData) {
+        if (neighbor != null) {
+          VegSimStateData adjState = neighbor.evu.getState(cTime - adjProcessTSteps);
+          if (adjState == null) {
+            continue;
+          }
+          ProcessType adjProcess = adjState.getProcess();
+          if (adjProcessList.contains(adjProcess)) {
+            aMatch = true;
+            break;
+          }
         }
       }
       if (aMatch == false) {

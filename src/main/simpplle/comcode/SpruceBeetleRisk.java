@@ -117,10 +117,12 @@ public abstract class SpruceBeetleRisk {
 
     AdjacentData[] adjUnits = evu.getNeighborhood();
     Evu            unit;
-    for (int i=0; i<adjUnits.length; i++) {
-      unit = adjUnits[i].evu;
-      adjUnitsHt.put(unit,unit);
-      addAdjacentUnits(unit,(iterations-1));
+    for (AdjacentData adjUnit : adjUnits) {
+      if (adjUnit != null) {
+        unit = adjUnit.evu;
+        adjUnitsHt.put(unit, unit);
+        addAdjacentUnits(unit, (iterations - 1));
+      }
     }
   }
 
