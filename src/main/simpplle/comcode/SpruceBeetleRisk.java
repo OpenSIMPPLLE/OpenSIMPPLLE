@@ -115,7 +115,7 @@ public abstract class SpruceBeetleRisk {
   private static void addAdjacentUnits(Evu evu, int iterations) {
     if (iterations == 0) { return; }
 
-    AdjacentData[] adjUnits = evu.getAdjacentData();
+    AdjacentData[] adjUnits = evu.getNeighborhood();
     Evu            unit;
     for (int i=0; i<adjUnits.length; i++) {
       unit = adjUnits[i].evu;

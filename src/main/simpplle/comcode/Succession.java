@@ -10,7 +10,6 @@ package simpplle.comcode;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Vector;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.*;
@@ -275,7 +274,7 @@ public class Succession extends Process {
     int              numAdj;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData  = evu.getAdjacentData();
+    adjacentData  = evu.getNeighborhood();
     numAdj        = adjacentData.length;
     htGrp         = evu.getHabitatTypeGroup();
 
@@ -444,7 +443,7 @@ public class Succession extends Process {
     int              numAdj;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData = evu.getAdjacentData();
+    adjacentData = evu.getNeighborhood();
     numAdj        = adjacentData.length;
     htGrp         = evu.getHabitatTypeGroup();
 

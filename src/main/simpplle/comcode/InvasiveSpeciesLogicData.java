@@ -157,7 +157,7 @@ public class InvasiveSpeciesLogicData extends LogicData implements Externalizabl
           funcGroup = RESPROUTING;
         }
 
-        AdjacentData[] adjacentData = evu.getAdjacentData();
+        AdjacentData[] adjacentData = evu.getNeighborhood();
         for (int i = 0; i < adjacentData.length; i++) {
           Evu adj = adjacentData[i].evu;
           Lifeform life = Area.getCurrentLifeform(adj);

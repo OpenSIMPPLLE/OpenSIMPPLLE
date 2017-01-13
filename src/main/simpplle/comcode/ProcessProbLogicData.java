@@ -288,7 +288,7 @@ public class ProcessProbLogicData
     boolean aMatch=false;
 
     // *** Adjacent Process ***
-    AdjacentData[] adjData = evu.getAdjacentData();
+    AdjacentData[] adjData = evu.getNeighborhood();
 
     if (adjProcessListHasData()) {
       aMatch = false;

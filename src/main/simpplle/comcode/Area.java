@@ -2582,7 +2582,7 @@ public final class Area implements Externalizable {
             continue;
           }
 
-          adjacentData = evu.getAdjacentData();
+          adjacentData = evu.getNeighborhood();
           for(j=0;j<adjacentData.length;j++) {
             adj = adjacentData[j].getEvu();
             treat     = adj.getLastTreatment();
@@ -2714,7 +2714,7 @@ public final class Area implements Externalizable {
 //          numDecades = 5;
 //        }
 
-        adjacentData = evu.getAdjacentData();
+        adjacentData = evu.getNeighborhood();
         if (adjacentData == null) { continue; }
         seedSource = new Hashtable(adjacentData.length);
         key        = new Species[adjacentData.length];
@@ -3997,7 +3997,7 @@ public final class Area implements Externalizable {
             adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind, spread, windSpeed, windDir);
           }
         }
-        evu.setAdjacentData(adjData);
+        evu.setNeighborhood(adjData);
       }
     }
     // Clear tmpAdjacentData
@@ -4023,7 +4023,7 @@ public final class Area implements Externalizable {
 
     // if no adjacent units then eliminate this evu.
     if (numAdj == 0) {
-      evu.setAdjacentData(null);
+      evu.setNeighborhood(null);
       if (logFile != null) {
         logFile.println("Evu-" + evu.getId() +
             " does not have any valid adjacent units.");
@@ -4088,7 +4088,7 @@ public final class Area implements Externalizable {
   public void calcRelativeSlopes(){
     for (Evu evu : allEvu){
       if (evu != null){
-        for (AdjacentData a : evu.getAdjacentData()){
+        for (AdjacentData a : evu.getNeighborhood()){
           a.setSlope(calcSlope(evu, a));
         }
       }

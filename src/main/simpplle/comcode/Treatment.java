@@ -1198,7 +1198,7 @@ public class Treatment  implements Externalizable {
   // Treatment is infeasable if any adjacent unit has
   // Seedling sapling.
   public static boolean checkAdjacentSS(Evu evu) {
-    AdjacentData[] adjacentData = evu.getAdjacentData();
+    AdjacentData[] adjacentData = evu.getNeighborhood();
     Evu            adj;
 
     for(int i=0;i<adjacentData.length;i++) {

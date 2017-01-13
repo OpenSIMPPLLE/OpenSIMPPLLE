@@ -473,7 +473,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       return;
     }
 
-    adjData = fromUnit.getAdjacentData();
+    adjData = fromUnit.getNeighborhood();
     if (adjData != null) {
       for (int i = 0; i < adjData.length; i++) {
         toUnit = adjData[i].evu;

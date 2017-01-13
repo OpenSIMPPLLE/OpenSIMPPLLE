@@ -470,7 +470,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   private void doSimpplleSpread(Evu fromUnit, ArrayList<Evu> toUnits) {
 
-    AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
+    AdjacentData[] adjacentArray = fromUnit.getNeighborhood();
 
     if (adjacentArray != null) {
 
@@ -501,7 +501,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   private void doKeaneSpread(Evu fromUnit, ArrayList<Evu> toUnits) {
 
-    AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
+    AdjacentData[] adjacentArray = fromUnit.getNeighborhood();
 
     if (adjacentArray != null) {
 
@@ -641,7 +641,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       node = (Node)queue.removeFirst();
       if (node.data.getUnit().isSuppressed()) continue;
 
-      adjData = node.data.getUnit().getAdjacentData();
+      adjData = node.data.getUnit().getNeighborhood();
 
       for (int i=0; i<adjData.length; i++) {
 
@@ -684,7 +684,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   private boolean hasNonBurningNeighbors(Evu unit) {
 
-    AdjacentData[] adjDataArray = unit.getAdjacentData();
+    AdjacentData[] adjDataArray = unit.getNeighborhood();
 
     if (adjDataArray != null) {
       for (AdjacentData adjData : adjDataArray) {
@@ -709,7 +709,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     int lowestElevation = Integer.MAX_VALUE;
     Evu lowestUnit = null;
 
-    AdjacentData[] adjDataArray = unit.getAdjacentData();
+    AdjacentData[] adjDataArray = unit.getNeighborhood();
 
     if (adjDataArray != null) {
       for (AdjacentData adjData : adjDataArray) {
@@ -806,7 +806,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     while (checkNow.size() > 0) {
       for (Evu fromEvu : checkNow) {
 
-        AdjacentData[] adjacencies = fromEvu.getAdjacentData();
+        AdjacentData[] adjacencies = fromEvu.getNeighborhood();
         if (adjacencies == null) continue;
 
         for (AdjacentData adjacent : adjacencies) {

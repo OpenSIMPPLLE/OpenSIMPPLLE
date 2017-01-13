@@ -123,7 +123,7 @@ public class LogicRule implements Externalizable {
      * @todo consider whether this will have a performance penalty.
      */
     if (adjacentRule != null) {
-      AdjacentData[] adjData = evu.getAdjacentData();
+      AdjacentData[] adjData = evu.getNeighborhood();
       LogicRule      rule;
       for (int i=0; i<adjData.length; i++) {
         match = adjacentRule.isUnitMatch(adjData[i].evu);

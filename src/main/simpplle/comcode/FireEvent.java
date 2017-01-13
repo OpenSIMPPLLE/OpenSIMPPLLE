@@ -658,7 +658,7 @@ public class FireEvent extends Process {
     int              numAdj;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData = evu.getAdjacentData();
+    adjacentData = evu.getNeighborhood();
     numAdj        = adjacentData.length;
     htGrp         = evu.getHabitatTypeGroup();
 
@@ -861,7 +861,7 @@ public class FireEvent extends Process {
     HabitatTypeGroupType groupType;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData = evu.getAdjacentData();
+    adjacentData = evu.getNeighborhood();
     numAdj        = adjacentData.length;
     htGrp         = evu.getHabitatTypeGroup();
 
@@ -1656,7 +1656,7 @@ public class FireEvent extends Process {
 //      return false;
 //    }
 //
-//    adjacentData = fromEvu.getAdjacentData();
+//    adjacentData = fromEvu.getNeighborhood();
 //    if (adjacentData == null) { return false; }
 //    spotFrom    = new Vector();
 //    newSpotFrom = new Vector();
@@ -1673,7 +1673,7 @@ public class FireEvent extends Process {
 //    for(i=0;i<3;i++) {
 //      for(j=0;j<spotFrom.size();j++) {
 //        fromAdj = (Evu) spotFrom.elementAt(j);
-//        adjacentData = fromAdj.getAdjacentData();
+//        adjacentData = fromAdj.getNeighborhood();
 //
 //        for(k=0;k<adjacentData.length;k++) {
 //          adj = adjacentData[k].evu;

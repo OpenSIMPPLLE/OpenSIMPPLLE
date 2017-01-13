@@ -273,7 +273,7 @@ public abstract class LpMpb implements HazardValues {
 
     VegSimStateData state = evu.getState(cTime-1);
     lightLpMpb   = (state != null ? state.getProcess().equals(ProcessType.LIGHT_LP_MPB) : false);
-    adjacentData = evu.getAdjacentData();
+    adjacentData = evu.getNeighborhood();
 
     for(int i=0;i<adjacentData.length;i++) {
       adj            = adjacentData[i].evu;

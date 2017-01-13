@@ -2800,7 +2800,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Sets the data for adjacent Evu
    * @param newAdjData the adjacent data array being set
    */
-  public void setAdjacentData(AdjacentData[] newAdjData) {
+  public void setNeighborhood(AdjacentData[] newAdjData) {
     adjacentData = newAdjData;
   }
 
@@ -2808,7 +2808,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Gets the data for adjacent Evu
    * @return the Adjacent Evu data array
    */
-  public AdjacentData[] getAdjacentData() { return adjacentData; }
+  public AdjacentData[] getNeighborhood() { return adjacentData; }
 
   /**
    * Loops through adjacent evus in an area, counts them and checks their ID's validity.

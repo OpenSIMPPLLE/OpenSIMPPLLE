@@ -8,8 +8,6 @@
 
 package simpplle.comcode;
 
-import java.awt.Color;
-
 /**
  * Defines the Douglas-Fir Beetle class, a type of Process.  This logic uses a combination of the abundance of Douglas-fir, size class/structure, density
  * and the occurrence of past light (LSF) or mixed severity fire (MSF).  No spread logic is used.  
@@ -221,7 +219,7 @@ public final class DfBeetle extends Process {
 
     int            cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     ProcessType    adjProcess;
-    AdjacentData[] adjData = evu.getAdjacentData();
+    AdjacentData[] adjData = evu.getNeighborhood();
     boolean        isAdjSrf=false;
 
     for (int i=0; i<adjData.length; i++) {
@@ -304,7 +302,7 @@ public final class DfBeetle extends Process {
 
     int            cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     ProcessType    adjProcess;
-    AdjacentData[] adjData = evu.getAdjacentData();
+    AdjacentData[] adjData = evu.getNeighborhood();
     boolean        isAdjSrf=false;
 
     for (int i=0; i<adjData.length; i++) {

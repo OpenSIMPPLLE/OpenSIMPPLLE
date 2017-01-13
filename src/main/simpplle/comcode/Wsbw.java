@@ -681,7 +681,7 @@ public abstract class Wsbw {
     Species         species;
     SizeClass       sizeClass;
 
-    adjacentData = evu.getAdjacentData();
+    adjacentData = evu.getNeighborhood();
 
     for(int i=0;i<adjacentData.length;i++) {
       adj       = adjacentData[i].evu;
@@ -792,7 +792,7 @@ public abstract class Wsbw {
     Species        species;
     SizeClass      sizeClass;
 
-    adjacentData = evu.getAdjacentData();
+    adjacentData = evu.getNeighborhood();
 
     for(int i=0;i<adjacentData.length;i++) {
       adj       = adjacentData[i].evu;
