@@ -89,7 +89,7 @@ public final class Area implements Externalizable {
   /**
    * Temporary storage for adjacent data upon loading or creating an area.
    * The key is Evu and the Value is Vector of int[]
-  */
+   */
 
   private Hashtable<Evu, Vector> tmpAdjacentData;
 
@@ -133,22 +133,22 @@ public final class Area implements Externalizable {
 
   // ** Parsing Stuff **
   private static String KEYWORD[] = {"CLASS",
-                                     "NAME",
-                                     "ACRES",
-                                     "KIND",
-                                     "END-CLASS",
-                                     "AREA",
-                                     "EVU",
-                                     "ALL-EVU",
-                                     "AREA-SUMMARY",
-                                     "END",
-                                     "MAX-EVU-ID",
-                                     "SIMULATION",
-                                     "PRECISION",
-                                     "VERSION",
-                                     "EAU",
-                                     "ALL-EAU",
-                                     "LENGTH" };
+      "NAME",
+      "ACRES",
+      "KIND",
+      "END-CLASS",
+      "AREA",
+      "EVU",
+      "ALL-EVU",
+      "AREA-SUMMARY",
+      "END",
+      "MAX-EVU-ID",
+      "SIMULATION",
+      "PRECISION",
+      "VERSION",
+      "EAU",
+      "ALL-EAU",
+      "LENGTH" };
 
   private static final int CLASS        = 0;
   private static final int NAME         = 1;
@@ -233,21 +233,21 @@ public final class Area implements Externalizable {
     path      = file;
     this.kind = kind;
   }
-/**
- * Overloaded constructor for Area.  Calls the default constructor and sets the file path variable
- * by invoking the File.get file method and the kind for this area to parameter kind.
- * @param file
- * @param kind is an int, (SIMULATED, USER, or SAMPLE)
- */
+  /**
+   * Overloaded constructor for Area.  Calls the default constructor and sets the file path variable
+   * by invoking the File.get file method and the kind for this area to parameter kind.
+   * @param file
+   * @param kind is an int, (SIMULATED, USER, or SAMPLE)
+   */
   public Area (File file, int kind) {
     this();
     path      = file.getPath();
     this.kind = kind;
   }
-/**
- *
- * @param kind is an int, (SIMULATED, USER, or SAMPLE)
- */
+  /**
+   *
+   * @param kind is an int, (SIMULATED, USER, or SAMPLE)
+   */
   public Area(int kind) {
     this();
     this.kind = kind;
@@ -273,23 +273,23 @@ public final class Area implements Externalizable {
 
   public int getFileVersion() { return fileVersion; }
 
-/**
- * Checks if multiple lifeforms are enabled, by negating the disable multiple lifeform boolean.
- */
+  /**
+   * Checks if multiple lifeforms are enabled, by negating the disable multiple lifeform boolean.
+   */
   public static boolean multipleLifeformsEnabled() { return !disableMultipleLifeforms; }
 
   /**
-    * Converts the acres parameter to a floating point
-    * by dividing it by (10^ACRES_PRECISION)
-    * acres is stored in this manner to avoid the
-    * inaccuracies of dealing with floating point numbers.
-    * In addition acres is used in comparison in Opensimpplle
-    * and to be accurate needs to be an integer.
-    * Finally it is simply easier to do this instead of
-    * changing the code to deal with floating point acres.
-    * @param acresVal is an integer
-    * @return a float
-    */
+   * Converts the acres parameter to a floating point
+   * by dividing it by (10^ACRES_PRECISION)
+   * acres is stored in this manner to avoid the
+   * inaccuracies of dealing with floating point numbers.
+   * In addition acres is used in comparison in Opensimpplle
+   * and to be accurate needs to be an integer.
+   * Finally it is simply easier to do this instead of
+   * changing the code to deal with floating point acres.
+   * @param acresVal is an integer
+   * @return a float
+   */
   public static float getFloatAcres(int acresVal) {
     return ( (float)acresVal / (float)Utility.pow(10,getAcresPrecision()) );
   }
@@ -316,11 +316,11 @@ public final class Area implements Externalizable {
   public static int getRationalAcres(float acres) {
     return Math.round((float)Utility.pow(10,getAcresPrecision()) * acres);
   }
-/**
- *
- * @return required precision which will be the 'n' variable in 10^n for determining the floating point representation of length
- * this is set at 2 as a final int
- */
+  /**
+   *
+   * @return required precision which will be the 'n' variable in 10^n for determining the floating point representation of length
+   * this is set at 2 as a final int
+   */
   public static int getLengthPrecision() { return LENGTH_PRECISION; }
 
   public static int getRationalLength(float length) {
@@ -334,16 +334,16 @@ public final class Area implements Externalizable {
   public String getName () {
     return name;
   }
-/**
- * Sets the name of this area to parameter string name.
- * @param newName the new name of this area.
- */
+  /**
+   * Sets the name of this area to parameter string name.
+   * @param newName the new name of this area.
+   */
   public void setName(String newName) {
     name = newName;
   }
-/**
- * Returns the name of this area.
- */
+  /**
+   * Returns the name of this area.
+   */
   public String toString () { return getName(); }
 
   /**
@@ -353,17 +353,17 @@ public final class Area implements Externalizable {
   public String getPath () {
     return path;
   }
-/**
- * Sets the file path of this area to the string new path parameter.
- * @param newPath
- */
+  /**
+   * Sets the file path of this area to the string new path parameter.
+   * @param newPath
+   */
   public void setPath(String newPath) {
     path = newPath;
   }
-/**
- * sets the file pathway
- * @param newPath File to be designated as new pathway
- */
+  /**
+   * sets the file pathway
+   * @param newPath File to be designated as new pathway
+   */
   public void setPath(File newPath) {
     path = newPath.getPath();
   }
@@ -397,9 +397,9 @@ public final class Area implements Externalizable {
    * @param newLength the new length
    */
   private void setLength(int newLength) { totalLength = newLength; }
-/**
- * Updates the ownership information for an area, totals and sets any increase in Evu acres and totals and sets any increase in Eau lengths.
- */
+  /**
+   * Updates the ownership information for an area, totals and sets any increase in Evu acres and totals and sets any increase in Eau lengths.
+   */
   public void updateArea() {
     Hashtable allOwnershipHt   = new  Hashtable();
     Hashtable allSpecialAreaHt = new  Hashtable();
@@ -579,12 +579,12 @@ public final class Area implements Externalizable {
 
   // *** ExistingLandUnit Methods **
   // *******************************
-/**
- * Gets a natural element unit in this area by indexing into the 2D natural element array:  [kind][unit id]
- * @param id unit id
- * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2.
- * @return
- */
+  /**
+   * Gets a natural element unit in this area by indexing into the 2D natural element array:  [kind][unit id]
+   * @param id unit id
+   * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2.
+   * @return
+   */
   public NaturalElement getUnit(int id, int kind) {
     if (allUnits[kind] == null || id < 0 || id > allUnits[kind].length-1) { return null; }
     return allUnits[kind][id];
@@ -619,12 +619,12 @@ public final class Area implements Externalizable {
     }
     return null;
   }
-/**
- * Gets the next natural element unit in this area by indexing into the 2D natural element array:  [kind][unit id]
- * @param unit
- * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2
- * @return
- */
+  /**
+   * Gets the next natural element unit in this area by indexing into the 2D natural element array:  [kind][unit id]
+   * @param unit
+   * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2
+   * @return
+   */
   private NaturalElement getNextUnit(NaturalElement unit, int kind) {
     int id = unit.getId(), i;
     for (i=id+1; i<allUnits[kind].length; i++) {
@@ -676,11 +676,11 @@ public final class Area implements Externalizable {
     return null;
   }
 
-/**
- * Gets an Elu by an Integer object Id.
- * @param id Elu Id
- * @return the Elu
- */
+  /**
+   * Gets an Elu by an Integer object Id.
+   * @param id Elu Id
+   * @return the Elu
+   */
   public ExistingLandUnit getElu(Integer id) {
     return (ExistingLandUnit) getUnit(id.intValue(), ELU);
   }
@@ -744,11 +744,11 @@ public final class Area implements Externalizable {
 
 
   // *******************************************************************
-/**
- * Gets an Evu by its Integer object Id.
- * @param id Evu Id
- * @return the Evu
- */
+  /**
+   * Gets an Evu by its Integer object Id.
+   * @param id Evu Id
+   * @return the Evu
+   */
   public Evu getEvu(Integer id) {
     return getEvu(id.intValue());
   }
@@ -781,11 +781,11 @@ public final class Area implements Externalizable {
     }
     return null;
   }
-/**
- * Gets the previous Evu in the all Evu array based on the parameter Evu id.
- * @param evu the Evu that will be used to find the previous
- * @return the previous Evu
- */
+  /**
+   * Gets the previous Evu in the all Evu array based on the parameter Evu id.
+   * @param evu the Evu that will be used to find the previous
+   * @return the previous Evu
+   */
   public Evu getPrevEvu(Evu evu) {
     int id = evu.getId(), i;
     for (i=id-1;i>=0;i--) {
@@ -918,24 +918,24 @@ public final class Area implements Externalizable {
     return null;
   }
 
-/**
- * @return the array of all Evu's for this area.
- */
+  /**
+   * @return the array of all Evu's for this area.
+   */
   public Evu[] getAllEvu() { return allEvu; }
 
-/**
- * First sets the new Evu array into the all natural element 2D array at the Evu (0) index,
- * then sets the allEvu array for this array to the newAllEvu array.
- * @param newAllEvu the array of Evus to be set.
- */
+  /**
+   * First sets the new Evu array into the all natural element 2D array at the Evu (0) index,
+   * then sets the allEvu array for this array to the newAllEvu array.
+   * @param newAllEvu the array of Evus to be set.
+   */
   public void setAllEvu(Evu[] newAllEvu) {
     allUnits[EVU] = newAllEvu;
     allEvu = (Evu[])allUnits[EVU];
   }
 
-/**
- * @return all the Eaus for this area.
- */
+  /**
+   * @return all the Eaus for this area.
+   */
   public ExistingAquaticUnit[] getAllEau() { return allEau; }
 
   /**
@@ -968,9 +968,9 @@ public final class Area implements Externalizable {
     allEau = (ExistingAquaticUnit[])allUnits[EAU];
   }
 
-/**
- * @return all the natural elements (kinds are EVU, EAU, ELU) for this area.
- */
+  /**
+   * @return all the natural elements (kinds are EVU, EAU, ELU) for this area.
+   */
   private NaturalElement[] getAllUnits(int kind) {
     return allUnits[kind];
   }
@@ -1032,34 +1032,34 @@ public final class Area implements Externalizable {
 
   public void setMaxEvuId(int newMaxId) { maxEvuId = newMaxId; }
 
-    public void setDisableMultipleLifeforms(boolean disableMultipleLifeforms) {
-      Area.disableMultipleLifeforms = disableMultipleLifeforms;
-    }
-/**
- * Gets the highest Eau Id in this area, by counting the length of the allEau array and subracting 1.
- * @return highest Eau ID in this area.
- */
-    public int getMaxEauId() {
+  public void setDisableMultipleLifeforms(boolean disableMultipleLifeforms) {
+    Area.disableMultipleLifeforms = disableMultipleLifeforms;
+  }
+  /**
+   * Gets the highest Eau Id in this area, by counting the length of the allEau array and subracting 1.
+   * @return highest Eau ID in this area.
+   */
+  public int getMaxEauId() {
     if (allEau == null) { return -1;  }
     else {
       return allEau.length-1;
     }
   }
 
-/**
- * Gets the highest Elu Id, by finding the length of the 2D array at index [ELU][] - 1
- * @return the highest Existing Land Unit Id
- */
+  /**
+   * Gets the highest Elu Id, by finding the length of the 2D array at index [ELU][] - 1
+   * @return the highest Existing Land Unit Id
+   */
   public int getMaxEluId() {
     if (allUnits[ELU] == null) { return -1; }
     return allUnits[ELU].length - 1;
   }
 
-/**
- * Checks if an Evu Id is a valid Id based on Integer object.
- * @param id the Evu Id being checked
- * @return true if valid
- */
+  /**
+   * Checks if an Evu Id is a valid Id based on Integer object.
+   * @param id the Evu Id being checked
+   * @return true if valid
+   */
   public boolean isValidUnitId(Integer id) { return (getEvu(id) != null); }
 
   public boolean isValidUnitId(int id) { return (getEvu(id) != null); }
@@ -1105,10 +1105,10 @@ public final class Area implements Externalizable {
     return false;
   }
 
-/**
- * finds the Evu ID from a vector of units to be removed and their index in allEvu to null, and removes the now invalid adjacents.
- * @param units a vector of units to be removed
- */
+  /**
+   * finds the Evu ID from a vector of units to be removed and their index in allEvu to null, and removes the now invalid adjacents.
+   * @param units a vector of units to be removed
+   */
   public void removeUnits(Vector units) {
     int i;
     for (i=0; i<units.size(); i++) {
@@ -1204,12 +1204,12 @@ public final class Area implements Externalizable {
     }
   }
 
-/**
- * Reads in information constructing an area.
- * @param fin
- * @throws ParseError
- * @throws IOException
- */
+  /**
+   * Reads in information constructing an area.
+   * @param fin
+   * @throws ParseError
+   * @throws IOException
+   */
   private void readArea (BufferedReader fin) throws ParseError, IOException {
     int                 key = EOF;
     String              value, line, msg;
@@ -1469,7 +1469,7 @@ public final class Area implements Externalizable {
    * @return a stream located at the start of AreaSummary data.
    */
   private BufferedReader findSimulation(BufferedReader fin)
-    throws ParseError
+      throws ParseError
   {
     char[]         buf = new char[1];
     int            nLines;
@@ -1545,7 +1545,7 @@ public final class Area implements Externalizable {
   }
 
   public void readAreaSummary(File areaFile, Simulation simulation)
-    throws ParseError, IOException
+      throws ParseError, IOException
   {
     BufferedReader fin;
 
@@ -2003,10 +2003,10 @@ public final class Area implements Externalizable {
     }
   }
 
-/**
- * Goes through all the Evu's in an area and finds the nearest road and trail.  This comes from an array of length 2 for each Evu.
- * [0] = nearest road, [1]= nearest trail
- */
+  /**
+   * Goes through all the Evu's in an area and finds the nearest road and trail.  This comes from an array of length 2 for each Evu.
+   * [0] = nearest road, [1]= nearest trail
+   */
   public void findNearestRoadsTrails() {
     for (int i = 0; i < allEvu.length; i++) {
       if (allEvu[i] == null) {
@@ -2107,8 +2107,8 @@ public final class Area implements Externalizable {
         ProcessProbability processData =
             new ProcessProbability(state.getProcess(), state.getProb());
 
-          areaSummary.updateProcessOriginatedIn(anEvu, Lifeform.NA,
-              processData, cStep);
+        areaSummary.updateProcessOriginatedIn(anEvu, Lifeform.NA,
+            processData, cStep);
       }
     }
 
@@ -2150,11 +2150,11 @@ public final class Area implements Externalizable {
       }
     }
     else if (simulation.isDoInvasiveSpecies() &&
-             ((zone instanceof EastsideRegionOne) ||
-              (zone instanceof SierraNevada) ||
-              (zone instanceof SouthernCalifornia) ||
-              (zone instanceof Teton) ||
-              (zone instanceof NorthernCentralRockies))) {
+        ((zone instanceof EastsideRegionOne) ||
+            (zone instanceof SierraNevada) ||
+            (zone instanceof SouthernCalifornia) ||
+            (zone instanceof Teton) ||
+            (zone instanceof NorthernCentralRockies))) {
       //      doEvuProducingSeed(true);
       doEvuWeedEncroachment();
     }
@@ -2205,7 +2205,7 @@ public final class Area implements Externalizable {
 
       if (RegionalZone.isWyoming() &&
           (process != ProcessType.PRAIRIE_DOG_ACTIVE &&
-           process != ProcessType.PRAIRIE_DOG_INACTIVE)) {
+              process != ProcessType.PRAIRIE_DOG_INACTIVE)) {
         continue;
       }
       for (int j = 0; j < chosenUnits.size(); j++) {
@@ -2225,9 +2225,9 @@ public final class Area implements Externalizable {
       }
     }
   }
-/**
- * Does user treatments, system treatments, attribute treatments, and process treatments.
- */
+  /**
+   * Does user treatments, system treatments, attribute treatments, and process treatments.
+   */
   private void doTreatments() {
     if (treatmentSchedule == null) { return; }
 
@@ -2552,31 +2552,31 @@ public final class Area implements Externalizable {
         if (treat != null) { treatType = treat.getType(); }
 
         effectiveSpray = (treatType == TreatmentType.HERBICIDE_SPRAYING &&
-                          treat.getStatus() == Treatment.EFFECTIVE);
+            treat.getStatus() == Treatment.EFFECTIVE);
 
         if ((groupType.equals(HabitatTypeGroupType.NF1A) ||
-             groupType.equals(HabitatTypeGroupType.NF1B) ||
-             groupType.equals(HabitatTypeGroupType.NF1C) ||
-             groupType.equals(HabitatTypeGroupType.NF2A) ||
-             groupType.equals(HabitatTypeGroupType.NF2B) ||
-             groupType.equals(HabitatTypeGroupType.NF2C) ||
-             groupType.equals(HabitatTypeGroupType.NF2D) ||
-             groupType.equals(HabitatTypeGroupType.NF3A) ||
-             // Sierra Nevada and Southern California Zones.
-             groupType.equals(HabitatTypeGroupType.FTH_M) ||
-             groupType.equals(HabitatTypeGroupType.FTH_X) ||
-             groupType.equals(HabitatTypeGroupType.LM_M)  ||
-             groupType.equals(HabitatTypeGroupType.LM_X)  ||
-             groupType.equals(HabitatTypeGroupType.UM_M)  ||
-             groupType.equals(HabitatTypeGroupType.UM_X)  ||
-             groupType.equals(HabitatTypeGroupType.SA)) &&
+            groupType.equals(HabitatTypeGroupType.NF1B) ||
+            groupType.equals(HabitatTypeGroupType.NF1C) ||
+            groupType.equals(HabitatTypeGroupType.NF2A) ||
+            groupType.equals(HabitatTypeGroupType.NF2B) ||
+            groupType.equals(HabitatTypeGroupType.NF2C) ||
+            groupType.equals(HabitatTypeGroupType.NF2D) ||
+            groupType.equals(HabitatTypeGroupType.NF3A) ||
+            // Sierra Nevada and Southern California Zones.
+            groupType.equals(HabitatTypeGroupType.FTH_M) ||
+            groupType.equals(HabitatTypeGroupType.FTH_X) ||
+            groupType.equals(HabitatTypeGroupType.LM_M)  ||
+            groupType.equals(HabitatTypeGroupType.LM_X)  ||
+            groupType.equals(HabitatTypeGroupType.UM_M)  ||
+            groupType.equals(HabitatTypeGroupType.UM_X)  ||
+            groupType.equals(HabitatTypeGroupType.SA)) &&
             ((age == 1 && density == Density.TWO && sizeClass == SizeClass.UNIFORM &&
-              (species == Species.ALTERED_NOXIOUS || species == Species.NOXIOUS)) ||
-             // Sierra Nevada and Southern California Zones.
-             (species == Species.EXOTIC_GRASSES && sizeClass == SizeClass.UNIFORM &&
-              age == 1 && density == Density.TWO) ||
-             (species == Species.CSS_EXOTICS && sizeClass == SizeClass.OPEN_MID_SHRUB &&
-              age == 1 && density == Density.ONE))) {
+                (species == Species.ALTERED_NOXIOUS || species == Species.NOXIOUS)) ||
+                // Sierra Nevada and Southern California Zones.
+                (species == Species.EXOTIC_GRASSES && sizeClass == SizeClass.UNIFORM &&
+                    age == 1 && density == Density.TWO) ||
+                (species == Species.CSS_EXOTICS && sizeClass == SizeClass.OPEN_MID_SHRUB &&
+                    age == 1 && density == Density.ONE))) {
 
           if (effectiveSpray) {
             continue;
@@ -2584,34 +2584,36 @@ public final class Area implements Externalizable {
 
           adjacentData = evu.getNeighborhood();
           for(j=0;j<adjacentData.length;j++) {
-            adj = adjacentData[j].getEvu();
-            treat     = adj.getLastTreatment();
-            treatType = TreatmentType.NONE;
-            if (treat != null) { treatType = treat.getType(); }
-
-            effectiveSpray = (treatType == TreatmentType.HERBICIDE_SPRAYING &&
-                              treat.getStatus() == Treatment.EFFECTIVE);
-
-            if (adj.isWeedCandidate() && !effectiveSpray &&
-                evu.weedWillSpread(adj)) {
-              adjHtGrp = adj.getHabitatTypeGroup();
-              if (zoneId == ValidZones.SIERRA_NEVADA ||
-                  zoneId == ValidZones.SOUTHERN_CALIFORNIA) {
-                if (species == Species.CSS) {
-                  newState = adjHtGrp.getVegetativeType(
-                      Species.CSS_EXOTICS,SizeClass.OPEN_MID_SHRUB,Density.ONE);
-                }
-                else {
-                  newState = adjHtGrp.getVegetativeType(
-                      Species.EXOTIC_GRASSES, SizeClass.UNIFORM, Density.ONE);
-                }
+            if (adjacentData[j] != null) {
+              adj = adjacentData[j].getEvu();
+              treat = adj.getLastTreatment();
+              treatType = TreatmentType.NONE;
+              if (treat != null) {
+                treatType = treat.getType();
               }
-              else {
-                newState = adjHtGrp.getVegetativeType(
-                   Species.NOXIOUS,SizeClass.UNIFORM,Density.TWO);
-              }
-              if (newState != null) {
-                adj.updateState(newState);
+
+              effectiveSpray = (treatType == TreatmentType.HERBICIDE_SPRAYING &&
+                  treat.getStatus() == Treatment.EFFECTIVE);
+
+              if (adj.isWeedCandidate() && !effectiveSpray &&
+                  evu.weedWillSpread(adj)) {
+                adjHtGrp = adj.getHabitatTypeGroup();
+                if (zoneId == ValidZones.SIERRA_NEVADA ||
+                    zoneId == ValidZones.SOUTHERN_CALIFORNIA) {
+                  if (species == Species.CSS) {
+                    newState = adjHtGrp.getVegetativeType(
+                        Species.CSS_EXOTICS, SizeClass.OPEN_MID_SHRUB, Density.ONE);
+                  } else {
+                    newState = adjHtGrp.getVegetativeType(
+                        Species.EXOTIC_GRASSES, SizeClass.UNIFORM, Density.ONE);
+                  }
+                } else {
+                  newState = adjHtGrp.getVegetativeType(
+                      Species.NOXIOUS, SizeClass.UNIFORM, Density.TWO);
+                }
+                if (newState != null) {
+                  adj.updateState(newState);
+                }
               }
             }
           }
@@ -2621,7 +2623,7 @@ public final class Area implements Externalizable {
   }
 
   private void doEvuConiferEncroachment() {
-    AdjacentData[]       adjacentData;
+    AdjacentData[]       adjacentData = null;
     Hashtable            seedSource;
     Species              species, encroachmentSpecies;
     HabitatTypeGroupType groupType;
@@ -2714,8 +2716,19 @@ public final class Area implements Externalizable {
 //          numDecades = 5;
 //        }
 
-        adjacentData = evu.getNeighborhood();
-        if (adjacentData == null) { continue; }
+        AdjacentData[] neighborhood = evu.getNeighborhood();
+        if (neighborhood == null) { continue; }
+        List<AdjacentData> sanitizedNeighbors = new ArrayList<AdjacentData>();
+
+        // Remove null neighbors then copy back to an array, matching the expectations of this method
+        for (j=0; j > neighborhood.length; j++){
+          if(neighborhood[j] != null){
+            sanitizedNeighbors.add(neighborhood[j]);
+          }
+        }
+        adjacentData = new AdjacentData[sanitizedNeighbors.size()];
+        adjacentData = sanitizedNeighbors.toArray(adjacentData);
+
         seedSource = new Hashtable(adjacentData.length);
         key        = new Species[adjacentData.length];
         value      = new int[adjacentData.length];
@@ -2767,16 +2780,16 @@ public final class Area implements Externalizable {
             encroachmentSpecies = Species.PP;
           }
           else if (species == Species.DF       || species == Species.DF_AF ||
-                   species == Species.DF_LP    || species == Species.DF_ES ||
-                   species == Species.DF_AF_ES || species == Species.DF_LP_ES) {
+              species == Species.DF_LP    || species == Species.DF_ES ||
+              species == Species.DF_AF_ES || species == Species.DF_LP_ES) {
             encroachmentSpecies = Species.DF;
           }
           else if (species == Species.PF || species == Species.PF_LP) {
             encroachmentSpecies = Species.PF;
           }
           else if (species == Species.LP    || /*species == Species.LP_DF ||*/
-                   species == Species.L_LP  || species == Species.LP_AF ||
-                   species == Species.LP_GF || species == Species.ES_LP
+              species == Species.L_LP  || species == Species.LP_AF ||
+              species == Species.LP_GF || species == Species.ES_LP
                    /*species == Species.WB_LP*/) {
             encroachmentSpecies = Species.LP;
           }
@@ -2789,13 +2802,13 @@ public final class Area implements Externalizable {
 
           if (groupType.equals(HabitatTypeGroupType.NF4B) &&
               (species == Species.DF       || species == Species.AF       ||
-               species == Species.LP       || species == Species.ES       ||
-               species == Species.QA       || species == Species.QA_MC    ||
-               species == Species.CW_MC    || species == Species.ES_AF    ||
-               species == Species.ES_LP    || species == Species.LP_AF    ||
-               species == Species.DF_LP    || species == Species.DF_ES    ||
-               species == Species.DF_AF    || species == Species.DF_LP_AF ||
-               species == Species.DF_LP_ES || species == Species.AF_ES_LP)) {
+                  species == Species.LP       || species == Species.ES       ||
+                  species == Species.QA       || species == Species.QA_MC    ||
+                  species == Species.CW_MC    || species == Species.ES_AF    ||
+                  species == Species.ES_LP    || species == Species.LP_AF    ||
+                  species == Species.DF_LP    || species == Species.DF_ES    ||
+                  species == Species.DF_AF    || species == Species.DF_LP_AF ||
+                  species == Species.DF_LP_ES || species == Species.AF_ES_LP)) {
             encroachmentSpecies = species;
           }
 
@@ -2886,13 +2899,13 @@ public final class Area implements Externalizable {
 //  }
 
   /**
-    * collect treatment data into a hashtable
-    * keys are treatment names.
-    * value is an array of acres by time step
-    * @param timeSteps is the number of times steps run.
-    * @param kind is either Treatment.APPLIED, Treatment.INFEASIBLE or Treatment.NOT_APPLIED
-    * return a hashtable
-    */
+   * collect treatment data into a hashtable
+   * keys are treatment names.
+   * value is an array of acres by time step
+   * @param timeSteps is the number of times steps run.
+   * @param kind is either Treatment.APPLIED, Treatment.INFEASIBLE or Treatment.NOT_APPLIED
+   * return a hashtable
+   */
   public Hashtable collectTreatmentData (int timeSteps, int kind) {
     Hashtable      data;
     Treatment      treat;
@@ -2944,17 +2957,17 @@ public final class Area implements Externalizable {
   }
 
   /**
-    * collect treatment data into a hashtable
-    * keys are either special area or ownership strings
-    * value is another hashtable
-    *    key   is the treatment name
-    *    value is an array of acres by time step
-    * @param timeSteps is the number of times steps run.
-    * @param kind is either Treatment.APPLIED, Treatment.INFEASIBLE or Treatment.NOT_APPLIED
-    * @param option is one of:
-    *    Reports.OWNERSHIP, Reports.SPECIAL_AREA, Reports.OWNER_SPECIAL
-    * return a hashtable
-    */
+   * collect treatment data into a hashtable
+   * keys are either special area or ownership strings
+   * value is another hashtable
+   *    key   is the treatment name
+   *    value is an array of acres by time step
+   * @param timeSteps is the number of times steps run.
+   * @param kind is either Treatment.APPLIED, Treatment.INFEASIBLE or Treatment.NOT_APPLIED
+   * @param option is one of:
+   *    Reports.OWNERSHIP, Reports.SPECIAL_AREA, Reports.OWNER_SPECIAL
+   * return a hashtable
+   */
   public Hashtable collectTreatmentData(int timeSteps, int kind, int option) {
     Hashtable      data, optionHt;
     Treatment      treat;
@@ -3013,12 +3026,12 @@ public final class Area implements Externalizable {
     return optionHt;
   }
 
-/**
- * Checks to see if any of the evu's in this area have a particular lifeform at a particular time step.
- * @param lifeform lifeform being checked
- * @param tStep time step
- * @return true if there is an evu in this are with the searched lifeform
- */
+  /**
+   * Checks to see if any of the evu's in this area have a particular lifeform at a particular time step.
+   * @param lifeform lifeform being checked
+   * @param tStep time step
+   * @return true if there is an evu in this are with the searched lifeform
+   */
   private boolean hasLifeformEvus(Lifeform lifeform, int tStep) {
     if (lifeform == null) { return true; }
     for (int i=0; i<allEvu.length; i++) {
@@ -3045,7 +3058,7 @@ public final class Area implements Externalizable {
       File newDir = new File(dir, "gis_run" + (Simulation.getCurrentRun()+1));
       if (!newDir.exists() && !newDir.mkdir()) {
         throw new SimpplleError("Unable to create directory: " +
-                                newDir.toString());
+            newDir.toString());
       }
       outputFile = new File(newDir, name);
     }
@@ -3234,14 +3247,14 @@ public final class Area implements Externalizable {
   public void produceSpreadArcFiles(File outputFile) throws SimpplleError {
     produceSpreadArcFiles(outputFile,true);
   }
-/**
- * Writes out a files of GIS Spread data suitable for reading into arcview.
- * One file is written for each time step in a simulation.
- *
- * @param outputFile
- * @param viaUserMenuAction
- * @throws SimpplleError
- */
+  /**
+   * Writes out a files of GIS Spread data suitable for reading into arcview.
+   * One file is written for each time step in a simulation.
+   *
+   * @param outputFile
+   * @param viaUserMenuAction
+   * @throws SimpplleError
+   */
   public void produceSpreadArcFiles(File outputFile, boolean viaUserMenuAction) throws SimpplleError {
     if (viaUserMenuAction == false) {
       // Make sure that gis files for each run are put in a separate directory
@@ -3251,7 +3264,7 @@ public final class Area implements Externalizable {
         File newDir = new File(dir, "gis_run" + (Simulation.getCurrentRun() + 1));
         if (!newDir.exists() && !newDir.mkdir()) {
           throw new SimpplleError("Unable to create directory: " +
-                                  newDir.toString());
+              newDir.toString());
         }
         outputFile = new File(newDir, name);
       }
@@ -3338,7 +3351,7 @@ public final class Area implements Externalizable {
    *
    */
   public int calculateAcreFrequencies(int desiredFreq, SimpplleType[] attributes)
-  throws SimpplleError
+      throws SimpplleError
   {
     int          acres = 0;
     MyInteger    freq;
@@ -3375,15 +3388,15 @@ public final class Area implements Externalizable {
   }
 
   public void produceDecadeProbabilityArcFiles(File outputFile)
-    throws SimpplleError
+      throws SimpplleError
   {
     PrintWriter[] fout = new PrintWriter[SimpplleType.MAX];
     File          file;
     SimpplleType.Types[] types =
-      new SimpplleType.Types[] {SimpplleType.SPECIES,
-                                SimpplleType.SIZE_CLASS,
-                                SimpplleType.DENSITY,
-                                SimpplleType.PROCESS};
+        new SimpplleType.Types[] {SimpplleType.SPECIES,
+            SimpplleType.SIZE_CLASS,
+            SimpplleType.DENSITY,
+            SimpplleType.PROCESS};
 
     try {
       String[] suffix = new String[SimpplleType.MAX];
@@ -3402,7 +3415,7 @@ public final class Area implements Externalizable {
         }
 
         String msg = "Generating GIS Decade Probability " +
-                     "Files for Time Step " + i;
+            "Files for Time Step " + i;
         Simpplle.setStatusMessage(msg);
 
         produceProbabilityArcFiles(fout, types, i);
@@ -3424,15 +3437,15 @@ public final class Area implements Externalizable {
   }
 
   public void produceProbabilityArcFiles(File outputFile)
-    throws SimpplleError
+      throws SimpplleError
   {
     PrintWriter[] fout = new PrintWriter[SimpplleType.MAX];
     File[]        file = new File[SimpplleType.MAX];
     SimpplleType.Types[] types =
-      new SimpplleType.Types[] {SimpplleType.SPECIES,
-                                SimpplleType.SIZE_CLASS,
-                                SimpplleType.DENSITY,
-                                SimpplleType.PROCESS};
+        new SimpplleType.Types[] {SimpplleType.SPECIES,
+            SimpplleType.SIZE_CLASS,
+            SimpplleType.DENSITY,
+            SimpplleType.PROCESS};
 
     String[] suffix = new String[SimpplleType.MAX];
     suffix[SimpplleType.SPECIES.ordinal()]    = "-" + ALL_PROB_STEP + "-species";
@@ -3481,7 +3494,7 @@ public final class Area implements Externalizable {
    */
   private void produceProbabilityArcFiles(PrintWriter[] fout, SimpplleType.Types[] types,
                                           int timeStep)
-    throws SQLException, SimpplleError, HibernateException
+      throws SQLException, SimpplleError, HibernateException
   {
     StringBuffer[] expression = new StringBuffer[types.length];
 
@@ -3633,7 +3646,7 @@ public final class Area implements Externalizable {
     for(int i=0; i<=maxEvuId; i++) {
       if (allEvu[i] == null ||
           (allEvu[i].isHabitatTypeGroupValid() &&
-           allEvu[i].isCurrentStateValid())) {
+              allEvu[i].isCurrentStateValid())) {
         continue;
       }
 
@@ -3654,7 +3667,7 @@ public final class Area implements Externalizable {
           continue;
         }
         fout.println(allEvu[i].getId() + "," + htGrpStr + "," +
-                     state.toString() + "*");
+            state.toString() + "*");
       }
 
       invalidCount++;
@@ -3817,7 +3830,7 @@ public final class Area implements Externalizable {
     }
     // *************
   }
-  
+
   private void exportAttributes(PrintWriter fout) {
     fout.println("BEGIN VEGETATION");
     for(int i=0; i<allEvu.length; i++) {
@@ -4063,12 +4076,12 @@ public final class Area implements Externalizable {
       }
     } else if (dY == 0) {
       switch (dX){
-      case -1:
-        index = 0; // 0 or 360 degrees
-        break;
-      case 1:
-        index = 4;  // 180 degrees
-        break;
+        case -1:
+          index = 0; // 0 or 360 degrees
+          break;
+        case 1:
+          index = 4;  // 180 degrees
+          break;
       }
     } else if (dY == -1) {
       switch (dX) {
@@ -4089,7 +4102,9 @@ public final class Area implements Externalizable {
     for (Evu evu : allEvu){
       if (evu != null){
         for (AdjacentData a : evu.getNeighborhood()){
-          a.setSlope(calcSlope(evu, a));
+          if(a != null) {
+            a.setSlope(calcSlope(evu, a));
+          }
         }
       }
     }
@@ -4732,7 +4747,7 @@ public final class Area implements Externalizable {
   }
 
   public void writeRandomAccessFile(RandomAccessFile simFile)
-    throws SimpplleError
+      throws SimpplleError
   {
     int doneCount = 0, pctFinish;
 
@@ -4776,10 +4791,10 @@ public final class Area implements Externalizable {
           continue;
         }
         pctFinish = Math.round(((float) doneCount / (float) allEvu.length) *
-                               100.0f);
+            100.0f);
         if (pctFinish % 5 == 0) {
           String msg = "Writing Time Step #" + ts + " to database " + pctFinish +
-                       "% Finished";
+              "% Finished";
           Simpplle.setStatusMessage(msg);
         }
         evu.writeSimulationDatabase(session);
