@@ -28,13 +28,13 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private RegionalZone currentZone;
   private Vector allFmz;
 
-  private JPanel innerPanel = new JPanel(new BorderLayout());
-  private JPanel outterPanel = new JPanel(new BorderLayout());
-  private JPanel mainPanel = new JPanel();
-  private JPanel headerPanel = new JPanel();
-  private JScrollPane scrollBar = new JScrollPane(mainPanel);
+  private JPanel innerPanel;
+  private JPanel outterPanel;
+  private JPanel mainPanel;
+  private JPanel headerPanel;
+  private JScrollPane scrollBar;
 
-  private BoxLayout boxLayout = new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
+  private BoxLayout boxLayout;
 
   private JMenuItem menuActionCreate;
   private JMenuItem menuActionDelete;
@@ -143,6 +143,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     JLabel responseLabel = new JLabel(Formatting.fixedField("Response time (hours)", 0, true));
     responseLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
 
+    headerPanel = new JPanel();
     headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 60, 0));
     headerPanel.add(zoneLabel);
     headerPanel.add(acreLabel);
@@ -157,13 +158,21 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuBar.add(menuKnowledgeSource);
     setJMenuBar(menuBar);
 
+    boxLayout = new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
+
+    mainPanel = new JPanel();
     mainPanel.setLayout(boxLayout);
 
+    scrollBar = new JScrollPane(mainPanel);
     scrollBar.setPreferredSize(new Dimension(600, 600));
     scrollBar.setColumnHeaderView(headerPanel);
 
+    innerPanel = new JPanel(new BorderLayout());
     innerPanel.add(scrollBar, BorderLayout.CENTER);
+
+    outterPanel = new JPanel(new BorderLayout());
     outterPanel.add(innerPanel, BorderLayout.CENTER);
+
     add(outterPanel);
   }
 
