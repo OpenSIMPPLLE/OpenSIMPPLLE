@@ -1834,6 +1834,10 @@ public class SimpplleMain extends JFrame {
  * @param e
  */
   void runSimulation_actionPerformed(ActionEvent e) {
+    //TODO find a better place to put this line of code
+    // ----------------------------------------------------
+    Simpplle.getCurrentArea().determineMultipleLifeforms();
+    // ----------------------------------------------------
     SimParam  dlg = new SimParam(this, fireSpreadModels);
     setDialogLocation(dlg);
     dlg.setVisible(true);
@@ -3598,7 +3602,22 @@ public class SimpplleMain extends JFrame {
   }
 
   public void menuUtilityMakeAreaMultipleLife_actionPerformed(ActionEvent e) {
-    Simpplle.getCurrentArea().makeMultipleLifeforms();
+    final JOptionPane optionPane = new JOptionPane(
+        "This option allows the simulation to run invasive "+
+            "species logic when the area file does not contain "+
+            "fields for multiple-lifeforms.  Selecting this option "+
+            "will modify the output files to include these empty fields."+
+            "Do you wish to continue?",
+        JOptionPane.QUESTION_MESSAGE,
+        JOptionPane.YES_NO_OPTION);
+    Object selectedValue = optionPane.getValue();
+    if (selectedValue != null) {
+      if ((int) optionPane.getValue() == optionPane.YES_OPTION) {
+        Simpplle.getCurrentArea().flagMultipleLifeFormSimulation(false);
+      } else {
+        Simpplle.getCurrentArea().flagMultipleLifeFormSimulation(true);
+      }
+    }
   }
 
   public void menuUtilityCombineLSFiles_actionPerformed(ActionEvent e) {

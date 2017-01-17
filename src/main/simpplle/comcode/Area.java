@@ -8,15 +8,17 @@
 
 package simpplle.comcode;
 
-import java.io.*;
-import java.sql.*;
-import java.text.*;
-import java.util.*;
-import java.util.zip.*;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import simpplle.JSimpplle;
+import simpplle.comcode.Climate.Season;
 
-import org.hibernate.*;
-import simpplle.*;
-import simpplle.comcode.Climate.*;
+import java.io.*;
+import java.sql.SQLException;
+import java.text.NumberFormat;
+import java.util.*;
+import java.util.zip.GZIPInputStream;
 
 /**
  * This class defines an Object describing a Forest Landscape.  Hierarchy for landscapes are
@@ -3817,7 +3819,7 @@ public final class Area implements Externalizable {
     }
     // *************
   }
-  
+
   private void exportAttributes(PrintWriter fout) {
     fout.println("BEGIN VEGETATION");
     for(int i=0; i<allEvu.length; i++) {
@@ -4750,6 +4752,26 @@ public final class Area implements Externalizable {
     }
   }
 
+  /**
+   * Flag for multiple life forms.
+   * True when invasive species logic does not need to be run
+   * False when invasive species logic needs to be run and
+   * multiple lifeforms are not present in area file.
+   * @param flag is a boolean
+   */
+  public void flagMultipleLifeFormSimulation(boolean flag) {
+    disableMultipleLifeforms = flag;
+  }
+
+  /**
+   * Determines whether multiple lifeform flag is on or not before simulation starts.
+   */
+  public void determineMultipleLifeforms() {
+    if (disableMultipleLifeforms == true) {
+      makeMultipleLifeforms();
+    }
+  }
+
   public void setMultipleLifeformStatus() {
     for (int i=0; i<allEvu.length; i++) {
       if (allEvu[i] != null && allEvu[i].hasMultipleLifeforms()) {
@@ -4760,6 +4782,10 @@ public final class Area implements Externalizable {
     disableMultipleLifeforms = true;
   }
 
+  /**
+   * Cycles through all evu's and formats them for multiple lifeform processes.
+   * If fields are empty they are skipped.
+   */
   public void makeMultipleLifeforms() {
     for (int i=0; i<allEvu.length; i++) {
       if (allEvu[i] != null) {
