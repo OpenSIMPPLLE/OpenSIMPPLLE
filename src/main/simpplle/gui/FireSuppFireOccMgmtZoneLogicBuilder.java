@@ -207,12 +207,8 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   private void drawInfoPanels() {
-    Fmz[] fmzArray = currentZone.getAllFmz();
-
-    for (Fmz item : fmzArray) {
-      // Creating individual panels
-      FmzPanel currentPanel = new FmzPanel(item);
-      mainPanel.add(currentPanel);
+    for (Fmz item : currentZone.getAllFmz()) {
+      mainPanel.add(new FmzPanel(item));
     }
   }
 
