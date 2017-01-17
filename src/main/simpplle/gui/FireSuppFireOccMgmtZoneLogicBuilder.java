@@ -170,16 +170,20 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   private void initialize() {
-    currentZone = Simpplle.getCurrentZone();
-    allFmz = currentZone.getAllFmzNames();
 
+    currentZone = Simpplle.getCurrentZone();
+
+    allFmz = currentZone.getAllFmzNames();
     if (allFmz == null || allFmz.size() == 0) {
       Fmz.makeDefault();
       allFmz = currentZone.getAllFmzNames();
     }
-    Fmz[] fmzArray = currentZone.getAllFmz();
+
     recreateFmzPanels();
-    menuActionDelete.setEnabled((fmzArray.length != 1));
+
+    Fmz[] fmzArray = currentZone.getAllFmz();
+    menuActionDelete.setEnabled(fmzArray.length > 1);
+
   }
 
   private void refresh() {
