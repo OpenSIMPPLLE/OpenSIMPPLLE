@@ -214,22 +214,15 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   private void Update() {
-    Fmz[] fmzArray = currentZone.getAllFmz();
-
-    outerPanel.remove(innerPanel);
 
     recreateFmzPanels();
 
-    // Add everything back to window
-    outerPanel.add(innerPanel, BorderLayout.CENTER);
-    add(outerPanel);
+    Fmz[] fmzArray = currentZone.getAllFmz();
+    menuActionDelete.setEnabled(fmzArray.length > 1); // Checks if non-default are present
 
-    // Checks weather only default is present
-    menuActionDelete.setEnabled((fmzArray.length != 1)); // nope
-
-    File filename = SystemKnowledge.getFile(SystemKnowledge.FMZ);
-    menuFileClose.setEnabled((filename != null));
-    menuFileSave.setEnabled((filename != null));
+    File file = SystemKnowledge.getFile(SystemKnowledge.FMZ);
+    menuFileClose.setEnabled(file != null);
+    menuFileSave.setEnabled(file != null);
 
     repaint();
     revalidate();
