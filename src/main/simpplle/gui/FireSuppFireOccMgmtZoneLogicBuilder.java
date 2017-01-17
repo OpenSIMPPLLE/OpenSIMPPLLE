@@ -1,0 +1,431 @@
+/*
+ * The University of Montana owns copyright of the designated documentation contained
+ * within this file as part of the software product designated by Uniform Resource Identifier
+ * UM-OpenSIMPPLLE-1.0. By copying this file the user accepts the University of Montana
+ * Open Source License Contract pertaining to this documentation and agrees to abide by all
+ * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
+ */
+
+package simpplle.gui;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import javax.swing.*;
+import java.util.Vector;
+import simpplle.JSimpplle;
+import simpplle.comcode.*;
+
+/**
+ * This Class handles the creation of the 'Fire Occurrence and Management Zones' editor.
+ * Its purpose is to display and edit information about regional fire management zones as well as
+ * the creation, deletion and manipulation of new zones within the region.
+ *
+ */
+
+class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
+
+  private RegionalZone currentZone;
+  private Vector allFmz;
+
+  private JPanel innerPanel = new JPanel(new BorderLayout());
+  private JPanel outterPanel = new JPanel(new BorderLayout());
+  private JPanel mainPanel = new JPanel();
+  private JPanel headerPanel = new JPanel();
+  private JScrollPane scrollBar = new JScrollPane(mainPanel);
+
+  private BoxLayout boxLayout2 = new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
+
+  private JMenuBar jMenuBar1 = new JMenuBar();
+  private JMenu menuFile = new JMenu();
+  private JMenuItem menuFileOpen = new JMenuItem();
+  private JMenuItem menuFileQuit = new JMenuItem();
+  private JMenuItem menuFileDefault = new JMenuItem();
+
+  private JMenu menuAction = new JMenu();
+  private JMenuItem menuFileClose = new JMenuItem();
+  private JMenuItem menuFileSave = new JMenuItem();
+  private JMenuItem menuFileSaveAs = new JMenuItem();
+  private JMenuItem menuActionDelete = new JMenuItem();
+  private JMenuItem menuActionCreate = new JMenuItem();
+  private JMenuItem menuActionDeleteAll = new JMenuItem();
+
+  private JMenu menuKnowledgeSource = new JMenu();
+  private JMenuItem menuKnowledgeSourceDisplay = new JMenuItem();
+  private JMenuItem menuImportOldFile = new JMenuItem();
+
+  FireSuppFireOccMgmtZoneLogicBuilder(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+    try {
+      jbInit();
+      initialize();
+      pack();
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception {
+
+    System.currentTimeMillis();
+
+    // Setting up Menus/ adding components
+    scrollBar.setPreferredSize(new Dimension(600, 600));
+    scrollBar.setColumnHeaderView(headerPanel);
+
+    mainPanel.setLayout(boxLayout2);
+    headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 60, 0));
+
+    // File menu
+    menuFile.setText("File");
+    menuFileOpen.setText("Open");
+    menuFileOpen.addActionListener(this::menuFileOpen_actionPerformed);
+
+    menuFileQuit.setText("Close Dialog");
+    menuFileQuit.addActionListener(this::menuFileQuit_actionPerformed);
+
+    menuImportOldFile.setText("Import old format file");
+    menuImportOldFile.addActionListener(this::menuImportOldFile_actionPerformed);
+
+    menuFileDefault.setToolTipText("Load default fmz data file for the current zone");
+    menuFileDefault.setText("Load Default Data");
+    menuFileDefault.addActionListener(this::menuFileDefault_actionPerformed);
+
+
+    menuFileSave.setText("Save");
+    menuFileSave.setEnabled(false);
+    menuFileSave.addActionListener(this::menuFileSave_actionPerformed);
+
+    menuFileSaveAs.setText("Save As");
+    menuFileSaveAs.addActionListener(this::menuFileSaveAs_actionPerformed);
+
+    menuFileClose.setText("Close");
+    menuFileClose.setEnabled(false);
+    menuFileClose.addActionListener(this::menuFileClose_actionPerformed);
+
+    // Action menu
+    menuAction.setText("Actions");
+    menuActionDelete.setEnabled(false);
+    menuActionDelete.setText("Delete Fmz");
+    menuActionDelete.setActionCommand("Select an Fmz to delete");
+    menuActionDelete.addActionListener(this::menuActionDelete_actionPerformed);
+
+    menuActionCreate.setText("Create New Zone");
+    menuActionCreate.addActionListener(this::menuActionCreate_actionPerformed);
+
+    menuActionDeleteAll.setText("Delete All Zones");
+    menuActionDeleteAll.addActionListener(this::menuActionDeleteAll_actionPerformed);
+
+    // Knowledge source
+    menuKnowledgeSource.setText("Knowledge Source");
+    menuKnowledgeSourceDisplay.setText("Display");
+    menuKnowledgeSourceDisplay.addActionListener(this::menuKnowledgeSourceDisplay_actionPerformed);
+
+    JLabel zoneLabel = new JLabel(Formatting.fixedField("Zone", 0, true));
+    zoneLabel.setHorizontalTextPosition(SwingConstants.LEFT);
+    zoneLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
+
+    JLabel acreLabel = new JLabel(Formatting.fixedField("Acres", 6));
+    acreLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
+
+    JLabel fireTotalLabel = new JLabel(Formatting.fixedField("Starts per 10 years", 5));
+    fireTotalLabel.setHorizontalTextPosition(SwingConstants.LEADING);
+    fireTotalLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
+
+    JLabel responseLabel = new JLabel(Formatting.fixedField("Response time (hours)", 0, true));
+    responseLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
+
+    // add stuff to frame/panel
+    jMenuBar1.add(menuFile);
+    jMenuBar1.add(menuAction);
+    jMenuBar1.add(menuKnowledgeSource);
+
+    menuFile.add(menuFileOpen);
+    menuFile.add(menuFileClose);
+    menuFile.addSeparator();
+    menuFile.add(menuImportOldFile);
+    menuFile.addSeparator();
+    menuFile.add(menuFileDefault);
+    menuFile.addSeparator();
+    menuFile.add(menuFileSave);
+    menuFile.add(menuFileSaveAs);
+    menuFile.addSeparator();
+    menuFile.add(menuFileQuit);
+
+    menuAction.add(menuActionCreate);
+    menuAction.add(menuActionDelete);
+    menuAction.add(menuActionDeleteAll);
+
+    menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
+    setJMenuBar(jMenuBar1);
+
+    headerPanel.add(zoneLabel);
+    headerPanel.add(acreLabel);
+    headerPanel.add(fireTotalLabel);
+    headerPanel.add(responseLabel);
+
+    innerPanel.add(scrollBar, BorderLayout.CENTER);
+    outterPanel.add(innerPanel, BorderLayout.CENTER);
+    add(outterPanel);
+  }
+
+  private void initialize() {
+    currentZone = Simpplle.getCurrentZone();
+    allFmz = currentZone.getAllFmzNames();
+
+    if (allFmz == null || allFmz.size() == 0) {
+      Fmz.makeDefault();
+      allFmz = currentZone.getAllFmzNames();
+    }
+    Fmz[] fmzArray = currentZone.getAllFmz();
+    drawInfoPanels();
+    menuActionDelete.setEnabled((fmzArray.length != 1));
+  }
+
+  private void refresh() {
+    update(getGraphics());
+  }
+
+  private boolean continueDespiteLoadedArea() {
+    Area area = Simpplle.getCurrentArea();
+
+    if (area != null) {
+      String msg;
+      int choice;
+      msg = "Any unit assigned an FMZ that is not present in\n" +
+          "the new file will be assigned the default FMZ.\n\n" +
+          "Are you sure?";
+      choice = JOptionPane.showConfirmDialog(this, msg, "Area Currently Loaded, Proceed?.",
+          JOptionPane.YES_NO_OPTION,
+          JOptionPane.QUESTION_MESSAGE);
+
+      if (choice != JOptionPane.YES_OPTION) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private void drawInfoPanels() {
+    Fmz[] fmzArray = currentZone.getAllFmz();
+
+    for (Fmz item : fmzArray) {
+      // Creating individual panels
+      FmzPanel currentPanel = new FmzPanel(item);
+      mainPanel.add(currentPanel);
+    }
+  }
+
+  private void Update() {
+    Fmz[] fmzArray = currentZone.getAllFmz();
+
+    outterPanel.remove(innerPanel);
+    mainPanel.removeAll();
+
+    // Redraw
+    drawInfoPanels();
+
+    // Add everything back to window
+    outterPanel.add(innerPanel, BorderLayout.CENTER);
+    add(outterPanel);
+
+    // Checks weather only default is present
+    menuActionDelete.setEnabled((fmzArray.length != 1)); // nope
+
+    File filename = SystemKnowledge.getFile(SystemKnowledge.FMZ);
+    menuFileClose.setEnabled((filename != null));
+    menuFileSave.setEnabled((filename != null));
+
+    repaint();
+    revalidate();
+  }
+
+  private void loadDefaultDataFile() { // Loads default FMZs for the current zone
+    try {
+      Area area = Simpplle.getCurrentArea();
+      if (area != null && !continueDespiteLoadedArea()) {
+        return;
+      }
+      SystemKnowledge.loadZoneKnowledge(SystemKnowledge.FMZ);
+
+      // Make sure EVU's who point to this fmz no longer present
+      // are reset to the default fmz.
+      if (area != null) {
+        area.updateFmzData();
+      }
+      Update();
+    } catch (SimpplleError err) {
+      JOptionPane.showMessageDialog(this,err.getError(),"Error loading file",
+          JOptionPane.ERROR_MESSAGE);
+    }
+  }
+
+  // File Menu
+  private void menuFileOpen_actionPerformed(ActionEvent e) {
+    Area area = Simpplle.getCurrentArea();
+    if (area != null && !continueDespiteLoadedArea()) {
+      return;
+    }
+
+    SystemKnowledgeFiler.openFile(this, SystemKnowledge.FMZ, menuFileSave, menuFileClose);
+
+    allFmz = currentZone.getAllFmzNames();
+
+    // Make sure EVU's who point to this fmz no longer present
+    // are reset to the default fmz.
+    if (area != null) {
+      area.updateFmzData();
+    }
+    Update();
+  }
+
+  private void menuFileClose_actionPerformed(ActionEvent e) {
+    int    choice;
+    String msg;
+
+    File filename = SystemKnowledge.getFile(SystemKnowledge.FMZ);
+    if (filename != null && Fmz.hasChanged()) {
+      msg = "Changes have been made.\n" +
+          "If you continue these changes will be lost.\n\n" +
+          "Do you wish to continue?";
+
+      choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
+          JOptionPane.YES_NO_OPTION,
+          JOptionPane.QUESTION_MESSAGE);
+
+      if (choice == JOptionPane.NO_OPTION) {
+        update(getGraphics());
+        return;
+      }
+    }
+    Fmz.closeFile();
+    loadDefaultDataFile();
+  }
+
+  private void menuImportOldFile_actionPerformed(ActionEvent e) {
+    File outfile;
+    boolean changed;
+    Area area;
+    MyFileFilter extFilter;
+    String title = "Select a Fire Management Zone Data File";
+
+    extFilter = new MyFileFilter("fmz", "FMZ Data Files (*.fmz)");
+
+    setCursor(Utility.getWaitCursor());
+
+    outfile = Utility.getOpenFile(this, title, extFilter);
+    open:
+    try {
+      if (outfile == null) {
+        break open;
+      }
+
+      Fmz.loadData(outfile);
+
+      allFmz = currentZone.getAllFmzNames();
+//      updateDialog();
+
+      menuFileSave.setEnabled(true);
+      menuFileClose.setEnabled(true);
+
+      area = Simpplle.getCurrentArea();
+      if (area == null) {
+        break open;
+      }
+
+      changed = area.updateFmzData();
+      if (changed) {
+        String msg = "Fmz's in the currently loaded area that\n" +
+            "referred to fmz's not currently loaded\n" +
+            "were changed to the default fmz.\n\n" +
+            "If this is not desired load the correct\n" +
+            "fmz data file for the area and then\n" +
+            "reload the current area.";
+        JOptionPane.showMessageDialog(this, msg, "Warning",
+            JOptionPane.WARNING_MESSAGE);
+      }
+    } catch (SimpplleError err) {
+      JOptionPane.showMessageDialog(this, err.getError(), "Error loading file",
+          JOptionPane.ERROR_MESSAGE);
+    } finally {
+      setCursor(Utility.getNormalCursor());
+      refresh();
+    }
+  }
+
+  private void menuFileDefault_actionPerformed(ActionEvent e) {
+    loadDefaultDataFile();
+  }
+
+  private void menuFileSave_actionPerformed(ActionEvent e) {
+    File outfile = SystemKnowledge.getFile(SystemKnowledge.FMZ);
+    SystemKnowledgeFiler.saveFile(this, outfile, SystemKnowledge.FMZ,
+        menuFileSave, menuFileClose);
+
+    refresh();
+  }
+
+  private void menuFileSaveAs_actionPerformed(ActionEvent e) {
+    SystemKnowledgeFiler.saveFile(this, SystemKnowledge.FMZ, menuFileSave,
+        menuFileClose);
+
+    refresh();
+  }
+
+  private void menuFileQuit_actionPerformed(ActionEvent e) {
+    setVisible(false);
+    dispose();
+  }
+
+  // Action menu
+  private void menuActionCreate_actionPerformed(ActionEvent e) {
+    String msg = "Fire Management Zone Name";
+    String title = "Create new Fire Management Zone";
+    String name = JOptionPane.showInputDialog(this, msg, title,
+        JOptionPane.PLAIN_MESSAGE);
+    if (name == null) {
+      return;
+    }
+
+    name = name.toLowerCase();
+    Fmz newFmz = new Fmz();
+    newFmz.setName(name);
+
+    currentZone.addFmz(newFmz);
+    Update();
+  }
+
+  private void menuActionDelete_actionPerformed(ActionEvent e) {
+    DeleteFmzDialog dlg = new DeleteFmzDialog(JSimpplle.getSimpplleMain(),"Delete Fmz",true);
+    dlg.setVisible(true);
+    Update();
+  }
+
+  private void menuActionDeleteAll_actionPerformed(ActionEvent e) {
+    String msg;
+    int    choice;
+
+    msg = "This action will delete all Fire Management Zones,\n" +
+        "except the default zone.\n" +
+        "** If an area is loaded all units will be set to\n" +
+        "default FMZ.\n\n" +
+        "Are you sure?";
+    choice = JOptionPane.showConfirmDialog(this,msg,"Delete current FMZ.",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE);
+
+    if (choice == JOptionPane.YES_OPTION) {
+      currentZone.removeAllFmz();
+      Update();
+    }
+  }
+
+  // Knowledge source
+  private void menuKnowledgeSourceDisplay_actionPerformed(ActionEvent e) {
+    String str = SystemKnowledge.getSource(SystemKnowledge.FMZ);
+    String title = "Fire Occurrence Input Knowledge Source";
+
+    KnowledgeSource dlg = new KnowledgeSource(JSimpplle.getSimpplleMain(),title,true,str);
+    dlg.setVisible(true);
+  }
+}
