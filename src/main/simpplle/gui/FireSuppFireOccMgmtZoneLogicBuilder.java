@@ -34,9 +34,8 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private JPanel headerPanel = new JPanel();
   private JScrollPane scrollBar = new JScrollPane(mainPanel);
 
-  private BoxLayout boxLayout2 = new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
+  private BoxLayout boxLayout = new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
 
-  private JMenuBar jMenuBar1 = new JMenuBar();
   private JMenu menuFile = new JMenu();
   private JMenuItem menuFileOpen = new JMenuItem();
   private JMenuItem menuFileQuit = new JMenuItem();
@@ -67,20 +66,14 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
 
   private void jbInit() throws Exception {
 
-    // Setting up Menus/ adding components
-    scrollBar.setPreferredSize(new Dimension(600, 600));
-    scrollBar.setColumnHeaderView(headerPanel);
+    // File Menu
 
-    mainPanel.setLayout(boxLayout2);
-    headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 60, 0));
-
-    // File menu
-    menuFile.setText("File");
     menuFileOpen.setText("Open");
     menuFileOpen.addActionListener(this::menuFileOpen_actionPerformed);
 
-    menuFileQuit.setText("Close Dialog");
-    menuFileQuit.addActionListener(this::menuFileQuit_actionPerformed);
+    menuFileClose.setText("Close");
+    menuFileClose.setEnabled(false);
+    menuFileClose.addActionListener(this::menuFileClose_actionPerformed);
 
     menuFileImportOldFile.setText("Import Old Format File");
     menuFileImportOldFile.addActionListener(this::menuImportOldFile_actionPerformed);
@@ -96,27 +89,47 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuFileSaveAs.setText("Save As");
     menuFileSaveAs.addActionListener(this::menuFileSaveAs_actionPerformed);
 
-    menuFileClose.setText("Close");
-    menuFileClose.setEnabled(false);
-    menuFileClose.addActionListener(this::menuFileClose_actionPerformed);
+    menuFileQuit.setText("Close Dialog");
+    menuFileQuit.addActionListener(this::menuFileQuit_actionPerformed);
+
+    menuFile.setText("File");
+    menuFile.add(menuFileOpen);
+    menuFile.add(menuFileClose);
+    menuFile.addSeparator();
+    menuFile.add(menuFileImportOldFile);
+    menuFile.addSeparator();
+    menuFile.add(menuFileDefault);
+    menuFile.addSeparator();
+    menuFile.add(menuFileSave);
+    menuFile.add(menuFileSaveAs);
+    menuFile.addSeparator();
+    menuFile.add(menuFileQuit);
 
     // Action menu
-    menuAction.setText("Actions");
+
+    menuActionCreate.setText("Create New Zone");
+    menuActionCreate.addActionListener(this::menuActionCreate_actionPerformed);
+
     menuActionDelete.setEnabled(false);
     menuActionDelete.setText("Delete Fmz");
     menuActionDelete.setActionCommand("Select an Fmz to delete");
     menuActionDelete.addActionListener(this::menuActionDelete_actionPerformed);
 
-    menuActionCreate.setText("Create New Zone");
-    menuActionCreate.addActionListener(this::menuActionCreate_actionPerformed);
-
     menuActionDeleteAll.setText("Delete All Zones");
     menuActionDeleteAll.addActionListener(this::menuActionDeleteAll_actionPerformed);
 
-    // Knowledge source
-    menuKnowledgeSource.setText("Knowledge Source");
+    menuAction.setText("Actions");
+    menuAction.add(menuActionCreate);
+    menuAction.add(menuActionDelete);
+    menuAction.add(menuActionDeleteAll);
+
+    // Knowledge Source Menu
+
     menuKnowledgeSourceDisplay.setText("Display");
     menuKnowledgeSourceDisplay.addActionListener(this::menuKnowledgeSourceDisplay_actionPerformed);
+
+    menuKnowledgeSource.setText("Knowledge Source");
+    menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
 
     JLabel zoneLabel = new JLabel(Formatting.fixedField("Zone", 0, true));
     zoneLabel.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -132,34 +145,24 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     JLabel responseLabel = new JLabel(Formatting.fixedField("Response time (hours)", 0, true));
     responseLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
 
-    // add stuff to frame/panel
-    jMenuBar1.add(menuFile);
-    jMenuBar1.add(menuAction);
-    jMenuBar1.add(menuKnowledgeSource);
+    // Menu Bar
 
-    menuFile.add(menuFileOpen);
-    menuFile.add(menuFileClose);
-    menuFile.addSeparator();
-    menuFile.add(menuFileImportOldFile);
-    menuFile.addSeparator();
-    menuFile.add(menuFileDefault);
-    menuFile.addSeparator();
-    menuFile.add(menuFileSave);
-    menuFile.add(menuFileSaveAs);
-    menuFile.addSeparator();
-    menuFile.add(menuFileQuit);
+    JMenuBar menuBar = new JMenuBar();
+    menuBar.add(menuFile);
+    menuBar.add(menuAction);
+    menuBar.add(menuKnowledgeSource);
+    setJMenuBar(menuBar);
 
-    menuAction.add(menuActionCreate);
-    menuAction.add(menuActionDelete);
-    menuAction.add(menuActionDeleteAll);
-
-    menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
-    setJMenuBar(jMenuBar1);
+    mainPanel.setLayout(boxLayout);
+    headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 60, 0));
 
     headerPanel.add(zoneLabel);
     headerPanel.add(acreLabel);
     headerPanel.add(fireTotalLabel);
     headerPanel.add(responseLabel);
+
+    scrollBar.setPreferredSize(new Dimension(600, 600));
+    scrollBar.setColumnHeaderView(headerPanel);
 
     innerPanel.add(scrollBar, BorderLayout.CENTER);
     outterPanel.add(innerPanel, BorderLayout.CENTER);
