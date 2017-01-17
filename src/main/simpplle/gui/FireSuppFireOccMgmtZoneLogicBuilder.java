@@ -191,18 +191,14 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   private boolean continueDespiteLoadedArea() {
-    Area area = Simpplle.getCurrentArea();
-
-    if (area != null) {
-      String msg;
-      int choice;
-      msg = "Any unit assigned an FMZ that is not present in\n" +
-          "the new file will be assigned the default FMZ.\n\n" +
-          "Are you sure?";
-      choice = JOptionPane.showConfirmDialog(this, msg, "Area Currently Loaded, Proceed?.",
-          JOptionPane.YES_NO_OPTION,
-          JOptionPane.QUESTION_MESSAGE);
-
+    if (Simpplle.getCurrentArea() != null) {
+      String msg = "Any unit assigned an FMZ that is not present in\n" +
+                   "the new file will be assigned the default FMZ.\n\n" +
+                   "Are you sure?";
+      int choice = JOptionPane.showConfirmDialog(this, msg,
+                                                 "Area Currently Loaded, Proceed?.",
+                                                 JOptionPane.YES_NO_OPTION,
+                                                 JOptionPane.QUESTION_MESSAGE);
       if (choice != JOptionPane.YES_OPTION) {
         return false;
       }
@@ -259,7 +255,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     }
   }
 
-  // File Menu
   private void openFile(ActionEvent e) {
     Area area = Simpplle.getCurrentArea();
     if (area != null && !continueDespiteLoadedArea()) {
