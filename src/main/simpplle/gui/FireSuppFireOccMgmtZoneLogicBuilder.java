@@ -185,22 +185,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     update(getGraphics());
   }
 
-  private boolean continueDespiteLoadedArea() {
-    if (Simpplle.getCurrentArea() != null) {
-      String msg = "Any unit assigned an FMZ that is not present in\n" +
-                   "the new file will be assigned the default FMZ.\n\n" +
-                   "Are you sure?";
-      int choice = JOptionPane.showConfirmDialog(this, msg,
-                                                 "Area Currently Loaded, Proceed?.",
-                                                 JOptionPane.YES_NO_OPTION,
-                                                 JOptionPane.QUESTION_MESSAGE);
-      if (choice != JOptionPane.YES_OPTION) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   private void update() {
 
     mainPanel.removeAll();
@@ -219,21 +203,31 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   private void openFile(ActionEvent e) {
-    Area area = Simpplle.getCurrentArea();
-    if (area != null && !continueDespiteLoadedArea()) {
-      return;
+    if (Simpplle.getCurrentArea() != null) {
+      int choice = JOptionPane.showConfirmDialog(this,
+                                                 "Any unit assigned an FMZ that is not present\n" +
+                                                 "in the new file will be reassigned to the\n" +
+                                                 "default zone.\n\n" +
+                                                 "Do you wish to continue?",
+                                                 "Reassign Unit Zones",
+                                                 JOptionPane.YES_NO_OPTION,
+                                                 JOptionPane.QUESTION_MESSAGE);
+      if (choice == JOptionPane.NO_OPTION) {
+        return;
+      }
     }
 
     SystemKnowledgeFiler.openFile(this, SystemKnowledge.FMZ, menuFileSave, null);
 
     allFmz = currentZone.getAllFmzNames();
 
-    // Make sure EVU's who point to this fmz no longer present
-    // are reset to the default fmz.
+    Area area = Simpplle.getCurrentArea();
     if (area != null) {
       area.updateFmzData();
     }
+
     update();
+
   }
 
   private void importOldFormatFile(ActionEvent e) {
