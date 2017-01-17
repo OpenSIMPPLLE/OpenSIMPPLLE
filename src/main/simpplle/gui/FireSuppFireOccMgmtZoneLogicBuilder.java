@@ -26,7 +26,7 @@ import simpplle.comcode.*;
 class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
 
   private RegionalZone currentZone;
-  private Vector allFmz;
+  private Vector<Fmz> allFmz;
 
   private JPanel innerPanel;
   private JPanel outterPanel;
