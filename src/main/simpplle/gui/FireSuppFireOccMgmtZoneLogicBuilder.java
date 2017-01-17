@@ -28,7 +28,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private Vector<Fmz> allFmz;
 
   private JPanel innerPanel;
-  private JPanel outterPanel;
+  private JPanel outerPanel;
   private JPanel mainPanel;
 
   private JMenuItem menuActionCreate;
@@ -163,10 +163,10 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     innerPanel = new JPanel(new BorderLayout());
     innerPanel.add(scrollBar, BorderLayout.CENTER);
 
-    outterPanel = new JPanel(new BorderLayout());
-    outterPanel.add(innerPanel, BorderLayout.CENTER);
+    outerPanel = new JPanel(new BorderLayout());
+    outerPanel.add(innerPanel, BorderLayout.CENTER);
 
-    add(outterPanel);
+    add(outerPanel);
   }
 
   private void initialize() {
@@ -216,13 +216,13 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private void Update() {
     Fmz[] fmzArray = currentZone.getAllFmz();
 
-    outterPanel.remove(innerPanel);
+    outerPanel.remove(innerPanel);
 
     recreateFmzPanels();
 
     // Add everything back to window
-    outterPanel.add(innerPanel, BorderLayout.CENTER);
-    add(outterPanel);
+    outerPanel.add(innerPanel, BorderLayout.CENTER);
+    add(outerPanel);
 
     // Checks weather only default is present
     menuActionDelete.setEnabled((fmzArray.length != 1)); // nope
