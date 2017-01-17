@@ -31,7 +31,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private JPanel innerPanel;
   private JPanel outterPanel;
   private JPanel mainPanel;
-  private JPanel headerPanel;
 
   private JMenuItem menuActionCreate;
   private JMenuItem menuActionDelete;
@@ -140,7 +139,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     JLabel responseLabel = new JLabel(Formatting.fixedField("Response time (hours)", 0, true));
     responseLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
 
-    headerPanel = new JPanel();
+    JPanel headerPanel = new JPanel();
     headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 60, 0));
     headerPanel.add(zoneLabel);
     headerPanel.add(acreLabel);
