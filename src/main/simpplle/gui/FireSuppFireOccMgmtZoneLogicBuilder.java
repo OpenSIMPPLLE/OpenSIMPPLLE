@@ -179,7 +179,9 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
       allFmz = currentZone.getAllFmzNames();
     }
 
-    recreateFmzPanels();
+    for (Fmz item : currentZone.getAllFmz()) {
+      mainPanel.add(new FmzPanel(item));
+    }
 
     Fmz[] fmzArray = currentZone.getAllFmz();
     menuActionDelete.setEnabled(fmzArray.length > 1);
@@ -206,16 +208,12 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     return true;
   }
 
-  private void recreateFmzPanels() {
+  private void update() {
+
     mainPanel.removeAll();
     for (Fmz item : currentZone.getAllFmz()) {
       mainPanel.add(new FmzPanel(item));
     }
-  }
-
-  private void Update() {
-
-    recreateFmzPanels();
 
     Fmz[] fmzArray = currentZone.getAllFmz();
     menuActionDelete.setEnabled(fmzArray.length > 1); // Checks if non-default are present
@@ -241,7 +239,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
       if (area != null) {
         area.updateFmzData();
       }
-      Update();
+      update();
     } catch (SimpplleError err) {
       JOptionPane.showMessageDialog(this,err.getError(),"Error loading file",
           JOptionPane.ERROR_MESSAGE);
@@ -263,7 +261,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     if (area != null) {
       area.updateFmzData();
     }
-    Update();
+    update();
   }
 
   private void closeFile(ActionEvent e) {
@@ -379,13 +377,13 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     newFmz.setName(name);
 
     currentZone.addFmz(newFmz);
-    Update();
+    update();
   }
 
   private void deleteZone(ActionEvent e) {
     DeleteFmzDialog dlg = new DeleteFmzDialog(JSimpplle.getSimpplleMain(),"Delete Fmz",true);
     dlg.setVisible(true);
-    Update();
+    update();
   }
 
   private void deleteAllZones(ActionEvent e) {
@@ -403,7 +401,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
 
     if (choice == JOptionPane.YES_OPTION) {
       currentZone.removeAllFmz();
-      Update();
+      update();
     }
   }
 
