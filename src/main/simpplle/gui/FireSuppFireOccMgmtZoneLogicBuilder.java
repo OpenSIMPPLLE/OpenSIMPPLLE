@@ -52,7 +52,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
 
   private JMenu menuKnowledgeSource = new JMenu();
   private JMenuItem menuKnowledgeSourceDisplay = new JMenuItem();
-  private JMenuItem menuImportOldFile = new JMenuItem();
+  private JMenuItem menuFileImportOldFile = new JMenuItem();
 
   FireSuppFireOccMgmtZoneLogicBuilder(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
@@ -82,13 +82,12 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuFileQuit.setText("Close Dialog");
     menuFileQuit.addActionListener(this::menuFileQuit_actionPerformed);
 
-    menuImportOldFile.setText("Import old format file");
-    menuImportOldFile.addActionListener(this::menuImportOldFile_actionPerformed);
+    menuFileImportOldFile.setText("Import Old Format File");
+    menuFileImportOldFile.addActionListener(this::menuImportOldFile_actionPerformed);
 
-    menuFileDefault.setToolTipText("Load default fmz data file for the current zone");
     menuFileDefault.setText("Load Default Data");
+    menuFileDefault.setToolTipText("Load default fmz data file for the current zone");
     menuFileDefault.addActionListener(this::menuFileDefault_actionPerformed);
-
 
     menuFileSave.setText("Save");
     menuFileSave.setEnabled(false);
@@ -141,7 +140,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuFile.add(menuFileOpen);
     menuFile.add(menuFileClose);
     menuFile.addSeparator();
-    menuFile.add(menuImportOldFile);
+    menuFile.add(menuFileImportOldFile);
     menuFile.addSeparator();
     menuFile.add(menuFileDefault);
     menuFile.addSeparator();
