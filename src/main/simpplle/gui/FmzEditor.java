@@ -55,13 +55,13 @@ public class FmzEditor extends JDialog {
   JMenuItem menuFileDefault = new JMenuItem();
   JPanel prevNextPanel = new JPanel();
   FlowLayout flowLayout2 = new FlowLayout();
-  JLabel fmzLabel = new JLabel();
+//  JLabel fmzLabel = new JLabel();
   JButton prevPB = new JButton();
   JButton nextPB = new JButton();
   JTextField fmzText = new JTextField();
   JPanel northPanel = new JPanel();
   BorderLayout borderLayout2 = new BorderLayout();
-  JPanel fmzLabelPanel = new JPanel();
+//  JPanel fmzLabelPanel = new JPanel();
   FlowLayout flowLayout3 = new FlowLayout();
   JPanel southPanel = new JPanel();
   JPanel dataGridPanel = new JPanel();
@@ -163,8 +163,8 @@ public class FmzEditor extends JDialog {
       }
     });
     prevNextPanel.setLayout(flowLayout2);
-    fmzLabel.setFont(new java.awt.Font("Dialog", 1, 14));
-    fmzLabel.setText("Fire Management Zone");
+//    fmzLabel.setFont(new java.awt.Font("Dialog", 1, 14));
+//    fmzLabel.setText("Fire Management Zone");
     fmzText.setBackground(Color.white);
     fmzText.setText("dummy value xxx");
     fmzText.setToolTipText("Type an FMZ name and press enter");
@@ -195,7 +195,7 @@ public class FmzEditor extends JDialog {
       }
     });
     northPanel.setLayout(borderLayout2);
-    fmzLabelPanel.setLayout(flowLayout3);
+//    fmzLabelPanel.setLayout(flowLayout3);
     flowLayout2.setVgap(0);
     flowLayout3.setVgap(2);
     dataGridPanel.setLayout(gridLayout1);
@@ -604,8 +604,8 @@ public class FmzEditor extends JDialog {
     prevNextPanel.add(prevPB, null);
     prevNextPanel.add(fmzText, null);
     prevNextPanel.add(nextPB, null);
-    northPanel.add(fmzLabelPanel, BorderLayout.NORTH);
-    fmzLabelPanel.add(fmzLabel, null);
+//    northPanel.add(fmzLabelPanel, BorderLayout.NORTH);
+//    fmzLabelPanel.add(fmzLabel, null);
     mainPanel.add(southPanel, BorderLayout.CENTER);
     southPanel.add(acresPanel, null);
     acresPanel.add(acresLabel, null);

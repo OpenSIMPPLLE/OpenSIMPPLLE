@@ -51,8 +51,7 @@ public class FireSuppResponseTimeLogicBuilder extends JDialog {
     }
   }
 
-  public FireSuppResponseTimeLogicBuilder() {
-    this(null, "", false);
+  public FireSuppResponseTimeLogicBuilder() { this(null, "", false);
   }
   private void jbInit() throws Exception {
     mainPanel.setLayout(borderLayout1);
