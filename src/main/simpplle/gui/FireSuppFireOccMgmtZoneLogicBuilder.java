@@ -36,7 +36,9 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
 
   private BoxLayout boxLayout = new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
 
-  private JMenu menuFile;
+  private JMenuItem menuActionCreate;
+  private JMenuItem menuActionDelete;
+  private JMenuItem menuActionDeleteAll;
   private JMenuItem menuFileClose;
   private JMenuItem menuFileDefault;
   private JMenuItem menuFileImportOldFile;
@@ -44,13 +46,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private JMenuItem menuFileQuit;
   private JMenuItem menuFileSave;
   private JMenuItem menuFileSaveAs;
-
-  private JMenu menuAction;
-  private JMenuItem menuActionCreate;
-  private JMenuItem menuActionDelete;
-  private JMenuItem menuActionDeleteAll;
-
-  private JMenu menuKnowledgeSource;
   private JMenuItem menuKnowledgeSourceDisplay;
 
   FireSuppFireOccMgmtZoneLogicBuilder(Frame frame, String title, boolean modal) {
@@ -92,7 +87,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuFileQuit = new JMenuItem("Close Dialog");
     menuFileQuit.addActionListener(this::menuFileQuit_actionPerformed);
 
-    menuFile = new JMenu();
+    JMenu menuFile = new JMenu();
     menuFile.setText("File");
     menuFile.add(menuFileOpen);
     menuFile.add(menuFileClose);
@@ -119,7 +114,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuActionDeleteAll = new JMenuItem("Delete All Zones");
     menuActionDeleteAll.addActionListener(this::menuActionDeleteAll_actionPerformed);
 
-    menuAction = new JMenu("Actions");
+    JMenu menuAction = new JMenu("Actions");
     menuAction.add(menuActionCreate);
     menuAction.add(menuActionDelete);
     menuAction.add(menuActionDeleteAll);
@@ -129,7 +124,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuKnowledgeSourceDisplay = new JMenuItem("Display");
     menuKnowledgeSourceDisplay.addActionListener(this::menuKnowledgeSourceDisplay_actionPerformed);
 
-    menuKnowledgeSource = new JMenu("Knowledge Source");
+    JMenu menuKnowledgeSource = new JMenu("Knowledge Source");
     menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
 
     JLabel zoneLabel = new JLabel(Formatting.fixedField("Zone", 0, true));
