@@ -67,8 +67,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
 
   private void jbInit() throws Exception {
 
-    System.currentTimeMillis();
-
     // Setting up Menus/ adding components
     scrollBar.setPreferredSize(new Dimension(600, 600));
     scrollBar.setColumnHeaderView(headerPanel);
