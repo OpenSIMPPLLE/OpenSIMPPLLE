@@ -34,7 +34,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private JMenuItem menuActionCreate;
   private JMenuItem menuActionDelete;
   private JMenuItem menuActionDeleteAll;
-  private JMenuItem menuFileClose;
   private JMenuItem menuFileLoadDefaultData;
   private JMenuItem menuFileImportOldFormat;
   private JMenuItem menuFileOpen;
@@ -61,10 +60,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuFileOpen = new JMenuItem("Open");
     menuFileOpen.addActionListener(this::openFile);
 
-    menuFileClose = new JMenuItem("Close");
-    menuFileClose.setEnabled(false);
-    menuFileClose.addActionListener(this::closeFile);
-
     menuFileImportOldFormat = new JMenuItem("Import Old Format File");
     menuFileImportOldFormat.addActionListener(this::importOldFormatFile);
 
@@ -85,14 +80,12 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     JMenu menuFile = new JMenu();
     menuFile.setText("File");
     menuFile.add(menuFileOpen);
-    menuFile.add(menuFileClose);
-    menuFile.addSeparator();
-    menuFile.add(menuFileImportOldFormat);
-    menuFile.addSeparator();
-    menuFile.add(menuFileLoadDefaultData);
     menuFile.addSeparator();
     menuFile.add(menuFileSave);
     menuFile.add(menuFileSaveAs);
+    menuFile.addSeparator();
+    menuFile.add(menuFileImportOldFormat);
+    menuFile.add(menuFileLoadDefaultData);
     menuFile.addSeparator();
     menuFile.add(menuCloseDialog);
 
@@ -219,31 +212,10 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuActionDelete.setEnabled(fmzArray.length > 1); // Checks if non-default are present
 
     File file = SystemKnowledge.getFile(SystemKnowledge.FMZ);
-    menuFileClose.setEnabled(file != null);
     menuFileSave.setEnabled(file != null);
 
     repaint();
     revalidate();
-  }
-
-  private void loadDefaultDataFile() { // Loads default FMZs for the current zone
-    try {
-      Area area = Simpplle.getCurrentArea();
-      if (area != null && !continueDespiteLoadedArea()) {
-        return;
-      }
-      SystemKnowledge.loadZoneKnowledge(SystemKnowledge.FMZ);
-
-      // Make sure EVU's who point to this fmz no longer present
-      // are reset to the default fmz.
-      if (area != null) {
-        area.updateFmzData();
-      }
-      update();
-    } catch (SimpplleError err) {
-      JOptionPane.showMessageDialog(this,err.getError(),"Error loading file",
-          JOptionPane.ERROR_MESSAGE);
-    }
   }
 
   private void openFile(ActionEvent e) {
@@ -252,7 +224,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
       return;
     }
 
-    SystemKnowledgeFiler.openFile(this, SystemKnowledge.FMZ, menuFileSave, menuFileClose);
+    SystemKnowledgeFiler.openFile(this, SystemKnowledge.FMZ, menuFileSave, null);
 
     allFmz = currentZone.getAllFmzNames();
 
@@ -262,29 +234,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
       area.updateFmzData();
     }
     update();
-  }
-
-  private void closeFile(ActionEvent e) {
-    int    choice;
-    String msg;
-
-    File filename = SystemKnowledge.getFile(SystemKnowledge.FMZ);
-    if (filename != null && Fmz.hasChanged()) {
-      msg = "Changes have been made.\n" +
-          "If you continue these changes will be lost.\n\n" +
-          "Do you wish to continue?";
-
-      choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
-          JOptionPane.YES_NO_OPTION,
-          JOptionPane.QUESTION_MESSAGE);
-
-      if (choice == JOptionPane.NO_OPTION) {
-        update(getGraphics());
-        return;
-      }
-    }
-    Fmz.closeFile();
-    loadDefaultDataFile();
   }
 
   private void importOldFormatFile(ActionEvent e) {
@@ -311,7 +260,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
 //      updateDialog();
 
       menuFileSave.setEnabled(true);
-      menuFileClose.setEnabled(true);
 
       area = Simpplle.getCurrentArea();
       if (area == null) {
@@ -339,21 +287,54 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   private void loadDefaultData(ActionEvent e) {
-    loadDefaultDataFile();
+    if (Fmz.hasChanged()) {
+      int choice = JOptionPane.showConfirmDialog(this,
+                                                 "Loading the default data will overwrite\n" +
+                                                 "existing changes.\n\n" +
+                                                 "Do you wish to continue?",
+                                                 "Discard Changes",
+                                                 JOptionPane.YES_NO_OPTION,
+                                                 JOptionPane.QUESTION_MESSAGE);
+      if (choice == JOptionPane.NO_OPTION) {
+        return;
+      }
+    }
+    if (Simpplle.getCurrentArea() != null) {
+      int choice = JOptionPane.showConfirmDialog(this,
+                                                 "All units in the current area will be\n" +
+                                                 "reassigned to the default zone.\n\n" +
+                                                 "Do you wish to continue?",
+                                                 "Reassign Unit Zones",
+                                                 JOptionPane.YES_NO_OPTION,
+                                                 JOptionPane.QUESTION_MESSAGE);
+      if (choice == JOptionPane.NO_OPTION) {
+        return;
+      }
+    }
+    try {
+      Fmz.closeFile();
+      SystemKnowledge.loadZoneKnowledge(SystemKnowledge.FMZ);
+      Area area = Simpplle.getCurrentArea();
+      if (area != null) {
+        area.updateFmzData();
+      }
+      update();
+    } catch (SimpplleError err) {
+      JOptionPane.showMessageDialog(this,
+                                    err.getError(),
+                                    "Error Loading File",
+                                    JOptionPane.ERROR_MESSAGE);
+    }
   }
 
   private void saveFile(ActionEvent e) {
     File outfile = SystemKnowledge.getFile(SystemKnowledge.FMZ);
-    SystemKnowledgeFiler.saveFile(this, outfile, SystemKnowledge.FMZ,
-        menuFileSave, menuFileClose);
-
+    SystemKnowledgeFiler.saveFile(this, outfile, SystemKnowledge.FMZ, menuFileSave, null);
     refresh();
   }
 
   private void saveFileAs(ActionEvent e) {
-    SystemKnowledgeFiler.saveFile(this, SystemKnowledge.FMZ, menuFileSave,
-        menuFileClose);
-
+    SystemKnowledgeFiler.saveFile(this, SystemKnowledge.FMZ, menuFileSave, null);
     refresh();
   }
 
