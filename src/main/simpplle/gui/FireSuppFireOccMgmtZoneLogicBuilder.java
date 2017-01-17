@@ -127,6 +127,8 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     JMenu menuKnowledgeSource = new JMenu("Knowledge Source");
     menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
 
+    // Header Panel
+
     JLabel zoneLabel = new JLabel(Formatting.fixedField("Zone", 0, true));
     zoneLabel.setHorizontalTextPosition(SwingConstants.LEFT);
     zoneLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
@@ -141,6 +143,12 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     JLabel responseLabel = new JLabel(Formatting.fixedField("Response time (hours)", 0, true));
     responseLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
 
+    headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 60, 0));
+    headerPanel.add(zoneLabel);
+    headerPanel.add(acreLabel);
+    headerPanel.add(fireTotalLabel);
+    headerPanel.add(responseLabel);
+
     // Menu Bar
 
     JMenuBar menuBar = new JMenuBar();
@@ -150,12 +158,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     setJMenuBar(menuBar);
 
     mainPanel.setLayout(boxLayout);
-    headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 60, 0));
-
-    headerPanel.add(zoneLabel);
-    headerPanel.add(acreLabel);
-    headerPanel.add(fireTotalLabel);
-    headerPanel.add(responseLabel);
 
     scrollBar.setPreferredSize(new Dimension(600, 600));
     scrollBar.setColumnHeaderView(headerPanel);
