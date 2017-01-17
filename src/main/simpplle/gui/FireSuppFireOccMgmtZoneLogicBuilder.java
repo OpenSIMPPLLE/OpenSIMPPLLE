@@ -17,10 +17,9 @@ import simpplle.JSimpplle;
 import simpplle.comcode.*;
 
 /**
- * This Class handles the creation of the 'Fire Occurrence and Management Zones' editor.
- * Its purpose is to display and edit information about regional fire management zones as well as
- * the creation, deletion and manipulation of new zones within the region.
- *
+ * This dialog allows users to create and edit fire management zones. Users can create additional
+ * zones and delete non-default zones. Each zone has a number of acres, the number of fire starts
+ * in the past 10 years, and a response time in hours.
  */
 
 class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
