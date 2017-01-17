@@ -35,10 +35,10 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private JMenuItem menuActionDelete;
   private JMenuItem menuActionDeleteAll;
   private JMenuItem menuFileClose;
-  private JMenuItem menuFileDefault;
-  private JMenuItem menuFileImportOldFile;
+  private JMenuItem menuFileLoadDefaultData;
+  private JMenuItem menuFileImportOldFormat;
   private JMenuItem menuFileOpen;
-  private JMenuItem menuFileQuit;
+  private JMenuItem menuCloseDialog;
   private JMenuItem menuFileSave;
   private JMenuItem menuFileSaveAs;
   private JMenuItem menuKnowledgeSourceDisplay;
@@ -59,55 +59,55 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     // File Menu
 
     menuFileOpen = new JMenuItem("Open");
-    menuFileOpen.addActionListener(this::menuFileOpen_actionPerformed);
+    menuFileOpen.addActionListener(this::openFile);
 
     menuFileClose = new JMenuItem("Close");
     menuFileClose.setEnabled(false);
-    menuFileClose.addActionListener(this::menuFileClose_actionPerformed);
+    menuFileClose.addActionListener(this::closeFile);
 
-    menuFileImportOldFile = new JMenuItem("Import Old Format File");
-    menuFileImportOldFile.addActionListener(this::menuImportOldFile_actionPerformed);
+    menuFileImportOldFormat = new JMenuItem("Import Old Format File");
+    menuFileImportOldFormat.addActionListener(this::importOldFormatFile);
 
-    menuFileDefault = new JMenuItem("Load Default Data");
-    menuFileDefault.setToolTipText("Load default fmz data file for the current zone");
-    menuFileDefault.addActionListener(this::menuFileDefault_actionPerformed);
+    menuFileLoadDefaultData = new JMenuItem("Load Default Data");
+    menuFileLoadDefaultData.setToolTipText("Load default fmz data file for the current zone");
+    menuFileLoadDefaultData.addActionListener(this::loadDefaultData);
 
     menuFileSave = new JMenuItem("Save");
     menuFileSave.setEnabled(false);
-    menuFileSave.addActionListener(this::menuFileSave_actionPerformed);
+    menuFileSave.addActionListener(this::saveFile);
 
     menuFileSaveAs = new JMenuItem("Save As");
-    menuFileSaveAs.addActionListener(this::menuFileSaveAs_actionPerformed);
+    menuFileSaveAs.addActionListener(this::saveFileAs);
 
-    menuFileQuit = new JMenuItem("Close Dialog");
-    menuFileQuit.addActionListener(this::menuFileQuit_actionPerformed);
+    menuCloseDialog = new JMenuItem("Close Dialog");
+    menuCloseDialog.addActionListener(this::closeDialog);
 
     JMenu menuFile = new JMenu();
     menuFile.setText("File");
     menuFile.add(menuFileOpen);
     menuFile.add(menuFileClose);
     menuFile.addSeparator();
-    menuFile.add(menuFileImportOldFile);
+    menuFile.add(menuFileImportOldFormat);
     menuFile.addSeparator();
-    menuFile.add(menuFileDefault);
+    menuFile.add(menuFileLoadDefaultData);
     menuFile.addSeparator();
     menuFile.add(menuFileSave);
     menuFile.add(menuFileSaveAs);
     menuFile.addSeparator();
-    menuFile.add(menuFileQuit);
+    menuFile.add(menuCloseDialog);
 
     // Action menu
 
     menuActionCreate = new JMenuItem("Create New Zone");
-    menuActionCreate.addActionListener(this::menuActionCreate_actionPerformed);
+    menuActionCreate.addActionListener(this::createNewZone);
 
     menuActionDelete = new JMenuItem("Delete Fmz");
-    menuActionDelete.setEnabled(false);
     menuActionDelete.setActionCommand("Select an Fmz to delete");
-    menuActionDelete.addActionListener(this::menuActionDelete_actionPerformed);
+    menuActionDelete.addActionListener(this::deleteZone);
+    menuActionDelete.setEnabled(false);
 
     menuActionDeleteAll = new JMenuItem("Delete All Zones");
-    menuActionDeleteAll.addActionListener(this::menuActionDeleteAll_actionPerformed);
+    menuActionDeleteAll.addActionListener(this::deleteAllZones);
 
     JMenu menuAction = new JMenu("Actions");
     menuAction.add(menuActionCreate);
@@ -117,7 +117,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     // Knowledge Source Menu
 
     menuKnowledgeSourceDisplay = new JMenuItem("Display");
-    menuKnowledgeSourceDisplay.addActionListener(this::menuKnowledgeSourceDisplay_actionPerformed);
+    menuKnowledgeSourceDisplay.addActionListener(this::displayKnowledgeSource);
 
     JMenu menuKnowledgeSource = new JMenu("Knowledge Source");
     menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
@@ -260,7 +260,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   // File Menu
-  private void menuFileOpen_actionPerformed(ActionEvent e) {
+  private void openFile(ActionEvent e) {
     Area area = Simpplle.getCurrentArea();
     if (area != null && !continueDespiteLoadedArea()) {
       return;
@@ -278,7 +278,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     Update();
   }
 
-  private void menuFileClose_actionPerformed(ActionEvent e) {
+  private void closeFile(ActionEvent e) {
     int    choice;
     String msg;
 
@@ -301,7 +301,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     loadDefaultDataFile();
   }
 
-  private void menuImportOldFile_actionPerformed(ActionEvent e) {
+  private void importOldFormatFile(ActionEvent e) {
     File outfile;
     boolean changed;
     Area area;
@@ -352,11 +352,11 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     }
   }
 
-  private void menuFileDefault_actionPerformed(ActionEvent e) {
+  private void loadDefaultData(ActionEvent e) {
     loadDefaultDataFile();
   }
 
-  private void menuFileSave_actionPerformed(ActionEvent e) {
+  private void saveFile(ActionEvent e) {
     File outfile = SystemKnowledge.getFile(SystemKnowledge.FMZ);
     SystemKnowledgeFiler.saveFile(this, outfile, SystemKnowledge.FMZ,
         menuFileSave, menuFileClose);
@@ -364,20 +364,20 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     refresh();
   }
 
-  private void menuFileSaveAs_actionPerformed(ActionEvent e) {
+  private void saveFileAs(ActionEvent e) {
     SystemKnowledgeFiler.saveFile(this, SystemKnowledge.FMZ, menuFileSave,
         menuFileClose);
 
     refresh();
   }
 
-  private void menuFileQuit_actionPerformed(ActionEvent e) {
+  private void closeDialog(ActionEvent e) {
     setVisible(false);
     dispose();
   }
 
   // Action menu
-  private void menuActionCreate_actionPerformed(ActionEvent e) {
+  private void createNewZone(ActionEvent e) {
     String msg = "Fire Management Zone Name";
     String title = "Create new Fire Management Zone";
     String name = JOptionPane.showInputDialog(this, msg, title,
@@ -394,13 +394,13 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     Update();
   }
 
-  private void menuActionDelete_actionPerformed(ActionEvent e) {
+  private void deleteZone(ActionEvent e) {
     DeleteFmzDialog dlg = new DeleteFmzDialog(JSimpplle.getSimpplleMain(),"Delete Fmz",true);
     dlg.setVisible(true);
     Update();
   }
 
-  private void menuActionDeleteAll_actionPerformed(ActionEvent e) {
+  private void deleteAllZones(ActionEvent e) {
     String msg;
     int    choice;
 
@@ -420,7 +420,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   // Knowledge source
-  private void menuKnowledgeSourceDisplay_actionPerformed(ActionEvent e) {
+  private void displayKnowledgeSource(ActionEvent e) {
     String str = SystemKnowledge.getSource(SystemKnowledge.FMZ);
     String title = "Fire Occurrence Input Knowledge Source";
 
