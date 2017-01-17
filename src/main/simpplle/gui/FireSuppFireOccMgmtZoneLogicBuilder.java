@@ -34,8 +34,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private JPanel headerPanel;
   private JScrollPane scrollBar;
 
-  private BoxLayout boxLayout;
-
   private JMenuItem menuActionCreate;
   private JMenuItem menuActionDelete;
   private JMenuItem menuActionDeleteAll;
@@ -158,10 +156,8 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuBar.add(menuKnowledgeSource);
     setJMenuBar(menuBar);
 
-    boxLayout = new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS);
-
     mainPanel = new JPanel();
-    mainPanel.setLayout(boxLayout);
+    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
     scrollBar = new JScrollPane(mainPanel);
     scrollBar.setPreferredSize(new Dimension(600, 600));
