@@ -178,7 +178,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
       allFmz = currentZone.getAllFmzNames();
     }
     Fmz[] fmzArray = currentZone.getAllFmz();
-    drawInfoPanels();
+    recreateFmzPanels();
     menuActionDelete.setEnabled((fmzArray.length != 1));
   }
 
@@ -206,7 +206,8 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     return true;
   }
 
-  private void drawInfoPanels() {
+  private void recreateFmzPanels() {
+    mainPanel.removeAll();
     for (Fmz item : currentZone.getAllFmz()) {
       mainPanel.add(new FmzPanel(item));
     }
@@ -216,10 +217,8 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     Fmz[] fmzArray = currentZone.getAllFmz();
 
     outterPanel.remove(innerPanel);
-    mainPanel.removeAll();
 
-    // Redraw
-    drawInfoPanels();
+    recreateFmzPanels();
 
     // Add everything back to window
     outterPanel.add(innerPanel, BorderLayout.CENTER);
