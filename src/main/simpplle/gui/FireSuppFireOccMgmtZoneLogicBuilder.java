@@ -349,29 +349,23 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   private void deleteAllZones(ActionEvent e) {
-    String msg;
-    int    choice;
-
-    msg = "This action will delete all Fire Management Zones,\n" +
-        "except the default zone.\n" +
-        "** If an area is loaded all units will be set to\n" +
-        "default FMZ.\n\n" +
-        "Are you sure?";
-    choice = JOptionPane.showConfirmDialog(this,msg,"Delete current FMZ.",
-        JOptionPane.YES_NO_OPTION,
-        JOptionPane.QUESTION_MESSAGE);
-
+    int choice = JOptionPane.showConfirmDialog(this,
+                                               "This action will delete all non-default fire\n" +
+                                               "management zones. If an area is loaded, then\n" +
+                                               "all units will be assigned the default zone.\n\n" +
+                                               "Do you wish to continue?",
+                                               "Delete current FMZ.",
+                                               JOptionPane.YES_NO_OPTION,
+                                               JOptionPane.QUESTION_MESSAGE);
     if (choice == JOptionPane.YES_OPTION) {
       currentZone.removeAllFmz();
       update();
     }
   }
 
-  // Knowledge source
   private void displayKnowledgeSource(ActionEvent e) {
     String str = SystemKnowledge.getSource(SystemKnowledge.FMZ);
     String title = "Fire Occurrence Input Knowledge Source";
-
     KnowledgeSource dlg = new KnowledgeSource(JSimpplle.getSimpplleMain(),title,true,str);
     dlg.setVisible(true);
   }
