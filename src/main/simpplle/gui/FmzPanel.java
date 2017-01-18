@@ -13,7 +13,6 @@ import java.awt.event.*;
 import java.text.NumberFormat;
 import javax.swing.*;
 import simpplle.comcode.Fmz;
-import simpplle.comcode.Formatting;
 
 /**
  * This panel displays the attributes of a single fire management zone.
@@ -95,6 +94,33 @@ class FmzPanel extends JPanel {
 
   }
 
+  private void updateAcres() {
+    float acres = Float.parseFloat(acreText.getText());
+    if (acres <= 0.0f){
+      throw new NumberFormatException("Value must be greater than 0.0");
+    }
+    workingZone.setAcres(acres);
+  }
+
+  private void updateFireTotal() {
+    workingZone.setNaturalFires(Fmz.A, Float.parseFloat(totalFireText.getText()));
+    workingZone.setNaturalFires(Fmz.B, 0.0f);
+    workingZone.setNaturalFires(Fmz.C, 0.0f);
+    workingZone.setNaturalFires(Fmz.D, 0.0f);
+    workingZone.setNaturalFires(Fmz.E, 0.0f);
+    workingZone.setNaturalFires(Fmz.F, 0.0f);
+    workingZone.setManmadeFires(Fmz.A, 0.0f);
+    workingZone.setManmadeFires(Fmz.B, 0.0f);
+    workingZone.setManmadeFires(Fmz.C, 0.0f);
+    workingZone.setManmadeFires(Fmz.D, 0.0f);
+    workingZone.setManmadeFires(Fmz.E, 0.0f);
+    workingZone.setManmadeFires(Fmz.F, 0.0f);
+  }
+
+  private void updateResponseTime() {
+    workingZone.setResponseTime(Float.parseFloat(responseText.getText()));
+  }
+
   // Action Listeners
   private void acreText_ActionPerformed(ActionEvent e){
     try{
@@ -107,7 +133,7 @@ class FmzPanel extends JPanel {
   }
 
   private void fireText_ActionPerformed(ActionEvent e){
-      updateFire();
+    updateFireTotal();
   }
   private void responseText_ActionPerformed(ActionEvent e){
     updateResponseTime();
@@ -139,7 +165,7 @@ class FmzPanel extends JPanel {
 
     @Override
     public void focusLost(FocusEvent e) {
-      updateFire();
+      updateFireTotal();
     }
   }
 
@@ -153,40 +179,5 @@ class FmzPanel extends JPanel {
 
       updateResponseTime();
     }
-  }
-
-  private void updateAcres(){
-    String newText;
-    float newAcres;
-
-    newText = acreText.getText();
-    newAcres = Float.parseFloat(newText);
-
-    // Checks for zero acres
-    if(!(newAcres > 0.0f)){
-      throw new NumberFormatException("Value must be greater than 0.0");
-    }
-    workingZone.setAcres(newAcres);
-  }
-
-  private void updateFire(){
-    String newText;
-    float newFireTotal;
-
-    newText = totalFireText.getText();
-    newFireTotal = Float.parseFloat(newText);
-
-    // Use first natural fire class to hold total
-    workingZone.setNaturalFires(Fmz.A,newFireTotal);
-  }
-
-  private void updateResponseTime(){
-    String newText;
-    float newResponse;
-
-    newText = responseText.getText();
-    newResponse = Float.parseFloat(newText);
-
-    workingZone.setResponseTime(newResponse);
   }
 }
