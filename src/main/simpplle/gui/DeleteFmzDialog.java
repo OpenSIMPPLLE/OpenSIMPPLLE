@@ -98,23 +98,19 @@ class DeleteFmzDialog extends JDialog {
   }
 
   private void deleteZone(){
-    String optionMsg;
-    int choice;
 
-    optionMsg = "This action will delete any selected FMZ(s).\n" +
-        "If an area is loaded, any unit assigned to these\n" +
-        "FMZ(s) will be reset to the default FMZ.\n\n" +
-        "Are you sure?";
-
-    choice = JOptionPane.showConfirmDialog(this,optionMsg,"Delete an FMZ.",
-        JOptionPane.YES_NO_OPTION,
-        JOptionPane.QUESTION_MESSAGE);
+    int choice = JOptionPane.showConfirmDialog(this,
+                                               "This action will delete any selected zones.\n" +
+                                               "If an area is loaded, any unit assigned to these\n" +
+                                               "zones will be reset to the default zone.\n\n" +
+                                               "Do you wish to continue?",
+                                               "Delete Zone",
+                                               JOptionPane.YES_NO_OPTION,
+                                               JOptionPane.QUESTION_MESSAGE);
 
     if (choice == JOptionPane.YES_OPTION) {
-      java.util.List removeList= fmzList.getSelectedValuesList();
-
       RegionalZone zone = Simpplle.getCurrentZone();
-      for(Object item: removeList){
+      for (Object item : fmzList.getSelectedValuesList()) {
         zone.removeFmz((Fmz)item);
       }
     }
