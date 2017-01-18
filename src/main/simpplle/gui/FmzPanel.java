@@ -16,11 +16,7 @@ import simpplle.comcode.Fmz;
 import simpplle.comcode.Formatting;
 
 /**
- *
- * This class handles the creaion and manpulation of 'fmz panels'
- * These panels contain information about the all of the current fmzs present in this particular
- * zone.
- *
+ * This panel displays the attributes of a single fire management zone.
  */
 
 class FmzPanel extends JPanel {
