@@ -98,25 +98,25 @@ class DeleteFmzDialog extends JDialog {
   }
 
   private void deleteZone(){
-
-    int choice = JOptionPane.showConfirmDialog(this,
-                                               "This action will delete any selected zones.\n" +
-                                               "If an area is loaded, any unit assigned to these\n" +
-                                               "zones will be reset to the default zone.\n\n" +
-                                               "Do you wish to continue?",
-                                               "Delete Zone",
-                                               JOptionPane.YES_NO_OPTION,
-                                               JOptionPane.QUESTION_MESSAGE);
-
-    if (choice == JOptionPane.YES_OPTION) {
-      RegionalZone zone = Simpplle.getCurrentZone();
-      for (Object item : fmzList.getSelectedValuesList()) {
-        zone.removeFmz((Fmz)item);
+    if (Simpplle.getCurrentArea() != null) {
+      int choice = JOptionPane.showConfirmDialog(this,
+                                                 "This action will delete the selected zones.\n" +
+                                                 "Units assigned to these zones in the current\n" +
+                                                 "area will be reassigned to the default zone.\n\n" +
+                                                 "Do you wish to continue?",
+                                                 "Delete Zone",
+                                                 JOptionPane.YES_NO_OPTION,
+                                                 JOptionPane.QUESTION_MESSAGE);
+      if (choice == JOptionPane.NO_OPTION) {
+        return;
       }
+    }
+    RegionalZone regionalZone = Simpplle.getCurrentZone();
+    for (Object item : fmzList.getSelectedValuesList()) {
+      regionalZone.removeFmz((Fmz)item);
     }
   }
 
-  // Action handlers
   private void selectOk(ActionEvent e){
     if (fmzList.isSelectionEmpty()) {
       JOptionPane.showMessageDialog(this,"Please select an Fmz","No Fmz Selected",JOptionPane.WARNING_MESSAGE);
