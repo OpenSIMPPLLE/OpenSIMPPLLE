@@ -349,7 +349,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   private void deleteZone(ActionEvent e) {
-    DeleteFmzDialog dlg = new DeleteFmzDialog(JSimpplle.getSimpplleMain(),"Delete Fmz",true);
+    DeleteFmzDialog dlg = new DeleteFmzDialog(JSimpplle.getSimpplleMain(),"Delete Zone",true);
     dlg.setVisible(true);
     update();
   }
