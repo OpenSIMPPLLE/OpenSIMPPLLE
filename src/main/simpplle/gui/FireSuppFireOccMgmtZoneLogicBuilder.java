@@ -94,8 +94,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuActionCreate = new JMenuItem("Create New Zone");
     menuActionCreate.addActionListener(this::createNewZone);
 
-    menuActionDelete = new JMenuItem("Delete Fmz");
-    menuActionDelete.setActionCommand("Select an Fmz to delete");
+    menuActionDelete = new JMenuItem("Delete Zone");
     menuActionDelete.addActionListener(this::deleteZone);
     menuActionDelete.setEnabled(false);
 
@@ -330,22 +329,17 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     dispose();
   }
 
-  // Action menu
   private void createNewZone(ActionEvent e) {
-    String msg = "Fire Management Zone Name";
-    String title = "Create new Fire Management Zone";
-    String name = JOptionPane.showInputDialog(this, msg, title,
-        JOptionPane.PLAIN_MESSAGE);
-    if (name == null) {
-      return;
+    String name = JOptionPane.showInputDialog(this,
+                                              "Fire Management Zone Name",
+                                              "Create New Zone",
+                                              JOptionPane.PLAIN_MESSAGE);
+    if (name != null) {
+      Fmz fmz = new Fmz();
+      fmz.setName(name.toLowerCase());
+      currentZone.addFmz(fmz);
+      update();
     }
-
-    name = name.toLowerCase();
-    Fmz newFmz = new Fmz();
-    newFmz.setName(name);
-
-    currentZone.addFmz(newFmz);
-    update();
   }
 
   private void deleteZone(ActionEvent e) {
