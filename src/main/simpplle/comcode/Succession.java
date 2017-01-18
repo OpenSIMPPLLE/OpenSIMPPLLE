@@ -274,7 +274,7 @@ public class Succession extends Process {
     int              numAdj;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData  = evu.getNeighborhood();
+    adjacentData  = evu.getAdjacentDataNotNull();
     numAdj        = adjacentData.length;
     htGrp         = evu.getHabitatTypeGroup();
 
@@ -443,7 +443,7 @@ public class Succession extends Process {
     int              numAdj;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData = evu.getNeighborhood();
+    adjacentData = evu.getAdjacentDataNotNull();
     numAdj        = adjacentData.length;
     htGrp         = evu.getHabitatTypeGroup();
 

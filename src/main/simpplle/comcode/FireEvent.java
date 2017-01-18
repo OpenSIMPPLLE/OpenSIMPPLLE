@@ -658,7 +658,7 @@ public class FireEvent extends Process {
     int              numAdj;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData = evu.getNeighborhood();
+    adjacentData = evu.getAdjacentDataNotNull();
     numAdj        = adjacentData.length;
     htGrp         = evu.getHabitatTypeGroup();
 
@@ -861,7 +861,7 @@ public class FireEvent extends Process {
     HabitatTypeGroupType groupType;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData = evu.getNeighborhood();
+    adjacentData = evu.getAdjacentDataNotNull();
     numAdj        = adjacentData.length;
     htGrp         = evu.getHabitatTypeGroup();
 

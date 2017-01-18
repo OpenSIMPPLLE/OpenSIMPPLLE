@@ -2805,10 +2805,28 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the data for adjacent Evu
+   * Indices of adjacent data are determined by the angle of relation. Entries may be null
    * @return the Adjacent Evu data array
    */
   public AdjacentData[] getNeighborhood() { return neighborhood; }
+
+  /**
+   * <b>Indices in this collection have no relation to angle</b>
+   * This is used for methods that do not require adjacent data to be in sorted order, but does
+   * require that none of the values are null
+   * @return a collection of adjacent data objects that are not null.
+   * @see this.getNeighborhood()
+   */
+  public AdjacentData[] getAdjacentDataNotNull() {
+    List<AdjacentData> sanitizedNeighbors = new ArrayList<AdjacentData>();
+    for (AdjacentData neighbor : neighborhood){
+      if (neighbor != null) {
+        sanitizedNeighbors.add(neighbor);
+      }
+    }
+    AdjacentData[] collection = new AdjacentData[sanitizedNeighbors.size()];
+    return sanitizedNeighbors.toArray(collection);
+  }
 
   /**
    * Loops through adjacent evus in an area, counts them and checks their ID's validity.
