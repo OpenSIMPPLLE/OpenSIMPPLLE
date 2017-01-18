@@ -339,12 +339,27 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
                                               "Fire Management Zone Name",
                                               "Create New Zone",
                                               JOptionPane.PLAIN_MESSAGE);
-    if (name != null) {
-      Fmz fmz = new Fmz();
-      fmz.setName(name.toLowerCase());
-      currentZone.addFmz(fmz);
-      update();
+
+    if (name == null) {
+      return;
     }
+
+    for (Fmz fmz : currentZone.getAllFmz()) {
+      if (fmz.getName().equalsIgnoreCase(name)) {
+        JOptionPane.showMessageDialog(this,
+                                      "A zone with this name already exists.",
+                                      "Zone Not Created",
+                                      JOptionPane.ERROR_MESSAGE);
+        return;
+      }
+    }
+
+    Fmz fmz = new Fmz();
+    fmz.setName(name.toLowerCase());
+    currentZone.addFmz(fmz);
+
+    update();
+
   }
 
   private void deleteZone(ActionEvent e) {
