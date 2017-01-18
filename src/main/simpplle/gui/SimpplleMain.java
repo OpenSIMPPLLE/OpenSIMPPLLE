@@ -81,8 +81,6 @@ public class SimpplleMain extends JFrame {
   JMenuItem menuSysKnowVegProcLock = new JMenuItem();
   JMenuItem menuSysKnowFireEventLogic = new JMenuItem();
   JMenuItem menuSysKnowFireProb = new JMenuItem();
-  JMenuItem menuSysKnowFireCost = new JMenuItem();
-  JMenuItem menuSysKnowFireInput = new JMenuItem();
   JMenuItem jMenuItem1 = new JMenuItem();
   JMenuItem menuSysKnowAquaticTreat = new JMenuItem();
   JMenu menuExportGIS = new JMenu();
@@ -169,9 +167,9 @@ public class SimpplleMain extends JFrame {
   JMenuItem menuSysKnowCellPerc = new JMenuItem("Keane Cell Percolation");
   JMenuItem menuHelpUserGuide = new JMenuItem();
   JMenuItem MenuUtilityJavaHeap = new JMenuItem();
-  JMenuItem menuSysKnowFireSuppProdRate = new JMenuItem();
   JMenuItem menuSysKnowFireSuppSpreadRate = new JMenuItem();
-  JMenuItem menuSysKnowFireSuppResponseTime = new JMenuItem();
+  JMenuItem menuSysKnowFireSuppProdRate = new JMenuItem();
+  JMenuItem menuSysKnowFireOccMgmtZone = new JMenuItem();
   JMenuItem menuSysKnowSpeciesKnowledgeEditor = new JMenuItem();
   JCheckBoxMenuItem menuUtilityZoneEdit = new JCheckBoxMenuItem();
   JMenuItem menuImportFSLandscape = new JMenuItem();
@@ -399,22 +397,7 @@ public class SimpplleMain extends JFrame {
         menuSysKnowFireProb_actionPerformed(e);
       }
     });
-    menuSysKnowFireCost.setEnabled(false);
-    menuSysKnowFireCost.setText("Fire Suppression Cost");
-    menuSysKnowFireCost.addActionListener(new java.awt.event.ActionListener() {
 
-      public void actionPerformed(ActionEvent e) {
-        menuSysKnowFireCost_actionPerformed(e);
-      }
-    });
-    menuSysKnowFireInput.setEnabled(false);
-    menuSysKnowFireInput.setText("Fire Occurrence Input");
-    menuSysKnowFireInput.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        menuSysKnowFireInput_actionPerformed(e);
-      }
-    });
     jMenuItem1.setEnabled(false);
     jMenuItem1.setText("Aquatic Process");
     menuSysKnowAquaticTreat.setEnabled(false);
@@ -494,7 +477,6 @@ public class SimpplleMain extends JFrame {
         menuInterpretProbCalc_actionPerformed(e);
       }
     });
-
 
     menuInterpretWildlife.setEnabled(false);
     menuInterpretWildlife.setText("Wildlife Habitat");
@@ -844,7 +826,6 @@ public class SimpplleMain extends JFrame {
         menuResultLandformSum_actionPerformed(e);
       }
     });
-
     menuSysKnowVegTreatDesired.setEnabled(false);
     menuSysKnowVegTreatDesired.setText("Desired Future Conditions");
     menuSysKnowVegTreatDesired.addActionListener(new java.awt.event.ActionListener() {
@@ -896,10 +877,10 @@ public class SimpplleMain extends JFrame {
             menuSysKnowFireSuppSpreadRate_actionPerformed(e);
         }
     });
-    menuSysKnowFireSuppResponseTime.setText("Response Time");
-    menuSysKnowFireSuppResponseTime.addActionListener(new java.awt.event.ActionListener() {
+    menuSysKnowFireOccMgmtZone.setText("Fire Occurrence and Management Zones");
+    menuSysKnowFireOccMgmtZone.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        menuSysKnowFireSuppResponseTime_actionPerformed(e);
+        menuSysKnowFireSuppFireOccMgmtZone_actionPerformed(e);
       }
     });
     menuSysKnowSpeciesKnowledgeEditor.setEnabled(false);
@@ -1071,7 +1052,6 @@ public class SimpplleMain extends JFrame {
         menuSysKnowVegUnitFireTypeLogic_actionPerformed(e);
       }
     });
-
     menuSysKnowInvasive.setEnabled(false);
     menuSysKnowInvasive.setText("Invasive Species Logic");
     menuSysKnowInvasiveLogicR1.setEnabled(false);
@@ -1208,9 +1188,6 @@ public class SimpplleMain extends JFrame {
     menuSysKnowVegProc.add(menuSysKnowVegProcLock);
     menuSysKnowVegProc.addSeparator();
     menuSysKnowVegProc.add(menuSysKnowFireEventLogic);
-    menuSysKnowVegProc.add(menuSysKnowFireProb);
-    menuSysKnowVegProc.add(menuSysKnowFireCost);
-    menuSysKnowVegProc.add(menuSysKnowFireInput);
     menuSysKnowVegProc.add(menuSysKnowFireSeason);
     menuSysKnowVegProc.add(menuSysKnowFireSpread);
     menuSysKnowFireSpread.add(menuSysKnowCellPerc);
@@ -1297,7 +1274,8 @@ public class SimpplleMain extends JFrame {
     menuSysKnowFireSuppLogic.addSeparator();
     menuSysKnowFireSuppLogic.add(menuSysKnowFireSuppProdRate);
     menuSysKnowFireSuppLogic.add(menuSysKnowFireSuppSpreadRate);
-    menuSysKnowFireSuppLogic.add(menuSysKnowFireSuppResponseTime);
+    menuSysKnowFireSuppLogic.add(menuSysKnowFireOccMgmtZone);
+
     menuMagis.add(menuMagisProcessTreatmentFiles);
     menuMagis.add(menuMagisAllVegStates);
     menuSysKnowInvasive.add(menuSysKnowInvasiveLogicR1);
@@ -1513,8 +1491,6 @@ public class SimpplleMain extends JFrame {
   public void enableZoneControls() {
     newArea.setEnabled(true);
     menuSysKnowFireEventLogic.setEnabled(true);
-    menuSysKnowFireCost.setEnabled(true);
-    menuSysKnowFireInput.setEnabled(true);
     menuSysKnowFireProb.setEnabled(true);
     menuSysKnowRegionalClimate.setEnabled(true);
     menuImportCreate.setEnabled(true);
@@ -2256,17 +2232,6 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 
-  void menuSysKnowFireCost_actionPerformed(ActionEvent e) {
-    menuSysKnowFireInput_actionPerformed(e);
-  }
-
-  void menuSysKnowFireInput_actionPerformed(ActionEvent e) {
-    FmzEditor dlg = new FmzEditor(this,"Fmz Editor", true);
-    setDialogLocation(dlg);
-    dlg.setVisible(true);
-    refresh();
-  }
-
   void menuSysKnowFireProb_actionPerformed(ActionEvent e) {
     FireSpreadProb dlg = new FireSpreadProb(this,"Extreme Fire Spread Probability",true);
     setDialogLocation(dlg);
@@ -2276,10 +2241,6 @@ public class SimpplleMain extends JFrame {
 
   void menuSysKnowFireSuppLogicBeyondClassA_actionPerformed(ActionEvent e) {
     FireSuppBeyondClassALogicDlg dlg = new FireSuppBeyondClassALogicDlg(this,"Fire Suppression Logic for Fires Beyond Class A",true);
-
-//    FireSuppressionDialogBeyondClassA dlg =
-//      new FireSuppressionDialogBeyondClassA(this,"Fire Suppression for Fires Beyond Class A",true);
-
     setDialogLocation(dlg);
     dlg.setVisible(true);
     refresh();
@@ -2287,9 +2248,6 @@ public class SimpplleMain extends JFrame {
 
   void menuSysKnowFireSuppLogicClassA_actionPerformed(ActionEvent e) {
     FireSuppClassALogicDlg dlg = new FireSuppClassALogicDlg(this,"Fire Suppression for Class A Fires Logic",true);
-
-//    FireSuppression dlg = new FireSuppression(this,"Fire Suppression for Class A Fires",true);
-
     setDialogLocation(dlg);
     dlg.setVisible(true);
     refresh();
@@ -2313,7 +2271,6 @@ public class SimpplleMain extends JFrame {
 
   void menuSysKnowVegTreatSchedule_actionPerformed(ActionEvent e) {
     TreatmentSchedule dlg;
-
     dlg = new TreatmentSchedule(this,"Treatment Schedule",true);
     setDialogLocation(dlg);
     dlg.setVisible(true);
@@ -2336,7 +2293,6 @@ public class SimpplleMain extends JFrame {
 
   void menuSysKnowRegionalClimate_actionPerformed(ActionEvent e) {
     ClimateDialogWrapper dlg;
-
     dlg = new ClimateDialogWrapper(this,"Regional Climate Schedule",true);
     setDialogLocation(dlg.getDialog());
     dlg.getDialog().setVisible(true);
@@ -2345,7 +2301,6 @@ public class SimpplleMain extends JFrame {
 
   void menuSysKnowVegProcLock_actionPerformed(ActionEvent e) {
     ProcessSchedule dlg = new ProcessSchedule(this,"Process Schedule",true);
-
     setDialogLocation(dlg);
     dlg.setVisible(true);
     refresh();
@@ -2379,7 +2334,6 @@ public class SimpplleMain extends JFrame {
     if (isVegPathwayDlgOpen()) { return; }
 
     Pathway dlg = new Pathway(this,false);
-
     setDialogLocation(dlg);
     setVegPathwayDlgOpen();
     dlg.setVisible(true);
@@ -2390,7 +2344,6 @@ public class SimpplleMain extends JFrame {
     if (isAquaticPathwayDlgOpen()) { return; }
 
     AquaticPathway dlg = new AquaticPathway(this,"Aquatic Pathways",false);
-
     setDialogLocation(dlg);
     setAquaticPathwayDlgOpen();
     dlg.setVisible(true);
@@ -3336,14 +3289,12 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
   }
 
-  void menuSysKnowFireSuppResponseTime_actionPerformed(ActionEvent e) {
-    String title = "Fire Suppression Response Time";
-    FireSuppResponseTimeLogicBuilder dlg = new FireSuppResponseTimeLogicBuilder(this, title, true);
+  void menuSysKnowFireSuppFireOccMgmtZone_actionPerformed(ActionEvent e) {
+    String title = "Fire Occurrence and Management Zones";
+    FmzEditor dlg = new FmzEditor(this, title, true);
     setDialogLocation(dlg);
     dlg.setVisible(true);
   }
-
-
 
   void menuSysKnowSpeciesKnowledgeEditor_actionPerformed(ActionEvent e) {
     String title = "Species Knowledge Editor";
@@ -3712,5 +3663,3 @@ public class SimpplleMain extends JFrame {
   }
 
 }
-
-

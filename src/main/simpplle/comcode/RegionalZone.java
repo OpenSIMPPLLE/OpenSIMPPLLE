@@ -11,10 +11,7 @@ package simpplle.comcode;
 import simpplle.JSimpplle;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -45,7 +42,7 @@ public abstract class RegionalZone {
   protected String   gisExtraFile;
   protected String[] gisFiles;
 
-  protected Hashtable<String,Fmz> allFmz;
+  protected TreeMap<String,Fmz> allFmz;
 
   protected ProcessType[] userProbProcesses;
 
@@ -93,7 +90,7 @@ public abstract class RegionalZone {
    * Creates a new regional zone with no historic pathways and no aquatics.
    */
   protected RegionalZone () {
-    allFmz           = new Hashtable();
+    allFmz           = new TreeMap<>();
     historicPathways = false;
     hasAquatics      = false;
     pathwayKnowFile  = null;
