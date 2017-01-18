@@ -3175,11 +3175,19 @@ public class SimpplleMain extends JFrame {
   }
 
   private void updateJavaHeapSize() {
-    File batFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.bat");
-    if (batFile.exists()) {
-      updateJavaHeapSizeBAT();
-      return;
-    }
+
+    String msg = "This Utility is used to change the heap size of SIMPPLLE.\n The heap size is the " +
+        "maximum amount of memory the program can use while running.";
+
+    JOptionPane.showMessageDialog(this,msg,"Change heap info",
+                                   JOptionPane.INFORMATION_MESSAGE);
+
+//    File batFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.bat");
+//    if (batFile.exists()) {
+//      System.out.println(".bat exists");
+//      updateJavaHeapSizeBAT();
+//      return;
+//    }
 
     File iniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini");
     if (iniFile.exists()) {
@@ -3191,11 +3199,8 @@ public class SimpplleMain extends JFrame {
     
   @SuppressWarnings("unused")
   private void updateJavaHeapSizeIni() {
-    File   iniFile, newIniFile;
-    int    newHeapSize;
-    String msg;
 
-    iniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini");
+    File iniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini");
     try {
       if (iniFile.exists() == false) {
         throw new SimpplleError("Could not find SIMPPLLE.ini file to modify.\n");
@@ -3208,14 +3213,15 @@ public class SimpplleMain extends JFrame {
 
 //      int mem = Integer.parseInt(memStr);
 
-      msg = "Enter Java Max Heap Size in MB";
-      newHeapSize = AskNumber.getInput("Java Max Heap Size (MB)",msg,(int)maxMem);
+
+      String msg = "Enter Java Max Heap Size in MB";
+      int newHeapSize = AskNumber.getInput("Java Max Heap Size (MB)",msg,(int)maxMem);
       if (newHeapSize == -1) { return; }
 
-      newIniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini.tmp");
+      File newIniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini.tmp");
 
       BufferedReader fin = new BufferedReader(new FileReader(iniFile));
-      PrintWriter    fout = new PrintWriter(new FileWriter(newIniFile));
+      PrintWriter fout = new PrintWriter(new FileWriter(newIniFile));
 
       String line = fin.readLine();
       while (line != null) {
@@ -3245,27 +3251,24 @@ public class SimpplleMain extends JFrame {
       if (iniFile.delete()) {
         newIniFile.renameTo(iniFile);
       }
-    }
-    catch (NumberFormatException err) {
+    } catch (NumberFormatException err) {
       JOptionPane.showMessageDialog(this,"Invalid Java heap size","",
                                     JOptionPane.ERROR_MESSAGE);
       return;
-    }
-    catch (Exception err) {
-      msg = "Unable to edit " + iniFile.toString() + "\n" + err.getMessage();
+
+    } catch (Exception err) {
+      String msg = "Unable to edit " + iniFile.toString() + "\n" + err.getMessage();
       JOptionPane.showMessageDialog(this,msg,"",JOptionPane.ERROR_MESSAGE);
       return;
+
     }
-    msg = "Change successful. Restart SIMPPLLE for changes to take effect.";
-    JOptionPane.showMessageDialog(this,msg,"",JOptionPane.ERROR_MESSAGE);
+    String msg = "Change successful. Restart SIMPPLLE for changes to take effect.";
+    JOptionPane.showMessageDialog(this,msg,"",JOptionPane.INFORMATION_MESSAGE);
   }
 
   private void updateJavaHeapSizeBAT() {
-    File   batFile, newBatFile;
-    int    newHeapSize;
-    String msg;
 
-    batFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.bat");
+    File batFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.bat");
     try {
       if (batFile.exists() == false) {
         throw new SimpplleError("Could not find SIMPPLLE.bat file to modify.\n");
@@ -3274,11 +3277,11 @@ public class SimpplleMain extends JFrame {
       String memStr = System.getProperty("simpplle.javamem");
       int mem = Integer.parseInt(memStr);
       
-      msg = "Enter Java Max Heap Size in MB";
-      newHeapSize = AskNumber.getInput("Java Max Heap Size (MB)",msg,mem);
+      String msg = "Enter Java Max Heap Size in MB";
+      int newHeapSize = AskNumber.getInput("Java Max Heap Size (MB)",msg,mem);
       if (newHeapSize == -1) { return; }
 
-      newBatFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.bat.tmp");
+      File newBatFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.bat.tmp");
 
       BufferedReader fin = new BufferedReader(new FileReader(batFile));
       PrintWriter    fout = new PrintWriter(new FileWriter(newBatFile));
@@ -3305,15 +3308,18 @@ public class SimpplleMain extends JFrame {
       return;
     }
     catch (Exception err) {
-      msg = "Unable to edit " + batFile.toString() + "\n" + err.getMessage();
+      String msg = "Unable to edit " + batFile.toString() + "\n" + err.getMessage();
       JOptionPane.showMessageDialog(this,msg,"",JOptionPane.ERROR_MESSAGE);
       return;
     }
-    msg = "Change successful. Restart SIMPPLLE for changes to take effect.";
+    String msg = "Change successful. Restart SIMPPLLE for changes to take effect.";
     JOptionPane.showMessageDialog(this,msg,"",JOptionPane.ERROR_MESSAGE);
   }
+
   void MenuUtilityJavaHeap_actionPerformed(ActionEvent e) {
+    System.out.println("enter action performed update heap");
     updateJavaHeapSize();
+    System.out.println("exited update heap");
   }
 
   void menuSysKnowFireSuppProdRate_actionPerformed(ActionEvent e) {
@@ -3336,8 +3342,6 @@ public class SimpplleMain extends JFrame {
     setDialogLocation(dlg);
     dlg.setVisible(true);
   }
-
-
 
   void menuSysKnowSpeciesKnowledgeEditor_actionPerformed(ActionEvent e) {
     String title = "Species Knowledge Editor";
