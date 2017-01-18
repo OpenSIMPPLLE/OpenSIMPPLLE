@@ -68,21 +68,36 @@ class FmzPanel extends JPanel {
     acreText = new JTextField();
     acreText.setText(nf.format(workingZone.getAcres()));
     acreText.setHorizontalAlignment(JTextField.RIGHT);
-    acreText.addActionListener(this::acreText_ActionPerformed);
-    acreText.addFocusListener(new acre_Focus());
+    acreText.addActionListener(e -> updateAcres());
+    acreText.addFocusListener(new FocusAdapter() {
+      @Override
+      public void focusLost(FocusEvent e) {
+        updateAcres();
+      }
+    });
 
     totalFireText = new JTextField();
     totalFireText.setText(nf.format(totalFires));
     totalFireText.setHorizontalAlignment(JTextField.RIGHT);
     totalFireText.setLayout(new FlowLayout(FlowLayout.CENTER));
-    totalFireText.addActionListener(this::fireText_ActionPerformed);
-    totalFireText.addFocusListener(new fire_Focus());
+    totalFireText.addActionListener(e -> updateFireTotal());
+    totalFireText.addFocusListener(new FocusAdapter() {
+      @Override
+      public void focusLost(FocusEvent e) {
+        updateFireTotal();
+      }
+    });
 
     responseText = new JTextField();
     responseText.setText(nf.format(workingZone.getResponseTime()));
     responseText.setHorizontalAlignment(JTextField.RIGHT);
-    responseText.addActionListener(this::responseText_ActionPerformed);
-    responseText.addFocusListener(new response_Focus());
+    responseText.addActionListener(e -> updateResponseTime());
+    responseText.addFocusListener(new FocusAdapter() {
+      @Override
+      public void focusLost(FocusEvent e) {
+        updateResponseTime();
+      }
+    });
 
     setLayout(new GridLayout(1,4,10,0));
     setMaximumSize(new Dimension(1000,30));
@@ -96,10 +111,15 @@ class FmzPanel extends JPanel {
 
   private void updateAcres() {
     float acres = Float.parseFloat(acreText.getText());
-    if (acres <= 0.0f){
-      throw new NumberFormatException("Value must be greater than 0.0");
+    if (acres > 0.0f) {
+      workingZone.setAcres(acres);
+    } else {
+      JOptionPane.showMessageDialog(getParent(),
+                                    "Value must be greater than zero",
+                                    "Invalid Acreage",
+                                    JOptionPane.ERROR_MESSAGE);
+      acreText.requestFocus();
     }
-    workingZone.setAcres(acres);
   }
 
   private void updateFireTotal() {
@@ -119,65 +139,5 @@ class FmzPanel extends JPanel {
 
   private void updateResponseTime() {
     workingZone.setResponseTime(Float.parseFloat(responseText.getText()));
-  }
-
-  // Action Listeners
-  private void acreText_ActionPerformed(ActionEvent e){
-    try{
-      updateAcres();
-    } catch (NumberFormatException nfe){
-
-      JOptionPane.showMessageDialog(getParent(),nfe.getMessage(),"Invalid Number Entered",JOptionPane.ERROR_MESSAGE);
-      acreText.requestFocus();
-    }
-  }
-
-  private void fireText_ActionPerformed(ActionEvent e){
-    updateFireTotal();
-  }
-  private void responseText_ActionPerformed(ActionEvent e){
-    updateResponseTime();
-  }
-
-  // Focus listeners
-  private class acre_Focus implements FocusListener{
-
-    @Override
-    public void focusGained(FocusEvent e) {}
-
-    @Override
-    public void focusLost(FocusEvent e) {
-
-      try{
-        updateAcres();
-      } catch (NumberFormatException nfe){
-
-        JOptionPane.showMessageDialog(getParent(),nfe.getMessage(),"Invalid Number Entered",JOptionPane.ERROR_MESSAGE);
-        acreText.requestFocus();
-      }
-    }
-  }
-
-  private class fire_Focus implements FocusListener{
-
-    @Override
-    public void focusGained(FocusEvent e) {}
-
-    @Override
-    public void focusLost(FocusEvent e) {
-      updateFireTotal();
-    }
-  }
-
-  private class response_Focus implements FocusListener{
-
-    @Override
-    public void focusGained(FocusEvent e) {}
-
-    @Override
-    public void focusLost(FocusEvent e) {
-
-      updateResponseTime();
-    }
   }
 }
