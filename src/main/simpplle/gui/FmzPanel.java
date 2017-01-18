@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.text.NumberFormat;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import simpplle.comcode.Fmz;
 
 /**
@@ -63,7 +65,7 @@ class FmzPanel extends JPanel {
     nf.setMaximumFractionDigits(2);
 
     JLabel zoneLabel = new JLabel(workingZone.getName());
-    zoneLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
+    zoneLabel.setFont(new java.awt.Font("Monospaced", Font.PLAIN, 12));
 
     acreText = new JTextField();
     acreText.setText(nf.format(workingZone.getAcres()));
@@ -99,8 +101,9 @@ class FmzPanel extends JPanel {
       }
     });
 
-    setLayout(new GridLayout(1,4,10,0));
-    setMaximumSize(new Dimension(1000,30));
+    setBorder(new EmptyBorder(0,5,0,5));
+    setLayout(new GridLayout(1, 4, 5, 0));
+    setMaximumSize(new Dimension(1000, 30));
 
     add(zoneLabel);
     add(acreText);

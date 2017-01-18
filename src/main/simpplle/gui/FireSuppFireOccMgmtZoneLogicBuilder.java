@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicBorders;
 import java.util.Vector;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
@@ -28,8 +30,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private Vector<Fmz> allFmz;
 
   private JPanel innerPanel;
-  private JPanel outerPanel;
-  private JPanel mainPanel;
 
   private JMenuItem menuActionCreate;
   private JMenuItem menuActionDelete;
@@ -54,8 +54,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   private void jbInit() throws Exception {
-
-    // File Menu
 
     menuFileOpen = new JMenuItem("Open");
     menuFileOpen.addActionListener(this::openFile);
@@ -89,8 +87,6 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuFile.addSeparator();
     menuFile.add(menuCloseDialog);
 
-    // Action menu
-
     menuActionCreate = new JMenuItem("Create New Zone");
     menuActionCreate.addActionListener(this::createNewZone);
 
@@ -106,59 +102,68 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     menuAction.add(menuActionDelete);
     menuAction.add(menuActionDeleteAll);
 
-    // Knowledge Source Menu
-
     menuKnowledgeSourceDisplay = new JMenuItem("Display");
     menuKnowledgeSourceDisplay.addActionListener(this::displayKnowledgeSource);
 
     JMenu menuKnowledgeSource = new JMenu("Knowledge Source");
     menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
 
-    // Header Panel
+    JMenuBar menuBar = new JMenuBar();
+    menuBar.add(menuFile);
+    menuBar.add(menuAction);
+    menuBar.add(menuKnowledgeSource);
 
-    JLabel zoneLabel = new JLabel(Formatting.fixedField("Zone", 0, true));
-    zoneLabel.setHorizontalTextPosition(SwingConstants.LEFT);
-    zoneLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
+    setJMenuBar(menuBar);
 
-    JLabel acreLabel = new JLabel(Formatting.fixedField("Acres", 6));
-    acreLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
+    JLabel zoneLabel = new JLabel("Zone");
+    zoneLabel.setFont(new java.awt.Font("Monospaced", Font.BOLD, 12));
+    zoneLabel.setHorizontalAlignment(JLabel.CENTER);
+    zoneLabel.setVerticalAlignment(JLabel.CENTER);
 
-    JLabel fireTotalLabel = new JLabel(Formatting.fixedField("Starts per 10 years", 5));
-    fireTotalLabel.setHorizontalTextPosition(SwingConstants.LEADING);
-    fireTotalLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
+    JLabel acreLabel = new JLabel("Acres");
+    acreLabel.setFont(new java.awt.Font("Monospaced", Font.BOLD, 12));
+    acreLabel.setHorizontalAlignment(JLabel.CENTER);
+    acreLabel.setVerticalAlignment(JLabel.CENTER);
 
-    JLabel responseLabel = new JLabel(Formatting.fixedField("Response time (hours)", 0, true));
-    responseLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
+    JLabel fireTotalLabel = new JLabel("Starts Per Decade");
+    fireTotalLabel.setFont(new java.awt.Font("Monospaced", Font.BOLD, 12));
+    fireTotalLabel.setHorizontalAlignment(JLabel.CENTER);
+    fireTotalLabel.setVerticalAlignment(JLabel.CENTER);
 
-    JPanel headerPanel = new JPanel();
-    headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 60, 0));
+    JLabel responseLabel = new JLabel("Response Time (Hours)");
+    responseLabel.setFont(new java.awt.Font("Monospaced", Font.BOLD, 12));
+    responseLabel.setHorizontalAlignment(JLabel.CENTER);
+    responseLabel.setVerticalAlignment(JLabel.CENTER);
+
+    JPanel headerPanel = new JPanel(new GridLayout(1, 4, 5, 0));
+    headerPanel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+    headerPanel.setMaximumSize(new Dimension(1000, 30));
+    headerPanel.setBorder(new EmptyBorder(5,5,5,5));
     headerPanel.add(zoneLabel);
     headerPanel.add(acreLabel);
     headerPanel.add(fireTotalLabel);
     headerPanel.add(responseLabel);
 
-    // Menu Bar
+    JPanel headerGlue = new JPanel();
+    headerGlue.setLayout(new BoxLayout(headerGlue, BoxLayout.Y_AXIS));
+    headerGlue.add(headerPanel);
 
-    JMenuBar menuBar = new JMenuBar();
-    menuBar.add(menuFile);
-    menuBar.add(menuAction);
-    menuBar.add(menuKnowledgeSource);
-    setJMenuBar(menuBar);
+    innerPanel = new JPanel();
+    innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
 
-    mainPanel = new JPanel();
-    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+    JScrollPane scrollPane = new JScrollPane(innerPanel);
+    scrollPane.getVerticalScrollBar().setUnitIncrement(8);
+    scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-    JScrollPane scrollBar = new JScrollPane(mainPanel);
-    scrollBar.setPreferredSize(new Dimension(600, 600));
-    scrollBar.setColumnHeaderView(headerPanel);
-
-    innerPanel = new JPanel(new BorderLayout());
-    innerPanel.add(scrollBar, BorderLayout.CENTER);
-
-    outerPanel = new JPanel(new BorderLayout());
-    outerPanel.add(innerPanel, BorderLayout.CENTER);
+    JPanel outerPanel = new JPanel(new BorderLayout());
+    outerPanel.add(headerGlue, BorderLayout.NORTH);
+    outerPanel.add(scrollPane, BorderLayout.CENTER);
 
     add(outerPanel);
+
+    setPreferredSize(new Dimension(700, 600));
+    setMinimumSize(new Dimension(600, 300));
+
   }
 
   private void initialize() {
@@ -172,7 +177,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
     }
 
     for (Fmz item : currentZone.getAllFmz()) {
-      mainPanel.add(new FmzPanel(item));
+      innerPanel.add(new FmzPanel(item));
     }
 
     Fmz[] fmzArray = currentZone.getAllFmz();
@@ -186,9 +191,9 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
 
   private void update() {
 
-    mainPanel.removeAll();
+    innerPanel.removeAll();
     for (Fmz item : currentZone.getAllFmz()) {
-      mainPanel.add(new FmzPanel(item));
+      innerPanel.add(new FmzPanel(item));
     }
 
     Fmz[] fmzArray = currentZone.getAllFmz();
