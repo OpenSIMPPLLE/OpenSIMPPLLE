@@ -25,22 +25,11 @@ import simpplle.comcode.Simpplle;
 
 class DeleteFmzDialog extends JDialog {
 
-  private JList fmzList = new JList();
-  private JButton okButton = new JButton("Ok");
-  private JButton cancelButton = new JButton("Cancel");
-  private JScrollPane scrollPane = new JScrollPane();
-  private JPanel mainPanel = new JPanel();
-  private JPanel northPanel = new JPanel();
-  private JPanel southPanel = new JPanel();
-  private FlowLayout flowLayout2 = new FlowLayout();
-  private BorderLayout borderLayout1 = new BorderLayout();
-  private BorderLayout borderLayout2 = new BorderLayout();
-  RegionalZone zone = Simpplle.getCurrentZone();
+  private JList fmzList;
 
-DeleteFmzDialog(Frame frame, String title, boolean modal) {
+  DeleteFmzDialog(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     setLocationRelativeTo(frame);
-
     try  {
       jbInit();
       pack();
@@ -51,6 +40,8 @@ DeleteFmzDialog(Frame frame, String title, boolean modal) {
   }
 
   private void jbInit() throws Exception {
+
+    fmzList = new JList();
     fmzList.setBorder(BorderFactory.createRaisedBevelBorder());
     fmzList.setVisibleRowCount(20);
     fmzList.setForeground(Color.white);
@@ -60,25 +51,31 @@ DeleteFmzDialog(Frame frame, String title, boolean modal) {
     fmzList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     fmzList.addMouseListener(new MouseClicked());
 
+    JScrollPane scrollPane = new JScrollPane();
     scrollPane.setViewportView(fmzList);
 
-    northPanel.setLayout(borderLayout2);
+    JPanel northPanel = new JPanel();
+    northPanel.setLayout(new BorderLayout());
     northPanel.add(scrollPane, BorderLayout.CENTER);
 
+    JButton okButton = new JButton("Ok");
+    okButton.setMargin(new Insets(2, 14, 2, 14));
     okButton.setMaximumSize(new Dimension(73, 27));
     okButton.setMinimumSize(new Dimension(73, 27));
     okButton.setPreferredSize(new Dimension(73, 27));
-    okButton.setMargin(new Insets(2, 14, 2, 14));
     okButton.addActionListener(this::selectOk);
+
+    JButton cancelButton = new JButton("Cancel");
     cancelButton.addActionListener(this::selectCancel);
 
-    southPanel.setLayout(flowLayout2);
+    JPanel southPanel = new JPanel();
     southPanel.setBorder(BorderFactory.createEtchedBorder());
-
+    southPanel.setLayout(new FlowLayout());
     southPanel.add(okButton, null);
     southPanel.add(cancelButton, null);
 
-    mainPanel.setLayout(borderLayout1);
+    JPanel mainPanel = new JPanel();
+    mainPanel.setLayout(new BorderLayout());
     mainPanel.add(southPanel, BorderLayout.SOUTH);
     mainPanel.add(northPanel);
 
@@ -86,16 +83,17 @@ DeleteFmzDialog(Frame frame, String title, boolean modal) {
   }
 
   private void initialize() {
+
     DefaultListModel<Fmz> fmzData = new DefaultListModel();
+
+    RegionalZone zone = Simpplle.getCurrentZone();
     Fmz[] availFmz = zone.getAllFmz();
     Fmz defaultFmz = zone.getDefaultFmz();
 
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-    for(Fmz item: availFmz){
-
-      if(!item.equals(defaultFmz)){
-
+    for (Fmz item: availFmz) {
+      if (!item.equals(defaultFmz)) {
         fmzData.addElement(item);
       }
     }
@@ -115,9 +113,10 @@ DeleteFmzDialog(Frame frame, String title, boolean modal) {
         JOptionPane.YES_NO_OPTION,
         JOptionPane.QUESTION_MESSAGE);
 
-    if(choice == JOptionPane.YES_OPTION) {
+    if (choice == JOptionPane.YES_OPTION) {
       java.util.List removeList= fmzList.getSelectedValuesList();
 
+      RegionalZone zone = Simpplle.getCurrentZone();
       for(Object item: removeList){
         zone.removeFmz((Fmz)item);
       }
