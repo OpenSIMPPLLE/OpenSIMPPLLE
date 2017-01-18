@@ -30,7 +30,7 @@ import simpplle.comcode.Climate.*;
 public final class Evu extends NaturalElement implements Externalizable {
 
   static final long serialVersionUID        = -4593527729379592789L;
-  static final int  version                 = 9;
+  static final int  version                 = 10;
   static final int  accumDataVersion        = 1;
   static final int  spatialRelationsVersion = 1;
   private final int downwindThreshold = 45;
@@ -2964,9 +2964,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     */
   public String[] getAdjAnalysisDisplay() {
     String   pos, wind;
-    String[] strList = new String[neighborhood.length];
 
-    for(int i = 0; i< neighborhood.length; i++) {
+    AdjacentData[] adjacent = getAdjacentDataNotNull();
+    String[] strList = new String[adjacent.length];
+
+    for(int i = 0; i< adjacent.length; i++) {
       char posChar = Simpplle.getCurrentArea().calcRelativePosition(this, neighborhood[i]);
 
       switch (posChar) {
@@ -7358,20 +7360,21 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public void exportNeighbors(PrintWriter fout) {
     // unit, adj, elev, downwind
-    for (int i = 0; i< neighborhood.length; i++) {
-      fout.print(getId());
-      fout.print(COMMA);
-      fout.print(neighborhood[i].getEvu().getId());
-      fout.print(COMMA);
-      if (isElevationValid()) {
-        fout.print(getElevation());
+    for (AdjacentData neighbor : neighborhood) {
+      if (neighbor != null) {
+        fout.print(getId());
+        fout.print(COMMA);
+        fout.print(neighbor.getEvu().getId());
+        fout.print(COMMA);
+        if (isElevationValid()) {
+          fout.print(getElevation());
+        } else {
+          fout.print(neighbor.getPosition());
+        }
+        fout.print(COMMA);
+        fout.print(neighbor.getWind());
+        fout.println();
       }
-      else {
-        fout.print(neighborhood[i].getPosition());
-      }
-      fout.print(COMMA);
-      fout.print(neighborhood[i].getWind());
-      fout.println();
     }
   }
 
@@ -7382,24 +7385,25 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public void exportNeighborsKeane(PrintWriter fout){
     // unit, adj, elev, spread, wind speed, wind direction
-    for (int i = 0; i< neighborhood.length; i++) {
-      fout.print(getId());
-      fout.print(COMMA);
-      fout.print(neighborhood[i].getEvu().getId());
-      fout.print(COMMA);
-      if (isElevationValid()) {
-        fout.print(getElevation());
+    for (AdjacentData neighbor : neighborhood) {
+      if(neighbor != null) {
+        fout.print(getId());
+        fout.print(COMMA);
+        fout.print(neighbor.getEvu().getId());
+        fout.print(COMMA);
+        if (isElevationValid()) {
+          fout.print(getElevation());
+        } else {
+          fout.print(neighbor.getPosition());
+        }
+        fout.print(COMMA);
+        fout.print(neighbor.getSpread());
+        fout.print(COMMA);
+        fout.print(neighbor.getWindSpeed());
+        fout.print(COMMA);
+        fout.print(neighbor.getWindDirection());
+        fout.println();
       }
-      else {
-        fout.print(neighborhood[i].getPosition());
-      }
-      fout.print(COMMA);
-      fout.print(neighborhood[i].getSpread());
-      fout.print(COMMA);
-      fout.print(neighborhood[i].getWindSpeed());
-      fout.print(COMMA);
-      fout.print(neighborhood[i].getWindDirection());
-      fout.println();
     }
   }
   /**
@@ -8055,15 +8059,20 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     neighborhood = new AdjacentData[in.readInt()];
     for (int i = 0; i< neighborhood.length; i++) {
-      neighborhood[i] = new AdjacentData();
-      neighborhood[i].setEvu(area.getEvu(in.readInt()));
-      neighborhood[i].setPosition(in.readChar());
-      neighborhood[i].setWind(in.readChar());
-      if (version >= 9){
-        neighborhood[i].setSpread(in.readDouble());
-        neighborhood[i].setWindSpeed(in.readDouble());
-        neighborhood[i].setWindDirection(in.readDouble());
-        neighborhood[i].setSlope(in.readDouble());
+      int evuId = in.readInt();
+      if (evuId != -1) {
+        neighborhood[i] = new AdjacentData();
+        neighborhood[i].setEvu(area.getEvu(evuId));
+        neighborhood[i].setPosition(in.readChar());
+        neighborhood[i].setWind(in.readChar());
+        if (version >= 9) {
+          neighborhood[i].setSpread(in.readDouble());
+          neighborhood[i].setWindSpeed(in.readDouble());
+          neighborhood[i].setWindDirection(in.readDouble());
+          neighborhood[i].setSlope(in.readDouble());
+        }
+      } else { // Neighbor does not exist at this index, make null
+        neighborhood[i] = null;
       }
     }
   }
@@ -8072,19 +8081,33 @@ public final class Evu extends NaturalElement implements Externalizable {
    * This method writes the arrays explicitly to make things faster. Although writing out the actual
    * array worked, it nearly tripled the time to read/write the file. In addition, it writes the
    * Evu.id instead of the actual instance because it is suspected that was causing the delay.
+   *
+   * As of version 10, this method handles null values in neighborhood, indicating them with an id
+   * of -1. This is because the indices of neighborhood relate to their adjacency angle
    */
   public void writeExternalAdjacentData(ObjectOutput out) throws IOException {
     out.writeInt(version);
     out.writeInt(neighborhood.length);
 
     for (AdjacentData anAdjacentData : neighborhood) {
-      out.writeInt(anAdjacentData.getEvu().getId());
-      out.writeChar(anAdjacentData.getPosition());
-      out.writeChar(anAdjacentData.getWind());
-      out.writeDouble(anAdjacentData.getSpread());
-      out.writeDouble(anAdjacentData.getWindSpeed());
-      out.writeDouble(anAdjacentData.getWindDirection());
-      out.writeDouble(anAdjacentData.getSlope());
+      if (anAdjacentData != null) {
+        out.writeInt(anAdjacentData.getEvu().getId());
+        out.writeChar(anAdjacentData.getPosition());
+        out.writeChar(anAdjacentData.getWind());
+        out.writeDouble(anAdjacentData.getSpread());
+        out.writeDouble(anAdjacentData.getWindSpeed());
+        out.writeDouble(anAdjacentData.getWindDirection());
+        out.writeDouble(anAdjacentData.getSlope());
+      } else {
+        // Write non existent unit. To be picked up by readExternalAdjacentData()
+        out.writeInt(-1);
+        out.writeChar('0');
+        out.writeChar('0');
+        out.writeDouble(-1.0);
+        out.writeDouble(-1.0);
+        out.writeDouble(-1.0);
+        out.writeDouble(-1.0);
+      }
     }
   }
 
