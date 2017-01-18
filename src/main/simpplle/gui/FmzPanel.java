@@ -28,92 +28,71 @@ class FmzPanel extends JPanel {
   private Fmz workingZone;
 
   FmzPanel(Fmz workingZone){
+
     this.workingZone = workingZone;
 
-    // Number format
+    float totalFires = 0.0f;
+
+    totalFires += workingZone.getManmadeFires(Fmz.A);
+    totalFires += workingZone.getManmadeFires(Fmz.B);
+    totalFires += workingZone.getManmadeFires(Fmz.C);
+    totalFires += workingZone.getManmadeFires(Fmz.D);
+    totalFires += workingZone.getManmadeFires(Fmz.E);
+    totalFires += workingZone.getManmadeFires(Fmz.F);
+    totalFires += workingZone.getNaturalFires(Fmz.A);
+    totalFires += workingZone.getNaturalFires(Fmz.B);
+    totalFires += workingZone.getNaturalFires(Fmz.C);
+    totalFires += workingZone.getNaturalFires(Fmz.D);
+    totalFires += workingZone.getNaturalFires(Fmz.E);
+    totalFires += workingZone.getNaturalFires(Fmz.F);
+
+    workingZone.setNaturalFires(Fmz.A,totalFires);
+    workingZone.setNaturalFires(Fmz.B,0.0f);
+    workingZone.setNaturalFires(Fmz.C,0.0f);
+    workingZone.setNaturalFires(Fmz.D,0.0f);
+    workingZone.setNaturalFires(Fmz.E,0.0f);
+    workingZone.setNaturalFires(Fmz.F,0.0f);
+    workingZone.setManmadeFires(Fmz.A,0.0f);
+    workingZone.setManmadeFires(Fmz.B,0.0f);
+    workingZone.setManmadeFires(Fmz.C,0.0f);
+    workingZone.setManmadeFires(Fmz.D,0.0f);
+    workingZone.setManmadeFires(Fmz.E,0.0f);
+    workingZone.setManmadeFires(Fmz.F,0.0f);
+
     NumberFormat nf = NumberFormat.getInstance();
     nf.setGroupingUsed(false);
     nf.setMaximumFractionDigits(2);
 
-    // Formatting individual panels
-    setLayout(new FlowLayout(FlowLayout.TRAILING,65,0));
-    setMaximumSize(new Dimension(595, 40));
-
-    setBorder(BorderFactory.createEtchedBorder());
-
-    // Zone label
-    JLabel zoneLabel = new JLabel(Formatting.fixedField(workingZone.getName(), 4));
+    JLabel zoneLabel = new JLabel(workingZone.getName());
     zoneLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
-    zoneLabel.setHorizontalTextPosition(SwingConstants.TRAILING);
 
-    // Acres
-    float acres = workingZone.getAcres();
-    String acreStr = Float.isNaN(acres) ? "" : nf.format(acres);
-
-    acreText = new JTextField(5);
-    acreText.setText(acreStr);
+    acreText = new JTextField();
+    acreText.setText(nf.format(workingZone.getAcres()));
+    acreText.setHorizontalAlignment(JTextField.RIGHT);
     acreText.addActionListener(this::acreText_ActionPerformed);
     acreText.addFocusListener(new acre_Focus());
 
-    // Total starts/10 years (fmz man made + fmz natural)
-    float fmzAManFireTotal = workingZone.getManmadeFires(Fmz.A);
-    float fmzBManFireTotal = workingZone.getManmadeFires(Fmz.B);
-    float fmzCManFireTotal = workingZone.getManmadeFires(Fmz.C);
-    float fmzDManFireTotal = workingZone.getManmadeFires(Fmz.D);
-    float fmzEManFireTotal = workingZone.getManmadeFires(Fmz.E);
-    float fmzFManFireTotal = workingZone.getManmadeFires(Fmz.F);
-
-    float fmzANatFireTotal = workingZone.getNaturalFires(Fmz.A);
-    float fmzBNatFireTotal = workingZone.getNaturalFires(Fmz.B);
-    float fmzCNatFireTotal = workingZone.getNaturalFires(Fmz.C);
-    float fmzDNatFireTotal = workingZone.getNaturalFires(Fmz.D);
-    float fmzENatFireTotal = workingZone.getNaturalFires(Fmz.E);
-    float fmzFNatFireTotal = workingZone.getNaturalFires(Fmz.F);
-
-    float manFireTotal = fmzAManFireTotal + fmzBManFireTotal + fmzCManFireTotal + fmzDManFireTotal
-        + fmzEManFireTotal + fmzFManFireTotal;
-
-    float natFireTotal = fmzANatFireTotal + fmzBNatFireTotal + fmzCNatFireTotal + fmzDNatFireTotal
-        + fmzENatFireTotal + fmzFNatFireTotal;
-
-    float finalFireTotal = manFireTotal + natFireTotal;
-    String fireTotalStr = Float.isNaN(finalFireTotal) ? "" : nf.format(finalFireTotal);
-
-    // Changing values due to starts/10 years
-    workingZone.setNaturalFires(Fmz.A,finalFireTotal);
-    workingZone.setNaturalFires(Fmz.B,0);
-    workingZone.setNaturalFires(Fmz.C,0);
-    workingZone.setNaturalFires(Fmz.D,0);
-    workingZone.setNaturalFires(Fmz.E,0);
-    workingZone.setNaturalFires(Fmz.F,0);
-
-    workingZone.setManmadeFires(Fmz.A,0);
-    workingZone.setManmadeFires(Fmz.B,0);
-    workingZone.setManmadeFires(Fmz.C,0);
-    workingZone.setManmadeFires(Fmz.D,0);
-    workingZone.setManmadeFires(Fmz.E,0);
-    workingZone.setManmadeFires(Fmz.F,0);
-
-    totalFireText = new JTextField(7);
-    totalFireText.setText(fireTotalStr);
+    totalFireText = new JTextField();
+    totalFireText.setText(nf.format(totalFires));
+    totalFireText.setHorizontalAlignment(JTextField.RIGHT);
     totalFireText.setLayout(new FlowLayout(FlowLayout.CENTER));
     totalFireText.addActionListener(this::fireText_ActionPerformed);
     totalFireText.addFocusListener(new fire_Focus());
 
-    // Response times
-    float time = workingZone.getResponseTime();
-    String timeStr = Float.isNaN(time) ? "" : nf.format(time);
-
-    responseText = new JTextField(5);
-    responseText.setText(timeStr);
+    responseText = new JTextField();
+    responseText.setText(nf.format(workingZone.getResponseTime()));
+    responseText.setHorizontalAlignment(JTextField.RIGHT);
     responseText.addActionListener(this::responseText_ActionPerformed);
     responseText.addFocusListener(new response_Focus());
 
-    // Add components
+    setLayout(new GridLayout(1,4,10,0));
+    setMaximumSize(new Dimension(1000,30));
+
     add(zoneLabel);
     add(acreText);
     add(totalFireText);
     add(responseText);
+
   }
 
   // Action Listeners
