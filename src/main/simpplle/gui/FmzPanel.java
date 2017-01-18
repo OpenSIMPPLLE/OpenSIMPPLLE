@@ -119,7 +119,7 @@ class FmzPanel extends JPanel {
     } else {
       JOptionPane.showMessageDialog(getParent(),
                                     "Value must be greater than zero",
-                                    "Invalid Acreage",
+                                    "Acres Invalid",
                                     JOptionPane.ERROR_MESSAGE);
       acreText.requestFocus();
     }

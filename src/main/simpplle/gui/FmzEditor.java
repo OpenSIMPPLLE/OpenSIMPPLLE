@@ -335,7 +335,7 @@ class FmzEditor extends JDialog {
 
   private void createNewZone(ActionEvent e) {
     String name = JOptionPane.showInputDialog(this,
-                                              "Fire Management Zone Name",
+                                              "Enter a name:",
                                               "Create New Zone",
                                               JOptionPane.PLAIN_MESSAGE);
 
