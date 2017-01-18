@@ -231,53 +231,46 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   }
 
   private void importOldFormatFile(ActionEvent e) {
-    File outfile;
-    boolean changed;
-    Area area;
-    MyFileFilter extFilter;
-    String title = "Select a Fire Management Zone Data File";
 
-    extFilter = new MyFileFilter("fmz", "FMZ Data Files (*.fmz)");
+    if (Simpplle.getCurrentArea() != null) {
+      int choice = JOptionPane.showConfirmDialog(this,
+                                                 "All units in the current area will be\n" +
+                                                 "reassigned to the default zone.\n\n" +
+                                                 "Do you wish to continue?",
+                                                 "Reassign Unit Zones",
+                                                 JOptionPane.YES_NO_OPTION,
+                                                 JOptionPane.QUESTION_MESSAGE);
+      if (choice == JOptionPane.NO_OPTION) {
+        return;
+      }
+    }
+
+    MyFileFilter filter = new MyFileFilter("fmz", "FMZ Data Files (*.fmz)");
+    File file = Utility.getOpenFile(this, "Select a Fire Management Zone Data File", filter);
+    if (file == null) {
+      return;
+    }
 
     setCursor(Utility.getWaitCursor());
 
-    outfile = Utility.getOpenFile(this, title, extFilter);
-    open:
     try {
-      if (outfile == null) {
-        break open;
-      }
-
-      Fmz.loadData(outfile);
-
-      allFmz = currentZone.getAllFmzNames();
-//      updateDialog();
-
-      menuFileSave.setEnabled(true);
-
-      area = Simpplle.getCurrentArea();
-      if (area == null) {
-        break open;
-      }
-
-      changed = area.updateFmzData();
-      if (changed) {
-        String msg = "Fmz's in the currently loaded area that\n" +
-            "referred to fmz's not currently loaded\n" +
-            "were changed to the default fmz.\n\n" +
-            "If this is not desired load the correct\n" +
-            "fmz data file for the area and then\n" +
-            "reload the current area.";
-        JOptionPane.showMessageDialog(this, msg, "Warning",
-            JOptionPane.WARNING_MESSAGE);
-      }
-    } catch (SimpplleError err) {
-      JOptionPane.showMessageDialog(this, err.getError(), "Error loading file",
-          JOptionPane.ERROR_MESSAGE);
-    } finally {
-      setCursor(Utility.getNormalCursor());
-      refresh();
+      Fmz.loadData(file);
+    } catch (SimpplleError error) {
+      JOptionPane.showMessageDialog(this, error.getError(),
+                                    "Error loading file",
+                                    JOptionPane.ERROR_MESSAGE);
     }
+
+    setCursor(Utility.getNormalCursor());
+
+    Area area = Simpplle.getCurrentArea();
+    if (area != null) {
+      area.updateFmzData();
+    }
+
+    allFmz = currentZone.getAllFmzNames();
+    menuFileSave.setEnabled(true);
+    refresh();
   }
 
   private void loadDefaultData(ActionEvent e) {
