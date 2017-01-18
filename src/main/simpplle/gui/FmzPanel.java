@@ -21,12 +21,9 @@ import simpplle.comcode.Formatting;
 
 class FmzPanel extends JPanel {
 
-  private JLabel zoneLabel;
   private JTextField acreText;
   private JTextField totalFireText;
   private JTextField responseText;
-
-  private Dimension JPanelDim = new Dimension(595,40);
 
   private Fmz workingZone;
 
@@ -40,12 +37,12 @@ class FmzPanel extends JPanel {
 
     // Formatting individual panels
     setLayout(new FlowLayout(FlowLayout.TRAILING,65,0));
-    setMaximumSize(JPanelDim);
+    setMaximumSize(new Dimension(595, 40));
 
     setBorder(BorderFactory.createEtchedBorder());
 
     // Zone label
-    zoneLabel = new JLabel(Formatting.fixedField(workingZone.getName(), 4));
+    JLabel zoneLabel = new JLabel(Formatting.fixedField(workingZone.getName(), 4));
     zoneLabel.setFont(new java.awt.Font("Monospaced", 0, 12));
     zoneLabel.setHorizontalTextPosition(SwingConstants.TRAILING);
 
