@@ -13,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicBorders;
 import java.util.Vector;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
@@ -24,7 +23,7 @@ import simpplle.comcode.*;
  * in the past 10 years, and a response time in hours.
  */
 
-class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
+class FmzEditor extends JDialog {
 
   private RegionalZone currentZone;
   private Vector<Fmz> allFmz;
@@ -42,7 +41,7 @@ class FireSuppFireOccMgmtZoneLogicBuilder extends JDialog {
   private JMenuItem menuFileSaveAs;
   private JMenuItem menuKnowledgeSourceDisplay;
 
-  FireSuppFireOccMgmtZoneLogicBuilder(Frame frame, String title, boolean modal) {
+  FmzEditor(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();

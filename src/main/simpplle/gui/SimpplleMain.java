@@ -3295,7 +3295,7 @@ public class SimpplleMain extends JFrame {
 
   void menuSysKnowFireSuppFireOccMgmtZone_actionPerformed(ActionEvent e) {
     String title = "Fire Occurrence and Management Zones";
-    FireSuppFireOccMgmtZoneLogicBuilder dlg = new FireSuppFireOccMgmtZoneLogicBuilder(this, title, true);
+    FmzEditor dlg = new FmzEditor(this, title, true);
     setDialogLocation(dlg);
     dlg.setVisible(true);
   }
