@@ -2352,20 +2352,24 @@ public class SimpplleMain extends JFrame {
   }
 
   public boolean isVegPathwayDlgOpen() { return vegPathwayDlgOpen; }
+
   private void setVegPathwayDlgOpen() {
     menuSysKnowPathVeg.setEnabled(false);
     vegPathwayDlgOpen = true;
   }
+
   public void setVegPathwayDlgClosed() {
     menuSysKnowPathVeg.setEnabled(true);
     vegPathwayDlgOpen = false;
   }
 
   public boolean isAquaticPathwayDlgOpen() { return aquaticPathwayDlgOpen; }
+
   private void setAquaticPathwayDlgOpen() {
     menuSysKnowPathAquatic.setEnabled(false);
     aquaticPathwayDlgOpen = true;
   }
+
   public void setAquaticPathwayDlgClosed() {
     menuSysKnowPathAquatic.setEnabled(true);
     aquaticPathwayDlgOpen = false;
@@ -2381,6 +2385,7 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
     refresh();
   }
+
   void menuSysKnowPathAquatic_actionPerformed(ActionEvent e) {
     if (isAquaticPathwayDlgOpen()) { return; }
 
@@ -3312,6 +3317,7 @@ public class SimpplleMain extends JFrame {
     msg = "Change successful. Restart SIMPPLLE for changes to take effect.";
     JOptionPane.showMessageDialog(this,msg,"",JOptionPane.ERROR_MESSAGE);
   }
+
   void MenuUtilityJavaHeap_actionPerformed(ActionEvent e) {
     updateJavaHeapSize();
   }
@@ -3533,9 +3539,7 @@ public class SimpplleMain extends JFrame {
   }
 
   public void menuUtilityTestNewDialog_actionPerformed(ActionEvent e) {
-
     Simpplle.getCurrentArea().validateLifeformStorageMatch();
-  
   }
 
   public void menuSysKnowDisableWsbw_actionPerformed(ActionEvent e) {
@@ -3685,8 +3689,6 @@ public class SimpplleMain extends JFrame {
   }
   protected void menuSysKnowFireSuppEvent_actionPerformed(ActionEvent e) {
     FireSuppEventLogicDlg dlg = new FireSuppEventLogicDlg(this,"Fire Suppression Event Probability",true);
-
-
     setDialogLocation(dlg);
     dlg.setVisible(true);
     refresh();

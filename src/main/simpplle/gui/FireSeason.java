@@ -12,7 +12,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.event.*;
-
 import simpplle.comcode.FireEvent;
 import simpplle.comcode.Climate;
 
@@ -24,40 +23,51 @@ import simpplle.comcode.Climate;
  */
 
 public class FireSeason extends JDialog {
-  private int spring=0, summer=0, fall=0, winter=0;
+  private int spring = 0;
+  private int summer = 0;
+  private int fall=0;
+  private int winter=0;
 
-  JPanel mainPanel = new JPanel();
-  BorderLayout borderLayout1 = new BorderLayout();
-  JPanel jPanel4 = new JPanel();
-  JPanel jPanel1 = new JPanel();
-  GridLayout gridLayout2 = new GridLayout();
-  BorderLayout borderLayout2 = new BorderLayout();
-  GridLayout gridLayout1 = new GridLayout();
-  JLabel jLabel4 = new JLabel();
-  JLabel jLabel3 = new JLabel();
-  JLabel jLabel2 = new JLabel();
-  JLabel springLabel = new JLabel();
-  JPanel jPanel3 = new JPanel();
-  JPanel jPanel2 = new JPanel();
-  FlowLayout flowLayout1 = new FlowLayout();
-  TitledBorder titledBorder1;
-  JTextField springText = new JTextField();
-  JTextField fallText = new JTextField();
-  JTextField summerText = new JTextField();
-  JTextField winterText = new JTextField();
-  JPanel buttonPanel = new JPanel();
-  JButton cancelPB = new JButton();
-  JButton okPB = new JButton();
-  FlowLayout flowLayout2 = new FlowLayout();   
-  JLabel totalLabel = new JLabel();
-  JLabel totalValue = new JLabel();
+  private Font panelFont = new Font("Monospaced", 0, 12);
+
+  private JPanel mainPanel = new JPanel();
+  private JPanel wrapperPanel = new JPanel();
+  private JPanel textBoxPanel = new JPanel();
+  private JPanel labelPanel = new JPanel();
+  private JPanel buttonPanel = new JPanel();
+
+//  private JScrollPane scrollPane = new JScrollPane(wrapperPanel);
+  private GridLayout gridLayout1 = new GridLayout();
+  private GridLayout gridLayout2 = new GridLayout();
+  private BorderLayout borderLayout1 = new BorderLayout();
+  private BorderLayout borderLayout2 = new BorderLayout();
+  private FlowLayout flowLayout1 = new FlowLayout();
+  private FlowLayout flowLayout2 = new FlowLayout();
+
+  private TitledBorder titledBorder1;
+  private JLabel springLabel = new JLabel();
+  private JLabel summerLabel = new JLabel();
+  private JLabel fallLabel = new JLabel();
+  private JLabel winterLabel = new JLabel();
+  private JLabel totalLabel = new JLabel();
+  private JLabel totalValue = new JLabel();
+
+  private JTextField springText = new JTextField();
+  private JTextField summerText = new JTextField();
+  private JTextField fallText = new JTextField();
+  private JTextField winterText = new JTextField();
+
+  private JButton cancelPB = new JButton();
+  private JButton okPB = new JButton();
+
 /**
  * Constructor for fire season Jdialog.  
  * @param frame
  * @param title
  * @param modal
  */
-  public FireSeason(Frame frame, String title, boolean modal) {
+
+FireSeason(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();
@@ -71,36 +81,54 @@ public class FireSeason extends JDialog {
 /**
  * Overloaded constructor.  References primary constructor sets frame owner as null, title to empty string and modality ot false. 
  */
-  public FireSeason() {
+FireSeason() {
     this(null, "", false);
   }
   /**
    * Sets up borders, panels, layouts, and labels fro seasons 
    * @throws Exception
    */
-  void jbInit() throws Exception {
-    titledBorder1 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140)),"Fire Season Probabilities");
+  private void jbInit() throws Exception {
+
+    this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    this.addWindowListener(new java.awt.event.WindowAdapter() {
+      public void windowClosing(WindowEvent e) {
+        this_windowClosing(e);
+      }
+    });
+
+    setMinimumSize(new Dimension(220,150));
+
+    titledBorder1 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,
+                        new Color(148, 145, 140)),"Fire Season Probabilities");
     mainPanel.setLayout(borderLayout1);
-    jPanel1.setLayout(borderLayout2);
-    gridLayout2.setRows(5);
+    mainPanel.setMinimumSize(new Dimension(200,150));
+    wrapperPanel.setLayout(borderLayout2);
+    labelPanel.setLayout(gridLayout1);
+    labelPanel.setMinimumSize(new Dimension(200,20));
+    labelPanel.setMaximumSize(new Dimension(300,250));
+    textBoxPanel.setMinimumSize(new Dimension(200,20));
+    textBoxPanel.setMaximumSize(new Dimension(300,250));
+    textBoxPanel.setLayout(gridLayout1);
+    buttonPanel.setLayout(flowLayout2);
     gridLayout1.setRows(5);
-    jLabel3.setFont(new java.awt.Font("Monospaced", 1, 12));
-    jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
-    jLabel3.setText("Summer");
-    jLabel4.setFont(new java.awt.Font("Monospaced", 1, 12));
-    jLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
-    jLabel4.setText("Winter");
-    jLabel2.setFont(new java.awt.Font("Monospaced", 1, 12));
-    jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
-    jLabel2.setText("Fall");
-    springLabel.setFont(new java.awt.Font("Monospaced", 1, 12));
+    gridLayout2.setRows(5);
+    borderLayout2.setHgap(5);
+
+    springLabel.setFont(panelFont);
     springLabel.setHorizontalAlignment(SwingConstants.RIGHT);
     springLabel.setText("Spring");
-    jPanel3.setLayout(gridLayout1);
-    jPanel2.setLayout(gridLayout2);
-    jPanel4.setLayout(flowLayout1);
-    springText.setFont(new java.awt.Font("Monospaced", 0, 12));
-    springText.setPreferredSize(new Dimension(40, 21));
+    summerLabel.setFont(panelFont);
+    summerLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+    summerLabel.setText("Summer");
+    fallLabel.setFont(panelFont);
+    fallLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+    fallLabel.setText("Fall");
+    winterLabel.setFont(panelFont);
+    winterLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+    winterLabel.setText("Winter");
+
+    springText.setFont(panelFont);
     springText.setText("25");
     springText.setHorizontalAlignment(SwingConstants.RIGHT);
     springText.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -108,17 +136,7 @@ public class FireSeason extends JDialog {
         springText_keyTyped(e);
       }
     });
-    fallText.setFont(new java.awt.Font("Monospaced", 0, 12));
-    fallText.setPreferredSize(new Dimension(40, 21));
-    fallText.setText("25");
-    fallText.setHorizontalAlignment(SwingConstants.RIGHT);
-    fallText.addKeyListener(new java.awt.event.KeyAdapter() {
-      public void keyTyped(KeyEvent e) {
-        fallText_keyTyped(e);
-      }
-    });
-    summerText.setFont(new java.awt.Font("Monospaced", 0, 12));
-    summerText.setPreferredSize(new Dimension(40, 21));
+    summerText.setFont(panelFont);
     summerText.setText("25");
     summerText.setHorizontalAlignment(SwingConstants.RIGHT);
     summerText.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -126,8 +144,15 @@ public class FireSeason extends JDialog {
         summerText_keyTyped(e);
       }
     });
-    winterText.setFont(new java.awt.Font("Monospaced", 0, 12));
-    winterText.setPreferredSize(new Dimension(40, 21));
+    fallText.setFont(panelFont);
+    fallText.setText("25");
+    fallText.setHorizontalAlignment(SwingConstants.RIGHT);
+    fallText.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(KeyEvent e) {
+        fallText_keyTyped(e);
+      }
+    });
+    winterText.setFont(panelFont);
     winterText.setText("25");
     winterText.setHorizontalAlignment(SwingConstants.RIGHT);
     winterText.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -135,52 +160,36 @@ public class FireSeason extends JDialog {
         winterText_keyTyped(e);
       }
     });
-    borderLayout2.setHgap(5);
-    flowLayout1.setAlignment(FlowLayout.LEFT);
-    this.addWindowListener(new java.awt.event.WindowAdapter() {
-      public void windowClosing(WindowEvent e) {
-        this_windowClosing(e);
-      }
-    });
+
     cancelPB.setText("Cancel");
-    cancelPB.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cancelPB_actionPerformed(e);
-      }
-    });
+    cancelPB.addActionListener(this::cancelPB_actionPerformed);
     okPB.setText("Ok");
-    okPB.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        okPB_actionPerformed(e);
-      }
-    });
-    buttonPanel.setLayout(flowLayout2);
-    this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-    this.setModal(true);
-    totalLabel.setFont(new java.awt.Font("Monospaced", 1, 12));
+    okPB.addActionListener(this::okPB_actionPerformed);
+
+    totalLabel.setFont(panelFont);
     totalLabel.setText("Total");
-    totalValue.setFont(new java.awt.Font("Monospaced", 1, 12));
+    totalValue.setFont(panelFont);
     totalValue.setForeground(Color.blue);
     totalValue.setHorizontalAlignment(SwingConstants.RIGHT);
     totalValue.setText("100");
+
     getContentPane().add(mainPanel);
-    mainPanel.add(jPanel4,  BorderLayout.CENTER);
-    jPanel4.add(jPanel1, null);
-    jPanel3.add(springLabel, null);
-    jPanel3.add(jLabel3, null);
-    jPanel3.add(jLabel2, null);
-    jPanel3.add(jLabel4, null);
-    jPanel3.add(totalLabel, null);
+    mainPanel.add(wrapperPanel, BorderLayout.CENTER);
+    labelPanel.add(springLabel);
+    labelPanel.add(summerLabel);
+    labelPanel.add(fallLabel);
+    labelPanel.add(winterLabel);
+    labelPanel.add(totalLabel);
     mainPanel.add(buttonPanel,  BorderLayout.SOUTH);
-    buttonPanel.add(okPB, null);
-    buttonPanel.add(cancelPB, null);
-    jPanel1.add(jPanel2,  BorderLayout.EAST);
-    jPanel1.add(jPanel3, BorderLayout.WEST);
-    jPanel2.add(springText, null);
-    jPanel2.add(summerText, null);
-    jPanel2.add(fallText, null);
-    jPanel2.add(winterText, null);
-    jPanel2.add(totalValue, null);
+    buttonPanel.add(okPB);
+    buttonPanel.add(cancelPB);
+    wrapperPanel.add(textBoxPanel,  BorderLayout.CENTER);
+    wrapperPanel.add(labelPanel, BorderLayout.WEST);
+    textBoxPanel.add(springText);
+    textBoxPanel.add(summerText);
+    textBoxPanel.add(fallText);
+    textBoxPanel.add(winterText);
+    textBoxPanel.add(totalValue);
   }
 /**
  * Initializes the fire season data for each season.  
@@ -221,11 +230,11 @@ public class FireSeason extends JDialog {
     return (key != KeyEvent.VK_DELETE && key != KeyEvent.VK_BACK_SPACE);
   }
   /**
-   * Handles key event that occurs in spring text box.  Sonsumes if digit typed or length ==3 and beeps.
+   * Handles key event that occurs in spring text box.  Consumes if digit typed or length ==3 and beeps.
    * Else creates a new runnable for spring update.  
    * @param e
    */
-  void springText_keyTyped(KeyEvent e) {
+  private void springText_keyTyped(KeyEvent e) {
     if (digitTyped(e) && springText.getText().length() == 3) {
       e.consume();
       java.awt.Toolkit.getDefaultToolkit().beep();
@@ -247,7 +256,7 @@ public class FireSeason extends JDialog {
    * Handles key event that occurs in summer text box.  Consumes if digit typed or length ==3 and beeps.
    * @param e
    */
-  void summerText_keyTyped(KeyEvent e) {
+  private void summerText_keyTyped(KeyEvent e) {
     if (digitTyped(e) && summerText.getText().length() == 3) {
       e.consume();
       java.awt.Toolkit.getDefaultToolkit().beep();
@@ -269,7 +278,7 @@ public class FireSeason extends JDialog {
    * Handles key event that occurs in Fall text box.  Consumes if digit typed or length ==3 and beeps.
    * @param e
    */
-  void fallText_keyTyped(KeyEvent e) {
+  private void fallText_keyTyped(KeyEvent e) {
     if (digitTyped(e) && fallText.getText().length() == 3) {
       e.consume();
       java.awt.Toolkit.getDefaultToolkit().beep();
@@ -291,7 +300,7 @@ public class FireSeason extends JDialog {
    * Handles key event that occurs in Winter text box.  Consumes if digit typed or length ==3 and beeps.
    * @param e
    */
-  void winterText_keyTyped(KeyEvent e) {
+  private void winterText_keyTyped(KeyEvent e) {
     if (digitTyped(e) && winterText.getText().length() == 3) {
       e.consume();
       java.awt.Toolkit.getDefaultToolkit().beep();
@@ -302,8 +311,7 @@ public class FireSeason extends JDialog {
 	     * if winter text field text length is greater than 1 parse the int and update totals.  If length not greater than 0 return 0.
     	 */
       public void run() {
-        winter = (winterText.getText().length() > 0) ?
-                      Integer.parseInt(winterText.getText()) : 0;
+        winter = (winterText.getText().length() > 0) ? Integer.parseInt(winterText.getText()) : 0;
         updateTotal();
       }
     };
@@ -324,28 +332,23 @@ public class FireSeason extends JDialog {
     setVisible(false);
     dispose();
   }
-  void this_windowClosing(WindowEvent e) {
+
+  private void this_windowClosing(WindowEvent e) {
     finish();
   }
 /**
  * Finishes when ok button pushed.
  * @param e 'OK'
  */
-  void okPB_actionPerformed(ActionEvent e) {
+  private void okPB_actionPerformed(ActionEvent e) {
     finish();
   }
 /**
  * Disposes and sets not visible the Fire Season dialog if cancel button pushed.
  * @param e 'cancel'
  */
-  void cancelPB_actionPerformed(ActionEvent e) {
+  private void cancelPB_actionPerformed(ActionEvent e) {
     setVisible(false);
     dispose();
   }
-
-
 }
-
-
-
-
