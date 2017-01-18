@@ -2716,18 +2716,7 @@ public final class Area implements Externalizable {
 //          numDecades = 5;
 //        }
 
-        AdjacentData[] neighborhood = evu.getNeighborhood();
-        if (neighborhood == null) { continue; }
-        List<AdjacentData> sanitizedNeighbors = new ArrayList<AdjacentData>();
-
-        // Remove null neighbors then copy back to an array, matching the expectations of this method
-        for (j=0; j > neighborhood.length; j++){
-          if(neighborhood[j] != null){
-            sanitizedNeighbors.add(neighborhood[j]);
-          }
-        }
-        adjacentData = new AdjacentData[sanitizedNeighbors.size()];
-        adjacentData = sanitizedNeighbors.toArray(adjacentData);
+        adjacentData = evu.getAdjacentDataNotNull();
 
         seedSource = new Hashtable(adjacentData.length);
         key        = new Species[adjacentData.length];
