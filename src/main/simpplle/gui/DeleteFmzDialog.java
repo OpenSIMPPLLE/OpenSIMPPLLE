@@ -84,20 +84,17 @@ class DeleteFmzDialog extends JDialog {
 
   private void initialize() {
 
-    DefaultListModel<Fmz> fmzData = new DefaultListModel();
-
-    RegionalZone zone = Simpplle.getCurrentZone();
-    Fmz[] availFmz = zone.getAllFmz();
-    Fmz defaultFmz = zone.getDefaultFmz();
-
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-    for (Fmz item: availFmz) {
-      if (!item.equals(defaultFmz)) {
-        fmzData.addElement(item);
+    DefaultListModel<Fmz> listModel = new DefaultListModel();
+    RegionalZone zone = Simpplle.getCurrentZone();
+    Fmz defaultFmz = zone.getDefaultFmz();
+    for (Fmz fmz: zone.getAllFmz()) {
+      if (!fmz.equals(defaultFmz)) {
+        listModel.addElement(fmz);
       }
     }
-    fmzList.setModel(fmzData);
+    fmzList.setModel(listModel);
   }
 
   private void deleteZone(){
