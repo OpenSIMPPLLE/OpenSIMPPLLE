@@ -3283,16 +3283,6 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
   }
 
-//  void menuSysKnowFireSuppResponseTime_actionPerformed(ActionEvent e) {
-//
-//    // look at this to edit
-//    //todo create new class for fmz
-//    String title = "Fire Suppression Response Time";
-//    FireSuppResponseTimeLogicBuilder dlg = new FireSuppResponseTimeLogicBuilder(this, title, true);
-//    setDialogLocation(dlg);
-//    dlg.setVisible(true);
-//  }
-
   void menuSysKnowFireSuppFireOccMgmtZone_actionPerformed(ActionEvent e) {
     String title = "Fire Occurrence and Management Zones";
     FmzEditor dlg = new FmzEditor(this, title, true);
