@@ -10,17 +10,15 @@ package simpplle.gui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.*;
 import simpplle.comcode.Fmz;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.Simpplle;
 
 /**
- *
- * This class handles the deletion of fmz(s) within a particular zone.
- *
+ * This dialog handles the deletion of fire management zones from the current regional zone.
  */
 
 class DeleteFmzDialog extends JDialog {
@@ -49,7 +47,16 @@ class DeleteFmzDialog extends JDialog {
     fmzList.setSelectionBackground(Color.white);
     fmzList.setSelectionForeground(Color.orange);
     fmzList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-    fmzList.addMouseListener(new MouseClicked());
+    fmzList.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 2 && !fmzList.isSelectionEmpty()) {
+          deleteZone();
+          setVisible(false);
+          dispose();
+        }
+      }
+    });
 
     JScrollPane scrollPane = new JScrollPane();
     scrollPane.setViewportView(fmzList);
@@ -119,7 +126,10 @@ class DeleteFmzDialog extends JDialog {
 
   private void selectOk(ActionEvent e){
     if (fmzList.isSelectionEmpty()) {
-      JOptionPane.showMessageDialog(this,"Please select an Fmz","No Fmz Selected",JOptionPane.WARNING_MESSAGE);
+      JOptionPane.showMessageDialog(this,
+                                    "Please select a zone",
+                                    "No Zone Selected",
+                                    JOptionPane.WARNING_MESSAGE);
       return;
     }
     deleteZone();
@@ -130,29 +140,5 @@ class DeleteFmzDialog extends JDialog {
   private void selectCancel(ActionEvent e){
     setVisible(false);
     dispose();
-  }
-
-  private class MouseClicked implements MouseListener{
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-      if (e.getClickCount() == 2 && fmzList.isSelectionEmpty() == false) {
-        deleteZone();
-        setVisible(false);
-        dispose();
-      }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {}
-
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-
-    @Override
-    public void mouseExited(MouseEvent e) {}
   }
 }
