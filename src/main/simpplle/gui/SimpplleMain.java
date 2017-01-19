@@ -3176,25 +3176,15 @@ public class SimpplleMain extends JFrame {
 
   private void updateJavaHeapSize() {
 
-    String msg = "This Utility is used to change the heap size of SIMPPLLE.\n The heap size is the " +
-        "maximum amount of memory the program can use while running.";
+    String msg = "This Utility is used to change the heap size of SIMPPLLE.\nThe heap size is the " +
+        "maximum amount of memory the program can use while running.\n" +
+        "This is done through manipulation of the SIMPPLLE.ini file.\nINI files are used to store" +
+        " user preferences.\nSIMPPLLE.ini can be found in the same directory as SIMPPLLE";
 
     JOptionPane.showMessageDialog(this,msg,"Change heap info",
                                    JOptionPane.INFORMATION_MESSAGE);
 
-//    File batFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.bat");
-//    if (batFile.exists()) {
-//      System.out.println(".bat exists");
-//      updateJavaHeapSizeBAT();
-//      return;
-//    }
-
-    File iniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini");
-    if (iniFile.exists()) {
-      updateJavaHeapSizeIni();
-      return;
-    }
-    
+    updateJavaHeapSizeIni();
   }
     
   @SuppressWarnings("unused")
@@ -3212,7 +3202,6 @@ public class SimpplleMain extends JFrame {
       maxMem  = (maxMem / 1024) / 1024;
 
 //      int mem = Integer.parseInt(memStr);
-
 
       String msg = "Enter Java Max Heap Size in MB";
       int newHeapSize = AskNumber.getInput("Java Max Heap Size (MB)",msg,(int)maxMem);
@@ -3395,13 +3384,11 @@ public class SimpplleMain extends JFrame {
       setWaitState(strBuf.toString());
       java.lang.Process proc = rt.exec(cmd);
       // any error message?
-      StreamGobbler errorGobbler = new
-                                   StreamGobbler(proc.getErrorStream(), "ERROR");
+      StreamGobbler errorGobbler = new StreamGobbler(proc.getErrorStream(), "ERROR");
+
 
       // any output?
-      StreamGobbler outputGobbler = new
-                                    StreamGobbler(proc.getInputStream(),
-                                                  "OUTPUT");
+      StreamGobbler outputGobbler = new StreamGobbler(proc.getInputStream(), "OUTPUT");
 
       // kick them off
       errorGobbler.start();
