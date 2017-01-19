@@ -316,7 +316,8 @@ public class FireSuppWeather extends JDialog {
     Point dlgLocation = this.getLocation();
     int minLower = FireSuppWeatherData.getMinSplitAcres(row);
     String msg = "Acres at which to split the range " + FireSuppWeatherData.getValidSplitAcresDescription(row);
-    int splitAcres= AskNumber.getInput("Split Range",msg,minLower,dlgLocation);
+//    int splitAcres= AskNumber.getInput("Split Range",msg,minLower,dlgLocation);
+    int splitAcres= AskNumber.getInput("title","msg");
 
     if (splitAcres == -1) {
       return;

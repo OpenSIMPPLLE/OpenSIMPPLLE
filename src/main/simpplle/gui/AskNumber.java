@@ -27,13 +27,10 @@ public class AskNumber extends JDialog {
   private JPanel mainPanel = new JPanel();
   private JPanel buttonPanel = new JPanel();
   private JPanel valuesPanel = new JPanel();
-  private JTextField numText = new JTextField();
+  private JTextField numText = new JTextField("1",8);
   private JLabel label = new JLabel();
   private JButton cancelPB = new JButton();
   private JButton okPB = new JButton();
-  private FlowLayout flowLayout2 = new FlowLayout();
-  private FlowLayout flowLayout3 = new FlowLayout();
-  private BorderLayout borderLayout1 = new BorderLayout();
 
   /**
   * Constructor for AskNumber method. Calls the jbInit(), sets the label, integer value, sets the size and repaints the graphics.
@@ -83,28 +80,24 @@ public class AskNumber extends JDialog {
    */
   private void jbInit() throws Exception {
 
-    addWindowListener(new java.awt.event.WindowAdapter() {
+    addWindowListener(new WindowAdapter() {
       public void windowClosing(WindowEvent e) {
         this_windowClosing(e);
       }
     });
-
-    valuesPanel.setLayout(flowLayout2);
-    buttonPanel.setLayout(flowLayout3);
-    mainPanel.setLayout(borderLayout1);
-
-    numText.setText("1");
-    numText.setColumns(8);
-    numText.addKeyListener(new java.awt.event.KeyAdapter() {
+    numText.addKeyListener(new KeyAdapter() {
       public void keyTyped(KeyEvent e) {
         numText_keyTyped(e);
       }
     });
-    numText.addActionListener(this::numText_actionPerformed);
+
+    mainPanel.setLayout(new BorderLayout());
+
+    numText.addActionListener(e -> finish());
     cancelPB.setText("Cancel");
-    cancelPB.addActionListener(this::cancelPB_actionPerformed);
+    cancelPB.addActionListener(e -> cancel());
     okPB.setText("Ok");
-    okPB.addActionListener(this::okPB_actionPerformed);
+    okPB.addActionListener(e -> finish());
 
     valuesPanel.add(label);
     valuesPanel.add(numText);
@@ -153,10 +146,11 @@ public class AskNumber extends JDialog {
   private void finish() {
     try {
       String str = numText.getText();
-      if (str == null || str.length() == 0) { throw new NumberFormatException(); }
+      if (str == null || str.length() == 0) {
+        throw new NumberFormatException();
+      }
       value = Integer.parseInt(numText.getText());
-    }
-    catch (NumberFormatException err) {
+    } catch (NumberFormatException err) {
       java.awt.Toolkit.getDefaultToolkit().beep();
       value = -1;
       return;
@@ -172,27 +166,6 @@ public class AskNumber extends JDialog {
     value = -1;
     setVisible(false);
     dispose();
-  }
-
-  /**
-  * If an event occurs in ask number text field sends to finish()
-  */
-  private void numText_actionPerformed(ActionEvent e) {
-    finish();
-  }
-
-  /**
-   * if user pushes the ok button. sends to finish()
-   */
-  private void okPB_actionPerformed(ActionEvent e) {
-    finish();
-  }
-
-  /**
-   * If user pushes the cancel button. Sets the value of number text field to -1 and closes the AskNumber dialog.
-   */
-  private void cancelPB_actionPerformed(ActionEvent e) {
-    cancel();
   }
 
   /**
