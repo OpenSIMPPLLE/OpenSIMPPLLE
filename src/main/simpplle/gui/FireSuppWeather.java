@@ -106,6 +106,7 @@ public class FireSuppWeather extends JDialog {
     menuBar.add(menuFile);
     menuBar.add(menuOptions);
     menuBar.add(menuKnowledgeSource);
+    setJMenuBar(menuBar);
 
     JScrollPane scrollPane = new JScrollPane(table);
 
@@ -113,23 +114,16 @@ public class FireSuppWeather extends JDialog {
     probPanel.add(scrollPane, BorderLayout.CENTER);
 
     JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
-    northPanel.add(probPanel, null);
+    northPanel.add(probPanel);
 
     JPanel mainPanel = new JPanel(new BorderLayout());
     mainPanel.add(northPanel, BorderLayout.NORTH);
 
     setLayout(new BorderLayout());
     add(mainPanel, BorderLayout.CENTER);
-
-    setJMenuBar(menuBar);
-
   }
 
   private void initialize() {
-    boolean seasonZone =
-        (Simpplle.getCurrentZone().getId() == ValidZones.COLORADO_FRONT_RANGE ||
-         Simpplle.getCurrentZone().getId() == ValidZones.COLORADO_PLATEAU ||
-         RegionalZone.isWyoming());
 
     table.setModel(dataModel);
     table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -140,29 +134,26 @@ public class FireSuppWeather extends JDialog {
     File file = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
     menuFileClose.setEnabled((file != null));
     menuFileSave.setEnabled((file != null));
-//    menuFileSave.setEnabled((FireSuppWeatherData.hasDataChanged() &&
-//                             FireSuppWeatherData.getDataFilename() != null));
     update(getGraphics());
   }
 
   // *** Menus ***
   // *************
   private void openFile(ActionEvent e) {
+
     SystemKnowledgeFiler.openFile(this,
                                   SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A,menuFileSave,menuFileClose);
     updateDialog();
   }
 
   private void importOldFormatFile(ActionEvent e) {
-    File         inputFile;
-    MyFileFilter extFilter;
-    String       title = "Fire Suppression Data (Weather)?";
 
-    extFilter = new MyFileFilter("firesuppweather",
-                                 "(*.firesuppweather)");
+    String       title = "Fire Suppression Data (Weather)?";
+    MyFileFilter extFilter = new MyFileFilter("firesuppweather",
+                                              "(*.firesuppweather)");
 
     setCursor(Utility.getWaitCursor());
-    inputFile = Utility.getOpenFile(this,title,extFilter);
+    File inputFile = Utility.getOpenFile(this,title,extFilter);
 
     if (inputFile != null) {
       try {
@@ -224,6 +215,7 @@ public class FireSuppWeather extends JDialog {
   }
 
   private void saveFile(ActionEvent e) {
+
     File outfile = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
     SystemKnowledgeFiler.saveFile(this, outfile,
                                   SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A,
@@ -232,6 +224,7 @@ public class FireSuppWeather extends JDialog {
   }
 
   private void saveFileAs(ActionEvent e) {
+
     SystemKnowledgeFiler.saveFile(this,
                                   SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A,
                                   menuFileSave, menuFileClose);
@@ -239,11 +232,13 @@ public class FireSuppWeather extends JDialog {
   }
 
   private void closeDialogue(ActionEvent e) {
+
     setVisible(false);
     dispose();
   }
 
   private void splitRange(ActionEvent e) {
+
     int row = table.getSelectedRow();
     if (row == -1) {
       JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
@@ -271,6 +266,7 @@ public class FireSuppWeather extends JDialog {
   }
 
   private void mergeUp(ActionEvent e) {
+
     int row = table.getSelectedRow();
     if (row == -1) {
       JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
@@ -284,8 +280,9 @@ public class FireSuppWeather extends JDialog {
     }
 
     String msg =  "Merge Selected Row with Row Above\n" +
-            "Probabilities of the two rows will be averaged.\n\n" +
-            "Do you wish to continue?";
+                  "Probabilities of the two rows will be averaged.\n\n" +
+                  "Do you wish to continue?";
+
     int choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
@@ -293,17 +290,20 @@ public class FireSuppWeather extends JDialog {
       update(getGraphics());
       return;
     }
+
     FireSuppWeatherData.mergeRowUp(row);
     dataModel.fireTableDataChanged();
   }
 
   private void mergeDown(ActionEvent e) {
+
     int row = table.getSelectedRow();
     if (row == -1) {
       JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
               "Please Select a row in the table.","Nothing Selected",JOptionPane.WARNING_MESSAGE);
       return;
     }
+
     int rowCount = table.getRowCount();
     if (row == rowCount-1) {
       JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
@@ -311,7 +311,7 @@ public class FireSuppWeather extends JDialog {
       return;
     }
 
-    String msg =  "Merge Selected Row with Row Below\n" +
+    String msg = "Merge Selected Row with Row Below\n" +
             "Probabilities of the two rows will be averaged.\n\n" +
             "Do you wish to continue?";
     int choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
@@ -321,6 +321,7 @@ public class FireSuppWeather extends JDialog {
       update(getGraphics());
       return;
     }
+
     FireSuppWeatherData.mergeRowDown(row);
     dataModel.fireTableDataChanged();
   }
@@ -335,7 +336,6 @@ public class FireSuppWeather extends JDialog {
     KnowledgeSource dlg = new KnowledgeSource(JSimpplle.getSimpplleMain(),title,true,str);
     dlg.setVisible(true);
   }
-
 }
 
 
