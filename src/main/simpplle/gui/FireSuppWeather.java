@@ -33,7 +33,6 @@ public class FireSuppWeather extends JDialog {
   private JMenuItem menuFileSave = new JMenuItem();
   private JMenuItem menuFileClose = new JMenuItem();
   private JTable table = new JTable();
-//  JScrollPane scrollPane = new JScrollPane(table);
 
   public FireSuppWeather(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
@@ -57,9 +56,6 @@ public class FireSuppWeather extends JDialog {
     JMenuItem menuFileOpen = new JMenuItem("Open");
     menuFileOpen.addActionListener(this::openFile);
 
-    JMenuItem menuFileClose = new JMenuItem("Close");
-    menuFileClose.addActionListener(this::closeFile);
-
     JMenuItem menuFileImportOldFormat = new JMenuItem("Import Old Format File");
     menuFileImportOldFormat.addActionListener(this::importOldFormatFile);
 
@@ -77,15 +73,10 @@ public class FireSuppWeather extends JDialog {
 
     JMenu menuFile = new JMenu("File");
     menuFile.add(menuFileOpen);
-    menuFile.add(menuFileClose);
-    menuFile.addSeparator();
     menuFile.add(menuFileImportOldFormat);
-    menuFile.addSeparator();
     menuFile.add(menuFileLoadDefaults);
-    menuFile.addSeparator();
     menuFile.add(menuFileSave);
     menuFile.add(menuFileSaveAs);
-    menuFile.addSeparator();
     menuFile.add(menuFileQuit);
 
     // Options menu
@@ -106,7 +97,7 @@ public class FireSuppWeather extends JDialog {
 
     // Knowledge Source menu
     JMenuItem menuKnowledgeSourceDisplay = new JMenuItem("Display");
-    menuKnowledgeSourceDisplay.addActionListener(this::menuKnowledgeSourceDisplay_actionPerformed);
+    menuKnowledgeSourceDisplay.addActionListener(this::displayKnowledgeSource);
 
     JMenu menuKnowledgeSource = new JMenu("Knowledge Source");
     menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
@@ -154,18 +145,12 @@ public class FireSuppWeather extends JDialog {
     update(getGraphics());
   }
 
-  private void quit() {
-    setVisible(false);
-    dispose();
-  }
-
   // *** Menus ***
   // *************
   private void openFile(ActionEvent e) {
     SystemKnowledgeFiler.openFile(this,
                                   SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A,menuFileSave,menuFileClose);
     updateDialog();
-    update(getGraphics());
   }
 
   private void importOldFormatFile(ActionEvent e) {
@@ -196,53 +181,46 @@ public class FireSuppWeather extends JDialog {
   }
 
   private void loadDefaultData(ActionEvent e) {
-    int choice;
+
     try {
+
+      if (SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A) != null &&
+          SystemKnowledge.hasChangedOrUserData(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A)) {
+
+        String msg = "Changes have been made.\n" +
+                     "If you continue these changes will be lost.\n\n" +
+                     "Do you wish to continue?";
+
+        int choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE);
+
+        if (choice == JOptionPane.NO_OPTION) {
+          update(getGraphics());
+          return;
+        }
+      }
+
       String msg = "This will load the default Fire " +
                    "Suppression Weather Probability Data.\n\n" +
                    "Do you wish to continue?";
+
       String title = "Load Default Fire Suppression Weather Data";
-      choice = JOptionPane.showConfirmDialog(this,msg,title,
+
+      int choice = JOptionPane.showConfirmDialog(this,msg,title,
                                              JOptionPane.YES_NO_OPTION,
                                              JOptionPane.QUESTION_MESSAGE);
+
       if (choice == JOptionPane.YES_OPTION) {
+
         SystemKnowledge.loadZoneKnowledge(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
         updateDialog();
       }
-    }
-    catch (simpplle.comcode.SimpplleError err) {
+    } catch (simpplle.comcode.SimpplleError err) {
+
       JOptionPane.showMessageDialog(this,err.getError(),"Unable to load file",
                                     JOptionPane.ERROR_MESSAGE);
     }
-  }
-
-  private void closeFile(ActionEvent e) {
-    int    choice;
-    String msg;
-
-    if (SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A) != null &&
-        SystemKnowledge.hasChangedOrUserData(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A)) {
-      msg = "Changes have been made.\n" +
-            "If you continue these changes will be lost.\n\n" +
-            "Do you wish to continue?";
-      choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
-                                             JOptionPane.YES_NO_OPTION,
-                                             JOptionPane.QUESTION_MESSAGE);
-
-      if (choice == JOptionPane.NO_OPTION) {
-        update(getGraphics());
-        return;
-      }
-    }
-
-    try {
-      SystemKnowledge.loadZoneKnowledge(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
-    }
-    catch (simpplle.comcode.SimpplleError err) {
-      JOptionPane.showMessageDialog(this,err.getError(),"Unable to load file",
-                                    JOptionPane.ERROR_MESSAGE);
-    }
-    updateDialog();
   }
 
   private void saveFile(ActionEvent e) {
@@ -261,7 +239,8 @@ public class FireSuppWeather extends JDialog {
   }
 
   private void closeDialogue(ActionEvent e) {
-    quit();
+    setVisible(false);
+    dispose();
   }
 
   private void splitRange(ActionEvent e) {
@@ -349,7 +328,7 @@ public class FireSuppWeather extends JDialog {
   // *** Probability Values ***
   // **************************
 
-  private void menuKnowledgeSourceDisplay_actionPerformed(ActionEvent e) {
+  private void displayKnowledgeSource(ActionEvent e) {
     String str = SystemKnowledge.getSource(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
     String title = "Weather Ending Fire Suppression (Beyond Class A) Knowledge Source";
 
