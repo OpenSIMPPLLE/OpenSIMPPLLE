@@ -10,15 +10,12 @@ package simpplle.gui;
 
 import simpplle.JSimpplle;
 import simpplle.comcode.FireSuppWeatherData;
-import simpplle.comcode.Simpplle;
 import simpplle.comcode.SystemKnowledge;
 
 import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import simpplle.comcode.ValidZones;
-import simpplle.comcode.RegionalZone;
 
 /** 
  *
@@ -27,26 +24,26 @@ import simpplle.comcode.RegionalZone;
  * <p>Original source code authorship: Kirk A. Moeller
  */
 
-public class FireSuppWeather extends JDialog {
+class FireSuppWeather extends JDialog {
 
   private FireSuppWeatherTableDataModel dataModel = new FireSuppWeatherTableDataModel();
   private JMenuItem menuFileSave = new JMenuItem();
   private JMenuItem menuFileClose = new JMenuItem();
   private JTable table = new JTable();
 
-  public FireSuppWeather(Frame frame, String title, boolean modal) {
+  FireSuppWeather(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();
+      initialize();
       pack();
     }
     catch(Exception ex) {
       ex.printStackTrace();
     }
-    initialize();
   }
 
-  public FireSuppWeather() {
+  FireSuppWeather() {
     this(null, "", false);
   }
 
