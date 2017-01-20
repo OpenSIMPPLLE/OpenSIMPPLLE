@@ -29,32 +29,9 @@ import simpplle.comcode.RegionalZone;
 
 public class FireSuppWeather extends JDialog {
   private FireSuppWeatherTableDataModel dataModel = new FireSuppWeatherTableDataModel();
-
-  JPanel mainPanel = new JPanel();
-  BorderLayout borderLayout1 = new BorderLayout();
-  JPanel northPanel = new JPanel();
-  JPanel probPanel = new JPanel();
-  FlowLayout flowLayout1 = new FlowLayout();
-  JMenuItem menuFileSaveAs = new JMenuItem();
-  JMenu menuFile = new JMenu();
-  JMenuItem menuFileQuit = new JMenuItem();
-  JMenuItem menuFileOpen = new JMenuItem();
-  JMenuItem menuFileClose = new JMenuItem();
-  JMenuItem menuFileSave = new JMenuItem();
-  JMenuBar menuBar = new JMenuBar();
-  JMenuItem menuFileLoadDefaults = new JMenuItem();
-  BorderLayout borderLayout2 = new BorderLayout();
-  JMenu menuKnowledgeSource = new JMenu();
-  JMenuItem menuKnowledgeSourceDisplay = new JMenuItem();
-  JMenuItem menuFileOldFormat = new JMenuItem();
-  JScrollPane scrollPane = new JScrollPane();
-  JTable table = new JTable();
-  BorderLayout borderLayout3 = new BorderLayout();
-
-  JMenu menuOptions = new JMenu();
-  JMenuItem menuOptionsSplitRange = new JMenuItem();
-  JMenuItem menuOptionsMergeUp = new JMenuItem();
-  JMenuItem menuOptionsMergeDown = new JMenuItem();
+  private JMenuItem menuFileSave = new JMenuItem();
+  private JMenuItem menuFileClose = new JMenuItem();
+  private JTable table = new JTable();
 
   public FireSuppWeather(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
@@ -71,87 +48,99 @@ public class FireSuppWeather extends JDialog {
   public FireSuppWeather() {
     this(null, "", false);
   }
-  void jbInit() throws Exception {
-    mainPanel.setLayout(borderLayout1);
-    probPanel.setLayout(borderLayout3);
-    northPanel.setLayout(flowLayout1);
-    flowLayout1.setAlignment(FlowLayout.LEFT);
-    menuFileSaveAs.setText("Save As");
+
+  private void jbInit() throws Exception {
+
+    setLayout(new BorderLayout());
+    JPanel mainPanel = new JPanel(new BorderLayout());
+    JPanel probPanel = new JPanel(new BorderLayout());
+    JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+    JMenuItem menuFileSaveAs = new JMenuItem("Save As");
+    JMenu menuFile = new JMenu("File");
+    JMenuItem menuFileQuit = new JMenuItem("Close Dialog");
+    JMenuItem menuFileOpen = new JMenuItem("Open");
+    JMenuItem menuFileClose = new JMenuItem("Close");
+    JMenuItem menuFileSave = new JMenuItem("Save");
+    JMenuBar menuBar = new JMenuBar();
+    JMenuItem menuFileLoadDefaults = new JMenuItem("Load Defaults");
+    JMenu menuKnowledgeSource = new JMenu("Knowledge Source");
+    JMenuItem menuKnowledgeSourceDisplay = new JMenuItem("Display");
+    JMenuItem menuFileOldFormat = new JMenuItem("Import Old Format File");
+    JScrollPane scrollPane = new JScrollPane(table);
+    JMenu menuOptions = new JMenu("Options");
+    JMenuItem menuOptionsSplitRange = new JMenuItem("Split Selected Range...");
+    JMenuItem menuOptionsMergeUp = new JMenuItem("Merge Selected with Previous");
+    JMenuItem menuOptionsMergeDown = new JMenuItem("Merge Selected with Next");
+
     menuFileSaveAs.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuFileSaveAs_actionPerformed(e);
       }
     });
-    menuFile.setText("File");
-    menuFileQuit.setText("Close Dialog");
+
     menuFileQuit.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuFileQuit_actionPerformed(e);
       }
     });
-    menuFileOpen.setText("Open");
+
     menuFileOpen.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuFileOpen_actionPerformed(e);
       }
     });
-    menuFileClose.setText("Close");
+
     menuFileClose.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuFileClose_actionPerformed(e);
       }
     });
-    menuFileSave.setText("Save");
+
     menuFileSave.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuFileSave_actionPerformed(e);
       }
     });
-    menuFileLoadDefaults.setText("Load Defaults");
+
     menuFileLoadDefaults.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuFileLoadDefaults_actionPerformed(e);
       }
     });
-    this.getContentPane().setLayout(borderLayout2);
-    menuKnowledgeSource.setText("Knowledge Source");
-    menuKnowledgeSourceDisplay.setText("Display");
+
     menuKnowledgeSourceDisplay.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuKnowledgeSourceDisplay_actionPerformed(e);
       }
     });
-    menuFileOldFormat.setText("Import Old Format File");
+
     menuFileOldFormat.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuFileOldFormat_actionPerformed(e);
       }
     });
 
-    menuOptions.setText("Options");
-    menuOptionsSplitRange.setText("Split Selected Range...");
     menuOptionsSplitRange.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuOptionsSplitRange_actionPerformed(e);
       }
     });
-    menuOptionsMergeUp.setText("Merge Selected with Previous");
+
     menuOptionsMergeUp.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuOptionsMergeUp_actionPerformed(e);
       }
     });
-    menuOptionsMergeDown.setText("Merge Selected with Next");
+
     menuOptionsMergeDown.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         menuOptionsMergeDown_actionPerformed(e);
       }
     });
 
-    getContentPane().add(mainPanel, BorderLayout.CENTER);
+    add(mainPanel, BorderLayout.CENTER);
     mainPanel.add(northPanel, BorderLayout.NORTH);
     northPanel.add(probPanel, null);
-    scrollPane.getViewport().add(table);
     menuFile.add(menuFileOpen);
     menuFile.add(menuFileClose);
     menuFile.addSeparator();
@@ -172,7 +161,7 @@ public class FireSuppWeather extends JDialog {
     menuBar.add(menuKnowledgeSource);
     menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
     probPanel.add(scrollPane, java.awt.BorderLayout.CENTER);
-    this.setJMenuBar(menuBar);
+    setJMenuBar(menuBar);
     table.setModel(dataModel);
   }
 
@@ -316,8 +305,7 @@ public class FireSuppWeather extends JDialog {
     Point dlgLocation = this.getLocation();
     int minLower = FireSuppWeatherData.getMinSplitAcres(row);
     String msg = "Acres at which to split the range " + FireSuppWeatherData.getValidSplitAcresDescription(row);
-//    int splitAcres= AskNumber.getInput("Split Range",msg,minLower,dlgLocation);
-    int splitAcres= AskNumber.getInput("title","msg");
+    int splitAcres= AskNumber.getInput("Split Range",msg,minLower,dlgLocation);
 
     if (splitAcres == -1) {
       return;
