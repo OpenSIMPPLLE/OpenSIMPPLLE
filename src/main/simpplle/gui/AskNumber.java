@@ -76,13 +76,11 @@ public class AskNumber extends JDialog {
   private void jbInit() throws Exception {
 
     JButton okPB = new JButton("Ok");
-    JButton cancelPB = new JButton("Cancel");
-    JPanel buttonPanel = new JPanel();
-    JPanel valuesPanel = new JPanel();
-    JPanel mainPanel = new JPanel(new BorderLayout());
-
     okPB.addActionListener(e -> finish());
+
+    JButton cancelPB = new JButton("Cancel");
     cancelPB.addActionListener(e -> cancel());
+
     numText.addActionListener(e -> finish());
     numText.addKeyListener(new KeyAdapter() {
       public void keyTyped(KeyEvent e) {
@@ -95,12 +93,18 @@ public class AskNumber extends JDialog {
       }
     });
 
-    valuesPanel.add(label);
-    valuesPanel.add(numText);
+    JPanel buttonPanel = new JPanel();
     buttonPanel.add(okPB);
     buttonPanel.add(cancelPB);
+
+    JPanel valuesPanel = new JPanel();
+    valuesPanel.add(label);
+    valuesPanel.add(numText);
+
+    JPanel mainPanel = new JPanel(new BorderLayout());
     mainPanel.add(valuesPanel, BorderLayout.NORTH);
     mainPanel.add(buttonPanel, BorderLayout.CENTER);
+
     add(mainPanel);
   }
 
@@ -143,14 +147,19 @@ public class AskNumber extends JDialog {
     try {
       String str = numText.getText();
       if (str == null || str.length() == 0) {
+
         throw new NumberFormatException();
       }
+
       value = Integer.parseInt(numText.getText());
+
     } catch (NumberFormatException err) {
+
       Toolkit.getDefaultToolkit().beep();
       value = -1;
       return;
     }
+
     setVisible(false);
     dispose();
   }
@@ -159,6 +168,7 @@ public class AskNumber extends JDialog {
    * Sets the value of number text field to -1 and closes the AskNumber dialog.
    */
   private void cancel(){
+
     value = -1;
     setVisible(false);
     dispose();
@@ -169,9 +179,11 @@ public class AskNumber extends JDialog {
    * @param e key typed
    */
   private void numText_keyTyped(KeyEvent e) {
+
     char key = e.getKeyChar();
     if (Character.isDigit(key) == false &&
         key != KeyEvent.VK_DELETE && key != KeyEvent.VK_BACK_SPACE) {
+
       e.consume();
       Toolkit.getDefaultToolkit().beep();
     }
