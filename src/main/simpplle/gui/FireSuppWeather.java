@@ -28,6 +28,7 @@ import simpplle.comcode.RegionalZone;
  */
 
 public class FireSuppWeather extends JDialog {
+
   private FireSuppWeatherTableDataModel dataModel = new FireSuppWeatherTableDataModel();
   private JMenuItem menuFileSave = new JMenuItem();
   private JMenuItem menuFileClose = new JMenuItem();
@@ -72,71 +73,27 @@ public class FireSuppWeather extends JDialog {
     JMenuItem menuOptionsMergeUp = new JMenuItem("Merge Selected with Previous");
     JMenuItem menuOptionsMergeDown = new JMenuItem("Merge Selected with Next");
 
-    menuFileSaveAs.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileSaveAs_actionPerformed(e);
-      }
-    });
+    menuFileSaveAs.addActionListener(this::menuFileSaveAs_actionPerformed);
 
-    menuFileQuit.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileQuit_actionPerformed(e);
-      }
-    });
+    menuFileQuit.addActionListener(this::menuFileQuit_actionPerformed);
 
-    menuFileOpen.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileOpen_actionPerformed(e);
-      }
-    });
+    menuFileOpen.addActionListener(this::menuFileOpen_actionPerformed);
 
-    menuFileClose.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileClose_actionPerformed(e);
-      }
-    });
+    menuFileClose.addActionListener(this::menuFileClose_actionPerformed);
 
-    menuFileSave.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileSave_actionPerformed(e);
-      }
-    });
+    menuFileSave.addActionListener(this::menuFileSave_actionPerformed);
 
-    menuFileLoadDefaults.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileLoadDefaults_actionPerformed(e);
-      }
-    });
+    menuFileLoadDefaults.addActionListener(this::menuFileLoadDefaults_actionPerformed);
 
-    menuKnowledgeSourceDisplay.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuKnowledgeSourceDisplay_actionPerformed(e);
-      }
-    });
+    menuKnowledgeSourceDisplay.addActionListener(this::menuKnowledgeSourceDisplay_actionPerformed);
 
-    menuFileOldFormat.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileOldFormat_actionPerformed(e);
-      }
-    });
+    menuFileOldFormat.addActionListener(this::menuFileOldFormat_actionPerformed);
 
-    menuOptionsSplitRange.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsSplitRange_actionPerformed(e);
-      }
-    });
+    menuOptionsSplitRange.addActionListener(this::menuOptionsSplitRange_actionPerformed);
 
-    menuOptionsMergeUp.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsMergeUp_actionPerformed(e);
-      }
-    });
+    menuOptionsMergeUp.addActionListener(this::menuOptionsMergeUp_actionPerformed);
 
-    menuOptionsMergeDown.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsMergeDown_actionPerformed(e);
-      }
-    });
+    menuOptionsMergeDown.addActionListener(this::menuOptionsMergeDown_actionPerformed);
 
     add(mainPanel, BorderLayout.CENTER);
     mainPanel.add(northPanel, BorderLayout.NORTH);
