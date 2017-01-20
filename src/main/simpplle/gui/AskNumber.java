@@ -22,15 +22,10 @@ import java.awt.event.*;
  */
 
 public class AskNumber extends JDialog {
-  private int value;
 
-  private JPanel mainPanel = new JPanel();
-  private JPanel buttonPanel = new JPanel();
-  private JPanel valuesPanel = new JPanel();
+  private int value;
   private JTextField numText = new JTextField("1",8);
   private JLabel label = new JLabel();
-  private JButton cancelPB = new JButton();
-  private JButton okPB = new JButton();
 
   /**
   * Constructor for AskNumber method. Calls the jbInit(), sets the label, integer value, sets the size and repaints the graphics.
@@ -49,8 +44,8 @@ public class AskNumber extends JDialog {
     catch(Exception ex) {
       ex.printStackTrace();
     }
-    label.setText(msg);
     this.value = value;
+    label.setText(msg);
     numText.setText(Integer.toString(this.value));
     setSize(getPreferredSize());
     update(getGraphics());
@@ -80,24 +75,25 @@ public class AskNumber extends JDialog {
    */
   private void jbInit() throws Exception {
 
-    addWindowListener(new WindowAdapter() {
-      public void windowClosing(WindowEvent e) {
-        this_windowClosing(e);
-      }
-    });
+    JButton okPB = new JButton("Ok");
+    JButton cancelPB = new JButton("Cancel");
+    JPanel buttonPanel = new JPanel();
+    JPanel valuesPanel = new JPanel();
+    JPanel mainPanel = new JPanel(new BorderLayout());
+
+    okPB.addActionListener(e -> finish());
+    cancelPB.addActionListener(e -> cancel());
+    numText.addActionListener(e -> finish());
     numText.addKeyListener(new KeyAdapter() {
       public void keyTyped(KeyEvent e) {
         numText_keyTyped(e);
       }
     });
-
-    mainPanel.setLayout(new BorderLayout());
-
-    numText.addActionListener(e -> finish());
-    cancelPB.setText("Cancel");
-    cancelPB.addActionListener(e -> cancel());
-    okPB.setText("Ok");
-    okPB.addActionListener(e -> finish());
+    addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent e) {
+        this_windowClosing(e);
+      }
+    });
 
     valuesPanel.add(label);
     valuesPanel.add(numText);
@@ -151,7 +147,7 @@ public class AskNumber extends JDialog {
       }
       value = Integer.parseInt(numText.getText());
     } catch (NumberFormatException err) {
-      java.awt.Toolkit.getDefaultToolkit().beep();
+      Toolkit.getDefaultToolkit().beep();
       value = -1;
       return;
     }
@@ -177,7 +173,7 @@ public class AskNumber extends JDialog {
     if (Character.isDigit(key) == false &&
         key != KeyEvent.VK_DELETE && key != KeyEvent.VK_BACK_SPACE) {
       e.consume();
-      java.awt.Toolkit.getDefaultToolkit().beep();
+      Toolkit.getDefaultToolkit().beep();
     }
   }
 
