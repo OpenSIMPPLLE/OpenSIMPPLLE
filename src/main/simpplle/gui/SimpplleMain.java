@@ -3613,9 +3613,7 @@ public class SimpplleMain extends JFrame {
     Object selectedValue = optionPane.getValue();
     if (selectedValue != null) {
       if ((int) optionPane.getValue() == optionPane.YES_OPTION) {
-        Simpplle.getCurrentArea().flagMultipleLifeFormSimulation(false);
-      } else {
-        Simpplle.getCurrentArea().flagMultipleLifeFormSimulation(true);
+        Simpplle.getCurrentArea().makeMultipleLifeforms();
       }
     }
   }
