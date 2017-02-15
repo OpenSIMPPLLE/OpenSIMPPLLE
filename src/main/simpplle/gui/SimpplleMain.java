@@ -210,6 +210,9 @@ public class SimpplleMain extends JFrame {
   private final JMenuItem menuUtilitySwapRowCol = new JMenuItem();
   private final JMenuItem menuSysKnowFireSuppEvent = new JMenuItem();
 
+  //Change URL of Guide
+  final String GUIDE_URL = "http://www.umt.edu/opensimpplle/guide.php";
+
   /**
    * This is the SimpplleMain constructor.  
    */
@@ -3128,13 +3131,10 @@ public class SimpplleMain extends JFrame {
 
   void menuHelpUserGuide_actionPerformed(ActionEvent e) {
 
-    //Change URL of Guide
-    final String address = "http://www.umt.edu/opensimpplle/guide.php";
-
     //Verify that OpenSimpplle Can access browser, if not create popup with link
     if(Desktop.isDesktopSupported()){
         Desktop desktop = Desktop.getDesktop();
-        URI link = URI.create(address);
+        URI link = URI.create(GUIDE_URL);
         try{
           desktop.browse(link);
         }catch(IOException noBrowse){
@@ -3144,7 +3144,7 @@ public class SimpplleMain extends JFrame {
     else{
       //First msg is text, second msg is link in JTextField so it can be selected and copied
       JLabel msg1 = new JLabel("OpenSimpplle cannot access your browser. For the User's Guide, please go to: ");
-      JTextField msg2 = new JTextField(address);
+      JTextField msg2 = new JTextField(GUIDE_URL);
       //Prevent accidentally deleting link
       msg2.setEditable(false);
       //Add one component in dialog, each part of the message within that component
