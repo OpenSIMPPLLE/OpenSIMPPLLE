@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowEvent;
 import java.io.*;
+import java.net.URI;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -3126,10 +3127,32 @@ public class SimpplleMain extends JFrame {
   }
 
   void menuHelpUserGuide_actionPerformed(ActionEvent e) {
-    String msg =
-      "The User's Guide is available on the OpenSIMPPLLE site.";
 
-    JOptionPane.showMessageDialog(this,msg,"",JOptionPane.INFORMATION_MESSAGE);
+    //Change URL of Guide
+    final String address = "http://www.umt.edu/opensimpplle/guide.php";
+
+    //Verify that OpenSimpplle Can access browser, if not create popup with link
+    if(Desktop.isDesktopSupported()){
+        Desktop desktop = Desktop.getDesktop();
+        URI link = URI.create(address);
+        try{
+          desktop.browse(link);
+        }catch(IOException noBrowse){
+            noBrowse.printStackTrace();
+        }
+    }
+    else{
+      //First msg is text, second msg is link in JTextField so it can be selected and copied
+      JLabel msg1 = new JLabel("OpenSimpplle cannot access your browser. For the User's Guide, please go to: ");
+      JTextField msg2 = new JTextField(address);
+      //Prevent accidentally deleting link
+      msg2.setEditable(false);
+      //Add one component in dialog, each part of the message within that component
+      JPanel textPanel = new JPanel();
+      textPanel.add(msg1);
+      textPanel.add(msg2);
+      JOptionPane.showMessageDialog(this,textPanel,"",JOptionPane.INFORMATION_MESSAGE);
+    }
   }
 
   private void updateJavaHeapSize() {
