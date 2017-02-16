@@ -8,18 +8,21 @@
 
 package simpplle.comcode;
 
+import org.apache.commons.collections.MapIterator;
+import org.apache.commons.collections.keyvalue.MultiKey;
+import org.apache.commons.collections.map.Flat3Map;
+import org.apache.commons.collections.map.MultiKeyMap;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import simpplle.comcode.Climate.Season;
+
 import java.awt.*;
 import java.io.*;
-import java.sql.*;
-import java.text.*;
+import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.List;
-
-import org.apache.commons.collections.*;
-import org.apache.commons.collections.keyvalue.*;
-import org.apache.commons.collections.map.*;
-import org.hibernate.*;
-import simpplle.comcode.Climate.*;
 
 /**
  *  Existing Vegetative unit
@@ -3947,7 +3950,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   /**
    * Gets the string version of probability logic for use in data storage.
    * @param prob the probability in integer form
-   * @return string version of probabiliyt
+   * @return string version of probability
    */
   public static String getProbabilitySaveString(int prob) {
     switch (prob) {
