@@ -3602,20 +3602,17 @@ public class SimpplleMain extends JFrame {
   }
 
   public void menuUtilityMakeAreaMultipleLife_actionPerformed(ActionEvent e) {
-    final JOptionPane optionPane = new JOptionPane(
-        "This option allows the simulation to run invasive "+
-            "species logic when the area file does not contain "+
-            "fields for multiple-lifeforms.  Selecting this option "+
-            "will modify the output files to include these empty fields."+
-            "Do you wish to continue?",
-        JOptionPane.QUESTION_MESSAGE,
-        JOptionPane.YES_NO_OPTION);
-    Object selectedValue = optionPane.getValue();
-    if (selectedValue != null) {
-      if ((int) optionPane.getValue() == optionPane.YES_OPTION) {
+    int response = JOptionPane.showConfirmDialog(null,
+    "This option allows the simulation to run invasive "+
+        "species logic when the area file does not contain "+
+        "fields for multiple-lifeforms.\n Selecting this option "+
+        "will modify the output files to include these empty fields.\n\n"+
+        "Do you wish to continue?", "Confirm",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE);
+      if (response == JOptionPane.YES_OPTION) {
         Simpplle.getCurrentArea().makeMultipleLifeforms();
       }
-    }
   }
 
   public void menuUtilityCombineLSFiles_actionPerformed(ActionEvent e) {
