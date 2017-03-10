@@ -793,6 +793,8 @@ public final class AreaSummary implements Externalizable {
         case KEANE:
           event = new KeaneFireEvent(evu,lifeform,processData,timeStep);
           break;
+        default:
+          event = new BasicFireEvent(evu,lifeform,processData,timeStep);
       }
     } else if (processData.processType.isSpreading()) {
       event = new ProcessOccurrenceSpreading(evu,lifeform,processData,timeStep);
