@@ -10,6 +10,18 @@ import java.util.ArrayList;
 public class BasicFireEvent extends ProcessOccurrenceSpreadingFire {
 
   /**
+   * Creates a basic fire event.
+   *
+   * @param evu source of fire
+   * @param lifeform life form
+   * @param processData process probability
+   * @param timeStep time step
+   */
+  public BasicFireEvent(Evu evu, Lifeform lifeform, ProcessProbability processData, int timeStep) {
+    super(evu,lifeform,processData,timeStep);
+  }
+
+  /**
    * Spreads fire from a burning vegetation unit to all adjacent vegetation units. Fire spread
    * rules are applied to each neighbor. Units that burn are appended to a list of burned units.
    *
