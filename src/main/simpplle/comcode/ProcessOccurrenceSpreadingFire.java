@@ -23,10 +23,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   static final long serialVersionUID = -7840370421868476956L;
   static final int  version          = 1;
 
-  public enum SpreadModel { SIMPPLLE, KEANE }
-
-  private static SpreadModel spreadModel = SpreadModel.SIMPPLLE;
-
   /**
    * The multiplicative factor to apply to the wind speed when this fire event is extreme.
    */
@@ -99,8 +95,9 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     lineProductionNode   = null;
     totalLineProduced    = 0;
 
-    if (spreadModel == SpreadModel.KEANE)  // REMOVE
+    if (Simulation.fireSpreadModel == FireSpreadModel.KEANE) {
       rollKeaneOffsets();
+    }
   }
 
   /**
@@ -115,13 +112,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     double newStdDev = 1.0/3.0;
     keaneWindSpeedOffset     = random.nextGaussian() * newStdDev * keaneWindSpeedVariability;
     keaneWindDirectionOffset = random.nextGaussian() * newStdDev * keaneWindDirectionVariability;
-  }
-
-  /**
-   * @param value A fire spreading model
-   */
-  public static void setSpreadModel(SpreadModel value) {
-    spreadModel = value;
   }
 
   /**
@@ -412,8 +402,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     FireEvent.currentEvent = this;
     tmpToUnits.clear();
 
-    switch (spreadModel) {
-      case SIMPPLLE:
+    switch (Simulation.fireSpreadModel) {
+      case BASIC:
         doSimpplleSpread(fromUnit,tmpToUnits);
         break;
       case KEANE:
