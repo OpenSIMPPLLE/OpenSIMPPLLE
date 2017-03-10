@@ -463,10 +463,13 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
       int nodeElevation = node.data.getUnit().getElevation();
 
+      // If a unit has any non-burning neighbors, a fire suppression line can be built there. More
+      // ideal would be to find only perimeter units, but this may significantly affect performance.
+
       if (state != null &&
           nodeElevation < lowestElevation &&
           logicInst.isSuppressedUniform(this,state.getVeg(),state.getProcess(),isExtreme,node.data.getUnit(),ts,lifeform) &&
-          hasNonBurningNeighbors(node.data.getUnit()) &&
+          node.data.getUnit().hasNonBurningNeighbors() &&
           !node.data.getProcess().equals(ProcessType.STAND_REPLACING_FIRE) &&
           !node.data.getUnit().isSuppressed()) {
 
