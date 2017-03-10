@@ -99,7 +99,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     lineProductionNode   = null;
     totalLineProduced    = 0;
 
-    if (spreadModel == SpreadModel.KEANE)
+    if (spreadModel == SpreadModel.KEANE)  // REMOVE
       rollKeaneOffsets();
   }
 
@@ -110,7 +110,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * Multiplying by 1/3 ensures that >99% percent of values will fall between -1 and 1.
    * @see java.util.Random#nextGaussian()
    */
-  private void rollKeaneOffsets(){
+  private void rollKeaneOffsets(){ // REMOVE
     Random random = new Random();
     double newStdDev = 1.0/3.0;
     keaneWindSpeedOffset     = random.nextGaussian() * newStdDev * keaneWindSpeedVariability;
@@ -205,6 +205,10 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   public int getLineProduced() {
     return totalLineProduced;
+  }
+
+  public boolean hasSuppressionLine(Evu evu) {
+    return lineSuppUnits.contains(evu.getId());
   }
 
   /**
@@ -434,6 +438,15 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     FireEvent.currentEvent = null;
     Area.currentLifeform = null;
   }
+
+  /**
+   * Spreads a fire to neighbors, appending burned units to the burned array.
+   *
+   * @param source a burning vegetation unit
+   * @param burned a list to store units that have been spread to
+   * @param isExtreme indicates if fire is intense enough to influence weather
+   */
+  void spreadToNeighbors(Evu source, ArrayList<Evu> burned, boolean isExtreme) {}
 
   private void logFireEnd(int timeStep){
     PrintWriter logOut = Simulation.getInstance().getSimLoggingWriter();
