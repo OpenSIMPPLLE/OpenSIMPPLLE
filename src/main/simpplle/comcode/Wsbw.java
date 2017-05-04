@@ -793,67 +793,66 @@ public abstract class Wsbw {
 
     adjacentData = evu.getNeighborhood();
 
-    for(int i=0;i<adjacentData.length;i++) {
-      adj       = adjacentData[i].evu;
+    for (AdjacentData a : adjacentData) {
+      if(a == null){
+        continue;
+      }
+      adj = a.evu;
 
       VegSimStateData state = adj.getState();
-      if (state == null) { continue; }
+      if (state == null) {
+        continue;
+      }
 
-      species   = state.getVeg().getSpecies();
+      species = state.getVeg().getSpecies();
       sizeClass = state.getVeg().getSizeClass();
 
-      if ((species == Species.DF       || species == Species.AF       ||
-           species == Species.ES       || species == Species.DF_LP_AF ||
-           species == Species.ES_AF    || species == Species.DF_AF    ||
-           species == Species.AF_ES_LP || species == Species.DF_LP_ES ||
-           species == Species.DF_ES) &&
-          (sizeClass == SizeClass.SS   ||
-           sizeClass == SizeClass.POLE || sizeClass == SizeClass.PTS    ||
-           sizeClass == SizeClass.PMU  || sizeClass == SizeClass.MEDIUM ||
-           sizeClass == SizeClass.MMU  || sizeClass == SizeClass.MTS)) {
+      if ((species == Species.DF || species == Species.AF ||
+          species == Species.ES || species == Species.DF_LP_AF ||
+          species == Species.ES_AF || species == Species.DF_AF ||
+          species == Species.AF_ES_LP || species == Species.DF_LP_ES ||
+          species == Species.DF_ES) &&
+          (sizeClass == SizeClass.SS ||
+              sizeClass == SizeClass.POLE || sizeClass == SizeClass.PTS ||
+              sizeClass == SizeClass.PMU || sizeClass == SizeClass.MEDIUM ||
+              sizeClass == SizeClass.MMU || sizeClass == SizeClass.MTS)) {
         immatureOverHalf += adj.getAcres();
-      }
-      else if ((species == Species.DF       || species == Species.AF       ||
-                species == Species.ES       || species == Species.DF_LP_AF ||
-                species == Species.ES_AF    || species == Species.DF_AF    ||
-                species == Species.AF_ES_LP || species == Species.DF_LP_ES ||
-                species == Species.DF_ES) &&
-               (sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LTS ||
-                sizeClass == SizeClass.LMU   || sizeClass == SizeClass.VERY_LARGE ||
-                sizeClass == SizeClass.VLTS  || sizeClass == SizeClass.VLMU)) {
+      } else if ((species == Species.DF || species == Species.AF ||
+          species == Species.ES || species == Species.DF_LP_AF ||
+          species == Species.ES_AF || species == Species.DF_AF ||
+          species == Species.AF_ES_LP || species == Species.DF_LP_ES ||
+          species == Species.DF_ES) &&
+          (sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LTS ||
+              sizeClass == SizeClass.LMU || sizeClass == SizeClass.VERY_LARGE ||
+              sizeClass == SizeClass.VLTS || sizeClass == SizeClass.VLMU)) {
         matureOverHalf += adj.getAcres();
-      }
-      else if ((species == Species.PP_DF || species == Species.DF_LP ||
-                species == Species.ES_LP || species == Species.LP_AF ||
-                species == Species.DF_LP_ES) &&
-               (sizeClass == SizeClass.SS     || sizeClass == SizeClass.POLE ||
-                sizeClass == SizeClass.PTS    || sizeClass == SizeClass.PMU  ||
-                sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.MTS  ||
-                sizeClass == SizeClass.MMU)) {
+      } else if ((species == Species.PP_DF || species == Species.DF_LP ||
+          species == Species.ES_LP || species == Species.LP_AF ||
+          species == Species.DF_LP_ES) &&
+          (sizeClass == SizeClass.SS || sizeClass == SizeClass.POLE ||
+              sizeClass == SizeClass.PTS || sizeClass == SizeClass.PMU ||
+              sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.MTS ||
+              sizeClass == SizeClass.MMU)) {
         immatureOneHalf += adj.getAcres();
-      }
-      else if ((species == Species.PP_DF || species == Species.DF_LP ||
-                species == Species.ES_LP || species == Species.LP_AF ||
-                species == Species.DF_LP_ES) &&
-               (sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LTS ||
-                sizeClass == SizeClass.LMU   || sizeClass == SizeClass.VERY_LARGE ||
-                sizeClass == SizeClass.VLTS  || sizeClass == SizeClass.VLMU)) {
+      } else if ((species == Species.PP_DF || species == Species.DF_LP ||
+          species == Species.ES_LP || species == Species.LP_AF ||
+          species == Species.DF_LP_ES) &&
+          (sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LTS ||
+              sizeClass == SizeClass.LMU || sizeClass == SizeClass.VERY_LARGE ||
+              sizeClass == SizeClass.VLTS || sizeClass == SizeClass.VLMU)) {
         matureOneHalf += adj.getAcres();
-      }
-      else if (species == Species.DF_PP_LP &&
-               (sizeClass == SizeClass.SS     || sizeClass == SizeClass.POLE ||
-                sizeClass == SizeClass.PTS    || sizeClass == SizeClass.PMU  ||
-                sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.MTS  ||
-                sizeClass == SizeClass.MMU)) {
+      } else if (species == Species.DF_PP_LP &&
+          (sizeClass == SizeClass.SS || sizeClass == SizeClass.POLE ||
+              sizeClass == SizeClass.PTS || sizeClass == SizeClass.PMU ||
+              sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.MTS ||
+              sizeClass == SizeClass.MMU)) {
         immatureOneThird += adj.getAcres();
-      }
-      else if (species == Species.DF_PP_LP &&
-               (sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LTS ||
-                sizeClass == SizeClass.LMU   || sizeClass == SizeClass.VERY_LARGE ||
-                sizeClass == SizeClass.VLTS  || sizeClass == SizeClass.VLMU)) {
+      } else if (species == Species.DF_PP_LP &&
+          (sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LTS ||
+              sizeClass == SizeClass.LMU || sizeClass == SizeClass.VERY_LARGE ||
+              sizeClass == SizeClass.VLTS || sizeClass == SizeClass.VLMU)) {
         matureOneThird += adj.getAcres();
-      }
-      else {
+      } else {
       }
 
     }
