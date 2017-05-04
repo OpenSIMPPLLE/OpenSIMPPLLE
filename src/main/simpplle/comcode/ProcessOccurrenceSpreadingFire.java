@@ -808,7 +808,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
         for (AdjacentData adjacent : adjacencies) {
 
-          if (adjacencies != null) {
+          if (adjacent != null) {
 
             Evu toEvu = adjacent.evu;
             if (toEvu == null) continue;
