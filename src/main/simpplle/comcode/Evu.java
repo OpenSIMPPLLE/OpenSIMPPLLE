@@ -2829,32 +2829,17 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Loops through adjacent evus in an area, counts them and checks their ID's validity.
-   * If the count of their Id's validity is same as adjacent data array length returns , else will create a new adjacent evu array limited in size
-   * to only valid count and transfer adjacent evu data to it.
+   * Loops through adjacent evus in an area and checks their ID's validity.
+   * If invalid, the adjacency is set to null
    */
   public void removeInvalidAdjacents() {
     Area           area = Simpplle.getCurrentArea();
-    AdjacentData[] newData;
-    int            i, j=0, validCount=0;
 
-    for (i=0; i< neighborhood.length; i++) {
-      if (area.isValidUnitId(neighborhood[i].getEvu().getId())) {
-        validCount++;
+    for (int i=0; i< neighborhood.length; i++) {
+      if (!area.isValidUnitId(neighborhood[i].getEvu().getId())) {
+        neighborhood[i] = null;
       }
     }
-    if (validCount == neighborhood.length) { return; }
-
-    newData = new AdjacentData[validCount];
-
-    for (i=0; i< neighborhood.length; i++) {
-      if (area.isValidUnitId(neighborhood[i].getEvu().getId())) {
-        newData[j] = neighborhood[i];
-        j++;
-      }
-    }
-    neighborhood = newData;
-    newData      = null;
   }
 
   /**
@@ -2863,9 +2848,11 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return true if Evu being evaluated is adjacent to this Evu
    */
   public boolean isNeighbor(Evu unit) {
-    for (int i = 0; i< neighborhood.length; i++) {
-      if (neighborhood[i].getEvu().getId() == unit.id) {
-        return true;
+    for (AdjacentData neighbor : neighborhood) {
+      if (neighbor != null) {
+        if (neighbor.getEvu().getId() == unit.id) {
+          return true;
+        }
       }
     }
     return false;
@@ -2879,9 +2866,11 @@ public final class Evu extends NaturalElement implements Externalizable {
   public char getAdjPosition(Evu adj) {
     int adjId = adj.getId();
 
-    for (int i = 0; i< neighborhood.length; i++) {
-      if (neighborhood[i].getEvu().getId() == adjId) {
-        return Simpplle.getCurrentArea().calcRelativePosition(this, neighborhood[i]);
+    for (AdjacentData neighbor : neighborhood) {
+      if(neighbor != null){
+        if (neighbor.getEvu().getId() == adjId) {
+          return Simpplle.getCurrentArea().calcRelativePosition(this, neighbor);
+        }
       }
     }
     return NEXT_TO;
@@ -2918,10 +2907,12 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public AdjacentData getNeighborInDirection(double degreesAzimuth) {
     double tolerance = 1;  // angle threshold for matching a direction
-    for (AdjacentData data : neighborhood){
-      double direction = data.getSpread();
-      if (Math.abs(direction - degreesAzimuth) <= tolerance)
-        return data;
+    for (AdjacentData neighbor : neighborhood){
+      if(neighbor != null){
+        double direction = neighbor.getSpread();
+        if (Math.abs(direction - degreesAzimuth) <= tolerance)
+          return neighbor;
+      }
     }
     return null;
   }
@@ -2935,17 +2926,14 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public boolean isAdjDownwind(Evu other) {
 
-    for (AdjacentData data : neighborhood) {
-
-      if (data.evu.getId() == other.getId()) {
-
-        return data.getWind() == DOWNWIND;
-
+    for (AdjacentData neighbor : neighborhood) {
+      if(neighbor != null){
+        if (neighbor.evu.getId() == other.getId()) {
+          return neighbor.getWind() == DOWNWIND;
+        }
       }
     }
-
     return false;
-
   }
 
   /**
@@ -2969,6 +2957,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     String[] strList = new String[adjacent.length];
 
     for(int i = 0; i< adjacent.length; i++) {
+      if(neighborhood[i] == null){
+        continue;
+      }
       char posChar = Simpplle.getCurrentArea().calcRelativePosition(this, neighborhood[i]);
 
       switch (posChar) {
@@ -7541,8 +7532,10 @@ public final class Evu extends NaturalElement implements Externalizable {
   public boolean hasSameSizeNeighbors() {
 
     for (AdjacentData adjacent : neighborhood) {
-      if (acres != adjacent.getEvu().acres) {
-        return false;
+      if (adjacent != null){
+        if (acres != adjacent.getEvu().acres) {
+          return false;
+        }
       }
     }
 
