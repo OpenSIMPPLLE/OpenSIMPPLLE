@@ -8,12 +8,10 @@
 
 package simpplle.comcode;
 
-import java.io.*;
-import java.sql.SQLException;
-
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import simpplle.comcode.Climate.Season;
+
+import java.io.*;
 
 /**
  * This class is the base class for ProcessOccurrenceSpreading and ProcessOccurrenceSpreadingFire.
@@ -251,6 +249,7 @@ public class ProcessOccurrence implements Externalizable {
     // get ids for all attributes
     int rootId    = unit.getId();
     int toId      = -1;
+    int fromId    = unit.getOriginUnit().getId();
     int seasonId  = season.ordinal();
     int groupId   = unit.getHabitatTypeGroup().getType().getSimId();
     int ownerId   = Ownership.get(unit.getOwnership(),true).getSimId();
@@ -260,7 +259,7 @@ public class ProcessOccurrence implements Externalizable {
     float fProb    = (processProb < 0) ? processProb : ( (float)processProb / (float)Utility.pow(10,Area.getAcresPrecision()) );
 
     // print to file
-    fout.printf("%d,%d,%d,%d,%d,",run,timeStep,rootId,rootId,toId);        
+    fout.printf("%d,%d,%d,%d,%d,",run,timeStep,rootId,rootId,toId,fromId);
     fout.printf("%d,%.1f,%.1f,%d,%d,%d,%d,%d%n", processId,fProb,acres,seasonId,groupId,ownerId,specialId,fmzId);
   }
 

@@ -125,11 +125,12 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   public static List<RoadUnitData> roadUnits = new ArrayList<>();
 
-  // Outer array is index by time step.
-  // Inner array is for future use.  If road status changes and we
-  // use road status to determine qualifying roads then nearest road
-  // may change, but we will still need to keep track of the original
-  // closest road in case its status changes to available again.
+  /* Outer array is index by time step.
+   * Inner array is for future use.  If road status changes and we
+   * use road status to determine qualifying roads then nearest road
+   * may change, but we will still need to keep track of the original
+   * closest road in case its status changes to available again.
+   */
   public ArrayList<ArrayList<RoadUnitData>> nearestRoad;
 
   public static double MAX_ROAD_DIST = 2 * 5280; // 2 Miles in Feet
