@@ -2814,39 +2814,20 @@ public final class Evu extends NaturalElement implements Externalizable {
   public AdjacentData[] getNeighborhood() { return neighborhood; }
 
   /**
-   * Important! Adjacent data returned by this method has no notion of adjacency degree.
+   * <b>Important! Adjacent data returned by this method has no notion of adjacency degree.</b>
+   * This is used for methods that do not require adjacent data to be in sorted order, but does
+   * require that none of the values are null
    *
-   * @return the not null neighbors in a new collection
+   * @return the not null neighbors in a list
    */
-  public AdjacentData[] getNeighborhoodNotNull() {
-    ArrayList<AdjacentData> notNulls = new ArrayList<>();
-    int size = 0;
+  public  List<AdjacentData> getAdjacencies() {
+    List<AdjacentData> notNulls = new ArrayList<>();
     for (AdjacentData neighbor : neighborhood){
       if (neighbor != null){
         notNulls.add(neighbor);
-        size++;
       }
     }
-    AdjacentData[] neighborhoodNotNull = new AdjacentData[size];
-    return notNulls.toArray(neighborhoodNotNull);
-  }
-
-  /**
-   * <b>Indices in this collection have no relation to angle</b>
-   * This is used for methods that do not require adjacent data to be in sorted order, but does
-   * require that none of the values are null
-   * @return a collection of adjacent data objects that are not null.
-   * @see this.getNeighborhood()
-   */
-  public AdjacentData[] getAdjacentDataNotNull() {
-    List<AdjacentData> sanitizedNeighbors = new ArrayList<AdjacentData>();
-    for (AdjacentData neighbor : neighborhood){
-      if (neighbor != null) {
-        sanitizedNeighbors.add(neighbor);
-      }
-    }
-    AdjacentData[] collection = new AdjacentData[sanitizedNeighbors.size()];
-    return sanitizedNeighbors.toArray(collection);
+    return notNulls;
   }
 
   /**
@@ -2974,7 +2955,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public String[] getAdjAnalysisDisplay() {
     String   pos, wind;
 
-    AdjacentData[] adjacent = getAdjacentDataNotNull();
+    AdjacentData[] adjacent = getNeighborhood();
     String[] strList = new String[adjacent.length];
 
     for(int i = 0; i< adjacent.length; i++) {

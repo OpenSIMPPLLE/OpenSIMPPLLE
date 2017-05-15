@@ -11,6 +11,7 @@ package simpplle.comcode;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * This class contains methods for a Process Probability Logic Data.
@@ -288,11 +289,11 @@ public class ProcessProbLogicData
     boolean aMatch=false;
 
     // *** Adjacent Process ***
-    AdjacentData[] adjData = evu.getNeighborhoodNotNull();
+    List<AdjacentData> adjacencies = evu.getAdjacencies();
 
     if (adjProcessListHasData()) {
       aMatch = false;
-      for (AdjacentData neighbor : adjData) {
+      for (AdjacentData neighbor : adjacencies) {
         VegSimStateData adjState = neighbor.evu.getState(cTime - adjProcessTSteps);
         if (adjState == null) {
           continue;
@@ -319,8 +320,8 @@ public class ProcessProbLogicData
 
       if (adjModHazard) {
         aMatch = false;
-        for (int i = 0; i < adjData.length; i++) {
-          MtnPineBeetleHazard.Hazard hazard = adjData[i].evu.getMpbHazard(process);
+        for(AdjacentData neighbor : adjacencies){
+          MtnPineBeetleHazard.Hazard hazard = neighbor.evu.getMpbHazard(process);
           if (hazard == MtnPineBeetleHazard.Hazard.MODERATE) { aMatch = true; } break;
         }
         if (!aMatch) { return false; }
@@ -328,15 +329,13 @@ public class ProcessProbLogicData
 
       if (adjHighHazard) {
         aMatch = false;
-        for (int i = 0; i < adjData.length; i++) {
-          MtnPineBeetleHazard.Hazard hazard = adjData[i].evu.getMpbHazard(process);
+        for (AdjacentData neighbor : adjacencies){
+          MtnPineBeetleHazard.Hazard hazard = neighbor.evu.getMpbHazard(process);
           if (hazard == MtnPineBeetleHazard.Hazard.HIGH) { aMatch = true; } break;
         }
         if (!aMatch) { return false; }
       }
     }
-
-
     return true;
   }
 

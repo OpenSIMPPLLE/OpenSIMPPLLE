@@ -2623,7 +2623,7 @@ public final class Area implements Externalizable {
   }
 
   private void doEvuConiferEncroachment() {
-    AdjacentData[]       adjacentData = null;
+    List<AdjacentData>   adjacencies;
     Hashtable            seedSource;
     Species              species, encroachmentSpecies;
     HabitatTypeGroupType groupType;
@@ -2716,11 +2716,11 @@ public final class Area implements Externalizable {
 //          numDecades = 5;
 //        }
 
-        adjacentData = evu.getAdjacentDataNotNull();
+        adjacencies = evu.getAdjacencies();
 
-        seedSource = new Hashtable(adjacentData.length);
-        key        = new Species[adjacentData.length];
-        value      = new int[adjacentData.length];
+        seedSource = new Hashtable(adjacencies.size());
+        key        = new Species[adjacencies.size()];
+        value      = new int[adjacencies.size()];
         index      = 0;
 
         for(j=0;j<key.length;j++) {
@@ -2731,8 +2731,8 @@ public final class Area implements Externalizable {
         // Build a hashtable: key = species, value = acres;
         //   if species is seed producing add its acres to the
         //   the value already in the hashtable.
-        for(j=0;j<adjacentData.length;j++) {
-          adj = adjacentData[j].getEvu();
+        for(AdjacentData neighbor : adjacencies){
+          adj = neighbor.getEvu();
 
           if (adj.succession_n_decades(numDecades) &&
               adj.producingSeed(numDecades)) {
