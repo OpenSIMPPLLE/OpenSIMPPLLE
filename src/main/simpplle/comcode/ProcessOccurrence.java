@@ -76,8 +76,10 @@ public class ProcessOccurrence implements Externalizable {
 //    process = null;
 //    season  = null;
 //  }
+
   /**
-   * Constructor for ProcessOccurrence.  Initializes the units involved in an event and the type of event (process), sets the process probability to 0, 
+   * Constructor for ProcessOccurrence.  Initializes the units involved in an event and the type
+   * of event (process), sets the process probability to 0,
    * and the season to YEAR, which is a default starting point for season.  
    */
   public ProcessOccurrence() {

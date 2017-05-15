@@ -2172,6 +2172,19 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
+   * gets the From node for the current vegetative simulation state.
+   * @return the spreading occurence
+   */
+  private ProcessOccurrenceSpreading findSpreadOccurenceFrom() {
+    VegSimStateData state = getState();
+    if (state == null) { return null; }
+
+    ProcessType process = state.getProcess();
+
+    return Simpplle.getAreaSummary().findSpreadingProcessEvent(this, process);
+  }
+
+  /**
    * Gets the current simulation time step and uses the time step and dominant fire life form object to get the fire process for
    * for the state.
    * @return the fire spread process event at current simulation time step.
@@ -2203,6 +2216,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     return ( (event != null) ? event.getUnit() : this);
   }
 
+  public Evu getFromUnit() {
+    ProcessOccurrenceSpreading event = findSpreadOccurenceFrom();
+    return ( (event != null) ? event.getUnit() : this);
+  }
   /**
    * Gets the Origin Process that spread to this unit.
    * Processes can be overridden by fire, so it is necessary to store
