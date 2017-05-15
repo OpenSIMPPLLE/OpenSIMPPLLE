@@ -82,7 +82,7 @@ public class KeaneFireEvent extends ProcessOccurrenceSpreadingFire {
   @Override
   void spreadToNeighbors(Evu source, ArrayList<Evu> burned, boolean isExtreme) {
 
-    AdjacentData[] adjacentArray = source.getAdjacentData();
+    List<AdjacentData> adjacentArray = source.getAdjacencies();
     if (adjacentArray == null) return;
 
     // TODO populate neighborhood, different methods to spread to existing or missing

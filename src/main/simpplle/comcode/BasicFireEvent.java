@@ -1,6 +1,7 @@
 package simpplle.comcode;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is a process occurrence that spreads fire to all immediate neighbors. This was the original
@@ -32,7 +33,7 @@ public class BasicFireEvent extends ProcessOccurrenceSpreadingFire {
   @Override
   void spreadToNeighbors(Evu source, ArrayList<Evu> burned, boolean isExtreme) {
 
-    AdjacentData[] adjacencies = source.getAdjacentData();
+    List<AdjacentData> adjacencies = source.getAdjacencies();
     if (adjacencies == null) return;
 
     for (AdjacentData adjacent : adjacencies) {

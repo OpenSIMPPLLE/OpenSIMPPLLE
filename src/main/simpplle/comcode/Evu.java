@@ -2882,8 +2882,9 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   public boolean hasNonBurningNeighbors() {
-    if (adjacentData != null) {
-      for (AdjacentData adjacent : adjacentData) {
+    if (neighborhood != null) {
+      for (AdjacentData adjacent : neighborhood) {
+        if (adjacent == null) continue;
         if (!adjacent.evu.hasFireAnyLifeform()) {
           return true;
         }
