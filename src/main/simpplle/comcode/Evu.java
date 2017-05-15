@@ -2805,10 +2805,31 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Indices of adjacent data are determined by the angle of relation. Entries may be null
+   * Indices of adjacent data are determined by the angle of relation.
+   *
+   * Important! Entries may be null
+   *
    * @return the Adjacent Evu data array
    */
   public AdjacentData[] getNeighborhood() { return neighborhood; }
+
+  /**
+   * Important! Adjacent data returned by this method has no notion of adjacency degree.
+   *
+   * @return the not null neighbors in a new collection
+   */
+  public AdjacentData[] getNeighborhoodNotNull() {
+    ArrayList<AdjacentData> notNulls = new ArrayList<>();
+    int size = 0;
+    for (AdjacentData neighbor : neighborhood){
+      if (neighbor != null){
+        notNulls.add(neighbor);
+        size++;
+      }
+    }
+    AdjacentData[] neighborhoodNotNull = new AdjacentData[size];
+    return notNulls.toArray(neighborhoodNotNull);
+  }
 
   /**
    * <b>Indices in this collection have no relation to angle</b>

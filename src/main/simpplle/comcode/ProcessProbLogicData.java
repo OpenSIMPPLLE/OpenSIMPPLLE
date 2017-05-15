@@ -288,21 +288,19 @@ public class ProcessProbLogicData
     boolean aMatch=false;
 
     // *** Adjacent Process ***
-    AdjacentData[] adjData = evu.getNeighborhood();
+    AdjacentData[] adjData = evu.getNeighborhoodNotNull();
 
     if (adjProcessListHasData()) {
       aMatch = false;
       for (AdjacentData neighbor : adjData) {
-        if (neighbor != null) {
-          VegSimStateData adjState = neighbor.evu.getState(cTime - adjProcessTSteps);
-          if (adjState == null) {
-            continue;
-          }
-          ProcessType adjProcess = adjState.getProcess();
-          if (adjProcessList.contains(adjProcess)) {
-            aMatch = true;
-            break;
-          }
+        VegSimStateData adjState = neighbor.evu.getState(cTime - adjProcessTSteps);
+        if (adjState == null) {
+          continue;
+        }
+        ProcessType adjProcess = adjState.getProcess();
+        if (adjProcessList.contains(adjProcess)) {
+          aMatch = true;
+          break;
         }
       }
       if (aMatch == false) {
