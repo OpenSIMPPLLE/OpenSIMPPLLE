@@ -83,4 +83,32 @@ public class EvuTest {
     assertEquals(yearState, evu.getState(0, Lifeform.TREES, Climate.Season.FALL));
   }
 
+  /**
+   * Evu.getNeighborIndex is used to populate and look up the indicies of adjacent units based on
+   * their spread angle. Units are populated clockwise from 0 degrees azimuth.
+   */
+  @Test
+  public void getsNeighborIndex(){
+    // evu expects the current zone to be set
+    Simpplle.setCurrentZone(new WestsideRegionOne());
+    Evu evu = new Evu();
+
+    assertEquals(0, evu.getNeighborIndex(0));
+    assertEquals(0, evu.getNeighborIndex(1));
+    assertEquals(0, evu.getNeighborIndex(44));
+    assertEquals(1, evu.getNeighborIndex(45));
+    assertEquals(2, evu.getNeighborIndex(90));
+    assertEquals(2, evu.getNeighborIndex(91));
+    assertEquals(3, evu.getNeighborIndex(135));
+    assertEquals(3, evu.getNeighborIndex(179));
+    assertEquals(4, evu.getNeighborIndex(180));
+    assertEquals(5, evu.getNeighborIndex(225));
+    assertEquals(6, evu.getNeighborIndex(270));
+    assertEquals(7, evu.getNeighborIndex(315));
+    assertEquals(7, evu.getNeighborIndex(359));
+    assertEquals(0, evu.getNeighborIndex(360));
+    assertEquals(0, evu.getNeighborIndex(361));
+    assertEquals(4, evu.getNeighborIndex(540));
+  }
+
 }

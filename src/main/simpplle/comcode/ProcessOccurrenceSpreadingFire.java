@@ -347,15 +347,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       node = (Node)queue.removeFirst();
       if (node.data.getUnit().isSuppressed()) continue;
 
-      adjData = node.data.getUnit().getAdjacentData();
+      adjData = node.data.getUnit().getNeighborhood();
 
-      for (int i=0; i<adjData.length; i++) {
-
-        VegSimStateData adjState = adjData[i].evu.getState();
-        if (adjState == null || adjState.getProcess().isFireProcess()) continue;
-
-        perimeter += adjData[i].evu.getSideLength();
-
+      for (AdjacentData neighbor : adjData) {
+        if (neighbor != null) {
+          VegSimStateData adjState = neighbor.evu.getState();
+          if (adjState == null || adjState.getProcess().isFireProcess()) continue;
+          perimeter += neighbor.evu.getSideLength();
+        }
       }
 
       if (node.toNodes == null) continue;
@@ -390,18 +389,18 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   private boolean hasNonBurningNeighbors(Evu unit) {
 
-    AdjacentData[] adjDataArray = unit.getAdjacentData();
+    AdjacentData[] adjDataArray = unit.getNeighborhood();
 
     if (adjDataArray != null) {
       for (AdjacentData adjData : adjDataArray) {
-        if (!adjData.evu.hasFireAnyLifeform()) {
-          return true;
+        if (adjData != null) {
+          if (!adjData.evu.hasFireAnyLifeform()) {
+            return true;
+          }
         }
       }
     }
-    
     return false;
-
   }
 
   /**
@@ -415,14 +414,16 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     int lowestElevation = Integer.MAX_VALUE;
     Evu lowestUnit = null;
 
-    AdjacentData[] adjDataArray = unit.getAdjacentData();
+    AdjacentData[] adjDataArray = unit.getNeighborhood();
 
     if (adjDataArray != null) {
       for (AdjacentData adjData : adjDataArray) {
-        int unitElevation = adjData.evu.getElevation();
-        if (!adjData.evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
-          lowestElevation = unitElevation;
-          lowestUnit = adjData.evu;
+        if (adjData != null) {
+          int unitElevation = adjData.evu.getElevation();
+          if (!adjData.evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
+            lowestElevation = unitElevation;
+            lowestUnit = adjData.evu;
+          }
         }
       }
     }
@@ -515,25 +516,19 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     while (checkNow.size() > 0) {
       for (Evu fromEvu : checkNow) {
 
-        AdjacentData[] adjacencies = fromEvu.getAdjacentData();
+        AdjacentData[] adjacencies = fromEvu.getNeighborhood();
         if (adjacencies == null) continue;
 
         for (AdjacentData adjacent : adjacencies) {
 
-          Evu toEvu = adjacent.evu;
-          if (toEvu == null) continue;
-          
-          if (visited.contains(toEvu)) continue;
-          visited.add(toEvu);
-          
-          if (!uniformPoly && levelsOut > 3) {
-            continue;
-          }
+          if (adjacent == null) continue;
+
+          Evu toEvu = adjacent.getEvu();
 
           if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(source, toEvu)) {
             continue;
           }
-          
+
           if (fromEvu.isAdjDownwind(toEvu) && !checkLater.contains(toEvu)) {
             checkLater.add(toEvu);
             if (determineSpotFire(source,toEvu)) {
