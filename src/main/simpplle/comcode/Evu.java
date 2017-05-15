@@ -33,7 +33,7 @@ import java.util.List;
 public final class Evu extends NaturalElement implements Externalizable {
 
   static final long serialVersionUID        = -4593527729379592789L;
-  static final int  version                 = 9;
+  static final int  version                 = 10;
   static final int  accumDataVersion        = 1;
   static final int  spatialRelationsVersion = 1;
   private final int downwindThreshold = 45;
@@ -73,7 +73,18 @@ public final class Evu extends NaturalElement implements Externalizable {
   private Lifeform dominantLifeform;
 
   private String           unitNumber;
-  private AdjacentData[]   adjacentData;
+
+  /**
+   * Determines the size of neighborhood array
+   * Because units are stored in a standard grid, the maximum number of adjacencies is 8
+   */
+  private final int NUM_NEIGHBORS = 8;
+
+  /**
+   * Neighboring units are stored in a fixed order, determined by their adjacency angle.
+   * A missing adjacency in a given direction will be null
+   */
+  private AdjacentData[] neighborhood;
 
   private static ProcessProbability[] tempProcessProb;
   private ProcessProbability[]        needLaterProcessProb;
@@ -306,7 +317,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     initialState        = null;
     simData             = null;
     unitNumber          = null;
-    adjacentData        = null;
+    neighborhood = new AdjacentData[NUM_NEIGHBORS];
     acres               = 0;
 
     ownership           = null;
@@ -2792,43 +2803,48 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Sets the data for adjacent Evu
    * @param newAdjData the adjacent data array being set
    */
-  public void setAdjacentData(AdjacentData[] newAdjData) {
-    adjacentData = newAdjData;
+  public void setNeighborhood(AdjacentData[] newAdjData) {
+    neighborhood = newAdjData;
   }
 
   /**
-   * Gets the data for adjacent Evu
+   * Indices of adjacent data are determined by the angle of relation.
+   *
+   * Important! Entries may be null
+   *
    * @return the Adjacent Evu data array
    */
-  public AdjacentData[] getAdjacentData() { return adjacentData; }
+  public AdjacentData[] getNeighborhood() { return neighborhood; }
 
   /**
-   * Loops through adjacent evus in an area, counts them and checks their ID's validity.
-   * If the count of their Id's validity is same as adjacent data array length returns , else will create a new adjacent evu array limited in size
-   * to only valid count and transfer adjacent evu data to it.
+   * <b>Important! Adjacent data returned by this method has no notion of adjacency degree.</b>
+   * This is used for methods that do not require adjacent data to be in sorted order, but does
+   * require that none of the values are null
+   *
+   * @return the not null neighbors in a list
+   */
+  public  List<AdjacentData> getAdjacencies() {
+    List<AdjacentData> notNulls = new ArrayList<>();
+    for (AdjacentData neighbor : neighborhood){
+      if (neighbor != null){
+        notNulls.add(neighbor);
+      }
+    }
+    return notNulls;
+  }
+
+  /**
+   * Loops through adjacent evus in an area and checks their ID's validity.
+   * If invalid, the adjacency is set to null
    */
   public void removeInvalidAdjacents() {
     Area           area = Simpplle.getCurrentArea();
-    AdjacentData[] newData;
-    int            i, j=0, validCount=0;
 
-    for (i=0; i<adjacentData.length; i++) {
-      if (area.isValidUnitId(adjacentData[i].getEvu().getId())) {
-        validCount++;
+    for (int i=0; i< neighborhood.length; i++) {
+      if (!area.isValidUnitId(neighborhood[i].getEvu().getId())) {
+        neighborhood[i] = null;
       }
     }
-    if (validCount == adjacentData.length) { return; }
-
-    newData = new AdjacentData[validCount];
-
-    for (i=0; i<adjacentData.length; i++) {
-      if (area.isValidUnitId(adjacentData[i].getEvu().getId())) {
-        newData[j] = adjacentData[i];
-        j++;
-      }
-    }
-    adjacentData = newData;
-    newData      = null;
   }
 
   /**
@@ -2837,9 +2853,11 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return true if Evu being evaluated is adjacent to this Evu
    */
   public boolean isNeighbor(Evu unit) {
-    for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].getEvu().getId() == unit.id) {
-        return true;
+    for (AdjacentData neighbor : neighborhood) {
+      if (neighbor != null) {
+        if (neighbor.getEvu().getId() == unit.id) {
+          return true;
+        }
       }
     }
     return false;
@@ -2853,9 +2871,11 @@ public final class Evu extends NaturalElement implements Externalizable {
   public char getAdjPosition(Evu adj) {
     int adjId = adj.getId();
 
-    for (int i=0; i<adjacentData.length; i++) {
-      if (adjacentData[i].getEvu().getId() == adjId) {
-        return Simpplle.getCurrentArea().calcRelativePosition(this, adjacentData[i]);
+    for (AdjacentData neighbor : neighborhood) {
+      if(neighbor != null){
+        if (neighbor.getEvu().getId() == adjId) {
+          return Simpplle.getCurrentArea().calcRelativePosition(this, neighbor);
+        }
       }
     }
     return NEXT_TO;
@@ -2884,18 +2904,20 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Returns adjacent data for a neighbor along a spread direction. This method expects each adjacent data instance to
+   * Returns adjacent data for a neighborhood along a spread direction. This method expects each adjacent data instance to
    * contain a valid spread direction. Currently this means that a Keane spatial relate file must be loaded.
    *
    * @param degreesAzimuth A direction from the current Evu to the neighboring Evu
-   * @return Adjacent data for a neighbor in a given direction, null if there is not a neighbor in that direction
+   * @return Adjacent data for a neighborhood in a given direction, null if there is not a neighborhood in that direction
    */
   public AdjacentData getNeighborInDirection(double degreesAzimuth) {
     double tolerance = 1;  // angle threshold for matching a direction
-    for (AdjacentData data : adjacentData){
-      double direction = data.getSpread();
-      if (Math.abs(direction - degreesAzimuth) <= tolerance)
-        return data;
+    for (AdjacentData neighbor : neighborhood){
+      if(neighbor != null){
+        double direction = neighbor.getSpread();
+        if (Math.abs(direction - degreesAzimuth) <= tolerance)
+          return neighbor;
+      }
     }
     return null;
   }
@@ -2909,17 +2931,24 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public boolean isAdjDownwind(Evu other) {
 
-    for (AdjacentData data : adjacentData) {
-
-      if (data.evu.getId() == other.getId()) {
-
-        return data.getWind() == DOWNWIND;
-
+    for (AdjacentData neighbor : neighborhood) {
+      if(neighbor != null){
+        if (neighbor.evu.getId() == other.getId()) {
+          return neighbor.getWind() == DOWNWIND;
+        }
       }
     }
-
     return false;
+  }
 
+  /**
+   * Get a neighborhood's index based on it's angle. Uses %360 to protect from angles larger than 360.
+   *
+   * @param adjacencyAngle degrees azimuth from this unit to the adjacent one
+   * @return index between 0-7 that corresponds to the angle
+   */
+  public int getNeighborIndex(double adjacencyAngle){
+    return (int)Math.floor((adjacencyAngle%360)/ 45);
   }
 
   /**
@@ -2928,10 +2957,15 @@ public final class Evu extends NaturalElement implements Externalizable {
     */
   public String[] getAdjAnalysisDisplay() {
     String   pos, wind;
-    String[] strList = new String[adjacentData.length];
 
-    for(int i=0;i<adjacentData.length;i++) {
-      char posChar = Simpplle.getCurrentArea().calcRelativePosition(this, adjacentData[i]);
+    AdjacentData[] adjacent = getNeighborhood();
+    String[] strList = new String[adjacent.length];
+
+    for(int i = 0; i< adjacent.length; i++) {
+      if(neighborhood[i] == null){
+        continue;
+      }
+      char posChar = Simpplle.getCurrentArea().calcRelativePosition(this, neighborhood[i]);
 
       switch (posChar) {
         case 'N': pos = "Next to"; break;
@@ -2939,9 +2973,9 @@ public final class Evu extends NaturalElement implements Externalizable {
         case 'B': pos = "Below";   break;
         default:  pos = "Unknown"; break;
       }
-      wind = (isAdjDownwind(adjacentData[i].getEvu())) ? "Downwind" : "No wind";
+      wind = (isAdjDownwind(neighborhood[i].getEvu())) ? "Downwind" : "No wind";
 
-      strList[i] = Integer.toString(adjacentData[i].getEvu().getId()) +
+      strList[i] = Integer.toString(neighborhood[i].getEvu().getId()) +
                               " (" + pos + ", " + wind + ")";
     }
     return strList;
@@ -7322,20 +7356,21 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public void exportNeighbors(PrintWriter fout) {
     // unit, adj, elev, downwind
-    for (int i=0; i<adjacentData.length; i++) {
-      fout.print(getId());
-      fout.print(COMMA);
-      fout.print(adjacentData[i].getEvu().getId());
-      fout.print(COMMA);
-      if (isElevationValid()) {
-        fout.print(getElevation());
+    for (AdjacentData neighbor : neighborhood) {
+      if (neighbor != null) {
+        fout.print(getId());
+        fout.print(COMMA);
+        fout.print(neighbor.getEvu().getId());
+        fout.print(COMMA);
+        if (isElevationValid()) {
+          fout.print(getElevation());
+        } else {
+          fout.print(neighbor.getPosition());
+        }
+        fout.print(COMMA);
+        fout.print(neighbor.getWind());
+        fout.println();
       }
-      else {
-        fout.print(adjacentData[i].getPosition());
-      }
-      fout.print(COMMA);
-      fout.print(adjacentData[i].getWind());
-      fout.println();
     }
   }
 
@@ -7346,24 +7381,25 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public void exportNeighborsKeane(PrintWriter fout){
     // unit, adj, elev, spread, wind speed, wind direction
-    for (int i=0; i<adjacentData.length; i++) {
-      fout.print(getId());
-      fout.print(COMMA);
-      fout.print(adjacentData[i].getEvu().getId());
-      fout.print(COMMA);
-      if (isElevationValid()) {
-        fout.print(getElevation());
+    for (AdjacentData neighbor : neighborhood) {
+      if(neighbor != null) {
+        fout.print(getId());
+        fout.print(COMMA);
+        fout.print(neighbor.getEvu().getId());
+        fout.print(COMMA);
+        if (isElevationValid()) {
+          fout.print(getElevation());
+        } else {
+          fout.print(neighbor.getPosition());
+        }
+        fout.print(COMMA);
+        fout.print(neighbor.getSpread());
+        fout.print(COMMA);
+        fout.print(neighbor.getWindSpeed());
+        fout.print(COMMA);
+        fout.print(neighbor.getWindDirection());
+        fout.println();
       }
-      else {
-        fout.print(adjacentData[i].getPosition());
-      }
-      fout.print(COMMA);
-      fout.print(adjacentData[i].getSpread());
-      fout.print(COMMA);
-      fout.print(adjacentData[i].getWindSpeed());
-      fout.print(COMMA);
-      fout.print(adjacentData[i].getWindDirection());
-      fout.println();
     }
   }
   /**
@@ -7500,9 +7536,11 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public boolean hasSameSizeNeighbors() {
 
-    for (AdjacentData adjacent : adjacentData) {
-      if (acres != adjacent.getEvu().acres) {
-        return false;
+    for (AdjacentData adjacent : neighborhood) {
+      if (adjacent != null){
+        if (acres != adjacent.getEvu().acres) {
+          return false;
+        }
       }
     }
 
@@ -8017,17 +8055,22 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void readExternalAdjacentData(ObjectInput in, Area area) throws IOException, ClassNotFoundException {
     int version = in.readInt();
 
-    adjacentData = new AdjacentData[in.readInt()];
-    for (int i=0; i<adjacentData.length; i++) {
-      adjacentData[i] = new AdjacentData();
-      adjacentData[i].setEvu(area.getEvu(in.readInt()));
-      adjacentData[i].setPosition(in.readChar());
-      adjacentData[i].setWind(in.readChar());
-      if (version >= 9){
-        adjacentData[i].setSpread(in.readDouble());
-        adjacentData[i].setWindSpeed(in.readDouble());
-        adjacentData[i].setWindDirection(in.readDouble());
-        adjacentData[i].setSlope(in.readDouble());
+    neighborhood = new AdjacentData[in.readInt()];
+    for (int i = 0; i< neighborhood.length; i++) {
+      int evuId = in.readInt();
+      if (evuId != -1) {
+        neighborhood[i] = new AdjacentData();
+        neighborhood[i].setEvu(area.getEvu(evuId));
+        neighborhood[i].setPosition(in.readChar());
+        neighborhood[i].setWind(in.readChar());
+        if (version >= 9) {
+          neighborhood[i].setSpread(in.readDouble());
+          neighborhood[i].setWindSpeed(in.readDouble());
+          neighborhood[i].setWindDirection(in.readDouble());
+          neighborhood[i].setSlope(in.readDouble());
+        }
+      } else { // Neighbor does not exist at this index, make null
+        neighborhood[i] = null;
       }
     }
   }
@@ -8036,19 +8079,33 @@ public final class Evu extends NaturalElement implements Externalizable {
    * This method writes the arrays explicitly to make things faster. Although writing out the actual
    * array worked, it nearly tripled the time to read/write the file. In addition, it writes the
    * Evu.id instead of the actual instance because it is suspected that was causing the delay.
+   *
+   * As of version 10, this method handles null values in neighborhood, indicating them with an id
+   * of -1. This is because the indices of neighborhood relate to their adjacency angle
    */
   public void writeExternalAdjacentData(ObjectOutput out) throws IOException {
     out.writeInt(version);
-    out.writeInt(adjacentData.length);
+    out.writeInt(neighborhood.length);
 
-    for (AdjacentData anAdjacentData : adjacentData) {
-      out.writeInt(anAdjacentData.getEvu().getId());
-      out.writeChar(anAdjacentData.getPosition());
-      out.writeChar(anAdjacentData.getWind());
-      out.writeDouble(anAdjacentData.getSpread());
-      out.writeDouble(anAdjacentData.getWindSpeed());
-      out.writeDouble(anAdjacentData.getWindDirection());
-      out.writeDouble(anAdjacentData.getSlope());
+    for (AdjacentData anAdjacentData : neighborhood) {
+      if (anAdjacentData != null) {
+        out.writeInt(anAdjacentData.getEvu().getId());
+        out.writeChar(anAdjacentData.getPosition());
+        out.writeChar(anAdjacentData.getWind());
+        out.writeDouble(anAdjacentData.getSpread());
+        out.writeDouble(anAdjacentData.getWindSpeed());
+        out.writeDouble(anAdjacentData.getWindDirection());
+        out.writeDouble(anAdjacentData.getSlope());
+      } else {
+        // Write non existent unit. To be picked up by readExternalAdjacentData()
+        out.writeInt(-1);
+        out.writeChar('0');
+        out.writeChar('0');
+        out.writeDouble(-1.0);
+        out.writeDouble(-1.0);
+        out.writeDouble(-1.0);
+        out.writeDouble(-1.0);
+      }
     }
   }
 
@@ -8766,7 +8823,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Determine if neighbor should be classified as downwind
+   * Determine if neighborhood should be classified as downwind
    * @param spread angle of adjacency
    * @param windDirection degrees azimuth
    */
@@ -8774,8 +8831,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (getAzimuthDifference(spread, windDirection) <= downwindThreshold) return 'D';
     else return 'N';
   }
-}
 
+  public int getNUM_NEIGHBORS() {
+    return NUM_NEIGHBORS;
+  }
+}
 
 
 
