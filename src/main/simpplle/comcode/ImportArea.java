@@ -557,7 +557,7 @@ public class ImportArea {
 
         Species species = Species.get(speciesStr, true);
         SizeClass sizeClass = SizeClass.get(sizeClassStr, true);
-        Density density = Density.get(densityStr, true);
+        Density density = Density.getOrCreate(densityStr);
 
         if (species != null && sizeClass != null && density != null && htGrp != null) {
           vegState = htGrp.getVegetativeType(species, sizeClass, age, density);
