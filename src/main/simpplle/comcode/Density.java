@@ -19,6 +19,7 @@ import java.util.HashMap;
  */
 
 public class Density extends SimpplleType implements Externalizable {
+
   static final long serialVersionUID = 6515843635790946668L;
   static final int  version          = 2;
 
@@ -41,9 +42,33 @@ public class Density extends SimpplleType implements Externalizable {
   private int    value;
   private Range  pctCanopy;
 
-  public static HashMap<Short,Density> simIdHm = new HashMap<Short,Density>();
-  private short simId=-1; // Random Access File ID
-  public static short nextSimId=0;
+  public static HashMap<Short,Density> simIdHm = new HashMap<>();
+  private short simId = -1; // Random Access File ID
+  public static short nextSimId = 0;
+
+  /**
+   * Creates a new density and adds it to a global directory.
+   *
+   * @param density the name of this instance
+   * @param value a numeric value, which is unused by OpenSIMPPLLE
+   */
+  public Density(String density, int value) {
+
+    this.density = density.toUpperCase();
+    this.value = value;
+
+    updateAllData(this, DENSITY);
+
+  }
+
+  /**
+   * Creates a new density with a value of zero and adds it to a global directory.
+   *
+   * @param density the name of this instance
+   */
+  public Density(String density) {
+    this(density, 0);
+  }
 
   public short getSimId() {
     if (simId == -1) {
@@ -149,30 +174,6 @@ public class Density extends SimpplleType implements Externalizable {
     } else {
       return Density.ONE;
     }
-  }
-
-  /**
-   * Creates a new density and adds it to a global directory.
-   *
-   * @param density the name of this instance
-   * @param value a numeric value, which is unused by OpenSIMPPLLE
-   */
-  public Density(String density, int value) {
-
-    this.density = density.toUpperCase();
-    this.value = value;
-
-    updateAllData(this, DENSITY);
-
-  }
-
-  /**
-   * Creates a new density with a value of zero and adds it to a global directory.
-   *
-   * @param density the name of this instance
-   */
-  public Density(String density) {
-    this(density, 0);
   }
 
   /**
