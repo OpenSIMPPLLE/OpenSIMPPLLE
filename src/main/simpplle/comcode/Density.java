@@ -47,14 +47,14 @@ public class Density extends SimpplleType implements Externalizable {
   public static short nextSimId = 0;
 
   /**
-   * Creates a new density and adds it to a global directory.
+   * Creates a new density.
    *
-   * @param density the name of this instance
+   * @param name a case-insensitive name
    * @param value a numeric value for comparing densities, where lower is less dense
    */
-  public Density(String density, int value) {
+  public Density(String name, int value) {
 
-    this.density = density.toUpperCase();
+    this.density = name.toUpperCase();
     this.value = value;
 
     updateAllData(this, DENSITY);
@@ -62,12 +62,19 @@ public class Density extends SimpplleType implements Externalizable {
   }
 
   /**
-   * Creates a new density with a value of zero and adds it to a global directory.
+   * Creates a new density with a value of zero.
    *
-   * @param density the name of this instance
+   * @param name a case-insensitive name
    */
-  public Density(String density) {
-    this(density, 0);
+  public Density(String name) {
+    this(name, 0);
+  }
+
+  /**
+   * Creates a new density with no name and a value of zero.
+   */
+  public Density() {
+    this("", 0);
   }
 
   public short getSimId() {
