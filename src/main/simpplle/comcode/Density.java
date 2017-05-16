@@ -369,16 +369,12 @@ public class Density extends SimpplleType implements Externalizable {
   }
 
   private Object readResolve () throws java.io.ObjectStreamException {
-
-    Density densityObj = Density.getOrCreate(name);
-
-    densityObj.name = this.name;
-    densityObj.value = this.value;
-    densityObj.pctCanopy = this.pctCanopy;
-
-    updateAllData(densityObj,DENSITY);
-
-    return densityObj;
+    Density density = get(name);
+    if (density == null) {
+      return new Density(this.name, this.value);
+    } else {
+      return density;
+    }
   }
 
   // *** JTable section ***
