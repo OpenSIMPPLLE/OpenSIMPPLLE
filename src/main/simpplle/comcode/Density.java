@@ -260,21 +260,28 @@ public class Density extends SimpplleType implements Externalizable {
   }
 
   /**
-   * Returns an existing density with the provided case-insensitive name.
+   * Returns an existing density with the provided name.
    *
-   * @param name a density name
+   * @param name a case-insensitive name
    * @return an existing density, or null
    */
   public static Density get(String name) {
     return (Density)allDensityHm.get(name.toUpperCase());
   }
 
-  public static Density get(String densityStr, boolean create) {
-    Density density = (Density)allDensityHm.get(densityStr.toUpperCase());
-    if (density == null && create) {
-      density = new Density(densityStr.toUpperCase(),1);
+  /**
+   * Returns an existing density or creates a missing density with the provided name.
+   *
+   * @param name a case-insensitive name
+   * @return a new or existing density
+   */
+  public static Density getOrCreate(String name) {
+    Density density = get(name);
+    if (density == null) {
+      return new Density(name.toUpperCase());
+    } else {
+      return density;
     }
-    return density;
   }
 
   /**
@@ -365,7 +372,7 @@ public class Density extends SimpplleType implements Externalizable {
 
   private Object readResolve () throws java.io.ObjectStreamException {
 
-    Density densityObj = Density.get(density,true);
+    Density densityObj = Density.getOrCreate(density);
 
     densityObj.density = this.density;
     densityObj.value = this.value;
