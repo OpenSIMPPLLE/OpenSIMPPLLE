@@ -377,7 +377,7 @@ public class Density extends SimpplleType implements Externalizable {
   private Object readResolve () throws java.io.ObjectStreamException {
     Density density = get(name);
     if (density == null) {
-      return new Density(this.name, this.value);
+      return this;
     } else {
       return density;
     }
