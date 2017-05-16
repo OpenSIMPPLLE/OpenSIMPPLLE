@@ -76,25 +76,25 @@ public class Density extends SimpplleType implements Externalizable {
   }
 
   public static final Density UNKNOWN = new Density("UNKNOWN",0);
-  public static final Density ONE     = new Density("1",1,true);
-  public static final Density TWO     = new Density("2",2,true);
-  public static final Density THREE   = new Density("3",3,true);
-  public static final Density FOUR    = new Density("4",4,true);
+  public static final Density ONE     = new Density("1", 1);
+  public static final Density TWO     = new Density("2", 2);
+  public static final Density THREE   = new Density("3", 3);
+  public static final Density FOUR    = new Density("4", 4);
 
-  public static final Density W = new Density("W",1,true); // Woodland
-  public static final Density O = new Density("O",2,true); // Open
-  public static final Density C = new Density("C",3,true); // Closed
+  public static final Density W = new Density("W", 1); // Woodland
+  public static final Density O = new Density("O", 2); // Open
+  public static final Density C = new Density("C", 3); // Closed
 
   // *** Western Great Plains Steppe ***
   // ***********************************
-  public static final Density NA = new Density("NA",1,true);
+  public static final Density NA = new Density("NA", 1);
 
   // **********************
   // *** Southwest Utah ***
   // **********************
-//  public static final Density ONE   = new Density("1",1,true);
-//  public static final Density TWO   = new Density("2",2,true);
-//  public static final Density THREE = new Density("3",3,true); // for Oak
+//  public static final Density ONE   = new Density("1", 1);
+//  public static final Density TWO   = new Density("2", 2);
+//  public static final Density THREE = new Density("3", 3); // for Oak
 
   /*
    ** Forest Structure for Southwest Utah **
@@ -183,9 +183,8 @@ public class Density extends SimpplleType implements Externalizable {
    * overloaded constructor references default constructor and sets density name, and int value to parameter arguments. Then updates the Simpplle types arraylist for all Simulation data .  
    * @param density
    * @param value
-   * @param isValid
    */
-  public Density(String density, int value, boolean isValid) {
+  public Density(String density, int value) {
     this();
     this.density = density.toUpperCase();
     this.value   = value;
@@ -194,29 +193,11 @@ public class Density extends SimpplleType implements Externalizable {
   }
 
   /**
-   * overloaded constructor references default constructor but sets isValid to false
-   * @param density
-   * @param value
-   */
-  public Density(String density, int value) {
-    this(density,value,false);
-  }
-
-  /**
    * overloaded constructor references default constructor and sets value to 0
    * @param density
    */
   public Density(String density) {
     this(density,0);
-  }
-
-  /**
-   * overloaded constructor references default constructor sets value to 0 and sends the boolean parameter for validity 
-   * @param density
-   * @param isValid
-   */
-  public Density(String density, boolean isValid) {
-    this(density,0,isValid);
   }
 
   /**
