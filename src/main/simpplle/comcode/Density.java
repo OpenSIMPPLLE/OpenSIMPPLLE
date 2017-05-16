@@ -171,24 +171,27 @@ public class Density extends SimpplleType implements Externalizable {
   }
 
   /**
-   * overloaded constructor references default constructor and sets density name, and int value to parameter arguments. Then updates the Simpplle types arraylist for all Simulation data .  
-   * @param density
-   * @param value
+   * Creates a new density and adds it to a global directory.
+   *
+   * @param density the name of this instance
+   * @param value a numeric value, which is unused by OpenSIMPPLLE
    */
   public Density(String density, int value) {
 
     this.density = density.toUpperCase();
-    this.value   = value;
+    this.value = value;
 
-    updateAllData(this,DENSITY);
+    updateAllData(this, DENSITY);
+
   }
 
   /**
-   * overloaded constructor references default constructor and sets value to 0
-   * @param density
+   * Creates a new density with a value of zero and adds it to a global directory.
+   *
+   * @param density the name of this instance
    */
   public Density(String density) {
-    this(density,0);
+    this(density, 0);
   }
 
   /**
