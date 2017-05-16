@@ -185,7 +185,6 @@ public class Density extends SimpplleType implements Externalizable {
   public Density() {
     density = null;
     value   = 0;
-    initPctCanopy();
   }
   
   /**
