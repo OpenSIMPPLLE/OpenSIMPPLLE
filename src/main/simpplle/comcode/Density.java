@@ -171,21 +171,12 @@ public class Density extends SimpplleType implements Externalizable {
   }
 
   /**
-   * Density constructor. initializes density string, density value and percent canopy.
-   * Choices for name are "1", "2","3","4","W" (woodland), "O" (Open),  "C" (Closed), "NA"
-   */
-  public Density() {
-    density = null;
-    value   = 0;
-  }
-  
-  /**
    * overloaded constructor references default constructor and sets density name, and int value to parameter arguments. Then updates the Simpplle types arraylist for all Simulation data .  
    * @param density
    * @param value
    */
   public Density(String density, int value) {
-    this();
+
     this.density = density.toUpperCase();
     this.value   = value;
 
