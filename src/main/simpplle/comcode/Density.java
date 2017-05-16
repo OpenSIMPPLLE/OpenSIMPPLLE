@@ -196,15 +196,6 @@ public class Density extends SimpplleType implements Externalizable {
   public int getValue() { return value; }
 
   /**
-   * Gets the density variable.
-   * Choices for name are "1", "2","3","4","W" (woodland), "O" (Open),  "C" (Closed), "NA"
-   * @return
-   */
-  public String getDensity() {
-    return name;
-  }
-
-  /**
    * Method to look up a density by name and compare to this density object.
    * @param name the name of density object
    * @return true if the density sought equals this one.
@@ -388,10 +379,6 @@ public class Density extends SimpplleType implements Externalizable {
     updateAllData(densityObj,DENSITY);
 
     return densityObj;
-  }
-
-  public void setDensity(String name) {
-    this.name = name;
   }
 
   // *** JTable section ***
