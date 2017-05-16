@@ -368,6 +368,12 @@ public class Density extends SimpplleType implements Externalizable {
     }
   }
 
+  /**
+   * Replaces the density read from the stream if one with the same name already exists.
+   *
+   * @return an existing density or the object read from the stream
+   * @throws java.io.ObjectStreamException if there is a stream exception
+   */
   private Object readResolve () throws java.io.ObjectStreamException {
     Density density = get(name);
     if (density == null) {
