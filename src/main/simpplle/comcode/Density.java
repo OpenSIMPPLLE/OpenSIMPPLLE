@@ -113,44 +113,36 @@ public class Density extends SimpplleType implements Externalizable {
      4 = High       (70 - 100%)
    */
 
-  public static void initPercentCanopy() {
-    Density.ONE.initPctCanopy();
-    Density.TWO.initPctCanopy();
-    Density.THREE.initPctCanopy();
-    Density.FOUR.initPctCanopy();
-  }
-
   /**
-   * Sets percent canopies for Density.ONE through Density.FOUR for the regional zones by setting their Range which consists of a lower and upper bounds.
-   * e.g. Colorado Plateau - Density.ONE = 0-10%, Density.TWO = 11-40%, Density.THREE= 41-70%, Density.FOUR = 71-100%
-   *
+   * Initializes the absolute canopy coverage ranges of the predefined densities based on the
+   * current zone. Gila and Southwest Utah are ignored.
    */
-  private void initPctCanopy() {
+  public static void initPercentCanopy() {
+
     RegionalZone zone = Simpplle.getCurrentZone();
+
     if (zone instanceof Gila) {
+
+      // Warning: pctCanopy not initialized
 
     } else if (zone instanceof SouthwestUtah) {
 
+      // Warning: pctCanopy not initialized
+
     } else if (zone instanceof ColoradoPlateau) {
-      if (this.equals(Density.ONE)) {
-        Density.ONE.pctCanopy = new Range(0, 10);
-      } else if (this.equals(Density.TWO)) {
-        Density.TWO.pctCanopy = new Range(11, 40);
-      } else if (this.equals(Density.THREE)) {
-        Density.THREE.pctCanopy = new Range(41, 70);
-      } else if (this.equals(Density.FOUR)) {
-        Density.FOUR.pctCanopy = new Range(71, 100);
-      }
+
+      ONE.pctCanopy   = new Range(  0,  10 );
+      TWO.pctCanopy   = new Range( 11,  40 );
+      THREE.pctCanopy = new Range( 41,  70 );
+      FOUR.pctCanopy  = new Range( 71, 100 );
+
     } else {
-      if (this.equals(Density.ONE)) {
-        Density.ONE.pctCanopy = new Range(0, 10);
-      } else if (this.equals(Density.TWO)) {
-        Density.TWO.pctCanopy = new Range(11, 49);
-      } else if (this.equals(Density.THREE)) {
-        Density.THREE.pctCanopy = new Range(50, 69);
-      } else if (this.equals(Density.FOUR)) {
-        Density.FOUR.pctCanopy = new Range(70, 100);
-      }
+
+      ONE.pctCanopy   = new Range(  0,  10 );
+      TWO.pctCanopy   = new Range( 11,  49 );
+      THREE.pctCanopy = new Range( 50,  69 );
+      FOUR.pctCanopy  = new Range( 70, 100 );
+
     }
   }
 
