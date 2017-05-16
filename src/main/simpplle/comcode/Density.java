@@ -243,17 +243,19 @@ public class Density extends SimpplleType implements Externalizable {
   public boolean isValid() { return Density.get(density) != null; }
 
   /**
-   * Uses density variable 1-4 to to get a Density. ONE, TWO, THREE OR FOUR object
-   * @param density
-   * @return
+   * Returns a predefined 1, 2, 3, or 4 density based on the associated value. Otherwise the
+   * a density is returned with a name that matches the passed in value.
+   *
+   * @param value a numeric value
+   * @return an existing density, or null
    */
-  public static Density get(int density) {
-    switch (density) {
+  public static Density get(int value) {
+    switch (value) {
       case 1:  return Density.ONE;
       case 2:  return Density.TWO;
       case 3:  return Density.THREE;
       case 4:  return Density.FOUR;
-      default: return get(Integer.toString(density));
+      default: return get(Integer.toString(value));
     }
   }
 
