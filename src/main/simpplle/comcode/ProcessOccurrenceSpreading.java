@@ -217,12 +217,13 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
   }
 
   /**
-   * returns the from node evu
+   * @return the from node evu
    */
 
   public Evu getFromNodeEvu() {
-    Node n = root.fromNode;
-    return n.data.getUnit();
+    if (root == null || root.fromNode == null) {return null;}
+    Evu evu = root.fromNode.data.getUnit();
+    return (evu != null) ? evu : null;
   }
 
   /**
