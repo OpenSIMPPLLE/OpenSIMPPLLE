@@ -2218,7 +2218,8 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   public Evu getFromUnit() {
     ProcessOccurrenceSpreading event = findSpreadOccurenceFrom();
-    return ( (event != null) ? event.getUnit() : this);
+    Evu fromEvu = event.getFromNodeEvu();
+    return ( (event != null) ? fromEvu : this);
   }
   /**
    * Gets the Origin Process that spread to this unit.

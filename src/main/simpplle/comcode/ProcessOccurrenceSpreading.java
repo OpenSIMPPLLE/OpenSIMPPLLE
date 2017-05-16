@@ -217,6 +217,15 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
   }
 
   /**
+   * returns the from node evu
+   */
+
+  public Evu getFromNodeEvu() {
+    Node n = root.fromNode;
+    return n.data.getUnit();
+  }
+
+  /**
    * Creates a new event and adds the new instance to the spreading queue.
    */
   public ProcessOccurrenceSpreading(Evu evu, Lifeform lifeform, ProcessProbability processData, int timeStep) {
