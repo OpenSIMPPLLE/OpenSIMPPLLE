@@ -38,7 +38,7 @@ public class Density extends SimpplleType implements Externalizable {
   public static final Density O       = new Density("O", 2); // Open
   public static final Density C       = new Density("C", 3); // Closed
 
-  private String density;
+  private String name;
   private int    value;
   private Range  pctCanopy;
 
@@ -54,7 +54,7 @@ public class Density extends SimpplleType implements Externalizable {
    */
   public Density(String name, int value) {
 
-    this.density = name.toUpperCase();
+    this.name = name.toUpperCase();
     this.value = value;
 
     updateAllData(this, DENSITY);
@@ -186,7 +186,7 @@ public class Density extends SimpplleType implements Externalizable {
   /**
    * Density name. Choices for name are "1", "2","3","4","W" (woodland), "O" (Open),  "C" (Closed), "NA"
    */
-  public String toString() { return density; }
+  public String toString() { return name; }
 
   /**
    * Gets the value choices for this are  1,2,3,4
@@ -201,7 +201,7 @@ public class Density extends SimpplleType implements Externalizable {
    * @return
    */
   public String getDensity() {
-    return density;
+    return name;
   }
 
   /**
@@ -220,9 +220,9 @@ public class Density extends SimpplleType implements Externalizable {
   public boolean equals(Object obj) {
     if (this == obj) { return true; }
     if (obj instanceof Density) {
-      if (density == null || obj == null) { return false; }
+      if (name == null || obj == null) { return false; }
 
-      return density.equals(((Density)obj).density);
+      return name.equals(((Density)obj).name);
     }
     return false;
   }
@@ -231,7 +231,7 @@ public class Density extends SimpplleType implements Externalizable {
    * Makes a hashcode from the string of density variable.
    */
   public int hashCode() {
-    return density.hashCode();
+    return name.hashCode();
   }
 
   /**
@@ -240,14 +240,14 @@ public class Density extends SimpplleType implements Externalizable {
    */
   public int compareTo(Object o) {
     if (o == null) { return -1; }
-    return density.compareTo(o.toString());
+    return name.compareTo(o.toString());
   }
 
   /**
    * Checks if a density is valid.
    * @return
    */
-  public boolean isValid() { return Density.get(density) != null; }
+  public boolean isValid() { return Density.get(name) != null; }
 
   /**
    * Returns a predefined 1, 2, 3, or 4 density based on the associated value. Otherwise the
@@ -352,7 +352,7 @@ public class Density extends SimpplleType implements Externalizable {
    */
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
-    density = (String)in.readObject();
+    name = (String)in.readObject();
     value   = in.readInt();
     if (version > 1) {
       if (in.readBoolean()) {
@@ -368,7 +368,7 @@ public class Density extends SimpplleType implements Externalizable {
    */
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
-    out.writeObject(density);
+    out.writeObject(name);
     out.writeInt(value);
     out.writeBoolean(pctCanopy != null);
     if (pctCanopy != null) {
@@ -379,9 +379,9 @@ public class Density extends SimpplleType implements Externalizable {
 
   private Object readResolve () throws java.io.ObjectStreamException {
 
-    Density densityObj = Density.getOrCreate(density);
+    Density densityObj = Density.getOrCreate(name);
 
-    densityObj.density = this.density;
+    densityObj.name = this.name;
     densityObj.value = this.value;
     densityObj.pctCanopy = this.pctCanopy;
 
@@ -390,8 +390,8 @@ public class Density extends SimpplleType implements Externalizable {
     return densityObj;
   }
 
-  public void setDensity(String density) {
-    this.density = density;
+  public void setDensity(String name) {
+    this.name = name;
   }
 
   // *** JTable section ***
