@@ -260,12 +260,13 @@ public class Density extends SimpplleType implements Externalizable {
   }
 
   /**
-   * Gets the density based on string density variable.  Will not create a new one. 
-   * @param densityStr the density variable 
-   * @return Density object
+   * Returns an existing density with the provided case-insensitive name.
+   *
+   * @param name a density name
+   * @return an existing density, or null
    */
-  public static Density get(String densityStr) {
-    return (Density)allDensityHm.get(densityStr.toUpperCase());
+  public static Density get(String name) {
+    return (Density)allDensityHm.get(name.toUpperCase());
   }
 
   public static Density get(String densityStr, boolean create) {
