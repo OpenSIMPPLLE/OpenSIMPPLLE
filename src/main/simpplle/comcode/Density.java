@@ -243,14 +243,6 @@ public class Density extends SimpplleType implements Externalizable {
   public boolean isValid() { return Density.get(density) != null; }
 
   /**
-   * @param density
-   * @return
-   */
-  public static Density get(Integer density) {
-    return get(density.intValue());
-  }
-
-  /**
    * Uses density variable 1-4 to to get a Density. ONE, TWO, THREE OR FOUR object
    * @param density
    * @return
@@ -271,7 +263,7 @@ public class Density extends SimpplleType implements Externalizable {
    * @return Density object
    */
   public static Density get(String densityStr) {
-    return get(densityStr,false);
+    return (Density)allDensityHm.get(densityStr.toUpperCase());
   }
 
   public static Density get(String densityStr, boolean create) {
