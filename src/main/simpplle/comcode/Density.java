@@ -50,7 +50,7 @@ public class Density extends SimpplleType implements Externalizable {
    * Creates a new density and adds it to a global directory.
    *
    * @param density the name of this instance
-   * @param value a numeric value, which is unused by OpenSIMPPLLE
+   * @param value a numeric value for comparing densities, where lower is less dense
    */
   public Density(String density, int value) {
 
