@@ -27,6 +27,44 @@ public class Density extends SimpplleType implements Externalizable {
   public static final int MAX_CANOPY_COL = 2;
   public static final int COLUMN_COUNT   = 3;
 
+  public static final Density UNKNOWN = new Density("UNKNOWN",0);
+  public static final Density ONE     = new Density("1", 1);
+  public static final Density TWO     = new Density("2", 2);
+  public static final Density THREE   = new Density("3", 3);
+  public static final Density FOUR    = new Density("4", 4);
+
+  public static final Density W = new Density("W", 1); // Woodland
+  public static final Density O = new Density("O", 2); // Open
+  public static final Density C = new Density("C", 3); // Closed
+
+  // *** Western Great Plains Steppe ***
+  // ***********************************
+  public static final Density NA = new Density("NA", 1);
+
+  // **********************
+  // *** Southwest Utah ***
+  // **********************
+//  public static final Density ONE   = new Density("1", 1);
+//  public static final Density TWO   = new Density("2", 2);
+//  public static final Density THREE = new Density("3", 3); // for Oak
+
+  /*
+   ** Forest Structure for Southwest Utah **
+   *****************************************
+   1 = (<10%)
+   2 = (41-70%)
+   3 = (>70%)
+   */
+
+  /*
+     Gila
+     ****
+     1 = non forest (<10%)
+     2 = Low        (11 - 49%)
+     3 = Medium     (50 - 69%)
+     4 = High       (70 - 100%)
+   */
+
   private String density;
   private int    value;
   private Range  pctCanopy;
@@ -74,44 +112,6 @@ public class Density extends SimpplleType implements Externalizable {
       density.writeExternalSimple(out);
     }
   }
-
-  public static final Density UNKNOWN = new Density("UNKNOWN",0);
-  public static final Density ONE     = new Density("1", 1);
-  public static final Density TWO     = new Density("2", 2);
-  public static final Density THREE   = new Density("3", 3);
-  public static final Density FOUR    = new Density("4", 4);
-
-  public static final Density W = new Density("W", 1); // Woodland
-  public static final Density O = new Density("O", 2); // Open
-  public static final Density C = new Density("C", 3); // Closed
-
-  // *** Western Great Plains Steppe ***
-  // ***********************************
-  public static final Density NA = new Density("NA", 1);
-
-  // **********************
-  // *** Southwest Utah ***
-  // **********************
-//  public static final Density ONE   = new Density("1", 1);
-//  public static final Density TWO   = new Density("2", 2);
-//  public static final Density THREE = new Density("3", 3); // for Oak
-
-  /*
-   ** Forest Structure for Southwest Utah **
-   *****************************************
-   1 = (<10%)
-   2 = (41-70%)
-   3 = (>70%)
-   */
-
-  /*
-     Gila
-     ****
-     1 = non forest (<10%)
-     2 = Low        (11 - 49%)
-     3 = Medium     (50 - 69%)
-     4 = High       (70 - 100%)
-   */
 
   /**
    * Initializes the absolute canopy coverage ranges of the predefined densities based on the
