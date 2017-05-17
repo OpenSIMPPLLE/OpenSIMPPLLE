@@ -3940,11 +3940,6 @@ public final class Area implements Externalizable {
     return v;
   }
 
-  /**
-   * Go through the temp storage for adjacent data and put the data in the appropriate Evus. This
-   * had to wait until all instances of Evu were created, so that the AdjacentData.evu could be
-   * filled in.
-   */
   public void finishAddingAdjacentData() {
     finishAddingAdjacentData(null);
   }
@@ -3966,8 +3961,8 @@ public final class Area implements Externalizable {
 
         double spread, windSpeed, windDir;
         char pos, wind;
-        AdjacentData[] adjData = new AdjacentData[numAdj];
-        int adjIndex = 0;
+        AdjacentData[] adjData = new AdjacentData[v.size()];
+        int adjIndex = -1;
 
         for (int i = 0; i < v.size(); i++) {
           double[] neighbor = (double[])v.elementAt(i);
@@ -3987,7 +3982,14 @@ public final class Area implements Externalizable {
 
           if (dataLength < 4) {
             // Legacy spatial relation
-            adjIndex = getAdjIndexRowCol(evu, adjEvu);
+            if(evu.getLocationX() == -1 || evu.getLocationY() == -1 || adjEvu.getLocationX() == -1
+                || adjEvu.getLocationY() == -1){
+              // invalid x and y, we will add adjacent data in an 'unsorted' order
+              adjIndex++;
+            } else {
+              // make an informed guess about adjacency angle based on row and column
+              adjIndex = getAdjIndexRowCol(evu, adjEvu);
+            }
             adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind);
           } else {
             // Keane spatial relation, more attributes available
