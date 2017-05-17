@@ -24,7 +24,7 @@ import java.awt.event.*;
  * <p>Original source code authorship: Kirk A. Moeller
  */
 
-class FireSuppWeather extends JDialog {
+public class FireSuppWeather extends JDialog {
 
   private FireSuppWeatherTableDataModel dataModel = new FireSuppWeatherTableDataModel();
   private JMenuItem menuFileSave = new JMenuItem();
