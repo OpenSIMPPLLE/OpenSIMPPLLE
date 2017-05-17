@@ -648,7 +648,7 @@ public class FireEvent extends Process {
    * @return
    */
   private static VegetativeType regenNew(Lifeform lifeform, Evu evu) {
-    AdjacentData[]   adjacentData;
+    List<AdjacentData> adjacencies;
     int              acres;
     Integer          keyValueIndex;
     int              index;
@@ -658,8 +658,8 @@ public class FireEvent extends Process {
     int              numAdj;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData = evu.getAdjacentData();
-    numAdj        = adjacentData.length;
+    adjacencies = evu.getAdjacencies();
+    numAdj        = adjacencies.size();
     htGrp         = evu.getHabitatTypeGroup();
 
     HabitatTypeGroupType ecoGroup = evu.getHabitatTypeGroup().getType();
@@ -691,8 +691,8 @@ public class FireEvent extends Process {
        for the adjacent column.  Currently this is not a problem, since we
        don't allow multiple values right now.
     */
-    for (i=0; i<adjacentData.length; i++) {
-      Evu adj = adjacentData[i].evu;
+    for (AdjacentData neighbor : adjacencies){
+      Evu adj = neighbor.getEvu();
 
       // Do not want current because doNextState may have already happened
       // for this adj unit, in which case we would be getting the wrong Species.
@@ -762,8 +762,8 @@ public class FireEvent extends Process {
       value[0] = -1;
     }
 
-    for(i=0;i<numAdj;i++) {
-      Evu adj = adjacentData[i].evu;
+    for(AdjacentData neighbor : adjacencies){
+      Evu adj = neighbor.getEvu();
 
       if (adj.producingSeed(lifeform,Evu.ADJACENT_SEED)) {
         // Do not want current because doNextState may have already happened
@@ -841,8 +841,8 @@ public class FireEvent extends Process {
    * @return the vegetative type commonly regenerated
    */
   private static VegetativeType regenCommon(Evu evu) {
-    AdjacentData[]   adjacentData;
-    Hashtable        seedSource = null;
+    List<AdjacentData> adjacencies;
+    Hashtable        seedSource;
     Species          species, adjSpecies;
     Density          density;
     int              zoneId;
@@ -861,8 +861,8 @@ public class FireEvent extends Process {
     HabitatTypeGroupType groupType;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData = evu.getAdjacentData();
-    numAdj        = adjacentData.length;
+    adjacencies = evu.getAdjacencies();
+    numAdj        = adjacencies.size();
     htGrp         = evu.getHabitatTypeGroup();
 
     {
@@ -906,8 +906,8 @@ public class FireEvent extends Process {
       }
     }
 
-    for(i=0;i<numAdj;i++) {
-      adj = adjacentData[i].evu;
+    for(AdjacentData neighbor : adjacencies){
+      adj = neighbor.getEvu();
       VegSimStateData state = adj.getState(cStep-1);
       if (state == null) { continue; }
       adjSpecies = state.getVeg().getSpecies();
@@ -993,8 +993,8 @@ public class FireEvent extends Process {
       // Build a hashtable: key = species, value = acres;
       //   if species is seed producing add its acres to the
       //   the value already in the hashtable.
-      for(i=0;i<numAdj;i++) {
-        adj = adjacentData[i].evu;
+      for(AdjacentData neighbor : adjacencies){
+        adj = neighbor.getEvu();
 
         if (adj.producingSeed()) {
           // Do not want current because doNextState may have already happened
@@ -1656,7 +1656,7 @@ public class FireEvent extends Process {
 //      return false;
 //    }
 //
-//    adjacentData = fromEvu.getAdjacentData();
+//    adjacentData = fromEvu.getNeighborhood();
 //    if (adjacentData == null) { return false; }
 //    spotFrom    = new Vector();
 //    newSpotFrom = new Vector();
@@ -1673,7 +1673,7 @@ public class FireEvent extends Process {
 //    for(i=0;i<3;i++) {
 //      for(j=0;j<spotFrom.size();j++) {
 //        fromAdj = (Evu) spotFrom.elementAt(j);
-//        adjacentData = fromAdj.getAdjacentData();
+//        adjacentData = fromAdj.getNeighborhood();
 //
 //        for(k=0;k<adjacentData.length;k++) {
 //          adj = adjacentData[k].evu;

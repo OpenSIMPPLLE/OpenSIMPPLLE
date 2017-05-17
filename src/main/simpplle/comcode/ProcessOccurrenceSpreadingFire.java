@@ -470,20 +470,22 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   private void doSimpplleSpread(Evu fromUnit, ArrayList<Evu> toUnits) {
 
-    AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
+    AdjacentData[] adjacentArray = fromUnit.getNeighborhood();
 
     if (adjacentArray != null) {
 
       for (AdjacentData adjacent : adjacentArray) {
 
-        Evu toUnit = adjacent.evu;
+        if (adjacent != null) {
+          Evu toUnit = adjacent.evu;
 
-        if (lineSuppUnits.contains(toUnit.getId())) continue;
+          if (lineSuppUnits.contains(toUnit.getId())) continue;
 
-        boolean alreadyBurning = toUnit.hasFireAnyLifeform();
-        if (Evu.doSpread(fromUnit, toUnit, fromUnit.getDominantLifeformFire())) {
-          if (!alreadyBurning){
-            toUnits.add(toUnit);
+          boolean alreadyBurning = toUnit.hasFireAnyLifeform();
+          if (Evu.doSpread(fromUnit, toUnit, fromUnit.getDominantLifeformFire())) {
+            if (!alreadyBurning) {
+              toUnits.add(toUnit);
+            }
           }
         }
       }
@@ -501,102 +503,96 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   private void doKeaneSpread(Evu fromUnit, ArrayList<Evu> toUnits) {
 
-    AdjacentData[] adjacentArray = fromUnit.getAdjacentData();
+    AdjacentData[] adjacentArray = fromUnit.getNeighborhood();
 
     if (adjacentArray != null) {
 
       for (AdjacentData adjacent : adjacentArray) {
 
-        double windSpeed       = adjacent.getWindSpeed();     // Miles per hour
-        double windDirection   = adjacent.getWindDirection(); // Degrees azimuth
-        double spreadDirection = adjacent.getSpread();        // Degrees azimuth
-        double slope           = adjacent.getSlope();         // Percent slope / 100
+        if (adjacent != null) {
 
-        windSpeed += keaneWindSpeedOffset;
+          double windSpeed = adjacent.getWindSpeed();     // Miles per hour
+          double windDirection = adjacent.getWindDirection(); // Degrees azimuth
+          double spreadDirection = adjacent.getSpread();        // Degrees azimuth
+          double slope = adjacent.getSlope();         // Percent slope / 100
 
-        // Use wind multiplier for extreme fires
-        if (isExtreme) windSpeed *= keaneExtremeWindMultiplier;
+          windSpeed += keaneWindSpeedOffset;
 
-        // Limit wind to 30mph max
-        windSpeed = Math.min(30, windSpeed);
+          // Use wind multiplier for extreme fires
+          if (isExtreme) windSpeed *= keaneExtremeWindMultiplier;
 
-        // Offset the wind direction and truncate angle within 360 degrees
-        windDirection = (windDirection + keaneWindDirectionOffset) % 360;
+          // Limit wind to 30mph max
+          windSpeed = Math.min(30, windSpeed);
 
-        double windSpread;
+          // Offset the wind direction and truncate angle within 360 degrees
+          windDirection = (windDirection + keaneWindDirectionOffset) % 360;
 
-        if (windSpeed > 0.5) {
+          double windSpread;
 
-          // Compute a coefficient that reflects wind direction
-          double coeff = Math.toRadians(fromUnit.getAzimuthDifference(spreadDirection, windDirection));
+          if (windSpeed > 0.5) {
 
-          // Compute the length:width ratio from Andrews (1986)
-          double lwr = 1.0 + (0.125 * windSpeed);
+            // Compute a coefficient that reflects wind direction
+            double coeff = Math.toRadians(fromUnit.getAzimuthDifference(spreadDirection, windDirection));
 
-          // Scale the coefficient between 0 and 1
-          coeff = (Math.cos(coeff) + 1.0) / 2.0;
+            // Compute the length:width ratio from Andrews (1986)
+            double lwr = 1.0 + (0.125 * windSpeed);
 
-          // Scale the function based on wind speed between 1 and 10
-          windSpread = lwr * Math.pow(coeff, Math.pow(windSpeed,0.6));
+            // Scale the coefficient between 0 and 1
+            coeff = (Math.cos(coeff) + 1.0) / 2.0;
 
-        } else {
-
-          windSpread = 1.0;
-
-        }
-
-        double slopeSpread;
-
-        if (slope > 0.0) {
-
-          slopeSpread = 4.0 / (1.0 + 3.5 * Math.exp(-10 * slope));
-
-        } else {
-
-          slopeSpread = Math.exp(-3 * slope * slope);
-
-        }
-
-        double spix = windSpread + slopeSpread;
-
-        // Compensate for longer distances on corners
-        if (spreadDirection == 45.0  ||
-            spreadDirection == 135.0 ||
-            spreadDirection == 225.0 ||
-            spreadDirection == 315.0 ) {
-
-          spix /= Math.sqrt(2);
-
-        }
-
-        List<AdjacentData> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
-
-        Evu prevUnit = fromUnit;
-
-        for (AdjacentData neighbor : neighbors) {
-
-          if (lineSuppUnits.contains(neighbor.evu.getId())) break;
-
-          neighbor.setWind(prevUnit.isDownwind(spreadDirection, windDirection));
-
-          boolean toUnitWasBurning = neighbor.evu.hasFireAnyLifeform();
-
-          if (Evu.doSpread(prevUnit, neighbor.evu, prevUnit.getDominantLifeformFire())) {
-
-            if (!toUnitWasBurning) {
-
-              toUnits.add(neighbor.evu);
-
-            }
+            // Scale the function based on wind speed between 1 and 10
+            windSpread = lwr * Math.pow(coeff, Math.pow(windSpeed, 0.6));
 
           } else {
 
-            break;
+            windSpread = 1.0;
 
           }
 
-          prevUnit = neighbor.evu;
+          double slopeSpread;
 
+          if (slope > 0.0) {
+
+            slopeSpread = 4.0 / (1.0 + 3.5 * Math.exp(-10 * slope));
+
+          } else {
+
+            slopeSpread = Math.exp(-3 * slope * slope);
+
+          }
+
+          double spix = windSpread + slopeSpread;
+
+          // Compensate for longer distances on corners
+          if (spreadDirection == 45.0 ||
+              spreadDirection == 135.0 ||
+              spreadDirection == 225.0 ||
+              spreadDirection == 315.0) {
+
+            spix /= Math.sqrt(2);
+
+          }
+
+          List<AdjacentData> neighbors = fromUnit.getNeighborsAlongDirection(adjacent.getSpread(), rollSpix(spix));
+
+          Evu prevUnit = fromUnit;
+
+          for (AdjacentData neighbor : neighbors) {
+            if (lineSuppUnits.contains(neighbor.evu.getId())) break;
+
+            neighbor.setWind(prevUnit.isDownwind(spreadDirection, windDirection));
+
+            boolean toUnitWasBurning = neighbor.evu.hasFireAnyLifeform();
+
+            if (Evu.doSpread(prevUnit, neighbor.evu, prevUnit.getDominantLifeformFire())) {
+              if (!toUnitWasBurning) {
+                toUnits.add(neighbor.evu);
+              }
+            } else {
+              break;
+            }
+            prevUnit = neighbor.evu;
+          }
         }
       }
     }
@@ -641,15 +637,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
       node = (Node)queue.removeFirst();
       if (node.data.getUnit().isSuppressed()) continue;
 
-      adjData = node.data.getUnit().getAdjacentData();
+      adjData = node.data.getUnit().getNeighborhood();
 
-      for (int i=0; i<adjData.length; i++) {
-
-        VegSimStateData adjState = adjData[i].evu.getState();
-        if (adjState == null || adjState.getProcess().isFireProcess()) continue;
-
-        perimeter += adjData[i].evu.getSideLength();
-
+      for (AdjacentData neighbor : adjData) {
+        if (neighbor != null) {
+          VegSimStateData adjState = neighbor.evu.getState();
+          if (adjState == null || adjState.getProcess().isFireProcess()) continue;
+          perimeter += neighbor.evu.getSideLength();
+        }
       }
 
       if (node.toNodes == null) continue;
@@ -684,18 +679,18 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    */
   private boolean hasNonBurningNeighbors(Evu unit) {
 
-    AdjacentData[] adjDataArray = unit.getAdjacentData();
+    AdjacentData[] adjDataArray = unit.getNeighborhood();
 
     if (adjDataArray != null) {
       for (AdjacentData adjData : adjDataArray) {
-        if (!adjData.evu.hasFireAnyLifeform()) {
-          return true;
+        if (adjData != null) {
+          if (!adjData.evu.hasFireAnyLifeform()) {
+            return true;
+          }
         }
       }
     }
-    
     return false;
-
   }
 
   /**
@@ -709,14 +704,16 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     int lowestElevation = Integer.MAX_VALUE;
     Evu lowestUnit = null;
 
-    AdjacentData[] adjDataArray = unit.getAdjacentData();
+    AdjacentData[] adjDataArray = unit.getNeighborhood();
 
     if (adjDataArray != null) {
       for (AdjacentData adjData : adjDataArray) {
-        int unitElevation = adjData.evu.getElevation();
-        if (!adjData.evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
-          lowestElevation = unitElevation;
-          lowestUnit = adjData.evu;
+        if (adjData != null) {
+          int unitElevation = adjData.evu.getElevation();
+          if (!adjData.evu.hasFireAnyLifeform() && unitElevation < lowestElevation) {
+            lowestElevation = unitElevation;
+            lowestUnit = adjData.evu;
+          }
         }
       }
     }
@@ -806,29 +803,32 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
     while (checkNow.size() > 0) {
       for (Evu fromEvu : checkNow) {
 
-        AdjacentData[] adjacencies = fromEvu.getAdjacentData();
+        AdjacentData[] adjacencies = fromEvu.getNeighborhood();
         if (adjacencies == null) continue;
 
         for (AdjacentData adjacent : adjacencies) {
 
-          Evu toEvu = adjacent.evu;
-          if (toEvu == null) continue;
-          
-          if (visited.contains(toEvu)) continue;
-          visited.add(toEvu);
-          
-          if (!uniformPoly && levelsOut > 3) {
-            continue;
-          }
+          if (adjacent != null) {
 
-          if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromUnit, toEvu)) {
-            continue;
-          }
-          
-          if (fromEvu.isAdjDownwind(toEvu) && !checkLater.contains(toEvu)) {
-            checkLater.add(toEvu);
-            if (determineSpotFire(fromUnit,toEvu)) {
-              toUnits.add(toEvu);
+            Evu toEvu = adjacent.evu;
+            if (toEvu == null) continue;
+
+            if (visited.contains(toEvu)) continue;
+            visited.add(toEvu);
+
+            if (!uniformPoly && levelsOut > 3) {
+              continue;
+            }
+
+            if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(fromUnit, toEvu)) {
+              continue;
+            }
+
+            if (fromEvu.isAdjDownwind(toEvu) && !checkLater.contains(toEvu)) {
+              checkLater.add(toEvu);
+              if (determineSpotFire(fromUnit, toEvu)) {
+                toUnits.add(toEvu);
+              }
             }
           }
         }

@@ -335,43 +335,43 @@ public class PpMpb extends Process implements HazardValues {
 
     VegSimStateData state = evu.getState(cTime-1);
     ppMpb        = (state != null ? state.getProcess().equals(ProcessType.PP_MPB) : false);
-    adjacentData = evu.getAdjacentData();
+    adjacentData = evu.getNeighborhood();
 
-    for(int i=0;i<adjacentData.length;i++) {
-      adj            = adjacentData[i].evu;
+    for (AdjacentData neighbor : adjacentData) {
+      if (neighbor != null) {
+        adj = neighbor.evu;
 
-      VegSimStateData adjState = adj.getState(cTime-1);
-      if (adjState == null) { continue; }
-      adjProcessType = adj.getState(cTime - 1).getProcess();
+        VegSimStateData adjState = adj.getState(cTime - 1);
+        if (adjState == null) {
+          continue;
+        }
+        adjProcessType = adj.getState(cTime - 1).getProcess();
 
-      adjHazard      = adj.getPpMpbHazard();
+        adjHazard = adj.getPpMpbHazard();
 
-      switch (adjHazard) {
-        case LOW:
-          adjLowCount++;
-          break;
-        case MODERATE:
-          adjModerateCount++;
-          break;
-        case HIGH:
-          adjHighCount++;
-          break;
-      }
+        switch (adjHazard) {
+          case LOW:
+            adjLowCount++;
+            break;
+          case MODERATE:
+            adjModerateCount++;
+            break;
+          case HIGH:
+            adjHighCount++;
+            break;
+        }
 
-      if (adjProcessType.equals(ProcessType.PP_MPB)) {
-        ppMpbCount = 1;
-      }
-      else if (adjProcessType.equals(ProcessType.LIGHT_LP_MPB)) {
-        lightLpMpb = 1;
-      }
-      else if (adjProcessType.equals(ProcessType.SEVERE_LP_MPB)) {
-        severeLpMpb = 1;
-      }
-      else if (adjProcessType.equals(ProcessType.STAND_REPLACING_FIRE)) {
-        standReplacingFire = 1;
-      }
-      else if (adjProcessType.equals(ProcessType.MIXED_SEVERITY_FIRE)) {
-        mixedSeverityFire = 1;
+        if (adjProcessType.equals(ProcessType.PP_MPB)) {
+          ppMpbCount = 1;
+        } else if (adjProcessType.equals(ProcessType.LIGHT_LP_MPB)) {
+          lightLpMpb = 1;
+        } else if (adjProcessType.equals(ProcessType.SEVERE_LP_MPB)) {
+          severeLpMpb = 1;
+        } else if (adjProcessType.equals(ProcessType.STAND_REPLACING_FIRE)) {
+          standReplacingFire = 1;
+        } else if (adjProcessType.equals(ProcessType.MIXED_SEVERITY_FIRE)) {
+          mixedSeverityFire = 1;
+        }
       }
     }
     adjProcessCount  = ppMpbCount + lightLpMpb + severeLpMpb;

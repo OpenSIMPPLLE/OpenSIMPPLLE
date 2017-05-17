@@ -58,21 +58,19 @@ public class Fmz {
    */
   public Fmz() {
 
+    acres        = 1.0f;
+    totalFires   = 0;
+    firesPerAcre = 0;
     naturalFires = new float[NUM_CLASSES];
     manmadeFires = new float[NUM_CLASSES];
     percentFires = new float[NUM_CLASSES];
     cost         = new float[NUM_CLASSES];
 
     for (int i = 0; i < NUM_CLASSES; i++) {
-
-      acres           = 0.0f;
-      totalFires      = 0;
-      firesPerAcre    = 0;
       naturalFires[i] = 0.0f;
       manmadeFires[i] = 0.0f;
       percentFires[i] = 0.0f;
       cost[i]         = 0.0f;
-
     }
   }
 

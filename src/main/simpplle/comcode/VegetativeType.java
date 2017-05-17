@@ -477,7 +477,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     density = Density.get(str);
 
     if (density == null) {
-      density = new Density(str,true);
+      density = new Density(str);
     }
   }
 
@@ -1162,7 +1162,7 @@ public final class VegetativeType implements Comparable, Externalizable {
 
       str = strTok.getToken();
       density = Density.get(str);
-      if (density == null) { density = new Density(str,true); }
+      if (density == null) { density = new Density(str); }
 
       makePrintName();
       readProcessNextState(strTok);

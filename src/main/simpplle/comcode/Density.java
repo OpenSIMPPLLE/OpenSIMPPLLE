@@ -19,6 +19,7 @@ import java.util.HashMap;
  */
 
 public class Density extends SimpplleType implements Externalizable {
+
   static final long serialVersionUID = 6515843635790946668L;
   static final int  version          = 2;
 
@@ -27,13 +28,54 @@ public class Density extends SimpplleType implements Externalizable {
   public static final int MAX_CANOPY_COL = 2;
   public static final int COLUMN_COUNT   = 3;
 
-  private String density;
+  public static final Density UNKNOWN = new Density("UNKNOWN", 0);
+  public static final Density NA      = new Density("NA", 1); // Western Great Plains Steppe
+  public static final Density ONE     = new Density("1", 1);
+  public static final Density TWO     = new Density("2", 2);
+  public static final Density THREE   = new Density("3", 3);
+  public static final Density FOUR    = new Density("4", 4);
+  public static final Density W       = new Density("W", 1); // Woodland
+  public static final Density O       = new Density("O", 2); // Open
+  public static final Density C       = new Density("C", 3); // Closed
+
+  private String name;
   private int    value;
   private Range  pctCanopy;
 
-  public static HashMap<Short,Density> simIdHm = new HashMap<Short,Density>();
-  private short simId=-1; // Random Access File ID
-  public static short nextSimId=0;
+  public static HashMap<Short,Density> simIdHm = new HashMap<>();
+  private short simId = -1; // Random Access File ID
+  public static short nextSimId = 0;
+
+  /**
+   * Creates a new density.
+   *
+   * @param name a case-insensitive name
+   * @param value a numeric value for comparing densities, where lower is less dense
+   */
+  public Density(String name, int value) {
+
+    this.name = name.toUpperCase();
+    this.value = value;
+
+    updateAllData(this, DENSITY);
+
+  }
+
+  /**
+   * Creates a new density with a value of zero.
+   *
+   * @param name a case-insensitive name
+   */
+  public Density(String name) {
+    this(name, 0);
+  }
+
+  /**
+   * Creates a new density with no name and a value of zero.
+   */
+  public Density() {
+    this("", 0);
+  }
 
   public short getSimId() {
     if (simId == -1) {
@@ -75,82 +117,45 @@ public class Density extends SimpplleType implements Externalizable {
     }
   }
 
-  public static final Density UNKNOWN = new Density("UNKNOWN",0);
-  public static final Density ONE     = new Density("1",1,true);
-  public static final Density TWO     = new Density("2",2,true);
-  public static final Density THREE   = new Density("3",3,true);
-  public static final Density FOUR    = new Density("4",4,true);
-
-  public static final Density W = new Density("W",1,true); // Woodland
-  public static final Density O = new Density("O",2,true); // Open
-  public static final Density C = new Density("C",3,true); // Closed
-
-  // *** Western Great Plains Steppe ***
-  // ***********************************
-  public static final Density NA = new Density("NA",1,true);
-
-  // **********************
-  // *** Southwest Utah ***
-  // **********************
-//  public static final Density ONE   = new Density("1",1,true);
-//  public static final Density TWO   = new Density("2",2,true);
-//  public static final Density THREE = new Density("3",3,true); // for Oak
-
-  /*
-   ** Forest Structure for Southwest Utah **
-   *****************************************
-   1 = (<10%)
-   2 = (41-70%)
-   3 = (>70%)
-   */
-
-  /*
-     Gila
-     ****
-     1 = non forest (<10%)
-     2 = Low        (11 - 49%)
-     3 = Medium     (50 - 69%)
-     4 = High       (70 - 100%)
-   */
-
-  public static void initPercentCanopy() {
-    Density.ONE.initPctCanopy();
-    Density.TWO.initPctCanopy();
-    Density.THREE.initPctCanopy();
-    Density.FOUR.initPctCanopy();
-  }
-
   /**
-   * Sets percent canopies for Density.ONE through Density.FOUR for the regional zones by setting their Range which consists of a lower and upper bounds.
-   * e.g. Colorado Plateau - Density.ONE = 0-10%, Density.TWO = 11-40%, Density.THREE= 41-70%, Density.FOUR = 71-100%
-   *
+   * Initializes the absolute canopy coverage ranges of the predefined densities based on the
+   * current zone. Gila and Southwest Utah are ignored.
    */
-  private void initPctCanopy() {
+  public static void initPercentCanopy() {
+
     RegionalZone zone = Simpplle.getCurrentZone();
+
     if (zone instanceof Gila) {
+
+      // Warning: pctCanopy not initialized
+
+      // 1 = non forest (<10%)
+      // 2 = Low        (11 - 49%)
+      // 3 = Medium     (50 - 69%)
+      // 4 = High       (70 - 100%)
 
     } else if (zone instanceof SouthwestUtah) {
 
+      // Warning: pctCanopy not initialized
+
+      // 1 = (<10%)
+      // 2 = (41-70%)
+      // 3 = (>70%)
+
     } else if (zone instanceof ColoradoPlateau) {
-      if (this.equals(Density.ONE)) {
-        Density.ONE.pctCanopy = new Range(0, 10);
-      } else if (this.equals(Density.TWO)) {
-        Density.TWO.pctCanopy = new Range(11, 40);
-      } else if (this.equals(Density.THREE)) {
-        Density.THREE.pctCanopy = new Range(41, 70);
-      } else if (this.equals(Density.FOUR)) {
-        Density.FOUR.pctCanopy = new Range(71, 100);
-      }
+
+      ONE.pctCanopy   = new Range(  0,  10 );
+      TWO.pctCanopy   = new Range( 11,  40 );
+      THREE.pctCanopy = new Range( 41,  70 );
+      FOUR.pctCanopy  = new Range( 71, 100 );
+
     } else {
-      if (this.equals(Density.ONE)) {
-        Density.ONE.pctCanopy = new Range(0, 10);
-      } else if (this.equals(Density.TWO)) {
-        Density.TWO.pctCanopy = new Range(11, 49);
-      } else if (this.equals(Density.THREE)) {
-        Density.THREE.pctCanopy = new Range(50, 69);
-      } else if (this.equals(Density.FOUR)) {
-        Density.FOUR.pctCanopy = new Range(70, 100);
-      }
+
+      ONE.pctCanopy   = new Range(  0,  10 );
+      TWO.pctCanopy   = new Range( 11,  49 );
+      THREE.pctCanopy = new Range( 50,  69 );
+      FOUR.pctCanopy  = new Range( 70, 100 );
+
     }
   }
 
@@ -179,59 +184,9 @@ public class Density extends SimpplleType implements Externalizable {
   }
 
   /**
-   * Density constructor. initializes density string, density value and percent canopy.
-   * Choices for name are "1", "2","3","4","W" (woodland), "O" (Open),  "C" (Closed), "NA"
-   */
-  public Density() {
-    density = null;
-    value   = 0;
-    initPctCanopy();
-  }
-  
-  /**
-   * overloaded constructor references default constructor and sets density name, and int value to parameter arguments. Then updates the Simpplle types arraylist for all Simulation data .  
-   * @param density
-   * @param value
-   * @param isValid
-   */
-  public Density(String density, int value, boolean isValid) {
-    this();
-    this.density = density.toUpperCase();
-    this.value   = value;
-
-    updateAllData(this,DENSITY);
-  }
-
-  /**
-   * overloaded constructor references default constructor but sets isValid to false
-   * @param density
-   * @param value
-   */
-  public Density(String density, int value) {
-    this(density,value,false);
-  }
-
-  /**
-   * overloaded constructor references default constructor and sets value to 0
-   * @param density
-   */
-  public Density(String density) {
-    this(density,0);
-  }
-
-  /**
-   * overloaded constructor references default constructor sets value to 0 and sends the boolean parameter for validity 
-   * @param density
-   * @param isValid
-   */
-  public Density(String density, boolean isValid) {
-    this(density,0,isValid);
-  }
-
-  /**
    * Density name. Choices for name are "1", "2","3","4","W" (woodland), "O" (Open),  "C" (Closed), "NA"
    */
-  public String toString() { return density; }
+  public String toString() { return name; }
 
   /**
    * Gets the value choices for this are  1,2,3,4
@@ -239,15 +194,6 @@ public class Density extends SimpplleType implements Externalizable {
    * @return
    */
   public int getValue() { return value; }
-
-  /**
-   * Gets the density variable.
-   * Choices for name are "1", "2","3","4","W" (woodland), "O" (Open),  "C" (Closed), "NA"
-   * @return
-   */
-  public String getDensity() {
-    return density;
-  }
 
   /**
    * Method to look up a density by name and compare to this density object.
@@ -265,9 +211,9 @@ public class Density extends SimpplleType implements Externalizable {
   public boolean equals(Object obj) {
     if (this == obj) { return true; }
     if (obj instanceof Density) {
-      if (density == null || obj == null) { return false; }
+      if (name == null || obj == null) { return false; }
 
-      return density.equals(((Density)obj).density);
+      return name.equals(((Density)obj).name);
     }
     return false;
   }
@@ -276,7 +222,7 @@ public class Density extends SimpplleType implements Externalizable {
    * Makes a hashcode from the string of density variable.
    */
   public int hashCode() {
-    return density.hashCode();
+    return name.hashCode();
   }
 
   /**
@@ -285,53 +231,55 @@ public class Density extends SimpplleType implements Externalizable {
    */
   public int compareTo(Object o) {
     if (o == null) { return -1; }
-    return density.compareTo(o.toString());
+    return name.compareTo(o.toString());
   }
 
   /**
    * Checks if a density is valid.
    * @return
    */
-  public boolean isValid() { return Density.get(density) != null; }
+  public boolean isValid() { return Density.get(name) != null; }
 
   /**
-   * @param density
-   * @return
+   * Returns a predefined 1, 2, 3, or 4 density based on the associated value. Otherwise the
+   * a density is returned with a name that matches the passed in value.
+   *
+   * @param value a numeric value
+   * @return an existing density, or null
    */
-  public static Density get(Integer density) {
-    return get(density.intValue());
-  }
-
-  /**
-   * Uses density variable 1-4 to to get a Density. ONE, TWO, THREE OR FOUR object
-   * @param density
-   * @return
-   */
-  public static Density get(int density) {
-    switch (density) {
+  public static Density get(int value) {
+    switch (value) {
       case 1:  return Density.ONE;
       case 2:  return Density.TWO;
       case 3:  return Density.THREE;
       case 4:  return Density.FOUR;
-      default: return get(Integer.toString(density));
+      default: return get(Integer.toString(value));
     }
   }
 
   /**
-   * Gets the density based on string density variable.  Will not create a new one. 
-   * @param densityStr the density variable 
-   * @return Density object
+   * Returns an existing density with the provided name.
+   *
+   * @param name a case-insensitive name
+   * @return an existing density, or null
    */
-  public static Density get(String densityStr) {
-    return get(densityStr,false);
+  public static Density get(String name) {
+    return (Density)allDensityHm.get(name.toUpperCase());
   }
 
-  public static Density get(String densityStr, boolean create) {
-    Density density = (Density)allDensityHm.get(densityStr.toUpperCase());
-    if (density == null && create) {
-      density = new Density(densityStr.toUpperCase(),1);
+  /**
+   * Returns an existing density or creates a missing density with the provided name.
+   *
+   * @param name a case-insensitive name
+   * @return a new or existing density
+   */
+  public static Density getOrCreate(String name) {
+    Density density = get(name);
+    if (density == null) {
+      return new Density(name.toUpperCase());
+    } else {
+      return density;
     }
-    return density;
   }
 
   /**
@@ -395,7 +343,7 @@ public class Density extends SimpplleType implements Externalizable {
    */
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
-    density = (String)in.readObject();
+    name = (String)in.readObject();
     value   = in.readInt();
     if (version > 1) {
       if (in.readBoolean()) {
@@ -411,7 +359,7 @@ public class Density extends SimpplleType implements Externalizable {
    */
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
-    out.writeObject(density);
+    out.writeObject(name);
     out.writeInt(value);
     out.writeBoolean(pctCanopy != null);
     if (pctCanopy != null) {
@@ -420,21 +368,19 @@ public class Density extends SimpplleType implements Externalizable {
     }
   }
 
+  /**
+   * Replaces the density read from the stream if one with the same name already exists.
+   *
+   * @return an existing density or the object read from the stream
+   * @throws java.io.ObjectStreamException if there is a stream exception
+   */
   private Object readResolve () throws java.io.ObjectStreamException {
-
-    Density densityObj = Density.get(density,true);
-
-    densityObj.density = this.density;
-    densityObj.value = this.value;
-    densityObj.pctCanopy = this.pctCanopy;
-
-    updateAllData(densityObj,DENSITY);
-
-    return densityObj;
-  }
-
-  public void setDensity(String density) {
-    this.density = density;
+    Density density = get(name);
+    if (density == null) {
+      return this;
+    } else {
+      return density;
+    }
   }
 
   // *** JTable section ***

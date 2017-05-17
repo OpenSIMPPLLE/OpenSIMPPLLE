@@ -13,8 +13,6 @@ import java.util.Formatter;
 import java.util.Locale;
 import java.util.zip.*;
 import java.util.ArrayList;
-import com.thoughtworks.xstream.XStream;
-import simpplle.gui.FireSuppWeather;
 
 /**
  * This class defines Fire Suppression Weather Data.  Data to decide if fire will be suppressed by weather.
