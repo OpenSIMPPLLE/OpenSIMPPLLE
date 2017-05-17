@@ -3962,7 +3962,7 @@ public final class Area implements Externalizable {
         double spread, windSpeed, windDir;
         char pos, wind;
         AdjacentData[] adjData = new AdjacentData[v.size()];
-        int adjIndex = -1;
+        int adjIndex = 0;
 
         for (int i = 0; i < v.size(); i++) {
           double[] neighbor = (double[])v.elementAt(i);
@@ -3982,15 +3982,8 @@ public final class Area implements Externalizable {
 
           if (dataLength < 4) {
             // Legacy spatial relation
-            if(evu.getLocationX() == -1 || evu.getLocationY() == -1 || adjEvu.getLocationX() == -1
-                || adjEvu.getLocationY() == -1){
-              // invalid x and y, we will add adjacent data in an 'unsorted' order
-              adjIndex++;
-            } else {
-              // make an informed guess about adjacency angle based on row and column
-              adjIndex = getAdjIndexRowCol(evu, adjEvu);
-            }
             adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind);
+            adjIndex++;
           } else {
             // Keane spatial relation, more attributes available
             spread    = neighbor[3];
@@ -4040,55 +4033,6 @@ public final class Area implements Externalizable {
       return true;
     }
     return false;
-  }
-
-  /**
-   * Find neighbor index based on row and column information in two adjacent EVUs
-   * Note: X and Y represent columns and rows respectively, and start at the top left of a grid.
-   *
-   * @param evu
-   * @param adjEvu
-   * @return index to be used in evu.AdjacentData
-   */
-  private int getAdjIndexRowCol(Evu evu, Evu adjEvu){
-    int index = 0;
-    int dX = evu.getLocationX() - adjEvu.getLocationX();
-    int dY = evu.getLocationY() - adjEvu.getLocationY();
-
-    if (dY == 1) {
-      switch (dX) {
-        case -1:
-          index = 1; // 45 degrees
-          break;
-        case 0:
-          index = 2; // 90 degrees
-          break;
-        case 1:
-          index = 3;  // 135 degrees
-          break;
-      }
-    } else if (dY == 0) {
-      switch (dX){
-        case -1:
-          index = 0; // 0 or 360 degrees
-          break;
-        case 1:
-          index = 4;  // 180 degrees
-          break;
-      }
-    } else if (dY == -1) {
-      switch (dX) {
-        case -1:
-          index = 7; // 315 degrees
-          break;
-        case 0:
-          index = 6; // 270 degrees
-          break;
-        case 1:
-          index = 5; // 225 degrees
-      }
-    }
-    return index;
   }
 
   public void calcRelativeSlopes(){
