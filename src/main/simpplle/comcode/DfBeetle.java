@@ -8,11 +8,10 @@
 
 package simpplle.comcode;
 
-import java.awt.Color;
-
 /**
- * Defines the Douglas-Fir Beetle class, a type of Process.  This logic uses a combination of the abundance of Douglas-fir, size class/structure, density
- * and the occurrence of past light (LSF) or mixed severity fire (MSF).  No spread logic is used.  
+ * Defines the Douglas-Fir Beetle class, a type of Process.  This logic uses a combination of the
+ * abundance of Douglas-fir, size class/structure, density and the occurrence of past light (LSF)
+ * or mixed severity fire (MSF).  No spread logic is used.
  * 
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
@@ -221,17 +220,20 @@ public final class DfBeetle extends Process {
 
     int            cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     ProcessType    adjProcess;
-    AdjacentData[] adjData = evu.getAdjacentData();
+    AdjacentData[] adjData = evu.getNeighborhood();
     boolean        isAdjSrf=false;
 
-    for (int i=0; i<adjData.length; i++) {
-      VegSimStateData adjState = adjData[i].evu.getState(cTime-1);
-      if (adjState == null) { continue; }
-
-      adjProcess = adjState.getProcess();
-      if (adjProcess == ProcessType.STAND_REPLACING_FIRE) {
-        isAdjSrf = true;
-        break;
+    for (AdjacentData neighbor : adjData) {
+      if (neighbor != null) {
+        VegSimStateData adjState = neighbor.evu.getState(cTime - 1);
+        if (adjState == null) {
+          continue;
+        }
+        adjProcess = adjState.getProcess();
+        if (adjProcess == ProcessType.STAND_REPLACING_FIRE) {
+          isAdjSrf = true;
+          break;
+        }
       }
     }
 
@@ -304,17 +306,21 @@ public final class DfBeetle extends Process {
 
     int            cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     ProcessType    adjProcess;
-    AdjacentData[] adjData = evu.getAdjacentData();
+    AdjacentData[] adjData = evu.getNeighborhood();
     boolean        isAdjSrf=false;
 
-    for (int i=0; i<adjData.length; i++) {
-      VegSimStateData adjState = adjData[i].evu.getState(cTime-1);
-      if (adjState == null) { continue; }
+    for (AdjacentData neighbor : adjData) {
+      if (neighbor != null) {
+        VegSimStateData adjState = neighbor.evu.getState(cTime - 1);
+        if (adjState == null) {
+          continue;
+        }
 
-      adjProcess = adjState.getProcess();
-      if (adjProcess == ProcessType.STAND_REPLACING_FIRE) {
-        isAdjSrf = true;
-        break;
+        adjProcess = adjState.getProcess();
+        if (adjProcess == ProcessType.STAND_REPLACING_FIRE) {
+          isAdjSrf = true;
+          break;
+        }
       }
     }
 

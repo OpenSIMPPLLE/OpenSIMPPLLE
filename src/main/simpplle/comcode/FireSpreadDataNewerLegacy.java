@@ -608,7 +608,7 @@ public class FireSpreadDataNewerLegacy {
 
           data[fireClass][relativePosition][structure.ordinal()][resistance].add(entry);
           for (j = 0; j < count; j++) {
-            entry.densities[j] = Density.get(strListTok.getToken(),true);
+            entry.densities[j] = Density.getOrCreate(strListTok.getToken());
           }
 
           for (j = 0; j < numRules; j++) {

@@ -1198,14 +1198,18 @@ public class Treatment  implements Externalizable {
   // Treatment is infeasable if any adjacent unit has
   // Seedling sapling.
   public static boolean checkAdjacentSS(Evu evu) {
-    AdjacentData[] adjacentData = evu.getAdjacentData();
+    AdjacentData[] adjacentData = evu.getNeighborhood();
     Evu            adj;
 
-    for(int i=0;i<adjacentData.length;i++) {
-      adj = adjacentData[i].getEvu();
+    for (AdjacentData neighbor : adjacentData) {
+      if (neighbor != null) {
+        adj = neighbor.getEvu();
 
-      SizeClass sizeClass = (SizeClass)adj.getState(SimpplleType.SIZE_CLASS);
-      if (sizeClass == SizeClass.SS) { return true; }
+        SizeClass sizeClass = (SizeClass) adj.getState(SimpplleType.SIZE_CLASS);
+        if (sizeClass == SizeClass.SS) {
+          return true;
+        }
+      }
     }
     return false;
   }

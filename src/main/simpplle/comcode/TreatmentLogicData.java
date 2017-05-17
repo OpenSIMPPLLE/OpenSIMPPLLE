@@ -425,7 +425,7 @@ public abstract class TreatmentLogicData {
     if (v != null) {
       for(i=0; i<v.size(); i++) {
         str = (String)v.elementAt(i);
-        addDensity(Density.get(str,true));
+        addDensity(Density.getOrCreate(str));
       }
     }
 

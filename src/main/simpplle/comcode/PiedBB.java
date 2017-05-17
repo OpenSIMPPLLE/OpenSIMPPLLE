@@ -97,16 +97,20 @@ public class PiedBB extends Process {
 
     int            cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     ProcessType    adjProcess;
-    AdjacentData[] adjData = evu.getAdjacentData();
+    AdjacentData[] adjData = evu.getNeighborhood();
     boolean        isAdjSrf=false;
 
-    for (int i=0; i<adjData.length; i++) {
-      VegSimStateData adjState = adjData[i].evu.getState(cTime-1);
-      if (adjState == null) { continue; }
-      adjProcess = adjState.getProcess();
-      if (adjProcess == ProcessType.STAND_REPLACING_FIRE) {
-        isAdjSrf = true;
-        break;
+    for (AdjacentData neighbor : adjData) {
+      if (neighbor != null) {
+        VegSimStateData adjState = neighbor.evu.getState(cTime - 1);
+        if (adjState == null) {
+          continue;
+        }
+        adjProcess = adjState.getProcess();
+        if (adjProcess == ProcessType.STAND_REPLACING_FIRE) {
+          isAdjSrf = true;
+          break;
+        }
       }
     }
 
@@ -183,16 +187,20 @@ public class PiedBB extends Process {
 
     int            cTime = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     ProcessType    adjProcess;
-    AdjacentData[] adjData = evu.getAdjacentData();
+    AdjacentData[] adjData = evu.getNeighborhood();
     boolean        isAdjSrf=false;
 
-    for (int i=0; i<adjData.length; i++) {
-      VegSimStateData adjState = adjData[i].evu.getState(cTime-1);
-      if (adjState == null) { continue; }
-      adjProcess = adjState.getProcess();
-      if (adjProcess == ProcessType.STAND_REPLACING_FIRE) {
-        isAdjSrf = true;
-        break;
+    for (AdjacentData neighbor : adjData) {
+      if (neighbor != null) {
+        VegSimStateData adjState = neighbor.evu.getState(cTime - 1);
+        if (adjState == null) {
+          continue;
+        }
+        adjProcess = adjState.getProcess();
+        if (adjProcess == ProcessType.STAND_REPLACING_FIRE) {
+          isAdjSrf = true;
+          break;
+        }
       }
     }
 
