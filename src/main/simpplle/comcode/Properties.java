@@ -74,11 +74,6 @@ public class Properties {
             System.setProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile", value);
             invasiveMSU = Boolean.parseBoolean(value);
           }
-//           set/read java heap property
-          else if (property.equalsIgnoreCase("HEAP_SIZE")) {
-            String value = strTok.nextToken();
-            System.setProperty("simpplle.HEAP_SIZE", value);
-          }
           line = fin.readLine();
         }
         fin.close();
@@ -110,11 +105,6 @@ public class Properties {
         String value = System.getProperty("simpplle.comcode.InvasiveSpeciesLogicDataMSU.probFile");
         if (value == null) { value = "false"; }
         fout.println("InvasiveSpeciesLogicDataMSU_probFile," + value);
-      }
-      {
-        String value = System.getProperty("simpplle.HEAP_SIZE");
-        if ( value == null || value.equalsIgnoreCase("null")) { value = "843"; }
-        fout.println("HEAP_SIZE," + value);
       }
 
       fout.flush();

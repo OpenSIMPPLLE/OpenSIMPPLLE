@@ -48,6 +48,7 @@ public class SimpplleMain extends JFrame {
   private static final int MIN_HEIGHT = 300;
   private boolean vegPathwayDlgOpen     = false;
   private boolean aquaticPathwayDlgOpen = false;
+  private static simpplle.comcode.Properties  properties;
 
   /**
    * Populates Combo Box dynamically. SIMPPLLE is the default and always available.
@@ -166,7 +167,7 @@ public class SimpplleMain extends JFrame {
   JMenu menuSysKnowFireSpread = new JMenu("Fire Spread Model");
   JMenuItem menuSysKnowCellPerc = new JMenuItem("Keane Cell Percolation");
   JMenuItem menuHelpUserGuide = new JMenuItem();
-  JMenuItem MenuUtilityJavaHeap = new JMenuItem();
+//  JMenuItem MenuUtilityJavaHeap = new JMenuItem();
   JMenuItem menuSysKnowFireSuppSpreadRate = new JMenuItem();
   JMenuItem menuSysKnowFireSuppProdRate = new JMenuItem();
   JMenuItem menuSysKnowFireOccMgmtZone = new JMenuItem();
@@ -855,12 +856,12 @@ public class SimpplleMain extends JFrame {
             menuHelpUserGuide_actionPerformed(e);
         }
     });
-    MenuUtilityJavaHeap.setText("Change Java Heap Size");
-    MenuUtilityJavaHeap.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            MenuUtilityJavaHeap_actionPerformed(e);
-        }
-    });
+//    MenuUtilityJavaHeap.setText("Change Java Heap Size");
+//    MenuUtilityJavaHeap.addActionListener(new java.awt.event.ActionListener() {
+//        public void actionPerformed(ActionEvent e) {
+//            MenuUtilityJavaHeap_actionPerformed(e);
+//        }
+//    });
     menuSysKnowFireSuppProdRate.setText("Production Rate");
     menuSysKnowFireSuppProdRate.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -1157,7 +1158,7 @@ public class SimpplleMain extends JFrame {
     menuUtility.add(menuMagis);
     menuUtility.addSeparator();
     menuUtility.add(menuUtilitiesConsole);
-    menuUtility.add(MenuUtilityJavaHeap);
+//    menuUtility.add(MenuUtilityJavaHeap);
     menuUtility.add(menuUtilityDatabaseTest);
     menuUtility.add(menuUtilityDatabaseManager);
     menuUtility.add(menuUtilityZoneEdit);
@@ -2831,8 +2832,6 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 
-
-
   void menuInterpretWildlife_actionPerformed(ActionEvent e) {
     String title = "Wildlife Habitat Interpretations";
     WildlifeHabitat dlg = new WildlifeHabitat(this,title,false);
@@ -2884,6 +2883,7 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
     refresh();
   }
+
   public void menuUtilityMemoryUse_actionPerformed(ActionEvent e) {
     MemoryDisplay frame = new MemoryDisplay();
     frame.setVisible(true);
@@ -3073,6 +3073,7 @@ public class SimpplleMain extends JFrame {
     }
     return true;
   }
+
   void menuSysKnowRegen_actionPerformed(ActionEvent e) {
     RegenerationLogic.setDefaultEcoGroup(RegenerationLogic.FIRE);
     RegenerationLogic.setDefaultEcoGroup(RegenerationLogic.SUCCESSION);
@@ -3091,7 +3092,6 @@ public class SimpplleMain extends JFrame {
   }
 
 
-
   void menuResultLandformSum_actionPerformed(ActionEvent e) {
 
   }
@@ -3103,11 +3103,11 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 
- 
 
   void menuSysKnowVegTreatDesired_actionPerformed(ActionEvent e) {
 
   }
+
 
   void menuResultAquaticUnit_actionPerformed(ActionEvent e) {
     if (EauAnalysis.isOpen()) { return; }
@@ -3148,93 +3148,6 @@ public class SimpplleMain extends JFrame {
     }
   }
 
-  @SuppressWarnings("unused")
-  private void updateJavaHeapSize() {
-
-    String heapInfo = "This Utility is used to change the heap size of SIMPPLLE.\nThe heap size is the " +
-        "maximum amount of memory the program can use while running.\n" +
-        "This is done through manipulation of the SIMPPLLE.ini file.\nINI files are used to store" +
-        " user preferences.\nSIMPPLLE.ini can be found in the same directory as SIMPPLLE";
-
-    JOptionPane.showMessageDialog(this,heapInfo,"Change heap info",
-        JOptionPane.INFORMATION_MESSAGE);
-
-    File iniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini");
-    try {
-
-      if (iniFile.exists() == false) {
-
-        throw new SimpplleError("Could not find SIMPPLLE.ini file to modify.\n");
-      }
-
-      long maxMem  = Runtime.getRuntime().maxMemory();
-
-      maxMem  = (maxMem / 1024) / 1024;
-
-      String msg = "Enter Java Max Heap Size in MB";
-      int newHeapSize = AskNumber.getInput("Java Max Heap Size (MB)",msg,(int)maxMem);
-      if (newHeapSize == -1) { return; }
-
-      File newIniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini.tmp");
-
-      BufferedReader fin = new BufferedReader(new FileReader(iniFile));
-      PrintWriter fout = new PrintWriter(new FileWriter(newIniFile));
-
-      String line = fin.readLine();
-      while (line != null) {
-
-        if (line.startsWith("Virtual Machine")) {
-          int index = line.indexOf("-Xm");
-
-          fout.print(line.substring(0, index));
-          fout.print("-Xms" + newHeapSize + "M");
-
-          int beginIndex = line.indexOf(" ", index);
-          index = line.lastIndexOf("-Xm");
-
-          fout.print(line.substring(beginIndex,index));
-          fout.print("-Xmx" + newHeapSize + "M");
-
-          beginIndex = line.indexOf(" ", index);
-
-          fout.println(line.substring(beginIndex));
-
-        } else {
-
-          fout.println(line);
-        }
-
-        line = fin.readLine();
-      }
-
-      fin.close();
-      fout.flush();
-      fout.close();
-
-      if (iniFile.delete()) {
-
-        newIniFile.renameTo(iniFile);
-      }
-
-    } catch (NumberFormatException err) {
-
-      JOptionPane.showMessageDialog(this,"Invalid Java heap size","",
-                                    JOptionPane.ERROR_MESSAGE);
-      return;
-    } catch (Exception err) {
-
-      String msg = "Unable to edit " + iniFile.toString() + "\n" + err.getMessage();
-      JOptionPane.showMessageDialog(this,msg,"",JOptionPane.ERROR_MESSAGE);
-      return;
-    }
-
-    String msg = "Change successful. Restart SIMPPLLE for changes to take effect.";
-    JOptionPane.showMessageDialog(this,msg,"",JOptionPane.INFORMATION_MESSAGE);
-  }
-
-  void MenuUtilityJavaHeap_actionPerformed(ActionEvent e) {
-    updateJavaHeapSize();
-  }
 
   void menuSysKnowFireSuppProdRate_actionPerformed(ActionEvent e) {
     String title = "Fire Suppression Line Production Rate Logic";
