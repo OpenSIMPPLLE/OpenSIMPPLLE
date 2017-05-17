@@ -39,8 +39,6 @@ public class ElevationRelativePosition extends JDialog {
   private final JPanel irregularLabelPanel = new JPanel();
   private final JProbabilityTextField uniformPolyValue = new JProbabilityTextField(10);
   private final JNumberTextField irregularPolyValue = new JNumberTextField();
-//  private final JTextField uniformPolyValue = new JTextField(10);
-//  private final JTextField irregularPolyValue = new JTextField();
   private final JLabel irregularPolyLabel = new JLabel();
   private final JLabel uniformPolyLabel = new JLabel();
   private final JPanel panel = new JPanel();
@@ -117,11 +115,10 @@ public class ElevationRelativePosition extends JDialog {
     irregularLabelPanel.add(irregularPolyLabel);
     irregularPolyLabel.setForeground(Color.BLACK);
     irregularPolyLabel.setBackground(Color.WHITE);
-    irregularPolyLabel.setText("<html><p>Default difference in elevation  (in meters) between a " +
-        "vegetation unit and its adjacent vegetation units to determine relative position (above," +
-        " below, or next-to) is based on an absolute difference in mean elevation.  The default " +
-        "is 100 meters.</p></html>");
-    
+    irregularPolyLabel.setText("<html><p>Default difference in elevation (in meters) between a vegetation" +
+        "unit and its adjacent vegetation units to determine relative position (above, below, or " +
+        "next-to) is 10 percent. Enter a different value if the default is not desired.</p></html>");
+
     irregularLabelPanel.add(irregularPolyValue);
     irregularPolyValue.setColumns(10);
     irregularPolyValue.addKeyListener(new IrregularPolyValueKeyListener());
