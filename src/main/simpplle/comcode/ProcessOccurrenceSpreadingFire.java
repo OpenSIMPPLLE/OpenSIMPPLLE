@@ -524,6 +524,14 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
           if (adjacent == null) continue;
 
           Evu toEvu = adjacent.getEvu();
+          if (toEvu == null) continue;
+
+          if (visited.contains(toEvu)) continue;
+          visited.add(toEvu);
+
+          if (!uniformPoly && levelsOut > 3) {
+            continue;
+          }
 
           if (!FireEventLogic.getInstance().isWithinMaxFireSpottingDistance(source, toEvu)) {
             continue;
