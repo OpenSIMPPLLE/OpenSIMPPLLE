@@ -331,6 +331,10 @@ public final class Simulation implements SimulationTypes, Externalizable {
       this.trackOwnership = trackOwnership;
     }
 
+    if (fixedSeed) {
+      random.setSeed(seed);
+    }
+
     accessEvuSimDataOut  = new PrintWriter[this.numSimulations];
     accessAreaSummaryOut = new PrintWriter[numSimulations];
 
@@ -835,12 +839,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
   }
 
   private void doFuture() throws SimpplleError {
-
-    if (fixedSeed) {
-      random = new Random(seed);
-    } else {
-      random = new Random();
-    }
 
     currentTimeStep = 0;
 
