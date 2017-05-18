@@ -672,6 +672,15 @@ public final class Simulation implements SimulationTypes, Externalizable {
     return random.nextInt(maxProbability);
   }
 
+  /**
+   * Returns the pseudo-random number generator for this simulation
+   *
+   * @return a pseudo-random number generator
+   */
+  public Random getRandom() {
+    return random;
+  }
+
   public void runSimulation () throws SimpplleError {
 
     inSimulation = true;
