@@ -80,142 +80,142 @@ public final class Simulation implements SimulationTypes, Externalizable {
   /**
    * A flag indicating if the simulation is running.
    */
-  private boolean inSimulation;
+  private boolean inSimulation = false;
 
   /**
    * Defines how disturbance processes are applied.
    */
-  private int simulationMethod;
+  private int simulationMethod = STOCHASTIC;
 
   /**
    * The number of times to run the simulation.
    */
-  private int numSimulations;
+  private int numSimulations = 1;
 
   /**
    * The number of time steps in a run.
    */
-  private int numTimeSteps;
+  private int numTimeSteps = 5;
 
   /**
    * The index of the current run, which starts at one.
    */
-  private int currentRun;
+  private int currentRun = 0;
 
   /**
    * The index of the current time step, which starts at zero.
    */
-  private int currentTimeStep;
+  private int currentTimeStep = -1;
 
   /**
    * The current season, which is used with yearly time steps.
    */
-  private Climate.Season currentSeason;
+  private Climate.Season currentSeason = Climate.Season.YEAR;
 
   /**
    * A flag indicating if time increments in years. Otherwise it increments in decades.
    */
-  private boolean yearlySteps;
+  private boolean yearlySteps = false;
 
   /**
    * The number of time steps to keep in memory.
    */
-  private int pastTimeStepsInMemory;
+  private int pastTimeStepsInMemory = 10;
 
   /**
    * A flag indicating if the number of time steps in memory is capped.
    */
-  private boolean discardData;
+  private boolean discardData = false;
 
   /**
    * A flag indicating if fires use suppression.
    */
-  private boolean fireSuppression;
+  private boolean fireSuppression = false;
 
   /**
    * The discount rate for fire suppression costs.
    */
-  private float discount;
+  private float discount = 1.0f;
 
   /**
    * A per-simulation pseudo-random number generator.
    */
-  private Random random;
+  private Random random = new Random();
 
   /**
    * A number that initializes the pseudo-random number generator.
    */
-  private long seed;
+  private long seed = 0;
 
   /**
    * A flag indicating if the generator is initialized with a fixed seed.
    */
-  private boolean fixedSeed;
+  private boolean fixedSeed = false;
 
   /**
    *
    */
-  private boolean doAllStatesSummary;
+  private boolean doAllStatesSummary = true;
 
   /**
    *  A flag indicating if area summary files should be written
    */
-  private boolean doAreaSummary;
+  private boolean doAreaSummary = false;
 
   /**
    *
    */
-  private boolean doGisFiles;
+  private boolean doGisFiles = false;
 
   /**
    *
    */
-  private boolean doProbArcFiles;
+  private boolean doProbArcFiles = false;
 
   /**
    *
    */
-  private boolean doSimLoggingFile;
+  private boolean doSimLoggingFile = false;
 
   /**
    *
    */
-  private boolean doTrackingSpeciesReport;
+  private boolean doTrackingSpeciesReport = false;
 
   /**
    * A flag indicating if ownership is tracked during multiple runs.
    */
-  private boolean trackOwnership;
+  private boolean trackOwnership = false;
 
   /**
    * A flag indicating if special area is tracked during multiple runs.
    */
-  private boolean trackSpecialArea;
+  private boolean trackSpecialArea = false;
 
   /**
    * A flag indicating if access files are written.
    */
-  private boolean writeAccess;
+  private boolean writeAccess = false;
 
   /**
    * A flag indicating if a database is written to.
    */
-  private boolean writeDatabase;
+  private boolean writeDatabase = false;
 
   /**
    * A flag indicating if probability files are written.
    */
-  private boolean writeProbFiles;
+  private boolean writeProbFiles = false;
 
   /**
    * The type of invasive species logic applied.
    */
-  private InvasiveKind invasiveSpeciesKind;
+  private InvasiveKind invasiveSpeciesKind = InvasiveKind.NONE;
 
   /**
    * A path prefix for simulation output.
    */
-  private File outputFile;
+  private File outputFile = null;
 
   /**
    *
@@ -264,52 +264,12 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private TreeMap<Short,String> accessTreatmentTypeList  = new TreeMap<>();
 
   /**
-   * Constructs a simulation with a single run covering five years.
+   * Constructs a simulation with default parameters.
    */
-  public Simulation () {
-
-    invasiveSpeciesKind      = InvasiveKind.NONE;
-    simulationMethod         = STOCHASTIC;
-    inSimulation             = false;
-    numSimulations           = 1;
-    numTimeSteps             = 5;
-    currentRun               = 0;
-    currentTimeStep          = -1;
-    currentSeason            = Climate.Season.YEAR;
-    yearlySteps              = false;
-    pastTimeStepsInMemory    = 10;
-    discardData              = false;
-    fireSuppression          = false;
-    discount                 = 1.0f;
-    random                   = null;
-    fixedSeed                = false;
-    outputFile               = null;
-    doAllStatesSummary       = true;
-    doGisFiles               = false;
-    doProbArcFiles           = false;
-    doSimLoggingFile         = false;
-    doTrackingSpeciesReport  = false;
-    trackOwnership           = false;
-    trackSpecialArea         = false;
-    writeAccess              = false;
-    writeDatabase            = false;
-    writeProbFiles           = false;
-    accessProcessList        = new TreeMap<>();
-    accessSpeciesList        = new TreeMap<>();
-    accessSizeClassList      = new TreeMap<>();
-    accessDensityList        = new TreeMap<>();
-    accessEcoGroupList       = new TreeMap<>();
-    accessFmzList            = new TreeMap<>();
-    accessIncRuleSpeciesList = new TreeMap<>();
-    accessLifeformList       = new TreeMap<>();
-    accessOwnershipList      = new TreeMap<>();
-    accessSpecialAreaList    = new TreeMap<>();
-    accessTreatmentTypeList  = new TreeMap<>();
-
-  }
+  public Simulation () {}
 
   /**
-   * Constructs a simulation with user-defined properties.
+   * Constructs a simulation with user-defined parameters.
    */
   public Simulation (int numSimulations,
                      int numTimeSteps,
