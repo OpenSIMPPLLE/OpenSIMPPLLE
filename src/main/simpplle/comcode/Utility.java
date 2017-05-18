@@ -403,27 +403,37 @@ public final class Utility {
       fout.print(data[i].toString());
     }
   }
+
+  /**
+   * Produces an array of indices with random ordering.
+   *
+   * @param maxIndex the value of the last index
+   * @return an array of maxIndex + 1 indices
+   */
   public static int[] makeRandomIndexSequence(int maxIndex) {
-    Random random1 = new Random();
-    int[]  result = new int[maxIndex+1];
 
-    int i, tmp;
-    int index1, index2;
-    for (i=0; i<result.length; i++) {
-      result[i] = i;
+    int[] sequence = new int[maxIndex + 1];
+
+    // Create an ordered sequence of indices
+    for (int i = 0; i < sequence.length; i++) {
+      sequence[i] = i;
     }
 
-    Random random2 = new Random(); // create this here to ensure different seeds.
-    for (i=0; i<maxIndex; i++) {
-      index1 = random1.nextInt(maxIndex+1);
-      index2 = random2.nextInt(maxIndex+1);
+    Random random = Simulation.getInstance().getRandom();
 
-      tmp = result[index1];
-      result[index1] = result[index2];
-      result[index2] = tmp;
+    // Swap the indices at two random locations
+    for (int i = 0; i < maxIndex; i++) {
+      int index1 = random.nextInt(maxIndex + 1);
+      int index2 = random.nextInt(maxIndex + 1);
+      int swap = sequence[index1];
+      sequence[index1] = sequence[index2];
+      sequence[index2] = swap;
     }
-    return result;
+
+    return sequence;
+
   }
+
 /**
  * turns spaces into underscores.  This is a method which will be needed on occassion for making column names
  * @param str
