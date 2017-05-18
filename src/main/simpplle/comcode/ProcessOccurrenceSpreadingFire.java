@@ -111,8 +111,8 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
    * @see java.util.Random#nextGaussian()
    */
   private void rollKeaneOffsets(){
-    Random random = new Random();
-    double newStdDev = 1.0/3.0;
+    Random random = Simulation.getInstance().getRandom();
+    double newStdDev = 1.0 / 3.0;
     keaneWindSpeedOffset     = random.nextGaussian() * newStdDev * keaneWindSpeedVariability;
     keaneWindDirectionOffset = random.nextGaussian() * newStdDev * keaneWindDirectionVariability;
   }
