@@ -340,16 +340,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   }
 
-  public void reset() {
-
-    numSimulations        = 1;
-    numTimeSteps          = 5;
-    pastTimeStepsInMemory = 10;
-    fireSuppression       = false;
-    simulationMethod      = STOCHASTIC;
-
-  }
-
   public static Simulation getInstance() {
     return instance;
   }
