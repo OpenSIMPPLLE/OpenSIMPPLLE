@@ -125,7 +125,6 @@ public class SimpplleMain extends JFrame {
   JMenuItem menuUtilityUnitEditor = new JMenuItem();
   JLabel areaInvalidLabel = new JLabel();
   JMenuItem menuSysKnowRegionalClimate = new JMenuItem();
-  JMenuItem menuSysKnowInsectDiseaseSpread = new JMenuItem();
   JMenuItem menuUtilitiesConsole = new JMenuItem();
   JMenuItem menuImportAttributeData = new JMenuItem();
   JMenuItem menuUtilityAreaName = new JMenuItem();
@@ -612,14 +611,7 @@ public class SimpplleMain extends JFrame {
         menuSysKnowRegionalClimate_actionPerformed(e);
       }
     });
-    menuSysKnowInsectDiseaseSpread.setEnabled(false);
-    menuSysKnowInsectDiseaseSpread.setText("Insect/Disease Spread Logic");
-    menuSysKnowInsectDiseaseSpread.addActionListener(new java.awt.event.ActionListener() {
 
-      public void actionPerformed(ActionEvent e) {
-        menuSysKnowInsectDiseaseSpread_actionPerformed(e);
-      }
-    });
     menuUtilitiesConsole.setText("Display Console Messages");
     menuUtilitiesConsole.addActionListener(new java.awt.event.ActionListener() {
 
@@ -1207,7 +1199,6 @@ public class SimpplleMain extends JFrame {
     //menuSysKnowVegProc.add(menuSysKnowDisableWsbw);
     menuSysKnowVegProc.add(menuSysKnowProcessProbLogic);
     menuSysKnowVegProc.add(menuSysKnowGapProcessLogic);
-    menuSysKnowVegProc.add(menuSysKnowInsectDiseaseSpread);
     menuSysKnowVegProc.add(menuSysKnowWindthrow);
     menuSysKnowVegProc.add(menuSysKnowWildlifeBrowsing);
     menuSysKnowVegProc.add(menuSysKnowTussockMoth);
@@ -2296,8 +2287,6 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 
-  void menuSysKnowInsectDiseaseSpread_actionPerformed(ActionEvent e) {
-  }
 
   void menuSysKnowRegionalClimate_actionPerformed(ActionEvent e) {
     ClimateDialogWrapper dlg;
