@@ -2882,6 +2882,25 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
+   * Determine if this unit has any neighbors that are not burning. If so, we can build line here. More ideal would be
+   * finding only perimeter units, but not sure how best to achieve that right now without significantly affecting
+   * performance.
+   *
+   * @return true if a neighbor is burning
+   */
+  public boolean hasNonBurningNeighbors() {
+    if (neighborhood != null) {
+      for (AdjacentData adjacent : neighborhood) {
+        if (adjacent == null) continue;
+        if (!adjacent.evu.hasFireAnyLifeform()) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
    * Returns an array of 'n' adjacencies along a spread direction. This method expects each adjacent data instance to
    * contain a valid spread direction. Currently this means that a Keane spatial relate file must be loaded.
    *
