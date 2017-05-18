@@ -67,8 +67,6 @@ public class Climate {
   // Needed for GUI state information.
   private boolean changed;
 
-  private Random rand;
-
 //  private static String allTemperatures[] = {"COOLER", "NORMAL", "WARMER"};
 //  private static String allMoisture[] = {"WETTER", "NORMAL", "DRIER"};
 
@@ -82,7 +80,6 @@ public class Climate {
     changed     = false;
     temperature = new Temperature[Season.numValues()][Simulation.MAX_TIME_STEPS+1];
     moisture    = new Moisture[Season.numValues()][temperature[0].length];
-    rand        = new Random();
 
     initProbs();
 
@@ -136,13 +133,15 @@ public class Climate {
    */
   private void pickNewValues(int tStep, Season season) {
 
-    int prob = rand.nextInt(100);
+    Random random = Simulation.getInstance().getRandom();
+
+    int prob = random.nextInt(100);
 
     if      (prob >= 0  && prob <= 32)  temperature[season.ordinal()][tStep] = COOLER;
     else if (prob >= 33 && prob <= 67)  temperature[season.ordinal()][tStep] = Temperature.NORMAL;
     else if (prob >= 68 && prob <= 100) temperature[season.ordinal()][tStep] = WARMER;
 
-    prob = rand.nextInt(100);
+    prob = random.nextInt(100);
 
     if      (prob >= 0  && prob <= 32)  moisture[season.ordinal()][tStep] = WETTER;
     else if (prob >= 33 && prob <= 67)  moisture[season.ordinal()][tStep] = Moisture.NORMAL;
