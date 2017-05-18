@@ -380,30 +380,6 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   }
 
   /**
-   * Determine if this unit has any neighbors that are not burning. If so, we can build line here. More ideal would be
-   * finding only perimeter units, but not sure how best to achieve that right now without significantly affecting
-   * performance.
-   *
-   * @param unit A vegetation unit with neighbors
-   * @return True if a neighbor is burning
-   */
-  private boolean hasNonBurningNeighbors(Evu unit) {
-
-    AdjacentData[] adjDataArray = unit.getNeighborhood();
-
-    if (adjDataArray != null) {
-      for (AdjacentData adjData : adjDataArray) {
-        if (adjData != null) {
-          if (!adjData.evu.hasFireAnyLifeform()) {
-            return true;
-          }
-        }
-      }
-    }
-    return false;
-  }
-
-  /**
    * Finds the neighbor with the lowest elevation that is not burning.
    *
    * @param unit A vegetation unit with neighbors

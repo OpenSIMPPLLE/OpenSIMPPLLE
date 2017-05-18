@@ -2881,6 +2881,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     return NEXT_TO;
   }
 
+  /**
+   * Determine if this unit has any neighbors that are not burning. If so, we can build line here. More ideal would be
+   * finding only perimeter units, but not sure how best to achieve that right now without significantly affecting
+   * performance.
+   *
+   * @return true if a neighbor is burning
+   */
   public boolean hasNonBurningNeighbors() {
     if (neighborhood != null) {
       for (AdjacentData adjacent : neighborhood) {
