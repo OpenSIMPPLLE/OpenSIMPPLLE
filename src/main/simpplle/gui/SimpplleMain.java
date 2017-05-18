@@ -856,12 +856,6 @@ public class SimpplleMain extends JFrame {
             menuHelpUserGuide_actionPerformed(e);
         }
     });
-//    MenuUtilityJavaHeap.setText("Change Java Heap Size");
-//    MenuUtilityJavaHeap.addActionListener(new java.awt.event.ActionListener() {
-//        public void actionPerformed(ActionEvent e) {
-//            MenuUtilityJavaHeap_actionPerformed(e);
-//        }
-//    });
     menuSysKnowFireSuppProdRate.setText("Production Rate");
     menuSysKnowFireSuppProdRate.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -3409,8 +3403,7 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
   }
 
-  public void menuSysKnowInvasiveLogicR1_actionPerformed(ActionEvent e) {
-  }
+  public void menuSysKnowInvasiveLogicR1_actionPerformed(ActionEvent e) {}
 
   public void menuSysKnowInvasiveLogicMSU_actionPerformed(ActionEvent e) {
     InvasiveSpeciesMSULogicDialog dlg =
