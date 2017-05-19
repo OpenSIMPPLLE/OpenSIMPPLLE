@@ -8,6 +8,7 @@
 
 package simpplle;
 
+
 import java.nio.file.Path;
 import java.util.StringTokenizer;
 import java.io.*;
@@ -59,6 +60,7 @@ public final class JSimpplle {
   private static PrintStream          systemOut;
   private static PrintStream          systemErr;
   private static ByteArrayOutputStream systemOutBuffer;
+
 
   
   public JSimpplle() {
@@ -295,6 +297,8 @@ public final class JSimpplle {
 
     try {
       if(file.exists()) {
+        System.out.println("found properties");
+
         fin = new BufferedReader(new FileReader(file));
         String line = fin.readLine();
         

@@ -190,6 +190,7 @@ public class SimpplleMain extends JFrame {
   private JCheckBoxMenuItem menuSysKnowDisableWsbw = new JCheckBoxMenuItem();
   private JMenuItem menuUtilityHibern8IDE = new JMenuItem();
   private JMenuItem menuUtilityDatabaseManager = new JMenuItem();
+  private JMenuItem MenuUtilityJavaHeap = new JMenuItem();
   JMenuItem menuBisonGrazingLogic = new JMenuItem();
   JMenuItem menuUtilityMemoryUse = new JMenuItem();
   private JMenuItem menuSysKnowDoCompetition = new JMenuItem();
@@ -856,6 +857,8 @@ public class SimpplleMain extends JFrame {
             menuHelpUserGuide_actionPerformed(e);
         }
     });
+    MenuUtilityJavaHeap.setText("Change Java Heap Size");
+    MenuUtilityJavaHeap.addActionListener(this::MenuUtilityJavaHeap_actionPerformed);
     menuSysKnowFireSuppProdRate.setText("Production Rate");
     menuSysKnowFireSuppProdRate.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -1152,7 +1155,10 @@ public class SimpplleMain extends JFrame {
     menuUtility.add(menuMagis);
     menuUtility.addSeparator();
     menuUtility.add(menuUtilitiesConsole);
-//    menuUtility.add(MenuUtilityJavaHeap);
+
+    //  heap menu item
+    menuUtility.add(MenuUtilityJavaHeap);
+
     menuUtility.add(menuUtilityDatabaseTest);
     menuUtility.add(menuUtilityDatabaseManager);
     menuUtility.add(menuUtilityZoneEdit);
@@ -3403,7 +3409,8 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
   }
 
-  public void menuSysKnowInvasiveLogicR1_actionPerformed(ActionEvent e) {}
+  public void menuSysKnowInvasiveLogicR1_actionPerformed(ActionEvent e) {
+  }
 
   public void menuSysKnowInvasiveLogicMSU_actionPerformed(ActionEvent e) {
     InvasiveSpeciesMSULogicDialog dlg =
@@ -3430,6 +3437,8 @@ public class SimpplleMain extends JFrame {
         Simpplle.getCurrentArea().makeMultipleLifeforms();
       }
   }
+
+  public void MenuUtilityJavaHeap_actionPerformed(ActionEvent e){} // Stub(for now)
 
   public void menuUtilityCombineLSFiles_actionPerformed(ActionEvent e) {
     String[]     suffixes = new String[] {"-ls"};
