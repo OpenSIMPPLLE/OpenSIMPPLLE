@@ -45,6 +45,12 @@ public class KeaneFireEvent extends ProcessOccurrenceSpreadingFire {
   private double windSpeedOffset;
 
   /**
+   * Counter to track when the fire event tries to spread outside of the existing landscape
+   */
+  private int missingAdjacencies;
+
+
+  /**
    * Creates a Keane fire event, with random wind speed and direction offsets.
    *
    * @param evu source of fire
@@ -82,59 +88,63 @@ public class KeaneFireEvent extends ProcessOccurrenceSpreadingFire {
   @Override
   void spreadToNeighbors(Evu source, ArrayList<Evu> burned, boolean isExtreme) {
 
-    List<AdjacentData> adjacentArray = source.getAdjacencies();
-    if (adjacentArray == null) return;
-
+    AdjacentData[] neighborhood = source.getNeighborhood();
     // TODO populate neighborhood, different methods to spread to existing or missing
 
-    for (AdjacentData adjacent : adjacentArray) {
 
-      double windSpeed       = adjacent.getWindSpeed();
-      double windDirection   = adjacent.getWindDirection();
-      double spreadDirection = adjacent.getSpread();
-      double slope           = adjacent.getSlope();
+    for (int i = 0; i < neighborhood.length; i++) {  // TODO use evu.NUM_NEIGHBORS ?
+      AdjacentData adjacent = neighborhood[i];
 
-      // Add an event specific wind speed offset
-      windSpeed += windSpeedOffset;
+      if(adjacent != null){
+        double windSpeed = adjacent.getWindSpeed();
+        double windDirection = adjacent.getWindDirection();
+        double spreadDirection = adjacent.getSpread();
+        double slope = adjacent.getSlope();
 
-      // Multiply wind speed for extreme fires
-      if (isExtreme) windSpeed *= extremeWindMultiplier;
+        // Add an event specific wind speed offset
+        windSpeed += windSpeedOffset;
 
-      // Clamp to the maximum wind speed
-      windSpeed = Math.min(MAX_WIND_SPEED, windSpeed);
+        // Multiply wind speed for extreme fires
+        if (isExtreme) windSpeed *= extremeWindMultiplier;
 
-      // Offset the wind direction and truncate angle within 360 degrees
-      windDirection = (windDirection + windDirectionOffset) % 360;
+        // Clamp to the maximum wind speed
+        windSpeed = Math.min(MAX_WIND_SPEED, windSpeed);
 
-      // Compute the number of pixels to spread to
-      double spix = calcSpix(windSpeed, windDirection, spreadDirection, slope);
+        // Offset the wind direction and truncate angle within 360 degrees
+        windDirection = (windDirection + windDirectionOffset) % 360;
 
-      // Reduce number of pixels on corners, since diagonals cover longer distances
-      if (spreadDirection == 45.0  ||
-          spreadDirection == 135.0 ||
-          spreadDirection == 225.0 ||
-          spreadDirection == 315.0 ) {
+        // Compute the number of pixels to spread to
+        double spix = calcSpix(windSpeed, windDirection, spreadDirection, slope);
 
-        spix /= Math.sqrt(2);
+        // Reduce number of pixels on corners, since diagonals cover longer distances
+        if (spreadDirection == 45.0 ||
+            spreadDirection == 135.0 ||
+            spreadDirection == 225.0 ||
+            spreadDirection == 315.0) {
 
-      }
+          spix /= Math.sqrt(2);
 
-      List<AdjacentData> neighbors = source.getNeighborsAlongDirection(adjacent.getSpread(), probabilisticRound(spix));
-      Evu prevUnit = source;
-      for (AdjacentData neighbor : neighbors) {
-        if (hasSuppressionLine(neighbor.evu)) break;
-        neighbor.setWind(prevUnit.isDownwind(spreadDirection, windDirection));
-        boolean toUnitWasBurning = neighbor.evu.hasFireAnyLifeform();
-        if (Evu.doSpread(prevUnit, neighbor.evu, prevUnit.getDominantLifeformFire())) {
-          if (!toUnitWasBurning) {
-            burned.add(neighbor.evu);
-          }
-        } else {
-          break;
         }
-        prevUnit = neighbor.evu;
+
+        List<AdjacentData> neighbors = source.getNeighborsAlongDirection(adjacent.getSpread(), probabilisticRound(spix));
+        Evu prevUnit = source;
+        for (AdjacentData neighbor : neighbors) {
+          if (hasSuppressionLine(neighbor.evu)) break;
+          neighbor.setWind(prevUnit.isDownwind(spreadDirection, windDirection));
+          boolean toUnitWasBurning = neighbor.evu.hasFireAnyLifeform();
+          if (Evu.doSpread(prevUnit, neighbor.evu, prevUnit.getDominantLifeformFire())) {
+            if (!toUnitWasBurning) {
+              burned.add(neighbor.evu);
+            }
+          } else {
+            break;
+          }
+          prevUnit = neighbor.evu;
+        }
+      } else {
+        missingAdjacencies++;
       }
-    }
+  }
   }
 
   /**
