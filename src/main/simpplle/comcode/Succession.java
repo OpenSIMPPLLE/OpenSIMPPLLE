@@ -10,7 +10,6 @@ package simpplle.comcode;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Vector;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.*;
@@ -266,7 +265,7 @@ public class Succession extends Process {
                                          Evu evu,
                                          Lifeform lifeform,
                                          Lifeform regenLifeform) {
-    AdjacentData[]   adjacentData;
+    List<AdjacentData> adjacencies;
     Species          species;
     int              index;
     VegetativeType   newState = null, tmpState;
@@ -275,8 +274,8 @@ public class Succession extends Process {
     int              numAdj;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData  = evu.getAdjacentData();
-    numAdj        = adjacentData.length;
+    adjacencies  = evu.getAdjacencies();
+    numAdj        = adjacencies.size();
     htGrp         = evu.getHabitatTypeGroup();
 
     HabitatTypeGroupType ecoGroup = evu.getHabitatTypeGroup().getType();
@@ -312,8 +311,8 @@ public class Succession extends Process {
     // *********************************
     Species tmpSpecies;
     index = 0;
-    for(i=0;i<numAdj;i++) {
-      Evu adj        = adjacentData[i].evu;
+    for(AdjacentData neighbor : adjacencies){
+      Evu adj        = neighbor.getEvu();
       // Do not want current because doNextState may have already happened
       // for this adj unit, in which case we would be getting the wrong Species.
       VegSimStateData adjState = adj.getState(cStep-1,regenLifeform);
@@ -426,7 +425,7 @@ public class Succession extends Process {
    * @return
    */
   private static VegetativeType regenCommon(RegionalZone zone, Evu evu) {
-    AdjacentData[]   adjacentData;
+    List<AdjacentData> adjacencies;
     Hashtable        seedSource = null;
     int              zoneId;
     Integer          tmpAcres;
@@ -444,8 +443,8 @@ public class Succession extends Process {
     int              numAdj;
     int              cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
-    adjacentData = evu.getAdjacentData();
-    numAdj        = adjacentData.length;
+    adjacencies = evu.getAdjacencies();
+    numAdj        = adjacencies.size();
     htGrp         = evu.getHabitatTypeGroup();
 
 
@@ -461,8 +460,8 @@ public class Succession extends Process {
       }
     }
 
-    for(i=0;i<numAdj;i++) {
-      adj = adjacentData[i].evu;
+    for(AdjacentData neighbor : adjacencies){
+      adj = neighbor.getEvu();
 
       if (adj.producingSeed()) {
         // Do not want current because doNextState may have already happened

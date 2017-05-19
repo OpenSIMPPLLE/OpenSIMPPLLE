@@ -273,190 +273,169 @@ public abstract class LpMpb implements HazardValues {
 
     VegSimStateData state = evu.getState(cTime-1);
     lightLpMpb   = (state != null ? state.getProcess().equals(ProcessType.LIGHT_LP_MPB) : false);
-    adjacentData = evu.getAdjacentData();
+    adjacentData = evu.getNeighborhood();
 
-    for(int i=0;i<adjacentData.length;i++) {
-      adj            = adjacentData[i].evu;
-      adjHazard      = adj.getLpMpbHazard();
+    for (AdjacentData neighbor : adjacentData) {
+      if (neighbor != null) {
+        adj = neighbor.evu;
+        adjHazard = adj.getLpMpbHazard();
 
-      VegSimStateData adjState = evu.getState(cTime-1);
-      if (adjState == null) { continue; }
-      adjProcessType = adjState.getProcess();
+        VegSimStateData adjState = evu.getState(cTime - 1);
+        if (adjState == null) {
+          continue;
+        }
+        adjProcessType = adjState.getProcess();
 
-      switch (adjHazard) {
-        case LOW:
-          adjLowCount++;
-          break;
-        case MODERATE:
-          adjModerateCount++;
-          break;
-        case HIGH:
-          adjHighCount++;
-          break;
+        switch (adjHazard) {
+          case LOW:
+            adjLowCount++;
+            break;
+          case MODERATE:
+            adjModerateCount++;
+            break;
+          case HIGH:
+            adjHighCount++;
+            break;
+        }
+
+        if (adjProcessType.equals(ProcessType.PP_MPB)) {
+          ppMpb = 1;
+        } else if (adjProcessType.equals(ProcessType.LIGHT_LP_MPB)) {
+          lightLpMpbCount = 1;
+        } else if (adjProcessType.equals(ProcessType.SEVERE_LP_MPB)) {
+          severeLpMpb = 1;
+        } else if (adjProcessType.equals(ProcessType.STAND_REPLACING_FIRE)) {
+          standReplacingFire = 1;
+        } else if (adjProcessType.equals(ProcessType.MIXED_SEVERITY_FIRE)) {
+          mixedSeverityFire = 1;
+        }
+      }
+      adjProcessCount = ppMpb + lightLpMpbCount + severeLpMpb;
+      adjProcessCount += standReplacingFire + mixedSeverityFire;
+
+      // ** combinations for low existing hazard **
+      // **
+      if (!lightLpMpb && lowHazard && (adjProcessCount == 0) &&
+          (adjModerateCount == 0) && (adjHighCount == 0)) {
+        row = 0;
+      } else if (!lightLpMpb && lowHazard && (adjProcessCount == 0) &&
+          (adjModerateCount > 0 || adjHighCount > 0)) {
+        row = 1;
+      } else if (!lightLpMpb && lowHazard && (adjProcessCount > 0) &&
+          adjModerateCount == 0 && adjHighCount == 0) {
+        row = 2;
+      } else if (!lightLpMpb && lowHazard && (adjProcessCount > 0) &&
+          (adjModerateCount > 0 || adjHighCount > 0)) {
+        row = 3;
+      } else if (lightLpMpb && lowHazard && (adjProcessCount == 0) &&
+          adjModerateCount == 0 && adjHighCount == 0) {
+        row = 4;
+      } else if (lightLpMpb && lowHazard && (adjProcessCount == 0) &&
+          (adjModerateCount > 0 || adjHighCount > 0)) {
+        row = 5;
+      } else if (lightLpMpb && lowHazard && (adjProcessCount > 0) &&
+          adjModerateCount == 0 && adjHighCount == 0) {
+        row = 6;
+      } else if (lightLpMpb && lowHazard && (adjProcessCount > 0) &&
+          (adjModerateCount > 0 || adjHighCount > 0)) {
+        row = 7;
+      }
+      // ** combinations for mod existing hazard **
+      // **
+      else if (!lightLpMpb && modHazard && (adjProcessCount == 0) &&
+          (adjHighCount == 0)) {
+        row = 0;
+      } else if (!lightLpMpb && modHazard && (adjProcessCount == 0) &&
+          (adjHighCount > 0)) {
+        row = 1;
+      } else if (!lightLpMpb && modHazard && (adjProcessCount > 0) &&
+          (adjHighCount == 0)) {
+        row = 2;
+      } else if (!lightLpMpb && modHazard && (adjProcessCount > 0) &&
+          (adjHighCount > 0)) {
+        row = 3;
+      } else if (lightLpMpb && modHazard && (adjProcessCount == 0) &&
+          (adjHighCount == 0)) {
+        row = 4;
+      } else if (lightLpMpb && modHazard && (adjProcessCount == 0) &&
+          (adjHighCount > 0)) {
+        row = 5;
+      } else if (lightLpMpb && modHazard && (adjProcessCount > 0) &&
+          (adjHighCount == 0)) {
+        row = 6;
+      } else if (lightLpMpb && modHazard && (adjProcessCount > 0) &&
+          (adjHighCount > 0)) {
+        row = 7;
       }
 
-      if (adjProcessType.equals(ProcessType.PP_MPB)) {
-        ppMpb = 1;
+      // ** combinations for existing hazard of high **
+      // **
+      else if (!lightLpMpb && highHazard && (adjProcessCount == 0) &&
+          (adjModerateCount == 0) && (adjHighCount == 0)) {
+        row = 0;
+      } else if (!lightLpMpb && highHazard && (adjProcessCount == 0) &&
+          (adjModerateCount > 0) && (adjHighCount == 0)) {
+        row = 1;
+      } else if (!lightLpMpb && highHazard && (adjProcessCount == 0) &&
+          (adjHighCount > 0)) {
+        row = 2;
+      } else if (!lightLpMpb && highHazard && (adjProcessCount > 0) &&
+          (adjModerateCount == 0) && (adjHighCount == 0)) {
+        row = 3;
+      } else if (!lightLpMpb && highHazard && (adjProcessCount > 0) &&
+          (adjModerateCount > 0) && (adjHighCount == 0)) {
+        row = 4;
+      } else if (!lightLpMpb && highHazard && (adjProcessCount > 0) &&
+          (adjHighCount > 0)) {
+        row = 5;
+      } else if (lightLpMpb && highHazard && (adjProcessCount == 0) &&
+          (adjModerateCount == 0) && (adjHighCount == 0)) {
+        row = 6;
+      } else if (lightLpMpb && highHazard && (adjProcessCount == 0) &&
+          (adjModerateCount > 0) && (adjHighCount == 0)) {
+        row = 7;
+      } else if (lightLpMpb && highHazard && (adjProcessCount == 0) &&
+          (adjHighCount > 0)) {
+        row = 8;
+      } else if (lightLpMpb && highHazard && (adjProcessCount > 0) &&
+          (adjModerateCount == 0) && (adjHighCount == 0)) {
+        row = 9;
+      } else if (lightLpMpb && highHazard && (adjProcessCount > 0) &&
+          (adjModerateCount > 0) && (adjHighCount == 0)) {
+        row = 10;
+      } else if (lightLpMpb && highHazard && (adjProcessCount > 0) &&
+          (adjHighCount > 0)) {
+        row = 11;
+      } else {
+        row = -1;
       }
-      else if (adjProcessType.equals(ProcessType.LIGHT_LP_MPB)) {
-        lightLpMpbCount = 1;
+
+      if (row != -1) {
+        if (lowHazard) {
+          page = 0;
+        } else if (modHazard) {
+          page = 1;
+        } else if (highHazard) {
+          page = 2;
+        } else {
+          page = -1;
+        }
       }
-      else if (adjProcessType.equals(ProcessType.SEVERE_LP_MPB)) {
-        severeLpMpb = 1;
+
+      if (page != -1 && row != -1) {
+        lightProb = getProbData(page, row, 0);
+        severeProb = getProbData(page, row, 1);
+      } else {
+        lightProb = 0;
+        severeProb = 0;
       }
-      else if (adjProcessType.equals(ProcessType.STAND_REPLACING_FIRE)) {
-        standReplacingFire = 1;
-      }
-      else if (adjProcessType.equals(ProcessType.MIXED_SEVERITY_FIRE)) {
-        mixedSeverityFire = 1;
-      }
-    }
-    adjProcessCount  = ppMpb + lightLpMpbCount + severeLpMpb;
-    adjProcessCount += standReplacingFire + mixedSeverityFire;
-
-    // ** combinations for low existing hazard **
-    // **
-    if (!lightLpMpb && lowHazard && (adjProcessCount == 0) &&
-        (adjModerateCount == 0) && (adjHighCount == 0)) {
-      row = 0;
-    }
-    else if (!lightLpMpb && lowHazard && (adjProcessCount == 0) &&
-             (adjModerateCount > 0 || adjHighCount > 0)) {
-      row = 1;
-    }
-    else if (!lightLpMpb && lowHazard && (adjProcessCount > 0) &&
-             adjModerateCount == 0 && adjHighCount == 0) {
-      row = 2;
-    }
-    else if (!lightLpMpb && lowHazard && (adjProcessCount > 0) &&
-             (adjModerateCount > 0 || adjHighCount > 0)) {
-      row = 3;
-    }
-     else if (lightLpMpb && lowHazard && (adjProcessCount == 0) &&
-             adjModerateCount == 0 && adjHighCount == 0) {
-      row = 4;
-    }
-    else if (lightLpMpb && lowHazard && (adjProcessCount == 0) &&
-             (adjModerateCount > 0 || adjHighCount > 0)) {
-      row = 5;
-    }
-    else if (lightLpMpb && lowHazard && (adjProcessCount > 0) &&
-             adjModerateCount == 0 && adjHighCount == 0) {
-      row = 6;
-    }
-    else if (lightLpMpb && lowHazard && (adjProcessCount > 0) &&
-             (adjModerateCount > 0 || adjHighCount > 0)) {
-      row = 7;
-    }
-    // ** combinations for mod existing hazard **
-    // **
-    else if (!lightLpMpb && modHazard && (adjProcessCount == 0) &&
-           (adjHighCount == 0)) {
-      row = 0;
-    }
-    else if (!lightLpMpb && modHazard && (adjProcessCount == 0) &&
-             (adjHighCount > 0)) {
-      row = 1;
-    }
-
-    else if (!lightLpMpb && modHazard && (adjProcessCount > 0) &&
-             (adjHighCount == 0)) {
-      row = 2;
-    }
-    else if (!lightLpMpb && modHazard && (adjProcessCount > 0) &&
-             (adjHighCount > 0)) {
-      row = 3;
-    }
-    else if (lightLpMpb && modHazard && (adjProcessCount == 0) &&
-             (adjHighCount == 0)) {
-      row = 4;
-    }
-    else if (lightLpMpb && modHazard && (adjProcessCount == 0) &&
-             (adjHighCount > 0)) {
-      row = 5;
-    }
-    else if (lightLpMpb && modHazard && (adjProcessCount > 0) &&
-             (adjHighCount == 0)) {
-      row = 6;
-    }
-    else if (lightLpMpb && modHazard && (adjProcessCount > 0) &&
-             (adjHighCount > 0)) {
-      row = 7;
-    }
-
-    // ** combinations for existing hazard of high **
-    // **
-    else if (!lightLpMpb && highHazard && (adjProcessCount == 0) &&
-             (adjModerateCount == 0) && (adjHighCount == 0)) {
-      row = 0;
-    }
-    else if (!lightLpMpb && highHazard && (adjProcessCount == 0) &&
-             (adjModerateCount > 0) && (adjHighCount == 0)) {
-      row = 1;
-    }
-    else if (!lightLpMpb && highHazard && (adjProcessCount == 0) &&
-             (adjHighCount > 0)) {
-      row = 2;
-    }
-    else if (!lightLpMpb && highHazard && (adjProcessCount > 0) &&
-             (adjModerateCount == 0) && (adjHighCount == 0)) {
-      row = 3;
-    }
-    else if (!lightLpMpb && highHazard && (adjProcessCount > 0) &&
-             (adjModerateCount > 0) && (adjHighCount == 0)) {
-      row = 4;
-    }
-    else if (!lightLpMpb && highHazard && (adjProcessCount > 0) &&
-             (adjHighCount > 0)) {
-      row = 5;
-    }
-    else if (lightLpMpb && highHazard && (adjProcessCount == 0) &&
-             (adjModerateCount == 0) && (adjHighCount == 0)) {
-      row = 6;
-    }
-    else if (lightLpMpb && highHazard && (adjProcessCount == 0) &&
-             (adjModerateCount > 0) && (adjHighCount == 0)) {
-      row = 7;
-    }
-    else if (lightLpMpb && highHazard && (adjProcessCount == 0) &&
-             (adjHighCount > 0)) {
-      row = 8;
-    }
-    else if (lightLpMpb && highHazard && (adjProcessCount > 0) &&
-             (adjModerateCount == 0) && (adjHighCount == 0)) {
-      row = 9;
-    }
-    else if (lightLpMpb && highHazard && (adjProcessCount > 0) &&
-             (adjModerateCount > 0) && (adjHighCount == 0)) {
-      row = 10;
-    }
-    else if (lightLpMpb && highHazard && (adjProcessCount > 0) &&
-             (adjHighCount > 0)) {
-      row = 11;
-    }
-    else { row = -1; }
-
-    if (row != -1) {
-      if      (lowHazard)  { page = 0; }
-      else if (modHazard)  { page = 1; }
-      else if (highHazard) { page = 2; }
-      else { page = -1;}
-    }
-
-    if (page != -1 && row != -1) {
-      lightProb  = getProbData(page,row,0);
-      severeProb = getProbData(page,row,1);
-    }
-    else {
-      lightProb  = 0;
-      severeProb = 0;
     }
   }
 
   /**
    * Calculate probabilities for the WestsideRegionOne zone.
    * @param zone is a WestsideRegionOne.
-   * @param Evu is an evu, the Evu to calculate probabilities for.
+   * @param evu the Evu to calculate probabilities for.
    */
   public static void adjust(WestsideRegionOne zone, Evu evu) {
     adjust((RegionalZone)zone,evu);
@@ -465,7 +444,7 @@ public abstract class LpMpb implements HazardValues {
   /**
    * Calculate probabilities for the EastsideRegionOne zone.
    * @param zone is a EastsideRegionOne.
-   * @param Evu is an evu, the Evu to calculate probabilities for.
+   * @param evu the Evu to calculate probabilities for.
    */
   public static void adjust(EastsideRegionOne zone, Evu evu) {
     adjust((RegionalZone)zone,evu);
