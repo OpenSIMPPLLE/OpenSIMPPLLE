@@ -78,6 +78,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
   public static Simulation instance;
 
   /**
+   * Active fire spreading model
+   */
+  public static FireSpreadModel fireSpreadModel = FireSpreadModel.BASIC;
+
+  /**
    * A flag indicating if the simulation is running.
    */
   private boolean inSimulation = false;
@@ -1030,7 +1035,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
                  + "Number of Time Steps  : " + numTimeSteps + (yearlySteps ? " (Years)" : " (Decades)") + "\n"
                  + "\n"
                  + "Simulation Method      : " + getSimulationMethodName() + "\n"
-                 + "Fire Spread Model      : " + SystemKnowledge.spreadModel + "\n"
+                 + "Fire Spread Model      : " + ((Simulation.fireSpreadModel == FireSpreadModel.BASIC) ? "SIMPPLLE" : "KEANE") + "\n"
                  + "Fire Suppression       : " + fireSuppression + "\n"
                  + "Fire Cost Discount     : " + getDiscount() + "\n"
                  + "Invasive Species Logic : " + getInvasiveSpeciesKindName() + "\n"

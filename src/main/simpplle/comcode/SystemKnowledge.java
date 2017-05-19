@@ -1487,7 +1487,7 @@ public class SystemKnowledge {
         }
 
         if (entryId == KEANE_PARAMETERS && loadSaveMe[KEANE_PARAMETERS.ordinal()]){
-          ProcessOccurrenceSpreadingFire.loadKeaneParameters(fin);
+          KeaneFireEvent.loadParameters(fin);
         }
 
         if (entryId == SPECIES && loadSaveMe[SPECIES.ordinal()]) {
@@ -1903,7 +1903,7 @@ public class SystemKnowledge {
       if (loadSaveMe[KEANE_PARAMETERS.ordinal()]) {
         JarEntry jarEntry = new JarEntry(KEANE_PARAMETERS_ENTRY);
         jarOut.putNextEntry(jarEntry);
-        ProcessOccurrenceSpreadingFire.saveKeaneParameters(pout);
+        KeaneFireEvent.saveParameters(pout);
         pout.flush();
       }
 

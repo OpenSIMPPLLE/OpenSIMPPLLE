@@ -847,22 +847,23 @@ public class SimParam extends JDialog {
 
   // Event handlers
   // **************
-/**
- * Handles the pushing of the "Run Simulation" button.  
- */
+
   void runButton_actionPerformed(ActionEvent e) {
 
-    String selectedModel = (String)fireSpreadModelCB.getSelectedItem();
+    String fireSpreadModel = (String)fireSpreadModelCB.getSelectedItem();
 
-    if (selectedModel.equals("KEANE")) {
+    switch (fireSpreadModel.toUpperCase()) {
 
-      ProcessOccurrenceSpreadingFire.setSpreadModel(ProcessOccurrenceSpreadingFire.SpreadModel.KEANE);
-      SystemKnowledge.spreadModel = "KEANE";
+      case "KEANE":
+        Simulation.fireSpreadModel = FireSpreadModel.KEANE;
+        break;
 
-    } else {
+      case "SIMPPLLE":
+        Simulation.fireSpreadModel = FireSpreadModel.BASIC;
+        break;
 
-      ProcessOccurrenceSpreadingFire.setSpreadModel(ProcessOccurrenceSpreadingFire.SpreadModel.SIMPPLLE);
-      SystemKnowledge.spreadModel = "SIMPPLLE";
+      default:
+        Simulation.fireSpreadModel = FireSpreadModel.BASIC;
 
     }
 
@@ -870,13 +871,14 @@ public class SimParam extends JDialog {
 
     if (success) {
       simpplleMain.enableSimulationControls();
-    }
-    else {
+    } else {
       return;
     }
+
     setVisible(false);
     dispose();
   }
+
 /**
  * If 'Cancel' button is pressed, will dispose of the Simulation Parameter dialog.
  * @param e
