@@ -3961,7 +3961,15 @@ public final class Area implements Externalizable {
 
         double spread, windSpeed, windDir;
         char pos, wind;
-        AdjacentData[] adjData = new AdjacentData[v.size()];
+        int adjDataSize;
+        if (hasKeaneAttributes){
+          // Must have at least NUM_NEIGHBORS, however allow processing of more
+          adjDataSize = Math.max(v.size(), evu.getNUM_NEIGHBORS());
+        } else {
+          // no Keane data, we can just use the size of the array
+          adjDataSize = v.size();
+        }
+        AdjacentData[] adjData = new AdjacentData[adjDataSize];
         int adjIndex = 0;
 
         for (int i = 0; i < v.size(); i++) {
