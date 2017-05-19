@@ -3961,8 +3961,8 @@ public final class Area implements Externalizable {
         char pos, wind;
         int adjDataSize;
         if (hasKeaneAttributes){
-          // Must have NUM_NEIGHBORS
-          adjDataSize = Evu.NUM_NEIGHBORS;
+          // Must have MAX_NEIGHBORS
+          adjDataSize = Evu.MAX_NEIGHBORS;
         } else {
           // no Keane data, we can just use the size of the array
           adjDataSize = v.size();
