@@ -5121,7 +5121,7 @@ public final class Evu extends NaturalElement implements Externalizable {
           Process processInst = Process.findInstance(fromProcess);
 
           if (processInst.doSpread(Simpplle.getCurrentZone(), fromEvu, toEvu)) {
-
+            toEvu.fromEvuId = fromEvu.getId();
             spread = true;
 
           }
@@ -5182,6 +5182,7 @@ public final class Evu extends NaturalElement implements Externalizable {
           toEvu.updateCurrentProcess(toLifeform, p, currentSeason);
           toEvu.updateCurrentProb(toLifeform, fireProb);
           toEvu.updateFireSeason(currentSeason);
+          toEvu.fromEvuId = fromEvu.getId();
 
         }
       } else if (processInst.doSpread(Simpplle.getCurrentZone(),fromEvu,toEvu)) {
@@ -5191,6 +5192,8 @@ public final class Evu extends NaturalElement implements Externalizable {
         fireStarted = true;
         fireProcess = toEvu.getState(toLifeform).getProcess();
         fireProb    = toEvu.getState(toLifeform).getProb();
+        toEvu.fromEvuId = fromEvu.getId();
+
 
       }
     }

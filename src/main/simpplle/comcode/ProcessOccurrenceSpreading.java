@@ -383,6 +383,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
     eventAcres += toUnit.getAcres();
   }
 
+  // What does this method do?
   public void finishedAddingLegacySpreadEvents() {
     for (Iterator i=tmpToNodesHm.keySet().iterator(); i.hasNext(); ) {
       Node fromNode = (Node)i.next();
@@ -450,7 +451,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 //  public Thread getThread() { return thread; }
 
   /**
-   * Pop a node off the queue and spread try to spread to its adjacent units,
+   * Pop a node off the queue and try to spread to its adjacent units,
    * then return to allow spreading of other events to occur.
    *
    * BB-DISEASE only spread from origin to neighbors and stops.
