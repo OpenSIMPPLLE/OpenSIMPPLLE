@@ -167,7 +167,6 @@ public class SimpplleMain extends JFrame {
   JMenu menuSysKnowFireSpread = new JMenu("Fire Spread Model");
   JMenuItem menuSysKnowCellPerc = new JMenuItem("Keane Cell Percolation");
   JMenuItem menuHelpUserGuide = new JMenuItem();
-//  JMenuItem MenuUtilityJavaHeap = new JMenuItem();
   JMenuItem menuSysKnowFireSuppSpreadRate = new JMenuItem();
   JMenuItem menuSysKnowFireSuppProdRate = new JMenuItem();
   JMenuItem menuSysKnowFireOccMgmtZone = new JMenuItem();
@@ -190,7 +189,6 @@ public class SimpplleMain extends JFrame {
   private JCheckBoxMenuItem menuSysKnowDisableWsbw = new JCheckBoxMenuItem();
   private JMenuItem menuUtilityHibern8IDE = new JMenuItem();
   private JMenuItem menuUtilityDatabaseManager = new JMenuItem();
-  private JMenuItem MenuUtilityJavaHeap = new JMenuItem();
   JMenuItem menuBisonGrazingLogic = new JMenuItem();
   JMenuItem menuUtilityMemoryUse = new JMenuItem();
   private JMenuItem menuSysKnowDoCompetition = new JMenuItem();
@@ -857,8 +855,6 @@ public class SimpplleMain extends JFrame {
             menuHelpUserGuide_actionPerformed(e);
         }
     });
-    MenuUtilityJavaHeap.setText("Change Java Heap Size");
-    MenuUtilityJavaHeap.addActionListener(this::MenuUtilityJavaHeap_actionPerformed);
     menuSysKnowFireSuppProdRate.setText("Production Rate");
     menuSysKnowFireSuppProdRate.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -1155,10 +1151,6 @@ public class SimpplleMain extends JFrame {
     menuUtility.add(menuMagis);
     menuUtility.addSeparator();
     menuUtility.add(menuUtilitiesConsole);
-
-    //  heap menu item
-    menuUtility.add(MenuUtilityJavaHeap);
-
     menuUtility.add(menuUtilityDatabaseTest);
     menuUtility.add(menuUtilityDatabaseManager);
     menuUtility.add(menuUtilityZoneEdit);
@@ -3437,8 +3429,6 @@ public class SimpplleMain extends JFrame {
         Simpplle.getCurrentArea().makeMultipleLifeforms();
       }
   }
-
-  public void MenuUtilityJavaHeap_actionPerformed(ActionEvent e){} // Stub(for now)
 
   public void menuUtilityCombineLSFiles_actionPerformed(ActionEvent e) {
     String[]     suffixes = new String[] {"-ls"};
