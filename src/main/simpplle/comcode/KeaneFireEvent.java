@@ -45,7 +45,10 @@ public class KeaneFireEvent extends ProcessOccurrenceSpreadingFire {
   private double windSpeedOffset;
 
   /**
-   * Counter to track when the fire event tries to spread outside of the existing landscape
+   * Counter to track when the fire event tries to spread outside of the existing landscape.
+   *
+   * This addresses the issue of fires building up at boundaries and spreading back into the
+   * landscape until they are large enough to be extinguished.
    */
   private int missingAdjacencies;
 
@@ -142,6 +145,13 @@ public class KeaneFireEvent extends ProcessOccurrenceSpreadingFire {
           prevUnit = neighbor.evu;
         }
       } else {
+        /*
+          Here we assume that the fire event was able to spread to the missing unit. We are not
+          estimating an spix value for spread in this direction. This ideally accounts for the
+          overcount that occurs when multiple boundary units spread to the same 'missing unit'.
+
+          In the future this value may be weighted. Testing and FS input is needed.
+         */
         missingAdjacencies++;
       }
   }
