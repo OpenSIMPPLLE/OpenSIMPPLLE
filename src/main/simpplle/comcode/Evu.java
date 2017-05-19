@@ -104,6 +104,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   private boolean[]      recentRegenDelay = new boolean[regenDelay.length];
   private SizeClass      cycleSizeClass=null;
   private int            cycleSizeClassCount=0;
+  public int             fromEvuId = -1;
 
   /**
    * Creates a Water Unit Data class.
@@ -2172,19 +2173,6 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * gets the From node for the current vegetative simulation state.
-   * @return the spreading occurence
-   */
-  private ProcessOccurrenceSpreading findSpreadOccurenceFrom() {
-    VegSimStateData state = getState();
-    if (state == null) { return null; }
-
-    ProcessType process = state.getProcess();
-
-    return Simpplle.getAreaSummary().findSpreadingProcessEvent(this, process);
-  }
-
-  /**
    * Gets the current simulation time step and uses the time step and dominant fire life form object to get the fire process for
    * for the state.
    * @return the fire spread process event at current simulation time step.
@@ -2216,12 +2204,6 @@ public final class Evu extends NaturalElement implements Externalizable {
     return ( (event != null) ? event.getUnit() : this);
   }
 
-  public Evu getFromUnit() {
-    ProcessOccurrenceSpreading event = findSpreadOccurenceFrom();
-    if (event == null) { return null; }
-    Evu fromEvu = event.getFromNodeEvu();
-    return ( (fromEvu != null) ? event.getFromNodeEvu() : event.root.data.getUnit());
-  }
   /**
    * Gets the Origin Process that spread to this unit.
    * Processes can be overridden by fire, so it is necessary to store

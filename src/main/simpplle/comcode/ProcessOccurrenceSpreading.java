@@ -217,16 +217,6 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
   }
 
   /**
-   * @return the from node evu
-   */
-
-  public Evu getFromNodeEvu() {
-    if (root == null || root.fromNode == null) {return null;}
-    Evu evu = root.fromNode.data.getUnit();
-    return (evu != null) ? evu : null;
-  }
-
-  /**
    * Creates a new event and adds the new instance to the spreading queue.
    */
   public ProcessOccurrenceSpreading(Evu evu, Lifeform lifeform, ProcessProbability processData, int timeStep) {
@@ -335,9 +325,14 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 //    addSpreadEvent(fromUnit,toUnit,toUnit.getProcessType(timeStep),toUnit.getProb(timeStep),timeStep);
 //  }
 
-  public void addLegacySpreadEvent(Evu fromUnit, Evu toUnit, ProcessType process, int timeStep) {
-    addLegacySpreadEvent(fromUnit,toUnit,process,toUnit.getState(timeStep).getProb(),timeStep);
-  }
+  /* todo this method just calls the other method.
+  * This can be refactored
+   * the only thing that needs to change is the items calling this method
+   * need to grab the tounits process probability
+   */
+//  public void addLegacySpreadEvent(Evu fromUnit, Evu toUnit, ProcessType process, int timeStep) {
+//    addLegacySpreadEvent(fromUnit,toUnit,process,toUnit.getState(timeStep).getProb(),timeStep);
+//  }
 
   /**
    * This particular function is used to build the process event tree from data
@@ -489,7 +484,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
         toUnit = adjData[i].evu;
         if (toUnit.hasLifeform(lifeform) == false) { continue; }
         if (Evu.doSpread(fromUnit, toUnit, lifeform)) {
-
+          toUnit.fromEvuId = fromUnit.getId();
 //          addSpreadEvent(fromUnit, toUnit);
 //          spreadQueue.add( (Node) nodeLookup.get(toUnit));
         }

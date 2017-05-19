@@ -1698,7 +1698,7 @@ public final class AreaSummary implements Externalizable {
               }
               else {
                 spreadProcess = ProcessType.get(str);
-                processEvent.addLegacySpreadEvent(fromEvu, toEvu, spreadProcess, time);
+                processEvent.addLegacySpreadEvent(fromEvu, toEvu, spreadProcess, toEvu.getState().getProb(), time);
               }
 
             }
@@ -1845,7 +1845,7 @@ public final class AreaSummary implements Externalizable {
             }
             else {
               process = ProcessType.get(str);
-              spreadEvent.addLegacySpreadEvent(fromEvu,toEvu,process,tStep);
+              spreadEvent.addLegacySpreadEvent(fromEvu,toEvu,process,toEvu.getState().getProb(),tStep);
             }
           }
         }
