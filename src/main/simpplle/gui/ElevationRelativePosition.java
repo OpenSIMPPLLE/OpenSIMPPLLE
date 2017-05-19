@@ -105,8 +105,9 @@ public class ElevationRelativePosition extends JDialog {
     uniformLabelPanel.add(uniformPolyValue);
     uniformPolyValue.addFocusListener(new UniformPolyValueFocusListener());
     uniformPolyValue.addKeyListener(new UniformPolyValueKeyListener());
-    uniformPolyValue.addActionListener(new UniformPolyValueActionListener());
-    
+//    uniformPolyValue.addActionListener(new UniformPolyValueActionListener());
+    uniformPolyValue.addActionListener(this::uniformPolyValue_actionPerformed);
+
     mainPanel.add(irregularPolyPanel);
     irregularPolyPanel.setLayout(new BorderLayout());
     
@@ -123,34 +124,15 @@ public class ElevationRelativePosition extends JDialog {
     irregularPolyValue.setColumns(10);
     irregularPolyValue.addKeyListener(new IrregularPolyValueKeyListener());
     irregularPolyValue.addFocusListener(new IrregularPolyValueFocusListener());
-    irregularPolyValue.addActionListener(new IrregularPolyValueActionListener());
+    irregularPolyValue.addActionListener(this::irregularPolyValue_actionPerformed);
     
     mainPanel.add(panel, BorderLayout.SOUTH);
     
     panel.add(panel_1);
     
     panel_1.add(continueButton);
-    continueButton.addActionListener(new ContinueButtonActionListener());
+    continueButton.addActionListener(this::continueButton_actionPerformed);
     continueButton.setText("Continue");
-  }
-  /**
-   * 
-   * Action listener for continue button.  
-   *
-   */
-  private class ContinueButtonActionListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-      continueButton_actionPerformed(e);
-    }
-  }
-  /**
-   * Action listener for Uniform Poly Value.  
-   *
-   */
-  private class UniformPolyValueActionListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-      uniformPolyValue_actionPerformed(e);
-    }
   }
   /**
    * 
@@ -170,14 +152,6 @@ public class ElevationRelativePosition extends JDialog {
   private class UniformPolyValueFocusListener extends FocusAdapter {
     public void focusLost(FocusEvent e) {
       uniformPolyValue_focusLost(e);
-    }
-  }
-  /**
-   * Action listener for irregular polygon value number text field. 
-   */
-  private class IrregularPolyValueActionListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-      irregularPolyValue_actionPerformed(e);
     }
   }
   /**
@@ -227,7 +201,7 @@ public class ElevationRelativePosition extends JDialog {
    * If continue button is pushed finishes the dialog.  
    * @param e 'continue'
    */
-  protected void continueButton_actionPerformed(ActionEvent e) {
+  private void continueButton_actionPerformed(ActionEvent e) {
     finishDialog();
   }
 /**
@@ -264,42 +238,42 @@ public class ElevationRelativePosition extends JDialog {
    * Gets the probability value from uniform polygon text field.  
    * @param e
    */
-  protected void uniformPolyValue_actionPerformed(ActionEvent e) {
+  private void uniformPolyValue_actionPerformed(ActionEvent e) {
     value = uniformPolyValue.getProbability();
   }
   /**
   * Uniform polygon value field has key typed in it.
    * @param e
    */
-  protected void uniformPolyValue_keyTyped(KeyEvent e) {
+  private void uniformPolyValue_keyTyped(KeyEvent e) {
     uniformPolyValue.localKeyTyped(e);
   }
   /**
   * Uniform polygon value field has focus lost.
    * @param e
    */
-  protected void uniformPolyValue_focusLost(FocusEvent e) {
+  private void uniformPolyValue_focusLost(FocusEvent e) {
     value = uniformPolyValue.getProbability();
   }
   /**
    * If irregular polygon field has an action in it.  
    * @param e
    */
-  protected void irregularPolyValue_actionPerformed(ActionEvent e) {
+  private void irregularPolyValue_actionPerformed(ActionEvent e) {
     value = irregularPolyValue.getValue();
   }
   /**
    * If irregular polygon field loses focus.
    * @param e focus lost from irregular polygon field
    */
-  protected void irregularPolyValue_focusLost(FocusEvent e) {
+  private void irregularPolyValue_focusLost(FocusEvent e) {
     value = irregularPolyValue.getValue();
   }
   /**
    * If irregular polygon field has a key in it.
    * @param e key typed in irregular polygon field.  
    */
-  protected void irregularPolyValue_keyTyped(KeyEvent e) {
+  private void irregularPolyValue_keyTyped(KeyEvent e) {
     irregularPolyValue.textField_keyTyped(e);
   }
   /**
