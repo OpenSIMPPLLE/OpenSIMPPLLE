@@ -78,7 +78,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Determines the size of neighborhood array
    * Because units are stored in a standard grid, the maximum number of adjacencies is 8
    */
-  private final int NUM_NEIGHBORS = 8;
+  public static final int MAX_NEIGHBORS = 8;
 
   /**
    * Neighboring units are stored in a fixed order, determined by their adjacency angle.
@@ -317,7 +317,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     initialState        = null;
     simData             = null;
     unitNumber          = null;
-    neighborhood = new AdjacentData[NUM_NEIGHBORS];
+    neighborhood = new AdjacentData[MAX_NEIGHBORS];
     acres               = 0;
 
     ownership           = null;
@@ -8851,9 +8851,6 @@ public final class Evu extends NaturalElement implements Externalizable {
     else return 'N';
   }
 
-  public int getNUM_NEIGHBORS() {
-    return NUM_NEIGHBORS;
-  }
 }
 
 
