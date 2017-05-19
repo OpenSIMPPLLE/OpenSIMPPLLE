@@ -8,7 +8,9 @@
 
 package simpplle.gui;
 
+import simpplle.comcode.KeaneFireEvent;
 import simpplle.comcode.ProcessOccurrenceSpreadingFire;
+import simpplle.comcode.SystemKnowledge;
 
 import javax.swing.*;
 import java.awt.*;
@@ -85,9 +87,9 @@ public class KeaneCellPercolation extends JDialog {
      */
     private void initialize() {
 
-        windSpeedMultiplier.setValue(ProcessOccurrenceSpreadingFire.getKeaneExtremeWindMultiplier());
-        windSpeedVariability.setValue(ProcessOccurrenceSpreadingFire.getKeaneWindSpeedVariability());
-        windDirectionVariability.setValue(ProcessOccurrenceSpreadingFire.getKeaneWindDirectionVariability());
+        windSpeedMultiplier.setValue(KeaneFireEvent.extremeWindMultiplier);
+        windSpeedVariability.setValue(KeaneFireEvent.windSpeedVariability);
+        windDirectionVariability.setValue(KeaneFireEvent.windDirectionVariability);
 
     }
 
@@ -96,9 +98,11 @@ public class KeaneCellPercolation extends JDialog {
      */
     private void selectOk() {
 
-        ProcessOccurrenceSpreadingFire.setKeaneExtremeWindMultiplier(windSpeedMultiplier.getValue());
-        ProcessOccurrenceSpreadingFire.setKeaneWindSpeedVariability(windSpeedVariability.getValue());
-        ProcessOccurrenceSpreadingFire.setKeaneWindDirectionVariability(windDirectionVariability.getValue());
+        KeaneFireEvent.extremeWindMultiplier = windSpeedMultiplier.getValue();
+        KeaneFireEvent.windSpeedVariability = windSpeedVariability.getValue();
+        KeaneFireEvent.windDirectionVariability = windDirectionVariability.getValue();
+
+        SystemKnowledge.markChanged(SystemKnowledge.KEANE_PARAMETERS);
 
         setVisible(false);
         dispose();
