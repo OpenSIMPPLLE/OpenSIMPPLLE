@@ -3957,11 +3957,17 @@ public final class Area implements Externalizable {
 
       if (!removeInvalidUnit(logFile, evu, v)){  // unit must be valid to be added
 
-        int numAdj = evu.getNUM_NEIGHBORS();
-
         double spread, windSpeed, windDir;
         char pos, wind;
-        AdjacentData[] adjData = new AdjacentData[v.size()];
+        int adjDataSize;
+        if (hasKeaneAttributes){
+          // Must have MAX_NEIGHBORS
+          adjDataSize = Evu.MAX_NEIGHBORS;
+        } else {
+          // no Keane data, we can just use the size of the array
+          adjDataSize = v.size();
+        }
+        AdjacentData[] adjData = new AdjacentData[adjDataSize];
         int adjIndex = 0;
 
         for (int i = 0; i < v.size(); i++) {
