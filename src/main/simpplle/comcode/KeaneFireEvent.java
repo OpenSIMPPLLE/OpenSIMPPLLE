@@ -202,8 +202,9 @@ public class KeaneFireEvent extends ProcessOccurrenceSpreadingFire {
    * @return a whole number
    */
   private int probabilisticRound(double number) {
+    Random random = Simulation.getInstance().getRandom();
     double probability = number % 1;
-    double draw = Math.random();
+    double draw = random.nextDouble();
     return (draw <= probability) ? (int)Math.floor(number) : (int)Math.ceil(number);
   }
 
