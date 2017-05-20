@@ -9,7 +9,6 @@
 package simpplle.gui;
 
 import simpplle.comcode.KeaneFireEvent;
-import simpplle.comcode.ProcessOccurrenceSpreadingFire;
 import simpplle.comcode.SystemKnowledge;
 
 import javax.swing.*;
