@@ -575,7 +575,7 @@ public abstract class AbstractBaseLogic {
     for (String key : visibleColumnsHm.keySet()) {
       os.writeObject(key);
       os.writeObject(visibleColumnsHm.get(key));
-    }    
+    }
   }
 
   /**
@@ -671,4 +671,42 @@ public abstract class AbstractBaseLogic {
    */
   public static boolean isNoChangeRead() { return noChangeRead; }
 
+  /**
+   * Iteratively checks each column to determine if it is empty
+   *
+   * @param kind A kind of logic
+   * @return Returns an ArrayList of empty column indices
+   */
+  public ArrayList<Integer> checkEmpty(String kind) {
+
+    // properly returns ALL empty column indices
+
+    ArrayList<Integer> emptyColumns = new ArrayList<>();
+    int numColumns = getColumnCount(kind);
+    int numRows = getData(kind).size();
+
+//    System.out.println(getData(kind).size());
+//    System.out.println(numColumns);
+
+    for(int j = 0; j < numColumns; j++) {
+
+      int numNull = 0;
+
+      for (int i = 0; i < numRows; i++) {
+
+        if (getValueAt(i, j, kind).toString().equalsIgnoreCase("{}") || getValueAt(i, j, kind).toString().equalsIgnoreCase("[]")) {
+
+          numNull += 1;
+        }
+      }
+      if (numNull == getRowCount(kind)) {
+
+//        System.out.println("column " + getColumnIdName(kind, j) + " is empty and has " + Integer.toString(numNull) + " Empty rows");
+        System.out.println("column " + Integer.toString(j) + " is empty");
+        emptyColumns.add(j);
+
+      }
+    }
+    return emptyColumns;
+  }
 }
