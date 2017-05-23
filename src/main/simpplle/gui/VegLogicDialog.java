@@ -25,26 +25,27 @@ import simpplle.comcode.*;
  */
 
 public class VegLogicDialog extends AbstractLogicDialog {
-  protected boolean              inColumnInit=false;
-  protected ArrayList<JMenuItem> colMenuItems = new ArrayList<JMenuItem>();
+
+  protected boolean inColumnInit = false;
+  protected ArrayList<JMenuItem> colMenuItems = new ArrayList<>();
 
   protected JMenu menuColumns = new JMenu();
-  protected JCheckBoxMenuItem menuShowValCols = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuEcoGroup = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuSpecies = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuSizeClass = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuDensity = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuProcess = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuTreatment = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuSeason = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuMoisture = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuTemp = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuTrackingSpecies = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuOwnership = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuSpecialArea = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuRoadStatus = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuTrailStatus = new JCheckBoxMenuItem();
-  protected JCheckBoxMenuItem menuLandtype = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuShowValCols = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuEcoGroup = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuSpecies = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuSizeClass = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuDensity = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuProcess = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuTreatment = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuSeason = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuMoisture = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuTemp = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuTrackingSpecies = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuOwnership = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuSpecialArea = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuRoadStatus = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuTrailStatus = new JCheckBoxMenuItem();
+  private JCheckBoxMenuItem menuLandtype = new JCheckBoxMenuItem();
 /**
  * Constructor for Vegetative Logic Dialog, a type of abstract logic dialog.  
  * @param owner
@@ -72,56 +73,42 @@ public class VegLogicDialog extends AbstractLogicDialog {
  * @throws Exception
  */
   private void jbInit() throws Exception {
+
     menuColumns.setText("Columns");
     menuShowValCols.setText("Values Only");
     menuShowValCols.setToolTipText("Shows only columns that have values");
-    menuShowValCols.addActionListener(new
-        VegLogicDialog_menuShowVals_actionAdapter(this));
+    menuShowValCols.addActionListener(this::menuShowValCols_actionPerformed);
     menuEcoGroup.setText("Ecological Grouping");
-    menuEcoGroup.addActionListener(new
-        VegLogicDialog_menuEcoGroup_actionAdapter(this));
+    menuEcoGroup.addActionListener(this::ecoGroupListener);
     menuSpecies.setText("Species");
-    menuSpecies.addActionListener(new
-        VegLogicDialog_menuSpecies_actionAdapter(this));
+    menuSpecies.addActionListener(this::speciesListener);
     menuSizeClass.setText("Size Class");
-    menuSizeClass.addActionListener(new
-        VegLogicDialog_menuSizeClass_actionAdapter(this));
+    menuSizeClass.addActionListener(this::sizeClassListener);
     menuDensity.setText("Density");
-    menuDensity.addActionListener(new
-        VegLogicDialog_menuDensity_actionAdapter(this));
+    menuDensity.addActionListener(this::densityListener);
     menuProcess.setText("Process");
-    menuProcess.addActionListener(new
-        VegLogicDialog_menuProcess_actionAdapter(this));
+    menuProcess.addActionListener(this::menuProcessListener);
     menuTreatment.setText("Treatment");
-    menuTreatment.addActionListener(new
-        VegLogicDialog_menuTreatment_actionAdapter(this));
+    menuTreatment.addActionListener(this::treatmentListener);
     menuSeason.setText("Season");
-    menuSeason.addActionListener(new
-        VegLogicDialog_menuSeason_actionAdapter(this));
+    menuSeason.addActionListener(this::seasonListener);
     menuMoisture.setText("Moisture");
-    menuMoisture.addActionListener(new
-        VegLogicDialog_menuMoisture_actionAdapter(this));
+    menuMoisture.addActionListener(this::moistureListener);
     menuTemp.setText("Temperature");
-    menuTemp.addActionListener(new
-        VegLogicDialog_menuTemp_actionAdapter(this));
+    menuTemp.addActionListener(this::menuTempListener);
     menuTrackingSpecies.setText("Tracking Species");
-    menuTrackingSpecies.addActionListener(new
-      VegLogicDialog_menuTrackingSpecies_actionAdapter(this));
+    menuTrackingSpecies.addActionListener(this::trackingSpeciesListener);
     menuOwnership.setText("Ownership");
-    menuOwnership.addActionListener(new
-      VegLogicDialog_menuOwnership_actionAdapter(this));
+    menuOwnership.addActionListener(this::ownershipListener);
     menuSpecialArea.setText("Special Area");
-    menuSpecialArea.addActionListener(new
-      VegLogicDialog_menuSpecialArea_actionAdapter(this));
+    menuSpecialArea.addActionListener(this::specialAreaListener);
     menuRoadStatus.setText("Road Status");
-    menuRoadStatus.addActionListener(new
-      VegLogicDialog_menuRoadStatus_actionAdapter(this));
+    menuRoadStatus.addActionListener(this::roadStatusListener);
     menuTrailStatus.setText("Trail Status");
-    menuTrailStatus.addActionListener(new
-      VegLogicDialog_menuTrailStatus_actionAdapter(this));
+    menuTrailStatus.addActionListener(this::trailStatusListener);
     menuLandtype.setText("Land Type");
-    menuLandtype.addActionListener(new
-      VegLogicDialog_menuLandtype_actionAdapter(this));
+    menuLandtype.addActionListener(this::landTypeListener);
+
     menuColumns.add(menuShowValCols);
     menuColumns.add(menuEcoGroup);
     menuColumns.add(menuSpecies);
@@ -139,6 +126,7 @@ public class VegLogicDialog extends AbstractLogicDialog {
     menuColumns.add(menuTrailStatus);
     menuColumns.add(menuLandtype);
     menuBar.add(menuColumns);
+
   }
 /**
  * Initializes the Vegetative Logic Dialog with column menu items representing rows for for ROW or 0 column (Priority), Ecological group, species, size class, process, treatment, season, moisture, temperature, 
@@ -177,25 +165,23 @@ public class VegLogicDialog extends AbstractLogicDialog {
   }
   /**
    * Takes in the int representation of a column.  If the column was in the initial columns set in the init method, does nothing
-   * @param column
+   * @param column Index of column clicked
    */
-  protected void columnMenuClicked(int column) {
+  public void columnMenuClicked(int column) {
     if (inColumnInit) { return; }
 
     if (colMenuItems.get(column).isSelected()) {
       currentPanel.addVisibleColumn(column);
-//      currentPanel.showColumn(column);
     }
     else {
       currentPanel.removeVisibleColumn(column);
-//      currentPanel.hideColumn(column);
     }
     currentPanel.updateColumns();
   }
   /**
    * If show vals menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.
    */
-   void menuShowValCols_actionPerformed(ActionEvent e) {
+   private void menuShowValCols_actionPerformed(ActionEvent e) {
 
     ArrayList<Integer> emptyCols = currentPanel.emptyColumns();
 
@@ -222,91 +208,91 @@ public class VegLogicDialog extends AbstractLogicDialog {
   /**
    * If Eco Group menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuEcoGroup_actionPerformed(ActionEvent e) {
+  private void ecoGroupListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.ECO_GROUP_COL);
   }
   /**
    * If species menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuSpecies_actionPerformed(ActionEvent e) {
+  private void speciesListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.SPECIES_COL);
   }
   /**
    * If Size Class menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuSizeClass_actionPerformed(ActionEvent e) {
+  private void sizeClassListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.SIZE_CLASS_COL);
   }
   /**
    * If Density menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuDensity_actionPerformed(ActionEvent e) {
+  private void densityListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.DENSITY_COL);
   }
   /**
    * If Process menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuProcess_actionPerformed(ActionEvent e) {
+  private void menuProcessListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.PROCESS_COL);
   }
   /**
    * If Treatment menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuTreatment_actionPerformed(ActionEvent e) {
+  private void treatmentListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.TREATMENT_COL);
   }
   /**
    * If Season menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuSeason_actionPerformed(ActionEvent e) {
+  private void seasonListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.SEASON_COL);
   }
   /**
    * If Moisture menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuMoisture_actionPerformed(ActionEvent e) {
+  private void moistureListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.MOISTURE_COL);
   }
   /**
    * If Temperature menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuTemp_actionPerformed(ActionEvent e) {
+  private void menuTempListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.TEMP_COL);
   }
   /**
    * If Tracking Species menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuTrackingSpecies_actionPerformed(ActionEvent e) {
+  private void trackingSpeciesListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.TRACKING_SPECIES_COL);
   }
   /**
    * If Ownership menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuOwnership_actionPerformed(ActionEvent e) {
+  private void ownershipListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.OWNERSHIP_COL);
   }
   /**
    * If Special Area menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuSpecialArea_actionPerformed(ActionEvent e) {
+  private void specialAreaListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.SPECIAL_AREA_COL);
   }
   /**
    * If Road Status menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuRoadStatus_actionPerformed(ActionEvent e) {
+  private void roadStatusListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.ROAD_STATUS_COL);
   }
   /**
    * If Trail Status menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuTrailStatus_actionPerformed(ActionEvent e) {
+  private void trailStatusListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.TRAIL_STATUS_COL);
   }
   /**
    * If Landtype menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  public void menuLandtype_actionPerformed(ActionEvent e) {
+  private void landTypeListener(ActionEvent e) {
     columnMenuClicked(BaseLogic.LANDTYPE_COL);
   }
 /**
@@ -319,288 +305,5 @@ public class VegLogicDialog extends AbstractLogicDialog {
       colMenuItems.get(i).setSelected(
         currentPanel.isVisibleColumn(i));
     }
-  }
-}
-/**
- * ShowVals action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.
- *
- */
-class VegLogicDialog_menuShowVals_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuShowVals_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * menuShowValCols JMenu item selected.
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuShowValCols_actionPerformed(e);
-  }
-}
-/**
- * Ownership action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.
- *
- */
-class VegLogicDialog_menuOwnership_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuOwnership_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-/**
- * Ownership JMenu item selected.
- */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuOwnership_actionPerformed(e);
-  }
-}
-/**
- * Special area action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuSpecialArea_actionAdapter implements ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuSpecialArea_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Special area JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuSpecialArea_actionPerformed(e);
-  }
-}
-/**
- * Road status action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuRoadStatus_actionAdapter implements ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuRoadStatus_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Road status JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuRoadStatus_actionPerformed(e);
-  }
-}
-/**
- * Trail status action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuTrailStatus_actionAdapter implements ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuTrailStatus_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Trail status JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuTrailStatus_actionPerformed(e);
-  }
-}
-/**
- * Landtype action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuLandtype_actionAdapter implements ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuLandtype_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Landtype JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuLandtype_actionPerformed(e);
-  }
-}
-/**
- * Tracking species action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuTrackingSpecies_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuTrackingSpecies_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Tracking Species JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuTrackingSpecies_actionPerformed(e);
-  }
-}
-/**
- * Temperature action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuTemp_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuTemp_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Temperature JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuTemp_actionPerformed(e);
-  }
-}
-/**
- * Moisture action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuMoisture_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuMoisture_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Moisture JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuMoisture_actionPerformed(e);
-  }
-}
-/**
- * Season action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuSeason_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuSeason_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Season JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuSeason_actionPerformed(e);
-  }
-}
-/**
- * Treatment action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuTreatment_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuTreatment_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Treatment JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuTreatment_actionPerformed(e);
-  }
-}
-/**
- * Process action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuProcess_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuProcess_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Process JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuProcess_actionPerformed(e);
-  }
-}
-/**
- * Density action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.
- *
- */
-class VegLogicDialog_menuDensity_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuDensity_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Density JMenu item selected.
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuDensity_actionPerformed(e);
-  }
-}
-/**
- * Size Class action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuSizeClass_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuSizeClass_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Size Class JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuSizeClass_actionPerformed(e);
-  }
-}
-/**
- * Species action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- *
- */
-class VegLogicDialog_menuSpecies_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuSpecies_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * Species JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuSpecies_actionPerformed(e);
-  }
-}
-/**
- * EcoGroup action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
- */
-class VegLogicDialog_menuEcoGroup_actionAdapter implements
-    ActionListener {
-  private VegLogicDialog adaptee;
-  VegLogicDialog_menuEcoGroup_actionAdapter(
-      VegLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-  /**
-   * EcoGroup JMenu item selected.  
-   */
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuEcoGroup_actionPerformed(e);
   }
 }
