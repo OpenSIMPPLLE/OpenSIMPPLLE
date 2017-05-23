@@ -29,6 +29,7 @@ public class VegLogicDialog extends AbstractLogicDialog {
   protected ArrayList<JMenuItem> colMenuItems = new ArrayList<JMenuItem>();
 
   protected JMenu menuColumns = new JMenu();
+  protected JCheckBoxMenuItem menuShowValCols = new JCheckBoxMenuItem();
   protected JCheckBoxMenuItem menuEcoGroup = new JCheckBoxMenuItem();
   protected JCheckBoxMenuItem menuSpecies = new JCheckBoxMenuItem();
   protected JCheckBoxMenuItem menuSizeClass = new JCheckBoxMenuItem();
@@ -72,6 +73,10 @@ public class VegLogicDialog extends AbstractLogicDialog {
  */
   private void jbInit() throws Exception {
     menuColumns.setText("Columns");
+    menuShowValCols.setText("Values Only");
+    menuShowValCols.setToolTipText("Shows only columns that have values");
+    menuShowValCols.addActionListener(new
+        VegLogicDialog_menuShowVals_actionAdapter(this));
     menuEcoGroup.setText("Ecological Grouping");
     menuEcoGroup.addActionListener(new
         VegLogicDialog_menuEcoGroup_actionAdapter(this));
@@ -117,6 +122,7 @@ public class VegLogicDialog extends AbstractLogicDialog {
     menuLandtype.setText("Land Type");
     menuLandtype.addActionListener(new
       VegLogicDialog_menuLandtype_actionAdapter(this));
+    menuColumns.add(menuShowValCols);
     menuColumns.add(menuEcoGroup);
     menuColumns.add(menuSpecies);
     menuColumns.add(menuSizeClass);
@@ -184,6 +190,33 @@ public class VegLogicDialog extends AbstractLogicDialog {
       currentPanel.removeVisibleColumn(column);
 //      currentPanel.hideColumn(column);
     }
+    currentPanel.updateColumns();
+  }
+  /**
+   * If show vals menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.
+   */
+   void menuShowValCols_actionPerformed(ActionEvent e) {
+
+    ArrayList<Integer> emptyCols = currentPanel.emptyColumns();
+
+    if(menuShowValCols.isSelected()) {
+
+      for(int i = 0; i < emptyCols.size(); i++){
+
+        System.out.println(emptyCols.get(i));
+
+        currentPanel.removeVisibleColumn(emptyCols.get(i));
+      }
+    } else{
+      for(int i = 0; i < emptyCols.size(); i++){
+
+        System.out.println(emptyCols.get(i));
+
+        currentPanel.addVisibleColumn(emptyCols.get(i));
+
+      }
+    }
+    updateMenuItems();
     currentPanel.updateColumns();
   }
   /**
@@ -287,10 +320,27 @@ public class VegLogicDialog extends AbstractLogicDialog {
         currentPanel.isVisibleColumn(i));
     }
   }
-
 }
 /**
- * Ownership action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
+ * ShowVals action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.
+ *
+ */
+class VegLogicDialog_menuShowVals_actionAdapter implements
+    ActionListener {
+  private VegLogicDialog adaptee;
+  VegLogicDialog_menuShowVals_actionAdapter(
+      VegLogicDialog adaptee) {
+    this.adaptee = adaptee;
+  }
+  /**
+   * menuShowValCols JMenu item selected.
+   */
+  public void actionPerformed(ActionEvent e) {
+    adaptee.menuShowValCols_actionPerformed(e);
+  }
+}
+/**
+ * Ownership action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.
  *
  */
 class VegLogicDialog_menuOwnership_actionAdapter implements
@@ -301,7 +351,7 @@ class VegLogicDialog_menuOwnership_actionAdapter implements
     this.adaptee = adaptee;
   }
 /**
- * Ownership JMenu item selected.  
+ * Ownership JMenu item selected.
  */
   public void actionPerformed(ActionEvent e) {
     adaptee.menuOwnership_actionPerformed(e);
@@ -484,7 +534,7 @@ class VegLogicDialog_menuProcess_actionAdapter implements
   }
 }
 /**
- * Density action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.  
+ * Density action adapter class.  Creates an adapter on action listener that allows only the action of selecting menu item to be needed.
  *
  */
 class VegLogicDialog_menuDensity_actionAdapter implements
@@ -495,7 +545,7 @@ class VegLogicDialog_menuDensity_actionAdapter implements
     this.adaptee = adaptee;
   }
   /**
-   * Density JMenu item selected.  
+   * Density JMenu item selected.
    */
   public void actionPerformed(ActionEvent e) {
     adaptee.menuDensity_actionPerformed(e);
@@ -554,4 +604,3 @@ class VegLogicDialog_menuEcoGroup_actionAdapter implements
     adaptee.menuEcoGroup_actionPerformed(e);
   }
 }
-
