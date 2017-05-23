@@ -274,27 +274,9 @@ public class BaseLogicPanel extends JPanel {
     dataModel.addRow(position);
   }
   /**
-   * Hides all of the empty columns in the current panel
+   * Calls to AbstractBaseLogic to get ArrayList of indices whose columns are empty
+   *
+   * @return Returns ArrayList of column indices that are empty
    */
-   void hideEmpty(){
-
-    ArrayList<Integer> toHide = logicInst.checkEmpty(kind);
-
-    for(int i = 0; i < toHide.size(); i++){
-
-      removeVisibleColumn(toHide.get(i));
-    }
-  }
-  /**
-   * Shows all of the empty columns in the current panel
-   */
-   void showEmpty(){
-
-    ArrayList<Integer> toShow = logicInst.checkEmpty(kind);
-
-    for(int i = 0; i < toShow.size(); i++){
-
-      addVisibleColumn(toShow.get(i));
-    }
-  }
+   ArrayList<Integer> emptyColumns() {return logicInst.checkEmpty(kind);}
 }
