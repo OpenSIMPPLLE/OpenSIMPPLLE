@@ -17,6 +17,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 /** 
@@ -272,7 +273,28 @@ public class BaseLogicPanel extends JPanel {
     int position = (selectedRow != -1) ? selectedRow : dataModel.getRowCount() + 1;
     dataModel.addRow(position);
   }
+  /**
+   * Hides all of the empty columns in the current panel
+   */
+   void hideEmpty(){
 
+    ArrayList<Integer> toHide = logicInst.checkEmpty(kind);
+
+    for(int i = 0; i < toHide.size(); i++){
+
+      removeVisibleColumn(toHide.get(i));
+    }
+  }
+  /**
+   * Shows all of the empty columns in the current panel
+   */
+   void showEmpty(){
+
+    ArrayList<Integer> toShow = logicInst.checkEmpty(kind);
+
+    for(int i = 0; i < toShow.size(); i++){
+
+      addVisibleColumn(toShow.get(i));
+    }
+  }
 }
-
-
