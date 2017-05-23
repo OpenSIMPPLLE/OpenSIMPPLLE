@@ -673,20 +673,16 @@ public abstract class AbstractBaseLogic {
 
   /**
    * Iteratively checks each column to determine if it is empty
+   * Note: Here an 'empty' cell is represented by brackets with nothing inside of them
    *
    * @param kind A kind of logic
    * @return Returns an ArrayList of empty column indices
    */
   public ArrayList<Integer> checkEmpty(String kind) {
 
-    // properly returns ALL empty column indices
-
     ArrayList<Integer> emptyColumns = new ArrayList<>();
-    int numColumns = getColumnCount(kind);
+    int numColumns = columns.get(kind).size();
     int numRows = getData(kind).size();
-
-//    System.out.println(getData(kind).size());
-//    System.out.println(numColumns);
 
     for(int j = 0; j < numColumns; j++) {
 
@@ -699,12 +695,8 @@ public abstract class AbstractBaseLogic {
           numNull += 1;
         }
       }
-      if (numNull == getRowCount(kind)) {
-
-//        System.out.println("column " + getColumnIdName(kind, j) + " is empty and has " + Integer.toString(numNull) + " Empty rows");
-        System.out.println("column " + Integer.toString(j) + " is empty");
+      if (numNull == numRows) {
         emptyColumns.add(j);
-
       }
     }
     return emptyColumns;
