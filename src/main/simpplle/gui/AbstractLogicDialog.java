@@ -75,7 +75,6 @@ public class AbstractLogicDialog extends JDialog {
   private void jbInit() throws Exception {
 
     JPanel tabsPanel = new JPanel(new BorderLayout());
-    JTabbedPane tabbedPane = new JTabbedPane();
 
     menuFile.setText("File");
     menuFileOpen.setText("Open");
@@ -107,17 +106,10 @@ public class AbstractLogicDialog extends JDialog {
     menuKnowledgeSourceEdit.addActionListener(this::menuKnowledgeSourceEdit);
 
     getContentPane().add(mainPanel);
-    mainPanel.add(tabsPanel, java.awt.BorderLayout.CENTER);
-    tabsPanel.add(tabbedPane, java.awt.BorderLayout.CENTER);
+    mainPanel.add(tabsPanel, BorderLayout.CENTER);
+    tabsPanel.add(tabbedPane, BorderLayout.CENTER);
 
     this.setJMenuBar(menuBar);
-
-    this.addComponentListener(new java.awt.event.ComponentAdapter() {
-
-      public void componentResized(ComponentEvent e) {
-        this_componentResized(e);
-      }
-    });
 
     menuBar.add(menuFile);
     menuBar.add(menuAction);
@@ -157,15 +149,6 @@ public class AbstractLogicDialog extends JDialog {
 
   }
 
-  protected void this_componentResized(ComponentEvent e) {
-
-    // These lines cause excessive flickering and do not seem to be
-    // necessary during resizing.
-
-    //currentPanel.updateColumnWidth();
-    //updateDialog();
-
-  }
   /**
    * Updates the Abstract Logic Dialog.
    */
