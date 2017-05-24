@@ -37,8 +37,18 @@ public class AbstractLogicDialog extends JDialog {
 
   protected JPanel mainPanel = new JPanel(new BorderLayout());
   protected JTabbedPane tabbedPane = new JTabbedPane();
+  protected JMenu menuFile = new JMenu();
+  protected JMenuBar menuBar = new JMenuBar();
+  protected JMenuItem menuFileOpen = new JMenuItem();
   protected JMenuItem menuFileClose = new JMenuItem();
   protected JMenuItem menuFileSave = new JMenuItem();
+  protected JMenuItem menuFileSaveAs = new JMenuItem();
+  protected JMenuItem menuFileLoadDefault = new JMenuItem();
+  protected JMenu menuAction = new JMenu();
+  protected JMenuItem menuActionMoveRuleUp = new JMenuItem();
+  protected JMenuItem menuActionMoveRuleDown = new JMenuItem();
+  protected JMenuItem menuActionDeleteSelectedRule = new JMenuItem();
+  protected JMenuItem menuActionDuplicateSelectedRule = new JMenuItem();
 
   /**
    * Constructor which calls jbInit() to start abstract logic UI
@@ -67,31 +77,30 @@ public class AbstractLogicDialog extends JDialog {
 
     JPanel tabsPanel = new JPanel(new BorderLayout());
     JTabbedPane tabbedPane = new JTabbedPane();
-    JMenuBar menuBar = new JMenuBar();
 
-    JMenu menuFile = new JMenu("File");
-    JMenuItem menuFileOpen = new JMenuItem("Open");
+    menuFile.setText("File");
+    menuFileOpen.setText("Open");
     menuFileOpen.addActionListener(this::open);
     menuFileClose.setText("Close");
     menuFileClose.addActionListener(this::close);
     menuFileSave.setText("Save");
     menuFileSave.addActionListener(this::save);
-    JMenuItem menuFileSaveAs = new JMenuItem("Save As");
+    menuFileSaveAs.setText("Save As");
     menuFileSaveAs.addActionListener(this::saveAs);
-    JMenuItem menuFileLoadDefault = new JMenuItem("Load Default");
+    menuFileLoadDefault.setText("Load Default");
     menuFileLoadDefault.addActionListener(this::loadDefault);
     JMenuItem menuFileQuit = new JMenuItem("Close Dialog");
     menuFileQuit.addActionListener(this::quit);
-    JMenu menuAction = new JMenu("Action");
-    JMenuItem menuActionMoveRuleUp = new JMenuItem("Move Rule Up");
+    menuAction.setText("Action");
+    menuActionMoveRuleUp.setText("Move Rule Up");
     menuActionMoveRuleUp.addActionListener(this::moveRuleUp);
-    JMenuItem menuActionMoveRuleDown = new JMenuItem("Move Rule Down");
+    menuActionMoveRuleDown.setText("Move Rule Down");
     menuActionMoveRuleDown.addActionListener(this::moveRuleDown);
     JMenuItem menuActionInsertNewRule = new JMenuItem("Insert New Rule");
     menuActionInsertNewRule.addActionListener(this::insertNewRule);
-    JMenuItem menuActionDeleteSelectedRule = new JMenuItem("Delete Selected Rule");
+    menuActionDeleteSelectedRule.setText("Delete Selected Rule");
     menuActionDeleteSelectedRule.addActionListener(this::deleteSelectedRule);
-    JMenuItem menuActionDuplicateSelectedRule = new JMenuItem("Duplicate Selected Rule");
+    menuActionDuplicateSelectedRule.setText("Duplicate Selected Rule");
     menuActionDuplicateSelectedRule.addActionListener(this::duplicateSelectedRule);
     tabbedPane.addChangeListener(this::tabbedPane_stateChanged);
     JMenu menuKnowledgeSource = new JMenu("Knowledge Source");
