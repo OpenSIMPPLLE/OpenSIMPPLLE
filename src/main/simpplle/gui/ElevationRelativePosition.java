@@ -32,9 +32,9 @@ public class ElevationRelativePosition extends JDialog {
   private Area area;
   private int value = 100;
   
-  private final JPanel mainPanel = new JPanel();
-  private final JPanel irregularPolyPanel = new JPanel();
-  private final JPanel uniformPolyPanel = new JPanel();
+  private final JPanel mainPanel = new JPanel(new BorderLayout());
+  private final JPanel irregularPolyPanel = new JPanel(new BorderLayout());
+  private final JPanel uniformPolyPanel = new JPanel(new BorderLayout(10, 10));
   private final JPanel uniformLabelPanel = new JPanel();
   private final JPanel irregularLabelPanel = new JPanel();
   private final JProbabilityTextField uniformPolyValue = new JProbabilityTextField(10);
@@ -91,10 +91,8 @@ public class ElevationRelativePosition extends JDialog {
     System.currentTimeMillis();
     addWindowListener(new ThisWindowListener());
     getContentPane().add(mainPanel);
-    mainPanel.setLayout(new BorderLayout());
-    
+
     mainPanel.add(uniformPolyPanel, BorderLayout.NORTH);
-    uniformPolyPanel.setLayout(new BorderLayout(10, 10));
     uniformPolyLabel.setPreferredSize(new Dimension(600, 150));
     uniformPolyPanel.add(uniformLabelPanel);
     uniformLabelPanel.add(uniformPolyLabel);
@@ -105,12 +103,10 @@ public class ElevationRelativePosition extends JDialog {
     uniformLabelPanel.add(uniformPolyValue);
     uniformPolyValue.addFocusListener(new UniformPolyValueFocusListener());
     uniformPolyValue.addKeyListener(new UniformPolyValueKeyListener());
-//    uniformPolyValue.addActionListener(new UniformPolyValueActionListener());
     uniformPolyValue.addActionListener(this::uniformPolyValue_actionPerformed);
 
     mainPanel.add(irregularPolyPanel);
-    irregularPolyPanel.setLayout(new BorderLayout());
-    
+
     irregularPolyPanel.add(irregularLabelPanel);
     
     irregularLabelPanel.add(irregularPolyLabel);
@@ -118,7 +114,7 @@ public class ElevationRelativePosition extends JDialog {
     irregularPolyLabel.setBackground(Color.WHITE);
     irregularPolyLabel.setText("<html><p>Default difference in elevation (in meters) between a vegetation" +
         "unit and its adjacent vegetation units to determine relative position (above, below, or " +
-        "next-to) is 10 percent. Enter a different value if the default is not desired.</p></html>");
+        "next-to) is 100 meters. Enter a different value if the default is not desired.</p></html>");
 
     irregularLabelPanel.add(irregularPolyValue);
     irregularPolyValue.setColumns(10);
