@@ -9,9 +9,6 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-
-import javax.swing.JDialog;
-import javax.swing.JTabbedPane;
 import simpplle.comcode.InvasiveSpeciesLogicMSU;
 import simpplle.comcode.SystemKnowledge;
 

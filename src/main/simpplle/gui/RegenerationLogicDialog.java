@@ -11,7 +11,6 @@ package simpplle.gui;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
 import simpplle.comcode.RegenerationLogic.DataKinds;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;

@@ -9,7 +9,6 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-import javax.swing.JDialog;
 import simpplle.comcode.GapProcessLogic;
 import simpplle.comcode.*;
 

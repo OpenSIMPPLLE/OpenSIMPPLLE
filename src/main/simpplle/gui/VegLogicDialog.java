@@ -12,7 +12,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.Frame;
 import simpplle.comcode.*;
