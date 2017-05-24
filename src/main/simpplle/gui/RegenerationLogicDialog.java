@@ -35,7 +35,7 @@ public class RegenerationLogicDialog extends VegLogicDialog {
   JMenuItem menuOptionsDelayLogic = new JMenuItem();
   /**
    * Constructor for Regeneration Logic Dialog.  This sets the frame owner, string title and modality.  
-   * @param owner frame that owns the dialog
+   * @param frame that owns the dialog
    * @param title name of dialog
    * @param modal specifies whether dialog blocks user input to other top-level windows when shown
    */
