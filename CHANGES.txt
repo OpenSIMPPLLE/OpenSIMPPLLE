@@ -1,4 +1,8 @@
-Version 1.3.9 : January 19, 2016
+Version 1.4.0 :
+
+    - Fixed bug with Keane fire spread not respecting random number generator seed
+
+Version 1.3.9 : January 19, 2017
 
     - Added missing paths and attributes to the simulation dialog
     - Fixed crash caused by limiting time steps in memory
