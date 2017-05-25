@@ -1,6 +1,7 @@
 Version 1.4.0 :
 
     - Fixed bug with Keane fire spread not respecting random number generator seed
+    - Removed change java heap size from utilities menu
 
 Version 1.3.9 : January 19, 2017
 
