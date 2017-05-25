@@ -40,6 +40,15 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private ArrayList<Integer> lineSuppUnits = new ArrayList<>();
 
   /**
+   * Counter to track when the fire event tries to spread outside of the existing landscape.
+   * This addresses the issue of fires building up at boundaries and spreading back into the
+   * landscape until they are large enough to be extinguished.
+   *
+   * Currently only used in KeaneFireEvent
+   */
+  protected int missingAdjacentAcres = 0;
+
+  /**
    * Constructs a spreading fire event. This is required for deserializing .simdata files.
    */
   public ProcessOccurrenceSpreadingFire() {
@@ -139,7 +148,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   @SuppressWarnings("unchecked")
   public void doSpread() {
 
-    int rangeIndex = FireSuppWeatherData.getAcresRangeNumber(getEventAcres());
+    int rangeIndex = FireSuppWeatherData.getAcresRangeNumber(getEventAcres()); // should this be updated?
 
     if (rangeIndex != weatherRangeIndex) {
 
@@ -150,7 +159,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
 
     RegionalZone zone = Simpplle.getCurrentZone();
 
-    if (FireEvent.doSpreadEndingWeather(zone,getEventAcres(),getFireSeason(),weatherProb)) {
+    if (FireEvent.doSpreadEndingWeather(zone,getEventAcres() + missingAdjacentAcres,getFireSeason(),weatherProb)) {
 
       finished = true;
       eventStopReason = EventStop.WEATHER;

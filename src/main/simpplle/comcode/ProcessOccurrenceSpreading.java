@@ -164,43 +164,6 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
       System.out.println();
     }
 
- //   /**
-  //   * This method is used to save this simulation data to a file.
-   //  * This will recursively print the whole network of nodes to the
-  //   * provided PrintWriter.
-   //  * @param fout a PrintWriter the output stream.
-   //  */
-//    public void save(PrintWriter fout) {
-//      Node toNode;
-//      if (toNodes.size() == 0) { return; }
-//
-//      for (int i=0; i<toNodes.size(); i++) {
-//        toNode = (Node)toNodes.get(i);
-//        fout.print(',');
-//        fout.print(data.getUnit().getId());
-//        fout.print(',');
-//        fout.print(toNode.data.getUnit().getId());
-//        fout.print(',');
-//        fout.print(toNode.data.getProcess());
-//        fout.print(',');
-//        fout.print(toNode.data.getProcessProbability());
-//        toNode.save(fout);
-//      }
-//    }
-
-//    public void save2(PrintWriter fout) {
-//      if (fromNode == null) { return; }
-//      fout.print(',');
-//      fout.print(fromNode.data.getUnit().getId());
-//      fout.print(',');
-//      fout.print(data.getUnit().getId());
-//      fout.print(',');
-//      fout.print(data.getProcess());
-//      fout.print(',');
-//      fout.print(data.getProcessProbability());
-//
-//    }
-//
   }
 
   /**

@@ -514,7 +514,7 @@ public class FireEvent extends Process {
  * @param eventAcres the acres of fire
  * @param fireSeason choices are spring, summer, fall, winter
  * @param randNum 
- * @return true if ranom number is less than probability
+ * @return true if random number is less than probability
  */
   public static boolean doSpreadEndingWeather(RegionalZone zone, int eventAcres, Climate.Season fireSeason, int randNum) {
     int prob = FireSuppWeatherData.getProbability(zone,eventAcres,fireSeason);

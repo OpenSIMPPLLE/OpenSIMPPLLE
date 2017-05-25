@@ -12,18 +12,23 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
- * This class defines Fire Suppersion Beyond Class A Logic, a type of Base Logic.  Determining whether a fire stays at class A or goes beyond is an
- * important factor in Fire logic defined below
+ * This class defines Fire Suppression Beyond Class A Logic, a type of Base Logic.  Determining
+ * whether a fire stays at class A or goes beyond is an important factor in Fire logic defined below
  *
  * Fire Process logic
  * determine all process probabilities for each evu ->use probabilities to select process
- * if selected process is fire event->if fire suppresssion ->determine probability of staying class size A due to weather or fire suppression → if yes change process for evu to succession and record a class A fire with suppression costs
- * if not suppressed at Class A level → determine type of fire and fire spread → at end of simulation calculate fire suppression costs and emissions
- * if selected process is fire and fire suppression is no, determine probability of staying class A size due to weather → if it spreads beyond class A size determine type of firefighter and fire → at end of simulation calculate emissions
- * if stays at class A size due to weather->change process for evu to succession and record class A fire
- *
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+ * if selected process is fire event
+ *  ->if fire suppression
+ *    ->determine probability of staying class size A due to weather or fire suppression
+ *      → if yes change process for evu to succession and record a class A fire with suppression costs
+ *  if not suppressed at Class A level
+ *    → determine type of fire and fire spread
+ *      → at end of simulation calculate fire suppression costs and emissions
+ * if selected process is fire and fire suppression is no, determine probability of staying class A size due to weather
+ *  → if it spreads beyond class A size determine type of firefighter and fire
+ *    → at end of simulation calculate emissions
+ * if stays at class A size due to weather
+ *  ->change process for evu to succession and record class A fire
  *
  * @see simpplle.comcode.BaseLogic
  */
