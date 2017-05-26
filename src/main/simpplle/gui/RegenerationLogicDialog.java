@@ -57,30 +57,18 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     this(null, "", false);
   }
   /**
-   * Initializes the dialog with menuitems, componenets, text, menu bar, and listeners for Regeneration Logic Dialog.
+   * Initializes the dialog with menuitems, components, text, menu bar, and listeners for Regeneration Logic Dialog.
    * @throws Exception
    */
   void jbInit() throws Exception {
     menuOptionsAddAllSpecies.setActionCommand("Add All Species");
     menuOptionsAddAllSpecies.setText("Add All Species");
-    menuOptionsAddAllSpecies.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuTableOptionsAddAllSpecies_actionPerformed(e);
-      }
-    });
+    menuOptionsAddAllSpecies.addActionListener(this::menuTableOptionsAddAllSpecies_actionPerformed);
     menuOptionsDelayLogic.setActionCommand("Delay Logic");
     menuOptionsDelayLogic.setText("Delay Logic");
-    menuOptionsDelayLogic.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsDelayLogic_actionPerformed(e);
-      }
-    });
+    menuOptionsDelayLogic.addActionListener(this::menuOptionsDelayLogic_actionPerformed);
     menuFileOldFormat.setText("Import Old Format File");
-    menuFileOldFormat.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileOldFormat_actionPerformed(e);
-      }
-    });
+    menuFileOldFormat.addActionListener(this::menuFileOldFormat_actionPerformed);
 
     menuBar.add(menuOptions);
     menuFile.add(menuFileOldFormat);
@@ -156,7 +144,7 @@ public class RegenerationLogicDialog extends VegLogicDialog {
   private void menuFileOldFormat_actionPerformed(ActionEvent e) {
     File         infile;
     MyFileFilter extFilter;
-    String       title = "Select a Regenerationo Logic file.";
+    String       title = "Select a Regeneration Logic file.";
 
     extFilter = new MyFileFilter("regenlogic",
                                  "Regeneration Logic Files (*.regenlogic)");
