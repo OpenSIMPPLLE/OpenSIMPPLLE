@@ -182,7 +182,7 @@ public class SizeClass extends SimpplleType implements Externalizable {
   private short simId = -1;
 
   /**
-   * Constructor for size class.  Sets the size class to null, and structure to non forest.
+   * Creates an unnamed non-forested size class.
    */
   public SizeClass() {
     sizeClass = null;
@@ -190,7 +190,7 @@ public class SizeClass extends SimpplleType implements Externalizable {
   }
 
   /**
-   * This overloaded constructor passes false for is valid to size class.
+   * Creates a non-forested size class.
    * @param sizeClass
    */
   public SizeClass(String sizeClass) {
@@ -198,13 +198,11 @@ public class SizeClass extends SimpplleType implements Externalizable {
   }
 
   /**
-   * Overloaded size class constructor.  Creates a size class object by referencing default constructor and initializing the string name, structure, and
-   * valid variable.  Then updates the size class arraylist, and the all types hashmap.
+   * Creates a size class.
    */
   public SizeClass(String sizeClass, Structure structure) {
     this.sizeClass = sizeClass.toUpperCase();
     this.structure = structure;
-
     updateAllData(this, SIZE_CLASS);
   }
 
