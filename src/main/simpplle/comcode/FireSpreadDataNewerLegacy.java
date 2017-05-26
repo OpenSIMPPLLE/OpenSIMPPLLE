@@ -20,9 +20,9 @@ import java.util.*;
  */
 
 public class FireSpreadDataNewerLegacy {
-  public static final SizeClass.Structure NON_FOREST     = FireEvent.NON_FOREST;
-  public static final SizeClass.Structure SINGLE_STORY   = FireEvent.SINGLE_STORY;
-  public static final SizeClass.Structure MULTIPLE_STORY = FireEvent.MULTIPLE_STORY;
+  public static final Structure NON_FOREST     = FireEvent.NON_FOREST;
+  public static final Structure SINGLE_STORY   = FireEvent.SINGLE_STORY;
+  public static final Structure MULTIPLE_STORY = FireEvent.MULTIPLE_STORY;
 
   public static final Integer NF_OBJ = new Integer(NON_FOREST.ordinal());
   public static final Integer SS_OBJ = new Integer(SINGLE_STORY.ordinal());
@@ -68,7 +68,7 @@ public class FireSpreadDataNewerLegacy {
   }
 
   public static ArrayList getData(int fireClass, int relativePosition,
-                                  SizeClass.Structure structure, int resistance) {
+                                  Structure structure, int resistance) {
       return data[fireClass][relativePosition][structure.ordinal()][resistance];
   }
 
@@ -203,14 +203,14 @@ public class FireSpreadDataNewerLegacy {
 
     public Density[] densities;
     public ArrayList densityRules;
-    public SizeClass.Structure structure;
+    public Structure structure;
 
-    public FireSpreadDataEntry(int numDensities, int numRules, SizeClass.Structure structure) {
+    public FireSpreadDataEntry(int numDensities, int numRules, Structure structure) {
       densities    = new Density[numDensities];
       densityRules = new ArrayList(numRules);
       this.structure = structure;
     }
-    public FireSpreadDataEntry(int numDensities, SizeClass.Structure structure) {
+    public FireSpreadDataEntry(int numDensities, Structure structure) {
       this(numDensities,5,structure);
     }
 
@@ -329,7 +329,7 @@ public class FireSpreadDataNewerLegacy {
   }
 
   public static FireSpreadDataEntry findEntry(int fireClass, int position,
-                                              SizeClass.Structure structure, int resistance,
+                                              Structure structure, int resistance,
                                               Density density) {
     FireSpreadDataEntry entry;
     ArrayList           entryList = getData(fireClass,position,structure,resistance);
@@ -375,7 +375,7 @@ public class FireSpreadDataNewerLegacy {
     return null;
   }
   public static void deleteEntry(int fireClass, int relativePosition,
-                                 SizeClass.Structure structure, int resistance,
+                                 Structure structure, int resistance,
                                  FireSpreadDataEntry entry) {
     ArrayList dataList =
         getData(fireClass,relativePosition,structure,resistance);
@@ -388,9 +388,9 @@ public class FireSpreadDataNewerLegacy {
   }
 
   public static void copyTo(int copyFireClass, int copyRelativePosition,
-                            SizeClass.Structure copyStructure, int copyResistance,
+                            Structure copyStructure, int copyResistance,
                             int toFireClass, int toRelativePosition,
-                            SizeClass.Structure toStructure, int toResistance)
+                            Structure toStructure, int toResistance)
   {
     ArrayList copyData = getData(copyFireClass, copyRelativePosition,
                                  copyStructure, copyResistance);
@@ -413,8 +413,8 @@ public class FireSpreadDataNewerLegacy {
   // Most of the time the screens are the same except for the different structures
   // have different size class groups.
   public static void copyToAll(int copyFireClass, int copyRelativePosition,
-                               SizeClass.Structure copyStructure, int copyResistance) {
-    SizeClass.Structure structure = copyStructure;
+                               Structure copyStructure, int copyResistance) {
+    Structure structure = copyStructure;
 
     for (int fireClass=0; fireClass<data.length; fireClass++) {
       for (int relativePosition=0; relativePosition<data[fireClass].length; relativePosition++) {
@@ -454,7 +454,7 @@ public class FireSpreadDataNewerLegacy {
 //  }
 
   public static FireSpreadDataEntry addDensityGroup(int fireClass,
-      int relativePosition, SizeClass.Structure structure, int resistance, Density[] densities)
+                                                    int relativePosition, Structure structure, int resistance, Density[] densities)
   {
     if (data[fireClass][relativePosition][structure.ordinal()][resistance] == null) {
       data[fireClass][relativePosition][structure.ordinal()][resistance] = new ArrayList();
@@ -466,7 +466,7 @@ public class FireSpreadDataNewerLegacy {
   }
 
   private static boolean isMemberDensity(Density density, int fireClass,
-                                         int relativePosition, SizeClass.Structure structure,
+                                         int relativePosition, Structure structure,
                                          int resistance) {
     FireSpreadDataEntry entry;
 
@@ -483,7 +483,7 @@ public class FireSpreadDataNewerLegacy {
   }
 
   public static Vector getPossibleDensities(int fireClass, int relativePosition,
-                                            SizeClass.Structure structure, int resistance) {
+                                            Structure structure, int resistance) {
     Vector    densities = HabitatTypeGroup.getValidDensity();
     Vector    v = new Vector();
     Density density;
@@ -533,7 +533,7 @@ public class FireSpreadDataNewerLegacy {
     String              line, str;
     StringTokenizerPlus strTok, strListTok;
     int                 fireClass=0, relativePosition=0, resistance=0;
-    SizeClass.Structure structure;
+    Structure structure;
     int                 numEntries=0, numRules=0;
     ProcessType         fireType;
 

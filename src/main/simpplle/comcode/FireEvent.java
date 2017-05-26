@@ -64,9 +64,9 @@ public class FireEvent extends Process {
 
   // Structure
   // Must be in this order!
-  public static final SizeClass.Structure NON_FOREST     = SizeClass.NON_FOREST;
-  public static final SizeClass.Structure SINGLE_STORY   = SizeClass.SINGLE_STORY;
-  public static final SizeClass.Structure MULTIPLE_STORY = SizeClass.MULTIPLE_STORY;
+  public static final Structure NON_FOREST     = Structure.NON_FOREST;
+  public static final Structure SINGLE_STORY   = Structure.SINGLE_STORY;
+  public static final Structure MULTIPLE_STORY = Structure.MULTIPLE_STORY;
 
   public static ProcessOccurrenceSpreadingFire currentEvent = null;
 

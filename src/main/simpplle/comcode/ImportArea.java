@@ -320,7 +320,7 @@ public class ImportArea {
 
           SizeClass sizeClass = SizeClass.get(sizeClassStr);
           if (sizeClass == null) {
-            sizeClass = new SizeClass(sizeClassStr);
+            sizeClass = new SizeClass(sizeClassStr, Structure.NON_FOREST);
             logFile.println(line);
             logFile.println("  In Evu-" + id + " Size Class \"" + sizeClassStr +
                             "\" is unknown");

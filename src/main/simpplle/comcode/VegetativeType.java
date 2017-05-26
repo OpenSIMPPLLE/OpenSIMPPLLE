@@ -504,7 +504,7 @@ public final class VegetativeType implements Comparable, Externalizable {
         age = Integer.parseInt(str.substring(i));
         sizeClass = SizeClass.get(str.substring(0,i));
         if (sizeClass == null) {
-          sizeClass = new SizeClass(str.substring(0,i),true);
+          sizeClass = new SizeClass(str.substring(0,i), Structure.NON_FOREST);
         }
       } catch (NumberFormatException e) {
         throw new ParseError("Invalid Age in " + str);
@@ -513,7 +513,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       age = 1;
       sizeClass = SizeClass.get(str);
       if (sizeClass == null) {
-        sizeClass = new SizeClass(str,true);
+        sizeClass = new SizeClass(str, Structure.NON_FOREST);
       }
     }
   }
