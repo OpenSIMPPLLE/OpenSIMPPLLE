@@ -36,14 +36,12 @@ public class BaseLogicPanel extends JPanel {
   protected String kind;
   public LogicDataModel dataModel;
   protected int selectedRow = -1;
-  protected boolean inColumnInit=false;
+  protected boolean inColumnInit = false;
   protected AbstractBaseLogic logicInst;
   protected SystemKnowledge.Kinds sysKnowKind;
 
-  protected BorderLayout borderLayout1 = new BorderLayout();
   protected JPanel northPanel = new JPanel();
-  protected JPanel centerPanel = new JPanel();
-  protected BorderLayout borderLayout2 = new BorderLayout();
+  protected JPanel centerPanel = new JPanel(new BorderLayout());
   protected JScrollPane tableScrollPane = new JScrollPane();
   protected JTable logicTable = new JTable();
 /**
@@ -73,12 +71,11 @@ public class BaseLogicPanel extends JPanel {
  * @throws Exception
  */
   protected void jbInit() throws Exception {
-    this.setLayout(borderLayout1);
-    centerPanel.setLayout(borderLayout2);
-    this.add(centerPanel, java.awt.BorderLayout.CENTER);
-    centerPanel.add(tableScrollPane, java.awt.BorderLayout.CENTER);
+    setLayout(new BorderLayout());
+    add(centerPanel, BorderLayout.CENTER);
+    centerPanel.add(tableScrollPane, BorderLayout.CENTER);
     tableScrollPane.getViewport().add(logicTable);
-    this.add(northPanel, java.awt.BorderLayout.NORTH);
+    add(northPanel, BorderLayout.NORTH);
   }
 /**
  * 
@@ -128,8 +125,6 @@ public class BaseLogicPanel extends JPanel {
     if (dataModel.isDataPresent()) {
       Utility.initColumnWidth(logicTable);
     }
-
-//    initColumnVisibility();
 
     logicTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     ListSelectionModel rowSM = logicTable.getSelectionModel();
