@@ -27,11 +27,11 @@ import java.util.Vector;
  */
 
 public class RegenerationLogicDialog extends VegLogicDialog {
-  JMenuItem menuOptionsAddAllSpecies = new JMenuItem();
-  JMenuItem menuFileOldFormat = new JMenuItem();
+  private JMenuItem menuOptionsAddAllSpecies = new JMenuItem();
+  private JMenuItem menuFileOldFormat = new JMenuItem();
 
-  JMenu     menuOptions = new JMenu("Options");
-  JMenuItem menuOptionsDelayLogic = new JMenuItem();
+  private JMenu     menuOptions = new JMenu("Options");
+  private JMenuItem menuOptionsDelayLogic = new JMenuItem();
   /**
    * Constructor for Regeneration Logic Dialog.  This sets the frame owner, string title and modality.  
    * @param frame that owns the dialog
@@ -153,7 +153,7 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     }
   }
 
-  void menuFileOldFormat_actionPerformed(ActionEvent e) {
+  private void menuFileOldFormat_actionPerformed(ActionEvent e) {
     File         infile;
     MyFileFilter extFilter;
     String       title = "Select a Regenerationo Logic file.";
@@ -195,7 +195,7 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     dispose();
   }
 
-  void menuTableOptionsAddAllSpecies_actionPerformed(ActionEvent e) {
+  private void menuTableOptionsAddAllSpecies_actionPerformed(ActionEvent e) {
     Vector  v          = HabitatTypeGroup.getValidSpecies();
     Vector  newSpecies = new Vector();
     Species species;
@@ -215,14 +215,14 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     update(getGraphics());
   }
 
-  public void menuOptionsDelayLogic_actionPerformed(ActionEvent e) {
+  private void menuOptionsDelayLogic_actionPerformed(ActionEvent e) {
     RegenDelayLogicDlg dlg =
       new RegenDelayLogicDlg(JSimpplle.getSimpplleMain(),"Regeneration Delay Logic",true);
     dlg.setVisible(true);
 
   }
 
-  public RegenerationLogic.DataKinds getLogicKind() {
+  RegenerationLogic.DataKinds getLogicKind() {
     return RegenerationLogic.DataKinds.valueOf(currentPanelKind);
   }
 }
