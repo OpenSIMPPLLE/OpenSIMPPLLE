@@ -12,10 +12,7 @@ import java.io.*;
 import java.util.HashMap;
 
 /**
- * This class defines Size Class, a Simpplle Type.
- * 
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+ * A vegetation size classification used in vegetative pathways.
  */
 
 public class SizeClass extends SimpplleType implements Externalizable {
