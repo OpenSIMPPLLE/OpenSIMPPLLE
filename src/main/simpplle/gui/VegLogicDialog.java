@@ -11,7 +11,6 @@ package simpplle.gui;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.awt.Frame;
 import simpplle.comcode.*;
@@ -44,12 +43,12 @@ public class VegLogicDialog extends AbstractLogicDialog {
   private JCheckBoxMenuItem menuRoadStatus = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuTrailStatus = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuLandtype = new JCheckBoxMenuItem();
-/**
- * Constructor for Vegetative Logic Dialog, a type of abstract logic dialog.  
- * @param owner
- * @param title
- * @param modal
- */
+  /**
+   * Constructor for Vegetative Logic Dialog, a type of abstract logic dialog.
+   * @param owner Parent frame of the dialogue
+   * @param title Title of the dialog
+   * @param modal Modality of the dialog
+   */
   protected VegLogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -66,46 +65,46 @@ public class VegLogicDialog extends AbstractLogicDialog {
   public VegLogicDialog() {
     super();
   }
-/**
- * Initializes the VegLogicDialog with a Jmenu to select columns by a series of checkboxes added to it.     
- * @throws Exception
- */
+  /**
+   * Initializes the VegLogicDialog with a Jmenu to select columns by a series of checkboxes added to it.
+   * @throws Exception Any exception thrown
+   */
   private void jbInit() throws Exception {
 
     menuColumns.setText("Columns");
     menuShowValCols.setText("Values Only");
     menuShowValCols.setToolTipText("Shows only columns that have values");
-    menuShowValCols.addActionListener(this::menuShowValCols_actionPerformed);
+    menuShowValCols.addActionListener(e -> menuShowValCols_actionPerformed());
     menuEcoGroup.setText("Ecological Grouping");
-    menuEcoGroup.addActionListener(this::ecoGroupListener);
+    menuEcoGroup.addActionListener(e -> ecoGroupListener());
     menuSpecies.setText("Species");
-    menuSpecies.addActionListener(this::speciesListener);
+    menuSpecies.addActionListener(e -> speciesListener());
     menuSizeClass.setText("Size Class");
-    menuSizeClass.addActionListener(this::sizeClassListener);
+    menuSizeClass.addActionListener(e -> sizeClassListener());
     menuDensity.setText("Density");
-    menuDensity.addActionListener(this::densityListener);
+    menuDensity.addActionListener(e -> densityListener());
     menuProcess.setText("Process");
-    menuProcess.addActionListener(this::menuProcessListener);
+    menuProcess.addActionListener(e -> menuProcessListener());
     menuTreatment.setText("Treatment");
-    menuTreatment.addActionListener(this::treatmentListener);
+    menuTreatment.addActionListener(e -> treatmentListener());
     menuSeason.setText("Season");
-    menuSeason.addActionListener(this::seasonListener);
+    menuSeason.addActionListener(e -> seasonListener());
     menuMoisture.setText("Moisture");
-    menuMoisture.addActionListener(this::moistureListener);
+    menuMoisture.addActionListener(e -> moistureListener());
     menuTemp.setText("Temperature");
-    menuTemp.addActionListener(this::menuTempListener);
+    menuTemp.addActionListener(e -> menuTempListener());
     menuTrackingSpecies.setText("Tracking Species");
-    menuTrackingSpecies.addActionListener(this::trackingSpeciesListener);
+    menuTrackingSpecies.addActionListener(e -> trackingSpeciesListener());
     menuOwnership.setText("Ownership");
-    menuOwnership.addActionListener(this::ownershipListener);
+    menuOwnership.addActionListener(e -> ownershipListener());
     menuSpecialArea.setText("Special Area");
-    menuSpecialArea.addActionListener(this::specialAreaListener);
+    menuSpecialArea.addActionListener(e -> specialAreaListener());
     menuRoadStatus.setText("Road Status");
-    menuRoadStatus.addActionListener(this::roadStatusListener);
+    menuRoadStatus.addActionListener(e -> roadStatusListener());
     menuTrailStatus.setText("Trail Status");
-    menuTrailStatus.addActionListener(this::trailStatusListener);
+    menuTrailStatus.addActionListener(e -> trailStatusListener());
     menuLandtype.setText("Land Type");
-    menuLandtype.addActionListener(this::landTypeListener);
+    menuLandtype.addActionListener(e -> landTypeListener());
 
     menuColumns.add(menuShowValCols);
     menuColumns.add(menuEcoGroup);
@@ -126,10 +125,10 @@ public class VegLogicDialog extends AbstractLogicDialog {
     menuBar.add(menuColumns);
 
   }
-/**
- * Initializes the Vegetative Logic Dialog with column menu items representing rows for for ROW or 0 column (Priority), Ecological group, species, size class, process, treatment, season, moisture, temperature, 
- * tracking species, ownership, special area, road status, trail status, and landtype.  
- */
+  /**
+   * Initializes the Vegetative Logic Dialog with column menu items representing rows for for ROW or 0 column (Priority), Ecological group, species, size class, process, treatment, season, moisture, temperature,
+   * tracking species, ownership, special area, road status, trail status, and landtype.
+   */
   protected void initialize(String[] kinds) {
     super.initialize(kinds);
 
@@ -177,9 +176,9 @@ public class VegLogicDialog extends AbstractLogicDialog {
     currentPanel.updateColumns();
   }
   /**
-   * If show vals menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.
+   * If Show Vals menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.
    */
-   private void menuShowValCols_actionPerformed(ActionEvent e) {
+   private void menuShowValCols_actionPerformed() {
 
     ArrayList<Integer> emptyCols = currentPanel.emptyColumns();
 
@@ -202,96 +201,96 @@ public class VegLogicDialog extends AbstractLogicDialog {
   /**
    * If Eco Group menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void ecoGroupListener(ActionEvent e) {
+  private void ecoGroupListener() {
     columnMenuClicked(BaseLogic.ECO_GROUP_COL);
   }
   /**
    * If species menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void speciesListener(ActionEvent e) {
+  private void speciesListener() {
     columnMenuClicked(BaseLogic.SPECIES_COL);
   }
   /**
    * If Size Class menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void sizeClassListener(ActionEvent e) {
+  private void sizeClassListener() {
     columnMenuClicked(BaseLogic.SIZE_CLASS_COL);
   }
   /**
    * If Density menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void densityListener(ActionEvent e) {
+  private void densityListener() {
     columnMenuClicked(BaseLogic.DENSITY_COL);
   }
   /**
    * If Process menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void menuProcessListener(ActionEvent e) {
+  private void menuProcessListener() {
     columnMenuClicked(BaseLogic.PROCESS_COL);
   }
   /**
    * If Treatment menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void treatmentListener(ActionEvent e) {
+  private void treatmentListener() {
     columnMenuClicked(BaseLogic.TREATMENT_COL);
   }
   /**
    * If Season menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void seasonListener(ActionEvent e) {
+  private void seasonListener() {
     columnMenuClicked(BaseLogic.SEASON_COL);
   }
   /**
    * If Moisture menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void moistureListener(ActionEvent e) {
+  private void moistureListener() {
     columnMenuClicked(BaseLogic.MOISTURE_COL);
   }
   /**
    * If Temperature menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void menuTempListener(ActionEvent e) {
+  private void menuTempListener() {
     columnMenuClicked(BaseLogic.TEMP_COL);
   }
   /**
    * If Tracking Species menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void trackingSpeciesListener(ActionEvent e) {
+  private void trackingSpeciesListener() {
     columnMenuClicked(BaseLogic.TRACKING_SPECIES_COL);
   }
   /**
    * If Ownership menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void ownershipListener(ActionEvent e) {
+  private void ownershipListener() {
     columnMenuClicked(BaseLogic.OWNERSHIP_COL);
   }
   /**
    * If Special Area menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void specialAreaListener(ActionEvent e) {
+  private void specialAreaListener() {
     columnMenuClicked(BaseLogic.SPECIAL_AREA_COL);
   }
   /**
    * If Road Status menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void roadStatusListener(ActionEvent e) {
+  private void roadStatusListener() {
     columnMenuClicked(BaseLogic.ROAD_STATUS_COL);
   }
   /**
    * If Trail Status menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void trailStatusListener(ActionEvent e) {
+  private void trailStatusListener() {
     columnMenuClicked(BaseLogic.TRAIL_STATUS_COL);
   }
   /**
    * If Landtype menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.  
    */
-  private void landTypeListener(ActionEvent e) {
+  private void landTypeListener() {
     columnMenuClicked(BaseLogic.LANDTYPE_COL);
   }
-/**
- * Updates the menu items.  Gets the selected menu items, calls to the super update menu items class and sets the current panels visible columns.  
- */
+  /**
+   * Updates the menu items.  Gets the selected menu items, calls to the super update menu items class and sets the current panels visible columns.
+   */
   protected void updateMenuItems() {
     super.updateMenuItems();
     for (int i=0; i<colMenuItems.size(); i++) {
