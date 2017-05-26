@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import simpplle.comcode.Evu;
 import javax.swing.JOptionPane;
 import simpplle.comcode.Area;
-import java.awt.event.ActionEvent;
+
 import java.awt.event.WindowEvent;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
@@ -55,6 +55,7 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
   private EvuAnalysis evuAnalysisDlg;
   protected ArrayList<Evu> units;
   protected int selectedRow;
+
   public static boolean isOpen = false;
 
   protected JPanel southPanel = new JPanel();
@@ -137,26 +138,14 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     searchPB.setToolTipText("Search");
     searchPB.setText("Search");
     searchPB.setEnabled(false);
-    searchPB.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        searchPB_actionPerformed(e);
-      }
-    });
+    searchPB.addActionListener(e -> searchPB_actionPerformed());
 
     menuOptionsMakeTreatments.setActionCommand("Make Treatment Schedule");
     menuOptionsMakeTreatments.setText("Make Treatment Schedule");
-    menuOptionsMakeTreatments.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsMakeTreatments_actionPerformed(e);
-      }
-    });
+    menuOptionsMakeTreatments.addActionListener(e -> makeTreatments());
     menuOptionsMakeLockInProcesses.setActionCommand("Make Lock-in Process Schedule");
     menuOptionsMakeLockInProcesses.setText("Make Lock-in Process Schedule");
-    menuOptionsMakeLockInProcesses.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsMakeLockInProcesses_actionPerformed(e);
-      }
-    });
+    menuOptionsMakeLockInProcesses.addActionListener(e -> makeLockInProcesses());
 
     menuBar.add(menuOptions);
     menuOptions.add(menuOptionsMakeTreatments);
@@ -219,9 +208,8 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
   }
   /**
    * Creates a units arraylist with evu results of matching units at select rows.  Then sets these units as the results of Evu Analysis dialog.
-   * @param e 'Search'
    */
-  private void searchPB_actionPerformed(ActionEvent e) {
+  private void searchPB_actionPerformed() {
     units = EvuSearchLogic.getInstance().findMatchingUnits(selectedRow);
     evuAnalysisDlg.setResultUnits(units);
     updateResults();
@@ -261,9 +249,8 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
   /**
    * Gets the current area and treatment schedule for area.  If there is no schedule, creates one.  Otherwise creates a new treatment dialog to allow user to
    * select a treatment.  First a time step is picked by user, then the user picks the treatment, and adds the Evu units to the treatments units.
-   * @param e 'Make Treatments'
    */
-  private void menuOptionsMakeTreatments_actionPerformed(ActionEvent e) {
+  private void makeTreatments() {
     Area area = Simpplle.getCurrentArea();
     TreatmentSchedule schedule = area.getTreatmentSchedule();
 
@@ -302,10 +289,9 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
 
   }
   /**
-   * Method to allow user to lock in process.  Gets current area and process schedule.  User picks a time step to lock in a process to evu units.  
-   * @param e 'Make Lock in process'
+   * Method to allow user to lock in process.  Gets current area and process schedule.  User picks a time step to lock in a process to evu units.
    */
-  private void menuOptionsMakeLockInProcesses_actionPerformed(ActionEvent e) {
+  private void makeLockInProcesses() {
     Area               area = Simpplle.getCurrentArea();
     ProcessSchedule    schedule = area.getProcessSchedule();
     ProcessApplication processApp;
