@@ -3940,11 +3940,6 @@ public final class Area implements Externalizable {
     return v;
   }
 
-  /**
-   * Go through the temp storage for adjacent data and put the data in the appropriate Evus. This
-   * had to wait until all instances of Evu were created, so that the AdjacentData.evu could be
-   * filled in.
-   */
   public void finishAddingAdjacentData() {
     finishAddingAdjacentData(null);
   }
@@ -3962,11 +3957,17 @@ public final class Area implements Externalizable {
 
       if (!removeInvalidUnit(logFile, evu, v)){  // unit must be valid to be added
 
-        int numAdj = evu.getNUM_NEIGHBORS();
-
         double spread, windSpeed, windDir;
         char pos, wind;
-        AdjacentData[] adjData = new AdjacentData[numAdj];
+        int adjDataSize;
+        if (hasKeaneAttributes){
+          // Must have MAX_NEIGHBORS
+          adjDataSize = Evu.MAX_NEIGHBORS;
+        } else {
+          // no Keane data, we can just use the size of the array
+          adjDataSize = v.size();
+        }
+        AdjacentData[] adjData = new AdjacentData[adjDataSize];
         int adjIndex = 0;
 
         for (int i = 0; i < v.size(); i++) {
@@ -3987,8 +3988,8 @@ public final class Area implements Externalizable {
 
           if (dataLength < 4) {
             // Legacy spatial relation
-            adjIndex = getAdjIndexRowCol(evu, adjEvu);
             adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind);
+            adjIndex++;
           } else {
             // Keane spatial relation, more attributes available
             spread    = neighbor[3];
@@ -4038,55 +4039,6 @@ public final class Area implements Externalizable {
       return true;
     }
     return false;
-  }
-
-  /**
-   * Find neighbor index based on row and column information in two adjacent EVUs
-   * Note: X and Y represent columns and rows respectively, and start at the top left of a grid.
-   *
-   * @param evu
-   * @param adjEvu
-   * @return index to be used in evu.AdjacentData
-   */
-  private int getAdjIndexRowCol(Evu evu, Evu adjEvu){
-    int index = 0;
-    int dX = evu.getLocationX() - adjEvu.getLocationX();
-    int dY = evu.getLocationY() - adjEvu.getLocationY();
-
-    if (dY == 1) {
-      switch (dX) {
-        case -1:
-          index = 1; // 45 degrees
-          break;
-        case 0:
-          index = 2; // 90 degrees
-          break;
-        case 1:
-          index = 3;  // 135 degrees
-          break;
-      }
-    } else if (dY == 0) {
-      switch (dX){
-        case -1:
-          index = 0; // 0 or 360 degrees
-          break;
-        case 1:
-          index = 4;  // 180 degrees
-          break;
-      }
-    } else if (dY == -1) {
-      switch (dX) {
-        case -1:
-          index = 7; // 315 degrees
-          break;
-        case 0:
-          index = 6; // 270 degrees
-          break;
-        case 1:
-          index = 5; // 225 degrees
-      }
-    }
-    return index;
   }
 
   public void calcRelativeSlopes(){

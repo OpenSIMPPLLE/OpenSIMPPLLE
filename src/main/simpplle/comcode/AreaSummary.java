@@ -786,9 +786,17 @@ public final class AreaSummary implements Externalizable {
     if (processData.processType.equals(ProcessType.NONE)) { return; }
 
     if (processData.processType.isFireProcess()) {
-      event = new ProcessOccurrenceSpreadingFire(evu,lifeform,processData,timeStep);
-    }
-    else if (processData.processType.isSpreading()) {
+      switch (Simulation.fireSpreadModel) {
+        case BASIC:
+          event = new BasicFireEvent(evu,lifeform,processData,timeStep);
+          break;
+        case KEANE:
+          event = new KeaneFireEvent(evu,lifeform,processData,timeStep);
+          break;
+        default:
+          event = new BasicFireEvent(evu,lifeform,processData,timeStep);
+      }
+    } else if (processData.processType.isSpreading()) {
       event = new ProcessOccurrenceSpreading(evu,lifeform,processData,timeStep);
     }
     else {

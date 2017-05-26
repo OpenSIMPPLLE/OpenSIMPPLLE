@@ -48,6 +48,7 @@ public class SimpplleMain extends JFrame {
   private static final int MIN_HEIGHT = 300;
   private boolean vegPathwayDlgOpen     = false;
   private boolean aquaticPathwayDlgOpen = false;
+  private static simpplle.comcode.Properties  properties;
 
   /**
    * Populates Combo Box dynamically. SIMPPLLE is the default and always available.
@@ -125,7 +126,6 @@ public class SimpplleMain extends JFrame {
   JMenuItem menuUtilityUnitEditor = new JMenuItem();
   JLabel areaInvalidLabel = new JLabel();
   JMenuItem menuSysKnowRegionalClimate = new JMenuItem();
-  JMenuItem menuSysKnowInsectDiseaseSpread = new JMenuItem();
   JMenuItem menuUtilitiesConsole = new JMenuItem();
   JMenuItem menuImportAttributeData = new JMenuItem();
   JMenuItem menuUtilityAreaName = new JMenuItem();
@@ -167,7 +167,6 @@ public class SimpplleMain extends JFrame {
   JMenu menuSysKnowFireSpread = new JMenu("Fire Spread Model");
   JMenuItem menuSysKnowCellPerc = new JMenuItem("Keane Cell Percolation");
   JMenuItem menuHelpUserGuide = new JMenuItem();
-  JMenuItem MenuUtilityJavaHeap = new JMenuItem();
   JMenuItem menuSysKnowFireSuppSpreadRate = new JMenuItem();
   JMenuItem menuSysKnowFireSuppProdRate = new JMenuItem();
   JMenuItem menuSysKnowFireOccMgmtZone = new JMenuItem();
@@ -612,14 +611,7 @@ public class SimpplleMain extends JFrame {
         menuSysKnowRegionalClimate_actionPerformed(e);
       }
     });
-    menuSysKnowInsectDiseaseSpread.setEnabled(false);
-    menuSysKnowInsectDiseaseSpread.setText("Insect/Disease Spread Logic");
-    menuSysKnowInsectDiseaseSpread.addActionListener(new java.awt.event.ActionListener() {
 
-      public void actionPerformed(ActionEvent e) {
-        menuSysKnowInsectDiseaseSpread_actionPerformed(e);
-      }
-    });
     menuUtilitiesConsole.setText("Display Console Messages");
     menuUtilitiesConsole.addActionListener(new java.awt.event.ActionListener() {
 
@@ -861,12 +853,6 @@ public class SimpplleMain extends JFrame {
     menuHelpUserGuide.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(ActionEvent e) {
             menuHelpUserGuide_actionPerformed(e);
-        }
-    });
-    MenuUtilityJavaHeap.setText("Change Java Heap Size");
-    MenuUtilityJavaHeap.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            MenuUtilityJavaHeap_actionPerformed(e);
         }
     });
     menuSysKnowFireSuppProdRate.setText("Production Rate");
@@ -1165,7 +1151,6 @@ public class SimpplleMain extends JFrame {
     menuUtility.add(menuMagis);
     menuUtility.addSeparator();
     menuUtility.add(menuUtilitiesConsole);
-    menuUtility.add(MenuUtilityJavaHeap);
     menuUtility.add(menuUtilityDatabaseTest);
     menuUtility.add(menuUtilityDatabaseManager);
     menuUtility.add(menuUtilityZoneEdit);
@@ -1207,7 +1192,6 @@ public class SimpplleMain extends JFrame {
     //menuSysKnowVegProc.add(menuSysKnowDisableWsbw);
     menuSysKnowVegProc.add(menuSysKnowProcessProbLogic);
     menuSysKnowVegProc.add(menuSysKnowGapProcessLogic);
-    menuSysKnowVegProc.add(menuSysKnowInsectDiseaseSpread);
     menuSysKnowVegProc.add(menuSysKnowWindthrow);
     menuSysKnowVegProc.add(menuSysKnowWildlifeBrowsing);
     menuSysKnowVegProc.add(menuSysKnowTussockMoth);
@@ -2296,8 +2280,6 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 
-  void menuSysKnowInsectDiseaseSpread_actionPerformed(ActionEvent e) {
-  }
 
   void menuSysKnowRegionalClimate_actionPerformed(ActionEvent e) {
     ClimateDialogWrapper dlg;
@@ -2842,8 +2824,6 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 
-
-
   void menuInterpretWildlife_actionPerformed(ActionEvent e) {
     String title = "Wildlife Habitat Interpretations";
     WildlifeHabitat dlg = new WildlifeHabitat(this,title,false);
@@ -2895,6 +2875,7 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
     refresh();
   }
+
   public void menuUtilityMemoryUse_actionPerformed(ActionEvent e) {
     MemoryDisplay frame = new MemoryDisplay();
     frame.setVisible(true);
@@ -3084,6 +3065,7 @@ public class SimpplleMain extends JFrame {
     }
     return true;
   }
+
   void menuSysKnowRegen_actionPerformed(ActionEvent e) {
     RegenerationLogic.setDefaultEcoGroup(RegenerationLogic.FIRE);
     RegenerationLogic.setDefaultEcoGroup(RegenerationLogic.SUCCESSION);
@@ -3102,7 +3084,6 @@ public class SimpplleMain extends JFrame {
   }
 
 
-
   void menuResultLandformSum_actionPerformed(ActionEvent e) {
 
   }
@@ -3114,11 +3095,11 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 
- 
 
   void menuSysKnowVegTreatDesired_actionPerformed(ActionEvent e) {
 
   }
+
 
   void menuResultAquaticUnit_actionPerformed(ActionEvent e) {
     if (EauAnalysis.isOpen()) { return; }
@@ -3159,148 +3140,6 @@ public class SimpplleMain extends JFrame {
     }
   }
 
-  private void updateJavaHeapSize() {
-    File batFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.bat");
-    if (batFile.exists()) {
-      updateJavaHeapSizeBAT();
-      return;
-    }
-
-    File iniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini");
-    if (iniFile.exists()) {
-      updateJavaHeapSizeIni();
-      return;
-    }
-    
-  }
-    
-  @SuppressWarnings("unused")
-  private void updateJavaHeapSizeIni() {
-    File   iniFile, newIniFile;
-    int    newHeapSize;
-    String msg;
-
-    iniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini");
-    try {
-      if (iniFile.exists() == false) {
-        throw new SimpplleError("Could not find SIMPPLLE.ini file to modify.\n");
-      }
-      
-//      String memStr = System.getProperty("simpplle.javamem");
-      long maxMem  = Runtime.getRuntime().maxMemory();
-
-      maxMem  = (maxMem / 1024) / 1024;
-
-//      int mem = Integer.parseInt(memStr);
-
-      msg = "Enter Java Max Heap Size in MB";
-      newHeapSize = AskNumber.getInput("Java Max Heap Size (MB)",msg,(int)maxMem);
-      if (newHeapSize == -1) { return; }
-
-      newIniFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.ini.tmp");
-
-      BufferedReader fin = new BufferedReader(new FileReader(iniFile));
-      PrintWriter    fout = new PrintWriter(new FileWriter(newIniFile));
-
-      String line = fin.readLine();
-      while (line != null) {
-        if (line.startsWith("Virtual Machine")) {
-          int index = line.indexOf("-Xm");
-
-          fout.print(line.substring(0, index));
-          fout.print("-Xms" + newHeapSize + "M");
-
-          int beginIndex = line.indexOf(" ", index);
-          index = line.lastIndexOf("-Xm");
-
-          fout.print(line.substring(beginIndex,index));
-          fout.print("-Xmx" + newHeapSize + "M");
-
-          beginIndex = line.indexOf(" ", index);
-
-          fout.println(line.substring(beginIndex));
-        }
-        else { fout.println(line); }
-        line = fin.readLine();
-      }
-      fin.close();
-      fout.flush();
-      fout.close();
-
-      if (iniFile.delete()) {
-        newIniFile.renameTo(iniFile);
-      }
-    }
-    catch (NumberFormatException err) {
-      JOptionPane.showMessageDialog(this,"Invalid Java heap size","",
-                                    JOptionPane.ERROR_MESSAGE);
-      return;
-    }
-    catch (Exception err) {
-      msg = "Unable to edit " + iniFile.toString() + "\n" + err.getMessage();
-      JOptionPane.showMessageDialog(this,msg,"",JOptionPane.ERROR_MESSAGE);
-      return;
-    }
-    msg = "Change successful. Restart SIMPPLLE for changes to take effect.";
-    JOptionPane.showMessageDialog(this,msg,"",JOptionPane.ERROR_MESSAGE);
-  }
-
-  private void updateJavaHeapSizeBAT() {
-    File   batFile, newBatFile;
-    int    newHeapSize;
-    String msg;
-
-    batFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.bat");
-    try {
-      if (batFile.exists() == false) {
-        throw new SimpplleError("Could not find SIMPPLLE.bat file to modify.\n");
-      }
-      
-      String memStr = System.getProperty("simpplle.javamem");
-      int mem = Integer.parseInt(memStr);
-      
-      msg = "Enter Java Max Heap Size in MB";
-      newHeapSize = AskNumber.getInput("Java Max Heap Size (MB)",msg,mem);
-      if (newHeapSize == -1) { return; }
-
-      newBatFile = new File(JSimpplle.getInstallDirectory(),"SIMPPLLE.bat.tmp");
-
-      BufferedReader fin = new BufferedReader(new FileReader(batFile));
-      PrintWriter    fout = new PrintWriter(new FileWriter(newBatFile));
-
-      String line = fin.readLine();
-      while (line != null) {
-        if (line.startsWith("SET JAVAMEM")) {
-          fout.println("SET JAVAMEM=" + newHeapSize);
-        }
-        else { fout.println(line); }
-        line = fin.readLine();
-      }
-      fin.close();
-      fout.flush();
-      fout.close();
-
-      if (batFile.delete()) {
-        newBatFile.renameTo(batFile);
-      }
-    }
-    catch (NumberFormatException err) {
-      JOptionPane.showMessageDialog(this,"Invalid Java heap size","",
-                                    JOptionPane.ERROR_MESSAGE);
-      return;
-    }
-    catch (Exception err) {
-      msg = "Unable to edit " + batFile.toString() + "\n" + err.getMessage();
-      JOptionPane.showMessageDialog(this,msg,"",JOptionPane.ERROR_MESSAGE);
-      return;
-    }
-    msg = "Change successful. Restart SIMPPLLE for changes to take effect.";
-    JOptionPane.showMessageDialog(this,msg,"",JOptionPane.ERROR_MESSAGE);
-  }
-
-  void MenuUtilityJavaHeap_actionPerformed(ActionEvent e) {
-    updateJavaHeapSize();
-  }
 
   void menuSysKnowFireSuppProdRate_actionPerformed(ActionEvent e) {
     String title = "Fire Suppression Line Production Rate Logic";
@@ -3375,13 +3214,11 @@ public class SimpplleMain extends JFrame {
       setWaitState(strBuf.toString());
       java.lang.Process proc = rt.exec(cmd);
       // any error message?
-      StreamGobbler errorGobbler = new
-                                   StreamGobbler(proc.getErrorStream(), "ERROR");
+      StreamGobbler errorGobbler = new StreamGobbler(proc.getErrorStream(), "ERROR");
+
 
       // any output?
-      StreamGobbler outputGobbler = new
-                                    StreamGobbler(proc.getInputStream(),
-                                                  "OUTPUT");
+      StreamGobbler outputGobbler = new StreamGobbler(proc.getInputStream(), "OUTPUT");
 
       // kick them off
       errorGobbler.start();

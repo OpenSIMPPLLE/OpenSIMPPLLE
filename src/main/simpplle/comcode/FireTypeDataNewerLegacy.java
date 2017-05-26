@@ -679,7 +679,7 @@ public abstract class FireTypeDataNewerLegacy {
             count = strListTok.countTokens();
             entryRule.densities = new Density[count];
             for (k = 0; k < count; k++) {
-              entryRule.densities[k] = Density.get(strListTok.getToken(),true);
+              entryRule.densities[k] = Density.getOrCreate(strListTok.getToken());
             }
 
             // Read the boolean for any treatment except.
