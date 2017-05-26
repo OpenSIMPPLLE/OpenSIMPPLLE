@@ -31,151 +31,151 @@ public class SizeClass extends SimpplleType implements Externalizable {
   // *** Common to more than one zone ***
   // ************************************
 
-  public static final SizeClass AGR               = new SizeClass("AGR", Structure.NON_FOREST,true);
-  public static final SizeClass CLOSED_LOW_SHRUB  = new SizeClass("CLOSED-LOW-SHRUB",true);
-  public static final SizeClass CLOSED_MID_SHRUB  = new SizeClass("CLOSED-MID-SHRUB",true);
-  public static final SizeClass CLOSED_TALL_SHRUB = new SizeClass("CLOSED-TALL-SHRUB",true);
-  public static final SizeClass CLUMPED           = new SizeClass("CLUMPED", Structure.NON_FOREST,true);
-  public static final SizeClass DEAD              = new SizeClass("DEAD",true);
-  public static final SizeClass LARGE             = new SizeClass("LARGE", Structure.SINGLE_STORY,true);
-  public static final SizeClass LMU               = new SizeClass("LMU", Structure.MULTIPLE_STORY,true);
-  public static final SizeClass LTS               = new SizeClass("LTS", Structure.MULTIPLE_STORY,true);
-  public static final SizeClass MEDIUM            = new SizeClass("MEDIUM", Structure.SINGLE_STORY,true);
-  public static final SizeClass MMU               = new SizeClass("MMU", Structure.MULTIPLE_STORY,true);
-  public static final SizeClass MTS               = new SizeClass("MTS", Structure.MULTIPLE_STORY,true);
-  public static final SizeClass ND                = new SizeClass("ND", Structure.NON_FOREST,true);
-  public static final SizeClass NF                = new SizeClass("NF", Structure.NON_FOREST,true);
-  public static final SizeClass NS                = new SizeClass("NS", Structure.NON_FOREST,true);
-  public static final SizeClass OPEN_LOW_SHRUB    = new SizeClass("OPEN-LOW-SHRUB", Structure.NON_FOREST,true);
-  public static final SizeClass OPEN_MID_SHRUB    = new SizeClass("OPEN-MID-SHRUB", Structure.NON_FOREST,true);
-  public static final SizeClass OPEN_TALL_SHRUB   = new SizeClass("OPEN-TALL-SHRUB", Structure.NON_FOREST,true);
-  public static final SizeClass PMU               = new SizeClass("PMU", Structure.MULTIPLE_STORY,true);
-  public static final SizeClass POLE              = new SizeClass("POLE", Structure.SINGLE_STORY,true);
-  public static final SizeClass PTS               = new SizeClass("PTS", Structure.MULTIPLE_STORY,true);
-  public static final SizeClass SS                = new SizeClass("SS", Structure.SINGLE_STORY,true);
-  public static final SizeClass UNIFORM           = new SizeClass("UNIFORM",true);
+  public static final SizeClass AGR               = new SizeClass("AGR", Structure.NON_FOREST);
+  public static final SizeClass CLOSED_LOW_SHRUB  = new SizeClass("CLOSED-LOW-SHRUB");
+  public static final SizeClass CLOSED_MID_SHRUB  = new SizeClass("CLOSED-MID-SHRUB");
+  public static final SizeClass CLOSED_TALL_SHRUB = new SizeClass("CLOSED-TALL-SHRUB");
+  public static final SizeClass CLUMPED           = new SizeClass("CLUMPED", Structure.NON_FOREST);
+  public static final SizeClass DEAD              = new SizeClass("DEAD");
+  public static final SizeClass LARGE             = new SizeClass("LARGE", Structure.SINGLE_STORY);
+  public static final SizeClass LMU               = new SizeClass("LMU", Structure.MULTIPLE_STORY);
+  public static final SizeClass LTS               = new SizeClass("LTS", Structure.MULTIPLE_STORY);
+  public static final SizeClass MEDIUM            = new SizeClass("MEDIUM", Structure.SINGLE_STORY);
+  public static final SizeClass MMU               = new SizeClass("MMU", Structure.MULTIPLE_STORY);
+  public static final SizeClass MTS               = new SizeClass("MTS", Structure.MULTIPLE_STORY);
+  public static final SizeClass ND                = new SizeClass("ND", Structure.NON_FOREST);
+  public static final SizeClass NF                = new SizeClass("NF", Structure.NON_FOREST);
+  public static final SizeClass NS                = new SizeClass("NS", Structure.NON_FOREST);
+  public static final SizeClass OPEN_LOW_SHRUB    = new SizeClass("OPEN-LOW-SHRUB", Structure.NON_FOREST);
+  public static final SizeClass OPEN_MID_SHRUB    = new SizeClass("OPEN-MID-SHRUB", Structure.NON_FOREST);
+  public static final SizeClass OPEN_TALL_SHRUB   = new SizeClass("OPEN-TALL-SHRUB", Structure.NON_FOREST);
+  public static final SizeClass PMU               = new SizeClass("PMU", Structure.MULTIPLE_STORY);
+  public static final SizeClass POLE              = new SizeClass("POLE", Structure.SINGLE_STORY);
+  public static final SizeClass PTS               = new SizeClass("PTS", Structure.MULTIPLE_STORY);
+  public static final SizeClass SS                = new SizeClass("SS", Structure.SINGLE_STORY);
+  public static final SizeClass UNIFORM           = new SizeClass("UNIFORM");
   public static final SizeClass UNKNOWN           = new SizeClass("UNKNOWN");
-  public static final SizeClass VERY_LARGE        = new SizeClass("VERY-LARGE", Structure.SINGLE_STORY,true);
-  public static final SizeClass VLMU              = new SizeClass("VLMU", Structure.MULTIPLE_STORY,true);
-  public static final SizeClass VLTS              = new SizeClass("VLTS", Structure.MULTIPLE_STORY,true);
-  public static final SizeClass WATER             = new SizeClass("WATER", Structure.NON_FOREST,true);
+  public static final SizeClass VERY_LARGE        = new SizeClass("VERY-LARGE", Structure.SINGLE_STORY);
+  public static final SizeClass VLMU              = new SizeClass("VLMU", Structure.MULTIPLE_STORY);
+  public static final SizeClass VLTS              = new SizeClass("VLTS", Structure.MULTIPLE_STORY);
+  public static final SizeClass WATER             = new SizeClass("WATER", Structure.NON_FOREST);
 
   // ***********************************
   // *** Eastside and Westside Zones ***
   // ***********************************
 
-  public static final SizeClass CLOSED_HERB       = new SizeClass("CLOSED-HERB", Structure.NON_FOREST,true);
-  public static final SizeClass OPEN_HERB         = new SizeClass("OPEN-HERB", Structure.NON_FOREST,true);
+  public static final SizeClass CLOSED_HERB       = new SizeClass("CLOSED-HERB", Structure.NON_FOREST);
+  public static final SizeClass OPEN_HERB         = new SizeClass("OPEN-HERB", Structure.NON_FOREST);
 
   // ***************************
   // *** Westside Region One ***
   // ***************************
 
-  public static final SizeClass WOODLAND          = new SizeClass("WOODLAND",true);
+  public static final SizeClass WOODLAND          = new SizeClass("WOODLAND");
 
   // ***************************
   // *** Eastside Region One ***
   // ***************************
 
-  public static final SizeClass SCATTERED         = new SizeClass("SCATTERED", Structure.NON_FOREST,true);
+  public static final SizeClass SCATTERED         = new SizeClass("SCATTERED", Structure.NON_FOREST);
 
   // ********************************
   // *** Southern California Zone ***
   // ********************************
 
-  public static final SizeClass BURNED_URBAN      = new SizeClass("BURNED-URBAN",true);
-  public static final SizeClass URBAN             = new SizeClass("URBAN", Structure.NON_FOREST,true);
+  public static final SizeClass BURNED_URBAN      = new SizeClass("BURNED-URBAN");
+  public static final SizeClass URBAN             = new SizeClass("URBAN", Structure.NON_FOREST);
 
   // *****************
   // *** Gila Zone ***
   // *****************
 
-  public static final SizeClass GRA               = new SizeClass("GRA", Structure.NON_FOREST,true); // Grass
-  public static final SizeClass SHR               = new SizeClass("SHR", Structure.NON_FOREST,true); // Shrub
+  public static final SizeClass GRA               = new SizeClass("GRA", Structure.NON_FOREST); // Grass
+  public static final SizeClass SHR               = new SizeClass("SHR", Structure.NON_FOREST); // Shrub
 
   // *********************************
   // *** South Central Alaska Zone ***
   // *********************************
 
-  public static final SizeClass SS_LARGE          = new SizeClass("SS-LARGE",true);
-  public static final SizeClass SS_SS             = new SizeClass("SS-SS",true);
-  public static final SizeClass SS_POLE           = new SizeClass("SS-POLE",true);
-  public static final SizeClass SS_LARGE_POLE     = new SizeClass("SS-LARGE-POLE",true);
-  public static final SizeClass SS_POLE_LARGE     = new SizeClass("SS-POLE-LARGE",true);
-  public static final SizeClass SS_POLE_POLE      = new SizeClass("SS-POLE-POLE",true);
-  public static final SizeClass SS_LARGE_LARGE    = new SizeClass("SS-LARGE-LARGE",true);
-  public static final SizeClass SS_LARGE_SS       = new SizeClass("SS-LARGE-SS",true);
-  public static final SizeClass SS_POLE_SS        = new SizeClass("SS-POLE-SS",true);
-  public static final SizeClass SS_SS_POLE        = new SizeClass("SS-SS-POLE",true);
-  public static final SizeClass SS_SS_LARGE       = new SizeClass("SS-SS-LARGE",true);
-  public static final SizeClass SS_SS_SS          = new SizeClass("SS-SS-SS",true);
-  public static final SizeClass POLE_POLE         = new SizeClass("POLE-POLE",true);
-  public static final SizeClass POLE_SS           = new SizeClass("POLE-SS",true);
-  public static final SizeClass POLE_LARGE        = new SizeClass("POLE-LARGE",true);
-  public static final SizeClass POLE_SS_LARGE     = new SizeClass("POLE-SS-LARGE",true);
-  public static final SizeClass POLE_LARGE_SS     = new SizeClass("POLE-LARGE-SS",true);
-  public static final SizeClass POLE_POLE_LARGE   = new SizeClass("POLE-POLE-LARGE",true);
-  public static final SizeClass POLE_POLE_SS      = new SizeClass("POLE-POLE-SS",true);
-  public static final SizeClass POLE_SS_SS        = new SizeClass("POLE-SS-SS",true);
-  public static final SizeClass POLE_LARGE_LARGE  = new SizeClass("POLE-LARGE-LARGE",true);
-  public static final SizeClass POLE_SS_POLE      = new SizeClass("POLE-SS-POLE",true);
-  public static final SizeClass POLE_LARGE_POLE   = new SizeClass("POLE-LARGE-POLE",true);
-  public static final SizeClass POLE_POLE_POLE    = new SizeClass("POLE-POLE-POLE",true);
-  public static final SizeClass LARGE_LARGE       = new SizeClass("LARGE-LARGE",true);
-  public static final SizeClass LARGE_POLE        = new SizeClass("LARGE-POLE",true);
-  public static final SizeClass LARGE_SS          = new SizeClass("LARGE-SS",true);
-  public static final SizeClass LARGE_SS_POLE     = new SizeClass("LARGE-SS-POLE",true);
-  public static final SizeClass LARGE_POLE_SS     = new SizeClass("LARGE-POLE-SS",true);
-  public static final SizeClass LARGE_SS_SS       = new SizeClass("LARGE-SS-SS",true);
-  public static final SizeClass LARGE_POLE_POLE   = new SizeClass("LARGE-POLE-POLE",true);
-  public static final SizeClass LARGE_LARGE_SS    = new SizeClass("LARGE-LARGE-SS",true);
-  public static final SizeClass LARGE_LARGE_POLE  = new SizeClass("LARGE-LARGE-POLE",true);
-  public static final SizeClass LARGE_POLE_LARGE  = new SizeClass("LARGE-POLE-LARGE",true);
-  public static final SizeClass LARGE_SS_LARGE    = new SizeClass("LARGE-SS-LARGE",true);
-  public static final SizeClass LARGE_LARGE_LARGE = new SizeClass("LARGE-LARGE-LARGE",true);
-  public static final SizeClass TALL_SHRUB        = new SizeClass("TALL-SHRUB",true);
-  public static final SizeClass LOW_SHRUB         = new SizeClass("LOW-SHRUB",true);
-  public static final SizeClass DWARF_SHRUB       = new SizeClass("DWARF-SHRUB",true);
-  public static final SizeClass HERB              = new SizeClass("HERB",true);
-  public static final SizeClass GH                = new SizeClass("GH",true);
-  public static final SizeClass AQU               = new SizeClass("AQU",true);
-  public static final SizeClass OCEAN             = new SizeClass("OCEAN",true);
-  public static final SizeClass ALP               = new SizeClass("ALP",true);
-  public static final SizeClass MSH               = new SizeClass("MSH",true);
+  public static final SizeClass SS_LARGE          = new SizeClass("SS-LARGE");
+  public static final SizeClass SS_SS             = new SizeClass("SS-SS");
+  public static final SizeClass SS_POLE           = new SizeClass("SS-POLE");
+  public static final SizeClass SS_LARGE_POLE     = new SizeClass("SS-LARGE-POLE");
+  public static final SizeClass SS_POLE_LARGE     = new SizeClass("SS-POLE-LARGE");
+  public static final SizeClass SS_POLE_POLE      = new SizeClass("SS-POLE-POLE");
+  public static final SizeClass SS_LARGE_LARGE    = new SizeClass("SS-LARGE-LARGE");
+  public static final SizeClass SS_LARGE_SS       = new SizeClass("SS-LARGE-SS");
+  public static final SizeClass SS_POLE_SS        = new SizeClass("SS-POLE-SS");
+  public static final SizeClass SS_SS_POLE        = new SizeClass("SS-SS-POLE");
+  public static final SizeClass SS_SS_LARGE       = new SizeClass("SS-SS-LARGE");
+  public static final SizeClass SS_SS_SS          = new SizeClass("SS-SS-SS");
+  public static final SizeClass POLE_POLE         = new SizeClass("POLE-POLE");
+  public static final SizeClass POLE_SS           = new SizeClass("POLE-SS");
+  public static final SizeClass POLE_LARGE        = new SizeClass("POLE-LARGE");
+  public static final SizeClass POLE_SS_LARGE     = new SizeClass("POLE-SS-LARGE");
+  public static final SizeClass POLE_LARGE_SS     = new SizeClass("POLE-LARGE-SS");
+  public static final SizeClass POLE_POLE_LARGE   = new SizeClass("POLE-POLE-LARGE");
+  public static final SizeClass POLE_POLE_SS      = new SizeClass("POLE-POLE-SS");
+  public static final SizeClass POLE_SS_SS        = new SizeClass("POLE-SS-SS");
+  public static final SizeClass POLE_LARGE_LARGE  = new SizeClass("POLE-LARGE-LARGE");
+  public static final SizeClass POLE_SS_POLE      = new SizeClass("POLE-SS-POLE");
+  public static final SizeClass POLE_LARGE_POLE   = new SizeClass("POLE-LARGE-POLE");
+  public static final SizeClass POLE_POLE_POLE    = new SizeClass("POLE-POLE-POLE");
+  public static final SizeClass LARGE_LARGE       = new SizeClass("LARGE-LARGE");
+  public static final SizeClass LARGE_POLE        = new SizeClass("LARGE-POLE");
+  public static final SizeClass LARGE_SS          = new SizeClass("LARGE-SS");
+  public static final SizeClass LARGE_SS_POLE     = new SizeClass("LARGE-SS-POLE");
+  public static final SizeClass LARGE_POLE_SS     = new SizeClass("LARGE-POLE-SS");
+  public static final SizeClass LARGE_SS_SS       = new SizeClass("LARGE-SS-SS");
+  public static final SizeClass LARGE_POLE_POLE   = new SizeClass("LARGE-POLE-POLE");
+  public static final SizeClass LARGE_LARGE_SS    = new SizeClass("LARGE-LARGE-SS");
+  public static final SizeClass LARGE_LARGE_POLE  = new SizeClass("LARGE-LARGE-POLE");
+  public static final SizeClass LARGE_POLE_LARGE  = new SizeClass("LARGE-POLE-LARGE");
+  public static final SizeClass LARGE_SS_LARGE    = new SizeClass("LARGE-SS-LARGE");
+  public static final SizeClass LARGE_LARGE_LARGE = new SizeClass("LARGE-LARGE-LARGE");
+  public static final SizeClass TALL_SHRUB        = new SizeClass("TALL-SHRUB");
+  public static final SizeClass LOW_SHRUB         = new SizeClass("LOW-SHRUB");
+  public static final SizeClass DWARF_SHRUB       = new SizeClass("DWARF-SHRUB");
+  public static final SizeClass HERB              = new SizeClass("HERB");
+  public static final SizeClass GH                = new SizeClass("GH");
+  public static final SizeClass AQU               = new SizeClass("AQU");
+  public static final SizeClass OCEAN             = new SizeClass("OCEAN");
+  public static final SizeClass ALP               = new SizeClass("ALP");
+  public static final SizeClass MSH               = new SizeClass("MSH");
 
   // **********************
   // *** Southwest Utah ***
   // **********************
 
-  public static final SizeClass LS                = new SizeClass("LS", Structure.NON_FOREST,true);
-  public static final SizeClass MS                = new SizeClass("MS", Structure.NON_FOREST,true);
-  public static final SizeClass TS                = new SizeClass("TS", Structure.NON_FOREST,true);
-  public static final SizeClass BARREN            = new SizeClass("BARREN",true);
-  public static final SizeClass GF                = new SizeClass("GF", Structure.NON_FOREST,true);
-  public static final SizeClass RIPARIAN          = new SizeClass("RIPARIAN", Structure.NON_FOREST,true);
-  public static final SizeClass ALPINE            = new SizeClass("ALPINE",true);
-  public static final SizeClass ROCK_BARE         = new SizeClass("ROCK-BARE", Structure.NON_FOREST,true);
-  public static final SizeClass AGR_URB           = new SizeClass("AGR-URB", Structure.NON_FOREST,true);
-  public static final SizeClass GRASS             = new SizeClass("GRASS", Structure.NON_FOREST,true);
-  public static final SizeClass MU                = new SizeClass("MU",true);
+  public static final SizeClass LS                = new SizeClass("LS", Structure.NON_FOREST);
+  public static final SizeClass MS                = new SizeClass("MS", Structure.NON_FOREST);
+  public static final SizeClass TS                = new SizeClass("TS", Structure.NON_FOREST);
+  public static final SizeClass BARREN            = new SizeClass("BARREN");
+  public static final SizeClass GF                = new SizeClass("GF", Structure.NON_FOREST);
+  public static final SizeClass RIPARIAN          = new SizeClass("RIPARIAN", Structure.NON_FOREST);
+  public static final SizeClass ALPINE            = new SizeClass("ALPINE");
+  public static final SizeClass ROCK_BARE         = new SizeClass("ROCK-BARE", Structure.NON_FOREST);
+  public static final SizeClass AGR_URB           = new SizeClass("AGR-URB", Structure.NON_FOREST);
+  public static final SizeClass GRASS             = new SizeClass("GRASS", Structure.NON_FOREST);
+  public static final SizeClass MU                = new SizeClass("MU");
 
   // ****************************
   // *** Colorado Front Range ***
   // ****************************
 
-  public static final SizeClass BA                = new SizeClass("BA", Structure.NON_FOREST,true);
-  public static final SizeClass MEDIUM_SH         = new SizeClass("MEDIUM-SH", Structure.NON_FOREST,true);
-  public static final SizeClass LARGE_SH          = new SizeClass("LARGE-SH", Structure.NON_FOREST,true);
-  public static final SizeClass SMALL_SH          = new SizeClass("SMALL-SH", Structure.NON_FOREST,true);
-  public static final SizeClass E                 = new SizeClass("E", Structure.SINGLE_STORY,true);
-  public static final SizeClass GRA_SHR           = new SizeClass("GRA-SHR",false);
-  public static final SizeClass AGR_URBAN         = new SizeClass("AGR-URBAN",false);
+  public static final SizeClass BA                = new SizeClass("BA", Structure.NON_FOREST);
+  public static final SizeClass MEDIUM_SH         = new SizeClass("MEDIUM-SH", Structure.NON_FOREST);
+  public static final SizeClass LARGE_SH          = new SizeClass("LARGE-SH", Structure.NON_FOREST);
+  public static final SizeClass SMALL_SH          = new SizeClass("SMALL-SH", Structure.NON_FOREST);
+  public static final SizeClass E                 = new SizeClass("E", Structure.SINGLE_STORY);
+  public static final SizeClass GRA_SHR           = new SizeClass("GRA-SHR");
+  public static final SizeClass AGR_URBAN         = new SizeClass("AGR-URBAN");
 
   // ***********************************
   // *** Western Great Plains Steppe ***
   // ***********************************
 
-  public static final SizeClass NA                = new SizeClass("NA", Structure.NON_FOREST,true);
+  public static final SizeClass NA                = new SizeClass("NA", Structure.NON_FOREST);
 
   private String sizeClass;
   private Structure structure;
@@ -188,30 +188,24 @@ public class SizeClass extends SimpplleType implements Externalizable {
     sizeClass = null;
     structure = Structure.NON_FOREST;
   }
-  /**
-   * Overloaded size class constructor.  Creates a size class object by referencing default constructor and initializing the string name, structure, and
-   * valid variable.  Then updates the size class arraylist, and the all types hashmap.
-   */
-  public SizeClass(String sizeClass, Structure structure, boolean isValid) {
-    this.sizeClass = sizeClass.toUpperCase();
-    this.structure = structure;
 
-    updateAllData(this,SIZE_CLASS);
-  }
-  /**
-   * Overloaded constructor for size class.  References default constructor and passes in Non_forest for size class.
-   * @param sizeClass
-   * @param isValid
-   */
-  public SizeClass(String sizeClass, boolean isValid) {
-    this(sizeClass, Structure.NON_FOREST,isValid);
-  }
   /**
    * This overloaded constructor passes false for is valid to size class.
    * @param sizeClass
    */
   public SizeClass(String sizeClass) {
-    this(sizeClass,false);
+    this(sizeClass, Structure.NON_FOREST);
+  }
+
+  /**
+   * Overloaded size class constructor.  Creates a size class object by referencing default constructor and initializing the string name, structure, and
+   * valid variable.  Then updates the size class arraylist, and the all types hashmap.
+   */
+  public SizeClass(String sizeClass, Structure structure) {
+    this.sizeClass = sizeClass.toUpperCase();
+    this.structure = structure;
+
+    updateAllData(this, SIZE_CLASS);
   }
 
   public short getSimId() {
@@ -329,7 +323,7 @@ public class SizeClass extends SimpplleType implements Externalizable {
     SizeClass sizeClass = (SizeClass)allSizeClassHm.get(sizeClassStr.toUpperCase());
 
     if (sizeClass == null && create) {
-      sizeClass = new SizeClass(sizeClassStr.toUpperCase(),true);
+      sizeClass = new SizeClass(sizeClassStr.toUpperCase());
     }
     return sizeClass;
   }
