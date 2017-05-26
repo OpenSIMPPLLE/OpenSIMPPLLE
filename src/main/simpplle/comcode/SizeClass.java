@@ -181,6 +181,39 @@ public class SizeClass extends SimpplleType implements Externalizable {
   private Structure structure;
   private short simId = -1;
 
+  /**
+   * Constructor for size class.  Sets the size class to null, and structure to non forest.
+   */
+  public SizeClass() {
+    sizeClass = null;
+    structure = Structure.NON_FOREST;
+  }
+  /**
+   * Overloaded size class constructor.  Creates a size class object by referencing default constructor and initializing the string name, structure, and
+   * valid variable.  Then updates the size class arraylist, and the all types hashmap.
+   */
+  public SizeClass(String sizeClass, Structure structure, boolean isValid) {
+    this.sizeClass = sizeClass.toUpperCase();
+    this.structure = structure;
+
+    updateAllData(this,SIZE_CLASS);
+  }
+  /**
+   * Overloaded constructor for size class.  References default constructor and passes in Non_forest for size class.
+   * @param sizeClass
+   * @param isValid
+   */
+  public SizeClass(String sizeClass, boolean isValid) {
+    this(sizeClass, Structure.NON_FOREST,isValid);
+  }
+  /**
+   * This overloaded constructor passes false for is valid to size class.
+   * @param sizeClass
+   */
+  public SizeClass(String sizeClass) {
+    this(sizeClass,false);
+  }
+
   public short getSimId() {
     if (simId == -1) {
       simId = nextSimId;
@@ -221,38 +254,6 @@ public class SizeClass extends SimpplleType implements Externalizable {
     }
   }
 
-/**
- * Constructor for size class.  Sets the size class to null, and structure to non forest. 
- */
-  public SizeClass() {
-    sizeClass = null;
-    structure = Structure.NON_FOREST;
-  }
-  /**
-   * Overloaded size class constructor.  Creates a size class object by referencing default constructor and initializing the string name, structure, and 
-   * valid variable.  Then updates the size class arraylist, and the all types hashmap.  
-   */
-  public SizeClass(String sizeClass, Structure structure, boolean isValid) {
-    this.sizeClass = sizeClass.toUpperCase();
-    this.structure = structure;
-
-    updateAllData(this,SIZE_CLASS);
-  }
-  /**
-   * Overloaded constructor for size class.  References default constructor and passes in Non_forest for size class.  
-   * @param sizeClass
-   * @param isValid
-   */
-  public SizeClass(String sizeClass, boolean isValid) {
-    this(sizeClass, Structure.NON_FOREST,isValid);
-  }
-/**
- * This overloaded constructor passes false for is valid to size class. 
- * @param sizeClass
- */
-  public SizeClass(String sizeClass) {
-    this(sizeClass,false);
-  }
 /**
  * toString of this sizeClass.  this is as string.  A list of these are in the static variables in SizeClass.java
  */
