@@ -24,58 +24,13 @@ public class SizeClass extends SimpplleType implements Externalizable {
   public static final int STRUCTURE_COL = 1;
   public static final int COLUMN_COUNT  = 2;
 
-  private String sizeClass;
-  private Structure structure;
-
-  public static HashMap<Short,SizeClass> simIdHm = new HashMap<Short,SizeClass>();
-  private short simId=-1; // Random Access File ID
-  public static short nextSimId=0;
-  public short getSimId() {
-    if (simId == -1) {
-      simId = nextSimId;
-      nextSimId++;
-      simIdHm.put(simId,this);
-    }
-    return simId;
-  }
-
-  /**
-   * Needs to be present for database, does nothing.
-   * @param id short
-   */
-  public void setSimId(short id) {}
-
-  public static SizeClass lookUpSizeClass(short simId) { return simIdHm.get(simId); }
-  public static void readExternalSimIdHm(ObjectInput in) throws IOException, ClassNotFoundException {
-    int version = in.readInt();
-
-    int size = in.readInt();
-    for (int i=0; i<size; i++) {
-      short id = in.readShort();
-      SizeClass sizeClass = (SizeClass)readExternalSimple(in,SimpplleType.SIZE_CLASS);
-      simIdHm.put(id,sizeClass);
-      if ( (id+1) > nextSimId) {
-        nextSimId = (short)(id+1);
-      }
-    }
-  }
-  public static void writeExternalSimIdHm(ObjectOutput out) throws IOException {
-    out.writeInt(version);
-
-    out.writeInt(simIdHm.size());
-    for (Short id : simIdHm.keySet()) {
-      out.writeShort(id);
-      SizeClass sizeClass = simIdHm.get(id);
-      sizeClass.writeExternalSimple(out);
-    }
-  }
-
-
-  public static final SizeClass UNKNOWN = new SizeClass("UNKNOWN");
+  public static HashMap<Short, SizeClass> simIdHm = new HashMap<>();
+  public static short nextSimId = 0;
 
   // ************************************
   // *** Common to more than one zone ***
   // ************************************
+
   public static final SizeClass AGR               = new SizeClass("AGR", Structure.NON_FOREST,true);
   public static final SizeClass CLOSED_LOW_SHRUB  = new SizeClass("CLOSED-LOW-SHRUB",true);
   public static final SizeClass CLOSED_MID_SHRUB  = new SizeClass("CLOSED-MID-SHRUB",true);
@@ -99,6 +54,7 @@ public class SizeClass extends SimpplleType implements Externalizable {
   public static final SizeClass PTS               = new SizeClass("PTS", Structure.MULTIPLE_STORY,true);
   public static final SizeClass SS                = new SizeClass("SS", Structure.SINGLE_STORY,true);
   public static final SizeClass UNIFORM           = new SizeClass("UNIFORM",true);
+  public static final SizeClass UNKNOWN           = new SizeClass("UNKNOWN");
   public static final SizeClass VERY_LARGE        = new SizeClass("VERY-LARGE", Structure.SINGLE_STORY,true);
   public static final SizeClass VLMU              = new SizeClass("VLMU", Structure.MULTIPLE_STORY,true);
   public static final SizeClass VLTS              = new SizeClass("VLTS", Structure.MULTIPLE_STORY,true);
@@ -107,39 +63,40 @@ public class SizeClass extends SimpplleType implements Externalizable {
   // ***********************************
   // *** Eastside and Westside Zones ***
   // ***********************************
+
   public static final SizeClass CLOSED_HERB       = new SizeClass("CLOSED-HERB", Structure.NON_FOREST,true);
   public static final SizeClass OPEN_HERB         = new SizeClass("OPEN-HERB", Structure.NON_FOREST,true);
 
   // ***************************
   // *** Westside Region One ***
   // ***************************
+
   public static final SizeClass WOODLAND          = new SizeClass("WOODLAND",true);
 
   // ***************************
   // *** Eastside Region One ***
   // ***************************
+
   public static final SizeClass SCATTERED         = new SizeClass("SCATTERED", Structure.NON_FOREST,true);
-
-
-  // ***************************************************
-  // *** Sierra Nevada and Southern California Zones ***
-  // ***************************************************
 
   // ********************************
   // *** Southern California Zone ***
   // ********************************
-  public static final SizeClass BURNED_URBAN = new SizeClass("BURNED-URBAN",true);
-  public static final SizeClass URBAN        = new SizeClass("URBAN", Structure.NON_FOREST,true);
+
+  public static final SizeClass BURNED_URBAN      = new SizeClass("BURNED-URBAN",true);
+  public static final SizeClass URBAN             = new SizeClass("URBAN", Structure.NON_FOREST,true);
 
   // *****************
   // *** Gila Zone ***
   // *****************
-  public static final SizeClass GRA        = new SizeClass("GRA", Structure.NON_FOREST,true); // Grass
-  public static final SizeClass SHR        = new SizeClass("SHR", Structure.NON_FOREST,true); // Shrub
+
+  public static final SizeClass GRA               = new SizeClass("GRA", Structure.NON_FOREST,true); // Grass
+  public static final SizeClass SHR               = new SizeClass("SHR", Structure.NON_FOREST,true); // Shrub
 
   // *********************************
   // *** South Central Alaska Zone ***
   // *********************************
+
   public static final SizeClass SS_LARGE          = new SizeClass("SS-LARGE",true);
   public static final SizeClass SS_SS             = new SizeClass("SS-SS",true);
   public static final SizeClass SS_POLE           = new SizeClass("SS-POLE",true);
@@ -190,36 +147,80 @@ public class SizeClass extends SimpplleType implements Externalizable {
   // *** Southwest Utah ***
   // **********************
 
-  public static final SizeClass LS        = new SizeClass("LS", Structure.NON_FOREST,true);
-  public static final SizeClass MS        = new SizeClass("MS", Structure.NON_FOREST,true);
-  public static final SizeClass TS        = new SizeClass("TS", Structure.NON_FOREST,true);
-  public static final SizeClass BARREN    = new SizeClass("BARREN",true);
-  public static final SizeClass GF        = new SizeClass("GF", Structure.NON_FOREST,true);
+  public static final SizeClass LS                = new SizeClass("LS", Structure.NON_FOREST,true);
+  public static final SizeClass MS                = new SizeClass("MS", Structure.NON_FOREST,true);
+  public static final SizeClass TS                = new SizeClass("TS", Structure.NON_FOREST,true);
+  public static final SizeClass BARREN            = new SizeClass("BARREN",true);
+  public static final SizeClass GF                = new SizeClass("GF", Structure.NON_FOREST,true);
+  public static final SizeClass RIPARIAN          = new SizeClass("RIPARIAN", Structure.NON_FOREST,true);
+  public static final SizeClass ALPINE            = new SizeClass("ALPINE",true);
+  public static final SizeClass ROCK_BARE         = new SizeClass("ROCK-BARE", Structure.NON_FOREST,true);
+  public static final SizeClass AGR_URB           = new SizeClass("AGR-URB", Structure.NON_FOREST,true);
+  public static final SizeClass GRASS             = new SizeClass("GRASS", Structure.NON_FOREST,true);
+  public static final SizeClass MU                = new SizeClass("MU",true);
 
-  public static final SizeClass RIPARIAN  = new SizeClass("RIPARIAN", Structure.NON_FOREST,true);
-  public static final SizeClass ALPINE    = new SizeClass("ALPINE",true);
-  public static final SizeClass ROCK_BARE = new SizeClass("ROCK-BARE", Structure.NON_FOREST,true);
-  public static final SizeClass AGR_URB   = new SizeClass("AGR-URB", Structure.NON_FOREST,true);
-
-  // Others
-  public static final SizeClass GRASS = new SizeClass("GRASS", Structure.NON_FOREST,true);
-  public static final SizeClass MU    = new SizeClass("MU",true);
-
+  // ****************************
   // *** Colorado Front Range ***
   // ****************************
 
-  public static final SizeClass BA          = new SizeClass("BA", Structure.NON_FOREST,true);
-  public static final SizeClass MEDIUM_SH   = new SizeClass("MEDIUM-SH", Structure.NON_FOREST,true);
-  public static final SizeClass LARGE_SH    = new SizeClass("LARGE-SH", Structure.NON_FOREST,true);
-  public static final SizeClass SMALL_SH    = new SizeClass("SMALL-SH", Structure.NON_FOREST,true);
-  public static final SizeClass E           = new SizeClass("E", Structure.SINGLE_STORY,true);
-  public static final SizeClass GRA_SHR    = new SizeClass("GRA-SHR",false);
-  public static final SizeClass AGR_URBAN  = new SizeClass("AGR-URBAN",false);
+  public static final SizeClass BA                = new SizeClass("BA", Structure.NON_FOREST,true);
+  public static final SizeClass MEDIUM_SH         = new SizeClass("MEDIUM-SH", Structure.NON_FOREST,true);
+  public static final SizeClass LARGE_SH          = new SizeClass("LARGE-SH", Structure.NON_FOREST,true);
+  public static final SizeClass SMALL_SH          = new SizeClass("SMALL-SH", Structure.NON_FOREST,true);
+  public static final SizeClass E                 = new SizeClass("E", Structure.SINGLE_STORY,true);
+  public static final SizeClass GRA_SHR           = new SizeClass("GRA-SHR",false);
+  public static final SizeClass AGR_URBAN         = new SizeClass("AGR-URBAN",false);
 
-
+  // ***********************************
   // *** Western Great Plains Steppe ***
   // ***********************************
-  public static final SizeClass NA = new SizeClass("NA", Structure.NON_FOREST,true);
+
+  public static final SizeClass NA                = new SizeClass("NA", Structure.NON_FOREST,true);
+
+  private String sizeClass;
+  private Structure structure;
+  private short simId = -1;
+
+  public short getSimId() {
+    if (simId == -1) {
+      simId = nextSimId;
+      nextSimId++;
+      simIdHm.put(simId,this);
+    }
+    return simId;
+  }
+
+  /**
+   * Needs to be present for database, does nothing.
+   * @param id short
+   */
+  public void setSimId(short id) {}
+
+  public static SizeClass lookUpSizeClass(short simId) { return simIdHm.get(simId); }
+  public static void readExternalSimIdHm(ObjectInput in) throws IOException, ClassNotFoundException {
+    int version = in.readInt();
+
+    int size = in.readInt();
+    for (int i=0; i<size; i++) {
+      short id = in.readShort();
+      SizeClass sizeClass = (SizeClass)readExternalSimple(in,SimpplleType.SIZE_CLASS);
+      simIdHm.put(id,sizeClass);
+      if ( (id+1) > nextSimId) {
+        nextSimId = (short)(id+1);
+      }
+    }
+  }
+  public static void writeExternalSimIdHm(ObjectOutput out) throws IOException {
+    out.writeInt(version);
+
+    out.writeInt(simIdHm.size());
+    for (Short id : simIdHm.keySet()) {
+      out.writeShort(id);
+      SizeClass sizeClass = simIdHm.get(id);
+      sizeClass.writeExternalSimple(out);
+    }
+  }
+
 /**
  * Constructor for size class.  Sets the size class to null, and structure to non forest. 
  */
