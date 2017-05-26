@@ -74,7 +74,8 @@ public class FireEventLogicDialog extends VegLogicDialog {
   private void initialize() {
     sysKnowKind = SystemKnowledge.FIRE_SPREAD_LOGIC;
 
-    String[] kinds = new String[] { FireEventLogic.SPREAD_STR, FireEventLogic.TYPE_STR, FireEventLogic.FIRE_SPOTTING_STR };
+    String[] kinds = new String[] { FireEventLogic.SPREAD_STR, FireEventLogic.TYPE_STR,
+                                    FireEventLogic.FIRE_SPOTTING_STR };
     super.initialize(kinds);
 
     tabPanels = new FireEventLogicPanel[panelKinds.length];
@@ -255,4 +256,3 @@ class FireSpreadLogic_menuImportOldFile_actionAdapter implements ActionListener 
     adaptee.menuImportOldFile_actionPerformed(e);
   }
 }
-

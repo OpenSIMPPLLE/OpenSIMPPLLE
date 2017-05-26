@@ -28,11 +28,11 @@ import java.util.Vector;
 
 public class RegenerationLogicDialog extends VegLogicDialog {
 
+  private JMenu menuOptions = new JMenu("Options");
+
   private JMenuItem menuOptionsAddAllSpecies = new JMenuItem();
   private JMenuItem menuOptionsDelayLogic = new JMenuItem();
   private JMenuItem menuFileOldFormat = new JMenuItem();
-
-  private JMenu     menuOptions = new JMenu("Options");
 
   /**
    * Constructor for Regeneration Logic Dialog.  This sets the frame owner, string title and modality.  

@@ -39,9 +39,11 @@ public class FireSuppSpreadRateLogicDlg extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
+
   public FireSuppSpreadRateLogicDlg() {
     this(new Frame(), "FireSuppSpreadRateLogicDlg", false);
   }
+
   private void jbInit() throws Exception {
     menuImportOldFile.setText("Import old format File");
     menuImportOldFile.addActionListener(new
@@ -103,4 +105,3 @@ class FireSuppSpreadRateLogicDlg_menuImportOldFile_actionAdapter implements Acti
     adaptee.menuImportOldFile_actionPerformed(e);
   }
 }
-

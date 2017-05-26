@@ -9,6 +9,7 @@
 package simpplle.gui;
 
 import java.awt.Frame;
+import java.awt.event.MouseAdapter;
 import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.EvuSearchLogic;
 import javax.swing.JPanel;
@@ -49,26 +50,27 @@ import simpplle.comcode.ProcessApplication;
  */
 
 public class EvuSearchLogicDlg extends VegLogicDialog {
-  protected String         prototypeCellValue = "117000 - ALTERED-GRASSES/CLOSED-TALL-SHRUB/1";
-  private EvuAnalysis    evuAnalysisDlg;
-  protected ArrayList<Evu> units;
-  protected int            selectedRow;
 
+  protected String prototypeCellValue = "117000 - ALTERED-GRASSES/CLOSED-TALL-SHRUB/1";
+  private EvuAnalysis evuAnalysisDlg;
+  protected ArrayList<Evu> units;
+  protected int selectedRow;
   public static boolean isOpen = false;
 
-  protected JPanel       southPanel    = new JPanel();
+  protected JPanel southPanel = new JPanel();
   protected BorderLayout borderLayout3 = new BorderLayout();
-  private JPanel       resultsPanel  = new JPanel();
+  private JPanel resultsPanel = new JPanel();
   private TitledBorder resultsBorder;
-  private JScrollPane  resultsScrollPane = new JScrollPane();
-  private JList        resultsList       = new JList();
-  private FlowLayout   resultsLayout     = new FlowLayout();
-  private JToolBar     toolBar           = new JToolBar();
-  private JButton      searchPB          = new JButton();
+  private JScrollPane resultsScrollPane = new JScrollPane();
+  private JList resultsList = new JList();
+  private FlowLayout resultsLayout = new FlowLayout();
+  private JToolBar toolBar = new JToolBar();
+  private JButton searchPB = new JButton();
 
-  protected JMenu     menuOptions = new JMenu("Options");
-  private JMenuItem menuOptionsMakeTreatments      = new JMenuItem();
+  protected JMenu menuOptions = new JMenu("Options");
+  private JMenuItem menuOptionsMakeTreatments = new JMenuItem();
   private JMenuItem menuOptionsMakeLockInProcesses = new JMenuItem();
+
   /**
    * Constructor for Evu Search Logic Dialog.  References the VegLogicDialog superclass and passes the frame owner, dialog title, and modality.
    * The last parameter is the Evu Analysis dialog.
@@ -103,6 +105,7 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
    * @throws Exception
    */
   private void jbInit() throws Exception {
+
     mainPanel.add(toolBar, BorderLayout.NORTH);
     toolBar.add(searchPB);
     southPanel.setLayout(borderLayout3);
@@ -115,7 +118,7 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     resultsList.setToolTipText("double-click selection to display in Anaylsis Dialog");
     resultsList.setPrototypeCellValue(prototypeCellValue);
     resultsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    resultsList.addMouseListener(new java.awt.event.MouseAdapter() {
+    resultsList.addMouseListener(new MouseAdapter() {
       public void mouseClicked(MouseEvent e) {
         resultsList_mouseClicked(e);
       }
@@ -125,7 +128,7 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     resultsPanel.add(resultsScrollPane, null);
     resultsScrollPane.getViewport().add(resultsList, null);
 
-    this.addWindowListener(new java.awt.event.WindowAdapter() {
+    addWindowListener(new java.awt.event.WindowAdapter() {
       public void windowClosing(WindowEvent e) {
         this_windowClosing(e);
       }
@@ -135,13 +138,10 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     searchPB.setText("Search");
     searchPB.setEnabled(false);
     searchPB.addActionListener(new java.awt.event.ActionListener() {
-
       public void actionPerformed(ActionEvent e) {
         searchPB_actionPerformed(e);
       }
     });
-
-
 
     menuOptionsMakeTreatments.setActionCommand("Make Treatment Schedule");
     menuOptionsMakeTreatments.setText("Make Treatment Schedule");
@@ -161,7 +161,6 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     menuBar.add(menuOptions);
     menuOptions.add(menuOptionsMakeTreatments);
     menuOptions.add(menuOptionsMakeLockInProcesses);
-
 
   }
   /**

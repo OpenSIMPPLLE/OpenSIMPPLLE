@@ -60,7 +60,4 @@ public class VegUnitFireTypeLogicDlg extends AbstractLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }
-
-

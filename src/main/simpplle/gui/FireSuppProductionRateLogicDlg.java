@@ -39,9 +39,11 @@ public class FireSuppProductionRateLogicDlg extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
+
   public FireSuppProductionRateLogicDlg() {
     this(new Frame(), "FireSuppProductionRateLogicDlg", false);
   }
+
   private void jbInit() throws Exception {
     menuImportOldFile.setText("Import old format File");
     menuImportOldFile.addActionListener(new

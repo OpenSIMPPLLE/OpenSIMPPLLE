@@ -38,9 +38,7 @@ public class FireSuppClassALogicDlg extends VegLogicDialog {
     this(new Frame(), "FireSuppClassALogicDlg", false);
   }
   // TODO: Look into removing this...
-  private void jbInit() throws Exception {
-
-  }
+  private void jbInit() throws Exception {}
   /**
    * Initializes the fire suppression class A logic dialog with tab panels.
    */
@@ -63,5 +61,4 @@ public class FireSuppClassALogicDlg extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }

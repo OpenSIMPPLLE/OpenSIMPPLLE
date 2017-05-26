@@ -69,6 +69,4 @@ public class GapProcessLogicDlg extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }
-

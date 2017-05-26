@@ -60,5 +60,4 @@ public class InvasiveSpeciesMSULogicDialog extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }
