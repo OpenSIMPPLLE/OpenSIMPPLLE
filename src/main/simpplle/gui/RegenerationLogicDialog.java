@@ -97,7 +97,7 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     for (int i = 0; i < panelKinds.length; i++) {
       String kind = panelKinds[i];
       if (kind.equals(RegenerationLogic.FIRE_STR)) {
-        tabPanels[i] = new RegenerationLogicFireTable(this, SystemKnowledge.REGEN_LOGIC_FIRE);
+        tabPanels[i] = new RegenerationLogicFireTable(this, SystemKnowledge.REGEN_LOGIC_FIRE, RegenerationLogic.getLogicInstance(kind));
       }
       else {
         tabPanels[i] = new RegenerationLogicSuccTable(this, SystemKnowledge.REGEN_LOGIC_SUCC);
