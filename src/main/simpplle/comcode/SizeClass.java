@@ -177,7 +177,7 @@ public class SizeClass extends SimpplleType implements Externalizable {
 
   public static final SizeClass NA                = new SizeClass("NA", Structure.NON_FOREST);
 
-  private String sizeClass;
+  private String name;
   private Structure structure;
   private short simId = -1;
 
@@ -185,23 +185,27 @@ public class SizeClass extends SimpplleType implements Externalizable {
    * Creates an unnamed non-forested size class.
    */
   public SizeClass() {
-    sizeClass = null;
+    name = null;
     structure = Structure.NON_FOREST;
   }
 
   /**
    * Creates a non-forested size class.
-   * @param sizeClass
+   *
+   * @param name a human-readable name
    */
-  public SizeClass(String sizeClass) {
-    this(sizeClass, Structure.NON_FOREST);
+  public SizeClass(String name) {
+    this(name, Structure.NON_FOREST);
   }
 
   /**
    * Creates a size class.
+   *
+   * @param name a human-readable name
+   * @param structure the structure of the vegetation
    */
-  public SizeClass(String sizeClass, Structure structure) {
-    this.sizeClass = sizeClass.toUpperCase();
+  public SizeClass(String name, Structure structure) {
+    this.name = name.toUpperCase();
     this.structure = structure;
     updateAllData(this, SIZE_CLASS);
   }
@@ -249,7 +253,7 @@ public class SizeClass extends SimpplleType implements Externalizable {
 /**
  * toString of this sizeClass.  this is as string.  A list of these are in the static variables in SizeClass.java
  */
-  public String toString() { return sizeClass; }
+  public String toString() { return name; }
 /**
  * Gets the structure of this size class.  Choices are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
  * @return structure of this size class.  
@@ -260,7 +264,7 @@ public class SizeClass extends SimpplleType implements Externalizable {
  * @return this size class 
  */
   public String getSizeClass() {
-    return sizeClass;
+    return name;
   }
 /**
  * Calculates count of size classes by getting size of size class hashmap
@@ -282,9 +286,9 @@ public class SizeClass extends SimpplleType implements Externalizable {
   public boolean equals(Object obj) {
     if (this == obj) { return true; }
     if (obj instanceof SizeClass) {
-      if (sizeClass == null || obj == null) { return false; }
+      if (name == null || obj == null) { return false; }
 
-      return sizeClass.equals(((SizeClass)obj).sizeClass);
+      return name.equals(((SizeClass)obj).name);
     }
     return false;
   }
@@ -292,17 +296,17 @@ public class SizeClass extends SimpplleType implements Externalizable {
  * Gets the hash code for this size class object.
  */
   public int hashCode() {
-    return sizeClass.hashCode();
+    return name.hashCode();
   }
 /**
  * Comparable method implementation.  Compares the object parameters to string (which will be size class name) to the this size class 
  */
   public int compareTo(Object o) {
     if (o == null) { return -1; }
-    return sizeClass.compareTo(o.toString());
+    return name.compareTo(o.toString());
   }
 
-  public boolean isValid() { return SizeClass.get(sizeClass) != null; }
+  public boolean isValid() { return SizeClass.get(name) != null; }
 /**
  * Gets the size class based on string name.  A new size class will not be created if the size class does not exist in hash map
  * @param sizeClassStr  the name of size class
@@ -378,7 +382,7 @@ public class SizeClass extends SimpplleType implements Externalizable {
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
 
-    sizeClass           = (String)in.readObject();
+    name = (String)in.readObject();
     String structStr = (String)in.readObject();
 
     if (structStr.equals("NON-FOREST")) {
@@ -401,7 +405,7 @@ public class SizeClass extends SimpplleType implements Externalizable {
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
 
-    out.writeObject(sizeClass);
+    out.writeObject(name);
     if (structure == Structure.NON_FOREST) {
       out.writeObject("NON-FOREST");
     }
@@ -422,9 +426,9 @@ public class SizeClass extends SimpplleType implements Externalizable {
    */
   private Object readResolve () throws java.io.ObjectStreamException
   {
-    SizeClass sizeClassObj = SizeClass.get(sizeClass,true);
+    SizeClass sizeClassObj = SizeClass.get(name,true);
 
-    sizeClassObj.sizeClass = this.sizeClass;
+    sizeClassObj.name = this.name;
     sizeClassObj.structure = this.structure;
 
     updateAllData(sizeClassObj,SIZE_CLASS);
@@ -435,7 +439,7 @@ public class SizeClass extends SimpplleType implements Externalizable {
  * @param sizeClass
  */
   public void setSizeClass(String sizeClass) {
-    this.sizeClass = sizeClass;
+    this.name = sizeClass;
   }
 
   // *** JTable section ***
@@ -471,9 +475,12 @@ public class SizeClass extends SimpplleType implements Externalizable {
  */
   public static String getColumnName(int col) {
     switch (col) {
-      case CODE_COL:            return "Size Class";
-      case STRUCTURE_COL:     return "Structure";
-      default: return "";
+      case CODE_COL:
+        return "Size Class";
+      case STRUCTURE_COL:
+        return "Structure";
+      default:
+        return "";
     }
   }
 
