@@ -27,7 +27,6 @@ public class VegLogicDialog extends AbstractLogicDialog {
 
   protected boolean inColumnInit = false;
   protected ArrayList<JMenuItem> colMenuItems = new ArrayList<>();
-
   protected JMenu menuColumns = new JMenu();
   private JCheckBoxMenuItem menuShowValCols = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuEcoGroup = new JCheckBoxMenuItem();
@@ -188,14 +187,10 @@ public class VegLogicDialog extends AbstractLogicDialog {
 
       for(int i = 0; i < emptyCols.size(); i++){
 
-        System.out.println(emptyCols.get(i));
-
         currentPanel.removeVisibleColumn(emptyCols.get(i));
       }
     } else{
       for(int i = 0; i < emptyCols.size(); i++){
-
-        System.out.println(emptyCols.get(i));
 
         currentPanel.addVisibleColumn(emptyCols.get(i));
 
