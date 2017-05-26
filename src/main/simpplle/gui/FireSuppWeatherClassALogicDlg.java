@@ -19,7 +19,8 @@ import simpplle.comcode.*;
  */
 
 public class FireSuppWeatherClassALogicDlg extends VegLogicDialog {
-   public FireSuppWeatherClassALogicDlg(Frame owner, String title, boolean modal) {
+
+  public FireSuppWeatherClassALogicDlg(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
       setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -31,11 +32,12 @@ public class FireSuppWeatherClassALogicDlg extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
+
   public FireSuppWeatherClassALogicDlg() {
     this(new Frame(), "FireSuppSpreadRateLogicDlg", false);
   }
-  private void jbInit() throws Exception {
-  }
+
+  private void jbInit() throws Exception {}
 
   private void initialize() {
     sysKnowKind = SystemKnowledge.FIRE_SUPP_WEATHER_CLASS_A_LOGIC;

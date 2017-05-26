@@ -21,6 +21,7 @@ import simpplle.comcode.SystemKnowledge;
  */
 
 public class FireSuppEventLogicDlg extends VegLogicDialog {
+
   public FireSuppEventLogicDlg(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -33,13 +34,12 @@ public class FireSuppEventLogicDlg extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
+
   public FireSuppEventLogicDlg() {
     this(new Frame(), "FireSuppEventLogicDlg", false);
   }
   // TODO: Look into removing this...
-  private void jbInit() throws Exception {
-
-  }
+  private void jbInit() throws Exception {}
 
   private void initialize() {
     sysKnowKind = SystemKnowledge.FIRE_SUPP_EVENT_LOGIC;

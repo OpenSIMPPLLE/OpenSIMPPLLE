@@ -20,6 +20,7 @@ import simpplle.comcode.SystemKnowledge;
  */
 
 public class InvasiveSpeciesMSULogicDialog extends VegLogicDialog {
+
   public InvasiveSpeciesMSULogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -61,4 +62,3 @@ public class InvasiveSpeciesMSULogicDialog extends VegLogicDialog {
   }
 
 }
-

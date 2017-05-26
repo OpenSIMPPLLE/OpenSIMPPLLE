@@ -24,7 +24,8 @@ import java.awt.event.ActionEvent;
  */
 
 public class InvasiveSpeciesLogicDialog extends VegLogicDialog {
-  public JMenuItem menuActionSoilTypeEditor = new JMenuItem();
+
+  private JMenuItem menuActionSoilTypeEditor = new JMenuItem();
 
   public InvasiveSpeciesLogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
@@ -72,12 +73,10 @@ public class InvasiveSpeciesLogicDialog extends VegLogicDialog {
     updateDialog();
   }
 
-  public void menuActionSoilTypeEditor_actionPerformed(ActionEvent e) {
+  void menuActionSoilTypeEditor_actionPerformed(ActionEvent e) {
     SoilTypeChooser dlg = new SoilTypeChooser(this,"Soil Type Editor",true,null);
     dlg.setVisible(true);
   }
-
-
 }
 
 class InvasiveSpeciesLogicDialog_menuActionSoilTypeEditor_actionAdapter implements
@@ -92,5 +91,3 @@ class InvasiveSpeciesLogicDialog_menuActionSoilTypeEditor_actionAdapter implemen
     adaptee.menuActionSoilTypeEditor_actionPerformed(e);
   }
 }
-
-

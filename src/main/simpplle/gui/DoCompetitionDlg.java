@@ -18,6 +18,7 @@ import simpplle.comcode.*;
 * @author Documentation by Brian Losi
 * <p>Original source code authorship: Kirk A. Moeller
 */
+
 public class DoCompetitionDlg extends VegLogicDialog {
 	/**
 	 * Constructor for Do Competition Dialog.  Sets the frame owner, dialog title, modality.  Passes to JDialog superclass.  
@@ -48,8 +49,7 @@ public class DoCompetitionDlg extends VegLogicDialog {
    * Init method does not set any components.
    * @throws Exception
    */
-  private void jbInit() throws Exception {
-  }
+  private void jbInit() throws Exception {}
   /**
    * Initializes the system knowledge kind to Do Competition logic.  Creates a set of tab panels based on number of kinds and
    * adds them to a tabbed pane.
@@ -73,6 +73,5 @@ public class DoCompetitionDlg extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }
 

@@ -31,7 +31,9 @@ import simpplle.comcode.FireTypeDataNewerLegacy;
  */
 
 public class FireEventLogicDialog extends VegLogicDialog {
-  JMenuItem menuImportOldFile = new JMenuItem();
+
+  private JMenuItem menuImportOldFile = new JMenuItem();
+
   /**
    * Constructor for Fire Event Logic Dialog.  Inherits from Vegetative Logic Dialog superclass and sets the frame owner, dialog title and modality.
    * @param owner frame owner
@@ -153,7 +155,7 @@ public class FireEventLogicDialog extends VegLogicDialog {
    * If import old fire file type menu item selected will return either fire type or fire spread logic, used to get the file.
    * @param e
    */
-  public void menuImportOldFile_actionPerformed(ActionEvent e) {
+  void menuImportOldFile_actionPerformed(ActionEvent e) {
     switch (sysKnowKind) {
       case FIRE_TYPE_LOGIC:
         menuImportOldFileTypeOfFire();
@@ -168,7 +170,7 @@ public class FireEventLogicDialog extends VegLogicDialog {
   /**
    * Used if old file type is selected.  Will get the old files with .firetype and .firetypedata extensions.
    */
-  public void menuImportOldFileTypeOfFire() {
+  private void menuImportOldFileTypeOfFire() {
     File         inputFile;
     MyFileFilter extFilter;
     String       title = "Select a Fire Type Data File";
@@ -204,7 +206,7 @@ public class FireEventLogicDialog extends VegLogicDialog {
   /**
    * Method to import old type of fire spread file.  Will have extension of .firespread.  
    */
-  public void menuImportOldFileSpread() {
+  private void menuImportOldFileSpread() {
     File         inputFile;
     MyFileFilter extFilter;
     String       ext;
@@ -237,12 +239,10 @@ public class FireEventLogicDialog extends VegLogicDialog {
       }
     }
   }
-
 }
 
 /**
  * Menu adaptor used to get fire spread logic import old file.  
- * 
  *
  */
 class FireSpreadLogic_menuImportOldFile_actionAdapter implements ActionListener {

@@ -72,5 +72,4 @@ public class ProducingSeedLogicDlg extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }

@@ -50,7 +50,7 @@ import simpplle.comcode.ProcessApplication;
 
 public class EvuSearchLogicDlg extends VegLogicDialog {
   protected String         prototypeCellValue = "117000 - ALTERED-GRASSES/CLOSED-TALL-SHRUB/1";
-  protected EvuAnalysis    evuAnalysisDlg;
+  private EvuAnalysis    evuAnalysisDlg;
   protected ArrayList<Evu> units;
   protected int            selectedRow;
 
@@ -58,17 +58,17 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
 
   protected JPanel       southPanel    = new JPanel();
   protected BorderLayout borderLayout3 = new BorderLayout();
-  protected JPanel       resultsPanel  = new JPanel();
-  protected TitledBorder resultsBorder;
-  protected JScrollPane  resultsScrollPane = new JScrollPane();
-  protected JList        resultsList       = new JList();
-  protected FlowLayout   resultsLayout     = new FlowLayout();
-  protected JToolBar     toolBar           = new JToolBar();
-  protected JButton      searchPB          = new JButton();
+  private JPanel       resultsPanel  = new JPanel();
+  private TitledBorder resultsBorder;
+  private JScrollPane  resultsScrollPane = new JScrollPane();
+  private JList        resultsList       = new JList();
+  private FlowLayout   resultsLayout     = new FlowLayout();
+  private JToolBar     toolBar           = new JToolBar();
+  private JButton      searchPB          = new JButton();
 
   protected JMenu     menuOptions = new JMenu("Options");
-  protected JMenuItem menuOptionsMakeTreatments      = new JMenuItem();
-  protected JMenuItem menuOptionsMakeLockInProcesses = new JMenuItem();
+  private JMenuItem menuOptionsMakeTreatments      = new JMenuItem();
+  private JMenuItem menuOptionsMakeLockInProcesses = new JMenuItem();
   /**
    * Constructor for Evu Search Logic Dialog.  References the VegLogicDialog superclass and passes the frame owner, dialog title, and modality.
    * The last parameter is the Evu Analysis dialog.
@@ -222,7 +222,7 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
    * Creates a units arraylist with evu results of matching units at select rows.  Then sets these units as the results of Evu Analysis dialog.
    * @param e 'Search'
    */
-  void searchPB_actionPerformed(ActionEvent e) {
+  private void searchPB_actionPerformed(ActionEvent e) {
     units = EvuSearchLogic.getInstance().findMatchingUnits(selectedRow);
     evuAnalysisDlg.setResultUnits(units);
     updateResults();
@@ -231,7 +231,7 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
    * Selects a particular Evu from the results list and uses it to get the Evu Analysis dialog going.
    * @param e mouse double click
    */
-  void resultsList_mouseClicked(MouseEvent e) {
+  private void resultsList_mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2 && evuAnalysisDlg != null) {
       Evu evu = (Evu)resultsList.getSelectedValue();
       evuAnalysisDlg.goUnit(evu);
@@ -255,7 +255,7 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
    * Sets the selected row to be matched in Evu search.
    * @param row the row that will be considered the selected row.
    */
-  public void updateSelectedRow(int row) {
+  void updateSelectedRow(int row) {
     selectedRow = row;
     searchPB.setEnabled(true);
   }
@@ -264,7 +264,7 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
    * select a treatment.  First a time step is picked by user, then the user picks the treatment, and adds the Evu units to the treatments units.
    * @param e 'Make Treatments'
    */
-  void menuOptionsMakeTreatments_actionPerformed(ActionEvent e) {
+  private void menuOptionsMakeTreatments_actionPerformed(ActionEvent e) {
     Area area = Simpplle.getCurrentArea();
     TreatmentSchedule schedule = area.getTreatmentSchedule();
 
@@ -306,7 +306,7 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
    * Method to allow user to lock in process.  Gets current area and process schedule.  User picks a time step to lock in a process to evu units.  
    * @param e 'Make Lock in process'
    */
-  void menuOptionsMakeLockInProcesses_actionPerformed(ActionEvent e) {
+  private void menuOptionsMakeLockInProcesses_actionPerformed(ActionEvent e) {
     Area               area = Simpplle.getCurrentArea();
     ProcessSchedule    schedule = area.getProcessSchedule();
     ProcessApplication processApp;
@@ -342,5 +342,4 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
                                     JOptionPane.INFORMATION_MESSAGE);
     }
   }
-
 }

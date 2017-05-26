@@ -43,6 +43,7 @@ public class VegLogicDialog extends AbstractLogicDialog {
   private JCheckBoxMenuItem menuRoadStatus = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuTrailStatus = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuLandtype = new JCheckBoxMenuItem();
+
   /**
    * Constructor for Vegetative Logic Dialog, a type of abstract logic dialog.
    * @param owner Parent frame of the dialogue

@@ -25,10 +25,12 @@ import java.util.List;
  */
 
 public class ProcessProbabilityLogicDialog extends VegLogicDialog {
+
   private JCheckBoxMenuItem menuAdjProcess = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuLpMpbHazard = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuLpMpbModHazard = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuLpMpbHighHazard = new JCheckBoxMenuItem();
+
   public ProcessProbabilityLogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -104,19 +106,19 @@ public class ProcessProbabilityLogicDialog extends VegLogicDialog {
     updateDialog();
   }
 
-  public void menuAdjProcess_actionPerformed(ActionEvent e) {
+  void menuAdjProcess_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.ADJ_PROCESS_COL);
   }
 
-  public void menuLpMpbHazard_actionPerformed(ActionEvent e) {
+  void menuLpMpbHazard_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.MPB_HAZARD_COL);
   }
 
-  public void menuLpMpbModHazard_actionPerformed(ActionEvent e) {
+  void menuLpMpbModHazard_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.ADJ_MOD_HAZARD_COL);
   }
 
-  public void menuLpMpbHighHazard_actionPerformed(ActionEvent e) {
+  void menuLpMpbHighHazard_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.ADJ_HIGH_HAZARD_COL);
   }
 }
