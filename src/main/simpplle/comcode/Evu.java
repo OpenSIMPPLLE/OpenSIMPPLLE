@@ -101,6 +101,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   private Vector           timberVolume;
   private Vector           volumeRemovals;
   private Vector           treatment;  // simulation
+
   private MtnPineBeetleHazard.Hazard lpMpbHazard;
   private MtnPineBeetleHazard.Hazard ppMpbHazard;
 
@@ -319,7 +320,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     initialState        = null;
     simData             = null;
     unitNumber          = null;
-    neighborhood = new AdjacentData[NUM_NEIGHBORS];
+    neighborhood        = new AdjacentData[NUM_NEIGHBORS];
     acres               = 0;
 
     ownership           = null;
