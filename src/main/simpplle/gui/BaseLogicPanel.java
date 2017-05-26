@@ -128,20 +128,7 @@ public class BaseLogicPanel extends JPanel {
 
     logicTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     ListSelectionModel rowSM = logicTable.getSelectionModel();
-    rowSM.addListSelectionListener(new ListSelectionListener() {
-      public void valueChanged(ListSelectionEvent e) {
-        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
-        if (lsm.isSelectionEmpty() == false) {
-          selectedRow = lsm.getMinSelectionIndex();
-          rowSelected();
-        }
-        else { selectedRow = -1; }
-        dialog.menuActionDeleteSelectedRule.setEnabled(!lsm.isSelectionEmpty());
-        dialog.menuActionMoveRuleUp.setEnabled(!lsm.isSelectionEmpty());
-        dialog.menuActionMoveRuleDown.setEnabled(!lsm.isSelectionEmpty());
-        dialog.menuActionDuplicateSelectedRule.setEnabled(!lsm.isSelectionEmpty());
-      }
-    });
+    rowSM.addListSelectionListener(this::valueChanged);
 
     selectedRow = -1;
     updateDialog();
@@ -150,21 +137,22 @@ public class BaseLogicPanel extends JPanel {
 
   protected void rowSelected() {}
 
+  // TODO: Look into removing this function...
   protected void updateColumnWidth() {
     Utility.initColumnWidth(logicTable);
   }
   public SystemKnowledge.Kinds getSystemKnowledgeKind() { return sysKnowKind; }
-/**
- * adds a visible colummn and ssets teh fire table structure changed
- * @param col
- */
+  /**
+   * Adds a visible column and sets the fire table structure changed
+   * @param col Index of column to be modified
+   */
   public void addVisibleColumn(int col) {
     dataModel.addVisibleColumn(col);
     dataModel.fireTableStructureChanged();
   }
   /**
    * removes a visible column and sets the fire table structure changed
-   * @param col
+   * @param col Index of column to be modified
    */
   public void removeVisibleColumn(int col) {
     dataModel.removeVisibleColumn(col);
@@ -274,4 +262,17 @@ public class BaseLogicPanel extends JPanel {
    * @return Returns ArrayList of column indices that are empty
    */
    ArrayList<Integer> emptyColumns() {return logicInst.checkEmpty(kind);}
+
+  public void valueChanged(ListSelectionEvent e) {
+    ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+    if (lsm.isSelectionEmpty() == false) {
+      selectedRow = lsm.getMinSelectionIndex();
+      rowSelected();
+    }
+    else { selectedRow = -1; }
+    dialog.menuActionDeleteSelectedRule.setEnabled(!lsm.isSelectionEmpty());
+    dialog.menuActionMoveRuleUp.setEnabled(!lsm.isSelectionEmpty());
+    dialog.menuActionMoveRuleDown.setEnabled(!lsm.isSelectionEmpty());
+    dialog.menuActionDuplicateSelectedRule.setEnabled(!lsm.isSelectionEmpty());
+  }
 }
