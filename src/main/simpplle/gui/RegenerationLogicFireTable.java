@@ -69,8 +69,8 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
   private JLabel ecoGroupLabel = new JLabel();
 
   public RegenerationLogicFireTable(AbstractLogicDialog dialog,
-                                    Kinds sysKnowKind) {
-    super(dialog,RegenerationLogic.FIRE_STR,null,sysKnowKind);
+                                    Kinds sysKnowKind, AbstractBaseLogic logicInst) {
+    super(dialog,RegenerationLogic.FIRE_STR, logicInst,sysKnowKind);
     try {
       initGUI();
       initialize();
