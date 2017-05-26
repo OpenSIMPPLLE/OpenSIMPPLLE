@@ -225,10 +225,12 @@ public class SizeClass extends SimpplleType implements Externalizable {
    */
   public void setSimId(short id) {}
 
-  public static SizeClass lookUpSizeClass(short simId) { return simIdHm.get(simId); }
-  public static void readExternalSimIdHm(ObjectInput in) throws IOException, ClassNotFoundException {
-    int version = in.readInt();
+  public static SizeClass lookUpSizeClass(short simId) {
+    return simIdHm.get(simId);
+  }
 
+  public static void readExternalSimIdHm(ObjectInput in)throws IOException, ClassNotFoundException {
+    int version = in.readInt();
     int size = in.readInt();
     for (int i=0; i<size; i++) {
       short id = in.readShort();
@@ -239,9 +241,9 @@ public class SizeClass extends SimpplleType implements Externalizable {
       }
     }
   }
+
   public static void writeExternalSimIdHm(ObjectOutput out) throws IOException {
     out.writeInt(version);
-
     out.writeInt(simIdHm.size());
     for (Short id : simIdHm.keySet()) {
       out.writeShort(id);
@@ -250,27 +252,36 @@ public class SizeClass extends SimpplleType implements Externalizable {
     }
   }
 
-/**
- * toString of this sizeClass.  this is as string.  A list of these are in the static variables in SizeClass.java
- */
-  public String toString() { return name; }
-/**
- * Gets the structure of this size class.  Choices are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
- * @return structure of this size class.  
- */
-  public Structure getStructure() { return structure; }
-/**
- * Gets the current size class object.
- * @return this size class 
- */
+  /**
+   * toString of this sizeClass.  this is as string.  A list of these are in the static variables in SizeClass.java
+   */
+  public String toString() {
+    return name;
+  }
+
+  /**
+   * Gets the structure of this size class.  Choices are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
+   * @return structure of this size class.
+   */
+  public Structure getStructure() {
+    return structure;
+  }
+
+  /**
+   * Gets the current size class object.
+   * @return this size class
+   */
   public String getSizeClass() {
     return name;
   }
-/**
- * Calculates count of size classes by getting size of size class hashmap
- * @return size of size class hashmap which represents a counting
- */
-  public static int count() { return allSizeClassHm.size(); }
+
+  /**
+   * Calculates count of size classes by getting size of size class hashmap
+   * @return size of size class hashmap which represents a counting
+   */
+  public static int count() {
+    return allSizeClassHm.size();
+  }
 
   /**
    * Checks to see if the size class passed in parameter equals the current size class based on the size class name
@@ -280,9 +291,10 @@ public class SizeClass extends SimpplleType implements Externalizable {
   public boolean lookupEquals(String name) {
     return equals(get(name));
   }
-/**
- * Method to check if object in parameter is a size class, and if it is equal to this size class. 
- */
+
+  /**
+   * Method to check if object in parameter is a size class, and if it is equal to this size class.
+   */
   public boolean equals(Object obj) {
     if (this == obj) { return true; }
     if (obj instanceof SizeClass) {
@@ -292,29 +304,35 @@ public class SizeClass extends SimpplleType implements Externalizable {
     }
     return false;
   }
-/**
- * Gets the hash code for this size class object.
- */
+
+  /**
+   * Gets the hash code for this size class object.
+   */
   public int hashCode() {
     return name.hashCode();
   }
-/**
- * Comparable method implementation.  Compares the object parameters to string (which will be size class name) to the this size class 
- */
+
+  /**
+   * Comparable method implementation.  Compares the object parameters to string (which will be size class name) to the this size class
+   */
   public int compareTo(Object o) {
     if (o == null) { return -1; }
     return name.compareTo(o.toString());
   }
 
-  public boolean isValid() { return SizeClass.get(name) != null; }
-/**
- * Gets the size class based on string name.  A new size class will not be created if the size class does not exist in hash map
- * @param sizeClassStr  the name of size class
- * @return size class
- */
+  public boolean isValid() {
+    return SizeClass.get(name) != null;
+  }
+
+  /**
+   * Gets the size class based on string name.  A new size class will not be created if the size class does not exist in hash map
+   * @param sizeClassStr  the name of size class
+   * @return size class
+   */
   public static SizeClass get(String sizeClassStr) {
     return get(sizeClassStr,false);
   }
+
   /**
    * Gets the size class if one exists.  If a size class does not exist and the create boolean is true, a new size class is created. 
    * @param sizeClassStr string version of size class
@@ -329,14 +347,15 @@ public class SizeClass extends SimpplleType implements Externalizable {
     }
     return sizeClass;
   }
-/**
- * Checks if the size class is not forested.  This is true if UNIFORM, CLUMPED, SCATTERED, OPEN_HERB, CLOSED_HERB, OPEN_LOW_SHRUB,
- * CLOSED_LOW_SHRUB, OPEN_MID_SHRUB, CLOSED_MID_SHRUB, OPEN_TALL_SHRUB, CLOSED_TALL_SHRUB, GRASS, BURNED_URBAN, URBAN, WATER, or AGR
- * Basically if it is a size class that corresponds to shrubs, herbacious, burned, urban, agriculture or water it will not be forested.  
- * Which makes sense.  
- * @param sizeClass the size class being evaluated
- * @return true if not a forested size class
- */
+
+  /**
+   * Checks if the size class is not forested.  This is true if UNIFORM, CLUMPED, SCATTERED, OPEN_HERB, CLOSED_HERB, OPEN_LOW_SHRUB,
+   * CLOSED_LOW_SHRUB, OPEN_MID_SHRUB, CLOSED_MID_SHRUB, OPEN_TALL_SHRUB, CLOSED_TALL_SHRUB, GRASS, BURNED_URBAN, URBAN, WATER, or AGR
+   * Basically if it is a size class that corresponds to shrubs, herbacious, burned, urban, agriculture or water it will not be forested.
+   * Which makes sense.
+   * @param sizeClass the size class being evaluated
+   * @return true if not a forested size class
+   */
   public static boolean isNonForested(SizeClass sizeClass) {
     return (sizeClass == UNIFORM           || sizeClass == CLUMPED         ||
             sizeClass == SCATTERED         || sizeClass == OPEN_HERB       ||
@@ -347,64 +366,59 @@ public class SizeClass extends SimpplleType implements Externalizable {
             sizeClass == BURNED_URBAN      || sizeClass == URBAN           ||
             sizeClass == WATER             || sizeClass == AGR);
   }
-/**
- * Checks if the current size class is a forested size class. 
- * @param sizeClass size class being evaluated
- * @return true if not non forested meaning this is a forested size class
- */
+
+  /**
+   * Checks if the current size class is a forested size class.
+   * @param sizeClass size class being evaluated
+   * @return true if not non forested meaning this is a forested size class
+   */
   public static boolean isForested(SizeClass sizeClass) {
     return (!isNonForested(sizeClass));
   }
-/**
- * Gets the base size class.  
- * @return choices for base size class are POLE (PTS, PMU, OR POLE), MEDIUM (MTS, MMU, OR MEDIUM), LARGE(LTS, LMU, OR LARGE), 
- * VERY LARGE(VLTS, VLMU, OR VERY_LARGE), or the current size class
- */
+
+  /**
+   * Gets the base size class.
+   * @return choices for base size class are POLE (PTS, PMU, OR POLE), MEDIUM (MTS, MMU, OR MEDIUM), LARGE(LTS, LMU, OR LARGE),
+   * VERY LARGE(VLTS, VLMU, OR VERY_LARGE), or the current size class
+   */
   public SizeClass getBase() {
     if (this == PTS || this == PMU || this == POLE) {
       return POLE;
-    }
-    else if (this == MTS || this == MMU || this == MEDIUM) {
+    } else if (this == MTS || this == MMU || this == MEDIUM) {
       return MEDIUM;
-    }
-    else if (this == LTS || this == LMU || this == LARGE) {
+    } else if (this == LTS || this == LMU || this == LARGE) {
       return LARGE;
-    }
-    else if (this == VLTS || this == VLMU || this == VERY_LARGE) {
+    } else if (this == VLTS || this == VLMU || this == VERY_LARGE) {
       return VERY_LARGE;
+    } else {
+      return this;
     }
-    else { return this; }
   }
-/**
- * Reads from external source the size class and size class structure.  Choices for the former can be found at the top of 
- * SizeClass.java, the choices for the latter are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
- */
+
+  /**
+   * Reads from external source the size class and size class structure.  Choices for the former can be found at the top of
+   * SizeClass.java, the choices for the latter are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
+   */
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
-
     name = (String)in.readObject();
     String structStr = (String)in.readObject();
-
     if (structStr.equals("NON-FOREST")) {
       structure = Structure.NON_FOREST;
-    }
-    else if (structStr.equals("MULTIPLE-STORY")) {
+    } else if (structStr.equals("MULTIPLE-STORY")) {
       structure = Structure.MULTIPLE_STORY;
-    }
-    else if (structStr.equals("SINGLE-STORY")) {
+    } else if (structStr.equals("SINGLE-STORY")) {
       structure = Structure.SINGLE_STORY;
-    }
-    else {
+    } else {
       structure = Structure.NON_FOREST;
     }
-
   }
+
   /**
    * Writes to external location the size class structure. The choices for these are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY 
    */
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
-
     out.writeObject(name);
     if (structure == Structure.NON_FOREST) {
       out.writeObject("NON-FOREST");
@@ -419,43 +433,46 @@ public class SizeClass extends SimpplleType implements Externalizable {
       out.writeObject("NON-FOREST");
     }
   }
+
   /**
    * Reads teh size class object and sets the size class object to the values.  The two variables read in are size class and structure.  
    * @return
    * @throws java.io.ObjectStreamException
    */
-  private Object readResolve () throws java.io.ObjectStreamException
-  {
+  private Object readResolve () throws java.io.ObjectStreamException {
     SizeClass sizeClassObj = SizeClass.get(name,true);
-
     sizeClassObj.name = this.name;
     sizeClassObj.structure = this.structure;
 
     updateAllData(sizeClassObj,SIZE_CLASS);
+
     return sizeClassObj;
   }
-/**
- * Sets the size class to the parameter string of the size class.  A list of size classes can be found at top of SizeClass.java.
- * @param sizeClass
- */
+
+  /**
+   * Sets the size class to the parameter string of the size class.  A list of size classes can be found at top of SizeClass.java.
+   * @param sizeClass
+   */
   public void setSizeClass(String sizeClass) {
     this.name = sizeClass;
   }
 
   // *** JTable section ***
   // **********************
-/**
- * Gets the size class data based on column ID.  These are 0 - size class data, 1 size class structure data
- */
+  /**
+   * Gets the size class data based on column ID.  These are 0 - size class data, 1 size class structure data
+   */
   public Object getColumnData(int col) {
     switch (col) {
       case CODE_COL:
         return this;
       case STRUCTURE_COL:
         return getStructure();
-      default: return null;
+      default:
+        return null;
     }
   }
+
   /**
    * Sets the column data if the parameter column id is Structure column (1)
    */
@@ -464,15 +481,17 @@ public class SizeClass extends SimpplleType implements Externalizable {
       case STRUCTURE_COL:
         structure = (Structure)value;
         break;
-      default: return;
+      default:
+        return;
     }
 //    SystemKnowledge.markChanged(SystemKnowledge.SIZE_CLASS);
   }
-/**
- * Gets the column name based on column ID.  This will either be Size Class, Structure, or empty string. This is called from the GUI table model.  
- * @param col column id
- * @return string name of column
- */
+
+  /**
+   * Gets the column name based on column ID.  This will either be Size Class, Structure, or empty string. This is called from the GUI table model.
+   * @param col column id
+   * @return string name of column
+   */
   public static String getColumnName(int col) {
     switch (col) {
       case CODE_COL:
@@ -483,7 +502,6 @@ public class SizeClass extends SimpplleType implements Externalizable {
         return "";
     }
   }
-
 }
 
 
