@@ -9,15 +9,11 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-
-import javax.swing.JDialog;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.FireSpreadDataLegacy;
-
 import simpplle.comcode.SimpplleError;
 import javax.swing.JOptionPane;
 import java.io.File;
@@ -36,12 +32,12 @@ import simpplle.comcode.FireTypeDataNewerLegacy;
 
 public class FireEventLogicDialog extends VegLogicDialog {
   JMenuItem menuImportOldFile = new JMenuItem();
-/**
- * Constructor for Fire Event Logic Dialog.  Inherits from Vegetative Logic Dialog superclass and sets the frame owner, dialog title and modality.
- * @param owner frame owner
- * @param title	Jdialog title
- * @param modal
- */
+  /**
+   * Constructor for Fire Event Logic Dialog.  Inherits from Vegetative Logic Dialog superclass and sets the frame owner, dialog title and modality.
+   * @param owner frame owner
+   * @param title	Jdialog title
+   * @param modal
+   */
   public FireEventLogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -54,25 +50,25 @@ public class FireEventLogicDialog extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
-/**
- * Overloaded FireEvntLogicDialog
- */
+  /**
+   * Overloaded FireEvntLogicDialog
+   */
   public FireEventLogicDialog() {
     super();
   }
-/**
- * sets the text of import old file, and imports it into the base vegetative Logic dialog.
- * @throws Exception
- */
+  /**
+   * sets the text of import old file, and imports it into the base vegetative Logic dialog.
+   * @throws Exception
+   */
   private void jbInit() throws Exception {
     menuImportOldFile.setText("Import old format File");
     menuImportOldFile.addActionListener(new
       FireSpreadLogic_menuImportOldFile_actionAdapter(this));
     menuFile.add(menuImportOldFile,3);
   }
-/**
- * Initializes the system knowledge to fire spread logic.  Creates tab panels to fire spread, type, and fire spotting, then adds to a tabbed pane.  
- */
+  /**
+   * Initializes the system knowledge to fire spread logic.  Creates tab panels to fire spread, type, and fire spotting, then adds to a tabbed pane.
+   */
   private void initialize() {
     sysKnowKind = SystemKnowledge.FIRE_SPREAD_LOGIC;
 
@@ -104,20 +100,20 @@ public class FireEventLogicDialog extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-/**
- * if tabbed pane state changes ges the current system knowledge. 
- */
+  /**
+   * if tabbed pane state changes ges the current system knowledge.
+   */
   public void tabbedPane_stateChanged(ChangeEvent e) {
     super.tabbedPane_stateChanged(e);
     if (currentPanel != null) {
       sysKnowKind = ((FireEventLogicPanel) currentPanel).getSystemKnowledgeKind();
     }
   }
-/**
- * Update the menu items depending on whether it is spread (Open spread, save spread, save spread as, close spread, load default spread
- * fire type (open type, save type, save type as, close type, or load default type.  or fire spotting (open fire spotting, save fire spotting, save fires spotting as, close fire spotting or default fire spotting.)
- * If none of these puts up the standard menu items.
- */
+  /**
+   * Update the menu items depending on whether it is spread (Open spread, save spread, save spread as, close spread, load default spread
+   * fire type (open type, save type, save type as, close type, or load default type.  or fire spotting (open fire spotting, save fire spotting, save fires spotting as, close fire spotting or default fire spotting.)
+   * If none of these puts up the standard menu items.
+   */
   protected void updateMenuItems() {
     super.updateMenuItems();
     if (currentPanelKind.equals(FireEventLogic.SPREAD_STR)) {
@@ -153,10 +149,10 @@ public class FireEventLogicDialog extends VegLogicDialog {
       menuImportOldFile.setEnabled(true);
     }
   }
-/**
- * If import old fire file type menu item selected will return either fire type or fire spread logic, used to get the file.  
- * @param e
- */
+  /**
+   * If import old fire file type menu item selected will return either fire type or fire spread logic, used to get the file.
+   * @param e
+   */
   public void menuImportOldFile_actionPerformed(ActionEvent e) {
     switch (sysKnowKind) {
       case FIRE_TYPE_LOGIC:
@@ -243,12 +239,12 @@ public class FireEventLogicDialog extends VegLogicDialog {
   }
 
 }
+
 /**
  * Menu adaptor used to get fire spread logic import old file.  
  * 
  *
  */
-
 class FireSpreadLogic_menuImportOldFile_actionAdapter implements ActionListener {
   private FireEventLogicDialog adaptee;
   FireSpreadLogic_menuImportOldFile_actionAdapter(FireEventLogicDialog adaptee) {

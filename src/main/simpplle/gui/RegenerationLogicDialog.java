@@ -168,11 +168,10 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     setCursor(Utility.getNormalCursor());
     update(getGraphics());
   }
-
-/**
- * Quits if window closing event occurs
- * @param e
- */
+  /**
+  * Quits if window closing event occurs
+  * @param e
+  */
   void this_windowClosing(WindowEvent e) {
     quit();
   }

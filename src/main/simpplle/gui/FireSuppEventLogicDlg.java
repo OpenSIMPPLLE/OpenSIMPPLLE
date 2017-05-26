@@ -9,7 +9,6 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-
 import simpplle.comcode.FireSuppEventLogic;
 import simpplle.comcode.SystemKnowledge;
 
@@ -37,6 +36,7 @@ public class FireSuppEventLogicDlg extends VegLogicDialog {
   public FireSuppEventLogicDlg() {
     this(new Frame(), "FireSuppEventLogicDlg", false);
   }
+  // TODO: Look into removing this...
   private void jbInit() throws Exception {
 
   }
@@ -58,5 +58,4 @@ public class FireSuppEventLogicDlg extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }

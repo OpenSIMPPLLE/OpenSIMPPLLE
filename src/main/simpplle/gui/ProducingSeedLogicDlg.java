@@ -19,12 +19,12 @@ import simpplle.comcode.*;
  */
 
 public class ProducingSeedLogicDlg extends VegLogicDialog {
-	  /**
-	   * Constructor for Producing Seed LogicDlg.  This sets the frame owner, string title and modality.  
-	   * @param owner frame that owns the dialog
-	   * @param title name of dialog
-	   * @param modal specifies whether dialog blocks user input to other top-level windows when shown
-	   */
+  /**
+   * Constructor for Producing Seed LogicDlg.  This sets the frame owner, string title and modality.
+   * @param owner frame that owns the dialog
+   * @param title name of dialog
+   * @param modal specifies whether dialog blocks user input to other top-level windows when shown
+   */
   public ProducingSeedLogicDlg(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -47,13 +47,12 @@ public class ProducingSeedLogicDlg extends VegLogicDialog {
    * Inits the dialog, (sets nothing)
    * @throws Exception
    */
-  private void jbInit() throws Exception {
-
-  }
-/**
- * Initializes the Producing Seed Logic Dialog with producing seed logic system knowledge. then initializes the dialog with Jmenu items for 
- *  producing seed logic to the VegLogicDialog base columns and sets this.panel producing seeds tostring which is then used to create tabbed panels.  
- */
+  // TODO: Look into removing this...
+  private void jbInit() throws Exception {}
+  /**
+   * Initializes the Producing Seed Logic Dialog with producing seed logic system knowledge. then initializes the dialog with Jmenu items for
+   *  producing seed logic to the VegLogicDialog base columns and sets this.panel producing seeds tostring which is then used to create tabbed panels.
+   */
   private void initialize() {
     sysKnowKind = SystemKnowledge.PRODUCING_SEED_LOGIC;
     String[] kinds = new String[] {ProducingSeedLogic.PRODUCING_SEED.toString()};

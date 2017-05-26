@@ -20,13 +20,12 @@ import simpplle.comcode.*;
  */
 
 public class RegenDelayLogicDlg extends VegLogicDialog {
-	  /**
-	   * Constructor for Regeneration Delay LogicDlg.  This sets the frame owner, string title and modality.  
-	   * @param owner frame that owns the dialog
-	   * @param title name of dialog
-	   * @param modal specifies whether dialog blocks user input to other top-level windows when shown
-	   */
-	
+  /**
+   * Constructor for Regeneration Delay LogicDlg.  This sets the frame owner, string title and modality.
+   * @param owner frame that owns the dialog
+   * @param title name of dialog
+   * @param modal specifies whether dialog blocks user input to other top-level windows when shown
+   */
 	public RegenDelayLogicDlg(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -45,13 +44,12 @@ public class RegenDelayLogicDlg extends VegLogicDialog {
   public RegenDelayLogicDlg() {
     this(new Frame(), "RegenDelayLogicDlg", false);
   }
-
-/**
- * Inits the dialog.  
- * @throws Exception
- */
-  private void jbInit() throws Exception {
-  }
+  /**
+   * Inits the dialog.
+   * @throws Exception
+   */
+  // TODO: Look into removing this...
+  private void jbInit() throws Exception {}
   /**
    * Initializes the Regeneration Delay Logic Dialog with producing seed logic system knowledge. then initializes the dialog with Jmenu items for 
    *  regeneration delay logic to the VegLogicDialog base columns and sets this.panel producing seeds tostring which is then used to create tabbed panels.  
@@ -75,6 +73,4 @@ public class RegenDelayLogicDlg extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }
-

@@ -36,7 +36,7 @@ public class InvasiveSpeciesMSULogicDialog extends VegLogicDialog {
   public InvasiveSpeciesMSULogicDialog() {
     this(new Frame(), "InvasiveSpeciesMSULogicDialog", false);
   }
-
+  // TODO: Look into removing this...
   private void jbInit() throws Exception {}
 
   private void initialize() {

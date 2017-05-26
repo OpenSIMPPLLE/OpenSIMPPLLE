@@ -51,11 +51,8 @@ public class FireSuppWeatherClassALogicDlg extends VegLogicDialog {
                                        sysKnowKind);
       tabbedPane.add(tabPanels[i], kind);
     }
-
     tabbedPane.setSelectedIndex(0);
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }
-

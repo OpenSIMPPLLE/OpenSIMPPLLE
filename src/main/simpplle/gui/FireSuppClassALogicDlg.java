@@ -20,6 +20,7 @@ import simpplle.comcode.*;
  */
 
 public class FireSuppClassALogicDlg extends VegLogicDialog {
+
   public FireSuppClassALogicDlg(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -32,15 +33,17 @@ public class FireSuppClassALogicDlg extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
+
   public FireSuppClassALogicDlg() {
     this(new Frame(), "FireSuppClassALogicDlg", false);
   }
+  // TODO: Look into removing this...
   private void jbInit() throws Exception {
 
   }
-/**
- * Initializes the fire suppression class A logic dialog with tab panels.  
- */
+  /**
+   * Initializes the fire suppression class A logic dialog with tab panels.
+   */
   private void initialize() {
     sysKnowKind = SystemKnowledge.FIRE_SUPP_CLASS_A_LOGIC;
     String[] kinds = new String[] {FireSuppClassALogic.FIRE_SUPP_CLASS_A.toString()};

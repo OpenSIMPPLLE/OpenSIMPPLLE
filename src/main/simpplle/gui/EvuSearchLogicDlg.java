@@ -21,7 +21,6 @@ import javax.swing.border.EtchedBorder;
 import java.awt.event.MouseEvent;
 import javax.swing.ListSelectionModel;
 import java.awt.FlowLayout;
-import java.util.Vector;
 import java.util.ArrayList;
 import simpplle.comcode.Evu;
 import javax.swing.JOptionPane;
@@ -70,14 +69,14 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
   protected JMenu     menuOptions = new JMenu("Options");
   protected JMenuItem menuOptionsMakeTreatments      = new JMenuItem();
   protected JMenuItem menuOptionsMakeLockInProcesses = new JMenuItem();
-/**
- * Constructor for Evu Search Logic Dialog.  References the VegLogicDialog superclass and passes the frame owner, dialog title, and modality.  
- * The last parameter is the Evu Analysis dialog.  
- * @param owner the frame which ownes the Evu Search Logic Dialog
- * @param title The title of the dialog
- * @param modal modality
- * @param dlg The Evu analysis dialog which has values for currently being analyzed.  
- */
+  /**
+   * Constructor for Evu Search Logic Dialog.  References the VegLogicDialog superclass and passes the frame owner, dialog title, and modality.
+   * The last parameter is the Evu Analysis dialog.
+   * @param owner the frame which ownes the Evu Search Logic Dialog
+   * @param title The title of the dialog
+   * @param modal modality
+   * @param dlg The Evu analysis dialog which has values for currently being analyzed.
+   */
   public EvuSearchLogicDlg(Frame owner, String title, boolean modal, EvuAnalysis dlg) {
     super(owner, title, modal);
     try {
@@ -165,10 +164,10 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
 
 
   }
-/**
- * Initializes the Evu Search logic dialog.  Sets the system knowledge to Evu Search Logic and initializes the kinds in super class.
- * Creates a tabbed panel with panels for evu search logic instances.  
- */
+  /**
+   * Initializes the Evu Search logic dialog.  Sets the system knowledge to Evu Search Logic and initializes the kinds in super class.
+   * Creates a tabbed panel with panels for evu search logic instances.
+   */
   private void initialize() {
     sysKnowKind = SystemKnowledge.EVU_SEARCH_LOGIC;
     String[] kinds = new String[] {EvuSearchLogic.EVU_SEARCH.toString()};
@@ -188,15 +187,15 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-/**
- * Gets an array list of Evu units - used in search. 
- * @return arraylist of Evu units.  
- */
+  /**
+   * Gets an array list of Evu units - used in search.
+   * @return arraylist of Evu units.
+   */
   public ArrayList<Evu> getUnits() { return units; }
-/**
- * Updates the results of search.  If search units is null hides the results list and outputs no units found.  Otherwise sets the results list with the list data of Evu result data
- * Calculates acres by totaling acreage of evu's in search results.
- */
+  /**
+   * Updates the results of search.  If search units is null hides the results list and outputs no units found.  Otherwise sets the results list with the list data of Evu result data
+   * Calculates acres by totaling acreage of evu's in search results.
+   */
   private void updateResults() {
     if (units == null) {
       resultsList.setVisible(false);
@@ -219,52 +218,52 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     }
     update(getGraphics());
   }
-/**
- * Creates a units arraylist with evu results of matching units at select rows.  Then sets these units as the results of Evu Analysis dialog.
- * @param e 'Search'
- */
+  /**
+   * Creates a units arraylist with evu results of matching units at select rows.  Then sets these units as the results of Evu Analysis dialog.
+   * @param e 'Search'
+   */
   void searchPB_actionPerformed(ActionEvent e) {
     units = EvuSearchLogic.getInstance().findMatchingUnits(selectedRow);
     evuAnalysisDlg.setResultUnits(units);
     updateResults();
   }
-/**
- * Selects a particular Evu from the results list and uses it to get the Evu Analysis dialog going.  
- * @param e mouse double click
- */
+  /**
+   * Selects a particular Evu from the results list and uses it to get the Evu Analysis dialog going.
+   * @param e mouse double click
+   */
   void resultsList_mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2 && evuAnalysisDlg != null) {
       Evu evu = (Evu)resultsList.getSelectedValue();
       evuAnalysisDlg.goUnit(evu);
     }
   }
-/**
- * If window closing event occurs disposes of Evu Search Logic dialog.  
- * @param e 'X' window closing event
- */
+  /**
+   * If window closing event occurs disposes of Evu Search Logic dialog.
+   * @param e 'X' window closing event
+   */
   void this_windowClosing(WindowEvent e) {
     isOpen = false;
     setVisible(false);
     dispose();
   }
-/**
- * Checks if Evu Search Logic dialog is open.
- * @return true if Evu Search Logic dialog is open.  
- */
+  /**
+   * Checks if Evu Search Logic dialog is open.
+   * @return true if Evu Search Logic dialog is open.
+   */
   public static boolean isOpen() { return isOpen; }
-/**
- * Sets the selected row to be matched in Evu search.
- * @param row the row that will be considered the selected row.    
- */
+  /**
+   * Sets the selected row to be matched in Evu search.
+   * @param row the row that will be considered the selected row.
+   */
   public void updateSelectedRow(int row) {
     selectedRow = row;
     searchPB.setEnabled(true);
   }
-/**
- * Gets the current area and treatment schedule for area.  If there is no schedule, creates one.  Otherwise creates a new treatment dialog to allow user to 
- * select a treatment.  First a time step is picked by user, then the user picks the treatment, and adds the Evu units to the treatments units.  
- * @param e 'Make Treatments'
- */
+  /**
+   * Gets the current area and treatment schedule for area.  If there is no schedule, creates one.  Otherwise creates a new treatment dialog to allow user to
+   * select a treatment.  First a time step is picked by user, then the user picks the treatment, and adds the Evu units to the treatments units.
+   * @param e 'Make Treatments'
+   */
   void menuOptionsMakeTreatments_actionPerformed(ActionEvent e) {
     Area area = Simpplle.getCurrentArea();
     TreatmentSchedule schedule = area.getTreatmentSchedule();
@@ -307,7 +306,6 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
    * Method to allow user to lock in process.  Gets current area and process schedule.  User picks a time step to lock in a process to evu units.  
    * @param e 'Make Lock in process'
    */
-
   void menuOptionsMakeLockInProcesses_actionPerformed(ActionEvent e) {
     Area               area = Simpplle.getCurrentArea();
     ProcessSchedule    schedule = area.getProcessSchedule();
@@ -345,8 +343,4 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     }
   }
 
-
 }
-
-
-

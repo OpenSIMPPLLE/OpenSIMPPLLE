@@ -41,16 +41,16 @@ public class ProcessProbabilityLogicDialog extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
-/**
- * Constructor for Process Probability Logic Dialog.  Calls the VegLogicDialog() superclass.  
- */
+  /**
+   * Constructor for Process Probability Logic Dialog.  Calls the VegLogicDialog() superclass.
+   */
   public ProcessProbabilityLogicDialog() {
     super();
   }
-/**
- * 
- * @throws Exception
- */
+  /**
+   *
+   * @throws Exception
+   */
   private void jbInit() throws Exception {
     menuAdjProcess.setText("Adjacent Process");
     menuAdjProcess.addActionListener(new
@@ -107,12 +107,15 @@ public class ProcessProbabilityLogicDialog extends VegLogicDialog {
   public void menuAdjProcess_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.ADJ_PROCESS_COL);
   }
+
   public void menuLpMpbHazard_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.MPB_HAZARD_COL);
   }
+
   public void menuLpMpbModHazard_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.ADJ_MOD_HAZARD_COL);
   }
+
   public void menuLpMpbHighHazard_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.ADJ_HIGH_HAZARD_COL);
   }
@@ -169,4 +172,3 @@ class ProcessProbabilityLogicDialog_menuAdjProcess_actionAdapter implements
     adaptee.menuAdjProcess_actionPerformed(e);
   }
 }
-

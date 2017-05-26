@@ -9,7 +9,6 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-import javax.swing.JDialog;
 import simpplle.comcode.DoCompetitionLogic;
 import simpplle.comcode.*;
 
@@ -38,23 +37,23 @@ public class DoCompetitionDlg extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
-/**
- * Overloaded constructor.  Builds the Do Competition dialog.  
- */
+  /**
+   * Overloaded constructor.  Builds the Do Competition dialog.
+   */
   public DoCompetitionDlg() {
     this(new Frame(), "DoCompetitionDlg", false);
   }
 
-/**
- * Init method does not set any components.  
- * @throws Exception
- */
+  /**
+   * Init method does not set any components.
+   * @throws Exception
+   */
   private void jbInit() throws Exception {
   }
-/**
- * Initializes the system knowledge kind to Do Competition logic.  Creates a set of tab panels based on number of kinds and 
- * adds them to a tabbed pane.  
- */
+  /**
+   * Initializes the system knowledge kind to Do Competition logic.  Creates a set of tab panels based on number of kinds and
+   * adds them to a tabbed pane.
+   */
   private void initialize() {
     sysKnowKind = SystemKnowledge.DOCOMPETITION_LOGIC;
     String[] kinds = new String[] {DoCompetitionLogic.COMPETITION.toString()};
