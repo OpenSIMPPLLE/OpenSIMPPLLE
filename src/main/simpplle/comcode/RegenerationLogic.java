@@ -44,7 +44,7 @@ public abstract class RegenerationLogic {
 
   private static HabitatTypeGroupType currentEcoGroup;
 /**
- * Gets the hashmap for a particular type of regeneration logic.  CHoices are Succession or Fire.  
+ * Gets the hashmap for a particular type of regeneration logic.  Choices are Succession or Fire.
  * @param kind
  * @return
  */
@@ -56,7 +56,8 @@ public abstract class RegenerationLogic {
     return null;
   }
 /**
- * Sets the default habitat type group. If fire regeneration applies to any habitat type group type in the fire data, uses ANY as default habitata type group type (eco group)
+ * Sets the default habitat type group. If fire regeneration applies to any
+ * habitat type group type in the fire data, uses ANY as default habitat type group type (eco group)
  * Otherwise sets it to the key (habitat type group type) in the fire data hashmap.  
  * @param kind
  */

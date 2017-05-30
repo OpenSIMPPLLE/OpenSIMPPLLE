@@ -626,6 +626,8 @@ public class VegSimStateData implements Externalizable {
     int   prob      = state.getProb();
     float fProb     = state.getFloatProb();
     int   firerule  = state.getFireSpreadRuleIndex();
+    HabitatTypeGroupType h = AreaSummary.
+    RegenerationData r = RegenerationLogic.findRegenData(h,e,l,k);
  
     String probStr = "n/a";
     if (prob < 0) {
