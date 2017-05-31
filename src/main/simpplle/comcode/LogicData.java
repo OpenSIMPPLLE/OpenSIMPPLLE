@@ -15,7 +15,7 @@ import java.io.ObjectOutput;
 import java.util.Collections;
 import java.io.Externalizable;
 import java.util.HashMap;
-import java.util.*;
+
 import simpplle.comcode.Climate.*;
 
 /**
@@ -66,7 +66,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
   public String                   speciesDescription;
   public boolean                  defaultSpeciesDesc;
 
-  public  ArrayList<SizeClass.Structure> sizeClassStructure;
+  public  ArrayList<Structure> sizeClassStructure;
   public  ArrayList<SimpplleType>  sizeClassList;
   public  String                   sizeClassDesc;
   public  boolean                  defaultSizeClassDesc;
@@ -132,7 +132,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
     speciesResistance = new ArrayList<FireResistance>();
     speciesList     = new ArrayList<SimpplleType>();
     sizeClassList   = new ArrayList<SimpplleType>();
-    sizeClassStructure = new ArrayList<SizeClass.Structure>();
+    sizeClassStructure = new ArrayList<Structure>();
     densityList     = new ArrayList<SimpplleType>();
     processList     = new ArrayList<SimpplleType>();
     processTSteps   = 1;
@@ -203,7 +203,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
     logicData.speciesDescription  = speciesDescription;
     logicData.defaultSpeciesDesc  = defaultSpeciesDesc;
 
-    logicData.sizeClassStructure   = new ArrayList<SizeClass.Structure>(sizeClassStructure);
+    logicData.sizeClassStructure   = new ArrayList<Structure>(sizeClassStructure);
     logicData.sizeClassList        = new ArrayList<SimpplleType>(sizeClassList);
     logicData.sizeClassDesc        = sizeClassDesc;
     logicData.defaultSizeClassDesc = defaultSizeClassDesc;
@@ -721,7 +721,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
    * Choices for size class structure are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
    * @param structure
    */
-  public void addStructure(SizeClass.Structure structure) {
+  public void addStructure(Structure structure) {
     if (sizeClassStructure.contains(structure) == false) {
       sizeClassStructure.add(structure);
       SystemKnowledge.markChanged(sysKnowKind);
@@ -732,7 +732,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
    * @param structure the size class structure.  
    * Choices for size class structure are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
    */
-  public void removeStructure(SizeClass.Structure structure) {
+  public void removeStructure(Structure structure) {
     if (sizeClassStructure.contains(structure)) {
       sizeClassStructure.remove(structure);
       SystemKnowledge.markChanged(sysKnowKind);
@@ -743,7 +743,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
    * Choices for size class structure are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
    * @return size class structure arraylist
    */
-  public ArrayList<SizeClass.Structure> getStructure() {
+  public ArrayList<Structure> getStructure() {
     return sizeClassStructure;
   }
   /**
@@ -752,7 +752,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
    * @param structure size class structure
    * @return true if size class structure is in logic data size class structure arraylist
    */
-  public boolean hasStructure(SizeClass.Structure structure) {
+  public boolean hasStructure(Structure structure) {
     return sizeClassStructure != null && sizeClassStructure.contains(structure);
   }
 /**
@@ -1194,7 +1194,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
     speciesDescription = (String)in.readObject();
     defaultSpeciesDesc = in.readBoolean();
 
-    sizeClassStructure  = (ArrayList<SizeClass.Structure>)in.readObject();
+    sizeClassStructure  = (ArrayList<Structure>)in.readObject();
     sizeClassList       = (ArrayList<SimpplleType>)in.readObject();
     sizeClassDesc       = (String)in.readObject();
     defaultSizeClassDesc  = in.readBoolean();

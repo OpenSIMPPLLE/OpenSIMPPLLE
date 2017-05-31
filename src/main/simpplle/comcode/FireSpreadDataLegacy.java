@@ -10,7 +10,6 @@ package simpplle.comcode;
 
 import java.io.*;
 import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
 
 /**
  * This class is the Legacy fire spread data.  Will probably be deprecated in OpenSimpplle v1.0
@@ -44,9 +43,9 @@ public abstract class FireSpreadDataLegacy {
   public static final int NF_OTHER      = FireEvent.NF_OTHER;
   public static final int OTHER         = FireEvent.OTHER;
 
-  public static final SizeClass.Structure NON_FOREST     = SizeClass.NON_FOREST;
-  public static final SizeClass.Structure SINGLE_STORY   = SizeClass.SINGLE_STORY;
-  public static final SizeClass.Structure MULTIPLE_STORY = SizeClass.MULTIPLE_STORY;
+  public static final Structure NON_FOREST     = Structure.NON_FOREST;
+  public static final Structure SINGLE_STORY   = Structure.SINGLE_STORY;
+  public static final Structure MULTIPLE_STORY = Structure.MULTIPLE_STORY;
 
   private static final int NUM_SPREAD_TYPE     = 2;
   private static final int NUM_SPREAD_POSITION = 2;
@@ -61,7 +60,7 @@ public abstract class FireSpreadDataLegacy {
   private static ProcessType[][][][][][][][] spreadData;
 
   private static ProcessType getSpreadData(int fireType, int position, int density,
-                                  int resistance, SizeClass.Structure structure,
+                                  int resistance, Structure structure,
                                   int page, int row, int col) {
     return spreadData[fireType][position][density][resistance][structure.ordinal()][page][row][col];
   }
@@ -270,7 +269,7 @@ public abstract class FireSpreadDataLegacy {
                                                Density density,
                                                ProcessType pastProcessType)
   {
-    SizeClass.Structure structure;
+    Structure structure;
     int densityClass;
     int page, row, col = 0;
 
@@ -354,7 +353,7 @@ public abstract class FireSpreadDataLegacy {
       Density density,
       ProcessType pastProcessType)
   {
-    SizeClass.Structure structure;
+    Structure structure;
     int densityClass;
     int page, row=-1, col = 0;
 
@@ -434,7 +433,7 @@ public abstract class FireSpreadDataLegacy {
                                                Density density,
                                                ProcessType pastProcessType)
   {
-    SizeClass.Structure structure;
+    Structure structure;
     int densityClass;
     int page, row=-1, col = 0;
 

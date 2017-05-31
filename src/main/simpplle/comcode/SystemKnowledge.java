@@ -2551,7 +2551,7 @@ public class SystemKnowledge {
     xs.alias("HabitatTypeGroupType",HabitatTypeGroupType.class);
     xs.alias("Species",Species.class);
     xs.alias("SizeClass",SizeClass.class);
-    xs.alias("SizeClassStructure",SizeClass.Structure.class);
+    xs.alias("SizeClassStructure",Structure.class);
     xs.alias("ProcessType",ProcessType.class);
     xs.alias("TreatmentType",TreatmentType.class);
     xs.alias("Density",Density.class);

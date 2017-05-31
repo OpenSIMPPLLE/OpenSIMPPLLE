@@ -31,7 +31,7 @@ public abstract class FireTypeDataLegacy {
 
   // **********************************************************************
   private static ProcessType getLowTypeOfFire(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int zoneId = Simpplle.getCurrentZone().getId();
@@ -52,7 +52,7 @@ public abstract class FireTypeDataLegacy {
   }
 
   private static ProcessType getLowTypeOfFireCommon(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     ProcessType fireProcessType;
@@ -144,7 +144,7 @@ public abstract class FireTypeDataLegacy {
   }
 
   private static ProcessType getLowTypeOfFireSierraNevada(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int         row = -1;
@@ -259,7 +259,7 @@ public abstract class FireTypeDataLegacy {
   }
 
   private static ProcessType getLowTypeOfFireSouthernCalifornia(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int         row = -1;
@@ -372,7 +372,7 @@ public abstract class FireTypeDataLegacy {
   }
 
   private static ProcessType getLowTypeOfFireAlaska(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int     row = -1;
@@ -419,7 +419,7 @@ public abstract class FireTypeDataLegacy {
   }
   // **********************************************************************
   private static ProcessType getModerateTypeOfFire(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int zoneId = Simpplle.getCurrentZone().getId();
@@ -438,7 +438,7 @@ public abstract class FireTypeDataLegacy {
   }
 
   private static ProcessType getModerateTypeOfFireCommon(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int         row = -1;
@@ -528,7 +528,7 @@ public abstract class FireTypeDataLegacy {
   }
 
   private static ProcessType getModerateTypeOfFireAlaska(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int     row = -1;
@@ -566,7 +566,7 @@ public abstract class FireTypeDataLegacy {
   }
   // **********************************************************************
   private static ProcessType getHighTypeOfFire(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
     int zoneId = Simpplle.getCurrentZone().getId();
 
@@ -585,7 +585,7 @@ public abstract class FireTypeDataLegacy {
     }
   }
   private static ProcessType getHighTypeOfFireCommon(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int row = -1;
@@ -725,7 +725,7 @@ public abstract class FireTypeDataLegacy {
   }
 
   private static ProcessType getHighTypeOfFireSierraNevada(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int         row = -1;
@@ -861,7 +861,7 @@ public abstract class FireTypeDataLegacy {
   }
 
   private static ProcessType getHighTypeOfFireSouthernCalifornia(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int         row = -1;
@@ -997,7 +997,7 @@ public abstract class FireTypeDataLegacy {
   }
 
   private static ProcessType getHighTypeOfFireAlaska(
-      SizeClass.Structure structure, int page, int resistance, SizeClass sizeClass,
+      Structure structure, int page, int resistance, SizeClass sizeClass,
       Density density, ProcessType pastProcessType, TreatmentType treatType) {
 
     int     row = -1;
@@ -1059,7 +1059,7 @@ public abstract class FireTypeDataLegacy {
   {
 
     int       page = -1;
-    SizeClass.Structure structure = FireEvent.NON_FOREST;
+    Structure structure = FireEvent.NON_FOREST;
 
     if (sizeClass == SizeClass.GRASS           || sizeClass == SizeClass.UNIFORM           ||
         sizeClass == SizeClass.SCATTERED       || sizeClass == SizeClass.CLUMPED           ||
@@ -1116,7 +1116,7 @@ public abstract class FireTypeDataLegacy {
   {
 
     int       page = -1;
-    SizeClass.Structure structure = FireEvent.NON_FOREST;
+    Structure structure = FireEvent.NON_FOREST;
 
     if (sizeClass == SizeClass.HERB        || sizeClass == SizeClass.GH        ||
         sizeClass == SizeClass.TALL_SHRUB  || sizeClass == SizeClass.LOW_SHRUB ||
@@ -1210,7 +1210,7 @@ public abstract class FireTypeDataLegacy {
           throw new ParseError("Fire Type Data file is missing data.");
         }
 
-        for (SizeClass.Structure structure : SizeClass.Structure.values()) {
+        for (Structure structure : Structure.values()) {
           for(page=0;page<fireTypeData[resist][structure.ordinal()].length;page++) {
             line    = fin.readLine();
             strTok  = new StringTokenizerPlus(line,",");
@@ -1270,11 +1270,11 @@ public abstract class FireTypeDataLegacy {
     }
   }
 
-  private static void setFireTypeData(int resistance, SizeClass.Structure structure, int page,
+  private static void setFireTypeData(int resistance, Structure structure, int page,
                                       int row, int moisture, ProcessType processType) {
     fireTypeData[resistance][structure.ordinal()][page][row][moisture] = processType;
   }
-  public static ProcessType getFireTypeData(int resistance,SizeClass.Structure structure,int page,int row) {
+  public static ProcessType getFireTypeData(int resistance, Structure structure, int page, int row) {
     return fireTypeData[resistance][structure.ordinal()][page][row][moisture.ordinal()];
   }
 
