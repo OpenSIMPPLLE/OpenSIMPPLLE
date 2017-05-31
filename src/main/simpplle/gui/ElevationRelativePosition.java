@@ -91,7 +91,7 @@ public class ElevationRelativePosition extends JDialog {
     polyPanel.add(labelPanel);
 
     if(area.hasUniformSizePolygons()) {
-      polyLabel.setText("<html><p>Default difference in elevation (in meters) between a vegetation" +
+      polyLabel.setText("<html><p>Default difference in elevation (in meters) between a vegetation " +
           "unit and its adjacent vegetation units to determine relative position (above, below, or " +
           "next-to) is 10 percent. Enter a different value if the default is not desired.</p></html>");
       labelPanel.add(uniformPolyValue);
