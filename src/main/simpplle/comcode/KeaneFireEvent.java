@@ -83,10 +83,8 @@ public class KeaneFireEvent extends ProcessOccurrenceSpreadingFire {
   void spreadToNeighbors(Evu source, ArrayList<Evu> burned, boolean isExtreme) {
 
     AdjacentData[] neighborhood = source.getNeighborhood();
-    // TODO populate neighborhood, different methods to spread to existing or missing
 
-
-    for (int i = 0; i < neighborhood.length; i++) {  // TODO use evu.NUM_NEIGHBORS ?
+    for (int i = 0; i < source.getNUM_NEIGHBORS(); i++) {
       AdjacentData adjacent = neighborhood[i];
 
       if(adjacent != null){
