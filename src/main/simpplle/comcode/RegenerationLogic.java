@@ -221,6 +221,7 @@ public abstract class RegenerationLogic {
         for (AbstractLogicData data : dataList) {
           RegenerationData regenData = (RegenerationData) data;
           if (regenData.isMatch(evu, tStep, lifeform)) {
+            evu.getState().setFireRegenerationRuleIndex(dataList.indexOf(regenData));
             return regenData;
           }
         }
@@ -348,9 +349,8 @@ public abstract class RegenerationLogic {
     return (VegetativeType)regenData.inLandscape.get(0);
   }
 
-
   public static VegetativeType getInLandscapeSeedState(HabitatTypeGroupType ecoGroup,
-                                                       Evu evu, int tStep, Lifeform lifeform) {
+                                                        Evu evu, int tStep, Lifeform lifeform) {
 
     FireRegenerationData regenData =
         (FireRegenerationData)findRegenData(ecoGroup,evu,tStep,lifeform,FIRE);
@@ -363,6 +363,7 @@ public abstract class RegenerationLogic {
     }
     return (VegetativeType)regenData.inLandscape.get(0);
   }
+
   public static ArrayList<VegetativeType> getAdjacentStates(HabitatTypeGroupType ecoGroup,Evu evu,
                                                             int tStep, Lifeform lifeform) {
     FireRegenerationData regenData =
