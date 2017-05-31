@@ -11,8 +11,6 @@ package simpplle.comcode;
 import java.io.*;
 import java.util.*;
 import java.util.zip.GZIPInputStream;
-import java.util.jar.JarOutputStream;
-import java.util.jar.JarInputStream;
 
 /**
  * This class contains methods for a Regeneration Logic. Regeneration is highly variable.

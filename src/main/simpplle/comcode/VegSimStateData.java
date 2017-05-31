@@ -626,9 +626,7 @@ public class VegSimStateData implements Externalizable {
     int   prob      = state.getProb();
     float fProb     = state.getFloatProb();
     int   firerule  = state.getFireSpreadRuleIndex();
-    HabitatTypeGroupType h = AreaSummary.
-    RegenerationData r = RegenerationLogic.findRegenData(h,e,l,k);
- 
+    int   regenrule = state.getFireRegenerationRuleIndex();
     String probStr = "n/a";
     if (prob < 0) {
       fProb = 0.0f;
@@ -642,7 +640,7 @@ public class VegSimStateData implements Externalizable {
     }
     fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d%n",
         run ,ts, seasonId, state.slink, lifeId, speciesId, sizeId, age, densityId, processId, fProb,
-        probStr, treatmentId, originUnitId, firerule); //state.fireSpreadRuleIndex);
+        probStr, treatmentId, originUnitId, firerule, regenrule); //state.fireSpreadRuleIndex);
 
     if (state.trackingSpecies != null) {
 
