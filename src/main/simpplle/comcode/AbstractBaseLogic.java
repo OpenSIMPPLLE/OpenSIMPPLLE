@@ -74,7 +74,6 @@ public abstract class AbstractBaseLogic {
       addColumn(kinds[i],"ROW_COL");
     }
   }
-
   /**
    * Adds a new column.
    *
@@ -84,7 +83,6 @@ public abstract class AbstractBaseLogic {
   protected void addColumn(String kind, String column) {
     columns.get(kind).add(column);
   }
-
   /**
    * Returns a column count.
    *
@@ -95,7 +93,6 @@ public abstract class AbstractBaseLogic {
     ArrayList<String> columns = visibleColumnsHm.get(kind);
     return columns != null ? columns.size() : 0;
   }
-
   /**
    * Returns the name of the column at columnIndex.
    *
@@ -104,7 +101,6 @@ public abstract class AbstractBaseLogic {
    * @return The name of the column
    */
   public abstract String getColumnName(String kind, int columnIndex);
-
   /**
    * Returns the name of the first column.
    *
@@ -119,7 +115,6 @@ public abstract class AbstractBaseLogic {
         return "";
     }
   }
-
   /**
    * Returns the index of the column named columnName.
    *
@@ -135,7 +130,6 @@ public abstract class AbstractBaseLogic {
       return -1;
     }
   }
-
   /**
    * Returns the name of the column at columnIndex.
    *
@@ -151,7 +145,6 @@ public abstract class AbstractBaseLogic {
       return "";
     }
   }
-
   /**
    * Returns the index of the column named columnName.
    *
@@ -164,7 +157,6 @@ public abstract class AbstractBaseLogic {
     }
     return 0;
   }
-
   /**
    * Marks all columns as visible.
    *
@@ -175,7 +167,6 @@ public abstract class AbstractBaseLogic {
       addVisibleColumn(kind,i);
     }
   }
-
   /**
    * Marks a column as visible.
    *
@@ -185,7 +176,6 @@ public abstract class AbstractBaseLogic {
   public void addVisibleColumn(String kind, String columnName) {
     addVisibleColumn(kind,getColumnPosition(kind,columnName));
   }
-
   /**
    * Marks a column as visible.
    *
@@ -212,7 +202,6 @@ public abstract class AbstractBaseLogic {
       SystemKnowledge.markChanged(sysKnowKind);
     }
   }
-
   /**
    * Hides a visible column.
    *
@@ -229,7 +218,6 @@ public abstract class AbstractBaseLogic {
       }
     }
   }
-
   /**
    * Returns an array of visible column indices.
    *
@@ -244,7 +232,6 @@ public abstract class AbstractBaseLogic {
      }
      return indices;
   }
-
   /**
    * Returns the name of a visible column.
    *
@@ -252,10 +239,9 @@ public abstract class AbstractBaseLogic {
    * @param columnIndex The index of the visible column
    * @return The name of the visible column
    */
-  public String getVisibleColumnName(String kind, int columnIndex) {
+  String getVisibleColumnName(String kind, int columnIndex) {
     return visibleColumnsHm.get(kind).get(columnIndex);
   }
-
   /**
    * Determines if a column is visible.
    *
@@ -272,7 +258,6 @@ public abstract class AbstractBaseLogic {
     int index = visibleColumns.indexOf(name);
     return (index != -1);
   }
-
   /**
    * Creates a row of logic at insertPos.
    *
@@ -280,7 +265,6 @@ public abstract class AbstractBaseLogic {
    * @param kind A kind of logic
    */
   public abstract void addRow(int insertPos, String kind);
-
   /**
    * Appends a row of logic.
    *
@@ -290,7 +274,6 @@ public abstract class AbstractBaseLogic {
   public void addRow(String kind, AbstractLogicData logicData) {
     addRow(-1,kind,logicData);
   }
-
   /**
    * Inserts a row of logic.
    *
@@ -306,7 +289,6 @@ public abstract class AbstractBaseLogic {
       getData(kind,true).add(insertPos,logicData);
     }
   }
-
   /**
    * Removes a row of logic.
    *
@@ -316,7 +298,6 @@ public abstract class AbstractBaseLogic {
   public void removeRow(int row, String kind) {
     getData(kind).remove(row);
   }
-
   /**
    * Removes a row of logic and flags a change.
    *
@@ -327,7 +308,6 @@ public abstract class AbstractBaseLogic {
     getData(kind).remove(row);
     markChanged();
   }
-
   /**
    * Duplicates a row of logic.
    *
@@ -336,7 +316,6 @@ public abstract class AbstractBaseLogic {
    * @param kind A kind of logic
    */
   public abstract void duplicateRow(int row, int insertPos, String kind);
-
   /**
    * Decrements the index of a row.
    *
@@ -354,7 +333,6 @@ public abstract class AbstractBaseLogic {
     getData(kind).add(newRow,logicData);
     return newRow;
   }
-
   /**
    * Increments the index of a row.
    *
@@ -372,7 +350,6 @@ public abstract class AbstractBaseLogic {
     getData(kind).add(newRow,logicData);
     return newRow;
   }
-
   /**
    * Returns the index of the last row.
    *
@@ -382,8 +359,6 @@ public abstract class AbstractBaseLogic {
   public int getLastRowIndex(String kind) {
     return getData(kind).size() - 1;
   }
-
-
   /**
    * Returns a row count.
    *
@@ -393,7 +368,6 @@ public abstract class AbstractBaseLogic {
   public int getRowCount(String kind) {
     return isDataPresent(kind) ? getData(kind).size() : 0;
   }
-
   /**
    * Assigns a value to a cell and flags a change.
    *
@@ -406,7 +380,6 @@ public abstract class AbstractBaseLogic {
     getData(kind).get(row).setValueAt(col,value);
     markChanged();
   }
-
   /**
    * Returns all of the rows from a kind of logic.
    *
@@ -416,7 +389,6 @@ public abstract class AbstractBaseLogic {
   protected ArrayList<AbstractLogicData> getData(String kind) {
     return data.get(kind);
   }
-
   /**
    * Returns all of the rows from a kind of logic or returns an empty array if none exist.
    *
@@ -430,7 +402,6 @@ public abstract class AbstractBaseLogic {
     }
     return getData(kind);
   }
-
   /**
    * Returns the value of a cell.
    *
@@ -445,7 +416,6 @@ public abstract class AbstractBaseLogic {
     }
     return null;
   }
-
   /**
    * Returns a row of data.
    *
@@ -459,7 +429,6 @@ public abstract class AbstractBaseLogic {
     }
     return null;
   }
-
   /**
    * Removes all of the rows from a kind of logic.
    *
@@ -470,7 +439,6 @@ public abstract class AbstractBaseLogic {
       getData(kind).clear();
     }
   }
-
   /**
    * Returns true if there is at least one row of data for a kind of logic.
    *
@@ -480,21 +448,18 @@ public abstract class AbstractBaseLogic {
   public boolean isDataPresent(String kind) {
     return (getData(kind) != null && getData(kind).size() > 0);
   }
-
   /**
    * Flags a change to this kind of system knowledge.
    */
   public void markChanged() {
     SystemKnowledge.markChanged(sysKnowKind);
   }
-
   /**
    * Returns true if a logic table has changed or contains user data.
    */
   public boolean hasChanged() {
     return SystemKnowledge.hasChangedOrUserData(sysKnowKind);
   }
-
   /**
    *
    *
@@ -505,7 +470,6 @@ public abstract class AbstractBaseLogic {
   protected void saveData(String kind, ObjectOutputStream os) throws IOException {
     saveData(kind,os,false);
   }
-
   /**
    *
    *
@@ -521,7 +485,6 @@ public abstract class AbstractBaseLogic {
     ArrayList<AbstractLogicData> logicData = getData(kind);
     os.writeObject(logicData);
   }
-
   /**
    *
    *
@@ -536,7 +499,6 @@ public abstract class AbstractBaseLogic {
   {
     readData(kind,in,version,false);
   }
-
   /**
    *
    *
@@ -563,7 +525,6 @@ public abstract class AbstractBaseLogic {
       data.put(kind, (ArrayList<AbstractLogicData>) in.readObject());
     }
   }
-
   /**
    * Saves the visible columns for each kind of logic to an object output stream.
    *
@@ -577,7 +538,6 @@ public abstract class AbstractBaseLogic {
       os.writeObject(visibleColumnsHm.get(key));
     }
   }
-
   /**
    * Reads visible columns from an object input stream.
    *
@@ -605,8 +565,7 @@ public abstract class AbstractBaseLogic {
       }
     }
   }
-
- /**
+  /**
   * Saves visible column names and column data for each kind of logic.
   *
   * @param os An object output stream
@@ -622,7 +581,6 @@ public abstract class AbstractBaseLogic {
     }
     os.flush();
   }
-
   /**
    * Reads visible column names and column data for each kind of logic. The version is read from
    * the object input stream.
@@ -634,7 +592,6 @@ public abstract class AbstractBaseLogic {
   public void read(ObjectInputStream in) throws IOException, ClassNotFoundException {
     read(in,-1);
   }
-
   /**
    * Reads visible column names and column data for each kind of logic. If version equals -1,
    * then the version is read from the object input stream.
@@ -665,12 +622,10 @@ public abstract class AbstractBaseLogic {
     noChangeRead = false;
 
   }
-
   /**
    *
    */
   public static boolean isNoChangeRead() { return noChangeRead; }
-
   /**
    * Iteratively checks each column to determine if it is empty
    * Note: Here an 'empty' cell is represented by brackets with nothing inside of them
@@ -682,7 +637,7 @@ public abstract class AbstractBaseLogic {
 
     ArrayList<Integer> emptyColumns = new ArrayList<>();
     int numColumns = columns.get(kind).size();
-    int numRows = getData(kind).size();
+    int numRows = getRowCount(kind);
 
     for(int j = 0; j < numColumns; j++) {
 
