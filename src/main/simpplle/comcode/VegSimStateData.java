@@ -46,6 +46,8 @@ public class VegSimStateData implements Externalizable {
   private int fireSpreadRuleIndex = -1;
   private int fireRegenerationRuleIndex = -1;
 
+  private int successionRegenerationRuleIndex = -1;
+
   // Object[Species][Integer]
   // Flat3Map
   // Key: InclusionRuleSpecies, Value: Percent(float)
@@ -341,6 +343,14 @@ public class VegSimStateData implements Externalizable {
 
   public void setFireRegenerationRuleIndex(int index) {
     fireRegenerationRuleIndex = index;
+  }
+
+  public int getSuccessionRegenerationRuleIndex() {
+    return successionRegenerationRuleIndex;
+  }
+
+  public void setSuccessionRegenerationRuleIndex(int index) {
+    successionRegenerationRuleIndex = index;
   }
 
   public String getSeasonString() {

@@ -221,7 +221,7 @@ public abstract class RegenerationLogic {
         for (AbstractLogicData data : dataList) {
           RegenerationData regenData = (RegenerationData) data;
           if (regenData.isMatch(evu, tStep, lifeform)) {
-            evu.getState().setFireRegenerationRuleIndex(dataList.indexOf(regenData));
+            recordRuleIndex(evu, dataList.indexOf(regenData), kind, tStep, lifeform);
             return regenData;
           }
         }
@@ -232,6 +232,19 @@ public abstract class RegenerationLogic {
     }
     return null;
   }
+
+  private static void recordRuleIndex(Evu evu, int index, DataKinds kind, int timestep, Lifeform lifeform) {
+    VegSimStateData state = evu.getState(timestep, lifeform);
+
+    if (state == null) return;
+
+    if (kind == DataKinds.SUCCESSION) {
+      state.setSuccessionRegenerationRuleIndex(index);
+    } else if (kind == DataKinds.FIRE) {
+      state.setFireRegenerationRuleIndex(index);
+    }
+  }
+
   private static RegenerationData findRegenDataSuccInLandscapeSeed(
       HabitatTypeGroupType ecoGroup, Evu evu,
       VegSimStateData state, int tStep, Lifeform lifeform, DataKinds kind)
