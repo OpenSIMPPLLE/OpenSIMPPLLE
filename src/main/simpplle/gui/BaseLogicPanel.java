@@ -32,6 +32,7 @@ import java.util.Enumeration;
  */
 
 public class BaseLogicPanel extends JPanel {
+
   protected AbstractLogicDialog dialog;
   protected String kind;
   public LogicDataModel dataModel;
@@ -44,13 +45,14 @@ public class BaseLogicPanel extends JPanel {
   protected JPanel centerPanel = new JPanel(new BorderLayout());
   protected JScrollPane tableScrollPane = new JScrollPane();
   protected JTable logicTable = new JTable();
-/**
- * Constructor for Base Logic Panel.  Sets the Abstract Logic Dialog, system knowledge kind, logic data model, logic instance
- * @param dialog
- * @param kind
- * @param logicInst
- * @param sysKnowKind
- */
+
+  /**
+   * Constructor for Base Logic Panel.  Sets the Abstract Logic Dialog, system knowledge kind, logic data model, logic instance
+   * @param dialog
+   * @param kind
+   * @param logicInst
+   * @param sysKnowKind
+   */
   public BaseLogicPanel(AbstractLogicDialog dialog,
                     String kind, AbstractBaseLogic logicInst,
                     SystemKnowledge.Kinds sysKnowKind) {
@@ -66,10 +68,10 @@ public class BaseLogicPanel extends JPanel {
       exception.printStackTrace();
     }
   }
-/**
- * sets the layout, center panel, table scroll pane and north panel
- * @throws Exception
- */
+  /**
+   * sets the layout, center panel, table scroll pane and north panel
+   * @throws Exception
+   */
   protected void jbInit() throws Exception {
     setLayout(new BorderLayout());
     add(centerPanel, BorderLayout.CENTER);
@@ -77,9 +79,9 @@ public class BaseLogicPanel extends JPanel {
     tableScrollPane.getViewport().add(logicTable);
     add(northPanel, BorderLayout.NORTH);
   }
-/**
- * 
- */
+  /**
+   *
+   */
   public void updateColumns() {
     TableColumn column;
     Enumeration e = logicTable.getColumnModel().getColumns();
@@ -92,18 +94,17 @@ public class BaseLogicPanel extends JPanel {
       initColumns(column,col);
     }
   }
-/**
- * initializes the table columns by referring to javax.swing.table.TableColumn TableColumn .  returns nothing, sets nothing
- * @param column
- * @param col
- */
+  /**
+   * initializes the table columns by referring to javax.swing.table.TableColumn TableColumn .  returns nothing, sets nothing
+   * @param column
+   * @param col
+   */
   protected void initColumns(TableColumn column, int col) {}
-  
-/**
- * initialized the base columns by setting the identifier to baselogic row_col and setting the row color to alternate
- * @param column
- * @param col
- */
+  /**
+   * initialized the base columns by setting the identifier to baselogic row_col and setting the row color to alternate
+   * @param column
+   * @param col
+   */
   protected void initBaseColumns(TableColumn column, int col) { 
     if (col == BaseLogic.ROW_COL) {
       column.setIdentifier(BaseLogic.ROW_COL);
@@ -134,13 +135,13 @@ public class BaseLogicPanel extends JPanel {
     updateDialog();
 
   }
-
+  // TODO: Look into removing this function...
   protected void rowSelected() {}
 
-  // TODO: Look into removing this function...
   protected void updateColumnWidth() {
     Utility.initColumnWidth(logicTable);
   }
+
   public SystemKnowledge.Kinds getSystemKnowledgeKind() { return sysKnowKind; }
   /**
    * Adds a visible column and sets the fire table structure changed
@@ -158,6 +159,7 @@ public class BaseLogicPanel extends JPanel {
     dataModel.removeVisibleColumn(col);
     dataModel.fireTableStructureChanged();
   }
+
   public boolean isVisibleColumn(int col) {
     return dataModel.isVisibleColumn(col);
   }
@@ -190,22 +192,22 @@ public class BaseLogicPanel extends JPanel {
 //    if (inColumnInit) { dialog.setColumnMenuItemSelected(false,col); }
 //    columns.get(col).setPreferredWidth(0);
 //  }
-/**
- * Updates the BaseLogic dialog, by calling refresh table and updating the graphics
- */
+  /**
+   * Updates the BaseLogic dialog, by calling refresh table and updating the graphics
+   */
   public void updateDialog() {
     refreshTable();
     update(getGraphics());
   }
-/**
- * Refreshes the table by notifying all listeners that the table has changed and the JTable should redraw from scratch
- */
+  /**
+   * Refreshes the table by notifying all listeners that the table has changed and the JTable should redraw from scratch
+   */
   public void refreshTable() {
     dataModel.fireTableDataChanged();
   }
-/**
- * moves a row up by sending to LogicDataModel GUI class
- */
+  /**
+   * moves a row up by sending to LogicDataModel GUI class
+   */
   public void moveRowUp() {
     int newRow = dataModel.moveRowUp(selectedRow);
     logicTable.setRowSelectionInterval(newRow,newRow);
@@ -248,10 +250,10 @@ public class BaseLogicPanel extends JPanel {
       logicTable.clearSelection();
     }
   }
-/**
- * Inserts a row according to position. The position is determined by a user row selection to be inserted above
- * or below, if there is no row selected then the row is appended to the end.
- */
+  /**
+   * Inserts a row according to position. The position is determined by a user row selection to be inserted above
+   * or below, if there is no row selected then the row is appended to the end.
+   */
   public void insertRow() {
     int position = (selectedRow != -1) ? selectedRow : dataModel.getRowCount() + 1;
     dataModel.addRow(position);
@@ -261,7 +263,22 @@ public class BaseLogicPanel extends JPanel {
    *
    * @return Returns ArrayList of column indices that are empty
    */
-   ArrayList<Integer> emptyColumns() {return logicInst.checkEmpty(kind);}
+  private ArrayList<Integer> emptyColumns() {return logicInst.checkEmpty(kind);}
+  /**
+   * Hides all of the empty columns
+   */
+  void hideEmpty(){
+
+    ArrayList<Integer> emptyCols = emptyColumns();
+    emptyCols.forEach(this::removeVisibleColumn);
+  }
+  /**
+   * Reveals all of the empty columns*
+   */
+  void showEmpty(){
+    ArrayList<Integer> emptyCols = emptyColumns();
+    emptyCols.forEach(this::addVisibleColumn);
+  }
 
   public void valueChanged(ListSelectionEvent e) {
     ListSelectionModel lsm = (ListSelectionModel)e.getSource();

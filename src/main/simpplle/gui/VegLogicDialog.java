@@ -150,6 +150,8 @@ public class VegLogicDialog extends AbstractLogicDialog {
     colMenuItems.add(BaseLogic.ROAD_STATUS_COL,menuRoadStatus);
     colMenuItems.add(BaseLogic.TRAIL_STATUS_COL,menuTrailStatus);
     colMenuItems.add(BaseLogic.LANDTYPE_COL,menuLandtype);
+
+
   }
   /**
    * Creates an arraylist of selected columns menu items..  
@@ -179,22 +181,12 @@ public class VegLogicDialog extends AbstractLogicDialog {
   /**
    * If Show Vals menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.
    */
-   private void menuShowValCols_actionPerformed() {
-
-    ArrayList<Integer> emptyCols = currentPanel.emptyColumns();
+  private void menuShowValCols_actionPerformed() {
 
     if(menuShowValCols.isSelected()) {
-
-      for(int i = 0; i < emptyCols.size(); i++){
-
-        currentPanel.removeVisibleColumn(emptyCols.get(i));
-      }
+      currentPanel.hideEmpty();
     } else{
-      for(int i = 0; i < emptyCols.size(); i++){
-
-        currentPanel.addVisibleColumn(emptyCols.get(i));
-
-      }
+      currentPanel.showEmpty();
     }
     updateMenuItems();
     currentPanel.updateColumns();
