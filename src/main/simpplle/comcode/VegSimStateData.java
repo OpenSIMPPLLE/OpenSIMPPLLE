@@ -636,8 +636,9 @@ public class VegSimStateData implements Externalizable {
     int   prob      = state.getProb();
     float fProb     = state.getFloatProb();
     int   firerule  = state.getFireSpreadRuleIndex();
-    int   fireRegenRuleIndex = state.getFireRegenerationRuleIndex();
-    int   successionRegenRuleIndex = state.getSuccessionRegenerationRuleIndex();
+
+    int   fireRegenRuleIndex        = state.getFireRegenerationRuleIndex();
+    int   successionRegenRuleIndex  = state.getSuccessionRegenerationRuleIndex();
 
     String probStr = "n/a";
     if (prob < 0) {
@@ -652,7 +653,10 @@ public class VegSimStateData implements Externalizable {
     }
     fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d,%d,%d%n",
         run ,ts, seasonId, state.slink, lifeId, speciesId, sizeId, age, densityId, processId, fProb,
-        probStr, treatmentId, originUnitId, firerule, fireRegenRuleIndex, successionRegenRuleIndex); //state.fireSpreadRuleIndex);
+        probStr, treatmentId, originUnitId, firerule, fireRegenRuleIndex, successionRegenRuleIndex);
+
+    state.setFireRegenerationRuleIndex(-1);
+    state.setSuccessionRegenerationRuleIndex(-1);
 
     if (state.trackingSpecies != null) {
 
@@ -677,6 +681,7 @@ public class VegSimStateData implements Externalizable {
     }
   }
 
+  // do we really need all these commented out methods in here still?  Isn't that what version control is for?
 //  public static long writeRandomAccessFile(RandomAccessFile simFile, VegSimStateData state)
 //    throws SimpplleError
 //  {
