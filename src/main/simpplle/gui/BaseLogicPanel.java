@@ -38,7 +38,7 @@ public class BaseLogicPanel extends JPanel {
   protected boolean inColumnInit = false;
   protected AbstractBaseLogic logicInst;
   protected SystemKnowledge.Kinds sysKnowKind;
-
+  private ArrayList<Integer> emptyCols = new ArrayList<>();
   protected JPanel northPanel = new JPanel();
   protected JPanel centerPanel = new JPanel(new BorderLayout());
   protected JScrollPane tableScrollPane = new JScrollPane();
@@ -89,7 +89,7 @@ public class BaseLogicPanel extends JPanel {
       String colName = (String)column.getHeaderValue();
       int col = dataModel.getLogicInst().getColumnNumFromName(colName);
 
-      initColumns(column,col);
+      initColumns(column, col);
     }
     updateColumnWidth();
   }
@@ -162,7 +162,6 @@ public class BaseLogicPanel extends JPanel {
   public boolean isVisibleColumn(int col) {
     return dataModel.isVisibleColumn(col);
   }
-
   /**
    * Updates the BaseLogic dialog, by calling refresh table and updating the graphics
    */
@@ -239,15 +238,13 @@ public class BaseLogicPanel extends JPanel {
    * Hides all of the empty columns
    */
   void hideEmpty(){
-
-    ArrayList<Integer> emptyCols = emptyColumns();
+    emptyCols = emptyColumns();
     emptyCols.forEach(this::removeVisibleColumn);
   }
   /**
    * Reveals all of the empty columns*
    */
   void showEmpty(){
-    ArrayList<Integer> emptyCols = emptyColumns();
     emptyCols.forEach(this::addVisibleColumn);
   }
 
