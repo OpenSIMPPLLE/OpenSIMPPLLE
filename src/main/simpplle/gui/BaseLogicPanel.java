@@ -91,6 +91,7 @@ public class BaseLogicPanel extends JPanel {
 
       initColumns(column,col);
     }
+    updateColumnWidth();
   }
   /**
    * initializes the table columns by referring to javax.swing.table.TableColumn TableColumn .  returns nothing, sets nothing
