@@ -291,7 +291,9 @@ public class AbstractLogicDialog extends JDialog {
     tabPanels[index].updateDialog();
 
     updateMenuItems();
-    updateDialog();
+    // Uncomment if unusual behavior is noticed
+    // However, I suspect it is redundant.
+//    updateDialog();
   }
 
   public void menuKnowledgeSourceEdit(ActionEvent e) {
