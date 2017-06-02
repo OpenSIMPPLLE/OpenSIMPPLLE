@@ -11,6 +11,7 @@ package simpplle.gui;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.event.ChangeEvent;
 import java.util.ArrayList;
 import java.awt.Frame;
 import simpplle.comcode.*;
@@ -291,5 +292,12 @@ public class VegLogicDialog extends AbstractLogicDialog {
       colMenuItems.get(i).setSelected(
         currentPanel.isVisibleColumn(i));
     }
+  }
+
+  @Override
+  public void tabbedPane_stateChanged(ChangeEvent e) {
+    super.tabbedPane_stateChanged(e);
+    // Update current tab appropriately
+    menuShowValCols_actionPerformed();
   }
 }
