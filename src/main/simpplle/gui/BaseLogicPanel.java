@@ -11,10 +11,8 @@ package simpplle.gui;
 import simpplle.comcode.AbstractBaseLogic;
 import simpplle.comcode.BaseLogic;
 import simpplle.comcode.SystemKnowledge;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.util.ArrayList;
@@ -135,7 +133,7 @@ public class BaseLogicPanel extends JPanel {
     updateDialog();
 
   }
-  // TODO: Look into removing this function...
+
   protected void rowSelected() {}
 
   protected void updateColumnWidth() {
@@ -163,35 +161,7 @@ public class BaseLogicPanel extends JPanel {
   public boolean isVisibleColumn(int col) {
     return dataModel.isVisibleColumn(col);
   }
-//  protected void initColumnVisibility() {
-//    RegionalZone zone = Simpplle.getCurrentZone();
-//
-//    inColumnInit = true;
-//    for (int i=1; i<columns.size(); i++) {
-//      hideColumn(i);
-//    }
-//    int[] cols = dataModel.getVisibleColumns();
-//    if (cols != null && cols.length > 0){
-//      for (int i=0; i<cols.length; i++) {
-//        showColumn(cols[i]);
-//      }
-//    }
-//    else {
-//      for (int i=1; i<columns.size(); i++) {
-//        showColumn(i);
-//      }
-//    }
-//    inColumnInit = false;
-//  }
 
-//  public void showColumn(int col) {
-//    if (inColumnInit) { dialog.setColumnMenuItemSelected(true,col); }
-//    Utility.initColumnWidth(logicTable,columns.get(col),col);
-//  }
-//  public void hideColumn(int col) {
-//    if (inColumnInit) { dialog.setColumnMenuItemSelected(false,col); }
-//    columns.get(col).setPreferredWidth(0);
-//  }
   /**
    * Updates the BaseLogic dialog, by calling refresh table and updating the graphics
    */

@@ -8,33 +8,22 @@
 
 package simpplle.gui;
 
-import java.awt.*;
-import java.io.File;
-import java.util.Enumeration;
 import java.util.Vector;
-
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
-
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
-
 import java.awt.event.*;
 import java.awt.Font;
 import simpplle.comcode.SystemKnowledge.Kinds;
 
-/** 
- *
- * 
+/**
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
 
 public class RegenerationLogicSuccTable extends VegLogicPanel {
+
   private static final int SPECIES_CODE_COL       = SuccessionRegenerationData.SPECIES_CODE_COL;
   private static final int SUCCESSION_COL         = SuccessionRegenerationData.SUCCESSION_COL;
   private static final int SUCCESSION_SPECIES_COL = SuccessionRegenerationData.SUCCESSION_SPECIES_COL;
@@ -70,9 +59,6 @@ public class RegenerationLogicSuccTable extends VegLogicPanel {
     });
     ecoGroupLabel.setFont(new java.awt.Font("Monospaced", Font.BOLD, 12));
     ecoGroupLabel.setText("Ecological Grouping");
-    //"Quack - EcoGroup Dropdown Succession"
-    //ecoGroupCBPanel.add(ecoGroupLabel);
-    //ecoGroupCBPanel.add(ecoGroupCB);
 
     northPanel.add(ecoGroupCBPanel);
   }
@@ -105,7 +91,6 @@ public class RegenerationLogicSuccTable extends VegLogicPanel {
     }
   }
 
-
   public void refreshTable() {
     super.refreshTable();
     RegenerationLogic.setCurrentEcoGroup(RegenerationLogic.SUCCESSION,selectedEcoGroup);
@@ -122,12 +107,13 @@ public class RegenerationLogicSuccTable extends VegLogicPanel {
     int position = (selectedRow != -1) ? selectedRow : dataModel.getRowCount();
     addRow(position);
   }
+
   private void addRow(int row) {
     Vector  v          = HabitatTypeGroup.getValidSpecies();
 
     String[] values = new String[v.size()];
     for (int i=0; i<values.length; i++) {
-      values[i] = ((Species)v.elementAt(i)).toString();
+      values[i] = (v.elementAt(i)).toString();
     }
 
     String title = "Select a Species";
@@ -154,13 +140,9 @@ public class RegenerationLogicSuccTable extends VegLogicPanel {
     }
 
   }
+
   public void setDefaultEcoGroup() {
     ecoGroupCB.setSelectedItem(HabitatTypeGroupType.ANY);
     ecoGroupCB_actionPerformed(null);
   }
-
-
 }
-
-
-

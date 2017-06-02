@@ -34,6 +34,7 @@ import simpplle.comcode.SystemKnowledge.Kinds;
  */
 
 public class RegenerationLogicFireTable extends VegLogicPanel {
+
   private static final int SPECIES_CODE_COL       = FireRegenerationData.SPECIES_CODE_COL;
   private static final int RESPROUTING_COL        = FireRegenerationData.RESPROUTING_COL;
   private static final int ADJ_RESPROUTING_COL    = FireRegenerationData.ADJ_RESPROUTING_COL;
@@ -77,7 +78,7 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
     Font monospaced = new Font("Monospaced", Font.BOLD, 12);
 
     adjacentPrefPickPB.setText("Choose Species");
-    adjacentPrefPickPB.addActionListener(this::adjacentPrefPickPB_actionPerformed);
+    adjacentPrefPickPB.addActionListener(this::adjacentPrefPickPB);
     adjacentPrefValue.setBackground(Color.white);
     adjacentPrefValue.setFont(monospaced);
     adjacentPrefValue.setForeground(Color.blue);
@@ -90,16 +91,13 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
     AdjacentPrefLabel1.setFont(monospaced);
     AdjacentPrefLabel1.setText("Preferred Adjacent Species");
     aPanel.setBorder(BorderFactory.createEtchedBorder());
-    ecoGroupCB.addActionListener(this::ecoGroupCB_actionPerformed);
+    ecoGroupCB.addActionListener(this::ecoGroupCB);
     ecoGroupLabel.setFont(monospaced);
     ecoGroupLabel.setText("Ecological Grouping");
     adjacentPrefLabelPanel.add(AdjacentPrefLabel1, null);
     adjacentPrefLabelPanel.add(adjacentPrefLabel2, null);
     adjacentPrefPanel.add(adjacentPrefValue, null);
     adjacentPrefPanel.add(adjacentPrefPickPB, null);
-    //Quack - EcoGroup Dropdown
-    //ecoGroupCBPanel.add(ecoGroupLabel);
-    // ecoGroupCBPanel.add(ecoGroupCB);
     adjacentPrefPanel.add(adjacentPrefLabelPanel, null);
 
     northPanel.add(aPanel, null);
@@ -181,12 +179,13 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
     int position = (selectedRow != -1) ? selectedRow : dataModel.getRowCount();
     addRow(position);
   }
+
   private void addRow(int row) {
-    Vector  v          = HabitatTypeGroup.getValidSpecies();
+    Vector v  = HabitatTypeGroup.getValidSpecies();
 
     String[] values = new String[v.size()];
     for (int i=0; i<values.length; i++) {
-      values[i] = ((Species)v.elementAt(i)).toString();
+      values[i] = (v.elementAt(i)).toString();
     }
 
     String title = "Select a Species";
@@ -203,7 +202,7 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
     update(getGraphics());
   }
 
-  private void adjacentPrefPickPB_actionPerformed(ActionEvent e) {
+  private void adjacentPrefPickPB(ActionEvent e) {
     Vector validSpecies = HabitatTypeGroup.getValidSpecies();
     ArrayList<Species> value = RegenerationLogic.getAdjacentPreferredSpecies();
     String title = "Choose Preferred Adjacent Species";
@@ -218,7 +217,7 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
     update(getGraphics());
   }
 
-  private  void ecoGroupCB_actionPerformed(ActionEvent e) {
+  private  void ecoGroupCB(ActionEvent e) {
     HabitatTypeGroupType selected = (HabitatTypeGroupType)ecoGroupCB.getSelectedItem();
     if (selected != selectedEcoGroup) {
       selectedEcoGroup = selected;
@@ -226,14 +225,10 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
       dataModel.fireTableDataChanged();
       updateDialog();
     }
-
   }
 
   void setDefaultEcoGroup() {
     ecoGroupCB.setSelectedItem(HabitatTypeGroupType.ANY);
-    ecoGroupCB_actionPerformed(null);
+    ecoGroupCB(null);
   }
 }
-
-
-
