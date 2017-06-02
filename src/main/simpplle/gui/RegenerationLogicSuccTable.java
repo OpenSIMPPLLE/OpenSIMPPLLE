@@ -51,10 +51,10 @@ public class RegenerationLogicSuccTable extends VegLogicPanel {
     initializeBase();
   }
 
-  void initGUI() throws Exception {
+  private void initGUI() throws Exception {
     ecoGroupCB.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        ecoGroupCB_actionPerformed(e);
+        ecoGroupCB(e);
       }
     });
     ecoGroupLabel.setFont(new java.awt.Font("Monospaced", Font.BOLD, 12));
@@ -96,7 +96,7 @@ public class RegenerationLogicSuccTable extends VegLogicPanel {
     RegenerationLogic.setCurrentEcoGroup(RegenerationLogic.SUCCESSION,selectedEcoGroup);
   }
 
-  public void addRows(Vector speciesList) {
+  void addRows(Vector speciesList) {
     int position = (selectedRow != -1) ? selectedRow : dataModel.getRowCount() + 1;
     RegenerationLogic.addDataRows(position,kind,speciesList);
     refreshTable();
@@ -130,7 +130,7 @@ public class RegenerationLogicSuccTable extends VegLogicPanel {
     update(getGraphics());
   }
 
-  public void ecoGroupCB_actionPerformed(ActionEvent e) {
+  private void ecoGroupCB(ActionEvent e) {
     HabitatTypeGroupType selected = (HabitatTypeGroupType)ecoGroupCB.getSelectedItem();
     if (selected != selectedEcoGroup) {
       selectedEcoGroup = selected;
@@ -138,11 +138,10 @@ public class RegenerationLogicSuccTable extends VegLogicPanel {
       dataModel.fireTableDataChanged();
       updateDialog();
     }
-
   }
 
-  public void setDefaultEcoGroup() {
+  void setDefaultEcoGroup() {
     ecoGroupCB.setSelectedItem(HabitatTypeGroupType.ANY);
-    ecoGroupCB_actionPerformed(null);
+    ecoGroupCB(null);
   }
 }
