@@ -77,6 +77,7 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     menuOptions.add(menuOptionsAddAllSpecies);
     menuOptions.add(menuOptionsDelayLogic);
   }
+
   private void initialize() {
     sysKnowKind = SystemKnowledge.REGEN_LOGIC_FIRE;
 
@@ -90,7 +91,7 @@ public class RegenerationLogicDialog extends VegLogicDialog {
         tabPanels[i] = new RegenerationLogicFireTable(this, SystemKnowledge.REGEN_LOGIC_FIRE, RegenerationLogic.getLogicInstance(kind));
       }
       else {
-        tabPanels[i] = new RegenerationLogicSuccTable(this, SystemKnowledge.REGEN_LOGIC_SUCC);
+        tabPanels[i] = new RegenerationLogicSuccTable(this, SystemKnowledge.REGEN_LOGIC_SUCC, RegenerationLogic.getLogicInstance(kind));
       }
       tabbedPane.add(tabPanels[i], kind);
     }

@@ -21,18 +21,11 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
 import simpplle.JSimpplle;
-import simpplle.comcode.HabitatTypeGroup;
-import simpplle.comcode.SuccessionRegenerationData;
-import simpplle.comcode.RegenerationLogic;
-import simpplle.comcode.Simpplle;
-import simpplle.comcode.SimpplleError;
-import simpplle.comcode.Species;
-import simpplle.comcode.SystemKnowledge;
+import simpplle.comcode.*;
+
 import java.awt.event.*;
-import simpplle.comcode.HabitatTypeGroupType;
 import java.awt.Font;
 import simpplle.comcode.SystemKnowledge.Kinds;
-import simpplle.comcode.FireRegenerationData;
 
 /** 
  *
@@ -53,8 +46,8 @@ public class RegenerationLogicSuccTable extends VegLogicPanel {
   private JLabel ecoGroupLabel = new JLabel();
 
   public RegenerationLogicSuccTable(AbstractLogicDialog dialog,
-                                    Kinds sysKnowKind) {
-    super(dialog,RegenerationLogic.SUCCESSION_STR,null,sysKnowKind);
+                                    Kinds sysKnowKind, AbstractBaseLogic logicInst) {
+    super(dialog,RegenerationLogic.SUCCESSION_STR,logicInst,sysKnowKind);
     try {
       initGUI();
       initialize();
