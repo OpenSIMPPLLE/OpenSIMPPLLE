@@ -4648,34 +4648,6 @@ public final class Area implements Externalizable {
 
   }
 
-  public void writeRandomAccessFile(RandomAccessFile simFile)
-      throws SimpplleError
-  {
-    int doneCount = 0, pctFinish;
-
-    int ts = Simulation.getCurrentTimeStep();
-    for (Evu evu : allEvu) {
-      if (evu == null) {
-        continue;
-      }
-      pctFinish = Math.round(((float) doneCount / (float) allEvu.length)*100.0f);
-      if (pctFinish % 10 == 0) {
-        String msg = "Writing Time Step #" + ts + " to data file " + pctFinish + "% Finished";
-        Simpplle.setStatusMessage(msg);
-      }
-      try {
-        evu.writeRandomAccessFile(simFile);
-        doneCount++;
-      }
-      catch (SimpplleError ex) {
-        Simpplle.clearStatusMessage();
-        throw ex;
-      }
-    }
-    Simpplle.clearStatusMessage();
-  }
-
-
   /**
    * Write simulation data for the current time step to the database.
    * @throws SimpplleError
