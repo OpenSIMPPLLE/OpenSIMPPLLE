@@ -8,17 +8,17 @@
 
 package simpplle.comcode;
 
-import java.util.*;
-import java.io.ObjectInput;
-import java.io.IOException;
-import java.io.ObjectOutput;
-import java.io.Externalizable;
-import simpplle.comcode.Climate.Season;
-import org.apache.commons.collections.map.*;
 import org.apache.commons.collections.MapIterator;
-import org.hibernate.Session;
+import org.apache.commons.collections.map.Flat3Map;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import simpplle.comcode.Climate.Season;
+
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * VegSimStateData describes the state of an existing vegetation unit (EVU) during a single time step.
@@ -626,21 +626,19 @@ public class VegSimStateData implements Externalizable {
     int   prob      = state.getProb();
     float fProb     = state.getFloatProb();
     int   firerule  = state.getFireSpreadRuleIndex();
- 
+
     String probStr = "n/a";
     if (prob < 0) {
       fProb = 0.0f;
       probStr = state.getProbString();
     }
 
-    Evu originUnit = evu.getOriginUnit();
-    int originUnitId = -1;
-    if (originUnit != null) {
-      originUnitId = originUnit.getId();
-    }
-    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d%n",
+    int originUnitId  = (evu.getOriginUnit() != null) ? evu.getOriginUnit().getId() : -1;
+    int fromUnitId    = evu.fromEvuId;
+
+    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d,%d%n",
         run ,ts, seasonId, state.slink, lifeId, speciesId, sizeId, age, densityId, processId, fProb,
-        probStr, treatmentId, originUnitId, firerule); //state.fireSpreadRuleIndex);
+        probStr, treatmentId, originUnitId, fromUnitId, firerule); //state.fireSpreadRuleIndex);
 
     if (state.trackingSpecies != null) {
 

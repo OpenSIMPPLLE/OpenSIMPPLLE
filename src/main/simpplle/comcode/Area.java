@@ -3298,8 +3298,8 @@ public final class Area implements Externalizable {
   }
 
   private void produceSpreadArcFiles(PrintWriter fout, int tStep) throws SQLException {
-    RegionalZone  zone        = Simpplle.getCurrentZone();
-    AreaSummary   areaSummary = Simpplle.getAreaSummary();
+    RegionalZone  zone             = Simpplle.getCurrentZone();
+    AreaSummary   areaSummary      = Simpplle.getAreaSummary();
     ProcessType[] summaryProcesses = Process.getSummaryProcesses();
     int           i, j;
     String        value;
