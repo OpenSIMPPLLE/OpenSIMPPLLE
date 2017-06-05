@@ -8130,26 +8130,6 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-
-  /**
-    * This Method has been eliminated, but the method shell remains till I can make sure it is not called anywhere.
-  * Edit - Brian Losi 10/28/13
-   * @param session
-   * @throws HibernateException
-   * @throws SQLException
-   */
-  public void writeAccumDatabase(Session session) throws HibernateException, SQLException {
-
-  }
-/**
- * This Method has been eliminated, but the method shell remains till I can make sure it is not called anywhere.
- * Edit - Brian Losi 10/28/13
- * @param simFile
- * @throws SimpplleError
- */
-  public void writeRandomAccessFile(RandomAccessFile simFile) throws SimpplleError
-  {
-  }
 /**
  * Uses hibernate session to write siumlation database of vegetative state.
  * @param session

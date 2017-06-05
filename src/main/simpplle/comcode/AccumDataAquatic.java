@@ -199,35 +199,5 @@ public class AccumDataAquatic {
     this.id = id;
   }
 
-  /**
-   * Method to interact with database using Hibernate.  
-   * @param session hibernate session
-   * @param eau existing aquatic unit
-   * @param run
-   * @throws HibernateException
-   * @throws SQLException
-   */
-  public static void writeDatabase(Session session, ExistingAquaticUnit eau, int run, int nSteps)
-      throws HibernateException, SQLException
-  {
-    for (int ts=0; ts<=nSteps; ts++) {
-      AccumDataAquatic accumData = new AccumDataAquatic();
-
-      accumData.setSlink(eau.getId());
-      accumData.setRationalLength(eau.getLength());
-      accumData.setLength(eau.getFloatLength());
-      accumData.setTimeStep(ts);
-      accumData.setRun(run);
-      accumData.setState(eau.getCurrentState(ts));
-      accumData.setProcess(eau.getProcess(ts).getType());
-      accumData.setRationalProb((short)eau.getProb(ts));
-      accumData.setProb(Math.round(eau.getFloatProb(ts)));
-      accumData.setProbStr(eau.getProbString(ts));
-
-      session.save(accumData);
-
-
-    }
-  }
 
 }
