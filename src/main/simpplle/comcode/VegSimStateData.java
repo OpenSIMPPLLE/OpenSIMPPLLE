@@ -44,9 +44,8 @@ public class VegSimStateData implements Externalizable {
   private short          seasonOrd;  // Used for hibernate mapping only!
 
   private int fireSpreadRuleIndex = -1;
-  private int fireRegenerationRuleIndex = -1;
-
-  private int successionRegenerationRuleIndex = -1;
+  private int fireRegenRuleIndex  = -1;
+  private int succRegenRuleIndex  = -1;
 
   // Object[Species][Integer]
   // Flat3Map
@@ -338,19 +337,24 @@ public class VegSimStateData implements Externalizable {
   }
 
   public int getFireRegenerationRuleIndex() {
-    return fireRegenerationRuleIndex;
+    return fireRegenRuleIndex;
   }
 
   public void setFireRegenerationRuleIndex(int index) {
-    fireRegenerationRuleIndex = index;
+    fireRegenRuleIndex = index;
   }
 
   public int getSuccessionRegenerationRuleIndex() {
-    return successionRegenerationRuleIndex;
+    return succRegenRuleIndex;
   }
 
   public void setSuccessionRegenerationRuleIndex(int index) {
-    successionRegenerationRuleIndex = index;
+    succRegenRuleIndex = index;
+  }
+
+  public void resetRegenRules(int resetValue) {
+    fireRegenRuleIndex = resetValue;
+    succRegenRuleIndex = resetValue;
   }
 
   public String getSeasonString() {
@@ -654,8 +658,7 @@ public class VegSimStateData implements Externalizable {
         run ,ts, seasonId, state.slink, lifeId, speciesId, sizeId, age, densityId, processId, fProb,
         probStr, treatmentId, originUnitId, fromUnitId, firerule, fireRegenRuleIndex, successionRegenRuleIndex);
 
-    state.setFireRegenerationRuleIndex(-1);
-    state.setSuccessionRegenerationRuleIndex(-1);
+    state.resetRegenRules(-1);
 
     if (state.trackingSpecies != null) {
 
