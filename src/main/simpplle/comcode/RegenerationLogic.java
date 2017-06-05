@@ -238,9 +238,9 @@ public abstract class RegenerationLogic {
 
     if (state == null) return;
 
-    if (kind == DataKinds.SUCCESSION) {
+    if (kind == SUCCESSION) {
       state.setSuccessionRegenerationRuleIndex(index);
-    } else if (kind == DataKinds.FIRE) {
+    } else if (kind == FIRE) {
       state.setFireRegenerationRuleIndex(index);
     }
   }
