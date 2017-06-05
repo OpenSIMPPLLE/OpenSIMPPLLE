@@ -11,8 +11,6 @@ package simpplle.comcode;
 import java.io.*;
 import java.util.*;
 import java.util.zip.GZIPInputStream;
-import java.util.jar.JarOutputStream;
-import java.util.jar.JarInputStream;
 
 /**
  * This class contains methods for a Regeneration Logic. Regeneration is highly variable.
@@ -44,7 +42,7 @@ public abstract class RegenerationLogic {
 
   private static HabitatTypeGroupType currentEcoGroup;
 /**
- * Gets the hashmap for a particular type of regeneration logic.  CHoices are Succession or Fire.  
+ * Gets the hashmap for a particular type of regeneration logic.  Choices are Succession or Fire.
  * @param kind
  * @return
  */
@@ -56,7 +54,8 @@ public abstract class RegenerationLogic {
     return null;
   }
 /**
- * Sets the default habitat type group. If fire regeneration applies to any habitat type group type in the fire data, uses ANY as default habitata type group type (eco group)
+ * Sets the default habitat type group. If fire regeneration applies to any
+ * habitat type group type in the fire data, uses ANY as default habitat type group type (eco group)
  * Otherwise sets it to the key (habitat type group type) in the fire data hashmap.  
  * @param kind
  */
@@ -222,6 +221,7 @@ public abstract class RegenerationLogic {
         for (AbstractLogicData data : dataList) {
           RegenerationData regenData = (RegenerationData) data;
           if (regenData.isMatch(evu, tStep, lifeform)) {
+            recordRuleIndex(evu, dataList.indexOf(regenData), kind, tStep, lifeform);
             return regenData;
           }
         }
@@ -232,6 +232,19 @@ public abstract class RegenerationLogic {
     }
     return null;
   }
+
+  private static void recordRuleIndex(Evu evu, int index, DataKinds kind, int timestep, Lifeform lifeform) {
+    VegSimStateData state = evu.getState(timestep, lifeform);
+
+    if (state == null) return;
+
+    if (kind == SUCCESSION) {
+      state.setSuccessionRegenerationRuleIndex(index);
+    } else if (kind == FIRE) {
+      state.setFireRegenerationRuleIndex(index);
+    }
+  }
+
   private static RegenerationData findRegenDataSuccInLandscapeSeed(
       HabitatTypeGroupType ecoGroup, Evu evu,
       VegSimStateData state, int tStep, Lifeform lifeform, DataKinds kind)
@@ -349,9 +362,8 @@ public abstract class RegenerationLogic {
     return (VegetativeType)regenData.inLandscape.get(0);
   }
 
-
   public static VegetativeType getInLandscapeSeedState(HabitatTypeGroupType ecoGroup,
-                                                       Evu evu, int tStep, Lifeform lifeform) {
+                                                        Evu evu, int tStep, Lifeform lifeform) {
 
     FireRegenerationData regenData =
         (FireRegenerationData)findRegenData(ecoGroup,evu,tStep,lifeform,FIRE);
@@ -364,6 +376,7 @@ public abstract class RegenerationLogic {
     }
     return (VegetativeType)regenData.inLandscape.get(0);
   }
+
   public static ArrayList<VegetativeType> getAdjacentStates(HabitatTypeGroupType ecoGroup,Evu evu,
                                                             int tStep, Lifeform lifeform) {
     FireRegenerationData regenData =

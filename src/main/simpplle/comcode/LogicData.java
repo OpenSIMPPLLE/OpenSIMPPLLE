@@ -56,20 +56,20 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
 //    
 //    return buf.toString();
 //  }
-  public ArrayList<SimpplleType> ecoGroupList;
+  public ArrayList<SimpplleType>  ecoGroupList;
   public String                   ecoGroupDesc;
   public boolean                  defaultEcoGroupDesc;
 
-  public ArrayList<Lifeform>      speciesLifeforms;
-  public ArrayList<FireResistance> speciesResistance;
-  public ArrayList<SimpplleType>  speciesList;
-  public String                   speciesDescription;
-  public boolean                  defaultSpeciesDesc;
+  public ArrayList<Lifeform>        speciesLifeforms;
+  public ArrayList<FireResistance>  speciesResistance;
+  public ArrayList<SimpplleType>    speciesList;
+  public String                     speciesDescription;
+  public boolean                    defaultSpeciesDesc;
 
-  public  ArrayList<Structure> sizeClassStructure;
-  public  ArrayList<SimpplleType>  sizeClassList;
-  public  String                   sizeClassDesc;
-  public  boolean                  defaultSizeClassDesc;
+  public  ArrayList<Structure>      sizeClassStructure;
+  public  ArrayList<SimpplleType>   sizeClassList;
+  public  String                    sizeClassDesc;
+  public  boolean                   defaultSizeClassDesc;
 
   public  ArrayList<SimpplleType>  densityList;
   public  String                   densityDesc;
@@ -104,12 +104,12 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
   public boolean                  defaultTrackingSpeciesDesc;
 
   public ArrayList<Ownership> ownershipList;
-  public String            ownershipDesc;
-  public boolean           defaultOwnershipDesc;
+  public String               ownershipDesc;
+  public boolean              defaultOwnershipDesc;
 
   public ArrayList<SpecialArea> specialAreaList;
-  public String            specialAreaDesc;
-  public boolean           defaultSpecialAreaDesc;
+  public String                 specialAreaDesc;
+  public boolean                defaultSpecialAreaDesc;
 
   public ArrayList<Roads.Status> roadStatusList;
   public String                  roadStatusDesc;
@@ -119,29 +119,29 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
   public String                   trailStatusDesc;
   public boolean                  defaultTrailStatusDesc;
   
-  public ArrayList<Landtype> landtypeList;
-  public String            landtypeDesc;
-  public boolean           defaultLandtypeDesc;
+  public ArrayList<Landtype>  landtypeList;
+  public String               landtypeDesc;
+  public boolean              defaultLandtypeDesc;
   /**
    * Constructor for Logic Data abstract class. This will inititialize a series of arraylists, and descriptions for objects in OpenSimpplle which could
    * can have logic data for them.  
    */
   protected LogicData() {
-    ecoGroupList         = new ArrayList<SimpplleType>();
-    speciesLifeforms  = new ArrayList<Lifeform>();
-    speciesResistance = new ArrayList<FireResistance>();
-    speciesList     = new ArrayList<SimpplleType>();
-    sizeClassList   = new ArrayList<SimpplleType>();
-    sizeClassStructure = new ArrayList<Structure>();
-    densityList     = new ArrayList<SimpplleType>();
-    processList     = new ArrayList<SimpplleType>();
-    processTSteps   = 1;
-    processInclusiveTimeSteps = false;
-    treatmentList   = new ArrayList<SimpplleType>();
-    treatmentTSteps = 1;
+    ecoGroupList          = new ArrayList<SimpplleType>();
+    speciesLifeforms      = new ArrayList<Lifeform>();
+    speciesResistance     = new ArrayList<FireResistance>();
+    speciesList           = new ArrayList<SimpplleType>();
+    sizeClassList         = new ArrayList<SimpplleType>();
+    sizeClassStructure    = new ArrayList<Structure>();
+    densityList           = new ArrayList<SimpplleType>();
+    processList           = new ArrayList<SimpplleType>();
+    treatmentList         = new ArrayList<SimpplleType>();
+    processTSteps         = 1;
+    treatmentTSteps       = 1;
+    processInclusiveTimeSteps   = false;
     treatmentInclusiveTimeSteps = false;
-    treatmentAnyExcept = false;
-    processAnyExcept   = false;
+    treatmentAnyExcept          = false;
+    processAnyExcept            = false;
 
     ownershipList = new ArrayList<Ownership>();
     specialAreaList = new ArrayList<SpecialArea>();

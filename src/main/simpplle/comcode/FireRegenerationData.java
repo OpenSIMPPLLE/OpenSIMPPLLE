@@ -109,26 +109,26 @@ public class FireRegenerationData
     buildVegetativeTypeList(v,resprouting);
   }
   /**
-   * @see note in void simpplle.comcode.FireRegenerationData.setResprouting(Vector v)
+   * @see this.setResprouting(Vector)
    */
   public void setAdjResprouting(Vector v) {
     buildVegetativeTypeList(v,adjResprouting);
   }
   /**
-   * @see note in void simpplle.comcode.FireRegenerationData.setResprouting(Vector v)
+   * @see this.setResprouting(Vector)
    *
    */
   public void setInPlaceSeed(Vector v) {
     buildVegetativeTypeList(v,inPlaceSeed);
   }
   /**
-   * @see note in void simpplle.comcode.FireRegenerationData.setResprouting(Vector v)
+   * @see this.setResprouting(Vector)
    */
   public void setInLandscape(Vector v) {
     buildVegetativeTypeList(v,inLandscape);
   }
   /**
-   * @see note in void simpplle.comcode.FireRegenerationData.setResprouting(Vector v)
+   * @see this.setResprouting(Vector)
    */
   public void setAdjacent(Vector v) {
     buildVegetativeTypeList(v,adjacent);
