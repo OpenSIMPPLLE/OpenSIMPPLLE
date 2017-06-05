@@ -625,7 +625,7 @@ public class VegSimStateData implements Externalizable {
       treatmentId = treatment.getType().getSimId();
     }
 
-    float acres     = evu.getFloatAcres();
+    // state data
     int   lifeId    = state.lifeform.getSimId();
     int   speciesId = state.getVeg().getSpecies().getSimId();
     int   sizeId    = state.getVeg().getSizeClass().getSimId();
@@ -636,39 +636,26 @@ public class VegSimStateData implements Externalizable {
     int   prob      = state.getProb();
     float fProb     = state.getFloatProb();
     int   firerule  = state.getFireSpreadRuleIndex();
-
-<<<<<<< HEAD
     int   fireRegenRuleIndex        = state.getFireRegenerationRuleIndex();
     int   successionRegenRuleIndex  = state.getSuccessionRegenerationRuleIndex();
 
-=======
->>>>>>> master
+    // Evu Data
+    float acres     = evu.getFloatAcres();
+    int originUnitId  = (evu.getOriginUnit() != null) ? evu.getOriginUnit().getId() : -1;
+    int fromUnitId    = evu.fromEvuId;
+
     String probStr = "n/a";
     if (prob < 0) {
       fProb = 0.0f;
       probStr = state.getProbString();
     }
 
-<<<<<<< HEAD
-    Evu originUnit = evu.getOriginUnit();
-    int originUnitId = -1;
-    if (originUnit != null) {
-      originUnitId = originUnit.getId();
-    }
     fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d,%d,%d%n",
         run ,ts, seasonId, state.slink, lifeId, speciesId, sizeId, age, densityId, processId, fProb,
-        probStr, treatmentId, originUnitId, firerule, fireRegenRuleIndex, successionRegenRuleIndex);
+        probStr, treatmentId, originUnitId, fromUnitId, firerule, fireRegenRuleIndex, successionRegenRuleIndex);
 
     state.setFireRegenerationRuleIndex(-1);
     state.setSuccessionRegenerationRuleIndex(-1);
-=======
-    int originUnitId  = (evu.getOriginUnit() != null) ? evu.getOriginUnit().getId() : -1;
-    int fromUnitId    = evu.fromEvuId;
-
-    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d,%d%n",
-        run ,ts, seasonId, state.slink, lifeId, speciesId, sizeId, age, densityId, processId, fProb,
-        probStr, treatmentId, originUnitId, fromUnitId, firerule); //state.fireSpreadRuleIndex);
->>>>>>> master
 
     if (state.trackingSpecies != null) {
 
