@@ -36,9 +36,9 @@ public class FireEventLogicDialog extends VegLogicDialog {
 
   /**
    * Constructor for Fire Event Logic Dialog.  Inherits from Vegetative Logic Dialog superclass and sets the frame owner, dialog title and modality.
-   * @param owner frame owner
-   * @param title	Jdialog title
-   * @param modal
+   * @param owner Parent frame of the dialogue
+   * @param title Title of the dialog
+   * @param modal Specifies whether dialog blocks user input to other top-level windows when shown
    */
   public FireEventLogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);

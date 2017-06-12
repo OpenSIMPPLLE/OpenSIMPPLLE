@@ -22,15 +22,15 @@ import simpplle.comcode.*;
 
 public class DoCompetitionLogicPanel extends VegLogicPanel {
 	/**
-	 * Constructor for Do Competion Logic panel. Creates the doCompetition panel based on passed dialog, kind, logic instance, and system knowledge kind. 
+	 * Constructor for Do Competition Logic panel. Creates the doCompetition panel based on passed dialog, kind, logic instance, and system knowledge kind.
 	 * @param dialog abstract logic dialog 
 	 * @param kind the system kind in this case do competition
-	 * @param logicInst 
-	 * @param sysKnowKind 
+	 * @param logicInst instance of AbstractBaseLogic
+	 * @param sysKnowKind kind of system knowledge
 	 */
-  public DoCompetitionLogicPanel(AbstractLogicDialog dialog,
-                                 String kind, AbstractBaseLogic logicInst, Kinds sysKnowKind) {
-    super(dialog,kind,logicInst,sysKnowKind);
+  public DoCompetitionLogicPanel(AbstractLogicDialog dialog, String kind,
+                                 AbstractBaseLogic logicInst, Kinds sysKnowKind) {
+    super(dialog, kind, logicInst, sysKnowKind);
     try {
       initialize();
     }
@@ -39,15 +39,15 @@ public class DoCompetitionLogicPanel extends VegLogicPanel {
     }
   }
   /**
-   * Initializes the Do Competion Logic panel by calling superclass initialize base method.
+   * Initializes the Do Competition Logic panel by calling superclass initialize base method.
    */
   protected void initialize() {
     initializeBase();
   }
-/**
- * Initializes the Do Competition logic columns.  
- * Choices are selected column, lifeform, minimum canopy, maximum canopy, density, change lifeforms, and action.
- */
+  /**
+   * Initializes the Do Competition logic columns.
+   * Choices are selected column, life form, minimum canopy, maximum canopy, density, change lifeforms, and action.
+   */
   protected void initColumns(TableColumn column, int col) {
     if (col == DoCompetitionLogic.SELECTED_COL) {
       column.setIdentifier(DoCompetitionLogic.SELECTED_COL);

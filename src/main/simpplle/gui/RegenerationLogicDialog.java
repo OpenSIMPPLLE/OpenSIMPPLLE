@@ -36,9 +36,9 @@ public class RegenerationLogicDialog extends VegLogicDialog {
 
   /**
    * Constructor for Regeneration Logic Dialog.  This sets the frame owner, string title and modality.  
-   * @param frame that owns the dialog
-   * @param title name of dialog
-   * @param modal specifies whether dialog blocks user input to other top-level windows when shown
+   * @param frame Parent frame of the dialogue
+   * @param title Title of the dialog
+   * @param modal Specifies whether dialog blocks user input to other top-level windows when shown
    */
   public RegenerationLogicDialog(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
@@ -59,8 +59,8 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     this(null, "", false);
   }
   /**
-   * Initializes the dialog with menuitems, components, text, menu bar, and listeners for Regeneration Logic Dialog.
-   * @throws Exception
+   * Initializes the dialog with menu items, components, text, menu bar, and listeners for Regeneration Logic Dialog.
+   * @throws Exception generic exception
    */
   void jbInit() throws Exception {
     menuOptionsAddAllSpecies.setActionCommand("Add All Species");
@@ -81,21 +81,22 @@ public class RegenerationLogicDialog extends VegLogicDialog {
   private void initialize() {
     sysKnowKind = SystemKnowledge.REGEN_LOGIC_FIRE;
 
-    String[] kinds = new String[] { RegenerationLogic.FIRE_STR, RegenerationLogic.SUCCESSION_STR };
+    String[] kinds = new String[] {RegenerationLogic.FIRE_STR, RegenerationLogic.SUCCESSION_STR};
     super.initialize(kinds);
 
     tabPanels = new VegLogicPanel[panelKinds.length];
     for (int i = 0; i < panelKinds.length; i++) {
       String kind = panelKinds[i];
       if (kind.equals(RegenerationLogic.FIRE_STR)) {
-        tabPanels[i] = new RegenerationLogicFireTable(this, SystemKnowledge.REGEN_LOGIC_FIRE, RegenerationLogic.getLogicInstance(kind));
+        tabPanels[i] = new RegenerationLogicFireTable(this, SystemKnowledge.REGEN_LOGIC_FIRE,
+                                                      RegenerationLogic.getLogicInstance(kind));
       }
       else {
-        tabPanels[i] = new RegenerationLogicSuccTable(this, SystemKnowledge.REGEN_LOGIC_SUCC, RegenerationLogic.getLogicInstance(kind));
+        tabPanels[i] = new RegenerationLogicSuccTable(this, SystemKnowledge.REGEN_LOGIC_SUCC,
+                                                      RegenerationLogic.getLogicInstance(kind));
       }
       tabbedPane.add(tabPanels[i], kind);
     }
-
     tabbedPane.setSelectedIndex(0);
     tabbedPane_stateChanged(null);
     updateDialog();
@@ -154,7 +155,7 @@ public class RegenerationLogicDialog extends VegLogicDialog {
 
     setCursor(Utility.getWaitCursor());
 
-    infile = Utility.getOpenFile(this,title,extFilter);
+    infile = Utility.getOpenFile(this, title, extFilter);
     if (infile != null) {
       try {
         RegenerationLogic.readDataLegacy(infile);
@@ -186,7 +187,7 @@ public class RegenerationLogicDialog extends VegLogicDialog {
   }
 
   private void menuTableOptionsAddAllSpecies_actionPerformed(ActionEvent e) {
-    Vector  v          = HabitatTypeGroup.getValidSpecies();
+    Vector  v = HabitatTypeGroup.getValidSpecies();
     Vector  newSpecies = new Vector();
     Species species;
     for (int i=0; i<v.size(); i++) {
@@ -207,7 +208,8 @@ public class RegenerationLogicDialog extends VegLogicDialog {
 
   private void menuOptionsDelayLogic_actionPerformed(ActionEvent e) {
     RegenDelayLogicDlg dlg =
-      new RegenDelayLogicDlg(JSimpplle.getSimpplleMain(),"Regeneration Delay Logic",true);
+      new RegenDelayLogicDlg(JSimpplle.getSimpplleMain(), "Regeneration Delay Logic",
+                            true);
     dlg.setVisible(true);
 
   }

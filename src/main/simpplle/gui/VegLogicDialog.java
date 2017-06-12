@@ -49,7 +49,7 @@ public class VegLogicDialog extends AbstractLogicDialog {
    * Constructor for Vegetative Logic Dialog, a type of abstract logic dialog.
    * @param owner Parent frame of the dialogue
    * @param title Title of the dialog
-   * @param modal Modality of the dialog
+   * @param modal Specifies whether dialog blocks user input to other top-level windows when shown
    */
   protected VegLogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
