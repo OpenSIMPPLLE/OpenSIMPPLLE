@@ -10,8 +10,6 @@ package simpplle.gui;
 
 import java.awt.Frame;
 import javax.swing.JMenuItem;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.FireSpreadDataLegacy;
 import simpplle.comcode.SimpplleError;
@@ -53,19 +51,18 @@ public class FireEventLogicDialog extends VegLogicDialog {
     }
   }
   /**
-   * Overloaded FireEvntLogicDialog
+   * Overloaded FireEventLogicDialog
    */
   public FireEventLogicDialog() {
     super();
   }
   /**
    * sets the text of import old file, and imports it into the base vegetative Logic dialog.
-   * @throws Exception
+   * @throws Exception generic exception
    */
   private void jbInit() throws Exception {
     menuImportOldFile.setText("Import old format File");
-    menuImportOldFile.addActionListener(new
-      FireSpreadLogic_menuImportOldFile_actionAdapter(this));
+    menuImportOldFile.addActionListener(e -> menuImportOldFile_actionPerformed());
     menuFile.add(menuImportOldFile,3);
   }
   /**
@@ -109,7 +106,7 @@ public class FireEventLogicDialog extends VegLogicDialog {
   public void tabbedPane_stateChanged(ChangeEvent e) {
     super.tabbedPane_stateChanged(e);
     if (currentPanel != null) {
-      sysKnowKind = ((FireEventLogicPanel) currentPanel).getSystemKnowledgeKind();
+      sysKnowKind = currentPanel.getSystemKnowledgeKind();
     }
   }
   /**
@@ -153,10 +150,10 @@ public class FireEventLogicDialog extends VegLogicDialog {
     }
   }
   /**
-   * If import old fire file type menu item selected will return either fire type or fire spread logic, used to get the file.
-   * @param e
+   * If import old fire file type menu item selected will return either fire type or fire spread
+   * logic, used to get the file.
    */
-  void menuImportOldFile_actionPerformed(ActionEvent e) {
+  private void menuImportOldFile_actionPerformed() {
     switch (sysKnowKind) {
       case FIRE_TYPE_LOGIC:
         menuImportOldFileTypeOfFire();
@@ -166,7 +163,6 @@ public class FireEventLogicDialog extends VegLogicDialog {
         break;
       default: return;
     }
-
   }
   /**
    * Used if old file type is selected.  Will get the old files with .firetype and .firetypedata extensions.
@@ -239,20 +235,5 @@ public class FireEventLogicDialog extends VegLogicDialog {
                                       JOptionPane.ERROR_MESSAGE);
       }
     }
-  }
-}
-
-/**
- * Menu adaptor used to get fire spread logic import old file.  
- *
- */
-class FireSpreadLogic_menuImportOldFile_actionAdapter implements ActionListener {
-  private FireEventLogicDialog adaptee;
-  FireSpreadLogic_menuImportOldFile_actionAdapter(FireEventLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuImportOldFile_actionPerformed(e);
   }
 }
