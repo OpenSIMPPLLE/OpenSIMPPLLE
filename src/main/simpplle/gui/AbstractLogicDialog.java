@@ -15,7 +15,6 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ComponentEvent;
 import java.io.File;
 
 /**
@@ -28,10 +27,10 @@ import java.io.File;
 
 public class AbstractLogicDialog extends JDialog {
 
-  protected String[]              panelKinds;
-  protected String                currentPanelKind;
-  protected BaseLogicPanel         currentPanel;
-  protected BaseLogicPanel[]       tabPanels;
+  protected String[] panelKinds;
+  protected String currentPanelKind;
+  protected BaseLogicPanel currentPanel;
+  protected BaseLogicPanel[] tabPanels;
   protected SystemKnowledge.Kinds sysKnowKind;
 
   protected JPanel mainPanel = new JPanel(new BorderLayout());
@@ -51,9 +50,9 @@ public class AbstractLogicDialog extends JDialog {
 
   /**
    * Constructor which calls jbInit() to start abstract logic UI
-   * @param owner
-   * @param title
-   * @param modal
+   * @param owner Parent frame of the dialogue
+   * @param title Title of the dialog
+   * @param modal Specifies whether dialog blocks user input to other top-level windows when shown
    */
   protected AbstractLogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
@@ -70,7 +69,7 @@ public class AbstractLogicDialog extends JDialog {
   }
   /**
    * 
-   * @throws Exception
+   * @throws Exception generic exception
    */
   private void jbInit() throws Exception {
 
@@ -139,15 +138,7 @@ public class AbstractLogicDialog extends JDialog {
 
   }
 
-  protected void initialize(String[] kinds) {
-    this.panelKinds = kinds;
-//      tabPanels[i].addPropertyChangeListener("rule.changed",new PropertyChangeListener() {
-//        public void propertyChange(PropertyChangeEvent e) {
-//          ruleChanged(e);
-//        }
-//      });
-
-  }
+  protected void initialize(String[] kinds) {this.panelKinds = kinds; }
 
   /**
    * Updates the Abstract Logic Dialog.
@@ -176,8 +167,6 @@ public class AbstractLogicDialog extends JDialog {
       tabPanels[i].updateColumns();
     }
 
-//    currentPanel.dataModel.fireTableStructureChanged();
-//    currentPanel.updateColumns();
     updateMenuItems();
     currentPanel.updateDialog();
     updateDialog();
@@ -205,12 +194,12 @@ public class AbstractLogicDialog extends JDialog {
       }
     }
     catch (simpplle.comcode.SimpplleError err) {
-      JOptionPane.showMessageDialog(this,err.getError(),"Unable to load file",
+      JOptionPane.showMessageDialog(this, err.getError(), "Unable to load file",
                                     JOptionPane.ERROR_MESSAGE);
     }
   }
   /**
-   * If close is choosen from menu file close loads defaults.
+   * If close is chosen from menu file close loads defaults.
    * @param e
    */
   public void close(ActionEvent e) {
@@ -231,14 +220,14 @@ public class AbstractLogicDialog extends JDialog {
    */
   public void save(ActionEvent e) {
     File outfile = SystemKnowledge.getFile(sysKnowKind);
-    SystemKnowledgeFiler.saveFile(this,outfile,sysKnowKind,menuFileSave,menuFileClose);
+    SystemKnowledgeFiler.saveFile(this, outfile, sysKnowKind, menuFileSave, menuFileClose);
   }
   /**
    * 'Save as' function sends to overloaded SystemKnowledgeFiler.saveFile method.
    * @param e Save As menu item selected
    */
   public void saveAs(ActionEvent e) {
-    SystemKnowledgeFiler.saveFile(this,sysKnowKind,menuFileSave,menuFileClose);
+    SystemKnowledgeFiler.saveFile(this, sysKnowKind, menuFileSave, menuFileClose);
   }
 
   private void loadDefault(ActionEvent e) {
@@ -248,12 +237,18 @@ public class AbstractLogicDialog extends JDialog {
   public void quit(ActionEvent e) {
     setVisible(false);
   }
-
+  /**
+   * Moves selected rule containing row up.
+   * @param e "Move Rule Up" selected
+   */
   private void moveRuleUp(ActionEvent e) {
     currentPanel.moveRowUp();
     updateDialog();
   }
-
+  /**
+   * Moves selected rule containing row down.
+   * @param e "Move Rule Down" selected
+   */
   private void moveRuleDown(ActionEvent e) {
     currentPanel.moveRowDown();
     updateDialog();
@@ -274,14 +269,17 @@ public class AbstractLogicDialog extends JDialog {
     currentPanel.deleteSelectedRow();
     updateDialog();
   }
-
+  /**
+   * Duplicates selected rule containing row.
+   * @param e "Duplicate Selected Rule" selected
+   */
   private void duplicateSelectedRule(ActionEvent e) {
     currentPanel.duplicateSelectedRow();
     updateDialog();
   }
   /**
-   * 
-   * @param e
+   * Handles the changing of tabs
+   * @param e ChangeEvent
    */
   public void tabbedPane_stateChanged(ChangeEvent e) {
     int index = tabbedPane.getSelectedIndex();
