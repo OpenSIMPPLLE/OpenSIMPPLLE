@@ -35,20 +35,20 @@ import simpplle.comcode.SystemKnowledge.Kinds;
 
 public class RegenerationLogicFireTable extends VegLogicPanel {
 
-  private static final int SPECIES_CODE_COL       = FireRegenerationData.SPECIES_CODE_COL;
-  private static final int RESPROUTING_COL        = FireRegenerationData.RESPROUTING_COL;
-  private static final int ADJ_RESPROUTING_COL    = FireRegenerationData.ADJ_RESPROUTING_COL;
-  private static final int IN_PLACE_SEED_COL      = FireRegenerationData.IN_PLACE_SEED_COL;
-  private static final int IN_LANDSCAPE_COL       = FireRegenerationData.IN_LANDSCAPE_COL;
-  private static final int ADJACENT_COL           = FireRegenerationData.ADJACENT_COL;
+  private static final int SPECIES_CODE_COL = FireRegenerationData.SPECIES_CODE_COL;
+  private static final int RESPROUTING_COL = FireRegenerationData.RESPROUTING_COL;
+  private static final int ADJ_RESPROUTING_COL = FireRegenerationData.ADJ_RESPROUTING_COL;
+  private static final int IN_PLACE_SEED_COL = FireRegenerationData.IN_PLACE_SEED_COL;
+  private static final int IN_LANDSCAPE_COL = FireRegenerationData.IN_LANDSCAPE_COL;
+  private static final int ADJACENT_COL = FireRegenerationData.ADJACENT_COL;
 
   private HabitatTypeGroupType selectedEcoGroup;
 
-  private JPanel aPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+  private JPanel aPanel = new JPanel();
   private JPanel adjacentPrefPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
   private JButton adjacentPrefPickPB = new JButton();
   private JLabel adjacentPrefValue = new JLabel();
-  GridLayout gridLayout1 = new GridLayout();
+  private GridLayout labelPanelLayout = new GridLayout();
   private JPanel adjacentPrefLabelPanel = new JPanel();
   private JLabel adjacentPrefLabel2 = new JLabel();
   private JLabel AdjacentPrefLabel1 = new JLabel();
@@ -84,8 +84,8 @@ public class RegenerationLogicFireTable extends VegLogicPanel {
     adjacentPrefValue.setForeground(Color.blue);
     adjacentPrefValue.setBorder(BorderFactory.createLoweredBevelBorder());
     adjacentPrefValue.setText("WS, BS");
-    gridLayout1.setRows(2);
-    adjacentPrefLabelPanel.setLayout(gridLayout1);
+    labelPanelLayout.setRows(2);
+    adjacentPrefLabelPanel.setLayout(labelPanelLayout);
     adjacentPrefLabel2.setFont(monospaced);
     adjacentPrefLabel2.setText("First on left is most preferred");
     AdjacentPrefLabel1.setFont(monospaced);
