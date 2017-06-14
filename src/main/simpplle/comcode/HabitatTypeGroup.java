@@ -333,14 +333,11 @@ public final class HabitatTypeGroup {
 
   }
 
-  public VegetativeType getVegetativeType (Species species,
-                                           SizeClass sizeClass,
-                                           int age,
+  public VegetativeType getVegetativeType (Species species, SizeClass sizeClass, int age,
                                            Density density) {
 
-    String printName = species.toString() + "/"
-                     + sizeClass.toString() + (age == 1 ? "" : Integer.toString(age)) + "/"
-                     + density.toString();
+    String printName = species + "/" + sizeClass + (age == 1 ? "" : Integer.toString(age)) + "/"
+                     + density;
 
     return getVegetativeType(printName);
   }
