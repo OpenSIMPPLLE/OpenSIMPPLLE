@@ -81,6 +81,7 @@ public abstract class RegenerationLogic {
   public static BaseLogic getLogicInstance(String kind) {
     return getData(DataKinds.valueOf(kind));
   }
+
   public static BaseLogic getData(DataKinds kind, HabitatTypeGroupType ecoGroup) {
     return getData(kind,ecoGroup,false);
   }
@@ -92,6 +93,7 @@ public abstract class RegenerationLogic {
    * @return
    */
   public static BaseLogic getData(DataKinds kind, HabitatTypeGroupType ecoGroup, boolean addIfNull) {
+    // Look in here??..
     BaseLogic result;
     switch (kind) {
       case FIRE:
@@ -195,9 +197,8 @@ public abstract class RegenerationLogic {
     return false;
   }
 
-  private static RegenerationData findRegenData(HabitatTypeGroupType ecoGroup,
-                                                Evu evu, Lifeform lifeform,
-                                                DataKinds kind) {
+  private static RegenerationData findRegenData(HabitatTypeGroupType ecoGroup, Evu evu,
+                                                Lifeform lifeform, DataKinds kind) {
     int cStep = Simulation.getCurrentTimeStep();
     return findRegenData(ecoGroup,evu,cStep,lifeform,kind);
   }
@@ -211,9 +212,9 @@ public abstract class RegenerationLogic {
    * @param kind fire or succession
    * @return
    */
-  private static RegenerationData findRegenData(HabitatTypeGroupType ecoGroup,
-                                                Evu evu, int tStep, Lifeform lifeform,
-                                                DataKinds kind) {
+  private static RegenerationData findRegenData(HabitatTypeGroupType ecoGroup, Evu evu,
+                                                int tStep, Lifeform lifeform, DataKinds kind) {
+
     BaseLogic logic = getData(kind,ecoGroup);
     if (logic != null) {
       ArrayList<AbstractLogicData> dataList = logic.getData(kind.toString());
@@ -222,7 +223,7 @@ public abstract class RegenerationLogic {
           RegenerationData regenData = (RegenerationData) data;
           if (regenData.isMatch(evu, tStep, lifeform)) {
             recordRuleIndex(evu, dataList.indexOf(regenData), kind, tStep, lifeform);
-            return regenData;
+            return regenData; // All instance variables null.
           }
         }
       }
@@ -321,8 +322,8 @@ public abstract class RegenerationLogic {
     }
     else { return null; }
   }
-  public static VegetativeType getInPlaceSeedState(HabitatTypeGroupType ecoGroup,
-                                                   Evu evu,Lifeform lifeform) {
+  public static VegetativeType getInPlaceSeedState(HabitatTypeGroupType ecoGroup, Evu evu,
+                                                   Lifeform lifeform) {
     FireRegenerationData regenData =
         (FireRegenerationData)findRegenData(ecoGroup,evu,lifeform,FIRE);
     if (regenData == null) { return null; }
@@ -388,10 +389,9 @@ public abstract class RegenerationLogic {
 
   public static ArrayList<Species> getAdjacentPreferredSpecies() { return adjPrefSpecies; }
 
-  public static ArrayList<RegenerationSuccessionInfo>
-                getSuccessionSpecies(HabitatTypeGroupType ecoGroup,
-                                     Evu evu,Lifeform lifeform)
-  {
+  public static ArrayList<RegenerationSuccessionInfo> getSuccessionSpecies(
+                  HabitatTypeGroupType ecoGroup, Evu evu,Lifeform lifeform) {
+
     SuccessionRegenerationData regenData =
       (SuccessionRegenerationData)findRegenData(ecoGroup,evu,lifeform,SUCCESSION);
     if (regenData == null) { return null; }
@@ -459,8 +459,7 @@ public abstract class RegenerationLogic {
   }
 
   public static void readDataLegacy(BufferedReader fin)
-    throws ParseError, IOException
-  {
+    throws ParseError, IOException {
     String              line, str;
     StringTokenizerPlus strTok;
     FireRegenerationData           regenData;
@@ -803,9 +802,3 @@ public abstract class RegenerationLogic {
   }
 
 }
-
-
-
-
-
-

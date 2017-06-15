@@ -634,7 +634,8 @@ public class FireEvent extends Process {
 
   public static VegetativeType regen(Lifeform lifeform, Evu evu) {
     if (RegenerationLogic.isDataPresent()) {
-      return regenNew(lifeform,evu);
+      // In here
+      return regenNew(lifeform,evu); // TODO: null
     }
     else {
       return regenCommon(evu);
@@ -711,12 +712,30 @@ public class FireEvent extends Process {
     // *** In Place Seed ***
     // *********************
     if (evu.producingSeed(lifeform,Evu.IN_PLACE_SEED)) {
+
+      // Doesn't return null tmpState
       VegetativeType tmpState = RegenerationLogic.getInPlaceSeedState(ecoGroup, evu,lifeform);
+
+      // While this keeps tmpState from being accessed while null, instance variables w/ in tmpState
+      // are not checked, and this led to the null pointer exception in issue 105
       if (tmpState != null) {
+
+
+        // Could use evu.getState but this may not update it...
         newState = htGrp.getVegetativeType(tmpState.getSpecies(),
                                            tmpState.getSizeClass(),
                                            tmpState.getAge(),
                                            tmpState.getDensity());
+          // Testing some ideas...
+//        VegSimStateData tmp = evu.getState();
+//        newState = htGrp.getVegetativeType(tmp.getVegType().getSpecies(),
+//                                           tmp.getVegType().getSizeClass(),
+//                                           tmp.getVegType().getAge(),
+//                                           tmp.getVegType().getDensity());
+
+          // Debug stuff... remove before merging!
+//        System.out.println("new state: " + newState);
+
         if (newState != null) {
           return newState;
         }
@@ -830,7 +849,8 @@ public class FireEvent extends Process {
         if (newState != null) { return newState; }
       }
     }
-    return null;
+//    System.out.println("returning null from regen new");
+    return null; // TODO: this gets returned
   }
 
   /**

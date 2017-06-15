@@ -789,6 +789,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param lifeform the life form to be evaluated
    * @param timeStep the time step used to
    * @return true if simulation has life form.
+   * //TODO: this ->
    * @throws - runtime exception if index is <0.  This is not caught here or thrown...
    */
   public boolean hasLifeform(Lifeform lifeform, int timeStep) {
@@ -5539,6 +5540,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     dominantLifeform = Lifeform.findDominant(getLifeforms());
     Area.currentLifeform = null;
   }
+
   /**
    * Uses the current time step and current simulation run to create a new vegetative simulation step.
    * @param vegType
@@ -5571,7 +5573,8 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return VegetativeType
    */
   private VegetativeType validateNewState(VegetativeType newState) {
-    return validateNewState(newState,false);
+    // TODO:
+    return validateNewState(newState,false); // null
   }
   /**
    * These methods make sure that the next state generated is properly handled,
@@ -5581,7 +5584,9 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return
    */
   private VegetativeType validateNewState(VegetativeType newState, boolean remove) {
-    return validateNewState(Area.currentLifeform,newState,remove);
+    // TODO:
+    return validateNewState(Area.currentLifeform,newState,remove); // null
+
   }
   /**
    * Makes sure the new state is a valid state.  It will check the new state against the old state
@@ -5591,7 +5596,10 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return
    */
   private VegetativeType validateNewState(Lifeform lifeform, VegetativeType newState, boolean remove) {
-    if (newState == null) { return null; }
+    if (newState == null) {
+
+//      System.out.println("returning null from validate new state new state null:(");
+      return null; }
 
     Season   season = Simulation.getInstance().getCurrentSeason();
     Lifeform newLife = newState.getSpecies().getLifeform();
@@ -5881,8 +5889,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   public VegetativeType doFireRegen(Lifeform lifeform) {
     VegetativeType newState=null;
 
-    newState = FireEvent.regen(lifeform,this);
-    newState = validateNewState(newState);
+    newState = FireEvent.regen(lifeform,this); // returns null
+    newState = validateNewState(newState); // Returns null
     return newState;
   }
   public void doNextStateNew(VegetativeType newState) {
@@ -7368,8 +7376,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Brian Losi 10/28/13
    * release some memory that's no longer needed. method deprecated
    */
-  public void cleanup() {
-  }
+  public void cleanup() {}
 
   /**
    * Write adjacent data. Called when writing .spatialrelate files.
@@ -8517,7 +8524,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   private static ArrayList<ProcessType> doneSummaryProcesses = new ArrayList<ProcessType>();
 
 
-  // Used as the retrun value of the following method.
+  // Used as the return value of the following method.
   // The caller of the method only uses the contents of the array not the array
   // itself.  Once finished the array is not needed so to avoid creating millions
   // of temporary arrays this is going to be created once and cleared each time.
@@ -8834,7 +8841,3 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
 }
-
-
-
-

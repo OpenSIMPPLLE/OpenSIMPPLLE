@@ -336,6 +336,13 @@ public final class HabitatTypeGroup {
   public VegetativeType getVegetativeType (Species species, SizeClass sizeClass, int age,
                                            Density density) {
 
+    // More Debugging stuff... remove before merging!!
+//    if(species == null) {
+//      System.out.println("Species: " + species);
+//      System.out.println("Size class: " + sizeClass);
+//      System.out.println("Density: " + density);
+//      System.out.println();
+//    }
     String printName = species + "/" + sizeClass + (age == 1 ? "" : Integer.toString(age)) + "/"
                      + density;
 
