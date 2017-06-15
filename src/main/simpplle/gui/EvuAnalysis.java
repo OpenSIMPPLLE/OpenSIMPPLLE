@@ -18,7 +18,6 @@ import javax.swing.border.*;
 
 import simpplle.*;
 import simpplle.comcode.*;
-import java.util.Vector;
 import java.beans.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -33,106 +32,118 @@ import java.util.ArrayList;
  */
 
 public class EvuAnalysis extends JDialog {
+
   simpplle.comcode.Area area;
-  simpplle.comcode.Evu  currentEvu;
-  ArrayList<Evu>        resultUnits;
-  int                   resultIndex;
+  private simpplle.comcode.Evu currentEvu;
+  private ArrayList<Evu> resultUnits;
+  private int resultIndex;
 
   public static boolean isOpen = false;
-  public static EvuAnalysis thisInstance = null;
+  private  static EvuAnalysis thisInstance = null;
 
-  JPanel mainPanel = new JPanel();
-  JPanel topPanel = new JPanel();
-  JPanel prevNextPanel = new JPanel();
-  FlowLayout flowLayout1 = new FlowLayout();
+  private JTextField idEdit = new JTextField();
+  private JTabbedPane historyTabbedPane = new JTabbedPane();
+  private JCheckBox resultsOnlyCB = new JCheckBox();
+
+  private JTextArea historyText = new JTextArea();
+  private JTextArea treatmentText = new JTextArea();
+
   JButton prevPB = new JButton();
-  JPanel idPanel = new JPanel();
   JButton nextPB = new JButton();
-  GridLayout gridLayout1 = new GridLayout();
-  JLabel idLabel = new JLabel();
-  JTextField idEdit = new JTextField();
-  JPanel infoPanel = new JPanel();
-  JLabel currentStateValue = new JLabel();
-  JLabel currentStateLabel = new JLabel();
-  JLabel htGrpValue = new JLabel();
-  JLabel htGrpLabel = new JLabel();
+  private JButton searchPB = new JButton();
+
+
+  JPanel jPanel1 = new JPanel();
+  JPanel mainPanel = new JPanel();
   JPanel centerPanel = new JPanel();
-  BorderLayout borderLayout3 = new BorderLayout();
-  JLabel landtypeValue = new JLabel();
-  JLabel acresValue = new JLabel();
-  JLabel acresLabel = new JLabel();
-  JPanel adjacentPanel = new JPanel();
-  JScrollPane adjacentScrollPane = new JScrollPane();
-  JList adjacentList = new JList();
+  private JPanel topPanel = new JPanel();
+  private JPanel bottomPanel = new JPanel();
+  private JPanel prevNextPanel = new JPanel();
+  private JPanel idPanel = new JPanel();
+  private JPanel infoPanel = new JPanel();
+  private JPanel historyPanel = new JPanel();
+  private JPanel treatmentPanel = new JPanel();
+  private JPanel valuesPanel = new JPanel();
+  private JPanel labelsPanel = new JPanel();
+  private JPanel aquaticUnitsPanel = new JPanel();
+  private JPanel panelCol1 = new JPanel();
+  private JPanel panelCol2 = new JPanel();
+  private JPanel valuesPanelCol2 = new JPanel();
+  private JPanel labelsPanelCol2 = new JPanel();
+  private JPanel adjacentUnitsPanel = new JPanel();
+  private JPanel landformUnitsPanel = new JPanel();
+  private JPanel topPanelNew = new JPanel();
+  private JPanel adjacentPanel = new JPanel();
+
+  FlowLayout flowLayout1 = new FlowLayout();
+  FlowLayout flowLayout2 = new FlowLayout();
+  FlowLayout flowLayout3 = new FlowLayout();
+  FlowLayout flowLayout4 = new FlowLayout();
+  FlowLayout flowLayout5 = new FlowLayout();
+  FlowLayout flowLayout6 = new FlowLayout();
   FlowLayout flowLayout7 = new FlowLayout();
-  JPanel bottomPanel = new JPanel();
-  JPanel historyPanel = new JPanel();
-  JScrollPane historyScrollPane = new JScrollPane();
-  JTextArea historyText = new JTextArea();
-  TitledBorder titledBorder1;
-  JTabbedPane historyTabbedPane = new JTabbedPane();
-  JPanel treatmentPanel = new JPanel();
-  JScrollPane treatmentScroll = new JScrollPane();
-  JTextArea treatmentText = new JTextArea();
   FlowLayout flowLayout8 = new FlowLayout();
   FlowLayout flowLayout9 = new FlowLayout();
-  JPanel valuesPanel = new JPanel();
-  JPanel labelsPanel = new JPanel();
-  GridLayout gridLayout4 = new GridLayout();
-  GridLayout gridLayout5 = new GridLayout();
-  FlowLayout flowLayout2 = new FlowLayout();
-  JLabel fmzLabel = new JLabel();
-  JLabel specialAreaLabel = new JLabel();
-  JLabel roadStatusLabel = new JLabel();
-  JLabel trailStatusLabel = new JLabel();
-  JLabel ownerLabel = new JLabel();
-  JLabel unitNumLabel = new JLabel();
-  JLabel landtypeLabel = new JLabel();
-  JLabel fmzValue = new JLabel();
-  JLabel specialAreaValue = new JLabel();
-  JLabel roadStatusValue = new JLabel();
-  JLabel trailStatusValue = new JLabel();
-  JLabel ownershipValue = new JLabel();
-  JLabel unitNumValue = new JLabel();
-  FlowLayout flowLayout3 = new FlowLayout();
-  JPanel panelCol2 = new JPanel();
-  JPanel panelCol1 = new JPanel();
-  JPanel valuesPanelCol2 = new JPanel();
-  JPanel labelsPanelCol2 = new JPanel();
-  FlowLayout flowLayout4 = new FlowLayout();
+  FlowLayout flowLayout10 = new FlowLayout();
+
+  GridLayout gridLayout1 = new GridLayout();
   GridLayout gridLayout2 = new GridLayout();
   GridLayout gridLayout3 = new GridLayout();
-  FlowLayout flowLayout5 = new FlowLayout();
-  Border border1;
-  TitledBorder attributesBorder;
-  Border border2;
-  TitledBorder adjacentUnitsBorder;
-  JPanel jPanel1 = new JPanel();
-  FlowLayout flowLayout10 = new FlowLayout();
-  JCheckBox resultsOnlyCB = new JCheckBox();
-  JButton searchPB = new JButton();
-  FlowLayout flowLayout6 = new FlowLayout();
-  JScrollPane eluScrollPane = new JScrollPane();
-  JList eluList = new JList();
-  JPanel landformUnitsPanel = new JPanel();
-  JPanel adjacentUnitsPanel = new JPanel();
-  BorderLayout borderLayout2 = new BorderLayout();
-  Border border3;
-  TitledBorder titledBorder2;
-  Border border4;
-  TitledBorder titledBorder3;
-  BorderLayout borderLayout1 = new BorderLayout();
-  BorderLayout bottomPanelLayout = new BorderLayout();
-  BorderLayout historyPanelLayout = new BorderLayout();
-  BorderLayout treatmentPanelLayout = new BorderLayout();
+  private GridLayout gridLayout4 = new GridLayout();
+  private GridLayout gridLayout5 = new GridLayout();
 
-  JPanel topPanelNew = new JPanel();
-  JPanel aquaticUnitsPanel = new JPanel();
-  Border border5;
+  BorderLayout borderLayout1 = new BorderLayout();
+  BorderLayout borderLayout2 = new BorderLayout();
+  BorderLayout borderLayout3 = new BorderLayout();
   BorderLayout borderLayout4 = new BorderLayout();
-  JScrollPane eauScrollPane = new JScrollPane();
-  JList eauList = new JList();
-  TitledBorder titledBorder4;
+  private BorderLayout bottomPanelLayout = new BorderLayout();
+  private BorderLayout historyPanelLayout = new BorderLayout();
+  private BorderLayout treatmentPanelLayout = new BorderLayout();
+
+  Border border1;
+  Border border2;
+  private Border border3;
+  private Border border4;
+  Border border5;
+
+  TitledBorder titledBorder1;
+  TitledBorder titledBorder2;
+  TitledBorder titledBorder3;
+  private TitledBorder titledBorder4;
+  private TitledBorder attributesBorder;
+  private TitledBorder adjacentUnitsBorder;
+
+  private JList adjacentList = new JList();
+  private JList eluList = new JList();
+  private JList eauList = new JList();
+
+  private JScrollPane adjacentScrollPane = new JScrollPane();
+  private JScrollPane historyScrollPane = new JScrollPane();
+  private JScrollPane eluScrollPane = new JScrollPane();
+  private JScrollPane eauScrollPane = new JScrollPane();
+  private JScrollPane treatmentScroll = new JScrollPane();
+
+  private JLabel idLabel = new JLabel();
+  private JLabel currentStateValue = new JLabel();
+  private JLabel currentStateLabel = new JLabel();
+  private JLabel htGrpValue = new JLabel();
+  private JLabel htGrpLabel = new JLabel();
+  private JLabel landtypeValue = new JLabel();
+  private JLabel acresValue = new JLabel();
+  private JLabel acresLabel = new JLabel();
+  private JLabel fmzLabel = new JLabel();
+  private JLabel specialAreaLabel = new JLabel();
+  private JLabel roadStatusLabel = new JLabel();
+  private JLabel trailStatusLabel = new JLabel();
+  private JLabel ownerLabel = new JLabel();
+  private JLabel unitNumLabel = new JLabel();
+  private JLabel landtypeLabel = new JLabel();
+  private JLabel fmzValue = new JLabel();
+  private JLabel specialAreaValue = new JLabel();
+  private JLabel roadStatusValue = new JLabel();
+  private JLabel trailStatusValue = new JLabel();
+  private JLabel ownershipValue = new JLabel();
+  private JLabel unitNumValue = new JLabel();
 
   private final JLabel elevationLabel = new JLabel();
   private final JLabel elevationValue = new JLabel();
@@ -164,16 +175,16 @@ public class EvuAnalysis extends JDialog {
       initialize();
     }
   }
-/**
- * Overloaded constructor of Evu Analysis.  Creates a new frame, sets the name to null and modality to false
- */
+  /**
+   * Overloaded constructor of Evu Analysis.  Creates a new frame, sets the name to null and modality to false
+   */
   public EvuAnalysis() {
     this(new Frame(), "", false);
   }
-/**
- * Init method for Evu Analysis dialog.  Sets the borders, lists, layouts, panels, buttons and listeners.  
- * @throws Exception
- */
+  /**
+   * Init method for Evu Analysis dialog.  Sets the borders, lists, layouts, panels, buttons and listeners.
+   * @throws Exception
+   */
   void jbInit() throws Exception {
     titledBorder1 = new TitledBorder("");
     border1 = BorderFactory.createEmptyBorder();
@@ -497,17 +508,17 @@ public class EvuAnalysis extends JDialog {
     setSize(getPreferredSize());
     updateDialog();
   }
-/**
- * Gets the current instance of Evu Analysis
- * @return current Evu analysis
- */
+  /**
+   * Gets the current instance of Evu Analysis
+   * @return current Evu analysis
+   */
   public static EvuAnalysis getInstance() { return thisInstance; }
-/**
- * Updates the Evu Analysis dialog.  If there is a current Evu instance enables the previous and next buttons as well as adjacent Evu list.  
- * Displays the id, edit id, current state, habitat group, land type, fire management zone, trail status, elevation, road status, ownership, special area
- * and current Evu ID text.  Also sets the default list model  to elu list.  If there is no current Evu analysis dialog, sets all the above text to empty string
- * and previous, next buttons to enabled.    
- */
+  /**
+   * Updates the Evu Analysis dialog.  If there is a current Evu instance enables the previous and next buttons as well as adjacent Evu list.
+   * Displays the id, edit id, current state, habitat group, land type, fire management zone, trail status, elevation, road status, ownership, special area
+   * and current Evu ID text.  Also sets the default list model  to elu list.  If there is no current Evu analysis dialog, sets all the above text to empty string
+   * and previous, next buttons to enabled.
+   */
   private void updateDialog() {
     if (currentEvu != null) {
       prevPB.setEnabled(true);
@@ -600,12 +611,11 @@ public class EvuAnalysis extends JDialog {
       columnValue.setText("");
     }
   }
-
-/**
- * Sets the adjacent Evu via mouse click.  
- * @param e double mouse click
- */
-  void adjacentList_mouseClicked(MouseEvent e) {
+  /**
+   * Sets the adjacent Evu via mouse click.
+   * @param e double mouse click
+   */
+  private void adjacentList_mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2) {
       goAdjacent();
     }
@@ -614,7 +624,7 @@ public class EvuAnalysis extends JDialog {
    * Sets the Elu via mouse click.
    * @param e double mouse click
    */
-  void eluList_mouseClicked(MouseEvent e) {
+  private void eluList_mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2) {
       goLandUnit();
     }
@@ -623,14 +633,14 @@ public class EvuAnalysis extends JDialog {
    * Sets the Eau via mouse click.
    * @param e double mouse click
    */
-  public void eauList_mouseClicked(MouseEvent e) {
+  private void eauList_mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2) {
       goAquaUnit();
     }
   }
-/**
- * Changes the Evu analysis dialog to the adjacent Evu.  Uses the selected adjacent Evu from the adjacent Evu list - and sets the current Evu to this adjacent Evu.
- */
+  /**
+   * Changes the Evu analysis dialog to the adjacent Evu.  Uses the selected adjacent Evu from the adjacent Evu list - and sets the current Evu to this adjacent Evu.
+   */
   private void goAdjacent() {
     String              str = (String) adjacentList.getSelectedValue();
     int                 id = -1;
@@ -649,10 +659,10 @@ public class EvuAnalysis extends JDialog {
     currentEvu = area.getEvu(id);
     updateDialog();
   }
-/**
- * Sets the Evu Analysis dialog to a particular Unit Analysis.  IF a unit analysis dialog is open gets the instance of that dialog.  Else creates a 
- * unit analysis instance and sets the land unit to the selected value in Elu list.  
- */
+  /**
+   * Sets the Evu Analysis dialog to a particular Unit Analysis.  IF a unit analysis dialog is open gets the instance of that dialog.  Else creates a
+   * unit analysis instance and sets the land unit to the selected value in Elu list.
+   */
   private void goLandUnit() {
     UnitAnalysis dlg;
 
@@ -683,18 +693,18 @@ public class EvuAnalysis extends JDialog {
     dlg.goAquaticUnit((ExistingAquaticUnit)eauList.getSelectedValue());
     dlg.setVisible(true);
   }
-/**
- * Sets the Evu analysis to the Unit indicated by Evu ID parameter.  
- * @param id the evu ID
- */
-  public void goUnit(int id) {
+  /**
+   * Sets the Evu analysis to the Unit indicated by Evu ID parameter.
+   * @param id the evu ID
+   */
+  void goUnit(int id) {
     goUnit(area.getEvu(id));
   }
   /**
    * Sets the Evu analysis to the Unit indicated by Evu parameter.  
    * @param evu - the Existing vegetative unit the Evu analysis will go to.  
    */
-  public void goUnit(Evu evu) {
+  void goUnit(Evu evu) {
     currentEvu = evu;
     updateDialog();
   }
@@ -728,11 +738,11 @@ public class EvuAnalysis extends JDialog {
     }
     updateDialog();
   }
-/**
- * If edit is choosen and area Evu is valid in the area, current area is set.  
- * @param e 'edit'
- */
-  void idEdit_actionPerformed(ActionEvent e) {
+  /**
+   * If edit is choosen and area Evu is valid in the area, current area is set.
+   * @param e 'edit'
+   */
+  private void idEdit_actionPerformed(ActionEvent e) {
     int id;
 
     try {
@@ -757,26 +767,26 @@ public class EvuAnalysis extends JDialog {
       }
     }
   }
-/**
- * Exits the Evu Analysis dialog.
- */
+  /**
+   * Exits the Evu Analysis dialog.
+   */
   private void quit() {
     isOpen = false;
     setVisible(false);
     dispose();
   }
-/**
- * Exits the Evu Analysis if a window closing event occurs.  
- * @param e 'X' for window closing event.
- */
+  /**
+   * Exits the Evu Analysis if a window closing event occurs.
+   * @param e 'X' for window closing event.
+   */
   void this_windowClosing(WindowEvent e) {
     quit();
   }
-/**
- * If search instance is already open, returns.  Otherwise if search button pushed starts a new instance of Evu Search dialog.  
- * @param e
- */
-  void searchPB_actionPerformed(ActionEvent e) {
+  /**
+   * If search instance is already open, returns.  Otherwise if search button pushed starts a new instance of Evu Search dialog.
+   * @param e
+   */
+  private void searchPB_actionPerformed(ActionEvent e) {
     if (EvuSearchLogicDlg.isOpen()) { return; }
 
     EvuSearchLogicDlg dlg = new EvuSearchLogicDlg(JSimpplle.getSimpplleMain(),
@@ -784,11 +794,11 @@ public class EvuAnalysis extends JDialog {
 
     dlg.setVisible(true);
   }
-/**
- * Sets the results units arraylist to the Evu arraylist. 
- * @param units
- */
-  public void setResultUnits(ArrayList<Evu> units) {
+  /**
+   * Sets the results units arraylist to the Evu arraylist.
+   * @param units
+   */
+  void setResultUnits(ArrayList<Evu> units) {
     if (units == null || units.size() == 0) { return; }
 
     resultUnits = units;
@@ -799,11 +809,11 @@ public class EvuAnalysis extends JDialog {
       updateDialog();
     }
   }
-/**
- * If results only combo box is selected, current evu is set the results unit at index 0.  Otherwise current Evu is the first Evu in area.  
- * @param e
- */
-  void resultsOnlyCB_actionPerformed(ActionEvent e) {
+  /**
+   * If results only combo box is selected, current evu is set the results unit at index 0.  Otherwise current Evu is the first Evu in area.
+   * @param e
+   */
+  private void resultsOnlyCB_actionPerformed(ActionEvent e) {
     if (resultsOnlyCB.isSelected()) {
       currentEvu = resultUnits.get(0);
       resultIndex = 0;
@@ -813,11 +823,9 @@ public class EvuAnalysis extends JDialog {
     }
     updateDialog();
   }
-/**
- * Check if Evu analysis dialog is open.  
- * @return true if Evu analysis dialog is open.
- */
+  /**
+   * Check if Evu analysis dialog is open.
+   * @return true if Evu analysis dialog is open.
+   */
   public static boolean isOpen() { return isOpen; }
-
-
 }
