@@ -39,10 +39,9 @@ public class EvuAnalysis extends JDialog {
   private int resultIndex;
 
   public static boolean isOpen = false;
-  private  static EvuAnalysis thisInstance = null;
+  private static EvuAnalysis thisInstance = null;
 
   private JTextField idEdit = new JTextField();
-  private JTabbedPane historyTabbedPane = new JTabbedPane();
   private JCheckBox resultsOnlyCB = new JCheckBox();
 
   private JTextArea historyText = new JTextArea();
@@ -52,67 +51,15 @@ public class EvuAnalysis extends JDialog {
   JButton nextPB = new JButton();
   private JButton searchPB = new JButton();
 
-  JPanel jPanel1 = new JPanel(new FlowLayout());
-  JPanel mainPanel = new JPanel(new BorderLayout());
-  JPanel centerPanel = new JPanel();
-  private JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-  private JPanel bottomPanel = new JPanel(new BorderLayout());
-  private JPanel prevNextPanel = new JPanel();
-  private JPanel idPanel = new JPanel();
-  private JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
-  private JPanel historyPanel = new JPanel(new BorderLayout());
-  private JPanel treatmentPanel = new JPanel(new BorderLayout());
-  private JPanel valuesPanel = new JPanel();
-  private JPanel labelsPanel = new JPanel();
-  private JPanel aquaticUnitsPanel = new JPanel(new BorderLayout());
-  private JPanel panelCol1 = new JPanel();
-  private JPanel panelCol2 = new JPanel();
-  private JPanel valuesPanelCol2 = new JPanel();
-  private JPanel labelsPanelCol2 = new JPanel();
-  private JPanel adjacentUnitsPanel = new JPanel(new BorderLayout());
-  private JPanel landformUnitsPanel = new JPanel(new BorderLayout());
-  private JPanel topPanelNew = new JPanel();
-  private JPanel adjacentPanel = new JPanel();
-
-  FlowLayout flowLayout1 = new FlowLayout();
-  FlowLayout flowLayout4 = new FlowLayout();
-  FlowLayout flowLayout7 = new FlowLayout();
-
-  GridLayout gridLayout1 = new GridLayout();
-  GridLayout gridLayout2 = new GridLayout();
-
-  BorderLayout borderLayout3 = new BorderLayout();
-
-  TitledBorder titledBorder2;
-  private TitledBorder titledBorder3;
-  private TitledBorder titledBorder4;
-  private TitledBorder attributesBorder;
-
   private JList adjacentList = new JList();
   private JList eluList = new JList();
   private JList eauList = new JList();
 
-  private JScrollPane adjacentScrollPane = new JScrollPane();
-  private JScrollPane historyScrollPane = new JScrollPane();
-  private JScrollPane eluScrollPane = new JScrollPane();
-  private JScrollPane eauScrollPane = new JScrollPane();
-  private JScrollPane treatmentScroll = new JScrollPane();
-
   private JLabel idLabel = new JLabel();
   private JLabel currentStateValue = new JLabel();
-  private JLabel currentStateLabel = new JLabel();
   private JLabel htGrpValue = new JLabel();
-  private JLabel htGrpLabel = new JLabel();
   private JLabel landtypeValue = new JLabel();
   private JLabel acresValue = new JLabel();
-  private JLabel acresLabel = new JLabel();
-  private JLabel fmzLabel = new JLabel();
-  private JLabel specialAreaLabel = new JLabel();
-  private JLabel roadStatusLabel = new JLabel();
-  private JLabel trailStatusLabel = new JLabel();
-  private JLabel ownerLabel = new JLabel();
-  private JLabel unitNumLabel = new JLabel();
-  private JLabel landtypeLabel = new JLabel();
   private JLabel fmzValue = new JLabel();
   private JLabel specialAreaValue = new JLabel();
   private JLabel roadStatusValue = new JLabel();
@@ -120,13 +67,9 @@ public class EvuAnalysis extends JDialog {
   private JLabel ownershipValue = new JLabel();
   private JLabel unitNumValue = new JLabel();
 
-  private final JLabel elevationLabel = new JLabel();
   private final JLabel elevationValue = new JLabel();
-  private final JLabel dummyLabel = new JLabel();
-  private final JLabel dummyValue = new JLabel();
   private final JLabel rowValue = new JLabel();
-  private final JLabel rowLabel = new JLabel();
-  private final JLabel columnLabel = new JLabel();
+  private final JLabel dummyValue = new JLabel();
   private final JLabel columnValue = new JLabel();
   
   /**
@@ -162,13 +105,82 @@ public class EvuAnalysis extends JDialog {
    */
   void jbInit() throws Exception {
 
+    JTabbedPane historyTabbedPane = new JTabbedPane();
+
+    JPanel jPanel1 = new JPanel(new FlowLayout());
+    JPanel mainPanel = new JPanel(new BorderLayout());
+    JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JPanel bottomPanel = new JPanel(new BorderLayout());
+    JPanel centerPanel = new JPanel();
+    JPanel prevNextPanel = new JPanel();
+    JPanel idPanel = new JPanel();
+    JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+    JPanel historyPanel = new JPanel(new BorderLayout());
+    JPanel treatmentPanel = new JPanel(new BorderLayout());
+    JPanel valuesPanel = new JPanel();
+    JPanel labelsPanel = new JPanel();
+    JPanel aquaticUnitsPanel = new JPanel(new BorderLayout());
+    JPanel panelCol1 = new JPanel();
+    JPanel panelCol2 = new JPanel();
+    JPanel valuesPanelCol2 = new JPanel();
+    JPanel labelsPanelCol2 = new JPanel();
+    JPanel adjacentUnitsPanel = new JPanel(new BorderLayout());
+    JPanel landformUnitsPanel = new JPanel(new BorderLayout());
+    JPanel topPanelNew = new JPanel();
+    JPanel adjacentPanel = new JPanel();
+
+    JScrollPane adjacentScrollPane = new JScrollPane();
+    JScrollPane historyScrollPane = new JScrollPane();
+    JScrollPane eluScrollPane = new JScrollPane();
+    JScrollPane eauScrollPane = new JScrollPane();
+    JScrollPane treatmentScroll = new JScrollPane();
+
+    JLabel acresLabel = new JLabel();
+    JLabel fmzLabel = new JLabel();
+    JLabel specialAreaLabel = new JLabel();
+    JLabel roadStatusLabel = new JLabel();
+    JLabel trailStatusLabel = new JLabel();
+    JLabel ownerLabel = new JLabel();
+    JLabel unitNumLabel = new JLabel();
+    JLabel landtypeLabel = new JLabel();
+    JLabel htGrpLabel = new JLabel();
+    JLabel currentStateLabel = new JLabel();
+
+
+    final JLabel elevationLabel = new JLabel("Elevation");
+    final JLabel rowLabel = new JLabel("Row");
+    final JLabel columnLabel = new JLabel("Column");
+    final JLabel dummyLabel = new JLabel();
+
     Border border = BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140));
     Border attribBorder = BorderFactory.createEmptyBorder();
 
-    attributesBorder = new TitledBorder(attribBorder,"Attributes");
-    titledBorder2 = new TitledBorder(border,"Adjacent Units");
-    titledBorder3 = new TitledBorder(border,"Landform Units");
-    titledBorder4 = new TitledBorder(border,"Aqua Units");
+    TitledBorder attributesBorder = new TitledBorder(attribBorder,"Attributes");
+    TitledBorder titledBorder2 = new TitledBorder(border,"Adjacent Units");
+    TitledBorder titledBorder3 = new TitledBorder(border,"Landform Units");
+    TitledBorder titledBorder4 = new TitledBorder(border,"Aqua Units");
+
+    FlowLayout flowLayout1 = new FlowLayout();
+    flowLayout1.setVgap(1);
+
+    FlowLayout flowLayout4 = new FlowLayout();
+    flowLayout4.setAlignment(FlowLayout.LEFT);
+    flowLayout4.setVgap(0);
+
+    FlowLayout flowLayout7 = new FlowLayout();
+    flowLayout7.setAlignment(FlowLayout.LEFT);
+    flowLayout7.setVgap(0);
+
+    GridLayout gridLayout1 = new GridLayout();
+    gridLayout1.setRows(2);
+
+    GridLayout gridLayout2 = new GridLayout();
+    gridLayout2.setRows(7);
+    gridLayout2.setVgap(5);
+
+    BorderLayout borderLayout3 = new BorderLayout();
+    borderLayout3.setVgap(5);
+
     eauList.setToolTipText("Double click to go to a unit");
     eauList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     eauList.addMouseListener(new MouseAdapter() {
@@ -202,7 +214,6 @@ public class EvuAnalysis extends JDialog {
       }
     });
     idPanel.setLayout(gridLayout1);
-    gridLayout1.setRows(2);
     idEdit.setToolTipText("Please enter a valid Unit ID");
     idEdit.setColumns(6);
     idEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -248,8 +259,6 @@ public class EvuAnalysis extends JDialog {
         adjacentList_mouseClicked(e);
       }
     });
-    flowLayout7.setAlignment(FlowLayout.LEFT);
-    flowLayout7.setVgap(0);
     historyText.setColumns(130);
     historyText.setRows(12);
     historyText.setBackground(Color.white);
@@ -265,7 +274,6 @@ public class EvuAnalysis extends JDialog {
     treatmentText.setBackground(Color.white);
     treatmentText.setSelectionColor(Color.blue);
     treatmentText.setEditable(false);
-    borderLayout3.setVgap(5);
     bottomPanel.setBorder(border);
     labelsPanel.setLayout(gridLayout2);
     valuesPanel.setLayout(gridLayout2);
@@ -302,18 +310,12 @@ public class EvuAnalysis extends JDialog {
     unitNumValue.setForeground(Color.blue);
     panelCol2.setLayout(flowLayout4);
     labelsPanelCol2.setLayout(gridLayout2);
-    gridLayout2.setRows(7);
-    gridLayout2.setVgap(5);
     valuesPanelCol2.setLayout(gridLayout2);
     panelCol1.setLayout(flowLayout4);
-    flowLayout4.setAlignment(FlowLayout.LEFT);
-    flowLayout4.setVgap(0);
     panelCol1.setBorder(border);
     panelCol2.setBorder(border);
     infoPanel.setBorder(attributesBorder);
     attributesBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
-    adjacentUnitsBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
-    flowLayout1.setVgap(1);
     resultsOnlyCB.setEnabled(false);
     resultsOnlyCB.setText("Result Units Only -->");
     resultsOnlyCB.addActionListener(new java.awt.event.ActionListener() {
@@ -394,11 +396,10 @@ public class EvuAnalysis extends JDialog {
     
     labelsPanelCol2.add(rowLabel);
     rowLabel.setFont(new Font("", Font.PLAIN, 14));
-    rowLabel.setText("Row");
-    
+
     labelsPanelCol2.add(columnLabel);
     columnLabel.setFont(new Font("", Font.PLAIN, 14));
-    columnLabel.setText("Column");
+
     panelCol2.add(valuesPanelCol2, null);
     
     valuesPanelCol2.add(rowValue);
@@ -414,7 +415,7 @@ public class EvuAnalysis extends JDialog {
     
     labelsPanel.add(elevationLabel);
     elevationLabel.setFont(new Font("", Font.PLAIN, 14));
-    elevationLabel.setText("Elevation");
+//    elevationLabel.setText("Elevation");
     
     labelsPanel.add(dummyLabel);
     panelCol1.add(valuesPanel, null);
