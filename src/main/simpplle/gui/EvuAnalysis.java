@@ -52,53 +52,38 @@ public class EvuAnalysis extends JDialog {
   JButton nextPB = new JButton();
   private JButton searchPB = new JButton();
 
-
-  JPanel jPanel1 = new JPanel();
+  JPanel jPanel1 = new JPanel(new FlowLayout());
   JPanel mainPanel = new JPanel();
   JPanel centerPanel = new JPanel();
-  private JPanel topPanel = new JPanel();
-  private JPanel bottomPanel = new JPanel();
+  private JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+  private JPanel bottomPanel = new JPanel(new BorderLayout());
   private JPanel prevNextPanel = new JPanel();
   private JPanel idPanel = new JPanel();
-  private JPanel infoPanel = new JPanel();
-  private JPanel historyPanel = new JPanel();
-  private JPanel treatmentPanel = new JPanel();
+  private JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+  private JPanel historyPanel = new JPanel(new BorderLayout());
+  private JPanel treatmentPanel = new JPanel(new BorderLayout());
   private JPanel valuesPanel = new JPanel();
   private JPanel labelsPanel = new JPanel();
-  private JPanel aquaticUnitsPanel = new JPanel();
+  private JPanel aquaticUnitsPanel = new JPanel(new BorderLayout());
   private JPanel panelCol1 = new JPanel();
   private JPanel panelCol2 = new JPanel();
   private JPanel valuesPanelCol2 = new JPanel();
   private JPanel labelsPanelCol2 = new JPanel();
-  private JPanel adjacentUnitsPanel = new JPanel();
-  private JPanel landformUnitsPanel = new JPanel();
+  private JPanel adjacentUnitsPanel = new JPanel(new BorderLayout());
+  private JPanel landformUnitsPanel = new JPanel(new BorderLayout());
   private JPanel topPanelNew = new JPanel();
   private JPanel adjacentPanel = new JPanel();
 
   FlowLayout flowLayout1 = new FlowLayout();
-  FlowLayout flowLayout2 = new FlowLayout();
-  FlowLayout flowLayout3 = new FlowLayout();
   FlowLayout flowLayout4 = new FlowLayout();
   FlowLayout flowLayout5 = new FlowLayout();
-  FlowLayout flowLayout6 = new FlowLayout();
   FlowLayout flowLayout7 = new FlowLayout();
-  FlowLayout flowLayout8 = new FlowLayout();
-  FlowLayout flowLayout9 = new FlowLayout();
-  FlowLayout flowLayout10 = new FlowLayout();
 
   GridLayout gridLayout1 = new GridLayout();
   GridLayout gridLayout2 = new GridLayout();
-  GridLayout gridLayout3 = new GridLayout();
-  private GridLayout gridLayout4 = new GridLayout();
-  private GridLayout gridLayout5 = new GridLayout();
 
-  BorderLayout borderLayout1 = new BorderLayout();
-  BorderLayout borderLayout2 = new BorderLayout();
   BorderLayout borderLayout3 = new BorderLayout();
-  BorderLayout borderLayout4 = new BorderLayout();
-  private BorderLayout bottomPanelLayout = new BorderLayout();
-  private BorderLayout historyPanelLayout = new BorderLayout();
-  private BorderLayout treatmentPanelLayout = new BorderLayout();
+
 
   Border border1;
   Border border2;
@@ -186,6 +171,7 @@ public class EvuAnalysis extends JDialog {
    * @throws Exception
    */
   void jbInit() throws Exception {
+
     titledBorder1 = new TitledBorder("");
     border1 = BorderFactory.createEmptyBorder();
     attributesBorder = new TitledBorder(border1,"Attributes");
@@ -198,7 +184,6 @@ public class EvuAnalysis extends JDialog {
     titledBorder3 = new TitledBorder(border4,"Landform Units");
     titledBorder4 = new TitledBorder(border5,"Aqua Units");
     mainPanel.setLayout(new BorderLayout());
-    aquaticUnitsPanel.setLayout(borderLayout4);
     eauList.setToolTipText("Double click to go to a unit");
     eauList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     eauList.addMouseListener(new MouseAdapter() {
@@ -207,7 +192,6 @@ public class EvuAnalysis extends JDialog {
       }
     });
     getContentPane().add(mainPanel);
-    topPanel.setLayout(flowLayout6);
     topPanelNew.setLayout(new BorderLayout());
     prevNextPanel.setLayout(flowLayout1);
     prevPB.setEnabled(false);
@@ -248,7 +232,6 @@ public class EvuAnalysis extends JDialog {
         this_windowClosing(e);
       }
     });
-    infoPanel.setLayout(flowLayout2);
     currentStateValue.setFont(new java.awt.Font("Dialog", 1, 14));
     currentStateValue.setForeground(Color.blue);
     currentStateValue.setText("DF-LP/MMU/3");
@@ -282,8 +265,6 @@ public class EvuAnalysis extends JDialog {
     });
     flowLayout7.setAlignment(FlowLayout.LEFT);
     flowLayout7.setVgap(0);
-    bottomPanel.setLayout(bottomPanelLayout);
-    historyPanel.setLayout(historyPanelLayout);
     historyText.setColumns(130);
     historyText.setRows(12);
     historyText.setBackground(Color.white);
@@ -294,27 +275,15 @@ public class EvuAnalysis extends JDialog {
     eluScrollPane.setMinimumSize(new Dimension(100, 24));
     eluScrollPane.setPreferredSize(new Dimension(200, 132));
     historyTabbedPane.setFont(new java.awt.Font("Dialog", 1, 16));
-    treatmentPanel.setLayout(treatmentPanelLayout);
     treatmentText.setColumns(92);
     treatmentText.setRows(12);
     treatmentText.setBackground(Color.white);
     treatmentText.setSelectionColor(Color.blue);
     treatmentText.setEditable(false);
-    flowLayout9.setHgap(0);
-    flowLayout9.setVgap(0);
-    flowLayout8.setHgap(0);
-    flowLayout8.setVgap(0);
     borderLayout3.setVgap(5);
     bottomPanel.setBorder(BorderFactory.createEtchedBorder());
-    labelsPanel.setLayout(gridLayout4);
-    valuesPanel.setLayout(gridLayout5);
-    gridLayout4.setRows(7);
-    gridLayout4.setVgap(5);
-    gridLayout5.setRows(7);
-    gridLayout5.setVgap(5);
-    flowLayout2.setAlignment(FlowLayout.LEFT);
-    flowLayout2.setHgap(10);
-    flowLayout2.setVgap(0);
+    labelsPanel.setLayout(gridLayout2);
+    valuesPanel.setLayout(gridLayout2);
     fmzLabel.setText("Fire Management Zone");
     fmzLabel.setFont(new Font("", Font.PLAIN, 14));
     specialAreaLabel.setText("Special Area");
@@ -346,16 +315,11 @@ public class EvuAnalysis extends JDialog {
     ownershipValue.setText("NF-OTHER");
     unitNumValue.setFont(new java.awt.Font("Dialog", 1, 14));
     unitNumValue.setForeground(Color.blue);
-    flowLayout3.setAlignment(FlowLayout.LEFT);
-    flowLayout3.setHgap(0);
-    flowLayout3.setVgap(0);
     panelCol2.setLayout(flowLayout4);
     labelsPanelCol2.setLayout(gridLayout2);
     gridLayout2.setRows(7);
     gridLayout2.setVgap(5);
-    valuesPanelCol2.setLayout(gridLayout3);
-    gridLayout3.setRows(7);
-    gridLayout3.setVgap(5);
+    valuesPanelCol2.setLayout(gridLayout2);
     panelCol1.setLayout(flowLayout5);
     flowLayout5.setAlignment(FlowLayout.LEFT);
     flowLayout5.setVgap(0);
@@ -367,7 +331,6 @@ public class EvuAnalysis extends JDialog {
     attributesBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
     adjacentUnitsBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
     flowLayout1.setVgap(1);
-    jPanel1.setLayout(flowLayout10);
     resultsOnlyCB.setEnabled(false);
     resultsOnlyCB.setText("Result Units Only -->");
     resultsOnlyCB.addActionListener(new java.awt.event.ActionListener() {
@@ -381,7 +344,6 @@ public class EvuAnalysis extends JDialog {
         searchPB_actionPerformed(e);
       }
     });
-    flowLayout6.setAlignment(FlowLayout.LEFT);
     eluList.setToolTipText("Double click to go to a unit");
     eluList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     eluList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -389,8 +351,6 @@ public class EvuAnalysis extends JDialog {
         eluList_mouseClicked(e);
       }
     });
-    adjacentUnitsPanel.setLayout(borderLayout1);
-    landformUnitsPanel.setLayout(borderLayout2);
     adjacentUnitsPanel.setBorder(titledBorder2);
     landformUnitsPanel.setBorder(titledBorder3);
     aquaticUnitsPanel.setBorder(titledBorder4);
