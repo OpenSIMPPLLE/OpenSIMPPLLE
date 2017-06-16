@@ -201,17 +201,17 @@ public class EvuAnalysis extends JDialog {
     prevPB.setIcon(new ImageIcon(simpplle.gui.EvuAnalysis.class.getResource("images/prev.gif")));
     prevPB.setMargin(new Insets(0, 0, 0, 0));
     prevPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuAnalysis.class.getResource("images/prevg.gif")));
-    prevPB.addActionListener(e -> prevPB_actionPerformed());
+    prevPB.addActionListener(e -> prevPB_Listener());
     nextPB.setEnabled(false);
     nextPB.setNextFocusableComponent(adjacentList);
     nextPB.setIcon(new ImageIcon(simpplle.gui.EvuAnalysis.class.getResource("images/next.gif")));
     nextPB.setMargin(new Insets(0, 0, 0, 0));
     nextPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuAnalysis.class.getResource("images/nextg.gif")));
-    nextPB.addActionListener(e -> nextPB_actionPerformed());
+    nextPB.addActionListener(e -> nextPB_Listener());
     idPanel.setLayout(gridLayout1);
     idEdit.setToolTipText("Please enter a valid Unit ID");
     idEdit.setColumns(6);
-    idEdit.addActionListener(e -> idEdit_actionPerformed());
+    idEdit.addActionListener(e -> idEdit_Listener());
     setTitle("Vegetative Unit Analysis");
     addWindowListener(new java.awt.event.WindowAdapter() {
       public void windowClosing(WindowEvent e) {
@@ -308,9 +308,9 @@ public class EvuAnalysis extends JDialog {
     attributesBorder.setTitleFont(monospaced);
     resultsOnlyCB.setEnabled(false);
     resultsOnlyCB.setText("Result Units Only -->");
-    resultsOnlyCB.addActionListener(e -> resultsOnlyCB_actionPerformed());
+    resultsOnlyCB.addActionListener(e -> resultsOnlyCB_Listener());
     searchPB.setText("Search");
-    searchPB.addActionListener(e -> searchPB_actionPerformed());
+    searchPB.addActionListener(e -> searchPB_Listener());
     eluList.setToolTipText("Double click to go to a unit");
     eluList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     eluList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -439,6 +439,96 @@ public class EvuAnalysis extends JDialog {
    */
   public static EvuAnalysis getInstance() { return thisInstance; }
   /**
+   * Changes the Evu analysis dialog to the adjacent Evu.  Uses the selected adjacent Evu from the adjacent Evu list - and sets the current Evu to this adjacent Evu.
+   */
+  private void goAdjacent() {
+    String              str = (String) adjacentList.getSelectedValue();
+    int                 id = -1;
+    StringTokenizerPlus strTok;
+
+    if (str == null) { return; }
+
+    strTok = new StringTokenizerPlus(str," ");
+    try {
+      id = strTok.getIntToken();
+    }
+    catch (simpplle.comcode.ParseError e) {}
+
+    if (id == -1) { return; }
+
+    currentEvu = area.getEvu(id);
+    updateDialog();
+  }
+  /**
+   * Sets the Evu Analysis dialog to a particular Unit Analysis.  IF a unit analysis dialog is open gets the instance of that dialog.  Else creates a
+   * unit analysis instance and sets the land unit to the selected value in Elu list.
+   */
+  private void goLandUnit() {
+    UnitAnalysis dlg;
+
+    if (UnitAnalysis.isOpen()) {
+      dlg = UnitAnalysis.getInstance();
+
+    }
+    else {
+      dlg = new UnitAnalysis(JSimpplle.getSimpplleMain(),"Unit Analysis", false);
+    }
+    dlg.getLandInstance().goLandUnit((ExistingLandUnit)eluList.getSelectedValue());
+    dlg.setVisible(true);
+  }
+  /**
+   * Sets the Eau Analysis dialog to a particular Eau Analysis dialog.  If an Eau analysis dialog is open gets the instance of that dialog.  Else creates a 
+   * Eau analysis instance and sets the land unit to the selected value in Elu list.  
+   */
+  private void goAquaUnit() {
+    EauAnalysis dlg;
+
+    if (EauAnalysis.isOpen()) {
+      dlg = EauAnalysis.getInstance();
+
+    }
+    else {
+      dlg = new EauAnalysis(JSimpplle.getSimpplleMain(),"Aquatic Unit Analysis", false);
+    }
+    dlg.goAquaticUnit((ExistingAquaticUnit)eauList.getSelectedValue());
+    dlg.setVisible(true);
+  }
+  /**
+   * Sets the Evu analysis to the Unit indicated by Evu ID parameter.
+   * @param id the evu ID
+   */
+  void goUnit(int id) {
+    goUnit(area.getEvu(id));
+  }
+  /**
+   * Sets the Evu analysis to the Unit indicated by Evu parameter.  
+   * @param evu - the Existing vegetative unit the Evu analysis will go to.  
+   */
+  void goUnit(Evu evu) {
+    currentEvu = evu;
+    updateDialog();
+  }
+  /**
+   * Check if Evu analysis dialog is open.
+   * @return true if Evu analysis dialog is open.
+   */
+  public static boolean isOpen() { return isOpen; }
+  /**
+   * Sets the results units arraylist to the Evu arraylist.
+   * @param units arraylist containing each units results
+   */
+  void setResultUnits(ArrayList<Evu> units) {
+    if (units == null || units.size() == 0) { return; }
+
+    resultUnits = units;
+    resultsOnlyCB.setEnabled(true);
+    if (resultsOnlyCB.isSelected()) {
+      currentEvu = resultUnits.get(0);
+      resultIndex = 0;
+      updateDialog();
+    }
+  }
+  /**
    * Updates the Evu Analysis dialog.  If there is a current Evu instance enables the previous and next buttons as well as adjacent Evu list.
    * Displays the id, edit id, current state, habitat group, land type, fire management zone, trail status, elevation, road status, ownership, special area
    * and current Evu ID text.  Also sets the default list model  to elu list.  If there is no current Evu analysis dialog, sets all the above text to empty string
@@ -462,14 +552,14 @@ public class EvuAnalysis extends JDialog {
 
       fmzValue.setText(currentEvu.getFmz().getName());
       trailStatusValue.setText(currentEvu.getTrailStatus().toString());
-      
+
       elevationValue.setText(Integer.toString(currentEvu.getElevation()));
-      
+
       roadStatusValue.setText(currentEvu.getRoadStatusNew().toString());
       ownershipValue.setText(currentEvu.getOwnership());
       specialAreaValue.setText(currentEvu.getSpecialArea());
       unitNumValue.setText(currentEvu.getUnitNumber());
-      
+
       rowValue.setText(Integer.toString(currentEvu.getLocationY()));
       columnValue.setText(Integer.toString(currentEvu.getLocationX()));
 
@@ -486,7 +576,7 @@ public class EvuAnalysis extends JDialog {
           for (ExistingLandUnit landUnit : currentEvu.getAssociatedLandUnits()) {
             model.addElement(landUnit);
           }
-      //        eluList.setListData(currentEvu.getAssociatedLandUnits().toArray());
+          //        eluList.setListData(currentEvu.getAssociatedLandUnits().toArray());
         }
       }
 
@@ -564,79 +654,9 @@ public class EvuAnalysis extends JDialog {
     }
   }
   /**
-   * Changes the Evu analysis dialog to the adjacent Evu.  Uses the selected adjacent Evu from the adjacent Evu list - and sets the current Evu to this adjacent Evu.
-   */
-  private void goAdjacent() {
-    String              str = (String) adjacentList.getSelectedValue();
-    int                 id = -1;
-    StringTokenizerPlus strTok;
-
-    if (str == null) { return; }
-
-    strTok = new StringTokenizerPlus(str," ");
-    try {
-      id = strTok.getIntToken();
-    }
-    catch (simpplle.comcode.ParseError e) {}
-
-    if (id == -1) { return; }
-
-    currentEvu = area.getEvu(id);
-    updateDialog();
-  }
-  /**
-   * Sets the Evu Analysis dialog to a particular Unit Analysis.  IF a unit analysis dialog is open gets the instance of that dialog.  Else creates a
-   * unit analysis instance and sets the land unit to the selected value in Elu list.
-   */
-  private void goLandUnit() {
-    UnitAnalysis dlg;
-
-    if (UnitAnalysis.isOpen()) {
-      dlg = UnitAnalysis.getInstance();
-
-    }
-    else {
-      dlg = new UnitAnalysis(JSimpplle.getSimpplleMain(),"Unit Analysis", false);
-    }
-    dlg.getLandInstance().goLandUnit((ExistingLandUnit)eluList.getSelectedValue());
-    dlg.setVisible(true);
-  }
-  /**
-   * Sets the Eau Analysis dialog to a particular Eau Analysis dialog.  If an Eau analysis dialog is open gets the instance of that dialog.  Else creates a 
-   * Eau analysis instance and sets the land unit to the selected value in Elu list.  
-   */
-  private void goAquaUnit() {
-    EauAnalysis dlg;
-
-    if (EauAnalysis.isOpen()) {
-      dlg = EauAnalysis.getInstance();
-
-    }
-    else {
-      dlg = new EauAnalysis(JSimpplle.getSimpplleMain(),"Aquatic Unit Analysis", false);
-    }
-    dlg.goAquaticUnit((ExistingAquaticUnit)eauList.getSelectedValue());
-    dlg.setVisible(true);
-  }
-  /**
-   * Sets the Evu analysis to the Unit indicated by Evu ID parameter.
-   * @param id the evu ID
-   */
-  void goUnit(int id) {
-    goUnit(area.getEvu(id));
-  }
-  /**
-   * Sets the Evu analysis to the Unit indicated by Evu parameter.  
-   * @param evu - the Existing vegetative unit the Evu analysis will go to.  
-   */
-  void goUnit(Evu evu) {
-    currentEvu = evu;
-    updateDialog();
-  }
-  /**
    * If results only combo box selected, sets the current Evu to previous unit in result units.  Otherwise sets the current evu to previous Evu.
    */
-  void prevPB_actionPerformed() {
+  private void prevPB_Listener() {
     if (resultsOnlyCB.isSelected()) {
       if (resultIndex == 0) { resultIndex = resultUnits.size() - 1;  }
       else { resultIndex--; }
@@ -650,7 +670,7 @@ public class EvuAnalysis extends JDialog {
   /**
    * If results only combo box selected, sets the current Evu to next unit in result units.  Otherwise sets the current Evu to next Evu.  
    */
-  void nextPB_actionPerformed() {
+  private void nextPB_Listener() {
     if (resultsOnlyCB.isSelected()) {
       if (resultIndex == resultUnits.size() - 1) { resultIndex = 0;  }
       else { resultIndex++; }
@@ -662,9 +682,20 @@ public class EvuAnalysis extends JDialog {
     updateDialog();
   }
   /**
+   * If search instance is already open, returns.  Otherwise if search button pushed starts a new instance of Evu Search dialog.
+   */
+  private void searchPB_Listener() {
+    if (EvuSearchLogicDlg.isOpen()) { return; }
+
+    EvuSearchLogicDlg dlg = new EvuSearchLogicDlg(JSimpplle.getSimpplleMain(),
+        "Unit Attribute Search",false,this);
+
+    dlg.setVisible(true);
+  }
+  /**
    * If edit is choosen and area Evu is valid in the area, current area is set.
    */
-  private void idEdit_actionPerformed() {
+  private void idEdit_Listener() {
     int id;
 
     try {
@@ -690,6 +721,19 @@ public class EvuAnalysis extends JDialog {
     }
   }
   /**
+   * If results only combo box is selected, current evu is set the results unit at index 0.  Otherwise current Evu is the first Evu in area.
+   */
+  private void resultsOnlyCB_Listener() {
+    if (resultsOnlyCB.isSelected()) {
+      currentEvu = resultUnits.get(0);
+      resultIndex = 0;
+    }
+    else {
+      currentEvu = area.getFirstEvu();
+    }
+    updateDialog();
+  }
+  /**
    * Exits the Evu Analysis dialog.
    */
   private void quit() {
@@ -704,48 +748,4 @@ public class EvuAnalysis extends JDialog {
   void this_windowClosing(WindowEvent e) {
     quit();
   }
-  /**
-   * If search instance is already open, returns.  Otherwise if search button pushed starts a new instance of Evu Search dialog.
-   */
-  private void searchPB_actionPerformed() {
-    if (EvuSearchLogicDlg.isOpen()) { return; }
-
-    EvuSearchLogicDlg dlg = new EvuSearchLogicDlg(JSimpplle.getSimpplleMain(),
-                                                  "Unit Attribute Search",false,this);
-
-    dlg.setVisible(true);
-  }
-  /**
-   * Sets the results units arraylist to the Evu arraylist.
-   * @param units arraylist containing each units results
-   */
-  void setResultUnits(ArrayList<Evu> units) {
-    if (units == null || units.size() == 0) { return; }
-
-    resultUnits = units;
-    resultsOnlyCB.setEnabled(true);
-    if (resultsOnlyCB.isSelected()) {
-      currentEvu = resultUnits.get(0);
-      resultIndex = 0;
-      updateDialog();
-    }
-  }
-  /**
-   * If results only combo box is selected, current evu is set the results unit at index 0.  Otherwise current Evu is the first Evu in area.
-   */
-  private void resultsOnlyCB_actionPerformed() {
-    if (resultsOnlyCB.isSelected()) {
-      currentEvu = resultUnits.get(0);
-      resultIndex = 0;
-    }
-    else {
-      currentEvu = area.getFirstEvu();
-    }
-    updateDialog();
-  }
-  /**
-   * Check if Evu analysis dialog is open.
-   * @return true if Evu analysis dialog is open.
-   */
-  public static boolean isOpen() { return isOpen; }
 }
