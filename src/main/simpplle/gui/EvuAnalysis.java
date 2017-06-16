@@ -74,9 +74,9 @@ public class EvuAnalysis extends JDialog {
   
   /**
    * Primary constructor for Evu Analysis dialog.  Sets the frame owner, name, and modality.  
-   * @param frame
-   * @param title
-   * @param modal
+   * @param frame Parent frame of the dialogue
+   * @param title Title of the dialog
+   * @param modal Specifies whether dialog blocks user input to other top-level windows when shown
    */
   public EvuAnalysis(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
@@ -101,7 +101,7 @@ public class EvuAnalysis extends JDialog {
   }
   /**
    * Init method for Evu Analysis dialog.  Sets the borders, lists, layouts, panels, buttons and listeners.
-   * @throws Exception
+   * @throws Exception generic exception
    */
   void jbInit() throws Exception {
 
@@ -717,7 +717,7 @@ public class EvuAnalysis extends JDialog {
   }
   /**
    * Sets the results units arraylist to the Evu arraylist.
-   * @param units
+   * @param units arraylist containing each units results
    */
   void setResultUnits(ArrayList<Evu> units) {
     if (units == null || units.size() == 0) { return; }
