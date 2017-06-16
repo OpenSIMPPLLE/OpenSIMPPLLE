@@ -201,32 +201,17 @@ public class EvuAnalysis extends JDialog {
     prevPB.setIcon(new ImageIcon(simpplle.gui.EvuAnalysis.class.getResource("images/prev.gif")));
     prevPB.setMargin(new Insets(0, 0, 0, 0));
     prevPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuAnalysis.class.getResource("images/prevg.gif")));
-    prevPB.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        prevPB_actionPerformed(e);
-      }
-    });
+    prevPB.addActionListener(e -> prevPB_actionPerformed());
     nextPB.setEnabled(false);
     nextPB.setNextFocusableComponent(adjacentList);
     nextPB.setIcon(new ImageIcon(simpplle.gui.EvuAnalysis.class.getResource("images/next.gif")));
     nextPB.setMargin(new Insets(0, 0, 0, 0));
     nextPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuAnalysis.class.getResource("images/nextg.gif")));
-    nextPB.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        nextPB_actionPerformed(e);
-      }
-    });
+    nextPB.addActionListener(e -> nextPB_actionPerformed());
     idPanel.setLayout(gridLayout1);
     idEdit.setToolTipText("Please enter a valid Unit ID");
     idEdit.setColumns(6);
-    idEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        idEdit_actionPerformed(e);
-      }
-    });
+    idEdit.addActionListener(e -> idEdit_actionPerformed());
     setTitle("Vegetative Unit Analysis");
     addWindowListener(new java.awt.event.WindowAdapter() {
       public void windowClosing(WindowEvent e) {
@@ -323,17 +308,9 @@ public class EvuAnalysis extends JDialog {
     attributesBorder.setTitleFont(monospaced);
     resultsOnlyCB.setEnabled(false);
     resultsOnlyCB.setText("Result Units Only -->");
-    resultsOnlyCB.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        resultsOnlyCB_actionPerformed(e);
-      }
-    });
+    resultsOnlyCB.addActionListener(e -> resultsOnlyCB_actionPerformed());
     searchPB.setText("Search");
-    searchPB.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        searchPB_actionPerformed(e);
-      }
-    });
+    searchPB.addActionListener(e -> searchPB_actionPerformed());
     eluList.setToolTipText("Double click to go to a unit");
     eluList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     eluList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -657,10 +634,9 @@ public class EvuAnalysis extends JDialog {
     updateDialog();
   }
   /**
-   * If results only combo box selected, sets the current Evu to previous unit in result units.  Otherwise sets the current evu to previous Evu.  
-   * @param e 'previous'
+   * If results only combo box selected, sets the current Evu to previous unit in result units.  Otherwise sets the current evu to previous Evu.
    */
-  void prevPB_actionPerformed(ActionEvent e) {
+  void prevPB_actionPerformed() {
     if (resultsOnlyCB.isSelected()) {
       if (resultIndex == 0) { resultIndex = resultUnits.size() - 1;  }
       else { resultIndex--; }
@@ -673,9 +649,8 @@ public class EvuAnalysis extends JDialog {
   }
   /**
    * If results only combo box selected, sets the current Evu to next unit in result units.  Otherwise sets the current Evu to next Evu.  
-   * @param e 'next'
    */
-  void nextPB_actionPerformed(ActionEvent e) {
+  void nextPB_actionPerformed() {
     if (resultsOnlyCB.isSelected()) {
       if (resultIndex == resultUnits.size() - 1) { resultIndex = 0;  }
       else { resultIndex++; }
@@ -688,9 +663,8 @@ public class EvuAnalysis extends JDialog {
   }
   /**
    * If edit is choosen and area Evu is valid in the area, current area is set.
-   * @param e 'edit'
    */
-  private void idEdit_actionPerformed(ActionEvent e) {
+  private void idEdit_actionPerformed() {
     int id;
 
     try {
@@ -732,9 +706,8 @@ public class EvuAnalysis extends JDialog {
   }
   /**
    * If search instance is already open, returns.  Otherwise if search button pushed starts a new instance of Evu Search dialog.
-   * @param e
    */
-  private void searchPB_actionPerformed(ActionEvent e) {
+  private void searchPB_actionPerformed() {
     if (EvuSearchLogicDlg.isOpen()) { return; }
 
     EvuSearchLogicDlg dlg = new EvuSearchLogicDlg(JSimpplle.getSimpplleMain(),
@@ -759,9 +732,8 @@ public class EvuAnalysis extends JDialog {
   }
   /**
    * If results only combo box is selected, current evu is set the results unit at index 0.  Otherwise current Evu is the first Evu in area.
-   * @param e
    */
-  private void resultsOnlyCB_actionPerformed(ActionEvent e) {
+  private void resultsOnlyCB_actionPerformed() {
     if (resultsOnlyCB.isSelected()) {
       currentEvu = resultUnits.get(0);
       resultIndex = 0;
