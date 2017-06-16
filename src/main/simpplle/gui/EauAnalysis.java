@@ -97,28 +97,28 @@ public class EauAnalysis extends JDialog {
     JCheckBox resultsOnlyCB = new JCheckBox();
 
     JPanel jPanel1 = new JPanel(new FlowLayout());
-    JPanel mainPanel = new JPanel();
-    JPanel centerPanel = new JPanel();
-    JPanel topPanel = new JPanel();
+    JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
     JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
     JPanel prevNextPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 1));
-    JPanel idPanel = new JPanel();
     JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
-    JPanel neighborsPanel = new JPanel();
+    JPanel neighborsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
     JPanel historyPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-    JPanel treatmentPanel = new JPanel();
-    JPanel valuesPanel = new JPanel();
-    JPanel labelsPanel = new JPanel();
-    JPanel vegUnitPanel = new JPanel(new BorderLayout());
-    JPanel panelCol1 = new JPanel();
-    JPanel panelCol2 = new JPanel();
-    JPanel labelsPanelCol2 = new JPanel();
-    JPanel valuesPanelCol2 = new JPanel();
     JPanel adjVegPanel = new JPanel(new BorderLayout());
     JPanel uplandVegPanel = new JPanel(new BorderLayout());
     JPanel aquaticUnitPanel = new JPanel(new BorderLayout());
     JPanel predPanel = new JPanel(new BorderLayout());
     JPanel succPanel = new JPanel(new BorderLayout());
+    JPanel vegUnitPanel = new JPanel(new BorderLayout());
+    JPanel mainPanel = new JPanel();
+    JPanel centerPanel = new JPanel();
+    JPanel idPanel = new JPanel();
+    JPanel treatmentPanel = new JPanel();
+    JPanel valuesPanel = new JPanel();
+    JPanel labelsPanel = new JPanel();
+    JPanel panelCol1 = new JPanel();
+    JPanel panelCol2 = new JPanel();
+    JPanel labelsPanelCol2 = new JPanel();
+    JPanel valuesPanelCol2 = new JPanel();
 
     JScrollPane treatmentScroll = new JScrollPane();
     JScrollPane uplandVegScrollPane = new JScrollPane();
@@ -127,17 +127,17 @@ public class EauAnalysis extends JDialog {
     JScrollPane adjVegScrollPane = new JScrollPane();
     JScrollPane historyScrollPane = new JScrollPane();
 
-    JLabel currentStateLabel = new JLabel();
-    JLabel groupLabel = new JLabel();
-    JLabel lengthLabel = new JLabel();
-    JLabel segmentNumLabel = new JLabel();
-    JLabel statusLabel = new JLabel();
+    JLabel currentStateLabel = new JLabel("Current State");
+    JLabel groupLabel = new JLabel("LTA Valley Segment Group");
+    JLabel lengthLabel = new JLabel("Length");
+    JLabel segmentNumLabel = new JLabel("Segment Number");
+    JLabel statusLabel = new JLabel("Status");
 
     Border emptyBorder = BorderFactory.createEmptyBorder();
+    Border etchedBorder = BorderFactory.createEtchedBorder();
     Border border8;
 
     TitledBorder attributesBorder;
-    TitledBorder adjacentUnitsBorder;
     TitledBorder predBorder;
     TitledBorder succBorder;
     TitledBorder uplandBorder;
@@ -146,8 +146,6 @@ public class EauAnalysis extends JDialog {
     TitledBorder vegUnitBorder;
 
     FlowLayout flowLayout5 = new FlowLayout();
-    FlowLayout flowLayout6 = new FlowLayout();
-    FlowLayout flowLayout7 = new FlowLayout();
     FlowLayout flowLayout9 = new FlowLayout();
 
     GridLayout gridLayout1 = new GridLayout();
@@ -157,17 +155,22 @@ public class EauAnalysis extends JDialog {
     BorderLayout borderLayout3 = new BorderLayout();
     BoxLayout boxLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
 
+    Font mono0 = new Font("Monospaced", 0, 12);
+    Font mono1 = new Font("Monospaced", 1, 12);
+    Font mono2 = new Font("Monospaced", 2, 12);
+
+    Font dialog0 = new Font("Dialog", 0, 14);
+    Font dialog1 = new Font("Dialog", 1, 14);
+
     attributesBorder = new TitledBorder(emptyBorder,"Attributes");
-    adjacentUnitsBorder = new TitledBorder(emptyBorder,"Adjacent Units");
     predBorder = new TitledBorder(emptyBorder,"Predecessors");
     succBorder = new TitledBorder(emptyBorder,"Successors");
-    uplandBorder = new TitledBorder(emptyBorder,"Upland Veg");
-    adjVegBorder = new TitledBorder(emptyBorder,"Adjacent Veg");
+    uplandBorder = new TitledBorder(emptyBorder,"Upland");
+    adjVegBorder = new TitledBorder(emptyBorder,"Adjacent");
     aquaticUnitBorder = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140)),"Aquatic Units");
     border8 = new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140));
     vegUnitBorder = new TitledBorder(border8,"Vegetative Units");
     mainPanel.setLayout(boxLayout);
-    topPanel.setLayout(flowLayout6);
     prevPB.setEnabled(false);
     prevPB.setNextFocusableComponent(nextPB);
     prevPB.setIcon(new ImageIcon(EauAnalysis.class.getResource("images/prev.gif")));
@@ -205,18 +208,15 @@ public class EauAnalysis extends JDialog {
         this_windowClosing(e);
       }
     });
-    currentStateValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    currentStateValue.setFont(dialog1);
     currentStateValue.setForeground(Color.blue);
     currentStateValue.setText("A3-REF");
-    currentStateLabel.setFont(new java.awt.Font("Dialog", 0, 14));
-    currentStateLabel.setText("Current State");
-    groupValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    currentStateLabel.setFont(dialog0);
+    groupValue.setFont(dialog1);
     groupValue.setForeground(Color.blue);
     groupValue.setText("12-FMA");
-    groupLabel.setFont(new java.awt.Font("Dialog", 0, 14));
-    groupLabel.setText("LTA Valley Segment Group");
+    groupLabel.setFont(dialog0);
     centerPanel.setLayout(borderLayout3);
-    neighborsPanel.setLayout(flowLayout7);
     historyPanel.setLayout(flowLayout9);
     historyText.setColumns(92);
     historyText.setRows(12);
@@ -233,17 +233,15 @@ public class EauAnalysis extends JDialog {
     flowLayout9.setHgap(0);
     flowLayout9.setVgap(0);
     borderLayout3.setVgap(5);
-    bottomPanel.setBorder(BorderFactory.createEtchedBorder());
+    bottomPanel.setBorder(etchedBorder);
     labelsPanel.setLayout(gridLayout4);
     valuesPanel.setLayout(gridLayout4);
     gridLayout4.setRows(2);
     gridLayout4.setVgap(5);
-    lengthLabel.setText("Length");
-    segmentNumLabel.setText("Segment Number");
-    lengthValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    lengthValue.setFont(dialog1);
     lengthValue.setForeground(Color.blue);
     lengthValue.setText("350");
-    segmentNumValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    segmentNumValue.setFont(dialog1);
     segmentNumValue.setForeground(Color.blue);
     segmentNumValue.setText("2");
     panelCol2.setLayout(flowLayout5);
@@ -254,11 +252,10 @@ public class EauAnalysis extends JDialog {
     panelCol1.setLayout(flowLayout5);
     flowLayout5.setAlignment(FlowLayout.LEFT);
     flowLayout5.setVgap(0);
-    panelCol1.setBorder(BorderFactory.createEtchedBorder());
-    panelCol2.setBorder(BorderFactory.createEtchedBorder());
+    panelCol1.setBorder(etchedBorder);
+    panelCol2.setBorder(etchedBorder);
     infoPanel.setBorder(attributesBorder);
     attributesBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
-    adjacentUnitsBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
     resultsOnlyCB.setEnabled(false);
     resultsOnlyCB.setText("Result Units Only -->");
     resultsOnlyCB.addActionListener(new java.awt.event.ActionListener() {
@@ -273,15 +270,12 @@ public class EauAnalysis extends JDialog {
         searchPB_actionPerformed(e);
       }
     });
-    flowLayout6.setAlignment(FlowLayout.LEFT);
-    predBorder.setTitleFont(new java.awt.Font("Monospaced", 2, 12));
-    succBorder.setTitleFont(new java.awt.Font("Monospaced", 2, 12));
-    uplandBorder.setTitle("Upland");
-    uplandBorder.setTitleFont(new java.awt.Font("Monospaced", 2, 12));
-    adjVegBorder.setTitle("Adjacent");
-    adjVegBorder.setTitleFont(new java.awt.Font("Monospaced", 2, 12));
+    predBorder.setTitleFont(mono2);
+    succBorder.setTitleFont(mono2);
+    uplandBorder.setTitleFont(mono2);
+    adjVegBorder.setTitleFont(mono2);
     adjVegPanel.setBorder(adjVegBorder);
-    adjVegList.setFont(new java.awt.Font("Monospaced", 0, 12));
+    adjVegList.setFont(mono0);
     adjVegList.setToolTipText("Double click to go to a unit");
     adjVegList.setPrototypeCellValue(protoCellValue);
     adjVegList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -292,7 +286,7 @@ public class EauAnalysis extends JDialog {
       }
     });
     uplandVegPanel.setBorder(uplandBorder);
-    uplandVegList.setFont(new java.awt.Font("Monospaced", 0, 12));
+    uplandVegList.setFont(mono0);
     uplandVegList.setToolTipText("Double click to go to a unit");
     uplandVegList.setPrototypeCellValue(protoCellValue);
     uplandVegList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -302,7 +296,7 @@ public class EauAnalysis extends JDialog {
         uplandVegList_mouseClicked(e);
       }
     });
-    predecessorList.setFont(new java.awt.Font("Monospaced", 0, 12));
+    predecessorList.setFont(mono0);
     predecessorList.setToolTipText("Double click to go to a unit");
     predecessorList.setPrototypeCellValue(protoCellValue);
     predecessorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -316,7 +310,7 @@ public class EauAnalysis extends JDialog {
 //    predPanel.setLayout(borderLayout1);
     predPanel.setBorder(predBorder);
     succPanel.setBorder(succBorder);
-    successorsList.setFont(new java.awt.Font("Monospaced", 0, 12));
+    successorsList.setFont(mono0);
     successorsList.setToolTipText("Double click to go to a unit");
     successorsList.setPrototypeCellValue(protoCellValue);
     successorsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -328,14 +322,12 @@ public class EauAnalysis extends JDialog {
     });
     aquaticUnitPanel.setBorder(aquaticUnitBorder);
     vegUnitPanel.setBorder(vegUnitBorder);
-    aquaticUnitBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 12));
-    vegUnitBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 12));
-    adjVegScrollPane.setFont(new java.awt.Font("Monospaced", 0, 12));
-    flowLayout7.setAlignment(FlowLayout.LEFT);
+    aquaticUnitBorder.setTitleFont(mono1);
+    vegUnitBorder.setTitleFont(mono1);
+    adjVegScrollPane.setFont(mono0);
     statusText.setFont(new java.awt.Font("Dialog", Font.BOLD, 14));
     statusText.setForeground(Color.blue);
     statusText.setText("PERENNIAL");
-    statusLabel.setText("Status");
     aquaticUnitPanel.add(predPanel, BorderLayout.WEST);
     predPanel.add(predScrollPane, BorderLayout.CENTER);
     aquaticUnitPanel.add(succPanel, BorderLayout.CENTER);
