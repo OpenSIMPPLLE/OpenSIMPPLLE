@@ -181,6 +181,11 @@ public class EvuAnalysis extends JDialog {
     BorderLayout borderLayout3 = new BorderLayout();
     borderLayout3.setVgap(5);
 
+    Font monospaced = new Font("Monospaced", 0, 12);
+    Font plain = new Font("", Font.PLAIN, 14);
+    Font dialog  = new Font("Dialog", 1, 14);
+    Font bold = new Font("", Font.BOLD, 14);
+
     eauList.setToolTipText("Double click to go to a unit");
     eauList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     eauList.addMouseListener(new MouseAdapter() {
@@ -222,34 +227,34 @@ public class EvuAnalysis extends JDialog {
         idEdit_actionPerformed(e);
       }
     });
-    this.setTitle("Vegetative Unit Analysis");
-    this.addWindowListener(new java.awt.event.WindowAdapter() {
+    setTitle("Vegetative Unit Analysis");
+    addWindowListener(new java.awt.event.WindowAdapter() {
       public void windowClosing(WindowEvent e) {
         this_windowClosing(e);
       }
     });
-    currentStateValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    currentStateValue.setFont(dialog);
     currentStateValue.setForeground(Color.blue);
     currentStateValue.setText("DF-LP/MMU/3");
     currentStateLabel.setText("Current State");
-    currentStateLabel.setFont(new Font("", Font.PLAIN, 14));
-    htGrpValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    currentStateLabel.setFont(plain);
+    htGrpValue.setFont(dialog);
     htGrpValue.setForeground(Color.blue);
     htGrpValue.setText("A2");
     htGrpLabel.setText("Ecological Grouping");
-    htGrpLabel.setFont(new Font("", Font.PLAIN, 14));
+    htGrpLabel.setFont(plain);
     centerPanel.setLayout(borderLayout3);
-    landtypeValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    landtypeValue.setFont(dialog);
     landtypeValue.setForeground(Color.blue);
     landtypeValue.setText("No Idea");
-    acresValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    acresValue.setFont(dialog);
     acresValue.setForeground(Color.blue);
     acresValue.setText("1000000");
     acresLabel.setText("Acres");
-    acresLabel.setFont(new Font("", Font.PLAIN, 14));
+    acresLabel.setFont(plain);
     adjacentPanel.setLayout(flowLayout7);
     adjacentList.setBackground(Color.white);
-    adjacentList.setFont(new java.awt.Font("Monospaced", 0, 12));
+    adjacentList.setFont(monospaced);
     adjacentList.setToolTipText("Double click to go to a unit");
     adjacentList.setSelectionBackground(Color.blue);
     adjacentList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -278,35 +283,35 @@ public class EvuAnalysis extends JDialog {
     labelsPanel.setLayout(gridLayout2);
     valuesPanel.setLayout(gridLayout2);
     fmzLabel.setText("Fire Management Zone");
-    fmzLabel.setFont(new Font("", Font.PLAIN, 14));
+    fmzLabel.setFont(plain);
     specialAreaLabel.setText("Special Area");
-    specialAreaLabel.setFont(new Font("", Font.PLAIN, 14));
+    specialAreaLabel.setFont(plain);
     roadStatusLabel.setText("Road Status");
-    roadStatusLabel.setFont(new Font("", Font.PLAIN, 14));
+    roadStatusLabel.setFont(plain);
     trailStatusLabel.setText("Trail Status");
-    trailStatusLabel.setFont(new Font("", Font.PLAIN, 14));
+    trailStatusLabel.setFont(plain);
     ownerLabel.setText("Ownership");
-    ownerLabel.setFont(new Font("", Font.PLAIN, 14));
+    ownerLabel.setFont(plain);
     unitNumLabel.setText("Unit Number");
-    unitNumLabel.setFont(new Font("", Font.PLAIN, 14));
+    unitNumLabel.setFont(plain);
     landtypeLabel.setText("Associated Landtype");
-    landtypeLabel.setFont(new Font("", Font.PLAIN, 14));
-    fmzValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    landtypeLabel.setFont(plain);
+    fmzValue.setFont(dialog);
     fmzValue.setForeground(Color.blue);
     fmzValue.setText("4");
-    specialAreaValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    specialAreaValue.setFont(dialog);
     specialAreaValue.setForeground(Color.blue);
     specialAreaValue.setText("anything");
-    roadStatusValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    roadStatusValue.setFont(dialog);
     roadStatusValue.setForeground(Color.blue);
     roadStatusValue.setText("Open-Roaded");
-    trailStatusValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    trailStatusValue.setFont(dialog);
     trailStatusValue.setForeground(Color.blue);
     trailStatusValue.setText("OPEN");
-    ownershipValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    ownershipValue.setFont(dialog);
     ownershipValue.setForeground(Color.blue);
     ownershipValue.setText("NF-OTHER");
-    unitNumValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    unitNumValue.setFont(dialog);
     unitNumValue.setForeground(Color.blue);
     panelCol2.setLayout(flowLayout4);
     labelsPanelCol2.setLayout(gridLayout2);
@@ -315,7 +320,7 @@ public class EvuAnalysis extends JDialog {
     panelCol1.setBorder(border);
     panelCol2.setBorder(border);
     infoPanel.setBorder(attributesBorder);
-    attributesBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
+    attributesBorder.setTitleFont(monospaced);
     resultsOnlyCB.setEnabled(false);
     resultsOnlyCB.setText("Result Units Only -->");
     resultsOnlyCB.addActionListener(new java.awt.event.ActionListener() {
@@ -380,9 +385,9 @@ public class EvuAnalysis extends JDialog {
     adjacentScrollPane.getViewport().add(adjacentList, null);
     adjacentPanel.add(landformUnitsPanel, null);
     adjacentPanel.add(aquaticUnitsPanel);
-    aquaticUnitsPanel.add(eauScrollPane, java.awt.BorderLayout.CENTER);
+    aquaticUnitsPanel.add(eauScrollPane, BorderLayout.CENTER);
     eauScrollPane.getViewport().add(eauList);
-    landformUnitsPanel.add(eluScrollPane,  BorderLayout.CENTER);
+    landformUnitsPanel.add(eluScrollPane, BorderLayout.CENTER);
     eluScrollPane.getViewport().add(eluList, null);
     mainPanel.add(bottomPanel, BorderLayout.CENTER);
     bottomPanel.add(historyTabbedPane, BorderLayout.CENTER);
@@ -395,39 +400,38 @@ public class EvuAnalysis extends JDialog {
     panelCol2.add(labelsPanelCol2, null);
     
     labelsPanelCol2.add(rowLabel);
-    rowLabel.setFont(new Font("", Font.PLAIN, 14));
+    rowLabel.setFont(plain);
 
     labelsPanelCol2.add(columnLabel);
-    columnLabel.setFont(new Font("", Font.PLAIN, 14));
+    columnLabel.setFont(plain);
 
     panelCol2.add(valuesPanelCol2, null);
     
     valuesPanelCol2.add(rowValue);
     rowValue.setForeground(Color.BLUE);
-    rowValue.setFont(new Font("", Font.BOLD, 14));
+    rowValue.setFont(bold);
     rowValue.setText("1");
     
     valuesPanelCol2.add(columnValue);
     columnValue.setForeground(Color.BLUE);
-    columnValue.setFont(new Font("", Font.BOLD, 14));
+    columnValue.setFont(bold);
     columnValue.setText("1");
     panelCol1.add(labelsPanel, null);
     
     labelsPanel.add(elevationLabel);
-    elevationLabel.setFont(new Font("", Font.PLAIN, 14));
-//    elevationLabel.setText("Elevation");
-    
+    elevationLabel.setFont(plain);
+
     labelsPanel.add(dummyLabel);
     panelCol1.add(valuesPanel, null);
     
     valuesPanel.add(elevationValue);
     elevationValue.setForeground(Color.BLUE);
-    elevationValue.setFont(new Font("", Font.BOLD, 14));
+    elevationValue.setFont(bold);
     elevationValue.setText("1000");
     
     valuesPanel.add(dummyValue);
     dummyValue.setForeground(Color.BLUE);
-    dummyValue.setFont(new Font("", Font.BOLD, 14));
+    dummyValue.setFont(bold);
   }
 
   private void initialize() {
