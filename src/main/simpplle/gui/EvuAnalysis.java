@@ -53,7 +53,7 @@ public class EvuAnalysis extends JDialog {
   private JButton searchPB = new JButton();
 
   JPanel jPanel1 = new JPanel(new FlowLayout());
-  JPanel mainPanel = new JPanel();
+  JPanel mainPanel = new JPanel(new BorderLayout());
   JPanel centerPanel = new JPanel();
   private JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
   private JPanel bottomPanel = new JPanel(new BorderLayout());
@@ -76,7 +76,6 @@ public class EvuAnalysis extends JDialog {
 
   FlowLayout flowLayout1 = new FlowLayout();
   FlowLayout flowLayout4 = new FlowLayout();
-  FlowLayout flowLayout5 = new FlowLayout();
   FlowLayout flowLayout7 = new FlowLayout();
 
   GridLayout gridLayout1 = new GridLayout();
@@ -84,19 +83,10 @@ public class EvuAnalysis extends JDialog {
 
   BorderLayout borderLayout3 = new BorderLayout();
 
-
-  Border border1;
-  Border border2;
-  private Border border3;
-  private Border border4;
-  Border border5;
-
-  TitledBorder titledBorder1;
   TitledBorder titledBorder2;
-  TitledBorder titledBorder3;
+  private TitledBorder titledBorder3;
   private TitledBorder titledBorder4;
   private TitledBorder attributesBorder;
-  private TitledBorder adjacentUnitsBorder;
 
   private JList adjacentList = new JList();
   private JList eluList = new JList();
@@ -172,18 +162,13 @@ public class EvuAnalysis extends JDialog {
    */
   void jbInit() throws Exception {
 
-    titledBorder1 = new TitledBorder("");
-    border1 = BorderFactory.createEmptyBorder();
-    attributesBorder = new TitledBorder(border1,"Attributes");
-    border2 = BorderFactory.createEmptyBorder();
-    adjacentUnitsBorder = new TitledBorder(border2,"Adjacent Units");
-    border3 = BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140));
-    titledBorder2 = new TitledBorder(border3,"Adjacent Units");
-    border4 = BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140));
-    border5 = BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140));
-    titledBorder3 = new TitledBorder(border4,"Landform Units");
-    titledBorder4 = new TitledBorder(border5,"Aqua Units");
-    mainPanel.setLayout(new BorderLayout());
+    Border border = BorderFactory.createEtchedBorder(Color.white,new Color(148, 145, 140));
+    Border attribBorder = BorderFactory.createEmptyBorder();
+
+    attributesBorder = new TitledBorder(attribBorder,"Attributes");
+    titledBorder2 = new TitledBorder(border,"Adjacent Units");
+    titledBorder3 = new TitledBorder(border,"Landform Units");
+    titledBorder4 = new TitledBorder(border,"Aqua Units");
     eauList.setToolTipText("Double click to go to a unit");
     eauList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     eauList.addMouseListener(new MouseAdapter() {
@@ -281,7 +266,7 @@ public class EvuAnalysis extends JDialog {
     treatmentText.setSelectionColor(Color.blue);
     treatmentText.setEditable(false);
     borderLayout3.setVgap(5);
-    bottomPanel.setBorder(BorderFactory.createEtchedBorder());
+    bottomPanel.setBorder(border);
     labelsPanel.setLayout(gridLayout2);
     valuesPanel.setLayout(gridLayout2);
     fmzLabel.setText("Fire Management Zone");
@@ -320,13 +305,11 @@ public class EvuAnalysis extends JDialog {
     gridLayout2.setRows(7);
     gridLayout2.setVgap(5);
     valuesPanelCol2.setLayout(gridLayout2);
-    panelCol1.setLayout(flowLayout5);
-    flowLayout5.setAlignment(FlowLayout.LEFT);
-    flowLayout5.setVgap(0);
+    panelCol1.setLayout(flowLayout4);
     flowLayout4.setAlignment(FlowLayout.LEFT);
     flowLayout4.setVgap(0);
-    panelCol1.setBorder(BorderFactory.createEtchedBorder());
-    panelCol2.setBorder(BorderFactory.createEtchedBorder());
+    panelCol1.setBorder(border);
+    panelCol2.setBorder(border);
     infoPanel.setBorder(attributesBorder);
     attributesBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
     adjacentUnitsBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
