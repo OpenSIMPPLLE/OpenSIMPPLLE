@@ -2357,7 +2357,7 @@ public class SimpplleMain extends JFrame {
   private boolean deleteSimulationCheck() {
     String msg =
       "An area is loaded that has simulation data.\n" +
-      "If unit data is made invalid by loading of one or more knowledge files" +
+      "If unit data is made invalid by loading of one or more knowledge files " +
       "then the state will be marked as invalid, and a result the area as well.\n" +
       "** In addition all simulation data will be removed from memory. **\n\n" +
       "Do you wish to continue?\n";
