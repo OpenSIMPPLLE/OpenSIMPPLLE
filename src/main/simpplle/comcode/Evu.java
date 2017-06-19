@@ -8872,6 +8872,9 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param windDirection degrees azimuth
    */
   public char isDownwind(double spread, double windDirection){
+
+    final int downwindThreshold = 45;
+
     if (getAzimuthDifference(spread, windDirection) <= downwindThreshold) return 'D';
     else return 'N';
   }
