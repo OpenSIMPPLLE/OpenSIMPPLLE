@@ -307,8 +307,7 @@ public final class HabitatTypeGroup {
     return vegTypes.get(name);
   }
 
-  public VegetativeType getVegetativeType (Species species,
-                                           Density density) {
+  public VegetativeType getVegetativeType (Species species, Density density) {
 
     for (VegetativeType vegType : vegTypes.values()) {
       if (vegType.getSpecies() == species &&
@@ -321,9 +320,8 @@ public final class HabitatTypeGroup {
 
   }
 
-  public VegetativeType getVegetativeType(Species species,
-                                          SizeClass sizeClass,
-                                          Density density) {
+  public VegetativeType getVegetativeType(Species species, SizeClass sizeClass, Density density)
+  {
 
     String printName = species.toString() + "/"
                      + sizeClass.toString() + "/"
@@ -337,12 +335,12 @@ public final class HabitatTypeGroup {
                                            Density density) {
 
     // More Debugging stuff... remove before merging!!
-//    if(species == null) {
-//      System.out.println("Species: " + species);
-//      System.out.println("Size class: " + sizeClass);
-//      System.out.println("Density: " + density);
-//      System.out.println();
-//    }
+    if(species == null) {
+      System.out.println("Species: " + species);
+      System.out.println("Size class: " + sizeClass);
+      System.out.println("Density: " + density);
+      System.out.println();
+    }
     String printName = species + "/" + sizeClass + (age == 1 ? "" : Integer.toString(age)) + "/"
                      + density;
 
@@ -421,8 +419,7 @@ public final class HabitatTypeGroup {
     return vt;
   }
 
-  VegetativeType findOldestVegetativeType(Species species, SizeClass sizeClass,
-                                                 Density density)
+  VegetativeType findOldestVegetativeType(Species species, SizeClass sizeClass, Density density)
   {
     Iterator    keys = vegTypes.keySet().iterator();
     VegetativeType vt;
@@ -1367,8 +1364,7 @@ public final class HabitatTypeGroup {
     }
   }
 
-  private String importHtGrp(String htGrpName, BufferedReader fin)
-    throws IOException, ParseError
+  private String importHtGrp(String htGrpName, BufferedReader fin) throws IOException, ParseError
   {
     int                 key = EOF;
     String              value, line;
@@ -1422,14 +1418,12 @@ public final class HabitatTypeGroup {
     return line;
   }
 
-  private Vector parseList(StringTokenizerPlus strTok)
-    throws ParseError
+  private Vector parseList(StringTokenizerPlus strTok) throws ParseError
   {
     return parseList(strTok,false);
   }
 
-  private Vector parseList(StringTokenizerPlus strTok, boolean isInteger)
-    throws ParseError
+  private Vector parseList(StringTokenizerPlus strTok, boolean isInteger) throws ParseError
   {
     Vector  result = null;
     Integer intVal;
@@ -1464,8 +1458,7 @@ public final class HabitatTypeGroup {
     return result;
   }
 
-  private String importVegType(String vegTypeStr, BufferedReader fin)
-    throws ParseError
+  private String importVegType(String vegTypeStr, BufferedReader fin) throws ParseError
   {
     VegetativeType vegData;
     String         line;
@@ -2433,8 +2426,7 @@ public final class HabitatTypeGroup {
     }
   }
 
-  private static void makeSimpplleTypesSourceFile(File filename, String kind)
-    throws SimpplleError
+  private static void makeSimpplleTypesSourceFile(File filename, String kind) throws SimpplleError
   {
     HashMap hm = new HashMap();
     BufferedReader fin;

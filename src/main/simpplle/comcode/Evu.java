@@ -771,6 +771,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return true;
   }
+
   /**
    * Check if simulation has a specific life form.
    * @param lifeform the life form to be evaluated
@@ -1135,7 +1136,6 @@ public final class Evu extends NaturalElement implements Externalizable {
     return buf.toString();
   }
 
-
   /**
    * Clears the state data by set initial state and simulation data to null.  This class has been deprecated.
    */
@@ -1230,6 +1230,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return true;
   }
+
   /**
    * Overloaded isCurrentStateValid().
    * Checks if habitat type group is valid, if so loops through the seasons and gets the vegetative state based on time step, life form from all life forms [], and season.
@@ -2653,9 +2654,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-  /**
-   *    TREATMENT METHODS
-   */
+   // TREATMENT METHODS
 
   /**
    * Gets the Treatment that was last applied to this unit (if any).
@@ -2682,11 +2681,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     return treat;
   }
 
- /**
-  * Checks if the supplied treatment occurred within the last 10 years by passing 1 as N to treatmentOccurredLastNDecades.
-  * @param treatments the array of treatments being checked if it occured in the past
-  * @return true if treatment occurred in the past
-  */
+   /**
+    * Checks if the supplied treatment occurred within the last 10 years by passing 1 as N to treatmentOccurredLastNDecades.
+    * @param treatments the array of treatments being checked if it occured in the past
+    * @return true if treatment occurred in the past
+    */
   public boolean checkPastTreatments(TreatmentType[] treatments) {
     return treatmentOccurredLastNDecades(treatments,1);
   }
@@ -2799,9 +2798,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     dominantLifeform = Lifeform.findDominant(getLifeforms());
   }
 
-  /**
-   *    ADJACENT METHODS
-   */
+   // ADJACENT METHODS
 
   /**
    * Sets the data for adjacent Evu
@@ -4310,11 +4307,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-/**
- * Finds the cumulative probability for a specified process
- * @param pt the process being evaluated
- * @return the cumulative process probabilty for the passed process, or null if there is none
- */
+  /**
+   * Finds the cumulative probability for a specified process
+   * @param pt the process being evaluated
+   * @return the cumulative process probabilty for the passed process, or null if there is none
+   */
   public static CumulativeProcessProb findCumulProb(ProcessType pt) {
     if (pt == null) { return null; }
 
@@ -4333,7 +4330,6 @@ public final class Evu extends NaturalElement implements Externalizable {
     setLpMpbHazard(null);
     setPpMpbHazard(null);
   }
-
 
   /**
    * Returns the adjusted probability values in a new hash table, which will only have to exist  long enough to choose
@@ -4439,14 +4435,14 @@ public final class Evu extends NaturalElement implements Externalizable {
     cumulProbData.lower          = processProbData.probability;
   }
 
-
   /**
    * Creates a static arraylist for process types.  is Temporary to save memory.
    */
   private static ArrayList<ProcessType> tmpSimProcesses = new ArrayList<ProcessType>();
-/**
- * Method to calculate probabilities for multiple life forms based on current simulation at current time step.
- */
+
+  /**
+   * Method to calculate probabilities for multiple life forms based on current simulation at current time step.
+   */
   public void doProbabilityMultipleLifeform() {
     doneSummaryProcesses.clear();
 
@@ -4515,10 +4511,11 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
   }
-/**
- * Calculates the fire process probability by passing fire event in the current zone to doProbability
- * @return the probability (as an integer) of fire process.  If somehow this is above 10000 will return 10000
- */
+
+  /**
+   * Calculates the fire process probability by passing fire event in the current zone to doProbability
+   * @return the probability (as an integer) of fire process.  If somehow this is above 10000 will return 10000
+   */
   public int doFireProcessProb() {
     ProcessType processType = ProcessType.FIRE_EVENT;
     RegionalZone zone = Simpplle.getCurrentZone();
@@ -4535,9 +4532,10 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return prob;
   }
-/**
- * Calculates the fire season according to the current simulation and current season.
- */
+
+  /**
+   * Calculates the fire season according to the current simulation and current season.
+   */
   public void determineFireSeason() {
     Simulation simulation = Simpplle.getCurrentSimulation();
     Climate.Season season = simulation.getCurrentSeason();
@@ -4622,10 +4620,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
   }
-/**
- * Method to calculate wyoming succession.
- * @param simulation
- */
+
+  /**
+   * Method to calculate wyoming succession.
+   * @param simulation
+   */
   private void doWyomingSuccession(Simulation simulation) {
 //    newState(ProcessType.SUCCESSION,(short)10000,Climate.Season.YEAR);
     updateState(null,ProcessType.SUCCESSION,(short)10000,simulation.getCurrentSeason());
@@ -4657,9 +4656,10 @@ public final class Evu extends NaturalElement implements Externalizable {
 //    newState(selected, prob, Climate.Season.YEAR);
     updateState(null,selected, prob, simulation.getCurrentSeason());
   }
-/**
- * Clears the dummy processes at current simulation time step.
- */
+
+  /**
+   * Clears the dummy processes at current simulation time step.
+   */
   public void clearDummyProcesses() {
     int ts = Simulation.getCurrentTimeStep();
 
@@ -4954,12 +4954,13 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return newSelected;
   }
-/**
- * This method calculates tree specific process changes.  These will include Root disease, and beech bark disease both of which once start continue unless a fire process
- * occurs (LSF, MSF, or SRF), and spruce beetle which once starts continues for 5 years unless a fire event occurs
- * @param processData
- * @param cTime
- */
+
+  /**
+   * This method calculates tree specific process changes.  These will include Root disease, and beech bark disease both of which once start continue unless a fire process
+   * occurs (LSF, MSF, or SRF), and spruce beetle which once starts continues for 5 years unless a fire event occurs
+   * @param processData
+   * @param cTime
+   */
   private void doTreeSpecificProcessChanges(ProcessProbability processData, int cTime) {
 
     ProcessType selected = null;
@@ -5016,12 +5017,13 @@ public final class Evu extends NaturalElement implements Externalizable {
       haveHighSpruceBeetle = true;
     }
   }
-/**
- * This method calculates fire specific process changes.  This will be based on the species present in current zone and fire suppression.
- * it updates current process and updates current probability
- * @param species
- * @param lifeform
- */
+
+  /**
+   * This method calculates fire specific process changes.  This will be based on the species present in current zone and fire suppression.
+   * it updates current process and updates current probability
+   * @param species
+   * @param lifeform
+   */
   private void doFireSpecificDoGetProcess(Species species, Lifeform lifeform) {
     RegionalZone zone = Simpplle.getCurrentZone();
     ProcessType selected = ProcessType.FIRE_EVENT;
@@ -5064,10 +5066,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-/**
- * Method to rcalculate whether a random number is between lower and upper range of cumulative probability data for a process.
- * @return
- */
+  /**
+   * Method to rcalculate whether a random number is between lower and upper range of cumulative probability data for a process.
+   * @return
+   */
   private ProcessType randomSelect() {
     ArrayList             simulationProcesses = Process.getSimulationProcesses();
     int                   randNum = Simulation.getInstance().random();
@@ -5086,12 +5088,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     // just in case.
     return ProcessType.SUCCESSION;
   }
-/**
- * Method to find highest process probability.  Initially sets the process to succession and highest probability to 0 so that any
- * processes or probabilities above that will be higher.  then searches through simulation processes and gets their probability.
- *
- * @return process with highest probability
- */
+
+  /**
+   * Method to find highest process probability.  Initially sets the process to succession and highest probability to 0 so that any
+   * processes or probabilities above that will be higher.  then searches through simulation processes and gets their probability.
+   *
+   * @return process with highest probability
+   */
   private ProcessType getHighest() {
     ProcessType   selectedType = ProcessType.SUCCESSION;
     int           highestProb = 0, prob;
@@ -5255,11 +5258,11 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   }
 
-/**
- * Method to calculate treatment thinning state.  This is based on current simulation vegetative state and time steps, treatment, original size class,
- * current size class, fire event if any, and species.
- * @return
- */
+  /**
+   * Method to calculate treatment thinning state.  This is based on current simulation vegetative state and time steps, treatment, original size class,
+   * current size class, fire event if any, and species.
+   * @return
+   */
   private VegetativeType getTreatmentThinningCycleState() {
     Simulation     simulation = Simpplle.getCurrentSimulation();
     int            cStep = simulation.getCurrentTimeStep();
@@ -5375,9 +5378,10 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return result;
   }
-/**
- * adds a tracked species to the initial state.
- */
+
+  /**
+   * adds a tracked species to the initial state.
+   */
   public void addMissingTrackSpecies() {
     MapIterator it = initialState.mapIterator();
     while (it.hasNext()) {
@@ -5387,6 +5391,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       state.addMissingTrackSpecies();
     }
   }
+
   /**
    * Special method to calculate next state for Wyoming.
    */
@@ -5438,11 +5443,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     getState().setVegType(newState);
   }
 
-/**
- * Uses the passed lifeform to query the lifeform array, and loop through it till it finds the next lower life
- * @param lifeform the lifeform being evaluated.
- * @return the lower life form if one exists, or null if there is no lower lifeform.
- */
+  /**
+   * Uses the passed lifeform to query the lifeform array, and loop through it till it finds the next lower life
+   * @param lifeform the lifeform being evaluated.
+   * @return the lower life form if one exists, or null if there is no lower lifeform.
+   */
   private Lifeform findNextLowerLifeform(Lifeform lifeform) {
     Lifeform lowerLife=Lifeform.getLowerLifeform(lifeform);
 
@@ -5454,6 +5459,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return null;
   }
+
   /**
    * Loops through the regeneration delay and uses the lifeform ID to the lifeform within it and set the index with corresponding to that life form
    * and setting the regeneration delay to the passed in delay, else it will add the delay to an already existing regeneration delay.
@@ -5473,9 +5479,10 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   // Avoid excess temporaries.
   private static ArrayList<VegetativeType> newStatesTemp = new ArrayList<VegetativeType>();
-/**
- * Calculates the next state for multiple life forms
- */
+
+  /**
+   * Calculates the next state for multiple life forms
+   */
   public void doNextStateMultipleLifeform() {
     if (getId() == 60 && Simulation.getCurrentTimeStep() == 51) {
       System.out.println("Evu:4568");
@@ -5545,7 +5552,6 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Uses the current time step and current simulation run to create a new vegetative simulation step.
    * @param vegType
    */
-
   public void addNewLifeformState(VegetativeType vegType) {
     ProcessProbability selected = new ProcessProbability(ProcessType.SUCCESSION,10000);
 
@@ -5598,7 +5604,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   private VegetativeType validateNewState(Lifeform lifeform, VegetativeType newState, boolean remove) {
     if (newState == null) {
 
-//      System.out.println("returning null from validate new state new state null:(");
+      System.out.println("returning null from validate new state new state null:(");
       return null; }
 
     Season   season = Simulation.getInstance().getCurrentSeason();
@@ -5669,6 +5675,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return (delay > 0);
   }
+
   /**
    * Calculate the next vegetative state that this Evu will have.  If is wyoming will pass to that special next state class.
    *
@@ -5886,6 +5893,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return newState;
   }
+
   public VegetativeType doFireRegen(Lifeform lifeform) {
     VegetativeType newState=null;
 
@@ -5893,6 +5901,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     newState = validateNewState(newState); // Returns null
     return newState;
   }
+
   public void doNextStateNew(VegetativeType newState) {
 
     RegionalZone     zone = Simpplle.currentZone;
@@ -6051,13 +6060,14 @@ public final class Evu extends NaturalElement implements Externalizable {
     // update this instance.
     getState(newState.getSpecies().getLifeform()).setVegType(newState);
   }
-/**
- * Checks if can do Fire regeneration for this Evu.  If is a stand replacing fire, or zone is south central alaska, or michigan and it is spring returns false
- * else evaluates whether regen pulse is false, and if so returns false
- * @param processType the process - if SRF is the only process that is directly used.
- * @param zone the regional zone being evaluated
- * @return true if can do fire regneration.
- */
+
+  /**
+   * Checks if can do Fire regeneration for this Evu.  If is a stand replacing fire, or zone is south central alaska, or michigan and it is spring returns false
+   * else evaluates whether regen pulse is false, and if so returns false
+   * @param processType the process - if SRF is the only process that is directly used.
+   * @param zone the regional zone being evaluated
+   * @return true if can do fire regneration.
+   */
   private boolean canDoFireRegen(ProcessType processType, RegionalZone zone) {
     if (processType.equals(ProcessType.STAND_REPLACING_FIRE) == false) {
       return false;
@@ -6145,8 +6155,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   public static final RegenTypes IN_LANDSCAPE_SEED = RegenTypes.IN_LANDSCAPE_SEED;
   public static final RegenTypes ADJACENT_SEED     = RegenTypes.ADJACENT_SEED;
 
-  private boolean calculateProducingSeed(int tStep, boolean postTreatment,
-                                         Lifeform lifeform, RegenTypes regenType)
+  private boolean calculateProducingSeed(int tStep, boolean postTreatment, Lifeform lifeform,
+                                         RegenTypes regenType)
   {
     Simulation     simulation = Simpplle.getCurrentSimulation();
 
@@ -6186,9 +6196,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    *   -- If postTreatment is true, seed production will be
    *      calculated based on the post treated state.
    */
-  public boolean calculateProducingSeed(VegetativeType state,
-                                         int tStep,
-                                         Lifeform lifeform,
+  public boolean calculateProducingSeed(VegetativeType state, int tStep, Lifeform lifeform,
                                          RegenTypes regenType)
   {
     RegionalZone   zone = Simpplle.currentZone;
@@ -6735,6 +6743,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return true;
   }
+
   public boolean succession_n_decades(int numDecades, Lifeform lifeform) {
     Simulation simulation = Simpplle.getCurrentSimulation();
     int processId;
@@ -6904,13 +6913,13 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
   }
+
   /**
    * Fix of Invalid states - a flag that something is invalid within a state.  This is fix of case one:
    *  Where the Species or Size Class is "NF" or "NS" and
    *      the Habitat Type Group is valid
    *
    */
-
   private void fixInvalidCaseOne() {
     HabitatTypeGroupType groupType = htGrp.getType();
     String               newStateStr;
@@ -6962,6 +6971,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
   }
+
   /**
    * Fix of Invalid states - a flag that something is invalid within a state.  This is fix of case two:
    * The Species is Valid for the Habitat Type Group,  which is also valid.
@@ -7066,6 +7076,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       setState(newState);
     }
   }
+
   /**
    * Fix of Invalid states - a flag that something is invalid within a state.  This is fix of case two:
    * The Species is NOT Valid for the Habitat Type Group,
@@ -7430,6 +7441,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
   }
+
   /**
    * Method to export attributes of Evu.  These will be output in following order:
    *   *slink, **row#, **col#, *unit#, *acres, *htgrp, #,
@@ -7591,17 +7603,17 @@ public final class Evu extends NaturalElement implements Externalizable {
     return (int)Math.round(Math.sqrt(fAcres*43560));
   }
 
-/**
- * Serialization methods
- * @param in
- * @param ts time step
- * @param run simulation run
- * @return
- * @throws IOException
- * @throws ClassNotFoundException
- */
+  /**
+   * Serialization methods
+   * @param in
+   * @param ts time step
+   * @param run simulation run
+   * @return
+   * @throws IOException
+   * @throws ClassNotFoundException
+   */
   private Flat3Map readSimStateDataOld(ObjectInput in, int ts, int run)
-    throws IOException, ClassNotFoundException
+      throws IOException, ClassNotFoundException
   {
     int size = in.readInt();
 
@@ -7631,8 +7643,8 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return map;
   }
-  private Flat3Map readSimStateData(ObjectInput in)
-    throws IOException, ClassNotFoundException
+
+  private Flat3Map readSimStateData(ObjectInput in) throws IOException, ClassNotFoundException
   {
     int size = in.readInt();
 
@@ -7654,10 +7666,11 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return map;
   }
-/**
- * Reads in from external source.  Attributes are stored in file in following order: habitat type group, Evu ID, ownership, road status, ignition probability,
- * fire management zone, special area, source, associated land type, location, and initial treatment.
- */
+
+  /**
+   * Reads in from external source.  Attributes are stored in file in following order: habitat type group, Evu ID, ownership, road status, ignition probability,
+   * fire management zone, special area, source, associated land type, location, and initial treatment.
+   */
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
     super.readExternal(in);
@@ -7746,6 +7759,7 @@ public final class Evu extends NaturalElement implements Externalizable {
      *   method due to circular references causing problems.
      */
   }
+
   /**
    * Change x and y coordinates of a location in Evu
    */
@@ -7884,8 +7898,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-  private void writeSimStateData(ObjectOutput out, Flat3Map map)
-    throws IOException
+  private void writeSimStateData(ObjectOutput out, Flat3Map map) throws IOException
   {
     out.writeInt(map.size());
     MapIterator it = map.mapIterator();
@@ -7895,11 +7908,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-/**
- * Writes to an external source attributes in following order: habitat type group, EVU ID,
- * ownership, road status, ignition probability,fire management zone, special area, source,
- * associated land type, location, and initial treatment.
- */
+  /**
+   * Writes to an external source attributes in following order: habitat type group, EVU ID,
+   * ownership, road status, ignition probability,fire management zone, special area, source,
+   * associated land type, location, and initial treatment.
+   */
   public void writeExternal(ObjectOutput out) throws IOException {
     VegetativeType.setLimitedSerialization();
 
@@ -7928,15 +7941,16 @@ public final class Evu extends NaturalElement implements Externalizable {
      *   method due to circular references causing problems.
      */
   }
-/**
- * Reads and sets the spatial relations for an Evu.  This will make associated land units, associated aquatic units, associated road units,
- * and associated trail units for this Evu.
- * @param in the input objects
- * @param area
- * @param areaVersion
- * @throws IOException
- * @throws ClassNotFoundException
- */
+
+  /**
+   * Reads and sets the spatial relations for an Evu.  This will make associated land units, associated aquatic units, associated road units,
+   * and associated trail units for this Evu.
+   * @param in the input objects
+   * @param area
+   * @param areaVersion
+   * @throws IOException
+   * @throws ClassNotFoundException
+   */
   public void readSpatialRelations(ObjectInput in, Area area, int areaVersion) throws IOException, ClassNotFoundException {
     assocLandUnits = null;
     assocAquaticUnits = null;
@@ -7989,6 +8003,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
   }
+
   /**
    * Method to output the spatial relations. These are stored in file as associated Elu ID's,
    * Eau ID's, road ID, Trail, Id
@@ -8026,6 +8041,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
   }
+
   public void writeExternalSimData(ObjectOutput out) throws IOException {
     VegetativeType.setLimitedSerialization();
 
@@ -8137,11 +8153,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-/**
- * Uses hibernate session to write siumlation database of vegetative state.
- * @param session
- * @throws SimpplleError
- */
+  /**
+   * Uses hibernate session to write siumlation database of vegetative state.
+   * @param session
+   * @throws SimpplleError
+   */
   public void writeSimulationDatabase(Session session) throws SimpplleError {
     int ts  = Simulation.getCurrentTimeStep();
 
@@ -8158,6 +8174,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
   }
+
   /**
    * This method writes to access database.  Most likely this will go away with OpenSimpplle 1.0
    * @param fout
@@ -8186,13 +8203,14 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-/**
- * Uses the season to get a set of lifeforms.
- * @return
- */
+  /**
+   * Uses the season to get a set of lifeforms.
+   * @return
+   */
   public Set<Lifeform> getLifeforms() {
     return getLifeforms(Simulation.getInstance().getCurrentSeason());
   }
+
   public Set<Lifeform> getLifeforms(Season season) {
     int ts=0;
     if (simData != null && Simpplle.getCurrentSimulation().isSimulationRunning()) {
@@ -8207,8 +8225,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param season season used to get lifeforms
    * @return a set of lifeforms at a particular time step and season
    */
-
-    public Set<Lifeform> getLifeforms(int tStep, Season season) {
+  public Set<Lifeform> getLifeforms(int tStep, Season season) {
         lifeformSet.clear();
 
         Flat3Map map;
@@ -8242,6 +8259,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
         return lifeformSet;
     }
+
   public ArrayList<Lifeform> getLifeformsList(int tStep, Season season) {
     lifeformList.clear();
 
@@ -8277,12 +8295,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     return lifeformList;
   }
 
-/**
- * Creates an arraylist of lifeforms.
- * @param tStep
- * @param season
- * @return
- */
+  /**
+   * Creates an arraylist of lifeforms.
+   * @param tStep
+   * @param season
+   * @return
+   */
   public ArrayList<Lifeform> getSortedLifeforms(int tStep, Season season) {
     ArrayList<Lifeform> result = new ArrayList<Lifeform>();
 
@@ -8295,13 +8313,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return result;
   }
+
   /**
    * Uses hibernate to create a set of lifeforms from database at a particular time steps and season.
    * @param tStep time step used to find veg state to get lifeforms
    * @param season used to find veg state and get lifeforms.
    * @return
    */
-
   public Set<Lifeform> getLifeformsDatabase(int tStep, Season season) {
     lifeformSet.clear();
 
@@ -8337,6 +8355,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return lifeformSet;
   }
+
   /**
    * Uses hibernate to get the lifeforms list from database based on a specified time step and season.
    * @param tStep time step
@@ -8378,10 +8397,11 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return lifeformList;
   }
-/**
- * Checks if there are multiple lifeforms in an Evu by seeing if the lifeform set size is greater than 1.
- * @return
- */
+
+  /**
+   * Checks if there are multiple lifeforms in an Evu by seeing if the lifeform set size is greater than 1.
+   * @return
+   */
   public boolean hasMultipleLifeforms() {
     // initial state doesn't have multiple seasons, therefore use YEAR.
     Set <Lifeform> lives = getLifeforms(0,Season.YEAR);
@@ -8394,12 +8414,13 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return false;
   }
-/**
- * Uses the current simulation time step to get current veg state, which is then used to get previous veg state.
- * If previous state exists, gets its density and then subtracsts from current vegetative density.
- * @param lifeform
- * @return An int representing the diffrence in current minus previous canopy density, or just the current density if no previous states exist.
- */
+
+  /**
+   * Uses the current simulation time step to get current veg state, which is then used to get previous veg state.
+   * If previous state exists, gets its density and then subtracsts from current vegetative density.
+   * @param lifeform
+   * @return An int representing the diffrence in current minus previous canopy density, or just the current density if no previous states exist.
+   */
   public int getCanopyChange(Lifeform lifeform) {
     int cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     VegetativeType currentVeg = getState(lifeform).getVegType();
@@ -8409,24 +8430,27 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return currentVeg.getDensity().getValue() - prevVegCanopy;
   }
-/**
- * This method has been predominiantly eliminated.  I kept the main call name until I can make sure there are no ill side effects.
- * Brian Losi 10/27/13
- */
+
+  /**
+   * This method has been predominiantly eliminated.  I kept the main call name until I can make sure there are no ill side effects.
+   * Brian Losi 10/27/13
+   */
   public void doCompetition() {
 
   }
-/**
- * Checks if the Evu has a veg state with invasive species by looping through the life forms and passing to
- * overloaded hasInvasiveState().
- * @return true if veg state has invasive species
- */
+
+  /**
+   * Checks if the Evu has a veg state with invasive species by looping through the life forms and passing to
+   * overloaded hasInvasiveState().
+   * @return true if veg state has invasive species
+   */
   public boolean hasInvasiveState() {
     for (Lifeform lifeform : getLifeforms()) {
       if (hasInvasiveState(lifeform)) { return true; }
     }
     return false;
   }
+
   /**
    * Checks if the Evu veg state has an invasive species.
    * @param lifeform
@@ -8442,16 +8466,18 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
-/**
- * Checks if any of the Evu's lifeforms are invasive species.
- * @return
- */
+
+  /**
+   * Checks if any of the Evu's lifeforms are invasive species.
+   * @return
+   */
   public boolean hasInvasive() {
     for (Lifeform lifeform : getLifeforms()) {
       if (hasInvasive(lifeform)) { return true; }
     }
     return false;
   }
+
   /**
    * Checks if a specific life form is an instance of invasive species within the Evu's.
    * @param lifeform
@@ -8460,12 +8486,13 @@ public final class Evu extends NaturalElement implements Externalizable {
   public boolean hasInvasive(Lifeform lifeform) {
     return getInvasiveTrackingSpecies(lifeform) != null;
   }
-/**
- * Gets the inclusion rule array list with invasive tracking species.  Uses the lifeform to get veg state
- * then gets the name of any species.  If that species is invasive and adds to inclusion rule species array list
- * @param lifeform
- * @return the inclusion rule species representing the invasive species to be tracked.
- */
+
+  /**
+   * Gets the inclusion rule array list with invasive tracking species.  Uses the lifeform to get veg state
+   * then gets the name of any species.  If that species is invasive and adds to inclusion rule species array list
+   * @param lifeform
+   * @return the inclusion rule species representing the invasive species to be tracked.
+   */
   public ArrayList<InclusionRuleSpecies> getInvasiveTrackingSpecies(Lifeform lifeform) {
     ArrayList<InclusionRuleSpecies> result=null;
     VegSimStateData state = getState(lifeform);
@@ -8489,12 +8516,13 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return result;
   }
-/**
- * If there is an inclustion rule species gets it and assigns to temporary species, then goes through the species
- * and gets the vegetative state via the lifeform passed and updates the tracking species to the temporary species and the change int.
- * @param change
- * @param lifeform
- */
+
+  /**
+   * If there is an inclustion rule species gets it and assigns to temporary species, then goes through the species
+   * and gets the vegetative state via the lifeform passed and updates the tracking species to the temporary species and the change int.
+   * @param change
+   * @param lifeform
+   */
   public void updateInvasiveTrackSpecies(int change, Lifeform lifeform) {
     ArrayList<InclusionRuleSpecies> spList = getInvasiveTrackingSpecies(lifeform);
     if (spList == null) { return; }
@@ -8508,12 +8536,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
   }
-/**
- * Gets the tracking species percentage.
- * @param lifeform
- * @param trackSpecies
- * @return
- */
+
+  /**
+   * Gets the tracking species percentage.
+   * @param lifeform
+   * @param trackSpecies
+   * @return
+   */
   public float getTrackingSpeciesPercent(Lifeform lifeform, InclusionRuleSpecies trackSpecies) {
     if (trackSpecies != null) {
       return getState(lifeform).getSpeciesPercent(trackSpecies);
@@ -8523,17 +8552,17 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   private static ArrayList<ProcessType> doneSummaryProcesses = new ArrayList<ProcessType>();
 
-
   // Used as the return value of the following method.
   // The caller of the method only uses the contents of the array not the array
   // itself.  Once finished the array is not needed so to avoid creating millions
   // of temporary arrays this is going to be created once and cleared each time.
   private static ArrayList<ProcessType> tmpSummaryProcesses = new ArrayList<ProcessType>();
-/**
- * Creates an arraylist of the processes present in an Evu.
- * @param cStep current time step
- * @return arraylist of processes in Evu.
- */
+
+  /**
+   * Creates an arraylist of the processes present in an Evu.
+   * @param cStep current time step
+   * @return arraylist of processes in Evu.
+   */
   public ArrayList<ProcessType> getSummaryProcesses(int cStep) {
     tmpSummaryProcesses.clear();
 
@@ -8612,13 +8641,14 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return result;
   }
-/**
- * Calculates time since last fire by getting the current simulation time step, looping backward through time steps and then
- * through the simulation's lifeforms and finding any instances of SRF, MSF, or LSF.  returns the current time minus
- * the time step where fire was found.
- *
- * @return the differnce in time steps between current time step and last instance of fire process.
- */
+
+  /**
+   * Calculates time since last fire by getting the current simulation time step, looping backward through time steps and then
+   * through the simulation's lifeforms and finding any instances of SRF, MSF, or LSF.  returns the current time minus
+   * the time step where fire was found.
+   *
+   * @return the differnce in time steps between current time step and last instance of fire process.
+   */
   private int timeSinceFire() {
     Simulation simulation = Simpplle.getCurrentSimulation();
     int cTime = simulation.getCurrentTimeStep();
@@ -8641,12 +8671,13 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return -1;
   }
-/**
- * Finds last life form by looping through simulation using current time steps minus the past time steps in memory and returns
- * the state when the lifeform was found.
- * @param lifeform the lifeform
- * @return
- */
+
+  /**
+   * Finds last life form by looping through simulation using current time steps minus the past time steps in memory and returns
+   * the state when the lifeform was found.
+   * @param lifeform the lifeform
+   * @return
+   */
   public VegSimStateData findLastLifeformState(Lifeform lifeform) {
     if (Simulation.getInstance().isDiscardData()) {
       // This line was at times trying to go to far back to data no longer present
@@ -8674,11 +8705,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return null;
   }
-/**
- * Increments backwards from current time step to find the last veg state with the specified life form.
- * @param life
- * @return
- */
+
+  /**
+   * Increments backwards from current time step to find the last veg state with the specified life form.
+   * @param life
+   * @return
+   */
   private VegSimStateData findLastLifeformStateDatabase(Lifeform life) {
     int cTime = Simulation.getCurrentTimeStep();
 
@@ -8698,12 +8730,14 @@ public final class Evu extends NaturalElement implements Externalizable {
     return null;
 
   }
-/**
- * Passes to overloaded suppressFire() with true for is Class A logic.
- */
+
+  /**
+   * Passes to overloaded suppressFire() with true for is Class A logic.
+   */
   public void suppressFire() {
     suppressFire(true);
   }
+
   /**
    * Updates the life forms and process type to succession and curent probability to suppression.
    * Uses the life form to get the vegetative states, then checks if this Evu has the life form, whether the veg state
@@ -8774,12 +8808,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
-/**
- * gets the last life form with a process occurring.
- * @param timeStepsBack
- * @param lifeform
- * @return
- */
+
+  /**
+   * gets the last life form with a process occurring.
+   * @param timeStepsBack
+   * @param lifeform
+   * @return
+   */
   public ProcessType getLastLifePastProcess(int timeStepsBack, Lifeform lifeform) {
     ProcessType[] processes = (ProcessType[])lastLifeProcessHistory.get(lifeform);
 
@@ -8790,9 +8825,10 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return processes[index];
   }
-/**
- * Makes a single lifeform by getting the vegetative state  and seting the lifeform to NA
- */
+
+  /**
+   * Makes a single lifeform by getting the vegetative state  and seting the lifeform to NA
+   */
   public void makeSingleLife() {
     VegSimStateData state = getState(0,dominantLifeform,Season.YEAR);
 
@@ -8839,5 +8875,4 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (getAzimuthDifference(spread, windDirection) <= downwindThreshold) return 'D';
     else return 'N';
   }
-
 }
