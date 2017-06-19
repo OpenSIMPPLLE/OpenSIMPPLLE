@@ -911,7 +911,6 @@ public final class VegetativeType implements Comparable, Externalizable {
           process = Process.findInstance(ProcessType.get(firstValue));
           if (process == null) {
             System.out.println("Skipping Invalid Process found in line: " + line);
-            continue;
 //            throw new ParseError("Invalid Process found in line: " + line);
           }
           else if (count != 2 && count != 3) {
@@ -1276,7 +1275,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       prob    = (Integer) probability.get(process);
       fout.print("  " + Formatting.fixedField(process.toString(),25,true) + " ");
       fout.print(Formatting.fixedField(state.toString(),36,true) + " ");
-      if (prob.intValue() != 0) {
+      if (prob != 0) {
         fout.print(Formatting.fixedField(prob, 3));
       }
       fout.println();
@@ -1399,8 +1398,9 @@ public final class VegetativeType implements Comparable, Externalizable {
       printName = printName.intern();
     }
 
+    // Unnecessary? Doesn't look like this is needed...
     // Check to see if we need to read anything else.
-    if (in.readBoolean()) { return; }
+//    if (in.readBoolean()) { return; }
   }
 
   private Object readResolve () throws java.io.ObjectStreamException
