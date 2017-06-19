@@ -292,7 +292,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     if (prob == null) {
       return 0;
     } else {
-      return prob.intValue();
+      return prob;
     }
   }
 
@@ -305,13 +305,13 @@ public final class VegetativeType implements Comparable, Externalizable {
   }
 
   public void addProcessNextState(Process p, VegetativeType newNextState) {
-    probability.put(p,new Integer(0));
+    probability.put(p, 0);
     setProcessNextState(p,newNextState);
   }
 
   public void setProcessNextState(Process p, VegetativeType newNextState) {
     if (probability.get(p) == null) {
-      probability.put(p,new Integer(0));
+      probability.put(p, 0);
     }
     nextState.put(p, newNextState);
     htGrp.markChanged();
@@ -664,7 +664,7 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     Float ch = hm.get(sp);
     if (ch != null) {
-      return ch.floatValue();
+      return ch;
     }
 
     return 0.0f;
@@ -979,7 +979,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       throw new ParseError("Invalid probability found");
     }
     nextState.put(process,nextStateStr);
-    probability.put(process,new Integer(nextStateProb));
+    probability.put(process, nextStateProb);
   }
 
   private void readProcessNextState(StringTokenizerPlus strTok)
