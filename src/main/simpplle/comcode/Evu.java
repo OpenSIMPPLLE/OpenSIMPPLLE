@@ -2465,12 +2465,23 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return the initial process for a veg simulation state
    */
   public ProcessType getInitialProcess() {
-    return getState(0).getProcess();
+
+    // TODO: handle better?
+    ProcessType tmpProcess = null;
+
+    VegSimStateData state = getState(0); // Null
+
+    if(state != null) {
+
+      tmpProcess = state.getProcess();
+    }
+
+    return tmpProcess;
   }
 
   /**
    *Gets the initial treatment.
-   * @returnthe initial treatment
+   * @return the initial treatment
    */
   public Treatment getInitialTreatment() { return getTreatment(0,false); }
 
