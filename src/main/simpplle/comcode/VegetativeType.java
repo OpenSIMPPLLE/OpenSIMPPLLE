@@ -1382,7 +1382,9 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     htGrp = HabitatTypeGroup.findInstance(htGrpType);
     if (htGrp == null) {
-      htGrp = new HabitatTypeGroup(htGrpType.toString());
+      if(htGrpType != null) {
+        htGrp = new HabitatTypeGroup(htGrpType.toString());
+      }
     }
 
     if (version == 1) {
