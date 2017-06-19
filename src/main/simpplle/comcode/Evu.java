@@ -12,14 +12,12 @@ import org.apache.commons.collections.MapIterator;
 import org.apache.commons.collections.keyvalue.MultiKey;
 import org.apache.commons.collections.map.Flat3Map;
 import org.apache.commons.collections.map.MultiKeyMap;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import simpplle.comcode.Climate.Season;
 
 import java.awt.*;
 import java.io.*;
-import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.List;
@@ -35,8 +33,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   static final long serialVersionUID        = -4593527729379592789L;
   static final int  version                 = 10;
   static final int  accumDataVersion        = 1;
-  static final int  spatialRelationsVersion = 1;
-  private final int downwindThreshold = 45;
+  private static final int  spatialRelationsVersion = 1;
 
   private ArrayList<ExistingLandUnit>    assocLandUnits;
   private ArrayList<ExistingAquaticUnit> assocAquaticUnits;
@@ -72,13 +69,13 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   private Lifeform dominantLifeform;
 
-  private String           unitNumber;
+  private String unitNumber;
 
   /**
    * Determines the size of neighborhood array
    * Because units are stored in a standard grid, the maximum number of adjacencies is 8
    */
-  public static final int MAX_NEIGHBORS = 8;
+  static final int MAX_NEIGHBORS = 8;
 
   /**
    * Neighboring units are stored in a fixed order, determined by their adjacency angle.
@@ -89,18 +86,18 @@ public final class Evu extends NaturalElement implements Externalizable {
   private static ProcessProbability[] tempProcessProb;
   private ProcessProbability[]        needLaterProcessProb;
 
-  private String           ownership;
-  private Roads.Status     roadStatus;
-  private int              ignitionProb;
-  private Fmz              fmz;
-  private String           specialArea;
+  private String ownership;
+  private Roads.Status roadStatus;
+  private int ignitionProb;
+  private Fmz fmz;
+  private String specialArea;
 
-  private String           source;
-  private String           associatedLandtype;
-  private int[]            location;
-  private Vector           timberVolume;
-  private Vector           volumeRemovals;
-  private Vector           treatment;  // simulation
+  private String source;
+  private String associatedLandtype;
+  private int[] location;
+  private Vector timberVolume;
+  private Vector volumeRemovals;
+  private Vector treatment;  // simulation
 
   private MtnPineBeetleHazard.Hazard lpMpbHazard;
   private MtnPineBeetleHazard.Hazard ppMpbHazard;
@@ -109,14 +106,14 @@ public final class Evu extends NaturalElement implements Externalizable {
   private double longitude;
 
   // ** Simulation Related **
-  private boolean        producingSeed;
+  private boolean producingSeed;
   private Climate.Season fireSeason;
-  private short          fireSeasonProb;
-  private int[]          regenDelay = new int[Lifeform.getAllValues().length];
-  private boolean[]      recentRegenDelay = new boolean[regenDelay.length];
-  private SizeClass      cycleSizeClass=null;
-  private int            cycleSizeClassCount=0;
-  public int             fromEvuId = -1;
+  private short fireSeasonProb;
+  private int[] regenDelay = new int[Lifeform.getAllValues().length];
+  private boolean[] recentRegenDelay = new boolean[regenDelay.length];
+  private SizeClass cycleSizeClass=null;
+  private int cycleSizeClassCount=0;
+  int fromEvuId = -1;
 
   /**
    * Creates a Water Unit Data class.
@@ -136,7 +133,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     public Evu   evu;
   }
 
-  public static List<RoadUnitData> roadUnits = new ArrayList<>();
+  private static List<RoadUnitData> roadUnits = new ArrayList<>();
 
   /* Outer array is index by time step.
    * Inner array is for future use.  If road status changes and we
@@ -144,9 +141,9 @@ public final class Evu extends NaturalElement implements Externalizable {
    * may change, but we will still need to keep track of the original
    * closest road in case its status changes to available again.
    */
-  public ArrayList<ArrayList<RoadUnitData>> nearestRoad;
+  private ArrayList<ArrayList<RoadUnitData>> nearestRoad;
 
-  public static double MAX_ROAD_DIST = 2 * 5280; // 2 Miles in Feet
+  private static double MAX_ROAD_DIST = 2 * 5280; // 2 Miles in Feet
 
   /**
    * creates a Trail Unit Data class with two variables for trail and evu.
@@ -156,11 +153,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     public Evu    evu;
   }
 
-  public static ArrayList<TrailUnitData> trailUnits = new ArrayList<TrailUnitData>();
+  private static ArrayList<TrailUnitData> trailUnits = new ArrayList<TrailUnitData>();
 
-  public ArrayList<ArrayList<TrailUnitData>> nearestTrail;
+  private ArrayList<ArrayList<TrailUnitData>> nearestTrail;
 
-  public static double MAX_TRAIL_DIST=5280*2; // 2 Miles in Feet
+  private static double MAX_TRAIL_DIST=5280*2; // 2 Miles in Feet
 
   private static boolean haveHighSpruceBeetle=false;
 
@@ -200,15 +197,15 @@ public final class Evu extends NaturalElement implements Externalizable {
   public static final int GAP    = -9; // Gap Process
 
   // For use in writing files
-  public static final String D_STR       = "D";
-  public static final String L_STR       = "L"; // Locked in Process
-  public static final String S_STR       = "S"; // Spread, Average Fire Spread
-  public static final String SFS_STR     = "SFS"; // Spread via Fire Spotting.
-  public static final String SUPP_STR    = "SUPP"; // Fire was supressed
-  public static final String SE_STR      = "SE"; // Extreme Fire Spread
-  public static final String NOPROB_STR  = "NA"; // No Probability
-  public static final String COMP_STR    = "COMP"; // Competition
-  public static final String GAP_STR     = "GAP"; // Gap Process
+  static final String D_STR       = "D";
+  static final String L_STR       = "L"; // Locked in Process
+  static final String S_STR       = "S"; // Spread, Average Fire Spread
+  static final String SFS_STR     = "SFS"; // Spread via Fire Spotting.
+  static final String SUPP_STR    = "SUPP"; // Fire was supressed
+  static final String SE_STR      = "SE"; // Extreme Fire Spread
+  static final String NOPROB_STR  = "NA"; // No Probability
+  static final String COMP_STR    = "COMP"; // Competition
+  static final String GAP_STR     = "GAP"; // Gap Process
 
   /**
    * Returns the road status at the current time step if the simulation is running. Otherwise the road status is
@@ -296,8 +293,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   public static final int  POSITION = 0;
   public static final int  WIND     = 1;
 
-  public static final char DOWNWIND = 'D';
-  public static final char NO_WIND  = 'N';
+  static final char DOWNWIND = 'D';
+  static final char NO_WIND  = 'N';
 
   public static final char ABOVE    = 'A';
   public static final char BELOW    = 'B';
@@ -316,32 +313,31 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     super();
 
-    htGrp               = null;
-    initialState        = null;
-    simData             = null;
-    unitNumber          = null;
-    neighborhood        = new AdjacentData[MAX_NEIGHBORS];
-    acres               = 0;
+    htGrp = null;
+    initialState = null;
+    simData = null;
+    unitNumber = null;
+    neighborhood = new AdjacentData[MAX_NEIGHBORS];
+    acres = 0;
 
-    ownership           = null;
-    roadStatus          = Roads.Status.UNKNOWN;
-    ignitionProb        = 0;
-    fmz                 = Simpplle.getCurrentZone().getDefaultFmz();
-    specialArea         = null;
+    ownership = null;
+    roadStatus = Roads.Status.UNKNOWN;
+    ignitionProb = 0;
+    fmz = Simpplle.getCurrentZone().getDefaultFmz();
+    specialArea  = null;
 
-    source              = null;
+    source = null;
     associatedLandtype  = null;
-    location            = new int[] {-1, -1};
-    timberVolume        = null;
-    volumeRemovals      = null;
-    treatment           = null;
-    lpMpbHazard         = null;
-    ppMpbHazard         = null;
-    producingSeed       = false;
-    dominantLifeform    = Lifeform.NA;
-    latitude            = Double.NaN;
-    longitude           = Double.NaN;
-
+    location = new int[] {-1, -1};
+    timberVolume = null;
+    volumeRemovals = null;
+    treatment = null;
+    lpMpbHazard = null;
+    ppMpbHazard = null;
+    producingSeed = false;
+    dominantLifeform = Lifeform.NA;
+    latitude = Double.NaN;
+    longitude = Double.NaN;
   }
 
   /**
@@ -3547,9 +3543,9 @@ public final class Evu extends NaturalElement implements Externalizable {
             "Original Process", "Distance to Water", "Distance to Road",
             "Distance to Trail", "Tracking Species");
 
-    ProcessType oProcess        = null;
+    ProcessType oProcess = null;
     MultiKeyMap gappedProcesses = null;
-    MultiKeyMap DProcesses      = null;
+    MultiKeyMap DProcesses = null;
     if (Simpplle.getAreaSummary() != null) {
       gappedProcesses = Simpplle.getAreaSummary().getGappedProcesses();
       DProcesses = Simpplle.getAreaSummary().getDProcesses();

@@ -204,11 +204,8 @@ public final class VegetativeType implements Comparable, Externalizable {
   /**
    * Constructs an instance that ends a vegetation pathway with itself.
    */
-  public VegetativeType(HabitatTypeGroup htGrp,
-                        Species newSpecies,
-                        SizeClass newSizeClass,
-                        int newAge,
-                        Density newDensity) {
+  public VegetativeType(HabitatTypeGroup htGrp, Species newSpecies, SizeClass newSizeClass,
+                        int newAge, Density newDensity) {
 
     this(htGrp);
 
@@ -982,8 +979,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     probability.put(process,new Integer(nextStateProb));
   }
 
-  private void readProcessNextState(StringTokenizerPlus strTok)
-    throws ParseError
+  private void readProcessNextState(StringTokenizerPlus strTok) throws ParseError
   {
     String              value = null;
     Process             process;

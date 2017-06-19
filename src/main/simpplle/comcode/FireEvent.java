@@ -243,7 +243,7 @@ public class FireEvent extends Process {
    * @param fin A file reader
    * @throws SimpplleError Thrown if the file is unable to be read or there is missing data
    */
-  public static void readFireSeasonData(BufferedReader fin) throws SimpplleError {
+  static void readFireSeasonData(BufferedReader fin) throws SimpplleError {
 
     try {
 
@@ -294,7 +294,7 @@ public class FireEvent extends Process {
    * Writes a line of comma-delimited probabilities for spring, summer, fall, and winter respectively.
    * @param fout A file writer
    */
-  public static void saveFireSeasonData(PrintWriter fout) {
+  static void saveFireSeasonData(PrintWriter fout) {
 
     fout.println( fireSeasonData[Climate.Season.SPRING.ordinal()] + "," +
                   fireSeasonData[Climate.Season.SUMMER.ordinal()] + "," +
