@@ -75,6 +75,7 @@ public class VegLogicDialog extends AbstractLogicDialog {
 
     menuColumns.setText("Columns");
     menuShowValCols.setText("Values Only");
+    menuShowValCols.setSelected(true);
     menuShowValCols.setToolTipText("Shows only columns that have values");
     menuShowValCols.addActionListener(e -> menuShowValCols_actionPerformed());
     menuEcoGroup.setText("Ecological Grouping");
