@@ -32,8 +32,8 @@ public class ProcessType extends SimpplleType implements Externalizable {
   private String  className;
   private boolean spreading;
 
-  public static HashMap<Short,ProcessType> simIdHm = new HashMap<Short,ProcessType>();
-  private short simId=-1; // Random Access File ID
+  public static HashMap<Short,ProcessType> simIdHm = new HashMap<>();
+  private short simId = -1; // Random Access File ID
   public static short nextSimId=0;
 
   public short getSimId() {
@@ -526,13 +526,3 @@ public class ProcessType extends SimpplleType implements Externalizable {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
