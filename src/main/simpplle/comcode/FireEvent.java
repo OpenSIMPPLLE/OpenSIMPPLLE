@@ -634,8 +634,7 @@ public class FireEvent extends Process {
 
   public static VegetativeType regen(Lifeform lifeform, Evu evu) {
     if (RegenerationLogic.isDataPresent()) {
-      // In here
-      return regenNew(lifeform,evu); // TODO: null
+      return regenNew(lifeform,evu);
     }
     else {
       return regenCommon(evu);
@@ -714,7 +713,6 @@ public class FireEvent extends Process {
     // *********************
     if (evu.producingSeed(lifeform,Evu.IN_PLACE_SEED)) {
 
-      // Doesn't return null tmpState
       VegetativeType tmpState = RegenerationLogic.getInPlaceSeedState(ecoGroup, evu,lifeform);
 
       // While this keeps tmpState from being accessed while null, instance variables w/ in tmpState
@@ -727,15 +725,6 @@ public class FireEvent extends Process {
                                            tmpState.getSizeClass(),
                                            tmpState.getAge(),
                                            tmpState.getDensity());
-          // Testing some ideas...
-//        VegSimStateData tmp = evu.getState();
-//        newState = htGrp.getVegetativeType(tmp.getVegType().getSpecies(),
-//                                           tmp.getVegType().getSizeClass(),
-//                                           tmp.getVegType().getAge(),
-//                                           tmp.getVegType().getDensity());
-
-          // Debug stuff... remove before merging!
-        System.out.println("new state: " + newState);
 
         if (newState != null) {
           return newState;

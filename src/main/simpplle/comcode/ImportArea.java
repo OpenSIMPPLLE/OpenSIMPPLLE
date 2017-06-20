@@ -460,8 +460,8 @@ public class ImportArea {
             }
             else {
               // TODO: Look into this....
-              /** TODO need to update state later if it is an invalid one. */
-              /** TODO carry process & treatment as initial when make sim ready */
+              // TODO need to update state later if it is an invalid one. */
+              // TODO carry process & treatment as initial when make sim ready */
               treatment = Treatment.createInitialTreatment(treatType, state);
               evu.addTreatment(treatment);
             }
@@ -622,8 +622,8 @@ public class ImportArea {
           }
           else {
             // TODO look into this...
-            /** TODO need to update state later if it is an invalid one. */
-            /** TODO carry process & treatment as initial when make sim ready */
+            // TODO need to update state later if it is an invalid one. */
+            // TODO carry process & treatment as initial when make sim ready */
             treatment = Treatment.createInitialTreatment(treatType, vegState);
             evu.addTreatment(treatment);
           }
@@ -687,14 +687,6 @@ public class ImportArea {
     if (numLifeforms == 1) {
       evu.makeSingleLife();
     }
-    //  Checking for null states when area is read in...
-//    logFile.println(line);
-//    logFile.println("ID#: " + vegState.getPrintName());
-//    logFile.println("size class str: " + vegState.getSizeClass());
-//    logFile.println("Species str: " + vegState.getSpecies());
-//    logFile.println("Density str: " + vegState.getDensity());
-//    logFile.println("eco grp: " + htGrp);
-//    logFile.println();
   }
   /**
    * reads in Land Attributes.  They are stored in file in the following order: slink (ID), acres, soilType, landform, aspect, slope, parent material, depth

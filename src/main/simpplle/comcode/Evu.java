@@ -5575,8 +5575,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return VegetativeType
    */
   private VegetativeType validateNewState(VegetativeType newState) {
-    // TODO:
-    return validateNewState(newState,false); // null
+    return validateNewState(newState,false);
   }
   /**
    * These methods make sure that the next state generated is properly handled,
@@ -5586,8 +5585,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return
    */
   private VegetativeType validateNewState(VegetativeType newState, boolean remove) {
-    // TODO:
-    return validateNewState(Area.currentLifeform,newState,remove); // null
+    return validateNewState(Area.currentLifeform,newState,remove);
 
   }
   /**
@@ -5600,7 +5598,6 @@ public final class Evu extends NaturalElement implements Externalizable {
   private VegetativeType validateNewState(Lifeform lifeform, VegetativeType newState, boolean remove) {
     if (newState == null) {
 
-      System.out.println("returning null from validate new state new state null:(");
       return null; }
 
     Season   season = Simulation.getInstance().getCurrentSeason();
@@ -5893,8 +5890,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   public VegetativeType doFireRegen(Lifeform lifeform) {
     VegetativeType newState=null;
 
-    newState = FireEvent.regen(lifeform,this); // returns null
-    newState = validateNewState(newState); // Returns null
+    newState = FireEvent.regen(lifeform,this);
+    newState = validateNewState(newState);
     return newState;
   }
 
