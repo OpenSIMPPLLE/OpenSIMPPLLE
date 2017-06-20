@@ -188,7 +188,7 @@ public class RegenerationLogicDialog extends VegLogicDialog {
 
   private void menuTableOptionsAddAllSpecies_actionPerformed(ActionEvent e) {
     Vector  v = HabitatTypeGroup.getValidSpecies();
-    Vector  newSpecies = new Vector();
+    Vector<Species> newSpecies = new Vector<>();
     Species species;
     for (int i=0; i<v.size(); i++) {
       species = (Species)v.elementAt(i);

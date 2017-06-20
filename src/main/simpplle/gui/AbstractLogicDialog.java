@@ -162,9 +162,9 @@ public class AbstractLogicDialog extends JDialog {
   public void open(ActionEvent e) {
     SystemKnowledgeFiler.openFile(this,sysKnowKind,menuFileSave,menuFileClose);
     //  This line must be done first!
-    for (int i=0; i<tabPanels.length; i++) {
-      tabPanels[i].dataModel.fireTableStructureChanged();
-      tabPanels[i].updateColumns();
+    for (BaseLogicPanel currPanel : tabPanels) {
+      currPanel.dataModel.fireTableStructureChanged();
+      currPanel.updateColumns();
     }
 
     updateMenuItems();

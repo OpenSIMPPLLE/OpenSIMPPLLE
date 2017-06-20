@@ -58,13 +58,11 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
 
   public static boolean isOpen = false;
 
-  protected JPanel southPanel = new JPanel();
-  protected BorderLayout borderLayout3 = new BorderLayout();
-  private JPanel resultsPanel = new JPanel();
+  protected JPanel southPanel = new JPanel(new BorderLayout());
+  private JPanel resultsPanel = new JPanel(new FlowLayout());
   private TitledBorder resultsBorder;
   private JScrollPane resultsScrollPane = new JScrollPane();
-  private JList resultsList = new JList();
-  private FlowLayout resultsLayout = new FlowLayout();
+  private JList resultsList = new JList<>();
   private JToolBar toolBar = new JToolBar();
   private JButton searchPB = new JButton();
 
@@ -109,11 +107,9 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
 
     mainPanel.add(toolBar, BorderLayout.NORTH);
     toolBar.add(searchPB);
-    southPanel.setLayout(borderLayout3);
-    mainPanel.add(southPanel, java.awt.BorderLayout.SOUTH);
+    mainPanel.add(southPanel, BorderLayout.SOUTH);
 
     resultsBorder = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(178, 178, 178)),"Results");
-    resultsPanel.setLayout(resultsLayout);
     resultsPanel.setBorder(resultsBorder);
 
     resultsList.setToolTipText("double-click selection to display in Anaylsis Dialog");
@@ -195,9 +191,9 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
       resultsList.setListData(units.toArray());
       resultsList.setVisible(true);
 
-      int acres=0;
-      for (int i=0; i<units.size(); i++) {
-        acres += units.get(i).getAcres();
+      int acres = 0;
+      for (Evu unit : units) {
+        acres += unit.getAcres();
       }
       acres = Math.round(Area.getFloatAcres(acres));
       resultsBorder.setTitle("Results (Total Acres " + Integer.toString(acres) + ")");
@@ -274,15 +270,15 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
       treatType = TreatmentType.get(treatmentName);
       treatment = schedule.newTreatment(treatType,tStep);
 
-      for (int i=0; i<units.size(); i++) {
-        treatment.addUnitId( ((Evu)units.get(i)).getId() );
+      for (Evu unit : units) {
+        treatment.addUnitId(unit.getId());
       }
       treatment.setUseUnits(true);
       treatment.setTimeStep(tStep);
 
       String msg = "The Treatment " + treatmentName + " has been created\n" +
                    "Please see the Treatment Scheduler for further options";
-      JOptionPane.showMessageDialog(this,msg,"Treatment Created",
+      JOptionPane.showMessageDialog(this, msg, "Treatment Created",
                                     JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -316,8 +312,8 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     if (processType != null) {
       processApp = schedule.newApplication(processType);
 
-      for (int i=0; i<units.size(); i++) {
-        processApp.addUnitId( ((Evu)units.get(i)).getId() );
+      for (Evu unit : units) {
+        processApp.addUnitId(unit.getId());
       }
       processApp.setTimeStep(tStep);
 

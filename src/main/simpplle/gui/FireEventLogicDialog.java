@@ -231,7 +231,7 @@ public class FireEventLogicDialog extends VegLogicDialog {
         updateDialog();
       }
       catch (SimpplleError err) {
-        JOptionPane.showMessageDialog(this,err.getError(),"Error loading file",
+        JOptionPane.showMessageDialog(this, err.getError(), "Error loading file",
                                       JOptionPane.ERROR_MESSAGE);
       }
     }

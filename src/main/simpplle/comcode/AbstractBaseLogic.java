@@ -67,11 +67,12 @@ public abstract class AbstractBaseLogic {
   protected AbstractBaseLogic(String[] kinds) {
     visibleColumnsHm.clear(); //
     columns = new HashMap<>();
-    for (int i=0; i<kinds.length; i++) {
-      Process process = Process.findInstance(kinds[i]);
+
+    for(String currKind : kinds) {
+      Process process = Process.findInstance(currKind);
       if (process != null && process.isUniqueUI()) continue;
-      columns.put(kinds[i],new ArrayList<>());
-      addColumn(kinds[i],"ROW_COL");
+      columns.put(currKind, new ArrayList<>());
+      addColumn(currKind,"ROW_COL");
     }
   }
   /**
