@@ -459,7 +459,6 @@ public class ImportArea {
               logFile.println();
             }
             else {
-              // TODO: Look into this....
               // TODO need to update state later if it is an invalid one. */
               // TODO carry process & treatment as initial when make sim ready */
               treatment = Treatment.createInitialTreatment(treatType, state);
@@ -621,7 +620,6 @@ public class ImportArea {
             logFile.println();
           }
           else {
-            // TODO look into this...
             // TODO need to update state later if it is an invalid one. */
             // TODO carry process & treatment as initial when make sim ready */
             treatment = Treatment.createInitialTreatment(treatType, vegState);

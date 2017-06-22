@@ -91,7 +91,6 @@ public abstract class RegenerationLogic {
    * @return
    */
   public static BaseLogic getData(DataKinds kind, HabitatTypeGroupType ecoGroup, boolean addIfNull) {
-    // Look in here??..
     BaseLogic result;
     switch (kind) {
       case FIRE:
@@ -224,7 +223,7 @@ public abstract class RegenerationLogic {
           RegenerationData regenData = (RegenerationData) data;
           if (regenData.isMatch(evu, tStep, lifeform)) {
             recordRuleIndex(evu, dataList.indexOf(regenData), kind, tStep, lifeform);
-            return regenData; // All instance variables null.
+            return regenData;
           }
         }
       }
