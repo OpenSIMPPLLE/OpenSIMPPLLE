@@ -2356,7 +2356,7 @@ public final class Area implements Externalizable {
     }
   }
 
-  void doEmissions() {
+  public void doEmissions() {
     AreaSummary areaSummary = Simpplle.getAreaSummary();
     int         tSteps = Simpplle.getCurrentSimulation().getNumTimeSteps();
 
@@ -2372,7 +2372,7 @@ public final class Area implements Externalizable {
     }
   }
 
-  void doEvuSpread() {
+  public void doEvuSpread() {
     Simpplle.getAreaSummary().doSpread();
   }
 
@@ -2507,9 +2507,9 @@ public final class Area implements Externalizable {
     for(int i=0;i<allEvu.length;i++) {
       if (allEvu[i] != null) {
         if (multipleLifeformsEnabled()) {
-          // In here
           allEvu[i].doNextStateMultipleLifeform();
           DoCompetitionLogic.getInstance().doLogic(allEvu[i]);
+//          allEvu[i].doCompetition();
         }
         else {
           allEvu[i].doNextState();
@@ -3586,6 +3586,7 @@ public final class Area implements Externalizable {
       allEvu[i].fixEmptyData();
     }
   }
+
   /**
    * This function goes thru all of the units that match the given
    * old HabitatTypeGroup and old VegetativeType and changes the values
@@ -3594,7 +3595,8 @@ public final class Area implements Externalizable {
    * @see simpplle.gui.EvuEditor
    * @see simpplle.gui.EvuGlobalEditor
    */
-  public void makeGlobalUnitChange(HabitatTypeGroup oldHtGrp, VegetativeType oldVegetativeType,
+  public void makeGlobalUnitChange(HabitatTypeGroup oldHtGrp,
+                                   VegetativeType oldVegetativeType,
                                    HabitatTypeGroup newHtGrp,
                                    VegetativeType newVegetativeType,
                                    Lifeform lifeform) {
@@ -3879,6 +3881,7 @@ public final class Area implements Externalizable {
       fout.println("END");
     }
   }
+
   /**
    * Adds the adjacent data information to a temp data structure until
    * we have all the Evu instances created and can put the data in each
@@ -3898,6 +3901,7 @@ public final class Area implements Externalizable {
     data[2] = (double) wind; // convert to ascii value
     v.addElement(data);
   }
+
   /**
    *  Overloaded.
    * Adds the adjacent data information adjId a temp data structure until
@@ -3919,6 +3923,7 @@ public final class Area implements Externalizable {
     double[] data = {(double) adjId, pos, wind, spread, windSpeed, windDir};
     v.addElement(data);
   }
+
   /**
    * Helper method for the overloaded addAdjacentData methods
    * Get vector given Evu, create a new vector if none exists.
@@ -3938,6 +3943,7 @@ public final class Area implements Externalizable {
   public void finishAddingAdjacentData() {
     finishAddingAdjacentData(null);
   }
+
   /**
    * Go through the temp storage for adjacent data and put the data in the appropriate Evus. This
    * had to wait until all instances of Evu were created, so that the AdjacentData.evu could be
@@ -4002,6 +4008,7 @@ public final class Area implements Externalizable {
     // Clear tmpAdjacentData
     tmpAdjacentData = new Hashtable<>();
   }
+
   /**
    * Checks the number of adjacencies and removes evu from allEvu if there are no adjacencies
    *
@@ -4045,6 +4052,7 @@ public final class Area implements Externalizable {
       }
     }
   }
+
   /**
    * @param evu current evu
    * @param adjData data representing the relationship between current and adj
@@ -4069,6 +4077,7 @@ public final class Area implements Externalizable {
     // make sure to use elevation in feet
     return (adj.getElevationFeet() - evu.getElevationFeet()) / distanceFeet;
   }
+
   public char calcRelativePosition(Evu evu, AdjacentData adjData) {
     Evu adj = adjData.getEvu();
 
@@ -4202,6 +4211,7 @@ public final class Area implements Externalizable {
       fout.println();
     }
   }
+
 
   /**
    * The purpose of this is to search through the units and find
@@ -4637,6 +4647,7 @@ public final class Area implements Externalizable {
     }
 
   }
+
   /**
    * Write simulation data for the current time step to the database.
    * @throws SimpplleError
@@ -4696,6 +4707,7 @@ public final class Area implements Externalizable {
 
     }
   }
+
   /**
    * Flag for multiple life forms.
    * True when invasive species logic does not need to be run
@@ -4706,6 +4718,7 @@ public final class Area implements Externalizable {
   public void flagMultipleLifeFormSimulation(boolean flag) {
     disableMultipleLifeforms = flag;
   }
+
   /**
    * Determines whether multiple lifeform flag is on or not before simulation starts.
    */
@@ -4724,6 +4737,7 @@ public final class Area implements Externalizable {
     }
     disableMultipleLifeforms = true;
   }
+
   /**
    * Cycles through all evu's and formats them for multiple lifeform processes.
    * If fields are empty they are skipped.
@@ -4736,7 +4750,6 @@ public final class Area implements Externalizable {
     }
     disableMultipleLifeforms = false;
   }
-
   public void validateLifeformStorageMatch() {
     for (int i=0; i<allEvu.length; i++) {
       if (allEvu[i] == null) { continue; }
@@ -4756,6 +4769,7 @@ public final class Area implements Externalizable {
       }
     }
   }
+
   /**
    * Gets the elevation relative position.
    */
@@ -4766,6 +4780,7 @@ public final class Area implements Externalizable {
   public void setElevationRelativePosition(int elevationRelativePosition) {
     this.elevationRelativePosition = elevationRelativePosition;
   }
+
   /**
    * If Area has uniform polygons sets the relative elevation position to 10,
    * otherwise it sets to 100
