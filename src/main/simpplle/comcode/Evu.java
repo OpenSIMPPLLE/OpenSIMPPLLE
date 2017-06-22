@@ -5476,14 +5476,11 @@ public final class Evu extends NaturalElement implements Externalizable {
  * Calculates the next state for multiple life forms
  */
   public void doNextStateMultipleLifeform() {
-    if (getId() == 60 && Simulation.getCurrentTimeStep() == 51) {
-      System.out.println("Evu:4568");
-    }
+
     newStatesTemp.clear();
     ArrayList<Lifeform> nextStateToDo =
       getLifeformsList(Simulation.getCurrentTimeStep(),
                        Simulation.getInstance().getCurrentSeason());
-
 
     if (Simpplle.getCurrentZone().isWyoming() == false) {
       Lifeform[] allLives = Lifeform.getAllValues();
@@ -5514,9 +5511,7 @@ public final class Evu extends NaturalElement implements Externalizable {
           newState = doFireRegen(Area.currentLifeform);
         }
       }
-      if (Area.currentLifeform == Lifeform.SHRUBS && newState != null && newState.getSpecies().getLifeform() == Lifeform.TREES) {
-        System.out.println("Evu:4606");
-      }
+
       doNextStateNew(newState);
     }
 
