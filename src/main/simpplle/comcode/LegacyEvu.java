@@ -341,7 +341,7 @@ public class LegacyEvu {
   /**
    * Processes a line from an Area's input data file, which contain's
    * information defining a Evu.
-   * @param fin a BufferedReader
+   * @param strBuf a BufferedReader
    * @return a boolean, true if end of data reached.
    */
   public boolean readDelimitedData(StringBuffer strBuf) throws ParseError {
