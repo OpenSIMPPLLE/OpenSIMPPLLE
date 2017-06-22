@@ -1391,6 +1391,11 @@ public final class VegetativeType implements Comparable, Externalizable {
     else {
       printName = (String) in.readObject();
       printName = printName.intern();
+      try {
+        parseVegetativeTypeString(printName);
+      } catch (ParseError e) {
+        throw new IOException("Invalid print name " + printName);
+      }
     }
 
     // Check to see if we need to read anything else.
