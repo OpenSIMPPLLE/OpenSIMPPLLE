@@ -65,9 +65,9 @@ public final class Evu extends NaturalElement implements Externalizable {
   /**
    * Uses a Map data structure that is optimized for size less than 3.
    * MultiKey - Key 1: Lifeform, Key 2: Season
-   *  We could end up with initial conditions with Season,
-   *  by running seasonally and using simulation results as new initial Conditions.
-   */
+  *  We could end up with initial conditions with Season,
+  *  by running seasonally and using simulation results as new initial Conditions.
+  */
   private Flat3Map initialState;
 
   private Lifeform dominantLifeform;
@@ -410,10 +410,10 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public boolean isValid() {
     return(isHabitatTypeGroupValid() &&
-        isCurrentStateValid()     &&
-        isFmzValid()              &&
-        isAcresValid()            &&
-        isInitialProcessValid());
+           isCurrentStateValid()     &&
+           isFmzValid()              &&
+           isAcresValid()            &&
+           isInitialProcessValid());
   }
 
   /**
@@ -1101,8 +1101,8 @@ public final class Evu extends NaturalElement implements Externalizable {
     StringBuffer buf = new StringBuffer(40);
 
     hasPrimaryLife = (hasLifeform(Lifeform.TREES,tStep) ||
-        hasLifeform(Lifeform.SHRUBS,tStep) ||
-        hasLifeform(Lifeform.HERBACIOUS,tStep));
+                      hasLifeform(Lifeform.SHRUBS,tStep) ||
+                      hasLifeform(Lifeform.HERBACIOUS,tStep));
 
     for (int i=0; i<lives.length; i++) {
       VegSimStateData state = getState(tStep,lives[i]);
@@ -1124,8 +1124,8 @@ public final class Evu extends NaturalElement implements Externalizable {
             break;
         }
       } else if (hasPrimaryLife && (lives[i] == Lifeform.TREES ||
-          lives[i] == Lifeform.SHRUBS ||
-          lives[i] == Lifeform.HERBACIOUS)) {
+                                    lives[i] == Lifeform.SHRUBS ||
+                                    lives[i] == Lifeform.HERBACIOUS)) {
         if (!first) { buf.append("__"); }
         buf.append("NONE");
         first = false;
@@ -1353,9 +1353,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (state == null) return;
 
     newVegTypeComponent(newSpecies,
-        state.getVeg().getSizeClass(),
-        state.getVeg().getAge(),
-        state.getVeg().getDensity());
+                        state.getVeg().getSizeClass(),
+                        state.getVeg().getAge(),
+                        state.getVeg().getDensity());
   }
 
   /**
@@ -1370,9 +1370,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (state == null) return;
 
     newVegTypeComponent(state.getVeg().getSpecies(),
-        newSizeClass,
-        state.getVeg().getAge(),
-        state.getVeg().getDensity());
+                        newSizeClass,
+                        state.getVeg().getAge(),
+                        state.getVeg().getDensity());
   }
 
   /**
@@ -1386,9 +1386,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (state == null) return;
 
     newVegTypeComponent(state.getVeg().getSpecies(),
-        state.getVeg().getSizeClass(),
-        state.getVeg().getAge(),
-        newDensity);
+                        state.getVeg().getSizeClass(),
+                        state.getVeg().getAge(),
+                        newDensity);
   }
 
   /**
@@ -1402,9 +1402,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (state == null) return;
 
     newVegTypeComponent(state.getVeg().getSpecies(),
-        state.getVeg().getSizeClass(),
-        age,
-        state.getVeg().getDensity());
+                        state.getVeg().getSizeClass(),
+                        age,
+                        state.getVeg().getDensity());
   }
 
   /**
@@ -1518,7 +1518,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       return getPpMpbHazard();
 
     } else if (process == ProcessType.LIGHT_LP_MPB ||
-        process == ProcessType.SEVERE_LP_MPB) {
+               process == ProcessType.SEVERE_LP_MPB) {
 
       return getLpMpbHazard();
 
@@ -2681,11 +2681,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     return treat;
   }
 
-  /**
-   * Checks if the supplied treatment occurred within the last 10 years by passing 1 as N to treatmentOccurredLastNDecades.
-   * @param treatments the array of treatments being checked if it occured in the past
-   * @return true if treatment occurred in the past
-   */
+ /**
+  * Checks if the supplied treatment occurred within the last 10 years by passing 1 as N to treatmentOccurredLastNDecades.
+  * @param treatments the array of treatments being checked if it occured in the past
+  * @return true if treatment occurred in the past
+  */
   public boolean checkPastTreatments(TreatmentType[] treatments) {
     return treatmentOccurredLastNDecades(treatments,1);
   }
@@ -2974,9 +2974,9 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Returns an array of strings for display in a list box in the evu analysis dialog.
-   *   (e.g. "346 (Above, Downwind)"
-   */
+    * Returns an array of strings for display in a list box in the evu analysis dialog.
+    *   (e.g. "346 (Above, Downwind)"
+    */
   public String[] getAdjAnalysisDisplay() {
     String   pos, wind;
 
@@ -2998,7 +2998,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       wind = (isAdjDownwind(neighborhood[i].getEvu())) ? "Downwind" : "No wind";
 
       strList[i] = Integer.toString(neighborhood[i].getEvu().getId()) +
-          " (" + pos + ", " + wind + ")";
+                              " (" + pos + ", " + wind + ")";
     }
     return strList;
   }
@@ -3545,9 +3545,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     formatter.format("%4s %6s %17s %41s %25s %4s %25s %23s %20s %21s %s%n",
-        "Time", "Season",  "Lifeform", "Resulting State", "Process", "Prob",
-        "Original Process", "Distance to Water", "Distance to Road",
-        "Distance to Trail", "Tracking Species");
+            "Time", "Season",  "Lifeform", "Resulting State", "Process", "Prob",
+            "Original Process", "Distance to Water", "Distance to Road",
+            "Distance to Trail", "Tracking Species");
 
     ProcessType oProcess        = null;
     MultiKeyMap gappedProcesses = null;
@@ -3579,10 +3579,10 @@ public final class Evu extends NaturalElement implements Externalizable {
           if (state == null) { continue; }
 
           formatter.format("%4d %6s %17s %41s %25s ",
-              ts, state.getSeasonString(),
-              state.getLifeform().toString(),
-              state.getVegType().toString(),
-              state.getProcess().toString());
+                           ts, state.getSeasonString(),
+                           state.getLifeform().toString(),
+                           state.getVegType().toString(),
+                           state.getProcess().toString());
 
           int prob = state.getProb();
           if (prob > 0) {
@@ -3606,12 +3606,12 @@ public final class Evu extends NaturalElement implements Externalizable {
             if (unit instanceof ExistingAquaticUnit) {
               ExistingAquaticUnit eau = (ExistingAquaticUnit) unit;
               formatter.format("%6.0fft EAU-%-6d (%s) ", dist, eau.getId(),
-                  kind);
+                               kind);
             }
             else if (unit instanceof Evu) {
               Evu evu = (Evu) unit;
               formatter.format("%6.0fft EVU-%-6d (%s) ", dist, evu.getId(),
-                  kind);
+                               kind);
             }
           }
 
@@ -3829,8 +3829,8 @@ public final class Evu extends NaturalElement implements Externalizable {
     fout = new PrintWriter(strOut);
 
     if ((simulation != null &&
-        simulation.isMultipleRun() &&
-        simulation.existsMultipleRunSummary()) ||
+         simulation.isMultipleRun() &&
+         simulation.existsMultipleRunSummary()) ||
         (simulation == null && (getTreatment(0,false) == null))) {
       fout.println("No Treatment History available.");
       fout.flush();
@@ -4309,11 +4309,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-  /**
-   * Finds the cumulative probability for a specified process
-   * @param pt the process being evaluated
-   * @return the cumulative process probabilty for the passed process, or null if there is none
-   */
+/**
+ * Finds the cumulative probability for a specified process
+ * @param pt the process being evaluated
+ * @return the cumulative process probabilty for the passed process, or null if there is none
+ */
   public static CumulativeProcessProb findCumulProb(ProcessType pt) {
     if (pt == null) { return null; }
 
@@ -4443,9 +4443,9 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Creates a static arraylist for process types.  is Temporary to save memory.
    */
   private static ArrayList<ProcessType> tmpSimProcesses = new ArrayList<ProcessType>();
-  /**
-   * Method to calculate probabilities for multiple life forms based on current simulation at current time step.
-   */
+/**
+ * Method to calculate probabilities for multiple life forms based on current simulation at current time step.
+ */
   public void doProbabilityMultipleLifeform() {
     doneSummaryProcesses.clear();
 
@@ -4514,10 +4514,10 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
   }
-  /**
-   * Calculates the fire process probability by passing fire event in the current zone to doProbability
-   * @return the probability (as an integer) of fire process.  If somehow this is above 10000 will return 10000
-   */
+/**
+ * Calculates the fire process probability by passing fire event in the current zone to doProbability
+ * @return the probability (as an integer) of fire process.  If somehow this is above 10000 will return 10000
+ */
   public int doFireProcessProb() {
     ProcessType processType = ProcessType.FIRE_EVENT;
     RegionalZone zone = Simpplle.getCurrentZone();
@@ -4534,9 +4534,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return prob;
   }
-  /**
-   * Calculates the fire season according to the current simulation and current season.
-   */
+/**
+ * Calculates the fire season according to the current simulation and current season.
+ */
   public void determineFireSeason() {
     Simulation simulation = Simpplle.getCurrentSimulation();
     Climate.Season season = simulation.getCurrentSeason();
@@ -4556,7 +4556,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     ProcessType tmpProcess = state.getProcess();
     if (tmpProcess != null && unitProb == L &&
         (tmpProcess.equals(ProcessType.PRAIRIE_DOG_ACTIVE) ||
-            tmpProcess.equals(ProcessType.PRAIRIE_DOG_INACTIVE))) {
+         tmpProcess.equals(ProcessType.PRAIRIE_DOG_INACTIVE))) {
       if (season == Climate.Season.SPRING) {
         return;
       }
@@ -4612,7 +4612,7 @@ public final class Evu extends NaturalElement implements Externalizable {
         doWyomingFire(simulation,season);
       }
       else if (fireSeasonProb > 0 &&
-          (fireSeason == Climate.Season.SPRING)) {
+               (fireSeason == Climate.Season.SPRING)) {
         doWyomingStochastic(simulation);
       }
       else {
@@ -4621,10 +4621,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
   }
-  /**
-   * Method to calculate wyoming succession.
-   * @param simulation
-   */
+/**
+ * Method to calculate wyoming succession.
+ * @param simulation
+ */
   private void doWyomingSuccession(Simulation simulation) {
 //    newState(ProcessType.SUCCESSION,(short)10000,Climate.Season.YEAR);
     updateState(null,ProcessType.SUCCESSION,(short)10000,simulation.getCurrentSeason());
@@ -4633,7 +4633,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     VegSimStateData state = getState();
     if (state != null && fireSeasonProb > 0) {
       updateState(null,ProcessType.FIRE_EVENT, fireSeasonProb,
-          simulation.getCurrentSeason());
+               simulation.getCurrentSeason());
       lastFireTimeStep = Simulation.getCurrentTimeStep();
       doFireSpecificDoGetProcess(state.getVeg().getSpecies(),dominantLifeform);
 
@@ -4656,9 +4656,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 //    newState(selected, prob, Climate.Season.YEAR);
     updateState(null,selected, prob, simulation.getCurrentSeason());
   }
-  /**
-   * Clears the dummy processes at current simulation time step.
-   */
+/**
+ * Clears the dummy processes at current simulation time step.
+ */
   public void clearDummyProcesses() {
     int ts = Simulation.getCurrentTimeStep();
 
@@ -4765,10 +4765,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     // Once Root Disease starts it will continue,
     // unless taken over by Fire.
     if (((processType.equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
-        (processType.equals(ProcessType.MIXED_SEVERITY_FIRE) == false)  &&
-        (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false)  &&
-        (!processType.isRootDisease())) &&
-        (prevProcess.isRootDisease()))
+         (processType.equals(ProcessType.MIXED_SEVERITY_FIRE) == false)  &&
+         (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false)  &&
+         (!processType.isRootDisease())) &&
+         (prevProcess.isRootDisease()))
     {
       if (Simpplle.getCurrentZone() instanceof WestsideRegionOne) {
         selected = getHighestRootDisease(prevProcess);
@@ -4789,13 +4789,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     // unless taken over by Fire.
 
     if ( ( (processType.equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
-        (processType.equals(ProcessType.MIXED_SEVERITY_FIRE) == false) &&
-        (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false))) {
+          (processType.equals(ProcessType.MIXED_SEVERITY_FIRE) == false) &&
+          (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false))) {
       processType = prevProcess;
       if ( (processType.equals(ProcessType.LIGHT_SB) ||
-          processType.equals(ProcessType.MEDIUM_SB) ||
-          processType.equals(ProcessType.HIGH_SB)) &&
-          (processOccurredAllPastNTimeSteps(spruceBeetles,5, false)) == false) {
+            processType.equals(ProcessType.MEDIUM_SB) ||
+            processType.equals(ProcessType.HIGH_SB)) &&
+           (processOccurredAllPastNTimeSteps(spruceBeetles,5, false)) == false) {
         selected = processType;
         updateCurrentProcess(selected);
         if (prob != Evu.SUPP) {
@@ -4877,7 +4877,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   private ProcessProbability doGetProcessLifeform(Lifeform lifeform, ProcessProbability selected)
-      throws SimpplleError
+    throws SimpplleError
   {
     Simulation   simulation = Simpplle.getCurrentSimulation();
     ArrayList<ProcessType> processes;
@@ -4902,7 +4902,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     // for the whole unit.
     else if (selected == null) {
       processes = Process.getSimulationProcesses(lifeform,false);
-      // Done via above boolean now.
+        // Done via above boolean now.
 //      processes.remove(ProcessType.FIRE_EVENT);
       if (simulation.isStochastic()) {
         process = ProcessChooser.doStochastic(this, processes);
@@ -4930,7 +4930,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (!isLockin) {
       updateState(lifeform, newSelected.processType, (short) newSelected.probability,
-          simulation.getCurrentSeason());
+               simulation.getCurrentSeason());
       state = getState(cStep,lifeform);
     }
     if (newSelected.processType == ProcessType.FIRE_EVENT) {
@@ -4953,12 +4953,12 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return newSelected;
   }
-  /**
-   * This method calculates tree specific process changes.  These will include Root disease, and beech bark disease both of which once start continue unless a fire process
-   * occurs (LSF, MSF, or SRF), and spruce beetle which once starts continues for 5 years unless a fire event occurs
-   * @param processData
-   * @param cTime
-   */
+/**
+ * This method calculates tree specific process changes.  These will include Root disease, and beech bark disease both of which once start continue unless a fire process
+ * occurs (LSF, MSF, or SRF), and spruce beetle which once starts continues for 5 years unless a fire event occurs
+ * @param processData
+ * @param cTime
+ */
   private void doTreeSpecificProcessChanges(ProcessProbability processData, int cTime) {
 
     ProcessType selected = null;
@@ -4968,10 +4968,10 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     // Root Disease.
     if (((processType.equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
-        (processType.equals(ProcessType.MIXED_SEVERITY_FIRE) == false)  &&
-        (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false)  &&
-        (!processType.isRootDisease())) &&
-        (pastProcess.isRootDisease())) {
+         (processType.equals(ProcessType.MIXED_SEVERITY_FIRE) == false)  &&
+         (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false)  &&
+         (!processType.isRootDisease())) &&
+         (pastProcess.isRootDisease())) {
       if (Simpplle.getCurrentZone() instanceof WestsideRegionOne) {
         selected = getHighestRootDisease(pastProcess);
       }
@@ -4992,13 +4992,13 @@ public final class Evu extends NaturalElement implements Externalizable {
     // Spruce Beetle
 
     if ( ( (processType.equals(ProcessType.STAND_REPLACING_FIRE) == false) &&
-        (processType.equals(ProcessType.MIXED_SEVERITY_FIRE) == false) &&
-        (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false))) {
+          (processType.equals(ProcessType.MIXED_SEVERITY_FIRE) == false) &&
+          (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) == false))) {
       processType = pastProcess;
       if ( (pastProcess.equals(ProcessType.LIGHT_SB) ||
-          pastProcess.equals(ProcessType.MEDIUM_SB) ||
-          pastProcess.equals(ProcessType.HIGH_SB)) &&
-          (processOccurredAllPastNTimeSteps(Lifeform.TREES,spruceBeetles,5, false)) == false) {
+            pastProcess.equals(ProcessType.MEDIUM_SB) ||
+            pastProcess.equals(ProcessType.HIGH_SB)) &&
+           (processOccurredAllPastNTimeSteps(Lifeform.TREES,spruceBeetles,5, false)) == false) {
         selected = processType;
         updateCurrentProcess(Lifeform.TREES,selected);
         processData.processType = selected;
@@ -5015,12 +5015,12 @@ public final class Evu extends NaturalElement implements Externalizable {
       haveHighSpruceBeetle = true;
     }
   }
-  /**
-   * This method calculates fire specific process changes.  This will be based on the species present in current zone and fire suppression.
-   * it updates current process and updates current probability
-   * @param species
-   * @param lifeform
-   */
+/**
+ * This method calculates fire specific process changes.  This will be based on the species present in current zone and fire suppression.
+ * it updates current process and updates current probability
+ * @param species
+ * @param lifeform
+ */
   private void doFireSpecificDoGetProcess(Species species, Lifeform lifeform) {
     RegionalZone zone = Simpplle.getCurrentZone();
     ProcessType selected = ProcessType.FIRE_EVENT;
@@ -5029,10 +5029,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     // Species types of ND, AGR, NF, and WATER
     // do not have any fires.
     if ((species == Species.ND || species == Species.AGR ||
-        species == Species.NF || species == Species.WATER ||
-        species == Species.ROCK_BARE ||
-        species == Species.AGR_URB ||
-        species.getFireResistance() == FireResistance.UNKNOWN)) {
+         species == Species.NF || species == Species.WATER ||
+         species == Species.ROCK_BARE ||
+         species == Species.AGR_URB ||
+         species.getFireResistance() == FireResistance.UNKNOWN)) {
       selected    = ProcessType.SUCCESSION;
       updateCurrentProcess(selected);
       updateCurrentProb(Evu.L);
@@ -5045,8 +5045,8 @@ public final class Evu extends NaturalElement implements Externalizable {
       suppressed = FireEvent.doSuppression(zone, this);
     }
     else if (Simulation.getInstance().fireSuppression() == false &&
-        state.getProb() != Evu.L &&
-        ((Simpplle.getCurrentZone() instanceof ColoradoPlateau) == false)) {
+             state.getProb() != Evu.L &&
+             ((Simpplle.getCurrentZone() instanceof ColoradoPlateau) == false)) {
       suppressed = FireEvent.doWeatherEvent(zone, this);
     }
     else {
@@ -5063,10 +5063,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-  /**
-   * Method to rcalculate whether a random number is between lower and upper range of cumulative probability data for a process.
-   * @return
-   */
+/**
+ * Method to rcalculate whether a random number is between lower and upper range of cumulative probability data for a process.
+ * @return
+ */
   private ProcessType randomSelect() {
     ArrayList             simulationProcesses = Process.getSimulationProcesses();
     int                   randNum = Simulation.getInstance().random();
@@ -5085,12 +5085,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     // just in case.
     return ProcessType.SUCCESSION;
   }
-  /**
-   * Method to find highest process probability.  Initially sets the process to succession and highest probability to 0 so that any
-   * processes or probabilities above that will be higher.  then searches through simulation processes and gets their probability.
-   *
-   * @return process with highest probability
-   */
+/**
+ * Method to find highest process probability.  Initially sets the process to succession and highest probability to 0 so that any
+ * processes or probabilities above that will be higher.  then searches through simulation processes and gets their probability.
+ *
+ * @return process with highest probability
+ */
   private ProcessType getHighest() {
     ProcessType   selectedType = ProcessType.SUCCESSION;
     int           highestProb = 0, prob;
@@ -5254,11 +5254,11 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   }
 
-  /**
-   * Method to calculate treatment thinning state.  This is based on current simulation vegetative state and time steps, treatment, original size class,
-   * current size class, fire event if any, and species.
-   * @return
-   */
+/**
+ * Method to calculate treatment thinning state.  This is based on current simulation vegetative state and time steps, treatment, original size class,
+ * current size class, fire event if any, and species.
+ * @return
+ */
   private VegetativeType getTreatmentThinningCycleState() {
     Simulation     simulation = Simpplle.getCurrentSimulation();
     int            cStep = simulation.getCurrentTimeStep();
@@ -5365,18 +5365,18 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     VegetativeType result =
         htGrp.getVegetativeType(state.getVeg().getSpecies(),
-            sizeClass,state.getVeg().getDensity());
+                                sizeClass,state.getVeg().getDensity());
 
     if (result == null) {
       result = htGrp.getVegetativeType(state.getVeg().getSpecies(),
-          sizeClass.getBase(),state.getVeg().getDensity());
+                                       sizeClass.getBase(),state.getVeg().getDensity());
     }
 
     return result;
   }
-  /**
-   * adds a tracked species to the initial state.
-   */
+/**
+ * adds a tracked species to the initial state.
+ */
   public void addMissingTrackSpecies() {
     MapIterator it = initialState.mapIterator();
     while (it.hasNext()) {
@@ -5437,11 +5437,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     getState().setVegType(newState);
   }
 
-  /**
-   * Uses the passed lifeform to query the lifeform array, and loop through it till it finds the next lower life
-   * @param lifeform the lifeform being evaluated.
-   * @return the lower life form if one exists, or null if there is no lower lifeform.
-   */
+/**
+ * Uses the passed lifeform to query the lifeform array, and loop through it till it finds the next lower life
+ * @param lifeform the lifeform being evaluated.
+ * @return the lower life form if one exists, or null if there is no lower lifeform.
+ */
   private Lifeform findNextLowerLifeform(Lifeform lifeform) {
     Lifeform lowerLife=Lifeform.getLowerLifeform(lifeform);
 
@@ -5472,17 +5472,17 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   // Avoid excess temporaries.
   private static ArrayList<VegetativeType> newStatesTemp = new ArrayList<VegetativeType>();
-  /**
-   * Calculates the next state for multiple life forms
-   */
+/**
+ * Calculates the next state for multiple life forms
+ */
   public void doNextStateMultipleLifeform() {
     if (getId() == 60 && Simulation.getCurrentTimeStep() == 51) {
       System.out.println("Evu:4568");
     }
     newStatesTemp.clear();
     ArrayList<Lifeform> nextStateToDo =
-        getLifeformsList(Simulation.getCurrentTimeStep(),
-            Simulation.getInstance().getCurrentSeason());
+      getLifeformsList(Simulation.getCurrentTimeStep(),
+                       Simulation.getInstance().getCurrentSeason());
 
 
     if (Simpplle.getCurrentZone().isWyoming() == false) {
@@ -5526,8 +5526,8 @@ public final class Evu extends NaturalElement implements Externalizable {
       int ts  = Simulation.getCurrentTimeStep();
       int run = Simulation.getCurrentRun();
       VegSimStateData state =
-          new VegSimStateData(getId(),ts,run,newStatesTemp.get(i),selected.processType,
-              (short)selected.probability,Climate.Season.YEAR);
+        new VegSimStateData(getId(),ts,run,newStatesTemp.get(i),selected.processType,
+                            (short)selected.probability,Climate.Season.YEAR);
 
       int cStep = Simulation.getCurrentTimeStep();
       newState(cStep,state,Simulation.getInstance().getCurrentSeason());
@@ -5550,8 +5550,8 @@ public final class Evu extends NaturalElement implements Externalizable {
     int ts  = Simulation.getCurrentTimeStep();
     int run = Simulation.getCurrentRun();
     VegSimStateData state =
-        new VegSimStateData(getId(),ts,run,vegType,selected.processType,
-            (short)selected.probability,Climate.Season.YEAR);
+      new VegSimStateData(getId(),ts,run,vegType,selected.processType,
+                          (short)selected.probability,Climate.Season.YEAR);
 
     int cStep = Simulation.getCurrentTimeStep();
     newState(cStep,state,Climate.Season.YEAR);
@@ -5608,8 +5608,8 @@ public final class Evu extends NaturalElement implements Externalizable {
 
           int run = Simulation.getCurrentRun();
           VegSimStateData state =
-              new VegSimStateData(getId(),cStep,run,newState,selected.processType,
-                  (short)selected.probability,oldState.getSeason());
+            new VegSimStateData(getId(),cStep,run,newState,selected.processType,
+                                (short)selected.probability,oldState.getSeason());
 
           newState(cStep,state,Simulation.getInstance().getCurrentSeason());
           if (selected.probability >= 0) {
@@ -5693,23 +5693,23 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     if ((processType.equals(ProcessType.SUCCESSION) &&
-        (isRegenDelay(dominantLifeform) != true) &&
-        Succession.isRegenState(zone,this,dominantLifeform) &&
-        (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse())) ||
+         (isRegenDelay(dominantLifeform) != true) &&
+         Succession.isRegenState(zone,this,dominantLifeform) &&
+         (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse())) ||
 
         (processType.equals(ProcessType.SEVERE_LP_MPB) && species == Species.LP &&
-            Succession.isRegenState(zone,this,dominantLifeform) &&
-            (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse()))) {
+         Succession.isRegenState(zone,this,dominantLifeform) &&
+         (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse()))) {
       newState = Succession.regen(zone,this,dominantLifeform,dominantLifeform);
       newState = validateNewState(newState);
     }
     else if (processType.equals(ProcessType.SUCCESSION) &&
-        (FireEvent.useRegenPulse() && FireEvent.isRegenPulse())) {
+             (FireEvent.useRegenPulse() && FireEvent.isRegenPulse())) {
       newState = FireEvent.regenPulse(this);
       newState = validateNewState(newState);
     }
     else if (canDoFireRegen(processType,zone) &&
-        isRegenDelay(dominantLifeform) == false) {
+             isRegenDelay(dominantLifeform) == false) {
       newState = FireEvent.regen(dominantLifeform,this);
       newState = validateNewState(newState);
     }
@@ -5736,8 +5736,8 @@ public final class Evu extends NaturalElement implements Externalizable {
       // Make sure we are using the correct kind of SUCCESSION
       ProcessType succession = ProcessType.SUCCESSION;
       if (((zone instanceof ColoradoFrontRange) ||
-          (zone instanceof ColoradoPlateau) ||
-          (RegionalZone.isWyoming()) ||
+           (zone instanceof ColoradoPlateau) ||
+           (RegionalZone.isWyoming()) ||
           (species.getLifeform() == Lifeform.HERBACIOUS)))
       {
         if (Simpplle.getClimate().isWetSuccession()) {
@@ -5763,12 +5763,12 @@ public final class Evu extends NaturalElement implements Externalizable {
 
 
     if (newState == null) {
-      newState = getTreatmentThinningCycleState();
-      newState = validateNewState(newState);
+        newState = getTreatmentThinningCycleState();
+        newState = validateNewState(newState);
     }
     if (newState == null) {
-      newState = state.getProcessNextState(processType);
-      newState = validateNewState(newState,true);
+        newState = state.getProcessNextState(processType);
+        newState = validateNewState(newState,true);
     }
 
     ProcessType tmpProcessType;
@@ -5808,9 +5808,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (newState != null &&
         (getState().getProcess() == ProcessType.SUCCESSION) &&
         ((zone instanceof ColoradoFrontRange) ||
-            (RegionalZone.isWyoming()) ||
-            (zone instanceof ColoradoPlateau) &&
-                (species.getLifeform() == Lifeform.HERBACIOUS)))
+         (RegionalZone.isWyoming()) ||
+         (zone instanceof ColoradoPlateau) &&
+        (species.getLifeform() == Lifeform.HERBACIOUS)))
     {
       VegetativeType tmpState=newState;
 
@@ -5861,18 +5861,18 @@ public final class Evu extends NaturalElement implements Externalizable {
     VegetativeType newState=null;
 
     if ((processType.equals(ProcessType.SUCCESSION) &&
-        (isRegenDelay(lowerLifeform) != true) &&
-        Succession.isRegenState(zone,this,lowerLifeform) &&
-        (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse())) ||
+         (isRegenDelay(lowerLifeform) != true) &&
+         Succession.isRegenState(zone,this,lowerLifeform) &&
+         (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse())) ||
 
         (processType.equals(ProcessType.SEVERE_LP_MPB) && species == Species.LP &&
-            Succession.isRegenState(zone,this,lowerLifeform) &&
-            (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse()))) {
+         Succession.isRegenState(zone,this,lowerLifeform) &&
+         (FireEvent.useRegenPulse() == false || FireEvent.isRegenPulse()))) {
       newState = Succession.regen(zone,this,lowerLifeform,adjLifeform);
       newState = validateNewState(newState);
     }
     else if (processType.equals(ProcessType.SUCCESSION) &&
-        (FireEvent.useRegenPulse() && FireEvent.isRegenPulse())) {
+             (FireEvent.useRegenPulse() && FireEvent.isRegenPulse())) {
       newState = FireEvent.regenPulse(this);
       newState = validateNewState(newState);
     }
@@ -5929,8 +5929,8 @@ public final class Evu extends NaturalElement implements Externalizable {
       // Make sure we are using the correct kind of SUCCESSION
       ProcessType succession = ProcessType.SUCCESSION;
       if (((zone instanceof ColoradoFrontRange) ||
-          (zone instanceof ColoradoPlateau) ||
-          (RegionalZone.isWyoming()) ||
+           (zone instanceof ColoradoPlateau) ||
+           (RegionalZone.isWyoming()) ||
           (species.getLifeform() == Lifeform.HERBACIOUS)))
       {
         if (Simpplle.getClimate().isWetSuccession()) {
@@ -5954,12 +5954,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     if (newState == null) {
-      newState = getTreatmentThinningCycleState();
-      newState = validateNewState(newState);
+        newState = getTreatmentThinningCycleState();
+        newState = validateNewState(newState);
     }
     if (newState == null) {
-      newState = state.getProcessNextState(processType);
-      newState = validateNewState(newState,true);
+        newState = state.getProcessNextState(processType);
+        newState = validateNewState(newState,true);
     }
 
     ProcessType tmpProcessType;
@@ -6000,10 +6000,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (newState != null &&
         (processType == ProcessType.SUCCESSION) &&
         ((zone instanceof ColoradoFrontRange) ||
-            (zone instanceof ColoradoPlateau) ||
-            (RegionalZone.isWyoming()) ||
-            (zone instanceof ColoradoPlateau) &&
-                (species.getLifeform() == Lifeform.HERBACIOUS)))
+         (zone instanceof ColoradoPlateau) ||
+         (RegionalZone.isWyoming()) ||
+         (zone instanceof ColoradoPlateau) &&
+        (species.getLifeform() == Lifeform.HERBACIOUS)))
     {
       VegetativeType tmpState=newState;
 
@@ -6043,20 +6043,20 @@ public final class Evu extends NaturalElement implements Externalizable {
     // update this instance.
     getState(newState.getSpecies().getLifeform()).setVegType(newState);
   }
-  /**
-   * Checks if can do Fire regeneration for this Evu.  If is a stand replacing fire, or zone is south central alaska, or michigan and it is spring returns false
-   * else evaluates whether regen pulse is false, and if so returns false
-   * @param processType the process - if SRF is the only process that is directly used.
-   * @param zone the regional zone being evaluated
-   * @return true if can do fire regneration.
-   */
+/**
+ * Checks if can do Fire regeneration for this Evu.  If is a stand replacing fire, or zone is south central alaska, or michigan and it is spring returns false
+ * else evaluates whether regen pulse is false, and if so returns false
+ * @param processType the process - if SRF is the only process that is directly used.
+ * @param zone the regional zone being evaluated
+ * @return true if can do fire regneration.
+ */
   private boolean canDoFireRegen(ProcessType processType, RegionalZone zone) {
     if (processType.equals(ProcessType.STAND_REPLACING_FIRE) == false) {
       return false;
     }
     if (zone.getId() == ValidZones.SOUTH_CENTRAL_ALASKA  &&
         Simpplle.getAreaSummary().getFireOccurrenceSeason(this) ==
-            Climate.Season.SPRING) {
+        Climate.Season.SPRING) {
       return false;
     }
     if (FireEvent.useRegenPulse() && FireEvent.isRegenPulse() == false) {
@@ -6179,9 +6179,9 @@ public final class Evu extends NaturalElement implements Externalizable {
    *      calculated based on the post treated state.
    */
   public boolean calculateProducingSeed(VegetativeType state,
-                                        int tStep,
-                                        Lifeform lifeform,
-                                        RegenTypes regenType)
+                                         int tStep,
+                                         Lifeform lifeform,
+                                         RegenTypes regenType)
   {
     RegionalZone   zone = Simpplle.currentZone;
 
@@ -6257,120 +6257,120 @@ public final class Evu extends NaturalElement implements Externalizable {
         return true;
       }
       else if ((sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LMU ||
-          sizeClass == SizeClass.VERY_LARGE  || sizeClass == SizeClass.VLMU) &&
-          (species == Species.ABLA_PICO) ||
-          (species == Species.PIAR_PICO) ||
-          (species == Species.PIAR_PIEN) ||
-          (species.equals(Species.get("PIAR-PIFL"))) ||
-          (species == Species.PIAR_PIPO) ||
-          (species == Species.PIAR_POTR5) ||
-          (species == Species.PIAR_PSME) ||
-          (species == Species.PICO) ||
-          (species == Species.PIED_PIPO) ||
-          (species == Species.PIEN_PICO) ||
-          (species == Species.PIFL2_PICO) ||
-          (species == Species.POTR5_PICO)) {
+                sizeClass == SizeClass.VERY_LARGE  || sizeClass == SizeClass.VLMU) &&
+               (species == Species.ABLA_PICO) ||
+               (species == Species.PIAR_PICO) ||
+               (species == Species.PIAR_PIEN) ||
+               (species.equals(Species.get("PIAR-PIFL"))) ||
+               (species == Species.PIAR_PIPO) ||
+               (species == Species.PIAR_POTR5) ||
+               (species == Species.PIAR_PSME) ||
+               (species == Species.PICO) ||
+               (species == Species.PIED_PIPO) ||
+               (species == Species.PIEN_PICO) ||
+               (species == Species.PIFL2_PICO) ||
+               (species == Species.POTR5_PICO)) {
         return true;
       }
       else if ((sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.MMU ||
-          sizeClass == SizeClass.LARGE  || sizeClass == SizeClass.LMU ||
-          sizeClass == SizeClass.VERY_LARGE  || sizeClass == SizeClass.VLMU) &&
-          (species == Species.ABCO_PIEN) ||
-          (species == Species.ABCO_PIFL2) ||
-          (species == Species.ABCO_PIPO) ||
-          (species == Species.ABCO_POTR5) ||
-          (species == Species.ABCO_PSME) ||
-          (species == Species.ABLA) ||
-          (species == Species.ACNE2) ||
-          (species == Species.JUSC2_POTR5) ||
-          (species == Species.PIED_JUMO) ||
-          (species == Species.PIEN) ||
-          (species == Species.PIEN_ABLA) ||
-          (species == Species.PIEN_PIPU) ||
-          (species == Species.POTR5_ABLA) ||
-          (species == Species.POTR5_PIPO) ||
-          (species == Species.PSME_JUSC2) ||
-          (species == Species.PSME_PIPO)) {
+                sizeClass == SizeClass.LARGE  || sizeClass == SizeClass.LMU ||
+                sizeClass == SizeClass.VERY_LARGE  || sizeClass == SizeClass.VLMU) &&
+               (species == Species.ABCO_PIEN) ||
+               (species == Species.ABCO_PIFL2) ||
+               (species == Species.ABCO_PIPO) ||
+               (species == Species.ABCO_POTR5) ||
+               (species == Species.ABCO_PSME) ||
+               (species == Species.ABLA) ||
+               (species == Species.ACNE2) ||
+               (species == Species.JUSC2_POTR5) ||
+               (species == Species.PIED_JUMO) ||
+               (species == Species.PIEN) ||
+               (species == Species.PIEN_ABLA) ||
+               (species == Species.PIEN_PIPU) ||
+               (species == Species.POTR5_ABLA) ||
+               (species == Species.POTR5_PIPO) ||
+               (species == Species.PSME_JUSC2) ||
+               (species == Species.PSME_PIPO)) {
         return true;
       }
       else if ((sizeClass == SizeClass.SS ||
-          sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.MMU ||
-          sizeClass == SizeClass.LARGE  || sizeClass == SizeClass.LMU ||
-          sizeClass == SizeClass.VERY_LARGE  || sizeClass == SizeClass.VLMU) &&
+                sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.MMU ||
+                sizeClass == SizeClass.LARGE  || sizeClass == SizeClass.LMU ||
+                sizeClass == SizeClass.VERY_LARGE  || sizeClass == SizeClass.VLMU) &&
 
-          (species == Species.ABLA_PIAR) ||
-          (species == Species.ABLA_PIEN) ||
-          (species == Species.ABLA_PIFL2) ||
-          (species == Species.ACNE2_PSME) ||
-          (species == Species.JUMO) ||
-          (species == Species.JUMO_PIED) ||
-          (species == Species.JUSC2) ||
-          (species == Species.JUSC2_PIED) ||
-          (species == Species.JUSC2_PIPO) ||
-          (species == Species.JUSC2_PSME) ||
-          (species == Species.PIAR) ||
-          (species == Species.PICO_ABLA) ||
-          (species == Species.PICO_PIEN) ||
-          (species == Species.PICO_PIFL2) ||
-          (species == Species.PICO_POTR5) ||
-          (species == Species.PICO_PSME) ||
-          (species == Species.PIED) ||
-          (species == Species.PIED_ABCO) ||
-          (species == Species.PIED_JUSC2) ||
-          (species == Species.PIED_PIAR) ||
-          (species == Species.PIED_POTR5) ||
-          (species == Species.PIED_PSME) ||
-          (species == Species.PIEN_ABCO) ||
-          (species == Species.PIEN_PIAR) ||
-          (species == Species.PIEN_PIFL2) ||
-          (species == Species.PIEN_POTR5) ||
-          (species == Species.PIEN_PSME) ||
-          (species == Species.PIFL2) ||
-          (species == Species.PIFL2_ABCO) ||
-          (species == Species.PIFL2_PIAR) ||
-          (species == Species.PIFL2_PIEN) ||
-          (species == Species.PIFL2_PIPO) ||
-          (species == Species.PIFL2_POTR5) ||
-          (species == Species.PIFL2_PSME) ||
-          (species == Species.PIPO) ||
-          (species == Species.PIPO_ABCO) ||
-          (species == Species.PIPO_JUSC2) ||
-          (species == Species.PIPO_PIAR) ||
-          (species == Species.PIPO_PICO) ||
-          (species == Species.PIPO_PIED) ||
-          (species == Species.PIPO_PIFL2) ||
-          (species == Species.PIPO_PIPU) ||
-          (species == Species.PIPO_POAN3) ||
-          (species == Species.PIPO_POTR5) ||
-          (species == Species.PIPO_PSME) ||
-          (species == Species.PIPU) ||
-          (species == Species.PIPU_PIPO) ||
-          (species == Species.PIPU_POAN3) ||
-          (species == Species.PIPU_POTR5) ||
-          (species == Species.PIPU_PSME) ||
-          (species == Species.POAN3) ||
-          (species == Species.POAN3_PIPO) ||
-          (species == Species.POAN3_PIPU) ||
-          (species == Species.POAN3_POTR5) ||
-          (species == Species.POAN3_PSME) ||
-          (species == Species.POTR5) ||
-          (species == Species.POTR5_ABCO) ||
-          (species == Species.POTR5_PIAR) ||
-          (species == Species.POTR5_PIEN) ||
-          (species == Species.POTR5_PIFL2) ||
-          (species == Species.POTR5_PIPU) ||
-          (species == Species.POTR5_POAN3) ||
-          (species == Species.POTR5_PSME) ||
-          (species == Species.PSME) ||
-          (species == Species.PSME_ABCO) ||
-          (species == Species.PSME_PIAR) ||
-          (species == Species.PSME_PICO) ||
-          (species == Species.PSME_PIED) ||
-          (species == Species.PSME_PIEN) ||
-          (species == Species.PSME_PIFL2) ||
-          (species == Species.PSME_PIPU) ||
-          (species == Species.PSME_POTR5) ||
-          (species == Species.PSME_POTR5)) {
+               (species == Species.ABLA_PIAR) ||
+               (species == Species.ABLA_PIEN) ||
+               (species == Species.ABLA_PIFL2) ||
+               (species == Species.ACNE2_PSME) ||
+               (species == Species.JUMO) ||
+               (species == Species.JUMO_PIED) ||
+               (species == Species.JUSC2) ||
+               (species == Species.JUSC2_PIED) ||
+               (species == Species.JUSC2_PIPO) ||
+               (species == Species.JUSC2_PSME) ||
+               (species == Species.PIAR) ||
+               (species == Species.PICO_ABLA) ||
+               (species == Species.PICO_PIEN) ||
+               (species == Species.PICO_PIFL2) ||
+               (species == Species.PICO_POTR5) ||
+               (species == Species.PICO_PSME) ||
+               (species == Species.PIED) ||
+               (species == Species.PIED_ABCO) ||
+               (species == Species.PIED_JUSC2) ||
+               (species == Species.PIED_PIAR) ||
+               (species == Species.PIED_POTR5) ||
+               (species == Species.PIED_PSME) ||
+               (species == Species.PIEN_ABCO) ||
+               (species == Species.PIEN_PIAR) ||
+               (species == Species.PIEN_PIFL2) ||
+               (species == Species.PIEN_POTR5) ||
+               (species == Species.PIEN_PSME) ||
+               (species == Species.PIFL2) ||
+               (species == Species.PIFL2_ABCO) ||
+               (species == Species.PIFL2_PIAR) ||
+               (species == Species.PIFL2_PIEN) ||
+               (species == Species.PIFL2_PIPO) ||
+               (species == Species.PIFL2_POTR5) ||
+               (species == Species.PIFL2_PSME) ||
+               (species == Species.PIPO) ||
+               (species == Species.PIPO_ABCO) ||
+               (species == Species.PIPO_JUSC2) ||
+               (species == Species.PIPO_PIAR) ||
+               (species == Species.PIPO_PICO) ||
+               (species == Species.PIPO_PIED) ||
+               (species == Species.PIPO_PIFL2) ||
+               (species == Species.PIPO_PIPU) ||
+               (species == Species.PIPO_POAN3) ||
+               (species == Species.PIPO_POTR5) ||
+               (species == Species.PIPO_PSME) ||
+               (species == Species.PIPU) ||
+               (species == Species.PIPU_PIPO) ||
+               (species == Species.PIPU_POAN3) ||
+               (species == Species.PIPU_POTR5) ||
+               (species == Species.PIPU_PSME) ||
+               (species == Species.POAN3) ||
+               (species == Species.POAN3_PIPO) ||
+               (species == Species.POAN3_PIPU) ||
+               (species == Species.POAN3_POTR5) ||
+               (species == Species.POAN3_PSME) ||
+               (species == Species.POTR5) ||
+               (species == Species.POTR5_ABCO) ||
+               (species == Species.POTR5_PIAR) ||
+               (species == Species.POTR5_PIEN) ||
+               (species == Species.POTR5_PIFL2) ||
+               (species == Species.POTR5_PIPU) ||
+               (species == Species.POTR5_POAN3) ||
+               (species == Species.POTR5_PSME) ||
+               (species == Species.PSME) ||
+               (species == Species.PSME_ABCO) ||
+               (species == Species.PSME_PIAR) ||
+               (species == Species.PSME_PICO) ||
+               (species == Species.PSME_PIED) ||
+               (species == Species.PSME_PIEN) ||
+               (species == Species.PSME_PIFL2) ||
+               (species == Species.PSME_PIPU) ||
+               (species == Species.PSME_POTR5) ||
+               (species == Species.PSME_POTR5)) {
         return true;
       }
       else {
@@ -6385,117 +6385,117 @@ public final class Evu extends NaturalElement implements Externalizable {
           (regenType == ADJACENT_SEED)) {
         if (
             species == Species.get("ACHY") ||
-                species == Species.BOGR2 ||
-                species == Species.BRTE ||
-                species == Species.CACA4 ||
-                species == Species.CAEL3_CARUD ||
-                species == Species.CAFO3 ||
-                species == Species.CAGE2 ||
-                species == Species.get("CANU4") ||
-                species == Species.CAPU ||
-                species == Species.CAREX ||
-                species == Species.CAREX_JUNCU ||
-                species == Species.CAREXU ||
-                species == Species.CAREXU_CARU ||
-                species == Species.CARO5 ||
-                species == Species.CARUD_FEBRC ||
-                species == Species.FEAR2 ||
-                species == Species.FEAR2_BOGR2 ||
-                species == Species.FEAR2_DAPA2 ||
-                species == Species.FEAR2_MUMO ||
-                species == Species.FEID ||
-                species == Species.FETH ||
-                species == Species.get("GERI") ||
-                species == Species.HECO26 ||
-                species == Species.get("HECO26-PLJA") ||
-                species == Species.get("JUBAL-CAGE") ||
-                species == Species.LEKI2 ||
-                species == Species.MUMO ||
-                species == Species.get("NIAT-CHFR3") ||
-                species == Species.get("ORSE") ||
-                species == Species.PASM ||
-                species == Species.PG_FORBS ||
-                species == Species.PHCO9_POAL2 ||
-                species == Species.POAL2_CAEL3 ||
-                species == Species.POAL2_KOMY ||
-                species == Species.POFE ||
-                species == Species.POPR ||
-                species == Species.get("POPR-VIAM") ||
-                species == Species.get("POSE-PASM") ||
-                species == Species.PSSP6 ||
-                species == Species.get("SPAI") ||
-                species == Species.get("THFE"))
+            species == Species.BOGR2 ||
+            species == Species.BRTE ||
+            species == Species.CACA4 ||
+            species == Species.CAEL3_CARUD ||
+            species == Species.CAFO3 ||
+            species == Species.CAGE2 ||
+            species == Species.get("CANU4") ||
+            species == Species.CAPU ||
+            species == Species.CAREX ||
+            species == Species.CAREX_JUNCU ||
+            species == Species.CAREXU ||
+            species == Species.CAREXU_CARU ||
+            species == Species.CARO5 ||
+            species == Species.CARUD_FEBRC ||
+            species == Species.FEAR2 ||
+            species == Species.FEAR2_BOGR2 ||
+            species == Species.FEAR2_DAPA2 ||
+            species == Species.FEAR2_MUMO ||
+            species == Species.FEID ||
+            species == Species.FETH ||
+            species == Species.get("GERI") ||
+            species == Species.HECO26 ||
+            species == Species.get("HECO26-PLJA") ||
+            species == Species.get("JUBAL-CAGE") ||
+            species == Species.LEKI2 ||
+            species == Species.MUMO ||
+            species == Species.get("NIAT-CHFR3") ||
+            species == Species.get("ORSE") ||
+            species == Species.PASM ||
+            species == Species.PG_FORBS ||
+            species == Species.PHCO9_POAL2 ||
+            species == Species.POAL2_CAEL3 ||
+            species == Species.POAL2_KOMY ||
+            species == Species.POFE ||
+            species == Species.POPR ||
+            species == Species.get("POPR-VIAM") ||
+            species == Species.get("POSE-PASM") ||
+            species == Species.PSSP6 ||
+            species == Species.get("SPAI") ||
+            species == Species.get("THFE"))
         {
           return true;
         }
       }
       else if (species.getLifeform() == Lifeform.SHRUBS &&
-          (regenType == ADJACENT_SEED)) {
+               (regenType == ADJACENT_SEED)) {
         if (
             species == Species.ACGL ||
-                species == Species.ALINT ||
-                species == Species.ALINT_BEOC2 ||
-                species == Species.AMAL2 ||
-                species == Species.ARTR2 ||
-                species == Species.ARTR2_CEMO2 ||
-                species == Species.ARTR2_JUCO6 ||
-                species == Species.ARTRV ||
-                species == Species.ARTRV_PUTR2 ||
-                species == Species.ARTRW8 ||
-                species == Species.ARTRW8_CHVI8 ||
-                species == Species.ARUV ||
-                species == Species.CEMO2 ||
-                species == Species.CEMO2_ARTR2 ||
-                species == Species.CEMO2_ARUV ||
-                species == Species.CEMO2_DAFL3 ||
-                species == Species.CEMO2_JUCO6 ||
-                species == Species.CEMO2_PHMO4 ||
-                species == Species.CEMO2_PUTR2 ||
-                species == Species.CEMO2_QUGA ||
-                species == Species.CEMO2_RIBES ||
-                species == Species.CEMO2_RICE ||
-                species == Species.CEMO2_SALIXU ||
-                species == Species.get("CEMO2-SYOR2") ||
-                species == Species.CHVI8 ||
-                species == Species.DAFL3 ||
-                species == Species.ERPAA4 ||
-                species == Species.JAAM ||
-                species == Species.JUCO6 ||
-                species == Species.JUCO6_ARUV ||
-                species == Species.JUCO6_SALIXU ||
-                species == Species.get("LOIN5") ||
-                species == Species.PHMO4 ||
-                species == Species.PUTR2 ||
-                species == Species.PUTR2_ARTRV ||
-                species == Species.PUTR2_CEMO2 ||
-                species == Species.PUTR2_RIBES ||
-                species == Species.QUGA ||
-                species == Species.get("QUGA-ACGL") ||
-                species == Species.QUGA_AMAL2 ||
-                species == Species.QUGA_ARUV ||
-                species == Species.QUGA_CEMO2 ||
-                species == Species.QUGA_JUCO6 ||
-                species == Species.get("QUGA-PRVI") ||
-                species == Species.QUGA_SALIXU ||
-                species == Species.QUGA_VASC ||
-                species == Species.RIBES ||
-                species == Species.RIBES_PUTR2 ||
-                species == Species.RICE ||
-                species == Species.get("SAEX") ||
-                species == Species.get("SAGE2") ||
-                species == Species.SAGL ||
-                species == Species.SALIX ||
-                species == Species.SALIX_ALINT ||
-                species == Species.SALIX_BEOC2 ||
-                species == Species.SALIXU ||
-                species == Species.SALIXU_RIBES ||
-                species == Species.get("SAVE4") ||
-                species == Species.get("SYORO") ||
-                species == Species.SHCA ||
-                species == Species.get("TARA") ||
-                species == Species.VAMY2 ||
-                species == Species.get("VAMY2-RIMO2") ||
-                species == Species.VASC)
+            species == Species.ALINT ||
+            species == Species.ALINT_BEOC2 ||
+            species == Species.AMAL2 ||
+            species == Species.ARTR2 ||
+            species == Species.ARTR2_CEMO2 ||
+            species == Species.ARTR2_JUCO6 ||
+            species == Species.ARTRV ||
+            species == Species.ARTRV_PUTR2 ||
+            species == Species.ARTRW8 ||
+            species == Species.ARTRW8_CHVI8 ||
+            species == Species.ARUV ||
+            species == Species.CEMO2 ||
+            species == Species.CEMO2_ARTR2 ||
+            species == Species.CEMO2_ARUV ||
+            species == Species.CEMO2_DAFL3 ||
+            species == Species.CEMO2_JUCO6 ||
+            species == Species.CEMO2_PHMO4 ||
+            species == Species.CEMO2_PUTR2 ||
+            species == Species.CEMO2_QUGA ||
+            species == Species.CEMO2_RIBES ||
+            species == Species.CEMO2_RICE ||
+            species == Species.CEMO2_SALIXU ||
+            species == Species.get("CEMO2-SYOR2") ||
+            species == Species.CHVI8 ||
+            species == Species.DAFL3 ||
+            species == Species.ERPAA4 ||
+            species == Species.JAAM ||
+            species == Species.JUCO6 ||
+            species == Species.JUCO6_ARUV ||
+            species == Species.JUCO6_SALIXU ||
+            species == Species.get("LOIN5") ||
+            species == Species.PHMO4 ||
+            species == Species.PUTR2 ||
+            species == Species.PUTR2_ARTRV ||
+            species == Species.PUTR2_CEMO2 ||
+            species == Species.PUTR2_RIBES ||
+            species == Species.QUGA ||
+            species == Species.get("QUGA-ACGL") ||
+            species == Species.QUGA_AMAL2 ||
+            species == Species.QUGA_ARUV ||
+            species == Species.QUGA_CEMO2 ||
+            species == Species.QUGA_JUCO6 ||
+            species == Species.get("QUGA-PRVI") ||
+            species == Species.QUGA_SALIXU ||
+            species == Species.QUGA_VASC ||
+            species == Species.RIBES ||
+            species == Species.RIBES_PUTR2 ||
+            species == Species.RICE ||
+            species == Species.get("SAEX") ||
+            species == Species.get("SAGE2") ||
+            species == Species.SAGL ||
+            species == Species.SALIX ||
+            species == Species.SALIX_ALINT ||
+            species == Species.SALIX_BEOC2 ||
+            species == Species.SALIXU ||
+            species == Species.SALIXU_RIBES ||
+            species == Species.get("SAVE4") ||
+            species == Species.get("SYORO") ||
+            species == Species.SHCA ||
+            species == Species.get("TARA") ||
+            species == Species.VAMY2 ||
+            species == Species.get("VAMY2-RIMO2") ||
+            species == Species.VASC)
         {
           return true;
         }
@@ -6504,150 +6504,150 @@ public final class Evu extends NaturalElement implements Externalizable {
         if (regenType == ADJACENT_SEED) {
           if (
               species == Species.ABLA_PIAR ||
-                  species == Species.ABLA_PIEN ||
-                  species == Species.ABLA_PIFL2 ||
-                  species == Species.ACNE2_PSME ||
-                  species == Species.JUMO ||
-                  species == Species.JUMO_PIED ||
-                  species == Species.JUSC2 ||
-                  species == Species.JUSC2_PIED ||
-                  species == Species.JUSC2_PIPO ||
-                  species == Species.JUSC2_PSME ||
-                  species == Species.PIAR ||
-                  species == Species.PICO_ABLA ||
-                  species == Species.PICO_PIEN ||
-                  species == Species.PICO_PIFL2 ||
-                  species == Species.PICO_POTR5 ||
-                  species == Species.PICO_PSME ||
-                  species == Species.PIED ||
-                  species == Species.PIED_ABCO ||
-                  species == Species.PIED_JUMO ||
-                  species == Species.get("PIED-JUOS") ||
-                  species == Species.PIED_JUSC2 ||
-                  species == Species.PIED_PIAR ||
-                  species == Species.PIED_POTR5 ||
-                  species == Species.PIED_PSME ||
-                  species == Species.PIEN_ABCO ||
-                  species == Species.PIEN_PIAR ||
-                  species == Species.PIEN_PIFL2 ||
-                  species == Species.PIEN_POTR5 ||
-                  species == Species.PIEN_PSME ||
-                  species == Species.PIFL2 ||
-                  species == Species.PIFL2_ABCO ||
-                  species == Species.PIFL2_PIAR ||
-                  species == Species.PIFL2_PIEN ||
-                  species == Species.PIFL2_PIPO ||
-                  species == Species.PIFL2_POTR5 ||
-                  species == Species.PIFL2_PSME ||
-                  species == Species.PIPO ||
-                  species == Species.PIPO_ABCO ||
-                  species == Species.PIPO_JUSC2 ||
-                  species == Species.PIPO_PIAR ||
-                  species == Species.PIPO_PICO ||
-                  species == Species.PIPO_PIED ||
-                  species == Species.PIPO_PIFL2 ||
-                  species == Species.PIPO_PIPU ||
-                  species == Species.PIPO_POAN3 ||
-                  species == Species.PIPO_POTR5 ||
-                  species == Species.PIPO_PSME ||
-                  species == Species.PIPU ||
-                  species == Species.PIPU_PIPO ||
-                  species == Species.PIPU_POAN3 ||
-                  species == Species.PIPU_POTR5 ||
-                  species == Species.PIPU_PSME ||
-                  species == Species.POAN3 ||
-                  species == Species.POAN3_PIPO ||
-                  species == Species.POAN3_PIPU ||
-                  species == Species.POAN3_POTR5 ||
-                  species == Species.POAN3_PSME ||
-                  species == Species.POTR5 ||
-                  species == Species.POTR5_ABCO ||
-                  species == Species.POTR5_PIAR ||
-                  species == Species.POTR5_PIEN ||
-                  species == Species.POTR5_PIFL2 ||
-                  species == Species.POTR5_PIPU ||
-                  species == Species.POTR5_POAN3 ||
-                  species == Species.POTR5_PSME ||
-                  species == Species.PSME ||
-                  species == Species.PSME_ABCO ||
-                  species == Species.PSME_PIAR ||
-                  species == Species.PSME_PICO ||
-                  species == Species.PSME_PIED ||
-                  species == Species.PSME_PIEN ||
-                  species == Species.PSME_PIFL2 ||
-                  species == Species.PSME_PIPU ||
-                  species == Species.PSME_POTR5 ||
-                  species == Species.PSME_POTR5) {
+              species == Species.ABLA_PIEN ||
+              species == Species.ABLA_PIFL2 ||
+              species == Species.ACNE2_PSME ||
+              species == Species.JUMO ||
+              species == Species.JUMO_PIED ||
+              species == Species.JUSC2 ||
+              species == Species.JUSC2_PIED ||
+              species == Species.JUSC2_PIPO ||
+              species == Species.JUSC2_PSME ||
+              species == Species.PIAR ||
+              species == Species.PICO_ABLA ||
+              species == Species.PICO_PIEN ||
+              species == Species.PICO_PIFL2 ||
+              species == Species.PICO_POTR5 ||
+              species == Species.PICO_PSME ||
+              species == Species.PIED ||
+              species == Species.PIED_ABCO ||
+              species == Species.PIED_JUMO ||
+              species == Species.get("PIED-JUOS") ||
+              species == Species.PIED_JUSC2 ||
+              species == Species.PIED_PIAR ||
+              species == Species.PIED_POTR5 ||
+              species == Species.PIED_PSME ||
+              species == Species.PIEN_ABCO ||
+              species == Species.PIEN_PIAR ||
+              species == Species.PIEN_PIFL2 ||
+              species == Species.PIEN_POTR5 ||
+              species == Species.PIEN_PSME ||
+              species == Species.PIFL2 ||
+              species == Species.PIFL2_ABCO ||
+              species == Species.PIFL2_PIAR ||
+              species == Species.PIFL2_PIEN ||
+              species == Species.PIFL2_PIPO ||
+              species == Species.PIFL2_POTR5 ||
+              species == Species.PIFL2_PSME ||
+              species == Species.PIPO ||
+              species == Species.PIPO_ABCO ||
+              species == Species.PIPO_JUSC2 ||
+              species == Species.PIPO_PIAR ||
+              species == Species.PIPO_PICO ||
+              species == Species.PIPO_PIED ||
+              species == Species.PIPO_PIFL2 ||
+              species == Species.PIPO_PIPU ||
+              species == Species.PIPO_POAN3 ||
+              species == Species.PIPO_POTR5 ||
+              species == Species.PIPO_PSME ||
+              species == Species.PIPU ||
+              species == Species.PIPU_PIPO ||
+              species == Species.PIPU_POAN3 ||
+              species == Species.PIPU_POTR5 ||
+              species == Species.PIPU_PSME ||
+              species == Species.POAN3 ||
+              species == Species.POAN3_PIPO ||
+              species == Species.POAN3_PIPU ||
+              species == Species.POAN3_POTR5 ||
+              species == Species.POAN3_PSME ||
+              species == Species.POTR5 ||
+              species == Species.POTR5_ABCO ||
+              species == Species.POTR5_PIAR ||
+              species == Species.POTR5_PIEN ||
+              species == Species.POTR5_PIFL2 ||
+              species == Species.POTR5_PIPU ||
+              species == Species.POTR5_POAN3 ||
+              species == Species.POTR5_PSME ||
+              species == Species.PSME ||
+              species == Species.PSME_ABCO ||
+              species == Species.PSME_PIAR ||
+              species == Species.PSME_PICO ||
+              species == Species.PSME_PIED ||
+              species == Species.PSME_PIEN ||
+              species == Species.PSME_PIFL2 ||
+              species == Species.PSME_PIPU ||
+              species == Species.PSME_POTR5 ||
+              species == Species.PSME_POTR5) {
             return true;
           }
           else if (
               (sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.MMU ||
-                  sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LMU ||
-                  sizeClass == SizeClass.VERY_LARGE || sizeClass == SizeClass.VLMU) &&
+               sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LMU ||
+               sizeClass == SizeClass.VERY_LARGE || sizeClass == SizeClass.VLMU) &&
 
-                  (species == Species.ABCO ||
-                      species == Species.ABCO_PIEN ||
-                      species == Species.ABCO_PIFL2 ||
-                      species == Species.ABCO_PIPO ||
-                      species == Species.ABCO_POTR5 ||
-                      species == Species.ABCO_PSME ||
-                      species == Species.ABLA ||
-                      species == Species.ABLA_PICO ||
-                      species == Species.ACNE2 ||
-                      species == Species.JUSC2_POTR5 ||
-                      species == Species.PIAR_PICO ||
-                      species == Species.PIAR_PIEN ||
-                      species == Species.get("PIAR-PIFL") ||
-                      species == Species.PIAR_PIPO ||
-                      species == Species.PIAR_POTR5 ||
-                      species == Species.PIAR_PSME ||
-                      species == Species.PICO ||
-                      species == Species.PIED_PIPO ||
-                      species == Species.PIEN ||
-                      species == Species.PIEN_ABLA ||
-                      species == Species.get("PIEN-ABLA-POTR5") ||
-                      species == Species.PIEN_PICO ||
-                      species == Species.PIEN_PIPU ||
-                      species == Species.PIFL2_PICO ||
-                      species == Species.POTR5_ABLA ||
-                      species == Species.POTR5_PICO ||
-                      species == Species.POTR5_PIPO ||
-                      species == Species.PSME_JUSC2 ||
-                      species == Species.PSME_PIPO)) {
+              (species == Species.ABCO ||
+               species == Species.ABCO_PIEN ||
+               species == Species.ABCO_PIFL2 ||
+               species == Species.ABCO_PIPO ||
+               species == Species.ABCO_POTR5 ||
+               species == Species.ABCO_PSME ||
+               species == Species.ABLA ||
+               species == Species.ABLA_PICO ||
+               species == Species.ACNE2 ||
+               species == Species.JUSC2_POTR5 ||
+               species == Species.PIAR_PICO ||
+               species == Species.PIAR_PIEN ||
+               species == Species.get("PIAR-PIFL") ||
+               species == Species.PIAR_PIPO ||
+               species == Species.PIAR_POTR5 ||
+               species == Species.PIAR_PSME ||
+               species == Species.PICO ||
+               species == Species.PIED_PIPO ||
+               species == Species.PIEN ||
+               species == Species.PIEN_ABLA ||
+               species == Species.get("PIEN-ABLA-POTR5") ||
+               species == Species.PIEN_PICO ||
+               species == Species.PIEN_PIPU ||
+               species == Species.PIFL2_PICO ||
+               species == Species.POTR5_ABLA ||
+               species == Species.POTR5_PICO ||
+               species == Species.POTR5_PIPO ||
+               species == Species.PSME_JUSC2 ||
+               species == Species.PSME_PIPO)) {
             return true;
           }
         }
 
         else if (regenType == IN_PLACE_SEED) {
           if ((sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.MMU ||
-              sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LMU ||
-              sizeClass == SizeClass.VERY_LARGE || sizeClass == SizeClass.VLMU) &&
+               sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LMU ||
+               sizeClass == SizeClass.VERY_LARGE || sizeClass == SizeClass.VLMU) &&
 
               (species == Species.PICO_PSME ||
-                  species == Species.PIPO ||
-                  species == Species.PIPO_ABCO ||
-                  species == Species.PIPO_JUSC2 ||
-                  species == Species.PIPO_PIAR ||
-                  species == Species.PIPO_PICO ||
-                  species == Species.PIPO_PIED ||
-                  species == Species.PIPO_PIFL2 ||
-                  species == Species.PIPO_PIPU ||
-                  species == Species.PIPO_POAN3 ||
-                  species == Species.PIPO_POTR5 ||
-                  species == Species.PIPO_PSME ||
-                  species == Species.PSME ||
-                  species == Species.PSME_ABCO ||
-                  species == Species.PSME_PIAR ||
-                  species == Species.PSME_PICO ||
-                  species == Species.PSME_PIED ||
-                  species == Species.PSME_PIEN ||
-                  species == Species.PSME_PIFL2 ||
-                  species == Species.PSME_PIPU ||
-                  species == Species.PSME_POTR5 ||
-                  species == Species.PSME_POTR5 ||
-                  species == Species.PICO ||
-                  species == Species.PSME_JUSC2 ||
-                  species == Species.PSME_PIPO))
+               species == Species.PIPO ||
+               species == Species.PIPO_ABCO ||
+               species == Species.PIPO_JUSC2 ||
+               species == Species.PIPO_PIAR ||
+               species == Species.PIPO_PICO ||
+               species == Species.PIPO_PIED ||
+               species == Species.PIPO_PIFL2 ||
+               species == Species.PIPO_PIPU ||
+               species == Species.PIPO_POAN3 ||
+               species == Species.PIPO_POTR5 ||
+               species == Species.PIPO_PSME ||
+               species == Species.PSME ||
+               species == Species.PSME_ABCO ||
+               species == Species.PSME_PIAR ||
+               species == Species.PSME_PICO ||
+               species == Species.PSME_PIED ||
+               species == Species.PSME_PIEN ||
+               species == Species.PSME_PIFL2 ||
+               species == Species.PSME_PIPU ||
+               species == Species.PSME_POTR5 ||
+               species == Species.PSME_POTR5 ||
+               species == Species.PICO ||
+               species == Species.PSME_JUSC2 ||
+               species == Species.PSME_PIPO))
           {
             return true;
           }
@@ -6655,16 +6655,16 @@ public final class Evu extends NaturalElement implements Externalizable {
 
         else if (regenType == IN_LANDSCAPE_SEED) {
           if ((sizeClass == SizeClass.MEDIUM || sizeClass == SizeClass.MMU ||
-              sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LMU ||
-              sizeClass == SizeClass.VERY_LARGE || sizeClass == SizeClass.VLMU) &&
+               sizeClass == SizeClass.LARGE || sizeClass == SizeClass.LMU ||
+               sizeClass == SizeClass.VERY_LARGE || sizeClass == SizeClass.VLMU) &&
 
               (species == Species.JUMO_PIED ||
-                  species == Species.JUSC2 ||
-                  species == Species.JUSC2_PIED ||
-                  species == Species.PIED ||
-                  species == Species.PIED_JUMO ||
-                  species == Species.PIED_JUSC2 ||
-                  species == Species.get("PIED-JUOS")))
+               species == Species.JUSC2 ||
+               species == Species.JUSC2_PIED ||
+               species == Species.PIED ||
+               species == Species.PIED_JUMO ||
+               species == Species.PIED_JUSC2 ||
+               species == Species.get("PIED-JUOS")))
           {
             return true;
           }
@@ -6678,20 +6678,20 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     VegSimStateData simState = getState(tStep,lifeform);
     if ((sizeClass == SizeClass.NF      ||
-        sizeClass == SizeClass.NS      ||
-        sizeClass == SizeClass.AGR     ||
-        sizeClass == SizeClass.WATER   ||
-        sizeClass == SizeClass.SS                || sizeClass == SizeClass.CLUMPED           ||
-        sizeClass == SizeClass.SCATTERED         || sizeClass == SizeClass.UNIFORM           ||
-        sizeClass == SizeClass.OPEN_HERB         || sizeClass == SizeClass.CLOSED_HERB       ||
-        sizeClass == SizeClass.OPEN_LOW_SHRUB    || sizeClass == SizeClass.CLOSED_LOW_SHRUB  ||
-        sizeClass == SizeClass.OPEN_MID_SHRUB    || sizeClass == SizeClass.CLOSED_MID_SHRUB  ||
-        sizeClass == SizeClass.OPEN_TALL_SHRUB   || sizeClass == SizeClass.CLOSED_TALL_SHRUB ||
-        sizeClass == SizeClass.WOODLAND) ||
+         sizeClass == SizeClass.NS      ||
+         sizeClass == SizeClass.AGR     ||
+         sizeClass == SizeClass.WATER   ||
+         sizeClass == SizeClass.SS                || sizeClass == SizeClass.CLUMPED           ||
+         sizeClass == SizeClass.SCATTERED         || sizeClass == SizeClass.UNIFORM           ||
+         sizeClass == SizeClass.OPEN_HERB         || sizeClass == SizeClass.CLOSED_HERB       ||
+         sizeClass == SizeClass.OPEN_LOW_SHRUB    || sizeClass == SizeClass.CLOSED_LOW_SHRUB  ||
+         sizeClass == SizeClass.OPEN_MID_SHRUB    || sizeClass == SizeClass.CLOSED_MID_SHRUB  ||
+         sizeClass == SizeClass.OPEN_TALL_SHRUB   || sizeClass == SizeClass.CLOSED_TALL_SHRUB ||
+         sizeClass == SizeClass.WOODLAND) ||
         (sizeClass == SizeClass.POLE &&
-            (species != Species.ES    && species != Species.AF    && species != Species.LP       &&
-                species != Species.ES_AF && species != Species.LP_AF && species != Species.AF_ES_LP &&
-                species != Species.WB_ES_AF && species != Species.JUSC)) ||
+         (species != Species.ES    && species != Species.AF    && species != Species.LP       &&
+          species != Species.ES_AF && species != Species.LP_AF && species != Species.AF_ES_LP &&
+          species != Species.WB_ES_AF && species != Species.JUSC)) ||
         simState.getProcess().equals(ProcessType.SEVERE_WSBW)) {
       return false;
     }
@@ -6761,32 +6761,32 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (species == null) { return false; }
 
     if ((groupType.equals(HabitatTypeGroupType.NF1A) ||
-        groupType.equals(HabitatTypeGroupType.NF1B) ||
-        groupType.equals(HabitatTypeGroupType.NF1C) ||
-        groupType.equals(HabitatTypeGroupType.NF2A) ||
-        groupType.equals(HabitatTypeGroupType.NF2B) ||
-        groupType.equals(HabitatTypeGroupType.NF2C) ||
-        groupType.equals(HabitatTypeGroupType.NF2D) ||
-        groupType.equals(HabitatTypeGroupType.NF3A) ||
-        // Sierra Nevada and Southern California Zones.
-        groupType.equals(HabitatTypeGroupType.FTH_M) ||
-        groupType.equals(HabitatTypeGroupType.FTH_X) ||
-        groupType.equals(HabitatTypeGroupType.LM_M)  ||
-        groupType.equals(HabitatTypeGroupType.LM_X)  ||
-        groupType.equals(HabitatTypeGroupType.UM_M)  ||
-        groupType.equals(HabitatTypeGroupType.UM_X)  ||
-        groupType.equals(HabitatTypeGroupType.SA)) &&
+         groupType.equals(HabitatTypeGroupType.NF1B) ||
+         groupType.equals(HabitatTypeGroupType.NF1C) ||
+         groupType.equals(HabitatTypeGroupType.NF2A) ||
+         groupType.equals(HabitatTypeGroupType.NF2B) ||
+         groupType.equals(HabitatTypeGroupType.NF2C) ||
+         groupType.equals(HabitatTypeGroupType.NF2D) ||
+         groupType.equals(HabitatTypeGroupType.NF3A) ||
+         // Sierra Nevada and Southern California Zones.
+         groupType.equals(HabitatTypeGroupType.FTH_M) ||
+         groupType.equals(HabitatTypeGroupType.FTH_X) ||
+         groupType.equals(HabitatTypeGroupType.LM_M)  ||
+         groupType.equals(HabitatTypeGroupType.LM_X)  ||
+         groupType.equals(HabitatTypeGroupType.UM_M)  ||
+         groupType.equals(HabitatTypeGroupType.UM_X)  ||
+         groupType.equals(HabitatTypeGroupType.SA)) &&
         (species == Species.EARLY_SERAL     || species == Species.MID_SERAL ||
-            species == Species.ALTERED_GRASSES || species == Species.HERBS     ||
-            species == Species.MESIC_SHRUBS    || species == Species.MTN_MAHOGANY ||
-            species == Species.FS_S_G          || species == Species.MTN_FS_SHRUBS ||
-            species == Species.MTN_SHRUBS      || species == Species.XERIC_SHRUBS  ||
-            species == Species.FESCUE          || species == Species.AGSP          ||
+         species == Species.ALTERED_GRASSES || species == Species.HERBS     ||
+         species == Species.MESIC_SHRUBS    || species == Species.MTN_MAHOGANY ||
+         species == Species.FS_S_G          || species == Species.MTN_FS_SHRUBS ||
+         species == Species.MTN_SHRUBS      || species == Species.XERIC_SHRUBS  ||
+         species == Species.FESCUE          || species == Species.AGSP          ||
          /*species == Species.AGSM        ||*/ species == Species.JUSC          ||
-            species == Species.JUSC_ORMI       || species == Species.JUSC_AGSP     ||
-            species == Species.XERIC_FS_SHRUBS ||
-            // Sierra Nevada and Southern California Zones.
-            species == Species.GRASS || species == Species.CSS)) {
+         species == Species.JUSC_ORMI       || species == Species.JUSC_AGSP     ||
+         species == Species.XERIC_FS_SHRUBS ||
+         // Sierra Nevada and Southern California Zones.
+         species == Species.GRASS || species == Species.CSS)) {
       return true;
     }
     else {
@@ -6822,8 +6822,8 @@ public final class Evu extends NaturalElement implements Externalizable {
       return true;
     }
     else if ((getRoadStatusNew() == Roads.Status.OPEN &&
-        adj.getRoadStatusNew() == Roads.Status.OPEN) &&
-        ((grazing && prob < 9000) || (prob < 8000))) {
+              adj.getRoadStatusNew() == Roads.Status.OPEN) &&
+             ((grazing && prob < 9000) || (prob < 8000))) {
       return true;
     }
     else if (grazing && prob < 7000) {
@@ -6871,10 +6871,10 @@ public final class Evu extends NaturalElement implements Externalizable {
       groupType = getHabitatTypeGroup().getType();
 
       if ((species == Species.NS     || species == Species.NF ||
-          sizeClass == SizeClass.NS || sizeClass == SizeClass.NF ||
-          (groupType.equals(HabitatTypeGroupType.XX1) ||
-              groupType.equals(HabitatTypeGroupType.XX4) ||
-              groupType.equals(HabitatTypeGroupType.XX5))) &&
+           sizeClass == SizeClass.NS || sizeClass == SizeClass.NF ||
+           (groupType.equals(HabitatTypeGroupType.XX1) ||
+            groupType.equals(HabitatTypeGroupType.XX4) ||
+            groupType.equals(HabitatTypeGroupType.XX5))) &&
           isHabitatTypeGroupValid()) {
         fixInvalidCaseOne();
         if (isValid()) { return; }
@@ -7018,7 +7018,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (newState == null) {
       if (species == Species.MESIC_SHRUBS || species == Species.XERIC_SHRUBS) {
         newState = htGrp.getVegetativeType(species,SizeClass.CLOSED_LOW_SHRUB,
-            age,density);
+                                           age,density);
       }
     }
 
@@ -7181,12 +7181,12 @@ public final class Evu extends NaturalElement implements Externalizable {
         newSpecies = Species.PP_DF;
       }
       else if (groupType.equals(HabitatTypeGroupType.D1) ||
-          groupType.equals(HabitatTypeGroupType.D2) ||
-          groupType.equals(HabitatTypeGroupType.D3) ||
-          groupType.equals(HabitatTypeGroupType.E1) ||
-          groupType.equals(HabitatTypeGroupType.E2) ||
-          groupType.equals(HabitatTypeGroupType.F1) ||
-          groupType.equals(HabitatTypeGroupType.F2)) {
+               groupType.equals(HabitatTypeGroupType.D2) ||
+               groupType.equals(HabitatTypeGroupType.D3) ||
+               groupType.equals(HabitatTypeGroupType.E1) ||
+               groupType.equals(HabitatTypeGroupType.E2) ||
+               groupType.equals(HabitatTypeGroupType.F1) ||
+               groupType.equals(HabitatTypeGroupType.F2)) {
         newSpecies = Species.DF_LP;
       }
       else if (groupType.equals(HabitatTypeGroupType.G1)) {
@@ -7219,13 +7219,13 @@ public final class Evu extends NaturalElement implements Externalizable {
         newSpecies = Species.DF;
       }
       else if (groupType.equals(HabitatTypeGroupType.D2) ||
-          groupType.equals(HabitatTypeGroupType.D3) ||
-          groupType.equals(HabitatTypeGroupType.E1) ||
-          groupType.equals(HabitatTypeGroupType.E2) ||
-          groupType.equals(HabitatTypeGroupType.F1) ||
-          groupType.equals(HabitatTypeGroupType.F2) ||
-          groupType.equals(HabitatTypeGroupType.G1) ||
-          groupType.equals(HabitatTypeGroupType.G2)) {
+               groupType.equals(HabitatTypeGroupType.D3) ||
+               groupType.equals(HabitatTypeGroupType.E1) ||
+               groupType.equals(HabitatTypeGroupType.E2) ||
+               groupType.equals(HabitatTypeGroupType.F1) ||
+               groupType.equals(HabitatTypeGroupType.F2) ||
+               groupType.equals(HabitatTypeGroupType.G1) ||
+               groupType.equals(HabitatTypeGroupType.G2)) {
         newSpecies = Species.AF;
       }
       else {
@@ -7584,17 +7584,17 @@ public final class Evu extends NaturalElement implements Externalizable {
     return (int)Math.round(Math.sqrt(fAcres*43560));
   }
 
-  /**
-   * Serialization methods
-   * @param in
-   * @param ts time step
-   * @param run simulation run
-   * @return
-   * @throws IOException
-   * @throws ClassNotFoundException
-   */
+/**
+ * Serialization methods
+ * @param in
+ * @param ts time step
+ * @param run simulation run
+ * @return
+ * @throws IOException
+ * @throws ClassNotFoundException
+ */
   private Flat3Map readSimStateDataOld(ObjectInput in, int ts, int run)
-      throws IOException, ClassNotFoundException
+    throws IOException, ClassNotFoundException
   {
     int size = in.readInt();
 
@@ -7625,7 +7625,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     return map;
   }
   private Flat3Map readSimStateData(ObjectInput in)
-      throws IOException, ClassNotFoundException
+    throws IOException, ClassNotFoundException
   {
     int size = in.readInt();
 
@@ -7641,16 +7641,16 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
       else {
         dominantLifeform = Lifeform.getMostDominant(dominantLifeform,
-            newState.getLifeform());
+                                                     newState.getLifeform());
       }
     }
 
     return map;
   }
-  /**
-   * Reads in from external source.  Attributes are stored in file in following order: habitat type group, Evu ID, ownership, road status, ignition probability,
-   * fire management zone, special area, source, associated land type, location, and initial treatment.
-   */
+/**
+ * Reads in from external source.  Attributes are stored in file in following order: habitat type group, Evu ID, ownership, road status, ignition probability,
+ * fire management zone, special area, source, associated land type, location, and initial treatment.
+ */
   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
     super.readExternal(in);
@@ -7878,7 +7878,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   private void writeSimStateData(ObjectOutput out, Flat3Map map)
-      throws IOException
+    throws IOException
   {
     out.writeInt(map.size());
     MapIterator it = map.mapIterator();
@@ -7888,11 +7888,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-  /**
-   * Writes to an external source attributes in following order: habitat type group, EVU ID,
-   * ownership, road status, ignition probability,fire management zone, special area, source,
-   * associated land type, location, and initial treatment.
-   */
+/**
+ * Writes to an external source attributes in following order: habitat type group, EVU ID,
+ * ownership, road status, ignition probability,fire management zone, special area, source,
+ * associated land type, location, and initial treatment.
+ */
   public void writeExternal(ObjectOutput out) throws IOException {
     VegetativeType.setLimitedSerialization();
 
@@ -7921,15 +7921,15 @@ public final class Evu extends NaturalElement implements Externalizable {
      *   method due to circular references causing problems.
      */
   }
-  /**
-   * Reads and sets the spatial relations for an Evu.  This will make associated land units, associated aquatic units, associated road units,
-   * and associated trail units for this Evu.
-   * @param in the input objects
-   * @param area
-   * @param areaVersion
-   * @throws IOException
-   * @throws ClassNotFoundException
-   */
+/**
+ * Reads and sets the spatial relations for an Evu.  This will make associated land units, associated aquatic units, associated road units,
+ * and associated trail units for this Evu.
+ * @param in the input objects
+ * @param area
+ * @param areaVersion
+ * @throws IOException
+ * @throws ClassNotFoundException
+ */
   public void readSpatialRelations(ObjectInput in, Area area, int areaVersion) throws IOException, ClassNotFoundException {
     assocLandUnits = null;
     assocAquaticUnits = null;
@@ -8026,7 +8026,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     out.writeInt(simData.length);
     for (int i=0; i<simData.length; i++) {
-      writeSimStateData(out, simData[i]);
+        writeSimStateData(out, simData[i]);
     }
     out.writeObject(treatment);
 
@@ -8130,11 +8130,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-  /**
-   * Uses hibernate session to write siumlation database of vegetative state.
-   * @param session
-   * @throws SimpplleError
-   */
+/**
+ * Uses hibernate session to write siumlation database of vegetative state.
+ * @param session
+ * @throws SimpplleError
+ */
   public void writeSimulationDatabase(Session session) throws SimpplleError {
     int ts  = Simulation.getCurrentTimeStep();
 
@@ -8179,10 +8179,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
   }
 
-  /**
-   * Uses the season to get a set of lifeforms.
-   * @return
-   */
+/**
+ * Uses the season to get a set of lifeforms.
+ * @return
+ */
   public Set<Lifeform> getLifeforms() {
     return getLifeforms(Simulation.getInstance().getCurrentSeason());
   }
@@ -8201,40 +8201,40 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return a set of lifeforms at a particular time step and season
    */
 
-  public Set<Lifeform> getLifeforms(int tStep, Season season) {
-    lifeformSet.clear();
+    public Set<Lifeform> getLifeforms(int tStep, Season season) {
+        lifeformSet.clear();
 
-    Flat3Map map;
-    if (tStep > 0 && simData != null) {
-      int index = getSimDataIndex(tStep);
-      if (index < 0) {
-        throw new RuntimeException("Attempted access to unavailable time step");
-      }
-      if (index >= 0) {
-        map = simData[index];
-      }
-      else {
-        return getLifeformsDatabase(tStep, season);
-      }
+        Flat3Map map;
+        if (tStep > 0 && simData != null) {
+            int index = getSimDataIndex(tStep);
+            if (index < 0) {
+                throw new RuntimeException("Attempted access to unavailable time step");
+            }
+            if (index >= 0) {
+                map = simData[index];
+            }
+            else {
+                return getLifeformsDatabase(tStep, season);
+            }
+        }
+        else {
+            map = initialState;
+        }
+
+        MapIterator it = map.mapIterator();
+        while (it.hasNext()) {
+            MultiKey key = (MultiKey)it.next();
+            Lifeform lifeform    = (Lifeform)key.getKey(0);
+
+            if ((Season)key.getKey(1) != season) { continue; }
+
+            if (lifeformSet.contains(lifeform) == false) {
+                lifeformSet.add(lifeform);
+            }
+        }
+
+        return lifeformSet;
     }
-    else {
-      map = initialState;
-    }
-
-    MapIterator it = map.mapIterator();
-    while (it.hasNext()) {
-      MultiKey key = (MultiKey)it.next();
-      Lifeform lifeform    = (Lifeform)key.getKey(0);
-
-      if ((Season)key.getKey(1) != season) { continue; }
-
-      if (lifeformSet.contains(lifeform) == false) {
-        lifeformSet.add(lifeform);
-      }
-    }
-
-    return lifeformSet;
-  }
   public ArrayList<Lifeform> getLifeformsList(int tStep, Season season) {
     lifeformList.clear();
 
@@ -8270,12 +8270,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     return lifeformList;
   }
 
-  /**
-   * Creates an arraylist of lifeforms.
-   * @param tStep
-   * @param season
-   * @return
-   */
+/**
+ * Creates an arraylist of lifeforms.
+ * @param tStep
+ * @param season
+ * @return
+ */
   public ArrayList<Lifeform> getSortedLifeforms(int tStep, Season season) {
     ArrayList<Lifeform> result = new ArrayList<Lifeform>();
 
@@ -8371,10 +8371,10 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return lifeformList;
   }
-  /**
-   * Checks if there are multiple lifeforms in an Evu by seeing if the lifeform set size is greater than 1.
-   * @return
-   */
+/**
+ * Checks if there are multiple lifeforms in an Evu by seeing if the lifeform set size is greater than 1.
+ * @return
+ */
   public boolean hasMultipleLifeforms() {
     // initial state doesn't have multiple seasons, therefore use YEAR.
     Set <Lifeform> lives = getLifeforms(0,Season.YEAR);
@@ -8387,12 +8387,12 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return false;
   }
-  /**
-   * Uses the current simulation time step to get current veg state, which is then used to get previous veg state.
-   * If previous state exists, gets its density and then subtracsts from current vegetative density.
-   * @param lifeform
-   * @return An int representing the diffrence in current minus previous canopy density, or just the current density if no previous states exist.
-   */
+/**
+ * Uses the current simulation time step to get current veg state, which is then used to get previous veg state.
+ * If previous state exists, gets its density and then subtracsts from current vegetative density.
+ * @param lifeform
+ * @return An int representing the diffrence in current minus previous canopy density, or just the current density if no previous states exist.
+ */
   public int getCanopyChange(Lifeform lifeform) {
     int cStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
     VegetativeType currentVeg = getState(lifeform).getVegType();
@@ -8402,18 +8402,18 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return currentVeg.getDensity().getValue() - prevVegCanopy;
   }
-  /**
-   * This method has been predominiantly eliminated.  I kept the main call name until I can make sure there are no ill side effects.
-   * Brian Losi 10/27/13
-   */
+/**
+ * This method has been predominiantly eliminated.  I kept the main call name until I can make sure there are no ill side effects.
+ * Brian Losi 10/27/13
+ */
   public void doCompetition() {
 
   }
-  /**
-   * Checks if the Evu has a veg state with invasive species by looping through the life forms and passing to
-   * overloaded hasInvasiveState().
-   * @return true if veg state has invasive species
-   */
+/**
+ * Checks if the Evu has a veg state with invasive species by looping through the life forms and passing to
+ * overloaded hasInvasiveState().
+ * @return true if veg state has invasive species
+ */
   public boolean hasInvasiveState() {
     for (Lifeform lifeform : getLifeforms()) {
       if (hasInvasiveState(lifeform)) { return true; }
@@ -8435,10 +8435,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
-  /**
-   * Checks if any of the Evu's lifeforms are invasive species.
-   * @return
-   */
+/**
+ * Checks if any of the Evu's lifeforms are invasive species.
+ * @return
+ */
   public boolean hasInvasive() {
     for (Lifeform lifeform : getLifeforms()) {
       if (hasInvasive(lifeform)) { return true; }
@@ -8453,12 +8453,12 @@ public final class Evu extends NaturalElement implements Externalizable {
   public boolean hasInvasive(Lifeform lifeform) {
     return getInvasiveTrackingSpecies(lifeform) != null;
   }
-  /**
-   * Gets the inclusion rule array list with invasive tracking species.  Uses the lifeform to get veg state
-   * then gets the name of any species.  If that species is invasive and adds to inclusion rule species array list
-   * @param lifeform
-   * @return the inclusion rule species representing the invasive species to be tracked.
-   */
+/**
+ * Gets the inclusion rule array list with invasive tracking species.  Uses the lifeform to get veg state
+ * then gets the name of any species.  If that species is invasive and adds to inclusion rule species array list
+ * @param lifeform
+ * @return the inclusion rule species representing the invasive species to be tracked.
+ */
   public ArrayList<InclusionRuleSpecies> getInvasiveTrackingSpecies(Lifeform lifeform) {
     ArrayList<InclusionRuleSpecies> result=null;
     VegSimStateData state = getState(lifeform);
@@ -8482,12 +8482,12 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return result;
   }
-  /**
-   * If there is an inclustion rule species gets it and assigns to temporary species, then goes through the species
-   * and gets the vegetative state via the lifeform passed and updates the tracking species to the temporary species and the change int.
-   * @param change
-   * @param lifeform
-   */
+/**
+ * If there is an inclustion rule species gets it and assigns to temporary species, then goes through the species
+ * and gets the vegetative state via the lifeform passed and updates the tracking species to the temporary species and the change int.
+ * @param change
+ * @param lifeform
+ */
   public void updateInvasiveTrackSpecies(int change, Lifeform lifeform) {
     ArrayList<InclusionRuleSpecies> spList = getInvasiveTrackingSpecies(lifeform);
     if (spList == null) { return; }
@@ -8501,12 +8501,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
   }
-  /**
-   * Gets the tracking species percentage.
-   * @param lifeform
-   * @param trackSpecies
-   * @return
-   */
+/**
+ * Gets the tracking species percentage.
+ * @param lifeform
+ * @param trackSpecies
+ * @return
+ */
   public float getTrackingSpeciesPercent(Lifeform lifeform, InclusionRuleSpecies trackSpecies) {
     if (trackSpecies != null) {
       return getState(lifeform).getSpeciesPercent(trackSpecies);
@@ -8522,11 +8522,11 @@ public final class Evu extends NaturalElement implements Externalizable {
   // itself.  Once finished the array is not needed so to avoid creating millions
   // of temporary arrays this is going to be created once and cleared each time.
   private static ArrayList<ProcessType> tmpSummaryProcesses = new ArrayList<ProcessType>();
-  /**
-   * Creates an arraylist of the processes present in an Evu.
-   * @param cStep current time step
-   * @return arraylist of processes in Evu.
-   */
+/**
+ * Creates an arraylist of the processes present in an Evu.
+ * @param cStep current time step
+ * @return arraylist of processes in Evu.
+ */
   public ArrayList<ProcessType> getSummaryProcesses(int cStep) {
     tmpSummaryProcesses.clear();
 
@@ -8558,7 +8558,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       if (fireCount > 1)
       {
         ProcessType unitProcess =
-            Process.determineUnitFireProcess(treeProcess,shrubProcess,grassProcess);
+          Process.determineUnitFireProcess(treeProcess,shrubProcess,grassProcess);
 
         if (unitProcess != null && tmpSummaryProcesses.contains(unitProcess) == false) {
           tmpSummaryProcesses.add(unitProcess);
@@ -8605,13 +8605,13 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return result;
   }
-  /**
-   * Calculates time since last fire by getting the current simulation time step, looping backward through time steps and then
-   * through the simulation's lifeforms and finding any instances of SRF, MSF, or LSF.  returns the current time minus
-   * the time step where fire was found.
-   *
-   * @return the differnce in time steps between current time step and last instance of fire process.
-   */
+/**
+ * Calculates time since last fire by getting the current simulation time step, looping backward through time steps and then
+ * through the simulation's lifeforms and finding any instances of SRF, MSF, or LSF.  returns the current time minus
+ * the time step where fire was found.
+ *
+ * @return the differnce in time steps between current time step and last instance of fire process.
+ */
   private int timeSinceFire() {
     Simulation simulation = Simpplle.getCurrentSimulation();
     int cTime = simulation.getCurrentTimeStep();
@@ -8634,12 +8634,12 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return -1;
   }
-  /**
-   * Finds last life form by looping through simulation using current time steps minus the past time steps in memory and returns
-   * the state when the lifeform was found.
-   * @param lifeform the lifeform
-   * @return
-   */
+/**
+ * Finds last life form by looping through simulation using current time steps minus the past time steps in memory and returns
+ * the state when the lifeform was found.
+ * @param lifeform the lifeform
+ * @return
+ */
   public VegSimStateData findLastLifeformState(Lifeform lifeform) {
     if (Simulation.getInstance().isDiscardData()) {
       // This line was at times trying to go to far back to data no longer present
@@ -8667,11 +8667,11 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return null;
   }
-  /**
-   * Increments backwards from current time step to find the last veg state with the specified life form.
-   * @param life
-   * @return
-   */
+/**
+ * Increments backwards from current time step to find the last veg state with the specified life form.
+ * @param life
+ * @return
+ */
   private VegSimStateData findLastLifeformStateDatabase(Lifeform life) {
     int cTime = Simulation.getCurrentTimeStep();
 
@@ -8691,9 +8691,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     return null;
 
   }
-  /**
-   * Passes to overloaded suppressFire() with true for is Class A logic.
-   */
+/**
+ * Passes to overloaded suppressFire() with true for is Class A logic.
+ */
   public void suppressFire() {
     suppressFire(true);
   }
@@ -8712,7 +8712,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       if (state == null) { continue; }
       if (hasLifeform(lifeform) &&
           (state.getProcess().isFireProcess() ||
-              state.getProcess() == ProcessType.FIRE_EVENT)) {
+           state.getProcess() == ProcessType.FIRE_EVENT)) {
         updateCurrentProcess(lifeform,ProcessType.SUCCESSION);
         updateCurrentProb(lifeform,Evu.SUPP);
 
@@ -8767,12 +8767,12 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return false;
   }
-  /**
-   * gets the last life form with a process occurring.
-   * @param timeStepsBack
-   * @param lifeform
-   * @return
-   */
+/**
+ * gets the last life form with a process occurring.
+ * @param timeStepsBack
+ * @param lifeform
+ * @return
+ */
   public ProcessType getLastLifePastProcess(int timeStepsBack, Lifeform lifeform) {
     ProcessType[] processes = (ProcessType[])lastLifeProcessHistory.get(lifeform);
 
@@ -8783,9 +8783,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     return processes[index];
   }
-  /**
-   * Makes a single lifeform by getting the vegetative state  and seting the lifeform to NA
-   */
+/**
+ * Makes a single lifeform by getting the vegetative state  and seting the lifeform to NA
+ */
   public void makeSingleLife() {
     VegSimStateData state = getState(0,dominantLifeform,Season.YEAR);
 
