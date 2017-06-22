@@ -320,24 +320,28 @@ public final class HabitatTypeGroup {
 
   }
 
-  public VegetativeType getVegetativeType(Species species, SizeClass sizeClass, Density density)
-  {
+  public VegetativeType getVegetativeType(Species species,
+                                          SizeClass sizeClass,
+                                          Density density) {
 
-    String printName = species.toString() + "/"
-                     + sizeClass.toString() + "/"
-                     + density.toString();
-
-    return getVegetativeType(printName);
-
+    if (species == null || sizeClass == null || density == null) {
+      return null;
+    } else {
+      return getVegetativeType(species + "/" + sizeClass + "/" + density);
+    }
   }
 
-  public VegetativeType getVegetativeType (Species species, SizeClass sizeClass, int age,
+  public VegetativeType getVegetativeType (Species species,
+                                           SizeClass sizeClass,
+                                           int age,
                                            Density density) {
 
-    String printName = species + "/" + sizeClass + (age == 1 ? "" : Integer.toString(age)) + "/"
-                     + density;
-
-    return getVegetativeType(printName);
+    if (species == null || sizeClass == null || density == null) {
+      return null;
+    } else {
+      String ageString = age == 1 ? "" : Integer.toString(age);
+      return getVegetativeType(species + "/" + sizeClass + ageString + "/" + density);
+    }
   }
 
   VegetativeType findLowestDensityVegetativeType(VegetativeType vt) {
