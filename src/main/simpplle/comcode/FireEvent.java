@@ -26,7 +26,7 @@ public class FireEvent extends Process {
   private static int[]   fireSeasonData;
   private static boolean extremeDataChanged;
 
-  private  static int extremeProb = 0;
+  public  static int extremeProb = 0;
   private static int extremeEventAcres = 1000;
 
   private static boolean useRegenPulse = false;
@@ -38,16 +38,16 @@ public class FireEvent extends Process {
   public static transient final Position NEXT_TO = Position.NEXT_TO;
 
   // Fire Type (for Spread)
-  static final int LMSF_CLASS = 0;  // Light or Mixed Severity Fire
-  static final int SRF_CLASS  = 1;
+  public static final int LMSF_CLASS = 0;  // Light or Mixed Severity Fire
+  public static final int SRF_CLASS  = 1;
 
   // Relative Position
   public static final int A  = 0; // Above
   public static final int BN = 1; // Below or Next to
 
   // Density Grouping
-  static final int LOW_DENSITY  = 0;  // Density 1 or 2
-  static final int HIGH_DENSITY = 1;  // Density 3 or 4
+  public static final int LOW_DENSITY  = 0;  // Density 1 or 2
+  public static final int HIGH_DENSITY = 1;  // Density 3 or 4
 
   // Resistance.
   public static final int LOW      = 0;
@@ -60,7 +60,7 @@ public class FireEvent extends Process {
   public  static final int OTHER         = 2;
   private static final int NUM_OWNER     = 3;
 
-  private static final String allOwnership[] = { "NF-WILDERNESS", "NF-OTHER", "OTHER" };
+  public static final String allOwnership[] = { "NF-WILDERNESS", "NF-OTHER", "OTHER" };
 
   // Structure
   // Must be in this order!
@@ -68,7 +68,7 @@ public class FireEvent extends Process {
   public static final Structure SINGLE_STORY   = Structure.SINGLE_STORY;
   public static final Structure MULTIPLE_STORY = Structure.MULTIPLE_STORY;
 
-  static ProcessOccurrenceSpreadingFire currentEvent = null;
+  public static ProcessOccurrenceSpreadingFire currentEvent = null;
 
   /**
    * Creates a non-spreading, non-yearly process.
@@ -91,7 +91,7 @@ public class FireEvent extends Process {
   public static int getExtremeProb() {
     return extremeProb;
   }
- 
+
   /**
    * Sets the extreme fire probability, and marks the data as changed if the value doesn't match the current value.
    * @param prob A probability in the range 0 - 100
@@ -138,7 +138,7 @@ public class FireEvent extends Process {
   /**
    * Sets the extreme data changed flag.
    */
-  static void setExtremeDataChanged(boolean value) {
+  public static void setExtremeDataChanged(boolean value) {
     extremeDataChanged = value;
   }
 
@@ -154,7 +154,7 @@ public class FireEvent extends Process {
    * @param fin A buffered file reader
    * @throws ParseError Thrown when there is not enough data or the values are not integers
    */
-  static void readExtremeData(BufferedReader fin) throws ParseError {
+  public static void readExtremeData(BufferedReader fin) throws ParseError {
 
     String line = null;
 
@@ -189,7 +189,7 @@ public class FireEvent extends Process {
    * Writes the extreme probability, a comma, and the number of acres.
    * @param fout A print writer
    */
-  static void saveExtremeData(PrintWriter fout) {
+  public static void saveExtremeData(PrintWriter fout) {
     fout.println(getExtremeProb() + "," + getExtremeEventAcres());
   }
 
@@ -243,7 +243,7 @@ public class FireEvent extends Process {
    * @param fin A file reader
    * @throws SimpplleError Thrown if the file is unable to be read or there is missing data
    */
-  static void readFireSeasonData(BufferedReader fin) throws SimpplleError {
+  public static void readFireSeasonData(BufferedReader fin) throws SimpplleError {
 
     try {
 
@@ -294,7 +294,7 @@ public class FireEvent extends Process {
    * Writes a line of comma-delimited probabilities for spring, summer, fall, and winter respectively.
    * @param fout A file writer
    */
-  static void saveFireSeasonData(PrintWriter fout) {
+  public static void saveFireSeasonData(PrintWriter fout) {
 
     fout.println( fireSeasonData[Climate.Season.SPRING.ordinal()] + "," +
                   fireSeasonData[Climate.Season.SUMMER.ordinal()] + "," +
@@ -476,12 +476,12 @@ public class FireEvent extends Process {
 
   }
 
-  /**
-   * calculates if a weather event can suppress fire
-   * @param zone
-   * @param evu
-   * @return true if random variable is not greater than probability of suppression
-   */
+/**
+ * calculates if a weather event can suppress fire
+ * @param zone
+ * @param evu
+ * @return true if random variable is not greater than probability of suppression
+ */
   public static boolean doWeatherEvent(RegionalZone zone, Evu evu) {
     VegSimStateData state    = evu.getState();
     VegetativeType  vegType  = state.getVeg();
@@ -504,31 +504,30 @@ public class FireEvent extends Process {
         logOut.printf("Time: %d, Unit: %d, Life: %s, Weather Class A Suppression%n",
             ts, evu.getId(), lifeform.toString());
       }
-    
+
       return true;
     }
   }
-  /**
-   * calculates if a weather event will end spread based on fire suppression weather data
-   * @param zone regional zone
-   * @param eventAcres the acres of fire
-   * @param fireSeason choices are spring, summer, fall, winter
-   * @param randNum
-   * @return true if ranom number is less than probability
-   */
+/**
+ * calculates if a weather event will end spread based on fire suppression weather data
+ * @param zone regional zone
+ * @param eventAcres the acres of fire
+ * @param fireSeason choices are spring, summer, fall, winter
+ * @param randNum
+ * @return true if ranom number is less than probability
+ */
   public static boolean doSpreadEndingWeather(RegionalZone zone, int eventAcres, Climate.Season fireSeason, int randNum) {
     int prob = FireSuppWeatherData.getProbability(zone,eventAcres,fireSeason);
     prob *= 100;
 
     return (randNum < prob);
   }
-
-  /**
-   * method to calculate if regeneration state based on zone and evu
-   * @param zone regional zone to be evaluated
-   * @param evu ecological vegetative unit to be evaluated
-   * @return true if RegenerationLogic has data, a boolean value returned from other isRegenState methods (not overloaded)
-   */
+/**
+ * method to calculate if regeneration state based on zone and evu
+ * @param zone regional zone to be evaluated
+ * @param evu ecological vegetative unit to be evaluated
+ * @return true if RegenerationLogic has data, a boolean value returned from other isRegenState methods (not overloaded)
+ */
   public static boolean isRegenState(RegionalZone zone, Evu evu) {
     int zoneId = zone.getId();
 
@@ -553,7 +552,7 @@ public class FireEvent extends Process {
 
   }
   /**
-   *  
+   *
    * @param evu
    * @return true if evu has regenerationLogic data
    */
@@ -574,11 +573,12 @@ public class FireEvent extends Process {
             groupType.equals(HabitatTypeGroupType.D3) == false &&
             groupType.equals(HabitatTypeGroupType.E2) == false);
   }
+
   /**
    * boolean to tell if a westside region is in regeneration state
    * @param zone
    * @param evu
-   * @return true if habitat type is A1, A2, B1, B2, B3, C1, C2, D1, D2, D3, E1, E2, F1, F2, G1, OR G2 
+   * @return true if habitat type is A1, A2, B1, B2, B3, C1, C2, D1, D2, D3, E1, E2, F1, F2, G1, OR G2
    */
   public static boolean isRegenStateWest(RegionalZone zone, Evu evu) {
     HabitatTypeGroupType groupType = evu.getHabitatTypeGroup().getType();
@@ -605,12 +605,12 @@ public class FireEvent extends Process {
       return false;
     }
   }
-  /**
-   * boolean to tell if an eastside region is in regeneration state
-   * @param zone
-   * @param evu
-   * @return true if habitat group is B1, B3, C1, C2, D1, D2, E1, F1, F2, G1, OR G2
-   */
+/**
+ * boolean to tell if an eastside region is in regeneration state
+ * @param zone
+ * @param evu
+ * @return true if habitat group is B1, B3, C1, C2, D1, D2, E1, F1, F2, G1, OR G2
+ */
   public static boolean isRegenStateEast(RegionalZone zone, Evu evu) {
     HabitatTypeGroupType groupType = evu.getHabitatTypeGroup().getType();
 
@@ -641,8 +641,8 @@ public class FireEvent extends Process {
     }
   }
   /**
-   * regeneration information - uses current time step, habitat type group, vegetative state, and adjacent data to calculate resprouting, adjacent resprouting, 
-   * in place seed, in landscape seed, adjacent producing seed, 
+   * regeneration information - uses current time step, habitat type group, vegetative state, and adjacent data to calculate resprouting, adjacent resprouting,
+   * in place seed, in landscape seed, adjacent producing seed,
    * @param lifeform
    * @param evu
    * @return
@@ -670,7 +670,6 @@ public class FireEvent extends Process {
     {
       VegetativeType tmpState = RegenerationLogic.getResproutingState(ecoGroup, evu,lifeform);
       if (tmpState != null) {
-
         newState = htGrp.getVegetativeType(tmpState.getSpecies(),
                                            tmpState.getSizeClass(),
                                            tmpState.getAge(),
@@ -712,20 +711,12 @@ public class FireEvent extends Process {
     // *** In Place Seed ***
     // *********************
     if (evu.producingSeed(lifeform,Evu.IN_PLACE_SEED)) {
-
       VegetativeType tmpState = RegenerationLogic.getInPlaceSeedState(ecoGroup, evu,lifeform);
-
-      // While this keeps tmpState from being accessed while null, instance variables w/ in tmpState
-      // are not checked, and this led to the null pointer exception in issue 105
       if (tmpState != null) {
-
-
-        // Could use evu.getState but this may not update it...
         newState = htGrp.getVegetativeType(tmpState.getSpecies(),
                                            tmpState.getSizeClass(),
                                            tmpState.getAge(),
                                            tmpState.getDensity());
-
         if (newState != null) {
           return newState;
         }
@@ -839,14 +830,13 @@ public class FireEvent extends Process {
         if (newState != null) { return newState; }
       }
     }
-//    System.out.println("returning null from regen new");
-    return null; // TODO: this gets returned
+    return null;
   }
 
   /**
-   * calculates common regeneration based on current time step, current area, adjacent species, habitat type group, vegetative type, landscape seed, in place seed, 
-   * <p>note: often the adjacent state is not the current state, this is because doNextState may have already happened which will result in the wrong adjacent data. 
-   * This is noted in the code where applicable  
+   * calculates common regeneration based on current time step, current area, adjacent species, habitat type group, vegetative type, landscape seed, in place seed,
+   * <p>note: often the adjacent state is not the current state, this is because doNextState may have already happened which will result in the wrong adjacent data.
+   * This is noted in the code where applicable
    * @param evu
    * @return the vegetative type commonly regenerated
    */
@@ -1083,14 +1073,15 @@ public class FireEvent extends Process {
     return caRegen(evu.getHabitatTypeGroup(), species,
                    evu.getHabitatTypeGroup().getType());
   }
-  /**
-   * method to calculate vegetative regeneration type for california
-   * @param htGrp habitat type group passed from caRegen
-   * @param species species passed from caRegen
-   * @param groupType the habitat type group type passed from caRegen
-   * @return the vegetative type regenerated
-   */
-  private static VegetativeType caRegen(HabitatTypeGroup htGrp, Species species,
+/**
+ * method to calculate vegetative regeneration type for california
+ * @param htGrp habitat type group passed from caRegen
+ * @param species species passed from caRegen
+ * @param groupType the habitat type group type passed from caRegen
+ * @return the vegetative type regenerated
+ */
+  private static VegetativeType caRegen(HabitatTypeGroup htGrp,
+                                        Species species,
                                         HabitatTypeGroupType groupType)
   {
     VegetativeType newState = null;
@@ -1476,7 +1467,7 @@ public class FireEvent extends Process {
    *
    * @param zone
    * @param evu
-   * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2 
+   * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2
    */
   private static int getSpeciesResistanceUtah(RegionalZone zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
@@ -1506,14 +1497,14 @@ public class FireEvent extends Process {
       return LOW;
     }
   }
-  /**
-    * fire resistence for species in the specific region of Alaska .  this does not use the habitat group type as the common method did.  goes solely off species
-    * <p> note species is from an list data structure requiring a cast to a Species object
-    *
-   * @param zone
-   * @param evu
-   * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2
-   */
+/**
+  * fire resistence for species in the specific region of Alaska .  this does not use the habitat group type as the common method did.  goes solely off species
+  * <p> note species is from an list data structure requiring a cast to a Species object
+  *
+ * @param zone
+ * @param evu
+ * @return an integer representation of fire resistance choices are low=0, moderate=1, high=2
+ */
   private static int getSpeciesResistanceAlaska(RegionalZone zone, Evu evu) {
     Species species = (Species)evu.getState(SimpplleType.SPECIES);
     if (species == null) { return LOW; }
@@ -1738,4 +1729,9 @@ public class FireEvent extends Process {
 //    }
 //    return false;
 //  }
+
 }
+
+
+
+
