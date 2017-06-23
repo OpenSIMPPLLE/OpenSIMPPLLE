@@ -5513,7 +5513,11 @@ public final class Evu extends NaturalElement implements Externalizable {
         }
       }
 
-      doNextStateNew(newState);
+      if (RegionalZone.isWyoming()) {
+        doNextStateWyoming();
+      } else {
+        doNextStateNew(newState);
+      }
     }
 
     for (int i=0; i<newStatesTemp.size(); i++) {
@@ -5899,11 +5903,6 @@ public final class Evu extends NaturalElement implements Externalizable {
 //    currentTreatment = (treat != null) ? treat.getType() : null;
 
     MultiKeyMap DProcesses = Simpplle.getAreaSummary().getDProcesses();
-
-    if (RegionalZone.isWyoming()) {
-      doNextStateWyoming();
-      return;
-    }
 
     boolean isYearlyPathway = htGrp.isYearlyPathwayLifeform(species.getLifeform());
 
