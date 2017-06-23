@@ -845,10 +845,11 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Returns a simpplle type state from the current vegetation state.
+   * Returns an attribute from a vegetative state for the area's current life form at the current
+   * time step.
    *
-   * @param kind kind of simpplle type state
-   * @return a simpplle type value or null if there is no vegetation state
+   * @param kind the kind of attribute to retrieve
+   * @return an attribute, or null if the state or attribute don't exist
    */
   public SimpplleType getState (SimpplleType.Types kind) {
     VegSimStateData state = getState();
@@ -863,30 +864,30 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the vegetative state based on the life form of evaluated area.
+   * Returns the vegetative state for the area's current life form at the current time step.
    *
-   * @return the result of getState(lifeform)
+   * @return a vegetative state, or null
    */
   public VegSimStateData getState() {
-    return getState(Area.currentLifeform); // Why isn't this dominantLifeform like in the other methods?
+    return getState(Area.currentLifeform);
   }
 
   /**
-   * Gets the vegetative state based on the dominant life form and passed in time step.
+   * Returns the vegetative state for the unit's dominant life form at the requested time step.
    *
-   * @param timeStep time step to check
-   * @return the result of getState(timeStep, lifeform)
+   * @param timeStep the time step to check
+   * @return a vegetative state, or null
    */
   public VegSimStateData getState (int timeStep) {
     return getState(timeStep, dominantLifeform);
   }
 
   /**
-   * Gets the vegetative state based on passed life form and default time step. If the life form is null, then the
-   * dominant life form of this evu will be used.
+   * Returns the vegetative state for the requested life form at the current time step. If the
+   * life form is null, the unit's dominant life form is used.
    *
    * @param lifeform life form to check
-   * @return the result of getState(timeStep, lifeform)
+   * @return a vegetative state, or null
    */
   public VegSimStateData getState (Lifeform lifeform) {
     if (lifeform == null) lifeform = dominantLifeform;
@@ -894,13 +895,13 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the vegetative state based on passed time step and life form. If the life form is null, then the dominant
-   * life form of this evu will be used. This goes through the season array in reverse until it finds a season with
-   * a vegetative state.
+   * Returns the vegetative state for the requested life form at the requested time step. If the
+   * life form is null, the unit's dominant life form is used. The first state encountered in the
+   * seasons at the requested time step is returned.
    *
    * @param timeStep time step to check
    * @param lifeform life form to check
-   * @return the result of getState(timeStep, lifeform, season)
+   * @return a vegetative state, or null
    */
   public VegSimStateData getState (int timeStep, Lifeform lifeform) {
 
@@ -908,7 +909,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     Season[] seasons = Climate.allSeasons;
     for (int i=seasons.length-1; i>=0; i--) {
-      VegSimStateData state = getState(timeStep,lifeform,seasons[i]);
+      VegSimStateData state = getState(timeStep, lifeform, seasons[i]);
       if (state != null) return state;
     }
 
@@ -917,14 +918,15 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the simulation vegetative state based on passed time step, life form, and season. If the life form is null,
-   * the area's current life form or dominant life form will be used. If the time step is 0, the initial state is
-   * returned. If there is no vegetative state otherwise, then the database is queried if one exists.
+   * Returns the vegetative state for the requested life form at a particular season within a time
+   * step. If the life form is null, then the area's current life form or the unit's dominant life
+   * form are used. The initial state is returned if the time step is zero. Otherwise the state is
+   * retrieved from this unit or queried from a database.
    *
    * @param timeStep time step to check
    * @param lifeform life form to check
    * @param season season to check
-   * @return vegetative simulation state
+   * @return a vegetative state, or null
    */
   public VegSimStateData getState (int timeStep, Lifeform lifeform, Season season) {
 
