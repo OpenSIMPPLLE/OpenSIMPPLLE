@@ -390,9 +390,14 @@ public class HabitatTypeGroupType
   }
   public static HabitatTypeGroupType readExternalSimple(ObjectInput in) throws IOException, ClassNotFoundException {
    int version = in.readInt();
+   String name = (String)in.readObject();
 
-   String name        = (String)in.readObject();
-   return HabitatTypeGroupType.get(name);
+   HabitatTypeGroupType tmpHtGrpType = HabitatTypeGroupType.get(name);
+
+   if (tmpHtGrpType == null){
+     tmpHtGrpType = new HabitatTypeGroupType(name, false);
+   }
+   return tmpHtGrpType;
   }
   public void writeExternalSimple(ObjectOutput out) throws IOException {
     out.writeInt(simpleVersion);

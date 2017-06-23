@@ -1381,9 +1381,7 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     htGrp = HabitatTypeGroup.findInstance(htGrpType);
     if (htGrp == null) {
-      if(htGrpType != null) {
-        htGrp = new HabitatTypeGroup(htGrpType.toString());
-      }
+      htGrp = new HabitatTypeGroup(htGrpType.toString());
     }
 
     if (version == 1) {
@@ -1403,7 +1401,7 @@ public final class VegetativeType implements Comparable, Externalizable {
 //    if (in.readBoolean()) { return; }
   }
 
-  private Object readResolve () throws java.io.ObjectStreamException
+  private Object readResolve() throws java.io.ObjectStreamException
   {
     try {
       VegetativeType vegType = htGrp.getVegetativeType(printName);
