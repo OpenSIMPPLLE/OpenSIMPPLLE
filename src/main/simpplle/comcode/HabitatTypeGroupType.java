@@ -365,16 +365,10 @@ public class HabitatTypeGroupType extends SimpplleType implements Externalizable
   public static HabitatTypeGroupType readExternalSimple(ObjectInput in) throws IOException,
                                                                         ClassNotFoundException {
     int version = in.readInt();
-    String name = (String)in.readObject();
+    String name = (String) in.readObject();
 
-    HabitatTypeGroupType tmpHtGrpType = HabitatTypeGroupType.get(name);
-
-    if (tmpHtGrpType == null){
-      tmpHtGrpType = new HabitatTypeGroupType(name, false);
-    }
-    return tmpHtGrpType;
+    return HabitatTypeGroupType.get(name, true);
   }
-
   /**
   * Writes to an external source the variables that define a habitat type group type.
   * These are the name, description, and userCreated boolean (true if user created)
