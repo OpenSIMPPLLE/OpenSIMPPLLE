@@ -5842,9 +5842,10 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   /**
    * Use the multiple lifeform doNextState
+   *
    */
   public VegetativeType doRegen(Lifeform lowerLifeform, Lifeform adjLifeform) {
-    RegionalZone   zone = Simpplle.currentZone;
+    RegionalZone zone = Simpplle.currentZone;
 
     VegSimStateData state = getState(lowerLifeform);
     if (state == null) { return null; }
@@ -5871,6 +5872,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     return newState;
   }
+
   public VegetativeType doFireRegen(Lifeform lifeform) {
     VegetativeType newState=null;
 
@@ -8228,34 +8230,38 @@ public final class Evu extends NaturalElement implements Externalizable {
 
         return lifeformSet;
     }
-  public ArrayList<Lifeform> getLifeformsList(int tStep, Season season) {
+
+  /**
+   * Returns a list of all life forms from the season at the specified time step. Warning: This
+   * method clears, re-populates, and returns an instance variable named "lifeformList".
+   *
+   * @param timeStep a time step
+   * @param season a season
+   * @return a list of all life forms from the season at the specified time step.
+   */
+  private ArrayList<Lifeform> getLifeformsList(int timeStep, Season season) {
+
     lifeformList.clear();
 
     Flat3Map map;
-    if (tStep > 0 && simData != null) {
-      int index = getSimDataIndex(tStep);
+    if (timeStep > 0 && simData != null) {
+      int index = getSimDataIndex(timeStep);
       if (index < 0) {
         throw new RuntimeException("Attempted access to unavailable time step");
       }
-      if (index >= 0) {
-        map = simData[index];
-      }
-      else {
-        return getLifeformsListDatabase(tStep, season);
-      }
-    }
-    else {
+      map = simData[index];
+    } else {
       map = initialState;
     }
 
     MapIterator it = map.mapIterator();
     while (it.hasNext()) {
       MultiKey key = (MultiKey)it.next();
-      Lifeform lifeform    = (Lifeform)key.getKey(0);
+      Lifeform lifeform = (Lifeform)key.getKey(0);
 
-      if ((Season)key.getKey(1) != season) { continue; }
+      if (key.getKey(1) != season) { continue; }
 
-      if (lifeformList.contains(lifeform) == false) {
+      if (!lifeformList.contains(lifeform)) {
         lifeformList.add(lifeform);
       }
     }
