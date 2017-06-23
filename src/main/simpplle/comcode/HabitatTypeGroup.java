@@ -2498,5 +2498,4 @@ public final class HabitatTypeGroup {
                   return retval;
           }
   }
-
 }
