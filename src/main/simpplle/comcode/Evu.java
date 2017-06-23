@@ -722,16 +722,58 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Check if has lifeform passed is present in any seasons.
-   * @param lifeform the lifeform to be checked
+   * Checks if a life form matches the life form in the EVU at the current time step.
+   *
+   * @param lifeform a life form to check for
+   * @return true if the life form matches the life form in this EVU at the current time step
+   */
+  public boolean hasLifeform(Lifeform lifeform) {
+    int timeStep = 0;
+    if (Simpplle.getCurrentSimulation() != null) {
+      timeStep = Simulation.getCurrentTimeStep();
+    }
+    return hasLifeform(lifeform, timeStep);
+  }
+
+  /**
+   * Checks if a life form matches the life form in the EVU at the requested time step.
+   *
+   * @param lifeform a life form to check for
+   * @param timeStep a time step where the life form should be found
+   * @return true if the life form matches the life form in this EVU at the requested time step
+   */
+  public boolean hasLifeform(Lifeform lifeform, int timeStep) {
+    if (timeStep == 0) {
+      return hasLifeformAnySeason(lifeform, initialState);
+    }
+
+    Simulation simulation = Simpplle.getCurrentSimulation();
+    if (simulation != null && simData != null) {
+      int index = getSimDataIndex(timeStep);
+      if (index < 0) {
+        throw new RuntimeException("Attempted access to unavailable time step");
+      }
+
+      if (index >= 0) {
+        return hasLifeformAnySeason(lifeform, simData[index]);
+      } else {
+        return hasLifeformAnySeasonDatabase(lifeform, timeStep);
+      }
+    } else {
+      return hasLifeformAnySeason(lifeform, initialState);
+    }
+  }
+
+  /**
+   * Checks if a life form is present in any seasons within a single simulation state.
+   *
+   * @param lifeform the life form to be checked
    * @param map the map which contains lifeforms and season
    * @return true if life form is present in any season
    */
   private boolean hasLifeformAnySeason(Lifeform lifeform, Flat3Map map) {
-//    if (map == null) { return false; }
-    Season[] seasons = Climate.allSeasons;
-    for (int i=0; i<seasons.length; i++) {
-      MultiKey key = LifeformSeasonKeys.getKey(lifeform,seasons[i]);
+    for (Season season : Climate.allSeasons) {
+      MultiKey key = LifeformSeasonKeys.getKey(lifeform, season);
       if (map.containsKey(key)) {
         return true;
       }
@@ -741,6 +783,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   /**
    * Uses Hibernate to query database if life form is present in any season.
+   *
    * @param lifeform life form being evaluated
    * @param timeStep
    * @return true if life form is present in any season database.
@@ -757,58 +800,15 @@ public final class Evu extends NaturalElement implements Externalizable {
     strBuf.append(" and state.run=");
     strBuf.append(Simulation.getInstance().getCurrentRun());
 
-    Session     session = DatabaseCreator.getSessionFactory().openSession();
+    Session session = DatabaseCreator.getSessionFactory().openSession();
     Query q = session.createQuery(strBuf.toString());
-    strBuf = null;
     List totList = q.list();
-
     session.close();
 
     if (totList == null || totList.size() == 0) {
       return false;
-    }
-    return true;
-  }
-  /**
-   * Check if simulation has a specific life form.
-   * @param lifeform the life form to be evaluated
-   * @return If there is a current simulation will check life form at current
-   * time step, else will check life form at time step 0.
-   */
-  public boolean hasLifeform(Lifeform lifeform) {
-    Simulation simulation = Simpplle.getCurrentSimulation();
-    int cStep = (simulation != null) ? simulation.getCurrentTimeStep() : 0;
-    return hasLifeform(lifeform,cStep);
-  }
-
-  /**
-   * Check if an Evu has a specific life form, based on passed time step.
-   * This is based on a present in any season query of the life from and the simulation state of passed time step.
-   * @param lifeform the life form to be evaluated
-   * @param timeStep the time step used to
-   * @return true if simulation has life form.
-   * @throws - runtime exception if index is <0.  This is not caught here or thrown...
-   */
-  public boolean hasLifeform(Lifeform lifeform, int timeStep) {
-    if (timeStep == 0) {
-      return hasLifeformAnySeason(lifeform,initialState);
-    }
-
-    Simulation simulation = Simpplle.getCurrentSimulation();
-    if (simulation != null && simData != null) {
-      int index = getSimDataIndex(timeStep);
-      if (index < 0) {
-        throw new RuntimeException("Attempted access to unavailable time step");
-      }
-
-      if (index >= 0) {
-        return hasLifeformAnySeason(lifeform,simData[index]);
-      } else {
-        return hasLifeformAnySeasonDatabase(lifeform, timeStep);
-      }
-    }
-    else {
-      return hasLifeformAnySeason(lifeform,initialState);
+    } else {
+      return true;
     }
   }
 
