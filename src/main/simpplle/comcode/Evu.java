@@ -3183,39 +3183,40 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Creates a new vegetative simultion state data object with the passed in parameters
-   * @param tStep the time step of the new state.
+   * Creates and stores a vegetative state at a particular time step within a simulation.
+   *
+   * @param tStep the time step of the new state
    * @param run the run of the new state
    * @param vegType the vegetative type of the new state
    * @param process the process of the new state
    * @param prob the probability of the new state
    * @param season the season of the new state
-   * @return
+   * @return the new vegetative state
    */
-  public VegSimStateData newState(int tStep, int run, VegetativeType vegType, ProcessType process, short prob, Season season) {
+  public VegSimStateData createAndStoreState(int tStep, int run, VegetativeType vegType, ProcessType process, short prob, Season season) {
     VegSimStateData state = new VegSimStateData(getId(),tStep,run,vegType,process,prob);
-    newState(tStep, state, season);
+    storeState(tStep, state, season);
     return state;
   }
 
   /**
-   * Creates a new veg state object.
-   * @param tStep
-   * @param state
-   * @param season
+   * Stores a vegetative state at a particular time step within a simulation.
+   *
+   * @param tStep the time step where the state occurred
+   * @param state the vegetative state to store
+   * @param season the season that the state occurred in
    */
-  private void newState(int tStep, VegSimStateData state, Season season) {
+  private void storeState(int tStep, VegSimStateData state, Season season) {
     Lifeform lifeform = state.getLifeform();
-    if (Area.multipleLifeformsEnabled() == false) {
+    if (!Area.multipleLifeformsEnabled()) {
       lifeform = dominantLifeform;
     }
-
-    MultiKey key = LifeformSeasonKeys.getKey(lifeform,season);
+    MultiKey key = LifeformSeasonKeys.getKey(lifeform, season);
     int index = getSimDataIndex(tStep);
     if (index < 0) {
       throw new RuntimeException("Attempted access to unavailable time step");
     }
-    simData[index].put(key,state);
+    simData[index].put(key, state);
   }
 
   /**
@@ -5523,7 +5524,7 @@ public final class Evu extends NaturalElement implements Externalizable {
                             (short)selected.probability,Climate.Season.YEAR);
 
       int cStep = Simulation.getCurrentTimeStep();
-      newState(cStep,state,Simulation.getInstance().getCurrentSeason());
+      storeState(cStep,state,Simulation.getInstance().getCurrentSeason());
       if (selected.probability >= 0) {
         Lifeform newLife = newStatesTemp.get(i).getSpecies().getLifeform();
         Simulation.getInstance().getAreaSummary().updateProcessOriginatedIn(this,newLife,selected,cStep);
@@ -5547,7 +5548,7 @@ public final class Evu extends NaturalElement implements Externalizable {
                           (short)selected.probability,Climate.Season.YEAR);
 
     int cStep = Simulation.getCurrentTimeStep();
-    newState(cStep,state,Climate.Season.YEAR);
+    storeState(cStep,state,Climate.Season.YEAR);
     if (selected.probability >= 0) {
       Lifeform newLife = vegType.getSpecies().getLifeform();
       Simulation.getInstance().getAreaSummary().updateProcessOriginatedIn(this,newLife,selected,cStep);
@@ -5604,7 +5605,7 @@ public final class Evu extends NaturalElement implements Externalizable {
             new VegSimStateData(getId(),cStep,run,newState,selected.processType,
                                 (short)selected.probability,oldState.getSeason());
 
-          newState(cStep,state,Simulation.getInstance().getCurrentSeason());
+          storeState(cStep,state,Simulation.getInstance().getCurrentSeason());
           if (selected.probability >= 0) {
             simulation.getAreaSummary().updateProcessOriginatedIn(this,newLife,selected,cStep);
           }
