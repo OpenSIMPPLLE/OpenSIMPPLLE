@@ -303,7 +303,7 @@ public class HabitatTypeGroupType extends SimpplleType implements Externalizable
    * @return
    */
   public static HabitatTypeGroupType get(String htGrpName) {
-    return ( (HabitatTypeGroupType)allGroupHm.get(htGrpName.toUpperCase()) );
+    return get(htGrpName, false);
   }
   /**
    * First tries to get the HabitatTypeGroupType from the allGroupHM keyed by uppercase name.  If does not exist and create is true, creates a new
