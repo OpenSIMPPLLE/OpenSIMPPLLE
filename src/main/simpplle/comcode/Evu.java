@@ -12,14 +12,12 @@ import org.apache.commons.collections.MapIterator;
 import org.apache.commons.collections.keyvalue.MultiKey;
 import org.apache.commons.collections.map.Flat3Map;
 import org.apache.commons.collections.map.MultiKeyMap;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import simpplle.comcode.Climate.Season;
 
 import java.awt.*;
 import java.io.*;
-import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.List;
@@ -2795,7 +2793,7 @@ public final class Evu extends NaturalElement implements Externalizable {
         getState().setVegType(newState);
       }
     }
-    dominantLifeform = Lifeform.findDominant(getLifeforms());
+    dominantLifeform = Lifeform.getMostDominant(getLifeforms());
   }
 
   /**
@@ -3869,7 +3867,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
 
       Set<Lifeform> lives = findLifeformsPriorSeason(step,season);
-      Lifeform prevDomLife = Lifeform.findDominant(lives);
+      Lifeform prevDomLife = Lifeform.getMostDominant(lives);
       if ((status == Treatment.EFFECTIVE || status == Treatment.APPLIED) && (step > 0)) {
         fout.print(Formatting.fixedField("",5));
 
@@ -5443,13 +5441,13 @@ public final class Evu extends NaturalElement implements Externalizable {
  * @return the lower life form if one exists, or null if there is no lower lifeform.
  */
   private Lifeform findNextLowerLifeform(Lifeform lifeform) {
-    Lifeform lowerLife=Lifeform.getLowerLifeform(lifeform);
+    Lifeform lowerLife=Lifeform.getLessDominant(lifeform);
 
     while (lowerLife != null) {
       if (hasLifeform(lowerLife)) {
         return lowerLife;
       }
-      lowerLife=Lifeform.getLowerLifeform(lowerLife);
+      lowerLife=Lifeform.getLessDominant(lowerLife);
     }
     return null;
   }
@@ -5531,7 +5529,7 @@ public final class Evu extends NaturalElement implements Externalizable {
         Simulation.getInstance().getAreaSummary().updateProcessOriginatedIn(this,newLife,selected,cStep);
       }
     }
-    dominantLifeform = Lifeform.findDominant(getLifeforms());
+    dominantLifeform = Lifeform.getMostDominant(getLifeforms());
     Area.currentLifeform = null;
   }
   /**
@@ -5554,7 +5552,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       Lifeform newLife = vegType.getSpecies().getLifeform();
       Simulation.getInstance().getAreaSummary().updateProcessOriginatedIn(this,newLife,selected,cStep);
     }
-    dominantLifeform = Lifeform.findDominant(getLifeforms());
+    dominantLifeform = Lifeform.getMostDominant(getLifeforms());
   }
 
   /**
@@ -5618,7 +5616,7 @@ public final class Evu extends NaturalElement implements Externalizable {
         // Because the lifeform was removed the last alive state is in
         // the previous time step.
         updateLastLifeData(cStep-1,lifeform,season);
-        dominantLifeform = Lifeform.findDominant(getLifeforms(season));
+        dominantLifeform = Lifeform.getMostDominant(getLifeforms(season));
       }
       else {
         if (hasLifeform(newLife)) {
@@ -8751,7 +8749,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * suppressed for the whole unit not just the lifeform.
    */
   public boolean isSuppressed(Lifeform life) {
-    ArrayList<Lifeform> lives = Lifeform.getMoreDominant(life);
+    List<Lifeform> lives = Lifeform.getMoreDominant(life);
     for (int i=0; i<lives.size(); i++) {
       Lifeform lifeform = lives.get(i);
       VegSimStateData state = getState(lifeform);
