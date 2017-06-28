@@ -461,4 +461,3 @@ public abstract class SimpplleType implements Comparable {
         }
     }
 }
-

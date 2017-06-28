@@ -289,7 +289,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     if (prob == null) {
       return 0;
     } else {
-      return prob.intValue();
+      return prob;
     }
   }
 
@@ -302,13 +302,13 @@ public final class VegetativeType implements Comparable, Externalizable {
   }
 
   public void addProcessNextState(Process p, VegetativeType newNextState) {
-    probability.put(p,new Integer(0));
+    probability.put(p, 0);
     setProcessNextState(p,newNextState);
   }
 
   public void setProcessNextState(Process p, VegetativeType newNextState) {
     if (probability.get(p) == null) {
-      probability.put(p,new Integer(0));
+      probability.put(p, 0);
     }
     nextState.put(p, newNextState);
     htGrp.markChanged();
@@ -661,7 +661,7 @@ public final class VegetativeType implements Comparable, Externalizable {
 
     Float ch = hm.get(sp);
     if (ch != null) {
-      return ch.floatValue();
+      return ch;
     }
 
     return 0.0f;
@@ -908,7 +908,6 @@ public final class VegetativeType implements Comparable, Externalizable {
           process = Process.findInstance(ProcessType.get(firstValue));
           if (process == null) {
             System.out.println("Skipping Invalid Process found in line: " + line);
-            continue;
 //            throw new ParseError("Invalid Process found in line: " + line);
           }
           else if (count != 2 && count != 3) {
@@ -976,7 +975,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       throw new ParseError("Invalid probability found");
     }
     nextState.put(process,nextStateStr);
-    probability.put(process,new Integer(nextStateProb));
+    probability.put(process, nextStateProb);
   }
 
   private void readProcessNextState(StringTokenizerPlus strTok) throws ParseError
@@ -1272,7 +1271,7 @@ public final class VegetativeType implements Comparable, Externalizable {
       prob    = (Integer) probability.get(process);
       fout.print("  " + Formatting.fixedField(process.toString(),25,true) + " ");
       fout.print(Formatting.fixedField(state.toString(),36,true) + " ");
-      if (prob.intValue() != 0) {
+      if (prob != 0) {
         fout.print(Formatting.fixedField(prob, 3));
       }
       fout.println();
@@ -1398,11 +1397,12 @@ public final class VegetativeType implements Comparable, Externalizable {
       }
     }
 
+    // Unnecessary? Doesn't look like this is needed...
     // Check to see if we need to read anything else.
-    if (in.readBoolean()) { return; }
+//    if (in.readBoolean()) { return; }
   }
 
-  private Object readResolve () throws java.io.ObjectStreamException
+  private Object readResolve() throws java.io.ObjectStreamException
   {
     try {
       VegetativeType vegType = htGrp.getVegetativeType(printName);
