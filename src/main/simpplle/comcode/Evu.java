@@ -6032,13 +6032,13 @@ public final class Evu extends NaturalElement implements Externalizable {
       updateCurrentProb(Evu.D);
     }
 
-    if (getState(newState.getSpecies().getLifeform()) == null) {
-      System.out.println("Evu:5097, " + getId());
-    }
     // New VegSimStateData instance already added when process was
     // selected, with current state as state.  So we simply need to
     // update this instance.
-    getState(newState.getSpecies().getLifeform()).setVegType(newState);
+    VegSimStateData oldState = getState(newState.getSpecies().getLifeform());
+    if (oldState != null) {
+      oldState.setVegType(newState);
+    }
   }
 /**
  * Checks if can do Fire regeneration for this Evu.  If is a stand replacing fire, or zone is south central alaska, or michigan and it is spring returns false
