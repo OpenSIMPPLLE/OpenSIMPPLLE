@@ -941,7 +941,16 @@ public final class Evu extends NaturalElement implements Externalizable {
       if (initialState == null) return null;
 
       MultiKey key = LifeformSeasonKeys.getKey(lifeform,Season.YEAR);
-      VegSimStateData foundState = (VegSimStateData)initialState.get(key);
+      VegSimStateData foundState = (VegSimStateData)initialState.get(key); // [ no classification, YEAR]
+
+      // If found state is null, we can assume the dominant lifeform was changed during the simulation?
+      if(foundState == null){
+
+        lifeform = Lifeform.NA;
+        key = new MultiKey(lifeform, Season.YEAR);
+        foundState = (VegSimStateData)initialState.get(key);
+
+      }
       return foundState;
 
     }
@@ -2465,18 +2474,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return the initial process for a veg simulation state
    */
   public ProcessType getInitialProcess() {
-
-    // TODO: handle better?
-    ProcessType tmpProcess = null;
-
-    VegSimStateData state = getState(0); // Null
-
-    if(state != null) {
-
-      tmpProcess = state.getProcess();
-    }
-
-    return tmpProcess;
+    return getState(0).getProcess();
   }
 
   /**
@@ -8843,9 +8841,4 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (getAzimuthDifference(spread, windDirection) <= downwindThreshold) return 'D';
     else return 'N';
   }
-
 }
-
-
-
-
