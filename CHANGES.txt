@@ -1,6 +1,7 @@
-Version 1.4.0 :
+Version 1.3.11 :
 
     - Fixed null pointer exception thrown during simulations on certain habitat type groups
+    - Fixed null pointer exception thrown while computing next EVU states
 
 Version 1.3.10 : June 15, 2017
 
