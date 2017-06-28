@@ -28,8 +28,9 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
-import simpplle.comcode.SizeClass;
+
 import simpplle.comcode.SimpplleType;
+import simpplle.comcode.Structure;
 
 /**
  * This class creates the dialog for the Size Class Logic Chooser, a type of JDialog.
@@ -166,9 +167,9 @@ public class LogicSizeClassChooser extends JDialog {
   private void initialize() {
     dataModel.setLogicData(logicData);
 
-    nonForestCB.setSelected(logicData.hasStructure(SizeClass.NON_FOREST));
-    singleStoryCB.setSelected(logicData.hasStructure(SizeClass.SINGLE_STORY));
-    multiStoryCB.setSelected(logicData.hasStructure(SizeClass.MULTIPLE_STORY));
+    nonForestCB.setSelected(logicData.hasStructure(Structure.NON_FOREST));
+    singleStoryCB.setSelected(logicData.hasStructure(Structure.SINGLE_STORY));
+    multiStoryCB.setSelected(logicData.hasStructure(Structure.MULTIPLE_STORY));
 
     descText.setText("");
     if (logicData.isDefaultDescription(SimpplleType.SIZE_CLASS) == false) {
@@ -183,10 +184,10 @@ public class LogicSizeClassChooser extends JDialog {
  */
   public void nonForestCB_actionPerformed(ActionEvent e) {
     if (nonForestCB.isSelected()) {
-      logicData.addStructure(SizeClass.NON_FOREST);
+      logicData.addStructure(Structure.NON_FOREST);
     }
     else {
-      logicData.removeStructure(SizeClass.NON_FOREST);
+      logicData.removeStructure(Structure.NON_FOREST);
     }
   }
   /**
@@ -196,10 +197,10 @@ public class LogicSizeClassChooser extends JDialog {
    */
   public void singleStoryCB_actionPerformed(ActionEvent e) {
     if (singleStoryCB.isSelected()) {
-      logicData.addStructure(SizeClass.SINGLE_STORY);
+      logicData.addStructure(Structure.SINGLE_STORY);
     }
     else {
-      logicData.removeStructure(SizeClass.SINGLE_STORY);
+      logicData.removeStructure(Structure.SINGLE_STORY);
     }
   }
   /**
@@ -209,10 +210,10 @@ public class LogicSizeClassChooser extends JDialog {
    */
   public void multiStoryCB_actionPerformed(ActionEvent e) {
     if (multiStoryCB.isSelected()) {
-      logicData.addStructure(SizeClass.MULTIPLE_STORY);
+      logicData.addStructure(Structure.MULTIPLE_STORY);
     }
     else {
-      logicData.removeStructure(SizeClass.MULTIPLE_STORY);
+      logicData.removeStructure(Structure.MULTIPLE_STORY);
     }
   }
 

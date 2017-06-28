@@ -34,7 +34,7 @@
 
         <javac srcdir="${sourceDirectory}"
                destdir="${buildDirectory}"
-               debug="false"
+               debug="true"
                verbose="false"
                listfiles="false"
                failonerror="true"

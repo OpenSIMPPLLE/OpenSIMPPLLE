@@ -22,8 +22,14 @@ public class Properties {
   // Sets system to invasive species Montana State University Problem File.
   private boolean invasiveMSU;
   private boolean simulationLogging;
-  private static File   workingDirectory;
+  private static File workingDirectory;
+  private long HEAP_SIZE = Runtime.getRuntime().maxMemory();
+  ;
 
+  /**
+   *
+   * Read current user settings from properties file. Called every time the application opens.
+   */
   public void readPropertiesFile(){
     String homeDir = System.getProperty("user.home");
     File   file = new File(homeDir, propertiesFileName);
@@ -102,6 +108,7 @@ public class Properties {
         if (value == null) { value = "false"; }
         fout.println("InvasiveSpeciesLogicDataMSU_probFile," + value);
       }
+
       fout.flush();
       fout.close();
     }

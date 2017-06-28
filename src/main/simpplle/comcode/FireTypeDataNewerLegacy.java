@@ -23,9 +23,9 @@ import java.util.*;
  */
 
 public abstract class FireTypeDataNewerLegacy {
-  public static final SizeClass.Structure NON_FOREST     = SizeClass.NON_FOREST;
-  public static final SizeClass.Structure SINGLE_STORY   = SizeClass.SINGLE_STORY;
-  public static final SizeClass.Structure MULTIPLE_STORY = SizeClass.MULTIPLE_STORY;
+  public static final Structure NON_FOREST     = Structure.NON_FOREST;
+  public static final Structure SINGLE_STORY   = Structure.SINGLE_STORY;
+  public static final Structure MULTIPLE_STORY = Structure.MULTIPLE_STORY;
 
   public static final Integer NF_OBJ = new Integer(NON_FOREST.ordinal());
   public static final Integer SS_OBJ = new Integer(SINGLE_STORY.ordinal());
@@ -234,14 +234,14 @@ public abstract class FireTypeDataNewerLegacy {
 
     public SizeClass[]         sizeClasses;
     public ArrayList           sizeClassRules;
-    public SizeClass.Structure structure;
+    public Structure structure;
 
-    public FireTypeDataEntry(int numSizeClasses, int numRules, SizeClass.Structure structure) {
+    public FireTypeDataEntry(int numSizeClasses, int numRules, Structure structure) {
       sizeClasses    = new SizeClass[numSizeClasses];
       sizeClassRules = new ArrayList(numRules);
       this.structure = structure;
     }
-    public FireTypeDataEntry(int numSizeClasses, SizeClass.Structure structure) {
+    public FireTypeDataEntry(int numSizeClasses, Structure structure) {
       this(numSizeClasses,5,structure);
     }
 
@@ -378,7 +378,7 @@ public abstract class FireTypeDataNewerLegacy {
     }
   }
 
-  public static void deleteEntry(SizeClass.Structure structure, int resistance,
+  public static void deleteEntry(Structure structure, int resistance,
                                  FireTypeDataEntry entry) {
     ArrayList dataList =
         getData(structure,resistance);
@@ -391,8 +391,8 @@ public abstract class FireTypeDataNewerLegacy {
     }
   }
 
-  public static void copyTo(SizeClass.Structure copyStructure, int copyResistance,
-                               SizeClass.Structure toStructure, int toResistance) {
+  public static void copyTo(Structure copyStructure, int copyResistance,
+                            Structure toStructure, int toResistance) {
     ArrayList copyData = getData(copyStructure,copyResistance);
 
     if (getData(toStructure,toResistance) == null) {
@@ -407,9 +407,9 @@ public abstract class FireTypeDataNewerLegacy {
     }
     markDataChanged();
   }
-  public static void copyToAll(SizeClass.Structure copyStructure, int copyResistance) {
+  public static void copyToAll(Structure copyStructure, int copyResistance) {
     for (int s=0; s<data.length; s++) {
-      SizeClass.Structure structure = SizeClass.Structure.lookupOrdinal(s);
+      Structure structure = Structure.lookupOrdinal(s);
       for (int resistance=0; resistance<data[structure.ordinal()].length; resistance++) {
         if ((structure == copyStructure) && (resistance == copyResistance)) {
           continue;
@@ -420,7 +420,7 @@ public abstract class FireTypeDataNewerLegacy {
     markDataChanged();
   }
 
-  public static ArrayList getData(SizeClass.Structure structure, int resistance) {
+  public static ArrayList getData(Structure structure, int resistance) {
     return data[structure.ordinal()][resistance];
   }
 
@@ -448,7 +448,7 @@ public abstract class FireTypeDataNewerLegacy {
     FireEventLogic.getInstance().clearData(FireEventLogic.TYPE_STR);
     FireTypeDataEntry entry;
     for (int s=0; s<NUM_STRUCTURE; s++) {
-      SizeClass.Structure structure = SizeClass.Structure.lookupOrdinal(s);
+      Structure structure = Structure.lookupOrdinal(s);
       for (int r=0; r<NUM_RESISTANCE; r++) {
         ArrayList speciesList=null;
         FireResistance fireResist;
@@ -496,7 +496,7 @@ public abstract class FireTypeDataNewerLegacy {
   public static void clearData() {
     data = new ArrayList[NUM_STRUCTURE][NUM_RESISTANCE];
   }
-  public static FireTypeDataEntry findEntry(SizeClass.Structure structure, int resistance,
+  public static FireTypeDataEntry findEntry(Structure structure, int resistance,
                                             SizeClass sizeClass) {
     FireTypeDataEntry entry;
     ArrayList         entryList = getData(structure,resistance);
@@ -538,7 +538,7 @@ public abstract class FireTypeDataNewerLegacy {
     }
     return null;
   }
-  public static FireTypeDataEntry addSizeClassGroup(SizeClass.Structure structure, int resistance, SizeClass[] sizeClasses) {
+  public static FireTypeDataEntry addSizeClassGroup(Structure structure, int resistance, SizeClass[] sizeClasses) {
     if (data[structure.ordinal()][resistance] == null) {
       data[structure.ordinal()][resistance] = new ArrayList();
     }
@@ -549,7 +549,7 @@ public abstract class FireTypeDataNewerLegacy {
     return entry;
   }
 
-  private static boolean isMemberSizeClass(SizeClass sizeClass, SizeClass.Structure structure,
+  private static boolean isMemberSizeClass(SizeClass sizeClass, Structure structure,
                                            int resistance) {
     FireTypeDataEntry entry;
 
@@ -561,7 +561,7 @@ public abstract class FireTypeDataNewerLegacy {
     return false;
   }
 
-  public static Vector getPossibleSizeClasses(SizeClass.Structure structure, int resistance) {
+  public static Vector getPossibleSizeClasses(Structure structure, int resistance) {
     Vector    sizeClasses = HabitatTypeGroup.getValidSizeClass();
     Vector    v = new Vector();
     SizeClass sizeClass;
@@ -606,7 +606,7 @@ public abstract class FireTypeDataNewerLegacy {
     StringTokenizerPlus strTok, strListTok;
     int                 resistance=0, numEntries=0, numRules=0;
     ProcessType         fireType;
-    SizeClass.Structure structure;
+    Structure structure;
 
     try {
       line = fin.readLine();
