@@ -27,9 +27,6 @@ import java.util.Set;
  * <p>Original source code authorship: Kirk A. Moeller
  */
 
-// TODO: Remove redundant casts
-  // TODO: rollback hashmap stuff before commit
-
 public class VegSimStateData implements Externalizable {
 
   static final long serialVersionUID = -159138068111213685L;
