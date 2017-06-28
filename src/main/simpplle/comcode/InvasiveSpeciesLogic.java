@@ -9,7 +9,6 @@
 package simpplle.comcode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * This class contains methods to handle Invasive Species Logic, a type of Base Logic
@@ -179,7 +178,7 @@ public final class InvasiveSpeciesLogic extends BaseLogic {
 
               int ts = Simulation.getCurrentTimeStep();
               int run = Simulation.getCurrentRun();
-              state = evus[i].newState(ts, run, vt, ProcessType.SUCCESSION,
+              state = evus[i].createAndStoreState(ts, run, vt, ProcessType.SUCCESSION,
                                        (short) 100, season);
             }
           }

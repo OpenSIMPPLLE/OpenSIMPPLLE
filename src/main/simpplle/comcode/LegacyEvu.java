@@ -405,7 +405,7 @@ public class LegacyEvu {
         for (int ts = 1; ts <= nSteps; ts++) {
           // Run here is not correct, but there is no simple way of knowing
           // what the correct run number is.
-          evu.newState(ts,0,
+          evu.createAndStoreState(ts,0,
                        simulatedStates.getVegType(0, ts),
                        simulatedStates.getProcessType(0, ts),
                        simulatedStates.getProbability(0, ts),

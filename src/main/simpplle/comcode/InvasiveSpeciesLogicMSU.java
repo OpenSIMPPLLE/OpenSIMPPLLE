@@ -9,7 +9,6 @@
 package simpplle.comcode;
 
 import java.util.ArrayList;
-import java.io.*;
 
 /**
  * This class contains methods to handle MSU Invasive Species Logic, a type of Base Logic.  Invasive species logic is created
@@ -227,7 +226,7 @@ public class InvasiveSpeciesLogicMSU extends BaseLogic {
 
               int ts = Simulation.getCurrentTimeStep();
               int run = Simulation.getCurrentRun();
-              state = evus[i].newState(ts, run, vt, ProcessType.SUCCESSION,
+              state = evus[i].createAndStoreState(ts, run, vt, ProcessType.SUCCESSION,
                                        (short) 100, season);
             }
           }
