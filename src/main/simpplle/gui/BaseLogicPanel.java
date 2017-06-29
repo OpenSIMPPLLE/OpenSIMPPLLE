@@ -38,7 +38,7 @@ public class BaseLogicPanel extends JPanel {
   protected boolean inColumnInit = false;
   protected AbstractBaseLogic logicInst;
   protected SystemKnowledge.Kinds sysKnowKind;
-  private ArrayList<Integer> emptyCols = new ArrayList<>();
+  private ArrayList<Integer> emptyCols;
   protected JPanel northPanel = new JPanel();
   protected JPanel centerPanel = new JPanel(new BorderLayout());
   protected JScrollPane tableScrollPane = new JScrollPane();
@@ -235,6 +235,12 @@ public class BaseLogicPanel extends JPanel {
    */
   private ArrayList<Integer> emptyColumns() {return logicInst.checkEmpty(kind);}
   /**
+   * Calls to AbstractBaseLogic to get ArrayList of all columns indices
+   *
+   * @return Returns ArrayList of all column indices
+   */
+  private ArrayList<Integer> allColumns(){return logicInst.allCols(kind);}
+  /**
    * Hides all of the empty columns
    */
   void hideEmpty(){
@@ -245,6 +251,7 @@ public class BaseLogicPanel extends JPanel {
    * Reveals all of the empty columns*
    */
   void showEmpty(){
+    emptyCols = allColumns();
     emptyCols.forEach(this::addVisibleColumn);
   }
 

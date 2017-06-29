@@ -126,7 +126,6 @@ public class VegLogicDialog extends AbstractLogicDialog {
     menuColumns.add(menuTrailStatus);
     menuColumns.add(menuLandtype);
     menuBar.add(menuColumns);
-
   }
   /**
    * Initializes the Vegetative Logic Dialog with column menu items representing rows for for ROW or 0 column (Priority), Ecological group, species, size class, process, treatment, season, moisture, temperature,
@@ -178,10 +177,14 @@ public class VegLogicDialog extends AbstractLogicDialog {
     else {
       currentPanel.removeVisibleColumn(column);
     }
+    if(menuShowValCols.isSelected()){
+      menuShowValCols.setSelected(false);
+    }
     currentPanel.updateColumns();
   }
   /**
-   * If Show Vals menu item selected, calls to columnMenuClicked which adds a visible column to the current panel, hides unselected columns, and updates.
+   * If Show Vals menu item selected, calls to hideEmpty which removes all empty columns from the current panel and updates.
+   * Otherwise, all of the hidden columns are shown.
    */
   private void menuShowValCols_actionPerformed() {
 
