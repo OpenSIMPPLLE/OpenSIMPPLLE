@@ -405,15 +405,17 @@ public final class Evu extends NaturalElement implements Externalizable {
   public static ProcessType getDefaultInitialProcess() { return defaultInitialProcess; }
 
   /**
-   * Check whether Habitat Type Group, Current State, Fire management zone, acres, and initial process are valid.
-   * @return true if all checked are valid
+   * Checks if the habitat type group, current state, fire management zone, acreage, and initial
+   * processes are valid values.
+   *
+   * @return true if the values are valid
    */
   public boolean isValid() {
-    return(isHabitatTypeGroupValid() &&
-           isCurrentStateValid()     &&
-           isFmzValid()              &&
-           isAcresValid()            &&
-           isInitialProcessValid());
+    return isHabitatTypeGroupValid()
+        && isCurrentStateValid()
+        && isFmzValid()
+        && isAcresValid()
+        && isInitialProcessValid();
   }
 
   /**
