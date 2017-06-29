@@ -26,13 +26,11 @@ import java.util.zip.GZIPInputStream;
 public abstract class RegenerationLogic {
   private static final int version = 2;
 
-  private static HashMap<HabitatTypeGroupType,BaseLogic> fireData =
-      new HashMap<HabitatTypeGroupType,BaseLogic>();
-  private static HashMap<HabitatTypeGroupType,BaseLogic> succData =
-      new HashMap<HabitatTypeGroupType,BaseLogic>();
+  private static HashMap<HabitatTypeGroupType,BaseLogic> fireData = new HashMap<HabitatTypeGroupType,BaseLogic>();
+  private static HashMap<HabitatTypeGroupType,BaseLogic> succData = new HashMap<HabitatTypeGroupType,BaseLogic>();
 
-  public enum DataKinds { FIRE, SUCCESSION };
-  public static final DataKinds FIRE       = DataKinds.FIRE;
+  public enum DataKinds { FIRE, SUCCESSION }
+  public static final DataKinds FIRE = DataKinds.FIRE;
   public static final String FIRE_STR = FIRE.toString();
 
   public static final DataKinds SUCCESSION = DataKinds.SUCCESSION;
@@ -41,11 +39,11 @@ public abstract class RegenerationLogic {
   private static ArrayList<Species> adjPrefSpecies; // Used in Fire Regen Only.
 
   private static HabitatTypeGroupType currentEcoGroup;
-/**
- * Gets the hashmap for a particular type of regeneration logic.  CHoices are Succession or Fire.  
- * @param kind
- * @return
- */
+  /**
+   * Gets the hashmap for a particular type of regeneration logic.  Choices are Succession or Fire.
+   * @param kind
+   * @return
+   */
   private static HashMap<HabitatTypeGroupType,BaseLogic> getDataHm(DataKinds kind) {
     switch (kind) {
       case FIRE:       return fireData;
@@ -53,11 +51,12 @@ public abstract class RegenerationLogic {
     }
     return null;
   }
-/**
- * Sets the default habitat type group. If fire regeneration applies to any habitat type group type in the fire data, uses ANY as default habitata type group type (eco group)
- * Otherwise sets it to the key (habitat type group type) in the fire data hashmap.  
- * @param kind
- */
+  /**
+   * Sets the default habitat type group. If fire regeneration applies to any
+   * habitat type group type in the fire data, uses ANY as default habitat type group type (eco group)
+   * Otherwise sets it to the key (habitat type group type) in the fire data hashmap.
+   * @param kind
+   */
   public static void setDefaultEcoGroup(DataKinds kind) {
     switch (kind) {
       case FIRE:
@@ -80,6 +79,7 @@ public abstract class RegenerationLogic {
   public static BaseLogic getLogicInstance(String kind) {
     return getData(DataKinds.valueOf(kind));
   }
+
   public static BaseLogic getData(DataKinds kind, HabitatTypeGroupType ecoGroup) {
     return getData(kind,ecoGroup,false);
   }
@@ -115,6 +115,7 @@ public abstract class RegenerationLogic {
   public static BaseLogic getData(DataKinds kind, boolean addIfNull) {
     return getData(kind,currentEcoGroup,addIfNull);
   }
+
   public static int getRowCount(DataKinds kind) {
     return getData(kind).getRowCount(kind.toString());
   }
@@ -122,10 +123,10 @@ public abstract class RegenerationLogic {
   public static int getColumnCount(DataKinds kind) {
     return getData(kind).getVisibleColumnCount(kind.toString());
   }
-/**
- * Checks if there is either fire or succession regeneration data.
- * @return True if either fire or succession data hashmaps are not null.  
- */
+  /**
+   * Checks if there is either fire or succession regeneration data.
+   * @return True if either fire or succession data hashmaps are not null.
+   */
   public static boolean isDataPresent() {
     return isDataPresent(FIRE) && isDataPresent(SUCCESSION);
   }
@@ -137,10 +138,10 @@ public abstract class RegenerationLogic {
   public static boolean isDataPresent(DataKinds kind) {
     return (getData(kind) != null && getData(kind).getRowCount(kind.toString()) > 0);
   }
-/**
- * Clears the regeneration hashmap for either fire or succession regeneration.
- * @param kind either fire or succession.  
- */
+  /**
+   * Clears the regeneration hashmap for either fire or succession regeneration.
+   * @param kind either fire or succession.
+   */
   public static void clearData(DataKinds kind) {
     switch (kind) {
       case FIRE: fireData.clear(); break;
@@ -157,6 +158,7 @@ public abstract class RegenerationLogic {
       (RegenerationData)getData(kind).getValueAt(row,kind.toString());
     regenData.setSpecies(species);
   }
+
   public static void addDataRows(int insertPos, String kind, Vector speciesList) {
     for (int i=0; i<speciesList.size(); i++) {
       addDataRow((Species)speciesList.get(i),insertPos,DataKinds.valueOf(kind));
@@ -178,10 +180,12 @@ public abstract class RegenerationLogic {
     getData(kind,true).addRow(insertPos,kind.toString(),regenData);
     markChanged(kind);
   }
+
   public static void deleteDataRow(int row, DataKinds kind) {
     getData(kind).removeRow(row,kind.toString());
     markChanged(kind);
   }
+
   public static boolean isSpeciesPresent(Species species, DataKinds kind) {
     BaseLogic logic = getData(kind);
     ArrayList<AbstractLogicData> dataList = logic.getData(kind.toString());
@@ -194,9 +198,7 @@ public abstract class RegenerationLogic {
     return false;
   }
 
-  private static RegenerationData findRegenData(HabitatTypeGroupType ecoGroup,
-                                                Evu evu, Lifeform lifeform,
-                                                DataKinds kind) {
+  private static RegenerationData findRegenData(HabitatTypeGroupType ecoGroup, Evu evu, Lifeform lifeform, DataKinds kind) {
     int cStep = Simulation.getCurrentTimeStep();
     return findRegenData(ecoGroup,evu,cStep,lifeform,kind);
   }
@@ -210,9 +212,9 @@ public abstract class RegenerationLogic {
    * @param kind fire or succession
    * @return
    */
-  private static RegenerationData findRegenData(HabitatTypeGroupType ecoGroup,
-                                                Evu evu, int tStep, Lifeform lifeform,
-                                                DataKinds kind) {
+  private static RegenerationData findRegenData(HabitatTypeGroupType ecoGroup, Evu evu,
+                                                int tStep, Lifeform lifeform, DataKinds kind) {
+
     BaseLogic logic = getData(kind,ecoGroup);
     if (logic != null) {
       ArrayList<AbstractLogicData> dataList = logic.getData(kind.toString());
@@ -220,6 +222,7 @@ public abstract class RegenerationLogic {
         for (AbstractLogicData data : dataList) {
           RegenerationData regenData = (RegenerationData) data;
           if (regenData.isMatch(evu, tStep, lifeform)) {
+            recordRuleIndex(evu, dataList.indexOf(regenData), kind, tStep, lifeform);
             return regenData;
           }
         }
@@ -230,9 +233,23 @@ public abstract class RegenerationLogic {
     }
     return null;
   }
-  private static RegenerationData findRegenDataSuccInLandscapeSeed(
-      HabitatTypeGroupType ecoGroup, Evu evu,
-      VegSimStateData state, int tStep, Lifeform lifeform, DataKinds kind)
+
+  private static void recordRuleIndex(Evu evu, int index, DataKinds kind, int timestep, Lifeform lifeform) {
+    VegSimStateData state = evu.getState(timestep, lifeform);
+
+    if (state == null) return;
+
+    if (kind == SUCCESSION) {
+      state.setSuccessionRegenerationRuleIndex(index);
+    } else if (kind == FIRE) {
+      state.setFireRegenerationRuleIndex(index);
+    }
+  }
+
+  private static RegenerationData findRegenDataSuccInLandscapeSeed(HabitatTypeGroupType ecoGroup,
+                                                                   Evu evu, VegSimStateData state,
+                                                                   int tStep, Lifeform lifeform,
+                                                                   DataKinds kind)
   {
     BaseLogic logic = getData(kind,ecoGroup);
     if (logic != null) {
@@ -251,6 +268,7 @@ public abstract class RegenerationLogic {
     }
     return null;
   }
+
   /**
    * Checks if a species is a regeneration succession species.  
    * @param ecoGroup
@@ -278,8 +296,8 @@ public abstract class RegenerationLogic {
     return ((regenData != null) ? regenData.succession.booleanValue() : false);
   }
 
-  public static VegetativeType getResproutingState(HabitatTypeGroupType ecoGroup,
-                                                   Evu evu,Lifeform lifeform) {
+  public static VegetativeType getResproutingState(HabitatTypeGroupType ecoGroup, Evu evu,
+                                                   Lifeform lifeform) {
     FireRegenerationData regenData =
       (FireRegenerationData)findRegenData(ecoGroup,evu,lifeform,FIRE);
     if (regenData == null) { return null; }
@@ -291,8 +309,8 @@ public abstract class RegenerationLogic {
     }
     return (VegetativeType)regenData.resprouting.get(0);
   }
-  public static VegetativeType getAdjResproutingState(HabitatTypeGroupType ecoGroup,
-                                                      Evu evu,
+
+  public static VegetativeType getAdjResproutingState(HabitatTypeGroupType ecoGroup, Evu evu,
                                                       int tStep, Lifeform lifeform) {
 
     FireRegenerationData regenData =
@@ -306,8 +324,9 @@ public abstract class RegenerationLogic {
     }
     else { return null; }
   }
-  public static VegetativeType getInPlaceSeedState(HabitatTypeGroupType ecoGroup,
-                                                   Evu evu,Lifeform lifeform) {
+
+  public static VegetativeType getInPlaceSeedState(HabitatTypeGroupType ecoGroup, Evu evu,
+                                                   Lifeform lifeform) {
     FireRegenerationData regenData =
         (FireRegenerationData)findRegenData(ecoGroup,evu,lifeform,FIRE);
     if (regenData == null) { return null; }
@@ -329,8 +348,7 @@ public abstract class RegenerationLogic {
    * looking way back in time to find out if there was seed in the past, say
    * if trees were wiped out by a stand-replacing fire.
    */
-  public static VegetativeType getInLandscapeSeedState(HabitatTypeGroupType ecoGroup,
-                                                       Evu evu,
+  public static VegetativeType getInLandscapeSeedState(HabitatTypeGroupType ecoGroup, Evu evu,
                                                        VegSimStateData state,
                                                        int tStep,
                                                        Lifeform lifeform) {
@@ -347,9 +365,8 @@ public abstract class RegenerationLogic {
     return (VegetativeType)regenData.inLandscape.get(0);
   }
 
-
-  public static VegetativeType getInLandscapeSeedState(HabitatTypeGroupType ecoGroup,
-                                                       Evu evu, int tStep, Lifeform lifeform) {
+  public static VegetativeType getInLandscapeSeedState(HabitatTypeGroupType ecoGroup, Evu evu,
+                                                       int tStep, Lifeform lifeform) {
 
     FireRegenerationData regenData =
         (FireRegenerationData)findRegenData(ecoGroup,evu,tStep,lifeform,FIRE);
@@ -362,6 +379,7 @@ public abstract class RegenerationLogic {
     }
     return (VegetativeType)regenData.inLandscape.get(0);
   }
+
   public static ArrayList<VegetativeType> getAdjacentStates(HabitatTypeGroupType ecoGroup,Evu evu,
                                                             int tStep, Lifeform lifeform) {
     FireRegenerationData regenData =
@@ -373,10 +391,9 @@ public abstract class RegenerationLogic {
 
   public static ArrayList<Species> getAdjacentPreferredSpecies() { return adjPrefSpecies; }
 
-  public static ArrayList<RegenerationSuccessionInfo>
-                getSuccessionSpecies(HabitatTypeGroupType ecoGroup,
-                                     Evu evu,Lifeform lifeform)
-  {
+  public static ArrayList<RegenerationSuccessionInfo> getSuccessionSpecies(
+                  HabitatTypeGroupType ecoGroup, Evu evu,Lifeform lifeform) {
+
     SuccessionRegenerationData regenData =
       (SuccessionRegenerationData)findRegenData(ecoGroup,evu,lifeform,SUCCESSION);
     if (regenData == null) { return null; }
@@ -443,9 +460,7 @@ public abstract class RegenerationLogic {
     }
   }
 
-  public static void readDataLegacy(BufferedReader fin)
-    throws ParseError, IOException
-  {
+  public static void readDataLegacy(BufferedReader fin) throws ParseError, IOException {
     String              line, str;
     StringTokenizerPlus strTok;
     FireRegenerationData           regenData;
@@ -565,6 +580,7 @@ public abstract class RegenerationLogic {
       list = null;
     }
   }
+
   public static void makeBlankLogic(DataKinds kind) {
     ArrayList<SimpplleType> list = Species.getList(SimpplleType.SPECIES);
     if (list == null || list.size() == 0) { return; }
@@ -602,6 +618,7 @@ public abstract class RegenerationLogic {
       return SystemKnowledge.hasChangedOrUserData(SystemKnowledge.REGEN_LOGIC_SUCC);
     }
   }
+
   public static void markChanged(DataKinds kind) {
     if (kind == FIRE) {
       SystemKnowledge.markChanged(SystemKnowledge.REGEN_LOGIC_FIRE);
@@ -610,11 +627,12 @@ public abstract class RegenerationLogic {
       SystemKnowledge.markChanged(SystemKnowledge.REGEN_LOGIC_SUCC);
     }
   }
-/**
- * Sets the current eco group for regeneration logic.  
- * @param kind will be either REGEN_LOGIC_FIRE or REGEN_LOGIC_SUCC (fire or succession regeneration) 
- * @param ecoGroup
- */
+
+  /**
+   * Sets the current eco group for regeneration logic.
+   * @param kind will be either REGEN_LOGIC_FIRE or REGEN_LOGIC_SUCC (fire or succession regeneration)
+   * @param ecoGroup
+   */
   public static void setCurrentEcoGroup(DataKinds kind,HabitatTypeGroupType ecoGroup) {
     currentEcoGroup = ecoGroup;
     if (kind != null) {
@@ -680,21 +698,19 @@ public abstract class RegenerationLogic {
     }
   }
 
-  public static void readFire(ObjectInputStream stream)
-    throws IOException, ClassNotFoundException
+  public static void readFire(ObjectInputStream stream) throws IOException, ClassNotFoundException
  {
     read(stream,FIRE);
     setDefaultEcoGroup(FIRE);
   }
-  public static void readSuccession(ObjectInputStream stream)
-    throws IOException, ClassNotFoundException
+
+  public static void readSuccession(ObjectInputStream stream) throws IOException, ClassNotFoundException
   {
     read(stream,SUCCESSION);
     setDefaultEcoGroup(SUCCESSION);
   }
 
-  public static void read(ObjectInputStream in, DataKinds kind)
-    throws IOException, ClassNotFoundException
+  public static void read(ObjectInputStream in, DataKinds kind) throws IOException, ClassNotFoundException
   {
     int version = in.readInt();
 
@@ -719,8 +735,9 @@ public abstract class RegenerationLogic {
       logic.read(in);
     }
   }
+
   public static void readVersion1(ObjectInputStream in, DataKinds kind)
-    throws IOException, ClassNotFoundException
+      throws IOException, ClassNotFoundException
   {
     int size = in.readInt();
     getDataHm(kind).clear();
@@ -786,11 +803,4 @@ public abstract class RegenerationLogic {
 
     getData(kind).addRow(insertPos,kind.toString(),newLogicData);
   }
-
 }
-
-
-
-
-
-

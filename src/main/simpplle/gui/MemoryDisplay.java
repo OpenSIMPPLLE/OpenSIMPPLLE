@@ -103,8 +103,6 @@ public class MemoryDisplay extends JFrame implements Runnable  {
 
     long used = ((totMem-freeMem) / 1024) / 1024;
     maxMem  = (maxMem / 1024) / 1024;
-    
-    
     memoryUsedLabel.setText(Long.toString((int)used));
     memoryAvailableLabel.setText(Long.toString((int)maxMem));
     update(getGraphics());

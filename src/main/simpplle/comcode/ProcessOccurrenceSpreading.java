@@ -325,9 +325,14 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 //    addSpreadEvent(fromUnit,toUnit,toUnit.getProcessType(timeStep),toUnit.getProb(timeStep),timeStep);
 //  }
 
-  public void addLegacySpreadEvent(Evu fromUnit, Evu toUnit, ProcessType process, int timeStep) {
-    addLegacySpreadEvent(fromUnit,toUnit,process,toUnit.getState(timeStep).getProb(),timeStep);
-  }
+  /* todo this method just calls the other method.
+  * This can be refactored
+   * the only thing that needs to change is the items calling this method
+   * need to grab the tounits process probability
+   */
+//  public void addLegacySpreadEvent(Evu fromUnit, Evu toUnit, ProcessType process, int timeStep) {
+//    addLegacySpreadEvent(fromUnit,toUnit,process,toUnit.getState(timeStep).getProb(),timeStep);
+//  }
 
   /**
    * This particular function is used to build the process event tree from data
@@ -378,6 +383,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
     eventAcres += toUnit.getAcres();
   }
 
+  // What does this method do?
   public void finishedAddingLegacySpreadEvents() {
     for (Iterator i=tmpToNodesHm.keySet().iterator(); i.hasNext(); ) {
       Node fromNode = (Node)i.next();
@@ -445,7 +451,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
 //  public Thread getThread() { return thread; }
 
   /**
-   * Pop a node off the queue and spread try to spread to its adjacent units,
+   * Pop a node off the queue and try to spread to its adjacent units,
    * then return to allow spreading of other events to occur.
    *
    * BB-DISEASE only spread from origin to neighbors and stops.
@@ -482,7 +488,7 @@ public class ProcessOccurrenceSpreading extends ProcessOccurrence implements Ext
             continue;
           }
           if (Evu.doSpread(fromUnit, toUnit, lifeform)) {
-
+            toUnit.fromEvuId = fromUnit.getId();
 //          addSpreadEvent(fromUnit, toUnit);
 //          spreadQueue.add( (Node) nodeLookup.get(toUnit));
           }

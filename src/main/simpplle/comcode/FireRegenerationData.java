@@ -8,7 +8,6 @@
 
 package simpplle.comcode;
 
-import java.io.PrintWriter;
 import java.util.Vector;
 import java.io.Externalizable;
 import java.io.ObjectOutput;
@@ -54,9 +53,9 @@ public class FireRegenerationData
   public ArrayList<VegetativeType>  inPlaceSeed       = new ArrayList<VegetativeType>();
   public ArrayList<VegetativeType>  inLandscape       = new ArrayList<VegetativeType>();
   public ArrayList<VegetativeType>  adjacent          = new ArrayList<VegetativeType>();
-/**
- * Primary constructor.  Initializes the system knowledge to regeneration logic, and inherits from the RegenerationData superclass  
- */
+  /**
+   * Primary constructor.  Initializes the system knowledge to regeneration logic, and inherits from the RegenerationData superclass
+   */
   public FireRegenerationData() {
     super();
     sysKnowKind = SystemKnowledge.REGEN_LOGIC_FIRE;
@@ -109,26 +108,26 @@ public class FireRegenerationData
     buildVegetativeTypeList(v,resprouting);
   }
   /**
-   * @see note in void simpplle.comcode.FireRegenerationData.setResprouting(Vector v)
+   * @see this.setResprouting(Vector)
    */
   public void setAdjResprouting(Vector v) {
     buildVegetativeTypeList(v,adjResprouting);
   }
   /**
-   * @see note in void simpplle.comcode.FireRegenerationData.setResprouting(Vector v)
+   * @see this.setResprouting(Vector)
    *
    */
   public void setInPlaceSeed(Vector v) {
     buildVegetativeTypeList(v,inPlaceSeed);
   }
   /**
-   * @see note in void simpplle.comcode.FireRegenerationData.setResprouting(Vector v)
+   * @see this.setResprouting(Vector)
    */
   public void setInLandscape(Vector v) {
     buildVegetativeTypeList(v,inLandscape);
   }
   /**
-   * @see note in void simpplle.comcode.FireRegenerationData.setResprouting(Vector v)
+   * @see this.setResprouting(Vector)
    */
   public void setAdjacent(Vector v) {
     buildVegetativeTypeList(v,adjacent);
@@ -146,10 +145,10 @@ public class FireRegenerationData
     }
   }
 
-/**
- * gets object at a specified column for RESPROUTING_COL, ADJ_RESPROUTING_COL, IN_PLACE_SEED_COL, IN_LANDSCAPE_COL, and ADJACENT_COL
- * default calls the superclass getValueAt method
- */
+  /**
+   * gets object at a specified column for RESPROUTING_COL, ADJ_RESPROUTING_COL, IN_PLACE_SEED_COL, IN_LANDSCAPE_COL, and ADJACENT_COL
+   * default calls the superclass getValueAt method
+   */
   public Object getValueAt(int col) {
     switch (col) {
       case RESPROUTING_COL:        return resprouting;
@@ -160,11 +159,11 @@ public class FireRegenerationData
       default:                     return super.getValueAt(col);
     }
   }
-/**
- * sets the Fire regeneration data in a column based on an integer key choices are 
- * RESPROUTING_COL, ADJ_RESPROUTING_COL, IN_PLACE_SEED_COL, IN_LANDSCAPE_COL, and ADJACENT_COL
- * <p>Also marks systemknowledge changed
- */
+  /**
+   * sets the Fire regeneration data in a column based on an integer key choices are
+   * RESPROUTING_COL, ADJ_RESPROUTING_COL, IN_PLACE_SEED_COL, IN_LANDSCAPE_COL, and ADJACENT_COL
+   * <p>Also marks systemknowledge changed
+   */
   public void setValueAt(int col, Object value) {
     switch (col) {
       case FireRegenerationData.RESPROUTING_COL:

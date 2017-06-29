@@ -3298,8 +3298,8 @@ public final class Area implements Externalizable {
   }
 
   private void produceSpreadArcFiles(PrintWriter fout, int tStep) throws SQLException {
-    RegionalZone  zone        = Simpplle.getCurrentZone();
-    AreaSummary   areaSummary = Simpplle.getAreaSummary();
+    RegionalZone  zone             = Simpplle.getCurrentZone();
+    AreaSummary   areaSummary      = Simpplle.getAreaSummary();
     ProcessType[] summaryProcesses = Process.getSummaryProcesses();
     int           i, j;
     String        value;
@@ -3940,11 +3940,6 @@ public final class Area implements Externalizable {
     return v;
   }
 
-  /**
-   * Go through the temp storage for adjacent data and put the data in the appropriate Evus. This
-   * had to wait until all instances of Evu were created, so that the AdjacentData.evu could be
-   * filled in.
-   */
   public void finishAddingAdjacentData() {
     finishAddingAdjacentData(null);
   }
@@ -3962,11 +3957,17 @@ public final class Area implements Externalizable {
 
       if (!removeInvalidUnit(logFile, evu, v)){  // unit must be valid to be added
 
-        int numAdj = evu.getNUM_NEIGHBORS();
-
         double spread, windSpeed, windDir;
         char pos, wind;
-        AdjacentData[] adjData = new AdjacentData[numAdj];
+        int adjDataSize;
+        if (hasKeaneAttributes){
+          // Must have MAX_NEIGHBORS
+          adjDataSize = Evu.MAX_NEIGHBORS;
+        } else {
+          // no Keane data, we can just use the size of the array
+          adjDataSize = v.size();
+        }
+        AdjacentData[] adjData = new AdjacentData[adjDataSize];
         int adjIndex = 0;
 
         for (int i = 0; i < v.size(); i++) {
@@ -3987,8 +3988,8 @@ public final class Area implements Externalizable {
 
           if (dataLength < 4) {
             // Legacy spatial relation
-            adjIndex = getAdjIndexRowCol(evu, adjEvu);
             adjData[adjIndex] = new AdjacentData(adjEvu, pos, wind);
+            adjIndex++;
           } else {
             // Keane spatial relation, more attributes available
             spread    = neighbor[3];
@@ -4038,55 +4039,6 @@ public final class Area implements Externalizable {
       return true;
     }
     return false;
-  }
-
-  /**
-   * Find neighbor index based on row and column information in two adjacent EVUs
-   * Note: X and Y represent columns and rows respectively, and start at the top left of a grid.
-   *
-   * @param evu
-   * @param adjEvu
-   * @return index to be used in evu.AdjacentData
-   */
-  private int getAdjIndexRowCol(Evu evu, Evu adjEvu){
-    int index = 0;
-    int dX = evu.getLocationX() - adjEvu.getLocationX();
-    int dY = evu.getLocationY() - adjEvu.getLocationY();
-
-    if (dY == 1) {
-      switch (dX) {
-        case -1:
-          index = 1; // 45 degrees
-          break;
-        case 0:
-          index = 2; // 90 degrees
-          break;
-        case 1:
-          index = 3;  // 135 degrees
-          break;
-      }
-    } else if (dY == 0) {
-      switch (dX){
-        case -1:
-          index = 0; // 0 or 360 degrees
-          break;
-        case 1:
-          index = 4;  // 180 degrees
-          break;
-      }
-    } else if (dY == -1) {
-      switch (dX) {
-        case -1:
-          index = 7; // 315 degrees
-          break;
-        case 0:
-          index = 6; // 270 degrees
-          break;
-        case 1:
-          index = 5; // 225 degrees
-      }
-    }
-    return index;
   }
 
   public void calcRelativeSlopes(){
@@ -4695,75 +4647,6 @@ public final class Area implements Externalizable {
     }
 
   }
-
-  public void writeAccumDatabase() throws SimpplleError {
-    try {
-      int    doneCount=0, pctFinish;
-      for (Evu evu : allEvu) {
-        if (evu == null) {
-          continue;
-        }
-        pctFinish = Math.round(((float)doneCount / (float)allEvu.length) * 100.0f);
-        String msg = "Writing to database " + pctFinish + "% Finished";
-        Simpplle.setStatusMessage(msg);
-
-        Session session = DatabaseCreator.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
-        evu.writeAccumDatabase(session);
-        tx.commit();
-        session.close();
-
-        doneCount++;
-      }
-      if (allEau == null) { return; }
-
-      for (ExistingAquaticUnit eau : allEau) {
-        if (eau == null) {
-          continue;
-        }
-
-        Session session = DatabaseCreator.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
-        eau.writeAccumDatabase(session);
-        tx.commit();
-        session.close();
-      }
-    }
-    catch (HibernateException ex) {
-      throw new SimpplleError("Problems writing database",ex);
-    }
-    catch (SQLException ex) {
-      throw new SimpplleError("Problems writing database",ex);
-    }
-  }
-
-  public void writeRandomAccessFile(RandomAccessFile simFile)
-      throws SimpplleError
-  {
-    int doneCount = 0, pctFinish;
-
-    int ts = Simulation.getCurrentTimeStep();
-    for (Evu evu : allEvu) {
-      if (evu == null) {
-        continue;
-      }
-      pctFinish = Math.round(((float) doneCount / (float) allEvu.length)*100.0f);
-      if (pctFinish % 10 == 0) {
-        String msg = "Writing Time Step #" + ts + " to data file " + pctFinish + "% Finished";
-        Simpplle.setStatusMessage(msg);
-      }
-      try {
-        evu.writeRandomAccessFile(simFile);
-        doneCount++;
-      }
-      catch (SimpplleError ex) {
-        Simpplle.clearStatusMessage();
-        throw ex;
-      }
-    }
-    Simpplle.clearStatusMessage();
-  }
-
 
   /**
    * Write simulation data for the current time step to the database.

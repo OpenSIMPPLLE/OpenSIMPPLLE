@@ -157,7 +157,7 @@ public class InvasiveSpeciesChangeLogicData extends LogicData implements
         Climate.Season season = Simulation.getInstance().getCurrentSeason();
         int ts  = Simulation.getCurrentTimeStep();
         int run = Simulation.getCurrentRun();
-        evu.newState(ts,run,vt,ProcessType.SUCCESSION,(short)100,season);
+        evu.createAndStoreState(ts,run,vt,ProcessType.SUCCESSION,(short)100,season);
       }
       else {
         state.setVegType(vt);

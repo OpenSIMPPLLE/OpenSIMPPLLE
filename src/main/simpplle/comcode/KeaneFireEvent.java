@@ -60,7 +60,7 @@ public class KeaneFireEvent extends ProcessOccurrenceSpreadingFire {
     // with a mean of 0 and standard deviation of 1. Multiplying by 1/3 ensures that > 99% of
     // the values fall between -1 and 1.
 
-    Random random = new Random();
+    Random random = Simulation.getInstance().getRandom();
     windSpeedOffset = random.nextGaussian() * (1.0 / 3.0) * windSpeedVariability;
     windDirectionOffset = random.nextGaussian() * (1.0 / 3.0) * windDirectionVariability;
 
@@ -202,8 +202,9 @@ public class KeaneFireEvent extends ProcessOccurrenceSpreadingFire {
    * @return a whole number
    */
   private int probabilisticRound(double number) {
+    Random random = Simulation.getInstance().getRandom();
     double probability = number % 1;
-    double draw = Math.random();
+    double draw = random.nextDouble();
     return (draw <= probability) ? (int)Math.floor(number) : (int)Math.ceil(number);
   }
 

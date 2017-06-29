@@ -1497,11 +1497,6 @@ public final class ExistingAquaticUnit extends NaturalElement implements Externa
     }
   }
 
-  public void writeAccumDatabase(Session session) throws HibernateException, SQLException {
-    int run = Simpplle.getCurrentSimulation().getCurrentRun();
-    int nSteps = (probList != null) ? probList.length : 0;
-    AccumDataAquatic.writeDatabase(session,this,run,nSteps);
-  }
 /**
  * True if Eau is perennial.  
  * @return

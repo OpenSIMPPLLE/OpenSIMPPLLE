@@ -1090,7 +1090,7 @@ public class EvuEditor extends JDialog {
   private void newSizeClass() {
     String    sizeClassStr = sizeClassEdit.getText().trim().toUpperCase();
     SizeClass sizeClass    = SizeClass.get(sizeClassStr);
-    if (sizeClass == null) { sizeClass = new SizeClass(sizeClassStr); }
+    if (sizeClass == null) { sizeClass = new SizeClass(sizeClassStr, Structure.NON_FOREST); }
 
     currentEvu.setSizeClass(sizeClass,currentLife);
     updateDialog();

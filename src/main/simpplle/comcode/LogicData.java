@@ -15,7 +15,7 @@ import java.io.ObjectOutput;
 import java.util.Collections;
 import java.io.Externalizable;
 import java.util.HashMap;
-import java.util.*;
+
 import simpplle.comcode.Climate.*;
 
 /**
@@ -56,20 +56,20 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
 //    
 //    return buf.toString();
 //  }
-  public ArrayList<SimpplleType> ecoGroupList;
+  public ArrayList<SimpplleType>  ecoGroupList;
   public String                   ecoGroupDesc;
   public boolean                  defaultEcoGroupDesc;
 
-  public ArrayList<Lifeform>      speciesLifeforms;
-  public ArrayList<FireResistance> speciesResistance;
-  public ArrayList<SimpplleType>  speciesList;
-  public String                   speciesDescription;
-  public boolean                  defaultSpeciesDesc;
+  public ArrayList<Lifeform>        speciesLifeforms;
+  public ArrayList<FireResistance>  speciesResistance;
+  public ArrayList<SimpplleType>    speciesList;
+  public String                     speciesDescription;
+  public boolean                    defaultSpeciesDesc;
 
-  public  ArrayList<SizeClass.Structure> sizeClassStructure;
-  public  ArrayList<SimpplleType>  sizeClassList;
-  public  String                   sizeClassDesc;
-  public  boolean                  defaultSizeClassDesc;
+  public  ArrayList<Structure>      sizeClassStructure;
+  public  ArrayList<SimpplleType>   sizeClassList;
+  public  String                    sizeClassDesc;
+  public  boolean                   defaultSizeClassDesc;
 
   public  ArrayList<SimpplleType>  densityList;
   public  String                   densityDesc;
@@ -104,12 +104,12 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
   public boolean                  defaultTrackingSpeciesDesc;
 
   public ArrayList<Ownership> ownershipList;
-  public String            ownershipDesc;
-  public boolean           defaultOwnershipDesc;
+  public String               ownershipDesc;
+  public boolean              defaultOwnershipDesc;
 
   public ArrayList<SpecialArea> specialAreaList;
-  public String            specialAreaDesc;
-  public boolean           defaultSpecialAreaDesc;
+  public String                 specialAreaDesc;
+  public boolean                defaultSpecialAreaDesc;
 
   public ArrayList<Roads.Status> roadStatusList;
   public String                  roadStatusDesc;
@@ -119,29 +119,29 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
   public String                   trailStatusDesc;
   public boolean                  defaultTrailStatusDesc;
   
-  public ArrayList<Landtype> landtypeList;
-  public String            landtypeDesc;
-  public boolean           defaultLandtypeDesc;
+  public ArrayList<Landtype>  landtypeList;
+  public String               landtypeDesc;
+  public boolean              defaultLandtypeDesc;
   /**
    * Constructor for Logic Data abstract class. This will inititialize a series of arraylists, and descriptions for objects in OpenSimpplle which could
    * can have logic data for them.  
    */
   protected LogicData() {
-    ecoGroupList         = new ArrayList<SimpplleType>();
-    speciesLifeforms  = new ArrayList<Lifeform>();
-    speciesResistance = new ArrayList<FireResistance>();
-    speciesList     = new ArrayList<SimpplleType>();
-    sizeClassList   = new ArrayList<SimpplleType>();
-    sizeClassStructure = new ArrayList<SizeClass.Structure>();
-    densityList     = new ArrayList<SimpplleType>();
-    processList     = new ArrayList<SimpplleType>();
-    processTSteps   = 1;
-    processInclusiveTimeSteps = false;
-    treatmentList   = new ArrayList<SimpplleType>();
-    treatmentTSteps = 1;
+    ecoGroupList          = new ArrayList<SimpplleType>();
+    speciesLifeforms      = new ArrayList<Lifeform>();
+    speciesResistance     = new ArrayList<FireResistance>();
+    speciesList           = new ArrayList<SimpplleType>();
+    sizeClassList         = new ArrayList<SimpplleType>();
+    sizeClassStructure    = new ArrayList<Structure>();
+    densityList           = new ArrayList<SimpplleType>();
+    processList           = new ArrayList<SimpplleType>();
+    treatmentList         = new ArrayList<SimpplleType>();
+    processTSteps         = 1;
+    treatmentTSteps       = 1;
+    processInclusiveTimeSteps   = false;
     treatmentInclusiveTimeSteps = false;
-    treatmentAnyExcept = false;
-    processAnyExcept   = false;
+    treatmentAnyExcept          = false;
+    processAnyExcept            = false;
 
     ownershipList = new ArrayList<Ownership>();
     specialAreaList = new ArrayList<SpecialArea>();
@@ -203,7 +203,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
     logicData.speciesDescription  = speciesDescription;
     logicData.defaultSpeciesDesc  = defaultSpeciesDesc;
 
-    logicData.sizeClassStructure   = new ArrayList<SizeClass.Structure>(sizeClassStructure);
+    logicData.sizeClassStructure   = new ArrayList<Structure>(sizeClassStructure);
     logicData.sizeClassList        = new ArrayList<SimpplleType>(sizeClassList);
     logicData.sizeClassDesc        = sizeClassDesc;
     logicData.defaultSizeClassDesc = defaultSizeClassDesc;
@@ -721,7 +721,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
    * Choices for size class structure are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
    * @param structure
    */
-  public void addStructure(SizeClass.Structure structure) {
+  public void addStructure(Structure structure) {
     if (sizeClassStructure.contains(structure) == false) {
       sizeClassStructure.add(structure);
       SystemKnowledge.markChanged(sysKnowKind);
@@ -732,7 +732,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
    * @param structure the size class structure.  
    * Choices for size class structure are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
    */
-  public void removeStructure(SizeClass.Structure structure) {
+  public void removeStructure(Structure structure) {
     if (sizeClassStructure.contains(structure)) {
       sizeClassStructure.remove(structure);
       SystemKnowledge.markChanged(sysKnowKind);
@@ -743,7 +743,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
    * Choices for size class structure are NON_FOREST, SINGLE_STORY, MULTIPLE_STORY
    * @return size class structure arraylist
    */
-  public ArrayList<SizeClass.Structure> getStructure() {
+  public ArrayList<Structure> getStructure() {
     return sizeClassStructure;
   }
   /**
@@ -752,7 +752,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
    * @param structure size class structure
    * @return true if size class structure is in logic data size class structure arraylist
    */
-  public boolean hasStructure(SizeClass.Structure structure) {
+  public boolean hasStructure(Structure structure) {
     return sizeClassStructure != null && sizeClassStructure.contains(structure);
   }
 /**
@@ -1194,7 +1194,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
     speciesDescription = (String)in.readObject();
     defaultSpeciesDesc = in.readBoolean();
 
-    sizeClassStructure  = (ArrayList<SizeClass.Structure>)in.readObject();
+    sizeClassStructure  = (ArrayList<Structure>)in.readObject();
     sizeClassList       = (ArrayList<SimpplleType>)in.readObject();
     sizeClassDesc       = (String)in.readObject();
     defaultSizeClassDesc  = in.readBoolean();

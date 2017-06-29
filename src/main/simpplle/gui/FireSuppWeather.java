@@ -10,15 +10,12 @@ package simpplle.gui;
 
 import simpplle.JSimpplle;
 import simpplle.comcode.FireSuppWeatherData;
-import simpplle.comcode.Simpplle;
 import simpplle.comcode.SystemKnowledge;
 
 import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import simpplle.comcode.ValidZones;
-import simpplle.comcode.RegionalZone;
 
 /** 
  *
@@ -28,160 +25,104 @@ import simpplle.comcode.RegionalZone;
  */
 
 public class FireSuppWeather extends JDialog {
+
   private FireSuppWeatherTableDataModel dataModel = new FireSuppWeatherTableDataModel();
+  private JMenuItem menuFileSave = new JMenuItem();
+  private JMenuItem menuFileClose = new JMenuItem();
+  private JTable table = new JTable();
 
-  JPanel mainPanel = new JPanel();
-  BorderLayout borderLayout1 = new BorderLayout();
-  JPanel northPanel = new JPanel();
-  JPanel probPanel = new JPanel();
-  FlowLayout flowLayout1 = new FlowLayout();
-  JMenuItem menuFileSaveAs = new JMenuItem();
-  JMenu menuFile = new JMenu();
-  JMenuItem menuFileQuit = new JMenuItem();
-  JMenuItem menuFileOpen = new JMenuItem();
-  JMenuItem menuFileClose = new JMenuItem();
-  JMenuItem menuFileSave = new JMenuItem();
-  JMenuBar menuBar = new JMenuBar();
-  JMenuItem menuFileLoadDefaults = new JMenuItem();
-  BorderLayout borderLayout2 = new BorderLayout();
-  JMenu menuKnowledgeSource = new JMenu();
-  JMenuItem menuKnowledgeSourceDisplay = new JMenuItem();
-  JMenuItem menuFileOldFormat = new JMenuItem();
-  JScrollPane scrollPane = new JScrollPane();
-  JTable table = new JTable();
-  BorderLayout borderLayout3 = new BorderLayout();
-
-  JMenu menuOptions = new JMenu();
-  JMenuItem menuOptionsSplitRange = new JMenuItem();
-  JMenuItem menuOptionsMergeUp = new JMenuItem();
-  JMenuItem menuOptionsMergeDown = new JMenuItem();
-
-  public FireSuppWeather(Frame frame, String title, boolean modal) {
+  FireSuppWeather(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();
+      initialize();
       pack();
     }
     catch(Exception ex) {
       ex.printStackTrace();
     }
-    initialize();
   }
 
-  public FireSuppWeather() {
+  FireSuppWeather() {
     this(null, "", false);
   }
-  void jbInit() throws Exception {
-    mainPanel.setLayout(borderLayout1);
-    probPanel.setLayout(borderLayout3);
-    northPanel.setLayout(flowLayout1);
-    flowLayout1.setAlignment(FlowLayout.LEFT);
-    menuFileSaveAs.setText("Save As");
-    menuFileSaveAs.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileSaveAs_actionPerformed(e);
-      }
-    });
-    menuFile.setText("File");
-    menuFileQuit.setText("Close Dialog");
-    menuFileQuit.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileQuit_actionPerformed(e);
-      }
-    });
-    menuFileOpen.setText("Open");
-    menuFileOpen.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileOpen_actionPerformed(e);
-      }
-    });
-    menuFileClose.setText("Close");
-    menuFileClose.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileClose_actionPerformed(e);
-      }
-    });
-    menuFileSave.setText("Save");
-    menuFileSave.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileSave_actionPerformed(e);
-      }
-    });
-    menuFileLoadDefaults.setText("Load Defaults");
-    menuFileLoadDefaults.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileLoadDefaults_actionPerformed(e);
-      }
-    });
-    this.getContentPane().setLayout(borderLayout2);
-    menuKnowledgeSource.setText("Knowledge Source");
-    menuKnowledgeSourceDisplay.setText("Display");
-    menuKnowledgeSourceDisplay.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuKnowledgeSourceDisplay_actionPerformed(e);
-      }
-    });
-    menuFileOldFormat.setText("Import Old Format File");
-    menuFileOldFormat.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileOldFormat_actionPerformed(e);
-      }
-    });
 
-    menuOptions.setText("Options");
-    menuOptionsSplitRange.setText("Split Selected Range...");
-    menuOptionsSplitRange.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsSplitRange_actionPerformed(e);
-      }
-    });
-    menuOptionsMergeUp.setText("Merge Selected with Previous");
-    menuOptionsMergeUp.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsMergeUp_actionPerformed(e);
-      }
-    });
-    menuOptionsMergeDown.setText("Merge Selected with Next");
-    menuOptionsMergeDown.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsMergeDown_actionPerformed(e);
-      }
-    });
+  private void jbInit() throws Exception {
 
-    getContentPane().add(mainPanel, BorderLayout.CENTER);
-    mainPanel.add(northPanel, BorderLayout.NORTH);
-    northPanel.add(probPanel, null);
-    scrollPane.getViewport().add(table);
+    // File menu
+    JMenuItem menuFileOpen = new JMenuItem("Open");
+    menuFileOpen.addActionListener(this::openFile);
+
+    JMenuItem menuFileImportOldFormat = new JMenuItem("Import Old Format File");
+    menuFileImportOldFormat.addActionListener(this::importOldFormatFile);
+
+    JMenuItem menuFileLoadDefaults = new JMenuItem("Load Defaults");
+    menuFileLoadDefaults.addActionListener(this::loadDefaultData);
+
+    JMenuItem menuFileSave = new JMenuItem("Save");
+    menuFileSave.addActionListener(this::saveFile);
+
+    JMenuItem menuFileSaveAs = new JMenuItem("Save As");
+    menuFileSaveAs.addActionListener(this::saveFileAs);
+
+    JMenuItem menuFileQuit = new JMenuItem("Close Dialog");
+    menuFileQuit.addActionListener(this::closeDialogue);
+
+    JMenu menuFile = new JMenu("File");
     menuFile.add(menuFileOpen);
-    menuFile.add(menuFileClose);
-    menuFile.addSeparator();
-    menuFile.add(menuFileOldFormat);
-    menuFile.addSeparator();
+    menuFile.add(menuFileImportOldFormat);
     menuFile.add(menuFileLoadDefaults);
-    menuFile.addSeparator();
     menuFile.add(menuFileSave);
     menuFile.add(menuFileSaveAs);
-    menuFile.addSeparator();
     menuFile.add(menuFileQuit);
+
+    // Options menu
+    JMenuItem menuOptionsSplitRange = new JMenuItem("Split Selected Range...");
+    menuOptionsSplitRange.addActionListener(this::splitRange);
+
+    JMenuItem menuOptionsMergeUp = new JMenuItem("Merge Selected with Previous");
+    menuOptionsMergeUp.addActionListener(this::mergeUp);
+
+    JMenuItem menuOptionsMergeDown = new JMenuItem("Merge Selected with Next");
+    menuOptionsMergeDown.addActionListener(this::mergeDown);
+
+    JMenu menuOptions = new JMenu("Options");
     menuOptions.add(menuOptionsSplitRange);
     menuOptions.addSeparator();
     menuOptions.add(menuOptionsMergeUp);
     menuOptions.add(menuOptionsMergeDown);
+
+    // Knowledge Source menu
+    JMenuItem menuKnowledgeSourceDisplay = new JMenuItem("Display");
+    menuKnowledgeSourceDisplay.addActionListener(this::displayKnowledgeSource);
+
+    JMenu menuKnowledgeSource = new JMenu("Knowledge Source");
+    menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
+
+    JMenuBar menuBar = new JMenuBar();
     menuBar.add(menuFile);
     menuBar.add(menuOptions);
     menuBar.add(menuKnowledgeSource);
-    menuKnowledgeSource.add(menuKnowledgeSourceDisplay);
-    probPanel.add(scrollPane, java.awt.BorderLayout.CENTER);
-    this.setJMenuBar(menuBar);
-    table.setModel(dataModel);
+    setJMenuBar(menuBar);
+
+    JScrollPane scrollPane = new JScrollPane(table);
+
+    JPanel probPanel = new JPanel(new BorderLayout());
+    probPanel.add(scrollPane, BorderLayout.CENTER);
+
+    JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+    northPanel.add(probPanel);
+
+    JPanel mainPanel = new JPanel(new BorderLayout());
+    mainPanel.add(northPanel, BorderLayout.NORTH);
+
+    setLayout(new BorderLayout());
+    add(mainPanel, BorderLayout.CENTER);
   }
 
   private void initialize() {
-    boolean seasonZone =
-        (Simpplle.getCurrentZone().getId() == ValidZones.COLORADO_FRONT_RANGE ||
-         Simpplle.getCurrentZone().getId() == ValidZones.COLORADO_PLATEAU ||
-         RegionalZone.isWyoming());
 
+    table.setModel(dataModel);
     table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     updateDialog();
   }
@@ -190,35 +131,26 @@ public class FireSuppWeather extends JDialog {
     File file = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
     menuFileClose.setEnabled((file != null));
     menuFileSave.setEnabled((file != null));
-//    menuFileSave.setEnabled((FireSuppWeatherData.hasDataChanged() &&
-//                             FireSuppWeatherData.getDataFilename() != null));
     update(getGraphics());
-  }
-
-  private void quit() {
-    setVisible(false);
-    dispose();
   }
 
   // *** Menus ***
   // *************
-  void menuFileOpen_actionPerformed(ActionEvent e) {
+  private void openFile(ActionEvent e) {
+
     SystemKnowledgeFiler.openFile(this,
                                   SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A,menuFileSave,menuFileClose);
     updateDialog();
-    update(getGraphics());
   }
 
-  void menuFileOldFormat_actionPerformed(ActionEvent e) {
-    File         inputFile;
-    MyFileFilter extFilter;
-    String       title = "Fire Suppression Data (Weather)?";
+  private void importOldFormatFile(ActionEvent e) {
 
-    extFilter = new MyFileFilter("firesuppweather",
-                                 "(*.firesuppweather)");
+    String       title = "Fire Suppression Data (Weather)?";
+    MyFileFilter extFilter = new MyFileFilter("firesuppweather",
+                                              "(*.firesuppweather)");
 
     setCursor(Utility.getWaitCursor());
-    inputFile = Utility.getOpenFile(this,title,extFilter);
+    File inputFile = Utility.getOpenFile(this,title,extFilter);
 
     if (inputFile != null) {
       try {
@@ -236,57 +168,51 @@ public class FireSuppWeather extends JDialog {
     update(getGraphics());
   }
 
-  void menuFileLoadDefaults_actionPerformed(ActionEvent e) {
-    int choice;
+  private void loadDefaultData(ActionEvent e) {
+
     try {
+
+      if (SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A) != null &&
+          SystemKnowledge.hasChangedOrUserData(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A)) {
+
+        String msg = "Changes have been made.\n" +
+                     "If you continue these changes will be lost.\n\n" +
+                     "Do you wish to continue?";
+
+        int choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE);
+
+        if (choice == JOptionPane.NO_OPTION) {
+          update(getGraphics());
+          return;
+        }
+      }
+
       String msg = "This will load the default Fire " +
                    "Suppression Weather Probability Data.\n\n" +
                    "Do you wish to continue?";
+
       String title = "Load Default Fire Suppression Weather Data";
-      choice = JOptionPane.showConfirmDialog(this,msg,title,
+
+      int choice = JOptionPane.showConfirmDialog(this,msg,title,
                                              JOptionPane.YES_NO_OPTION,
                                              JOptionPane.QUESTION_MESSAGE);
+
       if (choice == JOptionPane.YES_OPTION) {
+
         SystemKnowledge.loadZoneKnowledge(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
         updateDialog();
       }
-    }
-    catch (simpplle.comcode.SimpplleError err) {
+    } catch (simpplle.comcode.SimpplleError err) {
+
       JOptionPane.showMessageDialog(this,err.getError(),"Unable to load file",
                                     JOptionPane.ERROR_MESSAGE);
     }
   }
 
-  void menuFileClose_actionPerformed(ActionEvent e) {
-    int    choice;
-    String msg;
+  private void saveFile(ActionEvent e) {
 
-    if (SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A) != null &&
-        SystemKnowledge.hasChangedOrUserData(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A)) {
-      msg = "Changes have been made.\n" +
-            "If you continue these changes will be lost.\n\n" +
-            "Do you wish to continue?";
-      choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
-                                             JOptionPane.YES_NO_OPTION,
-                                             JOptionPane.QUESTION_MESSAGE);
-
-      if (choice == JOptionPane.NO_OPTION) {
-        update(getGraphics());
-        return;
-      }
-    }
-
-    try {
-      SystemKnowledge.loadZoneKnowledge(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
-    }
-    catch (simpplle.comcode.SimpplleError err) {
-      JOptionPane.showMessageDialog(this,err.getError(),"Unable to load file",
-                                    JOptionPane.ERROR_MESSAGE);
-    }
-    updateDialog();
-  }
-
-  void menuFileSave_actionPerformed(ActionEvent e) {
     File outfile = SystemKnowledge.getFile(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
     SystemKnowledgeFiler.saveFile(this, outfile,
                                   SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A,
@@ -294,18 +220,22 @@ public class FireSuppWeather extends JDialog {
     update(getGraphics());
   }
 
-  void menuFileSaveAs_actionPerformed(ActionEvent e) {
+  private void saveFileAs(ActionEvent e) {
+
     SystemKnowledgeFiler.saveFile(this,
                                   SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A,
                                   menuFileSave, menuFileClose);
     update(getGraphics());
   }
 
-  void menuFileQuit_actionPerformed(ActionEvent e) {
-    quit();
+  private void closeDialogue(ActionEvent e) {
+
+    setVisible(false);
+    dispose();
   }
 
-  void menuOptionsSplitRange_actionPerformed(ActionEvent e) {
+  private void splitRange(ActionEvent e) {
+
     int row = table.getSelectedRow();
     if (row == -1) {
       JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
@@ -332,7 +262,8 @@ public class FireSuppWeather extends JDialog {
     dataModel.fireTableDataChanged();
   }
 
-  void menuOptionsMergeUp_actionPerformed(ActionEvent e) {
+  private void mergeUp(ActionEvent e) {
+
     int row = table.getSelectedRow();
     if (row == -1) {
       JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
@@ -346,8 +277,9 @@ public class FireSuppWeather extends JDialog {
     }
 
     String msg =  "Merge Selected Row with Row Above\n" +
-            "Probabilities of the two rows will be averaged.\n\n" +
-            "Do you wish to continue?";
+                  "Probabilities of the two rows will be averaged.\n\n" +
+                  "Do you wish to continue?";
+
     int choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
@@ -355,16 +287,20 @@ public class FireSuppWeather extends JDialog {
       update(getGraphics());
       return;
     }
+
     FireSuppWeatherData.mergeRowUp(row);
     dataModel.fireTableDataChanged();
   }
-  void menuOptionsMergeDown_actionPerformed(ActionEvent e) {
+
+  private void mergeDown(ActionEvent e) {
+
     int row = table.getSelectedRow();
     if (row == -1) {
       JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
               "Please Select a row in the table.","Nothing Selected",JOptionPane.WARNING_MESSAGE);
       return;
     }
+
     int rowCount = table.getRowCount();
     if (row == rowCount-1) {
       JOptionPane.showMessageDialog(simpplle.JSimpplle.getSimpplleMain(),
@@ -372,7 +308,7 @@ public class FireSuppWeather extends JDialog {
       return;
     }
 
-    String msg =  "Merge Selected Row with Row Below\n" +
+    String msg = "Merge Selected Row with Row Below\n" +
             "Probabilities of the two rows will be averaged.\n\n" +
             "Do you wish to continue?";
     int choice = JOptionPane.showConfirmDialog(this,msg,"Close Current File.",
@@ -382,20 +318,21 @@ public class FireSuppWeather extends JDialog {
       update(getGraphics());
       return;
     }
+
     FireSuppWeatherData.mergeRowDown(row);
     dataModel.fireTableDataChanged();
   }
+
   // *** Probability Values ***
   // **************************
 
-  void menuKnowledgeSourceDisplay_actionPerformed(ActionEvent e) {
+  private void displayKnowledgeSource(ActionEvent e) {
     String str = SystemKnowledge.getSource(SystemKnowledge.FIRE_SUPP_WEATHER_BEYOND_CLASS_A);
     String title = "Weather Ending Fire Suppression (Beyond Class A) Knowledge Source";
 
     KnowledgeSource dlg = new KnowledgeSource(JSimpplle.getSimpplleMain(),title,true,str);
     dlg.setVisible(true);
   }
-
 }
 
 
