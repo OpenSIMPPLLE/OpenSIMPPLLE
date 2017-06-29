@@ -85,15 +85,22 @@ public abstract class AbstractBaseLogic {
     columns.get(kind).add(column);
   }
   /**
-   * Returns a column count.
+   * Returns a count of the visible columns.
    *
    * @param kind A kind of logic
    * @return The number of columns
    */
-  public int getColumnCount(String kind) {
+  public int getVisibleColumnCount(String kind) {
     ArrayList<String> columns = visibleColumnsHm.get(kind);
     return columns != null ? columns.size() : 0;
   }
+  /**
+   * Returns a count all columns.
+   *
+   * @param kind A kind of logic
+   * @return The total number of columns
+   */
+  public int getTotalColumnCount(String kind){return columns.get(kind).size();}
   /**
    * Returns the name of the column at columnIndex.
    *
@@ -637,24 +644,37 @@ public abstract class AbstractBaseLogic {
   public ArrayList<Integer> checkEmpty(String kind) {
 
     ArrayList<Integer> emptyColumns = new ArrayList<>();
-    int numColumns = columns.get(kind).size();
+    int numColumns = getTotalColumnCount(kind);
     int numRows = getRowCount(kind);
 
     for(int j = 0; j < numColumns; j++) {
 
-      int numNull = 0;
+      boolean empty = true;
 
       for (int i = 0; i < numRows; i++) {
-
-        if (getValueAt(i, j, kind).toString().equalsIgnoreCase("{}") || getValueAt(i, j, kind).toString().equalsIgnoreCase("[]")) {
-
-          numNull += 1;
+        // If any of the cells are not empty, that column is not empty.
+        if (!getValueAt(i, j, kind).toString().equalsIgnoreCase("{}") &&
+            !getValueAt(i, j, kind).toString().equalsIgnoreCase("[]")) {
+         empty = false;
+         break;
         }
       }
-      if (numNull == numRows) {
+      if (empty) {
         emptyColumns.add(j);
-      }
+        // This line adds ensures that any 'unchecked' columns that contain values reappear
+      } else {addVisibleColumn(kind, j);}
     }
     return emptyColumns;
+  }
+
+  public ArrayList<Integer> allCols(String kind) {
+
+    int numCols = getTotalColumnCount(kind);
+    ArrayList<Integer> colArray = new ArrayList<>(numCols);
+
+    for(int i = 0; i < numCols; i++){
+      colArray.add(i);
+    }
+    return colArray;
   }
 }
