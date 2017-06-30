@@ -592,8 +592,6 @@ public class SimpplleMain extends JFrame {
       }
     });
     areaInvalidLabel.setFont(new java.awt.Font("Serif", Font.BOLD, 14));
-    areaInvalidLabel.setMaximumSize(new Dimension(70, 20));
-    areaInvalidLabel.setMinimumSize(new Dimension(70, 20));
     areaInvalidLabel.setPreferredSize(new Dimension(70, 20));
     menuSysKnowRegionalClimate.setEnabled(false);
     menuSysKnowRegionalClimate.setText("Regional Climate");
