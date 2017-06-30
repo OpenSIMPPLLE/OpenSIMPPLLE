@@ -50,7 +50,7 @@ public class VegSimStateData implements Externalizable {
   // Object[Species][Integer]
   // Flat3Map
   // Key: InclusionRuleSpecies, Value: Percent(float)
-  private Map trackingSpecies;
+  private Map<InclusionRuleSpecies, Float> trackingSpecies;
 
   private static int writeCount=0;
 
@@ -302,7 +302,7 @@ public class VegSimStateData implements Externalizable {
   }
 
   public float getFloatProb() {
-    return ( (float)prob / (float)Utility.pow(10,Area.getAcresPrecision()) );
+    return ((float)prob / (float)Utility.pow(10,Area.getAcresPrecision()));
   }
 
   public String getProbString() {
@@ -375,7 +375,7 @@ public class VegSimStateData implements Externalizable {
   public float getSpeciesPercent(InclusionRuleSpecies trk_species) {
     if (trackingSpecies == null) { return -1; }
 
-    Float pct = (Float)trackingSpecies.get(trk_species);
+    Float pct = trackingSpecies.get(trk_species);
     return (pct != null) ? pct : -1;
 
   }
@@ -403,7 +403,7 @@ public class VegSimStateData implements Externalizable {
 
       if (veg.isTrackingSpecies(sp)) continue;
 
-      Float pct = (Float)trackingSpecies.get(sp);
+      Float pct = trackingSpecies.get(sp);
       if (pct != null && pct == 0) {
         removeList.add(sp);
       }
@@ -418,7 +418,7 @@ public class VegSimStateData implements Externalizable {
    *
    */
   public Map getAccumDataSpeciesMap() {
-    return new HashMap(trackingSpecies);
+    return new HashMap<>(trackingSpecies);
   }
 
   /**
@@ -431,7 +431,7 @@ public class VegSimStateData implements Externalizable {
 
   public InclusionRuleSpecies[] getTrackingSpeciesArray() {
     if (trackingSpecies != null) {
-      return (InclusionRuleSpecies[]) trackingSpecies.keySet().toArray(new InclusionRuleSpecies[trackingSpecies.size()]);
+      return trackingSpecies.keySet().toArray(new InclusionRuleSpecies[trackingSpecies.size()]);
     }
     return null;
   }
@@ -451,7 +451,7 @@ public class VegSimStateData implements Externalizable {
 
   public float updateTrackingSpecies(InclusionRuleSpecies trkSpecies, float change) {
 
-    Float pct = (Float)trackingSpecies.get(trkSpecies);
+    Float pct = trackingSpecies.get(trkSpecies);
     float newPct = change;
 
     if (pct != null) {
@@ -476,11 +476,11 @@ public class VegSimStateData implements Externalizable {
    */
   public float updateTrackingSpecies(InclusionRuleSpecies trkSpecies, float change, boolean changeAsPercent) {
 
-    float newPct = 0.0f;
+    float newPct;
 
     if (changeAsPercent) {
 
-      Float pct = (Float) trackingSpecies.get(trkSpecies);
+      Float pct = trackingSpecies.get(trkSpecies);
 
       if (pct == null) {
         pct = 0.0f;
@@ -763,5 +763,3 @@ public class VegSimStateData implements Externalizable {
 //  }
 
 }
-
-

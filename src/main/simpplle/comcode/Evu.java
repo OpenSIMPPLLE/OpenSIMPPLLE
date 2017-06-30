@@ -403,15 +403,17 @@ public final class Evu extends NaturalElement implements Externalizable {
   public static ProcessType getDefaultInitialProcess() { return defaultInitialProcess; }
 
   /**
-   * Check whether Habitat Type Group, Current State, Fire management zone, acres, and initial process are valid.
-   * @return true if all checked are valid
+   * Checks if the habitat type group, current state, fire management zone, acreage, and initial
+   * processes are valid values.
+   *
+   * @return true if the values are valid
    */
   public boolean isValid() {
-    return(isHabitatTypeGroupValid() &&
-           isCurrentStateValid()     &&
-           isFmzValid()              &&
-           isAcresValid()            &&
-           isInitialProcessValid());
+    return isHabitatTypeGroupValid()
+        && isCurrentStateValid()
+        && isFmzValid()
+        && isAcresValid()
+        && isInitialProcessValid();
   }
 
   /**
@@ -941,8 +943,8 @@ public final class Evu extends NaturalElement implements Externalizable {
       if (initialState == null) return null;
 
       MultiKey key = LifeformSeasonKeys.getKey(lifeform,Season.YEAR);
-      VegSimStateData foundState = (VegSimStateData)initialState.get(key);
-      return foundState;
+
+      return (VegSimStateData) initialState.get(key);
 
     }
 
@@ -1000,17 +1002,18 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Returns initial vegetative state based on season. This differs from getVegState because it uses
-   * the given season, rather than the year.
+   * Returns the initial vegetative state for a particular life form and season.
+   *
    * @param lifeform lifeform to query
    * @param season season to query
-   * @return initial vegetative state
+   * @return an initial vegetative state, or null if it doesn't exist
    */
   public VegSimStateData getInitialVegState(Lifeform lifeform, Season season) {
-    if (initialState == null) return null;
-    // Changed getKey from Season.Year to season variable, for writing initial conditions.
-    MultiKey key = LifeformSeasonKeys.getKey(lifeform, season);
-    return (VegSimStateData)initialState.get(key);
+    if (initialState == null) {
+      return null;
+    } else {
+      return (VegSimStateData) initialState.get(LifeformSeasonKeys.getKey(lifeform, season));
+    }
   }
 
   /**
@@ -2461,18 +2464,26 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Gets the initial process for vegetative siumlation state.
-   * @return the initial process for a veg simulation state
+   * Returns the initial process type for a life form.
+   *
+   * @return the initial process type, or null if the initial state doesn't exist
    */
-  public ProcessType getInitialProcess() {
-    return getState(0).getProcess();
+  public ProcessType getInitialProcess(Lifeform lifeform) {
+    VegSimStateData state = getState(0, lifeform);
+    if (state == null) {
+      return null;
+    } else {
+      return state.getProcess();
+    }
   }
 
   /**
    *Gets the initial treatment.
-   * @returnthe initial treatment
+   * @return the initial treatment
    */
-  public Treatment getInitialTreatment() { return getTreatment(0,false); }
+  public Treatment getInitialTreatment() {
+    return getTreatment(0,false);
+  }
 
   /**
    * Sets the initial process for a given state, by making an invalid instance (way to make new instances),
@@ -2500,11 +2511,18 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Checks if the initial process is valid.
-   * @return true if initial process is not an invalid process
+   * Checks if any processes in the initial state are invalid.
+   *
+   * @return true if no initial process is invalid
    */
   public boolean isInitialProcessValid() {
-    return ((Process.findInstance(getInitialProcess())instanceof InvalidProcess) == false);
+    for (Object object : initialState.values()) {
+      VegSimStateData state = (VegSimStateData) object;
+      if (Process.findInstance(state.getProcess()) instanceof InvalidProcess) {
+        return false;
+      }
+    }
+    return true;
   }
 
   /**
@@ -8833,9 +8851,4 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (getAzimuthDifference(spread, windDirection) <= downwindThreshold) return 'D';
     else return 'N';
   }
-
 }
-
-
-
-
