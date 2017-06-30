@@ -943,17 +943,8 @@ public final class Evu extends NaturalElement implements Externalizable {
       if (initialState == null) return null;
 
       MultiKey key = LifeformSeasonKeys.getKey(lifeform,Season.YEAR);
-      VegSimStateData foundState = (VegSimStateData)initialState.get(key); // [ no classification, YEAR]
 
-      // If found state is null, we can assume the dominant lifeform was changed during the simulation?
-      if(foundState == null){
-
-        lifeform = Lifeform.NA;
-        key = new MultiKey(lifeform, Season.YEAR);
-        foundState = (VegSimStateData)initialState.get(key);
-
-      }
-      return foundState;
+      return (VegSimStateData) initialState.get(key);
 
     }
 
@@ -2511,11 +2502,18 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Checks if the initial process is valid.
-   * @return true if initial process is not an invalid process
+   * Checks if any processes in the initial state are invalid.
+   *
+   * @return true if no initial process is invalid
    */
   public boolean isInitialProcessValid() {
-    return ((Process.findInstance(getInitialProcess())instanceof InvalidProcess) == false);
+    for (Object object : initialState.values()) {
+      VegSimStateData state = (VegSimStateData) object;
+      if (Process.findInstance(state.getProcess()) instanceof InvalidProcess) {
+        return false;
+      }
+    }
+    return true;
   }
 
   /**
