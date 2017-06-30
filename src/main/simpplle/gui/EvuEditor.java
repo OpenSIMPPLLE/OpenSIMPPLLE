@@ -841,7 +841,7 @@ public class EvuEditor extends JDialog {
     acresInvalidLabel.setText(str);
 
     // Initial Process
-    ProcessType p =  currentEvu.getInitialProcess();
+    ProcessType p =  currentEvu.getInitialProcess(currentLife);
     str = (p == null) ? "" : p.toString();
     initProcessEdit.setText(str);
     isValid = currentEvu.isInitialProcessValid();

@@ -9,15 +9,9 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-
-import javax.swing.JDialog;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.FireSpreadDataLegacy;
-
 import simpplle.comcode.SimpplleError;
 import javax.swing.JOptionPane;
 import java.io.File;
@@ -35,13 +29,15 @@ import simpplle.comcode.FireTypeDataNewerLegacy;
  */
 
 public class FireEventLogicDialog extends VegLogicDialog {
-  JMenuItem menuImportOldFile = new JMenuItem();
-/**
- * Constructor for Fire Event Logic Dialog.  Inherits from Vegetative Logic Dialog superclass and sets the frame owner, dialog title and modality.
- * @param owner frame owner
- * @param title	Jdialog title
- * @param modal
- */
+
+  private JMenuItem menuImportOldFile = new JMenuItem();
+
+  /**
+   * Constructor for Fire Event Logic Dialog.  Inherits from Vegetative Logic Dialog superclass and sets the frame owner, dialog title and modality.
+   * @param owner Parent frame of the dialogue
+   * @param title Title of the dialog
+   * @param modal Specifies whether dialog blocks user input to other top-level windows when shown
+   */
   public FireEventLogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -54,29 +50,29 @@ public class FireEventLogicDialog extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
-/**
- * Overloaded FireEvntLogicDialog
- */
+  /**
+   * Overloaded FireEventLogicDialog
+   */
   public FireEventLogicDialog() {
     super();
   }
-/**
- * sets the text of import old file, and imports it into the base vegetative Logic dialog.
- * @throws Exception
- */
+  /**
+   * sets the text of import old file, and imports it into the base vegetative Logic dialog.
+   * @throws Exception generic exception
+   */
   private void jbInit() throws Exception {
     menuImportOldFile.setText("Import old format File");
-    menuImportOldFile.addActionListener(new
-      FireSpreadLogic_menuImportOldFile_actionAdapter(this));
+    menuImportOldFile.addActionListener(e -> menuImportOldFile_actionPerformed());
     menuFile.add(menuImportOldFile,3);
   }
-/**
- * Initializes the system knowledge to fire spread logic.  Creates tab panels to fire spread, type, and fire spotting, then adds to a tabbed pane.  
- */
+  /**
+   * Initializes the system knowledge to fire spread logic.  Creates tab panels to fire spread, type, and fire spotting, then adds to a tabbed pane.
+   */
   private void initialize() {
     sysKnowKind = SystemKnowledge.FIRE_SPREAD_LOGIC;
 
-    String[] kinds = new String[] { FireEventLogic.SPREAD_STR, FireEventLogic.TYPE_STR, FireEventLogic.FIRE_SPOTTING_STR };
+    String[] kinds = new String[] { FireEventLogic.SPREAD_STR, FireEventLogic.TYPE_STR,
+                                    FireEventLogic.FIRE_SPOTTING_STR };
     super.initialize(kinds);
 
     tabPanels = new FireEventLogicPanel[panelKinds.length];
@@ -104,20 +100,20 @@ public class FireEventLogicDialog extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-/**
- * if tabbed pane state changes ges the current system knowledge. 
- */
+  /**
+   * if tabbed pane state changes ges the current system knowledge.
+   */
   public void tabbedPane_stateChanged(ChangeEvent e) {
     super.tabbedPane_stateChanged(e);
     if (currentPanel != null) {
-      sysKnowKind = ((FireEventLogicPanel) currentPanel).getSystemKnowledgeKind();
+      sysKnowKind = currentPanel.getSystemKnowledgeKind();
     }
   }
-/**
- * Update the menu items depending on whether it is spread (Open spread, save spread, save spread as, close spread, load default spread
- * fire type (open type, save type, save type as, close type, or load default type.  or fire spotting (open fire spotting, save fire spotting, save fires spotting as, close fire spotting or default fire spotting.)
- * If none of these puts up the standard menu items.
- */
+  /**
+   * Update the menu items depending on whether it is spread (Open spread, save spread, save spread as, close spread, load default spread
+   * fire type (open type, save type, save type as, close type, or load default type.  or fire spotting (open fire spotting, save fire spotting, save fires spotting as, close fire spotting or default fire spotting.)
+   * If none of these puts up the standard menu items.
+   */
   protected void updateMenuItems() {
     super.updateMenuItems();
     if (currentPanelKind.equals(FireEventLogic.SPREAD_STR)) {
@@ -153,11 +149,11 @@ public class FireEventLogicDialog extends VegLogicDialog {
       menuImportOldFile.setEnabled(true);
     }
   }
-/**
- * If import old fire file type menu item selected will return either fire type or fire spread logic, used to get the file.  
- * @param e
- */
-  public void menuImportOldFile_actionPerformed(ActionEvent e) {
+  /**
+   * If import old fire file type menu item selected will return either fire type or fire spread
+   * logic, used to get the file.
+   */
+  private void menuImportOldFile_actionPerformed() {
     switch (sysKnowKind) {
       case FIRE_TYPE_LOGIC:
         menuImportOldFileTypeOfFire();
@@ -167,12 +163,11 @@ public class FireEventLogicDialog extends VegLogicDialog {
         break;
       default: return;
     }
-
   }
   /**
    * Used if old file type is selected.  Will get the old files with .firetype and .firetypedata extensions.
    */
-  public void menuImportOldFileTypeOfFire() {
+  private void menuImportOldFileTypeOfFire() {
     File         inputFile;
     MyFileFilter extFilter;
     String       title = "Select a Fire Type Data File";
@@ -208,7 +203,7 @@ public class FireEventLogicDialog extends VegLogicDialog {
   /**
    * Method to import old type of fire spread file.  Will have extension of .firespread.  
    */
-  public void menuImportOldFileSpread() {
+  private void menuImportOldFileSpread() {
     File         inputFile;
     MyFileFilter extFilter;
     String       ext;
@@ -236,27 +231,9 @@ public class FireEventLogicDialog extends VegLogicDialog {
         updateDialog();
       }
       catch (SimpplleError err) {
-        JOptionPane.showMessageDialog(this,err.getError(),"Error loading file",
+        JOptionPane.showMessageDialog(this, err.getError(), "Error loading file",
                                       JOptionPane.ERROR_MESSAGE);
       }
     }
   }
-
 }
-/**
- * Menu adaptor used to get fire spread logic import old file.  
- * 
- *
- */
-
-class FireSpreadLogic_menuImportOldFile_actionAdapter implements ActionListener {
-  private FireEventLogicDialog adaptee;
-  FireSpreadLogic_menuImportOldFile_actionAdapter(FireEventLogicDialog adaptee) {
-    this.adaptee = adaptee;
-  }
-
-  public void actionPerformed(ActionEvent e) {
-    adaptee.menuImportOldFile_actionPerformed(e);
-  }
-}
-

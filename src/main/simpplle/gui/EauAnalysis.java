@@ -6,7 +6,6 @@
  * restrictions, requirements, and assertions contained therein. All Other Rights Reserved.
  */
 
-
 package simpplle.gui;
 
 import java.awt.*;
@@ -35,111 +34,40 @@ import java.awt.Font;
  */
 
 public class EauAnalysis extends JDialog {
-  Area                area;
-  ExistingAquaticUnit currentEau;
-  static EauAnalysis         instance;
 
+  Area area;
+  private ExistingAquaticUnit currentEau;
+  static EauAnalysis instance;
   public static boolean isOpen = false;
   private static final String protoCellValue = "123456         ";
 
-  JPanel mainPanel = new JPanel();
-  JPanel topPanel = new JPanel();
-  JPanel prevNextPanel = new JPanel();
-  FlowLayout flowLayout1 = new FlowLayout();
+  private JTextField idEdit = new JTextField();
+
+  private JTextArea treatmentText = new JTextArea();
+  private JTextArea historyText = new JTextArea();
+
   JButton prevPB = new JButton();
-  JPanel idPanel = new JPanel();
   JButton nextPB = new JButton();
-  GridLayout gridLayout1 = new GridLayout();
-  JLabel idLabel = new JLabel();
-  JTextField idEdit = new JTextField();
-  JPanel infoPanel = new JPanel();
-  JLabel currentStateValue = new JLabel();
-  JLabel currentStateLabel = new JLabel();
-  JLabel groupValue = new JLabel();
-  JLabel groupLabel = new JLabel();
-  JPanel centerPanel = new JPanel();
-  BorderLayout borderLayout3 = new BorderLayout();
-  JPanel neighborsPanel = new JPanel();
-  JPanel bottomPanel = new JPanel();
-  JPanel historyPanel = new JPanel();
-  JScrollPane historyScrollPane = new JScrollPane();
-  JTextArea historyText = new JTextArea();
-  TitledBorder titledBorder1;
-  JTabbedPane historyTabbedPane = new JTabbedPane();
-  JPanel treatmentPanel = new JPanel();
-  JScrollPane treatmentScroll = new JScrollPane();
-  JTextArea treatmentText = new JTextArea();
-  FlowLayout flowLayout8 = new FlowLayout();
-  FlowLayout flowLayout9 = new FlowLayout();
-  JPanel valuesPanel = new JPanel();
-  JPanel labelsPanel = new JPanel();
-  GridLayout gridLayout4 = new GridLayout();
-  GridLayout gridLayout5 = new GridLayout();
-  FlowLayout flowLayout2 = new FlowLayout();
-  JLabel lengthLabel = new JLabel();
-  JLabel segmentNumLabel = new JLabel();
-  JLabel lengthValue = new JLabel();
-  JLabel segmentNumValue = new JLabel();
-  BoxLayout boxLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
-  FlowLayout flowLayout3 = new FlowLayout();
-  JPanel panelCol2 = new JPanel();
-  JPanel panelCol1 = new JPanel();
-  JPanel valuesPanelCol2 = new JPanel();
-  JPanel labelsPanelCol2 = new JPanel();
-  FlowLayout flowLayout4 = new FlowLayout();
-  GridLayout gridLayout2 = new GridLayout();
-  GridLayout gridLayout3 = new GridLayout();
-  FlowLayout flowLayout5 = new FlowLayout();
-  Border border1;
-  TitledBorder attributesBorder;
-  Border border2;
-  TitledBorder adjacentUnitsBorder;
-  JPanel jPanel1 = new JPanel();
-  FlowLayout flowLayout10 = new FlowLayout();
-  JCheckBox resultsOnlyCB = new JCheckBox();
-  JButton searchPB = new JButton();
-  FlowLayout flowLayout6 = new FlowLayout();
-  Border border3;
-  TitledBorder predBorder;
-  Border border4;
-  TitledBorder succBorder;
-  Border border5;
-  TitledBorder uplandBorder;
-  Border border6;
-  TitledBorder adjVegBorder;
-  JPanel vegUnitPanel = new JPanel();
-  JScrollPane adjVegScrollPane = new JScrollPane();
-  JPanel adjVegPanel = new JPanel();
-  JList adjVegList = new JList();
-  JPanel uplandVegPanel = new JPanel();
-  JScrollPane uplandVegScrollPane = new JScrollPane();
-  JList uplandVegList = new JList();
-  JList predecessorList = new JList();
-  JScrollPane succScrollPane = new JScrollPane();
-  JScrollPane predScrollPane = new JScrollPane();
-  JPanel aquaticUnitPanel = new JPanel();
-  JPanel predPanel = new JPanel();
-  JPanel succPanel = new JPanel();
-  JList successorsList = new JList();
-  Border border7;
-  TitledBorder aquaticUnitBorder;
-  Border border8;
-  TitledBorder vegUnitBorder;
-  BorderLayout borderLayout1 = new BorderLayout();
-  BorderLayout borderLayout2 = new BorderLayout();
-  BorderLayout borderLayout4 = new BorderLayout();
-  BorderLayout borderLayout5 = new BorderLayout();
-  BorderLayout borderLayout6 = new BorderLayout();
-  BorderLayout borderLayout7 = new BorderLayout();
-  FlowLayout flowLayout7 = new FlowLayout();
-  JLabel statusText = new JLabel();
-  JLabel statusLabel = new JLabel();
-/**
- * Constructor for EauAnalysis.  Sets the frame owner name and modality.  
- * @param frame
- * @param title
- * @param modal
- */
+  private JButton searchPB = new JButton();
+
+  private JList adjVegList = new JList();
+  private JList uplandVegList = new JList();
+  private JList successorsList = new JList();
+  private JList predecessorList = new JList();
+
+  private JLabel idLabel = new JLabel();
+  private JLabel currentStateValue = new JLabel();
+  private JLabel groupValue = new JLabel();
+  private JLabel lengthValue = new JLabel();
+  private JLabel statusText = new JLabel();
+  private JLabel segmentNumValue = new JLabel();
+
+  /**
+   * Constructor for EauAnalysis.  Sets the frame owner name and modality.
+   * @param frame
+   * @param title
+   * @param modal
+   */
   public EauAnalysis(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try  {
@@ -159,31 +87,90 @@ public class EauAnalysis extends JDialog {
   public EauAnalysis() {
     this(new Frame(), "", false);
   }
-/**
- * Sets the borders buttons, text of buttons, and layouts and panels for Eau Analysis
- * @throws Exception
- */
+  /**
+   * Sets the borders buttons, text of buttons, and layouts and panels for Eau Analysis
+   * @throws Exception
+   */
   void jbInit() throws Exception {
-    titledBorder1 = new TitledBorder("");
-    border1 = BorderFactory.createEmptyBorder();
-    attributesBorder = new TitledBorder(border1,"Attributes");
-    border2 = BorderFactory.createEmptyBorder();
-    adjacentUnitsBorder = new TitledBorder(border2,"Adjacent Units");
-    border3 = BorderFactory.createEmptyBorder();
-    predBorder = new TitledBorder(border3,"Predecessors");
-    border4 = BorderFactory.createEmptyBorder();
-    succBorder = new TitledBorder(border4,"Successors");
-    border5 = BorderFactory.createEmptyBorder();
-    uplandBorder = new TitledBorder(border5,"Upland Veg");
-    border6 = BorderFactory.createEmptyBorder();
-    adjVegBorder = new TitledBorder(border6,"Adjacent Veg");
-    border7 = BorderFactory.createEmptyBorder();
+
+    JTabbedPane historyTabbedPane = new JTabbedPane();
+    JCheckBox resultsOnlyCB = new JCheckBox();
+
+    JPanel jPanel1 = new JPanel(new FlowLayout());
+    JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+    JPanel prevNextPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 1));
+    JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+    JPanel neighborsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JPanel historyPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+    JPanel adjVegPanel = new JPanel(new BorderLayout());
+    JPanel uplandVegPanel = new JPanel(new BorderLayout());
+    JPanel aquaticUnitPanel = new JPanel(new BorderLayout());
+    JPanel predPanel = new JPanel(new BorderLayout());
+    JPanel succPanel = new JPanel(new BorderLayout());
+    JPanel vegUnitPanel = new JPanel(new BorderLayout());
+    JPanel mainPanel = new JPanel();
+    JPanel centerPanel = new JPanel();
+    JPanel idPanel = new JPanel();
+    JPanel treatmentPanel = new JPanel();
+    JPanel valuesPanel = new JPanel();
+    JPanel labelsPanel = new JPanel();
+    JPanel panelCol1 = new JPanel();
+    JPanel panelCol2 = new JPanel();
+    JPanel labelsPanelCol2 = new JPanel();
+    JPanel valuesPanelCol2 = new JPanel();
+
+    JScrollPane treatmentScroll = new JScrollPane();
+    JScrollPane uplandVegScrollPane = new JScrollPane();
+    JScrollPane succScrollPane = new JScrollPane();
+    JScrollPane predScrollPane = new JScrollPane();
+    JScrollPane adjVegScrollPane = new JScrollPane();
+    JScrollPane historyScrollPane = new JScrollPane();
+
+    JLabel currentStateLabel = new JLabel("Current State");
+    JLabel groupLabel = new JLabel("LTA Valley Segment Group");
+    JLabel lengthLabel = new JLabel("Length");
+    JLabel segmentNumLabel = new JLabel("Segment Number");
+    JLabel statusLabel = new JLabel("Status");
+
+    Border emptyBorder = BorderFactory.createEmptyBorder();
+    Border etchedBorder = BorderFactory.createEtchedBorder();
+    Border border8;
+
+    TitledBorder attributesBorder;
+    TitledBorder predBorder;
+    TitledBorder succBorder;
+    TitledBorder uplandBorder;
+    TitledBorder adjVegBorder;
+    TitledBorder aquaticUnitBorder;
+    TitledBorder vegUnitBorder;
+
+    FlowLayout flowLayout5 = new FlowLayout();
+    FlowLayout flowLayout9 = new FlowLayout();
+
+    GridLayout gridLayout1 = new GridLayout();
+    GridLayout gridLayout2 = new GridLayout();
+    GridLayout gridLayout4 = new GridLayout();
+
+    BorderLayout borderLayout3 = new BorderLayout();
+    BoxLayout boxLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
+
+    Font mono0 = new Font("Monospaced", 0, 12);
+    Font mono1 = new Font("Monospaced", 1, 12);
+    Font mono2 = new Font("Monospaced", 2, 12);
+
+    Font dialog0 = new Font("Dialog", 0, 14);
+    Font dialog1 = new Font("Dialog", 1, 14);
+
+    attributesBorder = new TitledBorder(emptyBorder,"Attributes");
+    predBorder = new TitledBorder(emptyBorder,"Predecessors");
+    succBorder = new TitledBorder(emptyBorder,"Successors");
+    uplandBorder = new TitledBorder(emptyBorder,"Upland");
+    adjVegBorder = new TitledBorder(emptyBorder,"Adjacent");
     aquaticUnitBorder = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140)),"Aquatic Units");
     border8 = new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(148, 145, 140));
     vegUnitBorder = new TitledBorder(border8,"Vegetative Units");
     mainPanel.setLayout(boxLayout);
-    topPanel.setLayout(flowLayout6);
-    prevNextPanel.setLayout(flowLayout1);
     prevPB.setEnabled(false);
     prevPB.setNextFocusableComponent(nextPB);
     prevPB.setIcon(new ImageIcon(EauAnalysis.class.getResource("images/prev.gif")));
@@ -221,21 +208,16 @@ public class EauAnalysis extends JDialog {
         this_windowClosing(e);
       }
     });
-    infoPanel.setLayout(flowLayout2);
-    currentStateValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    currentStateValue.setFont(dialog1);
     currentStateValue.setForeground(Color.blue);
     currentStateValue.setText("A3-REF");
-    currentStateLabel.setFont(new java.awt.Font("Dialog", 0, 14));
-    currentStateLabel.setText("Current State");
-    groupValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    currentStateLabel.setFont(dialog0);
+    groupValue.setFont(dialog1);
     groupValue.setForeground(Color.blue);
     groupValue.setText("12-FMA");
-    groupLabel.setFont(new java.awt.Font("Dialog", 0, 14));
-    groupLabel.setText("LTA Valley Segment Group");
+    groupLabel.setFont(dialog0);
     centerPanel.setLayout(borderLayout3);
-    neighborsPanel.setLayout(flowLayout7);
-    bottomPanel.setLayout(flowLayout3);
-    historyPanel.setLayout(flowLayout8);
+    historyPanel.setLayout(flowLayout9);
     historyText.setColumns(92);
     historyText.setRows(12);
     historyText.setBackground(Color.white);
@@ -250,49 +232,30 @@ public class EauAnalysis extends JDialog {
     treatmentText.setEditable(false);
     flowLayout9.setHgap(0);
     flowLayout9.setVgap(0);
-    flowLayout8.setHgap(0);
-    flowLayout8.setVgap(0);
     borderLayout3.setVgap(5);
-    bottomPanel.setBorder(BorderFactory.createEtchedBorder());
+    bottomPanel.setBorder(etchedBorder);
     labelsPanel.setLayout(gridLayout4);
-    valuesPanel.setLayout(gridLayout5);
+    valuesPanel.setLayout(gridLayout4);
     gridLayout4.setRows(2);
     gridLayout4.setVgap(5);
-    gridLayout5.setRows(2);
-    gridLayout5.setVgap(5);
-    flowLayout2.setAlignment(FlowLayout.LEFT);
-    flowLayout2.setHgap(10);
-    flowLayout2.setVgap(0);
-    lengthLabel.setText("Length");
-    segmentNumLabel.setText("Segment Number");
-    lengthValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    lengthValue.setFont(dialog1);
     lengthValue.setForeground(Color.blue);
     lengthValue.setText("350");
-    segmentNumValue.setFont(new java.awt.Font("Dialog", 1, 14));
+    segmentNumValue.setFont(dialog1);
     segmentNumValue.setForeground(Color.blue);
     segmentNumValue.setText("2");
-    flowLayout3.setAlignment(FlowLayout.LEFT);
-    flowLayout3.setHgap(0);
-    flowLayout3.setVgap(0);
-    panelCol2.setLayout(flowLayout4);
+    panelCol2.setLayout(flowLayout5);
     labelsPanelCol2.setLayout(gridLayout2);
     gridLayout2.setRows(3);
     gridLayout2.setVgap(5);
-    valuesPanelCol2.setLayout(gridLayout3);
-    gridLayout3.setRows(3);
-    gridLayout3.setVgap(5);
+    valuesPanelCol2.setLayout(gridLayout2);
     panelCol1.setLayout(flowLayout5);
     flowLayout5.setAlignment(FlowLayout.LEFT);
     flowLayout5.setVgap(0);
-    flowLayout4.setAlignment(FlowLayout.LEFT);
-    flowLayout4.setVgap(0);
-    panelCol1.setBorder(BorderFactory.createEtchedBorder());
-    panelCol2.setBorder(BorderFactory.createEtchedBorder());
+    panelCol1.setBorder(etchedBorder);
+    panelCol2.setBorder(etchedBorder);
     infoPanel.setBorder(attributesBorder);
     attributesBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
-    adjacentUnitsBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 14));
-    flowLayout1.setVgap(1);
-    jPanel1.setLayout(flowLayout10);
     resultsOnlyCB.setEnabled(false);
     resultsOnlyCB.setText("Result Units Only -->");
     resultsOnlyCB.addActionListener(new java.awt.event.ActionListener() {
@@ -307,17 +270,12 @@ public class EauAnalysis extends JDialog {
         searchPB_actionPerformed(e);
       }
     });
-    flowLayout6.setAlignment(FlowLayout.LEFT);
-    predBorder.setTitleFont(new java.awt.Font("Monospaced", 2, 12));
-    succBorder.setTitleFont(new java.awt.Font("Monospaced", 2, 12));
-    uplandBorder.setTitle("Upland");
-    uplandBorder.setTitleFont(new java.awt.Font("Monospaced", 2, 12));
-    adjVegBorder.setTitle("Adjacent");
-    adjVegBorder.setTitleFont(new java.awt.Font("Monospaced", 2, 12));
-    vegUnitPanel.setLayout(borderLayout6);
-    adjVegPanel.setLayout(borderLayout5);
+    predBorder.setTitleFont(mono2);
+    succBorder.setTitleFont(mono2);
+    uplandBorder.setTitleFont(mono2);
+    adjVegBorder.setTitleFont(mono2);
     adjVegPanel.setBorder(adjVegBorder);
-    adjVegList.setFont(new java.awt.Font("Monospaced", 0, 12));
+    adjVegList.setFont(mono0);
     adjVegList.setToolTipText("Double click to go to a unit");
     adjVegList.setPrototypeCellValue(protoCellValue);
     adjVegList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -327,9 +285,8 @@ public class EauAnalysis extends JDialog {
         adjVegList_mouseClicked(e);
       }
     });
-    uplandVegPanel.setLayout(borderLayout4);
     uplandVegPanel.setBorder(uplandBorder);
-    uplandVegList.setFont(new java.awt.Font("Monospaced", 0, 12));
+    uplandVegList.setFont(mono0);
     uplandVegList.setToolTipText("Double click to go to a unit");
     uplandVegList.setPrototypeCellValue(protoCellValue);
     uplandVegList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -339,7 +296,7 @@ public class EauAnalysis extends JDialog {
         uplandVegList_mouseClicked(e);
       }
     });
-    predecessorList.setFont(new java.awt.Font("Monospaced", 0, 12));
+    predecessorList.setFont(mono0);
     predecessorList.setToolTipText("Double click to go to a unit");
     predecessorList.setPrototypeCellValue(protoCellValue);
     predecessorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -349,12 +306,11 @@ public class EauAnalysis extends JDialog {
         predecessorList_mouseClicked(e);
       }
     });
-    aquaticUnitPanel.setLayout(borderLayout7);
-    predPanel.setLayout(borderLayout1);
+//    aquaticUnitPanel.setLayout(borderLayout7);
+//    predPanel.setLayout(borderLayout1);
     predPanel.setBorder(predBorder);
-    succPanel.setLayout(borderLayout2);
     succPanel.setBorder(succBorder);
-    successorsList.setFont(new java.awt.Font("Monospaced", 0, 12));
+    successorsList.setFont(mono0);
     successorsList.setToolTipText("Double click to go to a unit");
     successorsList.setPrototypeCellValue(protoCellValue);
     successorsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -366,14 +322,12 @@ public class EauAnalysis extends JDialog {
     });
     aquaticUnitPanel.setBorder(aquaticUnitBorder);
     vegUnitPanel.setBorder(vegUnitBorder);
-    aquaticUnitBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 12));
-    vegUnitBorder.setTitleFont(new java.awt.Font("Monospaced", 1, 12));
-    adjVegScrollPane.setFont(new java.awt.Font("Monospaced", 0, 12));
-    flowLayout7.setAlignment(FlowLayout.LEFT);
+    aquaticUnitBorder.setTitleFont(mono1);
+    vegUnitBorder.setTitleFont(mono1);
+    adjVegScrollPane.setFont(mono0);
     statusText.setFont(new java.awt.Font("Dialog", Font.BOLD, 14));
     statusText.setForeground(Color.blue);
     statusText.setText("PERENNIAL");
-    statusLabel.setText("Status");
     aquaticUnitPanel.add(predPanel, BorderLayout.WEST);
     predPanel.add(predScrollPane, BorderLayout.CENTER);
     aquaticUnitPanel.add(succPanel, BorderLayout.CENTER);
@@ -427,12 +381,10 @@ public class EauAnalysis extends JDialog {
     uplandVegScrollPane.getViewport().add(uplandVegList, null);
     adjVegScrollPane.getViewport().add(adjVegList, null);
   }
-  
   /**
-   * Initializes the Eau Analysis dialog by setting the area to the current area and eau to the first Eau in the current area.  
-   * Contains checks to makes sure the dialog does not exceed screen height.  
+   * Initializes the Eau Analysis dialog by setting the area to the current area and eau to the first Eau in the current area.
+   * Contains checks to makes sure the dialog does not exceed screen height.
    */
-
   private void initialize() {
     area       = simpplle.comcode.Simpplle.getCurrentArea();
     currentEau = area.getFirstEau();
@@ -450,11 +402,11 @@ public class EauAnalysis extends JDialog {
     setSize(getPreferredSize());
     updateDialog();
   }
-/**
- * Updates the Eau Analysis dialog to information pertinent to the current Eau.  
- * The method enables previous and next buttons, predecessor, successor, upland Evu and adjacent Evu vegetative lists.  
- * If there is no information in the system for these Eau elements, the dummy lists will be used. 
- */
+  /**
+   * Updates the Eau Analysis dialog to information pertinent to the current Eau.
+   * The method enables previous and next buttons, predecessor, successor, upland Evu and adjacent Evu vegetative lists.
+   * If there is no information in the system for these Eau elements, the dummy lists will be used.
+   */
   private void updateDialog() {
     if (currentEau != null) {
       prevPB.setEnabled(true);
@@ -536,21 +488,20 @@ public class EauAnalysis extends JDialog {
     }
     update(getGraphics());
   }
-
-/**
- * Sets the current Eau's predecessor to the user selected predecessor in predecessor JList
- */
+  /**
+   * Sets the current Eau's predecessor to the user selected predecessor in predecessor JList
+   */
   private void goPredecessor() {
     goAquaticUnit((String) predecessorList.getSelectedValue());
   }
   /**
-   * Sets the current Eau's successor to the user selected successor in successor JList.  
+   * Sets the current Eau's successor to the user selected successor in successor JList.
    */
   private void goSuccessor() {
     goAquaticUnit((String) successorsList.getSelectedValue());
   }
   /**
-   * Sets the current Eau for analysis to the parsed input string.  This changes the current Eau.  If nothing is input, the current Eau does not change.  
+   * Sets the current Eau for analysis to the parsed input string.  This changes the current Eau.  If nothing is input, the current Eau does not change.
    * @param str name of Eau to be analyzed
    */
   private void goAquaticUnit(String str) {
@@ -568,22 +519,21 @@ public class EauAnalysis extends JDialog {
     if (id == -1) { return; }
     goAquaticUnit(area.getEau(id));
   }
-
   /**
-   * Sets the Adjacent Evu for the current Eau being analyzed to the minimum index number choosen in the adjacent veg list.  
+   * Sets the Adjacent Evu for the current Eau being analyzed to the minimum index number choosen in the adjacent veg list.
    */
   private void goAdjVeg() {
     goVegUnit((String) adjVegList.getSelectedValue());
   }
   /**
-   * Sets the Upland Evu for the current Eau being analyzed to the minimum index number choosen in the upland veg list.  This will be an Evu ID.    
+   * Sets the Upland Evu for the current Eau being analyzed to the minimum index number choosen in the upland veg list.  This will be an Evu ID.
    */
   private void goUplandVeg() {
     goVegUnit((String) uplandVegList.getSelectedValue());
   }
   /**
-   * Sets the current upland Evu for analysis to the parsed input string of the selected EVU id.  
-   * This changes the current upland Evu.  If nothing is selected, the current upland Evu does not change.  
+   * Sets the current upland Evu for analysis to the parsed input string of the selected EVU id.
+   * This changes the current upland Evu.  If nothing is selected, the current upland Evu does not change.
    * @param str name of Upland Evu to be analyzed
    */
   private void goVegUnit(String str) {
@@ -601,11 +551,11 @@ public class EauAnalysis extends JDialog {
     if (id == -1) { return; }
     goVegUnit(id);
   }
-/**
- * Sets the Evu to either the Evu instance being analyzed, or a new EvuAnalysis instance.  
- * @param id the Evu id.  
- */
-  public void goVegUnit(int id) {
+  /**
+   * Sets the Evu to either the Evu instance being analyzed, or a new EvuAnalysis instance.
+   * @param id the Evu id.
+   */
+  private void goVegUnit(int id) {
     EvuAnalysis dlg;
 
     if (EvuAnalysis.isOpen()) {
@@ -618,11 +568,11 @@ public class EauAnalysis extends JDialog {
     dlg.goUnit(id);
     dlg.setVisible(true);
   }
-/**
- * Sets the current Eau to parameter Eau.
- * @param eau the Eau to be set as the current Eau.
- */
-  public void goAquaticUnit(ExistingAquaticUnit eau) {
+  /**
+   * Sets the current Eau to parameter Eau.
+   * @param eau the Eau to be set as the current Eau.
+   */
+  void goAquaticUnit(ExistingAquaticUnit eau) {
     currentEau = eau;
     updateDialog();
   }
@@ -640,11 +590,11 @@ public class EauAnalysis extends JDialog {
   void nextPB_actionPerformed(ActionEvent e) {
     goAquaticUnit(area.getNextEau(currentEau));
   }
-/**
- * Allows for editing of selected Eau.  
- * @param e
- */
-  void idEdit_actionPerformed(ActionEvent e) {
+  /**
+   * Allows for editing of selected Eau.
+   * @param e
+   */
+  private void idEdit_actionPerformed(ActionEvent e) {
     int id;
 
     try {
@@ -668,45 +618,44 @@ public class EauAnalysis extends JDialog {
       }
     }
   }
-/**
- * Exist the Eau Analysis Dialog.  
- */
+  /**
+   * Exist the Eau Analysis Dialog.
+   */
   private void quit() {
     isOpen = false;
     setVisible(false);
     dispose();
   }
-/**
- * If window closing event occurs, quits Eau Analysis Dialog.
- * @param e window closing event
- */
+  /**
+   * If window closing event occurs, quits Eau Analysis Dialog.
+   * @param e window closing event
+   */
   void this_windowClosing(WindowEvent e) {
     quit();
   }
-/**
- * Deprecated search button method - does nothing.
- * @param e
- */
-  void searchPB_actionPerformed(ActionEvent e) {
+  /**
+   * Deprecated search button method - does nothing.
+   * @param e
+   */
+  private void searchPB_actionPerformed(ActionEvent e) {
 
   }
-/**
- * This method does nothing.  
- * @param e
- */
-  void resultsOnlyCB_actionPerformed(ActionEvent e) {
-
-  }
-/**
- * Checks if Eau Analysis Dialog is open.
- * @return true if Eau Analysis Dialog is open
- */
+  // TODO: Look into removing this...
+  /**
+   * This method does nothing.
+   * @param e
+   */
+  private void resultsOnlyCB_actionPerformed(ActionEvent e) {}
+  /**
+   * Checks if Eau Analysis Dialog is open.
+   * @return true if Eau Analysis Dialog is open
+   */
   public static boolean isOpen() { return isOpen; }
-/**
- * Used to choose from predecessor list via mouse click
- * @param e - double mouse click
- */
-  void predecessorList_mouseClicked(MouseEvent e) {
+  /**
+   * Used to choose from predecessor list via mouse click
+   * @param e - double mouse click
+   */
+  private void predecessorList_mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2) {
       goPredecessor();
     }
@@ -715,7 +664,7 @@ public class EauAnalysis extends JDialog {
    * Used to choose from successor list via mouse click.
    * @param e - double mouse click
    */
-  void successorsList_mouseClicked(MouseEvent e) {
+  private void successorsList_mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2) {
       goSuccessor();
     }
@@ -724,7 +673,7 @@ public class EauAnalysis extends JDialog {
    * Used to choose from upland Evu list via mouse click.
    * @param e - double mouse click
    */
-  void uplandVegList_mouseClicked(MouseEvent e) {
+  private void uplandVegList_mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2) {
       goUplandVeg();
     }
@@ -733,12 +682,11 @@ public class EauAnalysis extends JDialog {
    * Used to choose from upland adjacent Evu list via mouse click.
    * @param e - double mouse click
    */
-  void adjVegList_mouseClicked(MouseEvent e) {
+  private void adjVegList_mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2) {
       goAdjVeg();
     }
   }
-
   /**
    * Gets the current Eau Analysis instance
    * @return the current Eau Analysis
@@ -746,5 +694,4 @@ public class EauAnalysis extends JDialog {
   public static EauAnalysis getInstance() {
     return instance;
   }
-
 }

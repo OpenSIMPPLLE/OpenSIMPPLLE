@@ -9,7 +9,6 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-import javax.swing.JDialog;
 import simpplle.comcode.GapProcessLogic;
 import simpplle.comcode.*;
 
@@ -40,19 +39,17 @@ public class GapProcessLogicDlg extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
-/**
- * Overloaded GapProcessLogicDlg constructor.  
- */
+  /**
+   * Overloaded GapProcessLogicDlg constructor.
+   */
   public GapProcessLogicDlg() {
     this(new Frame(), "GapProcessLogicDlg", false);
   }
-
-
-  private void jbInit() throws Exception {
-  }
-/**
- * Initializes the Gap Process Logic Dialog with system knowledge. 
- */
+  // TODO: Look into removing this...
+  private void jbInit() throws Exception {}
+  /**
+   * Initializes the Gap Process Logic Dialog with system knowledge.
+   */
   private void initialize() {
     sysKnowKind = SystemKnowledge.GAP_PROCESS_LOGIC;
     String[] kinds = new String[] {GapProcessLogic.GAP_PROCESSES.toString()};
@@ -72,6 +69,4 @@ public class GapProcessLogicDlg extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }
-

@@ -84,7 +84,7 @@ public class KeaneFireEvent extends ProcessOccurrenceSpreadingFire {
 
     AdjacentData[] neighborhood = source.getNeighborhood();
 
-    for (int i = 0; i < source.getNUM_NEIGHBORS(); i++) {
+    for (int i = 0; i < Evu.MAX_NEIGHBORS; i++) {
       AdjacentData adjacent = neighborhood[i];
 
       if(adjacent != null){

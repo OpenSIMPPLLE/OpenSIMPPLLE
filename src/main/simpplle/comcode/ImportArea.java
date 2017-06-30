@@ -38,6 +38,7 @@ public class ImportArea {
  * @throws ParseError is caught in GUI, if trouble parsing line, however if it throws a parse error on field #5 while expecting a number it means we have a string which is caught here
  */
   private boolean hasRowCol(String line) throws ParseError {
+
     StringTokenizerPlus strTok = new StringTokenizerPlus(line,",");
 
     // If field #5 is a number than we have row & col,
@@ -340,7 +341,7 @@ public class ImportArea {
           }
           if (state == null) {
             logFile.println(line);
-            logFile.println("  In Evu-" + id + "Could not build a valid state.");
+            logFile.println("  In Evu-" + id + " Could not build a valid state.");
             logFile.println("  One or more of the following must be invalid:");
             logFile.println(
                 "  Species, Size Class, Density, or Ecological Grouping");
@@ -390,6 +391,7 @@ public class ImportArea {
 
         // Get the Ignition Prob
         // value not used anymore.
+        // TODO: Remove perhaps?
         str = strTok.getToken();
         evu.setIgnitionProb(0);
 
@@ -457,8 +459,8 @@ public class ImportArea {
               logFile.println();
             }
             else {
-              /** TODO need to update state later if it is an invalid one. */
-              /** TODO carry process & treatment as initial when make sim ready */
+              // TODO need to update state later if it is an invalid one. */
+              // TODO carry process & treatment as initial when make sim ready */
               treatment = Treatment.createInitialTreatment(treatType, state);
               evu.addTreatment(treatment);
             }
@@ -566,7 +568,7 @@ public class ImportArea {
         if (vegState == null) {
           logFile.println(line);
           logFile.println("  In Evu-" + evu.getId() +
-                          "Could not build a valid state.");
+                          " Could not build a valid state.");
           logFile.println("  One or more of the following must be invalid:");
           logFile.println("  Species, Size Class, Density, or Ecological Grouping");
           logFile.println();
@@ -618,8 +620,8 @@ public class ImportArea {
             logFile.println();
           }
           else {
-            /** TODO need to update state later if it is an invalid one. */
-            /** TODO carry process & treatment as initial when make sim ready */
+            // TODO need to update state later if it is an invalid one. */
+            // TODO carry process & treatment as initial when make sim ready */
             treatment = Treatment.createInitialTreatment(treatType, vegState);
             evu.addTreatment(treatment);
           }
@@ -1230,6 +1232,7 @@ public class ImportArea {
       }
     }
   }
+
   public void readAtributesFile(File prefix) throws SimpplleError {
     File file, log, logFile;
     Area area = Simpplle.getCurrentArea();

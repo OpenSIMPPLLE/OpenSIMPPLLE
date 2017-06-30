@@ -23,7 +23,7 @@ public class VegUnitFireTypeLogicDlg extends AbstractLogicDialog {
 	 * Constructor for Veg Unit Fire Type Logic Dialog.  Passes to superclass the owner frame, title, and modality, then initializes.  
 	 * @param owner frame owner
 	 * @param title the title of dialog
-	 * @param modal
+	 * @param modal modality of dialog
 	 */
   protected VegUnitFireTypeLogicDlg(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
@@ -36,11 +36,11 @@ public class VegUnitFireTypeLogicDlg extends AbstractLogicDialog {
       exception.printStackTrace();
     }
   }
-/**
- * Initializes the Vegetative Unit FIre Type Logic dialog.  Sets the system knowledge to VEG_UNIT_FIRE_TYPE_LOGIC and creates a new array of fire types.
- * Creates tabbed panels with the fire type and panels for the fire types by creating new tab panels with this as the dialog, fire type kind, the fire type logic instance and 
- * current system knowledge kind = VEG_UNIT_FIRE_TYPE_LOGIC.  The first tab will be selected.  
- */
+  /**
+   * Initializes the Vegetative Unit FIre Type Logic dialog.  Sets the system knowledge to VEG_UNIT_FIRE_TYPE_LOGIC and creates a new array of fire types.
+   * Creates tabbed panels with the fire type and panels for the fire types by creating new tab panels with this as the dialog, fire type kind, the fire type logic instance and
+   * current system knowledge kind = VEG_UNIT_FIRE_TYPE_LOGIC.  The first tab will be selected.
+   */
   private void initialize() {
     sysKnowKind = SystemKnowledge.VEG_UNIT_FIRE_TYPE_LOGIC;
     String[] kinds = new String[] {VegUnitFireTypeLogic.UNIT_FIRE_TYPE.toString()};
@@ -60,7 +60,4 @@ public class VegUnitFireTypeLogicDlg extends AbstractLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }
-
-

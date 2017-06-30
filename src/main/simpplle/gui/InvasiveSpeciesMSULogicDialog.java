@@ -9,9 +9,6 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-
-import javax.swing.JDialog;
-import javax.swing.JTabbedPane;
 import simpplle.comcode.InvasiveSpeciesLogicMSU;
 import simpplle.comcode.SystemKnowledge;
 
@@ -23,6 +20,7 @@ import simpplle.comcode.SystemKnowledge;
  */
 
 public class InvasiveSpeciesMSULogicDialog extends VegLogicDialog {
+
   public InvasiveSpeciesMSULogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -39,7 +37,7 @@ public class InvasiveSpeciesMSULogicDialog extends VegLogicDialog {
   public InvasiveSpeciesMSULogicDialog() {
     this(new Frame(), "InvasiveSpeciesMSULogicDialog", false);
   }
-
+  // TODO: Look into removing this...
   private void jbInit() throws Exception {}
 
   private void initialize() {
@@ -62,6 +60,4 @@ public class InvasiveSpeciesMSULogicDialog extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }
-

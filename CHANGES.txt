@@ -1,7 +1,16 @@
-Version 1.4.0 :
+Version 1.3.11 :
+
+    - Regeneration logic can now be loaded in isolation from a user knowledge file
+    - Fixed null pointer exception thrown during simulations on certain habitat type groups
+    - Fixed null pointer exception thrown while computing next EVU states
+    - Fixed null pointer exception thrown when user knowledge loaded after a simulation
+
+Version 1.3.10 : June 15, 2017
 
     - Fixed bug with Keane fire spread not respecting random number generator seed
     - Removed change java heap size from utilities menu
+    - Added reporting of the index of from units to the EVU_SIM_DATA file
+    - Added reporting of the regeneration rules index to the EVU_SIM_DATA file
 
 Version 1.3.9 : January 19, 2017
 

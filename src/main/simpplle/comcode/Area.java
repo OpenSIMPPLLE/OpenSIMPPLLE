@@ -3298,8 +3298,8 @@ public final class Area implements Externalizable {
   }
 
   private void produceSpreadArcFiles(PrintWriter fout, int tStep) throws SQLException {
-    RegionalZone  zone        = Simpplle.getCurrentZone();
-    AreaSummary   areaSummary = Simpplle.getAreaSummary();
+    RegionalZone  zone             = Simpplle.getCurrentZone();
+    AreaSummary   areaSummary      = Simpplle.getAreaSummary();
     ProcessType[] summaryProcesses = Process.getSummaryProcesses();
     int           i, j;
     String        value;
@@ -4647,75 +4647,6 @@ public final class Area implements Externalizable {
     }
 
   }
-
-  public void writeAccumDatabase() throws SimpplleError {
-    try {
-      int    doneCount=0, pctFinish;
-      for (Evu evu : allEvu) {
-        if (evu == null) {
-          continue;
-        }
-        pctFinish = Math.round(((float)doneCount / (float)allEvu.length) * 100.0f);
-        String msg = "Writing to database " + pctFinish + "% Finished";
-        Simpplle.setStatusMessage(msg);
-
-        Session session = DatabaseCreator.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
-        evu.writeAccumDatabase(session);
-        tx.commit();
-        session.close();
-
-        doneCount++;
-      }
-      if (allEau == null) { return; }
-
-      for (ExistingAquaticUnit eau : allEau) {
-        if (eau == null) {
-          continue;
-        }
-
-        Session session = DatabaseCreator.getSessionFactory().openSession();
-        Transaction tx = session.beginTransaction();
-        eau.writeAccumDatabase(session);
-        tx.commit();
-        session.close();
-      }
-    }
-    catch (HibernateException ex) {
-      throw new SimpplleError("Problems writing database",ex);
-    }
-    catch (SQLException ex) {
-      throw new SimpplleError("Problems writing database",ex);
-    }
-  }
-
-  public void writeRandomAccessFile(RandomAccessFile simFile)
-      throws SimpplleError
-  {
-    int doneCount = 0, pctFinish;
-
-    int ts = Simulation.getCurrentTimeStep();
-    for (Evu evu : allEvu) {
-      if (evu == null) {
-        continue;
-      }
-      pctFinish = Math.round(((float) doneCount / (float) allEvu.length)*100.0f);
-      if (pctFinish % 10 == 0) {
-        String msg = "Writing Time Step #" + ts + " to data file " + pctFinish + "% Finished";
-        Simpplle.setStatusMessage(msg);
-      }
-      try {
-        evu.writeRandomAccessFile(simFile);
-        doneCount++;
-      }
-      catch (SimpplleError ex) {
-        Simpplle.clearStatusMessage();
-        throw ex;
-      }
-    }
-    Simpplle.clearStatusMessage();
-  }
-
 
   /**
    * Write simulation data for the current time step to the database.

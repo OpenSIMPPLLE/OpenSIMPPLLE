@@ -18,7 +18,6 @@ import simpplle.comcode.*;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller</p>
  */
-
 public class FireSuppBeyondClassALogicDlg extends VegLogicDialog {
 	/**
 	 * Constructor for Fire Suppression Beyond Class A Logic Dialog
@@ -44,13 +43,14 @@ public class FireSuppBeyondClassALogicDlg extends VegLogicDialog {
   public FireSuppBeyondClassALogicDlg() {
     this(new Frame(), "FireSuppBeyondClassALogicDlg", false);
   }
+  // TODO look into removing this...
   private void jbInit() throws Exception {
 
   }
-/**
- * Initializes the Fire Suppression Beyond Class A Logic with the Fire Suppression Beyond Class A System Logic.  
- * Sets up a tabbed panels according to type number of fire suppression class Beyond Class A logic 
- */
+  /**
+   * Initializes the Fire Suppression Beyond Class A Logic with the Fire Suppression Beyond Class A System Logic.
+   * Sets up a tabbed panels according to type number of fire suppression class Beyond Class A logic
+   */
   private void initialize() {
     sysKnowKind = SystemKnowledge.FIRE_SUPP_BEYOND_CLASS_A_LOGIC;
     String[] kinds = new String[] {FireSuppBeyondClassALogic.FIRE_SUPP_BEYOND_CLASS_A.toString()};
@@ -70,5 +70,4 @@ public class FireSuppBeyondClassALogicDlg extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-
 }

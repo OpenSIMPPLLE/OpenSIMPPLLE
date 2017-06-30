@@ -8,17 +8,17 @@
 
 package simpplle.comcode;
 
-import java.util.*;
-import java.io.ObjectInput;
-import java.io.IOException;
-import java.io.ObjectOutput;
-import java.io.Externalizable;
-import simpplle.comcode.Climate.Season;
-import org.apache.commons.collections.map.*;
 import org.apache.commons.collections.MapIterator;
-import org.hibernate.Session;
+import org.apache.commons.collections.map.Flat3Map;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import simpplle.comcode.Climate.Season;
+
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * VegSimStateData describes the state of an existing vegetation unit (EVU) during a single time step.
@@ -44,12 +44,13 @@ public class VegSimStateData implements Externalizable {
   private short          seasonOrd;  // Used for hibernate mapping only!
 
   private int fireSpreadRuleIndex = -1;
-  private int fireRegenerationRuleIndex = -1;
+  private int fireRegenRuleIndex  = -1;
+  private int succRegenRuleIndex  = -1;
 
   // Object[Species][Integer]
   // Flat3Map
   // Key: InclusionRuleSpecies, Value: Percent(float)
-  private Map trackingSpecies;
+  private Map<InclusionRuleSpecies, Float> trackingSpecies;
 
   private static int writeCount=0;
 
@@ -301,7 +302,7 @@ public class VegSimStateData implements Externalizable {
   }
 
   public float getFloatProb() {
-    return ( (float)prob / (float)Utility.pow(10,Area.getAcresPrecision()) );
+    return ((float)prob / (float)Utility.pow(10,Area.getAcresPrecision()));
   }
 
   public String getProbString() {
@@ -336,11 +337,24 @@ public class VegSimStateData implements Externalizable {
   }
 
   public int getFireRegenerationRuleIndex() {
-    return fireRegenerationRuleIndex;
+    return fireRegenRuleIndex;
   }
 
   public void setFireRegenerationRuleIndex(int index) {
-    fireRegenerationRuleIndex = index;
+    fireRegenRuleIndex = index;
+  }
+
+  public int getSuccessionRegenerationRuleIndex() {
+    return succRegenRuleIndex;
+  }
+
+  public void setSuccessionRegenerationRuleIndex(int index) {
+    succRegenRuleIndex = index;
+  }
+
+  public void resetRegenRules(int resetValue) {
+    fireRegenRuleIndex = resetValue;
+    succRegenRuleIndex = resetValue;
   }
 
   public String getSeasonString() {
@@ -361,7 +375,7 @@ public class VegSimStateData implements Externalizable {
   public float getSpeciesPercent(InclusionRuleSpecies trk_species) {
     if (trackingSpecies == null) { return -1; }
 
-    Float pct = (Float)trackingSpecies.get(trk_species);
+    Float pct = trackingSpecies.get(trk_species);
     return (pct != null) ? pct : -1;
 
   }
@@ -389,7 +403,7 @@ public class VegSimStateData implements Externalizable {
 
       if (veg.isTrackingSpecies(sp)) continue;
 
-      Float pct = (Float)trackingSpecies.get(sp);
+      Float pct = trackingSpecies.get(sp);
       if (pct != null && pct == 0) {
         removeList.add(sp);
       }
@@ -404,7 +418,7 @@ public class VegSimStateData implements Externalizable {
    *
    */
   public Map getAccumDataSpeciesMap() {
-    return new HashMap(trackingSpecies);
+    return new HashMap<>(trackingSpecies);
   }
 
   /**
@@ -417,7 +431,7 @@ public class VegSimStateData implements Externalizable {
 
   public InclusionRuleSpecies[] getTrackingSpeciesArray() {
     if (trackingSpecies != null) {
-      return (InclusionRuleSpecies[]) trackingSpecies.keySet().toArray(new InclusionRuleSpecies[trackingSpecies.size()]);
+      return trackingSpecies.keySet().toArray(new InclusionRuleSpecies[trackingSpecies.size()]);
     }
     return null;
   }
@@ -437,7 +451,7 @@ public class VegSimStateData implements Externalizable {
 
   public float updateTrackingSpecies(InclusionRuleSpecies trkSpecies, float change) {
 
-    Float pct = (Float)trackingSpecies.get(trkSpecies);
+    Float pct = trackingSpecies.get(trkSpecies);
     float newPct = change;
 
     if (pct != null) {
@@ -462,11 +476,11 @@ public class VegSimStateData implements Externalizable {
    */
   public float updateTrackingSpecies(InclusionRuleSpecies trkSpecies, float change, boolean changeAsPercent) {
 
-    float newPct = 0.0f;
+    float newPct;
 
     if (changeAsPercent) {
 
-      Float pct = (Float) trackingSpecies.get(trkSpecies);
+      Float pct = trackingSpecies.get(trkSpecies);
 
       if (pct == null) {
         pct = 0.0f;
@@ -615,7 +629,7 @@ public class VegSimStateData implements Externalizable {
       treatmentId = treatment.getType().getSimId();
     }
 
-    float acres     = evu.getFloatAcres();
+    // state data
     int   lifeId    = state.lifeform.getSimId();
     int   speciesId = state.getVeg().getSpecies().getSimId();
     int   sizeId    = state.getVeg().getSizeClass().getSimId();
@@ -626,21 +640,25 @@ public class VegSimStateData implements Externalizable {
     int   prob      = state.getProb();
     float fProb     = state.getFloatProb();
     int   firerule  = state.getFireSpreadRuleIndex();
- 
+    int   fireRegenRuleIndex        = state.getFireRegenerationRuleIndex();
+    int   successionRegenRuleIndex  = state.getSuccessionRegenerationRuleIndex();
+
+    // Evu Data
+    float acres     = evu.getFloatAcres();
+    int originUnitId  = (evu.getOriginUnit() != null) ? evu.getOriginUnit().getId() : -1;
+    int fromUnitId    = evu.fromEvuId;
+
     String probStr = "n/a";
     if (prob < 0) {
       fProb = 0.0f;
       probStr = state.getProbString();
     }
 
-    Evu originUnit = evu.getOriginUnit();
-    int originUnitId = -1;
-    if (originUnit != null) {
-      originUnitId = originUnit.getId();
-    }
-    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d%n",
+    fout.printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f,%s,%d,%d,%d,%d,%d,%d%n",
         run ,ts, seasonId, state.slink, lifeId, speciesId, sizeId, age, densityId, processId, fProb,
-        probStr, treatmentId, originUnitId, firerule); //state.fireSpreadRuleIndex);
+        probStr, treatmentId, originUnitId, fromUnitId, firerule, fireRegenRuleIndex, successionRegenRuleIndex);
+
+    state.resetRegenRules(-1);
 
     if (state.trackingSpecies != null) {
 
@@ -665,6 +683,7 @@ public class VegSimStateData implements Externalizable {
     }
   }
 
+  // do we really need all these commented out methods in here still?  Isn't that what version control is for?
 //  public static long writeRandomAccessFile(RandomAccessFile simFile, VegSimStateData state)
 //    throws SimpplleError
 //  {
@@ -744,5 +763,3 @@ public class VegSimStateData implements Externalizable {
 //  }
 
 }
-
-

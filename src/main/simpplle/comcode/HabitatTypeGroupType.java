@@ -18,9 +18,7 @@ import java.util.*;
  * <p> Original source code authorship: Kirk A. Moeller
  */
 
-public class HabitatTypeGroupType
-  extends SimpplleType
-  implements Externalizable
+public class HabitatTypeGroupType extends SimpplleType implements Externalizable
 {
 
   public static final HabitatTypeGroupType ANY = new HabitatTypeGroupType("ANY",false);
@@ -130,15 +128,12 @@ public class HabitatTypeGroupType
   // ****************
   // *** Colorado ***
   // ****************
-
   public static final HabitatTypeGroupType LOWER_MONTANE  = new HabitatTypeGroupType("LOWER-MONTANE",false);
   public static final HabitatTypeGroupType ALPINE         = new HabitatTypeGroupType("ALPINE",false);
   public static final HabitatTypeGroupType UPPER_MONTANE  = new HabitatTypeGroupType("UPPER-MONTANE",false);
   public static final HabitatTypeGroupType SUBALPINE      = new HabitatTypeGroupType("SUBALPINE",false);
   public static final HabitatTypeGroupType FOOTHILLS      = new HabitatTypeGroupType("FOOTHILLS",false);
   public static final HabitatTypeGroupType PLAINS         = new HabitatTypeGroupType("PLAINS",false);
-
-
 
   // *** Western Great Plains Steppe ***
   // ***********************************
@@ -152,10 +147,13 @@ public class HabitatTypeGroupType
   private String   description;
   private boolean  userCreated;
 
-  public static HashMap<Short,HabitatTypeGroupType> simIdHm =
-    new HashMap<Short,HabitatTypeGroupType>();
+  public static HashMap<Short,HabitatTypeGroupType> simIdHm = new HashMap<Short,HabitatTypeGroupType>();
   private short simId=-1; // Random Access File ID
-  public static short nextSimId=0;
+  public static short nextSimId = 0;
+
+  public static final int COLUMN_COUNT = 1;
+  public static final int CODE_COL     = 0;
+
   public short getSimId() {
     if (simId == -1) {
       simId = nextSimId;
@@ -197,24 +195,18 @@ public class HabitatTypeGroupType
     }
   }
 
-
-
-
-  public static final int COLUMN_COUNT = 1;
-  public static final int CODE_COL     = 0;
-
-/**
- * Constructor for Habitat type group type object.  These objects have a name, description and boolean if user created.  
- * There are many different habitat type groups that are often different for each regional zone.  An example of habitat type group types for a 
- * regional zone are the following for GIla:
- *
- * HabitatTypeGroupType NF = new HabitatTypeGroupType("NF",false); // Non Forest
- * HabitatTypeGroupType W  = new HabitatTypeGroupType("W",false);  // Woodland
- * HabitatTypeGroupType R  = new HabitatTypeGroupType("R",false);  // Riparian
- * HabitatTypeGroupType FW = new HabitatTypeGroupType("FW",false); // Forested Wet
- * HabitatTypeGroupType FD = new HabitatTypeGroupType("FD",false); // Forested Dry
- * 
- */
+  /**
+   * Constructor for Habitat type group type object.  These objects have a name, description and boolean if user created.
+   * There are many different habitat type groups that are often different for each regional zone.  An example of habitat type group types for a
+   * regional zone are the following for GIla:
+   *
+   * HabitatTypeGroupType NF = new HabitatTypeGroupType("NF",false); // Non Forest
+   * HabitatTypeGroupType W  = new HabitatTypeGroupType("W",false);  // Woodland
+   * HabitatTypeGroupType R  = new HabitatTypeGroupType("R",false);  // Riparian
+   * HabitatTypeGroupType FW = new HabitatTypeGroupType("FW",false); // Forested Wet
+   * HabitatTypeGroupType FD = new HabitatTypeGroupType("FD",false); // Forested Dry
+   *
+   */
   public HabitatTypeGroupType() {
     this.name        = null;
     this.description = null;
@@ -258,18 +250,20 @@ public class HabitatTypeGroupType
   public HabitatTypeGroupType(String group, boolean userCreated) {
     this(group,group,userCreated);
   }
-/**
- * Looks up a habitat group by its string name (ex. "NF" - Non Forest) and sees if it equals this habitat type group type.  
- * @param name
- * @return
- */
+
+  /**
+   * Looks up a habitat group by its string name (ex. "NF" - Non Forest) and sees if it equals this habitat type group type.
+   * @param name
+   * @return
+   */
   public boolean lookupEquals(String name) {
     return equals(get(name));
   }
-/**
- * Checks if parameter object is a habitat type group type object and if it's name equals this one.  
- * @return true if parameter object is a habitat type group type object and if it's name equals this one
- */
+
+  /**
+   * Checks if parameter object is a habitat type group type object and if it's name equals this one.
+   * @return true if parameter object is a habitat type group type object and if it's name equals this one
+   */
   public boolean equals(Object obj) {
     if (this == obj) { return true; }
     if (obj instanceof HabitatTypeGroupType) {
@@ -279,22 +273,25 @@ public class HabitatTypeGroupType
     }
     return false;
   }
-/**
- * Returns the hash code for this habitat type group type based on its name.  
- */
+
+  /**
+   * Returns the hash code for this habitat type group type based on its name.
+   */
   public int hashCode() {
     return name.hashCode();
   }
-/**
- * Required compareTo method which compares the names of parameter habitat type group type object and this one.  
- */
+
+  /**
+   * Required compareTo method which compares the names of parameter habitat type group type object and this one.
+   */
   public int compareTo(Object o) {
     if (o == null) { return -1; }
     return name.compareTo(o.toString());
   }
-/**
- * Returns the name of this habitat type group type (ex. "NF" - Non Forest).
- */
+
+  /**
+   * Returns the name of this habitat type group type (ex. "NF" - Non Forest).
+   */
   public String toString() { return name; }
 
   public static HabitatTypeGroupType get(HabitatTypeGroup group) {
@@ -306,7 +303,7 @@ public class HabitatTypeGroupType
    * @return
    */
   public static HabitatTypeGroupType get(String htGrpName) {
-    return ( (HabitatTypeGroupType)allGroupHm.get(htGrpName.toUpperCase()) );
+    return get(htGrpName, false);
   }
   /**
    * First tries to get the HabitatTypeGroupType from the allGroupHM keyed by uppercase name.  If does not exist and create is true, creates a new
@@ -324,11 +321,13 @@ public class HabitatTypeGroupType
     }
     return group;
   }
-/**
- * Checks whether this habitat type group type is user created.  
- * @return
- */
+
+  /**
+   * Checks whether this habitat type group type is user created.
+   * @return
+   */
   public boolean isUserCreated() { return userCreated; }
+
   /**
    * Returns the name of this habitat type group type (ex. "NF" - Non Forest).
    * @return the name of habitat type group type (ex. "NF" - Non Forest).
@@ -336,10 +335,11 @@ public class HabitatTypeGroupType
   public String getName() {
     return name;
   }
-/**
- * Gets an arraylist of all habitat type group types
- * @return
- */
+
+  /**
+  * Gets an arraylist of all habitat type group types
+  * @return
+  */
   public static ArrayList getAllLoadedGroups() {
     ArrayList groups = HabitatTypeGroup.getAllLoadedGroups();
     ArrayList aList = new ArrayList(groups.size());
@@ -349,11 +349,12 @@ public class HabitatTypeGroupType
     }
     return aList;
   }
+
   /**
    * Reads from an external source the variables that define a habitat type group type.  
    * These are the name, description, and usercreated boolean (true if user created)
    */
-   public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+  public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
     int version = in.readInt();
 
     name        = (String)in.readObject();
@@ -361,10 +362,17 @@ public class HabitatTypeGroupType
     userCreated = in.readBoolean();
 
   }
-   /**
-   * Writes to an external source the variables that define a habitat type group type.  
-   * These are the name, description, and userCreated boolean (true if user created)
-    */
+  public static HabitatTypeGroupType readExternalSimple(ObjectInput in) throws IOException,
+                                                                        ClassNotFoundException {
+    int version = in.readInt();
+    String name = (String) in.readObject();
+
+    return HabitatTypeGroupType.get(name, true);
+  }
+  /**
+  * Writes to an external source the variables that define a habitat type group type.
+  * These are the name, description, and userCreated boolean (true if user created)
+  */
   public void writeExternal(ObjectOutput out) throws IOException {
     out.writeInt(version);
 
@@ -372,14 +380,18 @@ public class HabitatTypeGroupType
     out.writeObject(description);
     out.writeBoolean(userCreated);
   }
+  public void writeExternalSimple(ObjectOutput out) throws IOException {
+    out.writeInt(simpleVersion);
+    out.writeObject(name);
+  }
+
   /**
-   * Read resolve method which will get the habitatTypeGroupType object and set this objects description and userCreated variables.  
-   * then updates all OpenSsimpplle type objects hashmap.   
+   * Read resolve method which will get the habitatTypeGroupType object and set this objects description and userCreated variables.
+   * then updates all OpenSsimpplle type objects hashmap.
    * @return
    * @throws java.io.ObjectStreamException
    */
-  private Object readResolve () throws java.io.ObjectStreamException
-  {
+  private Object readResolve () throws ObjectStreamException {
     HabitatTypeGroupType groupObj = this.get(name,true);
 
     groupObj.description          = this.description;
@@ -388,45 +400,9 @@ public class HabitatTypeGroupType
     updateAllData(groupObj,GROUP);
     return groupObj;
   }
-  public static HabitatTypeGroupType readExternalSimple(ObjectInput in) throws IOException, ClassNotFoundException {
-   int version = in.readInt();
 
-   String name        = (String)in.readObject();
-   return HabitatTypeGroupType.get(name);
-  }
-  public void writeExternalSimple(ObjectOutput out) throws IOException {
-    out.writeInt(simpleVersion);
-     out.writeObject(name);
-  }
-/**
- * Sets the name of this habitat type group type (ex. "NF" - Non Forest).
- * 
- * @param name the name of habitat type group type (ex. "NF" - Non Forest).
- */
-  public void setName(String name) {
-    this.name = name;
-  }
-/**
- * Used in GUI table models.  Gets the data in a column by column Id.  If col = CODE_COL (0) will return this object else returns null. 
- */
-  public Object getColumnData(int col) {
-    switch (col) {
-      case CODE_COL:
-        return this;
-      default: return null;
-    }
-  }
   /**
-   * Used in GUI table models.  Doesn't really do anything currrently. 
-   */
-  public void setColumnData(Object value, int col) {
-    switch (col) {
-      default: return;
-    }
-//    SystemKnowledge.markChanged(SystemKnowledge.TREATMENT_TYPE);
-  }
-  /**
-   * Used in GUI table models.  Gets the column name by column Id.  If col = CODE_COL (0) will "Eco Group", else returns empty string. 
+   * Used in GUI table models.  Gets the column name by column Id.  If col = CODE_COL (0) will "Eco Group", else returns empty string.
    */
   public static String getColumnName(int col) {
     switch (col) {
@@ -435,8 +411,33 @@ public class HabitatTypeGroupType
     }
   }
 
+  /**
+   * Sets the name of this habitat type group type (ex. "NF" - Non Forest).
+   *
+   * @param name the name of habitat type group type (ex. "NF" - Non Forest).
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  /**
+   * Used in GUI table models.  Gets the data in a column by column Id.  If col = CODE_COL (0) will return this object else returns null.
+   */
+  public Object getColumnData(int col) {
+    switch (col) {
+      case CODE_COL:
+        return this;
+      default: return null;
+    }
+  }
+
+  /**
+   * Used in GUI table models.  Doesn't really do anything currrently.
+   */
+  public void setColumnData(Object value, int col) {
+    switch (col) {
+      default: return;
+    }
+//    SystemKnowledge.markChanged(SystemKnowledge.TREATMENT_TYPE);
+  }
 }
-
-
-
-

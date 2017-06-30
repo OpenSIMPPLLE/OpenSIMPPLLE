@@ -24,7 +24,8 @@ import javax.swing.JMenuItem;
  */
 
 public class FireSuppSpreadRateLogicDlg extends VegLogicDialog {
-  JMenuItem menuImportOldFile = new JMenuItem();
+
+  private JMenuItem menuImportOldFile = new JMenuItem();
 
   public FireSuppSpreadRateLogicDlg(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
@@ -38,9 +39,11 @@ public class FireSuppSpreadRateLogicDlg extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
+
   public FireSuppSpreadRateLogicDlg() {
     this(new Frame(), "FireSuppSpreadRateLogicDlg", false);
   }
+
   private void jbInit() throws Exception {
     menuImportOldFile.setText("Import old format File");
     menuImportOldFile.addActionListener(new
@@ -68,7 +71,7 @@ public class FireSuppSpreadRateLogicDlg extends VegLogicDialog {
     updateDialog();
   }
 
-  public void menuImportOldFile_actionPerformed(ActionEvent e) {
+  void menuImportOldFile_actionPerformed(ActionEvent e) {
     File         inputFile;
     MyFileFilter extFilter;
     String       title = "Select a Fire Supp Spread Rate File";
@@ -90,9 +93,7 @@ public class FireSuppSpreadRateLogicDlg extends VegLogicDialog {
       }
     }
   }
-
 }
-
 
 class FireSuppSpreadRateLogicDlg_menuImportOldFile_actionAdapter implements ActionListener {
   private FireSuppSpreadRateLogicDlg adaptee;
@@ -104,4 +105,3 @@ class FireSuppSpreadRateLogicDlg_menuImportOldFile_actionAdapter implements Acti
     adaptee.menuImportOldFile_actionPerformed(e);
   }
 }
-

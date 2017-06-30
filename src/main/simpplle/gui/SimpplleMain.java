@@ -34,9 +34,9 @@ import java.util.Vector;
  */
 @SuppressWarnings("serial")
 public class SimpplleMain extends JFrame {
-  public static final String VERSION      = "1.3.9";
+  public static final String VERSION      = "1.3.10";
   public static final String RELEASE_KIND = "Douglas Fir";
-  public static final String BUILD_DATE   = "January 2017";
+  public static final String BUILD_DATE   = "June 2017";
 
   public static Color RESULT_COL_COLOR    = new Color(90,190,190);
   public static Color ROW_HIGHLIGHT_COLOR = new Color(162,200,157);
@@ -2357,7 +2357,7 @@ public class SimpplleMain extends JFrame {
   private boolean deleteSimulationCheck() {
     String msg =
       "An area is loaded that has simulation data.\n" +
-      "If unit data is made invalid by loading of one or more knowledge files" +
+      "If unit data is made invalid by loading of one or more knowledge files " +
       "then the state will be marked as invalid, and a result the area as well.\n" +
       "** In addition all simulation data will be removed from memory. **\n\n" +
       "Do you wish to continue?\n";

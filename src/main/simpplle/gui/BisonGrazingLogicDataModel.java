@@ -27,7 +27,7 @@ public class BisonGrazingLogicDataModel extends AbstractTableModel {
 
   /**
    * Constructor for Bison Grazing Logic Data Model.  Inherits from javax.swing.table.AbstractTableModel.AbstractTableModel()
-   * methods which need to be implemented are getRowCount(), getColumnCount(), getValueAt(int row, int column);
+   * methods which need to be implemented are getRowCount(), getVisibleColumnCount(), getValueAt(int row, int column);
    * @see javax.swing.table.AbstractTableModel.AbstractTableModel()
   */
   

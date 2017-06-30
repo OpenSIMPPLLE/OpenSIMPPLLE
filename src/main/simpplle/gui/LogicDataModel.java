@@ -77,7 +77,7 @@ public class LogicDataModel extends AbstractTableModel {
    * Returns the number of columns in the model.
    */
   public int getColumnCount() {
-    return getLogicInst().getColumnCount(kindStr);
+    return getLogicInst().getVisibleColumnCount(kindStr);
   }
 
   /**

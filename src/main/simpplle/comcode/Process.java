@@ -43,16 +43,16 @@ public abstract class Process {
   protected boolean        yearlyProcess;
   protected boolean        uniqueUI;
 
-  protected ArrayList          rules;
+  protected ArrayList<Integer>          rules;
   protected String[]           probLabels;
-  protected ArrayList<String>  defaultVisibleColumns = new ArrayList<String>();
+  protected ArrayList<String>  defaultVisibleColumns = new ArrayList<>();
 
   protected ArrayList<Lifeform> validLifeforms;
 
-  private static Hashtable              processHt;
+  private static Hashtable<ProcessType, Process> processHt;
   private static ArrayList<ProcessType> legalProcesses;
-  private static ArrayList              simulationProcesses;
-  private static ArrayList              summaryProcesses;
+  private static ArrayList<ProcessType> simulationProcesses;
+  private static ArrayList<ProcessType> summaryProcesses;
   private static ArrayList<ProcessType> probLogicProcesses;
 
   private static HashMap<Lifeform,ArrayList<ProcessType>> lifeformSimProcesses;
@@ -70,7 +70,7 @@ public abstract class Process {
     description    = null;
     spreading      = false;
     yearlyProcess  = true;
-    validLifeforms = new ArrayList<Lifeform>(5);
+    validLifeforms = new ArrayList<>(5);
     uniqueUI       = false;
   }
 
@@ -370,7 +370,7 @@ public abstract class Process {
     }
 
     while (!eof) {
-      process = (Process)processHt.get(processType);
+      process = processHt.get(processType);
       if (process == null) {
         throw new SimpplleError("Invalid process: " + processName +
                                 " found in data file");
@@ -550,7 +550,7 @@ public abstract class Process {
     if (probProcesses == null) { return; }
     Process  process;
     for(int i=0; i<probProcesses.length; i++) {
-      process = (Process)processHt.get(probProcesses[i]);
+      process = processHt.get(probProcesses[i]);
       process.save(fout);
     }
   }
@@ -704,11 +704,11 @@ public abstract class Process {
   private static HashMap<Lifeform,ArrayList<ProcessType>> lifeformSimProcessesNoFireEvent;
 
   private static void makeNoFireEventSimProcessCopy() {
-    lifeformSimProcessesNoFireEvent = new HashMap<Lifeform,ArrayList<ProcessType>>();
+    lifeformSimProcessesNoFireEvent = new HashMap<>();
 
     for (Lifeform life : lifeformSimProcesses.keySet()) {
       ArrayList<ProcessType> processes = lifeformSimProcesses.get(life);
-      ArrayList<ProcessType> newList = new ArrayList<ProcessType>();
+      ArrayList<ProcessType> newList = new ArrayList<>();
       for (ProcessType process : processes) {
         if (process != ProcessType.FIRE_EVENT) {
           newList.add(process);
@@ -740,7 +740,7 @@ public abstract class Process {
    * @return an arraylist of all the lifeforms for a particular process.
    */
   public static ArrayList<Lifeform> getProcessLifeforms(ProcessType process) {
-    ArrayList<Lifeform> result = new ArrayList<Lifeform>();
+    ArrayList<Lifeform> result = new ArrayList<>();
     Lifeform[] allLives = Lifeform.getAllValues();
     for (int i=0; i<allLives.length; i++) {
       if (isMemberLifeformProcesses(allLives[i],process)) {
@@ -751,7 +751,7 @@ public abstract class Process {
   }
 
   /**
-   * check to see if lifeform object is a member of the lifeform Process type
+   * Check to see if lifeform object is a member of the lifeform Process type
    * @param lifeform
    * @param process
    * @return true if process type contains the lifeform
@@ -782,7 +782,7 @@ public abstract class Process {
    * @return
    */
   public static ProcessType[] getSimulationProcessesArray() {
-    return (ProcessType[]) simulationProcesses.toArray(new ProcessType[simulationProcesses.size()]);
+    return simulationProcesses.toArray(new ProcessType[simulationProcesses.size()]);
   }
 
   /**
@@ -790,24 +790,16 @@ public abstract class Process {
    * @return the array with all the summary processes 
    */
   public static ProcessType[] getSummaryProcesses() {
-    return (ProcessType[]) summaryProcesses.toArray(new ProcessType[summaryProcesses.size()]);
+    return summaryProcesses.toArray(new ProcessType[summaryProcesses.size()]);
   }
 
   public static ProcessType[] getLegalProcesses() {
-    return (ProcessType[]) legalProcesses.toArray(new ProcessType[legalProcesses.size()]);
+    return legalProcesses.toArray(new ProcessType[legalProcesses.size()]);
   }
 
   public static ArrayList getLegalProcessesList() {
     return legalProcesses;
   }
-
-//  public static String[] getLegalProcessNames() {
-//    String[] names = new String[legalProcesses.length];
-//    for (int i=0; i<legalProcesses.length; i++) {
-//      names[i] = legalProcesses[i].toString();
-//    }
-//    return names;
-//  }
 
   /**
    * writes legal processes, simulation processes, summary processes, probability logic processes
@@ -853,7 +845,7 @@ public abstract class Process {
     Process             process;
 
     try {
-      processHt = new Hashtable();
+      processHt = new Hashtable<>();
 
       line = fin.readLine(); // Comment
       if (line == null) { throw new SimpplleError("Invalid zone Definition File."); }
@@ -864,7 +856,7 @@ public abstract class Process {
       strTok = new StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
-      legalProcesses = new ArrayList(strTok.countTokens());
+      legalProcesses = new ArrayList<>(strTok.countTokens());
       while (strTok.hasMoreElements()) {
         str = strTok.getToken();
         if (str == null) { throw new SimpplleError("Null Process found"); }
@@ -893,7 +885,7 @@ public abstract class Process {
       strTok = new StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
-      simulationProcesses = new ArrayList(strTok.countTokens());
+      simulationProcesses = new ArrayList<>(strTok.countTokens());
       while (strTok.hasMoreElements()) {
         str = strTok.getToken();
         if (str == null) { throw new SimpplleError("Null Process found"); }
@@ -910,7 +902,7 @@ public abstract class Process {
       strTok = new StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
-      summaryProcesses = new ArrayList(strTok.countTokens());
+      summaryProcesses = new ArrayList<>(strTok.countTokens());
       while (strTok.hasMoreElements()) {
         str = strTok.getToken();
         if (str == null) { throw new SimpplleError("Null Process found"); }
@@ -928,7 +920,7 @@ public abstract class Process {
       strTok = new StringTokenizerPlus(line,",");
       if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
-      probLogicProcesses = new ArrayList<ProcessType>(strTok.countTokens());
+      probLogicProcesses = new ArrayList<>(strTok.countTokens());
       while (strTok.hasMoreElements()) {
         str = strTok.getToken();
         if (str == null) { throw new SimpplleError("Null Process found"); }
@@ -950,13 +942,13 @@ public abstract class Process {
 
       while (line.indexOf("END") == -1) {
         if (lifeformSimProcesses == null) {
-          lifeformSimProcesses = new HashMap<Lifeform,ArrayList<ProcessType>>(5);
+          lifeformSimProcesses = new HashMap<>(5);
         }
         strTok = new StringTokenizerPlus(line,",");
         if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
         Lifeform life = Lifeform.get(strTok.getToken());
-        ArrayList<ProcessType> pList = new ArrayList<ProcessType>(strTok.countTokens());
+        ArrayList<ProcessType> pList = new ArrayList<>(strTok.countTokens());
         lifeformSimProcesses.put(life,pList);
         while (strTok.hasMoreElements()) {
           str = strTok.getToken();
@@ -1112,7 +1104,7 @@ public abstract class Process {
 
   public static Process findInstance(ProcessType pt) {
     if (pt == null) { return null; }
-    return (Process)processHt.get(pt);
+    return processHt.get(pt);
   }
 
   /**
@@ -1133,9 +1125,9 @@ public abstract class Process {
       rules = null;
       return;
     }
-    rules = new ArrayList(numRules);
+    rules = new ArrayList<>(numRules);
     for (int i = 0; i < numRules; i++) {
-      rules.add((LogicRule)in.readObject());
+      rules.add((int)in.readObject());
     }
 
     probLabels = (String[])in.readObject();
@@ -1147,7 +1139,6 @@ public abstract class Process {
       LogicRule rule = (LogicRule) iter.next();
       out.writeObject(rule);
     }
-
     out.writeObject(probLabels);
   }
 
@@ -1200,7 +1191,7 @@ public abstract class Process {
    * @return arraylist with legal fire process short name (SRF, MSF, or LSF)
    */
   public static ArrayList<String> getFireSpreadUIProcesses(boolean includeNone) {
-    ArrayList<String> fireProcesses = new ArrayList<String>(3);
+    ArrayList<String> fireProcesses = new ArrayList<>(3);
 
     for (ProcessType process : legalProcesses) {
       if (process.isFireProcess()) {
@@ -1214,7 +1205,7 @@ public abstract class Process {
   }
 
   public static ArrayList<ProcessType> getFireProcesses(boolean includeNone) {
-    ArrayList<ProcessType> values = new ArrayList<ProcessType>();
+    ArrayList<ProcessType> values = new ArrayList<>();
     if (includeNone) {
       values.add(ProcessType.NONE);
     }
@@ -1277,7 +1268,4 @@ public abstract class Process {
 //
 //    return null;
   }
-
 }
-
-
