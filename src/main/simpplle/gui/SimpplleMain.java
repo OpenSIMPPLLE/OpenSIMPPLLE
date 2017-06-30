@@ -32,6 +32,7 @@ import java.util.Vector;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 @SuppressWarnings("serial")
 public class SimpplleMain extends JFrame {
   public static final String VERSION      = "1.3.11";
@@ -225,10 +226,10 @@ public class SimpplleMain extends JFrame {
 
     initialize();
   }
-/**
- * Initializes the simpplle main by getting the simpplle image and initializing some tests if in developer mode.  There is also a helpset file directory set, but it is not currently functional.
- * 
- */
+  /**
+   * Initializes the simpplle main by getting the simpplle image and initializing some tests if in developer mode.  There is also a helpset file directory set, but it is not currently functional.
+   *
+   */
   private void initialize() {
     // Set icon that is show in the title bar and minimized icon.
     ImageIcon tmpImage = new ImageIcon(
@@ -1265,36 +1266,36 @@ public class SimpplleMain extends JFrame {
   public void refresh() {
     update(getGraphics());
   }
-/**
- * Clears the status message by setting it to empty string.
- */
+  /**
+   * Clears the status message by setting it to empty string.
+   */
   public void clearStatusMessage() {
     setStatusMessage("");
   }
-/**
- * Sets the status message to the string message in parameter.  Does not wait.  
- * @param msg the message to be displayed
- */
+  /**
+   * Sets the status message to the string message in parameter.  Does not wait.
+   * @param msg the message to be displayed
+   */
   public void setStatusMessage(String msg) {
     setStatusMessage(msg,false);
   }
   /**
    * If wait is enabled, shows a messageDialog which has the user press Ok to continue.
-   * @param msg message to be displayed in the status bar.  
+   * @param msg message to be displayed in the status bar.
    * @param wait if true will ask the user to press Ok to continue.
    */
   public void setStatusMessage(String msg, boolean wait) {
     statusBar.setText(msg);
     if (wait) {
       JOptionPane.showMessageDialog(this,"Press Ok to continue","Profiling use",
-                                    JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.INFORMATION_MESSAGE);
     }
     refresh();
   }
-/**
- * Enables the simulation controls by getting the current simulation and
- * setting the simulation JMenu items to enabled
- */
+  /**
+   * Enables the simulation controls by getting the current simulation and
+   * setting the simulation JMenu items to enabled
+   */
   public void enableSimulationControls() {
     Simulation simulation = Simpplle.getCurrentSimulation();
 
@@ -1345,9 +1346,9 @@ public class SimpplleMain extends JFrame {
       menuReportsTrackingSpecies.setEnabled(true);
     }
   }
-/**
- * Disables simulation controls by setting the enabled simulation methods of the JMenu items to false.  
- */
+  /**
+   * Disables simulation controls by setting the enabled simulation methods of the JMenu items to false.
+   */
   public void disableSimulationControls() {
     menuReportsSummary.setEnabled(false);
     menuReportsAllStates.setEnabled(false);
@@ -1364,9 +1365,9 @@ public class SimpplleMain extends JFrame {
 
     menuReportsFireSuppCostAll.setEnabled(true);
   }
-/**
- * Enables the area JMenu items.  
- */
+  /**
+   * Enables the area JMenu items.
+   */
   public void enableAreaControls() {
     menuUtilityPrintArea.setEnabled(true);
     menuUtilityAreaName.setEnabled(true);
@@ -1404,20 +1405,20 @@ public class SimpplleMain extends JFrame {
     
     menuUtilitySwapRowCol.setEnabled(true);
    }
-/**
- * Disables Jmenu items by first checking if there is an invalid units and enabling or disabling Jmenu items to fix the states.  
- * THen calls the  disableAreaControls() which sets the enabled methods of all area JMenu items to false.  
- * @param invalidUnits
- */
+  /**
+   * Disables Jmenu items by first checking if there is an invalid units and enabling or disabling Jmenu items to fix the states.
+   * THen calls the  disableAreaControls() which sets the enabled methods of all area JMenu items to false.
+   * @param invalidUnits
+   */
   public void disableAreaControls(boolean invalidUnits) {
     menuImportFixStates.setEnabled(invalidUnits);
     menuImportInvalidReport.setEnabled(invalidUnits);
     menuUtilityDeleteUnits.setEnabled(false);
     disableAreaControls();
   }
-/**
- * Sets the enabled methods of all area JMenu items to false.
- */
+  /**
+   * Sets the enabled methods of all area JMenu items to false.
+   */
   public void disableAreaControls() {
     menuUtilityPrintArea.setEnabled(false);
     runSimulation.setEnabled(false);
@@ -1443,12 +1444,12 @@ public class SimpplleMain extends JFrame {
     menuUtilityMakeAreaMultipleLife.setEnabled(false);
     menuUtilitySwapRowCol.setEnabled(false);
   }
-/**
- * Gets the current area and checks if there are any invalid vegetative units.  
- * If there are invalid Evu's  enables or Jmenu items to fix the states and lets the user know there are invalid Evu
- * Then calls the  disableAreaControls() which sets the enabled methods of all area JMenu items to false.  
- * If there are it 
- */
+  /**
+   * Gets the current area and checks if there are any invalid vegetative units.
+   * If there are invalid Evu's  enables or Jmenu items to fix the states and lets the user know there are invalid Evu
+   * Then calls the  disableAreaControls() which sets the enabled methods of all area JMenu items to false.
+   * If there are it
+   */
   public void updateAreaValidity() {
     if (Simpplle.getCurrentArea().existAnyInvalidVegUnits()) {
       disableAreaControls(true);
@@ -1570,17 +1571,17 @@ public class SimpplleMain extends JFrame {
     setCursor(Utility.getWaitCursor());
     setStatusMessage(msg);
   }
-/**
- * Sets the cursor to normal cursor location.
- */
+  /**
+   * Sets the cursor to normal cursor location.
+   */
   public void setNormalState() {
     clearStatusMessage();
     setCursor(Utility.getNormalCursor());
   }
-/**
- * Sets the dialog location in relation to the Simpplle Main frame
- * @param dlg dialog whose location will be set.
- */
+  /**
+   * Sets the dialog location in relation to the Simpplle Main frame
+   * @param dlg dialog whose location will be set.
+   */
   public void setDialogLocation(JDialog dlg) {
     Dimension dlgSize = dlg.getPreferredSize();
     Dimension frmSize = getSize();
@@ -1603,6 +1604,7 @@ public class SimpplleMain extends JFrame {
     dlg.setLocation(x,y);
   }
 
+  // **************
   // Event Handlers
   // **************
 
@@ -1627,20 +1629,20 @@ public class SimpplleMain extends JFrame {
       fileExit_actionPerformed(null);
     }
   }
-/**
- * Displays the 'about OpenSimpplle' dialog
- * @param e
- */
+  /**
+   * Displays the 'about OpenSimpplle' dialog
+   * @param e
+   */
   void menuHelpAbout_actionPerformed(ActionEvent e) {
     SimpplleMain_AboutBox dlg = new SimpplleMain_AboutBox(this);
     setDialogLocation(dlg);
     dlg.setModal(true);
     dlg.setVisible(true);
   }
-/**
- * Allows the user to select a zone, then enables zone controls, and disables
- * area controls.
- */
+  /**
+   * Allows the user to select a zone, then enables zone controls, and disables
+   * area controls.
+   */
   void newZone_actionPerformed() {
     String str;
     simpplle.comcode.RegionalZone zone;
@@ -1663,10 +1665,10 @@ public class SimpplleMain extends JFrame {
     }
     refresh();
   }
-/**
- * Gets the previous simulation files 
- * @return
- */
+  /**
+   * Gets the previous simulation files
+   * @return
+   */
   private File[] getPreviousSimulationFiles() {
     ChooseSimulation dlg = new ChooseSimulation(this,"Choose Simulation",true);
     setDialogLocation(dlg);
@@ -1780,10 +1782,10 @@ public class SimpplleMain extends JFrame {
     }
     refresh();
   }
-/**
- * Handles the action event when user chooses to run simulation.  
- * @param e
- */
+  /**
+   * Handles the action event when user chooses to run simulation.
+   * @param e
+   */
   void runSimulation_actionPerformed(ActionEvent e) {
     //TODO find a better place to put this line of code
     // ----------------------------------------------------
@@ -1801,10 +1803,10 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
     refresh();
   }
-/**
- * Resizes a component.  
- * @param e
- */
+  /**
+   * Resizes a component.
+   * @param e
+   */
   void this_componentResized(ComponentEvent e) {
     Dimension d = getSize();
 
@@ -1916,10 +1918,10 @@ public class SimpplleMain extends JFrame {
     }
 
   }
-/**
- * Handles the event when tracking species menu item is selected.  It creates a new Tracking Species report dialog
- * @param e
- */
+  /**
+   * Handles the event when tracking species menu item is selected.  It creates a new Tracking Species report dialog
+   * @param e
+   */
   public void menuReportsTrackingSpecies_actionPerformed(ActionEvent e) {
     TrackingSpeciesReportDlg dlg = new TrackingSpeciesReportDlg(this,"Tracking Species Report Categories",true);
     dlg.setVisible(true);
@@ -2089,10 +2091,10 @@ public class SimpplleMain extends JFrame {
       setNormalState();
     }
   }
-/**
- * Reburn function is a hoped for future improvement in OpenSimpplle.  
- * @param e
- */
+  /**
+   * Reburn function is a hoped for future improvement in OpenSimpplle.
+   * @param e
+   */
   void menuExportGISReburn_actionPerformed(ActionEvent e) {
     File outfile;
 
@@ -2631,10 +2633,10 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 
-/**
- * Marks an area invalid and allows users to import fix states, edit units, or
- * print invalid report.
- */
+  /**
+   * Marks an area invalid and allows users to import fix states, edit units, or
+   * print invalid report.
+   */
   public void markAreaInvalid() {
     areaInvalidLabel.setText("(invalid)");
     disableAreaControls();
@@ -2644,10 +2646,10 @@ public class SimpplleMain extends JFrame {
     menuUtilityUnitEditor.setEnabled(true);
   }
 
-/**
- * Marks the area as valid, then enables area controls.
- * @see #markAreaInvalid()
- */
+  /**
+   * Marks the area as valid, then enables area controls.
+   * @see #markAreaInvalid()
+   */
   public void markAreaValid() {
     areaInvalidLabel.setText("");
     enableAreaControls();
@@ -2889,7 +2891,6 @@ public class SimpplleMain extends JFrame {
     String url = "jdbc:hsqldb:file:" + outfile;
     DatabaseManagerSwing.main(new String[] {"-url", url});
   }
-
 
 
   void menuSysKnowUseRegenPulse_actionPerformed(ActionEvent e) {
@@ -3377,8 +3378,8 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
   }
 
-  public void menuSysKnowInvasiveLogicR1_actionPerformed(ActionEvent e) {
-  }
+  // Unused?..
+  public void menuSysKnowInvasiveLogicR1_actionPerformed(ActionEvent e) {}
 
   public void menuSysKnowInvasiveLogicMSU_actionPerformed(ActionEvent e) {
     InvasiveSpeciesMSULogicDialog dlg =
@@ -3511,5 +3512,4 @@ public class SimpplleMain extends JFrame {
   public JLabel getStatusBar(){
     return statusBar;
   }
-
 }
