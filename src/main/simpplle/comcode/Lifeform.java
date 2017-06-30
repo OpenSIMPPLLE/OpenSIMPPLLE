@@ -147,65 +147,70 @@ public class Lifeform implements Externalizable {
     public static Lifeform get(int id) { return allValues[id]; }
 
     /**
-     * Finds the dominant lifeform by first setting the dominant lifeform to the highest ID value but lowest dominance (3 = NA)
-     * then loops through the lifeforms id's to find the minimum ID.  THis will be the dominant lifeform because lower ID's have higher dominance.
-     * @param lives the collection of lifeforms
-     * @return the dominant lifeform
+     * Returns a less dominant life form. Lifeforms are stored in an array from most dominant to
+     * least dominant. The life forms in this array are looped through starting from the highest
+     * dominance. The first life form with a lower dominance is returned.
+     *
+     * @param lifeform the life form to be compared
+     * @return a less dominant life form, or null if it is the least dominant.
      */
-    public static Lifeform findDominant(Set<Lifeform> lives) {
-        Lifeform dominant=Lifeform.NA;
-        for (Lifeform lifeform : lives) {
-            if (lifeform.getId() < dominant.getId()) {
-                dominant = lifeform;
-            }
-        }
-        return dominant;
-    }
-
-    /**
-     * Method to make an arraylist of life forms that are more dominant (more dominant = lower Id..  The list will be in ascending order
-     * @param lifeform
-     * @return arraylist of increasingly more dominant species than passed life form
-     */
-    public static ArrayList<Lifeform> getMoreDominant(Lifeform lifeform) {
-        ArrayList<Lifeform> result = new ArrayList<Lifeform>();
-        for (int i=0; i<allValues.length; i++) {
-            if (allValues[i].getId() < lifeform.getId()) {
-                result.add(allValues[i]);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Finds a lower life form.  Loops through all the lifeforms to find a lower dominance lifeform if there is any.
-     * Higher ID's correspond to lower dominance.
-     * @param lifeform the lifeform to be compared.  Choices for lifeforms are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA
-     * @return lifeform with higher ID meaning less dominant than parameter lifeform, if any
-     */
-    public static Lifeform getLowerLifeform(Lifeform lifeform) {
-        for (int i=0; i<allValues.length; i++) {
-            if (allValues[i].getId() > lifeform.getId()) {
-                return allValues[i];
+    public static Lifeform getLessDominant(Lifeform lifeform) {
+        for (Lifeform other : allValues) {
+            if (lifeform.getId() < other.getId()) {
+                return other;
             }
         }
         return null;
     }
 
     /**
-     * Gets the more dominant of two lifeforms.  Higher dominance corresponds to lower lifeform ID's
-     * @param life first life form to be compared
-     * @param life2 second life form to be compared
-     * @return the lifeform with lesser ID and therefore higher dominance
+     * Returns a list of more dominant lifeforms.
+     *
+     * @param lifeform the life form to be compared
+     * @return a list of more dominant lifeforms, sorted from most to least dominant
      */
-    public static Lifeform getMostDominant(Lifeform life, Lifeform life2) {
-        if (life == null) { return life2; }
-        if (life2 == null) { return life; }
-
-        if (life2.getId() < life.getId()) {
-            return life2;
+    public static List<Lifeform> getMoreDominant(Lifeform lifeform) {
+        List<Lifeform> moreDominant = new ArrayList<>();
+        for (Lifeform other : allValues) {
+            if (other.getId() < lifeform.getId()) {
+                moreDominant.add(other);
+            }
         }
-        return life;
+        return moreDominant;
+    }
+
+    /**
+     * Returns the most dominant of two life forms.
+     *
+     * @param a first life form to be compared
+     * @param b second life form to be compared
+     * @return the life form with the lesser ID and therefore higher dominance
+     */
+    public static Lifeform getMostDominant(Lifeform a, Lifeform b) {
+        if (a == null) { return b; }
+        if (b == null) { return a; }
+
+        if (a.getId() < b.getId()) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+
+    /**
+     * Returns the most dominant from a set of life forms. The lifeform with the lowest ID has the
+     * highest dominance. The search starts by setting the most dominant life form to the life form
+     * with the lowest dominance. The life form with the highest dominance is returned.
+     *
+     * @param lifeforms a set of life forms
+     * @return the life form with the lesser ID and therefore higher dominance
+     */
+    public static Lifeform getMostDominant(Set<Lifeform> lifeforms) {
+        Lifeform dominant = Lifeform.NA;
+        for (Lifeform lifeform : lifeforms) {
+            dominant = getMostDominant(dominant, lifeform);
+        }
+        return dominant;
     }
 
     /**

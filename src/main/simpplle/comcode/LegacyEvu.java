@@ -341,7 +341,7 @@ public class LegacyEvu {
   /**
    * Processes a line from an Area's input data file, which contain's
    * information defining a Evu.
-   * @param fin a BufferedReader
+   * @param strBuf a BufferedReader
    * @return a boolean, true if end of data reached.
    */
   public boolean readDelimitedData(StringBuffer strBuf) throws ParseError {
@@ -405,7 +405,7 @@ public class LegacyEvu {
         for (int ts = 1; ts <= nSteps; ts++) {
           // Run here is not correct, but there is no simple way of knowing
           // what the correct run number is.
-          evu.newState(ts,0,
+          evu.createAndStoreState(ts,0,
                        simulatedStates.getVegType(0, ts),
                        simulatedStates.getProcessType(0, ts),
                        simulatedStates.getProbability(0, ts),
