@@ -1002,17 +1002,18 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   /**
-   * Returns initial vegetative state based on season. This differs from getVegState because it uses
-   * the given season, rather than the year.
+   * Returns the initial vegetative state for a particular life form and season.
+   *
    * @param lifeform lifeform to query
    * @param season season to query
-   * @return initial vegetative state
+   * @return an initial vegetative state, or null if it doesn't exist
    */
   public VegSimStateData getInitialVegState(Lifeform lifeform, Season season) {
-    if (initialState == null) return null;
-    // Changed getKey from Season.Year to season variable, for writing initial conditions.
-    MultiKey key = LifeformSeasonKeys.getKey(lifeform, season);
-    return (VegSimStateData)initialState.get(key);
+    if (initialState == null) {
+      return null;
+    } else {
+      return (VegSimStateData) initialState.get(LifeformSeasonKeys.getKey(lifeform, season));
+    }
   }
 
   /**
@@ -2480,7 +2481,9 @@ public final class Evu extends NaturalElement implements Externalizable {
    *Gets the initial treatment.
    * @return the initial treatment
    */
-  public Treatment getInitialTreatment() { return getTreatment(0,false); }
+  public Treatment getInitialTreatment() {
+    return getTreatment(0,false);
+  }
 
   /**
    * Sets the initial process for a given state, by making an invalid instance (way to make new instances),
