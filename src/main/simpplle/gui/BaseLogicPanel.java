@@ -11,12 +11,11 @@ package simpplle.gui;
 import simpplle.comcode.AbstractBaseLogic;
 import simpplle.comcode.BaseLogic;
 import simpplle.comcode.SystemKnowledge;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 /** 
@@ -31,27 +30,27 @@ import java.util.Enumeration;
  */
 
 public class BaseLogicPanel extends JPanel {
+
   protected AbstractLogicDialog dialog;
   protected String kind;
   public LogicDataModel dataModel;
   protected int selectedRow = -1;
-  protected boolean inColumnInit=false;
+  protected boolean inColumnInit = false;
   protected AbstractBaseLogic logicInst;
   protected SystemKnowledge.Kinds sysKnowKind;
-
-  protected BorderLayout borderLayout1 = new BorderLayout();
+  private ArrayList<Integer> emptyCols;
   protected JPanel northPanel = new JPanel();
-  protected JPanel centerPanel = new JPanel();
-  protected BorderLayout borderLayout2 = new BorderLayout();
+  protected JPanel centerPanel = new JPanel(new BorderLayout());
   protected JScrollPane tableScrollPane = new JScrollPane();
   protected JTable logicTable = new JTable();
-/**
- * Constructor for Base Logic Panel.  Sets the Abstract Logic Dialog, system knowledge kind, logic data model, logic instance
- * @param dialog
- * @param kind
- * @param logicInst
- * @param sysKnowKind
- */
+
+  /**
+   * Constructor for Base Logic Panel.  Sets the Abstract Logic Dialog, system knowledge kind, logic data model, logic instance
+   * @param dialog
+   * @param kind
+   * @param logicInst
+   * @param sysKnowKind
+   */
   public BaseLogicPanel(AbstractLogicDialog dialog,
                     String kind, AbstractBaseLogic logicInst,
                     SystemKnowledge.Kinds sysKnowKind) {
@@ -67,21 +66,20 @@ public class BaseLogicPanel extends JPanel {
       exception.printStackTrace();
     }
   }
-/**
- * sets the layout, center panel, table scroll pane and north panel
- * @throws Exception
- */
+  /**
+   * sets the layout, center panel, table scroll pane and north panel
+   * @throws Exception
+   */
   protected void jbInit() throws Exception {
-    this.setLayout(borderLayout1);
-    centerPanel.setLayout(borderLayout2);
-    this.add(centerPanel, java.awt.BorderLayout.CENTER);
-    centerPanel.add(tableScrollPane, java.awt.BorderLayout.CENTER);
+    setLayout(new BorderLayout());
+    add(centerPanel, BorderLayout.CENTER);
+    centerPanel.add(tableScrollPane, BorderLayout.CENTER);
     tableScrollPane.getViewport().add(logicTable);
-    this.add(northPanel, java.awt.BorderLayout.NORTH);
+    add(northPanel, BorderLayout.NORTH);
   }
-/**
- * 
- */
+  /**
+   *
+   */
   public void updateColumns() {
     TableColumn column;
     Enumeration e = logicTable.getColumnModel().getColumns();
@@ -91,21 +89,21 @@ public class BaseLogicPanel extends JPanel {
       String colName = (String)column.getHeaderValue();
       int col = dataModel.getLogicInst().getColumnNumFromName(colName);
 
-      initColumns(column,col);
+      initColumns(column, col);
     }
+    updateColumnWidth();
   }
-/**
- * initializes the table columns by referring to javax.swing.table.TableColumn TableColumn .  returns nothing, sets nothing
- * @param column
- * @param col
- */
+  /**
+   * initializes the table columns by referring to javax.swing.table.TableColumn TableColumn .  returns nothing, sets nothing
+   * @param column
+   * @param col
+   */
   protected void initColumns(TableColumn column, int col) {}
-  
-/**
- * initialized the base columns by setting the identifier to baselogic row_col and setting the row color to alternate
- * @param column
- * @param col
- */
+  /**
+   * initialized the base columns by setting the identifier to baselogic row_col and setting the row color to alternate
+   * @param column
+   * @param col
+   */
   protected void initBaseColumns(TableColumn column, int col) { 
     if (col == BaseLogic.ROW_COL) {
       column.setIdentifier(BaseLogic.ROW_COL);
@@ -128,24 +126,9 @@ public class BaseLogicPanel extends JPanel {
       Utility.initColumnWidth(logicTable);
     }
 
-//    initColumnVisibility();
-
     logicTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     ListSelectionModel rowSM = logicTable.getSelectionModel();
-    rowSM.addListSelectionListener(new ListSelectionListener() {
-      public void valueChanged(ListSelectionEvent e) {
-        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
-        if (lsm.isSelectionEmpty() == false) {
-          selectedRow = lsm.getMinSelectionIndex();
-          rowSelected();
-        }
-        else { selectedRow = -1; }
-        dialog.menuActionDeleteSelectedRule.setEnabled(!lsm.isSelectionEmpty());
-        dialog.menuActionMoveRuleUp.setEnabled(!lsm.isSelectionEmpty());
-        dialog.menuActionMoveRuleDown.setEnabled(!lsm.isSelectionEmpty());
-        dialog.menuActionDuplicateSelectedRule.setEnabled(!lsm.isSelectionEmpty());
-      }
-    });
+    rowSM.addListSelectionListener(this::valueChanged);
 
     selectedRow = -1;
     updateDialog();
@@ -157,71 +140,44 @@ public class BaseLogicPanel extends JPanel {
   protected void updateColumnWidth() {
     Utility.initColumnWidth(logicTable);
   }
+
   public SystemKnowledge.Kinds getSystemKnowledgeKind() { return sysKnowKind; }
-/**
- * adds a visible colummn and ssets teh fire table structure changed
- * @param col
- */
+  /**
+   * Adds a visible column and sets the fire table structure changed
+   * @param col Index of column to be modified
+   */
   public void addVisibleColumn(int col) {
     dataModel.addVisibleColumn(col);
     dataModel.fireTableStructureChanged();
   }
   /**
    * removes a visible column and sets the fire table structure changed
-   * @param col
+   * @param col Index of column to be modified
    */
   public void removeVisibleColumn(int col) {
     dataModel.removeVisibleColumn(col);
     dataModel.fireTableStructureChanged();
   }
+
   public boolean isVisibleColumn(int col) {
     return dataModel.isVisibleColumn(col);
   }
-//  protected void initColumnVisibility() {
-//    RegionalZone zone = Simpplle.getCurrentZone();
-//
-//    inColumnInit = true;
-//    for (int i=1; i<columns.size(); i++) {
-//      hideColumn(i);
-//    }
-//    int[] cols = dataModel.getVisibleColumns();
-//    if (cols != null && cols.length > 0){
-//      for (int i=0; i<cols.length; i++) {
-//        showColumn(cols[i]);
-//      }
-//    }
-//    else {
-//      for (int i=1; i<columns.size(); i++) {
-//        showColumn(i);
-//      }
-//    }
-//    inColumnInit = false;
-//  }
-
-//  public void showColumn(int col) {
-//    if (inColumnInit) { dialog.setColumnMenuItemSelected(true,col); }
-//    Utility.initColumnWidth(logicTable,columns.get(col),col);
-//  }
-//  public void hideColumn(int col) {
-//    if (inColumnInit) { dialog.setColumnMenuItemSelected(false,col); }
-//    columns.get(col).setPreferredWidth(0);
-//  }
-/**
- * Updates the BaseLogic dialog, by calling refresh table and updating the graphics
- */
+  /**
+   * Updates the BaseLogic dialog, by calling refresh table and updating the graphics
+   */
   public void updateDialog() {
     refreshTable();
     update(getGraphics());
   }
-/**
- * Refreshes the table by notifying all listeners that the table has changed and the JTable should redraw from scratch
- */
+  /**
+   * Refreshes the table by notifying all listeners that the table has changed and the JTable should redraw from scratch
+   */
   public void refreshTable() {
     dataModel.fireTableDataChanged();
   }
-/**
- * moves a row up by sending to LogicDataModel GUI class
- */
+  /**
+   * moves a row up by sending to LogicDataModel GUI class
+   */
   public void moveRowUp() {
     int newRow = dataModel.moveRowUp(selectedRow);
     logicTable.setRowSelectionInterval(newRow,newRow);
@@ -264,15 +220,51 @@ public class BaseLogicPanel extends JPanel {
       logicTable.clearSelection();
     }
   }
-/**
- * Inserts a row according to position. The position is determined by a user row selection to be inserted above
- * or below, if there is no row selected then the row is appended to the end.
- */
+  /**
+   * Inserts a row according to position. The position is determined by a user row selection to be inserted above
+   * or below, if there is no row selected then the row is appended to the end.
+   */
   public void insertRow() {
     int position = (selectedRow != -1) ? selectedRow : dataModel.getRowCount() + 1;
     dataModel.addRow(position);
   }
+  /**
+   * Calls to AbstractBaseLogic to get ArrayList of indices whose columns are empty
+   *
+   * @return Returns ArrayList of column indices that are empty
+   */
+  private ArrayList<Integer> emptyColumns() {return logicInst.checkEmpty(kind);}
+  /**
+   * Calls to AbstractBaseLogic to get ArrayList of all columns indices
+   *
+   * @return Returns ArrayList of all column indices
+   */
+  private ArrayList<Integer> allColumns(){return logicInst.allCols(kind);}
+  /**
+   * Hides all of the empty columns
+   */
+  void hideEmpty(){
+    emptyCols = emptyColumns();
+    emptyCols.forEach(this::removeVisibleColumn);
+  }
+  /**
+   * Reveals all of the empty columns*
+   */
+  void showEmpty(){
+    emptyCols = allColumns();
+    emptyCols.forEach(this::addVisibleColumn);
+  }
 
+  public void valueChanged(ListSelectionEvent e) {
+    ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+    if (lsm.isSelectionEmpty() == false) {
+      selectedRow = lsm.getMinSelectionIndex();
+      rowSelected();
+    }
+    else { selectedRow = -1; }
+    dialog.menuActionDeleteSelectedRule.setEnabled(!lsm.isSelectionEmpty());
+    dialog.menuActionMoveRuleUp.setEnabled(!lsm.isSelectionEmpty());
+    dialog.menuActionMoveRuleDown.setEnabled(!lsm.isSelectionEmpty());
+    dialog.menuActionDuplicateSelectedRule.setEnabled(!lsm.isSelectionEmpty());
+  }
 }
-
-

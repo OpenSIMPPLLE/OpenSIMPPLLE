@@ -24,7 +24,8 @@ import javax.swing.JOptionPane;
  */
 
 public class FireSuppProductionRateLogicDlg extends VegLogicDialog {
-  JMenuItem menuImportOldFile = new JMenuItem();
+
+  private JMenuItem menuImportOldFile = new JMenuItem();
 
   public FireSuppProductionRateLogicDlg(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
@@ -38,9 +39,11 @@ public class FireSuppProductionRateLogicDlg extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
+
   public FireSuppProductionRateLogicDlg() {
     this(new Frame(), "FireSuppProductionRateLogicDlg", false);
   }
+
   private void jbInit() throws Exception {
     menuImportOldFile.setText("Import old format File");
     menuImportOldFile.addActionListener(new
@@ -68,7 +71,7 @@ public class FireSuppProductionRateLogicDlg extends VegLogicDialog {
     updateDialog();
   }
 
-  public void menuImportOldFile_actionPerformed(ActionEvent e) {
+  void menuImportOldFile_actionPerformed(ActionEvent e) {
     File         inputFile;
     MyFileFilter extFilter;
     String       title = "Select a Fire Supp Production Rate File";
@@ -90,7 +93,6 @@ public class FireSuppProductionRateLogicDlg extends VegLogicDialog {
       }
     }
   }
-
 }
 
 class FireSuppProductionRateLogicDlg_menuImportOldFile_actionAdapter implements ActionListener {

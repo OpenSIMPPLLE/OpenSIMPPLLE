@@ -11,7 +11,6 @@ package simpplle.gui;
 import simpplle.JSimpplle;
 import simpplle.comcode.*;
 import simpplle.comcode.RegenerationLogic.DataKinds;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;
@@ -28,16 +27,18 @@ import java.util.Vector;
  */
 
 public class RegenerationLogicDialog extends VegLogicDialog {
-  JMenuItem menuOptionsAddAllSpecies = new JMenuItem();
-  JMenuItem menuFileOldFormat = new JMenuItem();
 
-  JMenu     menuOptions = new JMenu("Options");
-  JMenuItem menuOptionsDelayLogic = new JMenuItem();
+  private JMenu menuOptions = new JMenu("Options");
+
+  private JMenuItem menuOptionsAddAllSpecies = new JMenuItem();
+  private JMenuItem menuOptionsDelayLogic = new JMenuItem();
+  private JMenuItem menuFileOldFormat = new JMenuItem();
+
   /**
    * Constructor for Regeneration Logic Dialog.  This sets the frame owner, string title and modality.  
-   * @param owner frame that owns the dialog
-   * @param title name of dialog
-   * @param modal specifies whether dialog blocks user input to other top-level windows when shown
+   * @param frame Parent frame of the dialogue
+   * @param title Title of the dialog
+   * @param modal Specifies whether dialog blocks user input to other top-level windows when shown
    */
   public RegenerationLogicDialog(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
@@ -58,54 +59,44 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     this(null, "", false);
   }
   /**
-   * Initializes the dialog with menuitems, componenets, text, menu bar, and listeners for Regeneration Logic Dialog.
-   * @throws Exception
+   * Initializes the dialog with menu items, components, text, menu bar, and listeners for Regeneration Logic Dialog.
+   * @throws Exception generic exception
    */
   void jbInit() throws Exception {
     menuOptionsAddAllSpecies.setActionCommand("Add All Species");
     menuOptionsAddAllSpecies.setText("Add All Species");
-    menuOptionsAddAllSpecies.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuTableOptionsAddAllSpecies_actionPerformed(e);
-      }
-    });
+    menuOptionsAddAllSpecies.addActionListener(this::menuTableOptionsAddAllSpecies_actionPerformed);
     menuOptionsDelayLogic.setActionCommand("Delay Logic");
     menuOptionsDelayLogic.setText("Delay Logic");
-    menuOptionsDelayLogic.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsDelayLogic_actionPerformed(e);
-      }
-    });
+    menuOptionsDelayLogic.addActionListener(this::menuOptionsDelayLogic_actionPerformed);
     menuFileOldFormat.setText("Import Old Format File");
-    menuFileOldFormat.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuFileOldFormat_actionPerformed(e);
-      }
-    });
+    menuFileOldFormat.addActionListener(this::menuFileOldFormat_actionPerformed);
 
     menuBar.add(menuOptions);
     menuFile.add(menuFileOldFormat);
     menuOptions.add(menuOptionsAddAllSpecies);
     menuOptions.add(menuOptionsDelayLogic);
   }
+
   private void initialize() {
     sysKnowKind = SystemKnowledge.REGEN_LOGIC_FIRE;
 
-    String[] kinds = new String[] { RegenerationLogic.FIRE_STR, RegenerationLogic.SUCCESSION_STR };
+    String[] kinds = new String[] {RegenerationLogic.FIRE_STR, RegenerationLogic.SUCCESSION_STR};
     super.initialize(kinds);
 
     tabPanels = new VegLogicPanel[panelKinds.length];
     for (int i = 0; i < panelKinds.length; i++) {
       String kind = panelKinds[i];
       if (kind.equals(RegenerationLogic.FIRE_STR)) {
-        tabPanels[i] = new RegenerationLogicFireTable(this, SystemKnowledge.REGEN_LOGIC_FIRE);
+        tabPanels[i] = new RegenerationLogicFireTable(this, SystemKnowledge.REGEN_LOGIC_FIRE,
+                                                      RegenerationLogic.getLogicInstance(kind));
       }
       else {
-        tabPanels[i] = new RegenerationLogicSuccTable(this, SystemKnowledge.REGEN_LOGIC_SUCC);
+        tabPanels[i] = new RegenerationLogicSuccTable(this, SystemKnowledge.REGEN_LOGIC_SUCC,
+                                                      RegenerationLogic.getLogicInstance(kind));
       }
       tabbedPane.add(tabPanels[i], kind);
     }
-
     tabbedPane.setSelectedIndex(0);
     tabbedPane_stateChanged(null);
     updateDialog();
@@ -154,17 +145,17 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     }
   }
 
-  void menuFileOldFormat_actionPerformed(ActionEvent e) {
+  private void menuFileOldFormat_actionPerformed(ActionEvent e) {
     File         infile;
     MyFileFilter extFilter;
-    String       title = "Select a Regenerationo Logic file.";
+    String       title = "Select a Regeneration Logic file.";
 
     extFilter = new MyFileFilter("regenlogic",
                                  "Regeneration Logic Files (*.regenlogic)");
 
     setCursor(Utility.getWaitCursor());
 
-    infile = Utility.getOpenFile(this,title,extFilter);
+    infile = Utility.getOpenFile(this, title, extFilter);
     if (infile != null) {
       try {
         RegenerationLogic.readDataLegacy(infile);
@@ -181,11 +172,10 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     setCursor(Utility.getNormalCursor());
     update(getGraphics());
   }
-
-/**
- * Quits if window closing event occurs
- * @param e
- */
+  /**
+  * Quits if window closing event occurs
+  * @param e
+  */
   void this_windowClosing(WindowEvent e) {
     quit();
   }
@@ -196,9 +186,9 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     dispose();
   }
 
-  void menuTableOptionsAddAllSpecies_actionPerformed(ActionEvent e) {
-    Vector  v          = HabitatTypeGroup.getValidSpecies();
-    Vector  newSpecies = new Vector();
+  private void menuTableOptionsAddAllSpecies_actionPerformed(ActionEvent e) {
+    Vector  v = HabitatTypeGroup.getValidSpecies();
+    Vector<Species> newSpecies = new Vector<>();
     Species species;
     for (int i=0; i<v.size(); i++) {
       species = (Species)v.elementAt(i);
@@ -216,17 +206,15 @@ public class RegenerationLogicDialog extends VegLogicDialog {
     update(getGraphics());
   }
 
-  public void menuOptionsDelayLogic_actionPerformed(ActionEvent e) {
+  private void menuOptionsDelayLogic_actionPerformed(ActionEvent e) {
     RegenDelayLogicDlg dlg =
-      new RegenDelayLogicDlg(JSimpplle.getSimpplleMain(),"Regeneration Delay Logic",true);
+      new RegenDelayLogicDlg(JSimpplle.getSimpplleMain(), "Regeneration Delay Logic",
+                            true);
     dlg.setVisible(true);
 
   }
 
-  public RegenerationLogic.DataKinds getLogicKind() {
+  RegenerationLogic.DataKinds getLogicKind() {
     return RegenerationLogic.DataKinds.valueOf(currentPanelKind);
   }
 }
-
-
-

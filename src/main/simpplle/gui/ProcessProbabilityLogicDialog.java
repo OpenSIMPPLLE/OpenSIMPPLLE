@@ -9,18 +9,12 @@
 package simpplle.gui;
 
 import java.awt.Frame;
-
-import javax.swing.JDialog;
-import javax.swing.JTabbedPane;
 import simpplle.comcode.ProcessType;
-import simpplle.comcode.Simpplle;
-import javax.swing.JMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import simpplle.comcode.SystemKnowledge;
 import javax.swing.JCheckBoxMenuItem;
 import simpplle.comcode.ProcessProbLogic;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,10 +25,12 @@ import java.util.List;
  */
 
 public class ProcessProbabilityLogicDialog extends VegLogicDialog {
+
   private JCheckBoxMenuItem menuAdjProcess = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuLpMpbHazard = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuLpMpbModHazard = new JCheckBoxMenuItem();
   private JCheckBoxMenuItem menuLpMpbHighHazard = new JCheckBoxMenuItem();
+
   public ProcessProbabilityLogicDialog(Frame owner, String title, boolean modal) {
     super(owner, title, modal);
     try {
@@ -47,16 +43,16 @@ public class ProcessProbabilityLogicDialog extends VegLogicDialog {
       exception.printStackTrace();
     }
   }
-/**
- * Constructor for Process Probability Logic Dialog.  Calls the VegLogicDialog() superclass.  
- */
+  /**
+   * Constructor for Process Probability Logic Dialog.  Calls the VegLogicDialog() superclass.
+   */
   public ProcessProbabilityLogicDialog() {
     super();
   }
-/**
- * 
- * @throws Exception
- */
+  /**
+   *
+   * @throws Exception
+   */
   private void jbInit() throws Exception {
     menuAdjProcess.setText("Adjacent Process");
     menuAdjProcess.addActionListener(new
@@ -102,7 +98,6 @@ public class ProcessProbabilityLogicDialog extends VegLogicDialog {
       tabbedPane.add(tabPanels[i], kind);
     }
 
-
     tabbedPane.setSelectedIndex(0);
     tabbedPane_stateChanged(null);
 
@@ -110,16 +105,19 @@ public class ProcessProbabilityLogicDialog extends VegLogicDialog {
     updateDialog();
   }
 
-  public void menuAdjProcess_actionPerformed(ActionEvent e) {
+  void menuAdjProcess_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.ADJ_PROCESS_COL);
   }
-  public void menuLpMpbHazard_actionPerformed(ActionEvent e) {
+
+  void menuLpMpbHazard_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.MPB_HAZARD_COL);
   }
-  public void menuLpMpbModHazard_actionPerformed(ActionEvent e) {
+
+  void menuLpMpbModHazard_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.ADJ_MOD_HAZARD_COL);
   }
-  public void menuLpMpbHighHazard_actionPerformed(ActionEvent e) {
+
+  void menuLpMpbHighHazard_actionPerformed(ActionEvent e) {
     columnMenuClicked(ProcessProbLogic.ADJ_HIGH_HAZARD_COL);
   }
 }
@@ -175,4 +173,3 @@ class ProcessProbabilityLogicDialog_menuAdjProcess_actionAdapter implements
     adaptee.menuAdjProcess_actionPerformed(e);
   }
 }
-

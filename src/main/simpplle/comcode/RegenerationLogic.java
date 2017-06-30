@@ -121,7 +121,7 @@ public abstract class RegenerationLogic {
   }
 
   public static int getColumnCount(DataKinds kind) {
-    return getData(kind).getColumnCount(kind.toString());
+    return getData(kind).getVisibleColumnCount(kind.toString());
   }
   /**
    * Checks if there is either fire or succession regeneration data.

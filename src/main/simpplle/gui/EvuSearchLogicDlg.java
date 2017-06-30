@@ -9,6 +9,7 @@
 package simpplle.gui;
 
 import java.awt.Frame;
+import java.awt.event.MouseAdapter;
 import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.EvuSearchLogic;
 import javax.swing.JPanel;
@@ -21,12 +22,11 @@ import javax.swing.border.EtchedBorder;
 import java.awt.event.MouseEvent;
 import javax.swing.ListSelectionModel;
 import java.awt.FlowLayout;
-import java.util.Vector;
 import java.util.ArrayList;
 import simpplle.comcode.Evu;
 import javax.swing.JOptionPane;
 import simpplle.comcode.Area;
-import java.awt.event.ActionEvent;
+
 import java.awt.event.WindowEvent;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
@@ -50,34 +50,34 @@ import simpplle.comcode.ProcessApplication;
  */
 
 public class EvuSearchLogicDlg extends VegLogicDialog {
-  protected String         prototypeCellValue = "117000 - ALTERED-GRASSES/CLOSED-TALL-SHRUB/1";
-  protected EvuAnalysis    evuAnalysisDlg;
+
+  protected String prototypeCellValue = "117000 - ALTERED-GRASSES/CLOSED-TALL-SHRUB/1";
+  private EvuAnalysis evuAnalysisDlg;
   protected ArrayList<Evu> units;
-  protected int            selectedRow;
+  protected int selectedRow;
 
   public static boolean isOpen = false;
 
-  protected JPanel       southPanel    = new JPanel();
-  protected BorderLayout borderLayout3 = new BorderLayout();
-  protected JPanel       resultsPanel  = new JPanel();
-  protected TitledBorder resultsBorder;
-  protected JScrollPane  resultsScrollPane = new JScrollPane();
-  protected JList        resultsList       = new JList();
-  protected FlowLayout   resultsLayout     = new FlowLayout();
-  protected JToolBar     toolBar           = new JToolBar();
-  protected JButton      searchPB          = new JButton();
+  protected JPanel southPanel = new JPanel(new BorderLayout());
+  private JPanel resultsPanel = new JPanel(new FlowLayout());
+  private TitledBorder resultsBorder;
+  private JScrollPane resultsScrollPane = new JScrollPane();
+  private JList resultsList = new JList<>();
+  private JToolBar toolBar = new JToolBar();
+  private JButton searchPB = new JButton();
 
-  protected JMenu     menuOptions = new JMenu("Options");
-  protected JMenuItem menuOptionsMakeTreatments      = new JMenuItem();
-  protected JMenuItem menuOptionsMakeLockInProcesses = new JMenuItem();
-/**
- * Constructor for Evu Search Logic Dialog.  References the VegLogicDialog superclass and passes the frame owner, dialog title, and modality.  
- * The last parameter is the Evu Analysis dialog.  
- * @param owner the frame which ownes the Evu Search Logic Dialog
- * @param title The title of the dialog
- * @param modal modality
- * @param dlg The Evu analysis dialog which has values for currently being analyzed.  
- */
+  protected JMenu menuOptions = new JMenu("Options");
+  private JMenuItem menuOptionsMakeTreatments = new JMenuItem();
+  private JMenuItem menuOptionsMakeLockInProcesses = new JMenuItem();
+
+  /**
+   * Constructor for Evu Search Logic Dialog.  References the VegLogicDialog superclass and passes the frame owner, dialog title, and modality.
+   * The last parameter is the Evu Analysis dialog.
+   * @param owner the frame which ownes the Evu Search Logic Dialog
+   * @param title The title of the dialog
+   * @param modal modality
+   * @param dlg The Evu analysis dialog which has values for currently being analyzed.
+   */
   public EvuSearchLogicDlg(Frame owner, String title, boolean modal, EvuAnalysis dlg) {
     super(owner, title, modal);
     try {
@@ -104,19 +104,18 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
    * @throws Exception
    */
   private void jbInit() throws Exception {
+
     mainPanel.add(toolBar, BorderLayout.NORTH);
     toolBar.add(searchPB);
-    southPanel.setLayout(borderLayout3);
-    mainPanel.add(southPanel, java.awt.BorderLayout.SOUTH);
+    mainPanel.add(southPanel, BorderLayout.SOUTH);
 
     resultsBorder = new TitledBorder(new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(178, 178, 178)),"Results");
-    resultsPanel.setLayout(resultsLayout);
     resultsPanel.setBorder(resultsBorder);
 
     resultsList.setToolTipText("double-click selection to display in Anaylsis Dialog");
     resultsList.setPrototypeCellValue(prototypeCellValue);
     resultsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    resultsList.addMouseListener(new java.awt.event.MouseAdapter() {
+    resultsList.addMouseListener(new MouseAdapter() {
       public void mouseClicked(MouseEvent e) {
         resultsList_mouseClicked(e);
       }
@@ -126,7 +125,7 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     resultsPanel.add(resultsScrollPane, null);
     resultsScrollPane.getViewport().add(resultsList, null);
 
-    this.addWindowListener(new java.awt.event.WindowAdapter() {
+    addWindowListener(new java.awt.event.WindowAdapter() {
       public void windowClosing(WindowEvent e) {
         this_windowClosing(e);
       }
@@ -135,40 +134,24 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     searchPB.setToolTipText("Search");
     searchPB.setText("Search");
     searchPB.setEnabled(false);
-    searchPB.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        searchPB_actionPerformed(e);
-      }
-    });
-
-
+    searchPB.addActionListener(e -> searchPB_actionPerformed());
 
     menuOptionsMakeTreatments.setActionCommand("Make Treatment Schedule");
     menuOptionsMakeTreatments.setText("Make Treatment Schedule");
-    menuOptionsMakeTreatments.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsMakeTreatments_actionPerformed(e);
-      }
-    });
+    menuOptionsMakeTreatments.addActionListener(e -> makeTreatments());
     menuOptionsMakeLockInProcesses.setActionCommand("Make Lock-in Process Schedule");
     menuOptionsMakeLockInProcesses.setText("Make Lock-in Process Schedule");
-    menuOptionsMakeLockInProcesses.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuOptionsMakeLockInProcesses_actionPerformed(e);
-      }
-    });
+    menuOptionsMakeLockInProcesses.addActionListener(e -> makeLockInProcesses());
 
     menuBar.add(menuOptions);
     menuOptions.add(menuOptionsMakeTreatments);
     menuOptions.add(menuOptionsMakeLockInProcesses);
 
-
   }
-/**
- * Initializes the Evu Search logic dialog.  Sets the system knowledge to Evu Search Logic and initializes the kinds in super class.
- * Creates a tabbed panel with panels for evu search logic instances.  
- */
+  /**
+   * Initializes the Evu Search logic dialog.  Sets the system knowledge to Evu Search Logic and initializes the kinds in super class.
+   * Creates a tabbed panel with panels for evu search logic instances.
+   */
   private void initialize() {
     sysKnowKind = SystemKnowledge.EVU_SEARCH_LOGIC;
     String[] kinds = new String[] {EvuSearchLogic.EVU_SEARCH.toString()};
@@ -188,15 +171,15 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     tabbedPane_stateChanged(null);
     updateDialog();
   }
-/**
- * Gets an array list of Evu units - used in search. 
- * @return arraylist of Evu units.  
- */
+  /**
+   * Gets an array list of Evu units - used in search.
+   * @return arraylist of Evu units.
+   */
   public ArrayList<Evu> getUnits() { return units; }
-/**
- * Updates the results of search.  If search units is null hides the results list and outputs no units found.  Otherwise sets the results list with the list data of Evu result data
- * Calculates acres by totaling acreage of evu's in search results.
- */
+  /**
+   * Updates the results of search.  If search units is null hides the results list and outputs no units found.  Otherwise sets the results list with the list data of Evu result data
+   * Calculates acres by totaling acreage of evu's in search results.
+   */
   private void updateResults() {
     if (units == null) {
       resultsList.setVisible(false);
@@ -208,9 +191,9 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
       resultsList.setListData(units.toArray());
       resultsList.setVisible(true);
 
-      int acres=0;
-      for (int i=0; i<units.size(); i++) {
-        acres += units.get(i).getAcres();
+      int acres = 0;
+      for (Evu unit : units) {
+        acres += unit.getAcres();
       }
       acres = Math.round(Area.getFloatAcres(acres));
       resultsBorder.setTitle("Results (Total Acres " + Integer.toString(acres) + ")");
@@ -219,53 +202,51 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     }
     update(getGraphics());
   }
-/**
- * Creates a units arraylist with evu results of matching units at select rows.  Then sets these units as the results of Evu Analysis dialog.
- * @param e 'Search'
- */
-  void searchPB_actionPerformed(ActionEvent e) {
+  /**
+   * Creates a units arraylist with evu results of matching units at select rows.  Then sets these units as the results of Evu Analysis dialog.
+   */
+  private void searchPB_actionPerformed() {
     units = EvuSearchLogic.getInstance().findMatchingUnits(selectedRow);
     evuAnalysisDlg.setResultUnits(units);
     updateResults();
   }
-/**
- * Selects a particular Evu from the results list and uses it to get the Evu Analysis dialog going.  
- * @param e mouse double click
- */
-  void resultsList_mouseClicked(MouseEvent e) {
+  /**
+   * Selects a particular Evu from the results list and uses it to get the Evu Analysis dialog going.
+   * @param e mouse double click
+   */
+  private void resultsList_mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2 && evuAnalysisDlg != null) {
       Evu evu = (Evu)resultsList.getSelectedValue();
       evuAnalysisDlg.goUnit(evu);
     }
   }
-/**
- * If window closing event occurs disposes of Evu Search Logic dialog.  
- * @param e 'X' window closing event
- */
+  /**
+   * If window closing event occurs disposes of Evu Search Logic dialog.
+   * @param e 'X' window closing event
+   */
   void this_windowClosing(WindowEvent e) {
     isOpen = false;
     setVisible(false);
     dispose();
   }
-/**
- * Checks if Evu Search Logic dialog is open.
- * @return true if Evu Search Logic dialog is open.  
- */
+  /**
+   * Checks if Evu Search Logic dialog is open.
+   * @return true if Evu Search Logic dialog is open.
+   */
   public static boolean isOpen() { return isOpen; }
-/**
- * Sets the selected row to be matched in Evu search.
- * @param row the row that will be considered the selected row.    
- */
-  public void updateSelectedRow(int row) {
+  /**
+   * Sets the selected row to be matched in Evu search.
+   * @param row the row that will be considered the selected row.
+   */
+  void updateSelectedRow(int row) {
     selectedRow = row;
     searchPB.setEnabled(true);
   }
-/**
- * Gets the current area and treatment schedule for area.  If there is no schedule, creates one.  Otherwise creates a new treatment dialog to allow user to 
- * select a treatment.  First a time step is picked by user, then the user picks the treatment, and adds the Evu units to the treatments units.  
- * @param e 'Make Treatments'
- */
-  void menuOptionsMakeTreatments_actionPerformed(ActionEvent e) {
+  /**
+   * Gets the current area and treatment schedule for area.  If there is no schedule, creates one.  Otherwise creates a new treatment dialog to allow user to
+   * select a treatment.  First a time step is picked by user, then the user picks the treatment, and adds the Evu units to the treatments units.
+   */
+  private void makeTreatments() {
     Area area = Simpplle.getCurrentArea();
     TreatmentSchedule schedule = area.getTreatmentSchedule();
 
@@ -289,26 +270,24 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
       treatType = TreatmentType.get(treatmentName);
       treatment = schedule.newTreatment(treatType,tStep);
 
-      for (int i=0; i<units.size(); i++) {
-        treatment.addUnitId( ((Evu)units.get(i)).getId() );
+      for (Evu unit : units) {
+        treatment.addUnitId(unit.getId());
       }
       treatment.setUseUnits(true);
       treatment.setTimeStep(tStep);
 
       String msg = "The Treatment " + treatmentName + " has been created\n" +
                    "Please see the Treatment Scheduler for further options";
-      JOptionPane.showMessageDialog(this,msg,"Treatment Created",
+      JOptionPane.showMessageDialog(this, msg, "Treatment Created",
                                     JOptionPane.INFORMATION_MESSAGE);
     }
 
 
   }
   /**
-   * Method to allow user to lock in process.  Gets current area and process schedule.  User picks a time step to lock in a process to evu units.  
-   * @param e 'Make Lock in process'
+   * Method to allow user to lock in process.  Gets current area and process schedule.  User picks a time step to lock in a process to evu units.
    */
-
-  void menuOptionsMakeLockInProcesses_actionPerformed(ActionEvent e) {
+  private void makeLockInProcesses() {
     Area               area = Simpplle.getCurrentArea();
     ProcessSchedule    schedule = area.getProcessSchedule();
     ProcessApplication processApp;
@@ -333,8 +312,8 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
     if (processType != null) {
       processApp = schedule.newApplication(processType);
 
-      for (int i=0; i<units.size(); i++) {
-        processApp.addUnitId( ((Evu)units.get(i)).getId() );
+      for (Evu unit : units) {
+        processApp.addUnitId(unit.getId());
       }
       processApp.setTimeStep(tStep);
 
@@ -344,9 +323,4 @@ public class EvuSearchLogicDlg extends VegLogicDialog {
                                     JOptionPane.INFORMATION_MESSAGE);
     }
   }
-
-
 }
-
-
-
