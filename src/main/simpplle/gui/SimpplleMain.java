@@ -122,7 +122,6 @@ public class SimpplleMain extends JFrame {
   JMenuItem menuExportGISDecadeProb = new JMenuItem();
   JMenuItem menuImportCreate = new JMenuItem();
   JMenuItem menuImportFixStates = new JMenuItem();
-  JMenuItem menuImportEditUnits = new JMenuItem();
   JMenuItem menuUtilityUnitEditor = new JMenuItem();
   JLabel areaInvalidLabel = new JLabel();
   JMenuItem menuSysKnowRegionalClimate = new JMenuItem();
@@ -210,7 +209,7 @@ public class SimpplleMain extends JFrame {
   private final JMenuItem menuSysKnowFireSuppEvent = new JMenuItem();
 
   //Change URL of Guide
-  final String GUIDE_URL = "http://www.umt.edu/opensimpplle/guide.php";
+  private static final String GUIDE_URL = "http://www.umt.edu/opensimpplle/guide.php";
 
   /**
    * This is the SimpplleMain constructor.  
@@ -581,14 +580,6 @@ public class SimpplleMain extends JFrame {
 
       public void actionPerformed(ActionEvent e) {
         menuImportFixStates_actionPerformed(e);
-      }
-    });
-    menuImportEditUnits.setEnabled(false);
-    menuImportEditUnits.setText("Edit Units");
-    menuImportEditUnits.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        menuImportEditUnits_actionPerformed(e);
       }
     });
     menuUtilityUnitEditor.setEnabled(false);
@@ -1212,7 +1203,7 @@ public class SimpplleMain extends JFrame {
     menuImport.add(menuImportAttributeData);
     menuImport.addSeparator();
     menuImport.add(menuImportFixStates);
-    menuImport.add(menuImportEditUnits);
+//    menuImport.add(menuImportEditUnits);
     menuImport.add(menuImportInvalidReport);
     menuImport.addSeparator();
     menuImport.add(menuImportFSLandscape);
@@ -1316,7 +1307,6 @@ public class SimpplleMain extends JFrame {
     menuFileSave.setEnabled(true);
 
     // We do not want the user to be able to edit units after a simulation.
-    menuImportEditUnits.setEnabled(false);
     menuUtilityUnitEditor.setEnabled(false);
 
     menuUtilityDeleteUnits.setEnabled(false);
@@ -1360,7 +1350,6 @@ public class SimpplleMain extends JFrame {
  */
   public void disableSimulationControls() {
     menuReportsSummary.setEnabled(false);
-//    menuReportsUnit.setEnabled(false);
     menuReportsAllStates.setEnabled(false);
     menuReportsTrackingSpecies.setEnabled(false);
     menuReportsFire.setEnabled(false);
@@ -1396,7 +1385,6 @@ public class SimpplleMain extends JFrame {
 
     menuFileSave.setEnabled(true);
     menuImportFixStates.setEnabled(false);
-    menuImportEditUnits.setEnabled(false);
     menuImportInvalidReport.setEnabled(false);
     menuImportAttributeData.setEnabled(true);
     menuInterpretWildlife.setEnabled(simpplle.comcode.WildlifeHabitat.isZoneValid());
@@ -1423,7 +1411,6 @@ public class SimpplleMain extends JFrame {
  */
   public void disableAreaControls(boolean invalidUnits) {
     menuImportFixStates.setEnabled(invalidUnits);
-    menuImportEditUnits.setEnabled(invalidUnits);
     menuImportInvalidReport.setEnabled(invalidUnits);
     menuUtilityDeleteUnits.setEnabled(false);
     disableAreaControls();
@@ -2653,7 +2640,6 @@ public class SimpplleMain extends JFrame {
     disableAreaControls();
     disableSimulationControls();
     menuImportFixStates.setEnabled(true);
-    menuImportEditUnits.setEnabled(true);
     menuImportInvalidReport.setEnabled(true);
     menuUtilityUnitEditor.setEnabled(true);
   }
@@ -2666,7 +2652,6 @@ public class SimpplleMain extends JFrame {
     areaInvalidLabel.setText("");
     enableAreaControls();
     menuImportFixStates.setEnabled(false);
-    menuImportEditUnits.setEnabled(false);
     menuImportInvalidReport.setEnabled(false);
   }
 
@@ -2714,7 +2699,6 @@ public class SimpplleMain extends JFrame {
       JOptionPane.showMessageDialog(this,msg,"Partial Success",
                                     JOptionPane.WARNING_MESSAGE);
       menuImportFixStates.setEnabled(true);
-      menuImportEditUnits.setEnabled(true);
       menuImportInvalidReport.setEnabled(true);
     }
     // Import was successful.
@@ -2732,7 +2716,6 @@ public class SimpplleMain extends JFrame {
       disableSimulationControls();
 
       menuImportFixStates.setEnabled(false);
-      menuImportEditUnits.setEnabled(false);
       menuImportInvalidReport.setEnabled(false);
     }
   }
@@ -2778,16 +2761,8 @@ public class SimpplleMain extends JFrame {
       disableSimulationControls();
 
       menuImportFixStates.setEnabled(false);
-      menuImportEditUnits.setEnabled(false);
       menuImportInvalidReport.setEnabled(false);
     }
-  }
-
-  void menuImportEditUnits_actionPerformed(ActionEvent e) {
-    EvuEditor dlg = new EvuEditor(this,"",true);
-    setDialogLocation(dlg);
-    dlg.setVisible(true);
-    refresh();
   }
 
   void menuImportInvalidReport_actionPerformed(ActionEvent e) {
@@ -2849,6 +2824,7 @@ public class SimpplleMain extends JFrame {
     }
   }
 
+  // Editor found in utility menu
   void menuUtilityUnitEditor_actionPerformed(ActionEvent e) {
     EvuEditor dlg = new EvuEditor(this,"",true);
     setDialogLocation(dlg);
