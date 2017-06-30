@@ -1,4 +1,4 @@
-Version 1.3.11 :
+Version 1.3.11 : June 30, 2017
 
     - Regeneration logic can now be loaded in isolation from a user knowledge file
     - Fixed null pointer exception thrown during simulations on certain habitat type groups
