@@ -48,6 +48,8 @@ public class EvuEditor extends JDialog {
   private RegionalZone currentZone;
   private Lifeform     currentLife;
   private boolean inInit = false;
+  private int numInvalid = 0;
+
 
   private boolean isMultiLifeArea = true;
   
@@ -699,7 +701,8 @@ public class EvuEditor extends JDialog {
  */
   private void updateDialog() {
     String str, idStr;
-    boolean isValid, validUnit = true;
+    boolean isValid;
+    numInvalid = 0;
 
     inInit = true;
     Set<Lifeform> lives = currentEvu.getLifeforms(Season.YEAR);
@@ -745,7 +748,7 @@ public class EvuEditor extends JDialog {
     String htGrpStr = (htGrp == null) ? "" : htGrp.toString();
     htGrpEdit.setText(htGrpStr);
     isValid = currentEvu.isHabitatTypeGroupValid();
-    validUnit = isValid;
+    numInvalid += (isValid) ? 0 : 1;
     str = (isValid) ? "" : "(invalid)";
     htGrpInvalidLabel.setText(str);
 
@@ -759,7 +762,7 @@ public class EvuEditor extends JDialog {
       vegTypeEdit.setText(state.getVeg().toString());
       isValid = currentEvu.isCurrentStateValid(currentLife);
     }
-    validUnit = isValid;
+    numInvalid += (isValid) ? 0 : 1;
     str = (isValid) ? "" : "(invalid)";
     stateInvalidLabel.setText(str);
 
@@ -772,7 +775,7 @@ public class EvuEditor extends JDialog {
       speciesEdit.setText(state.getVeg().getSpecies().toString());
       isValid = currentEvu.isSpeciesValid();
     }
-    validUnit = isValid;
+    numInvalid += (isValid) ? 0 : 1;
     str = (isValid) ? "" : "(invalid)";
     speciesInvalidLabel.setText(str);
 
@@ -785,7 +788,7 @@ public class EvuEditor extends JDialog {
       sizeClassEdit.setText(state.getVeg().getSizeClass().toString());
       isValid = currentEvu.isSizeClassValid();
     }
-    validUnit = isValid;
+    numInvalid += (isValid) ? 0 : 1;
     str = (isValid) ? "" : "(invalid)";
     sizeClassInvalidLabel.setText(str);
 
@@ -798,7 +801,7 @@ public class EvuEditor extends JDialog {
       densityEdit.setText(state.getVeg().getDensity().toString());
       isValid = currentEvu.isDensityValid();
     }
-    validUnit = isValid;
+    numInvalid += (isValid) ? 0 : 1;
     str = (isValid) ? "" : "(invalid)";
     densityInvalidLabel.setText(str);
 
@@ -811,7 +814,7 @@ public class EvuEditor extends JDialog {
       ageEdit.setText(Integer.toString(state.getVeg().getAge()));
       isValid = currentEvu.isAgeValid();
     }
-    validUnit = isValid;
+    numInvalid += (isValid) ? 0 : 1;
     str = (isValid) ? "" : "(invalid)";
     ageInvalidLabel.setText(str);
 
@@ -820,7 +823,7 @@ public class EvuEditor extends JDialog {
     str = (fmz == null) ? "" : fmz.toString();
     fmzEdit.setText(str);
     isValid = currentEvu.isFmzValid();
-    validUnit = isValid;
+    numInvalid += (isValid) ? 0 : 1;
     str = (isValid) ? "" : "(invalid)";
     fmzInvalidLabel.setText(str);
 
@@ -836,7 +839,7 @@ public class EvuEditor extends JDialog {
     else {
       isValid = currentEvu.isAcresValid();
     }
-    validUnit = isValid;
+    numInvalid += (isValid) ? 0 : 1;
     str = (isValid) ? "" : "(invalid)";
     acresInvalidLabel.setText(str);
 
@@ -845,7 +848,6 @@ public class EvuEditor extends JDialog {
     str = (p == null) ? "" : p.toString();
     initProcessEdit.setText(str);
     isValid = currentEvu.isInitialProcessValid();
-    validUnit = isValid;
     str = (isValid) ? "" : "(invalid)";
     initProcessInvalidLabel.setText(str);
 
@@ -868,10 +870,9 @@ public class EvuEditor extends JDialog {
     if (str == null) { str = ""; }
     specialAreaEdit.setText(str);
 
-    if (validUnit) {
+    if (numInvalid == 0 ) {
       unitStatusLabel.setText("Attributes of the lifeform are Valid.");
-    }
-    else {
+    } else {
       unitStatusLabel.setText("Attributes of the lifeform are NOT Valid.");
     }
   }
@@ -1000,7 +1001,7 @@ public class EvuEditor extends JDialog {
     boolean existInvalid = currentArea.existAnyInvalidVegUnits();
     if (showStatus != SHOW_INVALID && existInvalid) {
       showStatus = SHOW_INVALID;
-      if (currentEvu.isValid()) {
+      if (numInvalid == 0) {
         getNextUnit();
       }
     }
@@ -1347,13 +1348,13 @@ public class EvuEditor extends JDialog {
  */
   void checkUnitPB_actionPerformed(ActionEvent e) {
     updateDialog();
-    if (currentEvu.isValid()) {
+    if (numInvalid == 0) {
       JOptionPane.showMessageDialog(this,"Unit is valid","Valid Unit",
-                                    JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.INFORMATION_MESSAGE);
     }
     else {
       JOptionPane.showMessageDialog(this,"Unit is NOT valid","NOT a Valid Unit",
-                                    JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.INFORMATION_MESSAGE);
     }
   }
 /**
