@@ -47,12 +47,12 @@ public class EvuEditor extends JDialog {
   private Area currentArea;
   private RegionalZone currentZone;
   private Lifeform currentLife;
-  private boolean inInit = false;
-  private int numInvalid = 0;
 
+  private boolean inInit = false;
   private boolean isMultiLifeArea = true;
 
   private int showStatus;
+  private int numInvalid = 0;
   private static final int SHOW_ALL = 0;
   private static final int SHOW_INVALID = 1;
 
@@ -76,7 +76,6 @@ public class EvuEditor extends JDialog {
   private JPanel mainNorthPanel = new JPanel();
   private JPanel topPanel = new JPanel();
   private JPanel radioPanel = new JPanel();
-  private JPanel unitStatusPanel = new JPanel();
   private JPanel radioOuterPanel = new JPanel();
   private JPanel evuIdPanel = new JPanel();
   private JPanel mainValuesPanel = new JPanel();
@@ -112,7 +111,6 @@ public class EvuEditor extends JDialog {
   private JLabel ageLabel = new JLabel();
   private JLabel ageInvalidLabel = new JLabel();
   private JLabel evuLabel = new JLabel();
-  private JLabel unitStatusLabel = new JLabel();
   private JLabel acresInvalidLabel = new JLabel();
   private JLabel initProcessLabel = new JLabel();
   private JLabel initProcessInvalidLabel = new JLabel();
@@ -167,6 +165,7 @@ public class EvuEditor extends JDialog {
   JButton prevPB = new JButton();
   private JButton checkUnitPB = new JButton();
   private JButton quitPB = new JButton();
+
 
   private JRadioButton showAllRB = new JRadioButton();
   private JRadioButton showInvalidRB = new JRadioButton();
@@ -466,9 +465,6 @@ public class EvuEditor extends JDialog {
         quitPB_actionPerformed(e);
       }
     });
-    unitStatusPanel.setLayout(flowLayout16);
-    unitStatusLabel.setFont(new java.awt.Font("Dialog", 1, 14));
-    unitStatusLabel.setText("Attributes of this Lifeform are Valid");
     radioPanel.setBorder(BorderFactory.createLoweredBevelBorder());
     radioOuterPanel.setLayout(flowLayout17);
     flowLayout17.setAlignment(FlowLayout.LEFT);
@@ -536,11 +532,12 @@ public class EvuEditor extends JDialog {
         initProcessEdit_focusLost(e);
       }
     });
-    initProcessEdit.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        initProcessEdit_actionPerformed(e);
-      }
-    });
+    // Can't add action listener to textfield?...
+//    initProcessEdit.addActionListener(new java.awt.event.ActionListener() {
+//      public void actionPerformed(ActionEvent e) {
+//        initProcessEdit_actionPerformed(e);
+//      }
+//    });
     menuUtility.setText("Utility");
     menuUtilityGlobalChange.setToolTipText("Change Ecological Grouping and Vegatative Type of all units.");
     menuUtilityGlobalChange.setText("Make Global Change ...");
@@ -603,8 +600,6 @@ public class EvuEditor extends JDialog {
     lifeformPanel.add(otherRB);
     radioPanel.add(showAllRB, null);
     radioPanel.add(showInvalidRB, null);
-    topPanel.add(unitStatusPanel, BorderLayout.SOUTH);
-    unitStatusPanel.add(unitStatusLabel, null);
     mainNorthPanel.add(mainAttributePanel, BorderLayout.SOUTH);
     mainAttributePanel.add(mainLabelsPanel, null);
     mainLabelsPanel.add(htGrpLabel, null);
@@ -878,12 +873,6 @@ public class EvuEditor extends JDialog {
     str = currentEvu.getSpecialAreaEditor();
     if (str == null) { str = ""; }
     specialAreaEdit.setText(str);
-
-    if (numInvalid == 0 ) {
-      unitStatusLabel.setText("Attributes of the lifeform are Valid.");
-    } else {
-      unitStatusLabel.setText("Attributes of the lifeform are NOT Valid.");
-    }
   }
 
   /**
