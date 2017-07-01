@@ -42,140 +42,140 @@ import simpplle.comcode.Climate.*;
 public class EvuEditor extends JDialog {
   private Frame theFrame;
 
-  private Evu[]        allEvu;
-  private Evu          currentEvu;
-  private Area         currentArea;
+  private Evu[] allEvu;
+  private Evu currentEvu;
+  private Area currentArea;
   private RegionalZone currentZone;
-  private Lifeform     currentLife;
+  private Lifeform currentLife;
   private boolean inInit = false;
   private int numInvalid = 0;
 
-
   private boolean isMultiLifeArea = true;
-  
+
   private int showStatus;
   private static final int SHOW_ALL = 0;
   private static final int SHOW_INVALID = 1;
 
   JPanel mainPanel = new JPanel();
-  JPanel htGrpPanel = new JPanel();
-  JLabel htGrpLabel = new JLabel();
+  private JPanel htGrpPanel = new JPanel();
+  private JLabel htGrpLabel = new JLabel();
   FlowLayout flowLayout1 = new FlowLayout();
-  JTextField htGrpEdit = new JTextField();
-  JPanel statePanel = new JPanel();
+  private JTextField htGrpEdit = new JTextField();
+  private JPanel statePanel = new JPanel();
   FlowLayout flowLayout2 = new FlowLayout();
-  JLabel vegTypeLabel = new JLabel();
-  JTextField vegTypeEdit = new JTextField();
-  JPanel speciesPanel = new JPanel();
-  FlowLayout flowLayout3 = new FlowLayout();
-  JLabel speciesLabel = new JLabel();
-  JTextField speciesEdit = new JTextField();
-  JPanel sizeClassPanel = new JPanel();
+  private  JLabel vegTypeLabel = new JLabel();
+  private JTextField vegTypeEdit = new JTextField();
+  private JPanel speciesPanel = new JPanel();
+  private FlowLayout flowLayout3 = new FlowLayout();
+  private JLabel speciesLabel = new JLabel();
+  private JTextField speciesEdit = new JTextField();
+  private JPanel sizeClassPanel = new JPanel();
   FlowLayout flowLayout4 = new FlowLayout();
-  JLabel sizeClassLabel = new JLabel();
-  JTextField sizeClassEdit = new JTextField();
-  JPanel acresPanel = new JPanel();
-  JPanel fmzPanel = new JPanel();
-  JPanel densityPanel = new JPanel();
+  private JLabel sizeClassLabel = new JLabel();
+  private JTextField sizeClassEdit = new JTextField();
+  private JPanel acresPanel = new JPanel();
+  private JPanel fmzPanel = new JPanel();
+  private JPanel densityPanel = new JPanel();
   FlowLayout flowLayout5 = new FlowLayout();
-  JLabel densityLabel = new JLabel();
-  JTextField densityEdit = new JTextField();
-  JLabel densityInvalidLabel = new JLabel();
-  JLabel sizeClassInvalidLabel = new JLabel();
-  JLabel speciesInvalidLabel = new JLabel();
-  JLabel stateInvalidLabel = new JLabel();
-  JLabel htGrpInvalidLabel = new JLabel();
+  private JLabel densityLabel = new JLabel();
+  private JTextField densityEdit = new JTextField();
+  private JLabel densityInvalidLabel = new JLabel();
+  private JLabel sizeClassInvalidLabel = new JLabel();
+  private JLabel speciesInvalidLabel = new JLabel();
+  private JLabel stateInvalidLabel = new JLabel();
+  private JLabel htGrpInvalidLabel = new JLabel();
   FlowLayout flowLayout6 = new FlowLayout();
-  JLabel fmzLabel = new JLabel();
-  JTextField fmzEdit = new JTextField();
-  JLabel fmzInvalidLabel = new JLabel();
-  JLabel unitNumberLabel = new JLabel();
+  private JLabel fmzLabel = new JLabel();
+  private JTextField fmzEdit = new JTextField();
+  private JLabel fmzInvalidLabel = new JLabel();
+  private JLabel unitNumberLabel = new JLabel();
   FlowLayout flowLayout8 = new FlowLayout();
-  JLabel acresLabel = new JLabel();
-  JLabel ownershipLabel = new JLabel();
-  JLabel roadStatusLabel = new JLabel();
-  JLabel specialAreaLabel = new JLabel();
-  JPanel mainAttributePanel = new JPanel();
+  private JLabel acresLabel = new JLabel();
+  private JLabel ownershipLabel = new JLabel();
+  private JLabel roadStatusLabel = new JLabel();
+  private JLabel specialAreaLabel = new JLabel();
+  private JPanel mainAttributePanel = new JPanel();
   BorderLayout borderLayout1 = new BorderLayout();
-  JPanel otherAttributePanel = new JPanel();
-  JTextField unitNumberEdit = new JTextField();
-  JTextField acresEdit = new JTextField();
-  JTextField ownershipEdit = new JTextField();
-  JTextField specialAreaEdit = new JTextField();
-  JComboBox roadStatusCB = new JComboBox();
-  JPanel agePanel = new JPanel();
-  FlowLayout flowLayout13 = new FlowLayout();
-  JLabel ageLabel = new JLabel();
-  JTextField ageEdit = new JTextField();
-  JLabel ageInvalidLabel = new JLabel();
-  JPanel mainNorthPanel = new JPanel();
+  private JPanel otherAttributePanel = new JPanel();
+  private JTextField unitNumberEdit = new JTextField();
+  private JTextField acresEdit = new JTextField();
+  private JTextField ownershipEdit = new JTextField();
+  private JTextField specialAreaEdit = new JTextField();
+  private JComboBox roadStatusCB = new JComboBox();
+  private JPanel agePanel = new JPanel();
+  private FlowLayout flowLayout13 = new FlowLayout();
+  private JLabel ageLabel = new JLabel();
+  private JTextField ageEdit = new JTextField();
+  private JLabel ageInvalidLabel = new JLabel();
+  private JPanel mainNorthPanel = new JPanel();
   BorderLayout borderLayout3 = new BorderLayout();
-  JPanel topPanel = new JPanel();
-  JPanel radioPanel = new JPanel();
+  private JPanel topPanel = new JPanel();
+  private JPanel radioPanel = new JPanel();
   GridLayout gridLayout1 = new GridLayout();
-  JRadioButton showAllRB = new JRadioButton();
-  JRadioButton showInvalidRB = new JRadioButton();
+  private JRadioButton showAllRB = new JRadioButton();
+  private JRadioButton showInvalidRB = new JRadioButton();
   BorderLayout borderLayout4 = new BorderLayout();
-  JPanel prevNextPanel = new JPanel();
-  FlowLayout flowLayout14 = new FlowLayout();
+  private JPanel prevNextPanel = new JPanel();
+  private FlowLayout flowLayout14 = new FlowLayout();
   JButton nextPB = new JButton();
   JButton prevPB = new JButton();
-  JLabel evuLabel = new JLabel();
+  private JLabel evuLabel = new JLabel();
   JPanel buttonPanel = new JPanel();
-  JButton checkUnitPB = new JButton();
-  JButton quitPB = new JButton();
-  FlowLayout flowLayout15 = new FlowLayout();
-  JPanel unitStatusPanel = new JPanel();
-  FlowLayout flowLayout16 = new FlowLayout();
-  JLabel unitStatusLabel = new JLabel();
-  JPanel radioOuterPanel = new JPanel();
-  FlowLayout flowLayout17 = new FlowLayout();
-  JPanel evuIdPanel = new JPanel();
-  JTextField evuIdEdit = new JTextField();
-  GridLayout gridLayout5 = new GridLayout();
-  JLabel acresInvalidLabel = new JLabel();
-  JPanel mainValuesPanel = new JPanel();
-  JPanel mainLabelsPanel = new JPanel();
-  GridLayout gridLayout4 = new GridLayout();
-  GridLayout gridLayout6 = new GridLayout();
-  FlowLayout flowLayout19 = new FlowLayout();
-  JPanel otherValuesPanel = new JPanel();
-  JPanel otherLabelsPanel = new JPanel();
+  private JButton checkUnitPB = new JButton();
+  private JButton quitPB = new JButton();
+  private FlowLayout flowLayout15 = new FlowLayout();
+  private JPanel unitStatusPanel = new JPanel();
+  private FlowLayout flowLayout16 = new FlowLayout();
+  private JLabel unitStatusLabel = new JLabel();
+  private JPanel radioOuterPanel = new JPanel();
+  private FlowLayout flowLayout17 = new FlowLayout();
+  private JPanel evuIdPanel = new JPanel();
+  private JTextField evuIdEdit = new JTextField();
+  private GridLayout gridLayout5 = new GridLayout();
+  private JLabel acresInvalidLabel = new JLabel();
+  private JPanel mainValuesPanel = new JPanel();
+  private JPanel mainLabelsPanel = new JPanel();
+  private GridLayout gridLayout4 = new GridLayout();
+  private GridLayout gridLayout6 = new GridLayout();
+  private FlowLayout flowLayout19 = new FlowLayout();
+  private JPanel otherValuesPanel = new JPanel();
+  private JPanel otherLabelsPanel = new JPanel();
   GridLayout gridLayout2 = new GridLayout();
-  GridLayout gridLayout7 = new GridLayout();
+  private GridLayout gridLayout7 = new GridLayout();
   JPanel jPanel1 = new JPanel();
   FlowLayout flowLayout9 = new FlowLayout();
-  JPanel jPanel7 = new JPanel();
-  JPanel jPanel8 = new JPanel();
-  JPanel jPanel9 = new JPanel();
+  private JPanel jPanel7 = new JPanel();
+  private JPanel jPanel8 = new JPanel();
+  private JPanel jPanel9 = new JPanel();
   FlowLayout flowLayout10 = new FlowLayout();
-  FlowLayout flowLayout11 = new FlowLayout();
-  FlowLayout flowLayout12 = new FlowLayout();
-  FlowLayout flowLayout20 = new FlowLayout();
-  JLabel initProcessLabel = new JLabel();
-  JPanel initProcessPanel = new JPanel();
+  private FlowLayout flowLayout11 = new FlowLayout();
+  private FlowLayout flowLayout12 = new FlowLayout();
+  private FlowLayout flowLayout20 = new FlowLayout();
+  private JLabel initProcessLabel = new JLabel();
+  private JPanel initProcessPanel = new JPanel();
   FlowLayout flowLayout7 = new FlowLayout();
-  JLabel initProcessInvalidLabel = new JLabel();
-  JTextField initProcessEdit = new JTextField();
+  private JLabel initProcessInvalidLabel = new JLabel();
+  private JTextField initProcessEdit = new JTextField();
   JMenuBar menuBar = new JMenuBar();
-  JMenu menuUtility = new JMenu();
-  JMenuItem menuUtilityGlobalChange = new JMenuItem();
-  JPanel lifeformPanel = new JPanel();
-  GridLayout gridLayout3 = new GridLayout();
-  JRadioButton treesRB = new JRadioButton();
-  JRadioButton otherRB = new JRadioButton();
-  JRadioButton agricultureRB = new JRadioButton();
-  JRadioButton herbaciousRB = new JRadioButton();
-  JRadioButton shrubsRB = new JRadioButton();
+  private JMenu menuUtility = new JMenu();
+  private JMenuItem menuUtilityGlobalChange = new JMenuItem();
+  private JPanel lifeformPanel = new JPanel();
+  private GridLayout gridLayout3 = new GridLayout();
+  private JRadioButton treesRB = new JRadioButton();
+  private JRadioButton otherRB = new JRadioButton();
+  private JRadioButton agricultureRB = new JRadioButton();
+  private JRadioButton herbaciousRB = new JRadioButton();
+  private JRadioButton shrubsRB = new JRadioButton();
   Border border1 = BorderFactory.createLineBorder(Color.white, 2);
-  Border border2 = new TitledBorder(border1, "Lifeform");
-  ButtonGroup lifeformRBGroup = new ButtonGroup();
-/**
- * Constructor for Evu Editor.  Sets the frame owner, name, and modality.  
- * @param frame
- * @param title
- * @param modal
- */
+  private Border border2 = new TitledBorder(border1, "Lifeform");
+  private ButtonGroup lifeformRBGroup = new ButtonGroup();
+
+  /**
+   * Constructor for Evu Editor.  Sets the frame owner, name, and modality.
+   * @param frame
+   * @param title
+   * @param modal
+   */
   public EvuEditor(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try  {
@@ -195,7 +195,7 @@ public class EvuEditor extends JDialog {
   public EvuEditor() {
     this(null, "", false);
   }
-  
+
   /**
    * Sets the panel, components, colors, layouts, listeners, and borders for Evu Editor. 
    * @throws Exception
@@ -665,10 +665,10 @@ public class EvuEditor extends JDialog {
     lifeformRBGroup.add(agricultureRB);
     lifeformRBGroup.add(otherRB);
   }
-/**
- * Initializes the Evu Editor.  Sets a combo box with road status.  Area and zone are set to current simpplle area and zone. Gathers all the current area's Evus
- * and sets the current life form to trees and current Evu to first Evu.  
- */
+  /**
+   * Initializes the Evu Editor.  Sets a combo box with road status.  Area and zone are set to current simpplle area and zone. Gathers all the current area's Evus
+   * and sets the current life form to trees and current Evu to first Evu.
+   */
   private void initialize() {
     Roads.Status[] allRoadStatus = Roads.Status.values();
     for(int i=0;i<allRoadStatus.length;i++) {
@@ -691,14 +691,14 @@ public class EvuEditor extends JDialog {
     else {
       updateDialog();
     }
-    
+
     isMultiLifeArea = currentArea.multipleLifeformsEnabled();
   }
-/**
- * Updates the Evu Editor dialog.  Creates a set of all the life froms in Evu.  Then sets enabled trees, shrubs, herbacious, agriculture, and other radiobuttons.  
- * Displays text of the Evu ID, habitat type group, current vegetative type, species, size class, density, age, fire management zone, acres, initial process, 
- * Evu ID, ownership, road status, and special area.
- */
+  /**
+   * Updates the Evu Editor dialog.  Creates a set of all the life froms in Evu.  Then sets enabled trees, shrubs, herbacious, agriculture, and other radiobuttons.
+   * Displays text of the Evu ID, habitat type group, current vegetative type, species, size class, density, age, fire management zone, acres, initial process,
+   * Evu ID, ownership, road status, and special area.
+   */
   private void updateDialog() {
     String str, idStr;
     boolean isValid;
@@ -877,13 +877,13 @@ public class EvuEditor extends JDialog {
     }
   }
 
- /**
-  * Evu Id Edit text field listener.  parses the evuIdEdit text field, checks to makes sure it is a number, and a valid Evu ID, 
-  * then creates a new Evu Object with same ID as the current one being edited, and makes that the current Evu.    
-  * 
-  * @param e
-  */
-  void evuIdEdit_actionPerformed(ActionEvent e) {
+  /**
+   * Evu Id Edit text field listener.  parses the evuIdEdit text field, checks to makes sure it is a number, and a valid Evu ID,
+   * then creates a new Evu Object with same ID as the current one being edited, and makes that the current Evu.
+   *
+   * @param e
+   */
+  private void evuIdEdit_actionPerformed(ActionEvent e) {
     Evu newEvu;
     int id;
 
@@ -892,7 +892,7 @@ public class EvuEditor extends JDialog {
     }
     catch (NumberFormatException nfe) {
       JOptionPane.showMessageDialog(this,"Unit Id must be a number",
-                                    "Invalid Id",JOptionPane.ERROR_MESSAGE);
+          "Invalid Id",JOptionPane.ERROR_MESSAGE);
       evuIdEdit.setText(Integer.toString(currentEvu.getId()));
       return;
     }
@@ -905,7 +905,7 @@ public class EvuEditor extends JDialog {
     if (newEvu == null) {
       String msg = id + " is not a valid Unit Id.";
       JOptionPane.showMessageDialog(this,msg,"Unit Id not found",
-                                    JOptionPane.ERROR_MESSAGE);
+          JOptionPane.ERROR_MESSAGE);
       evuIdEdit.setText(Integer.toString(currentEvu.getId()));
     }
     else {
@@ -918,13 +918,13 @@ public class EvuEditor extends JDialog {
    * Gets the previous Evu when previous button pushed.
    * @param e 'previous'
    */
-  void prevPB_actionPerformed(ActionEvent e) {
+  private void prevPB_actionPerformed(ActionEvent e) {
     getPrevUnit();
   }
-/**
- * Gets the previous Evu.  First creates a temporary Evu to hold the current Evu info in case the previous is null.  Then makes the current evu the 
- * areas previous Evu.  If it is not null updates, otherwise defaults back to old Evu temporary variable.  
- */
+  /**
+   * Gets the previous Evu.  First creates a temporary Evu to hold the current Evu info in case the previous is null.  Then makes the current evu the
+   * areas previous Evu.  If it is not null updates, otherwise defaults back to old Evu temporary variable.
+   */
   private void getPrevUnit() {
     Evu oldEvu = currentEvu;
 
@@ -942,8 +942,8 @@ public class EvuEditor extends JDialog {
         showStatus = SHOW_ALL;
 
         JOptionPane.showMessageDialog(this,"All Units are now Valid",
-                                      "All Units are Valid",
-                                      JOptionPane.INFORMATION_MESSAGE);
+            "All Units are Valid",
+            JOptionPane.INFORMATION_MESSAGE);
       }
     }
     updateDialog();
@@ -977,27 +977,27 @@ public class EvuEditor extends JDialog {
         showStatus = SHOW_ALL;
 
         JOptionPane.showMessageDialog(this,"All Units are now Valid",
-                                      "All Units are Valid",
-                                      JOptionPane.INFORMATION_MESSAGE);
+            "All Units are Valid",
+            JOptionPane.INFORMATION_MESSAGE);
       }
     }
     updateDialog();
   }
 
-/**
- * Shows all status radio buttons.
- * @param e 'show all'
- */
-  void showAllRB_actionPerformed(ActionEvent e) {
+  /**
+   * Shows all status radio buttons.
+   * @param e 'show all'
+   */
+  private void showAllRB_actionPerformed(ActionEvent e) {
     if (showStatus != SHOW_ALL) {
       showStatus = SHOW_ALL;
     }
   }
-/**
- * Shows the Invalid vegetative units radio buttons
- * @param e 'show invalid'
- */
-  void showInvalidRB_actionPerformed(ActionEvent e) {
+  /**
+   * Shows the Invalid vegetative units radio buttons
+   * @param e 'show invalid'
+   */
+  private void showInvalidRB_actionPerformed(ActionEvent e) {
     boolean existInvalid = currentArea.existAnyInvalidVegUnits();
     if (showStatus != SHOW_INVALID && existInvalid) {
       showStatus = SHOW_INVALID;
@@ -1007,29 +1007,29 @@ public class EvuEditor extends JDialog {
     }
     else {
       JOptionPane.showMessageDialog(this,"There are no Invalid units",
-                                    "No Invalid Units found",
-                                    JOptionPane.INFORMATION_MESSAGE);
+          "No Invalid Units found",
+          JOptionPane.INFORMATION_MESSAGE);
       showAllRB.setSelected(true);
     }
   }
 
- /**
-  * If habitat type group edit selected sends to newHtGrp(). 
-  * @param e 'habitat type group edit'
-  */
-  void htGrpEdit_actionPerformed(ActionEvent e) {
+  /**
+   * If habitat type group edit selected sends to newHtGrp().
+   * @param e 'habitat type group edit'
+   */
+  private void htGrpEdit_actionPerformed(ActionEvent e) {
     newHtGrp();
   }
   /**
    * If habitat type group edit loses focus sends to newHtGrp(). 
    * @param e 'habitat type group edit' loses focus
    */
-  void htGrpEdit_focusLost(FocusEvent e) {
+  private void htGrpEdit_focusLost(FocusEvent e) {
     newHtGrp();
   }
-/**
- * Sets the current Evu's habitat type group to the name of habitat type group and current life.  
- */
+  /**
+   * Sets the current Evu's habitat type group to the name of habitat type group and current life.
+   */
   private void newHtGrp() {
     String htGrpStr = htGrpEdit.getText().trim().toUpperCase();
 
@@ -1041,20 +1041,20 @@ public class EvuEditor extends JDialog {
    * If species edit selected sends to newSpecies(). 
    * @param e 'species'
    */
-  void speciesEdit_actionPerformed(ActionEvent e) {
+  private void speciesEdit_actionPerformed(ActionEvent e) {
     newSpecies();
   }
   /**
    * If species edit loses focus sends to newSpecies(). 
    * @param e 'species' loses focus
    */
-  void speciesEdit_focusLost(FocusEvent e) {
+  private void speciesEdit_focusLost(FocusEvent e) {
     newSpecies();
   }
-/**
- * Uses species name from species edit text field to get species.  If species is null, creates a new species instance from the current string.  
- * Then sets the current Evu species to the current life.  
- */
+  /**
+   * Uses species name from species edit text field to get species.  If species is null, creates a new species instance from the current string.
+   * Then sets the current Evu species to the current life.
+   */
   private void newSpecies() {
     String  speciesStr = speciesEdit.getText().trim().toUpperCase();
     Species species = Species.get(speciesStr);
@@ -1065,7 +1065,7 @@ public class EvuEditor extends JDialog {
     }
     else {
       JOptionPane.showMessageDialog(this, "Invalid Species", "Invalid Species",
-                                    JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.INFORMATION_MESSAGE);
     }
     updateDialog();
   }
@@ -1074,14 +1074,14 @@ public class EvuEditor extends JDialog {
    * If size class edit text input sends to newSizeClass(). 
    * @param e event in size class text field 
    */
-  void sizeClassEdit_actionPerformed(ActionEvent e) {
+  private  void sizeClassEdit_actionPerformed(ActionEvent e) {
     newSizeClass();
   }
   /**
    * If size class edit text field loses focus sends to newSizeClass(). 
    * @param e size class text field loses focus
    */
-  void sizeClassEdit_focusLost(FocusEvent e) {
+  private  void sizeClassEdit_focusLost(FocusEvent e) {
     newSizeClass();
   }
   /**
@@ -1101,14 +1101,14 @@ public class EvuEditor extends JDialog {
    * If density edit text input sends to newDensity(). 
    * @param e event in density text field 
    */
-  void densityEdit_actionPerformed(ActionEvent e) {
+  private  void densityEdit_actionPerformed(ActionEvent e) {
     newDensity();
   }
   /**
    * If density edit text field loses focus sends to newDensity(). 
    * @param e density text field loses focus
    */
-  void densityEdit_focusLost(FocusEvent e) {
+  private void densityEdit_focusLost(FocusEvent e) {
     newDensity();
   }
   /**
@@ -1128,14 +1128,14 @@ public class EvuEditor extends JDialog {
    * If age edit text input sends to newAge(). 
    * @param e event in age text field 
    */
-  void ageEdit_actionPerformed(ActionEvent e) {
+  private void ageEdit_actionPerformed(ActionEvent e) {
     newAge();
   }
   /**
    * If age edit text field loses focus sends to newAge(). 
    * @param e age text field loses focus
    */
-  void ageEdit_focusLost(FocusEvent e) {
+  private  void ageEdit_focusLost(FocusEvent e) {
     newAge();
   }
   /**
@@ -1149,8 +1149,8 @@ public class EvuEditor extends JDialog {
     }
     catch (NumberFormatException e) {
       JOptionPane.showMessageDialog(this,"Age Must be a number greater than 0",
-                                    "Invalid value for age",
-                                    JOptionPane.ERROR_MESSAGE);
+          "Invalid value for age",
+          JOptionPane.ERROR_MESSAGE);
     }
     updateDialog();
   }
@@ -1159,14 +1159,14 @@ public class EvuEditor extends JDialog {
    * If fire management zone edit text input sends to newFmz(). 
    * @param e event in fire management zone text field 
    */
-  void fmzEdit_actionPerformed(ActionEvent e) {
+  private void fmzEdit_actionPerformed(ActionEvent e) {
     newFmz();
   }
   /**
    * If fire management zone edit text field loses focus sends to newFmz(). 
    * @param e fire management zone text field loses focus
    */
-  void fmzEdit_focusLost(FocusEvent e) {
+  private void fmzEdit_focusLost(FocusEvent e) {
     newFmz();
   }
   /**
@@ -1182,14 +1182,14 @@ public class EvuEditor extends JDialog {
    * If acres edit text input sends to newAcres()). 
    * @param e event in acres text field 
    */
-  void acresEdit_actionPerformed(ActionEvent e) {
+  private void acresEdit_actionPerformed(ActionEvent e) {
     newAcres();
   }
   /**
    * If acres edit text field loses focus sends to newAcres(). 
    * @param e acres text field loses focus
    */
-  void acresEdit_focusLost(FocusEvent e) {
+  private void acresEdit_focusLost(FocusEvent e) {
     newAcres();
   }
   /**
@@ -1203,8 +1203,8 @@ public class EvuEditor extends JDialog {
     }
     catch (NumberFormatException e) {
       JOptionPane.showMessageDialog(this,"Acres Must be a number greater than 0",
-                                    "Invalid value for Acres",
-                                    JOptionPane.ERROR_MESSAGE);
+          "Invalid value for Acres",
+          JOptionPane.ERROR_MESSAGE);
     }
     updateDialog();
   }
@@ -1213,14 +1213,14 @@ public class EvuEditor extends JDialog {
    * If initial process edit text input sends to newInitProcess(). 
    * @param e event in initial process text field 
    */
-  void initProcessEdit_actionPerformed(ActionEvent e) {
+  private  void initProcessEdit_actionPerformed(ActionEvent e) {
     newInitProcess();
   }
   /**
    * If initial process edit text field loses focus sends to newInitProcess(). 
    * @param e initial process text field loses focus
    */
-  void initProcessEdit_focusLost(FocusEvent e) {
+  private void initProcessEdit_focusLost(FocusEvent e) {
     newInitProcess();
   }
   /**
@@ -1238,14 +1238,14 @@ public class EvuEditor extends JDialog {
    * If Evu ID edit text input sends to newUnitNumber(). 
    * @param e event in Evu ID text field 
    */
-  void unitNumberEdit_actionPerformed(ActionEvent e) {
+  private  void unitNumberEdit_actionPerformed(ActionEvent e) {
     newUnitNumber();
   }
   /**
    * If Evu ID edit text field loses focus sends to newUnitNumber(). 
    * @param e Evu ID text field loses focus
    */
-  void unitNumberEdit_focusLost(FocusEvent e) {
+  private void unitNumberEdit_focusLost(FocusEvent e) {
     newUnitNumber();
   }
   /**
@@ -1261,14 +1261,14 @@ public class EvuEditor extends JDialog {
    * If ownership edit text input in field sends to newOwnership(). 
    * @param e event in Evu ID text field 
    */
-  void ownershipEdit_actionPerformed(ActionEvent e) {
+  private  void ownershipEdit_actionPerformed(ActionEvent e) {
     newOwnership();
   }
   /**
    * If ownership edit text field loses focus sends to newOwnership(). 
    * @param e ownership ID text field loses focus
    */
-  void ownershipEdit_focusLost(FocusEvent e) {
+  private void ownershipEdit_focusLost(FocusEvent e) {
     newOwnership();
   }
   /**
@@ -1282,11 +1282,11 @@ public class EvuEditor extends JDialog {
     }
   }
 
- /**
-  * If an item changed in the road status combo box, it gets the item that was changed and sets the road status of the item.
-  * @param e 
-  */
-  void roadStatusCB_itemStateChanged(ItemEvent e) {
+  /**
+   * If an item changed in the road status combo box, it gets the item that was changed and sets the road status of the item.
+   * @param e
+   */
+  private void roadStatusCB_itemStateChanged(ItemEvent e) {
     Roads.Status item = (Roads.Status) e.getItem();
     if (item == null || currentEvu == null) { return; }
 
@@ -1297,14 +1297,14 @@ public class EvuEditor extends JDialog {
    * If special area text input into edit field sends to newSpecialArea(). 
    * @param e event in Evu ID text field 
    */
-  void specialAreaEdit_actionPerformed(ActionEvent e) {
+  private void specialAreaEdit_actionPerformed(ActionEvent e) {
     newSpecialArea();
   }
   /**
    * If special area edit text field loses focus sends to newSpecialArea(). 
    * @param e special area text field loses focus
    */
-  void specialAreaEdit_focusLost(FocusEvent e) {
+  private void specialAreaEdit_focusLost(FocusEvent e) {
     newSpecialArea();
   }
   /**
@@ -1318,9 +1318,9 @@ public class EvuEditor extends JDialog {
     }
   }
 
- /**
-  * Method to quite the Evu Editor and updates area. 
-  */
+  /**
+   * Method to quite the Evu Editor and updates area.
+   */
   private void quit() {
     simpplle.JSimpplle.getSimpplleMain().updateAreaValidity();
     Area area = Simpplle.getCurrentArea();
@@ -1328,25 +1328,25 @@ public class EvuEditor extends JDialog {
     setVisible(false);
     dispose();
   }
-/**
- * Quits the Evu Editor if quit button is pushed.
- * @param e 'quit'
- */
-  void quitPB_actionPerformed(ActionEvent e) {
+  /**
+   * Quits the Evu Editor if quit button is pushed.
+   * @param e 'quit'
+   */
+  private void quitPB_actionPerformed(ActionEvent e) {
     quit();
   }
-/**
- * Window closing event quits.  
- * @param e window closing event
- */
+  /**
+   * Window closing event quits.
+   * @param e window closing event
+   */
   void this_windowClosing(WindowEvent e) {
     quit();
   }
-/**
- * Checks to make sure current Evu is valid if check unit button pushed.
- * @param e 'check unit'
- */
-  void checkUnitPB_actionPerformed(ActionEvent e) {
+  /**
+   * Checks to make sure current Evu is valid if check unit button pushed.
+   * @param e 'check unit'
+   */
+  private  void checkUnitPB_actionPerformed(ActionEvent e) {
     updateDialog();
     if (numInvalid == 0) {
       JOptionPane.showMessageDialog(this,"Unit is valid","Valid Unit",
@@ -1357,21 +1357,21 @@ public class EvuEditor extends JDialog {
           JOptionPane.INFORMATION_MESSAGE);
     }
   }
-/**
- * Creates an Evu Global Editor dialog with the current frame and title Change All Units 
- * @param e
- */
-  void menuUtilityGlobalChange_actionPerformed(ActionEvent e) {
+  /**
+   * Creates an Evu Global Editor dialog with the current frame and title Change All Units
+   * @param e
+   */
+  private void menuUtilityGlobalChange_actionPerformed(ActionEvent e) {
     EvuGlobalEditor dlg =
-      new EvuGlobalEditor(theFrame,"Change All Units",true,currentEvu,currentLife);
+        new EvuGlobalEditor(theFrame,"Change All Units",true,currentEvu,currentLife);
     dlg.setVisible(true);
     updateDialog();
   }
-/**
- * If trees radio button pushed makes the current life form trees.
- * @param e 'trees' 
- */
-  public void treesRB_actionPerformed(ActionEvent e) {
+  /**
+   * If trees radio button pushed makes the current life form trees.
+   * @param e 'trees'
+   */
+  private  void treesRB_actionPerformed(ActionEvent e) {
     currentLife = Lifeform.TREES;
     if (!inInit) { updateDialog(); }
   }
@@ -1379,7 +1379,7 @@ public class EvuEditor extends JDialog {
    * If shrubs radio button pushed makes the current life form shrubs.
    * @param e 'trees' 
    */
-  public void shrubsRB_actionPerformed(ActionEvent e) {
+  private  void shrubsRB_actionPerformed(ActionEvent e) {
     currentLife = Lifeform.SHRUBS;
     if (!inInit) { updateDialog(); }
   }
@@ -1387,7 +1387,7 @@ public class EvuEditor extends JDialog {
    * If herbacious radio button pushed makes the current life form herbacious.
    * @param e 'trees' 
    */
-  public void herbaciousRB_actionPerformed(ActionEvent e) {
+  private  void herbaciousRB_actionPerformed(ActionEvent e) {
     currentLife = Lifeform.HERBACIOUS;
     if (!inInit) { updateDialog(); }
   }
@@ -1403,23 +1403,8 @@ public class EvuEditor extends JDialog {
    * If other radio button pushed makes the current life form NA.
    * @param e 'other' 
    */
-  public void otherRB_actionPerformed(ActionEvent e) {
+  private  void otherRB_actionPerformed(ActionEvent e) {
     currentLife = Lifeform.NA;
     if (!inInit) { updateDialog(); }
   }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
