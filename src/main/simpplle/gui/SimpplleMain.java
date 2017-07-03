@@ -1204,7 +1204,6 @@ public class SimpplleMain extends JFrame {
     menuImport.add(menuImportAttributeData);
     menuImport.addSeparator();
     menuImport.add(menuImportFixStates);
-//    menuImport.add(menuImportEditUnits);
     menuImport.add(menuImportInvalidReport);
     menuImport.addSeparator();
     menuImport.add(menuImportFSLandscape);
