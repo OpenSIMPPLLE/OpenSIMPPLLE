@@ -147,7 +147,6 @@ public class EvuEditor extends JDialog {
 
   JButton nextPB = new JButton();
   JButton prevPB = new JButton();
-  private JButton checkUnitPB = new JButton();
   private JButton quitPB = new JButton();
 
   private JRadioButton showAllRB = new JRadioButton();
@@ -356,8 +355,6 @@ public class EvuEditor extends JDialog {
     //prevPB.setPressedIcon(new ImageIcon(new java.net.URL("images/prevg.gif")));
     prevPB.addActionListener(e -> prevPB_actionPerformed());
     buttonPanel.setLayout(flowLayout3);
-    checkUnitPB.setText("Check Unit Validity");
-    checkUnitPB.addActionListener(e -> checkUnitPB_actionPerformed());
     quitPB.setText("Close");
     quitPB.addActionListener(e -> quitPB_actionPerformed());
     radioPanel.setBorder(BorderFactory.createLoweredBevelBorder());
@@ -517,7 +514,6 @@ public class EvuEditor extends JDialog {
     jPanel7.add(specialAreaEdit, null);
     mainPanel.add(buttonPanel, BorderLayout.SOUTH);
     buttonPanel.add(quitPB, null);
-    buttonPanel.add(checkUnitPB, null);
 
     ButtonGroup group = new ButtonGroup();
     group.add(showAllRB);
@@ -1182,20 +1178,7 @@ public class EvuEditor extends JDialog {
   void this_windowClosing(WindowEvent e) {
     quit();
   }
-  /**
-   * Checks to make sure current Evu is valid if check unit button pushed.
-   */
-  private  void checkUnitPB_actionPerformed() {
-    updateDialog();
-    if (numInvalid == 0) {
-      JOptionPane.showMessageDialog(this,"Unit is valid","Valid Unit",
-          JOptionPane.INFORMATION_MESSAGE);
-    }
-    else {
-      JOptionPane.showMessageDialog(this,"Unit is NOT valid","NOT a Valid Unit",
-          JOptionPane.INFORMATION_MESSAGE);
-    }
-  }
+
   /**
    * Creates an Evu Global Editor dialog with the current frame and title Change All Units
    */
