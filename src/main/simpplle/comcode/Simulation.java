@@ -242,7 +242,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private PrintWriter[] accessEvuSimDataOut;
   private PrintWriter[] accessAreaSummaryOut;
   private PrintWriter   accessTrackingSpeciesOut;
-  private PrintWriter   accessSlinkMetricsOut;
 
   private TreeMap<Short,String> accessProcessList        = new TreeMap<>();
   private TreeMap<Short,String> accessSpeciesList        = new TreeMap<>();
@@ -534,10 +533,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     return accessTrackingSpeciesOut;
   }
 
-  public PrintWriter getAccessSlinkMetricsOut() {
-    return accessSlinkMetricsOut;
-  }
-
   public PrintWriter getInvasiveSpeciesMSUPrintWriter() {
     if (outputFile != null) {
       return invasiveSpeciesMSUProbOut;
@@ -753,17 +748,17 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
         if (writeAccess) {
 
-          writeDensityLookup(new File(getAccessFilesPath(), "DENSITY.csv"));
-          writeLifeformLookup(new File(getAccessFilesPath(), "LIFEFORM.csv"));
-          writeOwnershipLookup(new File(getAccessFilesPath(), "OWNERSHIP.csv"));
-          writeProbabilityLookup(new File(getAccessFilesPath(), "PROBSTR.csv"));
-          writeProcessLookup(new File(getAccessFilesPath(), "PROCESS.csv"));
-          writeSizeClassLookup(new File(getAccessFilesPath(), "SIZECLASS.csv"));
-          writeSlinkMetrics(new File(getAccessFilesPath(), "SLINKMETRICS.csv"));
-          writeSpecialAreaLookup(new File(getAccessFilesPath(), "SPECIALAREA.csv"));
-          writeSpeciesLookup(new File(getAccessFilesPath(), "SPECIES.csv"));
-          writeTrackSpeciesLookup(new File(getAccessFilesPath(), "TRACKSPECIES.csv"));
-          writeTreatmentLookup(new File(getAccessFilesPath(), "TREATMENT.csv"));
+          saveDensityLookup(new File(getAccessFilesPath(), "DENSITY.csv"));
+          saveLifeformLookup(new File(getAccessFilesPath(), "LIFEFORM.csv"));
+          saveOwnershipLookup(new File(getAccessFilesPath(), "OWNERSHIP.csv"));
+          saveProbabilityLookup(new File(getAccessFilesPath(), "PROBSTR.csv"));
+          saveProcessLookup(new File(getAccessFilesPath(), "PROCESS.csv"));
+          saveSizeClassLookup(new File(getAccessFilesPath(), "SIZECLASS.csv"));
+          saveSlinkMetrics(new File(getAccessFilesPath(), "SLINKMETRICS.csv"));
+          saveSpecialAreaLookup(new File(getAccessFilesPath(), "SPECIALAREA.csv"));
+          saveSpeciesLookup(new File(getAccessFilesPath(), "SPECIES.csv"));
+          saveTrackSpeciesLookup(new File(getAccessFilesPath(), "TRACKSPECIES.csv"));
+          saveTreatmentLookup(new File(getAccessFilesPath(), "TREATMENT.csv"));
 
           closeAccessTextFiles();
         }
@@ -1082,7 +1077,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessTreatmentTypeList.clear();
   }
 
-  private void writeDensityLookup(File file) throws IOException {
+  private void saveDensityLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,DENSITY");
       for (Short id : accessDensityList.keySet()) {
@@ -1092,7 +1087,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeLifeformLookup(File file) throws IOException {
+  private void saveLifeformLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,LIFEFORM");
       for (Short id : accessLifeformList.keySet()) {
@@ -1102,7 +1097,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeOwnershipLookup(File file) throws IOException {
+  private void saveOwnershipLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,OWNERSHIP");
       for (Short id : accessOwnershipList.keySet()) {
@@ -1112,7 +1107,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeProbabilityLookup(File file) throws IOException {
+  private void saveProbabilityLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,DESCRIPTION");
       writer.println("D,Process no next state");
@@ -1126,7 +1121,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeProcessLookup(File file) throws IOException {
+  private void saveProcessLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,PROCESS");
       for (Short id : accessProcessList.keySet()) {
@@ -1136,7 +1131,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeSizeClassLookup(File file) throws IOException {
+  private void saveSizeClassLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,SIZECLASS");
       for (Short id : accessSizeClassList.keySet()) {
@@ -1146,7 +1141,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeSlinkMetrics(File file) throws IOException {
+  private void saveSlinkMetrics(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("SLINK,ROW,COLUMN,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
       for (Evu evu : Simpplle.currentArea.getAllEvu()) {
@@ -1163,7 +1158,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeSpecialAreaLookup(File file) throws IOException {
+  private void saveSpecialAreaLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,SPCAREA");
       for (Short id : accessSpecialAreaList.keySet()) {
@@ -1173,7 +1168,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeSpeciesLookup(File file) throws IOException {
+  private void saveSpeciesLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,SPECIES");
       for (Short id : accessSpeciesList.keySet()) {
@@ -1183,7 +1178,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeTrackSpeciesLookup(File file) throws IOException {
+  private void saveTrackSpeciesLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,INCSPECIES");
       for (Short id : accessIncRuleSpeciesList.keySet()) {
@@ -1193,7 +1188,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeTreatmentLookup(File file) throws IOException {
+  private void saveTreatmentLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,TREATMENT");
       for (Short id : accessTreatmentTypeList.keySet()) {
@@ -1203,7 +1198,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  @Deprecated
   private void openAccessTextFiles() throws SimpplleError, IOException {
 
     File path;
@@ -1231,7 +1225,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   }
 
-  @Deprecated
   private void closeAccessTextFiles() throws SimpplleError {
 
     for (int run=0; run<numSimulations; run++) {
