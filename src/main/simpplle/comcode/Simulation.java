@@ -706,7 +706,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
         }
 
         if (writeAccess) {
-          initAccessTreeMaps();
+          clearLookupTables();
           makeAccessFilesDir();
           openAccessTextFiles();
         }
@@ -1063,7 +1063,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void initAccessTreeMaps() {
+  private void clearLookupTables() {
     accessProcessList.clear();
     accessSpeciesList.clear();
     accessSizeClassList.clear();
