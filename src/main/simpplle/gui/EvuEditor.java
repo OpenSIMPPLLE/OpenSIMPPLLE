@@ -411,12 +411,7 @@ public class EvuEditor extends JDialog {
         initProcessEdit_focusLost(e);
       }
     });
-    // Can't add action listener to textfield?...
-//    initProcessEdit.addActionListener(new java.awt.event.ActionListener() {
-//      public void actionPerformed(ActionEvent e) {
-//        initProcessEdit_actionPerformed(e);
-//      }
-//    });
+    initProcessEdit.addActionListener(e -> initProcessEdit_actionPerformed());
     menuUtility.setText("Utility");
     menuUtilityGlobalChange.setToolTipText("Change Ecological Grouping and Vegatative Type of all units.");
     menuUtilityGlobalChange.setText("Make Global Change ...");
