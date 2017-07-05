@@ -752,20 +752,19 @@ public final class Simulation implements SimulationTypes, Externalizable {
         }
 
         if (writeAccess) {
-          writeAccessSlinkMetrics();
 
           writeDensityLookup(new File(getAccessFilesPath(), "DENSITY.csv"));
           writeLifeformLookup(new File(getAccessFilesPath(), "LIFEFORM.csv"));
           writeOwnershipLookup(new File(getAccessFilesPath(), "OWNERSHIP.csv"));
           writeProbabilityLookup(new File(getAccessFilesPath(), "PROBSTR.csv"));
           writeProcessLookup(new File(getAccessFilesPath(), "PROCESS.csv"));
-          writeSpeciesLookup(new File(getAccessFilesPath(), "SPECIES.csv"));
           writeSizeClassLookup(new File(getAccessFilesPath(), "SIZECLASS.csv"));
+          writeSlinkMetrics(new File(getAccessFilesPath(), "SLINKMETRICS.csv"));
           writeSpecialAreaLookup(new File(getAccessFilesPath(), "SPECIALAREA.csv"));
+          writeSpeciesLookup(new File(getAccessFilesPath(), "SPECIES.csv"));
           writeTrackSpeciesLookup(new File(getAccessFilesPath(), "TRACKSPECIES.csv"));
           writeTreatmentLookup(new File(getAccessFilesPath(), "TREATMENT.csv"));
 
-//          buildProbabilityMap(accessProbabilityOut);
           closeAccessTextFiles();
         }
 
@@ -1083,30 +1082,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessTreatmentTypeList.clear();
   }
 
-  private void writeAccessSlinkMetrics() {
-
-    PrintWriter out = Simulation.getInstance().getAccessSlinkMetricsOut();
-
-    Evu[] allEvu = Simpplle.currentArea.getAllEvu();
-
-    for (Evu evu : allEvu) {
-
-      if (evu == null) continue;
-
-      int    slink       = evu.getId();
-      int    row         = evu.getLocationY();
-      int    column      = evu.getLocationX();
-      float  acres       = evu.getFloatAcres();
-      String ecoGroup    = evu.getHabitatTypeGroup().getName();
-      String ownership   = evu.getOwnership();
-      String specialArea = evu.getSpecialArea();
-      String fmz         = evu.getFmz().getName();
-
-      out.printf("%d,%d,%d,%f,%s,%s,%s,%s%n",slink,row,column,acres,ecoGroup,ownership,specialArea,fmz);
-
-    }
-  }
-
   private void writeDensityLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,DENSITY");
@@ -1161,16 +1136,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  private void writeSpeciesLookup(File file) throws IOException {
-    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
-      writer.println("ID,SPECIES");
-      for (Short id : accessSpeciesList.keySet()) {
-        String value = accessSpeciesList.get(id);
-        writer.println(id + "," + value);
-      }
-    }
-  }
-
   private void writeSizeClassLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,SIZECLASS");
@@ -1181,11 +1146,38 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
+  private void writeSlinkMetrics(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("SLINK,ROW,COLUMN,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
+      for (Evu evu : Simpplle.currentArea.getAllEvu()) {
+        if (evu == null) continue;
+        writer.println(evu.getId() + ","
+            + evu.getLocationX() + ","
+            + evu.getLocationY() + ","
+            + evu.getFloatAcres() + ","
+            + evu.getHabitatTypeGroup().getName() + ","
+            + evu.getOwnership() + ","
+            + evu.getSpecialArea() + ","
+            + evu.getFmz().getName());
+      }
+    }
+  }
+
   private void writeSpecialAreaLookup(File file) throws IOException {
     try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
       writer.println("ID,SPCAREA");
       for (Short id : accessSpecialAreaList.keySet()) {
         String value = accessSpecialAreaList.get(id);
+        writer.println(id + "," + value);
+      }
+    }
+  }
+
+  private void writeSpeciesLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,SPECIES");
+      for (Short id : accessSpeciesList.keySet()) {
+        String value = accessSpeciesList.get(id);
         writer.println(id + "," + value);
       }
     }
@@ -1237,10 +1229,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessTrackingSpeciesOut = new PrintWriter(new FileWriter(path, true));
     accessTrackingSpeciesOut.println("RUN,TIMESTEP,SLINK,LIFEFORM_ID,SPECIES_ID,PCT");
 
-    path = new File (getAccessFilesPath(),"SLINKMETRICS.csv");
-    accessSlinkMetricsOut = new PrintWriter(new FileWriter(path, true));
-    accessSlinkMetricsOut.println("SLINK,ROW,COLUMN,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
-
   }
 
   @Deprecated
@@ -1260,9 +1248,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     accessTrackingSpeciesOut.flush();
     accessTrackingSpeciesOut.close();
-
-    accessSlinkMetricsOut.flush();
-    accessSlinkMetricsOut.close();
 
   }
 
