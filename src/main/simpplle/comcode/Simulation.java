@@ -240,21 +240,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
   private PrintWriter   simLoggingWriter;
   private PrintWriter   invasiveSpeciesMSUProbOut;
   private PrintWriter[] accessEvuSimDataOut;
-  private PrintWriter   accessProcessOut;
-  private PrintWriter   accessSpeciesOut;
-  private PrintWriter   accessSizeClassOut;
-  private PrintWriter   accessDensityOut;
-  //private PrintWriter   accessEcoGroupOut;
   private PrintWriter[] accessAreaSummaryOut;
-  //private PrintWriter   accessFmzOut;
-  private PrintWriter   accessInclusionRuleSpecies;
-  private PrintWriter   accessLifeformOut;
-  private PrintWriter   accessOwnershipOut;
-  private PrintWriter   accessSpecialAreaOut;
   private PrintWriter   accessTrackingSpeciesOut;
   private PrintWriter   accessSlinkMetricsOut;
-  private PrintWriter   accessTreatmentOut;
-  private PrintWriter   accessProbabilityOut;
 
   private TreeMap<Short,String> accessProcessList        = new TreeMap<>();
   private TreeMap<Short,String> accessSpeciesList        = new TreeMap<>();
@@ -764,8 +752,19 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
         if (writeAccess) {
           writeAccessSlinkMetrics();
-          writeAccessTreeMaps();
-          buildProbabilityMap(accessProbabilityOut);
+
+          writeDensityLookup(new File(getAccessFilesPath(), "DENSITY.csv"));
+          writeLifeformLookup(new File(getAccessFilesPath(), "LIFEFORM.csv"));
+          writeOwnershipLookup(new File(getAccessFilesPath(), "OWNERSHIP.csv"));
+          writeProbabilityLookup(new File(getAccessFilesPath(), "PROBSTR.csv"));
+          writeProcessLookup(new File(getAccessFilesPath(), "PROCESS.csv"));
+          writeSpeciesLookup(new File(getAccessFilesPath(), "SPECIES.csv"));
+          writeSizeClassLookup(new File(getAccessFilesPath(), "SIZECLASS.csv"));
+          writeSpecialAreaLookup(new File(getAccessFilesPath(), "SPECIALAREA.csv"));
+          writeTrackSpeciesLookup(new File(getAccessFilesPath(), "TRACKSPECIES.csv"));
+          writeTreatmentLookup(new File(getAccessFilesPath(), "TREATMENT.csv"));
+
+//          buildProbabilityMap(accessProbabilityOut);
           closeAccessTextFiles();
         }
 
@@ -1083,21 +1082,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessTreatmentTypeList.clear();
   }
 
-  /**
-   * Probability string lookup values, taken from the SIMPPLLE 2.5 User Manual
-   * @param f an open file writer
-   */
-  private void buildProbabilityMap(PrintWriter f){
-    f.println("D,Process no next state");
-    f.println("L,Locked in process");
-    f.println("S,Spreading process");
-    f.println("SUPP,Suppressed Process");
-    f.println("SE,Extreme fire spread");
-    f.println("SFS,Fire spotting spread");
-    f.println("COMP,Competition");
-    f.println("GAP,Gap process");
-  }
-
   private void writeAccessSlinkMetrics() {
 
     PrintWriter out = Simulation.getInstance().getAccessSlinkMetricsOut();
@@ -1122,35 +1106,111 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  /**
-   * Write all Tree Maps to their respective outputs. These files are often referred to as lookup
-   * table files.
-   *
-   * @throws IOException caught in runSimulation()
-   */
-  private void writeAccessTreeMaps() throws IOException {
-
-    writeAccessTreeMap(accessProcessOut,accessProcessList);
-    writeAccessTreeMap(accessSpeciesOut,accessSpeciesList);
-    writeAccessTreeMap(accessSizeClassOut,accessSizeClassList);
-    writeAccessTreeMap(accessDensityOut,accessDensityList);
-    //writeAccessTreeMap(accessEcoGroupOut,accessEcoGroupList);
-    //writeAccessTreeMap(accessFmzOut,accessFmzList);
-    writeAccessTreeMap(accessTrackingSpeciesOut,accessIncRuleSpeciesList);
-    writeAccessTreeMap(accessLifeformOut,accessLifeformList);
-    writeAccessTreeMap(accessOwnershipOut, accessOwnershipList);
-    writeAccessTreeMap(accessSpecialAreaOut,accessSpecialAreaList);
-    writeAccessTreeMap(accessTreatmentOut, accessTreatmentTypeList);
-  }
-
-  private void writeAccessTreeMap(PrintWriter fout, TreeMap<Short,String> map) throws IOException {
-    for (Short id : map.keySet()) {
-      String value = map.get(id);
-      fout.printf("%d,%s%n", id, value);
+  private void writeDensityLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,DENSITY");
+      for (Short id : accessDensityList.keySet()) {
+        String value = accessDensityList.get(id);
+        writer.println(id + "," + value);
+      }
     }
-    fout.flush();
   }
 
+  private void writeLifeformLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,LIFEFORM");
+      for (Short id : accessLifeformList.keySet()) {
+        String value = accessLifeformList.get(id);
+        writer.println(id + "," + value);
+      }
+    }
+  }
+
+  private void writeOwnershipLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,OWNERSHIP");
+      for (Short id : accessOwnershipList.keySet()) {
+        String value = accessOwnershipList.get(id);
+        writer.println(id + "," + value);
+      }
+    }
+  }
+
+  private void writeProbabilityLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,DESCRIPTION");
+      writer.println("D,Process no next state");
+      writer.println("L,Locked in process");
+      writer.println("S,Spreading process");
+      writer.println("SUPP,Suppressed Process");
+      writer.println("SE,Extreme fire spread");
+      writer.println("SFS,Fire spotting spread");
+      writer.println("COMP,Competition");
+      writer.println("GAP,Gap process");
+    }
+  }
+
+  private void writeProcessLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,PROCESS");
+      for (Short id : accessProcessList.keySet()) {
+        String value = accessProcessList.get(id);
+        writer.println(id + "," + value);
+      }
+    }
+  }
+
+  private void writeSpeciesLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,SPECIES");
+      for (Short id : accessSpeciesList.keySet()) {
+        String value = accessSpeciesList.get(id);
+        writer.println(id + "," + value);
+      }
+    }
+  }
+
+  private void writeSizeClassLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,SIZECLASS");
+      for (Short id : accessSizeClassList.keySet()) {
+        String value = accessSizeClassList.get(id);
+        writer.println(id + "," + value);
+      }
+    }
+  }
+
+  private void writeSpecialAreaLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,SPCAREA");
+      for (Short id : accessSpecialAreaList.keySet()) {
+        String value = accessSpecialAreaList.get(id);
+        writer.println(id + "," + value);
+      }
+    }
+  }
+
+  private void writeTrackSpeciesLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,INCSPECIES");
+      for (Short id : accessIncRuleSpeciesList.keySet()) {
+        String value = accessIncRuleSpeciesList.get(id);
+        writer.println(id + "," + value);
+      }
+    }
+  }
+
+  private void writeTreatmentLookup(File file) throws IOException {
+    try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+      writer.println("ID,TREATMENT");
+      for (Short id : accessTreatmentTypeList.keySet()) {
+        String value = accessTreatmentTypeList.get(id);
+        writer.println(id + "," + value);
+      }
+    }
+  }
+
+  @Deprecated
   private void openAccessTextFiles() throws SimpplleError, IOException {
     makeAccessFilesDir();
 
@@ -1164,30 +1224,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
       accessEvuSimDataOut[run].println("RUN,TIMESTEP,SEASON_ID,SLINK,LIFEFORM_ID,SPECIES_ID,SIZECLASS_ID,AGE,DENSITY_ID,PROCESS_ID,PROB,PROBSTR,TREATMENT_ID,ORIGINUNITID,FROMUNITID,PROCESS_RULE,FIRE_REGENERATION_RULE,SUCCESSION_REGENERATION_RULE");
     }
 
-    path = new File (getAccessFilesPath(), "PROCESS.csv");
-    accessProcessOut = new PrintWriter(new FileWriter(path, true));
-    accessProcessOut.println("ID,PROCESS");
-
-    path = new File (getAccessFilesPath(), "SPECIES.csv");
-    accessSpeciesOut = new PrintWriter(new FileWriter(path, true));
-    accessSpeciesOut.println("ID,SPECIES");
-
-    path = new File (getAccessFilesPath(), "SIZECLASS.csv");
-    accessSizeClassOut = new PrintWriter(new FileWriter(path, true));
-    accessSizeClassOut.println("ID,SIZECLASS");
-
-    path = new File (getAccessFilesPath(), "DENSITY.csv");
-    accessDensityOut = new PrintWriter(new FileWriter(path, true));
-    accessDensityOut.println("ID,DENSITY");
-
-    //path = new File (getAccessFilesPath(),"ECOGROUP.txt");
-    //accessEcoGroupOut = new PrintWriter(new FileWriter(path, true));
-    //accessEcoGroupOut.println("ID,ECOGROUP");
-
-    path = new File (getAccessFilesPath(), "PROBSTR.csv");
-    accessProbabilityOut = new PrintWriter(new FileWriter(path,true));
-    accessProbabilityOut.println("ID,DESCRIPTION");
-
     if(doAreaSummary) {
       // Open an area summary file for each simulation
       for (int run = 0; run < numSimulations; run++) {
@@ -1197,26 +1233,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
       }
     }
 
-    //path = new File (getAccessFilesPath(),"FMZ.txt");
-    //accessFmzOut = new PrintWriter(new FileWriter(path, true));
-    //accessFmzOut.println("ID,FMZNAME");
-
-    path = new File (getAccessFilesPath(),"TRACKSPECIES.csv");
-    accessInclusionRuleSpecies = new PrintWriter(new FileWriter(path, true));
-    accessInclusionRuleSpecies.println("ID,INCSPECIES");
-
-    path = new File (getAccessFilesPath(),"LIFEFORM.csv");
-    accessLifeformOut = new PrintWriter(new FileWriter(path, true));
-    accessLifeformOut.println("ID,LIFEFORM");
-
-    path = new File (getAccessFilesPath(),"OWNERSHIP.csv");
-    accessOwnershipOut = new PrintWriter(new FileWriter(path, true));
-    accessOwnershipOut.println("ID,OWNERSHIP");
-
-    path = new File (getAccessFilesPath(),"SPECIALAREA.csv");
-    accessSpecialAreaOut = new PrintWriter(new FileWriter(path, true));
-    accessSpecialAreaOut.println("ID,SPCAREA");
-
     path = new File (getAccessFilesPath(),"TRACKINGSPECIESPCT.csv");
     accessTrackingSpeciesOut = new PrintWriter(new FileWriter(path, true));
     accessTrackingSpeciesOut.println("RUN,TIMESTEP,SLINK,LIFEFORM_ID,SPECIES_ID,PCT");
@@ -1225,36 +1241,15 @@ public final class Simulation implements SimulationTypes, Externalizable {
     accessSlinkMetricsOut = new PrintWriter(new FileWriter(path, true));
     accessSlinkMetricsOut.println("SLINK,ROW,COLUMN,ACRES,ECOGROUP,OWNERSHIP,SPECIALAREA,FMZ");
 
-    path = new File (getAccessFilesPath(),"TREATMENT.csv");
-    accessTreatmentOut = new PrintWriter(new FileWriter(path,true));
-    accessTreatmentOut.println("ID,TREATMENT");
-
   }
 
+  @Deprecated
   private void closeAccessTextFiles() throws SimpplleError {
 
     for (int run=0; run<numSimulations; run++) {
       accessEvuSimDataOut[run].flush();
       accessEvuSimDataOut[run].close();
     }
-
-    accessProcessOut.flush();
-    accessProcessOut.close();
-
-    accessSpeciesOut.flush();
-    accessSpeciesOut.close();
-
-    accessSizeClassOut.flush();
-    accessSizeClassOut.close();
-
-    accessDensityOut.flush();
-    accessDensityOut.close();
-
-    //accessEcoGroupOut.flush();
-    //accessEcoGroupOut.close();
-
-    accessProbabilityOut.flush();
-    accessProbabilityOut.close();
 
     if(doAreaSummary){
       for (int run=0; run<numSimulations; run++) {
@@ -1263,29 +1258,11 @@ public final class Simulation implements SimulationTypes, Externalizable {
       }
     }
 
-    //accessFmzOut.flush();
-    //accessFmzOut.close();
-
-    accessInclusionRuleSpecies.flush();
-    accessInclusionRuleSpecies.close();
-
-    accessLifeformOut.flush();
-    accessLifeformOut.close();
-
-    accessOwnershipOut.flush();
-    accessOwnershipOut.close();
-
-    accessSpecialAreaOut.flush();
-    accessSpecialAreaOut.close();
-
     accessTrackingSpeciesOut.flush();
     accessTrackingSpeciesOut.close();
 
     accessSlinkMetricsOut.flush();
     accessSlinkMetricsOut.close();
-
-    accessTreatmentOut.flush();
-    accessTreatmentOut.close();
 
   }
 
