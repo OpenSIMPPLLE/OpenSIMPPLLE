@@ -341,18 +341,14 @@ public class EvuEditor extends JDialog {
     showInvalidRB.setText("Show Only Invalid Units");
     showInvalidRB.addActionListener(e -> showInvalidRB_actionPerformed());
     topPanel.setLayout(borderLayout4);
-    //nextPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/next.gif")));
     nextPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/next.gif")));
     nextPB.setMargin(new Insets(0, 0, 0, 0));
     nextPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/nextg.gif")));
-    //nextPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/nextg.gif")));
     nextPB.addActionListener(e -> nextPB_actionPerformed());
     evuLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    //prevPB.setIcon(new ImageIcon(new java.net.URL("images/prev.gif")));
     prevPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prev.gif")));
     prevPB.setMargin(new Insets(0, 0, 0, 0));
     prevPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prevg.gif")));
-    //prevPB.setPressedIcon(new ImageIcon(new java.net.URL("images/prevg.gif")));
     prevPB.addActionListener(e -> prevPB_actionPerformed());
     buttonPanel.setLayout(flowLayout3);
     quitPB.setText("Close");
@@ -362,7 +358,7 @@ public class EvuEditor extends JDialog {
     flowLayout4.setAlignment(FlowLayout.LEFT);
     flowLayout4.setHgap(20);
     buttonPanel.setBorder(BorderFactory.createEtchedBorder());
-    roadStatusCB.addItemListener(new java.awt.event.ItemListener() {
+    roadStatusCB.addItemListener(new ItemListener() {
 
       public void itemStateChanged(ItemEvent e) {
         roadStatusCB_itemStateChanged(e);
@@ -439,6 +435,7 @@ public class EvuEditor extends JDialog {
     shrubsRB.setText("Shrubs");
     shrubsRB.addActionListener(e -> shrubsRB_actionPerformed());
     lifeformPanel.setBorder(border2);
+
     getContentPane().add(mainPanel);
     mainPanel.add(mainNorthPanel, BorderLayout.NORTH);
     mainNorthPanel.add(topPanel, BorderLayout.NORTH);
