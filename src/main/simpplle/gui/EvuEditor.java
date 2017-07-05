@@ -119,17 +119,17 @@ public class EvuEditor extends JDialog {
   private FlowLayout flowLayout4 = new FlowLayout();
   private FlowLayout flowLayout5 = new FlowLayout();
 
-  BorderLayout borderLayout1 = new BorderLayout();
-  BorderLayout borderLayout3 = new BorderLayout();
-  BorderLayout borderLayout4 = new BorderLayout();
+  private BorderLayout borderLayout1 = new BorderLayout();
+  private BorderLayout borderLayout3 = new BorderLayout();
+  private BorderLayout borderLayout4 = new BorderLayout();
 
-  GridLayout gridLayout1 = new GridLayout();
-  private GridLayout gridLayout5 = new GridLayout();
-  private GridLayout gridLayout4 = new GridLayout();
-  private GridLayout gridLayout6 = new GridLayout();
-  GridLayout gridLayout2 = new GridLayout();
-  private GridLayout gridLayout7 = new GridLayout();
+  private GridLayout gridLayout1 = new GridLayout();
+  private GridLayout gridLayout2 = new GridLayout();
   private GridLayout gridLayout3 = new GridLayout();
+  private GridLayout gridLayout4 = new GridLayout();
+  private GridLayout gridLayout5 = new GridLayout();
+  private GridLayout gridLayout6 = new GridLayout();
+  private GridLayout gridLayout7 = new GridLayout();
 
   private JTextField vegTypeEdit = new JTextField();
   private JTextField htGrpEdit = new JTextField();
@@ -158,7 +158,7 @@ public class EvuEditor extends JDialog {
   private JRadioButton herbaciousRB = new JRadioButton();
   private JRadioButton shrubsRB = new JRadioButton();
 
-  Border border1 = BorderFactory.createLineBorder(Color.white, 2);
+  private Border border1 = BorderFactory.createLineBorder(Color.white, 2);
   private Border border2 = new TitledBorder(border1, "Lifeform");
 
   /**
@@ -205,12 +205,7 @@ public class EvuEditor extends JDialog {
         htGrpEdit_focusLost(e);
       }
     });
-    htGrpEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        htGrpEdit_actionPerformed(e);
-      }
-    });
+    htGrpEdit.addActionListener(e -> htGrpEdit_actionPerformed());
     statePanel.setLayout(flowLayout1);
     vegTypeLabel.setText("Vegetative Type");
     vegTypeEdit.setBackground(Color.gray);
@@ -231,12 +226,7 @@ public class EvuEditor extends JDialog {
         speciesEdit_focusLost(e);
       }
     });
-    speciesEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        speciesEdit_actionPerformed(e);
-      }
-    });
+    speciesEdit.addActionListener(e -> speciesEdit_actionPerformed());
     sizeClassPanel.setLayout(flowLayout1);
     sizeClassLabel.setText("Size Class");
     sizeClassEdit.setBackground(Color.white);
@@ -248,12 +238,7 @@ public class EvuEditor extends JDialog {
         sizeClassEdit_focusLost(e);
       }
     });
-    sizeClassEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        sizeClassEdit_actionPerformed(e);
-      }
-    });
+    sizeClassEdit.addActionListener(e -> sizeClassEdit_actionPerformed());
     densityPanel.setLayout(flowLayout1);
     densityLabel.setText("Density");
     densityEdit.setBackground(Color.white);
@@ -265,12 +250,7 @@ public class EvuEditor extends JDialog {
         densityEdit_focusLost(e);
       }
     });
-    densityEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        densityEdit_actionPerformed(e);
-      }
-    });
+    densityEdit.addActionListener(e -> densityEdit_actionPerformed());
     densityInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
     sizeClassInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
     speciesInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
@@ -288,12 +268,7 @@ public class EvuEditor extends JDialog {
         fmzEdit_focusLost(e);
       }
     });
-    fmzEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        fmzEdit_actionPerformed(e);
-      }
-    });
+    fmzEdit.addActionListener(e -> fmzEdit_actionPerformed());
     fmzInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
     unitNumberLabel.setText("Unit Number");
     acresPanel.setLayout(flowLayout1);
@@ -314,12 +289,7 @@ public class EvuEditor extends JDialog {
         unitNumberEdit_focusLost(e);
       }
     });
-    unitNumberEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        unitNumberEdit_actionPerformed(e);
-      }
-    });
+    unitNumberEdit.addActionListener(e -> unitNumberEdit_actionPerformed());
     acresEdit.setBackground(Color.white);
     acresEdit.setSelectionColor(Color.blue);
     acresEdit.setColumns(10);
@@ -329,12 +299,7 @@ public class EvuEditor extends JDialog {
         acresEdit_focusLost(e);
       }
     });
-    acresEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        acresEdit_actionPerformed(e);
-      }
-    });
+    acresEdit.addActionListener(e -> acresEdit_actionPerformed());
     ownershipEdit.setBackground(Color.white);
     ownershipEdit.setSelectionColor(Color.blue);
     ownershipEdit.setColumns(15);
@@ -344,12 +309,7 @@ public class EvuEditor extends JDialog {
         ownershipEdit_focusLost(e);
       }
     });
-    ownershipEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        ownershipEdit_actionPerformed(e);
-      }
-    });
+    ownershipEdit.addActionListener(e -> ownershipEdit_actionPerformed());
     specialAreaEdit.setBackground(Color.white);
     specialAreaEdit.setSelectionColor(Color.blue);
     specialAreaEdit.setColumns(20);
@@ -359,12 +319,7 @@ public class EvuEditor extends JDialog {
         specialAreaEdit_focusLost(e);
       }
     });
-    specialAreaEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        specialAreaEdit_actionPerformed(e);
-      }
-    });
+    specialAreaEdit.addActionListener(e -> specialAreaEdit_actionPerformed());
     agePanel.setLayout(flowLayout1);
     ageLabel.setText("Age");
     ageEdit.setBackground(Color.white);
@@ -376,70 +331,35 @@ public class EvuEditor extends JDialog {
         ageEdit_focusLost(e);
       }
     });
-    ageEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        ageEdit_actionPerformed(e);
-      }
-    });
+    ageEdit.addActionListener(e -> ageEdit_actionPerformed());
     ageInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
     mainNorthPanel.setLayout(borderLayout3);
     radioPanel.setLayout(gridLayout1);
     gridLayout1.setRows(2);
     showAllRB.setSelected(true);
     showAllRB.setText("Show All Units");
-    showAllRB.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        showAllRB_actionPerformed(e);
-      }
-    });
+    showAllRB.addActionListener(e -> showAllRB_actionPerformed());
     showInvalidRB.setText("Show Only Invalid Units");
-    showInvalidRB.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        showInvalidRB_actionPerformed(e);
-      }
-    });
+    showInvalidRB.addActionListener(e -> showInvalidRB_actionPerformed());
     topPanel.setLayout(borderLayout4);
     //nextPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/next.gif")));
     nextPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/next.gif")));
     nextPB.setMargin(new Insets(0, 0, 0, 0));
     nextPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/nextg.gif")));
     //nextPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/nextg.gif")));
-    nextPB.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        nextPB_actionPerformed(e);
-      }
-    });
+    nextPB.addActionListener(e -> nextPB_actionPerformed());
     evuLabel.setHorizontalAlignment(SwingConstants.CENTER);
     //prevPB.setIcon(new ImageIcon(new java.net.URL("images/prev.gif")));
     prevPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prev.gif")));
     prevPB.setMargin(new Insets(0, 0, 0, 0));
     prevPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prevg.gif")));
     //prevPB.setPressedIcon(new ImageIcon(new java.net.URL("images/prevg.gif")));
-    prevPB.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        prevPB_actionPerformed(e);
-      }
-    });
+    prevPB.addActionListener(e -> prevPB_actionPerformed());
     buttonPanel.setLayout(flowLayout3);
     checkUnitPB.setText("Check Unit Validity");
-    checkUnitPB.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        checkUnitPB_actionPerformed(e);
-      }
-    });
+    checkUnitPB.addActionListener(e -> checkUnitPB_actionPerformed());
     quitPB.setText("Close");
-    quitPB.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        quitPB_actionPerformed(e);
-      }
-    });
+    quitPB.addActionListener(e -> quitPB_actionPerformed());
     radioPanel.setBorder(BorderFactory.createLoweredBevelBorder());
     radioOuterPanel.setLayout(flowLayout4);
     flowLayout4.setAlignment(FlowLayout.LEFT);
@@ -464,12 +384,7 @@ public class EvuEditor extends JDialog {
     evuIdEdit.setToolTipText("Change to desired Unit Id and press enter");
     evuIdEdit.setSelectionColor(Color.blue);
     evuIdEdit.setColumns(6);
-    evuIdEdit.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        evuIdEdit_actionPerformed(e);
-      }
-    });
+    evuIdEdit.addActionListener(e -> evuIdEdit_actionPerformed());
     gridLayout5.setRows(2);
     acresInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
     mainLabelsPanel.setLayout(gridLayout4);
@@ -511,45 +426,21 @@ public class EvuEditor extends JDialog {
     menuUtility.setText("Utility");
     menuUtilityGlobalChange.setToolTipText("Change Ecological Grouping and Vegatative Type of all units.");
     menuUtilityGlobalChange.setText("Make Global Change ...");
-    menuUtilityGlobalChange.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        menuUtilityGlobalChange_actionPerformed(e);
-      }
-    });
+    menuUtilityGlobalChange.addActionListener(e -> menuUtilityGlobalChange_actionPerformed());
     lifeformPanel.setLayout(gridLayout3);
     gridLayout3.setColumns(3);
     gridLayout3.setRows(2);
     treesRB.setSelected(true);
     treesRB.setText("Trees");
-    treesRB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        treesRB_actionPerformed(e);
-      }
-    });
+    treesRB.addActionListener(e -> treesRB_actionPerformed());
     otherRB.setText("Other");
-    otherRB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        otherRB_actionPerformed(e);
-      }
-    });
+    otherRB.addActionListener(e -> otherRB_actionPerformed());
     agricultureRB.setText("Agriculture");
-    agricultureRB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        agricultureRB_actionPerformed(e);
-      }
-    });
+    agricultureRB.addActionListener(e -> agricultureRB_actionPerformed());
     herbaciousRB.setText("Herbacious");
-    herbaciousRB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        herbaciousRB_actionPerformed(e);
-      }
-    });
+    herbaciousRB.addActionListener(e -> herbaciousRB_actionPerformed());
     shrubsRB.setText("Shrubs");
-    shrubsRB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        shrubsRB_actionPerformed(e);
-      }
-    });
+    shrubsRB.addActionListener(e -> shrubsRB_actionPerformed());
     lifeformPanel.setBorder(border2);
     getContentPane().add(mainPanel);
     mainPanel.add(mainNorthPanel, BorderLayout.NORTH);
@@ -848,10 +739,8 @@ public class EvuEditor extends JDialog {
   /**
    * Evu Id Edit text field listener.  parses the evuIdEdit text field, checks to makes sure it is a number, and a valid Evu ID,
    * then creates a new Evu Object with same ID as the current one being edited, and makes that the current Evu.
-   *
-   * @param e
    */
-  private void evuIdEdit_actionPerformed(ActionEvent e) {
+  private void evuIdEdit_actionPerformed() {
     Evu newEvu;
     int id;
 
@@ -884,9 +773,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * Gets the previous Evu when previous button pushed.
-   * @param e 'previous'
    */
-  private void prevPB_actionPerformed(ActionEvent e) {
+  private void prevPB_actionPerformed() {
     getPrevUnit();
   }
   /**
@@ -919,9 +807,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * Gets the next unit if next button is pushed
-   * @param e 'next'
    */
-  void nextPB_actionPerformed(ActionEvent e) {
+  void nextPB_actionPerformed() {
     getNextUnit();
   }
   /**
@@ -954,18 +841,16 @@ public class EvuEditor extends JDialog {
 
   /**
    * Shows all status radio buttons.
-   * @param e 'show all'
    */
-  private void showAllRB_actionPerformed(ActionEvent e) {
+  private void showAllRB_actionPerformed() {
     if (showStatus != SHOW_ALL) {
       showStatus = SHOW_ALL;
     }
   }
   /**
    * Shows the Invalid vegetative units radio buttons
-   * @param e 'show invalid'
    */
-  private void showInvalidRB_actionPerformed(ActionEvent e) {
+  private void showInvalidRB_actionPerformed() {
     boolean existInvalid = currentArea.existAnyInvalidVegUnits();
     if (showStatus != SHOW_INVALID && existInvalid) {
       showStatus = SHOW_INVALID;
@@ -983,9 +868,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * If habitat type group edit selected sends to newHtGrp().
-   * @param e 'habitat type group edit'
    */
-  private void htGrpEdit_actionPerformed(ActionEvent e) {
+  private void htGrpEdit_actionPerformed() {
     newHtGrp();
   }
   /**
@@ -1007,9 +891,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * If species edit selected sends to newSpecies(). 
-   * @param e 'species'
    */
-  private void speciesEdit_actionPerformed(ActionEvent e) {
+  private void speciesEdit_actionPerformed() {
     newSpecies();
   }
   /**
@@ -1040,9 +923,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * If size class edit text input sends to newSizeClass(). 
-   * @param e event in size class text field 
    */
-  private  void sizeClassEdit_actionPerformed(ActionEvent e) {
+  private  void sizeClassEdit_actionPerformed() {
     newSizeClass();
   }
   /**
@@ -1067,9 +949,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * If density edit text input sends to newDensity(). 
-   * @param e event in density text field 
    */
-  private  void densityEdit_actionPerformed(ActionEvent e) {
+  private  void densityEdit_actionPerformed() {
     newDensity();
   }
   /**
@@ -1094,9 +975,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * If age edit text input sends to newAge(). 
-   * @param e event in age text field 
    */
-  private void ageEdit_actionPerformed(ActionEvent e) {
+  private void ageEdit_actionPerformed() {
     newAge();
   }
   /**
@@ -1125,9 +1005,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * If fire management zone edit text input sends to newFmz(). 
-   * @param e event in fire management zone text field 
    */
-  private void fmzEdit_actionPerformed(ActionEvent e) {
+  private void fmzEdit_actionPerformed() {
     newFmz();
   }
   /**
@@ -1148,9 +1027,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * If acres edit text input sends to newAcres()). 
-   * @param e event in acres text field 
    */
-  private void acresEdit_actionPerformed(ActionEvent e) {
+  private void acresEdit_actionPerformed() {
     newAcres();
   }
   /**
@@ -1179,9 +1057,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * If initial process edit text input sends to newInitProcess(). 
-   * @param e event in initial process text field 
    */
-  private  void initProcessEdit_actionPerformed(ActionEvent e) {
+  private  void initProcessEdit_actionPerformed() {
     newInitProcess();
   }
   /**
@@ -1204,9 +1081,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * If Evu ID edit text input sends to newUnitNumber(). 
-   * @param e event in Evu ID text field 
    */
-  private  void unitNumberEdit_actionPerformed(ActionEvent e) {
+  private  void unitNumberEdit_actionPerformed() {
     newUnitNumber();
   }
   /**
@@ -1227,9 +1103,8 @@ public class EvuEditor extends JDialog {
 
   /**
    * If ownership edit text input in field sends to newOwnership(). 
-   * @param e event in Evu ID text field 
    */
-  private  void ownershipEdit_actionPerformed(ActionEvent e) {
+  private  void ownershipEdit_actionPerformed() {
     newOwnership();
   }
   /**
@@ -1263,14 +1138,12 @@ public class EvuEditor extends JDialog {
 
   /**
    * If special area text input into edit field sends to newSpecialArea(). 
-   * @param e event in Evu ID text field 
    */
-  private void specialAreaEdit_actionPerformed(ActionEvent e) {
+  private void specialAreaEdit_actionPerformed() {
     newSpecialArea();
   }
   /**
    * If special area edit text field loses focus sends to newSpecialArea(). 
-   * @param e special area text field loses focus
    */
   private void specialAreaEdit_focusLost(FocusEvent e) {
     newSpecialArea();
@@ -1298,9 +1171,8 @@ public class EvuEditor extends JDialog {
   }
   /**
    * Quits the Evu Editor if quit button is pushed.
-   * @param e 'quit'
    */
-  private void quitPB_actionPerformed(ActionEvent e) {
+  private void quitPB_actionPerformed() {
     quit();
   }
   /**
@@ -1312,9 +1184,8 @@ public class EvuEditor extends JDialog {
   }
   /**
    * Checks to make sure current Evu is valid if check unit button pushed.
-   * @param e 'check unit'
    */
-  private  void checkUnitPB_actionPerformed(ActionEvent e) {
+  private  void checkUnitPB_actionPerformed() {
     updateDialog();
     if (numInvalid == 0) {
       JOptionPane.showMessageDialog(this,"Unit is valid","Valid Unit",
@@ -1327,9 +1198,8 @@ public class EvuEditor extends JDialog {
   }
   /**
    * Creates an Evu Global Editor dialog with the current frame and title Change All Units
-   * @param e
    */
-  private void menuUtilityGlobalChange_actionPerformed(ActionEvent e) {
+  private void menuUtilityGlobalChange_actionPerformed() {
     EvuGlobalEditor dlg =
         new EvuGlobalEditor(theFrame,"Change All Units",true,currentEvu,currentLife);
     dlg.setVisible(true);
@@ -1337,41 +1207,36 @@ public class EvuEditor extends JDialog {
   }
   /**
    * If trees radio button pushed makes the current life form trees.
-   * @param e 'trees'
    */
-  private  void treesRB_actionPerformed(ActionEvent e) {
+  private  void treesRB_actionPerformed() {
     currentLife = Lifeform.TREES;
     if (!inInit) { updateDialog(); }
   }
   /**
    * If shrubs radio button pushed makes the current life form shrubs.
-   * @param e 'trees' 
    */
-  private  void shrubsRB_actionPerformed(ActionEvent e) {
+  private  void shrubsRB_actionPerformed() {
     currentLife = Lifeform.SHRUBS;
     if (!inInit) { updateDialog(); }
   }
   /**
    * If herbacious radio button pushed makes the current life form herbacious.
-   * @param e 'trees' 
    */
-  private  void herbaciousRB_actionPerformed(ActionEvent e) {
+  private  void herbaciousRB_actionPerformed() {
     currentLife = Lifeform.HERBACIOUS;
     if (!inInit) { updateDialog(); }
   }
   /**
    * If agriculture radio button pushed makes the current life form agriculture.
-   * @param e 'trees' 
    */
-  public void agricultureRB_actionPerformed(ActionEvent e) {
+  private void agricultureRB_actionPerformed() {
     currentLife = Lifeform.AGRICULTURE;
     if (!inInit) { updateDialog(); }
   }
   /**
    * If other radio button pushed makes the current life form NA.
-   * @param e 'other' 
    */
-  private  void otherRB_actionPerformed(ActionEvent e) {
+  private  void otherRB_actionPerformed() {
     currentLife = Lifeform.NA;
     if (!inInit) { updateDialog(); }
   }
