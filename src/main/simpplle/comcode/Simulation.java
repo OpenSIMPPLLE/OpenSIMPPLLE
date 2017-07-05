@@ -712,6 +712,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
         if (writeAccess) {
           initAccessTreeMaps();
+          makeAccessFilesDir();
           openAccessTextFiles();
         }
       }
@@ -1212,7 +1213,6 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
   @Deprecated
   private void openAccessTextFiles() throws SimpplleError, IOException {
-    makeAccessFilesDir();
 
     File path;
 
