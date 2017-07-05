@@ -9,14 +9,12 @@
 package simpplle.gui;
 
 import simpplle.comcode.HabitatTypeGroup;
-import simpplle.comcode.VegetativeType;
 import simpplle.comcode.Simpplle;
 import simpplle.comcode.Area;
 import simpplle.comcode.Species;
 import simpplle.comcode.SizeClass;
 import simpplle.comcode.Density;
 import simpplle.comcode.Evu;
-import simpplle.comcode.Area;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.Fmz;
 
@@ -82,7 +80,7 @@ public class EvuEditor extends JDialog {
   private JPanel mainLabelsPanel = new JPanel();
   private JPanel otherValuesPanel = new JPanel();
   private JPanel otherLabelsPanel = new JPanel();
-  private JPanel prevNextPanel = new JPanel();
+  private JPanel prevNextPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
   JPanel buttonPanel = new JPanel();
   JPanel jPanel1 = new JPanel();
   private JPanel jPanel7 = new JPanel();
@@ -118,22 +116,8 @@ public class EvuEditor extends JDialog {
   FlowLayout flowLayout1 = new FlowLayout();
   FlowLayout flowLayout2 = new FlowLayout();
   private FlowLayout flowLayout3 = new FlowLayout();
-  FlowLayout flowLayout4 = new FlowLayout();
-  FlowLayout flowLayout5 = new FlowLayout();
-  FlowLayout flowLayout6 = new FlowLayout();
-  FlowLayout flowLayout7 = new FlowLayout();
-  FlowLayout flowLayout8 = new FlowLayout();
-  FlowLayout flowLayout9 = new FlowLayout();
-  FlowLayout flowLayout10 = new FlowLayout();
-  private FlowLayout flowLayout11 = new FlowLayout();
-  private FlowLayout flowLayout12 = new FlowLayout();
-  private FlowLayout flowLayout13 = new FlowLayout();
-  private FlowLayout flowLayout14 = new FlowLayout();
-  private FlowLayout flowLayout15 = new FlowLayout();
-  private FlowLayout flowLayout16 = new FlowLayout();
-  private FlowLayout flowLayout17 = new FlowLayout();
-  private FlowLayout flowLayout19 = new FlowLayout();
-  private FlowLayout flowLayout20 = new FlowLayout();
+  private FlowLayout flowLayout4 = new FlowLayout();
+  private FlowLayout flowLayout5 = new FlowLayout();
 
   BorderLayout borderLayout1 = new BorderLayout();
   BorderLayout borderLayout3 = new BorderLayout();
@@ -165,7 +149,6 @@ public class EvuEditor extends JDialog {
   JButton prevPB = new JButton();
   private JButton checkUnitPB = new JButton();
   private JButton quitPB = new JButton();
-
 
   private JRadioButton showAllRB = new JRadioButton();
   private JRadioButton showInvalidRB = new JRadioButton();
@@ -228,9 +211,8 @@ public class EvuEditor extends JDialog {
         htGrpEdit_actionPerformed(e);
       }
     });
-    statePanel.setLayout(flowLayout2);
+    statePanel.setLayout(flowLayout1);
     vegTypeLabel.setText("Vegetative Type");
-    flowLayout2.setAlignment(FlowLayout.LEFT);
     vegTypeEdit.setBackground(Color.gray);
     vegTypeEdit.setEnabled(false);
     vegTypeEdit.setDisabledTextColor(Color.white);
@@ -238,9 +220,8 @@ public class EvuEditor extends JDialog {
     vegTypeEdit.setSelectionColor(Color.blue);
     vegTypeEdit.setText("RIPARIAN-GRASSES/CLOSED-TALL-SHRUB/1");
     vegTypeEdit.setColumns(28);
-    speciesPanel.setLayout(flowLayout3);
+    speciesPanel.setLayout(flowLayout1);
     speciesLabel.setText("Species");
-    flowLayout3.setAlignment(FlowLayout.LEFT);
     speciesEdit.setBackground(Color.white);
     speciesEdit.setSelectionColor(Color.blue);
     speciesEdit.setColumns(15);
@@ -256,8 +237,7 @@ public class EvuEditor extends JDialog {
         speciesEdit_actionPerformed(e);
       }
     });
-    sizeClassPanel.setLayout(flowLayout4);
-    flowLayout4.setAlignment(FlowLayout.LEFT);
+    sizeClassPanel.setLayout(flowLayout1);
     sizeClassLabel.setText("Size Class");
     sizeClassEdit.setBackground(Color.white);
     sizeClassEdit.setSelectionColor(Color.blue);
@@ -274,8 +254,7 @@ public class EvuEditor extends JDialog {
         sizeClassEdit_actionPerformed(e);
       }
     });
-    densityPanel.setLayout(flowLayout5);
-    flowLayout5.setAlignment(FlowLayout.LEFT);
+    densityPanel.setLayout(flowLayout1);
     densityLabel.setText("Density");
     densityEdit.setBackground(Color.white);
     densityEdit.setSelectionColor(Color.blue);
@@ -298,8 +277,7 @@ public class EvuEditor extends JDialog {
     stateInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
     stateInvalidLabel.setText("(invalid)");
     htGrpInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
-    fmzPanel.setLayout(flowLayout6);
-    flowLayout6.setAlignment(FlowLayout.LEFT);
+    fmzPanel.setLayout(flowLayout1);
     fmzLabel.setText("Fire Management Zone");
     fmzEdit.setBackground(Color.white);
     fmzEdit.setSelectionColor(Color.blue);
@@ -318,14 +296,13 @@ public class EvuEditor extends JDialog {
     });
     fmzInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
     unitNumberLabel.setText("Unit Number");
-    acresPanel.setLayout(flowLayout8);
-    flowLayout8.setAlignment(FlowLayout.LEFT);
+    acresPanel.setLayout(flowLayout1);
     acresLabel.setText("Acres");
     ownershipLabel.setText("Ownership");
     roadStatusLabel.setText("Road Status");
     specialAreaLabel.setText("Special Area");
-    mainAttributePanel.setLayout(flowLayout19);
-    otherAttributePanel.setLayout(flowLayout20);
+    mainAttributePanel.setLayout(flowLayout5);
+    otherAttributePanel.setLayout(flowLayout1);
     mainAttributePanel.setBorder(BorderFactory.createEtchedBorder());
     borderLayout1.setVgap(5);
     unitNumberEdit.setBackground(Color.white);
@@ -388,8 +365,7 @@ public class EvuEditor extends JDialog {
         specialAreaEdit_actionPerformed(e);
       }
     });
-    agePanel.setLayout(flowLayout13);
-    flowLayout13.setAlignment(FlowLayout.LEFT);
+    agePanel.setLayout(flowLayout1);
     ageLabel.setText("Age");
     ageEdit.setBackground(Color.white);
     ageEdit.setSelectionColor(Color.blue);
@@ -426,7 +402,6 @@ public class EvuEditor extends JDialog {
       }
     });
     topPanel.setLayout(borderLayout4);
-    prevNextPanel.setLayout(flowLayout14);
     //nextPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/next.gif")));
     nextPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/next.gif")));
     nextPB.setMargin(new Insets(0, 0, 0, 0));
@@ -450,7 +425,7 @@ public class EvuEditor extends JDialog {
         prevPB_actionPerformed(e);
       }
     });
-    buttonPanel.setLayout(flowLayout15);
+    buttonPanel.setLayout(flowLayout3);
     checkUnitPB.setText("Check Unit Validity");
     checkUnitPB.addActionListener(new java.awt.event.ActionListener() {
 
@@ -466,9 +441,9 @@ public class EvuEditor extends JDialog {
       }
     });
     radioPanel.setBorder(BorderFactory.createLoweredBevelBorder());
-    radioOuterPanel.setLayout(flowLayout17);
-    flowLayout17.setAlignment(FlowLayout.LEFT);
-    flowLayout17.setHgap(20);
+    radioOuterPanel.setLayout(flowLayout4);
+    flowLayout4.setAlignment(FlowLayout.LEFT);
+    flowLayout4.setHgap(20);
     buttonPanel.setBorder(BorderFactory.createEtchedBorder());
     roadStatusCB.addItemListener(new java.awt.event.ItemListener() {
 
@@ -502,25 +477,20 @@ public class EvuEditor extends JDialog {
     gridLayout4.setVgap(14);
     mainValuesPanel.setLayout(gridLayout6);
     gridLayout6.setRows(9);
-    flowLayout19.setAlignment(FlowLayout.LEFT);
-    flowLayout19.setVgap(0);
+    flowLayout5.setAlignment(FlowLayout.LEFT);
+    flowLayout5.setVgap(0);
     otherLabelsPanel.setLayout(gridLayout2);
     otherValuesPanel.setLayout(gridLayout7);
     gridLayout2.setRows(4);
     gridLayout2.setVgap(16);
     gridLayout7.setRows(4);
-    jPanel1.setLayout(flowLayout9);
-    flowLayout9.setAlignment(FlowLayout.LEFT);
-    jPanel9.setLayout(flowLayout10);
-    flowLayout10.setAlignment(FlowLayout.LEFT);
-    jPanel8.setLayout(flowLayout11);
-    flowLayout11.setAlignment(FlowLayout.LEFT);
-    jPanel7.setLayout(flowLayout12);
-    flowLayout12.setAlignment(FlowLayout.LEFT);
-    flowLayout20.setAlignment(FlowLayout.LEFT);
+    jPanel1.setLayout(flowLayout1);
+    jPanel9.setLayout(flowLayout1);
+    jPanel8.setLayout(flowLayout1);
+    jPanel7.setLayout(flowLayout1);
     otherAttributePanel.setBorder(BorderFactory.createEtchedBorder());
     initProcessLabel.setText("Initial Process");
-    initProcessPanel.setLayout(flowLayout7);
+    initProcessPanel.setLayout(flowLayout2);
     initProcessInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
     initProcessInvalidLabel.setText("(invalid)");
     initProcessEdit.setBackground(Color.white);
