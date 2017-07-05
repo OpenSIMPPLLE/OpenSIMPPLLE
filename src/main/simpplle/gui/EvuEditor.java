@@ -250,12 +250,13 @@ public class EvuEditor extends JDialog {
       }
     });
     densityEdit.addActionListener(e -> densityEdit_actionPerformed());
-    densityInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
-    sizeClassInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
-    speciesInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
-    stateInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
+    Font serif = new Font("Serif", Font.BOLD, 14);
+    densityInvalidLabel.setFont(serif);
+    sizeClassInvalidLabel.setFont(serif);
+    speciesInvalidLabel.setFont(serif);
+    stateInvalidLabel.setFont(serif);
     stateInvalidLabel.setText("(invalid)");
-    htGrpInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
+    htGrpInvalidLabel.setFont(serif);
     fmzPanel.setLayout(flowLayout1);
     fmzLabel.setText("Fire Management Zone");
     fmzEdit.setBackground(Color.white);
@@ -268,7 +269,7 @@ public class EvuEditor extends JDialog {
       }
     });
     fmzEdit.addActionListener(e -> fmzEdit_actionPerformed());
-    fmzInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
+    fmzInvalidLabel.setFont(serif);
     unitNumberLabel.setText("Unit Number");
     acresPanel.setLayout(flowLayout1);
     acresLabel.setText("Acres");
@@ -302,7 +303,7 @@ public class EvuEditor extends JDialog {
     ownershipEdit.setBackground(Color.white);
     ownershipEdit.setSelectionColor(Color.blue);
     ownershipEdit.setColumns(15);
-    ownershipEdit.addFocusListener(new java.awt.event.FocusAdapter() {
+    ownershipEdit.addFocusListener(new FocusAdapter() {
 
       public void focusLost(FocusEvent e) {
         ownershipEdit_focusLost(e);
@@ -312,7 +313,7 @@ public class EvuEditor extends JDialog {
     specialAreaEdit.setBackground(Color.white);
     specialAreaEdit.setSelectionColor(Color.blue);
     specialAreaEdit.setColumns(20);
-    specialAreaEdit.addFocusListener(new java.awt.event.FocusAdapter() {
+    specialAreaEdit.addFocusListener(new FocusAdapter() {
 
       public void focusLost(FocusEvent e) {
         specialAreaEdit_focusLost(e);
@@ -324,14 +325,14 @@ public class EvuEditor extends JDialog {
     ageEdit.setBackground(Color.white);
     ageEdit.setSelectionColor(Color.blue);
     ageEdit.setColumns(4);
-    ageEdit.addFocusListener(new java.awt.event.FocusAdapter() {
+    ageEdit.addFocusListener(new FocusAdapter() {
 
       public void focusLost(FocusEvent e) {
         ageEdit_focusLost(e);
       }
     });
     ageEdit.addActionListener(e -> ageEdit_actionPerformed());
-    ageInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
+    ageInvalidLabel.setFont(serif);
     mainNorthPanel.setLayout(borderLayout3);
     radioPanel.setLayout(gridLayout1);
     gridLayout1.setRows(2);
@@ -379,7 +380,7 @@ public class EvuEditor extends JDialog {
     evuIdEdit.setColumns(6);
     evuIdEdit.addActionListener(e -> evuIdEdit_actionPerformed());
     gridLayout5.setRows(2);
-    acresInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
+    acresInvalidLabel.setFont(serif);
     mainLabelsPanel.setLayout(gridLayout4);
     gridLayout4.setRows(9);
     gridLayout4.setVgap(14);
@@ -399,7 +400,7 @@ public class EvuEditor extends JDialog {
     otherAttributePanel.setBorder(BorderFactory.createEtchedBorder());
     initProcessLabel.setText("Initial Process");
     initProcessPanel.setLayout(flowLayout2);
-    initProcessInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
+    initProcessInvalidLabel.setFont(serif);
     initProcessInvalidLabel.setText("(invalid)");
     initProcessEdit.setBackground(Color.white);
     initProcessEdit.setSelectionColor(Color.blue);
