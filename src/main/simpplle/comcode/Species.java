@@ -47,6 +47,15 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
   public static HashMap<Short,Species> simIdHm = new HashMap<Short,Species>();
   private short simId=-1; // Random Access File ID
   public static short nextSimId=0;
+
+  public static void resetSimIds() {
+    nextSimId = 0;
+    for (Species species : simIdHm.values()) {
+      species.simId = -1;
+    }
+    simIdHm.clear();
+  }
+
   public short getSimId() {
     if (simId == -1) {
       simId = nextSimId;

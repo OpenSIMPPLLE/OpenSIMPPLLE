@@ -204,6 +204,14 @@ public class SizeClass extends SimpplleType implements Externalizable {
 
   }
 
+  public static void resetSimIds() {
+    nextSimId = 0;
+    for (SizeClass sizeClass : simIdHm.values()) {
+      sizeClass.simId = -1;
+    }
+    simIdHm.clear();
+  }
+
   public short getSimId() {
     if (simId == -1) {
       simId = nextSimId;

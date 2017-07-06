@@ -840,6 +840,14 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
     currentTimeStep = 0;
 
+    Density.resetSimIds();
+    HabitatTypeGroupType.resetSimIds();
+    InclusionRuleSpecies.resetSimIds();
+    Lifeform.resetSimIds();
+    ProcessType.resetSimIds();
+    SizeClass.resetSimIds();
+    Species.resetSimIds();
+
     Area currentArea = Simpplle.currentArea;
     currentArea.initSimulation();
 

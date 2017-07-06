@@ -154,6 +154,14 @@ public class HabitatTypeGroupType extends SimpplleType implements Externalizable
   public static final int COLUMN_COUNT = 1;
   public static final int CODE_COL     = 0;
 
+  public static void resetSimIds() {
+    nextSimId = 0;
+    for (HabitatTypeGroupType type : simIdHm.values()) {
+      type.simId = -1;
+    }
+    simIdHm.clear();
+  }
+
   public short getSimId() {
     if (simId == -1) {
       simId = nextSimId;

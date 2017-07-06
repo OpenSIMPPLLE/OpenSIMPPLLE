@@ -31,6 +31,15 @@ public class InclusionRuleSpecies extends SimpplleType implements Externalizable
   public static HashMap<Short,InclusionRuleSpecies> simIdHm = new HashMap<Short,InclusionRuleSpecies>();
   private short simId=-1; // Random Access File ID
   public static short nextSimId=0;
+
+  public static void resetSimIds() {
+    nextSimId = 0;
+    for (InclusionRuleSpecies rule : simIdHm.values()) {
+      rule.simId = -1;
+    }
+    simIdHm.clear();
+  }
+
   public short getSimId() {
     if (simId == -1) {
       simId = nextSimId;
