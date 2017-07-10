@@ -61,7 +61,6 @@ public final class Area implements Externalizable {
   private Roads[]               allRoads;
   private Trails[]              allTrails;
   private NaturalElement[][]    allUnits = new NaturalElement[3][];
-  private ManmadeElement[][]    allManmadeUnits = new ManmadeElement[2][];
   private int                   fileVersion;
   private static TreatmentSchedule treatmentSchedule;
   private static ProcessSchedule   processSchedule;
@@ -484,7 +483,7 @@ public final class Area implements Externalizable {
    * @param unit
    */
   public void addRoadUnit(Roads unit) {
-    allManmadeUnits[ROADS.ordinal()][unit.getId()] = unit;
+    allRoads[unit.getId()] = unit;
   }
 
   /**
@@ -492,24 +491,11 @@ public final class Area implements Externalizable {
    * @param unit
    */
   public void addTrailUnit(Trails unit) {
-    allManmadeUnits[TRAILS.ordinal()][unit.getId()] = unit;
+    allTrails[unit.getId()] = unit;
   }
 
   // *** Manmade Unit Methods ***
   // ****************************
-
-  /**
-   * Returns a specific kind of manmade unit with a matching id.
-   * @param id
-   * @param kind The kind of manmade unit (ROAD,TRAIL)
-   * @return
-   */
-  private ManmadeElement getManmadeUnit(int id, ManmadeUnitKinds kind) {
-    if (allManmadeUnits[kind.ordinal()] == null || id < 0 || id > allManmadeUnits[kind.ordinal()].length-1) {
-      return null;
-    }
-    return allManmadeUnits[kind.ordinal()][id];
-  }
 
   /**
    * Returns a road unit with a matching id.
@@ -517,7 +503,11 @@ public final class Area implements Externalizable {
    * @return A road unit
    */
   public Roads getRoadUnit(int id) {
-    return (Roads)getManmadeUnit(id,ROADS);
+    if (allRoads == null || id < 0 || id > (allRoads.length - 1)) {
+      return null;
+    } else {
+      return allRoads[id];
+    }
   }
 
   /**
@@ -538,11 +528,10 @@ public final class Area implements Externalizable {
 
   /**
    * Replaces all roads units in this area.
-   * @param newAllRoads An array of roads
+   * @param allRoads An array of roads
    */
-  public void setAllRoads(Roads[] newAllRoads) {
-    allManmadeUnits[ROADS.ordinal()] = newAllRoads;
-    allRoads = (Roads[])allManmadeUnits[ROADS.ordinal()];
+  public void setAllRoads(Roads[] allRoads) {
+    this.allRoads = allRoads;
   }
 
   /**
@@ -551,7 +540,11 @@ public final class Area implements Externalizable {
    * @return A trail unit
    */
   public Trails getTrailUnit(int id) {
-    return (Trails)getManmadeUnit(id,TRAILS);
+    if (allTrails == null || id < 0 || id > (allTrails.length - 1)) {
+      return null;
+    } else {
+      return allTrails[id];
+    }
   }
 
   /**
@@ -572,11 +565,10 @@ public final class Area implements Externalizable {
 
   /**
    * Replaces all trail units in this area.
-   * @param newAllTrails An array of trails
+   * @param allTrails An array of trails
    */
-  public void setAllTrails(Trails[] newAllTrails) {
-    allManmadeUnits[TRAILS.ordinal()] = newAllTrails;
-    allTrails = (Trails[])allManmadeUnits[TRAILS.ordinal()];
+  public void setAllTrails(Trails[] allTrails) {
+    this.allTrails = allTrails;
   }
 
   // *** ExistingLandUnit Methods **
@@ -1000,28 +992,26 @@ public final class Area implements Externalizable {
 
   public void addAllRoads(Roads[] newAllRoads) {
     if (newAllRoads == null) {
-      allManmadeUnits[ROADS.ordinal()] = null;
-      allRoads                         = null;
+      allRoads = null;
       return;
     }
 
-    for (int i=0; i<newAllRoads.length; i++) {
+    for (int i = 0; i < newAllRoads.length; i++) {
       if (newAllRoads[i] != null) {
-        allManmadeUnits[ROADS.ordinal()][newAllRoads[i].getId()] = newAllRoads[i];
+        allRoads[newAllRoads[i].getId()] = newAllRoads[i];
       }
     }
   }
 
   public void addAllTrails(Trails[] newAllTrails) {
     if (newAllTrails == null) {
-      allManmadeUnits[TRAILS.ordinal()] = null;
-      allTrails                         = null;
+      allTrails = null;
       return;
     }
 
-    for (int i=0; i<newAllTrails.length; i++) {
+    for (int i = 0; i < newAllTrails.length; i++) {
       if (newAllTrails[i] != null) {
-        allManmadeUnits[TRAILS.ordinal()][newAllTrails[i].getId()] = newAllTrails[i];
+        allTrails[newAllTrails[i].getId()] = newAllTrails[i];
       }
     }
   }
