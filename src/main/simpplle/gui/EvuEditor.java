@@ -492,7 +492,7 @@ public class EvuEditor extends JDialog {
     acresInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
     mainLabelsPanel.setLayout(gridLayout4);
     gridLayout4.setRows(9);
-    gridLayout4.setVgap(14);
+    gridLayout4.setVgap(20);
     mainValuesPanel.setLayout(gridLayout6);
     gridLayout6.setRows(9);
     flowLayout19.setAlignment(FlowLayout.LEFT);
@@ -502,6 +502,7 @@ public class EvuEditor extends JDialog {
     gridLayout2.setRows(4);
     gridLayout2.setVgap(16);
     gridLayout7.setRows(4);
+    gridLayout2.setVgap(20);
     jPanel1.setLayout(flowLayout9);
     flowLayout9.setAlignment(FlowLayout.LEFT);
     jPanel9.setLayout(flowLayout10);
