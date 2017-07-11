@@ -1392,9 +1392,9 @@ public class SimpplleMain extends JFrame {
 
     menuReportsFireSuppCostAll.setEnabled((Simpplle.getCurrentSimulation() == null));
 
-    menuResultAquaticUnit.setEnabled((Simpplle.getCurrentArea().existAquaticUnits()));
+    menuResultAquaticUnit.setEnabled((Simpplle.getCurrentArea().hasAquaticUnits()));
 
-    menuResultLandformUnit.setEnabled((Simpplle.getCurrentArea().existLandUnits()));
+    menuResultLandformUnit.setEnabled((Simpplle.getCurrentArea().hasLandUnits()));
 
     menuReportsUnit.setEnabled(true);
 
@@ -1448,7 +1448,7 @@ public class SimpplleMain extends JFrame {
    * If there are it
    */
   public void updateAreaValidity() {
-    if (Simpplle.getCurrentArea().existAnyInvalidVegUnits()) {
+    if (Simpplle.getCurrentArea().hasInvalidVegetationUnits()) {
       disableAreaControls(true);
       areaInvalidLabel.setText("(Invalid)");
     }
@@ -2364,7 +2364,7 @@ public class SimpplleMain extends JFrame {
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       String msg =
         "Invalid data was found in the units after loading\n" +
         "In addition any simulation data that may have existed has\n" +
@@ -2587,7 +2587,7 @@ public class SimpplleMain extends JFrame {
     }
     area.setMultipleLifeformStatus();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       area.fixEmptyDataUnits();
       msg = "Creation of the Area was only partially successful.\n" +
             "One or more of the units had invalid attribute data.\n" +
@@ -2679,7 +2679,7 @@ public class SimpplleMain extends JFrame {
     }
     setNormalState();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       msg = "Adding Attributes was only partially successful.\n" +
                        "One or more of the units had invalid attribute data.\n" +
                        "It was most likely caused by one of the following:\n" +
@@ -2737,7 +2737,7 @@ public class SimpplleMain extends JFrame {
     }
     updateAreaValidity();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       String msg =
         "Fix of incorrect states was only partially successful.\n" +
         "Remaining errors can be fixed by using the \"Edit Units\"\n" +

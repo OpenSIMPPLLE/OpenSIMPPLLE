@@ -60,7 +60,7 @@ public final class Area implements Externalizable {
   private ExistingLandUnit[]    allElu;
   private Roads[]               allRoads;
   private Trails[]              allTrails;
-  private NaturalElement[][]    allUnits = new NaturalElement[3][];
+
   private int                   fileVersion;
   private static TreatmentSchedule treatmentSchedule;
   private static ProcessSchedule   processSchedule;
@@ -467,7 +467,7 @@ public final class Area implements Externalizable {
    * @param unit
    */
   public void addEvu(Evu unit) {
-    allUnits[EVU][unit.getId()] = unit;
+    allEvu[unit.getId()] = unit;
   }
 
   /**
@@ -475,7 +475,7 @@ public final class Area implements Externalizable {
    * @param unit
    */
   public void addElu(ExistingLandUnit unit) {
-    allUnits[ELU][unit.getId()] = unit;
+    allElu[unit.getId()] = unit;
   }
 
   /**
@@ -573,119 +573,20 @@ public final class Area implements Externalizable {
 
   // *** ExistingLandUnit Methods **
   // *******************************
-  /**
-   * Gets a natural element unit in this area by indexing into the 2D natural element array:  [kind][unit id]
-   * @param id unit id
-   * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2.
-   * @return
-   */
-  public NaturalElement getUnit(int id, int kind) {
-    if (allUnits[kind] == null || id < 0 || id > allUnits[kind].length-1) { return null; }
-    return allUnits[kind][id];
-  }
-  /**
-   * Gets the first natural element unit in this area by indexing into the 2D natural element array:  [kind][unit id]
-   * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2.
-   * @return
-   */
-  private NaturalElement getFirstUnit(int kind) {
-    if (allUnits[kind] == null) { return null;  }
-    for(int i=0; i<allUnits[kind].length; i++) {
-      if (allUnits[kind][i] != null) { return allUnits[kind][i]; }
-    }
-    return null;
-  }
-  /**
-   * Gets the previous natural element unit in this area by indexing into the 2D natural element array:  [kind][unit id]
-   * @param unit unit Id
-   * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2
-   * @return
-   */
-  private NaturalElement getPrevUnit(NaturalElement unit, int kind) {
-    int id = unit.getId();
-
-    int i;
-    for (i=id-1; i>=0; i--) {
-      if (allUnits[kind][i] != null) { return allUnits[kind][i]; }
-    }
-    for (i=allUnits[kind].length-1; i>id; i--) {
-      if (allUnits[kind][i] != null) { return allUnits[kind][i]; }
-    }
-    return null;
-  }
-  /**
-   * Gets the next natural element unit in this area by indexing into the 2D natural element array:  [kind][unit id]
-   * @param unit
-   * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2
-   * @return
-   */
-  private NaturalElement getNextUnit(NaturalElement unit, int kind) {
-    int id = unit.getId(), i;
-    for (i=id+1; i<allUnits[kind].length; i++) {
-      if (allUnits[kind][i] != null) { return allUnits[kind][i]; }
-    }
-    for (i=0;i<id;i++) {
-      if (allUnits[kind][i] != null) { return allUnits[kind][i]; }
-    }
-    return null;
-  }
-  /**
-   * Gets the previous Invalid Natural Element unit in this area by indexing into the 2D natural element array:  [kind][unit id]
-   * @param unit unit Id
-   * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2
-   * @return
-   */
-  private NaturalElement getPrevInvalidUnit(NaturalElement unit, int kind) {
-    int id = unit.getId(), i;
-    for (i=id-1;i>=0;i--) {
-      if (allUnits[kind][i] != null && allUnits[kind][i].isValid() == false) {
-        return allUnits[kind][i];
-      }
-    }
-    for (i=allUnits[kind].length-1;i>id;i--) {
-      if (allUnits[kind][i] != null && allUnits[kind][i].isValid() == false) {
-        return allEvu[i];
-      }
-    }
-    return null;
-  }
-  /**
-   * Gets the next invalid Natural Element unit in this area by indexing into the 2D natural element array:  [kind][unit id]
-   * @param unit
-   * @param kind Choices for natural elements are Evu = 0, Eau =1, Elu = 2
-   * @return
-   */
-  private NaturalElement getNextInvalidUnit(NaturalElement unit, int kind) {
-    int id = unit.getId(), i;
-    for (i=id+1;i<=allUnits[kind].length-1;i++) {
-      if (allUnits[kind][i] != null && allUnits[kind][i].isValid() == false) {
-        return allUnits[kind][i];
-      }
-    }
-    for (i=0;i<id;i++) {
-      if (allUnits[kind][i] != null && allUnits[kind][i].isValid() == false) {
-        return allUnits[kind][i];
-      }
-    }
-    return null;
-  }
 
   /**
-   * Gets an Elu by an Integer object Id.
-   * @param id Elu Id
-   * @return the Elu
-   */
-  public ExistingLandUnit getElu(Integer id) {
-    return (ExistingLandUnit) getUnit(id.intValue(), ELU);
-  }
-  /**
-   * Gets an Elu by its Id.
+   * Gets an Elu by Id.
    * @param id Elu Id
    * @return the Elu
    */
   public ExistingLandUnit getElu(int id) {
-    return (ExistingLandUnit) getUnit(id, ELU);
+    if (hasLandUnits()) {
+      return allElu[id];
+    } else {
+      return null;
+    }
   }
+
   /**
    * Makes a new Elu with parameter Id, adds it to all Natural units 2D array, then returns theElu
    * @param id new Elu Id
@@ -693,49 +594,97 @@ public final class Area implements Externalizable {
    */
   public ExistingLandUnit getNewElu(int id) {
     ExistingLandUnit unit = new ExistingLandUnit(id);
-    allUnits[ELU][id] = unit;
+    allElu[id] = unit;
     return unit;
   }
+
   /**
    * Gets the first Elu in this Area
    * @return the first Elu in this Area
    */
   public ExistingLandUnit getFirstElu() {
-    return (ExistingLandUnit) getFirstUnit(ELU);
-  }
-  /**
-   * Uses parameter Elu to get the previous one.
-   * @param unit the Elu used to find the previous.
-   * @return previous Elu
-   */
-  public ExistingLandUnit getPrevElu(ExistingLandUnit unit) {
-    return (ExistingLandUnit) getPrevUnit(unit, ELU);
-  }
-  /**
-   * Uses parameter Elu to get the next Elu.
-   * @param unit the Elu used to find the next Elu.
-   * @return next Elu
-   */
-  public ExistingLandUnit getNextElu(ExistingLandUnit unit) {
-    return (ExistingLandUnit) getNextUnit(unit, ELU);
-  }
-  /**
-   * Uses parameter Elu to get the previous invalid Elu.
-   * @param unit the Elu used to find the previous invalid Elu.
-   * @return previous Elu
-   */
-  public ExistingLandUnit getPrevInvalidUnit(ExistingLandUnit unit) {
-    return (ExistingLandUnit) getPrevInvalidUnit(unit, ELU);
-  }
-  /**
-   * Uses parameter Elu to get the next invalid Elu.
-   * @param unit the Elu used to find the next invalid Elu.
-   * @return next invalid Elu
-   */
-  public ExistingLandUnit getNextInvalidUnit(ExistingLandUnit unit) {
-    return (ExistingLandUnit) getNextInvalidUnit(unit, ELU);
+    if (allElu == null) { return null;  }
+    for (ExistingLandUnit unit : allElu) {
+      if (unit != null) return unit;
+    }
+    return null;
   }
 
+  /**
+   * Finds the previous land unit, wrapping if necessary.
+   *
+   * @param unit a starting land unit
+   * @return the previous land unit, or null if there is only one
+   */
+  public ExistingLandUnit getPrevElu(ExistingLandUnit unit) {
+    int id = unit.getId();
+    for (int i = id - 1; i >= 0; i--) {
+      if (allElu[i] != null) { return allElu[i]; }
+    }
+    for (int i = allElu.length - 1; i > id; i--) {
+      if (allElu[i] != null) { return allElu[i]; }
+    }
+    return null;
+  }
+
+  /**
+   * Finds the next land unit, wrapping if necessary.
+   *
+   * @param unit a starting land unit
+   * @return the next land unit, or null if there is only one
+   */
+  public ExistingLandUnit getNextElu(ExistingLandUnit unit) {
+    int id = unit.getId();
+    for (int i = id + 1; i < allElu.length; i++) {
+      if (allElu[i] != null) return allElu[i];
+    }
+    for (int i = 0; i < id; i++) {
+      if (allElu[i] != null) return allElu[i];
+    }
+    return null;
+  }
+
+  /**
+   * Finds the previous invalid land unit, wrapping if necessary.
+   *
+   * @param unit a starting land unit
+   * @return the previous invalid land unit, or null if there is only one
+   */
+  public ExistingLandUnit getPrevInvalidUnit(ExistingLandUnit unit) {
+    int id = unit.getId();
+    for (int i = id - 1; i >= 0; i--) {
+      if (allElu[i] != null && !allElu[i].isValid()) {
+        return allElu[i];
+      }
+    }
+    for (int i = allElu.length - 1; i > id; i--) {
+      if (allElu[i] != null && !allElu[i].isValid()) {
+        return allElu[i];
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Finds the next invalid land unit, wrapping if necessary.
+   *
+   * @param unit a starting land unit
+   * @return the next invalid land unit, or null if there is only one
+   */
+  public ExistingLandUnit getNextInvalidUnit(ExistingLandUnit unit) {
+    int id = unit.getId();
+    for (int i = id + 1; i <= allElu.length - 1; i++) {
+      if (allElu[i] != null && !allElu[i].isValid()) {
+        return allElu[i];
+      }
+    }
+    for (int i = 0; i < id; i++) {
+      if (allElu[i] != null && !allElu[i].isValid()) {
+        return allElu[i];
+      }
+    }
+    return null;
+  }
 
   // *******************************************************************
   /**
@@ -920,11 +869,10 @@ public final class Area implements Externalizable {
   /**
    * First sets the new Evu array into the all natural element 2D array at the Evu (0) index,
    * then sets the allEvu array for this array to the newAllEvu array.
-   * @param newAllEvu the array of Evus to be set.
+   * @param allEvu the array of Evus to be set.
    */
-  public void setAllEvu(Evu[] newAllEvu) {
-    allUnits[EVU] = newAllEvu;
-    allEvu = (Evu[])allUnits[EVU];
+  public void setAllEvu(Evu[] allEvu) {
+    this.allEvu = allEvu;
   }
 
   /**
@@ -955,37 +903,28 @@ public final class Area implements Externalizable {
 
   /**
    * Sets both the array of all Eaus in Area and the natural element 2d array at index EAU
-   * @param newAllEau array of al the new Eaus for an area.
+   * @param allEau array of al the new Eaus for an area.
    */
-  public void setAllEau(ExistingAquaticUnit[] newAllEau) {
-    allUnits[EAU] = newAllEau;
-    allEau = (ExistingAquaticUnit[])allUnits[EAU];
+  public void setAllEau(ExistingAquaticUnit[] allEau) {
+    this.allEau = allEau;
   }
 
-  /**
-   * @return all the natural elements (kinds are EVU, EAU, ELU) for this area.
-   */
-  private NaturalElement[] getAllUnits(int kind) {
-    return allUnits[kind];
-  }
   public ExistingLandUnit[] getAllElu() {
-    return (ExistingLandUnit[])getAllUnits(ELU);
+    return allElu;
   }
-  public void setAllElu(ExistingLandUnit[] newAllElu) {
-    allUnits[ELU] = newAllElu;
-    allElu = (ExistingLandUnit[])allUnits[ELU];
+  public void setAllElu(ExistingLandUnit[] allElu) {
+    this.allElu = allElu;
   }
 
   public void addAllElu(ExistingLandUnit[] newAllElu) {
     if (newAllElu == null) {
-      allUnits[ELU] = null;
       allElu        = null;
       return;
     }
 
     for (int i=0; i<newAllElu.length; i++) {
       if (newAllElu[i] != null) {
-        allUnits[ELU][newAllElu[i].getId()] = newAllElu[i];
+        allElu[newAllElu[i].getId()] = newAllElu[i];
       }
     }
   }
@@ -1016,9 +955,17 @@ public final class Area implements Externalizable {
     }
   }
 
-  public boolean existAquaticUnits() { return (allEau != null); }
+  public boolean hasAquaticUnits() {
+    return allEau != null && allEau.length != 0;
+  }
 
-  public boolean existLandUnits() { return allUnits[ELU] != null; }
+  public boolean hasLandUnits() {
+    return allElu != null && allElu.length != 0;
+  }
+
+  public boolean hasVegetationUnits() {
+    return allEvu != null && allEvu.length != 0;
+  }
 
   public int getMaxEvuId() { return maxEvuId; }
 
@@ -1043,8 +990,11 @@ public final class Area implements Externalizable {
    * @return the highest Existing Land Unit Id
    */
   public int getMaxEluId() {
-    if (allUnits[ELU] == null) { return -1; }
-    return allUnits[ELU].length - 1;
+    if (hasLandUnits()) {
+      return allElu.length - 1;
+    } else {
+      return -1;
+    }
   }
 
   /**
@@ -1060,38 +1010,34 @@ public final class Area implements Externalizable {
 
   public boolean isValidLandUnitId(int id) { return (getElu(id) != null); }
 
-  public boolean existAnyInvalidVegUnits() {
-    return existAnyInvalidUnits(EVU);
+  public boolean hasInvalidAquaticUnits() {
+    if (hasAquaticUnits()) {
+      for (ExistingAquaticUnit unit : allEau) {
+        if (unit != null && !unit.isValid()) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
-  /**
-   * Checks if there are any invalid Eau's by cycling through the Natural Element 2D array at [EAU][]
-   * @return true if there is any invalid Eau's
-   */
-  public boolean existAnyInvalidAquaticUnits() {
-    return existAnyInvalidUnits(EAU);
+  public boolean hasInvalidLandUnits() {
+    if (hasLandUnits()) {
+      for (ExistingLandUnit unit : allElu) {
+        if (unit != null && !unit.isValid()) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
-  /**
-   * Checks if there are any invalid Eau's by cycling through the Natural Element 2D array at [ELU][]
-   * @return true if there is any invalid ELu, Id's
-   */
-  public boolean existAnyInvalidLandUnits() {
-    return existAnyInvalidUnits(ELU);
-  }
-
-  /**
-   * Method to check if there are any invalid EVU, EAU, or ELU Id's in the Natural Element 2D array based on the int kind
-   *
-   * @param kind EVU = 0, EAU = 1, ELU = 2
-   * @return true if there exists any invalid EVU, EAU, or ELU Id's based on parameter kind.
-   */
-  private boolean existAnyInvalidUnits(int kind) {
-    if (allUnits[kind] == null) { return false; }
-    for(int i=0; i<allUnits[kind].length; i++) {
-      if (allUnits[kind][i] == null) { continue; }
-      if (!allUnits[kind][i].isValid()) {
-        return true;
+  public boolean hasInvalidVegetationUnits() {
+    if (hasVegetationUnits()) {
+      for (Evu unit : allEvu) {
+        if (unit != null && !unit.isValid()) {
+          return true;
+        }
       }
     }
     return false;

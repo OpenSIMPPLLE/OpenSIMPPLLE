@@ -9,14 +9,12 @@
 package simpplle.gui;
 
 import simpplle.comcode.HabitatTypeGroup;
-import simpplle.comcode.VegetativeType;
 import simpplle.comcode.Simpplle;
 import simpplle.comcode.Area;
 import simpplle.comcode.Species;
 import simpplle.comcode.SizeClass;
 import simpplle.comcode.Density;
 import simpplle.comcode.Evu;
-import simpplle.comcode.Area;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.Fmz;
 
@@ -997,7 +995,7 @@ public class EvuEditor extends JDialog {
  * @param e 'show invalid'
  */
   void showInvalidRB_actionPerformed(ActionEvent e) {
-    boolean existInvalid = currentArea.existAnyInvalidVegUnits();
+    boolean existInvalid = currentArea.hasInvalidVegetationUnits();
     if (showStatus != SHOW_INVALID && existInvalid) {
       showStatus = SHOW_INVALID;
       if (currentEvu.isValid()) {
