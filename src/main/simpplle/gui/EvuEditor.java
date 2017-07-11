@@ -383,7 +383,7 @@ public class EvuEditor extends JDialog {
     acresInvalidLabel.setFont(serif);
     mainLabelsPanel.setLayout(gridLayout4);
     gridLayout4.setRows(9);
-    gridLayout4.setVgap(14);
+    gridLayout4.setVgap(20);
     mainValuesPanel.setLayout(gridLayout6);
     gridLayout6.setRows(9);
     flowLayout5.setAlignment(FlowLayout.LEFT);
