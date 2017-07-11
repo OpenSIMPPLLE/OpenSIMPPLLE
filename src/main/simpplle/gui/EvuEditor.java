@@ -108,7 +108,7 @@ public class EvuEditor extends JDialog {
   private JLabel specialAreaLabel = new JLabel();
   private JLabel ageLabel = new JLabel();
   private JLabel ageInvalidLabel = new JLabel();
-  private JLabel evuLabel = new JLabel();
+  private JLabel searchLabel = new JLabel("Search");
   private JLabel acresInvalidLabel = new JLabel();
   private JLabel initProcessLabel = new JLabel();
   private JLabel initProcessInvalidLabel = new JLabel();
@@ -346,7 +346,7 @@ public class EvuEditor extends JDialog {
     nextPB.setMargin(new Insets(0, 0, 0, 0));
     nextPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/nextg.gif")));
     nextPB.addActionListener(e -> nextPB_actionPerformed());
-    evuLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    searchLabel.setHorizontalAlignment(SwingConstants.CENTER);
     prevPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prev.gif")));
     prevPB.setMargin(new Insets(0, 0, 0, 0));
     prevPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prevg.gif")));
@@ -438,7 +438,7 @@ public class EvuEditor extends JDialog {
     topPanel.add(prevNextPanel, BorderLayout.NORTH);
     prevNextPanel.add(prevPB, null);
     prevNextPanel.add(evuIdPanel, null);
-    evuIdPanel.add(evuLabel, null);
+    evuIdPanel.add(searchLabel, null);
     evuIdPanel.add(evuIdEdit, null);
     prevNextPanel.add(nextPB, null);
     topPanel.add(radioOuterPanel, BorderLayout.CENTER);
@@ -554,7 +554,7 @@ public class EvuEditor extends JDialog {
    * Evu ID, ownership, road status, and special area.
    */
   private void updateDialog() {
-    String str, idStr;
+    String str;
     boolean isValid;
     numInvalid = 0;
 
@@ -590,12 +590,6 @@ public class EvuEditor extends JDialog {
       }
     }
     inInit = false;
-
-    // The Id;
-    idStr = Integer.toString(currentEvu.getId());
-    str = "EVU-" + idStr;
-    evuLabel.setText(str);
-    evuIdEdit.setText(idStr);
 
     // Habitat Type Group
     HabitatTypeGroup htGrp = currentEvu.getHabitatTypeGroup();
