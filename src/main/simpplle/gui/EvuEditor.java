@@ -8,27 +8,17 @@
 
 package simpplle.gui;
 
-import simpplle.comcode.HabitatTypeGroup;
-import simpplle.comcode.Simpplle;
-import simpplle.comcode.Area;
-import simpplle.comcode.Species;
-import simpplle.comcode.SizeClass;
-import simpplle.comcode.Density;
-import simpplle.comcode.Evu;
-import simpplle.comcode.RegionalZone;
-import simpplle.comcode.Fmz;
+import simpplle.comcode.*;
+import simpplle.comcode.Climate.*;
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.text.NumberFormat;
-import simpplle.comcode.ProcessType;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
-import simpplle.comcode.*;
 import java.util.*;
-import simpplle.comcode.Climate.*;
 
 /**
  * This class creates an Existing Vegetative Unit Editor dialog.  It allows the user to edit Evu attributes.
@@ -72,7 +62,6 @@ public class EvuEditor extends JDialog {
   private JPanel otherAttributePanel = new JPanel();
   private JPanel agePanel = new JPanel();
   private JPanel mainNorthPanel = new JPanel();
-  private JPanel topPanel = new JPanel();
   private JPanel radioPanel = new JPanel();
   private JPanel radioOuterPanel = new JPanel();
   private JPanel evuIdPanel = new JPanel();
@@ -90,7 +79,7 @@ public class EvuEditor extends JDialog {
   private JPanel lifeformPanel = new JPanel();
 
   private JLabel htGrpLabel = new JLabel();
-  private  JLabel vegTypeLabel = new JLabel();
+  private JLabel vegTypeLabel = new JLabel();
   private JLabel speciesLabel = new JLabel();
   private JLabel sizeClassLabel = new JLabel();
   private JLabel densityLabel = new JLabel();
@@ -115,19 +104,16 @@ public class EvuEditor extends JDialog {
 
   FlowLayout flowLayout1 = new FlowLayout();
   FlowLayout flowLayout2 = new FlowLayout();
-  private FlowLayout flowLayout3 = new FlowLayout();
   private FlowLayout flowLayout4 = new FlowLayout();
   private FlowLayout flowLayout5 = new FlowLayout();
 
   private BorderLayout borderLayout1 = new BorderLayout();
   private BorderLayout borderLayout3 = new BorderLayout();
-  private BorderLayout borderLayout4 = new BorderLayout();
 
   private GridLayout gridLayout1 = new GridLayout();
   private GridLayout gridLayout2 = new GridLayout();
   private GridLayout gridLayout3 = new GridLayout();
   private GridLayout gridLayout4 = new GridLayout();
-  private GridLayout gridLayout5 = new GridLayout();
   private GridLayout gridLayout6 = new GridLayout();
   private GridLayout gridLayout7 = new GridLayout();
 
@@ -145,8 +131,8 @@ public class EvuEditor extends JDialog {
   private JTextField evuIdEdit = new JTextField();
   private JTextField initProcessEdit = new JTextField();
 
-  JButton nextPB = new JButton();
-  JButton prevPB = new JButton();
+  JButton nextPB = new JButton("Next");
+  JButton prevPB = new JButton("Previous");
 
   private JRadioButton showAllRB = new JRadioButton();
   private JRadioButton showInvalidRB = new JRadioButton();
@@ -156,7 +142,7 @@ public class EvuEditor extends JDialog {
   private JRadioButton herbaciousRB = new JRadioButton();
   private JRadioButton shrubsRB = new JRadioButton();
 
-  private Border border1 = BorderFactory.createLineBorder(Color.white, 2);
+  private Border border1 = BorderFactory.createLineBorder(Color.gray, 2);
   private Border border2 = new TitledBorder(border1, "Lifeform");
 
   /**
@@ -340,22 +326,17 @@ public class EvuEditor extends JDialog {
     showAllRB.addActionListener(e -> showAllRB_actionPerformed());
     showInvalidRB.setText("Show Only Invalid Units");
     showInvalidRB.addActionListener(e -> showInvalidRB_actionPerformed());
-    topPanel.setLayout(borderLayout4);
-    nextPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/next.gif")));
-    nextPB.setMargin(new Insets(0, 0, 0, 0));
-    nextPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/nextg.gif")));
+    Dimension buttonDimension = new Dimension(80, 35);
+    nextPB.setPreferredSize(buttonDimension);
     nextPB.addActionListener(e -> nextPB_actionPerformed());
     searchLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    prevPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prev.gif")));
-    prevPB.setMargin(new Insets(0, 0, 0, 0));
-    prevPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prevg.gif")));
+    prevPB.setPreferredSize(buttonDimension);
     prevPB.addActionListener(e -> prevPB_actionPerformed());
-    buttonPanel.setLayout(flowLayout3);
-    radioPanel.setBorder(BorderFactory.createLoweredBevelBorder());
+    BoxLayout boxLayout = new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS);
+    buttonPanel.setLayout(boxLayout);
     radioOuterPanel.setLayout(flowLayout4);
     flowLayout4.setAlignment(FlowLayout.LEFT);
     flowLayout4.setHgap(20);
-    buttonPanel.setBorder(BorderFactory.createEtchedBorder());
     roadStatusCB.addItemListener(new ItemListener() {
 
       public void itemStateChanged(ItemEvent e) {
@@ -370,13 +351,12 @@ public class EvuEditor extends JDialog {
         this_windowClosing(e);
       }
     });
-    evuIdPanel.setLayout(gridLayout5);
+    evuIdPanel.setLayout(flowLayout2);
     evuIdEdit.setBackground(Color.white);
     evuIdEdit.setToolTipText("Change to desired Unit Id and press enter");
     evuIdEdit.setSelectionColor(Color.blue);
     evuIdEdit.setColumns(6);
     evuIdEdit.addActionListener(e -> evuIdEdit_actionPerformed());
-    gridLayout5.setRows(2);
     acresInvalidLabel.setFont(serif);
     mainLabelsPanel.setLayout(gridLayout4);
     gridLayout4.setRows(9);
@@ -431,14 +411,14 @@ public class EvuEditor extends JDialog {
 
     getContentPane().add(mainPanel);
     mainPanel.add(mainNorthPanel, BorderLayout.NORTH);
-    mainNorthPanel.add(topPanel, BorderLayout.NORTH);
-    topPanel.add(prevNextPanel, BorderLayout.NORTH);
+    mainNorthPanel.add(radioOuterPanel, BorderLayout.NORTH);
     prevNextPanel.add(prevPB, null);
-    prevNextPanel.add(evuIdPanel, null);
+    prevNextPanel.add(nextPB, null);
     evuIdPanel.add(searchLabel, null);
     evuIdPanel.add(evuIdEdit, null);
-    prevNextPanel.add(nextPB, null);
-    topPanel.add(radioOuterPanel, BorderLayout.CENTER);
+    buttonPanel.add(evuIdPanel);
+    buttonPanel.add(Box.createRigidArea(new Dimension(240, buttonPanel.getHeight())));
+    buttonPanel.add(prevNextPanel);
     radioOuterPanel.add(radioPanel, null);
     radioOuterPanel.add(lifeformPanel);
     lifeformPanel.add(treesRB);
