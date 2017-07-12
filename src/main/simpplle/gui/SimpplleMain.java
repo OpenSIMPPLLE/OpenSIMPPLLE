@@ -305,7 +305,7 @@ public class SimpplleMain extends JFrame {
         fileExit_actionPerformed(e);
       }
     });
-    newZone.setToolTipText("Load a new zone.");
+    newZone.setToolTipText("Loads logic for a geographic region");
     newZone.setText("New Zone");
     newZone.addActionListener(new java.awt.event.ActionListener() {
 
@@ -314,7 +314,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     newArea.setEnabled(false);
-    newArea.setToolTipText("Load an Area.");
+    newArea.setToolTipText("Loads a landscape from a geographic region");
     newArea.setText("New Area");
     newArea.addActionListener(new java.awt.event.ActionListener() {
 
@@ -323,7 +323,6 @@ public class SimpplleMain extends JFrame {
       }
     });
     runSimulation.setEnabled(false);
-    runSimulation.setToolTipText("Help");
     runSimulation.setText("Run Simulation");
     runSimulation.addActionListener(new java.awt.event.ActionListener() {
 
@@ -343,7 +342,7 @@ public class SimpplleMain extends JFrame {
     menuSettings.addActionListener(e -> actionMenuSettings(e));
     menuUtility.setText("Utilities");
     menuUtilityReset.setEnabled(false);
-    menuUtilityReset.setToolTipText("Removes Simulation and restores Area to initial conditions");
+    menuUtilityReset.setToolTipText("Discards simulation and restores area to initial conditions");
     menuUtilityReset.setText("Reset Area/Simulation");
     menuUtilityReset.addActionListener(new java.awt.event.ActionListener() {
 
@@ -632,7 +631,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     menuSysKnowOpen.setEnabled(false);
-    menuSysKnowOpen.setToolTipText("Loads knowledge components from a file");
+    menuSysKnowOpen.setToolTipText("Loads user-defined logic for a geographic region");
     menuSysKnowOpen.setText("Load User Knowledge");
     menuSysKnowOpen.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -640,7 +639,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     menuSysKnowSave.setEnabled(false);
-    menuSysKnowSave.setToolTipText("Saves knowledge components to a file");
+    menuSysKnowSave.setToolTipText("Saves user-defined logic for a geographic region");
     menuSysKnowSave.setText("Save User Knowledge");
     menuSysKnowSave.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -682,7 +681,7 @@ public class SimpplleMain extends JFrame {
     });
 
     menuSysKnowRestoreDefaults.setEnabled(false);
-    menuSysKnowRestoreDefaults.setToolTipText("Restores System Knowledge to defaults.");
+    menuSysKnowRestoreDefaults.setToolTipText("Restores system knowledge to defaults.");
     menuSysKnowRestoreDefaults.setText("Restore All Defaults");
     menuSysKnowRestoreDefaults.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
