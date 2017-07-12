@@ -147,7 +147,6 @@ public class EvuEditor extends JDialog {
 
   JButton nextPB = new JButton();
   JButton prevPB = new JButton();
-  private JButton quitPB = new JButton();
 
   private JRadioButton showAllRB = new JRadioButton();
   private JRadioButton showInvalidRB = new JRadioButton();
@@ -352,8 +351,6 @@ public class EvuEditor extends JDialog {
     prevPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prevg.gif")));
     prevPB.addActionListener(e -> prevPB_actionPerformed());
     buttonPanel.setLayout(flowLayout3);
-    quitPB.setText("Close");
-    quitPB.addActionListener(e -> quitPB_actionPerformed());
     radioPanel.setBorder(BorderFactory.createLoweredBevelBorder());
     radioOuterPanel.setLayout(flowLayout4);
     flowLayout4.setAlignment(FlowLayout.LEFT);
@@ -506,7 +503,6 @@ public class EvuEditor extends JDialog {
     otherValuesPanel.add(jPanel7, null);
     jPanel7.add(specialAreaEdit, null);
     mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-    buttonPanel.add(quitPB, null);
 
     ButtonGroup group = new ButtonGroup();
     group.add(showAllRB);
@@ -1151,12 +1147,6 @@ public class EvuEditor extends JDialog {
     area.updateArea();
     setVisible(false);
     dispose();
-  }
-  /**
-   * Quits the Evu Editor if quit button is pushed.
-   */
-  private void quitPB_actionPerformed() {
-    quit();
   }
   /**
    * Window closing event quits.
