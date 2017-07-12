@@ -32,6 +32,14 @@ public class Lifeform implements Externalizable {
     private short simId=-1; // Random Access File ID
     public static short nextSimId=0;
 
+    public static void resetSimIds() {
+        nextSimId = 0;
+        for (Lifeform lifeform : simIdHm.values()) {
+            lifeform.simId = -1;
+        }
+        simIdHm.clear();
+    }
+
     public short getSimId() {
         if (simId == -1) {
             simId = nextSimId;
