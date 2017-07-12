@@ -340,7 +340,7 @@ public class EvuEditor extends JDialog {
     showAllRB.setText("Show All Units");
     showAllRB.addActionListener(e -> showAllRB_actionPerformed());
     showInvalidRB.setText("Show Only Invalid Units");
-    showInvalidRB.addActionListener(e -> showInvalidRB_actionPerformed());
+    showInvalidRB.addActionListener(this::showInvalidRB_actionPerformed);
     topPanel.setLayout(borderLayout4);
     nextPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/next.gif")));
     nextPB.setMargin(new Insets(0, 0, 0, 0));
@@ -836,11 +836,13 @@ public class EvuEditor extends JDialog {
       showStatus = SHOW_ALL;
     }
   }
-  /**
-   * Shows the Invalid vegetative units radio buttons
-   */
-  private void showInvalidRB_actionPerformed() {
-    boolean existInvalid = currentArea.existAnyInvalidVegUnits();
+
+/**
+ * Shows the Invalid vegetative units radio buttons
+ * @param e 'show invalid'
+ */
+  void showInvalidRB_actionPerformed(ActionEvent e) {
+    boolean existInvalid = currentArea.hasInvalidVegetationUnits();
     if (showStatus != SHOW_INVALID && existInvalid) {
       showStatus = SHOW_INVALID;
       if (numInvalid == 0) {
