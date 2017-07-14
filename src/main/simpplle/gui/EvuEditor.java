@@ -125,7 +125,7 @@ public class EvuEditor extends JDialog {
   private JTextField ownershipEdit = new JTextField();
   private JTextField specialAreaEdit = new JTextField();
   private JTextField ageEdit = new JTextField();
-  private JTextField evuIdEdit = new JTextField();
+  private JTextField searchField = new JTextField();
   private JTextField initProcessEdit = new JTextField();
 
   JButton nextPB = new JButton("Next");
@@ -348,11 +348,11 @@ public class EvuEditor extends JDialog {
       }
     });
     evuIdPanel.setLayout(centeredFlow);
-    evuIdEdit.setBackground(Color.white);
-    evuIdEdit.setToolTipText("Change to desired Unit Id and press enter");
-    evuIdEdit.setSelectionColor(Color.blue);
-    evuIdEdit.setColumns(6);
-    evuIdEdit.addActionListener(e -> evuIdEdit_actionPerformed());
+    searchField.setBackground(Color.white);
+    searchField.setToolTipText("Change to desired Unit Id and press enter");
+    searchField.setSelectionColor(Color.blue);
+    searchField.setColumns(6);
+    searchField.addActionListener(e -> searchField_actionPerformed());
     acresInvalidLabel.setFont(serif);
     mainLabelsPanel.setLayout(gridLayout4);
     gridLayout4.setRows(14);
@@ -470,7 +470,7 @@ public class EvuEditor extends JDialog {
     prevNextPanel.add(prevPB);
     prevNextPanel.add(nextPB);
     evuIdPanel.add(searchLabel);
-    evuIdPanel.add(evuIdEdit);
+    evuIdPanel.add(searchField);
     buttonPanel.add(evuIdPanel);
     buttonPanel.add(Box.createRigidArea(new Dimension(240, buttonPanel.getHeight())));
     buttonPanel.add(prevNextPanel);
@@ -688,38 +688,28 @@ public class EvuEditor extends JDialog {
     idValueLabel.setText(Integer.toString(currentEvu.getId()));
   }
 
-  /**
-   * Evu Id Edit text field listener.  parses the evuIdEdit text field, checks to makes sure it is a number, and a valid Evu ID,
-   * then creates a new Evu Object with same ID as the current one being edited, and makes that the current Evu.
-   */
-  private void evuIdEdit_actionPerformed() {
-    Evu newEvu;
+  private void searchField_actionPerformed() {
     int id;
-
     try {
-      id = Integer.parseInt(evuIdEdit.getText());
-    }
-    catch (NumberFormatException nfe) {
-      JOptionPane.showMessageDialog(this,"Unit Id must be a number",
-          "Invalid Id",JOptionPane.ERROR_MESSAGE);
-      evuIdEdit.setText(Integer.toString(currentEvu.getId()));
+      id = Integer.parseInt(searchField.getText());
+    } catch (NumberFormatException nfe) {
+      JOptionPane.showMessageDialog(this,
+                                    "Unit ID must be a number",
+                                    "Invalid ID",
+                                    JOptionPane.ERROR_MESSAGE);
+      searchField.setText(Integer.toString(currentEvu.getId()));
       return;
     }
+
     if (currentArea.isValidUnitId(id)) {
-      newEvu = currentArea.getEvu(id);
-    }
-    else {
-      newEvu = null;
-    }
-    if (newEvu == null) {
-      String msg = id + " is not a valid Unit Id.";
-      JOptionPane.showMessageDialog(this,msg,"Unit Id not found",
-          JOptionPane.ERROR_MESSAGE);
-      evuIdEdit.setText(Integer.toString(currentEvu.getId()));
-    }
-    else {
-      currentEvu = newEvu;
+      currentEvu = currentArea.getEvu(id);
       updateDialog();
+    } else {
+      JOptionPane.showMessageDialog(this,
+                                    "Unit " + id + " was not found.",
+                                    "Unit ID Not Found",
+                                    JOptionPane.ERROR_MESSAGE);
+      searchField.setText(Integer.toString(currentEvu.getId()));
     }
   }
 
