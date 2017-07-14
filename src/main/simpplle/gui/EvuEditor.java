@@ -95,7 +95,7 @@ public class EvuEditor extends JDialog {
   private JLabel specialAreaLabel = new JLabel();
   private JLabel ageLabel = new JLabel();
   private JLabel ageInvalidLabel = new JLabel();
-  private JLabel searchLabel = new JLabel("Search");
+  private JLabel searchLabel = new JLabel("Search by ID");
   private JLabel acresInvalidLabel = new JLabel();
   private JLabel initProcessLabel = new JLabel();
   private JLabel initProcessInvalidLabel = new JLabel();
