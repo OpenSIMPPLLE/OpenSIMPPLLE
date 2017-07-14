@@ -40,6 +40,16 @@ public class Lifeform implements Externalizable {
     public  static Lifeform   NA          = new Lifeform("no classification",4);
     private static Lifeform[] allValues   = new Lifeform[] {TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA};
 
+    public Lifeform() {}
+
+    private Lifeform(String name, int id) {
+
+        this.name = name;
+        this.id = id;
+
+        allLifeforms.put(name,this);
+    }
+
     public static void resetSimIds() {
         nextSimId = 0;
         for (Lifeform lifeform : simIdHm.values()) {
@@ -92,15 +102,7 @@ public class Lifeform implements Externalizable {
 
     public static int numValues() { return 5; }
 
-    public Lifeform() {}
 
-    private Lifeform(String name, int id) {
-
-        this.name = name;
-        this.id = id;
-
-        allLifeforms.put(name,this);
-    }
 
     /**
      * Gets the lifeform id. Choices are 0 - trees, 1 shrubs, 2- herbacious, 3 - agriculture, 4 - no classification.
