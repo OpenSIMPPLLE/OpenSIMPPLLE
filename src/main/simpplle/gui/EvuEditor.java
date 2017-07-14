@@ -142,12 +142,12 @@ public class EvuEditor extends JDialog {
 
   /**
    * Constructor for Evu Editor.  Sets the frame owner, name, and modality.
-   * @param frame
-   * @param title
-   * @param modal
+   * @param owner frame that owns the dialog
+   * @param title name of dialog
+   * @param modal specifies whether dialog blocks user input to other top-level windows when shown
    */
-  public EvuEditor(Frame frame, String title, boolean modal) {
-    super(frame, title, modal);
+  public EvuEditor(Frame owner, String title, boolean modal) {
+    super(owner, title, modal);
     try  {
       jbInit();
       pack();
@@ -155,7 +155,7 @@ public class EvuEditor extends JDialog {
     catch(Exception ex) {
       ex.printStackTrace();
     }
-    this.theFrame = frame;
+    this.theFrame = owner;
     initialize();
   }
 
@@ -168,7 +168,7 @@ public class EvuEditor extends JDialog {
 
   /**
    * Sets the panel, components, colors, layouts, listeners, and borders for Evu Editor. 
-   * @throws Exception
+   * @throws Exception generic exception
    */
   void jbInit() throws Exception {
 
@@ -794,11 +794,11 @@ public class EvuEditor extends JDialog {
     }
   }
 
-/**
- * Shows the Invalid vegetative units radio buttons
- * @param e 'show invalid'
- */
-  void showInvalidRB_actionPerformed(ActionEvent e) {
+  /**
+   * Shows the Invalid vegetative units radio buttons
+   * @param e 'show invalid'
+   */
+  private void showInvalidRB_actionPerformed(ActionEvent e) {
     boolean existInvalid = currentArea.hasInvalidVegetationUnits();
     if (showStatus != SHOW_INVALID && existInvalid) {
       showStatus = SHOW_INVALID;
@@ -1075,7 +1075,7 @@ public class EvuEditor extends JDialog {
 
   /**
    * If an item changed in the road status combo box, it gets the item that was changed and sets the road status of the item.
-   * @param e
+   * @param e ItemEvent
    */
   private void roadStatusCB_itemStateChanged(ItemEvent e) {
     Roads.Status item = (Roads.Status) e.getItem();
