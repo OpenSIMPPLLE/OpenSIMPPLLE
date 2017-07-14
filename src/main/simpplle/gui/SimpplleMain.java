@@ -305,7 +305,7 @@ public class SimpplleMain extends JFrame {
         fileExit_actionPerformed(e);
       }
     });
-    newZone.setToolTipText("Load a new zone.");
+    newZone.setToolTipText("Loads logic for a geographic region");
     newZone.setText("New Zone");
     newZone.addActionListener(new java.awt.event.ActionListener() {
 
@@ -314,7 +314,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     newArea.setEnabled(false);
-    newArea.setToolTipText("Load an Area.");
+    newArea.setToolTipText("Loads a landscape from a geographic region");
     newArea.setText("New Area");
     newArea.addActionListener(new java.awt.event.ActionListener() {
 
@@ -323,7 +323,6 @@ public class SimpplleMain extends JFrame {
       }
     });
     runSimulation.setEnabled(false);
-    runSimulation.setToolTipText("Help");
     runSimulation.setText("Run Simulation");
     runSimulation.addActionListener(new java.awt.event.ActionListener() {
 
@@ -343,7 +342,7 @@ public class SimpplleMain extends JFrame {
     menuSettings.addActionListener(e -> actionMenuSettings(e));
     menuUtility.setText("Utilities");
     menuUtilityReset.setEnabled(false);
-    menuUtilityReset.setToolTipText("Removes Simulation and restores Area to initial conditions");
+    menuUtilityReset.setToolTipText("Discards simulation and restores area to initial conditions");
     menuUtilityReset.setText("Reset Area/Simulation");
     menuUtilityReset.addActionListener(new java.awt.event.ActionListener() {
 
@@ -632,7 +631,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     menuSysKnowOpen.setEnabled(false);
-    menuSysKnowOpen.setToolTipText("Loads knowledge components from a file");
+    menuSysKnowOpen.setToolTipText("Loads user-defined logic for a geographic region");
     menuSysKnowOpen.setText("Load User Knowledge");
     menuSysKnowOpen.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -640,7 +639,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     menuSysKnowSave.setEnabled(false);
-    menuSysKnowSave.setToolTipText("Saves knowledge components to a file");
+    menuSysKnowSave.setToolTipText("Saves user-defined logic for a geographic region");
     menuSysKnowSave.setText("Save User Knowledge");
     menuSysKnowSave.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -682,7 +681,7 @@ public class SimpplleMain extends JFrame {
     });
 
     menuSysKnowRestoreDefaults.setEnabled(false);
-    menuSysKnowRestoreDefaults.setToolTipText("Restores System Knowledge to defaults.");
+    menuSysKnowRestoreDefaults.setToolTipText("Restores system knowledge to defaults.");
     menuSysKnowRestoreDefaults.setText("Restore All Defaults");
     menuSysKnowRestoreDefaults.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -1392,9 +1391,9 @@ public class SimpplleMain extends JFrame {
 
     menuReportsFireSuppCostAll.setEnabled((Simpplle.getCurrentSimulation() == null));
 
-    menuResultAquaticUnit.setEnabled((Simpplle.getCurrentArea().existAquaticUnits()));
+    menuResultAquaticUnit.setEnabled((Simpplle.getCurrentArea().hasAquaticUnits()));
 
-    menuResultLandformUnit.setEnabled((Simpplle.getCurrentArea().existLandUnits()));
+    menuResultLandformUnit.setEnabled((Simpplle.getCurrentArea().hasLandUnits()));
 
     menuReportsUnit.setEnabled(true);
 
@@ -1448,7 +1447,7 @@ public class SimpplleMain extends JFrame {
    * If there are it
    */
   public void updateAreaValidity() {
-    if (Simpplle.getCurrentArea().existAnyInvalidVegUnits()) {
+    if (Simpplle.getCurrentArea().hasInvalidVegetationUnits()) {
       disableAreaControls(true);
       areaInvalidLabel.setText("(Invalid)");
     }
@@ -2364,7 +2363,7 @@ public class SimpplleMain extends JFrame {
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       String msg =
         "Invalid data was found in the units after loading\n" +
         "In addition any simulation data that may have existed has\n" +
@@ -2587,7 +2586,7 @@ public class SimpplleMain extends JFrame {
     }
     area.setMultipleLifeformStatus();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       area.fixEmptyDataUnits();
       msg = "Creation of the Area was only partially successful.\n" +
             "One or more of the units had invalid attribute data.\n" +
@@ -2679,7 +2678,7 @@ public class SimpplleMain extends JFrame {
     }
     setNormalState();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       msg = "Adding Attributes was only partially successful.\n" +
                        "One or more of the units had invalid attribute data.\n" +
                        "It was most likely caused by one of the following:\n" +
@@ -2737,7 +2736,7 @@ public class SimpplleMain extends JFrame {
     }
     updateAreaValidity();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       String msg =
         "Fix of incorrect states was only partially successful.\n" +
         "Remaining errors can be fixed by using the \"Edit Units\"\n" +

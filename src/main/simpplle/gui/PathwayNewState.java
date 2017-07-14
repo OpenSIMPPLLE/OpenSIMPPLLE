@@ -295,7 +295,7 @@ public class PathwayNewState extends JDialog {
        Area area = Simpplle.getCurrentArea();
        if (area != null) {
         area.updatePathwayData();
-        if (area.existAnyInvalidVegUnits() == false) {
+        if (area.hasInvalidVegetationUnits() == false) {
           JSimpplle.getSimpplleMain().markAreaValid();
         }
        }

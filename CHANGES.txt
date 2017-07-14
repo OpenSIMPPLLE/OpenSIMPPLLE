@@ -1,10 +1,13 @@
+
 Version 1.4.0 :
 
+    - Lookup tables in simulation results now have sequential identifiers
     - Removed unnecessary 'Check Unit Validity' button from unit editor
+    - Aligned labels to input fields in unit editor
 
 Version 1.3.11 : June 30, 2017
 
-    - Regeneration logic can now be loaded in isolation from a user knowledge file
+    - Regeneration logic user knowledge can now be loaded in isolation
     - Fixed null pointer exception thrown during simulations on certain habitat type groups
     - Fixed null pointer exception thrown while computing next EVU states
     - Fixed null pointer exception thrown when user knowledge loaded after a simulation

@@ -359,7 +359,7 @@ public class EvuEditor extends JDialog {
     acresInvalidLabel.setFont(serif);
     mainLabelsPanel.setLayout(gridLayout4);
     gridLayout4.setRows(9);
-    gridLayout4.setVgap(14);
+    gridLayout4.setVgap(20);
     mainValuesPanel.setLayout(gridLayout6);
     gridLayout6.setRows(9);
     mainAttribLayout.setAlignment(FlowLayout.LEFT);
@@ -805,11 +805,13 @@ public class EvuEditor extends JDialog {
       showStatus = SHOW_ALL;
     }
   }
-  /**
-   * Shows the Invalid vegetative units radio buttons
-   */
-  private void showInvalidRB_actionPerformed() {
-    boolean existInvalid = currentArea.existAnyInvalidVegUnits();
+
+/**
+ * Shows the Invalid vegetative units radio buttons
+ * @param e 'show invalid'
+ */
+  void showInvalidRB_actionPerformed(ActionEvent e) {
+    boolean existInvalid = currentArea.hasInvalidVegetationUnits();
     if (showStatus != SHOW_INVALID && existInvalid) {
       showStatus = SHOW_INVALID;
       if (numInvalid == 0) {

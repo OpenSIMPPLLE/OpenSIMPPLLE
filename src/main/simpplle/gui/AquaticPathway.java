@@ -395,7 +395,7 @@ public class AquaticPathway extends JDialog {
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       String msg =
         "Invalid states were created as a result of loading the new pathway\n" +
         "file.  In addition any simulation data that may have existed has\n" +
