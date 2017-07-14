@@ -86,6 +86,8 @@ public class EvuEditor extends JDialog {
   private JLabel htGrpInvalidLabel = new JLabel();
   private JLabel fmzLabel = new JLabel();
   private JLabel fmzInvalidLabel = new JLabel();
+  private JLabel idLabel = new JLabel("ID");
+  private JLabel idValueLabel = new JLabel("-1");
   private JLabel unitNumberLabel = new JLabel();
   private JLabel acresLabel = new JLabel();
   private JLabel ownershipLabel = new JLabel();
@@ -353,10 +355,10 @@ public class EvuEditor extends JDialog {
     evuIdEdit.addActionListener(e -> evuIdEdit_actionPerformed());
     acresInvalidLabel.setFont(serif);
     mainLabelsPanel.setLayout(gridLayout4);
-    gridLayout4.setRows(13);
+    gridLayout4.setRows(14);
     gridLayout4.setVgap(20);
     mainValuesPanel.setLayout(gridLayout6);
-    gridLayout6.setRows(13);
+    gridLayout6.setRows(14);
     mainAttribLayout.setAlignment(FlowLayout.LEFT);
     mainAttribLayout.setVgap(0);
     otherLabelsLayout.setRows(4);
@@ -403,6 +405,7 @@ public class EvuEditor extends JDialog {
     add(mainPanel);
     mainPanel.add(mainAttributePanel, BorderLayout.NORTH);
     mainAttributePanel.add(mainLabelsPanel);
+    mainLabelsPanel.add(idLabel);
     mainLabelsPanel.add(unitNumberLabel);
     mainLabelsPanel.add(ownershipLabel);
     mainLabelsPanel.add(roadStatusLabel);
@@ -417,6 +420,7 @@ public class EvuEditor extends JDialog {
     mainLabelsPanel.add(acresLabel);
     mainLabelsPanel.add(initProcessLabel);
     mainAttributePanel.add(mainValuesPanel);
+    mainValuesPanel.add(idValueLabel);
     mainValuesPanel.add(idEditPanel);
     idEditPanel.add(unitNumberEdit);
     mainValuesPanel.add(ownershipPanel);
@@ -667,7 +671,6 @@ public class EvuEditor extends JDialog {
     if (str == null) { str = ""; }
     unitNumberEdit.setText(str);
 
-
     // Ownership
     str = currentEvu.getOwnershipEditor();
     if (str == null) { str = ""; }
@@ -680,6 +683,9 @@ public class EvuEditor extends JDialog {
     str = currentEvu.getSpecialAreaEditor();
     if (str == null) { str = ""; }
     specialAreaEdit.setText(str);
+
+    // ID
+    idValueLabel.setText(Integer.toString(currentEvu.getId()));
   }
 
   /**
