@@ -31,6 +31,15 @@ public class Lifeform implements Externalizable {
     private short simId=-1; // Random Access File ID
     public static short nextSimId=0;
 
+    private static transient HashMap allLifeforms = new HashMap(5);
+
+    public  static Lifeform   TREES       = new Lifeform("trees",0);
+    public  static Lifeform   SHRUBS      = new Lifeform("shrubs",1);
+    public  static Lifeform   HERBACIOUS  = new Lifeform("herbacious",2);
+    public  static Lifeform   AGRICULTURE = new Lifeform("agriculture",3);
+    public  static Lifeform   NA          = new Lifeform("no classification",4);
+    private static Lifeform[] allValues   = new Lifeform[] {TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA};
+
     public static void resetSimIds() {
         nextSimId = 0;
         for (Lifeform lifeform : simIdHm.values()) {
@@ -79,14 +88,7 @@ public class Lifeform implements Externalizable {
         }
     }
 
-    private static transient HashMap allLifeforms = new HashMap(5);
 
-    public  static Lifeform   TREES       = new Lifeform("trees",0);
-    public  static Lifeform   SHRUBS      = new Lifeform("shrubs",1);
-    public  static Lifeform   HERBACIOUS  = new Lifeform("herbacious",2);
-    public  static Lifeform   AGRICULTURE = new Lifeform("agriculture",3);
-    public  static Lifeform   NA          = new Lifeform("no classification",4);
-    private static Lifeform[] allValues   = new Lifeform[] {TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA};
 
     public static int numValues() { return 5; }
 
