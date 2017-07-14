@@ -13,11 +13,10 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class contains methods for Lifeforms.  Choices of lifeforms are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA.
- * Lifeforms will have individual species.  Methods for these can be found in species.java
- *
- * @author Documentation by Brian Losi
- * <p>Original source code authorship: Kirk A. Moeller
+ * A life form is a classification of a set of species. The default classifications are trees,
+ * shrubs, herbs, agriculture, and no classification. The dominance, or amount of influence that a
+ * life form has on an ecological region, is specified by a number. Lower numbers correspond to a
+ * higher dominance.
  */
 
 public class Lifeform implements Externalizable {
