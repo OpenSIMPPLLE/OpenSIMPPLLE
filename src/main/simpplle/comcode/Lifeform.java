@@ -33,19 +33,19 @@ public class Lifeform implements Externalizable {
 
     private static transient HashMap allLifeforms = new HashMap(5);
 
-    public  static Lifeform   TREES       = new Lifeform("trees",0);
-    public  static Lifeform   SHRUBS      = new Lifeform("shrubs",1);
-    public  static Lifeform   HERBACIOUS  = new Lifeform("herbacious",2);
-    public  static Lifeform   AGRICULTURE = new Lifeform("agriculture",3);
-    public  static Lifeform   NA          = new Lifeform("no classification",4);
+    public  static Lifeform   TREES       = new Lifeform(0, "trees");
+    public  static Lifeform   SHRUBS      = new Lifeform(1, "shrubs");
+    public  static Lifeform   HERBACIOUS  = new Lifeform(2, "herbacious");
+    public  static Lifeform   AGRICULTURE = new Lifeform(3, "agriculture");
+    public  static Lifeform   NA          = new Lifeform(4, "no classification");
     private static Lifeform[] allValues   = new Lifeform[] {TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA};
 
     public Lifeform() {}
 
-    private Lifeform(String name, int id) {
+    private Lifeform(int id, String name) {
 
-        this.name = name;
         this.id = id;
+        this.name = name;
 
         allLifeforms.put(name,this);
     }
