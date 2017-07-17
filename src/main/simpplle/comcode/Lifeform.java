@@ -31,7 +31,7 @@ public class Lifeform implements Externalizable {
 
     private static final Map<String, Lifeform> lifeformsByName = new HashMap<>();
     private static final Map<Integer, Lifeform> lifeformsByDominance = new TreeMap<>();
-    private static final Map<Short, Lifeform> simIdHm = new HashMap<>();
+    private static final Map<Short, Lifeform> lifeformsBySimId = new HashMap<>();
 
     private static short nextSimId = 0;
 
@@ -162,7 +162,7 @@ public class Lifeform implements Externalizable {
         if (simId == -1) {
             simId = nextSimId;
             nextSimId++;
-            simIdHm.put(simId,this);
+            lifeformsBySimId.put(simId,this);
         }
         return simId;
     }
@@ -170,7 +170,7 @@ public class Lifeform implements Externalizable {
     public void setSimId(short id) {}
 
     public static Lifeform lookUpLifeform(short simId) {
-        return simIdHm.get(simId);
+        return lifeformsBySimId.get(simId);
     }
 
     public static int numValues() {
@@ -189,7 +189,7 @@ public class Lifeform implements Externalizable {
         for (int i=0; i<size; i++) {
             short id = in.readShort();
             Lifeform life = (Lifeform)in.readObject();
-            simIdHm.put(id,life);
+            lifeformsBySimId.put(id,life);
             if ( (id+1) > nextSimId) {
                 nextSimId = (short)(id+1);
             }
@@ -202,10 +202,10 @@ public class Lifeform implements Externalizable {
 
     public static void resetSimIds() {
         nextSimId = 0;
-        for (Lifeform lifeform : simIdHm.values()) {
+        for (Lifeform lifeform : lifeformsBySimId.values()) {
             lifeform.simId = -1;
         }
-        simIdHm.clear();
+        lifeformsBySimId.clear();
     }
 
     public String toString() {
@@ -220,10 +220,10 @@ public class Lifeform implements Externalizable {
 
     public static void writeExternalSimIdHm(ObjectOutput out) throws IOException {
         out.writeInt(version);
-        out.writeInt(simIdHm.size());
-        for (Short id : simIdHm.keySet()) {
+        out.writeInt(lifeformsBySimId.size());
+        for (Short id : lifeformsBySimId.keySet()) {
             out.writeShort(id);
-            Lifeform life = simIdHm.get(id);
+            Lifeform life = lifeformsBySimId.get(id);
             out.writeObject(life);
         }
     }
