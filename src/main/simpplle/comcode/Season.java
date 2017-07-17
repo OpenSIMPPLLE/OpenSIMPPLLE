@@ -12,8 +12,8 @@ public enum Season {
   WINTER,
   YEAR;
 
-  public static Season getPriorSeason(Season season) {
-    switch (season) {
+  public Season getPriorSeason() {
+    switch (this) {
       case SPRING:
         return WINTER;
       case SUMMER:
@@ -22,8 +22,6 @@ public enum Season {
         return SUMMER;
       case WINTER:
         return FALL;
-      case YEAR:
-        return YEAR;
       default:
         return YEAR;
     }

@@ -3130,7 +3130,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
       if (ts == 0) { return getLifeforms(0, Season.YEAR); }
 
-      Season priorSeason = Season.getPriorSeason(season);
+      Season priorSeason = season.getPriorSeason();
       lives = getLifeforms(ts, priorSeason);
       if (lives.size() == 0) { lives = null; }
       season = priorSeason;
@@ -3167,7 +3167,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
       if (ts == 0) { return getState(0,lifeform,Season.YEAR); }
 
-      Season priorSeason = Season.getPriorSeason(season);
+      Season priorSeason = season.getPriorSeason();
       state = getState(ts,lifeform,priorSeason);
       season = priorSeason;
       count++;
