@@ -258,9 +258,9 @@ public class BisonGrazing extends Process {
     moderate = 0;
     heavy = 0;
 
-    Climate.Season currentSeason  = Simpplle.getCurrentSimulation().getCurrentSeason();
+    Season currentSeason  = Simpplle.getCurrentSimulation().getCurrentSeason();
     short          fireSeasonProb = evu.getFireSeasonProb();
-    Climate.Season fireSeason     = evu.getFireSeason();
+    Season fireSeason     = evu.getFireSeason();
     switch (currentSeason) {
       case SPRING: return;
       case SUMMER:
@@ -270,13 +270,13 @@ public class BisonGrazing extends Process {
         return;
       case FALL:
       case WINTER:
-        if (fireSeasonProb > 0 && fireSeason == Climate.Season.SPRING) {
+        if (fireSeasonProb > 0 && fireSeason == Season.SPRING) {
           break;
         }
         return;
     }
 
-    if (currentSeason == Climate.Season.SPRING) {
+    if (currentSeason == Season.SPRING) {
       return;
     }
 

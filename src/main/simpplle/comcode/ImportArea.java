@@ -350,10 +350,10 @@ public class ImportArea {
             // Even invalid states need to be set in the evu, in order to
             // allow for later correction.
             state = new VegetativeType(species, sizeClass, age, density);
-            evu.setState(state,Climate.Season.YEAR);
+            evu.setState(state, Season.YEAR);
           }
           else {
-            evu.setState(state,Climate.Season.YEAR);
+            evu.setState(state, Season.YEAR);
           }
 
           // In case there is not Initial Process.
@@ -631,7 +631,7 @@ public class ImportArea {
       }
 
       if (!emptyState) {
-        evu.setState(state, Climate.Season.YEAR);
+        evu.setState(state, Season.YEAR);
       }
 
       int numTrackSpecies = Math.round(strTok.getFloatToken());

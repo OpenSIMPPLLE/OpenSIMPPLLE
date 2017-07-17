@@ -13,7 +13,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.*;
 import simpplle.comcode.FireEvent;
-import simpplle.comcode.Climate;
+import simpplle.comcode.Season;
 
 /** 
  * This dialog edits the probability of the season of a fire event, which occur in grassland zones.
@@ -150,10 +150,10 @@ public class FireSeason extends JDialog {
 
   private void initialize() {
 
-    spring = FireEvent.getFireSeasonData(Climate.Season.SPRING);
-    summer = FireEvent.getFireSeasonData(Climate.Season.SUMMER);
-    fall   = FireEvent.getFireSeasonData(Climate.Season.FALL);
-    winter = FireEvent.getFireSeasonData(Climate.Season.WINTER);
+    spring = FireEvent.getFireSeasonData(Season.SPRING);
+    summer = FireEvent.getFireSeasonData(Season.SUMMER);
+    fall   = FireEvent.getFireSeasonData(Season.FALL);
+    winter = FireEvent.getFireSeasonData(Season.WINTER);
 
     springField.setText(Integer.toString(spring));
     summerField.setText(Integer.toString(summer));

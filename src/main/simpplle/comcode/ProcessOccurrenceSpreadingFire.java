@@ -29,7 +29,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   private int            weatherProb;
   private int            weatherRangeIndex;
   private boolean        isExtreme;
-  private Climate.Season fireSeason;
+  private Season fireSeason;
   private boolean        fireSuppressed;
   private int            fireSuppRandomNumber;
   private Node           lineProductionNode;
@@ -94,7 +94,7 @@ public class ProcessOccurrenceSpreadingFire extends ProcessOccurrenceSpreading i
   /**
    * @return The season {spring,summer,fall,winter} that this fire occurs.
    */
-  public Climate.Season getFireSeason() {
+  public Season getFireSeason() {
     return fireSeason;
   }
 

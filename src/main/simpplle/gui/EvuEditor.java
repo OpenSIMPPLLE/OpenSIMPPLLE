@@ -28,7 +28,6 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import simpplle.comcode.*;
 import java.util.*;
-import simpplle.comcode.Climate.*;
 
 /**
  * This class creates an Existing Vegetative Unit Editor dialog.  It allows the user to edit Evu attributes.

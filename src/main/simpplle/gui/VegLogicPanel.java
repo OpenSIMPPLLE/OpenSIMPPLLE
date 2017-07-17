@@ -9,7 +9,7 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-import simpplle.comcode.Climate.Season;
+
 import simpplle.comcode.*;
 
 /**

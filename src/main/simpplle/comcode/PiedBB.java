@@ -119,7 +119,7 @@ public class PiedBB extends Process {
     VegSimStateData priorState = evu.getState(cTime-1);
     ProcessType processType = (priorState != null ? priorState.getProcess() : ProcessType.NONE);
 
-    Climate.Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
+    Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
 
     cols[1] = isAdjSrf;
     cols[2] = (processType == ProcessType.MIXED_SEVERITY_FIRE || processType == ProcessType.LIGHT_SEVERITY_FIRE);
@@ -209,7 +209,7 @@ public class PiedBB extends Process {
     VegSimStateData priorState = evu.getState(cTime-1);
     ProcessType processType = (priorState != null ? priorState.getProcess() : ProcessType.NONE);
 
-    Climate.Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
+    Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
 
     cols[1] = isAdjSrf;
     cols[2] = (processType == ProcessType.MIXED_SEVERITY_FIRE || processType == ProcessType.LIGHT_SEVERITY_FIRE);

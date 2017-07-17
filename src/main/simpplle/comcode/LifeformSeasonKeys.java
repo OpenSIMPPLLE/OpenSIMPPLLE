@@ -9,7 +9,6 @@
 package simpplle.comcode;
 
 import org.apache.commons.collections.keyvalue.*;
-import simpplle.comcode.Climate.*;
 
 /**
  * This class contains the methods to control the multi keys data structure used throughout code
@@ -19,7 +18,7 @@ import simpplle.comcode.Climate.*;
  */
 
 public class LifeformSeasonKeys {
-  private static MultiKey[][] keys = new MultiKey[Lifeform.numValues()][Climate.Season.numValues()];
+  private static MultiKey[][] keys = new MultiKey[Lifeform.numValues()][Season.numValues()];
 
   static {
     Lifeform[] lives = Lifeform.getAllValues();

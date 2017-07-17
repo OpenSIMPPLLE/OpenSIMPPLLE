@@ -11,15 +11,13 @@ package simpplle.gui;
 import java.io.File;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import static simpplle.comcode.Climate.Season;
+import simpplle.comcode.Season;
 import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.SimpplleError;
 import simpplle.comcode.Climate;
-import simpplle.comcode.Simpplle;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.*;
 

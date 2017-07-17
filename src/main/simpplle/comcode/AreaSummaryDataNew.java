@@ -9,8 +9,6 @@
 package simpplle.comcode;
 
 import org.hibernate.*;
-import java.sql.*;
-import simpplle.comcode.Climate.*;
 
 /**
  * This is the new area summary data class which replaces the old Area SummaryData class deprecated in V2.5

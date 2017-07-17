@@ -363,7 +363,7 @@ public class FireSpreadLogicData extends LogicData implements Externalizable {
 
     }
 
-    Climate.Season currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
+    Season currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
 
     int prob = isExtreme ? Evu.SE : Evu.S;
 

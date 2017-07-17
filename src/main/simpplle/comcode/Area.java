@@ -12,7 +12,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import simpplle.JSimpplle;
-import simpplle.comcode.Climate.Season;
 
 import java.io.*;
 import java.sql.SQLException;
@@ -2157,7 +2156,7 @@ public final class Area implements Externalizable {
         }
         for (int l=0; l<lives.size(); l++) {
           if (evu.hasLifeform(lives.get(l),cStep)) {
-            evu.updateState(lives.get(l),process, (short) Evu.L, Climate.Season.YEAR);
+            evu.updateState(lives.get(l),process, (short) Evu.L, Season.YEAR);
           }
         }
       }
@@ -3553,7 +3552,7 @@ public final class Area implements Externalizable {
           oldHtGrpStr.equals(allEvu[i].getHabitatTypeGroup().toString()) &&
           oldVegTypeStr.equals(state.getVeg().toString())) {
         allEvu[i].setHabitatTypeGroup(newHtGrp);
-        allEvu[i].setState(newVegetativeType,Climate.Season.YEAR);
+        allEvu[i].setState(newVegetativeType, Season.YEAR);
         allEvu[i].updateInitialTreatmentSavedState(newVegetativeType);
       }
     }

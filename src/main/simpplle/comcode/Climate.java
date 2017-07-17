@@ -27,24 +27,6 @@ public class Climate {
   // Do not change order of these seasons as other code is dependent on
   // the order, including the position of YEAR.
 
-  public enum Season {
-
-    SPRING, SUMMER, FALL, WINTER, YEAR;
-
-    public static int numValues() { return 5; }
-
-    public static Season getPriorSeason(Season season) {
-      switch (season) {
-        case SPRING: return WINTER;
-        case SUMMER: return SPRING;
-        case FALL:   return SUMMER;
-        case WINTER: return FALL;
-        case YEAR:   return YEAR;
-        default:     return YEAR;
-      }
-    }
-  }
-
   public static Season[] allSeasons = Season.values();
 
   public enum Moisture { WETTER, NORMAL, DRIER }
@@ -425,7 +407,7 @@ public class Climate {
   public void removeClimate(int tStep, Season season) {
     if (userValues.containsKey(tStep) == false) { return; }
 
-    if (season == Climate.Season.YEAR) {
+    if (season == Season.YEAR) {
       userValues.remove(tStep);
     } else {
       ArrayList<Season> seasons = userValues.get(tStep);

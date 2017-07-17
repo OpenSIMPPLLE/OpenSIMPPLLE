@@ -8,6 +8,8 @@
 
 package simpplle.gui;
 
+import simpplle.comcode.Season;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -396,16 +398,16 @@ public class ClimateDialog extends JDialog {
     wrap.yearCB_actionPerformed(e);
   }
   public void springRB_actionPerformed(ActionEvent e) {
-    wrap.seasonChanged(e,simpplle.comcode.Climate.Season.SPRING);
+    wrap.seasonChanged(e, Season.SPRING);
   }
   public void summerRB_actionPerformed(ActionEvent e) {
-    wrap.seasonChanged(e,simpplle.comcode.Climate.Season.SUMMER);
+    wrap.seasonChanged(e, Season.SUMMER);
   }
   public void fallRB_actionPerformed(ActionEvent e) {
-    wrap.seasonChanged(e,simpplle.comcode.Climate.Season.FALL);
+    wrap.seasonChanged(e, Season.FALL);
   }
   public void winterRB_actionPerformed(ActionEvent e) {
-    wrap.seasonChanged(e,simpplle.comcode.Climate.Season.WINTER);
+    wrap.seasonChanged(e, Season.WINTER);
   }
 
   public void userCB_actionPerformed(ActionEvent e) {

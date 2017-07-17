@@ -8,8 +8,6 @@
 
 package simpplle.comcode;
 
-import java.util.*;
-import java.beans.XMLEncoder;
 import java.io.Externalizable;
 import java.io.ObjectInput;
 import java.io.IOException;
@@ -120,7 +118,7 @@ public class FireTypeLogicData extends LogicData implements Externalizable {
 
     if (super.isMatch(resistance,evu,lifeform)) {
 
-      Climate.Season currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
+      Season currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
 
       return getFireType(Simpplle.getClimate().getMoisture(currentSeason));
 

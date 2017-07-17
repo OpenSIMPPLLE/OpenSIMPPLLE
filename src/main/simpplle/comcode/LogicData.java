@@ -16,8 +16,6 @@ import java.util.Collections;
 import java.io.Externalizable;
 import java.util.HashMap;
 
-import simpplle.comcode.Climate.*;
-
 /**
  * This is an abstract class for LogicData, itself an extension of AbstractLogicData.
  * It provides many of the methods used in the logic data classes throughout OpenSimpplle.
@@ -89,7 +87,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
   public  boolean                  treatmentInclusiveTimeSteps;
   public  boolean                  treatmentAnyExcept;
 
-  public  Climate.Season           season;
+  public Season season;
 
   public  ArrayList<Climate.Moisture>    moistureList;
   public  int                            moistureCountTS;
@@ -172,7 +170,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
     defaultTrailStatusDesc     = true;
     defaultLandtypeDesc        = true;
 
-    season          = Climate.Season.YEAR;
+    season          = Season.YEAR;
 
     moistureList = new ArrayList<Climate.Moisture>();
     moistureCountTS = 1;
@@ -396,8 +394,8 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
       case BaseLogic.PROCESS_COL:          break; // set in table editor
       case BaseLogic.TREATMENT_COL:        break; // set in table editor
       case BaseLogic.SEASON_COL:
-        if (season != (Climate.Season)value) {
-          season = (Climate.Season) value;
+        if (season != (Season)value) {
+          season = (Season) value;
           SystemKnowledge.markChanged(sysKnowKind);
         }
         break;
@@ -1225,7 +1223,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
       treatmentAnyExcept        = in.readBoolean();
     }
 
-    season = Climate.Season.valueOf((String)in.readObject());
+    season = Season.valueOf((String)in.readObject());
 
     if (version > 1) {
       moistureList = (ArrayList<Climate.Moisture>)in.readObject();
@@ -1599,10 +1597,10 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
       if (!processAnyExcept) { return false; }
     }
 
-    Climate.Season currentSeason;
+    Season currentSeason;
     if (simulation != null  && simulation.isSimulationRunning()) {
       currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
-      if (season != Climate.Season.YEAR && season != currentSeason) {
+      if (season != Season.YEAR && season != currentSeason) {
         return false;
       }
     }
@@ -1613,7 +1611,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
       currentSeason = unitSeason;
     }
     else {
-      currentSeason = Climate.Season.YEAR;
+      currentSeason = Season.YEAR;
     }
 
     if (isSuccInLandscapeSeed) {
