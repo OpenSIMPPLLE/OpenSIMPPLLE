@@ -64,7 +64,7 @@ public class Lifeform implements Externalizable {
      * @param dominance the lifeform dominance (0,1,2, or 3)
      * @return lifeform object
      */
-    public static Lifeform get(int dominance) {
+    public static Lifeform findByDominance(int dominance) {
         return allValues[dominance];
     }
 
