@@ -1,7 +1,8 @@
 package simpplle.comcode;
 
 /**
- * Created by greg on 7/17/17.
+ * A season represents a division of a year. This enumeration accounts for either four seasons
+ * (spring, summer, fall, winter) or one season (year).
  */
 public enum Season {
 
