@@ -74,8 +74,8 @@ public class ClimateDialogWrapper {
     currentSeason = Season.YEAR;
     userOnly      = false;
 
-    Temperature[] allTemperatures = Climate.getAllTemperatures();
-    Moisture[] allMoisture        = Climate.getAllMoisture();
+    Temperature[] allTemperatures = Temperature.values();
+    Moisture[] allMoisture = Moisture.values();
     int      i;
 
     climate            = simpplle.comcode.Simpplle.getClimate();

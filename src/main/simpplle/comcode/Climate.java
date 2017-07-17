@@ -142,18 +142,6 @@ public class Climate {
   }
 
   /**
-   * Gets all the temperatures in this Climate object.  It is an array of temperatures.
-   * @return the array of temperatures for this climate.
-   */
-  public static Temperature[] getAllTemperatures() { return Temperature.values(); }
-
-  /**
-   * Gets all the moistures for this Climate object.  It is an array of moisture values.  
-   * @return an arrray of moisture values for this climate
-   */
-  public static Moisture[] getAllMoisture() { return Moisture.values(); }
-
-  /**
    * gets the default temperature.  This defaults to NORMAL throughout the climate class
    * @return normal temperature
    */
