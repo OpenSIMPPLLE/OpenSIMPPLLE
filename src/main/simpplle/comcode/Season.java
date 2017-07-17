@@ -12,10 +12,6 @@ public enum Season {
   WINTER,
   YEAR;
 
-  public static int numValues() {
-    return 5;
-  }
-
   public static Season getPriorSeason(Season season) {
     switch (season) {
       case SPRING:

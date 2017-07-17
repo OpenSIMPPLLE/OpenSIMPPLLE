@@ -18,7 +18,7 @@ import org.apache.commons.collections.keyvalue.*;
  */
 
 public class LifeformSeasonKeys {
-  private static MultiKey[][] keys = new MultiKey[Lifeform.numValues()][Season.numValues()];
+  private static MultiKey[][] keys = new MultiKey[Lifeform.numValues()][Season.values().length];
 
   static {
     Lifeform[] lives = Lifeform.getAllValues();

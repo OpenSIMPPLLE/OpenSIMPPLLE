@@ -60,8 +60,8 @@ public class Climate {
 
     userValues  = new TreeMap<Integer,ArrayList<Season>>();
     changed     = false;
-    temperature = new Temperature[Season.numValues()][Simulation.MAX_TIME_STEPS+1];
-    moisture    = new Moisture[Season.numValues()][temperature[0].length];
+    temperature = new Temperature[Season.values().length][Simulation.MAX_TIME_STEPS+1];
+    moisture    = new Moisture[Season.values().length][temperature[0].length];
 
     initProbs();
 
