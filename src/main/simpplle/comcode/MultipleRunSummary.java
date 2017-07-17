@@ -11,9 +11,6 @@ package simpplle.comcode;
 import java.io.*;
 import java.util.*;
 import java.text.NumberFormat;
-import org.hibernate.Query;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 
 /**
  * This class contains methods for Multiple Run Summary.
@@ -828,7 +825,7 @@ public final class MultipleRunSummary implements Externalizable {
         updateStateSummary(summary[TREATMENT.ordinal()], treatment.getType(), acres, cStep);
       }
 
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
     for (int i=0; i<allLives.length; i++) {
       if (evu.hasLifeform(allLives[i],cStep) == false) { continue; }
 
@@ -952,7 +949,7 @@ public final class MultipleRunSummary implements Externalizable {
       }
 
       if (simulation.isLastSeason()) {
-        Lifeform[] allLives = Lifeform.getAllValues();
+        Lifeform[] allLives = Lifeform.getLifeformsByDominance();
         for (int i = 0; i < allLives.length; i++) {
           if (evu.hasLifeform(allLives[i],cStep) == false) { continue; }
 

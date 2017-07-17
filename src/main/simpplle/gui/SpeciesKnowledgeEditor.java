@@ -147,8 +147,8 @@ public class SpeciesKnowledgeEditor extends JDialog {
 
     // ** Lifeform Column **
     column = table.getColumnModel().getColumn(Species.LIFEFORM_COL);
-    column.setCellRenderer(new MyJComboBoxRenderer(Lifeform.getAllValues()));
-    column.setCellEditor(new MyJComboBoxEditor(Lifeform.getAllValues()));
+    column.setCellRenderer(new MyJComboBoxRenderer(Lifeform.getLifeformsByDominance()));
+    column.setCellEditor(new MyJComboBoxEditor(Lifeform.getLifeformsByDominance()));
 
     // ** Fire Resistance Column **
     column = table.getColumnModel().getColumn(Species.FIRE_RESISTANCE_COL);

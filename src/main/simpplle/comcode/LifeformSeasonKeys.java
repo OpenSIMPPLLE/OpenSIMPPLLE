@@ -22,7 +22,7 @@ public class LifeformSeasonKeys {
   private static MultiKey[][] keys = new MultiKey[Lifeform.numValues()][Climate.Season.numValues()];
 
   static {
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
 
     for (int l=0; l<lives.length; l++) {
       for (int s=0; s<Climate.allSeasons.length; s++) {

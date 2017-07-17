@@ -30,14 +30,14 @@ public class Lifeform implements Externalizable {
     private short simId=-1; // Random Access File ID
     public static short nextSimId=0;
 
-    private static Map<String, Lifeform> lifeformsByName = new HashMap<>(5);
+    private static Map<String, Lifeform> lifeformsByName = new HashMap<>();
+    private static Map<Integer, Lifeform> lifeformsByDominance = new TreeMap<>();
 
-    public  static Lifeform   TREES       = new Lifeform(0, "trees");
-    public  static Lifeform   SHRUBS      = new Lifeform(1, "shrubs");
-    public  static Lifeform   HERBACIOUS  = new Lifeform(2, "herbacious");
-    public  static Lifeform   AGRICULTURE = new Lifeform(3, "agriculture");
-    public  static Lifeform   NA          = new Lifeform(4, "no classification");
-    private static Lifeform[] allValues   = new Lifeform[] {TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA};
+    public static Lifeform TREES       = new Lifeform(0, "trees");
+    public static Lifeform SHRUBS      = new Lifeform(1, "shrubs");
+    public static Lifeform HERBACIOUS  = new Lifeform(2, "herbacious");
+    public static Lifeform AGRICULTURE = new Lifeform(3, "agriculture");
+    public static Lifeform NA          = new Lifeform(4, "no classification");
 
     /**
      * Creates a life form. This constructor is required for the externalizable interface.
@@ -55,7 +55,8 @@ public class Lifeform implements Externalizable {
         this.dominance = dominance;
         this.name = name;
 
-        lifeformsByName.put(name,this);
+        lifeformsByName.put(name, this);
+        lifeformsByDominance.put(dominance, this);
     }
 
     /**
@@ -70,26 +71,28 @@ public class Lifeform implements Externalizable {
         return (Lifeform) lifeformsByName.get(name.toLowerCase());
     }
 
-    public static Lifeform[] getAllValues() {
-        return allValues;
+    public static Lifeform[] getLifeformsByDominance() {
+        return (Lifeform[]) lifeformsByDominance.values().toArray();
     }
 
     /**
      * creates an arraylist of lifeforms choices are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA
      */
-    public static ArrayList<Lifeform> getAllValuesList() {
-        ArrayList<Lifeform> lives = new ArrayList<Lifeform>();
-        for (int i = 0; i < allValues.length; i++) {
-            lives.add(allValues[i]);
+    public static ArrayList<Lifeform> getLifeformsByDominanceList() {
+        ArrayList<Lifeform> list = new ArrayList<>();
+        for (Lifeform lifeform : lifeformsByDominance.values()) {
+            list.add(lifeform);
         }
-        return lives;
+        return list;
     }
 
     /**
      * Gets the lifeform dominance. Choices are 0 - trees, 1 shrubs, 2- herbacious, 3 - agriculture, 4 - no classification.
      * @return lifeform ID
      */
-    public int getDominance() { return dominance; }
+    public int getDominance() {
+        return dominance;
+    }
 
     /**
      * Returns a less dominant life form. Lifeforms are stored in an array from most dominant to
@@ -100,7 +103,7 @@ public class Lifeform implements Externalizable {
      * @return a less dominant life form, or null if it is the least dominant.
      */
     public static Lifeform getLessDominant(Lifeform lifeform) {
-        for (Lifeform other : allValues) {
+        for (Lifeform other : lifeformsByDominance.values()) {
             if (lifeform.getDominance() < other.getDominance()) {
                 return other;
             }
@@ -116,7 +119,7 @@ public class Lifeform implements Externalizable {
      */
     public static List<Lifeform> getMoreDominant(Lifeform lifeform) {
         List<Lifeform> moreDominant = new ArrayList<>();
-        for (Lifeform other : allValues) {
+        for (Lifeform other : lifeformsByDominance.values()) {
             if (other.getDominance() < lifeform.getDominance()) {
                 moreDominant.add(other);
             }

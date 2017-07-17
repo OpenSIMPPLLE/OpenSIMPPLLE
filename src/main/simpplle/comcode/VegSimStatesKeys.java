@@ -37,7 +37,7 @@ public class VegSimStatesKeys {
 //    }
 //  }
   static {
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
 
     keys = new String[Simulation.MAX_TIME_STEPS][lives.length];
 

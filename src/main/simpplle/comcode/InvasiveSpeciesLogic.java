@@ -244,7 +244,7 @@ public final class InvasiveSpeciesLogic extends BaseLogic {
     for (int i=0; i<evus.length; i++) {
       if (evus[i] == null) { continue; }
 
-      Lifeform[] lifeforms = Lifeform.getAllValues();
+      Lifeform[] lifeforms = Lifeform.getLifeformsByDominance();
       for (int j=0; j<lifeforms.length; j++) {
         if (evus[i].hasInvasiveState(lifeforms[j]) || evus[i].hasInvasive(lifeforms[j])) {
           invasiveUnits.add(evus[i]);

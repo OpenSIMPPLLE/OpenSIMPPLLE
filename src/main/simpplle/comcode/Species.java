@@ -508,7 +508,7 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
 
     allSpeciesList.clear();
 
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
 
     for (int i=0; i<allLives.length; i++) {
       list = (ArrayList)lifeformHm.get(allLives[i].toString());
