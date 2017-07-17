@@ -8,7 +8,6 @@
 
 package simpplle.comcode;
 
-import java.beans.*;
 import java.io.*;
 import java.util.*;
 
@@ -75,7 +74,7 @@ public class Lifeform implements Externalizable {
      * @param name name of life forms (uppercase)
      * @return lifeform object from allLifeforms hash map (lowercase)
      */
-    public static Lifeform get(String name) {
+    public static Lifeform findByName(String name) {
         if (name.equalsIgnoreCase("NA")) { name = "no classification"; }
         return (Lifeform) allLifeforms.get(name.toLowerCase());
     }
@@ -229,7 +228,7 @@ public class Lifeform implements Externalizable {
      * @throws java.io.ObjectStreamException - not caught in this class
      */
     private Object readResolve () throws java.io.ObjectStreamException {
-        return Lifeform.get(name);
+        return Lifeform.findByName(name);
     }
 
     public static void resetSimIds() {

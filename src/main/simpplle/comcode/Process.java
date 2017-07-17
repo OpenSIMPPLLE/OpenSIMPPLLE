@@ -947,7 +947,7 @@ public abstract class Process {
         strTok = new StringTokenizerPlus(line,",");
         if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
-        Lifeform life = Lifeform.get(strTok.getToken());
+        Lifeform life = Lifeform.findByName(strTok.getToken());
         ArrayList<ProcessType> pList = new ArrayList<>(strTok.countTokens());
         lifeformSimProcesses.put(life,pList);
         while (strTok.hasMoreElements()) {

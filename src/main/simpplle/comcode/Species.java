@@ -652,7 +652,7 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
         if (str == null || str.trim().length() == 0) {
           throw new SimpplleError("No Lifeform type in line: " + line);
         }
-        lf = Lifeform.get(str.trim());
+        lf = Lifeform.findByName(str.trim());
         if (lf == null) { lf = Lifeform.NA; }
         species.setLifeform(lf);
 
