@@ -30,7 +30,7 @@ public class Lifeform implements Externalizable {
     private short simId=-1; // Random Access File ID
     public static short nextSimId=0;
 
-    private static transient HashMap allLifeforms = new HashMap(5);
+    private static Map<String, Lifeform> allLifeforms = new HashMap<>(5);
 
     public  static Lifeform   TREES       = new Lifeform(0, "trees");
     public  static Lifeform   SHRUBS      = new Lifeform(1, "shrubs");
