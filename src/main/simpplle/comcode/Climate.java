@@ -59,9 +59,6 @@ public class Climate {
   // Needed for GUI state information.
   private boolean changed;
 
-//  private static String allTemperatures[] = {"COOLER", "NORMAL", "WARMER"};
-//  private static String allMoisture[] = {"WETTER", "NORMAL", "DRIER"};
-
   /**
    * Initializes the TreeMap to store user values, Temperature [][] and Moisture [][], and a new random variable maker
    * Then calls initProbs which sets all temperature and moisture for seasons to normal
