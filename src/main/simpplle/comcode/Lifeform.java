@@ -55,29 +55,22 @@ public class Lifeform implements Externalizable {
         this.dominance = dominance;
         this.name = name;
 
-        lifeformsByName.put(name, this);
+        lifeformsByName.put(name.toLowerCase(), this);
         lifeformsByDominance.put(dominance, this);
     }
 
-    /**
-     * Gets the lifeform object from the string name.
-     * Objects returned will be trees, shrubs, herbacious, agriculture, no classification.
-     * The corresponding lifeforms strings are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA
-     * @param name name of life forms (uppercase)
-     * @return lifeform object from lifeformsByName hash map (lowercase)
-     */
     public static Lifeform findByName(String name) {
-        if (name.equalsIgnoreCase("NA")) { name = "no classification"; }
-        return (Lifeform) lifeformsByName.get(name.toLowerCase());
+        if (name.equalsIgnoreCase("NA")) {
+            return lifeformsByName.get("no classification");
+        } else {
+            return lifeformsByName.get(name.toLowerCase());
+        }
     }
 
     public static Lifeform[] getLifeformsByDominance() {
         return (Lifeform[]) lifeformsByDominance.values().toArray();
     }
 
-    /**
-     * creates an arraylist of lifeforms choices are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA
-     */
     public static ArrayList<Lifeform> getLifeformsByDominanceList() {
         ArrayList<Lifeform> list = new ArrayList<>();
         for (Lifeform lifeform : lifeformsByDominance.values()) {
@@ -86,10 +79,6 @@ public class Lifeform implements Externalizable {
         return list;
     }
 
-    /**
-     * Gets the lifeform dominance. Choices are 0 - trees, 1 shrubs, 2- herbacious, 3 - agriculture, 4 - no classification.
-     * @return lifeform ID
-     */
     public int getDominance() {
         return dominance;
     }
@@ -161,16 +150,10 @@ public class Lifeform implements Externalizable {
         return dominant;
     }
 
-    /**
-     * Gets the name of lifeform. Choices are trees, shrubs, herbacious, agriculture, or no classification.
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Sets the name for this lifeform.  Choices are trees, shrubs, herbacious, agriculture, no classification.
-     */
     public void setName(String name) {
         this.name = name;
     }
@@ -184,19 +167,16 @@ public class Lifeform implements Externalizable {
         return simId;
     }
 
-    /**
-     * Needs to be present for database, does nothing.
-     * @param id short
-     */
     public void setSimId(short id) {}
 
-    public static Lifeform lookUpLifeform(short simId) { return simIdHm.get(simId); }
+    public static Lifeform lookUpLifeform(short simId) {
+        return simIdHm.get(simId);
+    }
 
-    public static int numValues() { return 5; }
+    public static int numValues() {
+        return lifeformsByName.size();
+    }
 
-    /**
-     * Reads in lifeforms.  These are read in following order: lifeform name, lifeform ID
-     */
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         int version = in.readInt();
         name = (String)in.readObject();
@@ -216,11 +196,6 @@ public class Lifeform implements Externalizable {
         }
     }
 
-    /**
-     * Reads a lifeform object object from object stream.
-     * @return
-     * @throws java.io.ObjectStreamException - not caught in this class
-     */
     private Object readResolve () throws java.io.ObjectStreamException {
         return Lifeform.findByName(name);
     }
@@ -233,16 +208,10 @@ public class Lifeform implements Externalizable {
         simIdHm.clear();
     }
 
-    /**
-     * Returns the string name of lifefrom, one of the two identifiers of lifeforms (along with Id).
-     * Choices are trees, shrubs, herbacious, agriculture, or no classification.
-     *
-     */
-    public String toString() { return name; }
+    public String toString() {
+        return name;
+    }
 
-    /**
-     * Writes a lifeform (name and Id) to external source.
-     */
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeInt(version);
         out.writeObject(name);
