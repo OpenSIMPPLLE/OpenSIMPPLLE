@@ -21,23 +21,23 @@ import java.util.*;
 public class Lifeform implements Externalizable {
 
     static final long serialVersionUID = 8809364504123901646L;
-    static final int  version          = 1;
+    static final int  version = 1;
+
+    public static final Lifeform TREES       = new Lifeform(0, "trees");
+    public static final Lifeform SHRUBS      = new Lifeform(1, "shrubs");
+    public static final Lifeform HERBACIOUS  = new Lifeform(2, "herbacious");
+    public static final Lifeform AGRICULTURE = new Lifeform(3, "agriculture");
+    public static final Lifeform NA          = new Lifeform(4, "no classification");
+
+    private static final Map<String, Lifeform> lifeformsByName = new HashMap<>();
+    private static final Map<Integer, Lifeform> lifeformsByDominance = new TreeMap<>();
+    private static final Map<Short, Lifeform> simIdHm = new HashMap<>();
+
+    private static short nextSimId = 0;
 
     private String name;
     private int dominance;
-
-    public static HashMap<Short,Lifeform> simIdHm = new HashMap<Short,Lifeform>();
-    private short simId=-1; // Random Access File ID
-    public static short nextSimId=0;
-
-    private static Map<String, Lifeform> lifeformsByName = new HashMap<>();
-    private static Map<Integer, Lifeform> lifeformsByDominance = new TreeMap<>();
-
-    public static Lifeform TREES       = new Lifeform(0, "trees");
-    public static Lifeform SHRUBS      = new Lifeform(1, "shrubs");
-    public static Lifeform HERBACIOUS  = new Lifeform(2, "herbacious");
-    public static Lifeform AGRICULTURE = new Lifeform(3, "agriculture");
-    public static Lifeform NA          = new Lifeform(4, "no classification");
+    private short simId = -1;
 
     /**
      * Creates a life form. This constructor is required for the externalizable interface.
