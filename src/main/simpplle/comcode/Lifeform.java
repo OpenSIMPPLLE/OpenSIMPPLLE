@@ -59,15 +59,6 @@ public class Lifeform implements Externalizable {
     }
 
     /**
-     * returns the lifeform in all values [] based on indexing lifeform ID.  Choices are 0 - TREES, 1 - SHRUBS, 2 -HERBACIOUS, 3 -AGRICULTURE, 4 -NA
-     * @param dominance the lifeform dominance (0,1,2, or 3)
-     * @return lifeform object
-     */
-    public static Lifeform findByDominance(int dominance) {
-        return allValues[dominance];
-    }
-
-    /**
      * Gets the lifeform object from the string name.
      * Objects returned will be trees, shrubs, herbacious, agriculture, no classification.
      * The corresponding lifeforms strings are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA
