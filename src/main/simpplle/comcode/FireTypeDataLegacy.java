@@ -26,7 +26,7 @@ public abstract class FireTypeDataLegacy {
   private static final int NUM_STRUCTURE      = 3;
   private static final int NUM_RESISTANCE     = 3;
 
-  private static Climate.Moisture moisture;
+  private static Moisture moisture;
   private static ProcessType[][][][][] fireTypeData;
 
   // **********************************************************************
@@ -1280,7 +1280,7 @@ public abstract class FireTypeDataLegacy {
 
   public static ProcessType getData(int resistance, SizeClass sizeClass, Density density,
                                     TreatmentType treatment, ProcessType process,
-                                    Climate.Moisture climateMoisture) {
+                                    Moisture climateMoisture) {
     moisture = climateMoisture;
     return getTypeOfFire(resistance,sizeClass,density,process,treatment);
   }
