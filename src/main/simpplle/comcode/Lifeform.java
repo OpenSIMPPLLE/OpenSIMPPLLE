@@ -242,11 +242,6 @@ public class Lifeform implements Externalizable {
         out.writeInt(dominance);
     }
 
-    public void writeXML(XMLEncoder e) {
-        e.writeObject(version);
-        e.writeObject(name);
-    }
-
     /**
      * Reads a lifeform object object from object stream.
      * @return
