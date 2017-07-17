@@ -50,92 +50,13 @@ public class Lifeform implements Externalizable {
         allLifeforms.put(name,this);
     }
 
-    public static void resetSimIds() {
-        nextSimId = 0;
-        for (Lifeform lifeform : simIdHm.values()) {
-            lifeform.simId = -1;
-        }
-        simIdHm.clear();
-    }
-
-    public short getSimId() {
-        if (simId == -1) {
-            simId = nextSimId;
-            nextSimId++;
-            simIdHm.put(simId,this);
-        }
-        return simId;
-    }
-
     /**
-     * Needs to be present for database, does nothing.
-     * @param id short
+     * returns the lifeform in all values [] based on indexing lifeform ID.  Choices are 0 - TREES, 1 - SHRUBS, 2 -HERBACIOUS, 3 -AGRICULTURE, 4 -NA
+     * @param dominance the lifeform dominance (0,1,2, or 3)
+     * @return lifeform object
      */
-    public void setSimId(short id) {}
-
-    public static Lifeform lookUpLifeform(short simId) { return simIdHm.get(simId); }
-
-    public static void readExternalSimIdHm(ObjectInput in) throws IOException, ClassNotFoundException {
-        int version = in.readInt();
-        int size = in.readInt();
-        for (int i=0; i<size; i++) {
-            short id = in.readShort();
-            Lifeform life = (Lifeform)in.readObject();
-            simIdHm.put(id,life);
-            if ( (id+1) > nextSimId) {
-                nextSimId = (short)(id+1);
-            }
-        }
-    }
-
-    public static void writeExternalSimIdHm(ObjectOutput out) throws IOException {
-        out.writeInt(version);
-        out.writeInt(simIdHm.size());
-        for (Short id : simIdHm.keySet()) {
-            out.writeShort(id);
-            Lifeform life = simIdHm.get(id);
-            out.writeObject(life);
-        }
-    }
-
-
-
-    public static int numValues() { return 5; }
-
-
-
-    /**
-     * Gets the lifeform dominance. Choices are 0 - trees, 1 shrubs, 2- herbacious, 3 - agriculture, 4 - no classification.
-     * @return lifeform ID
-     */
-    public int getDominance() { return dominance; }
-
-    /**
-     * Returns the string name of lifefrom, one of the two identifiers of lifeforms (along with Id).
-     * Choices are trees, shrubs, herbacious, agriculture, or no classification.
-     *
-     */
-    public String toString() { return name; }
-
-    public static Lifeform[] getAllValues() { return allValues; }
-
-    /**
-     * creates an arraylist of lifeforms choices are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA
-     *
-     */
-    public static ArrayList<Lifeform> getAllValuesList() {
-        ArrayList<Lifeform> lives = new ArrayList<Lifeform>();
-        for (int i = 0; i < allValues.length; i++) {
-            lives.add(allValues[i]);
-        }
-        return lives;
-    }
-
-    /**
-     * Gets the name of lifeform. Choices are trees, shrubs, herbacious, agriculture, or no classification.
-     */
-    public String getName() {
-        return name;
+    public static Lifeform get(int dominance) {
+        return allValues[dominance];
     }
 
     /**
@@ -150,12 +71,26 @@ public class Lifeform implements Externalizable {
         return (Lifeform) allLifeforms.get(name.toLowerCase());
     }
 
+    public static Lifeform[] getAllValues() {
+        return allValues;
+    }
+
     /**
-     * returns the lifeform in all values [] based on indexing lifeform ID.  Choices are 0 - TREES, 1 - SHRUBS, 2 -HERBACIOUS, 3 -AGRICULTURE, 4 -NA
-     * @param dominance the lifeform dominance (0,1,2, or 3)
-     * @return lifeform object
+     * creates an arraylist of lifeforms choices are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA
      */
-    public static Lifeform get(int dominance) { return allValues[dominance]; }
+    public static ArrayList<Lifeform> getAllValuesList() {
+        ArrayList<Lifeform> lives = new ArrayList<Lifeform>();
+        for (int i = 0; i < allValues.length; i++) {
+            lives.add(allValues[i]);
+        }
+        return lives;
+    }
+
+    /**
+     * Gets the lifeform dominance. Choices are 0 - trees, 1 shrubs, 2- herbacious, 3 - agriculture, 4 - no classification.
+     * @return lifeform ID
+     */
+    public int getDominance() { return dominance; }
 
     /**
      * Returns a less dominant life form. Lifeforms are stored in an array from most dominant to
@@ -225,6 +160,39 @@ public class Lifeform implements Externalizable {
     }
 
     /**
+     * Gets the name of lifeform. Choices are trees, shrubs, herbacious, agriculture, or no classification.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the name for this lifeform.  Choices are trees, shrubs, herbacious, agriculture, no classification.
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public short getSimId() {
+        if (simId == -1) {
+            simId = nextSimId;
+            nextSimId++;
+            simIdHm.put(simId,this);
+        }
+        return simId;
+    }
+
+    /**
+     * Needs to be present for database, does nothing.
+     * @param id short
+     */
+    public void setSimId(short id) {}
+
+    public static Lifeform lookUpLifeform(short simId) { return simIdHm.get(simId); }
+
+    public static int numValues() { return 5; }
+
+    /**
      * Reads in lifeforms.  These are read in following order: lifeform name, lifeform ID
      */
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -233,13 +201,17 @@ public class Lifeform implements Externalizable {
         dominance = in.readInt();
     }
 
-    /**
-     * Writes a lifeform (name and Id) to external source.
-     */
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeInt(version);
-        out.writeObject(name);
-        out.writeInt(dominance);
+    public static void readExternalSimIdHm(ObjectInput in) throws IOException, ClassNotFoundException {
+        int version = in.readInt();
+        int size = in.readInt();
+        for (int i=0; i<size; i++) {
+            short id = in.readShort();
+            Lifeform life = (Lifeform)in.readObject();
+            simIdHm.put(id,life);
+            if ( (id+1) > nextSimId) {
+                nextSimId = (short)(id+1);
+            }
+        }
     }
 
     /**
@@ -251,11 +223,37 @@ public class Lifeform implements Externalizable {
         return Lifeform.get(name);
     }
 
-    /**
-     * Sets the name for this lifeform.  Choices are trees, shrubs, herbacious, agriculture, no classification.
-     */
-    public void setName(String name) {
-        this.name = name;
+    public static void resetSimIds() {
+        nextSimId = 0;
+        for (Lifeform lifeform : simIdHm.values()) {
+            lifeform.simId = -1;
+        }
+        simIdHm.clear();
     }
 
+    /**
+     * Returns the string name of lifefrom, one of the two identifiers of lifeforms (along with Id).
+     * Choices are trees, shrubs, herbacious, agriculture, or no classification.
+     *
+     */
+    public String toString() { return name; }
+
+    /**
+     * Writes a lifeform (name and Id) to external source.
+     */
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeInt(version);
+        out.writeObject(name);
+        out.writeInt(dominance);
+    }
+
+    public static void writeExternalSimIdHm(ObjectOutput out) throws IOException {
+        out.writeInt(version);
+        out.writeInt(simIdHm.size());
+        for (Short id : simIdHm.keySet()) {
+            out.writeShort(id);
+            Lifeform life = simIdHm.get(id);
+            out.writeObject(life);
+        }
+    }
 }
