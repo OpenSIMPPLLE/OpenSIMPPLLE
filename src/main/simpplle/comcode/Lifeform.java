@@ -25,7 +25,7 @@ public class Lifeform implements Externalizable {
     static final int  version          = 1;
 
     private String name;
-    private int    id;
+    private int dominance;
 
     public static HashMap<Short,Lifeform> simIdHm = new HashMap<Short,Lifeform>();
     private short simId=-1; // Random Access File ID
@@ -42,9 +42,9 @@ public class Lifeform implements Externalizable {
 
     public Lifeform() {}
 
-    private Lifeform(int id, String name) {
+    private Lifeform(int dominance, String name) {
 
-        this.id = id;
+        this.dominance = dominance;
         this.name = name;
 
         allLifeforms.put(name,this);
@@ -105,10 +105,10 @@ public class Lifeform implements Externalizable {
 
 
     /**
-     * Gets the lifeform id. Choices are 0 - trees, 1 shrubs, 2- herbacious, 3 - agriculture, 4 - no classification.
+     * Gets the lifeform dominance. Choices are 0 - trees, 1 shrubs, 2- herbacious, 3 - agriculture, 4 - no classification.
      * @return lifeform ID
      */
-    public int getId() { return id; }
+    public int getDominance() { return dominance; }
 
     /**
      * Returns the string name of lifefrom, one of the two identifiers of lifeforms (along with Id).
@@ -152,10 +152,10 @@ public class Lifeform implements Externalizable {
 
     /**
      * returns the lifeform in all values [] based on indexing lifeform ID.  Choices are 0 - TREES, 1 - SHRUBS, 2 -HERBACIOUS, 3 -AGRICULTURE, 4 -NA
-     * @param id the lifeform id (0,1,2, or 3)
+     * @param dominance the lifeform dominance (0,1,2, or 3)
      * @return lifeform object
      */
-    public static Lifeform get(int id) { return allValues[id]; }
+    public static Lifeform get(int dominance) { return allValues[dominance]; }
 
     /**
      * Returns a less dominant life form. Lifeforms are stored in an array from most dominant to
@@ -167,7 +167,7 @@ public class Lifeform implements Externalizable {
      */
     public static Lifeform getLessDominant(Lifeform lifeform) {
         for (Lifeform other : allValues) {
-            if (lifeform.getId() < other.getId()) {
+            if (lifeform.getDominance() < other.getDominance()) {
                 return other;
             }
         }
@@ -183,7 +183,7 @@ public class Lifeform implements Externalizable {
     public static List<Lifeform> getMoreDominant(Lifeform lifeform) {
         List<Lifeform> moreDominant = new ArrayList<>();
         for (Lifeform other : allValues) {
-            if (other.getId() < lifeform.getId()) {
+            if (other.getDominance() < lifeform.getDominance()) {
                 moreDominant.add(other);
             }
         }
@@ -201,7 +201,7 @@ public class Lifeform implements Externalizable {
         if (a == null) { return b; }
         if (b == null) { return a; }
 
-        if (a.getId() < b.getId()) {
+        if (a.getDominance() < b.getDominance()) {
             return a;
         } else {
             return b;
@@ -230,7 +230,7 @@ public class Lifeform implements Externalizable {
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         int version = in.readInt();
         name = (String)in.readObject();
-        id = in.readInt();
+        dominance = in.readInt();
     }
 
     /**
@@ -239,7 +239,7 @@ public class Lifeform implements Externalizable {
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeInt(version);
         out.writeObject(name);
-        out.writeInt(id);
+        out.writeInt(dominance);
     }
 
     public void writeXML(XMLEncoder e) {

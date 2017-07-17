@@ -44,7 +44,7 @@ public class VegSimStatesKeys {
     String str;
     for (int ts = 0; ts < Simulation.MAX_TIME_STEPS; ts++) {
       for (int l = 0; l < lives.length; l++) {
-        keys[ts][lives[l].getId()] =
+        keys[ts][lives[l].getDominance()] =
             new String(IntToString.get(ts) + "-" +
                        lives[l].toString());
       }
@@ -52,7 +52,7 @@ public class VegSimStatesKeys {
   }
 
   public static String get(int tStep, Lifeform life) {
-    return keys[tStep][life.getId()];
+    return keys[tStep][life.getDominance()];
   }
 }
 
