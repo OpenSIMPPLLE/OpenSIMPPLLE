@@ -40,8 +40,17 @@ public class Lifeform implements Externalizable {
     public  static Lifeform   NA          = new Lifeform(4, "no classification");
     private static Lifeform[] allValues   = new Lifeform[] {TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA};
 
+    /**
+     * Creates a life form. This constructor is required for the externalizable interface.
+     */
     public Lifeform() {}
 
+    /**
+     * Creates a life form and adds it to an internal life form collection.
+     *
+     * @param dominance the influence that a life form has; lower numbers = greater influence
+     * @param name the name of the life form
+     */
     private Lifeform(int dominance, String name) {
 
         this.dominance = dominance;
