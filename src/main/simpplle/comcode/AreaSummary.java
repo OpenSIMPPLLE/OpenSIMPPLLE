@@ -2754,7 +2754,7 @@ public final class AreaSummary implements Externalizable {
   private void updateEvuProcessSummary(Evu evu) {
     int cStep = Simulation.getCurrentTimeStep();
 
-    for (Season s : Climate.allSeasons) {
+    for (Season s : Season.values()) {
       // Time Step 0 is always YEAR, so skip others.
       if ((cStep == 0) && s != Season.YEAR) {
         continue;

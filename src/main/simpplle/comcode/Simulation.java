@@ -912,7 +912,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
 
         if (RegionalZone.isWyoming()) {
           Season lastSeason = isStandDevelopment() ? Season.SPRING : Season.WINTER;
-          for (Season s : Climate.allSeasons) {
+          for (Season s : Season.values()) {
             currentSeason = s;
             currentArea.doFuture();
             if (s == lastSeason) { break; }

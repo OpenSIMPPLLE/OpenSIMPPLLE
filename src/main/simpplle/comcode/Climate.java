@@ -27,8 +27,6 @@ public class Climate {
   // Do not change order of these seasons as other code is dependent on
   // the order, including the position of YEAR.
 
-  public static Season[] allSeasons = Season.values();
-
   public enum Moisture { WETTER, NORMAL, DRIER }
   public static final Moisture WETTER = Moisture.WETTER;
   public static final Moisture DRIER  = Moisture.DRIER;
@@ -72,7 +70,7 @@ public class Climate {
    */
   private void initProbs() {
     int prob;
-    for (Season season : Climate.allSeasons) {
+    for (Season season : Season.values()) {
       for (int i = 0; i < temperature[0].length; i++) {
         temperature[season.ordinal()][i] = Temperature.NORMAL;
         moisture[season.ordinal()][i] = Moisture.NORMAL;
@@ -84,7 +82,7 @@ public class Climate {
    * Will set any moisture or temperature value not input by user to NORMAL
    */
   public void allNonUserNormal() {
-    for (Season season : Climate.allSeasons) {
+    for (Season season : Season.values()) {
       for (int ts = 0; ts < temperature[0].length; ts++) {
         // Want to make sure we don't change user time steps.
         if (isUserClimate(ts,season)) { continue; }
@@ -98,7 +96,7 @@ public class Climate {
    * Calls pickNewValues to put randomized values into the temperature and moisture arrays for each season in spots where user values are not stored.
    */
   public void randomizeClimate() {
-    for (Season season : Climate.allSeasons) {
+    for (Season season : Season.values()) {
       for (int ts = 0; ts < temperature[0].length; ts++) {
         // Want to make sure we don't change user time steps.
         if (isUserClimate(ts,season)) { continue; }

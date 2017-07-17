@@ -13,6 +13,7 @@ import javax.swing.table.TableColumn;
 import simpplle.comcode.BaseLogic;
 import simpplle.comcode.Climate;
 import simpplle.comcode.FireSuppEventLogic;
+import simpplle.comcode.Season;
 import simpplle.comcode.SystemKnowledge.Kinds;
 
 /**
@@ -44,8 +45,8 @@ public class FireSuppEventLogicPanel extends VegLogicPanel {
   protected void initColumns(TableColumn column, int col) {
     if (col == FireSuppEventLogic.FIRE_SEASON_COL) {
       column.setIdentifier(FireSuppEventLogic.FIRE_SEASON_COL);
-      column.setCellRenderer(new MyJComboBoxRenderer(Climate.allSeasons));
-      column.setCellEditor(new MyJComboBoxEditor(Climate.allSeasons));
+      column.setCellRenderer(new MyJComboBoxRenderer(Season.values()));
+      column.setCellEditor(new MyJComboBoxEditor(Season.values()));
     }
     else if (col == FireSuppEventLogic.PROB_COL) {
       column.setIdentifier(FireSuppEventLogic.PROB_COL);

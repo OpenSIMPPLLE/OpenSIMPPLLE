@@ -24,9 +24,9 @@ public class LifeformSeasonKeys {
     Lifeform[] lives = Lifeform.getAllValues();
 
     for (int l=0; l<lives.length; l++) {
-      for (int s=0; s<Climate.allSeasons.length; s++) {
-        keys[lives[l].getId()][Climate.allSeasons[s].ordinal()] =
-          new MultiKey(lives[l],Climate.allSeasons[s]);
+      for (int s=0; s<Season.values().length; s++) {
+        keys[lives[l].getId()][Season.values()[s].ordinal()] =
+          new MultiKey(lives[l],Season.values()[s]);
       }
 
     }

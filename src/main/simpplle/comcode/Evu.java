@@ -773,7 +773,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return true if life form is present in any season
    */
   private boolean hasLifeformAnySeason(Lifeform lifeform, Flat3Map map) {
-    for (Season season : Climate.allSeasons) {
+    for (Season season : Season.values()) {
       MultiKey key = LifeformSeasonKeys.getKey(lifeform, season);
       if (map.containsKey(key)) {
         return true;
@@ -908,7 +908,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (lifeform == null) lifeform = dominantLifeform;
 
-    Season[] seasons = Climate.allSeasons;
+    Season[] seasons = Season.values();
     for (int i=seasons.length-1; i>=0; i--) {
       VegSimStateData state = getState(timeStep, lifeform, seasons[i]);
       if (state != null) return state;
@@ -1052,7 +1052,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     int count=0;
     // work our way backward through seasons until we find one with data.
-    Season[] seasons = Climate.allSeasons;
+    Season[] seasons = Season.values();
     for (int i=seasons.length-1; i>=0; i--) {
       VegSimStateData state = getState(ts,lifeform,seasons[i]);
       if (state != null && count == 0) { count++; }
@@ -1078,7 +1078,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (lifeform == null) { lifeform = dominantLifeform; }
 
     // work our way backward through seasons until we find one with data.
-    Season[] seasons = Climate.allSeasons;
+    Season[] seasons = Season.values();
     for (int i=seasons.length-1; i>=0; i--) {
       VegSimStateData state = getState(ts,lifeform,seasons[i]);
       if (state != null) { return state; }
@@ -1216,7 +1216,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     int ts = determineDefaultTimeStep();
 
-    Season[] seasons = Climate.allSeasons;
+    Season[] seasons = Season.values();
     for (int i=0; i<seasons.length; i++) {
 
       VegSimStateData state = getState(ts,lifeform,seasons[i]);
@@ -3575,7 +3575,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       DProcesses = Simpplle.getAreaSummary().getDProcesses();
     }
 
-    Season[] seasons = Climate.allSeasons;
+    Season[] seasons = Season.values();
 
     int index=0;
     for (int ts=0; ts<=nSteps; ts++) {
@@ -4131,7 +4131,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       for (int i = 0; i < lives.size(); i++) {
 
         Lifeform lifeform = lives.get(i);
-        Season[] seasons = Climate.allSeasons;
+        Season[] seasons = Season.values();
 
         for (int s = seasons.length - 1; s >= 0; s--) {
 
@@ -4681,7 +4681,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     int ts = Simulation.getCurrentTimeStep();
 
     Lifeform[] lives = Lifeform.getAllValues();
-    Season[]   seasons = Climate.allSeasons;
+    Season[]   seasons = Season.values();
     for (int i=0; i<seasons.length; i++) {
       for (Lifeform lifeform : lives) {
         VegSimStateData state = getState(ts,lifeform,seasons[i]);
@@ -8153,7 +8153,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     int ts  = Simulation.getCurrentTimeStep();
 
     Lifeform[] lives = Lifeform.getAllValues();
-    Season[]   seasons = Climate.allSeasons;
+    Season[]   seasons = Season.values();
 
     VegSimStateData.clearWriteCount();
     for (int l=0; l<lives.length; l++) {
@@ -8174,7 +8174,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     int ts  = Simulation.getCurrentTimeStep();
 
     Lifeform[] lives = Lifeform.getAllValues();
-    Season[]   seasons = Climate.allSeasons;
+    Season[]   seasons = Season.values();
 
     VegSimStateData.clearWriteCount();
     for (Lifeform life : lives) {
@@ -8548,7 +8548,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public ArrayList<ProcessType> getSummaryProcesses(int cStep) {
     tmpSummaryProcesses.clear();
 
-    for (Season s : Climate.allSeasons) {
+    for (Season s : Season.values()) {
       if (cStep == 0 && s != Season.YEAR) { continue; }
 
       VegSimStateData trees  = getState(cStep,Lifeform.TREES, s);
