@@ -30,7 +30,7 @@ public class Lifeform implements Externalizable {
     private short simId=-1; // Random Access File ID
     public static short nextSimId=0;
 
-    private static Map<String, Lifeform> allLifeforms = new HashMap<>(5);
+    private static Map<String, Lifeform> lifeformsByName = new HashMap<>(5);
 
     public  static Lifeform   TREES       = new Lifeform(0, "trees");
     public  static Lifeform   SHRUBS      = new Lifeform(1, "shrubs");
@@ -55,7 +55,7 @@ public class Lifeform implements Externalizable {
         this.dominance = dominance;
         this.name = name;
 
-        allLifeforms.put(name,this);
+        lifeformsByName.put(name,this);
     }
 
     /**
@@ -63,11 +63,11 @@ public class Lifeform implements Externalizable {
      * Objects returned will be trees, shrubs, herbacious, agriculture, no classification.
      * The corresponding lifeforms strings are TREES, SHRUBS, HERBACIOUS, AGRICULTURE, NA
      * @param name name of life forms (uppercase)
-     * @return lifeform object from allLifeforms hash map (lowercase)
+     * @return lifeform object from lifeformsByName hash map (lowercase)
      */
     public static Lifeform findByName(String name) {
         if (name.equalsIgnoreCase("NA")) { name = "no classification"; }
-        return (Lifeform) allLifeforms.get(name.toLowerCase());
+        return (Lifeform) lifeformsByName.get(name.toLowerCase());
     }
 
     public static Lifeform[] getAllValues() {
