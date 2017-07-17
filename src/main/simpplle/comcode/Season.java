@@ -6,6 +6,8 @@ package simpplle.comcode;
  */
 public enum Season {
 
+  // Warning: Do not rearrange these values.
+
   SPRING,
   SUMMER,
   FALL,

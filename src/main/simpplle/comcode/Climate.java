@@ -22,11 +22,6 @@ import java.util.zip.*;
 
 public class Climate {
 
-  // Ordinal values must not be changed unless the change
-  // is accounted for in database interaction (esp. in EvuSimData)
-  // Do not change order of these seasons as other code is dependent on
-  // the order, including the position of YEAR.
-
   public enum Moisture { WETTER, NORMAL, DRIER }
   public static final Moisture WETTER = Moisture.WETTER;
   public static final Moisture DRIER  = Moisture.DRIER;
