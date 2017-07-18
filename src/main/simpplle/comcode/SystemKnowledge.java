@@ -2570,8 +2570,8 @@ public class SystemKnowledge {
     xs.alias("ProcessProbLogicData",ProcessProbLogicData.class);
 
     xs.alias("Lifeform",Lifeform.class);
-    xs.alias("Moisture",Climate.Moisture.class);
-    xs.alias("Temperature",Climate.Temperature.class);
+    xs.alias("Moisture",Moisture.class);
+    xs.alias("Temperature",Temperature.class);
 
     xs.alias("SoilType",simpplle.comcode.SoilType.class);
     xs.alias("VegFunctionalGroup",simpplle.comcode.InvasiveSpeciesLogicData.VegFunctionalGroup.class);

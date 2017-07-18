@@ -47,14 +47,6 @@ public class Climate {
 
   public static Season[] allSeasons = Season.values();
 
-  public enum Moisture { WETTER, NORMAL, DRIER }
-  public static final Moisture WETTER = Moisture.WETTER;
-  public static final Moisture DRIER  = Moisture.DRIER;
-
-  public enum Temperature { COOLER, NORMAL, WARMER }
-  public static final Temperature COOLER = Temperature.COOLER;
-  public static final Temperature WARMER = Temperature.WARMER;
-
   // Decided to use sparse arrays here rather than waste memory on
   // a Hashmap or ArrayList with elements being an inner class.
   // Also this way getting temp/moisture will be lightning fast.
@@ -66,9 +58,6 @@ public class Climate {
 
   // Needed for GUI state information.
   private boolean changed;
-
-//  private static String allTemperatures[] = {"COOLER", "NORMAL", "WARMER"};
-//  private static String allMoisture[] = {"WETTER", "NORMAL", "DRIER"};
 
   /**
    * Initializes the TreeMap to store user values, Temperature [][] and Moisture [][], and a new random variable maker
@@ -137,29 +126,17 @@ public class Climate {
 
     int prob = random.nextInt(100);
 
-    if      (prob >= 0  && prob <= 32)  temperature[season.ordinal()][tStep] = COOLER;
+    if      (prob >= 0  && prob <= 32)  temperature[season.ordinal()][tStep] = Temperature.COOLER;
     else if (prob >= 33 && prob <= 67)  temperature[season.ordinal()][tStep] = Temperature.NORMAL;
-    else if (prob >= 68 && prob <= 100) temperature[season.ordinal()][tStep] = WARMER;
+    else if (prob >= 68 && prob <= 100) temperature[season.ordinal()][tStep] = Temperature.WARMER;
 
     prob = random.nextInt(100);
 
-    if      (prob >= 0  && prob <= 32)  moisture[season.ordinal()][tStep] = WETTER;
+    if      (prob >= 0  && prob <= 32)  moisture[season.ordinal()][tStep] = Moisture.WETTER;
     else if (prob >= 33 && prob <= 67)  moisture[season.ordinal()][tStep] = Moisture.NORMAL;
-    else if (prob >= 68 && prob <= 100) moisture[season.ordinal()][tStep] = DRIER;
+    else if (prob >= 68 && prob <= 100) moisture[season.ordinal()][tStep] = Moisture.DRIER;
 
   }
-
-  /**
-   * Gets all the temperatures in this Climate object.  It is an array of temperatures.
-   * @return the array of temperatures for this climate.
-   */
-  public static Temperature[] getAllTemperatures() { return Temperature.values(); }
-
-  /**
-   * Gets all the moistures for this Climate object.  It is an array of moisture values.  
-   * @return an arrray of moisture values for this climate
-   */
-  public static Moisture[] getAllMoisture() { return Moisture.values(); }
 
   /**
    * gets the default temperature.  This defaults to NORMAL throughout the climate class
@@ -225,9 +202,9 @@ public class Climate {
    * @return the temperature
    */
   private Temperature getTemperatureId(String str) {
-    if      (str.equals("COOLER")) return COOLER;
+    if      (str.equals("COOLER")) return Temperature.COOLER;
     else if (str.equals("NORMAL")) return Temperature.NORMAL;
-    else if (str.equals("WARMER")) return WARMER;
+    else if (str.equals("WARMER")) return Temperature.WARMER;
     else                           return Temperature.NORMAL;
   }
 
@@ -300,9 +277,9 @@ public class Climate {
    * @return id in enum of parameter moisture condition
    */
   private Moisture getMoistureId(String str) {
-    if      (str.equals("WETTER")) return WETTER;
+    if      (str.equals("WETTER")) return Moisture.WETTER;
     else if (str.equals("NORMAL")) return Moisture.NORMAL;
-    else if (str.equals("DRIER"))  return DRIER;
+    else if (str.equals("DRIER"))  return Moisture.DRIER;
     else                           return Moisture.NORMAL;
   }
 
@@ -641,7 +618,7 @@ public class Climate {
    * @return true if wet succession.
    */
   public boolean isWetSuccession() {
-    return (getMoisture() == WETTER);
+    return (getMoisture() == Moisture.WETTER);
   }
 
   /**
@@ -649,7 +626,7 @@ public class Climate {
    * @return
    */
   public boolean isDrySuccession() {
-    return (getMoisture() == Climate.DRIER);
+    return (getMoisture() == Moisture.DRIER);
   }
 
   /**
@@ -658,7 +635,7 @@ public class Climate {
    */
   public boolean isDrought() {
     Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
-    return ((getTemperature(season) == WARMER) && (getMoisture(season) == DRIER));
+    return ((getTemperature(season) == Temperature.WARMER) && (getMoisture(season) == Moisture.DRIER));
   }
 
   /**
@@ -667,7 +644,7 @@ public class Climate {
    */
   public boolean isWet() {
     Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
-    return (getMoisture(season) == WETTER);
+    return (getMoisture(season) == Moisture.WETTER);
   }
 
   /**
@@ -677,7 +654,7 @@ public class Climate {
    */
   public boolean isDrought(int tStep) {
     Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
-    return ((getTemperature(tStep,season) == WARMER) && (getMoisture(tStep,season) == DRIER));
+    return ((getTemperature(tStep,season) == Temperature.WARMER) && (getMoisture(tStep,season) == Moisture.DRIER));
   }
 
   public void loadData (File infile) throws SimpplleError {

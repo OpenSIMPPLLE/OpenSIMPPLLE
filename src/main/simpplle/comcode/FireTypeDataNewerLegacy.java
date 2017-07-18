@@ -112,9 +112,9 @@ public abstract class FireTypeDataNewerLegacy {
         TreatmentType treatment = (treatments != null) ? treatments[0] : TreatmentType.NONE;
         ProcessType   process   = (processes != null) ? processes[0] : ProcessType.SUCCESSION;
 
-        wetter = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process,Climate.WETTER);
-        normal = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process,Climate.Moisture.NORMAL);
-        drier  = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process,Climate.DRIER);
+        wetter = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process, Moisture.WETTER);
+        normal = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process, Moisture.NORMAL);
+        drier  = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process, Moisture.DRIER);
       }
 
       public void setPosition(int newPosition) { position = newPosition; }
@@ -180,10 +180,10 @@ public abstract class FireTypeDataNewerLegacy {
         return rule;
       }
 
-      public ProcessType getFireType(Climate.Moisture moisture) {
-        if (moisture == Climate.WETTER) { return wetter; }
-        else if (moisture == Climate.Moisture.NORMAL) { return normal; }
-        else if (moisture == Climate.DRIER) { return drier; }
+      public ProcessType getFireType(Moisture moisture) {
+        if (moisture == Moisture.WETTER) { return wetter; }
+        else if (moisture == Moisture.NORMAL) { return normal; }
+        else if (moisture == Moisture.DRIER) { return drier; }
         return wetter;
       }
       public boolean isMatch(Density density, ProcessType process, TreatmentType treatment, Climate.Season season) {
@@ -526,7 +526,7 @@ public abstract class FireTypeDataNewerLegacy {
     TreatmentType treatType = TreatmentType.NONE;
     if (treat != null) { treatType = treat.getType(); }
 
-    Climate.Moisture moisture = Simpplle.getClimate().getMoisture(season);
+    Moisture moisture = Simpplle.getClimate().getMoisture(season);
 
     FireTypeDataEntry.SizeClassRule rule;
     FireTypeDataEntry               entry;

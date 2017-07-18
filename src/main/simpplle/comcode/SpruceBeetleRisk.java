@@ -338,13 +338,13 @@ public abstract class SpruceBeetleRisk {
   private static double doRegionalClimateTemperature() {
     Climate climate = Simpplle.getClimate();
     double result;
-    Climate.Temperature temp     = climate.getTemperature();
-    Climate.Moisture    moisture = climate.getMoisture();
+    Temperature temp     = climate.getTemperature();
+    Moisture moisture = climate.getMoisture();
 
-    if (temp == Climate.Temperature.NORMAL || temp == Climate.COOLER) {
+    if (temp == Temperature.NORMAL || temp == Temperature.COOLER) {
       result = 0;
     }
-    else if (temp == Climate.WARMER) {
+    else if (temp == Temperature.WARMER) {
       result = 9;
     }
     else { result = 0; }
@@ -355,12 +355,12 @@ public abstract class SpruceBeetleRisk {
   private static double doRegionalClimateMoisture() {
     Climate climate = Simpplle.getClimate();
     double result;
-    Climate.Moisture moisture = climate.getMoisture();
+    Moisture moisture = climate.getMoisture();
 
-    if (moisture == Climate.Moisture.NORMAL || moisture == Climate.WETTER) {
+    if (moisture == Moisture.NORMAL || moisture == Moisture.WETTER) {
       result = 0;
     }
-    else if (moisture == Climate.DRIER) {
+    else if (moisture == Moisture.DRIER) {
       result = 9;
     }
     else { result = 0; }

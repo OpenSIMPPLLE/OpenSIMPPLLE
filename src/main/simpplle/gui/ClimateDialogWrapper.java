@@ -11,7 +11,6 @@ package simpplle.gui;
 import java.io.File;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -19,7 +18,6 @@ import static simpplle.comcode.Climate.Season;
 import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.SimpplleError;
 import simpplle.comcode.Climate;
-import simpplle.comcode.Simpplle;
 import simpplle.comcode.RegionalZone;
 import simpplle.comcode.*;
 
@@ -46,8 +44,8 @@ public class ClimateDialogWrapper {
   private boolean userOnly=false;
 
   private int     cTime=1;
-  private Climate.Temperature defaultTemperature;
-  private Climate.Moisture    defaultMoisture;
+  private Temperature defaultTemperature;
+  private Moisture defaultMoisture;
   private boolean userAction=false;
 /**
  * Constructor for ClimateDialogWrapper.  Creates a new instance of Climate dialog and sets it to this frame.  
@@ -76,8 +74,8 @@ public class ClimateDialogWrapper {
     currentSeason = Season.YEAR;
     userOnly      = false;
 
-    Climate.Temperature[] allTemperatures = Climate.getAllTemperatures();
-    Climate.Moisture[] allMoisture        = Climate.getAllMoisture();
+    Temperature[] allTemperatures = Temperature.values();
+    Moisture[] allMoisture = Moisture.values();
     int      i;
 
     climate            = simpplle.comcode.Simpplle.getClimate();
@@ -310,7 +308,7 @@ public class ClimateDialogWrapper {
   void temperatureCB_actionPerformed(ActionEvent e) {
     if (!userAction) { return; }
 
-    Climate.Temperature item = (Climate.Temperature) dlg.temperatureCB.getSelectedItem();
+    Temperature item = (Temperature) dlg.temperatureCB.getSelectedItem();
     if (item == null) {
       return;
     }
@@ -335,7 +333,7 @@ public class ClimateDialogWrapper {
   void moistureCB_actionPerformed(ActionEvent e) {
     if (!userAction) { return; }
 
-    Climate.Moisture item = (Climate.Moisture) dlg.moistureCB.getSelectedItem();
+    Moisture item = (Moisture) dlg.moistureCB.getSelectedItem();
     if (item == null) {
       return;
     }
@@ -372,8 +370,8 @@ public class ClimateDialogWrapper {
     if (!userAction) { return; }
 
     if (dlg.yearCB.isSelected()) {
-      Climate.Moisture    moisture = climate.getMoisture(cTime,currentSeason);
-      Climate.Temperature temp     = climate.getTemperature(cTime,currentSeason);
+      Moisture moisture = climate.getMoisture(cTime,currentSeason);
+      Temperature temp     = climate.getTemperature(cTime,currentSeason);
       currentSeason = Season.YEAR;
       climate.addClimate(cTime, currentSeason);
       climate.setMoisture(cTime,currentSeason,moisture);
