@@ -8,15 +8,11 @@
 
 package simpplle.comcode;
 
-import java.io.Externalizable;
 import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.Collection;
-import org.apache.commons.collections.map.MultiKeyMap;
 import java.util.HashMap;
-import org.apache.commons.collections.keyvalue.MultiKey;
+
 import org.apache.commons.collections.MapIterator;
 import org.apache.commons.collections.map.Flat3Map;
 import java.io.ObjectInputStream;
@@ -472,7 +468,7 @@ public class TrackingSpeciesReportData {
   public void updateSummary(Evu unit, int timeStep) {
     Simulation simulation = Simulation.getInstance();
 
-    Lifeform[] lives  = Lifeform.getAllValues();
+    Lifeform[] lives  = Lifeform.getLifeformsByDominance();
 
     for (int i=0; i<lives.length; i++) {
       VegSimStateData state = unit.getStateFinalSeason(timeStep,lives[i]);

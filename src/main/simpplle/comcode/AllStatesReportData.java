@@ -14,7 +14,6 @@ import java.util.*;
 import org.apache.commons.collections.*;
 import org.apache.commons.collections.keyvalue.*;
 import org.apache.commons.collections.map.*;
-import simpplle.comcode.Climate.*;
 
 /**
  * This class provides constructors and methods to read and output data constituting the all states reports.
@@ -362,7 +361,7 @@ public class AllStatesReportData implements Externalizable {
 
     Simulation simulation = Simulation.getInstance();
 
-    Lifeform[] lives  = Lifeform.getAllValues();
+    Lifeform[] lives  = Lifeform.getLifeformsByDominance();
 
     for (int i=0; i<lives.length; i++) {
       VegSimStateData state = unit.getStateFinalSeason(timeStep,lives[i]);

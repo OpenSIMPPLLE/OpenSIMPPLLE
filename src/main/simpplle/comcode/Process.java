@@ -741,7 +741,7 @@ public abstract class Process {
    */
   public static ArrayList<Lifeform> getProcessLifeforms(ProcessType process) {
     ArrayList<Lifeform> result = new ArrayList<>();
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
     for (int i=0; i<allLives.length; i++) {
       if (isMemberLifeformProcesses(allLives[i],process)) {
         result.add(allLives[i]);
@@ -768,7 +768,7 @@ public abstract class Process {
   public static boolean isMultiLifeformProcess(ProcessType process) {
     if (process.isFireProcess()) { process = ProcessType.FIRE_EVENT; }
     int lifeCount = 0;
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
     for (int i=0; i<allLives.length; i++) {
       if (isMemberLifeformProcesses(allLives[i],process)) {
         lifeCount++;
@@ -947,7 +947,7 @@ public abstract class Process {
         strTok = new StringTokenizerPlus(line,",");
         if (strTok.countTokens() < 1) { throw new SimpplleError("No processes found."); }
 
-        Lifeform life = Lifeform.get(strTok.getToken());
+        Lifeform life = Lifeform.findByName(strTok.getToken());
         ArrayList<ProcessType> pList = new ArrayList<>(strTok.countTokens());
         lifeformSimProcesses.put(life,pList);
         while (strTok.hasMoreElements()) {

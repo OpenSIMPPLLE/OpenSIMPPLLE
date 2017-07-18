@@ -1691,7 +1691,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
       tStep = Simulation.getCurrentTimeStep();
     }
 
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
     for (int i=0; i<lives.length; i++) {
       if (evu.hasLifeform(lives[i],tStep) == false) { continue; }
 

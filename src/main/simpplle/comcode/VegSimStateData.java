@@ -540,7 +540,7 @@ public class VegSimStateData implements Externalizable {
   }
 
   public void setLifeform(Lifeform lifeform) {
-    this.lifeform = Lifeform.get(lifeform.getName());
+    this.lifeform = Lifeform.findByName(lifeform.getName());
   }
 
   public int getSlink() {

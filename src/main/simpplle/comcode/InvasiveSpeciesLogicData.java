@@ -148,7 +148,7 @@ public class InvasiveSpeciesLogicData extends LogicData implements Externalizabl
       VegFunctionalGroup funcGroup = null;
       int cStep = Simulation.getCurrentTimeStep();
 
-      Lifeform[] lifeforms = Lifeform.getAllValues();
+      Lifeform[] lifeforms = Lifeform.getLifeformsByDominance();
       for (int l=0; l<lifeforms.length; l++) {
         HabitatTypeGroupType ecoGroup = evu.getHabitatTypeGroup().getType();
 
