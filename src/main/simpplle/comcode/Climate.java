@@ -22,31 +22,6 @@ import java.util.zip.*;
 
 public class Climate {
 
-  // Ordinal values must not be changed unless the change
-  // is accounted for in database interaction (esp. in EvuSimData)
-  // Do not change order of these seasons as other code is dependent on
-  // the order, including the position of YEAR.
-
-  public enum Season {
-
-    SPRING, SUMMER, FALL, WINTER, YEAR;
-
-    public static int numValues() { return 5; }
-
-    public static Season getPriorSeason(Season season) {
-      switch (season) {
-        case SPRING: return WINTER;
-        case SUMMER: return SPRING;
-        case FALL:   return SUMMER;
-        case WINTER: return FALL;
-        case YEAR:   return YEAR;
-        default:     return YEAR;
-      }
-    }
-  }
-
-  public static Season[] allSeasons = Season.values();
-
   // Decided to use sparse arrays here rather than waste memory on
   // a Hashmap or ArrayList with elements being an inner class.
   // Also this way getting temp/moisture will be lightning fast.
@@ -67,8 +42,8 @@ public class Climate {
 
     userValues  = new TreeMap<Integer,ArrayList<Season>>();
     changed     = false;
-    temperature = new Temperature[Season.numValues()][Simulation.MAX_TIME_STEPS+1];
-    moisture    = new Moisture[Season.numValues()][temperature[0].length];
+    temperature = new Temperature[Season.values().length][Simulation.MAX_TIME_STEPS+1];
+    moisture    = new Moisture[Season.values().length][temperature[0].length];
 
     initProbs();
 
@@ -79,7 +54,7 @@ public class Climate {
    */
   private void initProbs() {
     int prob;
-    for (Season season : Climate.allSeasons) {
+    for (Season season : Season.values()) {
       for (int i = 0; i < temperature[0].length; i++) {
         temperature[season.ordinal()][i] = Temperature.NORMAL;
         moisture[season.ordinal()][i] = Moisture.NORMAL;
@@ -91,7 +66,7 @@ public class Climate {
    * Will set any moisture or temperature value not input by user to NORMAL
    */
   public void allNonUserNormal() {
-    for (Season season : Climate.allSeasons) {
+    for (Season season : Season.values()) {
       for (int ts = 0; ts < temperature[0].length; ts++) {
         // Want to make sure we don't change user time steps.
         if (isUserClimate(ts,season)) { continue; }
@@ -105,7 +80,7 @@ public class Climate {
    * Calls pickNewValues to put randomized values into the temperature and moisture arrays for each season in spots where user values are not stored.
    */
   public void randomizeClimate() {
-    for (Season season : Climate.allSeasons) {
+    for (Season season : Season.values()) {
       for (int ts = 0; ts < temperature[0].length; ts++) {
         // Want to make sure we don't change user time steps.
         if (isUserClimate(ts,season)) { continue; }
@@ -402,7 +377,7 @@ public class Climate {
   public void removeClimate(int tStep, Season season) {
     if (userValues.containsKey(tStep) == false) { return; }
 
-    if (season == Climate.Season.YEAR) {
+    if (season == Season.YEAR) {
       userValues.remove(tStep);
     } else {
       ArrayList<Season> seasons = userValues.get(tStep);

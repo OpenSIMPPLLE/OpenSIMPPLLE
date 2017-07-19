@@ -629,7 +629,7 @@ public final class VegetativeType implements Comparable, Externalizable {
     hm.put(species,0.0f);
   }
 
-  public float getSpeciesChange(ProcessType process, Climate.Season season, InclusionRuleSpecies sp) {
+  public float getSpeciesChange(ProcessType process, Season season, InclusionRuleSpecies sp) {
     if (speciesChange == null) { return 0; }
 
     if (process == ProcessType.SRF) {

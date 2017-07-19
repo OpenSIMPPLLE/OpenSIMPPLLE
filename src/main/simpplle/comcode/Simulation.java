@@ -115,7 +115,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
   /**
    * The current season, which is used with yearly time steps.
    */
-  private Climate.Season currentSeason = Climate.Season.YEAR;
+  private Season currentSeason = Season.YEAR;
 
   /**
    * A flag indicating if time increments in years. Otherwise it increments in decades.
@@ -378,7 +378,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
   }
 
-  public Climate.Season getCurrentSeason() {
+  public Season getCurrentSeason() {
     return currentSeason;
   }
 
@@ -446,9 +446,9 @@ public final class Simulation implements SimulationTypes, Externalizable {
   public boolean isLastSeason() {
     if (RegionalZone.isWyoming()) {
       if (isStandDevelopment()) {
-        return currentSeason == Climate.Season.SPRING;
+        return currentSeason == Season.SPRING;
       } else {
-        return currentSeason == Climate.Season.WINTER;
+        return currentSeason == Season.WINTER;
       }
     }
     return true;
@@ -911,14 +911,14 @@ public final class Simulation implements SimulationTypes, Externalizable {
         if (FireEvent.useRegenPulse()) { FireEvent.setRegenPulse(); }
 
         if (RegionalZone.isWyoming()) {
-          Climate.Season lastSeason = isStandDevelopment() ? Climate.Season.SPRING : Climate.Season.WINTER;
-          for (Climate.Season s : Climate.allSeasons) {
+          Season lastSeason = isStandDevelopment() ? Season.SPRING : Season.WINTER;
+          for (Season s : Season.values()) {
             currentSeason = s;
             currentArea.doFuture();
             if (s == lastSeason) { break; }
           }
         } else {
-          currentSeason = Climate.Season.YEAR;
+          currentSeason = Season.YEAR;
           currentArea.doFuture();
         }
 

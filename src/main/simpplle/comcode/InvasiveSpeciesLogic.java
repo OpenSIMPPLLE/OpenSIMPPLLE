@@ -174,7 +174,7 @@ public final class InvasiveSpeciesLogic extends BaseLogic {
             HabitatTypeGroup group = evus[i].getHabitatTypeGroup();
             VegetativeType vt = group.getVegetativeType(species, density);
             if (vt != null) {
-              Climate.Season season = Simulation.getInstance().getCurrentSeason();
+              Season season = Simulation.getInstance().getCurrentSeason();
 
               int ts = Simulation.getCurrentTimeStep();
               int run = Simulation.getCurrentRun();

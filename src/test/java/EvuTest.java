@@ -48,15 +48,15 @@ public class EvuTest {
 
     VegSimStateData fallState = new VegSimStateData();
     fallState.setLifeform(Lifeform.TREES);
-    evu.setState(fallState, Climate.Season.FALL);
+    evu.setState(fallState, Season.FALL);
 
     VegSimStateData wrongState = new VegSimStateData();
     wrongState.setLifeform(Lifeform.TREES);
-    evu.setState(wrongState, Climate.Season.YEAR);
+    evu.setState(wrongState, Season.YEAR);
 
 
     // getInitialState should use the proper season, rather than Season.YEAR
-    assertEquals(fallState, evu.getInitialVegState(Lifeform.TREES, Climate.Season.FALL));
+    assertEquals(fallState, evu.getInitialVegState(Lifeform.TREES, Season.FALL));
   }
 
   /**
@@ -73,14 +73,14 @@ public class EvuTest {
 
     VegSimStateData yearState = new VegSimStateData();
     yearState.setLifeform(Lifeform.TREES);
-    evu.setState(yearState, Climate.Season.YEAR);
+    evu.setState(yearState, Season.YEAR);
 
     VegSimStateData fallState = new VegSimStateData();
     fallState.setLifeform(Lifeform.TREES);
-    evu.setState(fallState, Climate.Season.FALL);
+    evu.setState(fallState, Season.FALL);
 
     // Despite sending Season.FALL, the year state should be returned
-    assertEquals(yearState, evu.getState(0, Lifeform.TREES, Climate.Season.FALL));
+    assertEquals(yearState, evu.getState(0, Lifeform.TREES, Season.FALL));
   }
 
   /**

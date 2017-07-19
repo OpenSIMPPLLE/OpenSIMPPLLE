@@ -118,10 +118,10 @@ public class FireSuppWeatherData {
     for (int i=0; i<ranges.length; i++) {
       FireSuppWeatherData inst = new FireSuppWeatherData();
       inst.acresRange = ranges[i];
-      inst.probability[Climate.Season.SPRING.ordinal()] = data[0];
-      inst.probability[Climate.Season.SUMMER.ordinal()] = data[1];
-      inst.probability[Climate.Season.FALL.ordinal()] = data[2];
-      inst.probability[Climate.Season.WINTER.ordinal()] = data[3];
+      inst.probability[Season.SPRING.ordinal()] = data[0];
+      inst.probability[Season.SUMMER.ordinal()] = data[1];
+      inst.probability[Season.FALL.ordinal()] = data[2];
+      inst.probability[Season.WINTER.ordinal()] = data[3];
       instances.add(inst);
     }
   }
@@ -137,10 +137,10 @@ public class FireSuppWeatherData {
     for (int i=0; i<ranges.length; i++) {
       FireSuppWeatherData inst = new FireSuppWeatherData();
       inst.acresRange = ranges[i];
-      inst.probability[Climate.Season.SPRING.ordinal()] = data[i];
-      inst.probability[Climate.Season.FALL.ordinal()]   = data[i];
-      inst.probability[Climate.Season.SUMMER.ordinal()] = data[i];
-      inst.probability[Climate.Season.WINTER.ordinal()] = data[i];
+      inst.probability[Season.SPRING.ordinal()] = data[i];
+      inst.probability[Season.FALL.ordinal()]   = data[i];
+      inst.probability[Season.SUMMER.ordinal()] = data[i];
+      inst.probability[Season.WINTER.ordinal()] = data[i];
       instances.add(inst);
     }
   }
@@ -240,7 +240,7 @@ public class FireSuppWeatherData {
    * @param eventAcres rationalized number of acres in the event
    * @return
    */
-  public static int getProbability(RegionalZone zone, int eventAcres, Climate.Season fireSeason) {
+  public static int getProbability(RegionalZone zone, int eventAcres, Season fireSeason) {
     for (int i=0; i<instances.size(); i++) {
       FireSuppWeatherData inst = instances.get(i);
       if (inst.acresRange.inRange(eventAcres)) {
@@ -275,10 +275,10 @@ public class FireSuppWeatherData {
     switch (col) {
       case MIN_ACRES_COL: return Utility.getFloatAcres(acresRange.lower,Area.getAcresPrecision());
       case MAX_ACRES_COL: return Utility.getFloatAcres(acresRange.upper,Area.getAcresPrecision());
-      case SPRING_COL: return probability[Climate.Season.SPRING.ordinal()];
-      case FALL_COL:   return probability[Climate.Season.FALL.ordinal()];
-      case SUMMER_COL: return probability[Climate.Season.SUMMER.ordinal()];
-      case WINTER_COL: return probability[Climate.Season.WINTER.ordinal()];
+      case SPRING_COL: return probability[Season.SPRING.ordinal()];
+      case FALL_COL:   return probability[Season.FALL.ordinal()];
+      case SUMMER_COL: return probability[Season.SUMMER.ordinal()];
+      case WINTER_COL: return probability[Season.WINTER.ordinal()];
       default: return "";
     }
   }
@@ -286,10 +286,10 @@ public class FireSuppWeatherData {
     switch (col) {
       case MIN_ACRES_COL: break;
       case MAX_ACRES_COL: break;
-      case SPRING_COL: probability[Climate.Season.SPRING.ordinal()] = (Integer)value; break;
-      case FALL_COL:   probability[Climate.Season.FALL.ordinal()]   = (Integer)value; break;
-      case SUMMER_COL: probability[Climate.Season.SUMMER.ordinal()] = (Integer)value; break;
-      case WINTER_COL: probability[Climate.Season.WINTER.ordinal()] = (Integer)value; break;
+      case SPRING_COL: probability[Season.SPRING.ordinal()] = (Integer)value; break;
+      case FALL_COL:   probability[Season.FALL.ordinal()]   = (Integer)value; break;
+      case SUMMER_COL: probability[Season.SUMMER.ordinal()] = (Integer)value; break;
+      case WINTER_COL: probability[Season.WINTER.ordinal()] = (Integer)value; break;
     }
     markDataChanged();
   }

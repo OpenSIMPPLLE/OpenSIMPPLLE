@@ -8,8 +8,6 @@
 
 package simpplle.comcode;
 
-import simpplle.comcode.Species;
-
 import java.io.*;
 import java.util.*;
 
@@ -253,7 +251,7 @@ public final class Emissions {
       processProb = evu.getFireSpreadType(timeStep);
       extremeFire = (processProb == Evu.SE || processProb == Evu.SFS);
 
-      Climate.Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
+      Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
       drought = Simpplle.getClimate().isUserClimate(timeStep,season);
 
       if (processType.equals(ProcessType.LIGHT_SEVERITY_FIRE) ||

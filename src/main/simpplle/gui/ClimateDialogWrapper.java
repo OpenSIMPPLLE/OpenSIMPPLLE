@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
-import static simpplle.comcode.Climate.Season;
+import simpplle.comcode.Season;
 import simpplle.comcode.SystemKnowledge;
 import simpplle.comcode.SimpplleError;
 import simpplle.comcode.Climate;

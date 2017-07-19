@@ -9,7 +9,6 @@
 package simpplle.comcode;
 
 import org.hibernate.Session;
-import simpplle.comcode.Climate.Season;
 
 import java.io.*;
 
@@ -68,7 +67,7 @@ public class ProcessOccurrence implements Externalizable {
   protected Evu            unit;
   protected ProcessType    process;
   protected int            processProb;
-  protected Climate.Season season;
+  protected Season season;
   protected Lifeform       lifeform;
 
 //  public void destoryMe() {
@@ -86,7 +85,7 @@ public class ProcessOccurrence implements Externalizable {
     unit        = null;
     process     = null;
     processProb = 0;
-    season      = Climate.Season.YEAR;
+    season      = Season.YEAR;
   }
   /**
    * overloaded constructor.  Sets the evu, lifeform, process probability, season, and time step.  
@@ -156,14 +155,14 @@ public class ProcessOccurrence implements Externalizable {
     unit        = Simpplle.getCurrentArea().getEvu(in.readInt());
     process     = (ProcessType)in.readObject();
     processProb = in.readInt();
-    season      = Climate.Season.YEAR;
+    season      = Season.YEAR;
     lifeform    = Lifeform.NA;
 
     if (version == 2) {
-      season = Climate.Season.valueOf((String) in.readObject());
+      season = Season.valueOf((String) in.readObject());
     }
     else if (version > 2) {
-      season = Climate.Season.valueOf((String) in.readObject());
+      season = Season.valueOf((String) in.readObject());
       lifeform = Lifeform.findByName((String)in.readObject());
     }
   }
