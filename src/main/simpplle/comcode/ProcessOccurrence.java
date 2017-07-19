@@ -163,7 +163,7 @@ public class ProcessOccurrence implements Externalizable {
     }
     else if (version > 2) {
       season = Season.valueOf((String) in.readObject());
-      lifeform = Lifeform.get((String)in.readObject());
+      lifeform = Lifeform.findByName((String)in.readObject());
     }
   }
   /**

@@ -134,17 +134,17 @@ public class FireTypeLogicData extends LogicData implements Externalizable {
    * @param moisture A relative moisture level
    * @return A fire process type
    */
-  private ProcessType getFireType(Climate.Moisture moisture) {
+  private ProcessType getFireType(Moisture moisture) {
 
-    if (moisture == Climate.WETTER) {
+    if (moisture == Moisture.WETTER) {
 
       return wetter;
 
-    } else if (moisture == Climate.Moisture.NORMAL) {
+    } else if (moisture == Moisture.NORMAL) {
 
       return normal;
 
-    } else if (moisture == Climate.DRIER) {
+    } else if (moisture == Moisture.DRIER) {
 
       return drier;
 

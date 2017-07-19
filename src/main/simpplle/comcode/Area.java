@@ -2152,7 +2152,7 @@ public final class Area implements Externalizable {
           lives = Process.getProcessLifeforms(process);
         }
         else {
-          lives = Lifeform.getAllValuesList();
+          lives = Lifeform.getLifeformsByDominanceList();
         }
         for (int l=0; l<lives.size(); l++) {
           if (evu.hasLifeform(lives.get(l),cStep)) {
@@ -2991,7 +2991,7 @@ public final class Area implements Externalizable {
 
     int cStep = Simulation.getCurrentTimeStep();
     if (Area.multipleLifeformsEnabled()) {
-      Lifeform[] lives = Lifeform.getAllValues();
+      Lifeform[] lives = Lifeform.getLifeformsByDominance();
       for (int i=0; i<lives.length; i++) {
         if (hasLifeformEvus(lives[i],cStep)) {
           produceArcFiles(outputFile, cStep, lives[i],false);
@@ -4689,7 +4689,7 @@ public final class Area implements Externalizable {
     for (int i=0; i<allEvu.length; i++) {
       if (allEvu[i] == null) { continue; }
 
-      Lifeform[] lives = Lifeform.getAllValues();
+      Lifeform[] lives = Lifeform.getLifeformsByDominance();
       for (int j = 0; j < lives.length; j++) {
         VegSimStateData state = allEvu[i].getState(0,lives[j]);
         if (state == null) { continue; }

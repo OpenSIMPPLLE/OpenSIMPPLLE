@@ -1187,7 +1187,7 @@ public class Pathway extends JDialog {
     }
 
     String title = "Yearly Pathway Lifeforms";
-    ArrayList<Lifeform> lives = new ArrayList<>(Arrays.asList(Lifeform.getAllValues()));
+    ArrayList<Lifeform> lives = new ArrayList<>(Arrays.asList(Lifeform.getLifeformsByDominance()));
     CheckBoxChooser dlg = new CheckBoxChooser(this,title,true,lives,yearlyLives);
     dlg.setVisible(true);
     group.setYearlyPathwayLifeforms(dlg.getChosenItems());

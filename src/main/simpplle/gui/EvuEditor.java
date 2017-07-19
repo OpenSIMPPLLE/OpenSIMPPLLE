@@ -8,25 +8,16 @@
 
 package simpplle.gui;
 
-import simpplle.comcode.HabitatTypeGroup;
-import simpplle.comcode.Simpplle;
-import simpplle.comcode.Area;
-import simpplle.comcode.Species;
-import simpplle.comcode.SizeClass;
-import simpplle.comcode.Density;
-import simpplle.comcode.Evu;
-import simpplle.comcode.RegionalZone;
-import simpplle.comcode.Fmz;
+import simpplle.comcode.*;
+import simpplle.comcode.Climate.*;
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.text.NumberFormat;
-import simpplle.comcode.ProcessType;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
-import simpplle.comcode.*;
 import java.util.*;
 
 /**
@@ -59,7 +50,7 @@ public class EvuEditor extends JDialog {
   private JMenuItem menuUtilityGlobalChange = new JMenuItem();
   private ButtonGroup lifeformRBGroup = new ButtonGroup();
 
-  JPanel mainPanel = new JPanel();
+  private JPanel mainPanel = new JPanel();
   private JPanel htGrpPanel = new JPanel();
   private JPanel statePanel = new JPanel();
   private JPanel speciesPanel = new JPanel();
@@ -68,28 +59,23 @@ public class EvuEditor extends JDialog {
   private JPanel densityPanel = new JPanel();
   private JPanel sizeClassPanel = new JPanel();
   private JPanel mainAttributePanel = new JPanel();
-  private JPanel otherAttributePanel = new JPanel();
   private JPanel agePanel = new JPanel();
-  private JPanel mainNorthPanel = new JPanel();
-  private JPanel topPanel = new JPanel();
   private JPanel radioPanel = new JPanel();
   private JPanel radioOuterPanel = new JPanel();
   private JPanel evuIdPanel = new JPanel();
   private JPanel mainValuesPanel = new JPanel();
   private JPanel mainLabelsPanel = new JPanel();
-  private JPanel otherValuesPanel = new JPanel();
-  private JPanel otherLabelsPanel = new JPanel();
   private JPanel prevNextPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-  JPanel buttonPanel = new JPanel();
-  JPanel jPanel1 = new JPanel();
+  private JPanel buttonPanel = new JPanel();
+  private JPanel idEditPanel = new JPanel();
   private JPanel jPanel7 = new JPanel();
-  private JPanel jPanel8 = new JPanel();
-  private JPanel jPanel9 = new JPanel();
+  private JPanel roadStatPanel = new JPanel();
+  private JPanel ownershipPanel = new JPanel();
   private JPanel initProcessPanel = new JPanel();
   private JPanel lifeformPanel = new JPanel();
 
   private JLabel htGrpLabel = new JLabel();
-  private  JLabel vegTypeLabel = new JLabel();
+  private JLabel vegTypeLabel = new JLabel();
   private JLabel speciesLabel = new JLabel();
   private JLabel sizeClassLabel = new JLabel();
   private JLabel densityLabel = new JLabel();
@@ -100,6 +86,8 @@ public class EvuEditor extends JDialog {
   private JLabel htGrpInvalidLabel = new JLabel();
   private JLabel fmzLabel = new JLabel();
   private JLabel fmzInvalidLabel = new JLabel();
+  private JLabel idLabel = new JLabel("ID");
+  private JLabel idValueLabel = new JLabel("-1");
   private JLabel unitNumberLabel = new JLabel();
   private JLabel acresLabel = new JLabel();
   private JLabel ownershipLabel = new JLabel();
@@ -107,26 +95,22 @@ public class EvuEditor extends JDialog {
   private JLabel specialAreaLabel = new JLabel();
   private JLabel ageLabel = new JLabel();
   private JLabel ageInvalidLabel = new JLabel();
-  private JLabel evuLabel = new JLabel();
+  private JLabel searchLabel = new JLabel("Search by ID");
   private JLabel acresInvalidLabel = new JLabel();
   private JLabel initProcessLabel = new JLabel();
   private JLabel initProcessInvalidLabel = new JLabel();
 
-  FlowLayout flowLayout1 = new FlowLayout();
-  FlowLayout flowLayout2 = new FlowLayout();
-  private FlowLayout flowLayout3 = new FlowLayout();
-  private FlowLayout flowLayout4 = new FlowLayout();
-  private FlowLayout flowLayout5 = new FlowLayout();
+  private FlowLayout flowLayout = new FlowLayout();
+  private FlowLayout centeredFlow = new FlowLayout();
+  private FlowLayout outterRadioLayout = new FlowLayout();
+  private FlowLayout mainAttribLayout = new FlowLayout();
 
-  private BorderLayout borderLayout1 = new BorderLayout();
-  private BorderLayout borderLayout3 = new BorderLayout();
-  private BorderLayout borderLayout4 = new BorderLayout();
+  private BorderLayout mainLayout = new BorderLayout();
 
-  private GridLayout gridLayout1 = new GridLayout();
-  private GridLayout gridLayout2 = new GridLayout();
-  private GridLayout gridLayout3 = new GridLayout();
+  private GridLayout radioLayout = new GridLayout();
+  private GridLayout otherLabelsLayout = new GridLayout();
+  private GridLayout lifeformLayout = new GridLayout();
   private GridLayout gridLayout4 = new GridLayout();
-  private GridLayout gridLayout5 = new GridLayout();
   private GridLayout gridLayout6 = new GridLayout();
   private GridLayout gridLayout7 = new GridLayout();
 
@@ -141,12 +125,11 @@ public class EvuEditor extends JDialog {
   private JTextField ownershipEdit = new JTextField();
   private JTextField specialAreaEdit = new JTextField();
   private JTextField ageEdit = new JTextField();
-  private JTextField evuIdEdit = new JTextField();
+  private JTextField searchField = new JTextField();
   private JTextField initProcessEdit = new JTextField();
 
-  JButton nextPB = new JButton();
-  JButton prevPB = new JButton();
-  private JButton quitPB = new JButton();
+  JButton nextPB = new JButton("Next");
+  JButton prevPB = new JButton("Previous");
 
   private JRadioButton showAllRB = new JRadioButton();
   private JRadioButton showInvalidRB = new JRadioButton();
@@ -156,17 +139,17 @@ public class EvuEditor extends JDialog {
   private JRadioButton herbaciousRB = new JRadioButton();
   private JRadioButton shrubsRB = new JRadioButton();
 
-  private Border border1 = BorderFactory.createLineBorder(Color.white, 2);
+  private Border border1 = BorderFactory.createLineBorder(Color.gray, 2);
   private Border border2 = new TitledBorder(border1, "Lifeform");
 
   /**
    * Constructor for Evu Editor.  Sets the frame owner, name, and modality.
-   * @param frame
-   * @param title
-   * @param modal
+   * @param owner frame that owns the dialog
+   * @param title name of dialog
+   * @param modal specifies whether dialog blocks user input to other top-level windows when shown
    */
-  public EvuEditor(Frame frame, String title, boolean modal) {
-    super(frame, title, modal);
+  public EvuEditor(Frame owner, String title, boolean modal) {
+    super(owner, title, modal);
     try  {
       jbInit();
       pack();
@@ -174,7 +157,7 @@ public class EvuEditor extends JDialog {
     catch(Exception ex) {
       ex.printStackTrace();
     }
-    this.theFrame = frame;
+    this.theFrame = owner;
     initialize();
   }
 
@@ -187,13 +170,14 @@ public class EvuEditor extends JDialog {
 
   /**
    * Sets the panel, components, colors, layouts, listeners, and borders for Evu Editor. 
-   * @throws Exception
+   * @throws Exception generic exception
    */
   void jbInit() throws Exception {
-    mainPanel.setLayout(borderLayout1);
+
+    mainPanel.setLayout(mainLayout);
     htGrpLabel.setText("Ecological Grouping");
-    htGrpPanel.setLayout(flowLayout1);
-    flowLayout1.setAlignment(FlowLayout.LEFT);
+    htGrpPanel.setLayout(flowLayout);
+    flowLayout.setAlignment(FlowLayout.LEFT);
     htGrpEdit.setBackground(Color.white);
     htGrpEdit.setSelectionColor(Color.blue);
     htGrpEdit.setColumns(14);
@@ -204,7 +188,7 @@ public class EvuEditor extends JDialog {
       }
     });
     htGrpEdit.addActionListener(e -> htGrpEdit_actionPerformed());
-    statePanel.setLayout(flowLayout1);
+    statePanel.setLayout(flowLayout);
     vegTypeLabel.setText("Vegetative Type");
     vegTypeEdit.setBackground(Color.gray);
     vegTypeEdit.setEnabled(false);
@@ -213,7 +197,7 @@ public class EvuEditor extends JDialog {
     vegTypeEdit.setSelectionColor(Color.blue);
     vegTypeEdit.setText("RIPARIAN-GRASSES/CLOSED-TALL-SHRUB/1");
     vegTypeEdit.setColumns(28);
-    speciesPanel.setLayout(flowLayout1);
+    speciesPanel.setLayout(flowLayout);
     speciesLabel.setText("Species");
     speciesEdit.setBackground(Color.white);
     speciesEdit.setSelectionColor(Color.blue);
@@ -225,7 +209,7 @@ public class EvuEditor extends JDialog {
       }
     });
     speciesEdit.addActionListener(e -> speciesEdit_actionPerformed());
-    sizeClassPanel.setLayout(flowLayout1);
+    sizeClassPanel.setLayout(flowLayout);
     sizeClassLabel.setText("Size Class");
     sizeClassEdit.setBackground(Color.white);
     sizeClassEdit.setSelectionColor(Color.blue);
@@ -237,7 +221,7 @@ public class EvuEditor extends JDialog {
       }
     });
     sizeClassEdit.addActionListener(e -> sizeClassEdit_actionPerformed());
-    densityPanel.setLayout(flowLayout1);
+    densityPanel.setLayout(flowLayout);
     densityLabel.setText("Density");
     densityEdit.setBackground(Color.white);
     densityEdit.setSelectionColor(Color.blue);
@@ -256,7 +240,7 @@ public class EvuEditor extends JDialog {
     stateInvalidLabel.setFont(serif);
     stateInvalidLabel.setText("(invalid)");
     htGrpInvalidLabel.setFont(serif);
-    fmzPanel.setLayout(flowLayout1);
+    fmzPanel.setLayout(flowLayout);
     fmzLabel.setText("Fire Management Zone");
     fmzEdit.setBackground(Color.white);
     fmzEdit.setSelectionColor(Color.blue);
@@ -270,15 +254,14 @@ public class EvuEditor extends JDialog {
     fmzEdit.addActionListener(e -> fmzEdit_actionPerformed());
     fmzInvalidLabel.setFont(serif);
     unitNumberLabel.setText("Unit Number");
-    acresPanel.setLayout(flowLayout1);
+    acresPanel.setLayout(flowLayout);
     acresLabel.setText("Acres");
     ownershipLabel.setText("Ownership");
     roadStatusLabel.setText("Road Status");
     specialAreaLabel.setText("Special Area");
-    mainAttributePanel.setLayout(flowLayout5);
-    otherAttributePanel.setLayout(flowLayout1);
+    mainAttributePanel.setLayout(mainAttribLayout);
     mainAttributePanel.setBorder(BorderFactory.createEtchedBorder());
-    borderLayout1.setVgap(5);
+    mainLayout.setVgap(5);
     unitNumberEdit.setBackground(Color.white);
     unitNumberEdit.setSelectionColor(Color.blue);
     unitNumberEdit.setColumns(6);
@@ -319,7 +302,7 @@ public class EvuEditor extends JDialog {
       }
     });
     specialAreaEdit.addActionListener(e -> specialAreaEdit_actionPerformed());
-    agePanel.setLayout(flowLayout1);
+    agePanel.setLayout(flowLayout);
     ageLabel.setText("Age");
     ageEdit.setBackground(Color.white);
     ageEdit.setSelectionColor(Color.blue);
@@ -332,32 +315,24 @@ public class EvuEditor extends JDialog {
     });
     ageEdit.addActionListener(e -> ageEdit_actionPerformed());
     ageInvalidLabel.setFont(serif);
-    mainNorthPanel.setLayout(borderLayout3);
-    radioPanel.setLayout(gridLayout1);
-    gridLayout1.setRows(2);
+    radioPanel.setLayout(radioLayout);
+    radioLayout.setRows(2);
     showAllRB.setSelected(true);
     showAllRB.setText("Show All Units");
     showAllRB.addActionListener(e -> showAllRB_actionPerformed());
     showInvalidRB.setText("Show Only Invalid Units");
-    showInvalidRB.addActionListener(this::showInvalidRB_actionPerformed);
-    topPanel.setLayout(borderLayout4);
-    nextPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/next.gif")));
-    nextPB.setMargin(new Insets(0, 0, 0, 0));
-    nextPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/nextg.gif")));
+    showInvalidRB.addActionListener(e -> showInvalidRB_actionPerformed(e));
+    Dimension buttonDimension = new Dimension(80, 35);
+    nextPB.setPreferredSize(buttonDimension);
     nextPB.addActionListener(e -> nextPB_actionPerformed());
-    evuLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    prevPB.setIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prev.gif")));
-    prevPB.setMargin(new Insets(0, 0, 0, 0));
-    prevPB.setPressedIcon(new ImageIcon(simpplle.gui.EvuEditor.class.getResource("images/prevg.gif")));
+    searchLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    prevPB.setPreferredSize(buttonDimension);
     prevPB.addActionListener(e -> prevPB_actionPerformed());
-    buttonPanel.setLayout(flowLayout3);
-    quitPB.setText("Close");
-    quitPB.addActionListener(e -> quitPB_actionPerformed());
-    radioPanel.setBorder(BorderFactory.createLoweredBevelBorder());
-    radioOuterPanel.setLayout(flowLayout4);
-    flowLayout4.setAlignment(FlowLayout.LEFT);
-    flowLayout4.setHgap(20);
-    buttonPanel.setBorder(BorderFactory.createEtchedBorder());
+    BoxLayout boxLayout = new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS);
+    buttonPanel.setLayout(boxLayout);
+    radioOuterPanel.setLayout(outterRadioLayout);
+    outterRadioLayout.setAlignment(FlowLayout.LEFT);
+    outterRadioLayout.setHgap(20);
     roadStatusCB.addItemListener(new ItemListener() {
 
       public void itemStateChanged(ItemEvent e) {
@@ -372,33 +347,29 @@ public class EvuEditor extends JDialog {
         this_windowClosing(e);
       }
     });
-    evuIdPanel.setLayout(gridLayout5);
-    evuIdEdit.setBackground(Color.white);
-    evuIdEdit.setToolTipText("Change to desired Unit Id and press enter");
-    evuIdEdit.setSelectionColor(Color.blue);
-    evuIdEdit.setColumns(6);
-    evuIdEdit.addActionListener(e -> evuIdEdit_actionPerformed());
-    gridLayout5.setRows(2);
+    evuIdPanel.setLayout(centeredFlow);
+    searchField.setBackground(Color.white);
+    searchField.setToolTipText("Change to desired Unit Id and press enter");
+    searchField.setSelectionColor(Color.blue);
+    searchField.setColumns(6);
+    searchField.addActionListener(e -> searchField_actionPerformed());
     acresInvalidLabel.setFont(serif);
     mainLabelsPanel.setLayout(gridLayout4);
-    gridLayout4.setRows(9);
+    gridLayout4.setRows(14);
     gridLayout4.setVgap(20);
     mainValuesPanel.setLayout(gridLayout6);
-    gridLayout6.setRows(9);
-    flowLayout5.setAlignment(FlowLayout.LEFT);
-    flowLayout5.setVgap(0);
-    otherLabelsPanel.setLayout(gridLayout2);
-    otherValuesPanel.setLayout(gridLayout7);
-    gridLayout2.setRows(4);
-    gridLayout2.setVgap(16);
+    gridLayout6.setRows(14);
+    mainAttribLayout.setAlignment(FlowLayout.LEFT);
+    mainAttribLayout.setVgap(0);
+    otherLabelsLayout.setRows(4);
+    otherLabelsLayout.setVgap(20);
     gridLayout7.setRows(4);
-    jPanel1.setLayout(flowLayout1);
-    jPanel9.setLayout(flowLayout1);
-    jPanel8.setLayout(flowLayout1);
-    jPanel7.setLayout(flowLayout1);
-    otherAttributePanel.setBorder(BorderFactory.createEtchedBorder());
+    idEditPanel.setLayout(flowLayout);
+    ownershipPanel.setLayout(flowLayout);
+    roadStatPanel.setLayout(flowLayout);
+    jPanel7.setLayout(flowLayout);
     initProcessLabel.setText("Initial Process");
-    initProcessPanel.setLayout(flowLayout2);
+    initProcessPanel.setLayout(centeredFlow);
     initProcessInvalidLabel.setFont(serif);
     initProcessInvalidLabel.setText("(invalid)");
     initProcessEdit.setBackground(Color.white);
@@ -415,9 +386,9 @@ public class EvuEditor extends JDialog {
     menuUtilityGlobalChange.setToolTipText("Change Ecological Grouping and Vegatative Type of all units.");
     menuUtilityGlobalChange.setText("Make Global Change ...");
     menuUtilityGlobalChange.addActionListener(e -> menuUtilityGlobalChange_actionPerformed());
-    lifeformPanel.setLayout(gridLayout3);
-    gridLayout3.setColumns(3);
-    gridLayout3.setRows(2);
+    lifeformPanel.setLayout(lifeformLayout);
+    lifeformLayout.setColumns(3);
+    lifeformLayout.setRows(2);
     treesRB.setSelected(true);
     treesRB.setText("Trees");
     treesRB.addActionListener(e -> treesRB_actionPerformed());
@@ -431,81 +402,78 @@ public class EvuEditor extends JDialog {
     shrubsRB.addActionListener(e -> shrubsRB_actionPerformed());
     lifeformPanel.setBorder(border2);
 
-    getContentPane().add(mainPanel);
-    mainPanel.add(mainNorthPanel, BorderLayout.NORTH);
-    mainNorthPanel.add(topPanel, BorderLayout.NORTH);
-    topPanel.add(prevNextPanel, BorderLayout.NORTH);
-    prevNextPanel.add(prevPB, null);
-    prevNextPanel.add(evuIdPanel, null);
-    evuIdPanel.add(evuLabel, null);
-    evuIdPanel.add(evuIdEdit, null);
-    prevNextPanel.add(nextPB, null);
-    topPanel.add(radioOuterPanel, BorderLayout.CENTER);
-    radioOuterPanel.add(radioPanel, null);
+    add(mainPanel);
+    mainPanel.add(mainAttributePanel, BorderLayout.NORTH);
+    mainAttributePanel.add(mainLabelsPanel);
+    mainLabelsPanel.add(idLabel);
+    mainLabelsPanel.add(unitNumberLabel);
+    mainLabelsPanel.add(ownershipLabel);
+    mainLabelsPanel.add(roadStatusLabel);
+    mainLabelsPanel.add(specialAreaLabel);
+    mainLabelsPanel.add(htGrpLabel);
+    mainLabelsPanel.add(vegTypeLabel);
+    mainLabelsPanel.add(speciesLabel);
+    mainLabelsPanel.add(sizeClassLabel);
+    mainLabelsPanel.add(densityLabel);
+    mainLabelsPanel.add(ageLabel);
+    mainLabelsPanel.add(fmzLabel);
+    mainLabelsPanel.add(acresLabel);
+    mainLabelsPanel.add(initProcessLabel);
+    mainAttributePanel.add(mainValuesPanel);
+    mainValuesPanel.add(idValueLabel);
+    mainValuesPanel.add(idEditPanel);
+    idEditPanel.add(unitNumberEdit);
+    mainValuesPanel.add(ownershipPanel);
+    ownershipPanel.add(ownershipEdit);
+    mainValuesPanel.add(roadStatPanel);
+    roadStatPanel.add(roadStatusCB);
+    mainValuesPanel.add(jPanel7);
+    jPanel7.add(specialAreaEdit);
+    mainValuesPanel.add(htGrpPanel);
+    htGrpPanel.add(htGrpEdit);
+    htGrpPanel.add(htGrpInvalidLabel);
+    mainValuesPanel.add(statePanel);
+    statePanel.add(vegTypeEdit);
+    statePanel.add(stateInvalidLabel);
+    mainValuesPanel.add(speciesPanel);
+    speciesPanel.add(speciesEdit);
+    speciesPanel.add(speciesInvalidLabel);
+    mainValuesPanel.add(sizeClassPanel);
+    sizeClassPanel.add(sizeClassEdit);
+    sizeClassPanel.add(sizeClassInvalidLabel);
+    mainValuesPanel.add(densityPanel);
+    densityPanel.add(densityEdit);
+    densityPanel.add(densityInvalidLabel);
+    mainValuesPanel.add(agePanel);
+    agePanel.add(ageEdit);
+    agePanel.add(ageInvalidLabel);
+    mainValuesPanel.add(fmzPanel);
+    fmzPanel.add(fmzEdit);
+    fmzPanel.add(fmzInvalidLabel);
+    mainValuesPanel.add(acresPanel);
+    acresPanel.add(acresEdit);
+    acresPanel.add(acresInvalidLabel);
+    mainValuesPanel.add(initProcessPanel);
+    initProcessPanel.add(initProcessEdit);
+    initProcessPanel.add(initProcessInvalidLabel);
+    mainPanel.add(radioOuterPanel, BorderLayout.CENTER);
+    radioOuterPanel.add(radioPanel);
+    radioPanel.add(showAllRB);
+    radioPanel.add(showInvalidRB);
     radioOuterPanel.add(lifeformPanel);
     lifeformPanel.add(treesRB);
     lifeformPanel.add(shrubsRB);
     lifeformPanel.add(herbaciousRB);
     lifeformPanel.add(agricultureRB);
     lifeformPanel.add(otherRB);
-    radioPanel.add(showAllRB, null);
-    radioPanel.add(showInvalidRB, null);
-    mainNorthPanel.add(mainAttributePanel, BorderLayout.SOUTH);
-    mainAttributePanel.add(mainLabelsPanel, null);
-    mainLabelsPanel.add(htGrpLabel, null);
-    mainLabelsPanel.add(vegTypeLabel, null);
-    mainLabelsPanel.add(speciesLabel, null);
-    mainLabelsPanel.add(sizeClassLabel, null);
-    mainLabelsPanel.add(densityLabel, null);
-    mainLabelsPanel.add(ageLabel, null);
-    mainLabelsPanel.add(fmzLabel, null);
-    mainLabelsPanel.add(acresLabel, null);
-    mainLabelsPanel.add(initProcessLabel, null);
-    mainAttributePanel.add(mainValuesPanel, null);
-    mainValuesPanel.add(htGrpPanel, null);
-    htGrpPanel.add(htGrpEdit, null);
-    htGrpPanel.add(htGrpInvalidLabel, null);
-    mainValuesPanel.add(statePanel, null);
-    statePanel.add(vegTypeEdit, null);
-    statePanel.add(stateInvalidLabel, null);
-    mainValuesPanel.add(speciesPanel, null);
-    speciesPanel.add(speciesEdit, null);
-    speciesPanel.add(speciesInvalidLabel, null);
-    mainValuesPanel.add(sizeClassPanel, null);
-    sizeClassPanel.add(sizeClassEdit, null);
-    sizeClassPanel.add(sizeClassInvalidLabel, null);
-    mainValuesPanel.add(densityPanel, null);
-    densityPanel.add(densityEdit, null);
-    densityPanel.add(densityInvalidLabel, null);
-    mainValuesPanel.add(agePanel, null);
-    agePanel.add(ageEdit, null);
-    agePanel.add(ageInvalidLabel, null);
-    mainValuesPanel.add(fmzPanel, null);
-    fmzPanel.add(fmzEdit, null);
-    fmzPanel.add(fmzInvalidLabel, null);
-    mainValuesPanel.add(acresPanel, null);
-    acresPanel.add(acresEdit, null);
-    acresPanel.add(acresInvalidLabel, null);
-    mainValuesPanel.add(initProcessPanel, null);
-    initProcessPanel.add(initProcessEdit, null);
-    initProcessPanel.add(initProcessInvalidLabel, null);
-    mainPanel.add(otherAttributePanel, BorderLayout.CENTER);
-    otherAttributePanel.add(otherLabelsPanel, null);
-    otherLabelsPanel.add(unitNumberLabel, null);
-    otherLabelsPanel.add(ownershipLabel, null);
-    otherLabelsPanel.add(roadStatusLabel, null);
-    otherLabelsPanel.add(specialAreaLabel, null);
-    otherAttributePanel.add(otherValuesPanel, null);
-    otherValuesPanel.add(jPanel1, null);
-    jPanel1.add(unitNumberEdit, null);
-    otherValuesPanel.add(jPanel9, null);
-    jPanel9.add(ownershipEdit, null);
-    otherValuesPanel.add(jPanel8, null);
-    jPanel8.add(roadStatusCB, null);
-    otherValuesPanel.add(jPanel7, null);
-    jPanel7.add(specialAreaEdit, null);
     mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-    buttonPanel.add(quitPB, null);
+    prevNextPanel.add(prevPB);
+    prevNextPanel.add(nextPB);
+    evuIdPanel.add(searchLabel);
+    evuIdPanel.add(searchField);
+    buttonPanel.add(evuIdPanel);
+    buttonPanel.add(Box.createRigidArea(new Dimension(240, buttonPanel.getHeight())));
+    buttonPanel.add(prevNextPanel);
 
     ButtonGroup group = new ButtonGroup();
     group.add(showAllRB);
@@ -553,7 +521,7 @@ public class EvuEditor extends JDialog {
    * Evu ID, ownership, road status, and special area.
    */
   private void updateDialog() {
-    String str, idStr;
+    String str;
     boolean isValid;
     numInvalid = 0;
 
@@ -589,12 +557,6 @@ public class EvuEditor extends JDialog {
       }
     }
     inInit = false;
-
-    // The Id;
-    idStr = Integer.toString(currentEvu.getId());
-    str = "EVU-" + idStr;
-    evuLabel.setText(str);
-    evuIdEdit.setText(idStr);
 
     // Habitat Type Group
     HabitatTypeGroup htGrp = currentEvu.getHabitatTypeGroup();
@@ -709,7 +671,6 @@ public class EvuEditor extends JDialog {
     if (str == null) { str = ""; }
     unitNumberEdit.setText(str);
 
-
     // Ownership
     str = currentEvu.getOwnershipEditor();
     if (str == null) { str = ""; }
@@ -722,40 +683,33 @@ public class EvuEditor extends JDialog {
     str = currentEvu.getSpecialAreaEditor();
     if (str == null) { str = ""; }
     specialAreaEdit.setText(str);
+
+    // ID
+    idValueLabel.setText(Integer.toString(currentEvu.getId()));
   }
 
-  /**
-   * Evu Id Edit text field listener.  parses the evuIdEdit text field, checks to makes sure it is a number, and a valid Evu ID,
-   * then creates a new Evu Object with same ID as the current one being edited, and makes that the current Evu.
-   */
-  private void evuIdEdit_actionPerformed() {
-    Evu newEvu;
+  private void searchField_actionPerformed() {
     int id;
-
     try {
-      id = Integer.parseInt(evuIdEdit.getText());
-    }
-    catch (NumberFormatException nfe) {
-      JOptionPane.showMessageDialog(this,"Unit Id must be a number",
-          "Invalid Id",JOptionPane.ERROR_MESSAGE);
-      evuIdEdit.setText(Integer.toString(currentEvu.getId()));
+      id = Integer.parseInt(searchField.getText());
+    } catch (NumberFormatException nfe) {
+      JOptionPane.showMessageDialog(this,
+                                    "Unit ID must be a number",
+                                    "Invalid ID",
+                                    JOptionPane.ERROR_MESSAGE);
+      searchField.setText(Integer.toString(currentEvu.getId()));
       return;
     }
+
     if (currentArea.isValidUnitId(id)) {
-      newEvu = currentArea.getEvu(id);
-    }
-    else {
-      newEvu = null;
-    }
-    if (newEvu == null) {
-      String msg = id + " is not a valid Unit Id.";
-      JOptionPane.showMessageDialog(this,msg,"Unit Id not found",
-          JOptionPane.ERROR_MESSAGE);
-      evuIdEdit.setText(Integer.toString(currentEvu.getId()));
-    }
-    else {
-      currentEvu = newEvu;
+      currentEvu = currentArea.getEvu(id);
       updateDialog();
+    } else {
+      JOptionPane.showMessageDialog(this,
+                                    "Unit " + id + " was not found.",
+                                    "Unit ID Not Found",
+                                    JOptionPane.ERROR_MESSAGE);
+      searchField.setText(Integer.toString(currentEvu.getId()));
     }
   }
 
@@ -836,11 +790,11 @@ public class EvuEditor extends JDialog {
     }
   }
 
-/**
- * Shows the Invalid vegetative units radio buttons
- * @param e 'show invalid'
- */
-  void showInvalidRB_actionPerformed(ActionEvent e) {
+  /**
+   * Shows the Invalid vegetative units radio buttons
+   * @param e 'show invalid'
+   */
+  private void showInvalidRB_actionPerformed(ActionEvent e) {
     boolean existInvalid = currentArea.hasInvalidVegetationUnits();
     if (showStatus != SHOW_INVALID && existInvalid) {
       showStatus = SHOW_INVALID;
@@ -1117,7 +1071,7 @@ public class EvuEditor extends JDialog {
 
   /**
    * If an item changed in the road status combo box, it gets the item that was changed and sets the road status of the item.
-   * @param e
+   * @param e ItemEvent
    */
   private void roadStatusCB_itemStateChanged(ItemEvent e) {
     Roads.Status item = (Roads.Status) e.getItem();
@@ -1158,12 +1112,6 @@ public class EvuEditor extends JDialog {
     area.updateArea();
     setVisible(false);
     dispose();
-  }
-  /**
-   * Quits the Evu Editor if quit button is pushed.
-   */
-  private void quitPB_actionPerformed() {
-    quit();
   }
   /**
    * Window closing event quits.

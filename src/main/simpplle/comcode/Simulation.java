@@ -1265,7 +1265,7 @@ public final class Simulation implements SimulationTypes, Externalizable {
     }
 
     if (Area.multipleLifeformsEnabled()) {
-      Lifeform[] lives = Lifeform.getAllValues();
+      Lifeform[] lives = Lifeform.getLifeformsByDominance();
       for (int i=0; i<lives.length; i++) {
         File tmpFile = Area.createLifeformOutputFile(tmpOutputFile,lives[i],false);
         writePrefixFileSingleRun(tmpFile,false);

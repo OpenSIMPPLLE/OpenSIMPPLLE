@@ -194,11 +194,11 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
     dlg.setVisible(true);
   }
   private void doMoistureChooser(LogicData logicData) {
-    Climate.Moisture[] allValues = Climate.Moisture.values();
+    Moisture[] allValues = Moisture.values();
     int countTS = logicData.getMoistureCountTimeStep();
     int numTS   = logicData.getMoistureNumTimeStep();
     ClimateLogicChooser dlg =
-      new ClimateLogicChooser(dialog,title,true,Climate.Moisture.values(),
+      new ClimateLogicChooser(dialog,title,true, Moisture.values(),
                               logicData.getMoistureList(),countTS,numTS);
     dlg.setVisible(true);
 
@@ -215,11 +215,11 @@ public class MyJButtonEditor extends AbstractCellEditor implements TableCellEdit
     logicData.setMoistureNumTimeStep(dlg.getNumTimeStep());
   }
   private void doTemperatureChooser(LogicData logicData) {
-    Climate.Temperature[] allValues = Climate.Temperature.values();
+    Temperature[] allValues = Temperature.values();
     int countTS = logicData.getTempCountTimeStep();
     int numTS   = logicData.getTempNumTimeStep();
     ClimateLogicChooser dlg =
-      new ClimateLogicChooser(dialog,title,true,Climate.Temperature.values(),
+      new ClimateLogicChooser(dialog,title,true, Temperature.values(),
                               logicData.getTemperatureList(),countTS,numTS);
     dlg.setVisible(true);
 

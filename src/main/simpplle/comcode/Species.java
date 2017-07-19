@@ -508,7 +508,7 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
 
     allSpeciesList.clear();
 
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
 
     for (int i=0; i<allLives.length; i++) {
       list = (ArrayList)lifeformHm.get(allLives[i].toString());
@@ -652,7 +652,7 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
         if (str == null || str.trim().length() == 0) {
           throw new SimpplleError("No Lifeform type in line: " + line);
         }
-        lf = Lifeform.get(str.trim());
+        lf = Lifeform.findByName(str.trim());
         if (lf == null) { lf = Lifeform.NA; }
         species.setLifeform(lf);
 

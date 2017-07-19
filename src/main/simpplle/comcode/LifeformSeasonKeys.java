@@ -21,11 +21,11 @@ public class LifeformSeasonKeys {
   private static MultiKey[][] keys = new MultiKey[Lifeform.numValues()][Season.values().length];
 
   static {
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
 
     for (int l=0; l<lives.length; l++) {
       for (int s=0; s<Season.values().length; s++) {
-        keys[lives[l].getId()][Season.values()[s].ordinal()] =
+        keys[lives[l].getDominance()][Season.values()[s].ordinal()] =
           new MultiKey(lives[l],Season.values()[s]);
       }
 
@@ -42,7 +42,7 @@ public class LifeformSeasonKeys {
  * @return the multikey composed of a multidimensional array of size lifeform id and season ordinal.
  */
   public static MultiKey getKey(Lifeform lifeform, Season season) {
-    return keys[lifeform.getId()][season.ordinal()];
+    return keys[lifeform.getDominance()][season.ordinal()];
   }
 
 }

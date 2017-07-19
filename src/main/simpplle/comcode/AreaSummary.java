@@ -2800,7 +2800,7 @@ public final class AreaSummary implements Externalizable {
         continue;
       }
 
-      Lifeform[] lives = Lifeform.getAllValues();
+      Lifeform[] lives = Lifeform.getLifeformsByDominance();
       for (int i = 0; i < lives.length; i++) {
         ProcessType process = ProcessType.NONE;
         if (lives[i] == Lifeform.TREES) {
@@ -2983,7 +2983,7 @@ public final class AreaSummary implements Externalizable {
       }
     }
 
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
     for(int i=0; i<lives.length; i++) {
       ProcessType process = ProcessType.NONE;
       if (lives[i] == Lifeform.TREES) { process = treeProcess; }
@@ -3062,7 +3062,7 @@ public final class AreaSummary implements Externalizable {
 
   private void updateEvuStateSummary(Evu evu, int reportOption)
   {
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
     int cStep = Simulation.getCurrentTimeStep();
 
     for (int l = 0; l < lives.length; l++) {
@@ -3092,7 +3092,7 @@ public final class AreaSummary implements Externalizable {
   }
   private void updateEvuStateSummaryCombineLives(Evu evu, int reportOption)
   {
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
     int cStep = Simulation.getCurrentTimeStep();
 
     StringBuffer speciesBuf = new StringBuffer("");

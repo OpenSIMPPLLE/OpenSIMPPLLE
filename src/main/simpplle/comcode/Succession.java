@@ -37,13 +37,13 @@ public class Succession extends Process {
 
   public static ProcessType getColoradoSuccession() {
     Climate             climate  = Simpplle.getClimate();
-    Climate.Moisture    moisture = climate.getMoisture();
-    Climate.Temperature temp  = climate.getTemperature();
+    Moisture moisture = climate.getMoisture();
+    Temperature temp  = climate.getTemperature();
 
-    if ((temp == Climate.COOLER) && (moisture == Climate.WETTER)) {
+    if ((temp == Temperature.COOLER) && (moisture == Moisture.WETTER)) {
       return ProcessType.WET_SUCCESSION;
     }
-    else if ((temp == Climate.WARMER) && (moisture == Climate.DRIER)) {
+    else if ((temp == Temperature.WARMER) && (moisture == Moisture.DRIER)) {
       return ProcessType.DRY_SUCCESSION;
     }
     else { return ProcessType.SUCCESSION; }
