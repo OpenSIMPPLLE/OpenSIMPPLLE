@@ -23,15 +23,15 @@ public class Lifeform implements Externalizable {
     static final long serialVersionUID = 8809364504123901646L;
     static final int  version = 1;
 
+    private static final Map<String, Lifeform> lifeformsByName = new HashMap<>();
+    private static final Map<Integer, Lifeform> lifeformsByDominance = new TreeMap<>();
+    private static final Map<Short, Lifeform> lifeformsBySimId = new HashMap<>();
+
     public static final Lifeform TREES       = new Lifeform(0, "trees");
     public static final Lifeform SHRUBS      = new Lifeform(1, "shrubs");
     public static final Lifeform HERBACIOUS  = new Lifeform(2, "herbacious");
     public static final Lifeform AGRICULTURE = new Lifeform(3, "agriculture");
     public static final Lifeform NA          = new Lifeform(4, "no classification");
-
-    private static final Map<String, Lifeform> lifeformsByName = new HashMap<>();
-    private static final Map<Integer, Lifeform> lifeformsByDominance = new TreeMap<>();
-    private static final Map<Short, Lifeform> lifeformsBySimId = new HashMap<>();
 
     private static short nextSimId = 0;
 
