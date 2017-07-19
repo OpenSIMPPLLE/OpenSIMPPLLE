@@ -68,7 +68,9 @@ public class Lifeform implements Externalizable {
     }
 
     public static Lifeform[] getLifeformsByDominance() {
-        return (Lifeform[]) lifeformsByDominance.values().toArray();
+        Lifeform[] array = new Lifeform[lifeformsByDominance.size()];
+        lifeformsByDominance.values().toArray(array);
+        return array;
     }
 
     public static ArrayList<Lifeform> getLifeformsByDominanceList() {
