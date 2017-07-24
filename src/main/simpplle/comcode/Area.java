@@ -41,7 +41,7 @@ public final class Area implements Externalizable {
   public static final ManmadeUnitKinds ROADS  = ManmadeUnitKinds.ROADS;
   public static final ManmadeUnitKinds TRAILS = ManmadeUnitKinds.TRAILS;
 
-  private static boolean disableMultipleLifeforms=false;
+  private static boolean disableMultipleLifeforms = true;
 
   /**
    *  This area has specific Adjacency Data, and Keane spreading logic can be used.
@@ -4658,11 +4658,14 @@ public final class Area implements Externalizable {
    * Determines whether multiple lifeform flag is on or not before simulation starts.
    */
   public void determineMultipleLifeforms() {
-    if (disableMultipleLifeforms == true) {
+    if (disableMultipleLifeforms == false) {
       makeMultipleLifeforms();
     }
   }
 
+  /**
+   * Run when a new area is created, if the evu has a multiple lifeform field, flips the flag to disable multiple lifeforms to false and returns
+   */
   public void setMultipleLifeformStatus() {
     for (int i=0; i<allEvu.length; i++) {
       if (allEvu[i] != null && allEvu[i].hasMultipleLifeforms()) {
