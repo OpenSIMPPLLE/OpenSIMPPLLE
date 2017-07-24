@@ -4644,17 +4644,6 @@ public final class Area implements Externalizable {
   }
 
   /**
-   * Flag for multiple life forms.
-   * True when invasive species logic does not need to be run
-   * False when invasive species logic needs to be run and
-   * multiple lifeforms are not present in area file.
-   * @param flag is a boolean
-   */
-  public void flagMultipleLifeFormSimulation(boolean flag) {
-    disableMultipleLifeforms = flag;
-  }
-
-  /**
    * Determines whether multiple lifeform flag is on or not before simulation starts.
    */
   public void determineMultipleLifeforms() {
@@ -4688,6 +4677,7 @@ public final class Area implements Externalizable {
     }
     disableMultipleLifeforms = false;
   }
+
   public void validateLifeformStorageMatch() {
     for (int i=0; i<allEvu.length; i++) {
       if (allEvu[i] == null) { continue; }
