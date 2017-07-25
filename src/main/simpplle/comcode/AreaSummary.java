@@ -313,7 +313,7 @@ public final class AreaSummary implements Externalizable {
     ProcessOccurrence event = null;
     Simulation simulation = Simpplle.getCurrentSimulation();
     boolean simulationRunning = simulation.isSimulationRunning();
-    Climate.Season currentSeason = simulation.getCurrentSeason();
+    Season currentSeason = simulation.getCurrentSeason();
 
     if (eventData instanceof ProcessOccurrenceSpreading ||
         eventData instanceof ProcessOccurrenceSpreadingFire) {
@@ -1314,7 +1314,7 @@ public final class AreaSummary implements Externalizable {
 
       float acres = Area.getFloatAcres(fireEvent.getEventAcres());
       String spreadType = fireEvent.isExtremeEvent() ? "Extreme" : "Average";
-      Climate.Season season = fireEvent.getFireSeason();
+      Season season = fireEvent.getFireSeason();
       String seasonStr = (season != null) ? season.toString() : "n/a";
 
       fireOccurrences = fireEvent.getProcessOccurrences();
@@ -2089,7 +2089,7 @@ public final class AreaSummary implements Externalizable {
     fout.println();
   }
 */
-  public Climate.Season getFireOccurrenceSeason(Evu unit) {
+  public Season getFireOccurrenceSeason(Evu unit) {
     ProcessOccurrenceSpreadingFire event;
 
     event = (ProcessOccurrenceSpreadingFire)findSpreadingProcessEvent(unit);
@@ -2754,9 +2754,9 @@ public final class AreaSummary implements Externalizable {
   private void updateEvuProcessSummary(Evu evu) {
     int cStep = Simulation.getCurrentTimeStep();
 
-    for (Climate.Season s : Climate.allSeasons) {
+    for (Season s : Season.values()) {
       // Time Step 0 is always YEAR, so skip others.
-      if ((cStep == 0) && s != Climate.Season.YEAR) {
+      if ((cStep == 0) && s != Season.YEAR) {
         continue;
       }
       VegSimStateData trees = evu.getState(cStep, Lifeform.TREES, s);
@@ -2800,7 +2800,7 @@ public final class AreaSummary implements Externalizable {
         continue;
       }
 
-      Lifeform[] lives = Lifeform.getAllValues();
+      Lifeform[] lives = Lifeform.getLifeformsByDominance();
       for (int i = 0; i < lives.length; i++) {
         ProcessType process = ProcessType.NONE;
         if (lives[i] == Lifeform.TREES) {
@@ -2983,7 +2983,7 @@ public final class AreaSummary implements Externalizable {
       }
     }
 
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
     for(int i=0; i<lives.length; i++) {
       ProcessType process = ProcessType.NONE;
       if (lives[i] == Lifeform.TREES) { process = treeProcess; }
@@ -3062,7 +3062,7 @@ public final class AreaSummary implements Externalizable {
 
   private void updateEvuStateSummary(Evu evu, int reportOption)
   {
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
     int cStep = Simulation.getCurrentTimeStep();
 
     for (int l = 0; l < lives.length; l++) {
@@ -3092,7 +3092,7 @@ public final class AreaSummary implements Externalizable {
   }
   private void updateEvuStateSummaryCombineLives(Evu evu, int reportOption)
   {
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
     int cStep = Simulation.getCurrentTimeStep();
 
     StringBuffer speciesBuf = new StringBuffer("");

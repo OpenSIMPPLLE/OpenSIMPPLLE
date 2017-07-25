@@ -12,7 +12,6 @@ import org.apache.commons.collections.MapIterator;
 import org.apache.commons.collections.map.Flat3Map;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import simpplle.comcode.Climate.Season;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class VegSimStateData implements Externalizable {
   private VegetativeType veg;
   private ProcessType    process;
   private short          prob;
-  private Climate.Season season;
+  private Season season;
   private short          seasonOrd;  // Used for hibernate mapping only!
 
   private int fireSpreadRuleIndex = -1;
@@ -66,7 +65,7 @@ public class VegSimStateData implements Externalizable {
     this.process         = ProcessType.SUCCESSION;
     this.prob            = Evu.NOPROB;
     this.trackingSpecies = null;
-    this.season          = Climate.Season.YEAR;
+    this.season          = Season.YEAR;
   }
 
   public VegSimStateData(int slink) {
@@ -98,7 +97,7 @@ public class VegSimStateData implements Externalizable {
     this.prob     = (short)prob;
   }
 
-  public VegSimStateData(int slink, int timeStep, int run, VegetativeType vegType, ProcessType process, int prob, Climate.Season season) {
+  public VegSimStateData(int slink, int timeStep, int run, VegetativeType vegType, ProcessType process, int prob, Season season) {
     this(slink,timeStep,run,vegType,process,prob);
     this.season = season;
   }
@@ -192,10 +191,10 @@ public class VegSimStateData implements Externalizable {
 
     switch (str) {
 
-      case "SPRING": season = Climate.Season.SPRING; break;
-      case "SUMMER": season = Climate.Season.SUMMER; break;
-      case "FALL":   season = Climate.Season.FALL;   break;
-      case "WINTER": season = Climate.Season.WINTER; break;
+      case "SPRING": season = Season.SPRING; break;
+      case "SUMMER": season = Season.SUMMER; break;
+      case "FALL":   season = Season.FALL;   break;
+      case "WINTER": season = Season.WINTER; break;
 
     }
 
@@ -320,11 +319,11 @@ public class VegSimStateData implements Externalizable {
     }
   }
 
-  public Climate.Season getSeason() {
+  public Season getSeason() {
     return season;
   }
 
-  public void setSeason(Climate.Season season) {
+  public void setSeason(Season season) {
     this.season = season;
   }
 
@@ -540,7 +539,7 @@ public class VegSimStateData implements Externalizable {
   }
 
   public void setLifeform(Lifeform lifeform) {
-    this.lifeform = Lifeform.get(lifeform.getName());
+    this.lifeform = Lifeform.findByName(lifeform.getName());
   }
 
   public int getSlink() {

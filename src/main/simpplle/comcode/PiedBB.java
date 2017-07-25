@@ -119,12 +119,12 @@ public class PiedBB extends Process {
     VegSimStateData priorState = evu.getState(cTime-1);
     ProcessType processType = (priorState != null ? priorState.getProcess() : ProcessType.NONE);
 
-    Climate.Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
+    Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
 
     cols[1] = isAdjSrf;
     cols[2] = (processType == ProcessType.MIXED_SEVERITY_FIRE || processType == ProcessType.LIGHT_SEVERITY_FIRE);
-    cols[3] = (Simpplle.getClimate().getTemperature(season) == Climate.WARMER &&
-               Simpplle.getClimate().getMoisture(season)    == Climate.DRIER);
+    cols[3] = (Simpplle.getClimate().getTemperature(season) == Temperature.WARMER &&
+               Simpplle.getClimate().getMoisture(season)    == Moisture.DRIER);
 
     int prob = getProbData(page,row,0);
     if (cols[1]) { prob += getProbData(page,row,1); }
@@ -209,12 +209,12 @@ public class PiedBB extends Process {
     VegSimStateData priorState = evu.getState(cTime-1);
     ProcessType processType = (priorState != null ? priorState.getProcess() : ProcessType.NONE);
 
-    Climate.Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
+    Season season = Simpplle.getCurrentSimulation().getCurrentSeason();
 
     cols[1] = isAdjSrf;
     cols[2] = (processType == ProcessType.MIXED_SEVERITY_FIRE || processType == ProcessType.LIGHT_SEVERITY_FIRE);
-    cols[3] = (Simpplle.getClimate().getTemperature(season) == Climate.WARMER &&
-               Simpplle.getClimate().getMoisture(season)    == Climate.DRIER);
+    cols[3] = (Simpplle.getClimate().getTemperature(season) == Temperature.WARMER &&
+               Simpplle.getClimate().getMoisture(season)    == Moisture.DRIER);
 
     int prob = getProbData(page,row,0);
     if (cols[1]) { prob += getProbData(page,row,1); }

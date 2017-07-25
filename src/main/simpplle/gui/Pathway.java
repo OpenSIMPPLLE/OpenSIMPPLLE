@@ -603,7 +603,7 @@ public class Pathway extends JDialog {
    */
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       String msg = "Invalid states were created as a result of loading the new pathway\n" +
                    "file. In addition any simulation data that may have existed has\n" +
                    "been erased from memory.\n" +
@@ -1187,7 +1187,7 @@ public class Pathway extends JDialog {
     }
 
     String title = "Yearly Pathway Lifeforms";
-    ArrayList<Lifeform> lives = new ArrayList<>(Arrays.asList(Lifeform.getAllValues()));
+    ArrayList<Lifeform> lives = new ArrayList<>(Arrays.asList(Lifeform.getLifeformsByDominance()));
     CheckBoxChooser dlg = new CheckBoxChooser(this,title,true,lives,yearlyLives);
     dlg.setVisible(true);
     group.setYearlyPathwayLifeforms(dlg.getChosenItems());

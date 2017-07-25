@@ -28,7 +28,7 @@ public class FireSuppEventLogicData extends LogicData implements Externalizable 
 
   static final int  version          = 2;
 
-  private Climate.Season    fireSeason;
+  private Season fireSeason;
   private Integer           prob;
 /**
  * Constructor for Fire Suppression Event Logic Data.  Does not reference Logic Data superclass
@@ -36,7 +36,7 @@ public class FireSuppEventLogicData extends LogicData implements Externalizable 
  * fire suppression event logic
  */
   public FireSuppEventLogicData() {
-    fireSeason = Climate.Season.YEAR;
+    fireSeason = Season.YEAR;
     prob = 100;
     
     sysKnowKind = SystemKnowledge.Kinds.FIRE_SUPP_EVENT_LOGIC;
@@ -78,7 +78,7 @@ public class FireSuppEventLogicData extends LogicData implements Externalizable 
   public void setValueAt(int col, Object value) {
     switch (col) {
       case FireSuppEventLogic.FIRE_SEASON_COL:
-        Climate.Season newSeason = (Climate.Season)value;
+        Season newSeason = (Season)value;
         if (fireSeason != newSeason) {
           fireSeason = newSeason;
           markChanged();
@@ -104,10 +104,10 @@ public class FireSuppEventLogicData extends LogicData implements Externalizable 
     super.readExternal(in);
 
     if (version > 1) {
-      fireSeason = Climate.Season.valueOf((String)in.readObject());
+      fireSeason = Season.valueOf((String)in.readObject());
     }
     else {
-      fireSeason = Climate.Season.YEAR;
+      fireSeason = Season.YEAR;
     }
     prob = in.readInt();
   }
@@ -125,7 +125,7 @@ public class FireSuppEventLogicData extends LogicData implements Externalizable 
     if (!super.isMatch(evu)) {
       return false;
     }
-    if (fireSeason == Climate.Season.YEAR) {
+    if (fireSeason == Season.YEAR) {
       return true;
     }
 
@@ -134,7 +134,7 @@ public class FireSuppEventLogicData extends LogicData implements Externalizable 
       return true;
     }
     
-    Climate.Season season = event.getFireSeason();
+    Season season = event.getFireSeason();
     if (fireSeason != season) {
       return false;
     }

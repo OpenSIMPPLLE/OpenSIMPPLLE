@@ -243,8 +243,8 @@ public final class DfBeetle extends Process {
 
     cols[1] = isAdjSrf;
     cols[2] = (processType == ProcessType.MIXED_SEVERITY_FIRE || processType == ProcessType.LIGHT_SEVERITY_FIRE);
-    cols[3] = (Simpplle.getClimate().getTemperature() == Climate.WARMER &&
-               Simpplle.getClimate().getMoisture()    == Climate.DRIER);
+    cols[3] = (Simpplle.getClimate().getTemperature() == Temperature.WARMER &&
+               Simpplle.getClimate().getMoisture()    == Moisture.DRIER);
     cols[4] = (processType == ProcessType.TUSSOCK_MOTH);
 
     int prob = getProbData(page,row,0);
@@ -331,8 +331,8 @@ public final class DfBeetle extends Process {
 
     cols[1] = isAdjSrf;
     cols[2] = (processType == ProcessType.MIXED_SEVERITY_FIRE || processType == ProcessType.LIGHT_SEVERITY_FIRE);
-    cols[3] = (Simpplle.getClimate().getTemperature() == Climate.WARMER &&
-               Simpplle.getClimate().getMoisture()    == Climate.DRIER);
+    cols[3] = (Simpplle.getClimate().getTemperature() == Temperature.WARMER &&
+               Simpplle.getClimate().getMoisture()    == Moisture.DRIER);
     cols[4] = (processType == ProcessType.TUSSOCK_MOTH);
 
     int prob = getProbData(page,row,0);

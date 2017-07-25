@@ -202,10 +202,10 @@ public class FireEvent extends Process {
    */
   public static void setFireSeasonData(int spring, int summer, int fall, int winter) {
 
-    fireSeasonData[Climate.Season.SPRING.ordinal()] = spring;
-    fireSeasonData[Climate.Season.SUMMER.ordinal()] = summer;
-    fireSeasonData[Climate.Season.FALL.ordinal()]   = fall;
-    fireSeasonData[Climate.Season.WINTER.ordinal()] = winter;
+    fireSeasonData[Season.SPRING.ordinal()] = spring;
+    fireSeasonData[Season.SUMMER.ordinal()] = summer;
+    fireSeasonData[Season.FALL.ordinal()]   = fall;
+    fireSeasonData[Season.WINTER.ordinal()] = winter;
 
     markFireSeasonDataChanged();
 
@@ -216,12 +216,12 @@ public class FireEvent extends Process {
    * @param season One of four seasons; spring, summer, fall, or winter
    * @return The probability that fire occurs in this season, or -1 if not a season (like YEAR)
    */
-  public static int getFireSeasonData(Climate.Season season) {
+  public static int getFireSeasonData(Season season) {
 
-    if (season != Climate.Season.SPRING &&
-        season != Climate.Season.SUMMER &&
-        season != Climate.Season.FALL &&
-        season != Climate.Season.WINTER) {
+    if (season != Season.SPRING &&
+        season != Season.SUMMER &&
+        season != Season.FALL &&
+        season != Season.WINTER) {
 
       return -1;
 
@@ -262,19 +262,19 @@ public class FireEvent extends Process {
         throw new ParseError("Invalid file! Incorrect number of items");
       }
 
-      fireSeasonData[Climate.Season.SPRING.ordinal()] = strTok.getIntToken();
-      fireSeasonData[Climate.Season.SUMMER.ordinal()] = strTok.getIntToken();
-      fireSeasonData[Climate.Season.FALL.ordinal()]   = strTok.getIntToken();
+      fireSeasonData[Season.SPRING.ordinal()] = strTok.getIntToken();
+      fireSeasonData[Season.SUMMER.ordinal()] = strTok.getIntToken();
+      fireSeasonData[Season.FALL.ordinal()]   = strTok.getIntToken();
 
       if (count == 3) {
 
-        fireSeasonData[Climate.Season.WINTER.ordinal()] = 100 - ( fireSeasonData[Climate.Season.SPRING.ordinal()] +
-                                                                  fireSeasonData[Climate.Season.SUMMER.ordinal()] +
-                                                                  fireSeasonData[Climate.Season.FALL.ordinal()] );
+        fireSeasonData[Season.WINTER.ordinal()] = 100 - ( fireSeasonData[Season.SPRING.ordinal()] +
+                                                                  fireSeasonData[Season.SUMMER.ordinal()] +
+                                                                  fireSeasonData[Season.FALL.ordinal()] );
 
       } else {
 
-        fireSeasonData[Climate.Season.WINTER.ordinal()] = strTok.getIntToken();
+        fireSeasonData[Season.WINTER.ordinal()] = strTok.getIntToken();
 
       }
 
@@ -296,10 +296,10 @@ public class FireEvent extends Process {
    */
   public static void saveFireSeasonData(PrintWriter fout) {
 
-    fout.println( fireSeasonData[Climate.Season.SPRING.ordinal()] + "," +
-                  fireSeasonData[Climate.Season.SUMMER.ordinal()] + "," +
-                  fireSeasonData[Climate.Season.FALL.ordinal()]   + "," +
-                  fireSeasonData[Climate.Season.WINTER.ordinal()] );
+    fout.println( fireSeasonData[Season.SPRING.ordinal()] + "," +
+                  fireSeasonData[Season.SUMMER.ordinal()] + "," +
+                  fireSeasonData[Season.FALL.ordinal()]   + "," +
+                  fireSeasonData[Season.WINTER.ordinal()] );
 
     SystemKnowledge.setHasChanged(SystemKnowledge.FIRE_SEASON,false);
 
@@ -373,27 +373,27 @@ public class FireEvent extends Process {
    * Returns the fire season. This is determined stochastically.
    * @return A season; spring, summer, fall, or winter
    */
-  public static Climate.Season getFireSeason() {
+  public static Season getFireSeason() {
 
     int randNum = Simulation.getInstance().random();
 
-    int spring = fireSeasonData[Climate.Season.SPRING.ordinal()] * 100;
-    int summer = fireSeasonData[Climate.Season.SUMMER.ordinal()] * 100;
-    int fall   = fireSeasonData[Climate.Season.FALL.ordinal()]   * 100;
-    int winter = fireSeasonData[Climate.Season.WINTER.ordinal()] * 100;
+    int spring = fireSeasonData[Season.SPRING.ordinal()] * 100;
+    int summer = fireSeasonData[Season.SUMMER.ordinal()] * 100;
+    int fall   = fireSeasonData[Season.FALL.ordinal()]   * 100;
+    int winter = fireSeasonData[Season.WINTER.ordinal()] * 100;
 
     int springEnd = spring - 1;
     int summerEnd = spring + summer - 1;
     int fallEnd   = spring + summer + fall - 1;
 
     if ((spring > 0) && (randNum <= springEnd)) {
-      return Climate.Season.SPRING;
+      return Season.SPRING;
     } else if ((summer > 0) && (randNum <= summerEnd)) {
-      return Climate.Season.SUMMER;
+      return Season.SUMMER;
     } else if ((fall > 0) && (randNum <= fallEnd)) {
-      return Climate.Season.FALL;
+      return Season.FALL;
     } else {
-      return Climate.Season.WINTER;
+      return Season.WINTER;
     }
   }
 
@@ -516,7 +516,7 @@ public class FireEvent extends Process {
  * @param randNum
  * @return true if random number is less than probability
  */
-  public static boolean doSpreadEndingWeather(RegionalZone zone, int eventAcres, Climate.Season fireSeason, int randNum) {
+  public static boolean doSpreadEndingWeather(RegionalZone zone, int eventAcres, Season fireSeason, int randNum) {
     int prob = FireSuppWeatherData.getProbability(zone,eventAcres,fireSeason);
     prob *= 100;
 

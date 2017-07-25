@@ -14,7 +14,6 @@ import org.apache.commons.collections.map.Flat3Map;
 import org.apache.commons.collections.map.MultiKeyMap;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import simpplle.comcode.Climate.Season;
 
 import java.awt.*;
 import java.io.*;
@@ -108,9 +107,9 @@ public final class Evu extends NaturalElement implements Externalizable {
 
   // ** Simulation Related **
   private boolean        producingSeed;
-  private Climate.Season fireSeason;
+  private Season fireSeason;
   private short          fireSeasonProb;
-  private int[]          regenDelay = new int[Lifeform.getAllValues().length];
+  private int[]          regenDelay = new int[Lifeform.getLifeformsByDominance().length];
   private boolean[]      recentRegenDelay = new boolean[regenDelay.length];
   private SizeClass      cycleSizeClass=null;
   private int            cycleSizeClassCount=0;
@@ -774,7 +773,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return true if life form is present in any season
    */
   private boolean hasLifeformAnySeason(Lifeform lifeform, Flat3Map map) {
-    for (Season season : Climate.allSeasons) {
+    for (Season season : Season.values()) {
       MultiKey key = LifeformSeasonKeys.getKey(lifeform, season);
       if (map.containsKey(key)) {
         return true;
@@ -909,7 +908,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (lifeform == null) lifeform = dominantLifeform;
 
-    Season[] seasons = Climate.allSeasons;
+    Season[] seasons = Season.values();
     for (int i=seasons.length-1; i>=0; i--) {
       VegSimStateData state = getState(timeStep, lifeform, seasons[i]);
       if (state != null) return state;
@@ -961,7 +960,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       // Check first to see if the state we are looking for is in the lastLife variable
       // This does happen in the case of succession regen searching for in-landscape seed.
 
-      VegSimStateData lastLifeState = lastLife[lifeform.getId()];
+      VegSimStateData lastLifeState = lastLife[lifeform.getDominance()];
 
       if (lastLifeState               != null &&
           lastLifeState.getSlink()    == getId() &&
@@ -1053,7 +1052,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     int count=0;
     // work our way backward through seasons until we find one with data.
-    Season[] seasons = Climate.allSeasons;
+    Season[] seasons = Season.values();
     for (int i=seasons.length-1; i>=0; i--) {
       VegSimStateData state = getState(ts,lifeform,seasons[i]);
       if (state != null && count == 0) { count++; }
@@ -1079,7 +1078,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (lifeform == null) { lifeform = dominantLifeform; }
 
     // work our way backward through seasons until we find one with data.
-    Season[] seasons = Climate.allSeasons;
+    Season[] seasons = Season.values();
     for (int i=seasons.length-1; i>=0; i--) {
       VegSimStateData state = getState(ts,lifeform,seasons[i]);
       if (state != null) { return state; }
@@ -1100,7 +1099,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public String getStateCombineLives(int tStep, SimpplleType.Types kind) {
     boolean      first = true;
     boolean      hasPrimaryLife=false;
-    Lifeform[]   lives = Lifeform.getAllValues();
+    Lifeform[]   lives = Lifeform.getLifeformsByDominance();
     StringBuffer buf = new StringBuffer(40);
 
     hasPrimaryLife = (hasLifeform(Lifeform.TREES,tStep) ||
@@ -1217,7 +1216,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     int ts = determineDefaultTimeStep();
 
-    Season[] seasons = Climate.allSeasons;
+    Season[] seasons = Season.values();
     for (int i=0; i<seasons.length; i++) {
 
       VegSimStateData state = getState(ts,lifeform,seasons[i]);
@@ -1242,7 +1241,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     if (isHabitatTypeGroupValid() == false) return false;
 
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
     ArrayList<VegSimStateData> states;
 
     for (Lifeform lifeform : lives) {
@@ -2263,7 +2262,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return true if the Evu has the process
    */
   public boolean hasProcessAnyLifeform(int tStep, ProcessType process) {
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
     for (int i=0; i<allLives.length; i++) {
       if (hasProcess(tStep,allLives[i],process)) { return true; }
     }
@@ -2275,7 +2274,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return true if process type is either SRF (Stand Replacing Fire), LSF, or MSF (Mixed Severity Fire
    */
   public boolean hasFireAnyLifeform() {
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
     int cStep = Simulation.getCurrentTimeStep();
     for (int i=0; i<allLives.length; i++) {
       if (hasProcess(cStep,allLives[i],ProcessType.SRF)) { return true; }
@@ -2290,7 +2289,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return true if has any life form has locking probability
    */
   public boolean hasLockinProcessAnyLifeform() {
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
     for (int i=0; i<allLives.length; i++) {
       VegSimStateData state = getState(allLives[i]);
       if (state == null) { continue; }
@@ -2427,7 +2426,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param p the new process
    * @param season season in which the new process is occurring
    */
-  public void updateCurrentProcess(ProcessType p, Climate.Season season) {
+  public void updateCurrentProcess(ProcessType p, Season season) {
     updateCurrentProcess(null, p, season);
   }
 
@@ -2438,7 +2437,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param p the new process
    * @param season the season in which the new process is occurring
    */
-  public void updateCurrentProcess(Lifeform lifeform, ProcessType p, Climate.Season season) {
+  public void updateCurrentProcess(Lifeform lifeform, ProcessType p, Season season) {
     VegSimStateData state = getState(lifeform);
     state.setProcess(p);
     if (season != null) {
@@ -2452,7 +2451,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param prob probability
    * @param season the season where the new process is occurring - used to get vegetative simulation state
    */
-  public void updateCurrentStateAllLifeforms(ProcessType p, short prob,Climate.Season season) {
+  public void updateCurrentStateAllLifeforms(ProcessType p, short prob,Season season) {
     for (Lifeform lifeform : getLifeforms(season)) {
       VegSimStateData state = getState(lifeform);
       state.setProcess(p);
@@ -3131,7 +3130,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
       if (ts == 0) { return getLifeforms(0, Season.YEAR); }
 
-      Season priorSeason = Season.getPriorSeason(season);
+      Season priorSeason = season.getPriorSeason();
       lives = getLifeforms(ts, priorSeason);
       if (lives.size() == 0) { lives = null; }
       season = priorSeason;
@@ -3168,7 +3167,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
       if (ts == 0) { return getState(0,lifeform,Season.YEAR); }
 
-      Season priorSeason = Season.getPriorSeason(season);
+      Season priorSeason = season.getPriorSeason();
       state = getState(ts,lifeform,priorSeason);
       season = priorSeason;
       count++;
@@ -3193,7 +3192,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param prob the new probability
    * @param season the new season
    */
-  public void updateState(Lifeform lifeform, ProcessType process, short prob,Climate.Season season) {
+  public void updateState(Lifeform lifeform, ProcessType process, short prob,Season season) {
     int cStep = Simulation.getCurrentTimeStep();
     VegSimStateData state = getState(cStep,lifeform);
 
@@ -3374,7 +3373,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * Updates the fire season to the passed in season.  Sets the fire season probability to 1.
    * @param season the fire season
    */
-  public void updateFireSeason(Climate.Season season) {
+  public void updateFireSeason(Season season) {
     fireSeason = season;
     fireSeasonProb = 1;
   }
@@ -3409,7 +3408,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return true if there was  a recent regeneration delay
    */
   public boolean getRecentRegenDelay(Lifeform lifeform) {
-    return recentRegenDelay[lifeform.getId()];
+    return recentRegenDelay[lifeform.getDominance()];
   }
 
   /**
@@ -3421,8 +3420,8 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @return gets the dominant life forms array
    */
   public Lifeform getDominantLifeform(ProcessType process) {
-    Lifeform[] lives = Lifeform.getAllValues();
-    for (int i=dominantLifeform.getId(); i<lives.length; i++) {
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
+    for (int i = dominantLifeform.getDominance(); i<lives.length; i++) {
       VegSimStateData state = getState(Simulation.getCurrentTimeStep(),lives[i]);
       if (state == null) { continue; }
       if (hasLifeform(lives[i]) && (process == state.getProcess())) {
@@ -3437,9 +3436,9 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public Lifeform getDominantLifeformFire() {
 
-    Lifeform[] lifeforms = Lifeform.getAllValues();
+    Lifeform[] lifeforms = Lifeform.getLifeformsByDominance();
 
-    for (int i = dominantLifeform.getId(); i < lifeforms.length; i++) {
+    for (int i = dominantLifeform.getDominance(); i < lifeforms.length; i++) {
 
       Lifeform lifeform = lifeforms[i];
 
@@ -3483,7 +3482,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param recentRegenDelay true if recent regeneration delay
    */
   public void setRecentRegenDelay(Lifeform lifeform, boolean recentRegenDelay) {
-    this.recentRegenDelay[lifeform.getId()] = recentRegenDelay;
+    this.recentRegenDelay[lifeform.getDominance()] = recentRegenDelay;
   }
 
   /**
@@ -3576,7 +3575,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       DProcesses = Simpplle.getAreaSummary().getDProcesses();
     }
 
-    Season[] seasons = Climate.allSeasons;
+    Season[] seasons = Season.values();
 
     int index=0;
     for (int ts=0; ts<=nSteps; ts++) {
@@ -4132,7 +4131,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       for (int i = 0; i < lives.size(); i++) {
 
         Lifeform lifeform = lives.get(i);
-        Season[] seasons = Climate.allSeasons;
+        Season[] seasons = Season.values();
 
         for (int s = seasons.length - 1; s >= 0; s--) {
 
@@ -4471,7 +4470,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     int tStep = Simpplle.getCurrentSimulation().getCurrentTimeStep();
 
     ArrayList<ProcessType> simulationProcesses;
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
 
     for (int l=0; l<allLives.length; l++) {
       if (hasLifeform(allLives[l],tStep) == false) {
@@ -4558,15 +4557,15 @@ public final class Evu extends NaturalElement implements Externalizable {
  */
   public void determineFireSeason() {
     Simulation simulation = Simpplle.getCurrentSimulation();
-    Climate.Season season = simulation.getCurrentSeason();
+    Season season = simulation.getCurrentSeason();
 
-    if (season.equals(Climate.Season.SPRING)) {
+    if (season.equals(Season.SPRING)) {
       fireSeason = FireEvent.getFireSeason();
     }
   }
   public void doGetProcessWyoming() {
     Simulation simulation = Simpplle.getCurrentSimulation();
-    Climate.Season season = simulation.getCurrentSeason();
+    Season season = simulation.getCurrentSeason();
 
     int cStep = simulation.getCurrentTimeStep();
 
@@ -4576,7 +4575,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     if (tmpProcess != null && unitProb == L &&
         (tmpProcess.equals(ProcessType.PRAIRIE_DOG_ACTIVE) ||
          tmpProcess.equals(ProcessType.PRAIRIE_DOG_INACTIVE))) {
-      if (season == Climate.Season.SPRING) {
+      if (season == Season.SPRING) {
         return;
       }
       else {
@@ -4587,7 +4586,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
 
     if (simulation.isStandDevelopment()) {
-      if (season == Climate.Season.SPRING) {
+      if (season == Season.SPRING) {
         doWyomingSuccession(simulation);
       }
       else {
@@ -4596,7 +4595,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       return;
     }
 
-    if (season == Climate.Season.SPRING) {
+    if (season == Season.SPRING) {
       fireSeasonProb = (short)doFireProcessProb();
       int rand = simulation.random();
       if (rand > fireSeasonProb || fireSeasonProb == 0) {
@@ -4604,7 +4603,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       }
     }
 
-    if (season == Climate.Season.SPRING) {
+    if (season == Season.SPRING) {
       if (fireSeasonProb > 0 && fireSeason == season) {
         doWyomingFire(simulation,season);
       }
@@ -4612,11 +4611,11 @@ public final class Evu extends NaturalElement implements Externalizable {
         doWyomingSuccession(simulation);
       }
     }
-    else if (season == Climate.Season.SUMMER) {
+    else if (season == Season.SUMMER) {
       if (fireSeasonProb > 0 && fireSeason == season) {
         doWyomingFire(simulation,season);
       }
-      else if (fireSeasonProb > 0 && fireSeason == Climate.Season.SPRING) {
+      else if (fireSeasonProb > 0 && fireSeason == Season.SPRING) {
         doWyomingSuccession(simulation);
       }
       else if (fireSeasonProb == 0) {
@@ -4626,12 +4625,12 @@ public final class Evu extends NaturalElement implements Externalizable {
         updateState(null,ProcessType.NONE, (short)Evu.NOPROB,simulation.getCurrentSeason());
       }
     }
-    else if (season == Climate.Season.FALL || season == Climate.Season.WINTER) {
+    else if (season == Season.FALL || season == Season.WINTER) {
       if (fireSeasonProb > 0 && fireSeason == season) {
         doWyomingFire(simulation,season);
       }
       else if (fireSeasonProb > 0 &&
-               (fireSeason == Climate.Season.SPRING)) {
+               (fireSeason == Season.SPRING)) {
         doWyomingStochastic(simulation);
       }
       else {
@@ -4648,7 +4647,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 //    newState(ProcessType.SUCCESSION,(short)10000,Climate.Season.YEAR);
     updateState(null,ProcessType.SUCCESSION,(short)10000,simulation.getCurrentSeason());
   }
-  private void doWyomingFire(Simulation simulation, Climate.Season season) {
+  private void doWyomingFire(Simulation simulation, Season season) {
     VegSimStateData state = getState();
     if (state != null && fireSeasonProb > 0) {
       updateState(null,ProcessType.FIRE_EVENT, fireSeasonProb,
@@ -4658,7 +4657,7 @@ public final class Evu extends NaturalElement implements Externalizable {
 
     }
     else {
-      updateState(null,ProcessType.NONE, (short)Evu.NOPROB,Climate.Season.YEAR);
+      updateState(null,ProcessType.NONE, (short)Evu.NOPROB, Season.YEAR);
     }
   }
   private void doWyomingStochastic(Simulation simulation) {
@@ -4681,8 +4680,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void clearDummyProcesses() {
     int ts = Simulation.getCurrentTimeStep();
 
-    Lifeform[] lives = Lifeform.getAllValues();
-    Season[]   seasons = Climate.allSeasons;
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
+    Season[] seasons = Season.values();
     for (int i=0; i<seasons.length; i++) {
       for (Lifeform lifeform : lives) {
         VegSimStateData state = getState(ts,lifeform,seasons[i]);
@@ -5230,9 +5229,9 @@ public final class Evu extends NaturalElement implements Externalizable {
     int fireProb = S;
     boolean fireStarted = false;
 
-    Climate.Season currentSeason = Simulation.getInstance().getCurrentSeason();
+    Season currentSeason = Simulation.getInstance().getCurrentSeason();
 
-    for (Lifeform toLifeform : Lifeform.getAllValues()) {
+    for (Lifeform toLifeform : Lifeform.getLifeformsByDominance()) {
 
       Area.currentLifeform = toLifeform;
 
@@ -5480,7 +5479,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   private void setRegenDelay(int delay, Lifeform lifeform) {
     for (int i=0; i<regenDelay.length; i++) {
-      if (i == lifeform.getId()) {
+      if (i == lifeform.getDominance()) {
         regenDelay[i] = delay;
       }
       else if (regenDelay[i] > 0) {
@@ -5502,7 +5501,7 @@ public final class Evu extends NaturalElement implements Externalizable {
                        Simulation.getInstance().getCurrentSeason());
 
     if (Simpplle.getCurrentZone().isWyoming() == false) {
-      Lifeform[] allLives = Lifeform.getAllValues();
+      Lifeform[] allLives = Lifeform.getLifeformsByDominance();
       for (int i=0; i<allLives.length; i++) {
         if (this.hasLifeform(allLives[i]) == false) {
           if (isRegenDelay(allLives[i]) == false) {
@@ -5545,7 +5544,7 @@ public final class Evu extends NaturalElement implements Externalizable {
       int run = Simulation.getCurrentRun();
       VegSimStateData state =
         new VegSimStateData(getId(),ts,run,newStatesTemp.get(i),selected.processType,
-                            (short)selected.probability,Climate.Season.YEAR);
+                            (short)selected.probability, Season.YEAR);
 
       int cStep = Simulation.getCurrentTimeStep();
       storeState(cStep,state,Simulation.getInstance().getCurrentSeason());
@@ -5569,10 +5568,10 @@ public final class Evu extends NaturalElement implements Externalizable {
     int run = Simulation.getCurrentRun();
     VegSimStateData state =
       new VegSimStateData(getId(),ts,run,vegType,selected.processType,
-                          (short)selected.probability,Climate.Season.YEAR);
+                          (short)selected.probability, Season.YEAR);
 
     int cStep = Simulation.getCurrentTimeStep();
-    storeState(cStep,state,Climate.Season.YEAR);
+    storeState(cStep,state, Season.YEAR);
     if (selected.probability >= 0) {
       Lifeform newLife = vegType.getSpecies().getLifeform();
       Simulation.getInstance().getAreaSummary().updateProcessOriginatedIn(this,newLife,selected,cStep);
@@ -5654,7 +5653,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   private void updateLastLifeData(int tStep, Lifeform lifeform, Season season) {
-    lastLife[lifeform.getId()] = getState(tStep,lifeform,season);
+    lastLife[lifeform.getDominance()] = getState(tStep,lifeform,season);
     ProcessType[] processes = (ProcessType[])lastLifeProcessHistory.get(lifeform);
     if (processes == null) {
       processes = new ProcessType[simData.length];
@@ -5670,11 +5669,11 @@ public final class Evu extends NaturalElement implements Externalizable {
   }
 
   private boolean isRegenDelay(Lifeform lifeform) {
-    int delay = regenDelay[lifeform.getId()];
+    int delay = regenDelay[lifeform.getDominance()];
     if (delay > 0 && timeSinceFire() >= delay) {
-      regenDelay[lifeform.getId()] = 0;
+      regenDelay[lifeform.getDominance()] = 0;
       delay = 0;
-      recentRegenDelay[lifeform.getId()] = true;
+      recentRegenDelay[lifeform.getDominance()] = true;
     }
 
     return (delay > 0);
@@ -6071,7 +6070,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     }
     if (zone.getId() == ValidZones.SOUTH_CENTRAL_ALASKA  &&
         Simpplle.getAreaSummary().getFireOccurrenceSeason(this) ==
-        Climate.Season.SPRING) {
+        Season.SPRING) {
       return false;
     }
     if (FireEvent.useRegenPulse() && FireEvent.isRegenPulse() == false) {
@@ -8153,8 +8152,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void writeSimulationDatabase(Session session) throws SimpplleError {
     int ts  = Simulation.getCurrentTimeStep();
 
-    Lifeform[] lives = Lifeform.getAllValues();
-    Season[]   seasons = Climate.allSeasons;
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
+    Season[] seasons = Season.values();
 
     VegSimStateData.clearWriteCount();
     for (int l=0; l<lives.length; l++) {
@@ -8174,8 +8173,8 @@ public final class Evu extends NaturalElement implements Externalizable {
   public void writeSimulationAccessFiles(PrintWriter fout, PrintWriter trackOut) {
     int ts  = Simulation.getCurrentTimeStep();
 
-    Lifeform[] lives = Lifeform.getAllValues();
-    Season[]   seasons = Climate.allSeasons;
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
+    Season[] seasons = Season.values();
 
     VegSimStateData.clearWriteCount();
     for (Lifeform life : lives) {
@@ -8299,7 +8298,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     ArrayList<Lifeform> result = new ArrayList<Lifeform>();
 
     Set<Lifeform> lives = getLifeforms(tStep,season);
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
     for (int i=0; i<allLives.length; i++) {
       if (lives.contains(allLives[i])) {
         result.add(allLives[i]);
@@ -8549,7 +8548,7 @@ public final class Evu extends NaturalElement implements Externalizable {
   public ArrayList<ProcessType> getSummaryProcesses(int cStep) {
     tmpSummaryProcesses.clear();
 
-    for (Climate.Season s : Climate.allSeasons) {
+    for (Season s : Season.values()) {
       if (cStep == 0 && s != Season.YEAR) { continue; }
 
       VegSimStateData trees  = getState(cStep,Lifeform.TREES, s);
@@ -8584,7 +8583,7 @@ public final class Evu extends NaturalElement implements Externalizable {
         }
       }
 
-      Lifeform[] lives = Lifeform.getAllValues();
+      Lifeform[] lives = Lifeform.getLifeformsByDominance();
       for(int i=0; i<lives.length; i++) {
         ProcessType process = ProcessType.NONE;
         if (lives[i] == Lifeform.TREES) { process = treeProcess; }
@@ -8635,7 +8634,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     Simulation simulation = Simpplle.getCurrentSimulation();
     int cTime = simulation.getCurrentTimeStep();
 
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
     for(int ts=cTime; ts>=0; ts--) {
       int simDataIndex = this.getSimDataIndex(ts);
       if (simDataIndex < 0) {
@@ -8697,7 +8696,7 @@ public final class Evu extends NaturalElement implements Externalizable {
     for(int ts=cTime-1; ts>=0; ts--) {
       int index = this.getSimDataIndex(ts);
       if (index < 0) {
-        VegSimStateData state = lastLife[life.getId()];
+        VegSimStateData state = lastLife[life.getDominance()];
         if (state == null) { return null; }
         return state;
       }
@@ -8724,7 +8723,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    * @param isClassA true if uses class A logic
    */
   public void suppressFire(boolean isClassA) {
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
     for (int i=0; i<allLives.length; i++) {
       Lifeform lifeform = allLives[i];
       VegSimStateData state = getState(lifeform);
@@ -8750,7 +8749,7 @@ public final class Evu extends NaturalElement implements Externalizable {
    */
   public boolean isSuppressed() {
 
-    Lifeform[] lifeforms = Lifeform.getAllValues();
+    Lifeform[] lifeforms = Lifeform.getLifeformsByDominance();
 
     for (Lifeform lifeform : lifeforms) {
 

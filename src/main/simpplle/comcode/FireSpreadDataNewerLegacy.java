@@ -82,14 +82,14 @@ public class FireSpreadDataNewerLegacy {
     public class DensityRule {
       public SizeClass[]   sizeClasses;
       public ProcessType[] processes;
-      public Climate.Season season; // Added 4 Mar 2005
+      public Season season; // Added 4 Mar 2005
       public ProcessType   average, extreme;
       public int           position;
 
       public DensityRule() {
         sizeClasses = null;
         processes   = null;
-        season      = Climate.Season.YEAR;
+        season      = Season.YEAR;
         average     = ProcessType.LSF;
         extreme     = ProcessType.LSF;
       }
@@ -104,7 +104,7 @@ public class FireSpreadDataNewerLegacy {
         extreme = value;
       }
 
-      public void setSeason(Climate.Season season) {
+      public void setSeason(Season season) {
         this.season = season;
       }
 
@@ -127,7 +127,7 @@ public class FireSpreadDataNewerLegacy {
       public ProcessType getFireType(boolean isExtreme) {
         return (isExtreme) ? extreme : average;
       }
-      public boolean isMatch(SizeClass sizeClass, ProcessType process, Climate.Season season) {
+      public boolean isMatch(SizeClass sizeClass, ProcessType process, Season season) {
         int i;
         boolean match=false;
         // First check for a Size Class match.
@@ -155,7 +155,7 @@ public class FireSpreadDataNewerLegacy {
         }
         if (!match) { return false; }
 
-        if (this.season != Climate.Season.YEAR && this.season != season) { return false; }
+        if (this.season != Season.YEAR && this.season != season) { return false; }
 
         return true;
       }
@@ -311,7 +311,7 @@ public class FireSpreadDataNewerLegacy {
       if (deleteIndex != -1) { densityRules.remove(deleteIndex); }
     }
 
-    public DensityRule findRule(SizeClass sizeClass, ProcessType process, Climate.Season season) {
+    public DensityRule findRule(SizeClass sizeClass, ProcessType process, Season season) {
       DensityRule rule;
       for (int i=0; i<densityRules.size(); i++) {
         rule = (DensityRule)densityRules.get(i);
@@ -344,7 +344,7 @@ public class FireSpreadDataNewerLegacy {
 
   public static ProcessType getTypeOfFire(ProcessType process, int position,
                                           int resistance, boolean extreme,
-                                          Evu evu, Climate.Season season)
+                                          Evu evu, Season season)
   {
     VegSimStateData state = evu.getState();
     if (state == null) { return null; }
@@ -639,19 +639,19 @@ public class FireSpreadDataNewerLegacy {
                 ProcessType p = ProcessType.get(strListTok.getToken());
                 if (p == ProcessType.SRF_SPRING) {
                   p = ProcessType.STAND_REPLACING_FIRE;
-                  entryRule.season = Climate.Season.SPRING;
+                  entryRule.season = Season.SPRING;
                 }
                 else if (p == ProcessType.SRF_SUMMER) {
                   p = ProcessType.STAND_REPLACING_FIRE;
-                  entryRule.season = Climate.Season.SUMMER;
+                  entryRule.season = Season.SUMMER;
                 }
                 else if (p == ProcessType.SRF_FALL) {
                   p = ProcessType.STAND_REPLACING_FIRE;
-                  entryRule.season = Climate.Season.FALL;
+                  entryRule.season = Season.FALL;
                 }
                 else if (p == ProcessType.SRF_WINTER) {
                   p = ProcessType.STAND_REPLACING_FIRE;
-                  entryRule.season = Climate.Season.WINTER;
+                  entryRule.season = Season.WINTER;
                 }
                 entryRule.processes[k] = p;
               }
@@ -680,7 +680,7 @@ public class FireSpreadDataNewerLegacy {
             if (strTok.hasMoreTokens()) {
               str = strTok.getToken();
               if (str != null) {
-                entryRule.season = Climate.Season.valueOf(str);
+                entryRule.season = Season.valueOf(str);
               }
             }
           }

@@ -13,7 +13,6 @@ import java.io.ObjectInput;
 import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.Externalizable;
-import simpplle.comcode.Roads.*;
 
 /**
  * This class manages the search data for EVU, a type of logic data.
@@ -81,7 +80,7 @@ public class EvuSearchData extends LogicData implements Externalizable {
       times.add(Simulation.getCurrentTimeStep());
     }
 
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
     for (int l = 0; l < lives.length; l++) {
       for (int tsIndex = 0; tsIndex < times.size(); tsIndex++) {
         int ts = times.get(tsIndex);

@@ -16,8 +16,6 @@ import java.util.Collections;
 import java.io.Externalizable;
 import java.util.HashMap;
 
-import simpplle.comcode.Climate.*;
-
 /**
  * This is an abstract class for LogicData, itself an extension of AbstractLogicData.
  * It provides many of the methods used in the logic data classes throughout OpenSimpplle.
@@ -89,13 +87,13 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
   public  boolean                  treatmentInclusiveTimeSteps;
   public  boolean                  treatmentAnyExcept;
 
-  public  Climate.Season           season;
+  public Season season;
 
-  public  ArrayList<Climate.Moisture>    moistureList;
+  public  ArrayList<Moisture>    moistureList;
   public  int                            moistureCountTS;
   public  int                            moistureNumTS;
 
-  public  ArrayList<Climate.Temperature> tempList;
+  public  ArrayList<Temperature> tempList;
   public  int                            tempCountTS;
   public  int                            tempNumTS;
 
@@ -172,13 +170,13 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
     defaultTrailStatusDesc     = true;
     defaultLandtypeDesc        = true;
 
-    season          = Climate.Season.YEAR;
+    season          = Season.YEAR;
 
-    moistureList = new ArrayList<Climate.Moisture>();
+    moistureList = new ArrayList<Moisture>();
     moistureCountTS = 1;
     moistureNumTS   = 1;
 
-    tempList     = new ArrayList<Climate.Temperature>();
+    tempList     = new ArrayList<Temperature>();
     tempCountTS = 1;
     tempNumTS   = 1;
 
@@ -229,8 +227,8 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
 
     logicData.season = season;
 
-    logicData.moistureList = new ArrayList<Climate.Moisture>(moistureList);
-    logicData.tempList     = new ArrayList<Climate.Temperature>(tempList);
+    logicData.moistureList = new ArrayList<Moisture>(moistureList);
+    logicData.tempList     = new ArrayList<Temperature>(tempList);
 
     logicData.trackingSpecies            = new HashMap<Species,Integer>(trackingSpecies);
     logicData.trackingSpeciesDesc        = trackingSpeciesDesc;
@@ -396,8 +394,8 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
       case BaseLogic.PROCESS_COL:          break; // set in table editor
       case BaseLogic.TREATMENT_COL:        break; // set in table editor
       case BaseLogic.SEASON_COL:
-        if (season != (Climate.Season)value) {
-          season = (Climate.Season) value;
+        if (season != (Season)value) {
+          season = (Season) value;
           SystemKnowledge.markChanged(sysKnowKind);
         }
         break;
@@ -1070,19 +1068,19 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
 
   // *** Temperature/Moisture ***
   // ****************************
-  public void addTemperature(Climate.Temperature temp) {
+  public void addTemperature(Temperature temp) {
     if (tempList.contains(temp) == false) {
       tempList.add(temp);
       SystemKnowledge.markChanged(sysKnowKind);
     }
   }
-  public void removeTemperature(Climate.Temperature temp) {
+  public void removeTemperature(Temperature temp) {
     if (tempList.contains(temp)) {
       tempList.remove(temp);
       SystemKnowledge.markChanged(sysKnowKind);
     }
   }
-  public ArrayList<Climate.Temperature> getTemperatureList() { return tempList; }
+  public ArrayList<Temperature> getTemperatureList() { return tempList; }
 
   public int getTempCountTimeStep() { return tempCountTS; }
   public int getTempNumTimeStep()   { return tempNumTS; }
@@ -1090,19 +1088,19 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
   public void setTempCountTimeStep(int ts) { tempCountTS = ts; }
   public void setTempNumTimeStep(int ts)   { tempNumTS = ts; }
 
-  public void addMoisture(Climate.Moisture moisture) {
+  public void addMoisture(Moisture moisture) {
     if (moistureList.contains(moisture) == false) {
       moistureList.add(moisture);
       SystemKnowledge.markChanged(sysKnowKind);
     }
   }
-  public void removeMoisture(Climate.Moisture moisture) {
+  public void removeMoisture(Moisture moisture) {
     if (moistureList.contains(moisture)) {
       moistureList.remove(moisture);
       SystemKnowledge.markChanged(sysKnowKind);
     }
   }
-  public ArrayList<Climate.Moisture> getMoistureList() { return moistureList; }
+  public ArrayList<Moisture> getMoistureList() { return moistureList; }
 
   public int getMoistureCountTimeStep() { return moistureCountTS; }
   public int getMoistureNumTimeStep()   { return moistureNumTS; }
@@ -1225,15 +1223,15 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
       treatmentAnyExcept        = in.readBoolean();
     }
 
-    season = Climate.Season.valueOf((String)in.readObject());
+    season = Season.valueOf((String)in.readObject());
 
     if (version > 1) {
-      moistureList = (ArrayList<Climate.Moisture>)in.readObject();
+      moistureList = (ArrayList<Moisture>)in.readObject();
       if (version > 4) {
         moistureCountTS = in.readInt();
         moistureNumTS   = in.readInt();
       }
-      tempList = (ArrayList<Climate.Temperature>)in.readObject();
+      tempList = (ArrayList<Temperature>)in.readObject();
       if (version > 4) {
         tempCountTS = in.readInt();
         tempNumTS   = in.readInt();
@@ -1599,10 +1597,10 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
       if (!processAnyExcept) { return false; }
     }
 
-    Climate.Season currentSeason;
+    Season currentSeason;
     if (simulation != null  && simulation.isSimulationRunning()) {
       currentSeason = Simpplle.getCurrentSimulation().getCurrentSeason();
-      if (season != Climate.Season.YEAR && season != currentSeason) {
+      if (season != Season.YEAR && season != currentSeason) {
         return false;
       }
     }
@@ -1613,7 +1611,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
       currentSeason = unitSeason;
     }
     else {
-      currentSeason = Climate.Season.YEAR;
+      currentSeason = Season.YEAR;
     }
 
     if (isSuccInLandscapeSeed) {
@@ -1623,7 +1621,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
     if ((moistureList != null && moistureList.size() > 0)) {
       int count = 0;
       for (int i=0; i<moistureNumTS; i++) {
-        Climate.Moisture moisture = Simpplle.getClimate().getMoisture(cTime-i,currentSeason);
+        Moisture moisture = Simpplle.getClimate().getMoisture(cTime-i,currentSeason);
         if (moistureList.contains(moisture)) {
           count++;
         }
@@ -1634,7 +1632,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
     if ((tempList != null && tempList.size() > 0 )) {
       int count = 0;
       for (int i=0; i<tempNumTS; i++) {
-        Climate.Temperature temp = Simpplle.getClimate().getTemperature(cTime-i,currentSeason);
+        Temperature temp = Simpplle.getClimate().getTemperature(cTime-i,currentSeason);
         if (tempList.contains(temp)) {
           count++;
         }
@@ -1691,7 +1689,7 @@ public abstract class LogicData extends AbstractLogicData implements Externaliza
       tStep = Simulation.getCurrentTimeStep();
     }
 
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
     for (int i=0; i<lives.length; i++) {
       if (evu.hasLifeform(lives[i],tStep) == false) { continue; }
 

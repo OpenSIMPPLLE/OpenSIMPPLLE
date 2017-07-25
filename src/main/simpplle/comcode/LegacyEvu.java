@@ -409,7 +409,7 @@ public class LegacyEvu {
                        simulatedStates.getVegType(0, ts),
                        simulatedStates.getProcessType(0, ts),
                        simulatedStates.getProbability(0, ts),
-                       Climate.Season.YEAR);
+                       Season.YEAR);
         }
         evu.setInitialProcess(simulatedStates.getProcessType(0,0));
       }

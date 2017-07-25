@@ -9,7 +9,7 @@
 package simpplle.gui;
 
 import javax.swing.table.TableColumn;
-import simpplle.comcode.Climate.Season;
+
 import simpplle.comcode.*;
 
 /**
@@ -97,8 +97,8 @@ public class VegLogicPanel extends BaseLogicPanel {
     // ** Season Column **
     else if (col == BaseLogic.SEASON_COL) {
       column.setIdentifier(BaseLogic.SEASON_COL);
-      column.setCellRenderer(new MyJComboBoxRenderer(Climate.allSeasons));
-      column.setCellEditor(new MyJComboBoxEditor(Climate.allSeasons));
+      column.setCellRenderer(new MyJComboBoxRenderer(Season.values()));
+      column.setCellEditor(new MyJComboBoxEditor(Season.values()));
 //      logicTable.setRowHeight(logicTable.getRowHeight()+5);
 //      logicTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }

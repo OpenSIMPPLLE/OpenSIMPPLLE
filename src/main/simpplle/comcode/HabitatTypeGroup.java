@@ -968,7 +968,7 @@ public final class HabitatTypeGroup {
     yearlyPathwayLives = new Lifeform[v.size()];
 
     for (int i=0; i<v.size(); i++) {
-      yearlyPathwayLives[i] = Lifeform.get((String)v.get(i));
+      yearlyPathwayLives[i] = Lifeform.findByName((String)v.get(i));
     }
   }
 

@@ -47,6 +47,15 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
   public static HashMap<Short,Species> simIdHm = new HashMap<Short,Species>();
   private short simId=-1; // Random Access File ID
   public static short nextSimId=0;
+
+  public static void resetSimIds() {
+    nextSimId = 0;
+    for (Species species : simIdHm.values()) {
+      species.simId = -1;
+    }
+    simIdHm.clear();
+  }
+
   public short getSimId() {
     if (simId == -1) {
       simId = nextSimId;
@@ -499,7 +508,7 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
 
     allSpeciesList.clear();
 
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
 
     for (int i=0; i<allLives.length; i++) {
       list = (ArrayList)lifeformHm.get(allLives[i].toString());
@@ -643,7 +652,7 @@ public class Species extends SimpplleType implements Externalizable, SpeciesStat
         if (str == null || str.trim().length() == 0) {
           throw new SimpplleError("No Lifeform type in line: " + line);
         }
-        lf = Lifeform.get(str.trim());
+        lf = Lifeform.findByName(str.trim());
         if (lf == null) { lf = Lifeform.NA; }
         species.setLifeform(lf);
 

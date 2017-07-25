@@ -442,7 +442,7 @@ public class PathwayCanvas extends JPanel implements MouseListener, MouseMotionL
    */
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       String msg = "Invalid states were created as a result of deleting a state\n" +
                    "In addition any simulation data that may have existed has\n" +
                    "been erased from memory\n" +

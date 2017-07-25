@@ -70,7 +70,7 @@ public abstract class FireTypeDataNewerLegacy {
       public boolean         anyTreatmentExcept;
       public TreatmentType[] treatments;
       public ProcessType[]   processes;
-      public Climate.Season  season;
+      public Season season;
       public ProcessType     wetter, normal, drier;
       public int             position;
 
@@ -79,7 +79,7 @@ public abstract class FireTypeDataNewerLegacy {
         anyTreatmentExcept = false;
         treatments         = null;
         processes          = null;
-        season             = Climate.Season.YEAR;
+        season             = Season.YEAR;
         wetter             = ProcessType.LSF;
         normal             = ProcessType.LSF;
         drier              = ProcessType.LSF;
@@ -100,7 +100,7 @@ public abstract class FireTypeDataNewerLegacy {
         drier = value;
       }
 
-      public void setSeason(Climate.Season season) {
+      public void setSeason(Season season) {
         this.season = season;
       }
 
@@ -112,9 +112,9 @@ public abstract class FireTypeDataNewerLegacy {
         TreatmentType treatment = (treatments != null) ? treatments[0] : TreatmentType.NONE;
         ProcessType   process   = (processes != null) ? processes[0] : ProcessType.SUCCESSION;
 
-        wetter = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process,Climate.WETTER);
-        normal = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process,Climate.Moisture.NORMAL);
-        drier  = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process,Climate.DRIER);
+        wetter = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process, Moisture.WETTER);
+        normal = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process, Moisture.NORMAL);
+        drier  = FireTypeDataLegacy.getData(resistance,sizeClass,density,treatment,process, Moisture.DRIER);
       }
 
       public void setPosition(int newPosition) { position = newPosition; }
@@ -180,13 +180,13 @@ public abstract class FireTypeDataNewerLegacy {
         return rule;
       }
 
-      public ProcessType getFireType(Climate.Moisture moisture) {
-        if (moisture == Climate.WETTER) { return wetter; }
-        else if (moisture == Climate.Moisture.NORMAL) { return normal; }
-        else if (moisture == Climate.DRIER) { return drier; }
+      public ProcessType getFireType(Moisture moisture) {
+        if (moisture == Moisture.WETTER) { return wetter; }
+        else if (moisture == Moisture.NORMAL) { return normal; }
+        else if (moisture == Moisture.DRIER) { return drier; }
         return wetter;
       }
-      public boolean isMatch(Density density, ProcessType process, TreatmentType treatment, Climate.Season season) {
+      public boolean isMatch(Density density, ProcessType process, TreatmentType treatment, Season season) {
         int i;
         boolean match=false;
         // First check for a density match.
@@ -226,7 +226,7 @@ public abstract class FireTypeDataNewerLegacy {
               (!anyTreatmentExcept && !match)) { return false; }
         }
 
-        if (this.season != Climate.Season.YEAR && this.season != season) { return false; }
+        if (this.season != Season.YEAR && this.season != season) { return false; }
 
         return true;
       }
@@ -361,7 +361,7 @@ public abstract class FireTypeDataNewerLegacy {
       if (deleteIndex != -1) { sizeClassRules.remove(deleteIndex); }
     }
 
-    public SizeClassRule findRule(Density density, ProcessType process, TreatmentType treatment, Climate.Season season) {
+    public SizeClassRule findRule(Density density, ProcessType process, TreatmentType treatment, Season season) {
       SizeClassRule rule;
       for (int i=0; i<sizeClassRules.size(); i++) {
         rule = (SizeClassRule)sizeClassRules.get(i);
@@ -508,7 +508,7 @@ public abstract class FireTypeDataNewerLegacy {
     }
     return null;
   }
-  public static ProcessType getTypeOfFire(int resistance, Evu evu, Climate.Season season) {
+  public static ProcessType getTypeOfFire(int resistance, Evu evu, Season season) {
     VegSimStateData state = evu.getState();
     if (state == null) { return null; }
 
@@ -526,7 +526,7 @@ public abstract class FireTypeDataNewerLegacy {
     TreatmentType treatType = TreatmentType.NONE;
     if (treat != null) { treatType = treat.getType(); }
 
-    Climate.Moisture moisture = Simpplle.getClimate().getMoisture(season);
+    Moisture moisture = Simpplle.getClimate().getMoisture(season);
 
     FireTypeDataEntry.SizeClassRule rule;
     FireTypeDataEntry               entry;
@@ -706,19 +706,19 @@ public abstract class FireTypeDataNewerLegacy {
                 ProcessType p = ProcessType.get(strListTok.getToken());
                 if (p == ProcessType.SRF_SPRING) {
                   p = ProcessType.STAND_REPLACING_FIRE;
-                  entryRule.season = Climate.Season.SPRING;
+                  entryRule.season = Season.SPRING;
                 }
                 else if (p == ProcessType.SRF_SUMMER) {
                   p = ProcessType.STAND_REPLACING_FIRE;
-                  entryRule.season = Climate.Season.SUMMER;
+                  entryRule.season = Season.SUMMER;
                 }
                 else if (p == ProcessType.SRF_FALL) {
                   p = ProcessType.STAND_REPLACING_FIRE;
-                  entryRule.season = Climate.Season.FALL;
+                  entryRule.season = Season.FALL;
                 }
                 else if (p == ProcessType.SRF_WINTER) {
                   p = ProcessType.STAND_REPLACING_FIRE;
-                  entryRule.season = Climate.Season.WINTER;
+                  entryRule.season = Season.WINTER;
                 }
                 entryRule.processes[k] = p;
                 if (entryRule.processes[k] == null) {
@@ -759,7 +759,7 @@ public abstract class FireTypeDataNewerLegacy {
             if (strTok.hasMoreTokens()) {
               str = strTok.getToken();
               if (str != null) {
-                entryRule.season = Climate.Season.valueOf(str);
+                entryRule.season = Season.valueOf(str);
               }
             }
 

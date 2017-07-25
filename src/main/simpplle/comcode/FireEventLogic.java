@@ -122,7 +122,7 @@ public class FireEventLogic extends BaseLogic {
                             SizeClass[] sizeClasses,
                             ArrayList<SimpplleType> densities,
                             ProcessType[] processes,
-                            Climate.Season season,
+                            Season season,
                             ArrayList<ProcessType> originProcesses,
                             ArrayList<FireEvent.Position> positions,
                             ProcessType average,
@@ -203,7 +203,7 @@ public class FireEventLogic extends BaseLogic {
                                       ProcessType[]   processes,
                                       boolean         notTreatment,
                                       TreatmentType[] treatments,
-                                      Climate.Season  season,
+                                      Season season,
                                       ProcessType     wetter,
                                       ProcessType     normal,
                                       ProcessType     drier) {

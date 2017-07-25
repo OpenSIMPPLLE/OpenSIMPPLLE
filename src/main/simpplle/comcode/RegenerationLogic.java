@@ -566,7 +566,7 @@ public abstract class RegenerationLogic {
 
     dataList.clear();
 
-    Lifeform[] allLives = Lifeform.getAllValues();
+    Lifeform[] allLives = Lifeform.getLifeformsByDominance();
 
     for (int i=0; i<allLives.length; i++) {
       list = (ArrayList)lifeformHm.get(allLives[i].toString());

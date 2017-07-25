@@ -77,6 +77,14 @@ public class Density extends SimpplleType implements Externalizable {
     this("", 0);
   }
 
+  public static void resetSimIds() {
+    nextSimId = 0;
+    for (Density density : simIdHm.values()) {
+      density.simId = -1;
+    }
+    simIdHm.clear();
+  }
+
   public short getSimId() {
     if (simId == -1) {
       simId = nextSimId;

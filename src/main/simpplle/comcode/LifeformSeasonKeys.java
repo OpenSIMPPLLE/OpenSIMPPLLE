@@ -9,7 +9,6 @@
 package simpplle.comcode;
 
 import org.apache.commons.collections.keyvalue.*;
-import simpplle.comcode.Climate.*;
 
 /**
  * This class contains the methods to control the multi keys data structure used throughout code
@@ -19,15 +18,15 @@ import simpplle.comcode.Climate.*;
  */
 
 public class LifeformSeasonKeys {
-  private static MultiKey[][] keys = new MultiKey[Lifeform.numValues()][Climate.Season.numValues()];
+  private static MultiKey[][] keys = new MultiKey[Lifeform.numValues()][Season.values().length];
 
   static {
-    Lifeform[] lives = Lifeform.getAllValues();
+    Lifeform[] lives = Lifeform.getLifeformsByDominance();
 
     for (int l=0; l<lives.length; l++) {
-      for (int s=0; s<Climate.allSeasons.length; s++) {
-        keys[lives[l].getId()][Climate.allSeasons[s].ordinal()] =
-          new MultiKey(lives[l],Climate.allSeasons[s]);
+      for (int s=0; s<Season.values().length; s++) {
+        keys[lives[l].getDominance()][Season.values()[s].ordinal()] =
+          new MultiKey(lives[l],Season.values()[s]);
       }
 
     }
@@ -43,7 +42,7 @@ public class LifeformSeasonKeys {
  * @return the multikey composed of a multidimensional array of size lifeform id and season ordinal.
  */
   public static MultiKey getKey(Lifeform lifeform, Season season) {
-    return keys[lifeform.getId()][season.ordinal()];
+    return keys[lifeform.getDominance()][season.ordinal()];
   }
 
 }

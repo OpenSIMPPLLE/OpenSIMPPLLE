@@ -32,9 +32,10 @@ import java.util.Vector;
  * @author Documentation by Brian Losi
  * <p>Original source code authorship: Kirk A. Moeller
  */
+
 @SuppressWarnings("serial")
 public class SimpplleMain extends JFrame {
-  public static final String VERSION      = "1.3.10";
+  public static final String VERSION      = "1.3.11";
   public static final String RELEASE_KIND = "Douglas Fir";
   public static final String BUILD_DATE   = "June 2017";
 
@@ -122,7 +123,6 @@ public class SimpplleMain extends JFrame {
   JMenuItem menuExportGISDecadeProb = new JMenuItem();
   JMenuItem menuImportCreate = new JMenuItem();
   JMenuItem menuImportFixStates = new JMenuItem();
-  JMenuItem menuImportEditUnits = new JMenuItem();
   JMenuItem menuUtilityUnitEditor = new JMenuItem();
   JLabel areaInvalidLabel = new JLabel();
   JMenuItem menuSysKnowRegionalClimate = new JMenuItem();
@@ -210,7 +210,7 @@ public class SimpplleMain extends JFrame {
   private final JMenuItem menuSysKnowFireSuppEvent = new JMenuItem();
 
   //Change URL of Guide
-  final String GUIDE_URL = "http://www.umt.edu/opensimpplle/guide.php";
+  private static final String GUIDE_URL = "http://www.umt.edu/opensimpplle/guide.php";
 
   /**
    * This is the SimpplleMain constructor.  
@@ -226,10 +226,10 @@ public class SimpplleMain extends JFrame {
 
     initialize();
   }
-/**
- * Initializes the simpplle main by getting the simpplle image and initializing some tests if in developer mode.  There is also a helpset file directory set, but it is not currently functional.
- * 
- */
+  /**
+   * Initializes the simpplle main by getting the simpplle image and initializing some tests if in developer mode.  There is also a helpset file directory set, but it is not currently functional.
+   *
+   */
   private void initialize() {
     // Set icon that is show in the title bar and minimized icon.
     ImageIcon tmpImage = new ImageIcon(
@@ -305,7 +305,7 @@ public class SimpplleMain extends JFrame {
         fileExit_actionPerformed(e);
       }
     });
-    newZone.setToolTipText("Load a new zone.");
+    newZone.setToolTipText("Loads logic for a geographic region");
     newZone.setText("New Zone");
     newZone.addActionListener(new java.awt.event.ActionListener() {
 
@@ -314,7 +314,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     newArea.setEnabled(false);
-    newArea.setToolTipText("Load an Area.");
+    newArea.setToolTipText("Loads a landscape from a geographic region");
     newArea.setText("New Area");
     newArea.addActionListener(new java.awt.event.ActionListener() {
 
@@ -323,7 +323,6 @@ public class SimpplleMain extends JFrame {
       }
     });
     runSimulation.setEnabled(false);
-    runSimulation.setToolTipText("Help");
     runSimulation.setText("Run Simulation");
     runSimulation.addActionListener(new java.awt.event.ActionListener() {
 
@@ -343,7 +342,7 @@ public class SimpplleMain extends JFrame {
     menuSettings.addActionListener(e -> actionMenuSettings(e));
     menuUtility.setText("Utilities");
     menuUtilityReset.setEnabled(false);
-    menuUtilityReset.setToolTipText("Removes Simulation and restores Area to initial conditions");
+    menuUtilityReset.setToolTipText("Discards simulation and restores area to initial conditions");
     menuUtilityReset.setText("Reset Area/Simulation");
     menuUtilityReset.addActionListener(new java.awt.event.ActionListener() {
 
@@ -583,14 +582,6 @@ public class SimpplleMain extends JFrame {
         menuImportFixStates_actionPerformed(e);
       }
     });
-    menuImportEditUnits.setEnabled(false);
-    menuImportEditUnits.setText("Edit Units");
-    menuImportEditUnits.addActionListener(new java.awt.event.ActionListener() {
-
-      public void actionPerformed(ActionEvent e) {
-        menuImportEditUnits_actionPerformed(e);
-      }
-    });
     menuUtilityUnitEditor.setEnabled(false);
     menuUtilityUnitEditor.setText("Open Unit Editor");
     menuUtilityUnitEditor.addActionListener(new java.awt.event.ActionListener() {
@@ -599,10 +590,8 @@ public class SimpplleMain extends JFrame {
         menuUtilityUnitEditor_actionPerformed(e);
       }
     });
-    areaInvalidLabel.setFont(new java.awt.Font("Serif", 1, 14));
-    areaInvalidLabel.setMaximumSize(new Dimension(60, 20));
-    areaInvalidLabel.setMinimumSize(new Dimension(60, 20));
-    areaInvalidLabel.setPreferredSize(new Dimension(60, 20));
+    areaInvalidLabel.setFont(new java.awt.Font("Serif", Font.BOLD, 14));
+    areaInvalidLabel.setPreferredSize(new Dimension(70, 20));
     menuSysKnowRegionalClimate.setEnabled(false);
     menuSysKnowRegionalClimate.setText("Regional Climate");
     menuSysKnowRegionalClimate.addActionListener(new java.awt.event.ActionListener() {
@@ -642,7 +631,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     menuSysKnowOpen.setEnabled(false);
-    menuSysKnowOpen.setToolTipText("Loads knowledge components from a file");
+    menuSysKnowOpen.setToolTipText("Loads user-defined logic for a geographic region");
     menuSysKnowOpen.setText("Load User Knowledge");
     menuSysKnowOpen.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -650,7 +639,7 @@ public class SimpplleMain extends JFrame {
       }
     });
     menuSysKnowSave.setEnabled(false);
-    menuSysKnowSave.setToolTipText("Saves knowledge components to a file");
+    menuSysKnowSave.setToolTipText("Saves user-defined logic for a geographic region");
     menuSysKnowSave.setText("Save User Knowledge");
     menuSysKnowSave.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -692,7 +681,7 @@ public class SimpplleMain extends JFrame {
     });
 
     menuSysKnowRestoreDefaults.setEnabled(false);
-    menuSysKnowRestoreDefaults.setToolTipText("Restores System Knowledge to defaults.");
+    menuSysKnowRestoreDefaults.setToolTipText("Restores system knowledge to defaults.");
     menuSysKnowRestoreDefaults.setText("Restore All Defaults");
     menuSysKnowRestoreDefaults.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -1212,7 +1201,6 @@ public class SimpplleMain extends JFrame {
     menuImport.add(menuImportAttributeData);
     menuImport.addSeparator();
     menuImport.add(menuImportFixStates);
-    menuImport.add(menuImportEditUnits);
     menuImport.add(menuImportInvalidReport);
     menuImport.addSeparator();
     menuImport.add(menuImportFSLandscape);
@@ -1274,36 +1262,36 @@ public class SimpplleMain extends JFrame {
   public void refresh() {
     update(getGraphics());
   }
-/**
- * Clears the status message by setting it to empty string.
- */
+  /**
+   * Clears the status message by setting it to empty string.
+   */
   public void clearStatusMessage() {
     setStatusMessage("");
   }
-/**
- * Sets the status message to the string message in parameter.  Does not wait.  
- * @param msg the message to be displayed
- */
+  /**
+   * Sets the status message to the string message in parameter.  Does not wait.
+   * @param msg the message to be displayed
+   */
   public void setStatusMessage(String msg) {
     setStatusMessage(msg,false);
   }
   /**
    * If wait is enabled, shows a messageDialog which has the user press Ok to continue.
-   * @param msg message to be displayed in the status bar.  
+   * @param msg message to be displayed in the status bar.
    * @param wait if true will ask the user to press Ok to continue.
    */
   public void setStatusMessage(String msg, boolean wait) {
     statusBar.setText(msg);
     if (wait) {
       JOptionPane.showMessageDialog(this,"Press Ok to continue","Profiling use",
-                                    JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.INFORMATION_MESSAGE);
     }
     refresh();
   }
-/**
- * Enables the simulation controls by getting the current simulation and
- * setting the simulation JMenu items to enabled
- */
+  /**
+   * Enables the simulation controls by getting the current simulation and
+   * setting the simulation JMenu items to enabled
+   */
   public void enableSimulationControls() {
     Simulation simulation = Simpplle.getCurrentSimulation();
 
@@ -1316,7 +1304,6 @@ public class SimpplleMain extends JFrame {
     menuFileSave.setEnabled(true);
 
     // We do not want the user to be able to edit units after a simulation.
-    menuImportEditUnits.setEnabled(false);
     menuUtilityUnitEditor.setEnabled(false);
 
     menuUtilityDeleteUnits.setEnabled(false);
@@ -1355,12 +1342,11 @@ public class SimpplleMain extends JFrame {
       menuReportsTrackingSpecies.setEnabled(true);
     }
   }
-/**
- * Disables simulation controls by setting the enabled simulation methods of the JMenu items to false.  
- */
+  /**
+   * Disables simulation controls by setting the enabled simulation methods of the JMenu items to false.
+   */
   public void disableSimulationControls() {
     menuReportsSummary.setEnabled(false);
-//    menuReportsUnit.setEnabled(false);
     menuReportsAllStates.setEnabled(false);
     menuReportsTrackingSpecies.setEnabled(false);
     menuReportsFire.setEnabled(false);
@@ -1375,9 +1361,9 @@ public class SimpplleMain extends JFrame {
 
     menuReportsFireSuppCostAll.setEnabled(true);
   }
-/**
- * Enables the area JMenu items.  
- */
+  /**
+   * Enables the area JMenu items.
+   */
   public void enableAreaControls() {
     menuUtilityPrintArea.setEnabled(true);
     menuUtilityAreaName.setEnabled(true);
@@ -1396,7 +1382,6 @@ public class SimpplleMain extends JFrame {
 
     menuFileSave.setEnabled(true);
     menuImportFixStates.setEnabled(false);
-    menuImportEditUnits.setEnabled(false);
     menuImportInvalidReport.setEnabled(false);
     menuImportAttributeData.setEnabled(true);
     menuInterpretWildlife.setEnabled(simpplle.comcode.WildlifeHabitat.isZoneValid());
@@ -1406,9 +1391,9 @@ public class SimpplleMain extends JFrame {
 
     menuReportsFireSuppCostAll.setEnabled((Simpplle.getCurrentSimulation() == null));
 
-    menuResultAquaticUnit.setEnabled((Simpplle.getCurrentArea().existAquaticUnits()));
+    menuResultAquaticUnit.setEnabled((Simpplle.getCurrentArea().hasAquaticUnits()));
 
-    menuResultLandformUnit.setEnabled((Simpplle.getCurrentArea().existLandUnits()));
+    menuResultLandformUnit.setEnabled((Simpplle.getCurrentArea().hasLandUnits()));
 
     menuReportsUnit.setEnabled(true);
 
@@ -1416,21 +1401,20 @@ public class SimpplleMain extends JFrame {
     
     menuUtilitySwapRowCol.setEnabled(true);
    }
-/**
- * Disables Jmenu items by first checking if there is an invalid units and enabling or disabling Jmenu items to fix the states.  
- * THen calls the  disableAreaControls() which sets the enabled methods of all area JMenu items to false.  
- * @param invalidUnits
- */
+  /**
+   * Disables Jmenu items by first checking if there is an invalid units and enabling or disabling Jmenu items to fix the states.
+   * THen calls the  disableAreaControls() which sets the enabled methods of all area JMenu items to false.
+   * @param invalidUnits
+   */
   public void disableAreaControls(boolean invalidUnits) {
     menuImportFixStates.setEnabled(invalidUnits);
-    menuImportEditUnits.setEnabled(invalidUnits);
     menuImportInvalidReport.setEnabled(invalidUnits);
     menuUtilityDeleteUnits.setEnabled(false);
     disableAreaControls();
   }
-/**
- * Sets the enabled methods of all area JMenu items to false.
- */
+  /**
+   * Sets the enabled methods of all area JMenu items to false.
+   */
   public void disableAreaControls() {
     menuUtilityPrintArea.setEnabled(false);
     runSimulation.setEnabled(false);
@@ -1456,14 +1440,14 @@ public class SimpplleMain extends JFrame {
     menuUtilityMakeAreaMultipleLife.setEnabled(false);
     menuUtilitySwapRowCol.setEnabled(false);
   }
-/**
- * Gets the current area and checks if there are any invalid vegetative units.  
- * If there are invalid Evu's  enables or Jmenu items to fix the states and lets the user know there are invalid Evu
- * Then calls the  disableAreaControls() which sets the enabled methods of all area JMenu items to false.  
- * If there are it 
- */
+  /**
+   * Gets the current area and checks if there are any invalid vegetative units.
+   * If there are invalid Evu's  enables or Jmenu items to fix the states and lets the user know there are invalid Evu
+   * Then calls the  disableAreaControls() which sets the enabled methods of all area JMenu items to false.
+   * If there are it
+   */
   public void updateAreaValidity() {
-    if (Simpplle.getCurrentArea().existAnyInvalidVegUnits()) {
+    if (Simpplle.getCurrentArea().hasInvalidVegetationUnits()) {
       disableAreaControls(true);
       areaInvalidLabel.setText("(Invalid)");
     }
@@ -1583,17 +1567,17 @@ public class SimpplleMain extends JFrame {
     setCursor(Utility.getWaitCursor());
     setStatusMessage(msg);
   }
-/**
- * Sets the cursor to normal cursor location.
- */
+  /**
+   * Sets the cursor to normal cursor location.
+   */
   public void setNormalState() {
     clearStatusMessage();
     setCursor(Utility.getNormalCursor());
   }
-/**
- * Sets the dialog location in relation to the Simpplle Main frame
- * @param dlg dialog whose location will be set.
- */
+  /**
+   * Sets the dialog location in relation to the Simpplle Main frame
+   * @param dlg dialog whose location will be set.
+   */
   public void setDialogLocation(JDialog dlg) {
     Dimension dlgSize = dlg.getPreferredSize();
     Dimension frmSize = getSize();
@@ -1616,6 +1600,7 @@ public class SimpplleMain extends JFrame {
     dlg.setLocation(x,y);
   }
 
+  // **************
   // Event Handlers
   // **************
 
@@ -1640,20 +1625,20 @@ public class SimpplleMain extends JFrame {
       fileExit_actionPerformed(null);
     }
   }
-/**
- * Displays the 'about OpenSimpplle' dialog
- * @param e
- */
+  /**
+   * Displays the 'about OpenSimpplle' dialog
+   * @param e
+   */
   void menuHelpAbout_actionPerformed(ActionEvent e) {
     SimpplleMain_AboutBox dlg = new SimpplleMain_AboutBox(this);
     setDialogLocation(dlg);
     dlg.setModal(true);
     dlg.setVisible(true);
   }
-/**
- * Allows the user to select a zone, then enables zone controls, and disables
- * area controls.
- */
+  /**
+   * Allows the user to select a zone, then enables zone controls, and disables
+   * area controls.
+   */
   void newZone_actionPerformed() {
     String str;
     simpplle.comcode.RegionalZone zone;
@@ -1676,10 +1661,10 @@ public class SimpplleMain extends JFrame {
     }
     refresh();
   }
-/**
- * Gets the previous simulation files 
- * @return
- */
+  /**
+   * Gets the previous simulation files
+   * @return
+   */
   private File[] getPreviousSimulationFiles() {
     ChooseSimulation dlg = new ChooseSimulation(this,"Choose Simulation",true);
     setDialogLocation(dlg);
@@ -1793,10 +1778,10 @@ public class SimpplleMain extends JFrame {
     }
     refresh();
   }
-/**
- * Handles the action event when user chooses to run simulation.  
- * @param e
- */
+  /**
+   * Handles the action event when user chooses to run simulation.
+   * @param e
+   */
   void runSimulation_actionPerformed(ActionEvent e) {
     //TODO find a better place to put this line of code
     // ----------------------------------------------------
@@ -1814,10 +1799,10 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
     refresh();
   }
-/**
- * Resizes a component.  
- * @param e
- */
+  /**
+   * Resizes a component.
+   * @param e
+   */
   void this_componentResized(ComponentEvent e) {
     Dimension d = getSize();
 
@@ -1929,10 +1914,10 @@ public class SimpplleMain extends JFrame {
     }
 
   }
-/**
- * Handles the event when tracking species menu item is selected.  It creates a new Tracking Species report dialog
- * @param e
- */
+  /**
+   * Handles the event when tracking species menu item is selected.  It creates a new Tracking Species report dialog
+   * @param e
+   */
   public void menuReportsTrackingSpecies_actionPerformed(ActionEvent e) {
     TrackingSpeciesReportDlg dlg = new TrackingSpeciesReportDlg(this,"Tracking Species Report Categories",true);
     dlg.setVisible(true);
@@ -2102,10 +2087,10 @@ public class SimpplleMain extends JFrame {
       setNormalState();
     }
   }
-/**
- * Reburn function is a hoped for future improvement in OpenSimpplle.  
- * @param e
- */
+  /**
+   * Reburn function is a hoped for future improvement in OpenSimpplle.
+   * @param e
+   */
   void menuExportGISReburn_actionPerformed(ActionEvent e) {
     File outfile;
 
@@ -2378,7 +2363,7 @@ public class SimpplleMain extends JFrame {
   private void doInvalidAreaCheck() {
     Area area = Simpplle.getCurrentArea();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       String msg =
         "Invalid data was found in the units after loading\n" +
         "In addition any simulation data that may have existed has\n" +
@@ -2601,7 +2586,7 @@ public class SimpplleMain extends JFrame {
     }
     area.setMultipleLifeformStatus();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       area.fixEmptyDataUnits();
       msg = "Creation of the Area was only partially successful.\n" +
             "One or more of the units had invalid attribute data.\n" +
@@ -2644,29 +2629,27 @@ public class SimpplleMain extends JFrame {
     refresh();
   }
 
-/**
- * Marks an area invalid and allows users to import fix states, edit units, or
- * print invalid report.
- */
+  /**
+   * Marks an area invalid and allows users to import fix states, edit units, or
+   * print invalid report.
+   */
   public void markAreaInvalid() {
     areaInvalidLabel.setText("(invalid)");
     disableAreaControls();
     disableSimulationControls();
     menuImportFixStates.setEnabled(true);
-    menuImportEditUnits.setEnabled(true);
     menuImportInvalidReport.setEnabled(true);
     menuUtilityUnitEditor.setEnabled(true);
   }
 
-/**
- * Marks the area as valid, then enables area controls.
- * @see #markAreaInvalid()
- */
+  /**
+   * Marks the area as valid, then enables area controls.
+   * @see #markAreaInvalid()
+   */
   public void markAreaValid() {
     areaInvalidLabel.setText("");
     enableAreaControls();
     menuImportFixStates.setEnabled(false);
-    menuImportEditUnits.setEnabled(false);
     menuImportInvalidReport.setEnabled(false);
   }
 
@@ -2695,7 +2678,7 @@ public class SimpplleMain extends JFrame {
     }
     setNormalState();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       msg = "Adding Attributes was only partially successful.\n" +
                        "One or more of the units had invalid attribute data.\n" +
                        "It was most likely caused by one of the following:\n" +
@@ -2714,7 +2697,6 @@ public class SimpplleMain extends JFrame {
       JOptionPane.showMessageDialog(this,msg,"Partial Success",
                                     JOptionPane.WARNING_MESSAGE);
       menuImportFixStates.setEnabled(true);
-      menuImportEditUnits.setEnabled(true);
       menuImportInvalidReport.setEnabled(true);
     }
     // Import was successful.
@@ -2732,7 +2714,6 @@ public class SimpplleMain extends JFrame {
       disableSimulationControls();
 
       menuImportFixStates.setEnabled(false);
-      menuImportEditUnits.setEnabled(false);
       menuImportInvalidReport.setEnabled(false);
     }
   }
@@ -2755,7 +2736,7 @@ public class SimpplleMain extends JFrame {
     }
     updateAreaValidity();
 
-    if (area.existAnyInvalidVegUnits()) {
+    if (area.hasInvalidVegetationUnits()) {
       String msg =
         "Fix of incorrect states was only partially successful.\n" +
         "Remaining errors can be fixed by using the \"Edit Units\"\n" +
@@ -2778,16 +2759,8 @@ public class SimpplleMain extends JFrame {
       disableSimulationControls();
 
       menuImportFixStates.setEnabled(false);
-      menuImportEditUnits.setEnabled(false);
       menuImportInvalidReport.setEnabled(false);
     }
-  }
-
-  void menuImportEditUnits_actionPerformed(ActionEvent e) {
-    EvuEditor dlg = new EvuEditor(this,"",true);
-    setDialogLocation(dlg);
-    dlg.setVisible(true);
-    refresh();
   }
 
   void menuImportInvalidReport_actionPerformed(ActionEvent e) {
@@ -2849,6 +2822,7 @@ public class SimpplleMain extends JFrame {
     }
   }
 
+  // Editor found in utility menu
   void menuUtilityUnitEditor_actionPerformed(ActionEvent e) {
     EvuEditor dlg = new EvuEditor(this,"",true);
     setDialogLocation(dlg);
@@ -2913,7 +2887,6 @@ public class SimpplleMain extends JFrame {
     String url = "jdbc:hsqldb:file:" + outfile;
     DatabaseManagerSwing.main(new String[] {"-url", url});
   }
-
 
 
   void menuSysKnowUseRegenPulse_actionPerformed(ActionEvent e) {
@@ -3401,8 +3374,8 @@ public class SimpplleMain extends JFrame {
     dlg.setVisible(true);
   }
 
-  public void menuSysKnowInvasiveLogicR1_actionPerformed(ActionEvent e) {
-  }
+  // Unused?..
+  public void menuSysKnowInvasiveLogicR1_actionPerformed(ActionEvent e) {}
 
   public void menuSysKnowInvasiveLogicMSU_actionPerformed(ActionEvent e) {
     InvasiveSpeciesMSULogicDialog dlg =
@@ -3535,5 +3508,4 @@ public class SimpplleMain extends JFrame {
   public JLabel getStatusBar(){
     return statusBar;
   }
-
 }
